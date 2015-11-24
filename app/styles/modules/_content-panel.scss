@@ -1,0 +1,41 @@
+.container-dashboard {
+  .content-column {
+    padding-bottom: 13px;
+    .space {
+      width: 2%;
+      min-width: 2%;
+    }
+  }
+}
+.content-panel-dashboard{
+  width: 49%;
+  max-width: 49%;
+}
+.content-panel {
+  &:first-child {
+    padding-top: 0;
+  }
+  .content-panel-header {
+    md-toolbar {
+      background: none;
+      min-height: 50px;
+      .md-toolbar-tools {
+        height: 50px;
+      }
+    }
+
+    h2 {
+        color: black;
+        font-size: 14px;
+      }
+
+    a {
+      font-size: 11px;
+      color: map-get($colors, link_color);
+    }
+
+  }
+  .content-panel-body {
+    background-color: #FFF;
+  }
+}

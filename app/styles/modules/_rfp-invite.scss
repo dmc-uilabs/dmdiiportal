@@ -1,0 +1,150 @@
+.tabsdemoStaticTabs md-tab-content {
+  padding: 25px;
+}
+.tabsdemoStaticTabs md-tab-content:nth-child(1) {
+  background-color: #42A5F5;
+}
+.tabsdemoStaticTabs md-tab-content:nth-child(2) {
+  background-color: #689F38;
+}
+.tabsdemoStaticTabs md-tab-content:nth-child(3) {
+  background-color: #26C6DA;
+}
+.tabsdemoStaticTabs .after-tabs-area > span {
+  margin-top: 25px;
+  padding-right: 15px;
+  vertical-align: middle;
+  line-height: 30px;
+  height: 35px;
+}
+.tabsdemoStaticTabs .after-tabs-area > md-checkbox {
+  margin-top: 26px;
+  margin-left: 0;
+}
+.rfp-invitation md-datepicker {
+  margin-top: 18px; }
+.rfp-invitation .md-datepicker-button {
+  height: 36px;
+  width: 36px;
+  line-height: 36px; }
+.rfp-invitation .md-datepicker-input-container {
+  margin-left: 2px; }
+
+.btn-next-block{
+  padding: 0 15px 15px 15px;
+  .md-button{
+    color:#fff !important;
+  }
+}
+
+.rfp-invitation{
+  .rfp-two {
+    .table-line{
+      td{
+        cursor: pointer;
+      }
+    }
+    .content-panel-header {
+      background-color: #EFECED;
+    }
+    .opened{
+      td {
+        background-color: #f4f4f4;
+      }
+    }
+    md-checkbox.md-checked{
+      .md-icon {
+        background-color: rgb(71, 210, 101);
+      }
+    }
+    .modelBox{
+      padding-bottom: 15px !important;
+      background-color: #f4f4f4;
+      .content-panel-header {
+        background-color: #f4f4f4 !important;
+      }
+      md-list{
+        md-list-item {
+          display: inline-block;
+          max-width: 150px;
+          .md-list-item-text {
+            width: 100%;
+            text-align: center;
+            h3 {
+              padding: 0;
+              margin: 2px 0;
+              display: block;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+  .rfp-three{
+    .top-content{
+      md-input-container{
+        padding-bottom: 0;
+      }
+      .md-button{
+        text-transform: none;
+      }
+      .search-box {
+        padding-left: 50px;
+        input{
+          margin-top: 18px;
+        }
+        ng-md-icon {
+          fill: #999;
+          position: absolute;
+          left: -30px;
+          margin-top: 20px;
+        }
+      }
+    }
+    .member-cards{
+      text-align: center;
+      max-height: 350px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+  .header-content{
+    h3{
+      font-size: 15px;
+      font-weight: 100;
+    }
+    .md-button{
+      text-transform: none;
+    }
+  }
+  .invitees{
+    .md-toolbar-tools{
+      button{
+        text-transform: none;
+        text-decoration: underline;
+      }
+      button:hover{
+        text-decoration: none;
+      }
+    }
+    h3{
+      font-weight: 100;
+      font-size: 13px;
+    }
+  }
+}
+
+.tableServices.submitServices{
+  .opened{
+    td{
+      background-color: #EEE !important;
+    }
+  }
+  #inputs-outputs{
+    background-color: #EEE !important;
+  }
+  .model-inputs{
+    padding-bottom: 8px;
+  }
+}

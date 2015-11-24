@@ -1,0 +1,67 @@
+<div class="container">
+    <!-- Left Content Column -->
+    <div layout="row" layout-margin layout-fill layout-padding>
+        <div class="content-column" layout="column" flex="70">
+            <div class="content-panel rfp-three">
+                <div class="content-panel-header">
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <h2>Search for Members to Invite</h2>
+                        </div>
+                    </md-toolbar>
+                </div>
+                <div class="content-panel-body">
+                    <md-content class="md-padding top-content" layout="row">
+                        <div layout="column" flex="20">
+                            <md-input-container>
+                                <label>Members</label>
+                                <md-select ng-model="membersModel">
+                                    <md-option ng-repeat="m in members" value="{{m.val}}">{{m.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout="column" class="search-box" flex="50">
+                            <form ng-submit="searchMembers()">
+                            <md-input-container md-no-float>
+                                <ng-md-icon icon="search" size="28"></ng-md-icon>
+                                <input ng-model="searchText" type="text" placeholder="Search">
+                            </md-input-container>
+                            </form>
+                        </div>
+                        <span flex></span>
+                        <md-button class="md-raised">Favorites</md-button>
+                        <md-button class="md-raised" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button>
+                    </md-content>
+                    <md-content class="md-padding top-content" layout="row">
+                        <div class="content-column" layout="column" flex="100">
+                            <div class="content-panel rfp-three">
+                                <div class="content-panel-header">
+                                    <md-toolbar>
+                                        <div class="md-toolbar-tools">
+                                            <h2>Recently Searched</h2>
+                                        </div>
+                                        <md-divider ></md-divider>
+                                    </md-toolbar>
+                                </div>
+                                <div class="content-panel-body">
+                                    <md-content class="md-padding top-content member-cards">
+                                        <div dmc-member-card compare-member="compareMember" invite-member="addToInvitation" card-source="item" ng-if="item.isShow" class="member-card" ng-repeat="item in foundMembers"></div>
+                                    </md-content>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+        <!-- Right Content Column -->
+        <div class="content-column" layout="column" flex="29">
+            <div dmc-selected-invitees class="content-panel invitees" invitees="invitees"></div>
+        </div>
+    </div>
+    <div layout="row" class="btn-next-block" layout-padding>
+        <md-button class="md-raised md-primary" ng-click="goToTab(2)">Back</md-button>
+        <span flex></span>
+        <md-button class="md-raised md-primary" ng-click="goToTab(4)" ng-disabled="invitees.length == 0">Next</md-button>
+    </div>
+</div>

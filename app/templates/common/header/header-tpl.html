@@ -1,0 +1,156 @@
+<div class="space-header"></div>
+<header class='main-header'>
+    <md-toolbar class="md-tall">
+        <div class="md-toolbar-tools notification-nav" layout="row">
+            <div class="logo">
+                <a href="index.php"><img src="images/logo.png"></a>
+            </div>
+
+            <span flex></span>
+
+            <div layout="row">
+                <md-menu md-offset="0 50">
+                    <md-button class="md-icon-button"
+                               aria-label="Open Latest Services Menu"
+                               ng-click="$mdOpenMenu($event)">
+                        <ng-md-icon icon="settings" style="fill: white;" size="14"></ng-md-icon>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button>Service 1</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button>Service 2</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button>Service 3</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button>See All</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <md-menu md-offset="0 50">
+                    <md-button class="md-icon-button"
+                               aria-label="Open Latest Services Menu"
+                               ng-click="$mdOpenMenu($event)">
+                        <ng-md-icon icon="notifications" style="fill: white;" size="14"></ng-md-icon>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button>Notification 1</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button>Notification 2</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button>Notification 3</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <md-menu md-offset="0 50">
+                    <md-button class="md-icon-button"
+                               aria-label="Open Latest Services Menu"
+                               ng-click="$mdOpenMenu($event)">
+                        <ng-md-icon icon="email" style="fill: white;" size="14"></ng-md-icon>
+                        <span class="notification-number" ng-show="showNotification">1</span>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item ng-show="showNotification">
+                            <md-button href="/project.php#/preview/5">Pat has invited you to a challenge</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <md-button id="notification-help-button"
+                           class="md-icon-button"
+                           aria-label="Open Latest Services Menu"
+                           ng-click="$mdOpenMenu($event)">
+                    <ng-md-icon icon="help" style="fill: white;" size="14"></ng-md-icon>
+                </md-button>
+            </div>
+
+            <span flex></span>
+
+            <div class="top-user-menu" layout="column">
+                <md-menu>
+                    <md-button href="#"
+                               aria-label="Open Latest Services Menu"
+                               ng-click="$mdOpenMenu($event)">
+                        <ng-md-icon icon="person" style="fill: #fff;"></ng-md-icon>
+                        Hi, DMC Member
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button>My Profile</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button>My Projects</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button>My Submissions</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+        </div>
+
+        <div class="md-toolbar-tools menu-toolbar">
+            <span flex></span>
+
+            <div layout="column">
+                <div class="main-navigation" layout="row" layout-align="center center">
+                    <md-button class="header-menu-button"
+                               href="dashboard.php"
+                               ng-class="{'active-page' : activePage.indexOf('dashboard') > -1}">
+                        Dashboard
+                    </md-button>
+                    <md-menu md-offset="0 50">
+                        <md-button class="header-menu-button"
+                           aria-label="Open Latest Services Menu"
+                           ng-click="$mdOpenMenu($event)"
+                           ng-class="{'active-page' : activePage.indexOf('marketplace') > -1}">
+                            Marketplace
+                            <ng-md-icon icon="arrow_drop_down" style="fill: #65AF3F;" size="45"></ng-md-icon>
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button href="marketplace.php">Market</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button>My Storefront</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button>Favorites</md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+
+                    <md-button class="header-menu-button" href="/">Community</md-button>
+
+                    <md-menu md-offset="0 50">
+                        <md-button aria-label="Open Latest Services Menu"
+                            ng-click="$mdOpenMenu($event)"
+                            class="header-menu-button"
+                            ng-class="{'active-page' : activePage.indexOf('project') > -1}">
+                            Projects
+                            <ng-md-icon icon="arrow_drop_down" style="fill: #65AF3F;" size="45"></ng-md-icon>
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button href="my-projects.php">My Projects</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button>All Projects</md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                    <md-button class="header-menu-button" href="/">Challenge</md-button>
+                    <md-button href="/" aria-label="Search">
+                        <ng-md-icon icon="search" style="fill: white;"></ng-md-icon>
+                    </md-button>
+                </div>
+            </div>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+</header>

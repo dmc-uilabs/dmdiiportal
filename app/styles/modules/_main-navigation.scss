@@ -1,0 +1,37 @@
+.main-navigation {
+  .md-menu {
+    padding: 0;
+    margin: 0;
+  }
+  .md-button {
+    @extend %nav_item;
+    color: white;
+  }
+}
+.main-header{
+  md-menu{
+    margin-top: 0;
+  }
+}
+.header-menu-button{
+  ng-md-icon {
+    height: 34px;
+    margin-left: -13px;
+    margin-right: -13px;
+    svg {
+      margin-top: -7px;
+    }
+  }
+}
+.md-button.md-default-theme{
+  line-height: 47px;
+}
+
+.main-header .menu-toolbar{
+  height: 47px;
+}
+.main-header md-toolbar.md-tall{
+  height: 110px;
+  min-height: 110px;
+  max-height: 110px;
+}

@@ -1,0 +1,22 @@
+
+.dropzone{
+  border:2px dashed #ccc;
+  @include borderRadius(5px);
+  .dz-message{
+    div{
+      span{
+        display: block;
+      }
+    }
+  }
+  .dz-remove-item{
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    @include borderRadius(15px);
+    z-index: 11;
+  }
+}

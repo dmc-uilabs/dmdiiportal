@@ -1,0 +1,43 @@
+md-list-item.md-3-line .md-list-item-text h3 {
+  line-height: 20px;
+}
+
+md-list {
+  md-list-item.md-2-line {
+    .md-list-item-text {
+      h3 {
+        color: black;
+        font-size: 14px;
+        line-height: 16px;
+        width: 80%;
+      }
+      h4 {
+        margin-top: 0;
+        font-size: 10px;
+        color: map-get($colors, text_grey);
+      }
+      span {
+        margin-top: 10px;
+        font-size: 10px;
+        color: map-get($colors, text_grey);
+      }
+    }
+    .md-secondary {
+      &.user-info {
+        span {
+          color: map-get($colors, text_grey);
+          font-size: 10px;
+        }
+        .md-avatar {
+          width: 40px;
+          height: 40px;
+          margin-top: 8px;
+          margin-bottom: 8px;
+          margin-left: 16px;
+          border-radius: 50%;
+          box-sizing: content-box;
+        }
+      }
+    }
+  }
+}

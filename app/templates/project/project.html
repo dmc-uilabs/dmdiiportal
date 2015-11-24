@@ -1,0 +1,92 @@
+  <div class="page-header" layout-padding>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <div layout="column">
+            <h1 class="name-project">{{projectCtrl.projectData.title}}<span class="small-text small-text--grey">Due in 20 days</span></h1>
+            <span ng-if="isPreview" class="project-manager">Submitted: {{projectCtrl.projectData.projectManager}}</span>
+            <h2><img src="images/project-header-thumb.png" alt=""></h2>
+          </div>
+          <!-- fill up the space between left and right area -->
+          <span flex></span>
+          <!-- buttons for preview -->
+          <md-button ng-if="isPreview" class="md-raised md-warn white-label" href="/"><ng-md-icon icon="close" style="fill: #fff" size="18"></ng-md-icon> Decline Invitation</md-button>
+          <md-button ng-if="isPreview" class="md-raised md-primary white-label" href="/project.php#/submission/blank/{{projectCtrl.projectData.id}}"><ng-md-icon icon="done" style="fill: #fff" size="18"></ng-md-icon> Accept Invitation</md-button>
+
+          <!-- buttons for submission -->
+          <md-button ng-if="isSubmission" class="md-raised md-primary white-label" href="/project.php#/submit/{{projectCtrl.projectData.id}}"><ng-md-icon icon="send" style="fill: #fff" size="18"></ng-md-icon> Submit</md-button>
+
+          <md-button ng-if="!isPreview" class="md-raised md-primary white-label"><ng-md-icon icon="mode_edit" style="fill: #fff" size="18"></ng-md-icon> Edit</md-button>
+          <md-menu  ng-if="!isPreview">
+              <md-button class="md-raised md-primary white-label" ng-click="$mdOpenMenu($event)"><ng-md-icon icon="share" style="fill: #fff" size="18"></ng-md-icon> Share</md-button>
+              <md-menu-content>
+                <md-menu-item>
+                  <md-button>Team</md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button href="/invite-challenge.php">Challenge</md-button>
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
+        </div>
+      </md-toolbar>
+    </div>
+    <div class="container" >
+      <div layout="row" layout-margin layout-fill layout-padding>
+          <!-- Left Content Column -->
+          <div class="content-column" layout="column" flex="70">
+            <!-- Overview -->
+            <div class="content-panel">
+              <div class="content-panel-header">
+               <md-toolbar>
+                  <div class="md-toolbar-tools">
+                    <h2>Overview</h2>
+                    <span flex></span>
+                    <md-button href="/" md-no-ink>View All</md-button>
+                  </div>
+                </md-toolbar>
+              </div>
+              <div class="content-panel-body">
+                <md-content class="md-padding" layout="row" layout-padding>
+                  <div flex="25">
+                    <img ng-src="{{projectCtrl.projectData.featureImage.thumbnail}}">
+                  </div>
+                  <div flex="75">
+                    <p>{{projectCtrl.projectData.description}}</p>
+                  </div>
+                </md-content>
+              </div>
+            </div>
+            <!-- Tasks -->
+            <div ng-if="!isPreview" class="content-panel" ui-widget-tasks project-id="projectCtrl.currentProjectId" columns="['title','priority']" widget-title="'MY TASKS'"></div>
+            <!-- Discussion -->
+            <div ng-if="!isPreview" class="content-panel" ui-widget-discussions project-id="projectCtrl.currentProjectId" widget-title="'DISCUSSIONS'"></div>
+        </div>
+        <!-- Right Content Column -->
+        <div class="content-column" layout="column" flex>
+            <!-- Requirement Documents -->
+            <div ng-if="isPreview" class="content-panel" ui-widget-documents project-id="projectCtrl.currentProjectId" widget-title="'DOCUMENTS'"></div>
+            <!-- Running Services -->
+            <div ng-if="!isPreview" class="content-panel" ui-widget-services view-all-href="'https://test.projectdmc.org/services/?group_id=7'" title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'" project-id="projectCtrl.currentProjectId" widget-title="'SERVICES'" columns="['name','status']" sort-by="'start'"></div>
+            <!-- Components -->
+            <div ng-if="!isPreview" class="content-panel" ui-widget-components project-id="projectCtrl.currentProjectId" widget-title="'COMPONENTS'" columns="['name','status']"></div>
+        </div>
+      </div>
+      <div ng-if="isPreview" layout="row" layout-margin layout-fill layout-padding>
+          <div class="content-column" layout="column" flex>
+              <div class="content-panel">
+                  <div class="content-panel-header">
+                      <md-toolbar>
+                          <div class="md-toolbar-tools">
+                              <h2>COVER LETTER</h2>
+                          </div>
+                      </md-toolbar>
+                  </div>
+                  <div class="content-panel-body">
+                      <md-content class="md-padding">
+                          <p>We seek a power transformer with improved heat losses relative to a standard iron core transformer. Cost and time to delivery are also critical. The attached documents give detailed specs and the attached Evaluator Service encompasses how we will value the trade-offs among heat loss, cost, and delivery time.</p>
+                      </md-content>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>

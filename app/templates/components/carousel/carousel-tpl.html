@@ -1,0 +1,31 @@
+<div ng-carousel
+     rn-carousel-indicators
+     ng-if="countSlides > 0"
+     class="carousel-items"
+     ng-carousel-name="{{nameCarousel}}"
+        >
+    <slidecontainer class="carousel-slides">
+        <slide ng-repeat="slide in arrayItems.slice(0, countSlides) track by $index">
+            <dmc-product-card type-product="item.type" style="width:{{100/showItems-2}}%" ng-repeat="item in arrayItems.slice($index*showItems, $index*showItems+showItems)" card-source="item"></dmc-product-card>
+        </slide>
+    </slidecontainer>
+    <div class="carousel-arrow carousel-arrow-left" ng-hide="countSlides <= 1">
+        <md-button aria-label="Left" class="demo-nav" ng-click="prevSlide()">
+            <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60" style="margin-left: -10px"></ng-md-icon>
+        </md-button>
+    </div>
+    <div class="carousel-arrow carousel-arrow-right" ng-hide="countSlides <= 1">
+        <md-button aria-label="Right" class="demo-nav" ng-click="nextSlide()">
+            <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60" style="margin-left: -8px"></ng-md-icon>
+        </md-button>
+    </div>
+    <div class="slide-buttons">
+        <ul>
+            <li ng-repeat="item in arrayItems.slice(0, countSlides) track by $index" ng-class="$index == 0 ? 'selected' : ''" ng-click="openSlide($event,$index)">
+                <md-button class="md-icon-button" aria-label="More">
+                    <ng-md-icon icon="lens" fill="#000" size="13"></ng-md-icon>
+                </md-button>
+            </li>
+        </ul>
+    </div>
+</div>

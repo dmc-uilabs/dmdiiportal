@@ -1,0 +1,45 @@
+.submitted-page{
+  .selected-service-run{
+    .title-service{
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 14px;
+      font-size: 15px;
+    }
+    .inputs-outputs-service{
+      md-list-item{
+        display: inline-block;
+        text-align: center;
+      }
+      md-content{
+        padding: 0 16px;
+        md-list{
+          padding: 0;
+          .md-list-item-text{
+            padding: 0 8px;
+            h3{
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-submit-block{
+  padding-bottom: 21px;
+  .md-button{
+    color: #fff;
+  }
+}
+
+.submitServices{
+  tr{
+    td{
+      cursor: pointer;
+    }
+  }
+}
+.md-button.md-primary.md-raised.submit-page.submit-button{
+  color: #fff;
+}

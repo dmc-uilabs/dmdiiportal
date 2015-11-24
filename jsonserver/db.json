@@ -1,0 +1,1499 @@
+{
+  "projects": [
+    {
+      "id": 2,
+      "title": "Capacitor Bank for LDR Mining Co.",
+      "projectManager": "PDM Co.",
+      "featureImage": {
+        "thumbnail": "/images/logo-ldr-mining.png",
+        "large": "/images/logo-ldr-mining.png"
+      },
+      "images": "/projects/2/images",
+      "description": "Build a Shunt power capacitor bank for an application at LDR industrial mining Co.to correct a medium  voltage power factor",
+      "tasks": {
+        "totalItems": 5,
+        "link": "/projects/2/tasks"
+      },
+      "discussions": {
+        "totalItems": 5,
+        "link": "/projects/2/discussions"
+      },
+      "services": {
+        "totalItems": 5,
+        "link": "/projects/2/services"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Incoming Compartment for LDR Mining",
+      "projectManager": "PDM Co.",
+      "featureImage": {
+        "thumbnail": "/images/project-incoming-compartment.png",
+        "large": "/images/project-incoming-compartment.png"
+      },
+      "images": "/projects/4/images",
+      "description": "Breakers, disconnect switches, transformers and ratings",
+      "tasks": {
+        "totalItems": 5,
+        "link": "/projects/4/tasks"
+      },
+      "discussions": {
+        "totalItems": 5,
+        "link": "/projects/4/discussions"
+      },
+      "services": {
+        "totalItems": 5,
+        "link": "/projects/4/services"
+      }
+    },
+    {
+      "id": 1,
+      "title": "Control Compartment for LDR Mining",
+      "projectManager": "PDM Co.",
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": "PLC and other metering and control, communication and indication devices",
+      "tasks": {
+        "totalItems": 5,
+        "link": "/projects/1/tasks"
+      },
+      "discussions": {
+        "totalItems": 5,
+        "link": "/projects/1/discussions"
+      },
+      "services": {
+        "totalItems": 5,
+        "link": "/projects/1/services"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Capacitor Design",
+      "projectManager": "PDM. Co",
+      "featureImage": {
+        "thumbnail": "/images/project_capacitor_compartment.png",
+        "large": "/images/project_capacitor_compartment.png"
+      },
+      "images": "/projects/3/images",
+      "description": "Capacitor, fuses, switching device and reactors",
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/3/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/3/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/3/services"
+      }
+    },
+    {
+      "id": 5,
+      "title": "Low Heat Loss Transformer",
+      "projectManager": "R.Palmer",
+      "featureImage": {
+        "thumbnail": "/images/project_ge_transformer.png",
+        "large": "/images/project_ge_transformer.png"
+      },
+      "images": "/projects/5/images",
+      "description": "Power transformer with improved heat losses relative to a standard iron core transformer. Cost and time to delivery are also critical. See attached documents for detailed specs. Evaluator Service encompasses how the trade-offs will be valued among heat loss, cost, and delivery time.",
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/5/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/5/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/5/services"
+      }
+    }
+  ],
+  "components": [
+    {
+      "id": 1,
+      "title": "1 Component",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "owner": "Steven Jobs",
+      "releaseDate": "25-08-2015",
+      "tags": [],
+      "specifications": "/components/1/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "5",
+        "startDate": "25-08-2015",
+        "startTime": "11:15:33",
+        "project": {
+          "id": 0,
+          "title": null
+        }
+      },
+      "projectId": 1
+    },
+    {
+      "id": 2,
+      "title": "2 Component",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "owner": "Steven Jobs",
+      "releaseDate": "25-08-2015",
+      "tags": [],
+      "specifications": "/components/2/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "0",
+        "startDate": "25-08-2015",
+        "startTime": "11:16:02",
+        "project": {
+          "id": 2,
+          "title": "Project 2"
+        }
+      },
+      "projectId": 2
+    },
+    {
+      "id": 3,
+      "title": "3 Component",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "owner": "Steven Jobs",
+      "releaseDate": "01-09-2015",
+      "tags": [],
+      "specifications": "/components/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "95",
+        "startDate": "01-09-2015",
+        "startTime": "18:13:10",
+        "project": {
+          "id": 2,
+          "title": "Project 2"
+        }
+      },
+      "projectId": 2
+    }
+  ],
+  "services": [
+    {
+      "id": 20,
+      "title": "micro Fuel Cell",
+      "description": "A  service to model the lifespan of a micro fuel cell for small cells that use  alcohol to convert  chemical energy  into electrical energy. Commonly used in cell phones or edge devices for M2M  communications. ",
+      "owner": "William William III",
+      "releaseDate": "01-04-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/ge-fuel-cell.png",
+        "large": "images/ge-fuel-cell.png"
+      },
+      "currentStatus": {
+        "percentCompleted": "33",
+        "startDate": "20-09-2015",
+        "startTime": "18:45:10",
+        "project": {
+          "id": 0,
+          "title": null
+        }
+      },
+      "projectId": 0
+    },
+    {
+      "id": 21,
+      "title": "3D Printing a 3D Printer",
+      "description": "3D CADdrawings to make your own 3D printer FROM your own 3D printer.",
+      "owner": "Roger Rabbit",
+      "releaseDate": "20-04-2014",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/3d-printing.png",
+        "large": "images/3d-printing.png"
+      },
+      "currentStatus": {
+        "percentCompleted": "95",
+        "startDate": "21-09-2015",
+        "startTime": "09:15:10",
+        "project": {
+          "id": 0,
+          "title": null
+        }
+      },
+      "projectId": 0
+    },
+    {
+      "id": 22,
+      "title": "Redox Chemistry",
+      "description": "this service will calculate the oxidation numbers for any redox equation you\n  have.  Allows you to input your own\n  redox equations than calculates the oxidation numbers for you",
+      "owner": "CE. Genius",
+      "releaseDate": "06-27-2015",
+      "serviceType": "data",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/redox-reaction.png",
+        "large": "images/redox-reaction.png"
+      },
+      "currentStatus": {
+        "percentCompleted": "83",
+        "startDate": "22-09-2015",
+        "startTime": "01:23:10",
+        "project": {
+          "id": 0,
+          "title": null
+        }
+      },
+      "projectId": 0
+    },
+    {
+      "id": 19,
+      "title": "Computer Aided Manufacturing",
+      "description": "Develop computer software to control machine tools and related machinery in the manufacturing of workpieces. This service will easily convert your CAM model into simple file of G-codes/M-Codes for downloading to your CNC machine.",
+      "owner": "John Smith",
+      "releaseDate": "23-08-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/computer-aided-manufacturing.png",
+        "large": "images/computer-aided-manufacturing.png"
+      },
+      "currentStatus": {
+        "percentCompleted": "73",
+        "startDate": "22-09-2015",
+        "startTime": "07:37:10",
+        "project": {
+          "id": 0,
+          "title": null
+        }
+      },
+      "projectId": 0
+    },
+    {
+      "id": 23,
+      "title": "Biological Oxygen Demand",
+      "description": "Biochemical oxygen demand (BOD) is the amount of dissolved oxygen used by microorganisms in the biological process of metabolizing organic matter in water. This service allows you to input the amount of organic matter in your system and will\n  output the level of organic pollution of a body of water.",
+      "owner": "Ima Worme",
+      "releaseDate": "04-26-2015",
+      "serviceType": "data",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/biological_oxygen-demand.png",
+        "large": "images/biological_oxygen-demand"
+      },
+      "currentStatus": {
+        "percentCompleted": "12",
+        "startDate": "20-09-2015",
+        "startTime": "08:58:10",
+        "project": {
+          "id": 0,
+          "title": null
+        }
+      },
+      "projectId": 0
+    },
+    {
+      "id": 24,
+      "title": "Plasticity",
+      "description": "Malleability and ductility calculations for metal. The service allows you to input your metal and the expected operation temperature.",
+      "owner": "Au Gold",
+      "releaseDate": "22-08-2015",
+      "serviceType": "data",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/plasticity.png",
+        "large": "images/plasticity.png"
+      },
+      "currentStatus": {
+        "percentCompleted": "58",
+        "startDate": "22-09-2015",
+        "startTime": "10:04:10",
+        "project": {
+          "id": 0,
+          "title": null
+        }
+      },
+      "projectId": 0
+    },
+    {
+      "id": 1,
+      "title": "out-of-balance Testing",
+      "description": "out-of-balance Testing",
+      "owner": "L.Mason",
+      "releaseDate": "25-08-2015",
+      "serviceType": "analytical",
+      "tags": [
+        "Tag 1",
+        "Tag 2"
+      ],
+      "specifications": "/services/1/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "5",
+        "startDate": "20-09-2015",
+        "startTime": "11:15:33",
+        "project": {
+          "id": 1,
+          "title": "Control Compartment  for LDR Mining"
+        }
+      },
+      "projectId": 1
+    },
+    {
+      "id": 5,
+      "title": "fan failure mode analysis",
+      "description": "fan failure mode analysis.",
+      "owner": "P.Ruiz",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "95",
+        "startDate": "19-09-2015",
+        "startTime": "16:00:10",
+        "project": {
+          "id": 1,
+          "title": "Control Compartment  for LDR Mining"
+        }
+      },
+      "projectId": 1
+    },
+    {
+      "id": 3,
+      "title": "Project Cost Analyzer",
+      "description": "Project Cost Analyzer",
+      "owner": "M.Gill",
+      "releaseDate": "01-09-2015",
+      "serviceType": "analytical",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "95",
+        "startDate": "21-09-2015",
+        "startTime": "15:48:10",
+        "project": {
+          "id": 2,
+          "title": "Capacitor Design"
+        }
+      },
+      "projectId": 2
+    },
+     {
+      "id": 30,
+      "title": "Evaluator 4 - heat loss, cost, mfg time",
+      "description": "Evaluator 4 - heat loss, cost, mfg time",
+      "owner": "J.Cole",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "13",
+        "startDate": "20-09-2015",
+        "startTime": "15:11:10",
+        "project": {
+          "id": 5,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      },
+      "projectId": 5
+    },
+    {
+      "id": 4,
+      "title": "Power Factor Correction Analyzer",
+      "description": "Power Factor Correction Analyzer.",
+      "owner": "J.Sims",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "70",
+        "startDate": "21-09-2015",
+        "startTime": "15:15:10",
+        "project": {
+          "id": 2,
+          "title": "Capacitor Design"
+        }
+      },
+      "projectId": 2
+    },
+    {
+      "id": 6,
+      "title": "Capacitor Compartment Layout",
+      "description": "Capacitor Compartment Layout",
+      "owner": "E.Fox",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "95",
+        "startDate": "22-09-2015",
+        "startTime": "11:33:10",
+        "project": {
+          "id": 3,
+          "title": "Capacitor Design"
+        }
+      },
+      "projectId": 3
+    },
+    {
+      "id": 7,
+      "title": "Should-cost estimator",
+      "description": "Should-cost estimator",
+      "owner": "G.Baker",
+      "releaseDate": "01-08-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "60",
+        "startDate": "19-09-2015",
+        "startTime": "02:10:10",
+        "project": {
+          "id": 3,
+          "title": "Capacitor Design"
+        }
+      },
+      "projectId": 3
+    },
+    {
+      "id": 8,
+      "title": "Capacitor Configurator",
+      "description": "Capacitor Configurator",
+      "owner": "G.Baker",
+      "releaseDate": "01-07-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "80",
+        "startDate": "20-09-2015",
+        "startTime": "16:19:10",
+        "project": {
+          "id": 3,
+          "title": "Capacitor Design"
+        }
+      },
+      "projectId": 3
+    },
+    {
+      "id": 9,
+      "title": "Transformer Manufacturing Cost Analysis",
+      "description": "Transformer Manufacturing Cost Analysis",
+      "owner": "m.winand",
+      "releaseDate": "01-05-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "35",
+        "startDate": "21-09-2015",
+        "startTime": "11:12:10",
+        "project": {
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      },
+      "projectId": 4
+    },
+    {
+      "id": 12,
+      "title": "Transformer Heat Loss Model",
+      "description": "Transformer Heat Loss Model",
+      "owner": "m.winand",
+      "releaseDate": "31-05-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "95",
+        "startDate": "22-09-2015",
+        "startTime": "17:12:10",
+        "project": {
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      },
+      "projectId": 4
+    },
+    {
+      "id": 15,
+      "title": "Project Scheduler",
+      "description": "Project Scheduler",
+      "owner": "V.Sutton",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "65",
+        "startDate": "20-09-2015",
+        "startTime": "14:10:10",
+        "project": {
+          "id": 5,
+          "title": "Low Heat Loss Transformer"
+        }
+      },
+      "projectId": 5
+    },
+    {
+      "id": 16,
+      "title": "Cost Relation Model",
+      "description": "Cost Relation Model",
+      "owner": "R.McCoy",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "65",
+        "startDate": "20-09-2015",
+        "startTime": "15:37:10",
+        "project": {
+          "id": 5,
+          "title": "Low Heat Loss Transformer"
+        }
+      },
+      "projectId": 5
+    },
+    {
+      "id": 17,
+      "title": "Heat Loss Relation Model",
+      "description": "Heat Loss Relation Model",
+      "owner": "R.McCoy",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "47",
+        "startDate": "21-09-2015",
+        "startTime": "23:13:10",
+        "project": {
+          "id": 5,
+          "title": "Low Heat Loss Transformer"
+        }
+      },
+      "projectId": 5
+    },
+    {
+      "id": 10,
+      "title": "Cost vs. Heat Loss Trade-off Matrix",
+      "description": "Cost vs. Heat Loss Trade-off Matrix",
+      "owner": "p.koudal",
+      "releaseDate": "22-02-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "68",
+        "startDate": "22-09-2015",
+        "startTime": "13:47:10",
+        "project": {
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      },
+      "projectId": 4
+    },
+    {
+      "id": 11,
+      "title": "Cost vs. Heat Loss Trade-off Matrix",
+      "description": "Cost vs. Heat Loss Trade-off Matrix",
+      "owner": "p.koudal",
+      "releaseDate": "22-02-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "68",
+        "startDate": "22-09-2015",
+        "startTime": "16:10:10",
+        "project": {
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      },
+      "projectId": 4
+    },
+    {
+      "id": 18,
+      "title": "Time Relation Model",
+      "description": "Time Relation Model",
+      "owner": "R.McCoy",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "13",
+        "startDate": "20-09-2015",
+        "startTime": "06:45:10",
+        "project": {
+          "id": 5,
+          "title": "Low Heat Loss Transformer"
+        }
+      },
+      "projectId": 5
+    },
+    {
+      "id": 2,
+      "title": "PLC program verifier",
+      "description": "PLC program verifier.",
+      "owner": "D.Black",
+      "releaseDate": "25-08-2015",
+      "serviceType": "analytical",
+      "tags": [
+        "Tag 3"
+      ],
+      "specifications": "/services/2/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "10",
+        "startDate": "20-09-2015",
+        "startTime": "11:16:02",
+        "project": {
+          "id": 1,
+          "title": "Control Compartment  for LDR Mining"
+        }
+      },
+      "projectId": 1
+    },
+    {
+      "id": 27,
+      "title": "HDD/CDD Tracker",
+      "description": "HDD/CDD Tracker.",
+      "owner": "A.Salazaar",
+      "releaseDate": "01-09-2015",
+      "serviceType": "data",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "40",
+        "startDate": "23-09-2015",
+        "startTime": "12:10:10",
+        "project": {
+          "id": 2,
+          "title": "Capacitor Design"
+        }
+      },
+      "projectId": 2
+    },
+    {
+      "id": 13,
+      "title": "Evaluator Model",
+      "description": "Evaluator Model",
+      "owner": "PDM.Co",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "0",
+        "startDate": "23-09-2015",
+        "startTime": "18:00:10",
+        "project": {
+          "id": 5,
+          "title": "Low Heat Loss Transformer"
+        }
+      },
+      "projectId": 5
+    },
+    {
+      "id": 25,
+      "title": "Mu (Mag Perm)",
+      "description": "Estimates Mu for materials with simple structures and known saturation polarization",
+      "owner": "Sonia Maxwell",
+      "releaseDate": "16-07-2015",
+      "serviceType": "data",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/mag-perm-chart.png",
+        "large": "images/mag-perm-chart.png"
+      },
+      "currentStatus": {
+        "percentCompleted": "87",
+        "startDate": "21-09-2015",
+        "startTime": "10:18:10",
+        "project": {
+          "id": 0,
+          "title": null
+        }
+      },
+      "projectId": 0
+    },
+    {
+      "id": 26,
+      "title": "Magnetic Permeability Model",
+      "description": "Rapidly determine magnetic permeability of unknown materials based on these physical properties: Saturation Polarization, Exchange Stiffness, Magnetic Anisotropy, Grain Diameter.",
+      "owner": "Daniel Bridges",
+      "releaseDate": "10-09-2015",
+      "serviceType": "data",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/mag-perm-model.png",
+        "large": "images/mag-perm-model.png"
+      },
+      "currentStatus": {
+        "percentCompleted": "25",
+        "startDate": "22-09-2015",
+        "startTime": "09:13:10",
+        "project": {
+          "id": 0,
+          "title": null
+        }
+      },
+      "projectId": 0
+    },
+    {
+      "id": 27,
+      "title": "Evaluator 1 - heat loss, cost",
+      "description": "Evaluator 1 - heat loss, cost",
+      "owner": "J.Cole",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "13",
+        "startDate": "21-09-2015",
+        "startTime": "18:00:10",
+        "project": {
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      },
+      "projectId": 4
+    },
+    {
+      "id": 28,
+      "title": "Evaluator 2 - heat loss, mfg time",
+      "description": "Evaluator 2 - heat loss, mfg time",
+      "owner": "J.Cole",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "13",
+        "startDate": "22-09-2015",
+        "startTime": "22:54:10",
+        "project": {
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      },
+      "projectId": 4
+    },
+    {
+      "id": 29,
+      "title": "Evaluator 3 - cost, efficiency",
+      "description": "Evaluator 3 - cost, efficiency",
+      "owner": "J.Cole",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "13",
+        "startDate": "20-09-2015",
+        "startTime": "07:27:10",
+        "project": {
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      },
+      "projectId": 4
+    },
+   {
+      "id": 14,
+      "title": "Transformer Efficiency",
+      "description": "Transformer Efficiency",
+      "owner": "M.Dawson",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "60",
+        "startDate": "20-09-2015",
+        "startTime": "12:27:10",
+        "project": {
+          "id": 5,
+          "title": "Low Heat Loss Transformer"
+        }
+      },
+      "projectId": 5
+    },
+    {
+      "id": 31,
+      "title": "Evaluator 5 - cost, mfg time",
+      "description": "Evaluator 5 - cost, mfg time",
+      "owner": "J.Cole",
+      "releaseDate": "01-09-2015",
+      "serviceType": "solid",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "13",
+        "startDate": "21-09-2015",
+        "startTime": "02:18:10",
+        "project": {
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      },
+      "projectId": 4
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "title": "order protection relays",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "assignee": "E.Ryan",
+      "reporter": "J.Knight",
+      "dueDate": "25-09-2015 10:21:30",
+      "priority": "Today",
+      "projectId": 1
+    },
+    {
+      "id": 2,
+      "title": "program PLC",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "assignee": "E.Francis",
+      "reporter": "B.Hines",
+      "dueDate": "25-09-2015 10:21:30",
+      "priority": "11-09-2015",
+      "projectId": 1
+    },
+    {
+      "id": 3,
+      "title": "update PLC code with latest controls",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "assignee": "E.Harmon",
+      "reporter": "B.Franks",
+      "dueDate": "25-09-2015 11:21:30",
+      "priority": "Today",
+      "projectId": 1
+    },
+    {
+      "id": 4,
+      "title": " document on-site testing",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "assignee": "E.Bowen",
+      "reporter": "R.Scott",
+      "dueDate": "25-09-2015 11:23:30",
+      "priority": "Today",
+      "projectId": 1
+    },
+    {
+      "id": 5,
+      "title": "Spec out dry-type control power transformer with low heat loss",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Design"
+      },
+      "assignee": "S.Crawford",
+      "reporter": "E.Henderson",
+      "dueDate": "25-09-2015 15:30:30",
+      "priority": "Urgent",
+      "projectId": 2
+    },
+    {
+      "id": 6,
+      "title": "Verify capacitor configuration is switched with disconnect vs. Breaker switched",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Design"
+      },
+      "assignee": "L.Morre",
+      "reporter": "E.Parson",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 2
+    },
+    {
+      "id": 7,
+      "title": "Obtain spec from LDR Mining Co. regarding bank rating and protection requirements",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Design"
+      },
+      "assignee": "G.Baker",
+      "reporter": "G.Flores",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 2
+    },
+    {
+      "id": 8,
+      "title": "Visit site to determine installation and IP requirements",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Design"
+      },
+      "assignee": "B.Black",
+      "reporter": "S.Synder",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 2
+    },
+    {
+      "id": 9,
+      "title": "Verify interlock",
+      "project": {
+        "id": 3,
+        "title": "Capacitor Design"
+      },
+      "assignee": "J.Johnson",
+      "reporter": "R.Jefferson",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 3
+    },
+    {
+      "id": 10,
+      "title": "Replace Air disconnect switch",
+      "project": {
+        "id": 3,
+        "title": "Capacitor Design"
+      },
+      "assignee": "k.Walker",
+      "reporter": "W.Simpson",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 3
+    },
+    {
+      "id": 11,
+      "title": "Spec fusing for capacitors",
+      "project": {
+        "id": 3,
+        "title": "Capacitor Design"
+      },
+      "assignee": "S.Berry",
+      "reporter": "G.Apple",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 3
+    },
+    {
+      "id": 12,
+      "title": "Design Inrush reactors",
+      "project": {
+        "id": 3,
+        "title": "Capacitor Design"
+      },
+      "assignee": "T.Goodman",
+      "reporter": "U.Leonard",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 3
+    },
+    {
+      "id": 13,
+      "title": "Define specifications for power transformer",
+      "project": {
+        "id": 4,
+        "title": "Incoming Compartment for LDR Mining"
+      },
+      "assignee": "T.Goodman",
+      "reporter": "U.Leonard",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 4
+    },
+    {
+      "id": 14,
+      "title": "communicate with LDR mining on cost targets",
+      "project": {
+        "id": 4,
+        "title": "Incoming Compartment for LDR Mining"
+      },
+      "assignee": "Y.Taylor",
+      "reporter": "R.Farmer",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 4
+    },
+    {
+      "id": 15,
+      "title": "review local content requirements",
+      "project": {
+        "id": 4,
+        "title": "Incoming Compartment for LDR Mining"
+      },
+      "assignee": "D.Rhodes",
+      "reporter": "V.Watkins",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 4
+    },
+    {
+      "id": 16,
+      "title": "review commercial transformer companies",
+      "project": {
+        "id": 4,
+        "title": "Incoming Compartment for LDR Mining"
+      },
+      "assignee": "D.Rhodes",
+      "reporter": "V.Watkins",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 4
+    },
+    {
+      "id": 17,
+      "title": "Find permeability models for new mtl type",
+      "project": {
+        "id": 5,
+        "title": "Low Heat Loss Transformer"
+      },
+      "assignee": "a.giani",
+      "reporter": "b.beckmann",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 5
+    },
+    {
+      "id": 18,
+      "title": "Determine Manufacturing requirements for new mtl",
+      "project": {
+        "id": 5,
+        "title": "Low Heat Loss Transformer"
+      },
+      "assignee": "i.coleman",
+      "reporter": "b.beckmann",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 5
+    },
+    {
+      "id": 19,
+      "title": "evaluate cost model for varying grain sizes",
+      "project": {
+        "id": 5,
+        "title": "Low Heat Loss Transformer"
+      },
+      "assignee": "c.castro",
+      "reporter": "b.beckmann",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 5
+    },
+    {
+      "id": 20,
+      "title": "review patent literature",
+      "project": {
+        "id": 5,
+        "title": "Low Heat Loss Transformer"
+      },
+      "assignee": "a.giani",
+      "reporter": "b.beckmann",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 5
+    },
+    {
+      "id": 21,
+      "title": "build Gantt chart for producing mtl",
+      "project": {
+        "id": 5,
+        "title": "Low Heat Loss Transformer"
+      },
+      "assignee": "b.beckmann",
+      "reporter": "b.beckmann",
+      "dueDate": "25-09-2015 15:30:12",
+      "priority": "Urgent",
+      "projectId": 5
+    }
+  ],
+  "discussions": [
+    {
+      "id": 1,
+      "text": "I just submitted the latest PLC code to the repository",
+      "full_name": "Denis Sobko",
+      "created_at": "21-09-2015 09:21:30",
+      "avatar": "/images/avatar-fpo.jpg",
+      "projectId": 1
+    },
+    {
+      "id": 2,
+      "text": "OK, I'll run the verification",
+      "full_name": "Viktor Korovyanko",
+      "created_at": "21-09-2015 10:21:30",
+      "avatar": "/images/avatar-fpo.jpg",
+      "projectId": 1
+    },
+    {
+      "id": 3,
+      "text": "Hey Peter, I'm having a heck of a time finding a transformer with the heat loss requirements we have",
+      "full_name": "John Carbone",
+      "created_at": "21-09-2015 11:21:30",
+      "avatar": "/images/carbone.png",
+      "projectId": 2
+    },
+    {
+      "id": 4,
+      "text": "What's the issue",
+      "full_name": "Peter Koudal",
+      "created_at": "21-09-2015 11:21:30",
+      "avatar": "/images/koudal.png",
+      "projectId": 2
+    },
+    {
+      "id": 5,
+      "text": "I am certain we will need to be creative building this transformer.  COTS is not going to cut it.",
+      "full_name": "John Carbone",
+      "created_at": "22-09-2015 11:21:30",
+      "avatar": "/images/carbone.png",
+      "projectId": 2
+    },
+    {
+      "id": 6,
+      "text": "maybe we can use one of those collaborative sites and get a new design that will stay in-line with the customers expectations of cost",
+      "full_name": "Peter Koudal",
+      "created_at": "22-09-2015 11:21:30",
+      "avatar": "/images/koudal.png",
+      "projectId": 2
+    },
+    {
+      "id": 7,
+      "text": "I will try to get some external bids for this work.",
+      "full_name": "Pat Mackenzie",
+      "created_at": "23-09-2015 11:21:30",
+      "avatar": "/images/mackenzie.png",
+      "projectId": 2
+    },
+    {
+      "id": 8,
+      "text": "OK, I'll run the verification.",
+      "full_name": "Denis Sobko",
+      "created_at": "22-09-2015 11:21:30",
+      "avatar": "/images/avatar-fpo.jpg",
+      "projectId": 1
+    },
+    {
+      "id": 9,
+      "text": "the capacitors have arrived.",
+      "full_name": "m.winand",
+      "created_at": "20-09-2015 11:21:30",
+      "avatar": "/images/avatar-fpo.jpg",
+      "projectId": 3
+    },
+    {
+      "id": 10,
+      "text": "great, install them as soon as schedule permits",
+      "full_name": "p.koudal",
+      "created_at": "21-09-2015 11:21:30",
+      "avatar": "/images/koudal.png",
+      "projectId": 3
+    },
+    {
+      "id": 11,
+      "text": "ok - after I run the service models for layout",
+      "full_name": "m.winand",
+      "created_at": "22-09-2015 11:21:30",
+      "avatar": "/images/avatar-fpo.jpg",
+      "projectId": 3
+    },
+    {
+      "id": 12,
+      "text": "Hey Peter, I'm having a heck of a time finding a transformer with the heat loss requirements we have",
+      "full_name": "p.koudal",
+      "created_at": "22-09-2015 11:21:30",
+      "avatar": "/images/koudal.png",
+      "projectId": 4
+    },
+    {
+      "id": 12,
+      "text": "I am certain we will need to be creative building this transformer.  COTS is not going to cut it.",
+      "full_name": "j.carbone",
+      "created_at": "22-09-2015 11:21:30",
+      "avatar": "/images/carbone.png",
+      "projectId": 4
+    },
+    {
+      "id": 14,
+      "text": "maybe we can use one of those collaborative sites and get some good designs",
+      "full_name": "p.koudal",
+      "created_at": "22-09-2015 11:21:30",
+      "avatar": "/images/koudal.png",
+      "projectId": 4
+    },
+    {
+      "id": 15,
+      "text": "I'll take care of this.  Leave it to me",
+      "full_name": "p.mackenzie",
+      "created_at": "22-09-2015 11:21:30",
+      "avatar": "/images/mackenzie.png",
+      "projectId": 4
+    },
+    {
+      "id": 16,
+      "text": "the new mtl we have developed should work in the transformer core",
+      "full_name": "b.beckmann",
+      "created_at": "20-09-2015 11:21:30",
+      "avatar": "/images/avatar-fpo.jpg",
+      "projectId": 5
+    },
+    {
+      "id": 17,
+      "text": "I agree, we just have to determine what mtl parameters we need",
+      "full_name": "l.derose",
+      "created_at": "21-09-2015 11:21:30",
+      "avatar": "/images/avatar-fpo.jpg",
+      "projectId": 5
+    },
+    {
+      "id": 18,
+      "text": "yes, and how they impact transformer performance and heat loss",
+      "full_name": "j.good",
+      "created_at": "22-09-2015 11:21:30",
+      "avatar": "/images/avatar-fpo.jpg",
+      "projectId": 5
+    },
+    {
+      "id": 19,
+      "text": "OK, let me investigate; I'll look for a relevant magnetic permeability model",
+      "full_name": "a.giani",
+      "created_at": "23-09-2015 11:21:30",
+      "avatar": "/images/avatar-fpo.jpg",
+      "projectId": 5
+    }
+  ],
+  "specifications": [
+    {
+      "serviceId": 25,
+      "description": "Estimates Mu for materials with simple structures and known saturation polarization",
+      "input": 2,
+      "output": 1,
+      "usageStats": {
+        "added": 130,
+        "members": 20
+      },
+      "runStats": {
+        "success": 108,
+        "fail": 12
+      }
+    },
+    {
+      "serviceId": 26,
+      "description": "Rapidly determine magnetic permeability of unknown materials based on these physical properties: Saturation Polarization, Exchange Stiffness, Magnetic Anisotropy, Grain Diameter.",
+      "input": 5,
+      "output": 1,
+      "usageStats": {
+        "added": 50,
+        "members": 10
+      },
+      "runStats": {
+        "success": 55,
+        "fail": 5
+      }
+    },
+    {
+      "serviceId": 21,
+      "description": "3D CADdrawings to make your own 3D printer FROM your own 3D printer.",
+      "input": 4,
+      "output": 2,
+      "usageStats": {
+        "added": 30,
+        "members": 25
+      },
+      "runStats": {
+        "success": 53,
+        "fail": 0
+      }
+    },
+    {
+      "componentId": 22,
+      "description": "this service will calculate the oxidation numbers for any redox equation you\n  have.  Allows you to input your own\n  redox equations than calculates the oxidation numbers for you.",
+      "input": 8,
+      "output": 3,
+      "usageStats": {
+        "added": 46,
+        "members": 40
+      },
+      "runStats": {
+        "success": 103,
+        "fail": 7
+      }
+    },
+    {
+      "componentId": 24,
+      "description": "Malleability and ductility calculations for metal. The service allows you to input your metal and the expected operation temperature",
+      "input": 3,
+      "output": 1,
+      "usageStats": {
+        "added": 35,
+        "members": 26
+      },
+      "runStats": {
+        "success": 3,
+        "fail": 9
+      }
+    },
+    {
+      "componentId": 3,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "input": 1,
+      "output": 1,
+      "usageStats": {
+        "added": 1,
+        "members": 1
+      },
+      "runStats": {
+        "success": 1,
+        "fail": 1
+      }
+    }
+  ],
+  "documents": [
+    {
+      "id": 1,
+      "title": "Low Heat Loss Transformer Specification PDM Co.pdf",
+      "projectId": 5,
+      "file": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 2,
+      "title": "Low Heat Loss Power Transformer Schedule PDM Co.pdf",
+      "projectId": 5,
+      "file": "/uploads/5/Low Heat Loss Power Transformer Schedule PDM Co.pdf"
+    },
+    {
+      "id": 3,
+      "title": "Low Heat Loss Transformer Proposal SAM Co.pdf",
+      "projectId": 5,
+      "file": "/uploads/5/Low Heat Loss Transformer Proposal SAM Co.pdf"
+    }
+  ]
+}

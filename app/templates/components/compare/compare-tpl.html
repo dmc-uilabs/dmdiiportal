@@ -1,0 +1,90 @@
+<md-dialog class="compare-widget" id="CompareDialog" aria-label="Compare Products">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Compare</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="compare-list-products">
+                <div layout="row" class="row services">
+                    <div layout="column" class="column title"><h4>Services</h4></div>
+                    <div layout="column" class="column" ng-class="itemClass" ng-repeat="item in products.arr">
+                        <div layout="row">
+                            <md-button href="" aria-label="Favorite" class="md-icon-button" flex><ng-md-icon icon="favorite_outline" style="fill: grey;" size="18"></ng-md-icon></md-button>
+                            <md-button href="" aria-label="Remove" class="md-icon-button" ng-click="removeFromCompare(item.id,item.type)" flex><ng-md-icon icon="close" style="fill: grey;" size="18"></ng-md-icon></md-button>
+                        </div>
+                        <div class="product-image"><img src="{{item.featureImage.thumbnail}}" alt="{{item.title}}"></div>
+                        <h2>{{item.title}}</h2>
+                        <h3>{{item.owner}}</h3>
+                        <div class="star-rating">
+                            <div class="star-rating__buttons">
+                                <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon></md-button>
+                                <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon></md-button>
+                                <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon></md-button>
+                                <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon></md-button>
+                                <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon></md-button>
+                            </div>
+                            <div class="star-rating__value">
+                                <span class="small-text">(3.4)</span>
+                            </div>
+                        </div>
+                        <md-button aria-label="Added to Project" class="md-raised md-primary md-added" ng-click="removeFromProject(item)" ng-show="item.currentStatus.project.id > 0"><ng-md-icon icon="close" size="17"></ng-md-icon>Added to Project</md-button>
+                        <md-button aria-label="Add to Project" class="md-raised md-primary" ng-click="addToProject(item)" ng-hide="item.addingToProject || item.currentStatus.project.id > 0">Add to Project</md-button>
+                        <div class="adding-to-project" ng-show="item.addingToProject">
+                            <div layout="row">
+                                <div layout="column" flex class="select-block">
+                                    <md-input-container>
+                                        <md-select placeholder="Select Project" ng-model="item.projectModel" md-on-open="loadProjects()" style="width:100%">
+                                            <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div layout="row">
+                                <md-button aria-label="Add" layout="column" flex href="" ng-disabled="!item.projectModel" class="md-raised md-primary add md-add" ng-click="saveToProject(item)">Add</md-button>
+                                <md-button aria-label="Cancel" layout="column" flex href="" class="close" ng-click="cancelAddToProject(item)">Cancel</md-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div layout="row" class="row description">
+                    <div layout="column" class="column title"><h4>Description</h4></div>
+                    <div layout="column" class="column" ng-class="itemClass" ng-repeat="item in products.arr">{{item.description}}</div>
+                </div>
+                <div layout="row" class="row tags">
+                    <div layout="column" class="column title"><h4>Tags</h4></div>
+                    <div layout="column" class="column" ng-class="itemClass" ng-repeat="item in products.arr">{{item.tags.join(', ')}}</div>
+                </div>
+                <div layout="row" class="row specifications">
+                    <div layout="column" class="column title"><h4>Specifications</h4></div>
+                    <div layout="column" class="column" ng-class="itemClass" ng-repeat="item in products.arr">
+                        <p>{{item.specificationsData.description}}</p>
+                        <p><strong>Created:</strong> {{item.releaseDate|timeago}}</p>
+                        <p><strong>Added:</strong> {{item.specificationsData.usageStats.added}} times by {{item.specificationsData.usageStats.members}} members</p>
+                        <p><strong>Successful Runs:</strong> {{item.specificationsData.runStats.success}}/{{item.specificationsData.runStats.success+item.specificationsData.runStats.fail}}</p>
+                        <p><strong>Inputs:</strong> {{item.specificationsData.input}}</p>
+                        <p><strong>Outputs:</strong> {{item.specificationsData.output}}</p>
+                    </div>
+                </div>
+                <div class="btn-box left-btn" ng-hide="inLeftCount >= products.arr.length-4">
+                    <md-button aria-label="Left" class="md-raised md-primary" ng-click="scrollLeft()">
+                        <ng-md-icon icon="keyboard_arrow_left" style="fill: #fff;" size="32"></ng-md-icon>
+                    </md-button>
+                </div>
+                <div class="btn-box right-btn" ng-show="inLeftCount >= 1">
+                    <md-button aria-label="Right" class="md-raised md-primary" ng-click="scrollRight()">
+                        <ng-md-icon icon="keyboard_arrow_right" style="fill: #fff;" size="32"></ng-md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+<script type="text/javascript">
+    $("#CompareDialog").parents(".md-dialog-container").addClass("dmc-dialog-compare");
+</script>

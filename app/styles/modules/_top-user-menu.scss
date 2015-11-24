@@ -1,0 +1,6 @@
+.top-user-menu {
+  .md-button {
+    @extend %nav_item;
+    font-size: 14px;
+  }
+}

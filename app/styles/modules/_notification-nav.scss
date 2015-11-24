@@ -1,0 +1,24 @@
+.notification-nav {
+  background-color: #0A0B0C;
+  height: 55px;
+  margin-bottom: 4px;
+  .logo{
+    min-width: 191px;
+  }
+}
+#notification-help-button {
+  margin-top: 8px;
+}
+
+.notification-number {
+  color: #65AF3F;
+  font-size: 10px;
+}
+.top-user-menu{
+  .md-menu{
+    padding: 0;
+  }
+  .md-button.md-default-theme{
+    margin-top: 5px;
+  }
+}

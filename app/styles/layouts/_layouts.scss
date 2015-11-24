@@ -1,0 +1,177 @@
+.md-raised.md-primary.md-added.md-button.md-default-theme{
+  color: #fff;
+}
+.md-button.md-default-theme.md-raised.md-primary{
+  color: #fff;
+}
+.page-header {
+  .md-button {
+    color: #fff;
+  }
+}
+.space-header{
+  position: relative;
+  width: 100%;
+  height: 110px;
+}
+.main-header md-toolbar {
+  background-color: #363636;
+}
+.main-header{
+  top: 0;
+  z-index: 25;
+  .opened-page{
+    color: #f00;
+  }
+  .md-button.md-default-theme{
+    color: #fff;
+  }
+  .md-button.md-default-theme.active-page{
+    color: #64B045;
+  }
+}
+
+
+.container {
+  background: map-get($colors, body_color);
+  min-height: 100%;
+}
+
+.footer {
+  background: map-get($colors, primary);
+  color: white;
+  text-align: center;
+  .copyright{
+    text-align: left;
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
+    p {
+      padding-top: 9px;
+    }
+  }
+  .footer-links{
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+  }
+  .copyright-home{
+    width: 100%;
+    display: block;
+    padding-top: 0px;
+    text-align: center;
+  }
+  .footer-menu{
+    display: inline-block;
+    position: relative;
+    ul{
+      list-style: none;
+      padding: 0;
+      li{
+        float: left;
+        width: auto;
+        padding: 0 8px;
+        border-left: 1px solid #999;
+        .md-button{
+          text-transform: none;
+          margin: 0;
+          padding: 0 13px;
+          color: #999;
+        }
+        .md-button:hover{
+          color: #eee;
+        }
+      }
+      li:first-child{
+        border-left: none;
+      }
+    }
+  }
+}
+
+
+.content-column {
+  &--white {
+    background: white;
+  }
+}
+
+.name-project{
+  text-transform: uppercase;
+  img{
+    margin-right: 13px;
+    width: 31px;
+  }
+}
+
+.services-item-progress{
+  md-progress-linear.md-default-theme{
+    min-width: 55px !important;
+  }
+}
+
+.md-button{
+  ng-md-icon{
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1;
+  }
+}
+
+md-input-container{
+  font-size: initial;
+}
+
+#myProjectsList{
+  width: 100%;
+}
+/*
+.widget-blocks{
+  md-content{
+    display: inline-block;
+    width: 31%;
+    vertical-align: top;
+  }
+}*/
+.title-widget{
+  h2{
+    font-weight: 100;
+    padding: 0 0 16px 0;
+    margin: 0;
+  }
+}
+
+.delete-project{
+  position: absolute;
+  right: 17px;
+  ng-md-icon{
+    fill:#aaa;
+  }
+}
+.delete-project:hover{
+  ng-md-icon{
+    fill:#333;
+  }
+}
+
+.btn-add-project{
+  margin-left: 21px;
+}
+
+.hide-scroll{
+  overflow: hidden !important;
+}
+
+.project-manager{
+  font-size: 13px;
+  padding: 5px 0;
+}
+
+.widget-toolbar-title{
+  padding: 0 8px 8px 0;
+}
+
+table[md-data-table]:not([md-row-select])>tbody>tr>td:first-child, table[md-data-table]:not([md-row-select])>tfoot>tr>td:first-child, table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child{
+  padding: 5px 28px 5px 24px;
+}

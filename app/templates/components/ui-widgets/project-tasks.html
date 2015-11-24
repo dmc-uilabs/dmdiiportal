@@ -1,0 +1,13 @@
+<div class="title-widget" ng-hide="widgetTitle == null">
+    <h2>{{widgetTitle}} ({{totalItems}})</h2>
+</div>
+<md-list>
+    <md-list-item class="md-3-line" ng-repeat="task in projectTasks">
+        <div class="md-list-item-text">
+            <h3>{{task.title}}</h3>
+            <span class="label" ng-bind-html="task.priority[1]" ng-class="task.priority[0] == 'date' ? 'label--date' : (task.priority[0] == 'tomorrow' ? 'label--tomorrow' : (task.priority[0] == 'today' || task.priority[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
+            <h4>Assigned To: {{task.assignee}}</h4>
+        </div>
+        <md-divider ng-if="$index < projectTasks.length-1"></md-divider>
+    </md-list-item>
+</md-list>

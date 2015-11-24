@@ -1,0 +1,19 @@
+md-list{
+  md-list-item{
+    position: relative;
+    padding: 5px 0;
+    p{
+      font-size: 13px;
+    }
+    .md-button{
+      span {
+        font-size: 13px;
+        text-transform: none;
+      }
+    }
+    .view{
+      width: 50px;
+      min-width: 50px;
+    }
+  }
+}

@@ -1,0 +1,88 @@
+  <div class="page-header" layout-padding>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <div layout="column">
+            <h1 class="name-project">{{projectCtrl.projectData.title}}<span class="small-text small-text--grey">Submitted. {{projectCtrl.projectData.projectManager}}</span></h1>
+            <h2>
+                <img src="images/project-header-thumb.png" alt="">
+                Submit Project</h2>
+          </div>
+        </div>
+      </md-toolbar>
+    </div>
+    <div class="container submitted-page">
+      <div layout="row" layout-margin layout-fill layout-padding>
+        <!-- Left Content Column -->
+        <div class="content-column" layout="column" flex="60">
+            <div class="content-panel selected-service-run">
+                <div class="content-panel-header">
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <h2>SELECTED SERVICE RUN</h2>
+                            <span flex></span>
+                        </div>
+                    </md-toolbar>
+                </div>
+                <div class="content-panel-body">
+                    <md-content class="md-padding" ng-if="submittedItems && submittedItems.service">
+                        <div layout="row" class="title-service">
+                            <div layout="column" flex>Run #{{submittedItems.service.id}}</div>
+                            <div layout="column" flex>{{submittedItems.service.currentStatus.startDate}} {{submittedItems.service.currentStatus.startTime}}</div>
+                            <div layout="column" flex>{{submittedItems.service.currentStatus.percentCompleted}}% Success</div>
+                        </div>
+                        <div layout="row" class="inputs-outputs-service">
+                            <div layout="column" flex class="content-panel">
+                                <div class="content-panel-header">
+                                    <md-toolbar>
+                                        <div class="md-toolbar-tools">
+                                            <h2>Inputs</h2>
+                                            <span flex></span>
+                                            <md-button href="/">View All</md-button>
+                                        </div>
+                                    </md-toolbar>
+                                </div>
+                                <div class="content-panel-body">
+                                    <md-content class="md-padding">
+                                        <md-list>
+                                            <md-list-item ng-repeat="item in inputs track by $index" class="md-2-line">
+                                                <div class="md-list-item-text">
+                                                    <h3>2.5</h3>
+                                                    <h3>Inputs</h3>
+                                                </div>
+                                            </md-list-item>
+                                        </md-list>
+                                    </md-content>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Content Column -->
+        <div class="content-column" layout="column" flex>
+            <!-- Requirement Documents -->
+            <div class="content-panel" ui-widget-documents project-id="projectCtrl.currentProjectId" widget-title="'DOCUMENTS'"></div>
+        </div>
+      </div>
+      <div layout="row" layout-margin layout-fill layout-padding>
+          <div class="content-column" layout="column" flex>
+              <div class="content-panel">
+                  <div class="content-panel-header">
+                      <md-toolbar>
+                          <div class="md-toolbar-tools">
+                              <h2>COVER LETTER</h2>
+                          </div>
+                      </md-toolbar>
+                  </div>
+                  <div class="content-panel-body">
+                      <md-content class="md-padding">
+                          <p ng-if="submittedItems.latter">{{submittedItems.latter}}</p>
+                          <p ng-if="!submittedItems.latter">Latter is empty</p>
+                      </md-content>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>

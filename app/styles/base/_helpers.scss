@@ -1,0 +1,18 @@
+%nav_item {
+  text-transform: initial;
+  font-size: 18px;
+  font-weight: 100;
+  ng-md-icon {
+    svg {
+      vertical-align: middle;
+    }
+  }
+}
+
+//
+.small-text {
+  font-size: 10px;
+  &.--grey {
+    color: map-get($colors, text_grey);
+  }
+}

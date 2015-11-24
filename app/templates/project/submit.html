@@ -1,0 +1,94 @@
+  <div class="page-header" layout-padding>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <div layout="column">
+            <h1 class="name-project">{{projectCtrl.projectData.title}}<span class="small-text small-text--grey">Due in 20 days</span></h1>
+            <h2>
+                <img src="images/project-header-thumb.png" alt="">
+                Submit Project</h2>
+          </div>
+        </div>
+      </md-toolbar>
+    </div>
+    <div class="container">
+      <div layout="row" layout-margin layout-fill layout-padding>
+        <!-- Left Content Column -->
+        <div class="content-column" layout="column" flex="60">
+            <div class="content-panel">
+                <div class="content-panel-header">
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <h2>CHOOSE SERVICE RUN</h2>
+                            <span flex></span>
+                        </div>
+                    </md-toolbar>
+                </div>
+                <div class="content-panel-body">
+                    <md-content class="md-padding">
+                        <div class="models-list">
+                            <md-data-table-container>
+                                <table md-data-table class="tableServices submitServices">
+                                    <thead md-order="priority" md-trigger="onOrderChange">
+                                    <tr>
+                                        <th name="Select"></th>
+                                        <th name="Run Number" order-by="title"></th>
+                                        <th name="Date" order-by="date"></th>
+                                        <th name="Success" order-by="success"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in services track by $index" class="table-line">
+                                        <input value="{{item.id}}" type="hidden" class="idItem"/>
+                                        <td class="title">
+                                            <md-checkbox ng-model="item.select" aria-label="Select">
+                                                {{ item.select == true ? 'Selected' : 'Select' }}
+                                            </md-checkbox>
+                                        </td>
+                                        <td class="title">Run #{{item.id}}</td>
+                                        <td>{{item.releaseDate}}</td>
+                                        <td>{{item.currentStatus.percentCompleted}}%</td>
+                                    </tr>
+                                    <tr ng-if="models.length == 0">
+                                        <td class="empty" colspan="5">No models</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </md-data-table-container>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Content Column -->
+        <div class="content-column" layout="column" flex>
+          <div class="content-panel" ui-widget-upload-documents project-id="projectCtrl.currentProjectId" widget-title="'UPLOAD DOCUMENTS'"></div>
+        </div>
+      </div>
+      <div layout="row" layout-margin layout-fill layout-padding>
+          <div class="content-column" layout="column" flex>
+              <div class="content-panel">
+                  <div class="content-panel-header">
+                      <md-toolbar>
+                          <div class="md-toolbar-tools">
+                              <h2>COVER LETTER</h2>
+                          </div>
+                      </md-toolbar>
+                  </div>
+                  <div class="content-panel-body">
+                      <form name="form">
+                      <md-content class="md-padding">
+                          <md-input-container flex>
+                              <textarea ng-model="latter" columns="1" md-maxlength="900" required></textarea>
+                          </md-input-container>
+                      </md-content>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div layout="row" class="btn-submit-block" layout-margin layout-fill layout-padding>
+          <span flex></span>
+          <md-button class="md-raised md-primary submit-page submit-button" ng-disabled="!isSelect || !form.$valid" ng-click="submitProject()">Submit Project</md-button>
+      </div>
+    </div>

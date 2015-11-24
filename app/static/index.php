@@ -1,0 +1,532 @@
+<?php
+include __DIR__.'/http.php';
+include __DIR__.'/functions.php';
+include __DIR__.'/db.php';
+
+//use ElephantIO\Client,ElephantIO\Engine\SocketIO\Version1X;
+//require __DIR__ . '/vendor/autoload.php';
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT');
+date_default_timezone_set('America/New_York');
+
+return call_user_func(function () {
+
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $publicDir = __DIR__ . '/';
+    $uri = urldecode($uri);
+    $uri = str_replace('/static', '', $uri);
+    $requested = $publicDir . '/' . $uri;
+    if(isset($_GET['p'])){
+        $uri = $_GET['p'];
+    }else{
+        $uri = '/';
+    }
+    if ($uri === '/'){
+        echo json_encode(array('result' =>  array()));
+    }else if(strpos($uri, '/services') !== false){
+        echo get_services($_GET);
+    }else if(strpos($uri,'/change_service') !== false){
+        echo edit_service($_POST);
+    }else if(strpos($uri,'/tasks') !== false){
+        echo get_tasks($_GET);
+    }else if(strpos($uri,'/change_tasks') !== false){
+        echo edit_task($_POST);
+    }else if(strpos($uri,'/discussions') !== false){
+        echo get_discussions($_GET);
+    }else if(strpos($uri,'/projects') !== false){
+        echo get_projects($_GET);
+    }else if(strpos($uri,'/components') !== false){
+        echo get_components($_GET);
+    }else if(strpos($uri,'/documents') !== false){
+        echo get_documents($_GET);
+    }else if(strpos($uri,'/products') !== false){
+        echo get_products($_GET);
+    }else if(strpos($uri,'/add_to_project') !== false){
+        echo add_to_project($_POST);
+    }else if(strpos($uri,'/remove_from_project') !== false){
+        echo remove_from_project($_POST);
+    }else if(strpos($uri,'/upload') !== false){
+        echo upload_document($_POST,$_FILES);
+    }else if(strpos($uri,'/create_discussion') !== false){
+        echo create_discussion($_POST);
+    }else if(strpos($uri,'/create_task') !== false){
+        echo create_task($_POST);
+    }
+});
+
+function addMore($item){
+    $item['specificationsData'] = json_decode(httpResponse(dbUrl().$item['specifications'], null, null),true);
+    if(count($item['specificationsData']) > 0){
+        $item['specificationsData'] = $item['specificationsData'][0];
+    }
+    if($item['releaseDate'] != null){
+        $item['releaseDate'] = date('m/d/Y', strtotime($item['releaseDate']));
+    }
+    if($item['currentStatus']['startDate'] != null){
+        $item['currentStatus']['startDate'] = date('m/d/Y', strtotime($item['currentStatus']['startDate']));
+    }
+    return $item;
+}
+
+function create_task($params){
+    $error_ = null;
+    $result = null;
+    if(isset($params['projectId'])) {
+        $project = json_decode(httpResponse(dbUrl().'/projects/'.$params['projectId'], null, null),true);
+        if($project != null && isset($project["id"])){
+            $last = json_decode(httpResponse(dbUrl().'/tasks?_sort=id&_order=DESC&_limit=1', null, null),true);
+            if(count($last) > 0){
+                $id = $last[0]['id']+1;
+            }else{
+                $id = 1;
+            }
+            $data = json_encode(array(
+                "id" => $id,
+                "title"=> $params['description'],
+                "project" => array(
+                    "id" => $params['projectId'],
+                    "title" => $project["title"]
+                ),
+                "assignee" => $params['assignee'],
+                "reporter" => "Jack Graber",
+                "dueDate" => date('d-m-Y H:i:s', strtotime($params['dueDate'])),
+                "priority" => date('d-m-Y H:i:s', strtotime($params['dueDate'])),
+                "projectId" => $params['projectId']
+            ));
+            $add_task = json_decode(httpResponse(dbUrl().'/tasks', 'POST', $data),true);
+            $result = $add_task;
+        }else{
+            $error_ = "Project not found";
+        }
+    }else{
+        $error_ = "Project id is wrong";
+    }
+    return json_encode(array('error' => $error_, 'result' => $result ));
+}
+
+function create_discussion($params){
+    $error_ = null;
+    $result = null;
+    if(isset($params['projectId'])) {
+        $project = json_decode(httpResponse(dbUrl().'/projects/'.$params['projectId'], null, null),true);
+        if($project != null && isset($project["id"])){
+            $last = json_decode(httpResponse(dbUrl().'/discussions?_sort=id&_order=DESC&_limit=1', null, null),true);
+            if(count($last) > 0){
+                $id = $last[0]['id']+1;
+            }else{
+                $id = 1;
+            }
+            $data = json_encode(array(
+                "id" => $id,
+                "text" => $params['text'],
+                "full_name" => "Jack Graber",
+                "created_at" => date("d-m-Y H:i:s"),
+                "avatar" => "/images/avatar-fpo.jpg",
+                "projectId" => $params['projectId']
+            ));
+            $add_discussion = json_decode(httpResponse(dbUrl().'/discussions', 'POST', $data),true);
+            $result = $add_discussion;
+        }else{
+            $error_ = "Project not found";
+        }
+    }else{
+        $error_ = "Project id is wrong";
+    }
+    return json_encode(array('error' => $error_, 'result' => $result ));
+}
+
+function remove_from_project($params){
+    if(isset($params['type'])) {
+        $product = null;
+        $params['type'] = ($params['type'] == 'service' ? 'services' : ($params['type'] == 'component' ? 'components' : null));
+        if($params['type'] != null) $product = json_decode(httpResponse(dbUrl().'/'.$params['type'].'/' . $params['id'], null, null), true);
+        if($product != null and isset($product['id']) == true) {
+            $project = json_decode(httpResponse(dbUrl().'/projects/' . $params['projectId'], null, null), true);
+            if($project != null and isset($project['id']) == true) {
+                $product['currentStatus']['project']['id'] = 0;
+                $product['currentStatus']['project']['title'] = null;
+                $product['projectId'] = 0;
+                $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['type'].'/' . $params['id'], 'PUT', json_encode($product)), true);
+                return json_encode(array('result' => $changed_item));
+            }else{
+                return json_encode(array('error' => 'Project not found' ));
+            }
+        }else {
+            return json_encode(array('error' => 'Product not found' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Type is wrong' ));
+    }
+}
+
+function add_to_project($params){
+    if(isset($params['type'])) {
+        $product = null;
+        $params['type'] = ($params['type'] == 'service' ? 'services' : ($params['type'] == 'component' ? 'components' : null));
+        if($params['type'] != null) $product = json_decode(httpResponse(dbUrl().'/'.$params['type'].'/' . $params['id'], null, null), true);
+        if($product != null and isset($product['id']) == true) {
+            $project = json_decode(httpResponse(dbUrl().'/projects/' . $params['projectId'], null, null), true);
+            if($project != null and isset($project['id']) == true) {
+                $product['currentStatus']['project']['id'] = $project['id'];
+                $product['currentStatus']['project']['title'] = $project['title'];
+                $product['projectId'] = $project['id'];
+                $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['type'].'/' . $params['id'], 'PUT', json_encode($product)), true);
+                if($params['type'] == 'services') {
+                    $changed_item = addMore($changed_item);
+                    $changed_item['type'] = 'service';
+                }else if($params['type'] == 'components'){
+                    $changed_item = addMore($changed_item);
+                    $changed_item['type'] = 'component';
+                }
+                return json_encode(array('result' => $changed_item));
+            }else{
+                return json_encode(array('error' => 'Project not found' ));
+            }
+        }else {
+            return json_encode(array('error' => 'Product not found' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Type is wrong' ));
+    }
+}
+
+function searchByName($params,$array){
+    $query = $array;
+    if(isset($params['name'])) {
+        if(is_string($params['name']) && strlen($params['name']) > 0) {
+            $params['name'] = strtolower($params['name']);
+            $arr = array();
+            for($i = 0; $i < count($query); ++$i){
+                if (strpos(strtolower($query[$i]['title']), $params['name']) !== false) array_push($arr, $query[$i]);
+            }
+            $query = $arr;
+        }
+    }
+    return $query;
+}
+
+function get_products($params){
+    $components = json_decode(httpResponse(dbUrl().'/components', null, null), true);
+    for($i = 0; $i < count($components); ++$i){
+        $components[$i]['type'] = 'component';
+    }
+    $services = json_decode(httpResponse(dbUrl().'/services', null, null),true);
+    for($i = 0; $i < count($services); ++$i){
+        $services[$i]['type'] = 'service';
+    }
+    $query = array_merge($components,$services);
+    $query = searchByName($params,$query);
+    $count = count($query);
+    usort($query, 'sortByReleaseDateDESC');
+    if(isset($params['offset']) == false) $params['offset'] = 0;
+    if(isset($params['limit'])) {
+        $query = array_slice($query, $params['offset'], $params['limit']);
+    }
+    $result = array('result' => $query, 'count' => $count);
+    return json_encode($result);
+}
+
+function edit_service($params){
+    $service = json_decode(httpResponse(dbUrl().'/services/'.$params['id'], null, null),true);
+    $service['currentStatus']['percentCompleted'] = $params['percentCompleted'];
+    $data = json_encode($service);
+
+    $changed_item = json_decode(httpResponse(dbUrl().'/services/'.$params['id'], 'PUT', $data),true);
+    $changed_item = addMore($changed_item);
+    $changed_item['type'] = 'service';
+    return json_encode(array('result' => $changed_item ));
+}
+
+function get_components($params){
+    if(isset($params['projectId']) == false || $params['projectId'] == null){
+        $query = json_decode(httpResponse(dbUrl().'/components', null, null), true);
+    }else{
+        $query = json_decode(httpResponse(dbUrl().'/projects/'.$params['projectId'].'/components', null, null),true);
+    }
+    if(isset($params['ids'])) {
+        if(is_array($params['ids']) && count($params['ids']) > 0) {
+            $arr = array();
+            for($i = 0; $i < count($query); ++$i){
+                if (in_array(intval($query[$i]['id']), $params['ids'])) array_push($arr, $query[$i]);
+            }
+            $query = $arr;
+        }else{
+            $query = array();
+        }
+    }
+    $query = searchByName($params,$query);
+    $count = count($query);
+    if(isset($params['offset']) == false) $params['offset'] = 0;
+    if(isset($params['limit'])) {
+        $query = array_slice($query, $params['offset'], $params['limit']);
+    }
+    for($i = 0; $i < count($query); ++$i){
+        $query[$i] = addMore($query[$i]);
+        $query[$i]['type'] = 'component';
+    }
+    $result = array('result' => $query, 'count' => $count);
+    return json_encode($result);
+}
+
+function get_services($params){
+    if(isset($params['projectId']) == false || $params['projectId'] == null){
+        $query = json_decode(httpResponse(dbUrl().'/services', null, null), true);
+    }else{
+        $query = json_decode(httpResponse(dbUrl().'/projects/'.$params['projectId'].'/services', null, null),true);
+    }
+    if(isset($params['sort'])) {
+        if(isset($params['order']) == false) $params['order'] = 'DESC';
+        if ($params['sort'] == 'name') {
+            if ($params['order'] == 'DESC') {
+                usort($query, 'sortByTitleDESC');
+            } else {
+                usort($query, 'sortByTitleASC');
+            }
+        } else if ($params['sort'] == 'project') {
+            if ($params['order'] == 'DESC') {
+                usort($query, 'sortByProjectDESC');
+            } else {
+                usort($query, 'sortByProjectASC');
+            }
+        } else if ($params['sort'] === 'status') {
+            if ($params['order'] == 'DESC') {
+                usort($query, 'sortByStatusDESC');
+            } else {
+                usort($query, 'sortByStatusASC');
+            }
+        } else if ($params['sort'] === 'start') {
+            if ($params['order'] == 'DESC') {
+                usort($query, 'sortByStartDESC');
+            } else {
+                usort($query, 'sortByStartASC');
+            }
+        }
+    }
+    if(isset($params['ids'])) {
+        if(is_array($params['ids']) && count($params['ids']) > 0) {
+            $arr = array();
+            for($i = 0; $i < count($query); ++$i){
+                if (in_array(intval($query[$i]['id']), $params['ids'])) array_push($arr, $query[$i]);
+            }
+            $query = $arr;
+        }else{
+            $query = array();
+        }
+    }
+    $query = searchByName($params,$query);
+    $count = count($query);
+    $countTypes = array(
+        'analytical' => 0,
+        'solid' => 0,
+        'data' => 0
+    );
+    if(isset($params['type']) && in_array($params['type'],array('analytical','solid','data'))) {
+        $arr = array();
+        for($i = 0; $i < count($query); ++$i){
+            $countTypes[$query[$i]['serviceType']] += 1;
+            if($query[$i]['serviceType'] === $params['type']) array_push($arr, $query[$i]);
+        }
+        $query = $arr;
+    }else{
+        for($i = 0; $i < count($query); ++$i) $countTypes[$query[$i]['serviceType']] += 1;
+    }
+    if(isset($params['offset']) == false) $params['offset'] = 0;
+    if(isset($params['limit'])) {
+        $query = array_slice($query, $params['offset'], $params['limit']);
+    }
+    for($i = 0; $i < count($query); ++$i){
+        $query[$i] = addMore($query[$i]);
+        $query[$i]['type'] = 'service';
+    }
+    $result = array('result' => $query, 'count' => $count, 'countTypes' => $countTypes);
+    return json_encode($result);
+}
+
+function edit_task($params){
+    $task = json_decode(httpResponse(dbUrl().'/tasks/'.$params['id'], null, null),true);
+    $priority = $task['priority'];
+    if($priority == 'Urgent'){
+        $priority = 'Today';
+    }else if($priority == 'Today'){
+        $priority = 'Urgent';
+    }else{
+        $priority = date('m-d-Y');
+    }
+    $data = json_encode(
+        array(
+            'priority' => $priority
+        )
+    );
+    $changed_item = json_decode(httpResponse(dbUrl().'/tasks/'.$params['id'], 'PUT', $data),true);
+    return json_encode(array('result' => $changed_item ));
+}
+
+function get_tasks($params){
+    if(isset($params['projectId']) == false || $params['projectId'] == null){
+        $query = json_decode(httpResponse(dbUrl().'/tasks', null, null),true);
+    }else{
+        $query = json_decode(httpResponse(dbUrl().'/projects/'.$params['projectId'].'/tasks', null, null),true);
+    }
+    $count = count($query);
+    for($i = 0; $i < $count; ++$i){
+        $query[$i]["priority"] = $query[$i]["dueDate"];
+    }
+    if(isset($params['sort'])) {
+        if(isset($params['order']) == false) $params['order'] = 'DESC';
+        if ($params['sort'] == 'name') {
+            if ($params['order'] == 'DESC') {
+                usort($query, 'sortByTitleDESC');
+            } else {
+                usort($query, 'sortByTitleASC');
+            }
+        } else if ($params['sort'] == 'project') {
+            if ($params['order'] == 'DESC') {
+                usort($query, 'sortByProjectTaskDESC');
+            } else {
+                usort($query, 'sortByProjectTaskASC');
+            }
+        } else if ($params['sort'] == 'dueDate' || $params['sort'] == 'priority') {
+            if ($params['order'] == 'DESC') {
+                usort($query, 'sortByDueDateDESC');
+            } else {
+                usort($query, 'sortByDueDateASC');
+            }
+        }
+    }
+    if(isset($params['offset']) == false) $params['offset'] = 0;
+    if(isset($params['limit'])) {
+        $query = array_slice($query, $params['offset'], $params['limit']);
+    }
+    for($i = 0; $i < count($query); ++$i){
+        $query[$i]['dueDate'] = date('m/d/Y', strtotime($query[$i]['dueDate']));
+        $due_date = strtotime($query[$i]['dueDate']);
+        $current = strtotime(date("Y-m-d"));
+        $dateDiff = $due_date - $current;
+        $difference = floor($dateDiff/(60*60*24));
+        if($difference == 0) {
+            $query[$i]['priority'] = array('today','Today');
+        } else if($difference == 1) {
+            $query[$i]['priority'] = array('tomorrow','Tomorrow');
+        }else if($difference > 1){
+            $query[$i]['priority'] = array('date',$query[$i]['dueDate']);
+        }else if($difference < 0){
+            $name_d = ($difference == -1 ? 'day' : 'days');
+            $query[$i]['priority'] = array('after','Due '.(-1*$difference).' '.$name_d.' ago ('.$query[$i]['dueDate'].')');
+        }
+    }
+    $result = array('result' => $query, 'count' => $count);
+    return json_encode($result);
+}
+
+function get_discussions($params){
+    if(isset($params['projectId']) == false || $params['projectId'] == null){
+        $query = json_decode(httpResponse(dbUrl().'/discussions', null, null),true);
+    }else{
+        $query = json_decode(httpResponse(dbUrl().'/projects/'.$params['projectId'].'/discussions', null, null),true);
+    }
+    if(isset($params['sort'])) {
+        if (isset($params['order']) == false) $params['order'] = 'DESC';
+        if ($params['sort'] == 'created_at') {
+            if ($params['order'] == 'DESC') {
+                usort($query, 'sortByCreatedAtDESC');
+            } else {
+                usort($query, 'sortByCreatedAtASC');
+            }
+        } else {
+            usort($query, 'sortByCreatedAtDESC');
+        }
+    }
+    $count = count($query);
+    $query = array_slice($query, $params['offset'], $params['limit']);
+    $result = array('result' => $query, 'count' => $count);
+    return json_encode($result);
+}
+
+function get_projects($params){
+    if(isset($params['projectId']) == false || $params['projectId'] == null){
+        $query = json_decode(httpResponse(dbUrl().'/projects', null, null),true);
+        if(isset($params['offset']) == false) $params['offset'] = 0;
+        if(isset($params['limit'])) {
+            $query = array_slice($query, $params['offset'], $params['limit']);
+        }
+    }else{
+        $query = json_decode(httpResponse(dbUrl().'/projects/'.$params['projectId'], null, null),true);
+    }
+    $default_url = dbUrl();
+    for($i = 0; $i < count($query); ++$i){
+        $tl = $default_url.$query[$i]['tasks']['link'];
+        $sl = $default_url.$query[$i]['services']['link'];
+        $dl = $default_url.$query[$i]['discussions']['link'];
+        $query[$i]['tasks']['totalItems'] = count(json_decode(httpResponse($tl, null, null), true));
+        $query[$i]['services']['totalItems'] = count(json_decode(httpResponse($sl, null, null), true));
+        $query[$i]['discussions']['totalItems'] = count(json_decode(httpResponse($dl, null, null), true));
+    }
+    $result = array('result' => $query);
+    return json_encode($result);
+}
+
+function get_documents($params){
+    if(isset($params['projectId']) || $params['projectId'] != null){
+        $query = json_decode(httpResponse(dbUrl().'/projects/'.$params['projectId'].'/documents', null, null),true);
+        if(isset($params['offset']) == false) $params['offset'] = 0;
+        if(isset($params['limit'])) {
+            $query = array_slice($query, $params['offset'], $params['limit']);
+        }
+    }else{
+        $query = array();
+    }
+    $count = count($query);
+    $result = array('result' => $query, 'count' => $count);
+    return json_encode($result);
+}
+
+function upload_document($params,$file){
+    $last = json_decode(httpResponse(dbUrl().'/documents?_sort=id&_order=DESC&_limit=1', null, null),true);
+    if(count($last) > 0){
+        $id = $last[0]['id']+1;
+    }else{
+        $id = 1;
+    }
+    $mainDir = dirname(__DIR__);
+    $fileFolder =  '\\uploads\\'.$id;
+    if(is_dir($mainDir.$fileFolder)) delete_directory($mainDir.$fileFolder);
+    if(mkdir($mainDir.$fileFolder, 0755)){
+        $name_file = basename($file['file']['name']);
+        $uploadFile = $mainDir . $fileFolder . '\\' . $name_file;
+        if (move_uploaded_file($file['file']['tmp_name'], $uploadFile)) {
+            $data = json_encode(array(
+                'id' => $id,
+                'title' => $params['title'] ? $params['title'] : $file['file']['title'],
+                'projectId' => $params['projectId'],
+                'file' => '/uploads/' . $id . '/' . $name_file
+            ));
+            $add_document = json_decode(httpResponse(dbUrl().'/documents', 'POST', $data),true);
+            return json_encode(array('result' => $add_document ,'file' => $file));
+        } else {
+            return json_encode(array('error' => 'Possible attacks via file download' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Unable create directory '));
+    }
+}
+
+function delete_directory($dirName) {
+    if (is_dir($dirName)) $dir_handle = opendir($dirName);
+    if (!$dir_handle) return false;
+    while($file = readdir($dir_handle)) {
+        if ($file != '.' && $file != '..') {
+            if (!is_dir($dirName.'/'.$file)) {
+                unlink($dirName . '/' . $file);
+            }else {
+                delete_directory($dirName . '/' . $file);
+            }
+        }
+    }
+    closedir($dir_handle);
+    rmdir($dirName);
+    return true;
+}
+
+?>
+

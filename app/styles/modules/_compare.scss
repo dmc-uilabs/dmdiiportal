@@ -1,0 +1,163 @@
+.compare-widget{
+  form:first-child{
+    background-color: #efeced;
+    md-toolbar{
+      background-color: #efeced;
+      color: #333;
+      button{
+        ng-md-icon{
+          fill: #999;
+        }
+      }
+      button:hover{
+        ng-md-icon{
+          fill: #333;
+        }
+      }
+    }
+    md-dialog-content{
+      overflow-y: hidden;
+      overflow-x: hidden;
+      padding: 0 24px 24px 24px;
+      max-width: 918px;
+    }
+    .compare-list-products{
+      .row{
+        .column{
+          padding: 13px;
+          background-color: #fff;
+          max-width: 200px;
+          min-width: 200px;
+          margin: 0 2px;
+          vertical-align: top;
+          border-bottom: 1px solid #efeced;
+        }
+        .width-100{
+          max-width: none;
+          min-width: none;
+          width: 100%;
+        }
+        .width-50{
+          max-width: none;
+          min-width: none;
+          width: 50%;
+        }
+        .width-33{
+          max-width: none;
+          min-width: none;
+          width: 33%;
+        }
+        .title{
+          max-width: 120px;
+          min-width: 120px;
+          z-index: 2;
+          h4{
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: right;
+          }
+        }
+      }
+      .services{
+        .column{
+          padding: 0 13px 13px 13px;
+          @include borderRadius(3px 3px 0 0);
+          .product-image{
+            text-align: center;
+          }
+          h2,h3{
+            color: #62b056;
+            margin: 2px 0;
+            font-size: 13px;
+          }
+          h2{
+            text-transform: uppercase;
+          }
+          .star-rating{
+            &__buttons{
+              .md-icon-button{
+                margin: 0;
+              }
+            }
+          }
+          button.md-primary{
+            background-color: #666666;
+            text-transform: none;
+          }
+          button.md-added{
+            background-color: #65AF3F;
+            ng-md-icon{
+              fill: #fff;
+              margin-right: 8px;
+            }
+          }
+          button.md-add{
+            background-color: inherit;
+          }
+          .adding-to-project{
+            .md-button{
+              margin: -13px 2px 0 2px;
+              height: 30px;
+            }
+            .close{
+              width: 46px;
+              min-width: 46px;
+            }
+          }
+        }
+        .title{
+          padding: 13px;
+        }
+      }
+      .specifications{
+        .column{
+          @include borderRadius(0 0 3px 3px);
+          p{
+            margin: 0 0 5px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dmc-dialog-compare{
+  overflow-y:scroll;
+  display: block;
+  text-align: center;
+  .compare-widget{
+    display: inline-block;
+    text-align: left;
+    max-height: none;
+    margin: 50px 0;
+    min-width: 966px;
+  }
+}
+
+
+.btn-box{
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  z-index: 3;
+  margin-top: -25px;
+  button{
+    width: 45px;
+    min-width: 45px;
+    height: 120px;
+    margin: 0;
+    opacity: 0.34;
+    @include borderRadius(0);
+  }
+  button:hover{
+    opacity: 1;
+  }
+}
+.right-btn{
+  right: 4px;
+  text-align: right;
+}
+.left-btn{
+  left: 150px;
+}

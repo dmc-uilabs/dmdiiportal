@@ -1,0 +1,41 @@
+.rp-panel {
+  border-top: 2px solid $body_grey;
+  &__title {
+    h2 {
+      font-size: 18px;
+      font-weight: 300;
+      margin-top: 0;
+      a {
+        text-decoration: none;
+        font-weight: bold;
+        color: map-get($colors, text_grey);
+      }
+    }
+  }
+  &__controls{
+    .md-button{
+      display: block;
+      padding: 0;
+      margin: 3px 0 6px 0;
+      width: 100%;
+    }
+  }
+  &__tab-content {
+    md-content{
+      padding: 0 0 0 16px;
+      md-list{
+        padding-top: 0;
+        md-list-item {
+          margin-bottom: 16px;
+          padding: 0;
+          .md-list-item-text {
+            padding-top: 0;
+          }
+          &:last-child{
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}

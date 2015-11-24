@@ -1,0 +1,105 @@
+.carousel-padding{
+  padding-top: 16px;
+}
+
+.carousel-tabs{
+  md-tabs-wrapper{
+    margin: 0 16px;
+  }
+}
+
+.ng-carousel{
+  height: 0;
+  .slide-buttons{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 5;
+    ul{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+      width: auto;
+      li{
+        width: auto;
+        float: left;
+        button{
+          width: 30px;
+          ng-md-icon {
+            fill: #999;
+          }
+        }
+        button:hover{
+          ng-md-icon {
+            fill: #333;
+          }
+        }
+      }
+      .selected{
+        button{
+          ng-md-icon {
+            fill: #64B045;
+          }
+        }
+      }
+    }
+  }
+  .carousel-arrow-left{
+    width: 50px;
+    top: 60px;
+    bottom: 112px;
+    button.demo-nav{
+      left:0;
+    }
+  }
+  .carousel-arrow-right{
+    width: 50px;
+    top: 60px;
+    bottom: 112px;
+    button.demo-nav{
+      right: 0;
+    }
+  }
+  button.demo-nav {
+    font-size: 16px;
+    border: none;
+    background: transparent;
+    padding: 5px 0;
+    color: #64B045;
+    min-width: 40px;
+    width: 40px;
+//    background: #64B045;
+//    padding: 5px;
+//    color: #fff;
+//    min-width: 50px;
+//    width: 50px;
+    top: 50%;
+    position: absolute;
+    margin: -50% 0 0 0;
+    ng-md-icon{
+      fill:#64B045;
+    }
+  }
+  button.demo-nav:hover {
+    background: #64B045;
+    ng-md-icon{
+      fill:#fff;
+    }
+  }
+  slidecontainer{
+    font-size: 0;
+    slide{
+      text-align: center;
+      font-size: 12px;
+      .product-card:first-child{
+        margin: 0 5px 0 16px;
+      }
+      .product-card:last-child{
+        margin: 0 16px 0 5px;
+      }
+    }
+  }
+}

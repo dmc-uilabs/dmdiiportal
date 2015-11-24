@@ -1,0 +1,55 @@
+<div class="page-header" layout-padding>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <div layout="column">
+                <h1 class="name-project">
+                    {{projectCtrl.projectData.title}}
+                    <span class="small-text small-text--grey">Due in 20 days</span>
+                </h1>
+                <h2><img src="images/project-header-thumb.png"
+                         ng-click="vm.showMenu($event)"
+                         alt="" /></h2>
+            </div>
+            <!-- fill up the space between left and right area -->
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
+</div>
+<div class="container" layout="row" layout-margin layout-fill layout-padding>
+    <!-- Left Content Column -->
+
+    <div class="content-column" layout="column" flex="60">
+        <!-- Overview -->
+        <div class="content-panel">
+            <div class="content-panel-header">
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Overview</h2>
+                        <span flex></span>
+                        <md-button href="/" md-no-ink>View All</md-button>
+                    </div>
+                </md-toolbar>
+            </div>
+            <div class="content-panel-body">
+                <md-content class="md-padding" layout="row" layout-padding>
+                    <div flex="25">
+                        <img ng-src="{{projectCtrl.projectData.featureImage.thumbnail}}">
+                    </div>
+                    <div flex="75">
+                        <p>{{projectCtrl.projectData.description}}</p>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+        <!-- QUESTIONS -->
+        <div class="content-panel" ui-widget-questions widget-title="'QUESTIONS'" project-id="projectCtrl.projectData.id"></div>
+        <!-- INVITED USERS -->
+        <div class="content-panel" ui-widget-invited-users widget-title="'INVITED USERS'" project-id="projectCtrl.projectData.id"></div>
+    </div>
+    <!-- Right Content Column -->
+    <div class="content-column" layout="column" flex>
+        <!-- SUBMISSIONS -->
+        <div class="content-panel" ui-widget-submissions widget-title="'SUBMISSIONS'" project-id="projectCtrl.projectData.id"></div>
+    </div>
+</div>

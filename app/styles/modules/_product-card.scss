@@ -1,0 +1,166 @@
+$font-size: 13px;
+$line-height: 1.2;
+$lines-to-show: 4;
+
+$lines-to-show-title: 2;
+
+.product-card {
+  border: 1px solid #666;
+  @include borderRadius(3px);
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  text-align: left;
+  .reply{
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+  .title-without-spaces{
+    padding: 8px 8px 0 8px;
+    margin: 0 8px;
+    h3{
+      margin: 0;
+    }
+  }
+  &__image{
+    text-align: center;
+    //padding: 0 18px;
+    &_small{
+      height: 140px;
+      overflow: hidden;
+      padding: 0 18px;
+    }
+  }
+  .star-rating{
+    button{
+      margin: 0;
+    }
+  }
+  p {
+    white-space: initial;
+  }
+  p.description{
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    max-width: 400px;
+    height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+    margin: 0 auto;
+    font-size: $font-size;
+    line-height: $line-height;
+    -webkit-line-clamp: $lines-to-show;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  md-toolbar {
+    min-height: 48px;
+    .md-toolbar-tools {
+      background-color: #FFF;
+      height: 48px;
+    }
+  }
+
+  &__content {
+    padding: 0 8px;
+    &__column{
+      padding: 0 8px;
+    }
+  }
+
+  &__header {
+    a {
+      text-decoration: none;
+      color: map-get($colors, secondary);
+    }
+    h3 {
+      margin-bottom: 5px;
+      text-transform: uppercase;
+
+      display: block; /* Fallback for non-webkit */
+      display: -webkit-box;
+      max-width: 400px;
+      height: 21px*$line-height*$lines-to-show-title; /* Fallback for non-webkit */
+      line-height: $line-height;
+      font-size: 21px;
+      -webkit-line-clamp: $lines-to-show-title;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  &__footer{
+    background-color: #666;
+    .add-project-button{
+      background-color: #909090;
+    }
+    .md-button{
+      text-transform: none;
+      font-size: 13px;
+    }
+    .back-to-add{
+      min-width: 20px;
+      fill: #fff;
+    }
+    .page-href span{
+      overflow: hidden;
+      max-width: 98%;
+      display: block;
+      text-overflow: ellipsis;
+    }
+    .adding-to-project{
+      width: 100%;
+      margin: 5px;
+      background-color: #909090;
+      @include borderRadius(3px);
+
+      .close{
+        width: 36px;
+        min-width: 36px;
+        height: 37px;
+        min-height: 37px;
+        line-height: 37px;
+      }
+      .close:hover{
+        background-color: #777;
+      }
+      .add{
+        width: 36px;
+        min-width: 36px;
+        height: 37px;
+        min-height: 37px;
+        line-height: 37px;
+      }
+      ng-md-icon{
+        fill: #fff;
+      }
+      md-input-container{
+        padding: 0;
+      }
+      md-select {
+        @include borderRadius(3px);
+        margin: 6px 0;
+        background-color: #fff;
+        md-select-value{
+          font-size: 13px;
+          padding: 3px 8px 6px 8px;
+        }
+      }
+    }
+    .md-button {
+      color: white;
+    }
+    .remove{
+      background-color: #65AF3F;
+      ng-md-icon{
+        fill: #fff;
+      }
+    }
+    &--small {
+      .md-button {
+        font-size: 11px;
+      }
+    }
+  }
+}

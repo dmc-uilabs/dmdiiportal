@@ -1,0 +1,8 @@
+<li ng-repeat="level in menuSource" ng-class="{'item-has-child' : level.categories.length > 0, 'opened' : level.opened}">
+    <a ng-click="level.onClick()" ng-class="{'selected' : level.opened}">
+        <ng-md-icon ng-if="level.categories.length > 0 && level.opened" icon="arrow_drop_down"></ng-md-icon>
+        <ng-md-icon ng-if="level.categories.length > 0 && !level.opened" icon="arrow_drop_up"></ng-md-icon>
+        {{level.title}} <span class="small-text">({{level.items}})</span>
+    </a>
+    <ul dmc-menu ng-if="level.categories.length > 0" menu-source="level.categories"></ul>
+</li>

@@ -1,0 +1,39 @@
+<div class="container">
+  <!-- Left Content Column -->
+  <div layout="row" layout-margin layout-fill layout-padding>
+  <div class="content-column" layout="column" flex>
+    <div class="content-panel">
+      <div class="content-panel-header">
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>PROJECT DETAILS</h2>
+          </div>
+        </md-toolbar>
+      </div>
+      <div class="content-panel-body">
+        <md-content class="md-padding">
+          <form name="form">
+          <md-input-container flex>
+            <label>Project Title</label>
+            <input ng-model="title" required>
+          </md-input-container>
+          <md-datepicker class="dueDatePicker" ng-model="dueDate" md-placeholder="Due Date" required></md-datepicker>
+          <md-input-container flex>
+            <label>Overview</label>
+              <textarea name="overview" class="overviewTextArea" ng-model="overview" columns="1" required></textarea>
+          </md-input-container>
+          </form>
+        </md-content>
+      </div>
+    </div>
+  </div>
+  <!-- Right Content Column -->
+    <div class="content-column" layout="column" flex>
+        <div class="content-panel" ui-widget-upload-documents auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
+    </div>
+  </div>
+    <div layout="row" class="btn-next-block" layout-padding>
+        <span flex></span>
+        <md-button class="md-raised md-primary" ng-disabled="!form.$valid" ng-click="goToTab(2)">Next</md-button>
+    </div>
+</div>

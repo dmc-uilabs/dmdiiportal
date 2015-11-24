@@ -1,0 +1,39 @@
+<div class="content-panel-header">
+    <md-toolbar>
+        <div class="md-toolbar-tools widget-toolbar-title">
+            <h2>{{widgetTitle}}</h2>
+            <md-button ng-if="projectId > 0" href="" ng-click="newTask($event)">Add New</md-button>
+            <span flex></span>
+            <md-button href="/" md-no-ink class="view-all-button">View All ({{total}})</md-button>
+        </div>
+    </md-toolbar>
+</div>
+<div class="content-panel-body">
+    <md-content class="md-padding">
+        <md-data-table-container sortable-columns>
+            <table md-data-table class="tableTasks">
+                <thead md-order="priority" md-trigger="onOrderChange" ng-if="tasks.length > 0">
+                <tr>
+                    <th class="title" ng-show="columns.indexOf('title') > -1" name="Task" order-by="name"></th>
+                    <th ng-show="columns.indexOf('project') > -1" name="Project" order-by="project"></th>
+                    <th ng-show="columns.indexOf('dueDate') > -1" name="Due Date" order-by="dueDate"></th>
+                    <th ng-show="columns.indexOf('priority') > -1" name="Priority" order-by="priority"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr md-auto-select ng-repeat="item in tasks">
+                    <td class="title" ng-show="columns.indexOf('title') > -1"><a href="/">{{item.title}}</a></td>
+                    <td class="project" ng-show="columns.indexOf('project') > -1">{{item.project.title}}</td>
+                    <td class="dueDate" ng-show="columns.indexOf('dueDate') > -1">{{item.dueDate}}</td>
+                    <td ng-show="columns.indexOf('priority') > -1">
+                        <span ng-bind-html="item.priority[1]" class="label" ng-class="item.priority[0] == 'date' ? 'label--date' : (item.priority[0] == 'tomorrow' ? 'label--tomorrow' : (item.priority[0] == 'today' || item.priority[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
+                    </td>
+                </tr>
+                <tr ng-if="tasks.length == 0">
+                   <td class="empty" colspan="{{columns.length}}">No tasks</td>
+                </tr>
+                </tbody>
+            </table>
+        </md-data-table-container>
+    </md-content>
+</div>

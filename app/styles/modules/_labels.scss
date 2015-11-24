@@ -1,0 +1,22 @@
+.label {
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  padding: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  background: map-get($colors, label_default_bg);
+  &--warn {
+    background: map-get($colors, label_warn_bg);
+  }
+  &--today {
+    background: map-get($colors, brown);
+  }
+  &--date {
+    background: map-get($colors, text_grey);
+  }
+  &--tomorrow{
+    background: map-get($colors, yellow );
+    color: #362d00;
+  }
+}

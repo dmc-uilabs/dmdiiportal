@@ -1,0 +1,21 @@
+<div class="title-widget" ng-hide="widgetTitle == null">
+  <h2>{{widgetTitle}} ({{totalItems}})</h2>
+</div>
+<md-list>
+  <md-list-item class="md-2-line" ng-repeat="service in projectServices track by $index">
+    <div class="md-list-item-text" layout="column" ng-show="progressPosition == 'bottom'">
+      <h3>{{service.title}}</h3>
+      <md-progress-linear md-mode="determinate" value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
+      <span>1:30 of 2:00</span>
+    </div>
+    <div class="md-list-item-text" ng-hide="progressPosition == 'bottom'">
+      <h3 class="title">{{service.title}}</h3>
+      <h4 ng-hide="progressPosition == 'bottom'">{{service.releaseDate}}</h4>
+    </div>
+    <div class="md-secondary md-list-item-inner user-info services-item-progress"
+         ng-hide="progressPosition == 'bottom'">
+      <md-progress-linear md-mode="determinate" value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
+    </div>
+    <md-divider ng-if="$index < projectServices.length-1"></md-divider>
+  </md-list-item>
+</md-list>

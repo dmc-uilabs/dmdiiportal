@@ -1,0 +1,64 @@
+<div class="products-card">
+    <div class="content-panel-header" layout="column" layout-padding>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h1 class="name-card" layout-padding ng-if="!searchCard">{{titleCard}}</h1>
+            </div>
+        </md-toolbar>
+        <md-divider></md-divider>
+        <div layout='row' layout-align="center center">
+          <h2>{{totalSize}} Results</h2>
+            <md-button ng-click="clearFilter()" ng-if="searchCard" style="display: none">Clear All</md-button>
+            <md-content class="md-padding" layout="column" ng-if="searchCard" style="display: none">
+                <md-chips ng-model="filterItems" readonly="false">
+                    <md-chip-template>
+                        <strong>{{$chip.name}}</strong>
+                    </md-chip-template>
+                </md-chips>
+            </md-content>
+            <span flex></span>
+            <md-input-container>
+                <label>Show</label>
+                <md-select ng-model="sizeModule" ng-change="selectItemDropDown('show')">
+                    <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >
+                        {{item.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container ng-if="searchCard">
+                <label>Sort</label>
+                <md-select ng-model="pageSort" ng-change="selectItemDropDown('sort')">
+                    <md-option ng-repeat="item in sortArray track by $index" ng-value="$index" >
+                        {{item.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </div>
+    <md-progress-linear md-mode="indeterminate" ng-show="cardLoading"></md-progress-linear>
+    <div class="content-panel-body">
+        <md-content>
+            <div class="list-items" layout="row" layout-wrap>
+                <div class="one-item"
+                     flex-sm="100"
+                     flex-md="50"
+                     flex-lg="33"
+                     flex-gt-lg="25"
+                     dir-paginate="item in itemsArray | itemsPerPage: pageSize">
+                    <dmc-product-card card-style="'small'" ng-show="item.id"
+                                      type-product="item.type"
+                                      card-source="item">
+                    </dmc-product-card>
+                </div>
+            </div>
+        </md-content>
+    </div>
+    <div class="content-panel-footer">
+        <div class="total-items">
+            {{(currentPage-1)*pageSize+1}}-{{currentPage*pageSize > totalSize ? totalSize : currentPage*pageSize}} of {{totalSize}}
+        </div>
+        <div class="text-center">
+            <dir-pagination-controls on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+        </div>
+    </div>
+</div>

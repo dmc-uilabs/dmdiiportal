@@ -1,0 +1,53 @@
+.btn-submit-block{
+  padding: 0 15px;
+}
+
+.submissions-page{
+  .tableSubmissions{
+    tr{
+      td{
+        cursor: pointer;
+      }
+    }
+  }
+  .opened{
+    td{
+      background-color: #ddd;
+    }
+  }
+  #inputs-outputs{
+    background-color: #eee;
+    padding-bottom: 13px;
+  }
+  .model-inputs{
+    md-list-item{
+      display: inline-block;
+      text-align: center;
+    }
+    md-content{
+      padding: 0 16px;
+      md-list{
+        padding: 16px 0 0 0;
+        .md-list-item-text{
+          padding: 0 8px;
+          h3{
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .model-inputs .content-panel-body{
+    border-bottom: 1px solid #ccc;
+  }
+  .letter{
+    margin-right: 4%;
+  }
+}
+
+.submissions-widget{
+  .empty{
+    text-align: center;
+    border-top: none;
+  }
+}

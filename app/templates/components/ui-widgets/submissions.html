@@ -1,0 +1,40 @@
+<div class="content-panel-header">
+    <md-toolbar>
+        <div class="md-toolbar-tools widget-toolbar-title">
+            <h2>{{widgetTitle}}</h2>
+            <span flex></span>
+            <md-button href="/project.php#/submissions/" md-no-ink class="view-all-button">View All (3)</md-button>
+        </div>
+    </md-toolbar>
+</div>
+<div class="content-panel-body">
+    <md-content class="md-padding">
+        <div>
+            <md-data-table-container>
+                <table md-data-table>
+                    <thead md-order="success" md-trigger="onOrderChange" ng-if="submissions.length > 0">
+                    <tr>
+                        <th name="Submission Name"></th>
+                        <th name="Date" order-by="date"></th>
+                        <th name="Success" order-by="success"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in submissions">
+                        <input value="{{item.id}}" type="hidden" class="itemId"/>
+                        <td>{{item.title}}</td>
+                        <td>{{item.date}}</td>
+                        <td>{{item.success}}%</td>
+                    </tr>
+                    <tr ng-if="submissions.length == 0">
+                        <td class="empty" colspan="{{columns.length}}">
+                            No submissions have been received.<br>
+                            Submissions are due in 20 days.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </md-data-table-container>
+        </div>
+    </md-content>
+</div>

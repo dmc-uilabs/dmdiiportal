@@ -1,0 +1,36 @@
+<div class="content-panel-header">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{widgetTitle}}</h2>
+        </div>
+    </md-toolbar>
+</div>
+<div class="content-panel-body">
+    <md-content class="md-padding">
+        <form style="z-index: 8" class="dropzone dropzone-sm dz-clickable" id="documentDropZone" dropzone="dropzoneConfig">
+            <div class="dz-default dz-message">
+                <div>
+                    <ng-md-icon icon="cloud_upload" style="fill: #666" size="89"></ng-md-icon>
+                    <span class="main-text"><b>Drop Files</b> here</span>
+                    <span class="sub-text">(or click)</span>
+                </div>
+            </div>
+        </form>
+    </md-content>
+    <md-content class="md-padding" ng-if="documents.length > 0">
+        <md-list>
+            <md-list-item ng-repeat="item in documents">
+                <p ng-show="!item.editing">{{item.title}}</p>
+                <md-button class="md-icon-button edit" ng-show="!item.editing" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="21"></ng-md-icon></md-button>
+                <md-input-container ng-show="item.editing" flex>
+                    <label>Document name</label>
+                    <input ng-value="item.title" ng-model="item.title">
+                </md-input-container>
+                <md-button ng-show="item.editing" class="md-raised save" ng-click="saveEdit(item)" aria-label="Save">Save</md-button>
+                <md-button ng-show="item.editing" class="md-raised md-warn cancel" ng-click="cancelEdit(item)" aria-label="Cancel">Cancel</md-button>
+                <md-button ng-show="!item.editing" class="md-icon-button remove" ng-click="removeFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="21"></ng-md-icon></md-button>
+                <md-divider></md-divider>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</div>

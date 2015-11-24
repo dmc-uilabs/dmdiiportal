@@ -1,0 +1,32 @@
+.running-services-list {
+  .services-time-info {
+    display: block;
+    font-size: 10px;
+    padding-top: 2px;
+    color: map-get($colors, text_grey);
+  }
+  .service-progress-info {
+    display: block;
+    padding-top: 10px;
+    font-size: 10px;
+    color: map-get($colors, text_grey);
+  }
+  .empty{
+    border-top: none;
+  }
+  a{
+    color: #333;
+    text-decoration: none;
+    width: 100%;
+    span,em{
+      font-style: normal;
+      display: block;
+      width: 100%;
+    }
+  }
+  table tbody {
+    tr:first-child td:first-child{
+      padding-right: 5px;
+    }
+  }
+}

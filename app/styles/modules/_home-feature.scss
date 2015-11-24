@@ -1,0 +1,31 @@
+.container.index-container{
+  min-height: 0;
+}
+.home-feature {
+  text-align: center;
+  margin: 45px auto;
+  max-width: 287px;
+  width: 100%;
+  padding: 13px;
+  @include borderRadius(3px);
+  color:#333;
+  text-decoration: none;
+  border: 2px solid rgba(0,0,0,0);
+  background-color: #DDD;
+  &:hover{
+    border: 2px solid #ccc;
+  }
+  img{
+    margin-bottom: 45px;
+    width: 167px;
+    background: #75BC52;
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 400;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}

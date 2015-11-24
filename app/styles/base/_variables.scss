@@ -1,0 +1,44 @@
+$grey: #363636;
+$ligh-grey: #808184;
+$red: #F44B2F;
+$green: #65AF3F;
+$body_grey: #EFECED;
+$brown: #f29300;
+$light-blue: #4ec1e1;
+$yellow: #ffff00;
+
+$colors: (
+  // Grey
+  primary: $grey,
+  // Green
+  secondary: $green,
+  // brown
+  brown: $brown,
+  // Light blue
+  light-blue: $light-blue,
+  // header color
+  header_color: $grey,
+  // Grey
+  text_grey: $ligh-grey,
+  // body color
+  body_color: $body_grey,
+  // label background
+  label_default_bg: $ligh-grey,
+  label_warn_bg: $red,
+  // link colors
+  link_color: $green,
+  // yellow
+  yellow: $yellow
+);
+
+$body_font_size: 12px;
+$body_font_family: 'Roboto', 'Arial', sans-serif;
+
+$main_padding: 40px;
+
+@mixin borderRadius($radius){
+  border-radius:$radius;
+  -webkit-border-radius:$radius;
+  -moz-border-radius:$radius;
+  -khtml-border-radius:$radius;
+}
