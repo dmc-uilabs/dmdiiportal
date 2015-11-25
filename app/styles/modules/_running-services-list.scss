@@ -30,3 +30,32 @@
     }
   }
 }
+
+.services-item-progress{
+  md-progress-linear.md-default-theme{
+    min-width: 55px !important;
+  }
+}
+md-list md-list-item.md-2-line .item-text-service{
+  padding-right: 90px;
+  h3{
+    width: 100%;
+  }
+}
+.service-list-item{
+  .md-secondary-container,
+  .md-secondary,
+  .md-list-item-inner .md-secondary-container,
+  .md-list-item-inner .md-secondary {
+    right: 0;
+    width: 80px;
+    top: inherit;
+    .service-progress-info{
+      position: absolute;
+      white-space: nowrap;
+      width: 80px;
+      right: 0;
+      bottom: -3px;
+    }
+  }
+}

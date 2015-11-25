@@ -1,14 +1,14 @@
 <div class="title-widget" ng-hide="widgetTitle == null">
     <h2>{{widgetTitle}} ({{totalItems}})</h2>
 </div>
-<md-list>
+<md-list class="discussion-list">
     <md-list-item class="md-2-line" ng-repeat="discussion in projectDiscussions">
         <div class="md-list-item-text">
-            <h3 style="width:{{withAvatar == true ? 80 :100 }}%">{{discussion.text}}</h3>
-            <h4 ng-show="withAvatar == true">{{discussion.created_at}}</h4>
-            <h4 ng-show="withAvatar != true">by {{discussion.full_name}}</h4>
+            <h3>{{discussion.text}}</h3>
+            <h4 ng-if="withAvatar == true">{{discussion.created_at}}</h4>
+            <h4 ng-if="withAvatar != true">by {{discussion.full_name}}</h4>
         </div>
-        <div class="md-secondary md-list-item-inner user-info" ng-show="withAvatar == true">
+        <div class="md-secondary md-list-item-inner user-info" ng-if="withAvatar == true">
             <img alt="{{discussion.full_name}}" class="md-avatar" ng-src="{{discussion.avatar}}">
         </div>
         <md-divider ng-if="$index < projectDiscussions.length-1"></md-divider>

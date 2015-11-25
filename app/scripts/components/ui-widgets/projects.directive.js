@@ -21,10 +21,10 @@ angular.module('dmc.widgets.projects',[
                 $scope.total = 0;
                 $scope.sort = 'id';
                 $scope.order = 'DESC';
+                $scope.limit = ($scope.widgetShowAllBlocks == true ? 10 : 2);
 
-                $scope.flexLeft = ($scope.widgetShowAllBlocks == true ? 15 : 30);
-                $scope.flexRight = ($scope.widgetShowAllBlocks == true ? 85 : 70);
-                $scope.flexImage = ($scope.widgetShowAllBlocks == true ? 100 : 30);
+                $scope.flexBox = ($scope.widgetShowAllBlocks == true ? 26 : 60);
+                $scope.flexDetails = ($scope.widgetShowAllBlocks == true ? 20 : 40);
 
                 $scope.showItems = function(item,name){
                     item.isShowTasks = ($scope.widgetShowAllBlocks == true || name == 'tasks' ? true : false);
@@ -39,7 +39,7 @@ angular.module('dmc.widgets.projects',[
                         sort : $scope.sort,
                         order : $scope.order,
                         offset : 0,
-                        limit : 2
+                        limit : $scope.limit
                     },function(data){
                         var projects_ = $scope.projects;
                         $scope.total = data.count;

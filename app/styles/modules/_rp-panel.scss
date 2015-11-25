@@ -20,6 +20,9 @@
       width: 100%;
     }
   }
+  &__image{
+    width: 100%;
+  }
   &__tab-content {
     md-content{
       padding: 0 0 0 16px;
@@ -35,6 +38,21 @@
             margin-bottom: 0;
           }
         }
+      }
+      .discussion-list md-list-item{
+        .md-list-item-text {
+          padding-right: 55px;
+        }
+        .md-secondary-container, .md-secondary, .md-list-item-inner .md-secondary-container, .md-list-item-inner .md-secondary{
+          right: 0;
+        }
+      }
+
+      .discussion-list md-list-item.md-2-line .md-secondary.user-info .md-avatar{
+        margin: -16px 0 0 13px;
+      }
+      .discussion-list md-list-item.md-2-line .md-list-item-text h3{
+        width: 100%;
       }
     }
   }

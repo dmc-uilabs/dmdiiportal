@@ -32,7 +32,7 @@
                         <td ng-show="columns.indexOf('start') > -1">{{item.currentStatus.startDate}}<span class="services-time-info">{{item.currentStatus.startTime}}</span></td>
                         <td ng-show="columns.indexOf('status') > -1">
                             <md-progress-linear md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
-                            <span class="service-progress-info" ng-hide="widgetStyle == 'full'">{{item.currentStatus.startDate}} {{item.currentStatus.startTime}}</span>
+                            <span class="service-progress-info">1:30 of 2:00</span>
                         </td>
                     </tr>
                     <tr ng-if="services.length == 0">

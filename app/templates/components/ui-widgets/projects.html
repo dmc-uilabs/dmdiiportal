@@ -11,37 +11,32 @@
   <div class="rp-panel md-padding" layout="row" ng-repeat="item in projects">
     <div class="rp-panel__tab-content" flex layout="row"
          ng-class="widgetShowAllBlocks == true ? 'widget-blocks' : ''">
-      <div class="rp-panel__details" layout="column" flex>
+      <div class="rp-panel__details" layout="column" flex="{{flexDetails}}">
         <div class="rp-panel__title">
           <h2><a href="project.php#/{{item.id}}">{{item.title}}</a></h2>
         </div>
-        <div class="rp-panel__controls" layout="row">
-          <div class="rp-panel__image" flex>
-            <a href="project.php#/{{item.id}}"><img ng-src="{{item.featureImage.thumbnail}}" alt="{{item.title}}"></a>
+          <div class="rp-panel__controls" layout="row">
+              <div class="rp-panel__image">
+                  <a href="project.php#/{{item.id}}"><img src="{{item.featureImage.thumbnail}}" alt="{{item.title}}"></a>
+                  <div ng-if="!widgetShowAllBlocks">
+                      <md-button ng-class="item.isShowTasks ? 'md-raised md-primary' : ''" ng-click="showItems(item,'tasks')">TASKS ({{item.tasks.totalItems}})</md-button>
+                      <md-button ng-class="item.isShowDiscussions ? 'md-raised md-primary' : ''" ng-click="showItems(item,'discussions')">BLOGS ({{item.discussions.totalItems}})</md-button>
+                      <md-button ng-class="item.isShowServices ? 'md-raised md-primary' : ''" ng-click="showItems(item,'services')">SERVICES ({{item.services.totalItems}})</md-button>
+                  </div>
+              </div>
           </div>
-          <div class="rp-panel__nav" layout="column" flex="50" ng-hide="widgetShowAllBlocks == true">
-            <md-button ng-class="item.isShowTasks ? 'md-raised md-primary' : ''" ng-click="showItems(item,'tasks')">TASKS
-              ({{item.tasks.totalItems}})
-            </md-button>
-            <md-button ng-class="item.isShowDiscussions ? 'md-raised md-primary' : ''"
-                       ng-click="showItems(item,'discussions')">BLOGS ({{item.discussions.totalItems}})
-            </md-button>
-            <md-button ng-class="item.isShowServices ? 'md-raised md-primary' : ''" ng-click="showItems(item,'services')">
-              SERVICES ({{item.services.totalItems}})
-            </md-button>
-          </div>
-        </div>
       </div>
-      <md-content flex ng-show="item.isShowTasks" layout-padding ui-project-tasks total-items="item.tasks.totalItems"
+      <md-content flex="{{flexBox}}" ng-show="item.isShowTasks" layout-padding ui-project-tasks total-items="item.tasks.totalItems"
                   project-id="item.id" widget-title="widgetShowAllBlocks == true ? 'Tasks' : null"></md-content>
-      <md-content flex ng-show="item.isShowDiscussions" layout-padding ui-project-discussions
+      <md-content flex="{{flexBox}}" ng-show="item.isShowDiscussions" layout-padding ui-project-discussions
                   total-items="item.discussions.totalItems" project-id="item.id"
                   widget-title="widgetShowAllBlocks == true ? 'Discussions' : null"
                   with-avatar="widgetShowAllBlocks == true ? false : true"></md-content>
-      <md-content flex ng-show="item.isShowServices" layout-padding ui-project-services
+      <md-content flex="{{flexBox}}" ng-show="item.isShowServices" layout-padding ui-project-services
                   total-items="item.services.totalItems" project-id="item.id"
                   widget-title="widgetShowAllBlocks == true ? 'Services' : null"
                   progress-position="widgetShowAllBlocks == true ? 'bottom' : 'right'"></md-content>
     </div>
   </div>
 </div>
+
