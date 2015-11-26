@@ -7,6 +7,10 @@
     @extend %nav_item;
     color: white;
   }
+  .md-button.md-default-theme{
+    line-height: 34px;
+    min-height: 34px;
+  }
 }
 .main-header{
   md-menu{
@@ -28,10 +32,10 @@
 }
 
 .main-header .menu-toolbar{
-  height: 47px;
+  height: 34px;
 }
 .main-header md-toolbar.md-tall{
-  height: 110px;
-  min-height: 110px;
-  max-height: 110px;
+  height: 99px;
+  min-height: 99px;
+  max-height: 99px;
 }

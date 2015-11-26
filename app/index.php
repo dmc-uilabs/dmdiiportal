@@ -36,8 +36,8 @@
     <!-- Top Header -->
     <div dmc-top-header active-page="'index'"></div>
 
-    <div class="container index-container" layout="row" layout-padding>
-      <div class="content-column" layout="column" flex='32' ng-repeat="p in pages">
+    <div class="container index-container" layout="row" layout-align="center center" layout-padding>
+      <div class="content-column" layout="column" ng-repeat="p in pages">
         <a href="{{p.href}}" class="home-feature">
           <img src="images/{{p.img}}" class="md-card-image" alt="{{p.name}}">
            <h2>{{p.name}}</h2>

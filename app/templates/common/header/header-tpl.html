@@ -77,7 +77,7 @@
                                aria-label="Open Latest Services Menu"
                                ng-click="$mdOpenMenu($event)">
                         <ng-md-icon icon="person" style="fill: #fff;"></ng-md-icon>
-                        Hi, DMC Member
+                        Hello, DMC Member
                     </md-button>
                     <md-menu-content>
                         <md-menu-item>
@@ -104,15 +104,15 @@
                                ng-class="{'active-page' : activePage.indexOf('dashboard') > -1}">
                         Dashboard
                     </md-button>
-                    <md-menu md-offset="0 50">
+                    <md-menu md-offset="0 40" ng-init="dropDownWidth = 136">
                         <md-button class="header-menu-button"
                            aria-label="Open Latest Services Menu"
-                           ng-click="$mdOpenMenu($event)"
+                           ng-click="$mdOpenMenu($event); setDropDown($event,dropDownWidth);"
                            ng-class="{'active-page' : activePage.indexOf('marketplace') > -1}">
                             Marketplace
                             <ng-md-icon icon="arrow_drop_down" style="fill: #65AF3F;" size="45"></ng-md-icon>
                         </md-button>
-                        <md-menu-content>
+                        <md-menu-content ng-style="{width:dropDownWidth+'px'}">
                             <md-menu-item>
                                 <md-button href="marketplace.php">Market</md-button>
                             </md-menu-item>
@@ -127,7 +127,7 @@
 
                     <md-button class="header-menu-button" href="/">Community</md-button>
 
-                    <md-menu md-offset="0 50">
+                    <md-menu md-offset="0 40">
                         <md-button aria-label="Open Latest Services Menu"
                             ng-click="$mdOpenMenu($event)"
                             class="header-menu-button"

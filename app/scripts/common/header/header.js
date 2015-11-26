@@ -17,7 +17,9 @@ angular.module('dmc.common.header', ['ngAnimate'])
     },
     templateUrl: 'templates/common/header/header-tpl.html',
     controller : function($scope){
-
+        $scope.setDropDown = function(event,width){
+            width = $(event.currentTarget).width()+12;
+        }
     }
   };
 });
