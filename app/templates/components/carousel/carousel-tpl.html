@@ -6,7 +6,7 @@
         >
     <slidecontainer class="carousel-slides">
         <slide ng-repeat="slide in arrayItems.slice(0, countSlides) track by $index">
-            <dmc-product-card type-product="item.type" style="width:{{100/showItems-2}}%" ng-repeat="item in arrayItems.slice($index*showItems, $index*showItems+showItems)" card-source="item"></dmc-product-card>
+            <dmc-product-card type-product="item.type" style="width:{{100/showItems-3}}%" ng-repeat="item in arrayItems.slice($index*showItems, $index*showItems+showItems)" card-source="item"></dmc-product-card>
         </slide>
     </slidecontainer>
     <div class="carousel-arrow carousel-arrow-left" ng-hide="countSlides <= 1">
