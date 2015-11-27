@@ -32,6 +32,7 @@
   "resolutions": {
     "angular-material": "~0.10.0",
     "angular": "~1.4.0",
-    "angular-material-icons": "~0.5.0"
+    "angular-material-icons": "~0.5.0",
+    "lodash": "~3.10.1"
   }
 }
