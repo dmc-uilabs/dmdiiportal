@@ -72,7 +72,7 @@
             <span flex></span>
 
             <div class="top-user-menu" layout="column">
-                <md-menu>
+                <md-menu md-offset="8 55">
                     <md-button href="#"
                                aria-label="Open Latest Services Menu"
                                ng-click="$mdOpenMenu($event)">
@@ -104,7 +104,7 @@
                                ng-class="{'active-page' : activePage.indexOf('dashboard') > -1}">
                         Dashboard
                     </md-button>
-                    <md-menu md-offset="0 40" ng-init="dropDownWidth = 136">
+                    <md-menu md-offset="8 40" ng-init="dropDownWidth = 136">
                         <md-button class="header-menu-button"
                            aria-label="Open Latest Services Menu"
                            ng-click="$mdOpenMenu($event); setDropDown($event,dropDownWidth);"
@@ -127,7 +127,7 @@
 
                     <md-button class="header-menu-button" href="/">Community</md-button>
 
-                    <md-menu md-offset="0 40">
+                    <md-menu md-offset="8 40">
                         <md-button aria-label="Open Latest Services Menu"
                             ng-click="$mdOpenMenu($event)"
                             class="header-menu-button"
@@ -145,7 +145,7 @@
                         </md-menu-content>
                     </md-menu>
                     <md-button class="header-menu-button" href="/">Challenge</md-button>
-                    <md-button href="/" aria-label="Search">
+                    <md-button class="search-button" href="/" aria-label="Search">
                         <ng-md-icon icon="search" style="fill: white;"></ng-md-icon>
                     </md-button>
                 </div>

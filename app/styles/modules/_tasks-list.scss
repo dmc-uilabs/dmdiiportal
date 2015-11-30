@@ -67,3 +67,11 @@
 .date-picker-date-time{
   z-index: 999999;
 }
+
+.task-title{
+  color: #333;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}

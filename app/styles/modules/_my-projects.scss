@@ -4,6 +4,7 @@
 .md-toolbar-tools.my-projects-title{
   padding: 0;
   .btn-add-project{
+  	line-height: 0;
     span{
       padding: 0;
     }
@@ -11,4 +12,5 @@
 }
 .margin-dropdown{
   margin-top: 46px;
+  margin-left: 16px;
 }

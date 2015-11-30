@@ -4,12 +4,12 @@
 <md-list>
   <md-list-item class="md-2-line service-list-item" ng-repeat="service in projectServices track by $index">
     <div class="md-list-item-text" layout="column" ng-show="progressPosition == 'bottom'">
-      <h3>{{service.title}}</h3>
+      <h3><a href="/" class="service-title">{{service.title}}</a></h3>
       <md-progress-linear md-mode="determinate" value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
       <span>Estimated - 1:30 of 2:00</span>
     </div>
     <div class="md-list-item-text item-text-service" ng-hide="progressPosition == 'bottom'">
-      <h3 class="title">{{service.title}}</h3>
+      <h3 class="title"><a href="/" class="service-title">{{service.title}}</a></h3>
       <h4 ng-hide="progressPosition == 'bottom'">{{service.releaseDate}}</h4>
     </div>
     <div class="md-secondary md-list-item-inner services-item-progress"

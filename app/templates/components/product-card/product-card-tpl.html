@@ -15,7 +15,7 @@
   <div class="product-card__image_small" ng-if="cardStyle == 'small'">
     <img ng-src="{{cardSource.featureImage.thumbnail}}" alt="{{cardSource.title}}">
   </div>
-  <div class="product-card__header" layout="column" layout-padding layout-margin
+  <div class="product-card__header" layout="column"
        ng-class="cardStyle == 'small' ? 'title-without-spaces' : ''">
     <a href="#"><h3>{{cardSource.title}}</h3></a>
     <a href="#"><span class="user-name">{{cardSource.owner}}</span></a>
@@ -87,10 +87,10 @@
       Added to {{cardSource.lastProject.title}}
     </md-button>
 
-    <md-button aria-label="Add to Project" flex href="" class="add-project-button" ng-click="addToProject()"
+    <md-button aria-label="Add to Project" flex href="" class="white-button" ng-click="addToProject()"
                ng-hide="addingToProject || cardSource.added">Add to Project
     </md-button>
-    <md-button aria-label="Add to Compare" flex href="" ng-click="addToCompare()"
+    <md-button aria-label="Add to Compare" flex href="" class="white-button" ng-click="addToCompare()"
                ng-show="!cardSource.added && addingToProject == false && (typeProduct == 'service' && compareProducts.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && compareProducts.components.indexOf(cardSource.id) == -1)">
       Add to Compare
     </md-button>

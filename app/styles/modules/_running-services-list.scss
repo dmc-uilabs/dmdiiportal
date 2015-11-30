@@ -59,3 +59,11 @@ md-list md-list-item.md-2-line .item-text-service{
     }
   }
 }
+
+.service-title{
+  color: #333;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}

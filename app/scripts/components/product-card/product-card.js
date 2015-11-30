@@ -12,6 +12,20 @@ angular.module('dmc.component.productcard', [
     'dmc.data',
     'ngCookies'
 ])
+.run(function($rootScope,ajax,dataFactory){
+  ajax.on(
+    dataFactory.getUrlAllProjects(),
+    {
+      limit : 10, offset: 0
+    },
+    function(data){
+      $rootScope.projects = data.result;
+    },
+    function(){
+      alert("Ajax faild: getProjects");
+    }
+  );
+})
 .directive('dmcProductCard', function(){
      return {
       restrict: 'E',
@@ -26,16 +40,6 @@ angular.module('dmc.component.productcard', [
       controller: function($scope,$cookies,$timeout,ajax,dataFactory){
           $scope.projects = [];
           $scope.addingToProject = false;
-
-          $scope.getProjects = function(){
-              ajax.on(dataFactory.getUrlAllProjects(),{
-                  limit : 10, offset: 0
-              },function(data){
-                  $scope.projects = data.result;
-              },function(){
-                  alert("Ajax faild: getProjects");
-              });
-          };
 
           $scope.removeFromProject = function(){
               ajax.on(dataFactory.getUrlRemoveFromProject($scope.cardSource.id),{
@@ -93,7 +97,7 @@ angular.module('dmc.component.productcard', [
           };
 
           $scope.loadProjects = function() {
-              $scope.getProjects();
+              $scope.projects = $scope.$root.projects;
           };
 
           var updateCompareCount = function(){

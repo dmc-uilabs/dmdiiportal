@@ -1,0 +1,49 @@
+$icon_color: #666;
+.marketplace-box{
+	padding: 8px;
+}
+.marketplace{
+	background: white;
+	padding: 0;
+
+	&-search{
+		height: 79px;
+		padding: 16px 36px;
+
+		&-field{
+			md-input-container{
+				padding: 0;
+				font-size: 16px;
+			}
+			ng-md-icon{
+				fill: $icon_color;
+			}
+		}
+
+		&-button{
+			.md-button{
+				text-transform: initial;
+				text-decoration: underline;
+			}
+			.md-button:first-child{
+				margin: 0 15px 0 0;
+			}
+			.md-button:last-child{
+				margin: 0 0 0 15px;
+			}
+			ng-md-icon{
+				fill: $icon_color;
+			}
+		}
+	}
+
+	&-carousel-tabs{
+		md-tabs-wrapper{
+			margin: 0 36px;
+		}
+	}
+
+	&-favorit{
+		padding: 16px 36px;
+	}
+}

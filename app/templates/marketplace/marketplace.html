@@ -1,5 +1,5 @@
-<div class="container" layout="row" layout-padding>
-  <div class="content-column" layout="column" flex='20'>
+<div class="container marketplace-box" layout="row" >
+  <div class="content-column" layout="column" flex='20' layout-padding>
     <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
     <md-list class="menu-filter-item" ng-if="isSearch">
       <md-subheader>Author</md-subheader>
@@ -81,58 +81,71 @@
     </md-list>
   </div>
   <!-- Left Content Column -->
-  <div class="content-column content-column--white" layout="column" flex>
-    <div class="content-panel-body">
-      <md-content class="md-padding">
-        <div class="search-toolbar" layout="row">
-          <div class="search-field" flex="60" layout-align="center center">
-            <form ng-submit="submit()">
-              <md-input-container md-no-float>
-                <md-icon>
-                  <ng-md-icon icon="search" style="fill: #666;"></ng-md-icon>
-                </md-icon>
-                <input type="text" placeholder="Search the Marketplace" ng-model="searchModel">
-              </md-input-container>
-            </form>
+  <div class="marketplace" layout="column" flex>
+    <md-content class="marketplace-search" layout="row" layout-align="center center">
+      <form ng-submit="submit()" class="marketplace-search-field" flex="60">
+        <md-input-container md-no-float>
+          <md-icon>
+            <ng-md-icon icon="search"></ng-md-icon>
+          </md-icon>
+          <input type="text" placeholder="Search the Marketplace" ng-model="searchModel">
+        </md-input-container>
+      </form>
+
+      <span flex></span>
+
+      <div class="marketplace-search-button" layout="row" layout-align="center center">
+        <md-button href="/">
+          <ng-md-icon icon="favorite" size="14"></ng-md-icon>
+          Favorites
+        </md-button>
+        <md-button href="" ng-disabled="compareProducts.services.length+compareProducts.components.length == 0" compare-button>
+          Compare ({{compareProducts.services.length+compareProducts.components.length}})
+        </md-button>
+      </div>
+    </md-content>
+
+    <md-tabs md-dynamic-height md-border-bottom ng-if="!isSearch" class="marketplace-carousel-tabs">
+      <md-tab label="Popular">
+        <md-content class="carousel-padding">
+          <div dmc-carousel 
+              name-carousel="'carouselPopular'" 
+              max-items="10" 
+              show-items="2" 
+              carousel-source="carouselData.arr" 
+              run-carousel="true" 
+              timeout="5">
           </div>
-          <span flex></span>
+        </md-content>
+      </md-tab>
 
-          <div class="search-toolbar-actions" layout="row" layout-align="center center">
-            <md-button href="/">
-              <ng-md-icon icon="favorite" style="fill: #666;" size="14"></ng-md-icon>
-              Favorites
-            </md-button>
-            <md-button href="" ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
-                       compare-button>Compare ({{compareProducts.services.length+compareProducts.components.length}})
-            </md-button>
+      <md-tab label="New">
+        <md-content class="carousel-padding">
+          <div dmc-carousel 
+              name-carousel="'carouselNew'" 
+              max-items="10" 
+              show-items="2"
+              carousel-source="carouselData.arr" 
+              run-carousel="true" 
+              timeout="5">
           </div>
-        </div>
-      </md-content>
-      <md-tabs md-dynamic-height md-border-bottom ng-if="!isSearch" class="carousel-tabs">
-        <md-tab label="Popular">
-          <md-content class="carousel-padding">
-
-            <div dmc-carousel name-carousel="'carouselPopular'" max-items="10" show-items="2"
-                 carousel-source="carouselData.arr" run-carousel="true" timeout="5"></div>
-
-          </md-content>
-        </md-tab>
-        <md-tab label="New">
-          <md-content class="carousel-padding">
-
-            <div dmc-carousel name-carousel="'carouselNew'" max-items="10" show-items="2"
-                 carousel-source="carouselData.arr" run-carousel="true" timeout="5"></div>
-
-          </md-content>
-        </md-tab>
-      </md-tabs>
-    </div>
+        </md-content>
+      </md-tab>
+    </md-tabs>
 
     <!-- Favorit items -->
-    <dmc-products-card title-card="'ITEMS FROM FAVORITE STOREFRONTS'" search-card="isSearch" card-source="products"
-                       card-loading="downloadData" page-size="productCardPageSize" current-page="productCardCurrentPage"
-                       total-size="products.count" class="content-panel-marketplace"
-                       layout-margin></dmc-products-card>
-
+    <div class="marketplace-favorit">
+      <dmc-products-card 
+          title-card="'ITEMS FROM FAVORITE STOREFRONTS'" 
+          search-card="isSearch" 
+          card-source="products"
+          card-loading="downloadData" 
+          page-size="productCardPageSize" 
+          current-page="productCardCurrentPage"
+          total-size="products.count" 
+          class="content-panel-marketplace"
+          layout-margin>
+      </dmc-products-card>
+    </div>
   </div>
 </div>

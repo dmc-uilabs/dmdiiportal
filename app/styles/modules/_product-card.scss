@@ -1,5 +1,5 @@
 $font-size: 13px;
-$line-height: 1.2;
+$line-height: 1.1;
 $lines-to-show: 4;
 
 $lines-to-show-title: 2;
@@ -40,6 +40,12 @@ $lines-to-show-title: 2;
   }
   p {
     white-space: initial;
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   p.description{
     display: block; /* Fallback for non-webkit */
@@ -70,12 +76,13 @@ $lines-to-show-title: 2;
   }
 
   &__header {
+    padding: 0 16px;
     a {
       text-decoration: none;
       color: map-get($colors, secondary);
     }
     h3 {
-      margin-bottom: 5px;
+      margin: 0;
       text-transform: uppercase;
 
       display: block; /* Fallback for non-webkit */
@@ -92,10 +99,13 @@ $lines-to-show-title: 2;
   }
   &__footer{
     background-color: #666;
-    .add-project-button{
+    .white-button{
       background-color: #909090;
     }
     .md-button{
+      margin: 6px;
+      height: 48px;
+      min-height: 48px;
       text-transform: none;
       font-size: 13px;
     }
@@ -111,16 +121,16 @@ $lines-to-show-title: 2;
     }
     .adding-to-project{
       width: 100%;
-      margin: 5px;
+      margin: 6px;
       background-color: #909090;
       @include borderRadius(3px);
 
       .close{
         width: 36px;
         min-width: 36px;
-        height: 37px;
-        min-height: 37px;
-        line-height: 37px;
+        height: 36px;
+        min-height: 36px;
+        line-height: 36px;
       }
       .close:hover{
         background-color: #777;
@@ -128,9 +138,9 @@ $lines-to-show-title: 2;
       .add{
         width: 36px;
         min-width: 36px;
-        height: 37px;
-        min-height: 37px;
-        line-height: 37px;
+        height: 36px;
+        min-height: 36px;
+        line-height: 36px;
       }
       ng-md-icon{
         fill: #fff;
@@ -138,15 +148,17 @@ $lines-to-show-title: 2;
       md-input-container{
         padding: 0;
       }
-      md-select {
+      md-select,
+      md-select:not([disabled]):focus {
         @include borderRadius(3px);
         margin: 6px 0;
         background-color: #fff;
         md-select-value{
           font-size: 13px;
           padding: 3px 8px 6px 8px;
+          border: none;
         }
-      }
+      }      
     }
     .md-button {
       color: white;

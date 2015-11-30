@@ -22,6 +22,10 @@
   }
   &__image{
     width: 100%;
+    text-align: center;
+    .img-size {
+      width: 75%;
+    }
   }
   &__tab-content {
     md-content{
@@ -53,6 +57,10 @@
       }
       .discussion-list md-list-item.md-2-line .md-list-item-text h3{
         width: 100%;
+      }
+      .task-list md-list-item.md-3-line .md-list-item-text h4{
+        padding-bottom: 5px;
+
       }
     }
   }
