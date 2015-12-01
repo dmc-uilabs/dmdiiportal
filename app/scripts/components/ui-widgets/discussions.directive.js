@@ -97,7 +97,7 @@ angular.module('dmc.widgets.discussions',[
                     },function(data){
                         $scope.projectDiscussions = data.result;
                         for(var index in $scope.projectDiscussions){
-                            $scope.projectDiscussions[index].created_at = moment($scope.projectDiscussions[index].created_at).format('LL');
+                            $scope.projectDiscussions[index].created_at = moment($scope.projectDiscussions[index].created_at,'DD-MM-YYYY HH:mm:ss');
                         }
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     },function(){

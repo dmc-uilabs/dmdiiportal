@@ -12,6 +12,7 @@ angular.module('dmc.dashboard', [
         'dmc.widgets.projects',
         'dmc.widgets.discussions',
         'ngMdIcons',
+        'ngtimeago',
         'ui.router',
         'md.data.table',
         'dmc.common.header',

@@ -5,6 +5,7 @@ angular.module('dmc.my_projects', [
         'dmc.widgets.tasks',
         'dmc.widgets.discussions',
         'dmc.widgets.projects',
+        'ngtimeago',
         'dmc.configs.ngmaterial',
         'ngMdIcons',
         'ui.router',

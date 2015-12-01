@@ -23,7 +23,7 @@
                 <tbody>
                 <tr md-auto-select ng-repeat="item in tasks">
                     <td class="title" ng-show="columns.indexOf('title') > -1"><a href="/">{{item.title}}</a></td>
-                    <td class="project" ng-show="columns.indexOf('project') > -1">{{item.project.title}}</td>
+                    <td class="project" ng-show="columns.indexOf('project') > -1"><a href="/project.php#/{{item.project.id}}">{{item.project.title}}</a></td>
                     <td class="dueDate" ng-show="columns.indexOf('dueDate') > -1">{{item.dueDate}}</td>
                     <td ng-show="columns.indexOf('priority') > -1">
                         <span ng-bind-html="item.priority[1]" class="label" ng-class="item.priority[0] == 'date' ? 'label--date' : (item.priority[0] == 'tomorrow' ? 'label--tomorrow' : (item.priority[0] == 'today' || item.priority[0] == 'after' ? 'label--warn' : 'label--date'))"></span>

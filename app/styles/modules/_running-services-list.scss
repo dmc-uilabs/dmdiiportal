@@ -49,7 +49,9 @@ md-list md-list-item.md-2-line .item-text-service{
   .md-list-item-inner .md-secondary {
     right: 0;
     width: 80px;
-    top: inherit;
+    min-height: 46px;
+    top: 50%;
+    margin-top: -19px;
     .service-progress-info{
       position: absolute;
       white-space: nowrap;

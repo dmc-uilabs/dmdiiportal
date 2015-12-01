@@ -3,6 +3,7 @@
   font-weight: bold;
   color: white;
   padding: 5px;
+  display: inline-block;
   text-transform: uppercase;
   text-align: center;
   background: map-get($colors, label_default_bg);

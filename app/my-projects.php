@@ -29,10 +29,9 @@
     <!-- endbuild -->
 </head>
 <body ng-app="dmc.my_projects" ng-controller="DMCMyProjectsController" id="my-projects-page">
-<!--[if lt IE 10]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a
-    href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+    <!--[if lt IE 10]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
     <!-- Top Header -->
     <div dmc-top-header active-page="'project&my-projects'"></div>
@@ -67,6 +66,7 @@
         <div class="content-panel" id="myProjectsList" ui-widget-projects widget-title="null" widget-show-all-blocks="true"></div>
     </div>
 
+    <!-- Footer -->
     <dmc-footer></dmc-footer>
 
     <!-- build:js scripts/vendor.js -->

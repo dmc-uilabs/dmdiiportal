@@ -6,7 +6,7 @@
         <div class="md-list-item-text">
             <h3><a href="/" class="task-title">{{task.title}}</a></h3>
             <h4>Assigned To: {{task.assignee}}</h4>
-            <span class="label" ng-bind-html="task.priority[1]" ng-class="task.priority[0] == 'date' ? 'label--date' : (task.priority[0] == 'tomorrow' ? 'label--tomorrow' : (task.priority[0] == 'today' || task.priority[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
+            <div class="label" ng-bind-html="task.priority[1]" ng-class="task.priority[0] == 'date' ? 'label--date' : (task.priority[0] == 'tomorrow' ? 'label--tomorrow' : (task.priority[0] == 'today' || task.priority[0] == 'after' ? 'label--warn' : 'label--date'))"></div>
         </div>
         <md-divider ng-if="$index < projectTasks.length-1"></md-divider>
     </md-list-item>

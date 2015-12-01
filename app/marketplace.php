@@ -30,7 +30,7 @@
   </head>
   <body ng-app="dmc.marketplace">
     <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Top Header -->
@@ -38,6 +38,7 @@
 
     <ui-view></ui-view>
 
+    <!-- Footer -->
     <dmc-footer></dmc-footer>
 
     <!-- build:js scripts/vendor.js -->
