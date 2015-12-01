@@ -2,14 +2,14 @@
     <md-toolbar>
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
-            <md-button ng-if="projectId > 0" href="" ng-click="newTask($event)">Add New</md-button>
+            <md-button ng-if="projectId > 0" href="" class="view-all-button" ng-click="newTask($event)">Add New</md-button>
             <span flex></span>
-            <md-button href="/" md-no-ink class="view-all-button">View All ({{total}})</md-button>
+            <md-button ng-if="!(projectId > 0)" href="/" md-no-ink class="view-all-button">View All ({{total}})</md-button>
         </div>
     </md-toolbar>
 </div>
 <div class="content-panel-body">
-    <md-content class="md-padding">
+    <md-content class="view-project-padding">
         <md-data-table-container sortable-columns>
             <table md-data-table class="tableTasks">
                 <thead md-order="priority" md-trigger="onOrderChange" ng-if="tasks.length > 0">
