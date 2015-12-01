@@ -3,12 +3,12 @@
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
             <span flex></span>
-            <md-button href="/" md-no-ink class="view-all-button">View All ({{total}})</md-button>
+            <md-button ng-if="!(projectId > 0)" href="/" md-no-ink class="view-all-button">View All ({{total}})</md-button>
         </div>
     </md-toolbar>
 </div>
 <div class="content-panel-body">
-    <md-content class="md-padding">
+    <md-content class="view-project-padding">
         <div class="running-services-list">
             <md-data-table-container>
                 <table md-data-table>
@@ -21,8 +21,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="item in components" ng-click="changeItem(item)">
-                        <td ng-show="columns.indexOf('name') > -1">{{item.title}}<span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDate}}</span></td>
+                    <tr ng-repeat="item in components">
+                        <td ng-show="columns.indexOf('name') > -1"><a href="/">{{item.title}}<span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDate}}</span></a></td>
                         <td ng-show="columns.indexOf('project') > -1">{{item.currentStatus.project.title}}</td>
                         <td ng-show="columns.indexOf('start') > -1">{{item.currentStatus.startDate}}<span class="services-time-info">{{item.currentStatus.startTime}}</span></td>
                         <td ng-show="columns.indexOf('status') > -1">

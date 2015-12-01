@@ -2,27 +2,27 @@
     <md-toolbar>
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
-            <md-button ng-if="projectId > 0" href="" ng-click="newDiscussion($event)">Add New</md-button>
+            <md-button ng-if="projectId > 0" href="" class="view-all-button" ng-click="newDiscussion($event)">Add New</md-button>
             <span flex></span>
-            <md-button href="/" md-no-ink class="view-all-button">View All ({{total}})</md-button>
+            <md-button ng-if="!(projectId > 0)" href="/" md-no-ink class="view-all-button">View All ({{total}})</md-button>
         </div>
     </md-toolbar>
 </div>
 <div class="content-panel-body">
-    <md-content class="md-padding">
+    <md-content class="view-project-padding">
         <md-list>
             <md-list-item class="md-2-line" ng-repeat="item in discussions">
                 <div class="md-list-item-text">
-                    <h3>{{item.text}}</h3>
+                    <h3><a href="/">{{item.text}}</a></h3>
                     <h4>{{item.created_at|timeago}}</h4>
                 </div>
                 <div class="md-secondary md-list-item-inner user-info">
-                    <span>{{item.full_name}}</span>
-                    <img alt="{{item.full_name}}"
+                    <span><a href="/">{{item.full_name}}</a></span>
+                    <a href="/"><img alt="{{item.full_name}}"
                          class="md-avatar"
-                         ng-src="{{item.avatar}}">
+                         ng-src="{{item.avatar}}"></a>
                 </div>
-                <md-divider></md-divider>
+                <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
             <md-list-item ng-if="discussions.length == 0">
                 <div class="md-list-item-text">

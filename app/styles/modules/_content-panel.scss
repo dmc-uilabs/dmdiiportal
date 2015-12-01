@@ -15,6 +15,12 @@
   &:first-child {
     padding-top: 0;
   }
+  &.project {
+    padding: 16px 0;
+    &:first-child {
+      padding-top: 0;
+    }
+  }
   .content-panel-header {
     md-toolbar {
       background: none;
