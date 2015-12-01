@@ -4,6 +4,7 @@
   .md-toolbar-tools {
     background-color: map-get($colors, body_color);
     color: map-get($colors, primary);
+    padding: 0;
     h1 {
       display: inline-block;
       font-size: 24px;
@@ -22,8 +23,12 @@
       }
     }
     .md-button {
-      font-size: 14px;
+      font-size: 13px;
       color: #666 !important;
+      min-height: 36px;
+      height: 36px;
+      line-height: 36px;
+      margin: 0 8px;
       &.white-label {
         color: #fff !important;
       }
