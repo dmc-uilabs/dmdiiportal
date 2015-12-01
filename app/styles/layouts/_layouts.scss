@@ -168,9 +168,15 @@ md-input-container{
   padding: 0 8px 8px 0;
 }
 
-table[md-data-table]:not([md-row-select])>tbody>tr>td:first-child, table[md-data-table]:not([md-row-select])>tfoot>tr>td:first-child, table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child{
+table[md-data-table]:not([md-row-select])>tbody>tr>td,
+table[md-data-table]:not([md-row-select])>tfoot>tr>td,
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th,
+table[md-data-table]:not([md-row-select])>tbody>tr>td:first-child,
+table[md-data-table]:not([md-row-select])>tfoot>tr>td:first-child,
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child{
   padding: 15px;
 }
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th,
 table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child{
   div{
     height: auto;
