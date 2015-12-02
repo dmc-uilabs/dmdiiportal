@@ -167,19 +167,21 @@ md-input-container{
 .widget-toolbar-title{
   padding: 0 8px 8px 0;
 }
-
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:nth-child(n+2):nth-last-child(n+2),
+table[md-data-table]:not([md-row-select])>tbody>tr>td:nth-child(n+2):nth-last-child(n+2), table[md-data-table]:not([md-row-select])>tfoot>tr>td:nth-child(n+2):nth-last-child(n+2),
 table[md-data-table]:not([md-row-select])>tbody>tr>td,
 table[md-data-table]:not([md-row-select])>tfoot>tr>td,
 table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th,
 table[md-data-table]:not([md-row-select])>tbody>tr>td:first-child,
 table[md-data-table]:not([md-row-select])>tfoot>tr>td:first-child,
 table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child{
-  padding: 10px !important;
+  padding: 10px;
   text-transform: capitalize;
 }
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:nth-child(n+2):nth-last-child(n+2),
 table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child,
 table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th{
-  padding: 0px 15px 10px 15px;
+  padding: 0px 10px 10px 10px;
   vertical-align: top;
   div{
     height: auto;
