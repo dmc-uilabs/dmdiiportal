@@ -20,13 +20,14 @@ angular.module('dmc.project', [
         'dmc.common.header',
         'dmc.common.footer',
         'dmc.model.project',
-        'ui.autocomplete'
+        'ui.autocomplete',
+        'dmc.sub-nav-menu'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('project', {
         url: '/:projectId',
-        templateUrl: 'templates/project/project.html',
-        controller: 'DMCProjectController as projectCtrl',
+        controller: 'IdLocatorCtrl',
+        template: '<ui-view />',
         resolve: {
             projectData: ['DMCProjectModel', '$stateParams',
                 function(DMCProjectModel, $stateParams) {
@@ -35,7 +36,7 @@ angular.module('dmc.project', [
         }
     }).state('preview', {
         url: '/preview/:projectId',
-        templateUrl: 'templates/project/project.html',
+        templateUrl: 'templates/project/pages/home.html',
         controller: 'DMCPreviewProjectController as projectCtrl',
         resolve: {
             projectData: ['DMCProjectModel', '$stateParams',
@@ -55,7 +56,7 @@ angular.module('dmc.project', [
         }
     }).state('submission', {
         url: '/submission/:projectId',
-        templateUrl: 'templates/project/project.html',
+        templateUrl: 'templates/project/pages/home.html',
         controller: 'DMCSubmissionProjectController as projectCtrl',
         resolve: {
             projectData: ['DMCProjectModel', '$stateParams',
@@ -115,41 +116,51 @@ angular.module('dmc.project', [
         }
     }).state('project.home', {
         url: '/home',
-        controller: 'HomeCtrl as vm',
-        templateUrl: 'templates/project/home.html'
-    })
-        .state('project.workspace', {
-            url: '/workspace',
-            controller: 'WorkspaceCtrl',
-            template: 'workspace'
-        })
-        .state('project.documents', {
-            url: '/documents',
-            controller: 'DocumentsCtrl',
-            template: 'documents'
-        })
-        .state('project.tasks', {
-            url: '/tasks',
-            controller: 'TasksCtrl',
-            template: 'tasks'
-        })
-        .state('project.team', {
-            url: '/team',
-            controller: 'TeamCtrl',
-            template: 'team'
-        })
-        .state('project.discussions', {
-            url: '/discussions',
-            controlelr: 'DiscussionsCtrl',
-            template: 'discussions'
-        });
+        controller: 'HomeCtrl as projectCtrl',
+        templateUrl: 'templates/project/pages/home.html'
+    }).state('project.workspace', {
+        url: '/workspace',
+        controller: 'WorkspaceCtrl as projectCtrl',
+        templateUrl: 'templates/project/pages/workspace.html'
+    }).state('project.documents', {
+        url: '/documents',
+        controller: 'DocumentsCtrl as projectCtrl',
+        templateUrl: 'templates/project/pages/documents.html'
+    }).state('project.tasks', {
+        url: '/tasks',
+        controller: 'TasksCtrl as projectCtrl',
+        templateUrl: 'templates/project/pages/tasks.html'
+    }).state('project.team', {
+        url: '/team',
+        controller: 'TeamCtrl as projectCtrl',
+        templateUrl: 'templates/project/pages/team.html'
+    }).state('project.discussions', {
+        url: '/discussions',
+        controller: 'DiscussionsCtrl as projectCtrl',
+        templateUrl: 'templates/project/pages/discussions.html'
+    }).state('project.rfp-home', {
+        url: '/rfp-home',
+        controller: 'RfpHomeCtrl as projectCtrl',
+        templateUrl: 'templates/project/rfp/home.html'
+    }).state('project.rfp-submissions', {
+        url: '/rfp-submissions',
+        controller: 'RfpSubmissionsCtrl as projectCtrl',
+        templateUrl: 'templates/project/rfp/submissions.html'
+    }).state('project.rfp-documents', {
+        url: '/rfp-documents',
+        controller: 'RfpDocumentsCtrl as projectCtrl',
+        templateUrl: 'templates/project/rfp/documents.html'
+    }).state('project.rfp-questions', {
+        url: '/rfp-questions',
+        controller: 'RfpQuestionsCtrl as projectCtrl',
+        templateUrl: 'templates/project/rfp/questions.html'
+    }).state('project.rfp-people-invited', {
+        url: '/rfp-people-invited',
+        controller: 'RfpPeopleInvitedCtrl as projectCtrl',
+        templateUrl: 'templates/project/rfp/people-invited.html'
+    });
     $urlRouterProvider.otherwise('/1');
 })
-    .controller('DMCProjectController', ['$stateParams', 'projectData', function ($stateParams, projectData) {
-        var projectCtrl = this;
-        projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
-        projectCtrl.projectData = projectData;
-    }])
     .controller('DMCPreviewProjectController', ['$scope','$stateParams', 'projectData', function ($scope, $stateParams, projectData) {
         var projectCtrl = this;
         projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
@@ -171,71 +182,6 @@ angular.module('dmc.project', [
         projectCtrl.projectData = projectData;
 
         $scope.isSubmission = true;
-    }])
-    .controller('DMCSubmissionsProjectController', ['$compile','$scope','$stateParams', 'projectData', function ($compile,$scope, $stateParams, projectData) {
-        var projectCtrl = this;
-        projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
-        projectCtrl.projectData = projectData;
-
-        $scope.compare = [];
-        $scope.submissions = [{
-            id : 1,
-            title : "SAM",
-            date : moment(new Date("15 Sep 2015 15:12:48")).format("MM/DD/YY HH:mm:ss A"),
-            success : 97,
-            inputs : 2,
-            select : false,
-            letter: "We propose to develop and deliver a low heat loss Transformer based on our novel material. It will meet all of the environmental and Compliance requirements in your specification. The attached document summarizes Performance relative to an iron core transformer. Please let us know how you would like to proceed."
-        },{
-            id : 2,
-            title : "WYIV Co.",
-            date : moment(new Date("11 Sep 2015 10:16:11")).format("MM/DD/YY HH:mm:ss A"),
-            success : 91,
-            inputs : 2,
-            select : false,
-            letter: "Lorem ipsum dolor sit amet."
-        },{
-            id : 3,
-            title : "RCJ Co.",
-            date : moment(new Date("12 Sep 2015 06:55:33")).format("MM/DD/YY HH:mm:ss A"),
-            success : 90,
-            inputs : 1,
-            select : false,
-            letter: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
-        }];
-
-        $(".tableSubmissions").on("click",".table-line",function(){
-            var item = null;
-            var id = parseInt($(this).find(".idSubmission").val());
-            for(var i in $scope.submissions){
-                if($scope.submissions[i].id === id){
-                    item = $scope.submissions[i];
-                    break;
-                }
-            }
-            $("#inputs-outputs").remove();
-            if($(this).hasClass("opened")){
-                $(".opened").removeClass("opened");
-            }else{
-                $(".opened").removeClass("opened");
-                $(this).addClass("opened");
-                var id = parseInt($(this).find(".idSubmission").val());
-                $($compile('<tr id="inputs-outputs" submission-inputs-outputs submission-letter="\'' + item.letter + '\'" total-inputs="'+item.inputs+'" submission-name="\'' + item.title + '\'"></tr>')($scope)).insertAfter($(this));
-            }
-        });
-
-        $scope.compareSubmission = function(ev,item){
-            if(item.select) {
-                for(var i in $scope.compare){
-                    if($scope.compare[i].id == item.id){
-                        $scope.compare.splice(i,1);
-                        break;
-                    }
-                }
-            }else{
-                $scope.compare.push(item);
-            }
-        };
     }])
     .directive('submissionInputsOutputs', function () {
         return {
@@ -273,9 +219,6 @@ angular.module('dmc.project', [
         $scope.submittedItems = $cookies.getObject('submittedItems');
         $scope.inputs = ($scope.submittedItems && $scope.submittedItems.service ? new Array($scope.submittedItems.service.specificationsData.input) : []);
         $scope.outputs = ($scope.submittedItems && $scope.submittedItems.service ? new Array($scope.submittedItems.service.specificationsData.output) : []);
-
-
-
     }])
     .controller('DMCSubmitProjectController', ['$location','$cookies','$scope','$stateParams', 'projectData','ajax','dataFactory','$compile', function ($location,$cookies,$scope, $stateParams, projectData,ajax,dataFactory,$compile) {
         var projectCtrl = this;
@@ -302,21 +245,6 @@ angular.module('dmc.project', [
                 $location.url('/submitted/'+projectCtrl.currentProjectId);
             }
         };
-
-        // var getServices = function(){
-        //     ajax.on(dataFactory.getUrlAllServices(projectCtrl.currentProjectId),{
-        //         projectId : projectCtrl.currentProjectId,
-        //         sort : sort,
-        //         order : order,
-        //         limit : 5,
-        //         offset : 0
-        //     },function(data){
-        //         $scope.services = data.result;
-        //         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-        //     },function(){
-        //         alert("Ajax faild: getServices");
-        //     });
-        // };
         var getServices = function() {
             $scope.services = [
                 {
@@ -324,7 +252,7 @@ angular.module('dmc.project', [
                     "title": 'Run #1',
                     "releaseDate": "01-04-2015",
                     "currentStatus": {
-                      "percentCompleted": "33",
+                      "percentCompleted": "33"
                     },
                     "specificationsData": {
                         "serviceId": 25,
@@ -346,7 +274,7 @@ angular.module('dmc.project', [
                     "title": 'Run #2',
                     "releaseDate": "10-04-2015",
                     "currentStatus": {
-                      "percentCompleted": "66",
+                      "percentCompleted": "66"
                     },
                     "specificationsData": {
                         "serviceId": 25,
@@ -368,7 +296,7 @@ angular.module('dmc.project', [
                     "title": 'Run #3',
                     "releaseDate": "12-04-2015",
                     "currentStatus": {
-                      "percentCompleted": "78",
+                      "percentCompleted": "78"
                     },
                     "specificationsData": {
                         "serviceId": 25,
@@ -390,7 +318,7 @@ angular.module('dmc.project', [
                     "title": 'Run #4',
                     "releaseDate": "06-05-2015",
                     "currentStatus": {
-                      "percentCompleted": "77",
+                      "percentCompleted": "77"
                     },
                     "specificationsData": {
                         "serviceId": 25,
@@ -412,7 +340,7 @@ angular.module('dmc.project', [
                     "title": 'Run #5',
                     "releaseDate": "08-05-2015",
                     "currentStatus": {
-                      "percentCompleted": "65",
+                      "percentCompleted": "65"
                     },
                     "specificationsData": {
                         "serviceId": 25,
@@ -434,7 +362,7 @@ angular.module('dmc.project', [
                     "title": 'Run #6',
                     "releaseDate": "10-05-2015",
                     "currentStatus": {
-                      "percentCompleted": "43",
+                      "percentCompleted": "43"
                     },
                     "specificationsData": {
                         "serviceId": 25,
@@ -452,7 +380,7 @@ angular.module('dmc.project', [
                       }
                 }
             ]
-        }
+        };
         getServices();
 
         $(".submitServices").on("click",".table-line",function(ev){
@@ -497,7 +425,8 @@ angular.module('dmc.project', [
         $scope.onOrderChange = function(){
 
         };
-    }]).directive('inputsOutputs', function () {
+    }])
+    .directive('inputsOutputs', function () {
         return {
             restrict: 'A',
             templateUrl: 'templates/components/rfp-invite/inputs-outputs-tpl.html',
@@ -511,4 +440,4 @@ angular.module('dmc.project', [
                 $scope.outputs = new Array($scope.totalOutputs);
             }
         }
-    });
+    })

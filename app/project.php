@@ -85,12 +85,26 @@
     <script src="scripts/components/ui-widgets/questions.directive.js"></script>
     <script src="scripts/components/ui-widgets/submissions.directive.js"></script>
     <script src="scripts/components/ui-widgets/invited-users.directive.js"></script>
+    <script src="scripts/components/sub-nav-menu/sub-nav-menu.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
     <script src="scripts/project/project.js"></script>
+    <script src="scripts/project/controllers/id-locator.js"></script>
+    <script src="scripts/project/controllers/discussions.js"></script>
+    <script src="scripts/project/controllers/documents.js"></script>
+    <script src="scripts/project/controllers/home.js"></script>
+    <script src="scripts/project/controllers/tasks.js"></script>
+    <script src="scripts/project/controllers/team.js"></script>
+    <script src="scripts/project/controllers/workspace.js"></script>
+    <script src="scripts/project/controllers/rfp-home.js"></script>
+    <script src="scripts/project/controllers/rfp-submissions.js"></script>
+    <script src="scripts/project/controllers/rfp-documents.js"></script>
+    <script src="scripts/project/controllers/rfp-questions.js"></script>
+    <script src="scripts/project/controllers/rfp-people-invited.js"></script>
+    <script src="scripts/common/filters/capitalize.filter.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         window.apiUrl = '';

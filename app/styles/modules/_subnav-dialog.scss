@@ -1,29 +1,65 @@
-.dmc-project-subnav-dialog {
+.dmc-project-sub-nav-dialog {
   background: transparent;
   box-shadow: none;
-}
-.dmc-project-subnav-dialog-btn {
-  width: 90%;
-  height: 200px;
-  margin: 5%;
-  box-sizing: border-box;
-  background: #424242;
-  border-radius: 8px !important;
-  border-bottom: 1px solid #fff6de;
-  border-right: 1px solid #fff6de;
-  border-left: 1px solid transparent;
-  border-top: 1px solid transparent;
-  color: #fff;
-  padding-top: 7%;
-
-  &:hover {
-    background: map-get($colors, secondary) !important;
-    border: 1px solid #fff6de;
+  md-dialog-content{
+    max-width: 565px;
+    text-align: left;
   }
-
-  &__caption {
-    padding-top: 5px;
-    font-size: 1.4em;
+  a.md-button:not([disabled]):hover,.md-button:not([disabled]):hover{
+    background: rgba(66,66,66,0.55);
+  }
+  .md-button{
+    @include boxShadow(inset -1px -1px rgba(255,255,255,0.55));
+    @include borderRadius(6px);
     text-transform: capitalize;
+    font-size: 17px;
   }
+  &-btn {
+    color: #fff;
+    background: #424242;
+    display: inline-block;
+    padding: 8px 21px;
+
+    &__caption {
+      padding-top: 5px;
+      font-size: 1.4em;
+      text-transform: capitalize;
+    }
+  }
+  a.selected:not([disabled]),a.selected:not([disabled]):hover{
+    background: map-get($colors, secondary);
+    cursor: default;
+    box-shadow: inset -1px -1px  rgba(255,255,255,0.55),inset 1px 1px  rgba(255,255,255,0.55);
+  }
+}
+
+.nav-menu-button{
+  cursor: pointer;
+  display: block;
+  .squares{
+    max-width: 36px;
+    text-align: left;
+    display: inline-block;
+    line-height: 0;
+    font-size: 0;
+    div{
+      display: inline-block;
+      background-color: #cdcdce;
+      width: 10px;
+      height: 10px;
+      margin: 1px;
+    }
+    .selected{
+      background-color: #64B045;
+    }
+  }
+  .title{
+    display: inline-block;
+    font-size: 13px;
+    vertical-align: top;
+    margin-top: 5px;
+  }
+}
+.nav-menu-button:hover{
+  opacity: 0.8;
 }

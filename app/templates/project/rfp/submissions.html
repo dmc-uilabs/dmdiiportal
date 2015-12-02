@@ -4,8 +4,8 @@
           <div layout="column">
             <h1 class="name-project">{{projectCtrl.projectData.title}}<span class="small-text small-text--grey">Due in 20 days</span></h1>
             <h2>
-                <img src="images/project-header-thumb.png" alt="">
-                Submissions</h2>
+                <div sub-nav-menu-button menu-type="'rfp'" current-page="2"></div>
+            </h2>
           </div>
             <span flex></span>
             <md-button class="md-raised" href="/" ng-disabled="compare.length == 0">Compare({{compare.length}})</md-button>

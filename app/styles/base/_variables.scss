@@ -42,3 +42,8 @@ $main_padding: 40px;
   -moz-border-radius:$radius;
   -khtml-border-radius:$radius;
 }
+@mixin boxShadow($shadows...){
+  -moz-box-shadow: $shadows;
+  -webkit-box-shadow: $shadows;
+  box-shadow: $shadows;
+}

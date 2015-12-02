@@ -1,0 +1,16 @@
+<md-dialog class="dmc-project-sub-nav-dialog" >
+    <md-dialog-content>
+      <md-button ng-repeat="p in pages"
+                 ui-sref="{{p.state}}"
+                 class="dmc-project-sub-nav-dialog-btn"
+                 ng-class="{'selected' : p.id === currentPage}">
+        <ng-md-icon icon="{{p.icon}}"
+                    style="fill: white"
+                    size="120">
+        </ng-md-icon>
+        <div class="dmc-project-subnav-dialog-btn__caption">
+          {{p.title}}
+        </div>
+      </md-button>
+    </md-dialog-content>
+</md-dialog>
