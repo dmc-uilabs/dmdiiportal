@@ -4,7 +4,7 @@
 <md-list class="discussion-list">
     <md-list-item class="md-2-line" ng-repeat="discussion in projectDiscussions">
         <div class="md-list-item-text">
-            <h4>by {{discussion.full_name}}</h4>
+            <h4>{{discussion.full_name}}</h4>
             <h3>{{discussion.text}}</h3>
             <h4>{{discussion.created_at|timeago}}</h4>
         </div>

@@ -174,11 +174,20 @@ table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th,
 table[md-data-table]:not([md-row-select])>tbody>tr>td:first-child,
 table[md-data-table]:not([md-row-select])>tfoot>tr>td:first-child,
 table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child{
-  padding: 15px;
+  padding: 10px !important;
+  text-transform: capitalize;
 }
-table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th,
-table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child{
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child,
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th{
+  padding: 0px 15px 10px 15px;
+  vertical-align: top;
   div{
     height: auto;
+  }
+}
+
+@media (min-width: 600px){
+  .md-padding {
+    padding: 10px;
   }
 }
