@@ -60,7 +60,7 @@ angular.module('dmc.data',[])
                 return baseServer+'/product';
             },
             getProductReview: function(){
-                return baseServer+'/get_product_review';
+              return baseServer+'/get_product_review';
             },
             addProductReview: function(){
                 return baseServer+'/add_product_review';
