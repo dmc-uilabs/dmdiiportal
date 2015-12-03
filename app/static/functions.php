@@ -56,6 +56,27 @@ function sortByReleaseDateDESC($a, $b) {
     return strtotime($b['releaseDate']) > strtotime($a['releaseDate']) ? 1 : -1;
 }
 
+function sortByReviewDateDESC($a, $b) {
+  return strtotime($b['date']) > strtotime($a['date']) ? 1 : -1;
+}
+
+function sortByReviewDateASC($a, $b) {
+  return strtotime($a['date']) > strtotime($b['date']) ? 1 : -1;
+}
+
+function sortByReviewRatingDESC($a, $b) {
+  return $b['rating'] - $a['rating'];
+}
+
+function sortByReviewRatingASC($a, $b) {
+  return $a['rating'] - $b['rating'];
+}
+
+function sortByReviewVerifiedASC($a, $b) {
+  return $a['status'] - $b['status'];
+}
+
+
 function convertPriority($date){
     if($date === 'Urgent'){
         return 999999999999;

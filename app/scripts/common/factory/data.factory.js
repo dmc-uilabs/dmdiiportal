@@ -55,6 +55,15 @@ angular.module('dmc.data',[])
             },
             getUrlCreateDiscussion: function(id){
                 return baseServer+'/create_discussion'+appendId(id);
+            },
+            getProduct: function(){
+                return baseServer+'/product';
+            },
+            getProductReview: function(){
+                return baseServer+'/get_product_review';
+            },
+            addProductReview: function(){
+                return baseServer+'/add_product_review';
             }
         };
     }

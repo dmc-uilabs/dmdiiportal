@@ -52,6 +52,12 @@ return call_user_func(function () {
         echo create_discussion($_POST);
     }else if(strpos($uri,'/create_task') !== false){
         echo create_task($_POST);
+    }else if(strpos($uri,'/product') !== false){
+      echo get_product($_GET);
+    }else if(strpos($uri,'/get_product_review') !== false){
+      echo get_product_review($_GET);
+    }else if(strpos($uri,'/add_product_review') !== false){
+      echo add_product_review($_POST);
     }
 });
 
@@ -526,6 +532,81 @@ function delete_directory($dirName) {
     closedir($dir_handle);
     rmdir($dirName);
     return true;
+}
+
+function get_product($params){
+  if(isset($params['productId']) && isset($params['typeProduct'])){
+    $query = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'/'.$params['productId'], null, null),true);
+    $query['specifications'] = json_decode(httpResponse(dbUrl().$query['specifications'], null, null),true);
+    $query['reviews'] = json_decode(httpResponse(dbUrl().'/product/'.$params['productId'].'/product_reviews?productType='.$params['typeProduct'], null, null),true);
+    $query['rating'] = [];
+    for($i = 0; $i < count($query['reviews']); ++$i){
+      $query['rating'][] = $query['reviews'][$i]['rating'];
+    }
+  }else{
+    return false;
+  }
+
+  $result = array('result' => $query);
+  return json_encode($result);
+}
+
+function get_product_review($params){
+  if(isset($params['productId']) && isset($params['typeProduct'])){
+    if(isset($params['sort']) && $params['sort'] == 'verified'){
+      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'] . '&status=true', null, null), true);
+    }else {
+      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'], null, null), true);
+    }
+  }else{
+    $query = json_decode(httpResponse(dbUrl().'/product_reviews', null, null),true);
+  }
+
+  if(isset($params['sort'])){
+    if ($params['sort'] == 'date') {
+      if ($params['order'] == 'DESC') {
+        usort($query, 'sortByReviewDateDESC');
+      } else {
+        usort($query, 'sortByReviewDateASC');
+      }
+    }else if ($params['sort'] == 'rating') {
+      if ($params['order'] == 'DESC') {
+        usort($query, 'sortByReviewRatingDESC');
+      } else {
+        usort($query, 'sortByReviewRatingASC');
+      }
+    }
+  }
+
+  if(isset($params['limit'])) {
+    $query = array_slice($query, 0, $params['limit']);
+  }
+
+  $result = array('result' => $query);
+  return json_encode($result);
+}
+
+function add_product_review($params){
+  $last = json_decode(httpResponse(dbUrl().'/product_reviews?_sort=id&_order=DESC&_limit=1', null, null),true);
+  if(count($last) > 0){
+    $id = $last[0]['id']+1;
+  }else{
+    $id = 1;
+  }
+  $data = json_encode(array(
+      "id" => $id,
+      "productId" => $params['productId'],
+      "productType" => $params['productType'],
+      "name" => $params['name'],
+      "status" => $params['status'],
+      "date" => date("d-m-Y H:i:s"),
+      "rating" => $params['rating'],
+      "like" => $params['like'],
+      "dislike" => $params['dislike'],
+      "comment" => $params['comment']
+  ));
+  json_decode(httpResponse(dbUrl().'/product_reviews', 'POST', $data),true);
+  return $data;
 }
 
 ?>

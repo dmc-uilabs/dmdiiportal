@@ -98,6 +98,7 @@
     <script src="scripts/components/ui-widgets/submissions.directive.js"></script>
     <script src="scripts/components/ui-widgets/invited-users.directive.js"></script>
     <script src="scripts/components/ui-widgets/projects.directive.js"></script>
+    <script src="scripts/components/ui-widgets/stars.directive.js"></script>
     <script src="scripts/components/sub-nav-menu/sub-nav-menu.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/components/tree-menu/tree-menu.js"></script>
@@ -120,6 +121,7 @@
     <script src="scripts/marketplace/marketplace.js"></script>
     <script src="scripts/my_projects/my_projects.js"></script>
     <script src="scripts/invite-challenge/invite-challenge.js"></script>
+    <script src="scripts/product/product.js"></script>
     <script src="scripts/project/project.js"></script>
     <script src="scripts/project/controllers/id-locator.js"></script>
     <script src="scripts/project/controllers/discussions.js"></script>

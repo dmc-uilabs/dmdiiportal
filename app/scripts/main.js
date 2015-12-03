@@ -29,7 +29,8 @@ angular.module('dmc', [
     'ui.router',
     'ui.autocomplete',
     'ngtimeago',
-    'md.data.table'
+    'md.data.table',
+    'dmc.widgets.stars'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('home', {          // home page
@@ -48,6 +49,10 @@ angular.module('dmc', [
         url: '/invite-challenge',
         controller: 'InviteChallengeCtr',
         templateUrl: 'templates/invite-challenge/invite-challenge.html'
+    }).state('product', {                   // product page
+        url: '/product/:typeProduct/:productId',
+        controller: 'ProductCtr',
+        templateUrl: 'templates/product/product.html'
     }).state('marketplace', {               // marketplace page
         url: '/marketplace/:page?type',
         controller: 'MarketplaceCtr',
