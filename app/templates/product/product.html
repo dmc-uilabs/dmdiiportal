@@ -1,0 +1,224 @@
+<div class="container marketplace-box"  layout="row">
+  <!--Tree menu-->
+  <div class="content-column" layout="column" flex='20'>
+    <md-button href="marketplace.php" md-no-ink>Return to Search</md-button>
+    <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
+  </div>
+  <!--Product-->
+  <div class="content-column" flex='80'>
+    <div ng-if="!not_found">
+      <!-- Search toolbar -->
+      <md-content class="marketplace-search" layout="row" layout-align="center center">
+        <form ng-submit="submit()" class="marketplace-search-field" flex="60">
+          <md-input-container md-no-float>
+            <md-icon>
+              <ng-md-icon icon="search"></ng-md-icon>
+            </md-icon>
+            <input type="text" placeholder="Search the Marketplace" ng-model="searchModel">
+          </md-input-container>
+        </form>
+
+        <span flex></span>
+
+        <div class="marketplace-search-button" layout="row" layout-align="center center">
+          <md-button href="/">
+            <ng-md-icon icon="favorite" size="14"></ng-md-icon>
+            Favorites
+          </md-button>
+          <md-button href="" ng-disabled="compareProducts.services.length+compareProducts.components.length == 0" compare-button>
+            Compare ({{compareProducts.services.length+compareProducts.components.length}})
+          </md-button>
+        </div>
+      </md-content>
+      <!--product-->
+      <md-content class="product">
+        <div layout="row">
+          <div flex>
+            <!--product header-->
+            <div class="product-header">
+              <div layout="row">
+                <h2>{{product.title}} <span>By {{product.owner}}</span></h2>
+                <span flex></span>
+                <md-button aria-label="favorite" href="" class="md-icon-button header-icon">
+                  <ng-md-icon icon="favorite" style="fill: #65AF3F;" size="25"></ng-md-icon>
+                </md-button>
+                <md-button aria-label="share" href="" class="md-icon-button header-icon">
+                  <ng-md-icon icon="share" style="fill: #65AF3F;" size="25"></ng-md-icon>
+                </md-button>
+              </div>
+              <div layout="row">
+                <ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
+                <span flex></span>
+                <md-button href="" md-no-ink class="add">Add to project</md-button>
+                <md-button href="#" md-no-ink class="add">Add to Compare</md-button>
+              </div>
+            </div>
+
+            <md-divider></md-divider>
+
+            <!--product description-->
+            <div class="product-description">
+              {{product.description}}
+            </div>
+          </div>
+          <!--product image-->
+          <div class="product-image">
+            <img class="main-image" ng-src="{{product.featureImage.thumbnail}}">
+            <!-- <div dmc-carousel functions="carouselFunctions" name-carousel="'carouselImages'" type-carousel="'images'" carouselSource="images" max-items="10" show-items="4" carousel-source="images"></div> -->
+          </div>
+        </div>
+        <!--product tabs-->
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab label="Specifications">
+            <md-content class="md-padding">
+              <div layout="row" class="tabs-content" layout-wrap>
+                <p ng-repeat="specification in product.specifications track by $index" flex="15">{{specification.description}}</p>
+              </div>
+            </md-content>
+          </md-tab>
+          <md-tab label="Tags">
+            <md-content class="md-padding">
+              <div layout="row" class="tabs-content" layout-wrap>
+                <p ng-repeat="tag in product.tags track by $index" flex="15">{{tag}}</p>
+              </div>
+            </md-content>
+          </md-tab>
+          <md-tab label="Documents">
+            <md-content class="md-padding">
+              <div layout="row" class="tabs-content" layout-wrap>
+                <p ng-repeat="document in product.documents track by $index" flex="15">{{document}}</p>
+              </div>
+            </md-content>
+          </md-tab>
+          <md-tab label="Included Services">
+            <md-content class="md-padding">
+              <div layout="column" class="tabs-content" layout-wrap>
+                <p ng-repeat="service in product.services track by $index" flex="15">{{service}}</p>
+              </div>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+
+        <md-divider></md-divider>
+
+        <!--Reviews-->
+        <div layout="row" class="reviews" layout-margin layout-fill>
+          <!--left column-->
+          <div flex class="reviews-rating">
+            <!--Rating header-->
+            <div layout="row" class="md-toolbar-tools reviews-rating-header">
+              <h2>Reviews</h2>
+              <ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
+              <span flex></span>
+              <md-button md-no-ink ng-click="ViewAllReview()">View All({{number_of_comments}})</md-button>
+            </div>
+              <!--Rating-->
+            <div layout="row">
+              <p>5 STAR</p>
+              <md-progress-linear md-mode="determinate" value="{{precentage_stars[4]}}" flex></md-progress-linear>
+              <p flex="5">{{precentage_stars[4]}}%</p>
+            </div>
+            <div layout="row">
+              <p>4 STAR</p>
+              <md-progress-linear md-mode="determinate" value="{{precentage_stars[3]}}" flex></md-progress-linear>
+              <p flex="5">{{precentage_stars[3]}}%</p>
+            </div>
+            <div layout="row">
+              <p>3 STAR</p>
+              <md-progress-linear md-mode="determinate" value="{{precentage_stars[2]}}" flex></md-progress-linear>
+              <p flex="5">{{precentage_stars[2]}}%</p>
+            </div>
+            <div layout="row">
+              <p>2 STAR</p>
+              <md-progress-linear md-mode="determinate" value="{{precentage_stars[1]}}" flex></md-progress-linear>
+              <p flex="5">{{precentage_stars[1]}}%</p>
+            </div>
+            <div layout="row">
+              <p>1 STAR</p>
+              <md-progress-linear md-mode="determinate" value="{{precentage_stars[0]}}" flex></md-progress-linear>
+              <p flex="5">{{precentage_stars[0]}}%</p>
+            </div>
+          </div>
+          <!--right column-->
+          <div flex layout layout-align="center center" ng-if="!LeaveFlag">
+            <md-button class="md-raised" ng-click="LeaveAReview()">Leave a Review</md-button>
+            <span flex></span>
+            <md-input-container>
+              <label>Sorting</label>
+              <md-select ng-model="sort" ng-change="SortingReviews(sort)">
+                <md-option value="0" selected>Most Recent</md-option>
+                <md-option value="1">Highest to Lowest Rating</md-option>
+                <md-option value="2">Lowest to Highest Rating</md-option>
+                <md-option value="3">Verified Users</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <!--new review-->
+          <div flex class="new-review" ng-if="LeaveFlag">
+            <form name="CommentForm">
+              <md-input-container>
+                <label>Name</label>
+                <input ng-model="NewReview.Name">
+              </md-input-container>
+              <ui-widget-stars-active size="20" value="{{average_rating}}" select-star="stars(star)"></ui-widget-stars-active>
+              <md-input-container flex>
+                <label>Comment</label>
+                <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="150"></textarea>
+              </md-input-container>
+              <div layout layout-align="end end">
+                <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
+                <md-button class="md-raised" ng-click="Submit(NewReview)" ng-disabled="!NewReview.Comment || !NewReview.Name || submit_rating==0" >Submit</md-button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <md-divider></md-divider>
+
+        <!--one Reviews-->
+        <div class="one-review-panel" ng-repeat="review in product.reviews">
+          <!--One Review header-->
+          <div class="md-toolbar-tools">
+            <ui-widget-stars-static size="15" value="{{review.rating}}"></ui-widget-stars-static>
+            <h2>{{review.name}} <span>{{(review.status)? 'Verified': 'Unverified'}} User</span></h2>
+            <span flex></span>
+            <span>{{review.date}}</span>
+          </div>
+          <!--One Review content-->
+          <md-content class="md-padding">
+            {{review.comment}}
+            <div layout layout-fill class="one-review-footer">
+              <div flex>
+                <a href="#">Reply </a>|<a href="#"> Flag review</a>
+              </div>
+              <span flex></span>
+              <span>
+                Was this review helpful?
+                <md-button aria-label="Like" md-no-ink class="md-icon-button"  ng-click="Like(review)">
+                  <ng-md-icon icon="thumb_up" style="fill: black;" size="14"></ng-md-icon>
+                  {{(review.like > 0)? review.like: ''}}
+                </md-button>
+                <md-button aria-label="Dislike" md-no-ink class="md-icon-button"  ng-click="DisLike(review)">
+                  <ng-md-icon icon="thumb_down" style="fill: black;" size="14"></ng-md-icon>
+                  {{(review.dislike > 0)? review.dislike: ''}}
+                </md-button>
+              </span>
+              </div>
+            </md-content>
+            <md-divider></md-divider>
+        </div>
+
+        <div class="similar_product">
+          <h2>Similar product</h2>
+          <div layout="row">
+            <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[0].type" card-source="products_card[0]"></dmc-product-card>
+            <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[1].type" card-source="products_card[1]"></dmc-product-card>
+            <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[2].type" card-source="products_card[2]"></dmc-product-card>
+            <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[3].type" card-source="products_card[3]"></dmc-product-card>
+          </div>
+        </div>
+      </md-content>
+    </div>
+    <h2 ng-if="not_found">Product not found</h2>
+  </div>
+</div>
