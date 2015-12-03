@@ -1,5 +1,5 @@
 'use strict';
-angular.module('dmc.rfpInvite', [
+angular.module('rfpInvite', [
         'ngMaterial',
         'dmc.ajax',
         'dmc.data',
@@ -442,21 +442,7 @@ angular.module('dmc.rfpInvite', [
             }
         }
     })
-    .directive('inputsOutputs', function () {
-        return {
-            restrict: 'A',
-            templateUrl: 'templates/components/rfp-invite/inputs-outputs-tpl.html',
-            scope : {
-                serviceName: '=',
-                totalInputs: '=',
-                totalOutputs: '='
-            },
-            controller: function ($scope) {
-                $scope.inputs = new Array($scope.totalInputs);
-                $scope.outputs = new Array($scope.totalOutputs);
-            }
-        }
-    }).directive('dmcSelectedInvitees', function () {
+    .directive('dmcSelectedInvitees', function () {
         return {
             restrict: 'A',
             templateUrl: 'templates/components/rfp-invite/selected-invitees-tpl.html',
@@ -505,4 +491,6 @@ angular.module('dmc.rfpInvite', [
             }
         }
     });
+
+
 

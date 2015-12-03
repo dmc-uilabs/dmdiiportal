@@ -1,15 +1,15 @@
 <div class="products-card">
     <div class="content-panel-header" layout="column" layout-padding>
-        <md-toolbar>
+        <md-toolbar ng-if="!searchCard">
             <div class="md-toolbar-tools">
-              <h1 class="name-card" layout-padding ng-if="!searchCard">{{titleCard}}</h1>
+              <h1 class="name-card" layout-padding>{{titleCard}}</h1>
             </div>
         </md-toolbar>
         <md-divider></md-divider>
         <div layout='row' layout-align="center center">
           <h2>{{totalSize}} Results</h2>
-            <md-button ng-click="clearFilter()" ng-if="searchCard" style="display: none">Clear All</md-button>
-            <md-content class="md-padding" layout="column" ng-if="searchCard" style="display: none">
+            <md-button ng-click="clearFilter()" ng-if="!searchCard" style="display: none">Clear All</md-button>
+            <md-content class="md-padding" layout="column" ng-if="!searchCard" style="display: none">
                 <md-chips ng-model="filterItems" readonly="false">
                     <md-chip-template>
                         <strong>{{$chip.name}}</strong>

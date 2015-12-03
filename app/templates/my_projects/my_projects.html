@@ -1,0 +1,29 @@
+<div class="page-header" layout-padding>
+    <md-toolbar>
+        <div class="md-toolbar-tools my-projects-title">
+            <div layout="column">
+                <h1>My Projects
+                    <md-button class="md-raised btn-add-project">Add Project</md-button>
+                </h1>
+            </div>
+            <!-- fill up the space between left and right area -->
+            <span flex></span>
+            <md-input-container>
+                <label>Sort</label>
+                <md-select ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
+                    <md-option ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container>
+                <label>Filter</label>
+                <md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')" md-container-class="margin-dropdown">
+                    <md-option ng-repeat="filter in filterList track by $index" ng-value="$index">{{filter.name}}</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </md-toolbar>
+</div>
+
+<div class="container my-projects-container" layout="row" layout-padding>
+    <div class="content-panel" id="myProjectsList" ui-widget-projects widget-title="null" widget-show-all-blocks="true"></div>
+</div>

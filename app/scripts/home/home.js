@@ -4,15 +4,8 @@
 *
 * Dashboard
 */
-angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 'md.data.table', 'dmc.common.header', 'dmc.common.footer'])
-.config(function($stateProvider, $urlRouterProvider){
-  $stateProvider
-    .state('home', {
-      url: '',
-      abstract: true
-    });
-  $urlRouterProvider.otherwise('/');
-}).controller('HomeCtr',['$scope',function($scope){
+angular.module('dmc').controller('HomeCtr',['$scope',function($scope){
+    $scope.pageName = "home";
     $scope.pages = [
         {
             name : "My Dashboard",
@@ -29,7 +22,7 @@ angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 
         {
             name : "Community",
             text : "Find People",
-            href : "",
+            href : "community.php",
             img : "home-community-icon.png"
         }
     ];

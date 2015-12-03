@@ -108,12 +108,12 @@
     <md-tabs md-dynamic-height md-border-bottom ng-if="!isSearch" class="marketplace-carousel-tabs">
       <md-tab label="Popular">
         <md-content class="carousel-padding">
-          <div dmc-carousel 
-              name-carousel="'carouselPopular'" 
-              max-items="10" 
-              show-items="2" 
-              carousel-source="carouselData.arr" 
-              run-carousel="true" 
+          <div dmc-carousel
+              name-carousel="'carouselPopular'"
+              max-items="10"
+              show-items="2"
+              carousel-source="carouselData.arr"
+              run-carousel="false"
               timeout="5">
           </div>
         </md-content>
@@ -121,12 +121,12 @@
 
       <md-tab label="New">
         <md-content class="carousel-padding">
-          <div dmc-carousel 
-              name-carousel="'carouselNew'" 
-              max-items="10" 
+          <div dmc-carousel
+              name-carousel="'carouselNew'"
+              max-items="10"
               show-items="2"
-              carousel-source="carouselData.arr" 
-              run-carousel="true" 
+              carousel-source="carouselData.arr"
+              run-carousel="false"
               timeout="5">
           </div>
         </md-content>
@@ -139,7 +139,7 @@
           title-card="'ITEMS FROM FAVORITE STOREFRONTS'" 
           search-card="isSearch" 
           card-source="products"
-          card-loading="downloadData" 
+          card-loading="downloadData"
           page-size="productCardPageSize" 
           current-page="productCardCurrentPage"
           total-size="products.count" 

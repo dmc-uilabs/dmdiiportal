@@ -1,4 +1,4 @@
-angular.module('dmc.project')
+angular.module('dmc')
 .controller('WorkspaceCtrl',
     function ($rootScope, $stateParams,$mdDialog, projectData) {
         var projectCtrl = this;

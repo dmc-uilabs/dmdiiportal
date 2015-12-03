@@ -3,7 +3,7 @@
     <md-toolbar class="md-tall">
         <div class="md-toolbar-tools notification-nav" layout="row">
             <div class="logo">
-                <a href="index.php"><img src="images/logo.png"></a>
+                <a href="#/home"><img src="images/logo.png"></a>
             </div>
 
             <span flex></span>
@@ -100,7 +100,7 @@
             <div layout="column">
                 <div class="main-navigation" layout="row" layout-align="center center">
                     <md-button class="header-menu-button"
-                               href="dashboard.php"
+                               href="#/dashboard"
                                ng-class="{'active-page' : activePage.indexOf('dashboard') > -1}">
                         Dashboard
                     </md-button>
@@ -114,7 +114,7 @@
                         </md-button>
                         <md-menu-content ng-style="{width:dropDownWidth+'px'}">
                             <md-menu-item>
-                                <md-button href="marketplace.php">Market</md-button>
+                                <md-button ng-href="#/marketplace/services" ng-click="openPage($event)">Market</md-button>
                             </md-menu-item>
                             <md-menu-item>
                                 <md-button>My Storefront</md-button>
@@ -137,14 +137,16 @@
                         </md-button>
                         <md-menu-content>
                             <md-menu-item>
-                                <md-button href="my-projects.php">My Projects</md-button>
+                                <md-button  ng-href="#/my-projects" ng-click="openPage($event)">My Projects</md-button>
                             </md-menu-item>
                             <md-menu-item>
                                 <md-button>All Projects</md-button>
                             </md-menu-item>
                         </md-menu-content>
                     </md-menu>
-                    <md-button class="header-menu-button" href="/">Challenge</md-button>
+                    <md-button class="header-menu-button"
+                               href="#/invite-challenge"
+                               ng-class="{'active-page' : activePage.indexOf('invite-challenge') > -1}">Challenge</md-button>
                     <md-button class="search-button" href="/" aria-label="Search">
                         <ng-md-icon icon="search" style="fill: white;"></ng-md-icon>
                     </md-button>

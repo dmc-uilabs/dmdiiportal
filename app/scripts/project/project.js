@@ -1,166 +1,21 @@
 'use strict';
 
-angular.module('dmc.project', [
-        'dmc.configs.ngmaterial',
-        'ngMdIcons',
-        'dmc.ajax',
-        'dmc.data',
-        'ngtimeago',
-        'dmc.widgets.services',
-        'dmc.widgets.tasks',
-        'dmc.widgets.discussions',
-        'dmc.widgets.documents',
-        'dmc.widgets.components',
-        'dmc.widgets.questions',
-        'dmc.widgets.submissions',
-        'dmc.widgets.invited-users',
-        'ui.router',
-        'md.data.table',
-        'ngCookies',
-        'dmc.common.header',
-        'dmc.common.footer',
-        'dmc.model.project',
-        'ui.autocomplete',
-        'dmc.sub-nav-menu'
-])
-.config(function($stateProvider, $urlRouterProvider, $httpProvider){
-    $stateProvider.state('project', {
-        url: '/:projectId',
-        controller: 'IdLocatorCtrl',
-        template: '<ui-view />',
-        resolve: {
-            projectData: ['DMCProjectModel', '$stateParams',
-                function(DMCProjectModel, $stateParams) {
-                return DMCProjectModel.getModel($stateParams.projectId);
-            }]
+angular.module('dmc')
+    .directive('inputsOutputs', function () {
+        return {
+            restrict: 'A',
+            templateUrl: 'templates/components/rfp-invite/inputs-outputs-tpl.html',
+            scope : {
+                serviceName: '=',
+                totalInputs: '=',
+                totalOutputs: '='
+            },
+            controller: function ($scope) {
+                $scope.inputs = new Array($scope.totalInputs);
+                $scope.outputs = new Array($scope.totalOutputs);
+            }
         }
-    }).state('preview', {
-        url: '/preview/:projectId',
-        templateUrl: 'templates/project/pages/home.html',
-        controller: 'DMCPreviewProjectController as projectCtrl',
-        resolve: {
-            projectData: ['DMCProjectModel', '$stateParams',
-                function(DMCProjectModel, $stateParams) {
-                    return DMCProjectModel.getModel($stateParams.projectId);
-                }]
-        }
-    }).state('blank_submission', {
-        url: '/submission/blank/:projectId',
-        templateUrl: 'templates/project/blank-submission.html',
-        controller: 'DMCBlankSubmissionProjectController as projectCtrl',
-        resolve: {
-            projectData: ['DMCProjectModel', '$stateParams',
-                function(DMCProjectModel, $stateParams) {
-                    return DMCProjectModel.getModel($stateParams.projectId);
-                }]
-        }
-    }).state('submission', {
-        url: '/submission/:projectId',
-        templateUrl: 'templates/project/pages/home.html',
-        controller: 'DMCSubmissionProjectController as projectCtrl',
-        resolve: {
-            projectData: ['DMCProjectModel', '$stateParams',
-                function(DMCProjectModel, $stateParams) {
-                    return DMCProjectModel.getModel($stateParams.projectId);
-                }]
-        }
-    }).state('submissions', {
-        url: '/submissions/:projectId',
-        templateUrl: 'templates/project/submissions.html',
-        controller: 'DMCSubmissionsProjectController as projectCtrl',
-        resolve: {
-            projectData: ['DMCProjectModel', '$stateParams',
-                function(DMCProjectModel, $stateParams) {
-                    return DMCProjectModel.getModel($stateParams.projectId);
-                }]
-        }
-    }).state('project_rfp_blank', {
-        url: '/rfp/blank/:projectId',
-        templateUrl: 'templates/project/rfp-home-blank.html',
-        controller: 'DMCRfpBlankHomeProjectController as projectCtrl',
-        resolve: {
-            projectData: ['DMCProjectModel', '$stateParams',
-                function(DMCProjectModel, $stateParams) {
-                    return DMCProjectModel.getModel($stateParams.projectId);
-                }]
-        }
-    }).state('project_rfp', {
-        url: '/rfp/:projectId',
-        templateUrl: 'templates/project/rfp-home.html',
-        controller: 'DMCRfpHomeProjectController as projectCtrl',
-        resolve: {
-            projectData: ['DMCProjectModel', '$stateParams',
-                function(DMCProjectModel, $stateParams) {
-                    return DMCProjectModel.getModel($stateParams.projectId);
-                }]
-        }
-    }).state('submit', {
-        url: '/submit/:projectId',
-        templateUrl: 'templates/project/submit.html',
-        controller: 'DMCSubmitProjectController as projectCtrl',
-        resolve: {
-            projectData: ['DMCProjectModel', '$stateParams',
-                function(DMCProjectModel, $stateParams) {
-                    return DMCProjectModel.getModel($stateParams.projectId);
-                }]
-        }
-    }).state('submitted', {
-        url: '/submitted/:projectId',
-        templateUrl: 'templates/project/submitted.html',
-        controller: 'DMCSubmittedProjectController as projectCtrl',
-        resolve: {
-            projectData: ['DMCProjectModel', '$stateParams',
-                function(DMCProjectModel, $stateParams) {
-                    return DMCProjectModel.getModel($stateParams.projectId);
-                }]
-        }
-    }).state('project.home', {
-        url: '/home',
-        controller: 'HomeCtrl as projectCtrl',
-        templateUrl: 'templates/project/pages/home.html'
-    }).state('project.workspace', {
-        url: '/workspace',
-        controller: 'WorkspaceCtrl as projectCtrl',
-        templateUrl: 'templates/project/pages/workspace.html'
-    }).state('project.documents', {
-        url: '/documents',
-        controller: 'DocumentsCtrl as projectCtrl',
-        templateUrl: 'templates/project/pages/documents.html'
-    }).state('project.tasks', {
-        url: '/tasks',
-        controller: 'TasksCtrl as projectCtrl',
-        templateUrl: 'templates/project/pages/tasks.html'
-    }).state('project.team', {
-        url: '/team',
-        controller: 'TeamCtrl as projectCtrl',
-        templateUrl: 'templates/project/pages/team.html'
-    }).state('project.discussions', {
-        url: '/discussions',
-        controller: 'DiscussionsCtrl as projectCtrl',
-        templateUrl: 'templates/project/pages/discussions.html'
-    }).state('project.rfp-home', {
-        url: '/rfp-home',
-        controller: 'RfpHomeCtrl as projectCtrl',
-        templateUrl: 'templates/project/rfp/home.html'
-    }).state('project.rfp-submissions', {
-        url: '/rfp-submissions',
-        controller: 'RfpSubmissionsCtrl as projectCtrl',
-        templateUrl: 'templates/project/rfp/submissions.html'
-    }).state('project.rfp-documents', {
-        url: '/rfp-documents',
-        controller: 'RfpDocumentsCtrl as projectCtrl',
-        templateUrl: 'templates/project/rfp/documents.html'
-    }).state('project.rfp-questions', {
-        url: '/rfp-questions',
-        controller: 'RfpQuestionsCtrl as projectCtrl',
-        templateUrl: 'templates/project/rfp/questions.html'
-    }).state('project.rfp-people-invited', {
-        url: '/rfp-people-invited',
-        controller: 'RfpPeopleInvitedCtrl as projectCtrl',
-        templateUrl: 'templates/project/rfp/people-invited.html'
-    });
-    $urlRouterProvider.otherwise('/1');
-})
+    })
     .controller('DMCPreviewProjectController', ['$scope','$stateParams', 'projectData', function ($scope, $stateParams, projectData) {
         var projectCtrl = this;
         projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
@@ -242,7 +97,7 @@ angular.module('dmc.project', [
                     latter : $scope.latter
                 };
                 $cookies.putObject('submittedItems', submittedItems);
-                $location.url('/submitted/'+projectCtrl.currentProjectId);
+                $location.path('/project/'+projectCtrl.currentProjectId+'/submitted');
             }
         };
         var getServices = function() {
@@ -426,18 +281,3 @@ angular.module('dmc.project', [
 
         };
     }])
-    .directive('inputsOutputs', function () {
-        return {
-            restrict: 'A',
-            templateUrl: 'templates/components/rfp-invite/inputs-outputs-tpl.html',
-            scope : {
-                serviceName: '=',
-                totalInputs: '=',
-                totalOutputs: '='
-            },
-            controller: function ($scope) {
-                $scope.inputs = new Array($scope.totalInputs);
-                $scope.outputs = new Array($scope.totalOutputs);
-            }
-        }
-    })

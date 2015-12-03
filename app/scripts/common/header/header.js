@@ -5,9 +5,6 @@
 * Global Header
 */
 angular.module('dmc.common.header', ['ngAnimate'])
-.config(function($animateProvider) {
-    $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
-})
 .directive('dmcTopHeader', function(){
   return {
     restrict: 'A',
@@ -16,10 +13,14 @@ angular.module('dmc.common.header', ['ngAnimate'])
       activePage: '='
     },
     templateUrl: 'templates/common/header/header-tpl.html',
-    controller : function($scope){
+    controller : function($scope,$state){
         $scope.setDropDown = function(event,width){
             width = $(event.currentTarget).width()+12;
         }
+
+        $scope.openPage = function($event){
+            //window.location = url;
+        };
     }
   };
 });

@@ -16,8 +16,8 @@ angular.module('dmc.component.carousel', [
         maxItems: '=',
         showItems: '=',
         carouselSource: '=',
-        runCarousel: '='
-        //timeout: '=' // seconds
+        runCarousel: '=',
+        timeout: '=' // seconds
       },
       templateUrl: 'templates/components/carousel/carousel-tpl.html',
       link: function(scope, element, attrs){
@@ -26,7 +26,7 @@ angular.module('dmc.component.carousel', [
       controller: function($element,$scope,$timeout,Carousel,socketFactory){
           $scope.intervalCarousel = null;
 
-          //$scope.timeout = (parseInt($scope.timeout) <= 0 ? 5 : parseInt($scope.timeout));
+          $scope.timeout = (parseInt($scope.timeout) <= 0 ? 5 : parseInt($scope.timeout));
           $scope.maxItems = (parseInt($scope.maxItems) <= 0 ? 10 : parseInt($scope.maxItems));
           $scope.showItems = (parseInt($scope.showItems) <= 0 ? 2 : parseInt($scope.showItems));
           $scope.arrayItems = ($scope.carouselSource.length > $scope.maxItems ? $scope.carouselSource.slice(0, $scope.maxItems) : $scope.carouselSource);

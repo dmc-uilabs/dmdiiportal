@@ -1,15 +1,13 @@
-angular.module('dmc.project')
+angular.module('dmc')
 .controller('IdLocatorCtrl', [
     '$stateParams',
     '$state',
-function ($stateParams, $state) {
+    '$location',
+function ($stateParams, $state, $location) {
     var projectId = $stateParams.projectId;
-
-    if (projectId === "" || !angular.isDefined($stateParams.projectId)) {
-        projectId = 1
-    }
-    var hash = window.location.hash;
-    if(hash.lastIndexOf('/') == hash.indexOf('/') || hash.length == hash.lastIndexOf('/')+1){
-        $state.go('project.home', {projectId: projectId})
+    if (projectId === "" || !angular.isDefined($stateParams.projectId)) projectId = 1;
+    var params = $location.$$path.split('/');
+    if(params.length <= 3 || (params.length >= 4 && params[3].trim().length == 0)) {
+        $state.go('project.home', {projectId: projectId});
     }
 }]);

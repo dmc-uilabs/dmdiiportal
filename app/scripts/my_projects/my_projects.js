@@ -1,26 +1,7 @@
 'use strict';
 
-angular.module('dmc.my_projects', [
-        'dmc.widgets.services',
-        'dmc.widgets.tasks',
-        'dmc.widgets.discussions',
-        'dmc.widgets.projects',
-        'ngtimeago',
-        'dmc.configs.ngmaterial',
-        'ngMdIcons',
-        'ui.router',
-        'md.data.table',
-        'dmc.common.header',
-        'dmc.common.footer'
-])
-.config(function($stateProvider, $urlRouterProvider, $httpProvider){
-    $stateProvider.state('project', {
-        url: '',
-        abstract: true
-    });
-    $urlRouterProvider.otherwise('/');
-})
-.controller('DMCMyProjectsController', function ($scope,$element) {
+angular.module('dmc')
+.controller('MyProjectsCtr', function ($scope) {
     $scope.sortList = [
         {
             id : 3, tag : "date", name : "Most recent"
@@ -43,7 +24,7 @@ angular.module('dmc.my_projects', [
             id : 5, tag : "id5", name : "ID Project5"
         }
     ];
-        $scope.sortModel = 0;
+    $scope.sortModel = 0;
     $scope.selectItemDropDown = function(type){
         if(type == "filter"){
             if($scope.filterModel != 0) {
@@ -61,22 +42,4 @@ angular.module('dmc.my_projects', [
             }
         }
     };
-});
-
-angular.module('dmc.create_project', [
-    'dmc.configs.ngmaterial',
-    'dmc.rfpInvite',
-    'ngMdIcons',
-    'ui.router',
-    'md.data.table',
-    'dmc.common.header',
-    'dmc.common.footer'
-]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
-    $stateProvider.state('create_project', {
-        url: '',
-        abstract: true
-    });
-    $urlRouterProvider.otherwise('/');
-}).controller('DMCCreateProjectController', function ($scope) {
-
-});
+})
