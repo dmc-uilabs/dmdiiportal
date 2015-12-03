@@ -205,11 +205,11 @@
         "startDate": "20-09-2015",
         "startTime": "18:45:10",
         "project": {
-          "id": 0,
-          "title": null
+          "id": 1,
+          "title": "Control Compartment for LDR Mining"
         }
       },
-      "projectId": 0
+      "projectId": 1
     },
     {
       "id": 21,

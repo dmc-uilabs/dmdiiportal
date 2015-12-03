@@ -10,19 +10,19 @@ angular.module('dmc').controller('HomeCtr',['$scope',function($scope){
         {
             name : "My Dashboard",
             text : "Design Solutions",
-            href : "dashboard.php",
+            href : "#/dashboard",
             img : "home-dashboard-icon.png"
         },
         {
             name : "Marketplace",
             text : "Find Solutions",
-            href : "marketplace.php",
+            href : "#/marketplace/services",
             img : "home-market-icon.png"
         },
         {
             name : "Community",
             text : "Find People",
-            href : "community.php",
+            href : "#/community",
             img : "home-community-icon.png"
         }
     ];

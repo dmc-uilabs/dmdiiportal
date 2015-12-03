@@ -53,6 +53,10 @@ angular.module('dmc', [
         url: '/product/:typeProduct/:productId',
         controller: 'ProductCtr',
         templateUrl: 'templates/product/product.html'
+    }).state('community', {                 // community page
+        url: '/community',
+        controller: 'CommunityCtr',
+        templateUrl: 'templates/community/community.html'
     }).state('marketplace', {               // marketplace page
         url: '/marketplace/:page?type',
         controller: 'MarketplaceCtr',

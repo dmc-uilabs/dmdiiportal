@@ -84,7 +84,7 @@ angular.module('dmc.component.productcard', [
                   }
                   $scope.cardSource.lastProject = {
                       title : project.title,
-                      href : 'http://localhost:9000/project.php#/'+project.id+'/home'
+                      href : '#/project/'+project.id+'/home'
                   };
                   $scope.addedTimeout = setTimeout(function(){
                       $scope.cardSource.added = false;

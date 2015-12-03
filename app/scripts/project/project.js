@@ -56,15 +56,11 @@ angular.module('dmc')
         var projectCtrl = this;
         projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
         projectCtrl.projectData = projectData;
-
-
     }])
     .controller('DMCRfpHomeProjectController', ['$scope','$stateParams', 'projectData','ajax','dataFactory','$compile', function ($scope, $stateParams, projectData,ajax,dataFactory,$compile) {
         var projectCtrl = this;
         projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
         projectCtrl.projectData = projectData;
-
-
     }])
     .controller('DMCSubmittedProjectController', ['$cookies','$scope','$stateParams','projectData', function ($cookies,$scope, $stateParams,projectData) {
         var projectCtrl = this;

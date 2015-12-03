@@ -122,6 +122,7 @@
     <script src="scripts/my_projects/my_projects.js"></script>
     <script src="scripts/invite-challenge/invite-challenge.js"></script>
     <script src="scripts/product/product.js"></script>
+    <script src="scripts/community/community.js"></script>
     <script src="scripts/project/project.js"></script>
     <script src="scripts/project/controllers/id-locator.js"></script>
     <script src="scripts/project/controllers/discussions.js"></script>

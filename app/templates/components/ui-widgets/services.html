@@ -28,7 +28,7 @@
                                 <span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDate}}</span>
                             </a>
                         </td>
-                        <td ng-show="columns.indexOf('project') > -1"><a href="/project.php#/{{item.currentStatus.project.id}}">{{item.currentStatus.project.title}}</a></td>
+                        <td ng-show="columns.indexOf('project') > -1"><a ng-href="#/project/{{item.currentStatus.project.id}}">{{item.currentStatus.project.title}}</a></td>
                         <td ng-show="columns.indexOf('start') > -1">{{item.currentStatus.startDate}}<span class="services-time-info">{{item.currentStatus.startTime}}</span></td>
                         <td ng-show="columns.indexOf('status') > -1">
                             <md-progress-linear md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
