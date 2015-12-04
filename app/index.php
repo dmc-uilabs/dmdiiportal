@@ -88,6 +88,7 @@
     <script src="scripts/common/footer/footer.js"></script>
     <script src="scripts/home/home.js"></script>
     <!-- endbuild -->
+    
     <script type="text/javascript">
         window.apiUrl = '';
     </script>
