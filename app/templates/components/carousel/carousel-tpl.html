@@ -1,10 +1,21 @@
 <div ng-carousel rn-carousel-indicators ng-if="countSlides > 0" class="carousel-items" ng-carousel-name="{{nameCarousel}}">
     <slidecontainer class="carousel-slides">
     <slide ng-repeat="slide in arrayItems.slice(0, countSlides) track by $index">
-      <div class="slide-item" style="width:{{100/showItems}}%" ng-repeat="item in arrayItems.slice($index*showItems, $index*showItems+showItems)">
+      <div ng-if="typeCarousel != 'images'" class="slide-item" style="width:{{100/showItems}}%" ng-repeat="item in arrayItems.slice($index*showItems, $index*showItems+showItems)">
         <div class="one-item">
-          <dmc-product-card type-product="item.type" card-source="item"></dmc-product-card>
+          <dmc-product-card 
+            type-product="item.type" 
+            card-source="item"
+            ng-if="typeCarousel != 'images'">
+          </dmc-product-card>
         </div>
+      </div>
+      <div class="carousel-item image-item"
+             ng-click="functions.openImage(item)"
+             ng-class="{'selected-image' : item.selected}"
+             ng-if="typeCarousel === 'images'"
+             ng-repeat="item in arrayItems.slice($index*showItems, $index*showItems+showItems) track by item.id">
+            <img ng-src="{{item.src}}" alt=""/>
       </div>
     </slide>
   </slidecontainer>

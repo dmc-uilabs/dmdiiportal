@@ -32,6 +32,10 @@
       height: auto;
     }
   }
+  .product-image-modal{
+    width:auto;
+    padding-right: 16px 
+  }
 
   .product-description{
     margin-top: 15px;
@@ -42,7 +46,23 @@
   p{
     margin: 3px 10px;
   }
+  md-chips .md-chips{
+    box-shadow: none;
+  }
+  .included{
+    padding: 8px;
+    .product-card{
+      width: 100%;
+      padding-bottom: 16px
+    }
+  }
 }
+    .md-button.viewAll{
+      font-size: 11px;
+      color: #65AF3F;
+      line-height: 36px;
+      margin: 0;
+    }
 
 .reviews{
   margin: 15px 0;
@@ -81,13 +101,18 @@
       }
     }
   }
+}
 
   .new-review{
     padding: 10px;
     border: 1px solid #65AF3F;
+    h2{
+      font-size: 16px;
+      margin: 0;
+      font-weight: normal;
+      color: #65AF3F;
+    }
   }
-
-}
 
 .one-review-panel {
   margin-top: 15px;
@@ -102,6 +127,14 @@
 
     span {
       font-size: 11px;
+    }
+  }
+  .new-review{
+    md-select-value{
+      height: 30px;
+      span{
+        font-size: 16px
+      }
     }
   }
   span{

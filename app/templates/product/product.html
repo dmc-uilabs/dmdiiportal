@@ -9,7 +9,7 @@
     <div ng-if="!not_found">
       <!-- Search toolbar -->
       <md-content class="marketplace-search" layout="row" layout-align="center center">
-        <form ng-submit="submit()" class="marketplace-search-field" flex="60">
+        <form ng-submit="submitSearch(searchModel)" class="marketplace-search-field" flex="60">
           <md-input-container md-no-float>
             <md-icon>
               <ng-md-icon icon="search"></ng-md-icon>
@@ -33,6 +33,11 @@
       <!--product-->
       <md-content class="product">
         <div layout="row">
+          <!--product image-->
+          <div class="product-image">
+            <img class="main-image" ng-src="{{product.featureImage.thumbnail}}">
+            <div dmc-carousel functions="carouselFunctions" name-carousel="'carouselImages'" type-carousel="'images'" carouselSource="images" max-items="10" show-items="4" carousel-source="images"></div>
+          </div>
           <div flex>
             <!--product header-->
             <div class="product-header">
@@ -50,7 +55,7 @@
                 <ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
                 <span flex></span>
                 <md-button href="" md-no-ink class="add">Add to project</md-button>
-                <md-button href="#" md-no-ink class="add">Add to Compare</md-button>
+                <md-button href="" md-no-ink class="add">Add to Compare</md-button>
               </div>
             </div>
 
@@ -61,39 +66,43 @@
               {{product.description}}
             </div>
           </div>
-          <!--product image-->
-          <div class="product-image">
-            <img class="main-image" ng-src="{{product.featureImage.thumbnail}}">
-            <!-- <div dmc-carousel functions="carouselFunctions" name-carousel="'carouselImages'" type-carousel="'images'" carouselSource="images" max-items="10" show-items="4" carousel-source="images"></div> -->
-          </div>
         </div>
         <!--product tabs-->
         <md-tabs md-dynamic-height md-border-bottom>
           <md-tab label="Specifications">
             <md-content class="md-padding">
-              <div layout="row" class="tabs-content" layout-wrap>
-                <p ng-repeat="specification in product.specifications track by $index" flex="15">{{specification.description}}</p>
+              <div class="tabs-content" layout="column">
+                <p>Created: {{product.currentStatus.startDate}}</p>
+                <p>Added: {{product.specificationsData.usageStats.added}} times by {{product.specificationsData.usageStats.members}} members</p>
+                <p>Successful Runs: {{product.specificationsData.runStats.fail}}/{{product.specificationsData.runStats.success}}</p>
+                <p>Inputs: {{product.specificationsData.input}}</p>
+                <p>Outputs: {{product.specificationsData.output}}</p>
               </div>
             </md-content>
           </md-tab>
           <md-tab label="Tags">
             <md-content class="md-padding">
               <div layout="row" class="tabs-content" layout-wrap>
-                <p ng-repeat="tag in product.tags track by $index" flex="15">{{tag}}</p>
+                <md-chips ng-repeat="tag in product.tags track by $index">
+                  <md-chip >{{tag}}</md-chip>
+                </md-chips>
               </div>
             </md-content>
           </md-tab>
           <md-tab label="Documents">
             <md-content class="md-padding">
-              <div layout="row" class="tabs-content" layout-wrap>
-                <p ng-repeat="document in product.documents track by $index" flex="15">{{document}}</p>
-              </div>
+                <ui-widget-documents-product></ui-widget-documents-product>
             </md-content>
           </md-tab>
           <md-tab label="Included Services">
             <md-content class="md-padding">
-              <div layout="column" class="tabs-content" layout-wrap>
-                <p ng-repeat="service in product.services track by $index" flex="15">{{service}}</p>
+              <div layout layout-align="end end">
+                <md-button ng-click="ViewIncluded()" class="viewAll">View all</md-button>
+              </div>
+              <div layout="row" class="tabs-content" layout-wrap>
+              <div flex="25" ng-repeat="oneProdut in products" class="included">
+                <dmc-product-card card-style="'included'" type-product="oneProdut.type" card-source="oneProdut"></dmc-product-card>
+              </div>
               </div>
             </md-content>
           </md-tab>
@@ -140,7 +149,7 @@
             </div>
           </div>
           <!--right column-->
-          <div flex layout layout-align="center center" ng-if="!LeaveFlag">
+          <div flex layout layout-align="center center">
             <md-button class="md-raised" ng-click="LeaveAReview()">Leave a Review</md-button>
             <span flex></span>
             <md-input-container>
@@ -153,24 +162,22 @@
               </md-select>
             </md-input-container>
           </div>
-          <!--new review-->
-          <div flex class="new-review" ng-if="LeaveFlag">
-            <form name="CommentForm">
-              <md-input-container>
-                <label>Name</label>
-                <input ng-model="NewReview.Name">
-              </md-input-container>
-              <ui-widget-stars-active size="20" value="{{average_rating}}" select-star="stars(star)"></ui-widget-stars-active>
-              <md-input-container flex>
-                <label>Comment</label>
-                <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="150"></textarea>
-              </md-input-container>
-              <div layout layout-align="end end">
-                <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
-                <md-button class="md-raised" ng-click="Submit(NewReview)" ng-disabled="!NewReview.Comment || !NewReview.Name || submit_rating==0" >Submit</md-button>
-              </div>
-            </form>
-          </div>
+        </div>
+
+        <!--new review-->
+        <div flex class="new-review" ng-if="LeaveFlag">
+          <form name="CommentForm">
+            <h2>Rating</h2>
+            <ui-widget-stars-active size="20" value="{{average_rating}}" select-star="stars(star)"></ui-widget-stars-active>
+            <md-input-container flex>
+              <label>Comment</label>
+              <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="150"></textarea>
+            </md-input-container>
+            <div layout layout-align="end end">
+              <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
+              <md-button class="md-raised" ng-click="Submit(NewReview)" ng-disabled="!NewReview.Comment || submit_rating==0" >Submit</md-button>
+            </div>
+          </form>
         </div>
 
         <md-divider></md-divider>
@@ -189,7 +196,7 @@
             {{review.comment}}
             <div layout layout-fill class="one-review-footer">
               <div flex>
-                <a href="#">Reply </a>|<a href="#"> Flag review</a>
+                <a href="" ng-click="Reply($index)">Reply </a>|<a href="" ng-click="FlagReview($index)"> Flag review</a>
               </div>
               <span flex></span>
               <span>
@@ -205,6 +212,43 @@
               </span>
               </div>
             </md-content>
+
+            <!--Reply-->
+            <div flex class="new-review" ng-if="replyFlag == $index">
+              <form name="CommentForm">
+                <md-input-container flex>
+                  <label>Comment</label>
+                  <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="150"></textarea>
+                </md-input-container>
+                <div layout layout-align="end end">
+                  <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
+                  <md-button class="md-raised" ng-click="SubmitReply(NewReview)" ng-disabled="!NewReview.Comment" >Submit</md-button>
+                </div>
+              </form>
+            </div>
+
+            <!--Flag Review-->
+            <div flex class="new-review" ng-if="flagReviewFlag == $index">
+              <form name="CommentForm" layout="row" layout-align="start start">
+                <md-input-container flex="20">
+                  <label>Reasone</label>
+                  <md-select ng-model="NewReview.Reasone" ng-change="">
+                    <md-option value="1">None</md-option>
+                  </md-select>
+                </md-input-container>
+                <div flex layout="column">
+                  <md-input-container flex>
+                    <label>Comment</label>
+                    <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="150"></textarea>
+                  </md-input-container>
+                  <div layout layout-align="end end">
+                    <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
+                    <md-button class="md-raised" ng-click="SubmitFlag(NewReview)" ng-disabled="!NewReview.Comment || !NewReview.Reasone" >Submit</md-button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
             <md-divider></md-divider>
         </div>
 

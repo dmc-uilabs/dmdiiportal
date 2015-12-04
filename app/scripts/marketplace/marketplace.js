@@ -15,6 +15,7 @@ angular.module('dmc.marketplace', [
     'dmc.socket',
     'ngtimeago',
     'ngCookies',
+    'dmc.widgets.documents',
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.component.treemenu',

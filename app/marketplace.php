@@ -69,6 +69,7 @@
     <script src="/bower_components/md-data-table/dist/md-data-table-templates.js"></script>
     <script src="/bower_components/ng-timeago/ngtimeago.js"></script>
     <script src="/bower_components/ui-autocomplete/autocomplete.js"></script>
+    <script src="/bower_components/dropzone/dist/min/dropzone.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -82,6 +83,8 @@
     <script src="scripts/components/tree-menu/tree-menu.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/products-card/products-card.js"></script>
+    <script src="scripts/components/ui-widgets/documents.directive.js"></script>
+    <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/components/carousel/carousel.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
     <script src="scripts/marketplace/marketplace.js"></script>

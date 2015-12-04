@@ -12,6 +12,8 @@ angular.module('dmc.component.carousel', [
      return {
       restrict: 'A',
       scope: {
+        functions: "=",
+        typeCarousel: "=",
         nameCarousel: "=",
         maxItems: '=',
         showItems: '=',
@@ -92,6 +94,9 @@ angular.module('dmc.component.carousel', [
               var maxHeight = 0;
               $element.find(".product-card").each(function(){
                   if($(this).height() > maxHeight) maxHeight = $(this).height();
+              });
+              $element.find(".carousel-item").each(function(){
+                if($(this).height() > maxHeight) maxHeight = $(this).height();
               });
               $element.find(".ng-carousel").css("height", (maxHeight + 65) + "px");
               if($element.find(".ng-carousel").height() > 100) clearInterval(h);

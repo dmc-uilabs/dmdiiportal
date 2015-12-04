@@ -91,10 +91,29 @@ angular.module('dmc.widgets.stars',[
                 if($scope.value > 5){
                     $scope.value = 5;
                 }
+
                 for(var i=0; i < $scope.value; i++){
                     $scope.StarStyle[i] = {"fill" : "#f28e1e"};
                 }
 
+                $scope.$watch(
+                    function() { return $scope.value; },
+                    function(newValue, oldValue) {
+                        if ( newValue !== oldValue ) {
+                                      
+                            $scope.StarStyle = [
+                                {"fill" : "#c7c7c7"},
+                                {"fill" : "#c7c7c7"},
+                                {"fill" : "#c7c7c7"},
+                                {"fill" : "#c7c7c7"},
+                                {"fill" : "#c7c7c7"}
+                            ];
+                            for(var i=0; i < $scope.value; i++){
+                                $scope.StarStyle[i] = {"fill" : "#f28e1e"};
+                            }
+                          }
+                    }
+                );
             }
         };
     }]);

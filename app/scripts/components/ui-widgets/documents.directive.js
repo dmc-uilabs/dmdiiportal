@@ -43,6 +43,39 @@ angular.module('dmc.widgets.documents',[
             }
         };
     }]).
+    directive('uiWidgetDocumentsProduct', ['$parse', function ($parse) {
+        return {
+            restrict: 'E',
+            scope:{},
+            templateUrl: 'templates/components/ui-widgets/documentsProduct.html',
+            controller: function($scope, $element, $attrs, dataFactory, ajax) {
+                $scope.documents = [];
+                $scope.total = 0;
+                $scope.sort = 'name';
+                $scope.order = 'DESC';
+
+                // function for get all requirement documents
+                $scope.getDocuments = function(){
+                    ajax.on(dataFactory.getUrlAllDocuments($scope.projectId),{
+                        projectId : 5,
+                        sort : $scope.sort,
+                        order : $scope.order,
+                        limit : 5,
+                        offset : 0
+                    },function(data){
+                        $scope.documents = data.result;
+                        $scope.total = data.count;
+                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    },function(){
+                        alert("Ajax faild: getDocuments");
+                    });
+                };
+
+                // get all requirement documents (first request)
+                $scope.getDocuments();
+            }
+        };
+    }]).
     directive('uiWidgetUploadDocuments', ['$parse', function ($parse) {
         return {
             restrict: 'A',
