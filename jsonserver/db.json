@@ -1304,7 +1304,7 @@
     {
       "id": 9,
       "text": "the capacitors have arrived.",
-      "full_name": "m.winand",
+      "full_name": "John Carbone",
       "created_at": "20-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
       "projectId": 3
@@ -1312,7 +1312,7 @@
     {
       "id": 10,
       "text": "great, install them as soon as schedule permits",
-      "full_name": "p.koudal",
+      "full_name": "Pat Mackenzie",
       "created_at": "21-09-2015 11:21:30",
       "avatar": "/images/koudal.png",
       "projectId": 3
@@ -1320,7 +1320,7 @@
     {
       "id": 11,
       "text": "ok - after I run the service models for layout",
-      "full_name": "m.winand",
+      "full_name": "John Carbone",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
       "projectId": 3
@@ -1328,7 +1328,7 @@
     {
       "id": 12,
       "text": "Hey Peter, I'm having a heck of a time finding a transformer with the heat loss requirements we have",
-      "full_name": "p.koudal",
+      "full_name": "Peter Koudal",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/koudal.png",
       "projectId": 4
@@ -1336,7 +1336,7 @@
     {
       "id": 12,
       "text": "I am certain we will need to be creative building this transformer.  COTS is not going to cut it.",
-      "full_name": "j.carbone",
+      "full_name": "John Carbone",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/carbone.png",
       "projectId": 4
@@ -1344,7 +1344,7 @@
     {
       "id": 14,
       "text": "maybe we can use one of those collaborative sites and get some good designs",
-      "full_name": "p.koudal",
+      "full_name": "Peter Koudal",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/koudal.png",
       "projectId": 4
@@ -1352,7 +1352,7 @@
     {
       "id": 15,
       "text": "I'll take care of this.  Leave it to me",
-      "full_name": "p.mackenzie",
+      "full_name": "Pat Mackenzie",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/mackenzie.png",
       "projectId": 4
@@ -1360,7 +1360,7 @@
     {
       "id": 16,
       "text": "the new mtl we have developed should work in the transformer core",
-      "full_name": "b.beckmann",
+      "full_name": "Jack Graber",
       "created_at": "20-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
       "projectId": 5
@@ -1368,7 +1368,7 @@
     {
       "id": 17,
       "text": "I agree, we just have to determine what mtl parameters we need",
-      "full_name": "l.derose",
+      "full_name": "Peter Derose",
       "created_at": "21-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
       "projectId": 5
@@ -1376,7 +1376,7 @@
     {
       "id": 18,
       "text": "yes, and how they impact transformer performance and heat loss",
-      "full_name": "j.good",
+      "full_name": "Jack Good",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
       "projectId": 5
@@ -1384,7 +1384,7 @@
     {
       "id": 19,
       "text": "OK, let me investigate; I'll look for a relevant magnetic permeability model",
-      "full_name": "a.giani",
+      "full_name": "Pat Giani",
       "created_at": "23-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
       "projectId": 5

@@ -188,6 +188,10 @@ table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th{
   }
 }
 
+.md-toolbar-tools > md-menu:last-child{
+  margin-right: 0;
+}
+
 @media (min-width: 600px){
   .md-padding {
     padding: 10px;

@@ -36,42 +36,46 @@
     <!-- Top Header -->
     <div dmc-top-header show-notification="true" active-page="'dashboard'"></div>
 
-    <div class="container container-dashboard" layout-padding>
-      <div class="content-column" layout="row" style="display:none" ng-if="isMobile == null">
-        <div class="content-panel content-panel-dashboard" layout="column" flex="49">
-          <div class="content-panel-header">
-           <md-toolbar>
-              <div class="md-toolbar-tools widget-toolbar-title">
-                <h2>MARKET PLACE STATS</h2>
-                <span flex></span>
-                <md-button href="/" md-no-ink class="view-all-button">View statistics</md-button>
+    <div class="container container-dashboard" layout-padding layout="row">
+      <div class="content-column" layout="column" flex>
+        <div class="content-panel content-panel-dashboard" style="display:none" ng-if="isMobile == null">
+              <div class="content-panel-header">
+                  <md-toolbar>
+                      <div class="md-toolbar-tools widget-toolbar-title">
+                          <h2>MARKET PLACE STATS</h2>
+                          <span flex></span>
+                          <md-button href="/" md-no-ink class="view-all-button">View statistics</md-button>
+                      </div>
+                  </md-toolbar>
               </div>
-            </md-toolbar>
+              <div class="content-panel-body">
+                  <md-content class="md-padding">
+                      <md-tabs md-dynamic-height md-border-bottom>
+                          <md-tab label="Overview">
+                              <md-content class="md-padding">
+                                  <img ng-src="/images/top-products.jpg" alt=""/>
+                              </md-content>
+                          </md-tab>
+                          <md-tab label="Views">
+                              <md-content class="md-padding">
+                                  <img ng-src="/images/top-products.jpg" alt=""/>
+                              </md-content>
+                          </md-tab>
+                          <md-tab label="Added">
+                              <md-content class="md-padding">
+                                  <img ng-src="/images/top-products.jpg" alt=""/>
+                              </md-content>
+                          </md-tab>
+                      </md-tabs>
+                  </md-content>
+              </div>
           </div>
-          <div class="content-panel-body">
-            <md-content class="md-padding">
-        <md-tabs md-dynamic-height md-border-bottom>
-          <md-tab label="Overview">
-            <md-content class="md-padding">
-                <img ng-src="/images/top-products.jpg" alt=""/>
-            </md-content>
-          </md-tab>
-          <md-tab label="Views">
-            <md-content class="md-padding">
-                <img ng-src="/images/top-products.jpg" alt=""/>
-            </md-content>
-          </md-tab>
-          <md-tab label="Added">
-            <md-content class="md-padding">
-                <img ng-src="/images/top-products.jpg" alt=""/>
-            </md-content>
-          </md-tab>
-        </md-tabs>
-      </md-content>
-          </div>
-        </div>
-        <div layout="column" class="space"></div>
-        <div class="content-panel content-panel-dashboard" layout="column" flex="49">
+        <div class="content-panel content-panel-dashboard" ui-widget-services columns="['name','project','start','status']" widget-style="'full'" widget-title="'SERVICES'" start-at-offset="14"></div>
+        <div class="content-panel content-panel-dashboard" ui-widget-projects widget-title="'RECENT PROJECTS'"></div>
+      </div>
+
+      <div class="content-column" layout="column" flex>
+        <div class="content-panel content-panel-dashboard" style="display:none" ng-if="isMobile == null">
               <div class="content-panel-header">
                   <md-toolbar>
                       <div class="md-toolbar-tools widget-toolbar-title">
@@ -87,18 +91,8 @@
                   </md-content>
               </div>
           </div>
-      </div>
-
-      <div class="content-column" layout="row">
-        <div class="content-panel content-panel-dashboard" layout="column" flex="49" ui-widget-services columns="['name','project','start','status']" widget-style="'full'" widget-title="'SERVICES'" start-at-offset="14"></div>
-        <div layout="column" class="space"></div>
-        <div class="content-panel content-panel-dashboard" layout="column" flex="49" ui-widget-tasks columns="['title','project','dueDate','priority']" widget-title="'MY TASKS'"></div>
-      </div>
-
-      <div class="content-column" layout="row">
-        <div class="content-panel content-panel-dashboard" layout="column" flex="49" ui-widget-projects widget-title="'RECENT PROJECTS'"></div>
-        <div layout="column" class="space"></div>
-        <div class="content-panel content-panel-dashboard" layout="column" flex="49">
+        <div class="content-panel content-panel-dashboard" ui-widget-tasks columns="['title','project','dueDate','priority']" widget-title="'MY TASKS'"></div>
+        <div class="content-panel content-panel-dashboard" >
           <div class="content-panel-header">
            <md-toolbar>
               <div class="md-toolbar-tools widget-toolbar-title">
