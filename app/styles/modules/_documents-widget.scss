@@ -22,3 +22,27 @@
     }
   }
 }
+.documents-product{
+  md-list{
+    padding: 0;
+    md-list-item{
+      position: relative;
+      padding: 5px 0;
+      p{
+        font-size: 13px;
+      }
+      .md-button{
+        span {
+          font-size: 13px;
+          text-transform: none;
+        }
+      }
+      .view{
+        width: 50px;
+        min-width: 50px;
+        height: 36px;
+        line-height: 36px;
+      }
+    }
+  }
+}

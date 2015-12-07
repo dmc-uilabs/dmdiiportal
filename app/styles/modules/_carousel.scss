@@ -4,6 +4,24 @@
 
 .ng-carousel{
   height: 0;
+  .image-item {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    display: inline-block;
+    margin: 0 2.5px;
+    cursor: pointer;
+    img {
+      height: 100px !important;
+      width: auto;
+      opacity: 0.7;
+    }
+  }
+  .image-item:hover{
+    img{
+      opacity: 1;
+    }
+  }
   .slide-buttons{
     position: absolute;
     bottom: 0px;

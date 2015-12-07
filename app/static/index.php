@@ -72,6 +72,13 @@ function addMore($item){
     if($item['currentStatus']['startDate'] != null){
         $item['currentStatus']['startDate'] = date('m/d/Y', strtotime($item['currentStatus']['startDate']));
     }
+
+    $item['reviews'] = json_decode(httpResponse(dbUrl().'/product/'.$item['id'].'/product_reviews?productType='.$item['type'].'s', null, null),true);
+    $item['rating'] = [];
+    for($k = 0; $k < count($item['reviews']); ++$k){
+      $item['rating'][] = $item['reviews'][$k]['rating'];
+    }
+
     return $item;
 }
 
@@ -216,10 +223,12 @@ function get_products($params){
     $components = json_decode(httpResponse(dbUrl().'/components', null, null), true);
     for($i = 0; $i < count($components); ++$i){
         $components[$i]['type'] = 'component';
+        $components[$i] = addMore($components[$i]);
     }
     $services = json_decode(httpResponse(dbUrl().'/services', null, null),true);
     for($i = 0; $i < count($services); ++$i){
         $services[$i]['type'] = 'service';
+        $services[$i] = addMore($services[$i]);
     }
     $query = array_merge($components,$services);
     $query = searchByName($params,$query);
@@ -268,8 +277,8 @@ function get_components($params){
         $query = array_slice($query, $params['offset'], $params['limit']);
     }
     for($i = 0; $i < count($query); ++$i){
-        $query[$i] = addMore($query[$i]);
         $query[$i]['type'] = 'component';
+        $query[$i] = addMore($query[$i]);
     }
     $result = array('result' => $query, 'count' => $count);
     return json_encode($result);
@@ -342,8 +351,8 @@ function get_services($params){
         $query = array_slice($query, $params['offset'], $params['limit']);
     }
     for($i = 0; $i < count($query); ++$i){
-        $query[$i] = addMore($query[$i]);
         $query[$i]['type'] = 'service';
+        $query[$i] = addMore($query[$i]);
     }
     $result = array('result' => $query, 'count' => $count, 'countTypes' => $countTypes);
     return json_encode($result);
@@ -536,13 +545,9 @@ function delete_directory($dirName) {
 
 function get_product($params){
   if(isset($params['productId']) && isset($params['typeProduct'])){
-    $query = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'/'.$params['productId'], null, null),true);
-    $query['specifications'] = json_decode(httpResponse(dbUrl().$query['specifications'], null, null),true);
-    $query['reviews'] = json_decode(httpResponse(dbUrl().'/product/'.$params['productId'].'/product_reviews?productType='.$params['typeProduct'], null, null),true);
-    $query['rating'] = [];
-    for($i = 0; $i < count($query['reviews']); ++$i){
-      $query['rating'][] = $query['reviews'][$i]['rating'];
-    }
+    $query = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], null, null),true);
+    $query['type'] = $params['typeProduct'];
+    $query = addMore($query);
   }else{
     return false;
   }
@@ -554,9 +559,9 @@ function get_product($params){
 function get_product_review($params){
   if(isset($params['productId']) && isset($params['typeProduct'])){
     if(isset($params['sort']) && $params['sort'] == 'verified'){
-      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'] . '&status=true', null, null), true);
+      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'] . 's&status=true', null, null), true);
     }else {
-      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'], null, null), true);
+      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'].'s', null, null), true);
     }
   }else{
     $query = json_decode(httpResponse(dbUrl().'/product_reviews', null, null),true);

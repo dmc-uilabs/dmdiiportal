@@ -342,7 +342,7 @@
         "Tag 1",
         "Tag 2"
       ],
-      "specifications": "/services/1/specifications",
+      "specifications": "/services/3/specifications",
       "featureImage": {
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
@@ -1391,6 +1391,20 @@
     }
   ],
   "specifications": [
+    {
+      "serviceId": 3,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "input": 2,
+      "output": 1,
+      "usageStats": {
+        "added": 130,
+        "members": 20
+      },
+      "runStats": {
+        "success": 108,
+        "fail": 12
+      }
+    },
     {
       "serviceId": 25,
       "description": "Estimates Mu for materials with simple structures and known saturation polarization",

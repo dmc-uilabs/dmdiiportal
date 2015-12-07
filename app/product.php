@@ -62,6 +62,7 @@
 <script src="/bower_components/md-data-table/dist/md-data-table-templates.js"></script>
 <script src="/bower_components/moment/moment.js"></script>
 <script src="/bower_components/ng-timeago/ngtimeago.js"></script>
+    <script src="/bower_components/dropzone/dist/min/dropzone.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -71,6 +72,8 @@
 <script src="scripts/common/header/header.js"></script>
 <script src="scripts/common/footer/footer.js"></script>
 <script src="scripts/components/ui-widgets/stars.directive.js"></script>
+    <script src="scripts/components/ui-widgets/documents.directive.js"></script>
+    <script src="scripts/components/dropzone/dropzone.directive.js"></script>
 <script src="scripts/common/factory/socket.factory.js"></script>
 <script src="scripts/common/factory/ajax.factory.js"></script>
 <script src="scripts/common/factory/data.factory.js"></script>

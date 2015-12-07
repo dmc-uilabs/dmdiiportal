@@ -10,6 +10,7 @@ angular.module('dmc.product', [
   'dmc.data',
   'dmc.socket',
   'dmc.widgets.stars',
+  'dmc.widgets.documents',
   'dmc.component.treemenu',
   'dmc.component.productcard',
   'dmc.common.header',
@@ -25,7 +26,7 @@ angular.module('dmc.product', [
     });
     $urlRouterProvider.otherwise('/services/1');
   })
-  .controller('ProductController', function ($stateParams, $scope, ajax, dataFactory) {
+  .controller('ProductController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog) {
 
     $scope.product = [];  //array product
     $scope.number_of_comments = 0; // number of reviews
@@ -39,14 +40,30 @@ angular.module('dmc.product', [
     $scope.sort = 'date';  //type sorting
     $scope.precentage_stars = [0,0,0,0,0]; //precentage stars
     $scope.average_rating = 0;  //average rating
+    $scope.replyFlag = -1;
+    $scope.flagReviewFlag = -1;
+    $scope.products=[];
 
 
     $scope.currentImage = 1;
     $scope.images = [];
+    var img = [
+      'images/marketplace-card-image-1.jpg',
+      'images/3d-printing.png',
+      'images/project_generator.png',
+      'images/plasticity.png',
+      'images/project-1-image.jpg',
+      'images/project_relay_controller.png',
+      'images/project_controller_pg2.png',
+      'images/project_capacitor-bank.png',
+      'images/project_capacitor_compartment.png',
+      'images/ge-fuel-cell.png'
+    ]
     for(var i=0;i<10;i++){
       $scope.images.push({
         id : i+1,
-        src : (i%2 == 0 ? 'images/marketplace-card-image-1.jpg' : 'images/project_generator.png'),
+        //src : (i%2 == 0 ? 'images/marketplace-card-image-1.jpg' : 'images/project_generator.png'),
+        src : img[i],
         selected : (i == 0 ? true : false)
       });
     }
@@ -89,6 +106,19 @@ angular.module('dmc.product', [
     ajax.on(
       dataFactory.getUrlAllServices(),
       {
+        limit: 8
+      },
+      function(data){
+        $scope.products = data.result;
+      },
+      function(){
+        alert("Ajax fail: getAllServices");
+      }
+    );
+
+    ajax.on(
+      dataFactory.getUrlAllServices(),
+      {
         limit: 4
       },
       function(data){
@@ -117,11 +147,27 @@ angular.module('dmc.product', [
     //Show Leave A Review form
     $scope.LeaveAReview = function(){
       $scope.LeaveFlag = !$scope.LeaveFlag;
+      $scope.replyFlag = -1;
+      $scope.flagReviewFlag = -1;
     };
+
+    $scope.Reply = function(index){
+      $scope.replyFlag = index;
+      $scope.LeaveFlag = false;
+      $scope.flagReviewFlag = -1;
+    }
+
+    $scope.FlagReview = function(index){
+      $scope.flagReviewFlag = index;
+      $scope.LeaveFlag = false;
+      $scope.replyFlag = -1;
+    }
 
     //cancel Leave A Review form
     $scope.Cancel = function(){
-      $scope.LeaveFlag = !$scope.LeaveFlag;
+      $scope.LeaveFlag = false;
+      $scope.replyFlag = -1;
+      $scope.flagReviewFlag = -1;
     };
 
     //Submit Leave A Review form
@@ -131,7 +177,7 @@ angular.module('dmc.product', [
         {
           productId: $scope.product.id,
           productType: $stateParams.typeProduct,
-          name: NewReview.Name,
+          name: "DMC Member",
           status: true,
           rating: $scope.submit_rating,
           like: 0,
@@ -159,7 +205,6 @@ angular.module('dmc.product', [
       if(val == 0) {
         $scope.sort = 'date';
         $scope.sort_order = 'DESC';
-
       }
       if(val == 1) {
         $scope.sort = 'rating';
@@ -222,8 +267,21 @@ angular.module('dmc.product', [
           alert("Ajax fail: getProductReview");
         }
       );
-
     };
+
+    //View All Included
+    $scope.ViewIncluded = function(ev){
+      $mdDialog.show({
+        controller: "ViewIncludedController",
+        templateUrl: "templates/product/view_included.html",
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true
+      })
+      .then(function() {
+      }, function() {
+      });
+    }
 
     //selected rating
     $scope.stars = function(val){
@@ -238,4 +296,115 @@ angular.module('dmc.product', [
       review.dislike++;
     };
 
+    $scope.submitSearch = function(text){
+      window.location.href = '/marketplace.php#/search/' + $stateParams.typeProduct +'s?text=' + text;
+    }
+
+
+    $scope.treeMenuModel = {
+        title: 'BROWSE BY',
+        data: [
+            {
+                'id': 1,
+                'title': 'All',
+                'tag' : 'all',
+                'items': 0,
+                'opened' : $scope.currentPage == 'all' ? true : false,
+                'onClick' : function(){
+                    $location.url('/all');
+                },
+                'categories': []
+            },
+            {
+                'id': 2,
+                'title': 'Components',
+                'tag' : 'components',
+                'items': 0,
+                'opened' : $scope.currentPage == 'components' ? true : false,
+                'onClick' : function(){
+                    $location.url('/components');
+                },
+                'categories': []
+            },
+            {
+                'id': 3,
+                'title': 'Services',
+                'tag' : 'services',
+                'items': 0,
+                'opened' : $scope.currentPage == 'services' ? true : false,
+                'onClick' : function(){
+                    $location.url('/services');
+                },
+                'categories': [
+                    {
+                        'id': 31,
+                        'title': 'Analytical Services',
+                        'tag' : 'analytical',
+                        'items': 0,
+                        'opened' : $scope.currentPageType == 'analytical' ? true : false,
+                        'onClick' : function(){
+                            $location.url('/services?type=analytical');
+                        },
+                        'categories': []
+                    },
+                    {
+                        'id': 32,
+                        'title': 'Solid Services',
+                        'tag' : 'solid',
+                        'items': 0,
+                        'opened' : $scope.currentPageType == 'solid' ? true : false,
+                        'onClick' : function(){
+                            $location.url('/services?type=solid');
+                        },
+                        'categories': []
+                    },
+                    {
+                        'id': 33,
+                        'title': 'Data Services',
+                        'tag' : 'data',
+                        'items': 0,
+                        'opened' : $scope.currentPageType == 'data' ? true : false,
+                        'onClick' : function(){
+                            $location.url('/services?type=data');
+                        },
+                        'categories': []
+                    }
+                ]
+            }
+        ]
+    };
+
+  })
+  .controller("ViewIncludedController", function ($scope, ajax, dataFactory, $mdDialog, $location) {
+    $scope.products = [];
+    $scope.product = null;
+    ajax.on(
+      dataFactory.getUrlAllProducts(),
+      {},
+      function(data){
+        $scope.products = data.result;
+        for(var i in $scope.products){
+          $scope.products[i].average_rating = 0;
+          var number_of_comments = $scope.products[i].rating.length;
+          if(number_of_comments != 0) {
+            var average_rating = 0;
+            for (var k in $scope.products[i].rating) {
+              average_rating += $scope.products[i].rating[k];
+            }
+            $scope.products[i].average_rating = (average_rating / number_of_comments).toFixed(1);
+          }
+        }
+        $scope.product = $scope.products[0];
+        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+      },
+      function(){
+        console.error("Ajax fail! getAllProducts()");
+      }
+    );
+    $scope.cancel = function(){
+      $mdDialog.cancel();
+    }
+    $scope.View = function(index){
+      $scope.product = $scope.products[index];
+    }
   });

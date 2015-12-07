@@ -37,7 +37,7 @@ angular.module('dmc.component.productcard', [
         cardStyle: '='
       },
       templateUrl: 'templates/components/product-card/product-card-tpl.html',
-      controller: function($scope,$cookies,$timeout,ajax,dataFactory){
+      controller: function($scope,$cookies,$timeout,ajax,dataFactory, $mdDialog){
           $scope.projects = [];
           $scope.addingToProject = false;
 
@@ -161,8 +161,30 @@ angular.module('dmc.component.productcard', [
           $scope.cancelAddToProject = function(){
               $scope.addingToProject = false;
           };
+
+          $scope.show = function(ev){
+            $mdDialog.show({
+              controller: "ShowProductCtrl",
+              templateUrl: "templates/components/product-card/show_product.html",
+              parent: angular.element(document.body),
+              targetEvent: ev,
+              clickOutsideToClose:true,
+              locals: {
+                product: $scope.cardSource
+              }
+            })
+            .then(function() {
+            }, function() {
+            });
+          }
       }
     };
+})
+.controller('ShowProductCtrl', function ($scope, $mdDialog, product){
+  $scope.product = product;
+  $scope.cancel = function(){
+    $mdDialog.cancel();
+  }
 })
 .factory('Products', function (ajax,dataFactory) {
         var getServices = function(f,data){
