@@ -64,6 +64,9 @@ angular.module('dmc.data',[])
             },
             addProductReview: function(){
                 return baseServer+'/add_product_review';
+            },
+            editProduct: function(){
+                return baseServer+'/edit_product';
             }
         };
     }
