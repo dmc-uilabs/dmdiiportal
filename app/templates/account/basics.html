@@ -1,0 +1,55 @@
+<div class="container container-account" layout-padding layout="row">
+    <div class="content-column left-content" layout="column" flex="20">
+        <div class="content-panel" account-menu account-id="accountId" page="page"></div>
+    </div>
+    <div class="content-column right-content" layout="column" flex="80">
+        <div class="content-panel">
+            <div class="content-panel-body">
+                <md-content>
+                    <div class="header-right-content" layout="row">
+                        <div layout="column">
+                            <h2 class="md-title">{{title}}</h2>
+                        </div>
+                        <span layout="column" flex></span>
+                        <md-button ng-href="/">Deactivate My Account</md-button>
+                    </div>
+                    <div class="inputs-container" layout="row">
+                        <md-input-container flex="30">
+                            <label>First name</label>
+                            <input ng-model="user.firstName">
+                        </md-input-container>
+                        <md-input-container flex="30">
+                            <label>Last Name</label>
+                            <input ng-model="user.lastName">
+                        </md-input-container>
+                        <md-input-container flex="40">
+                            <label>Email Address</label>
+                            <input ng-model="user.email">
+                        </md-input-container>
+                    </div>
+                    <div class="inputs-container" layout="row">
+                        <md-input-container flex="30">
+                            <label>Salutation</label>
+                            <md-select ng-model="user.salutation">
+                                <md-option ng-repeat="item in salutations" value="{{item.id}}">{{item.title}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container flex="30">
+                            <label>Suffix</label>
+                            <md-select ng-model="user.suffix">
+                                <md-option ng-repeat="item in suffixes" value="{{item.id}}">{{item.title}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="icon-input-container md-icon-float" flex="40">
+                            <label>Location</label>
+                            <md-icon>
+                                <ng-md-icon icon="gps_fixed" style="fill: #333" size="26" class="location"></ng-md-icon>
+                            </md-icon>
+                            <input ng-model="user.location" type="text">
+                        </md-input-container>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

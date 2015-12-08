@@ -1,0 +1,66 @@
+<div class="container container-account" layout-padding layout="row">
+    <div class="content-column left-content" layout="column" flex="20">
+        <div class="content-panel" account-menu account-id="accountId" page="page"></div>
+    </div>
+    <div class="content-column right-content" layout="column" flex="80">
+        <div class="content-panel">
+            <div class="content-panel-body">
+                <md-content>
+                    <div class="header-right-content" layout="row">
+                        <div layout="column">
+                            <h2 class="md-title">{{title}}</h2>
+                        </div>
+                        <span layout="column" flex></span>
+                    </div>
+                    <div class="inputs-container" layout="row">
+                        <div layout="column" flex="50">
+                            <h2 class="md-title title-block">Public information</h2>
+                            <div layout="row">
+                                <div layout="column" flex="20" ng-repeat="item in information.public">
+                                    <md-checkbox ng-model="item.checked" aria-label="{{item.title}}">{{item.title}}</md-checkbox>
+                                </div>
+                            </div>
+                            <div layout="row" ng-repeat="item in information.public">
+                                <md-input-container class="md-icon-float" layout="column" flex>
+                                    <label>{{item.title}}</label>
+                                    <md-icon><ng-md-icon icon="{{item.icon}}" ng-style="item.checked ? {'fill' : '#444'} : {'fill' : '#aaa'}" size="26"></ng-md-icon></md-icon>
+                                    <input ng-disabled="!item.checked" ng-model="item.value">
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div layout="column" flex=50>
+                            <h2 class="md-title title-block">Private information</h2>
+                            <div layout="row">
+                                <div layout="column" flex="20" ng-repeat="item in information.private">
+                                    <md-checkbox ng-model="item.checked" aria-label="{{item.title}}">{{item.title}}</md-checkbox>
+                                </div>
+                            </div>
+                            <div layout="row" ng-repeat="item in information.private">
+                                <md-input-container class="md-icon-float" layout="column" flex>
+                                    <label>{{item.title}}</label>
+                                    <md-icon><ng-md-icon icon="{{item.icon}}" ng-style="item.checked ? {'fill' : '#444'} : {'fill' : '#aaa'}" size="26"></ng-md-icon></md-icon>
+                                    <input ng-disabled="!item.checked" ng-model="item.value">
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <md-divider ></md-divider>
+                    <div class="inputs-container blocked-users" layout="row">
+                        <div layout="column" flex="50">
+                            <h2 class="md-title title-block">Blocked Users</h2>
+                            <div layout="row">
+                                <div class="blocked-user" ng-repeat="user in blockedUser">
+                                    <a ng-href="/user?id={{user.id}}">{{user.fullName}}</a>
+                                    <md-button class="md-icon-button" ng-click="deleteBlockedUser(user.id)" aria-label="Delete Blocked User">
+                                        <ng-md-icon icon="clear" ng-style="{'fill' : '#444'}" size="26"></ng-md-icon>
+                                    </md-button>
+                                </div>
+                                <div class="empty-blocked-list" ng-show="blockedUser.length == 0">List is empty</div>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

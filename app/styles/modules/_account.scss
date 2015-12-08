@@ -1,0 +1,145 @@
+.container-account {
+  .left-content {
+    .content-panel {
+      .content-panel-body {
+        .left-menu-list {
+          width: 100%;
+          padding: 0;
+          .md-list-item-text {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .right-content{
+    md-content{
+      padding: 8px 21px;
+      .website-container{
+        margin-top: 21px;
+      }
+      .inputs-container {
+        .block-notification{
+          h2{
+            color: #666;
+            font-size: 17px;
+            font-weight: 100;
+          }
+          md-switch{
+            .md-label{
+              span{
+                font-size: 15px;
+              }
+            }
+          }
+          md-switch.md-checked .md-thumb {
+            background-color: rgb(55, 153, 249);
+          }
+          md-switch.md-checked .md-bar {
+            background-color: rgb(139, 198, 255);
+          }
+        }
+        .top-container {
+          padding: 13px 0;
+          .title,.disable-enable-button{
+              display: inline-block;
+          }
+          .title{
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-right: 13px;
+          }
+          .disable-enable-button{
+            font-size: 16px;
+            text-decoration: underline;
+            padding: 0 8px;
+            cursor: pointer;
+            &:hover{
+              text-decoration: none;
+            }
+          }
+          .disable-enable-button:nth-child(2){
+            border-right: 1px solid #aaa;
+          }
+        }
+      }
+      md-input-container:nth-child(1),md-input-container:nth-child(2){
+        padding-right: 21px;
+      }
+      md-checkbox{
+        margin-left: 0;
+      }
+      md-checkbox.md-checked .md-icon {
+        background-color: #FF9600;
+      }
+      .blocked-users{
+        margin-top: 21px;
+        .empty-blocked-list{
+          font-size: 15px;
+          margin-bottom: 13px;
+        }
+        .blocked-user{
+          display: inline-block;
+          white-space: nowrap;
+          margin-right: 21px;
+          .md-button.md-icon-button{
+            margin: 0;
+            width: 30px;
+          }
+          a{
+            color:#333;
+            font-size: 15px;
+            &:hover{
+              text-decoration: none;
+            }
+          }
+        }
+      }
+      .title-block{
+        text-transform: uppercase;
+        color: #888;
+        font-size: 15px;
+        margin-top: 0;
+      }
+      .header-right-content{
+        display: flex;
+        .md-button.md-default-theme{
+          span {
+            text-transform: capitalize;
+            text-decoration: underline;
+          }
+          &:hover{
+            span{
+              text-decoration: none;
+            }
+          }
+        }
+        h2{
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
+.icon-input-container label:not(.md-no-float),
+.icon-input-container .md-placeholder{
+  -webkit-transform: translate3d(0, 28px, 0) scale(1);
+  transform: translate3d(0, 44px, 0) scale(1);
+  transition: -webkit-transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.25s;
+  transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.25s;
+}
+.icon-input-container.md-icon-float.md-input-focused label,
+.icon-input-container.md-icon-float.md-input-has-value label{
+  -webkit-transform: translate3d(0, 6px, 0) scale(0.75);
+  transform: translate3d(0, 18px, 0) scale(0.75);
+  transition: -webkit-transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.5s;
+  transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.5s;
+}
+
+.icon-input-container.md-icon-float > md-icon{
+  top: 41px;
+}
+.icon-input-container.md-icon-float.md-input-focused > md-icon,
+.icon-input-container.md-icon-float.md-input-has-value > md-icon{
+  top: 33px !important;
+}

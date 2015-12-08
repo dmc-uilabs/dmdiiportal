@@ -1,0 +1,13 @@
+<div class="content-panel-body">
+    <md-content layout="row">
+        <md-list class="left-menu-list">
+            <md-list-item ng-repeat="item in menu">
+                <div class="md-list-item-text" layout="column">
+                    <md-button ng-href="{{item.url}}"
+                               class="md-raised"
+                               ng-class="{'md-primary' : item.selected == true}">{{item.title}}</md-button>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</div>
