@@ -58,6 +58,8 @@ return call_user_func(function () {
       echo get_product_review($_GET);
     }else if(strpos($uri,'/add_product_review') !== false){
       echo add_product_review($_POST);
+    }else if(strpos($uri,'/edit_product') !== false){
+      echo edit_product($_POST);
     }
 });
 
@@ -612,6 +614,22 @@ function add_product_review($params){
   ));
   json_decode(httpResponse(dbUrl().'/product_reviews', 'POST', $data),true);
   return $data;
+}
+
+function edit_product($params){
+  $service = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], null, null),true);
+  $service['title'] = $params['title'];
+  if(isset($params['tags'])){
+    $service['tags'] = $params['tags'];
+  }else{
+    $service['tags'] = [];
+  }
+  $service['description'] = $params['description'];
+
+  $data = json_encode($service);
+
+  $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], 'PUT', $data),true);
+  return json_encode(array('result' => $changed_item ));
 }
 
 ?>

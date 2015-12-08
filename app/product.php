@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/bower_components/angular-carousel/angular-carousel.css" />
   <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
   <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
+  <link rel="stylesheet" href="/bower_components/dropzone/dist/min/dropzone.min.css" />
   <link rel="stylesheet" href="/bower_components/md-data-table/dist/md-data-table-style.css" />
   <!-- endbower -->
   <!-- endbuild -->

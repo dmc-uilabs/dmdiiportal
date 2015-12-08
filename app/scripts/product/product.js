@@ -24,7 +24,7 @@ angular.module('dmc.product', [
       templateUrl: 'templates/product/product.html',
       controller: 'ProductController'
     });
-    $urlRouterProvider.otherwise('/services/1');
+    $urlRouterProvider.otherwise('/service/1');
   })
   .controller('ProductController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog) {
 
@@ -40,10 +40,11 @@ angular.module('dmc.product', [
     $scope.sort = 'date';  //type sorting
     $scope.precentage_stars = [0,0,0,0,0]; //precentage stars
     $scope.average_rating = 0;  //average rating
-    $scope.replyFlag = -1;
-    $scope.flagReviewFlag = -1;
-    $scope.products=[];
-
+    $scope.replyFlag = -1;  //flag for visibility form Reply
+    $scope.flagReviewFlag = -1;  //flag for visibility form Flag Review
+    $scope.products = [];   //included services
+    $scope.editFlag = false;  //flag edit page
+    $scope.allServices = [];
 
     $scope.currentImage = 1;
     $scope.images = [];
@@ -94,6 +95,7 @@ angular.module('dmc.product', [
           if($scope.number_of_comments != 0) {
             calculate_rating();
           }
+        $scope.qqq = $scope.product;
         }else{
           $scope.not_found = true;
         }
@@ -103,6 +105,7 @@ angular.module('dmc.product', [
       }
     );
 
+    //get included services
     ajax.on(
       dataFactory.getUrlAllServices(),
       {
@@ -116,6 +119,7 @@ angular.module('dmc.product', [
       }
     );
 
+    //get similar product
     ajax.on(
       dataFactory.getUrlAllServices(),
       {
@@ -126,6 +130,17 @@ angular.module('dmc.product', [
       },
       function(){
         alert("Ajax fail: getAllServices");
+      }
+    );
+
+    ajax.on(
+      dataFactory.getUrlAllProducts(),
+      {},
+      function(data){
+        $scope.allServices = data.result;  
+      },
+      function(){
+        console.error("Ajax fail! getAllProducts()");
       }
     );
 
@@ -151,19 +166,21 @@ angular.module('dmc.product', [
       $scope.flagReviewFlag = -1;
     };
 
+    //Show Reply form
     $scope.Reply = function(index){
       $scope.replyFlag = index;
       $scope.LeaveFlag = false;
       $scope.flagReviewFlag = -1;
     }
 
+    //Show Flag Review form
     $scope.FlagReview = function(index){
       $scope.flagReviewFlag = index;
       $scope.LeaveFlag = false;
       $scope.replyFlag = -1;
     }
 
-    //cancel Leave A Review form
+    //cancel Review form
     $scope.Cancel = function(){
       $scope.LeaveFlag = false;
       $scope.replyFlag = -1;
@@ -298,6 +315,54 @@ angular.module('dmc.product', [
 
     $scope.submitSearch = function(text){
       window.location.href = '/marketplace.php#/search/' + $stateParams.typeProduct +'s?text=' + text;
+    }
+
+    $scope.editPage = function () {
+      $scope.editFlag = true;
+    }
+
+    $scope.querySearch = function(query) {
+      var results = query ? $scope.allServices.filter( createFilterFor(query) ) : $scope.allServices;
+      
+        return results;
+    }
+
+    $scope.AddServices = function(item, text){
+      if(!item)return;
+      $scope.products.push(item);
+      this.$$childHead.$mdAutocompleteCtrl.clear();
+    }
+
+    //Create filter function for a query string
+    function createFilterFor(query) {
+      var lowercaseQuery = angular.lowercase(query);
+      return function filterFn(state) {
+        return (angular.lowercase(state.title).indexOf(lowercaseQuery) === 0);
+      };
+    }
+
+    $scope.deleteIncluded = function(index){
+      $scope.products.splice(index, 1);
+    }
+
+    $scope.saveEdit = function(){
+      ajax.on(
+        dataFactory.editProduct(),
+        {
+          typeProduct: $scope.product.type,
+          productId: $scope.product.id,
+          title: $scope.product.title,
+          tags: $scope.product.tags,
+          description: $scope.product.description,
+        },
+        function(data){
+        },
+        function(){
+          console.error("Ajax fail! editProduct()");
+        },
+        "POST"
+      );
+      $scope.editFlag = false;
     }
 
 

@@ -21,6 +21,7 @@
       text-transform: initial;
       margin-bottom: 0;
       margin-top: 0;
+      height: 47px;
     }
   }
 
@@ -28,8 +29,11 @@
     text-align: center;
     width: 425px;
     img{
-      width: auto;
+      width: 100%;
       height: auto;
+    }
+    .main-image{
+      padding-bottom: 16px;
     }
   }
   .product-image-modal{
@@ -43,8 +47,10 @@
 }
 
 .tabs-content{
-  p{
-    margin: 3px 10px;
+  p,
+  .add-specification{
+    margin: 3px 0;
+    color: black;
   }
   md-chips .md-chips{
     box-shadow: none;
