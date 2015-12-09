@@ -24,7 +24,7 @@ angular.module('dmc.product', [
       templateUrl: 'templates/product/product.html',
       controller: 'ProductController'
     });
-    $urlRouterProvider.otherwise('/service/1');
+    $urlRouterProvider.otherwise('/services/1');
   })
   .controller('ProductController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog) {
 
@@ -288,6 +288,7 @@ angular.module('dmc.product', [
 
     //View All Included
     $scope.ViewIncluded = function(ev){
+      $(window).scrollTop(0);
       $mdDialog.show({
         controller: "ViewIncludedController",
         templateUrl: "templates/product/view_included.html",
