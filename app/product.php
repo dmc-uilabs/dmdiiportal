@@ -84,5 +84,8 @@
 <script src="scripts/components/product-card/product-card.js"></script>
 <script src="scripts/components/products-card/products-card.js"></script>
 <!-- endbuild -->
+<script type="text/javascript">
+        window.apiUrl = '';
+    </script>
 </body>
 </html>
