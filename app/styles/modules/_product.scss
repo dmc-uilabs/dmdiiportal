@@ -44,31 +44,31 @@
   .product-description{
     margin-top: 15px;
   }
-}
 
-.tabs-content{
-  p,
-  .add-specification{
-    margin: 3px 0;
-    color: black;
-  }
-  md-chips .md-chips{
-    box-shadow: none;
-  }
-  .included{
-    padding: 8px;
-    .product-card{
-      width: 100%;
-      padding-bottom: 16px
+  .tabs-content{
+    p,
+    .add-specification{
+      margin: 3px 0;
+      color: black;
     }
+    md-chips .md-chips{
+      box-shadow: none;
+    }
+    .included{
+      padding: 8px;
+      .product-card{
+        width: 100%;
+        padding-bottom: 16px
+      }
+    }
+  }
+  .md-button.viewAll{
+    font-size: 11px;
+    color: #65AF3F;
+    line-height: 36px;
+    margin: 0;
   }
 }
-    .md-button.viewAll{
-      font-size: 11px;
-      color: #65AF3F;
-      line-height: 36px;
-      margin: 0;
-    }
 
 .reviews{
   margin: 15px 0;
