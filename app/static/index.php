@@ -548,7 +548,12 @@ function delete_directory($dirName) {
 function get_product($params){
   if(isset($params['productId']) && isset($params['typeProduct'])){
     $query = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'/'.$params['productId'], null, null),true);
-    $query['type'] = $params['typeProduct'];
+    if($params['typeProduct'] == 'services') {
+        $query['type'] = 'service';
+    }else if($params['type'] == 'components'){
+        $query['type'] = 'component';
+    }
+
     $query = addMore($query);
   }else{
     return false;

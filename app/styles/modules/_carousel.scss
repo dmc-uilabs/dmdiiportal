@@ -5,8 +5,8 @@
 .ng-carousel{
   height: 0;
   .image-item {
-    width: 100px;
-    height: 100px;
+    width: 84px;
+    height: 84px;
     overflow: hidden;
     display: inline-block;
     margin: 0 2.5px;
@@ -63,6 +63,9 @@
     width: 36px;
     top: 60px;
     bottom: 112px;
+    &.image-button{
+      top: 10px;
+    }
     button.demo-nav{
       left:0;
     }
@@ -71,6 +74,9 @@
     width: 36px;
     top: 60px;
     bottom: 112px;
+    &.image-button{
+      top: 10px;
+    }
     button.demo-nav{
       right: 0;
     }

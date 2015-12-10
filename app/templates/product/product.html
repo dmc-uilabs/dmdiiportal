@@ -98,6 +98,32 @@
             </md-content>
           </md-tab>
 
+          <md-tab label="Tags">
+            <md-content class="md-padding">
+              <div layout="row" class="tabs-content" layout-wrap>
+                <md-chips  ng-if="!editFlag" ng-repeat="tag in product.tags track by $index">
+                  <md-chip >{{tag}}</md-chip>
+                </md-chips>
+                <md-chips
+                      ng-if="editFlag && qqq.tags"
+                      ng-model="qqq.tags"
+                      readonly="false"
+                      placeholder="Enter a tag"
+                      delete-button-label="Remove Tag"
+                      delete-hint="Press delete to remove tag"
+                      secondary-placeholder="+Tag">
+                </md-chips>
+              </div>
+            </md-content>
+          </md-tab>
+
+          <md-tab label="Documents">
+            <md-content class="md-padding">
+                <ui-widget-documents-product ng-if="!editFlag"></ui-widget-documents-product>
+                <div ui-widget-upload-documents ng-if="editFlag" class="content-panel" auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
+            </md-content>
+          </md-tab>
+
           <md-tab label="Included Services">
             <md-content ng-if="!editFlag" class="md-padding">
               <div layout layout-align="end end">
@@ -146,30 +172,6 @@
                   </div>
 
                 </div>
-              </div>
-            </md-content>
-          </md-tab>
-          <md-tab label="Documents">
-            <md-content class="md-padding">
-                <ui-widget-documents-product ng-if="!editFlag"></ui-widget-documents-product>
-                <div ui-widget-upload-documents ng-if="editFlag" class="content-panel" auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
-            </md-content>
-          </md-tab>
-          <md-tab label="Tags">
-            <md-content class="md-padding">
-              <div layout="row" class="tabs-content" layout-wrap>
-                <md-chips  ng-if="!editFlag" ng-repeat="tag in product.tags track by $index">
-                  <md-chip >{{tag}}</md-chip>
-                </md-chips>
-                <md-chips
-                      ng-if="editFlag && qqq.tags"
-                      ng-model="qqq.tags"
-                      readonly="false"
-                      placeholder="Enter a tag"
-                      delete-button-label="Remove Tag"
-                      delete-hint="Press delete to remove tag"
-                      secondary-placeholder="+Tag">
-                </md-chips>
               </div>
             </md-content>
           </md-tab>
