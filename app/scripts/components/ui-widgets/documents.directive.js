@@ -83,7 +83,8 @@ angular.module('dmc.widgets.documents',[
             scope: {
                 widgetTitle: "=",
                 projectId: "=",
-                autoUpload: "="
+                autoUpload: "=",
+                product: "="
             },
             link: function (scope, iElement, iAttrs) {
 
@@ -91,10 +92,32 @@ angular.module('dmc.widgets.documents',[
             controller: function($scope, $element, $attrs, dataFactory, ajax) {
                 $scope.autoProcessQueue = ($scope.autoUpload != null ? $scope.autoUpload : true);
                 $scope.documents = [];
+                if($scope.product){
+                    ajax.on(dataFactory.getUrlAllDocuments($scope.projectId),{
+                        projectId : 5,
+                        sort : 'name',
+                        order : 'DESC',
+                        limit : 5,
+                        offset : 0
+                    },function(data){
+                        $scope.documents = data.result;
+                    },function(){
+                        alert("Ajax faild: getDocuments");
+                    });
+                }
                 $scope.documentDropZone;
 
                 $scope.removeFile = function(item){
-                    item.file._removeLink.click();
+                    if(item.file._removeLink){
+                        item.file._removeLink.click();
+                    }else{
+                        for(var i in $scope.documents) {
+                            if ($scope.documents[i].id == item.id) {
+                                $scope.documents.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
                 };
 
                 $scope.editFile = function(item){
@@ -112,7 +135,9 @@ angular.module('dmc.widgets.documents',[
                 $scope.saveEdit = function(item){
                     if(item.title.trim().length == 0) item.title = item.oldTitle;
                     item.editing = false;
-                    item.file.title = item.title;
+                    if(item.file.title){
+                        item.file.title = item.title;
+                    }
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
 
