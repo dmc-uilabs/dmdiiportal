@@ -184,9 +184,7 @@
     <script src="scripts/dashboard/dashboard.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
-        <?php
-          echo('window.apiUrl = "'.getenv("Restip").'"');
-        ?>
+        window.apiUrl = '';
     </script>
   </body>
 </html>
