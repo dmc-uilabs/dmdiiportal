@@ -547,8 +547,13 @@ function delete_directory($dirName) {
 
 function get_product($params){
   if(isset($params['productId']) && isset($params['typeProduct'])){
-    $query = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], null, null),true);
-    $query['type'] = $params['typeProduct'];
+    $query = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'/'.$params['productId'], null, null),true);
+    if($params['typeProduct'] == 'services') {
+        $query['type'] = 'service';
+    }else if($params['type'] == 'components'){
+        $query['type'] = 'component';
+    }
+
     $query = addMore($query);
   }else{
     return false;
@@ -561,9 +566,9 @@ function get_product($params){
 function get_product_review($params){
   if(isset($params['productId']) && isset($params['typeProduct'])){
     if(isset($params['sort']) && $params['sort'] == 'verified'){
-      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'] . 's&status=true', null, null), true);
+      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'] . '&status=true', null, null), true);
     }else {
-      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'].'s', null, null), true);
+      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'], null, null), true);
     }
   }else{
     $query = json_decode(httpResponse(dbUrl().'/product_reviews', null, null),true);
@@ -617,7 +622,7 @@ function add_product_review($params){
 }
 
 function edit_product($params){
-  $service = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], null, null),true);
+  $service = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'/'.$params['productId'], null, null),true);
   $service['title'] = $params['title'];
   if(isset($params['tags'])){
     $service['tags'] = $params['tags'];
@@ -628,7 +633,7 @@ function edit_product($params){
 
   $data = json_encode($service);
 
-  $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], 'PUT', $data),true);
+  $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'/'.$params['productId'], 'PUT', $data),true);
   return json_encode(array('result' => $changed_item ));
 }
 

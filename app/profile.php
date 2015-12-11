@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Product</title>
+  <title>Profile</title>
 <!--  <base href="/">-->
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,10 +12,8 @@
 
   <!-- build:css styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="/bower_components/angular-carousel/angular-carousel.css" />
   <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
   <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
-  <link rel="stylesheet" href="/bower_components/dropzone/dist/min/dropzone.min.css" />
   <link rel="stylesheet" href="/bower_components/md-data-table/dist/md-data-table-style.css" />
   <!-- endbower -->
   <!-- endbuild -->
@@ -28,14 +26,14 @@
   <script src="/bower_components/modernizr/modernizr.js"></script>
   <!-- endbuild -->
 </head>
-<body ng-app="dmc.product">
+<body ng-app="dmc.profile">
 
 <!--[if lt IE 10]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
 <!-- Top Header -->
-<div dmc-top-header active-page="'marketplace&market'"></div>
+<div dmc-top-header></div>
 <ui-view></ui-view>
 <dmc-footer></dmc-footer>
 
@@ -46,10 +44,6 @@
 <script src="/bower_components/hammerjs/hammer.js"></script>
 <script src="/bower_components/angular-carousel/angular-carousel.js"></script>
 <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="/bower_components/moment/moment.js"></script>
-<script src="/bower_components/angular-moment/angular-moment.js"></script>
-<script src="/bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
-<script src="/bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
 <script src="/bower_components/angular-animate/angular-animate.js"></script>
 <script src="/bower_components/angular-aria/angular-aria.js"></script>
 <script src="/bower_components/angular-material/angular-material.js"></script>
@@ -60,34 +54,27 @@
 <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="/bower_components/angular-websocket/angular-websocket.min.js"></script>
 <script src="/bower_components/angularUtils-pagination/dirPagination.js"></script>
-<script src="/bower_components/dropzone/dist/min/dropzone.min.js"></script>
-<script src="/bower_components/jquery-ui/jquery-ui.js"></script>
 <script src="/bower_components/lodash/lodash.js"></script>
 <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="/bower_components/angular-uuid4/angular-uuid4.js"></script>
 <script src="/bower_components/md-data-table/dist/md-data-table.js"></script>
 <script src="/bower_components/md-data-table/dist/md-data-table-templates.js"></script>
+<script src="/bower_components/moment/moment.js"></script>
 <script src="/bower_components/ng-timeago/ngtimeago.js"></script>
-<script src="/bower_components/ui-autocomplete/autocomplete.js"></script>
+<script src="/bower_components/dropzone/dist/min/dropzone.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
-<!-- build:js scripts/product/index.js -->
+<!-- build:js scripts/profile/index.js -->
 <script src="scripts/socket/socket.io.js"></script>
 <script src="scripts/configs/ngMaterial-config.js"></script>
 <script src="scripts/common/header/header.js"></script>
 <script src="scripts/common/footer/footer.js"></script>
 <script src="scripts/components/ui-widgets/stars.directive.js"></script>
-    <script src="scripts/components/ui-widgets/documents.directive.js"></script>
-    <script src="scripts/components/dropzone/dropzone.directive.js"></script>
 <script src="scripts/common/factory/socket.factory.js"></script>
 <script src="scripts/common/factory/ajax.factory.js"></script>
 <script src="scripts/common/factory/data.factory.js"></script>
-<script src="scripts/components/carousel/carousel.js"></script>
-<script src="scripts/product/product.js"></script>
-<script src="scripts/components/tree-menu/tree-menu.js"></script>
-<script src="scripts/components/product-card/product-card.js"></script>
-<script src="scripts/components/products-card/products-card.js"></script>
+<script src="scripts/profile/profile.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
         window.apiUrl = '';

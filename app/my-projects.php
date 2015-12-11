@@ -38,12 +38,12 @@
 
     <div class="page-header" layout-padding>
       <md-toolbar>
-        <div class="md-toolbar-tools my-projects-title">
-          <div layout="column">
+        <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="center center">
+          <!-- <div layout="row"> -->
             <h1>My Projects
-                <md-button class="md-raised btn-add-project">Add Project</md-button>
             </h1>
-          </div>
+                <md-button class="md-raised btn-add-project">Add Project</md-button>
+          <!-- </div> -->
           <!-- fill up the space between left and right area -->
           <span flex></span>
           <md-input-container>

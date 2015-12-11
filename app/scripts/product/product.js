@@ -24,7 +24,7 @@ angular.module('dmc.product', [
       templateUrl: 'templates/product/product.html',
       controller: 'ProductController'
     });
-    $urlRouterProvider.otherwise('/service/1');
+    $urlRouterProvider.otherwise('/services/1');
   })
   .controller('ProductController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog) {
 
@@ -202,13 +202,14 @@ angular.module('dmc.product', [
           comment: NewReview.Comment
         },
         function(data){
-          $scope.product.reviews.push(data);
+          $scope.SortingReviews(0);
         },
         function(){
           alert("Ajax fail: getProductReview");
         },
         "POST"
       );
+
 
       $scope.number_of_comments++;
       $scope.product.rating.push($scope.submit_rating);
@@ -288,11 +289,16 @@ angular.module('dmc.product', [
 
     //View All Included
     $scope.ViewIncluded = function(ev){
+      $(window).scrollTop(0);
       $mdDialog.show({
         controller: "ViewIncludedController",
         templateUrl: "templates/product/view_included.html",
         parent: angular.element(document.body),
         targetEvent: ev,
+        locals: {
+          id: $scope.product.id,
+          type : $scope.product.type
+        },
         clickOutsideToClose:true
       })
       .then(function() {
@@ -440,9 +446,11 @@ angular.module('dmc.product', [
     };
 
   })
-  .controller("ViewIncludedController", function ($scope, ajax, dataFactory, $mdDialog, $location) {
+  .controller("ViewIncludedController", function ($scope, ajax, dataFactory, $mdDialog, $location, id, type) {
     $scope.products = [];
     $scope.product = null;
+    $scope.id = id;
+    $scope.type = type;
     ajax.on(
       dataFactory.getUrlAllProducts(),
       {},

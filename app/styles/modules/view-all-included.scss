@@ -10,6 +10,9 @@
 
 		md-list{
 			md-list-item{
+				&.selected{
+					background-color: #65AF3F;
+				}
 				min-height: 30px;
 				font-size: 10px;
 				.md-list-item-inner{

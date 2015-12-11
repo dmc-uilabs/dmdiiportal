@@ -2,7 +2,7 @@
   <md-dialog-content layout="row" ng-if="product">
   	<md-content class="list-components">
   		<md-list>
-  			<md-list-item ng-repeat="listProduct in products" ng-click="View($index)">
+  			<md-list-item ng-repeat="listProduct in products" class="{{(id == listProduct.id && type == listProduct.type) ? 'selected' : ''}}" ng-click="View($index)">
   				<h2>{{listProduct.title}}</h2>
   				<md-divider></md-divider>
   			</md-list-item>
