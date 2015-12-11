@@ -16,37 +16,57 @@
                     <div class="inputs-container" layout="row">
                         <md-input-container flex="30">
                             <label>First name</label>
-                            <input ng-model="user.firstName">
+                            <input ng-model="user.firstName" ng-change="changedValue('firstName')">
                         </md-input-container>
                         <md-input-container flex="30">
                             <label>Last Name</label>
-                            <input ng-model="user.lastName">
+                            <input ng-model="user.lastName" ng-change="changedValue('lastName')">
                         </md-input-container>
                         <md-input-container flex="40">
                             <label>Email Address</label>
-                            <input ng-model="user.email">
+                            <input ng-model="user.email" type="email" ng-change="changedValue('email')">
                         </md-input-container>
                     </div>
                     <div class="inputs-container" layout="row">
-                        <md-input-container flex="30">
+                        <md-input-container flex="50">
                             <label>Salutation</label>
-                            <md-select ng-model="user.salutation">
+                            <md-select ng-model="user.salutation" ng-change="changedValue('salutation')">
                                 <md-option ng-repeat="item in salutations" value="{{item.id}}">{{item.title}}</md-option>
                             </md-select>
                         </md-input-container>
-                        <md-input-container flex="30">
+                        <md-input-container flex="50">
                             <label>Suffix</label>
-                            <md-select ng-model="user.suffix">
+                            <md-select ng-model="user.suffix" ng-change="changedValue('suffix')">
                                 <md-option ng-repeat="item in suffixes" value="{{item.id}}">{{item.title}}</md-option>
                             </md-select>
                         </md-input-container>
-                        <md-input-container class="icon-input-container md-icon-float" flex="40">
+                    </div>
+                    <div class="inputs-container" layout="row">
+                        <md-input-container class="md-icon-float" flex="50">
                             <label>Location</label>
-                            <md-icon>
-                                <ng-md-icon icon="gps_fixed" style="fill: #333" size="26" class="location"></ng-md-icon>
+                            <md-icon class="location-gps" ng-click="getLocation()">
+                                <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
                             </md-icon>
-                            <input ng-model="user.location" type="text">
+                            <input ng-model="user.location" type="text" ng-change="changedValue('location')">
                         </md-input-container>
+                        <md-autocomplete flex="50"
+                                ng-disabled="ctrl.isDisabled"
+                                md-no-cache="ctrl.noCache"
+                                md-selected-item="ctrl.selectedItem"
+                                md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                                md-search-text="ctrl.searchText"
+                                md-selected-item-change="ctrl.selectedItemChange(item)"
+                                md-items="item in ctrl.querySearch(ctrl.searchText)"
+                                md-item-text="item.display"
+                                md-min-length="0"
+                                placeholder="What is your time zone?">
+                            <md-item-template>
+                                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No matches found for "{{ctrl.searchText}}".
+                            </md-not-found>
+                        </md-autocomplete>
                     </div>
                 </md-content>
             </div>
