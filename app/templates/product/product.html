@@ -40,7 +40,16 @@
               <ng-md-icon icon="camera_alt" style="fill: #65AF3F;" size="25"></ng-md-icon>
               Manage photos
             </md-button>
-            <div dmc-carousel functions="carouselFunctions" name-carousel="'carouselImages'" type-carousel="'images'" carouselSource="images" max-items="10" show-items="4" carousel-source="images"></div>
+            <div dmc-carousel 
+                functions="carouselFunctions" 
+                name-carousel="'carouselImages'" 
+                type-carousel="'images'" 
+                carouselSource="images" 
+                max-items="10" 
+                show-items="4" 
+                carousel-source="images" 
+                edit="editFlag">
+            </div>
           </div>
           <div flex>
             <!--product header-->
@@ -58,7 +67,8 @@
                 <md-button ng-if="!editFlag" aria-label="share" href="" class="md-icon-button header-icon">
                   <ng-md-icon icon="share" style="fill: #65AF3F;" size="25"></ng-md-icon>
                 </md-button>
-                <md-button ng-if="editFlag" ng-click="saveEdit()" class="add">Save</md-button>
+                <md-button ng-if="editFlag" ng-click="cancelEdit()" class="md-raised cancel">Cancel</md-button>
+                <md-button ng-if="editFlag" ng-click="saveEdit()" class="md-raised save">Save</md-button>
               </div>
               <div layout="row">
                 <ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>

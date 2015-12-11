@@ -120,6 +120,14 @@ angular.module('dmc.widgets.documents',[
                     }
                 };
 
+                $scope.confirmDeleteFile = function(item){
+                    item.delete = true;
+                }
+
+                $scope.cancelConfirm = function(item){
+                    item.delete = false;
+                }
+
                 $scope.editFile = function(item){
                     item.oldTitle = item.title;
                     item.editing = true;
