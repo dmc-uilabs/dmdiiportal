@@ -15,6 +15,52 @@
   .right-content{
     md-content{
       padding: 8px 21px;
+      .list-skills-container{
+        margin-top: 13px;
+        .empty-skills-list{
+          font-size: 15px;
+          margin-bottom: 13px;
+        }
+        .skill{
+          display: inline-block;
+          white-space: nowrap;
+          margin-right: 8px;
+          background-color: #ddd;
+          padding-left: 13px;
+          padding-right: 8px;
+          @include borderRadius(3px);
+          .md-button.md-icon-button{
+            margin: 0;
+            height: 0;
+            width: 30px;
+            line-height: 36px;
+          }
+          span{
+            color:#333;
+            font-size: 15px;
+          }
+        }
+      }
+      .add-skills-container{
+        md-input-container{
+          padding-bottom: 3px;
+        }
+      }
+      .with-icon{
+        md-icon {
+          margin-top: 20px;
+        }
+        label{
+          margin-left: 33px;
+        }
+      }
+      .picture-block{
+        margin-bottom: 21px;
+        img{
+          width: 100px;
+          height: auto;
+        }
+      }
       .website-container{
         margin-top: 21px;
       }
@@ -121,6 +167,20 @@
     }
   }
 }
+
+.location-gps{
+  cursor: pointer;
+  outline: none;
+  .location{
+    fill: #333;
+  }
+  &:hover{
+    .location{
+      fill: #1666D3;
+    }
+  }
+}
+
 .icon-input-container label:not(.md-no-float),
 .icon-input-container .md-placeholder{
   -webkit-transform: translate3d(0, 28px, 0) scale(1);

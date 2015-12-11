@@ -9,7 +9,9 @@ angular.module('dmc.account', [
     'dmc.configs.ngmaterial',
     'dmc.common.header',
     'dmc.common.footer',
-    'dmc.model.account'
+    'dmc.model.account',
+    "dmc.ajax",
+    "dmc.location"
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('account', {
         url: '/:accountId',

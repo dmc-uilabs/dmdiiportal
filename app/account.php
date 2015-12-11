@@ -50,6 +50,7 @@
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/moment/moment.js"></script>
     <script src="/bower_components/angular-moment/angular-moment.js"></script>
+    <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
     <script src="/bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-aria/angular-aria.js"></script>
@@ -77,19 +78,10 @@
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
-    <script src="scripts/components/ui-widgets/tasks.directive.js"></script>
-    <script src="scripts/components/ui-widgets/services.directive.js"></script>
-    <script src="scripts/components/ui-widgets/components.directive.js"></script>
-    <script src="scripts/components/ui-widgets/discussions.directive.js"></script>
-    <script src="scripts/components/ui-widgets/documents.directive.js"></script>
-    <script src="scripts/components/ui-widgets/questions.directive.js"></script>
-    <script src="scripts/components/ui-widgets/submissions.directive.js"></script>
-    <script src="scripts/components/ui-widgets/invited-users.directive.js"></script>
-    <script src="scripts/components/sub-nav-menu/sub-nav-menu.directive.js"></script>
-    <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
+    <script src="scripts/common/factory/location.factory.js"></script>
     <script src="scripts/common/models/account-model.js"></script>
 
     <script src="scripts/account/account.js"></script>

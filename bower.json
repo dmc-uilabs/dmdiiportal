@@ -22,7 +22,12 @@
     "moment": "~2.10.6",
     "ng-timeago": "~0.0.2",
     "socket.io": "~1.3.6",
-    "ui-autocomplete": "~0.6.1"
+    "ui-autocomplete": "~0.6.1",
+    "angular-timezone-selector": "~1.4.1",
+    "angular-moment": "~0.10.3",
+    "moment-timezone": "~0.4.1",
+    "chosen": "~1.4.2",
+    "jstz": "*"
   },
   "devDependencies": {
     "angular": "~1.4.4",

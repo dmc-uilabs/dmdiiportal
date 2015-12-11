@@ -12,8 +12,61 @@
                         </div>
                         <span layout="column" flex></span>
                     </div>
-                    <div class="inputs-container" layout="row">
-
+                    <div class="inputs-container picture-block" layout="row" layout-align="start center">
+                        <div>
+                            <img ng-src="images/avatar-fpo.jpg" alt=""/>
+                        </div>
+                        <div>
+                            <md-button class="md-primary">Change Picture</md-button>
+                        </div>
+                    </div>
+                    <div class="inputs-container" layout="row" layout-align="start center">
+                        <md-input-container layout="column" flex="50">
+                            <label>Display Name</label>
+                            <input ng-model="profile.displayName">
+                        </md-input-container>
+                        <md-input-container layout="column" class="with-icon" flex="50">
+                            <label>Location</label>
+                            <md-icon class="location-gps" ng-click="getLocation()">
+                                <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
+                            </md-icon>
+                            <input ng-model="profile.location" type="text">
+                        </md-input-container>
+                    </div>
+                    <div class="inputs-container" layout="row" layout-align="start center">
+                        <md-input-container layout="column" class="with-icon" flex="50">
+                            <label>Company</label>
+                            <md-icon class="location-gps">
+                                <ng-md-icon icon="dnd_forwardslash" size="26"></ng-md-icon>
+                            </md-icon>
+                            <input ng-model="profile.company" type="text">
+                        </md-input-container>
+                        <md-input-container layout="column" flex="50">
+                            <label>Job Title</label>
+                            <input ng-model="profile.jobTitle">
+                        </md-input-container>
+                    </div>
+                    <div class="inputs-container" layout="row" layout-align="start center">
+                        <md-input-container flex>
+                            <label>Description</label>
+                            <textarea ng-model="profile.description" columns="1"></textarea>
+                        </md-input-container>
+                    </div>
+                    <div class="inputs-container add-skills-container" layout="row" layout-align="start center">
+                        <md-input-container>
+                            <label>Skills</label>
+                            <input ng-model="newSkill">
+                        </md-input-container>
+                        <md-button class="md-raised md-primary" ng-click="addSkill(newSkill)">ADD</md-button>
+                    </div>
+                    <div class="inputs-container list-skills-container" layout="row" layout-align="start center">
+                        <div class="skill" ng-repeat="skill in profile.skills">
+                            <span>{{skill.name}}</span>
+                            <md-button class="md-icon-button" ng-click="deleteSkill(skill.id)" aria-label="Delete Skill">
+                                <ng-md-icon icon="clear" ng-style="{'fill' : '#444'}" size="26"></ng-md-icon>
+                            </md-button>
+                        </div>
+                        <div class="empty-skills-list" ng-show="profile.skills.length == 0">List is empty</div>
                     </div>
                 </md-content>
             </div>

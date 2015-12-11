@@ -49,6 +49,8 @@
     <script src="/bower_components/angular-carousel/angular-carousel.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/angular-moment/angular-moment.js"></script>
+    <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
     <script src="/bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-aria/angular-aria.js"></script>
@@ -69,7 +71,6 @@
     <script src="/bower_components/md-data-table/dist/md-data-table-templates.js"></script>
     <script src="/bower_components/ng-timeago/ngtimeago.js"></script>
     <script src="/bower_components/ui-autocomplete/autocomplete.js"></script>
-    <script src="/bower_components/dropzone/dist/min/dropzone.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
