@@ -628,10 +628,6 @@ function get_product_review($params){
 }
 
 function add_product_review($params){
-    $data = json_encode(array("asd" => "fenix"));
-    $db = json_decode(httpResponse(dbUrl().'/', 'PUT', null),true);
-    return json_encode($db);
-    /*
   $last = json_decode(httpResponse(dbUrl().'/product_reviews?_sort=id&_order=DESC&_limit=1', null, null),true);
   if(count($last) > 0){
     $id = $last[0]['id']+1;
@@ -651,12 +647,21 @@ function add_product_review($params){
       "comment" => $params['comment']
   ));
   json_decode(httpResponse(dbUrl().'/product_reviews', 'POST', $data),true);
-  return $data;*/
+  return $data;
 }
 
 function edit_product($params){
-  $service = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'/'.$params['productId'], null, null),true);
+  $service = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], null, null),true);
   $service['title'] = $params['title'];
+
+  /*if(isset($params['specification'])){
+    $specification = json_decode(httpResponse(dbUrl().$service['specifications'], null, null),true);
+    $specification['0']['special'] = $params['specification'];
+    $data = json_encode($specification['0']);
+    $changed_item = json_decode(httpResponse(dbUrl().$service['specifications'], 'PUT', $data),true);
+    return json_encode(array('data' => $data, "qqq" => $changed_item ));
+  }*/
+
   if(isset($params['tags'])){
     $service['tags'] = $params['tags'];
   }else{
@@ -666,7 +671,7 @@ function edit_product($params){
 
   $data = json_encode($service);
 
-  $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'/'.$params['productId'], 'PUT', $data),true);
+  $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], 'PUT', $data),true);
   return json_encode(array('result' => $changed_item ));
 }
 

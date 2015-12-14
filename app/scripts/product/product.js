@@ -45,9 +45,11 @@ angular.module('dmc.product', [
     $scope.products = [];   //included services
     $scope.editFlag = false;  //flag edit page
     $scope.allServices = [];
+    $scope.Specifications = ['Height', 'Length', 'Weight'];
 
     $scope.currentImage = 1;
     $scope.images = [];
+
     //var img = [
     $scope.images = [
       'images/marketplace-card-image-1.jpg',
@@ -60,34 +62,15 @@ angular.module('dmc.product', [
       'images/project_capacitor-bank.png',
       'images/project_capacitor_compartment.png',
       'images/ge-fuel-cell.png'
-    ]
-    /*
-    for(var i=0;i<10;i++){
-      $scope.images.push({
-        id : i+1,
-        //src : (i%2 == 0 ? 'images/marketplace-card-image-1.jpg' : 'images/project_generator.png'),
-        src : img[i],
-        selected : (i == 0 ? true : false)
-      });
-    }*/
+    ];
+
     $scope.carouselFunctions = {
       openImage : function(index){
-        console.log(index);
-        /*for(var i in $scope.images){
-          if($scope.images[i].selected){
-            $scope.images[i].selected = false;
-            break;
-          }
-        }
-        item.selected = true;
-        $(".product-image .main-image").attr("src",item.src);
-        */
         $(".product-image .main-image").attr("src",$scope.images[index]);
 
       },
       deleteImage: function(index){
         $scope.images.splice(index, 1);
-        console.log(index);
         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
       }
     };
@@ -102,6 +85,7 @@ angular.module('dmc.product', [
       function(data){
         if(data.result.id) {
           $scope.product = data.result;
+          $scope.product.specificationsData.special = []
           $scope.number_of_comments = $scope.product.rating.length;
           if($scope.number_of_comments != 0) {
             calculate_rating();
@@ -144,6 +128,7 @@ angular.module('dmc.product', [
       }
     );
 
+    //get all services
     ajax.on(
       dataFactory.getUrlAllProducts(),
       {},
@@ -350,7 +335,11 @@ angular.module('dmc.product', [
 
     $scope.querySearch = function(query) {
       var results = query ? $scope.allServices.filter( createFilterFor(query) ) : $scope.allServices;
-      
+        return results;
+    }
+
+    $scope.specificationsSearch = function(query) {
+      var results = query ? $scope.Specifications.filter( createFilterForSpecifications(query) ) : $scope.Specifications;
         return results;
     }
 
@@ -360,11 +349,33 @@ angular.module('dmc.product', [
       this.$$childHead.$mdAutocompleteCtrl.clear();
     }
 
+    $scope.AddSpecifications = function(item, text){
+      if(!item)return;
+      for(var i in $scope.product.specificationsData.special){
+        if($scope.product.specificationsData.special[i].specification == item){
+          this.$$childHead.$mdAutocompleteCtrl.clear();
+          return;
+       }
+      }
+      $scope.product.specificationsData.special.push({
+        specification: item,
+        data: ""
+      })
+      this.$$childHead.$mdAutocompleteCtrl.clear();
+    }
+
     //Create filter function for a query string
     function createFilterFor(query) {
       var lowercaseQuery = angular.lowercase(query);
       return function filterFn(state) {
         return (angular.lowercase(state.title).indexOf(lowercaseQuery) === 0);
+      };
+    }
+
+    function createFilterForSpecifications(query) {
+      var lowercaseQuery = angular.lowercase(query);
+      return function filterFn(state) {
+        return (angular.lowercase(state).indexOf(lowercaseQuery) === 0);
       };
     }
 
@@ -381,6 +392,7 @@ angular.module('dmc.product', [
           title: $scope.product.title,
           tags: $scope.product.tags,
           description: $scope.product.description,
+          specification: $scope.product.specificationsData.special
         },
         function(data){
         },
@@ -474,31 +486,7 @@ angular.module('dmc.product', [
     $scope.products = products;
     $scope.product = null;
     $scope.product = $scope.products[0];
-    //     $scope.index = 0;
-    // ajax.on(
-    //   dataFactory.getUrlAllProducts(),
-    //   {},
-    //   function(data){
-    //     $scope.products = data.result;
-    //     for(var i in $scope.products){
-    //       $scope.products[i].average_rating = 0;
-    //       var number_of_comments = $scope.products[i].rating.length;
-    //       if(number_of_comments != 0) {
-    //         var average_rating = 0;
-    //         for (var k in $scope.products[i].rating) {
-    //           average_rating += $scope.products[i].rating[k];
-    //         }
-    //         $scope.products[i].average_rating = (average_rating / number_of_comments).toFixed(1);
-    //       }
-    //     }
-    //     $scope.product = $scope.products[0];
-    //     $scope.index = 0;
-    //     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-    //   },
-    //   function(){
-    //     console.error("Ajax fail! getAllProducts()");
-    //   }
-    // );
+    $scope.index = 0;
     $scope.cancel = function(){
       $mdDialog.cancel();
     }
