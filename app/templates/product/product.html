@@ -98,12 +98,41 @@
           <md-tab label="Specifications">
             <md-content class="md-padding">
               <div class="tabs-content" layout="column">
+                <md-autocomplete
+                    ng-if="editFlag"
+                    md-no-cache="true"
+                    md-selected-item="selectedItem"
+                    md-search-text="searchText"
+                    md-items="item in specificationsSearch(searchText)"
+                    md-selected-item-change="AddSpecifications(item, searchText)"
+                    md-item-text="item"
+                    md-min-length="0"
+                    placeholder="Search for specifications">
+                  <md-item-template>
+                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
+                  </md-item-template>
+                  <md-not-found>
+                    No matches found for "{{searchText}}".
+                  </md-not-found>
+                </md-autocomplete>
                 <p>Created: {{product.currentStatus.startDate}}</p>
                 <p>Added: {{product.specificationsData.usageStats.added}} times by {{product.specificationsData.usageStats.members}} members</p>
                 <p>Successful Runs: {{product.specificationsData.runStats.fail}}/{{product.specificationsData.runStats.success}}</p>
                 <p>Inputs: {{product.specificationsData.input}}</p>
                 <p>Outputs: {{product.specificationsData.output}}</p>
-                <a href='' ng-if="editFlag" ng-click="addSpecification()" class="add-specification">+ Add New Specification</a>
+                <div layout="row" ng-if="editFlag" ng-repeat="item in product.specificationsData.special">
+                  <md-input-container>
+                    <label>Specifications</label>
+                    <input ng-model="item.specification"></input>
+                  </md-input-container>
+                  <md-input-container>
+                    <label>Data</label>
+                    <input ng-model="item.data"></input>
+                  </md-input-container>
+                </div>
+                <p ng-if="!editFlag" ng-repeat="item in product.specificationsData.special">
+                  {{item.specification}}: {{item.data}}
+                </p>
               </div>
             </md-content>
           </md-tab>
