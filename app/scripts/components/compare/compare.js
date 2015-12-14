@@ -10,6 +10,10 @@ angular.module('dmc.compare',[
         'ngtimeago'
     ])
     .controller('CompareController',function($scope,$mdDialog,$cookies,Products,ajax,dataFactory){
+        $scope.currentProductType = 'all';
+        $scope.switchProductType = function(type){
+            $scope.currentProductType = type;
+        };
         var updateCompareCount = function(){
             var arr = $cookies.getObject('compareProducts');
             return arr == null ? {services : [], components : []} : arr;
@@ -35,12 +39,14 @@ angular.module('dmc.compare',[
 
         $scope.callbackServices = function(data) {
             $scope.products.arr = $.merge($scope.products.arr, data.result);
+            console.log($scope.products.arr);
             $scope.products.count += data.count;
             $scope.itemClass = $scope.getItemClass();
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };
         $scope.callbackComponents = function(data) {
             $scope.products.arr = $.merge($scope.products.arr,data.result);
+            console.log($scope.products.arr);
             $scope.products.count += data.count;
             $scope.itemClass = $scope.getItemClass();
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
