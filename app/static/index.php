@@ -599,6 +599,10 @@ function get_product_review($params){
 }
 
 function add_product_review($params){
+    $data = json_encode(array("asd" => "fenix"));
+    $db = json_decode(httpResponse(dbUrl().'/', 'PUT', null),true);
+    return json_encode($db);
+    /*
   $last = json_decode(httpResponse(dbUrl().'/product_reviews?_sort=id&_order=DESC&_limit=1', null, null),true);
   if(count($last) > 0){
     $id = $last[0]['id']+1;
@@ -618,7 +622,7 @@ function add_product_review($params){
       "comment" => $params['comment']
   ));
   json_decode(httpResponse(dbUrl().'/product_reviews', 'POST', $data),true);
-  return $data;
+  return $data;*/
 }
 
 function edit_product($params){

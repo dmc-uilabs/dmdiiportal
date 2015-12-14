@@ -11,11 +11,19 @@
         </div>
       </div>
       <div class="carousel-item image-item"
-             ng-click="functions.openImage(item)"
+             
              ng-class="{'selected-image' : item.selected}"
              ng-if="typeCarousel === 'images'"
-             ng-repeat="item in arrayItems.slice($index*showItems, $index*showItems+showItems) track by item.id">
-            <img ng-src="{{item.src}}" alt=""/>
+             ng-repeat="item in arrayItems.slice($index*showItems, $index*showItems+showItems) track by $index">
+            
+            <md-button 
+              class="md-icon-button md-warn md-raised delete" 
+              ng-if="edit" 
+              ng-click="functions.deleteImage($index + $parent.$parent.$parent.$index*showItems)" 
+              aria-label="delete">
+              <ng-md-icon icon="close" style="fill: #fff" size="17"></ng-md-icon>
+            </md-button>
+            <img ng-src="{{item}}" ng-click="functions.openImage($index + $parent.$parent.$index*showItems)" alt=""/>
       </div>
     </slide>
   </slidecontainer>

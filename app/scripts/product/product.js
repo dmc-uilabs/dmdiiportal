@@ -48,7 +48,8 @@ angular.module('dmc.product', [
 
     $scope.currentImage = 1;
     $scope.images = [];
-    var img = [
+    //var img = [
+    $scope.images = [
       'images/marketplace-card-image-1.jpg',
       'images/3d-printing.png',
       'images/project_generator.png',
@@ -60,6 +61,7 @@ angular.module('dmc.product', [
       'images/project_capacitor_compartment.png',
       'images/ge-fuel-cell.png'
     ]
+    /*
     for(var i=0;i<10;i++){
       $scope.images.push({
         id : i+1,
@@ -67,10 +69,11 @@ angular.module('dmc.product', [
         src : img[i],
         selected : (i == 0 ? true : false)
       });
-    }
+    }*/
     $scope.carouselFunctions = {
-      openImage : function(item){
-        for(var i in $scope.images){
+      openImage : function(index){
+        console.log(index);
+        /*for(var i in $scope.images){
           if($scope.images[i].selected){
             $scope.images[i].selected = false;
             break;
@@ -78,6 +81,14 @@ angular.module('dmc.product', [
         }
         item.selected = true;
         $(".product-image .main-image").attr("src",item.src);
+        */
+        $(".product-image .main-image").attr("src",$scope.images[index]);
+
+      },
+      deleteImage: function(index){
+        $scope.images.splice(index, 1);
+        console.log(index);
+        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
       }
     };
 
@@ -138,6 +149,17 @@ angular.module('dmc.product', [
       {},
       function(data){
         $scope.allServices = data.result;  
+        for(var i in $scope.allServices){
+          $scope.allServices[i].average_rating = 0;
+          var number_of_comments = $scope.allServices[i].rating.length;
+          if(number_of_comments != 0) {
+            var average_rating = 0;
+            for (var k in $scope.allServices[i].rating) {
+              average_rating += $scope.allServices[i].rating[k];
+            }
+            $scope.allServices[i].average_rating = (average_rating / number_of_comments).toFixed(1);
+          }
+        }
       },
       function(){
         console.error("Ajax fail! getAllProducts()");
@@ -296,8 +318,7 @@ angular.module('dmc.product', [
         parent: angular.element(document.body),
         targetEvent: ev,
         locals: {
-          id: $scope.product.id,
-          type : $scope.product.type
+          products: $scope.allServices
         },
         clickOutsideToClose:true
       })
@@ -371,6 +392,9 @@ angular.module('dmc.product', [
       $scope.editFlag = false;
     }
 
+    $scope.cancelEdit = function(){
+      $scope.editFlag = false;
+    }
 
     $scope.treeMenuModel = {
         title: 'BROWSE BY',
@@ -446,38 +470,40 @@ angular.module('dmc.product', [
     };
 
   })
-  .controller("ViewIncludedController", function ($scope, ajax, dataFactory, $mdDialog, $location, id, type) {
-    $scope.products = [];
+  .controller("ViewIncludedController", function ($scope, ajax, dataFactory, $mdDialog, $location, products) {
+    $scope.products = products;
     $scope.product = null;
-    $scope.id = id;
-    $scope.type = type;
-    ajax.on(
-      dataFactory.getUrlAllProducts(),
-      {},
-      function(data){
-        $scope.products = data.result;
-        for(var i in $scope.products){
-          $scope.products[i].average_rating = 0;
-          var number_of_comments = $scope.products[i].rating.length;
-          if(number_of_comments != 0) {
-            var average_rating = 0;
-            for (var k in $scope.products[i].rating) {
-              average_rating += $scope.products[i].rating[k];
-            }
-            $scope.products[i].average_rating = (average_rating / number_of_comments).toFixed(1);
-          }
-        }
-        $scope.product = $scope.products[0];
-        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-      },
-      function(){
-        console.error("Ajax fail! getAllProducts()");
-      }
-    );
+    $scope.product = $scope.products[0];
+    //     $scope.index = 0;
+    // ajax.on(
+    //   dataFactory.getUrlAllProducts(),
+    //   {},
+    //   function(data){
+    //     $scope.products = data.result;
+    //     for(var i in $scope.products){
+    //       $scope.products[i].average_rating = 0;
+    //       var number_of_comments = $scope.products[i].rating.length;
+    //       if(number_of_comments != 0) {
+    //         var average_rating = 0;
+    //         for (var k in $scope.products[i].rating) {
+    //           average_rating += $scope.products[i].rating[k];
+    //         }
+    //         $scope.products[i].average_rating = (average_rating / number_of_comments).toFixed(1);
+    //       }
+    //     }
+    //     $scope.product = $scope.products[0];
+    //     $scope.index = 0;
+    //     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+    //   },
+    //   function(){
+    //     console.error("Ajax fail! getAllProducts()");
+    //   }
+    // );
     $scope.cancel = function(){
       $mdDialog.cancel();
     }
     $scope.View = function(index){
       $scope.product = $scope.products[index];
+      $scope.index = index;
     }
   });

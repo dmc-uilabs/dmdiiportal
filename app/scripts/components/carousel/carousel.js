@@ -18,7 +18,8 @@ angular.module('dmc.component.carousel', [
         maxItems: '=',
         showItems: '=',
         carouselSource: '=',
-        runCarousel: '='
+        runCarousel: '=',
+        edit: '='
         //timeout: '=' // seconds
       },
       templateUrl: 'templates/components/carousel/carousel-tpl.html',
@@ -34,9 +35,15 @@ angular.module('dmc.component.carousel', [
           $scope.arrayItems = ($scope.carouselSource.length > $scope.maxItems ? $scope.carouselSource.slice(0, $scope.maxItems) : $scope.carouselSource);
           $scope.countSlides = ($scope.arrayItems.length == 0 ? 0 : Math.ceil($scope.arrayItems.length / $scope.showItems));
 
-          $scope.$watch('carouselSource', function(){
+          $scope.$watch(function(){return $scope.carouselSource.length}, function(){
               $scope.arrayItems = ($scope.carouselSource.length > $scope.maxItems ? $scope.carouselSource.slice(0, $scope.maxItems) : $scope.carouselSource);
               $scope.countSlides = ($scope.arrayItems.length == 0 ? 0 : Math.ceil($scope.arrayItems.length / $scope.showItems));
+              if(Carousel.get($scope.nameCarousel).slidesCount){
+                Carousel.get($scope.nameCarousel).slidesCount = $scope.countSlides;
+                if(Carousel.get($scope.nameCarousel).currentSlide + 1 > $scope.countSlides){
+                  Carousel.get($scope.nameCarousel).toIndex(0);
+                }
+              }
           });
 
           $scope.nextSlide = function(){
@@ -45,6 +52,7 @@ angular.module('dmc.component.carousel', [
           };
 
           $scope.prevSlide = function(){
+            console.log(Carousel.get($scope.nameCarousel));
               Carousel.get($scope.nameCarousel).previous();
               $scope.selectButton();
           };
