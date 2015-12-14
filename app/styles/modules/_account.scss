@@ -181,6 +181,11 @@
   }
 }
 
+.md-icon-float.location-container.md-default-theme.md-input-focused label,
+.md-icon-float.location-container.md-default-theme.md-input-has-value label{
+  margin-left: 0;
+}
+
 .icon-input-container label:not(.md-no-float),
 .icon-input-container .md-placeholder{
   -webkit-transform: translate3d(0, 28px, 0) scale(1);
