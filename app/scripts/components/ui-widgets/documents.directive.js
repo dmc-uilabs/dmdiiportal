@@ -187,6 +187,9 @@ angular.module('dmc.widgets.documents',[
                             var title = file.name.substring(0,file.name.lastIndexOf('.'));
                             formData.append('projectId',$scope.projectId);
                             formData.append('title',title);
+                            console.log(file);
+                            console.log(xhr);
+                            console.log(formData);
                         },
                         'success': function (file, response) {
                             var data = jQuery.parseJSON(response);

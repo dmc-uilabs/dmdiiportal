@@ -62,6 +62,7 @@
 <script src="/bower_components/moment/moment.js"></script>
 <script src="/bower_components/ng-timeago/ngtimeago.js"></script>
 <script src="/bower_components/dropzone/dist/min/dropzone.min.js"></script>
+<script src="/bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 

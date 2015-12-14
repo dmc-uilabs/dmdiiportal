@@ -14,10 +14,32 @@
                     </div>
                     <div class="inputs-container picture-block" layout="row" layout-align="start center">
                         <div>
-                            <img ng-src="images/avatar-fpo.jpg" alt=""/>
+                            <img ng-src="{{profile.image}}" alt=""/>
                         </div>
-                        <div>
-                            <md-button class="md-primary">Change Picture</md-button>
+                        <div ng-show="!isChangingPicture">
+                            <md-button ng-click="changePicture()">Change Picture</md-button>
+                        </div>
+                        <div ng-show="isChangingPicture">
+                            <div class="flow-box"
+                                 flow-init
+                                 flow-drag-enter="pictureDragEnter($flow)"
+                                 flow-drag-leave="pictureDragLeave($flow)"
+                                 flow-file-success="$file.msg = $message"
+                                 flow-file-added="addedNewFile($file, $event, $flow )"
+                                 layout="row" layout-align="start center">
+                                <div class="alert" flow-drop flow-drop-enabled="true">
+                                    <div flow-btn class="inner-box" layout="row" layout-align="center center">
+                                        <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="50">
+                                            <img flow-img="$flow.files[0]" />
+                                        </div>
+                                        <div class="text" flex="50">Drag And Drop your picture here</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <md-button ng-disabled="$flow.files.length == 0" ng-click="uploadFile($flow)">Submit</md-button>
+                                    <md-button ng-click="cancelChangePicture($flow)">Cancel</md-button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="inputs-container" layout="row" layout-align="start center">
@@ -25,7 +47,7 @@
                             <label>Display Name</label>
                             <input ng-model="profile.displayName">
                         </md-input-container>
-                        <md-input-container layout="column" class="with-icon" flex="50">
+                        <md-input-container layout="column" class="with-icon title-input-left" flex="50">
                             <label>Location</label>
                             <md-icon class="location-gps" ng-click="getLocation()">
                                 <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
@@ -34,12 +56,12 @@
                         </md-input-container>
                     </div>
                     <div class="inputs-container" layout="row" layout-align="start center">
-                        <md-input-container layout="column" class="with-icon" flex="50">
+                        <md-input-container layout="column" class="with-icon title-input-left" ng-init="profile.company = 'Digital Manufacturing Commons'" flex="50">
                             <label>Company</label>
                             <md-icon class="location-gps">
                                 <ng-md-icon icon="dnd_forwardslash" size="26"></ng-md-icon>
                             </md-icon>
-                            <input ng-model="profile.company" type="text">
+                            <input ng-model="profile.company" ng-disabled="true" type="text">
                         </md-input-container>
                         <md-input-container layout="column" flex="50">
                             <label>Job Title</label>
@@ -55,15 +77,15 @@
                     <div class="inputs-container add-skills-container" layout="row" layout-align="start center">
                         <md-input-container>
                             <label>Skills</label>
-                            <input ng-model="newSkill">
+                            <input ng-model="newSkill" ng-keypress="keyPress($event)">
                         </md-input-container>
-                        <md-button class="md-raised md-primary" ng-click="addSkill(newSkill)">ADD</md-button>
+                        <md-button class="md-raised md-primary add-skill" ng-click="addSkill(newSkill)">ADD</md-button>
                     </div>
-                    <div class="inputs-container list-skills-container" layout="row" layout-align="start center">
+                    <div class="inputs-container list-skills-container" layout="row" layout-align="start start">
                         <div class="skill" ng-repeat="skill in profile.skills">
                             <span>{{skill.name}}</span>
                             <md-button class="md-icon-button" ng-click="deleteSkill(skill.id)" aria-label="Delete Skill">
-                                <ng-md-icon icon="clear" ng-style="{'fill' : '#444'}" size="26"></ng-md-icon>
+                                <ng-md-icon icon="clear" ng-style="{'fill' : '#444'}" size="15"></ng-md-icon>
                             </md-button>
                         </div>
                         <div class="empty-skills-list" ng-show="profile.skills.length == 0">List is empty</div>

@@ -67,6 +67,9 @@ angular.module('dmc.data',[])
             },
             editProduct: function(){
                 return baseServer+'/edit_product';
+            },
+            uploadAccountPictureUrl : function(){
+                return baseServer+'/upp';
             }
         };
     }

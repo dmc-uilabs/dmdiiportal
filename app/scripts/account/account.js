@@ -11,8 +11,14 @@ angular.module('dmc.account', [
     'dmc.common.footer',
     'dmc.model.account',
     "dmc.ajax",
-    "dmc.location"
-]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
+    "dmc.location",
+    'flow'
+]).config(function(flowFactoryProvider, $stateProvider, $urlRouterProvider, $httpProvider){
+
+    flowFactoryProvider.on('catchAll', function (event) {
+        //console.log('catchAll', arguments);
+    });
+
     $stateProvider.state('account', {
         url: '/:accountId',
         controller: 'AccountIdLocatorCtrl',

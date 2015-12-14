@@ -440,4 +440,4 @@ angular.module('dmc.project', [
                 $scope.outputs = new Array($scope.totalOutputs);
             }
         }
-    })
+    });

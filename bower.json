@@ -27,7 +27,8 @@
     "angular-moment": "~0.10.3",
     "moment-timezone": "~0.4.1",
     "chosen": "~1.4.2",
-    "jstz": "*"
+    "jstz": "*",
+    "ng-flow": "~2"
   },
   "devDependencies": {
     "angular": "~1.4.4",
