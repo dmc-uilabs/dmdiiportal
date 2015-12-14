@@ -2,7 +2,16 @@
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Compare</h2>
+                <h2 class="compare-title">Compare</h2>
+                <md-button class="top-buttons"
+                           ng-class="{'md-raised md-primary' : currentProductType == 'all'}"
+                           ng-click="switchProductType('all')">All ({{compareProducts.services.length+compareProducts.components.length}})</md-button>
+                <md-button class="top-buttons"
+                           ng-class="{'md-raised md-primary' : currentProductType == 'service'}"
+                           ng-click="switchProductType('service')">Services ({{compareProducts.services.length}})</md-button>
+                <md-button class="top-buttons"
+                           ng-class="{'md-raised md-primary' : currentProductType == 'component'}"
+                           ng-click="switchProductType('component')">Components ({{compareProducts.components.length}})</md-button>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
@@ -12,8 +21,15 @@
         <md-dialog-content>
             <div class="compare-list-products">
                 <div layout="row" class="row services">
-                    <div layout="column" class="column title"><h4>Services</h4></div>
-                    <div layout="column" class="column" ng-class="itemClass" ng-repeat="item in products.arr">
+                    <div layout="column" class="column title">
+                        <h4 ng-show="currentProductType == 'all'">Services & Components</h4>
+                        <h4 ng-show="currentProductType == 'service'">Services </h4>
+                        <h4 ng-show="currentProductType == 'component'">Components</h4>
+                    </div>
+                    <div layout="column" class="column"
+                         ng-class="itemClass"
+                         ng-show="currentProductType == 'all' || currentProductType == item.type"
+                         ng-repeat="item in products.arr">
                         <div layout="row">
                             <md-button href="" aria-label="Favorite" class="md-icon-button" flex><ng-md-icon icon="favorite_outline" style="fill: grey;" size="18"></ng-md-icon></md-button>
                             <md-button href="" aria-label="Remove" class="md-icon-button" ng-click="removeFromCompare(item.id,item.type)" flex><ng-md-icon icon="close" style="fill: grey;" size="18"></ng-md-icon></md-button>
@@ -54,15 +70,24 @@
                 </div>
                 <div layout="row" class="row description">
                     <div layout="column" class="column title"><h4>Description</h4></div>
-                    <div layout="column" class="column" ng-class="itemClass" ng-repeat="item in products.arr">{{item.description}}</div>
+                    <div layout="column" class="column"
+                         ng-class="itemClass"
+                         ng-show="currentProductType == 'all' || currentProductType == item.type"
+                         ng-repeat="item in products.arr">{{item.description}}</div>
                 </div>
                 <div layout="row" class="row tags">
                     <div layout="column" class="column title"><h4>Tags</h4></div>
-                    <div layout="column" class="column" ng-class="itemClass" ng-repeat="item in products.arr">{{item.tags.join(', ')}}</div>
+                    <div layout="column" class="column"
+                         ng-class="itemClass"
+                         ng-show="currentProductType == 'all' || currentProductType == item.type"
+                         ng-repeat="item in products.arr">{{item.tags.join(', ')}}</div>
                 </div>
                 <div layout="row" class="row specifications">
                     <div layout="column" class="column title"><h4>Specifications</h4></div>
-                    <div layout="column" class="column" ng-class="itemClass" ng-repeat="item in products.arr">
+                    <div layout="column" class="column"
+                         ng-class="itemClass"
+                         ng-show="currentProductType == 'all' || currentProductType == item.type"
+                         ng-repeat="item in products.arr">
                         <p>{{item.specificationsData.description}}</p>
                         <p><strong>Created:</strong> {{item.releaseDate|timeago}}</p>
                         <p><strong>Added:</strong> {{item.specificationsData.usageStats.added}} times by {{item.specificationsData.usageStats.members}} members</p>

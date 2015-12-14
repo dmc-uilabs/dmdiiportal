@@ -1,4 +1,20 @@
 .compare-widget{
+  .top-buttons.md-button.md-default-theme{
+    min-height: 0;
+    line-height: 34px;
+    min-width: 50px;
+    text-transform: none;
+    text-decoration: underline;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  .md-raised.md-primary.top-buttons.md-button.md-default-theme{
+    text-decoration: none;
+  }
+  .compare-title{
+    margin-right: 21px;
+  }
   form:first-child{
     background-color: #efeced;
     md-toolbar{
