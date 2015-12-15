@@ -7,7 +7,41 @@ angular.module('dmc.data',[])
         var appendId = function(id){
             return ($window.apiUrl && id ? '/'+id : '');
         };
+        var webServiceUrl = function(action, projectId){
+            var wsurl;
+            if ($window.apiUrl && projectId) {
+                wsurl = '/projects/' + projectId + '/' + action;
+            } else {
+                wsurl = '/'+action;
+            }
+            return wsurl;
+        }
         return {
+             get_result: function(data) {
+                var obj = {};
+                if ($window.apiUrl) {
+                    if (data.length > 1) {
+                        obj.result = data;
+                    }
+                    obj.count = data.length;
+                } else {
+                    obj = data;
+                }
+                return obj;
+            },
+            get_request_obj: function(source){
+                var obj = {}
+                if ($window.apiUrl) {
+                    obj = _.transform(source, function(result, value, key) {
+                      if (value){
+                        result['_'+key] = value;
+                      }
+                    });
+                } else {
+                    obj = source;
+                }
+                return obj;
+            },
             url_php_server: function(){
                 return baseServer;
             },
@@ -15,19 +49,22 @@ angular.module('dmc.data',[])
                 return urlSocketServer;
             },
             getUrlAllServices: function(id){
-                return baseServer+'/services'+appendId(id);
+                // return baseServer+'/services'+appendId(id);
+                return baseServer+webServiceUrl('services', id);
             },
             getUrlChangeService: function(id){
                 return baseServer+'/change_service'+appendId(id);
             },
             getUrlAllTasks: function(id){
-                return baseServer+'/tasks'+appendId(id);
+                // return baseServer+'/tasks'+appendId(id);
+                return baseServer+webServiceUrl('tasks', id);
             },
             getUrlChangeTask: function(id){
                 return baseServer+'/change_tasks'+appendId(id);
             },
             getUrlAllDiscussions: function(id){
-                return baseServer+'/discussions'+appendId(id);
+                // return baseServer+'/discussions'+appendId(id);
+                return baseServer+webServiceUrl('discussions', id);
             },
             getUrlAllProjects: function(){
                 return baseServer+'/projects';
