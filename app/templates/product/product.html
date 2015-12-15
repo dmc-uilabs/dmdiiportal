@@ -35,7 +35,17 @@
         <div layout="row" layout-margin>
           <!--product image-->
           <div class="product-image" layout="column">
-            <img class="main-image" ng-src="{{product.featureImage.thumbnail}}">
+            <md-button 
+              class="md-icon-button md-warn md-raised delete-image" 
+              ng-if="editFlag && images.length" 
+              ng-click="carouselFunctions.deleteImage(indexImages)" 
+              aria-label="delete">
+              <ng-md-icon icon="close" style="fill: #fff" size="25"></ng-md-icon>
+            </md-button>
+            <img class="main-image" ng-if="images.length" ng-src="{{images[indexImages]}}">
+            <div class="no-image" ng-if="!images.length" layout layout-align="center center">
+              <h2>No Images</h2>
+            </div>
             <md-button ng-if="editFlag" ng-click="loadImage()">
               <ng-md-icon icon="camera_alt" style="fill: #65AF3F;" size="25"></ng-md-icon>
               Manage photos

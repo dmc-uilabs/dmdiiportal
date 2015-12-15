@@ -49,28 +49,24 @@ angular.module('dmc.product', [
 
     $scope.currentImage = 1;
     $scope.images = [];
+    $scope.indexImages = 0;
 
     //var img = [
-    $scope.images = [
-      'images/marketplace-card-image-1.jpg',
-      'images/3d-printing.png',
-      'images/project_generator.png',
-      'images/plasticity.png',
-      'images/project-1-image.jpg',
-      'images/project_relay_controller.png',
-      'images/project_controller_pg2.png',
-      'images/project_capacitor-bank.png',
-      'images/project_capacitor_compartment.png',
-      'images/ge-fuel-cell.png'
-    ];
 
     $scope.carouselFunctions = {
       openImage : function(index){
-        $(".product-image .main-image").attr("src",$scope.images[index]);
+        //$(".product-image .main-image").attr("src",$scope.images[index]);
+        $scope.indexImages = index;
 
       },
       deleteImage: function(index){
         $scope.images.splice(index, 1);
+        if ($scope.indexImages == index){
+          $scope.indexImages = 0;
+        }
+        if($scope.indexImages > index){
+          $scope.indexImages--;
+        }
         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
       }
     };
@@ -91,6 +87,18 @@ angular.module('dmc.product', [
             calculate_rating();
           }
         $scope.qqq = $scope.product;
+        $scope.images = [
+          $scope.product.featureImage.thumbnail,
+          'images/3d-printing.png',
+          'images/project_generator.png',
+          'images/plasticity.png',
+          'images/project-1-image.jpg',
+          'images/project_relay_controller.png',
+          'images/project_controller_pg2.png',
+          'images/project_capacitor-bank.png',
+          'images/project_capacitor_compartment.png',
+          'images/ge-fuel-cell.png'
+        ];
         }else{
           $scope.not_found = true;
         }
