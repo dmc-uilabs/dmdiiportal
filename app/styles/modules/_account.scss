@@ -27,7 +27,7 @@
           margin-right: 8px;
           background-color: #ddd;
           padding-left: 13px;
-          padding-right: 8px;
+          padding-right: 3px;
           @include borderRadius(3px);
           .md-button.md-icon-button{
             margin: 0;
@@ -50,14 +50,11 @@
         md-icon {
           margin-top: 20px;
         }
-        label{
-          margin-left: 33px;
-        }
       }
       .picture-block{
         margin-bottom: 21px;
         img{
-          width: 100px;
+          width: 150px;
           height: auto;
         }
       }
@@ -181,11 +178,6 @@
   }
 }
 
-.md-icon-float.location-container.md-default-theme.md-input-focused label,
-.md-icon-float.location-container.md-default-theme.md-input-has-value label{
-  margin-left: 0;
-}
-
 .icon-input-container label:not(.md-no-float),
 .icon-input-container .md-placeholder{
   -webkit-transform: translate3d(0, 28px, 0) scale(1);
@@ -200,11 +192,50 @@
   transition: -webkit-transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.5s;
   transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.5s;
 }
-
+.title-input-left.md-input-focused label,
+.title-input-left.md-input-has-value label{
+  margin-left: 0;
+}
 .icon-input-container.md-icon-float > md-icon{
   top: 41px;
 }
 .icon-input-container.md-icon-float.md-input-focused > md-icon,
 .icon-input-container.md-icon-float.md-input-has-value > md-icon{
   top: 33px !important;
+}
+
+.md-raised.md-primary.md-button.md-default-theme.add-skill{
+  min-height: 0;
+  min-width: 0;
+  line-height: 32px;
+  padding: 0 13px;
+}
+
+.flow-box{
+  margin-left: 13px;
+  .alert{
+    background-color: #f2f2f2;
+    @include borderRadius(3px);
+    padding: 13px;
+    position: relative;
+    .inner-box {
+      width: 300px;
+      min-height: 144px;
+      border: 2px dashed #ccc;
+      @include borderRadius(3px);
+      .uploaded-picture{
+        width: 100%;
+        text-align: center;
+        margin-top: 13px;
+        margin-bottom: 13px;
+        padding: 0 8px;
+      }
+      .text {
+        color: #aaa;
+        text-align: center;
+        display: block;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.89);
+      }
+    }
+  }
 }

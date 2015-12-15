@@ -60,8 +60,12 @@ return call_user_func(function () {
       echo add_product_review($_POST);
     }else if(strpos($uri,'/edit_product') !== false){
       echo edit_product($_POST);
+    }else if(strpos($uri,'/upp') !== false){
+      echo upload_profile_picture($_POST,$_FILES);
     }
 });
+
+
 
 function addMore($item){
     $item['specificationsData'] = json_decode(httpResponse(dbUrl().$item['specifications'], null, null),true);
@@ -496,6 +500,31 @@ function get_documents($params){
     $count = count($query);
     $result = array('result' => $query, 'count' => $count);
     return json_encode($result);
+}
+
+function upload_profile_picture($params,$file){
+    if(isset($params['id'])) {
+        $id = $params['id'];
+        $mainDir = dirname(__DIR__);
+        $fileFolder = '\\uploads\\account-profile\\' . $id;
+        if (is_dir($mainDir . $fileFolder)) delete_directory($mainDir . $fileFolder);
+        if (mkdir($mainDir . $fileFolder, 0755)) {
+            $name_file = basename($file['file']['name']);
+            $type = substr($name_file, strripos($name_file, '.'));
+            $name_file = date('YmdHisu') . $type;
+            $uploadFile = $mainDir . $fileFolder . '\\' . $name_file;
+            if (move_uploaded_file($file['file']['tmp_name'], $uploadFile)) {
+                $file['name'] = $fileFolder . '\\' . $name_file;
+                return json_encode(array('result' => 'file saved', 'file' => $file));
+            } else {
+                return json_encode(array('error' => 'Possible attacks via file download'));
+            }
+        } else {
+            return json_encode(array('error' => 'Unable create directory '));
+        }
+    }else{
+        return json_encode(array('error' => 'Account id does not exist'));
+    }
 }
 
 function upload_document($params,$file){

@@ -4,3 +4,27 @@ node_modules
 dist
 bower_components
 test/bower_components
+
+# Ignore eclipse settings
+.metadata
+.classpath
+.factorypath
+.project
+.settings/
+
+# Ignore IntelliJ settings
+*.iml
+.idea/
+
+# Ignore output folders
+bin/
+target/
+
+# Ignore logs
+log/
+*.log
+
+# Ignore cloud foundry files
+manifest.yml
+
+
