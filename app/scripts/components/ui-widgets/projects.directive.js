@@ -35,13 +35,15 @@ angular.module('dmc.widgets.projects',[
 
                 // function for get all projects from DB
                 $scope.getProjects = function(){
-                    ajax.on(dataFactory.getUrlAllProjects(),{
+                    ajax.on(dataFactory.getUrlAllProjects(),
+                        dataFactory.get_request_obj({
                         sort : $scope.sort,
                         order : $scope.order,
                         offset : 0,
                         limit : $scope.limit
-                    },function(data){
+                    }),function(data){
                         var projects_ = $scope.projects;
+                        var data = dataFactory.get_result(data);
                         $scope.total = data.count;
                         $scope.projects = data.result;
                         for(var i in $scope.projects){
