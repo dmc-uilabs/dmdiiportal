@@ -30,13 +30,15 @@ angular.module('dmc.widgets.services',[
 
                 // function for get all services from DB
                 $scope.getServices = function(){
-                    ajax.on(dataFactory.getUrlAllServices($scope.projectId),{
+                    ajax.on(dataFactory.getUrlAllServices($scope.projectId),
+                        dataFactory.get_request_obj({
                         projectId : $scope.projectId,
                         sort : $scope.sortBy || 0,
                         order : $scope.order,
                         offset : $scope.startAtOffset || 0,
                         limit : 5
-                    },function(data){
+                    }),function(data){
+                        var data = dataFactory.get_result(data);
                         $scope.services = data.result;
                         $scope.total = data.count;
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -83,13 +85,15 @@ angular.module('dmc.widgets.services',[
                 $scope.totalCount = 0;
 
                 $scope.getProjectServices = function(){
-                    ajax.on(dataFactory.getUrlAllServices($scope.projectId),{
+                    ajax.on(dataFactory.getUrlAllServices($scope.projectId),
+                        dataFactory.get_request_obj({
                         projectId: $scope.projectId,
                         sort : $scope.sort,
                         order : $scope.order,
                         limit : 3,
                         offset : 0
-                    },function(data){
+                    }),function(data){
+                        var data = dataFactory.get_result(data);
                         $scope.projectServices = data.result;
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     },function(){
