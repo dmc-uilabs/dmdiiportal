@@ -38,10 +38,10 @@ angular.module('dmc.account')
                     name : 'Ruby on Rails'
                 }
             ],
-            location : (userBasics.location ? userBasics.location : null)
+            location : (userBasics && userBasics.location ? userBasics.location : null)
         };
 
-        if(userBasics.firstName != null && userBasics.lastName != null) {
+        if(userBasics && userBasics.firstName != null && userBasics.lastName != null) {
             $scope.profile.displayName = userBasics.firstName + " " + userBasics.lastName;
         }
 

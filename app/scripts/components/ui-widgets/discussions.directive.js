@@ -21,13 +21,15 @@ angular.module('dmc.widgets.discussions',[
                 $scope.total = 0;
                 // function for get all discussions from DB
                 $scope.getDiscussions = function(){
-                    ajax.on(dataFactory.getUrlAllDiscussions($scope.projectId),{
+                    ajax.on(dataFactory.getUrlAllDiscussions($scope.projectId),
+                        dataFactory.get_request_obj({
                         projectId : $scope.projectId,
                         sort : 'created_at',
                         order : 'DESC',
                         limit : 4,
                         offset: 0
-                    },function(data){
+                    }),function(data){
+                        var data = dataFactory.get_result(data);
                         $scope.discussions = data.result;
                         $scope.total = data.count;
                         for(var index in $scope.discussions){
@@ -88,13 +90,15 @@ angular.module('dmc.widgets.discussions',[
                 $scope.totalCount = 0;
 
                 $scope.getProjectDiscussions = function(){
-                    ajax.on(dataFactory.getUrlAllDiscussions($scope.projectId),{
+                    ajax.on(dataFactory.getUrlAllDiscussions($scope.projectId),
+                        dataFactory.get_request_obj({
                         projectId: $scope.projectId,
                         sort : $scope.sort,
                         order : $scope.order,
                         limit : 3,
                         offset: 0
-                    },function(data){
+                    }),function(data){
+                        var data = dataFactory.get_result(data);
                         $scope.projectDiscussions = data.result;
                         for(var index in $scope.projectDiscussions){
                             $scope.projectDiscussions[index].created_at = moment($scope.projectDiscussions[index].created_at,'DD-MM-YYYY HH:mm:ss');
