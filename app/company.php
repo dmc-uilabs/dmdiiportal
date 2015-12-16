@@ -89,6 +89,9 @@
     <script src="scripts/components/products-card/products-card.js"></script>
     <script src="scripts/components/carousel/carousel.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
+    <script src="scripts/common/models/file-upload.js"></script>
+    <script src="scripts/common/models/file-model.js"></script>
+    <script src="scripts/common/models/toast-model.js"></script>
 
     <script src="scripts/company/company.js"></script>
     <script src="scripts/company/controllers/storefront.js"></script>

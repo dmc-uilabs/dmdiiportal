@@ -34,12 +34,22 @@ angular.module('dmc.component.productcard', [
       scope: {
         cardSource: '=',
         typeProduct: '=',
-        cardStyle: '='
+        cardStyle: '=',
+        removeFeatured: '=',
+        addFeatured: '='
       },
       templateUrl: 'templates/components/product-card/product-card-tpl.html',
       controller: function($scope,$cookies,$timeout,ajax,dataFactory, $mdDialog){
           $scope.projects = [];
           $scope.addingToProject = false;
+
+          $scope.addToFeatured = function(){
+              $scope.addFeatured($scope.cardSource.id,$scope.cardSource.type);
+          };
+
+          $scope.removeFromFeatured = function(){
+              $scope.removeFeatured($scope.cardSource.id,$scope.cardSource.type);
+          };
 
           $scope.removeFromProject = function(){
               ajax.on(dataFactory.getUrlRemoveFromProject($scope.cardSource.id),{

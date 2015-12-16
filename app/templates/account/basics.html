@@ -27,29 +27,31 @@
                             <input ng-model="user.email" type="email" ng-change="changedValue('email')">
                         </md-input-container>
                     </div>
-                    <div class="inputs-container" layout="row">
-                        <md-input-container flex="50">
+                    <div class="inputs-container" layout="row" layout-align="end end" >
+                        <md-input-container flex="25">
                             <label>Salutation</label>
                             <md-select ng-model="user.salutation" ng-change="changedValue('salutation')">
                                 <md-option ng-repeat="item in salutations" value="{{item.id}}">{{item.title}}</md-option>
                             </md-select>
                         </md-input-container>
-                        <md-input-container flex="50">
+                        <md-input-container flex="25">
                             <label>Suffix</label>
                             <md-select ng-model="user.suffix" ng-change="changedValue('suffix')">
                                 <md-option ng-repeat="item in suffixes" value="{{item.id}}">{{item.title}}</md-option>
                             </md-select>
                         </md-input-container>
-                    </div>
-                    <div class="inputs-container" layout="row">
-                        <md-input-container class="md-icon-float title-input-left" flex="50">
+
+                        <div flex="25">
+                        <md-input-container class="md-icon-float title-input-left">
                             <label>Location</label>
                             <md-icon class="location-gps" ng-click="getLocation()">
                                 <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
                             </md-icon>
                             <input ng-model="user.location" type="text" ng-change="changedValue('location')">
                         </md-input-container>
-                        <md-autocomplete flex="50"
+                        </div>
+                        <div flex="25" layout="column" class="autocomplete-block">
+                        <md-autocomplete
                                 ng-disabled="ctrl.isDisabled"
                                 md-no-cache="ctrl.noCache"
                                 md-selected-item="ctrl.selectedItem"
@@ -67,6 +69,7 @@
                                 No matches found for "{{ctrl.searchText}}".
                             </md-not-found>
                         </md-autocomplete>
+                        </div>
                     </div>
                 </md-content>
             </div>

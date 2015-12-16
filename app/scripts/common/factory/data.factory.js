@@ -70,6 +70,30 @@ angular.module('dmc.data',[])
             },
             uploadAccountPictureUrl : function(){
                 return baseServer+'/upp';
+            },
+            uploadCompanyPictureUrl : function(){
+                return baseServer+'/ucp';
+            },
+            getAccountUrl: function(id){
+                return baseServer+'/get_account'+appendId(id);
+            },
+            getCompanyUrl: function(id){
+                return baseServer+'/get_company'+appendId(id);
+            },
+            addFeaturedCompany: function(){
+                return baseServer+'/add_featured_company';
+            },
+            removeFeaturedCompany: function(){
+                return baseServer+'/remove_featured_company';
+            },
+            getFeaturesCompany: function(){
+                return baseServer+'/get_featured_company';
+            },
+            saveCompanyChanges : function(){
+                return baseServer+'/save_company_changes';
+            },
+            updateAccount: function(id){
+                return baseServer+'/update_account'+appendId(id);
             }
         };
     }
