@@ -80,6 +80,13 @@
     margin-top: 15px;
   }
 
+  .add-tags-form{
+    .md-button{
+      min-height: 36px;
+      height: 36px;
+      line-height: 36px;
+    }
+  }
   .tabs-content{
     p,
     .add-specification{
@@ -88,6 +95,20 @@
     }
     md-chips .md-chips{
       box-shadow: none;
+      .tags-chip{
+        padding-right: 32px;
+        .md-icon-button{
+          position: absolute;
+          right: 0;
+          top: 0;
+          min-height: 32px;
+          height: 32px;
+          line-height: 32px;
+          min-width: 32px;
+          width: 32px;
+          margin: 0;
+        }
+      }
     }
     md-autocomplete{
       margin-bottom: 8px;
