@@ -1,0 +1,55 @@
+<div class="add-members">
+  <!-- Left Content Column -->
+	<div layout="row">
+    <div class="content-column" layout="column" flex="70">
+      <md-toolbar class="add-members-header">
+        <h2>Search for Members to Invite</h2>
+      </md-toolbar>
+      <md-content class="add-members-active" layout="row" layout-padding layout-fill layout-align="center center">
+        <div layout="column" flex="20">
+          <md-input-container md-no-float>
+            <label>Members</label>
+            <md-select ng-model="membersModel" md-container-class="margin-dropdown">
+              <md-option ng-repeat="m in members" value="{{m.val}}">
+              	{{m.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <form ng-submit="searchMembers()" layout="row" class="search-box" flex>
+          <md-input-container md-no-float flex>
+            <md-icon>
+          		<ng-md-icon icon="search"></ng-md-icon>
+        		</md-icon>
+            <input ng-model="searchText" type="text" placeholder="Search">
+          </md-input-container>
+        </form>
+        <md-button class="md-raised">Favorites</md-button>
+        <md-button class="md-raised" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button>
+      </md-content>
+
+      <md-content class="md-padding top-content" layout="column">
+        <md-toolbar class="add-members-header">
+           <h2>Recently Searched</h2>
+          <md-divider ></md-divider>
+        </md-toolbar>
+        <md-content layout="row" layout-wrap>
+        	<div flex="33" ng-if="item.isShow" class="container-member-card" ng-repeat="item in foundMembers">
+          	<div dmc-member-card 
+          			compare-member="compareMember" 
+          			invite-member="addToInvitation" 
+          			card-source="item"  
+          			class="member-card"></div>
+      			</div>
+        </md-content>
+      </md-content>
+    </div>
+    <!-- Right Content Column -->
+    <div class="content-column" layout="column" flex="29">
+      <div dmc-selected-invitees class="content-panel invitees" invitees="invitees"></div>
+    </div>
+	</div>
+	<div layout="row" layout-align="end center">
+	    <md-button class="md-raised md-primary" ng-disabled="invitees.length == 0">Save</md-button>
+	</div>
+</div>

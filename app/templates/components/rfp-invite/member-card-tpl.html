@@ -3,7 +3,7 @@
         <md-button href="" aria-label="Favorite" class="md-icon-button" flex><ng-md-icon icon="favorite_outline" style="fill: grey;" size="18"></ng-md-icon></md-button>
     </div>
     <div class="member-card__image">
-        <img src="{{cardSource.avatar}}" alt="Name member">
+        <img ng-src="{{cardSource.avatar}}" alt="Name member">
     </div>
     <div class="member-card__header" layout="column" layout-padding layout-margin>
         <h3 class="member-name">{{cardSource.name}}</h3>

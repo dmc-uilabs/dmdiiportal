@@ -44,9 +44,15 @@
                                     </md-toolbar>
                                 </div>
                                 <div class="content-panel-body">
-                                    <md-content class="md-padding top-content member-cards">
-                                        <div dmc-member-card compare-member="compareMember" invite-member="addToInvitation" card-source="item" ng-if="item.isShow" class="member-card" ng-repeat="item in foundMembers"></div>
-                                    </md-content>
+                                    <md-content layout="row" layout-wrap>
+                                        <div flex="33" ng-if="item.isShow" class="container-member-card" ng-repeat="item in foundMembers">
+                                            <div dmc-member-card 
+                                                    compare-member="compareMember" 
+                                                    invite-member="addToInvitation" 
+                                                    card-source="item"  
+                                                    class="member-card"></div>
+                                                </div>
+                                      </md-content>
                                 </div>
                             </div>
                         </div>

@@ -1,9 +1,12 @@
+.container-member-card{
+  padding: 8px;
+}
 .member-card{
-  display: inline-block;
+  display: block;
   border: 1px solid #ccc;
   @include borderRadius(3px);
-  max-width: 250px;
-  margin: 3px;
+  //width: 100%;
+  //margin: 3px;
   &__image{
     text-align: center;
     padding: 10px 0 0 0;
