@@ -1,4 +1,146 @@
 {
+  "companies": [
+    {
+      "id": 1,
+      "name": "The Turbine Company",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "featureImage": {
+        "thumbnail": "/uploads/company/picture/1/20151216100049000000.png",
+        "large": "/uploads/company/picture/1/20151216100049000000.png"
+      }
+    },
+    {
+      "id": 2,
+      "name": "The Turbine Company 2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "featureImage": {
+        "thumbnail": "/images/company-logo.jpg",
+        "large": "/images/company-logo.jpg"
+      }
+    }
+  ],
+  "company_features": [
+    {
+      "id": 1,
+      "companyId": 1,
+      "productId": 20,
+      "type": "service"
+    },
+    {
+      "id": 2,
+      "companyId": 1,
+      "productId": 26,
+      "type": "service"
+    },
+    {
+      "id": 4,
+      "companyId": 1,
+      "productId": 15,
+      "type": "service"
+    },
+    {
+      "id": 12,
+      "companyId": 1,
+      "productId": 13,
+      "type": "service"
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "firstName": "Denis",
+      "lastName": "Sobko",
+      "displayName": "Denis Sobko",
+      "email": "denis.sobko@gmail.com",
+      "salutation": 2,
+      "suffix": 2,
+      "location": "Poltava, 53",
+      "timezone": "",
+      "featureImage": {
+        "thumbnail": "/uploads/account-profile/1/20151216102827000000.png",
+        "large": "/uploads/account-profile/1/20151216102827000000.png"
+      },
+      "jobTitle": "Job Title",
+      "description": "My description",
+      "privacy": {
+        "public": {
+          "email": {
+            "enable": "true",
+            "value": "email@gmail.com"
+          },
+          "phone": {
+            "enable": "true",
+            "value": "1234567895"
+          },
+          "location": {
+            "enable": "true",
+            "value": "USA"
+          }
+        },
+        "private": {
+          "email": {
+            "enable": "true",
+            "value": "denis.sobko@gmail.com"
+          },
+          "phone": {
+            "enable": "true",
+            "value": "7896655664"
+          },
+          "location": {
+            "enable": "true",
+            "value": ""
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "firstName": "First Name 2",
+      "lastName": "Last Name 2",
+      "displayName": null,
+      "email": "email2@gmail.com",
+      "salutation": null,
+      "suffix": null,
+      "location": null,
+      "timezone": null,
+      "featureImage": {
+        "thumbnail": "/uploads/account-profile/1/20151214141255000000.png",
+        "large": "/uploads/account-profile/1/20151214141255000000.png"
+      },
+      "jobTitle": null,
+      "description": null,
+      "privacy": {
+        "public": {
+          "email": {
+            "enable": false,
+            "value": "email@gmail.com"
+          },
+          "phone": {
+            "enable": false,
+            "value": null
+          },
+          "location": {
+            "enable": false,
+            "value": null
+          }
+        },
+        "private": {
+          "email": {
+            "enable": false,
+            "value": "email@gmail.com"
+          },
+          "phone": {
+            "enable": false,
+            "value": null
+          },
+          "location": {
+            "enable": false,
+            "value": null
+          }
+        }
+      }
+    }
+  ],
   "projects": [
     {
       "id": 2,
@@ -187,150 +329,6 @@
     }
   ],
   "services": [
-    {
-      "id": 20,
-      "title": "micro Fuel Cell",
-      "description": "A  service to model the lifespan of a micro fuel cell for small cells that use  alcohol to convert  chemical energy  into electrical energy. Commonly used in cell phones or edge devices for M2M  communications. ",
-      "owner": "William William III",
-      "releaseDate": "01-04-2015",
-      "serviceType": "solid",
-      "tags": [],
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/ge-fuel-cell.png",
-        "large": "images/ge-fuel-cell.png"
-      },
-      "currentStatus": {
-        "percentCompleted": "33",
-        "startDate": "20-09-2015",
-        "startTime": "18:45:10",
-        "project": {
-          "id": 0,
-          "title": null
-        }
-      },
-      "projectId": 0
-    },
-    {
-      "id": 21,
-      "title": "3D Printing a 3D Printer",
-      "description": "3D CADdrawings to make your own 3D printer FROM your own 3D printer.",
-      "owner": "Roger Rabbit",
-      "releaseDate": "20-04-2014",
-      "serviceType": "solid",
-      "tags": [],
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/3d-printing.png",
-        "large": "images/3d-printing.png"
-      },
-      "currentStatus": {
-        "percentCompleted": "95",
-        "startDate": "21-09-2015",
-        "startTime": "09:15:10",
-        "project": {
-          "id": 0,
-          "title": null
-        }
-      },
-      "projectId": 0
-    },
-    {
-      "id": 22,
-      "title": "Redox Chemistry",
-      "description": "this service will calculate the oxidation numbers for any redox equation you\n  have.  Allows you to input your own\n  redox equations than calculates the oxidation numbers for you",
-      "owner": "CE. Genius",
-      "releaseDate": "06-27-2015",
-      "serviceType": "data",
-      "tags": [],
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/redox-reaction.png",
-        "large": "images/redox-reaction.png"
-      },
-      "currentStatus": {
-        "percentCompleted": "83",
-        "startDate": "22-09-2015",
-        "startTime": "01:23:10",
-        "project": {
-          "id": 0,
-          "title": null
-        }
-      },
-      "projectId": 0
-    },
-    {
-      "id": 19,
-      "title": "Computer Aided Manufacturing",
-      "description": "Develop computer software to control machine tools and related machinery in the manufacturing of workpieces. This service will easily convert your CAM model into simple file of G-codes/M-Codes for downloading to your CNC machine.",
-      "owner": "John Smith",
-      "releaseDate": "23-08-2015",
-      "serviceType": "solid",
-      "tags": [],
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/computer-aided-manufacturing.png",
-        "large": "images/computer-aided-manufacturing.png"
-      },
-      "currentStatus": {
-        "percentCompleted": "73",
-        "startDate": "22-09-2015",
-        "startTime": "07:37:10",
-        "project": {
-          "id": 0,
-          "title": null
-        }
-      },
-      "projectId": 0
-    },
-    {
-      "id": 23,
-      "title": "Biological Oxygen Demand",
-      "description": "Biochemical oxygen demand (BOD) is the amount of dissolved oxygen used by microorganisms in the biological process of metabolizing organic matter in water. This service allows you to input the amount of organic matter in your system and will\n  output the level of organic pollution of a body of water.",
-      "owner": "Ima Worme",
-      "releaseDate": "04-26-2015",
-      "serviceType": "data",
-      "tags": [],
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/biological_oxygen-demand.png",
-        "large": "images/biological_oxygen-demand"
-      },
-      "currentStatus": {
-        "percentCompleted": "12",
-        "startDate": "20-09-2015",
-        "startTime": "08:58:10",
-        "project": {
-          "id": 0,
-          "title": null
-        }
-      },
-      "projectId": 0
-    },
-    {
-      "id": 24,
-      "title": "Plasticity",
-      "description": "Malleability and ductility calculations for metal. The service allows you to input your metal and the expected operation temperature.",
-      "owner": "Au Gold",
-      "releaseDate": "22-08-2015",
-      "serviceType": "data",
-      "tags": [],
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/plasticity.png",
-        "large": "images/plasticity.png"
-      },
-      "currentStatus": {
-        "percentCompleted": "58",
-        "startDate": "22-09-2015",
-        "startTime": "10:04:10",
-        "project": {
-          "id": 0,
-          "title": null
-        }
-      },
-      "projectId": 0
-    },
     {
       "id": 1,
       "title": "qout-of-balance Testing",
@@ -791,54 +789,6 @@
         }
       },
       "projectId": 5
-    },
-    {
-      "id": 25,
-      "title": "Mu (Mag Perm)",
-      "description": "Estimates Mu for materials with simple structures and known saturation polarization",
-      "owner": "Sonia Maxwell",
-      "releaseDate": "16-07-2015",
-      "serviceType": "data",
-      "tags": [],
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/mag-perm-chart.png",
-        "large": "images/mag-perm-chart.png"
-      },
-      "currentStatus": {
-        "percentCompleted": "87",
-        "startDate": "21-09-2015",
-        "startTime": "10:18:10",
-        "project": {
-          "id": 0,
-          "title": null
-        }
-      },
-      "projectId": 0
-    },
-    {
-      "id": 26,
-      "title": "Magnetic Permeability Model",
-      "description": "Rapidly determine magnetic permeability of unknown materials based on these physical properties: Saturation Polarization, Exchange Stiffness, Magnetic Anisotropy, Grain Diameter.",
-      "owner": "Daniel Bridges",
-      "releaseDate": "10-09-2015",
-      "serviceType": "data",
-      "tags": [],
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/mag-perm-model.png",
-        "large": "images/mag-perm-model.png"
-      },
-      "currentStatus": {
-        "percentCompleted": "25",
-        "startDate": "22-09-2015",
-        "startTime": "09:13:10",
-        "project": {
-          "id": 0,
-          "title": null
-        }
-      },
-      "projectId": 0
     },
     {
       "id": 27,
@@ -1391,90 +1341,6 @@
     }
   ],
   "specifications": [
-    {
-      "serviceId": 3,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "input": 2,
-      "output": 1,
-      "usageStats": {
-        "added": 130,
-        "members": 20
-      },
-      "runStats": {
-        "success": 108,
-        "fail": 12
-      }
-    },
-    {
-      "serviceId": 25,
-      "description": "Estimates Mu for materials with simple structures and known saturation polarization",
-      "input": 2,
-      "output": 1,
-      "usageStats": {
-        "added": 130,
-        "members": 20
-      },
-      "runStats": {
-        "success": 108,
-        "fail": 12
-      }
-    },
-    {
-      "serviceId": 26,
-      "description": "Rapidly determine magnetic permeability of unknown materials based on these physical properties: Saturation Polarization, Exchange Stiffness, Magnetic Anisotropy, Grain Diameter.",
-      "input": 5,
-      "output": 1,
-      "usageStats": {
-        "added": 50,
-        "members": 10
-      },
-      "runStats": {
-        "success": 55,
-        "fail": 5
-      }
-    },
-    {
-      "serviceId": 21,
-      "description": "3D CADdrawings to make your own 3D printer FROM your own 3D printer.",
-      "input": 4,
-      "output": 2,
-      "usageStats": {
-        "added": 30,
-        "members": 25
-      },
-      "runStats": {
-        "success": 53,
-        "fail": 0
-      }
-    },
-    {
-      "componentId": 22,
-      "description": "this service will calculate the oxidation numbers for any redox equation you\n  have.  Allows you to input your own\n  redox equations than calculates the oxidation numbers for you.",
-      "input": 8,
-      "output": 3,
-      "usageStats": {
-        "added": 46,
-        "members": 40
-      },
-      "runStats": {
-        "success": 103,
-        "fail": 7
-      }
-    },
-    {
-      "componentId": 24,
-      "description": "Malleability and ductility calculations for metal. The service allows you to input your metal and the expected operation temperature",
-      "input": 3,
-      "output": 1,
-      "usageStats": {
-        "added": 35,
-        "members": 26
-      },
-      "runStats": {
-        "success": 3,
-        "fail": 9
-      }
-    },
     {
       "componentId": 3,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",

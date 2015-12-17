@@ -197,3 +197,10 @@ table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th{
     padding: 10px;
   }
 }
+
+md-toast.md-success-toast-theme {
+  background-color: #368739;
+}
+md-toast.md-error-toast-theme {
+  background-color: #AE2B2B;
+}

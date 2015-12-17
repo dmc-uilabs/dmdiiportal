@@ -1,19 +1,12 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('BasicsAccountCtr', [ '$stateParams', '$state', "$scope", "$cookies","$timeout", "$q", "ajax", "location", function ($stateParams, $state, $scope, $cookies,$timeout,$q, ajax, location) {
+    .controller('BasicsAccountCtr', [ '$stateParams', '$state', "$scope","$timeout", "$q", "ajax", "location","accountData","accountUpdate", function ($stateParams, $state, $scope,$timeout,$q, ajax, location,accountData,accountUpdate) {
+        $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
         $scope.title = pageTitles[$scope.page];
 
-        $scope.user = {
-            firstName   : null,
-            lastName    : null,
-            email       : null,
-            salutation  : null,
-            suffix      : null,
-            location    : null,
-            timezone    : null
-        };
+        $scope.user = accountData;
 
         var callback = function(success,data){
             if(success) {
@@ -21,7 +14,7 @@ angular.module('dmc.account')
                 $scope.user.location = $scope.user.dataLocation.city + ", " + $scope.user.dataLocation.region;
                 $scope.ctrl.searchText = $scope.user.dataLocation.timezone;
                 $scope.user.timezone = $scope.user.dataLocation.timezone;
-                $cookies.putObject('userBasics', $scope.user);
+                accountUpdate.update($scope.user);
             }
         };
 
@@ -39,10 +32,7 @@ angular.module('dmc.account')
         $scope.ctrl.selectedItemChange = selectedItemChange;
         $scope.ctrl.searchTextChange   = searchTextChange;
 
-        if(typeof $cookies.getObject('userBasics') == 'object'){
-            $scope.user = $cookies.getObject('userBasics');
-            $scope.ctrl.searchText = $scope.user.timezone;
-        }
+        $scope.ctrl.searchText = $scope.user.timezone;
 
         function querySearch (query) {
             var results = query ? $scope.ctrl.states.filter( createFilterFor(query) ) : $scope.ctrl.states,
@@ -58,14 +48,12 @@ angular.module('dmc.account')
         function searchTextChange(text) {
             if(text.trim().length == 0){
                 $scope.user.timezone = null;
-                $cookies.putObject('userBasics', $scope.user);
+                accountUpdate.update($scope.user);
             }
-            //$log.info('Text changed to ' + text);
         }
         function selectedItemChange(item) {
             $scope.user.timezone = item.display;
-            $cookies.putObject('userBasics', $scope.user);
-            //$log.info('Item changed to ' + JSON.stringify(item));
+            accountUpdate.update($scope.user);
         }
 
         function loadAll() {
@@ -115,7 +103,7 @@ angular.module('dmc.account')
         }
         $scope.changedValue = function(type){
             if(type != "email" || (type == "email" && ($scope.user.email.trim().length == 0 || validateEmail($scope.user.email)))) {
-                $cookies.putObject('userBasics', $scope.user);
+                accountUpdate.update($scope.user);
             }
         };
 
@@ -144,4 +132,7 @@ angular.module('dmc.account')
                 title : "Salutation 3"
             }
         ];
+        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
+            $scope.$apply();
+        }
 }]);

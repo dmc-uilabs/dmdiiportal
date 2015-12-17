@@ -17,17 +17,17 @@
                             <h2 class="md-title title-block">Public information</h2>
                             <div layout="row">
                                 <div layout="column" flex="20" ng-repeat="(key,item) in information.public">
-                                    <md-checkbox ng-model="item.checked" aria-label="{{item.title}}" ng-change="changedCheckbox(key,'public',item.checked)">{{item.title}}</md-checkbox>
+                                    <md-checkbox ng-init="userBasics.privacy.public[key].enable = (userBasics.privacy.public[key].enable == true || userBasics.privacy.public[key].enable == 'true' ? true : false)" ng-model="userBasics.privacy.public[key].enable" aria-label="{{item.title}}" ng-change="changedCheckbox(key,'public')">{{item.title}}</md-checkbox>
                                 </div>
                             </div>
-                            <div layout="row" ng-repeat="(key,item) in information.public" ng-if="item.checked">
+                            <div layout="row" ng-repeat="(key,item) in information.public" ng-if="userBasics.privacy.public[key].enable">
                                 <md-input-container class="md-icon-float" layout="column" flex>
                                     <label>{{item.title}}</label>
                                     <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('public')">
                                         <ng-md-icon icon="{{item.icon}}" size="26"></ng-md-icon>
                                     </md-icon>
-                                    <input ng-if="key == 'phone'" ng-model="item.value" phone-input maxlength="12">
-                                    <input ng-if="key != 'phone'" ng-model="item.value">
+                                    <input ng-if="key == 'phone'" ng-model="userBasics.privacy.public[key].value" ng-change="changeValue()" phone-input maxlength="12">
+                                    <input ng-if="key != 'phone'" ng-model="userBasics.privacy.public[key].value" ng-change="changeValue()">
                                 </md-input-container>
                             </div>
                         </div>
@@ -35,17 +35,17 @@
                             <h2 class="md-title title-block">Private information</h2>
                             <div layout="row">
                                 <div layout="column" flex="20" ng-repeat="(key,item) in information.private">
-                                    <md-checkbox ng-model="item.checked" aria-label="{{item.title}}" ng-change="changedCheckbox(key,'private',item.checked)">{{item.title}}</md-checkbox>
+                                    <md-checkbox ng-init="userBasics.privacy.private[key].enable = (userBasics.privacy.private[key].enable == true || userBasics.privacy.private[key].enable == 'true' ? true : false)" ng-model="userBasics.privacy.private[key].enable" aria-label="{{item.title}}" ng-change="changedCheckbox(key,'private')">{{item.title}}</md-checkbox>
                                 </div>
                             </div>
-                            <div layout="row" ng-repeat="(key,item) in information.private" ng-if="item.checked">
+                            <div layout="row" ng-repeat="(key,item) in information.private" ng-if="userBasics.privacy.private[key].enable">
                                 <md-input-container class="md-icon-float" layout="column" flex>
                                     <label>{{item.title}}</label>
                                     <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('private')">
                                         <ng-md-icon icon="{{item.icon}}" class="location" size="26"></ng-md-icon>
                                     </md-icon>
-                                    <input ng-if="key == 'phone'" ng-model="item.value" phone-input maxlength="12">
-                                    <input ng-if="key != 'phone'" ng-model="item.value">
+                                    <input ng-if="key == 'phone'" ng-model="userBasics.privacy.private[key].value" ng-change="changeValue()" phone-input maxlength="12">
+                                    <input ng-if="key != 'phone'" ng-model="userBasics.privacy.private[key].value" ng-change="changeValue()">
                                 </md-input-container>
                             </div>
                         </div>
