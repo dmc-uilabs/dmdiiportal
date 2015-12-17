@@ -168,56 +168,6 @@
   }
 }
 
-  .new-review{
-    padding: 10px;
-    border: 1px solid #65AF3F;
-    h2{
-      font-size: 16px;
-      margin: 0;
-      font-weight: normal;
-      color: #65AF3F;
-    }
-  }
-
-.one-review-panel {
-  margin-top: 15px;
-  .md-toolbar-tools {
-    background-color: transparent;
-    height: auto;
-  }
-  h2 {
-    font-size: 21px;
-    margin: auto 5px;
-    font-weight: normal;
-
-    span {
-      font-size: 11px;
-    }
-  }
-  .new-review{
-    md-select-value{
-      height: 30px;
-      span{
-        font-size: 16px
-      }
-    }
-  }
-  span{
-    font-size: 13px;
-  }
-  .one-review-footer {
-    margin-top: 15px;
-    a {
-      text-decoration: none;
-      color: #65AF3F;
-    }
-    .md-button{
-      margin: 0;
-      width: auto;
-      height: auto;
-    }
-  }
-}
 
 .similar_product{
   h2{

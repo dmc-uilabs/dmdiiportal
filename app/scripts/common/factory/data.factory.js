@@ -102,6 +102,9 @@ angular.module('dmc.data',[])
             addProductReview: function(){
                 return baseServer+'/add_product_review';
             },
+            addLikeDislike: function(){
+                return baseServer+'/add_like_dislike';
+            },
             editProduct: function(){
                 return baseServer+'/edit_product';
             },
