@@ -11,18 +11,23 @@ angular.module('dmc.company', [
     'dmc.common.footer',
     'dmc.model.company',
     "dmc.ajax",
+    "dmc.data",
     'dmc.component.treemenu',
     'dmc.component.productscard',
     'dmc.component.productcard',
     'dmc.component.carousel',
-    'dmc.compare'
+    'dmc.compare',
+    'dmc.model.fileModel',
+    'dmc.model.fileUpload',
+    'dmc.model.toast-model',
+    'flow'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('company', {
         url: '/:companyId',
         controller: 'CompanyIdLocatorCtrl',
         template: '<ui-view />',
         resolve: {
-            projectData: ['CompanyModel', '$stateParams',
+            companyData: ['CompanyModel', '$stateParams',
                 function(CompanyModel, $stateParams) {
                     return CompanyModel.getModel($stateParams.companyId);
                 }]
@@ -42,8 +47,84 @@ angular.module('dmc.company', [
         if (companyId === "" || !angular.isDefined($stateParams.companyId)) {
             location.href = "/";
         }
+        //console.log(companyData);
         var hash = window.location.hash;
         if (hash.lastIndexOf('/') == hash.indexOf('/')) {
             $state.go('company.storefront', {companyId: companyId, page : 'services'})
         }
+}]).service('menuCompany', ['$location',function ($location) {
+    this.getMenu = function(selectedProductType,pageType,companyId){
+        return {
+            title: 'BROWSE BY',
+            data: [
+                {
+                    'id': 1,
+                    'title': 'All',
+                    'tag' : 'all',
+                    'items': 45,
+                    'opened' : (selectedProductType == 'all' ? true : false),
+                    'onClick' : function(){
+                        $location.url(companyId+'/storefront/all');
+                    },
+                    'categories': []
+                },
+                {
+                    'id': 2,
+                    'title': 'Components',
+                    'tag' : 'components',
+                    'items': 13,
+                    'opened' : (selectedProductType == 'components' ? true : false),
+                    'onClick' : function(){
+                        $location.url(companyId+'/storefront/components');
+                    },
+                    'categories': []
+                },
+                {
+                    'id': 3,
+                    'title': 'Services',
+                    'tag' : 'services',
+                    'items': 32,
+                    'opened' : (selectedProductType == 'services' ? true : false),
+                    'onClick' : function(){
+                        $location.url(companyId+'/storefront/services');
+                    },
+                    'categories': [
+                        {
+                            'id': 31,
+                            'title': 'Analytical Services',
+                            'tag' : 'analytical',
+                            'items': 15,
+                            'opened' : (selectedProductType == 'services' && pageType == 'analytical' ? true : false),
+                            'onClick' : function(){
+                                $location.url(companyId+'/storefront/services?type=analytical');
+                            },
+                            'categories': []
+                        },
+                        {
+                            'id': 32,
+                            'title': 'Solid Services',
+                            'tag' : 'solid',
+                            'items': 15,
+                            'opened' : (selectedProductType == 'services' && pageType == 'solid' ? true : false),
+                            'onClick' : function(){
+                                $location.url(companyId+'/storefront/services?type=solid');
+                            },
+                            'categories': []
+                        },
+                        {
+                            'id': 33,
+                            'title': 'Data Services',
+                            'tag' : 'data',
+                            'items': 2,
+                            'opened' : (selectedProductType == 'services' && pageType == 'data' ? true : false),
+                            'onClick' : function(){
+                                $location.url(companyId+'/storefront/services?type=data');
+                            },
+                            'categories': []
+                        }
+                    ]
+                }
+            ]
+        };
+    };
 }]);

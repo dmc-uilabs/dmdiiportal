@@ -1,6 +1,9 @@
 'use strict';
 angular.module('dmc.company')
-    .controller('StorefrontCompanyCtr', [ '$stateParams', '$state', "$scope", "$cookies", "ajax","Products","$location", function ($stateParams, $state, $scope, $cookies, ajax,Products,$location) {
+    .controller('StorefrontCompanyCtr', [
+        '$stateParams', '$state', "$scope", "$cookies", "ajax","Products","$location",'companyData','menuCompany', 'toastModel','dataFactory',
+        function ($stateParams, $state, $scope, $cookies, ajax,Products,$location,companyData, menuCompany, toastModel, dataFactory ) {
+        $scope.companyData  = companyData ;
         // ------------------------------ get state params
         $scope.companyId = $stateParams.companyId;
         $scope.selectedProductType = $stateParams.page;
@@ -22,16 +25,34 @@ angular.module('dmc.company')
             }
         ];
 
-        //$scope.selectedProductType = $scope.productTypes[0].name;
+            $scope.carouselData = {
+                featured : {arr : [], count : 0},
+                new : {arr : [], count : 0}
+            };
 
-        $scope.carouselData = {
-            featured : {arr : [], count : 0},
-            new : {arr : [], count : 0}
-        };
-        $scope.itemsArray = [];
+            $scope.getFeatures = function(){
+                ajax.on(dataFactory.getFeaturesCompany(),
+                    {
+                        company_id : $scope.companyId
+                    },
+                    function(data){
+                        if(!data.error){
+                            //$scope.features.services = data.result.services;
+                            //$scope.features.components = data.result.components;
+                            $scope.carouselData.featured.arr = $.merge(data.result.services,data.result.components);
+                        }else{
+                            toastModel.showToast("error",data.error);
+                        }
+                    },function(data){
+                        toastModel.showToast("error","Error. getFeaturesCompany() fail");
+                    }
+                );
+            };
+            $scope.getFeatures();
+
         // get featured and new for Carousel -------------------------------
         $scope.callbackCarouselData = function(data){
-            $scope.carouselData.featured = {arr : data.result, count : data.count};
+            //$scope.carouselData.featured = {arr : data.result, count : data.count};
             $scope.carouselData.new = {arr : data.result, count : data.count};
         };
 
@@ -39,7 +60,7 @@ angular.module('dmc.company')
             limit : 10, offset: 0
         });
         // ---------------------------------------------------------
-
+        $scope.itemsArray = [];
         var get4Items = function(data){
             $scope.itemsArray = [];
             for(var i=0;i<data.length;i++) {
@@ -50,6 +71,7 @@ angular.module('dmc.company')
                 }
             }
         };
+
 
         var responseData = function(){
             var data = {
@@ -67,7 +89,6 @@ angular.module('dmc.company')
         $scope.callbackProducts = function(data){
             get4Items(data.result);
         };
-        if($scope.selectedProductType == 'all') $scope.getAllProducts();
         // ---------------------------------------------------------------------------------
 
         // function for get services --------------------------------------------------
@@ -77,7 +98,6 @@ angular.module('dmc.company')
         $scope.callbackServices = function(data){
             get4Items(data.result);
         };
-        if($scope.selectedProductType == 'services') $scope.getServices();
         // -----------------------------------------------------------------------------
 
         // function for get components --------------------------------------------------
@@ -87,8 +107,25 @@ angular.module('dmc.company')
         $scope.callbackComponents = function(data){
             get4Items(data.result);
         };
-        if($scope.selectedProductType == 'components') $scope.getComponents();
         // -----------------------------------------------------------------------------
+
+            $scope.productTypeChanged = function(){
+                switch($scope.selectedProductType){
+                    case 'all':
+                        $scope.getAllProducts();
+                        break;
+                    case 'services':
+                        $scope.getServices();
+                        break;
+                    case 'components':
+                        $scope.getComponents();
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            $scope.productTypeChanged();
 
         // get data from cookies
         var updateCompareCount = function(){
@@ -103,76 +140,5 @@ angular.module('dmc.company')
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         });
 
-        $scope.treeMenuModel = {
-            title: 'BROWSE BY',
-            data: [
-                {
-                    'id': 1,
-                    'title': 'All',
-                    'tag' : 'all',
-                    'items': 45,
-                    'opened' : ($scope.selectedProductType == 'all' ? true : false),
-                    'onClick' : function(){
-                        $location.url($scope.companyId+'/storefront/all');
-                    },
-                    'categories': []
-                },
-                {
-                    'id': 2,
-                    'title': 'Components',
-                    'tag' : 'components',
-                    'items': 13,
-                    'opened' : ($scope.selectedProductType == 'components' ? true : false),
-                    'onClick' : function(){
-                        $location.url($scope.companyId+'/storefront/components');
-                    },
-                    'categories': []
-                },
-                {
-                    'id': 3,
-                    'title': 'Services',
-                    'tag' : 'services',
-                    'items': 32,
-                    'opened' : ($scope.selectedProductType == 'services' ? true : false),
-                    'onClick' : function(){
-                        $location.url($scope.companyId+'/storefront/services');
-                    },
-                    'categories': [
-                        {
-                            'id': 31,
-                            'title': 'Analytical Services',
-                            'tag' : 'analytical',
-                            'items': 15,
-                            'opened' : ($scope.selectedProductType == 'services' && $scope.pageType == 'analytical' ? true : false),
-                            'onClick' : function(){
-                                $location.url($scope.companyId+'/storefront/services?type=analytical');
-                            },
-                            'categories': []
-                        },
-                        {
-                            'id': 32,
-                            'title': 'Solid Services',
-                            'tag' : 'solid',
-                            'items': 15,
-                            'opened' : ($scope.selectedProductType == 'services' && $scope.pageType == 'solid' ? true : false),
-                            'onClick' : function(){
-                                $location.url($scope.companyId+'/storefront/services?type=solid');
-                            },
-                            'categories': []
-                        },
-                        {
-                            'id': 33,
-                            'title': 'Data Services',
-                            'tag' : 'data',
-                            'items': 2,
-                            'opened' : ($scope.selectedProductType == 'services' && $scope.pageType == 'data' ? true : false),
-                            'onClick' : function(){
-                                $location.url($scope.companyId+'/storefront/services?type=data');
-                            },
-                            'categories': []
-                        }
-                    ]
-                }
-            ]
-        };
+        $scope.treeMenuModel = menuCompany.getMenu($scope.selectedProductType,$scope.pageType,$scope.companyId);
 }]);

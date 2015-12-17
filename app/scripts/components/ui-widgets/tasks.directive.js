@@ -26,13 +26,15 @@ angular.module('dmc.widgets.tasks',[
 
                 // function for get all tasks from DB
                 $scope.getTasks = function(){
-                    ajax.on(dataFactory.getUrlAllTasks($scope.projectId),{
+                    ajax.on(dataFactory.getUrlAllTasks($scope.projectId),
+                        dataFactory.get_request_obj({
                         projectId : $scope.projectId,
                         sort : $scope.sort,
                         order : $scope.order,
                         limit : 5,
                         offset : 0
-                    },function(data){
+                    }),function(data){
+                        var data = dataFactory.get_result(data);
                         $scope.tasks = data.result;
                         $scope.total = data.count;
                         if($scope.columns.indexOf('dueDate') > -1) {
@@ -100,13 +102,14 @@ angular.module('dmc.widgets.tasks',[
                 $scope.order = 'DESC';
 
                 $scope.getProjectTasks = function(){
-                    ajax.on(dataFactory.getUrlAllTasks($scope.projectId),{
+                    ajax.on(dataFactory.getUrlAllTasks($scope.projectId),dataFactory.get_request_obj({
                         projectId: $scope.projectId,
                         sort : $scope.sort,
                         order : $scope.order,
                         limit : 3,
                         offset : 0
-                    },function(data){
+                    }),function(data){
+                        var data = dataFactory.get_result(data);
                         $scope.projectTasks = data.result;
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     },function(){

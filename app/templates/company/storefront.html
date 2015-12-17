@@ -1,4 +1,4 @@
-<div class="container container-company" layout-padding layout="row">
+<div class="container container-company" layout-padding layout="row" ng-show="companyData.id">
     <div class="content-column left-content" layout="column" flex="20">
         <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
     </div>
@@ -6,16 +6,13 @@
         <div class="content-panel">
             <div class="content-panel-body">
                 <md-content class="company-content">
-                    <div layout="row" layout-align="center center" style="background-image: url('images/company-logo.jpg')" class="company-image">
+                    <div layout="row" layout-align="center center" ng-style="{'background-image' : 'url('+companyData.featureImage.large+')'}" class="company-image">
                        <!--<img ng-src="images/company-logo.jpg" alt=""/>-->
                     </div>
                     <div layout="row" layout-padding layout-align="start start" class="company-title">
                         <div layout="column" flex="70">
-                            <h2 class="md-title" layout="row" layout-align="start center">The Turbine Company<md-button class="company-buttons" ng-href="/">Profile</md-button></h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur...
+                            <h2 class="md-title" layout="row" layout-align="start center">{{companyData.name}}<md-button class="company-buttons" ng-href="/">Profile</md-button></h2>
+                            <p>{{companyData.description}}
                                 <a class="read-more" href="/">Read More</a>
                             </p>
                         </div>
@@ -28,7 +25,7 @@
                     <md-divider ></md-divider>
                     <div layout="row" layout-padding layout-align="center center" class="company-search">
                         <md-input-container>
-                            <md-select ng-model="selectedProductType" aria-label="Product Types">
+                            <md-select ng-model="selectedProductType" ng-change="productTypeChanged()" aria-label="Product Types">
                                 <md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>
                             </md-select>
                         </md-input-container>
@@ -50,7 +47,7 @@
                     </div>
                     <div layout-padding>
                         <md-tabs md-dynamic-height md-border-bottom class="company-carousel-tabs">
-                            <md-tab label="Popular">
+                            <md-tab label="Featured">
                                 <md-content class="carousel-padding">
                                     <div dmc-carousel
                                          name-carousel="'carouselFeatured'"

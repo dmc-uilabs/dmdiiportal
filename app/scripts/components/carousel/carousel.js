@@ -52,7 +52,6 @@ angular.module('dmc.component.carousel', [
           };
 
           $scope.prevSlide = function(){
-            console.log(Carousel.get($scope.nameCarousel));
               Carousel.get($scope.nameCarousel).previous();
               $scope.selectButton();
           };

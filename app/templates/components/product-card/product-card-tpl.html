@@ -62,7 +62,19 @@
       </div>
     </div>
   </div>
-  <div class="product-card__footer" layout="row" ng-if="cardStyle != 'included'">
+  <div class="product-card__footer" layout="row" ng-if="removeFeatured || addFeatured">
+      <div layout="row" class="remove-from-featured" flex layout-align="center center" ng-show="removeFeatured">
+          <md-button aria-label="Remove from Featured" layout="column" flex href="" ng-click="removeFromFeatured()">
+              Remove from Featured
+        </md-button>
+      </div>
+      <div layout="row" class="add-to-featured" flex layout-align="center center" ng-show="addFeatured">
+          <md-button aria-label="Add to Featured" layout="column" flex href="" ng-click="addToFeatured()">
+              Add to Featured
+          </md-button>
+      </div>
+  </div>
+  <div class="product-card__footer" layout="row" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured">
     <div layout="row" class="adding-to-project" ng-show="addingToProject" layout-align="center center">
       <md-button aria-label="Cancel" layout="column" href="" class="close" ng-click="cancelAddToProject()">
         <ng-md-icon icon="close" size="21"></ng-md-icon>

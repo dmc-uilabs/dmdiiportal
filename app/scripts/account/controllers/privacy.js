@@ -1,11 +1,20 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('PrivacyAccountCtr', [ '$stateParams', '$state', "$cookies", "$scope", "location", function ($stateParams, $state, $cookies, $scope, location) {
+    .controller('PrivacyAccountCtr', [ '$stateParams', '$state', "$scope", "location","accountData","accountUpdate", function ($stateParams, $state, $scope, location,accountData,accountUpdate) {
+        $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
         $scope.title = pageTitles[$scope.page];
 
-        var userBasics = $cookies.getObject('userBasics');
+        $scope.userBasics = accountData;
+        if($scope.userBasics.email && $scope.userBasics.email.indexOf('@') != -1) {
+            if (!$scope.userBasics.privacy.public.email.value || $scope.userBasics.privacy.public.email.value.length == 0) $scope.userBasics.privacy.public.email.value = $scope.userBasics.email;
+            if (!$scope.userBasics.privacy.private.email.value || $scope.userBasics.privacy.private.email.value.length == 0) $scope.userBasics.privacy.private.email.value = $scope.userBasics.email;
+        }
+        if($scope.userBasics.location && $scope.userBasics.location.length != 0) {
+            if (!$scope.userBasics.privacy.public.location.value || $scope.userBasics.privacy.public.location.value.length == 0) $scope.userBasics.privacy.public.location.value = $scope.userBasics.location;
+            if (!$scope.userBasics.privacy.private.location.value || $scope.userBasics.privacy.private.location.value.length == 0) $scope.userBasics.privacy.private.location.value = $scope.userBasics.location;
+        }
         var currentContainer = null;
         var callback = function(success,data){
             if(success == true) {
@@ -21,29 +30,25 @@ angular.module('dmc.account')
 
         var information_ = {
             email : {
-                checked : false,
                 title : "Email",
-                value : null,
                 icon : "email"
             },
             phone : {
-                checked : false,
                 title : "Phone",
-                value : null,
                 icon : "phone"
             },
             location : {
-                checked : false,
                 title : "Location",
-                value : null,
                 icon : "gps_fixed"
             }
         };
 
         $scope.changedCheckbox = function(type, container, item){
-            if(type == "email" && item == true){
-                $scope.information[container].email.value = userBasics.email;
-            }
+            accountUpdate.update($scope.userBasics);
+        };
+
+        $scope.changeValue = function(){
+            accountUpdate.update($scope.userBasics);
         };
 
         $scope.keyDown = function(type, container, $event){
@@ -82,6 +87,9 @@ angular.module('dmc.account')
                 }
             }
         };
+        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
+            $scope.$apply();
+        }
 }]);
 
 

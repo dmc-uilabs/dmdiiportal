@@ -12,6 +12,9 @@ angular.module('dmc.account', [
     'dmc.model.account',
     "dmc.ajax",
     "dmc.location",
+    'dmc.model.fileModel',
+    'dmc.model.fileUpload',
+    'dmc.model.toast-model',
     'flow'
 ]).config(function(flowFactoryProvider, $stateProvider, $urlRouterProvider, $httpProvider){
 
@@ -24,7 +27,7 @@ angular.module('dmc.account', [
         controller: 'AccountIdLocatorCtrl',
         template: '<ui-view />',
         resolve: {
-            projectData: ['AccountModel', '$stateParams',
+            accountData: ['AccountModel', '$stateParams',
                 function(AccountModel, $stateParams) {
                     return AccountModel.getModel($stateParams.accountId);
                 }]
@@ -53,7 +56,6 @@ angular.module('dmc.account', [
     $urlRouterProvider.otherwise('/1');
 }).controller('AccountIdLocatorCtrl', [ '$stateParams', '$state', function ($stateParams, $state) {
         var accountId = $stateParams.accountId;
-        console.log(accountId);
         if (accountId === "" || !angular.isDefined($stateParams.accountId)) {
             location.href = "/";
         }
@@ -61,6 +63,16 @@ angular.module('dmc.account', [
         if (hash.lastIndexOf('/') == hash.indexOf('/')) {
             $state.go('account.basics', {accountId: accountId})
         }
+}]).service('accountUpdate', ['ajax','dataFactory','toastModel', function (ajax,dataFactory,toastModel) {
+    this.update = function(data){
+        ajax.on(dataFactory.updateAccount(data.id),data,function(result){
+            if(result.error){
+                toastModel.showToast('success',result.error);
+            }
+        },function(result){
+            toastModel.showToast('success',"Unable update data");
+        });
+    }
 }]);
 
 var pageTitles = {

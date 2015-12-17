@@ -4,7 +4,7 @@ angular.module('dmc.model.project', ['dmc.data'])
  .service('DMCProjectModel', ['$http', 'dataFactory', function($http, dataFactory) {
 
     this.getModel = function(id) {
-        return $http.get(dataFactory.getUrlAllProjects()).then(
+        return $http.get(dataFactory.getUrlAllProjects(id)).then(
             function(response){
               var arr = response.data.result;
               for (var i = 0, len = arr.length; i < len; i++) {

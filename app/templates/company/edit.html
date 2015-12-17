@@ -1,12 +1,108 @@
-<div class="container container-company" layout-padding layout="row">
+<div class="container container-company" layout-padding layout="row" ng-show="companyData.id">
     <div class="content-column left-content" layout="column" flex="20">
-
+        <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
     </div>
     <div class="content-column right-content" layout="column" flex="80">
         <div class="content-panel">
             <div class="content-panel-body">
-                <md-content>
-                   Edit Company
+                <md-content class="company-content">
+                    <div layout="row" layout-align="end center" ng-style="companyPicture" class="company-image">
+                       <!--<img ng-src="images/company-logo.jpg" alt=""/>-->
+                        <md-button class="md-fab company-buttons company-edit-picture" ng-click="changePicture()" ng-show="!isChangingPicture">
+                            <ng-md-icon icon="mode_edit" size="32"></ng-md-icon>
+                        </md-button>
+                        <div ng-show="isChangingPicture">
+                            <div class="flow-box"
+                                 flow-init
+                                 flow-drag-enter="pictureDragEnter($flow)"
+                                 flow-drag-leave="pictureDragLeave($flow)"
+                                 flow-file-success="$file.msg = $message"
+                                 flow-file-added="addedNewFile($file, $event, $flow )"
+                                 layout="row" layout-align="start center">
+                                <div class="alert" flow-drop flow-drop-enabled="true">
+                                    <div flow-btn class="inner-box" layout="row" layout-align="center center">
+                                        <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="50">
+                                            <img flow-img="$flow.files[0]" />
+                                        </div>
+                                        <div class="text" flex="50">Drag And Drop your picture here</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <md-button class="md-raised md-primary" ng-disabled="$flow.files.length == 0" ng-click="uploadFile($flow)">Submit</md-button>
+                                    <md-button class="md-raised" ng-click="cancelChangePicture($flow)">Cancel</md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" layout-padding layout-align="start start" class="company-title">
+                        <div layout="column" flex="70">
+                            <md-input-container class="title-input-edit">
+                                <label>Title</label>
+                                <input class="md-title" ng-model="companyData.name">
+                            </md-input-container>
+                        </div>
+                        <span flex></span>
+                        <md-button class="md-raised company-buttons" ng-click="cancelChanges()" >Cancel</md-button>
+                        <md-button class="md-raised md-primary company-buttons" ng-click="saveChanges()">Save</md-button>
+                    </div>
+                    <div layout="row" layout-padding layout-align="start start" class="company-description">
+                        <md-input-container flex>
+                            <label>Description</label>
+                            <textarea ng-model="companyData.description" columns="1"></textarea>
+                        </md-input-container>
+                    </div>
+                    <md-divider ></md-divider>
+                    <div layout-padding>
+                        <md-tabs md-dynamic-height md-border-bottom class="editable-featured">
+                            <md-tab label="Featured">
+                                <md-content>
+                                    <dmc-product-card ng-repeat="item in features.services track by $index"
+                                            type-product="item.type"
+                                            remove-featured="removeFeatured"
+                                            card-source="item">
+                                    </dmc-product-card>
+                                    <dmc-product-card ng-repeat="item in features.components track by $index"
+                                            type-product="item.type"
+                                            remove-featured="removeFeatured"
+                                            card-source="item">
+                                    </dmc-product-card>
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
+                    </div>
+                    <div layout-padding>
+                        <md-tabs md-dynamic-height md-border-bottom class="editable-featured">
+                            <md-tab label="Add Featured">
+                                <md-content>
+                                    <div layout="row" layout-padding layout-align="center center" class="company-search">
+                                        <md-input-container>
+                                            <md-select ng-model="selectedProductType" ng-change="productTypeChanged()" aria-label="Product Types">
+                                                <md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                        <form ng-submit="submit()" class="company-search-field" flex="80">
+                                            <md-input-container md-no-float>
+                                                <md-icon>
+                                                    <ng-md-icon icon="search"></ng-md-icon>
+                                                </md-icon>
+                                                <input type="text" placeholder="Start typing..." ng-model="searchModel">
+                                            </md-input-container>
+                                        </form>
+
+                                        <span flex></span>
+                                    </div>
+                                    <div layout-align="center center">
+                                        <dmc-product-card ng-repeat="item in products track by $index"
+                                                          ng-show="featuredIds.indexOf(item.type[0]+item.id) == -1"
+                                                          type-product="item.type"
+                                                          add-featured="addFeatured"
+                                                          card-source="item">
+                                        </dmc-product-card>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
+                    </div>
                 </md-content>
             </div>
         </div>

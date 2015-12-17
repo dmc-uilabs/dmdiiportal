@@ -1,5 +1,24 @@
 .company{
   &-content{
+    .md-fab{
+      background-color: #fff;
+      &:not([disabled]):hover {
+        background-color: #ddd;
+      }
+    }
+    md-tabs.editable-featured {
+      text-align: center;
+      md-content{
+        padding: 8px 0;
+      }
+      .product-card {
+        width: 47%;
+        margin: 5px;
+      }
+    }
+    .title-input-edit{
+      padding-bottom: 0;
+    }
     .list-items{
       padding-top: 16px;
     }
@@ -18,6 +37,14 @@
       &:hover{
         text-decoration: none;
       }
+    }
+    .company-buttons.md-button.md-raised.md-default-theme {
+      text-decoration: none;
+    }
+    .company-edit-picture{
+      right: 0;
+      top: 0;
+      position: absolute;
     }
     .md-icon-button.message-button {
       ng-md-icon {

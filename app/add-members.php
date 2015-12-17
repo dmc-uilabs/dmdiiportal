@@ -1,10 +1,10 @@
 <!doctype html>
 <html class="no-js" lang="">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Company</title>
+    <title>mdangular</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
     <link rel="stylesheet" href="/bower_components/dropzone/dist/min/dropzone.min.css" />
     <link rel="stylesheet" href="/bower_components/md-data-table/dist/md-data-table-style.css" />
-    <link rel="stylesheet" href="/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -28,17 +27,17 @@
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
-  </head>
-  <body ng-app="dmc.company">
+</head>
+<body ng-app="dmc.add_members">
     <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
     <!-- Top Header -->
-    <div dmc-top-header active-page="'company'"></div>
+    <div dmc-top-header active-page="'add-members'"></div>
 
     <ui-view></ui-view>
 
+    <!-- Footer -->
     <dmc-footer></dmc-footer>
 
     <!-- build:js scripts/vendor.js -->
@@ -75,30 +74,22 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/company/index.js -->
+    <!-- build:js scripts/add_members/index.js -->
+    <script src="scripts/socket/socket.io.js"></script>
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
-    <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
-    <script src="scripts/common/factory/location.factory.js"></script>
-    <script src="scripts/common/models/company-model.js"></script>
-    <script src="scripts/components/tree-menu/tree-menu.js"></script>
+    <script src="scripts/components/ui-widgets/documents.directive.js"></script>
+    <script src="scripts/components/dropzone/dropzone.directive.js"></script>
+    <script src="scripts/components/rfp-invite/rfp-invite.directive.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
-    <script src="scripts/components/products-card/products-card.js"></script>
-    <script src="scripts/components/carousel/carousel.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
-    <script src="scripts/common/models/file-upload.js"></script>
-    <script src="scripts/common/models/file-model.js"></script>
-    <script src="scripts/common/models/toast-model.js"></script>
-
-    <script src="scripts/company/company.js"></script>
-    <script src="scripts/company/controllers/storefront.js"></script>
-    <script src="scripts/company/controllers/edit.js"></script>
+    <script src="scripts/add_members/add-members.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         window.apiUrl = '';
     </script>
-  </body>
+</body>
 </html>

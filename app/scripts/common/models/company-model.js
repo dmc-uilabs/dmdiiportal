@@ -1,21 +1,20 @@
 'use strict';
 
 angular.module('dmc.model.company', [
-    'dmc.data',
-    'dmc.ajax'
+    'dmc.data'
 ])
-.service('CompanyModel', ['dataFactory','ajax', function(ajax, dataFactory) {
+.service('CompanyModel', ['dataFactory','$http', function(dataFactory,$http) {
     this.getModel = function(id) {
-        //ajax.on(dataFactory.getAccount(),{id : id},
-        //    function(data){
-        //        console.log(data);
-        //    },function(){
-        //        alert("Ajax is failed!");
-        //    }
-        //);
-        return {
-            id : id,
-            title : "The Turbine Company"
-        };
+        return $http.get(dataFactory.getCompanyUrl(id)+"&id="+id).then(
+            function(response){
+                if(response.data.result == null || response.data.result.length == 0) {
+                    window.location.href = "/";
+                }
+                return response.data.result;
+            },
+            function(response){
+                return response;
+            }
+        );
     };
 }]);

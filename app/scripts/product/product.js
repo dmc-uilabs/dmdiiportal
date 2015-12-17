@@ -49,28 +49,23 @@ angular.module('dmc.product', [
 
     $scope.currentImage = 1;
     $scope.images = [];
+    $scope.indexImages = 0;
 
     //var img = [
-    $scope.images = [
-      'images/marketplace-card-image-1.jpg',
-      'images/3d-printing.png',
-      'images/project_generator.png',
-      'images/plasticity.png',
-      'images/project-1-image.jpg',
-      'images/project_relay_controller.png',
-      'images/project_controller_pg2.png',
-      'images/project_capacitor-bank.png',
-      'images/project_capacitor_compartment.png',
-      'images/ge-fuel-cell.png'
-    ];
 
     $scope.carouselFunctions = {
       openImage : function(index){
-        $(".product-image .main-image").attr("src",$scope.images[index]);
+        $scope.indexImages = index;
 
       },
       deleteImage: function(index){
         $scope.images.splice(index, 1);
+        if ($scope.indexImages == index){
+          $scope.indexImages = 0;
+        }
+        if($scope.indexImages > index){
+          $scope.indexImages--;
+        }
         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
       }
     };
@@ -91,6 +86,18 @@ angular.module('dmc.product', [
             calculate_rating();
           }
         $scope.qqq = $scope.product;
+        $scope.images = [
+          $scope.product.featureImage.thumbnail,
+          'images/3d-printing.png',
+          'images/project_generator.png',
+          'images/plasticity.png',
+          'images/project-1-image.jpg',
+          'images/project_relay_controller.png',
+          'images/project_controller_pg2.png',
+          'images/project_capacitor-bank.png',
+          'images/project_capacitor_compartment.png',
+          'images/ge-fuel-cell.png'
+        ];
         }else{
           $scope.not_found = true;
         }
@@ -383,6 +390,17 @@ angular.module('dmc.product', [
       $scope.products.splice(index, 1);
     }
 
+    $scope.addTag = function(inputTag){
+      if(!inputTag)return;
+      $scope.product.tags.push(inputTag);
+      this.inputTag = null;
+    }
+
+    //remove tag
+    $scope.deleteTag = function(index){
+      $scope.product.tags.splice(index,1);
+    }
+
     $scope.saveEdit = function(){
       ajax.on(
         dataFactory.editProduct(),
@@ -406,6 +424,42 @@ angular.module('dmc.product', [
 
     $scope.cancelEdit = function(){
       $scope.editFlag = false;
+      //get product
+      ajax.on(
+        dataFactory.getProduct(),
+        {
+          typeProduct: $stateParams.typeProduct,
+          productId: $stateParams.productId
+        },
+        function(data){
+          if(data.result.id) {
+            $scope.product = data.result;
+            $scope.product.specificationsData.special = []
+            $scope.number_of_comments = $scope.product.rating.length;
+            if($scope.number_of_comments != 0) {
+              calculate_rating();
+            }
+          $scope.qqq = $scope.product;
+          $scope.images = [
+            $scope.product.featureImage.thumbnail,
+            'images/3d-printing.png',
+            'images/project_generator.png',
+            'images/plasticity.png',
+            'images/project-1-image.jpg',
+            'images/project_relay_controller.png',
+            'images/project_controller_pg2.png',
+            'images/project_capacitor-bank.png',
+            'images/project_capacitor_compartment.png',
+            'images/ge-fuel-cell.png'
+          ];
+          }else{
+            $scope.not_found = true;
+          }
+        },
+        function(){
+          alert("Ajax fail: getProduct");
+        }
+      );
     }
 
     $scope.treeMenuModel = {

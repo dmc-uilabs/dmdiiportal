@@ -6,7 +6,7 @@ function httpResponse($url,$method,$data)
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true );
-    if($method == 'PUT' || $method == 'POST'){
+    if($method == 'PUT' || $method == 'POST' || $method == 'DELETE'){
         $fh = tmpfile();
         fwrite($fh, $data);
         fseek($fh, 0);

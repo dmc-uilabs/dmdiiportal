@@ -14,7 +14,7 @@
                     </div>
                     <div class="inputs-container picture-block" layout="row" layout-align="start center">
                         <div>
-                            <img ng-src="{{profile.image}}" alt=""/>
+                            <img ng-src="{{profile.featureImage.large}}" alt=""/>
                         </div>
                         <div ng-show="!isChangingPicture">
                             <md-button ng-click="changePicture()">Change Picture</md-button>
@@ -45,7 +45,7 @@
                     <div class="inputs-container" layout="row" layout-align="start center">
                         <md-input-container layout="column" flex="50">
                             <label>Display Name</label>
-                            <input ng-model="profile.displayName">
+                            <input ng-init="profile.displayName = (profile.displayName == null || profile.displayName.length == 0 ? profile.firstName + ' ' + profile.lastName : profile.displayName)" ng-model="profile.displayName" ng-change="changeValue()">
                         </md-input-container>
                         <md-input-container layout="column" class="with-icon title-input-left" flex="50">
                             <label>Location</label>
@@ -65,13 +65,13 @@
                         </md-input-container>
                         <md-input-container layout="column" flex="50">
                             <label>Job Title</label>
-                            <input ng-model="profile.jobTitle">
+                            <input ng-model="profile.jobTitle" ng-change="changeValue()">
                         </md-input-container>
                     </div>
                     <div class="inputs-container" layout="row" layout-align="start center">
                         <md-input-container flex>
                             <label>Description</label>
-                            <textarea ng-model="profile.description" columns="1"></textarea>
+                            <textarea ng-model="profile.description" columns="1" ng-change="changeValue()"></textarea>
                         </md-input-container>
                     </div>
                     <div class="inputs-container add-skills-container" layout="row" layout-align="start center">

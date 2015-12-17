@@ -34,8 +34,12 @@ return call_user_func(function () {
         echo edit_task($_POST);
     }else if(strpos($uri,'/discussions') !== false){
         echo get_discussions($_GET);
-    }else if(strpos($uri,'/projects') !== false){
+    }else if(strpos($uri,'/projects') !== false) {
         echo get_projects($_GET);
+    }else if(strpos($uri,'/get_company') !== false){
+        echo get_company($_GET);
+    }else if(strpos($uri,'/get_account') !== false){
+        echo get_account($_GET);
     }else if(strpos($uri,'/components') !== false){
         echo get_components($_GET);
     }else if(strpos($uri,'/documents') !== false){
@@ -62,6 +66,18 @@ return call_user_func(function () {
       echo edit_product($_POST);
     }else if(strpos($uri,'/upp') !== false){
       echo upload_profile_picture($_POST,$_FILES);
+    }else if(strpos($uri,'/ucp') !== false){
+      echo upload_company_picture($_POST,$_FILES);
+    }else if(strpos($uri,'/add_featured_company') !== false){
+        echo add_featured_company($_GET);
+    }else if(strpos($uri,'/remove_featured_company') !== false){
+        echo remove_featured_company($_GET);
+    }else if(strpos($uri,'/get_featured_company') !== false){
+        echo get_featured_company($_GET);
+    }else if(strpos($uri,'/save_company_changes') !== false){
+        echo save_company_changes($_GET);
+    }else if(strpos($uri,'/update_account') !== false){
+        echo update_account($_GET);
     }
 });
 
@@ -176,6 +192,115 @@ function remove_from_project($params){
         }
     }else{
         return json_encode(array('error' => 'Type is wrong' ));
+    }
+}
+
+function save_company_changes($params){
+    if(isset($params['company_id']) && isset($params['name']) && isset($params['description'])) {
+        $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
+        if($company != null and isset($company['id']) == true) {
+            $company['name'] = $params['name'];
+            $company['description'] = $params['description'];
+            $changed_item = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], 'PUT', json_encode($company)), true);
+            return json_encode(array('result' => true));
+        }else{
+            return json_encode(array('error' => 'Company does not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
+function get_featured_company($params){
+    if(isset($params['company_id'])) {
+        $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
+        if($company != null and isset($company['id']) == true) {
+            $features = json_decode(httpResponse(dbUrl().'/companies/'.$params['company_id'].'/company_features', null, null),true);
+            $count = count($features);
+            $data = array(
+                'totalCount' => $count,
+                'services' => [],
+                'components' => []
+            );
+            for($i = 0; $i < count($features); ++$i){
+                if($features[$i]['type'] == 'service'){
+                    $query = json_decode(httpResponse(dbUrl().'/services/'.$features[$i]['productId'], null, null), true);
+                    if($query != null and isset($query['id']) == true) {
+                        $query['type'] = 'service';
+                        array_push($data['services'], $query);
+                    }
+                }else if($features[$i]['type'] == 'component'){
+                    $query = json_decode(httpResponse(dbUrl().'/components/'.$features[$i]['productId'], null, null), true);
+                    if($query != null and isset($query['id']) == true) {
+                        $query['type'] = 'component';
+                        array_push($data['components'], $query);
+                    }
+                }
+            }
+            return json_encode(array('error' => null,'result' => $data));
+        }else{
+            return json_encode(array('error' => 'Company does not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
+function remove_featured_company($params){
+    if(isset($params['type']) && isset($params['product_id']) && isset($params['company_id'])) {
+        $company = json_decode(httpResponse(dbUrl() . '/companies/' . $params['company_id'], null, null), true);
+        if ($company != null and isset($company['id']) == true) {
+            $features = json_decode(httpResponse(dbUrl() . '/companies/' . $params['company_id'] . '/company_features', null, null), true);
+            $exist = false;
+            for($i = 0; $i < count($features); ++$i) {
+                if($features[$i]['type'] == $params['type'] && intval($features[$i]['productId']) == intval($params['product_id'])){
+                    $exist = $features[$i];
+                }
+            }
+            if($exist != false) {
+                $changed_item = json_decode(httpResponse(dbUrl().'/company_features/' . $exist['id'], 'DELETE', null), true);
+                return json_encode(array('result' => true ));
+            }else{
+                return json_encode(array('error' => 'Feature does not exist' ));
+            }
+        }else{
+            return json_encode(array('error' => 'Company does not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
+function add_featured_company($params){
+    if(isset($params['type']) && isset($params['product_id']) && isset($params['company_id'])){
+        $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
+        if($company != null and isset($company['id']) == true) {
+            $features = json_decode(httpResponse(dbUrl().'/companies/'.$params['company_id'].'/company_features', null, null),true);
+            $exist = false;
+            for($i = 0; $i < count($features); ++$i) {
+                if($features[$i]['type'] == $params['type'] && intval($features[$i]['productId']) == intval($params['product_id'])){
+                    $exist = $features[$i];
+                }
+            }
+            if($exist == false) {
+                $last = json_decode(httpResponse(dbUrl() . '/company_features?_sort=id&_order=DESC&_limit=1', null, null), true);
+                $id = (count($last) > 0 ? $last[0]['id'] + 1 : 1);
+                $data = json_encode(array(
+                    'id' => $id,
+                    'companyId' => $params['company_id'],
+                    'productId' => $params['product_id'],
+                    'type' => $params['type']
+                ));
+                $add_featured = json_decode(httpResponse(dbUrl() . '/company_features', 'POST', $data), true);
+                return json_encode(array('error' => null, 'result' => $add_featured));
+            }else{
+                return json_encode(array('error' => null, 'result' => $exist));
+            }
+        }else{
+            return json_encode(array('error' => 'Company does not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
     }
 }
 
@@ -464,6 +589,52 @@ function get_discussions($params){
     return json_encode($result);
 }
 
+function get_company($params){
+    $result = array('success' => false, 'result' => null);
+    if(isset($params['id']) == true){
+        $query = json_decode(httpResponse(dbUrl().'/companies/'.$params['id'], null, null),true);
+        $result['result'] = $query;
+    }
+    return json_encode($result);
+}
+
+function update_account($params){
+    if(isset($params['id']) == true){
+        $account = json_decode(httpResponse(dbUrl().'/accounts/' . $params['id'], null, null), true);
+        if($account != null and isset($account['id']) == true) {
+            $account['firstName'] = $params['firstName'];
+            $account['lastName'] = $params['lastName'];
+            $account['displayName'] = $params['displayName'];
+            $account['email'] = $params['email'];
+            $account['salutation'] = $params['salutation'];
+            $account['suffix'] = $params['suffix'];
+            $account['location'] = $params['location'];
+            $account['timezone'] = $params['timezone'];
+            $account['featureImage']['thumbnail'] = $params['featureImage']['thumbnail'];
+            $account['featureImage']['large'] = $params['featureImage']['large'];
+            $account['jobTitle'] = $params['jobTitle'];
+            $account['description'] = $params['description'];
+            $account['privacy'] = $params['privacy'];
+
+            $changed_item = json_decode(httpResponse(dbUrl().'/accounts/'.$params['id'], 'PUT', json_encode($account)),true);
+            return json_encode(array('success' => true));
+        }else{
+            return json_encode(array('error' => 'Account does not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
+function get_account($params){
+    $result = array('success' => false, 'result' => null);
+    if(isset($params['id']) == true){
+        $query = json_decode(httpResponse(dbUrl().'/accounts/'.$params['id'], null, null),true);
+        $result['result'] = $query;
+    }
+    return json_encode($result);
+}
+
 function get_projects($params){
     if(isset($params['projectId']) == false || $params['projectId'] == null){
         $query = json_decode(httpResponse(dbUrl().'/projects', null, null),true);
@@ -502,25 +673,68 @@ function get_documents($params){
     return json_encode($result);
 }
 
+function upload_company_picture($params,$file){
+    if(isset($params['id'])) {
+        $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['id'], null, null), true);
+        if($company != null and isset($company['id']) == true) {
+            $id = $params['id'];
+            $mainDir = dirname(__DIR__);
+            $fileFolder = '\\uploads\\company\\picture\\' . $id;
+            if (is_dir($mainDir . $fileFolder)) delete_directory($mainDir . $fileFolder);
+            if (mkdir($mainDir . $fileFolder, 0755)) {
+                $name_file = basename($file['file']['name']);
+                $type = substr($name_file, strripos($name_file, '.'));
+                $name_file = date('YmdHisu') . $type;
+                $uploadFile = $mainDir . $fileFolder . '\\' . $name_file;
+                if (move_uploaded_file($file['file']['tmp_name'], $uploadFile)) {
+                    $otherName = '/uploads/company/picture/' . $id .'/'.$name_file;
+                    $file['name'] = $otherName;
+                    $company['featureImage']['thumbnail'] = $otherName;
+                    $company['featureImage']['large'] = $otherName;
+                    $changed_item = json_decode(httpResponse(dbUrl().'/companies/'.$params['id'], 'PUT', json_encode($company)),true);
+                    return json_encode(array('result' => 'file saved', 'file' => $file));
+                } else {
+                    return json_encode(array('error' => 'Possible attacks via file download'));
+                }
+            } else {
+                return json_encode(array('error' => 'Unable create directory '));
+            }
+        }else{
+            return json_encode(array('error' => 'Company does not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
 function upload_profile_picture($params,$file){
     if(isset($params['id'])) {
-        $id = $params['id'];
-        $mainDir = dirname(__DIR__);
-        $fileFolder = '\\uploads\\account-profile\\' . $id;
-        if (is_dir($mainDir . $fileFolder)) delete_directory($mainDir . $fileFolder);
-        if (mkdir($mainDir . $fileFolder, 0755)) {
-            $name_file = basename($file['file']['name']);
-            $type = substr($name_file, strripos($name_file, '.'));
-            $name_file = date('YmdHisu') . $type;
-            $uploadFile = $mainDir . $fileFolder . '\\' . $name_file;
-            if (move_uploaded_file($file['file']['tmp_name'], $uploadFile)) {
-                $file['name'] = $fileFolder . '\\' . $name_file;
-                return json_encode(array('result' => 'file saved', 'file' => $file));
+        $account = json_decode(httpResponse(dbUrl().'/accounts/' . $params['id'], null, null), true);
+        if($account != null and isset($account['id']) == true) {
+            $id = $params['id'];
+            $mainDir = dirname(__DIR__);
+            $fileFolder = '\\uploads\\account-profile\\' . $id;
+            if (is_dir($mainDir . $fileFolder)) delete_directory($mainDir . $fileFolder);
+            if (mkdir($mainDir . $fileFolder, 0755)) {
+                $name_file = basename($file['file']['name']);
+                $type = substr($name_file, strripos($name_file, '.'));
+                $name_file = date('YmdHisu') . $type;
+                $uploadFile = $mainDir . $fileFolder . '\\' . $name_file;
+                if (move_uploaded_file($file['file']['tmp_name'], $uploadFile)) {
+                    $otherName = '/uploads/account-profile/' . $id .'/'.$name_file;
+                    $file['name'] = $otherName;
+                    $account['featureImage']['thumbnail'] = $otherName;
+                    $account['featureImage']['large'] = $otherName;
+                    $changed_item = json_decode(httpResponse(dbUrl().'/accounts/'.$params['id'], 'PUT', json_encode($account)),true);
+                    return json_encode(array('result' => 'file saved', 'file' => $file));
+                } else {
+                    return json_encode(array('error' => 'Possible attacks via file download'));
+                }
             } else {
-                return json_encode(array('error' => 'Possible attacks via file download'));
+                return json_encode(array('error' => 'Unable create directory '));
             }
-        } else {
-            return json_encode(array('error' => 'Unable create directory '));
+        }else{
+            return json_encode(array('error' => 'Account does not exist' ));
         }
     }else{
         return json_encode(array('error' => 'Account id does not exist'));
