@@ -24,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     public static final String DMC_TITLE_TEXT = "Digital Manufacturing Commons";
+    public static final String OPENDMC_TITLE_TEXT = "OPENDMC ";
 
     // max seconds before failing a script.
     private final int MAX_ATTEMPTS = 5;
@@ -45,11 +46,11 @@ public class BaseTest {
             version = BrowserVersion.CHROME;
         } else {
 
-            if (browserName.equals("chrome")) {
+            if (browserName.equalsIgnoreCase("chrome")) {
                 version = BrowserVersion.CHROME;
-            } else if (browserName.equals("firefox")) {
+            } else if (browserName.equalsIgnoreCase("firefox")) {
                 version = BrowserVersion.FIREFOX_38;
-            } else if (browserName.equals("ie")) {
+            } else if (browserName.equalsIgnoreCase("ie")) {
                 version = BrowserVersion.INTERNET_EXPLORER_11;
             } else {
                 fail("Unknown browser " + browserName);
@@ -92,7 +93,13 @@ public class BaseTest {
 
         WebElement titleElement = null;
         try {
-            titleElement = driver.findElementByXPath("/html/head/title[text() = '" + DMC_TITLE_TEXT + "']");
+            if (baseUrl.contains("opendmc.org")) {
+                titleElement = driver.findElementByXPath("/html/head/title[text()[contains(., 'OPENDMC')]]");
+            } else {
+                //titleElement = driver.findElementByXPath("/html/head/title[text() = '" + DMC_TITLE_TEXT + "']");
+                titleElement = driver.findElementByXPath("/html/head/title[text()[contains(., '" + DMC_TITLE_TEXT + "')]]");
+            }
+
 
         } catch (Exception ex) {
             fail("Title element not found!");

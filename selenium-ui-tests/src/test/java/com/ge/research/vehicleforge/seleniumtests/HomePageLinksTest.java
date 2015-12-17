@@ -25,21 +25,10 @@ public class HomePageLinksTest extends BaseTest {
 
         driver.get(baseUrl);
 
-        WebElement titleElement = null;
-        try {
-            titleElement = driver.findElementByXPath("/html/head/title[text() = 'Digital Manufacturing Commons']");
-
-        } catch (Exception ex) {
-            fail("Title element not found!");
-        }
-        assertTrue(titleElement != null);
-
         // Click on dashboard link
-        // /html/body/div[2]/div[1]/a/button
         WebElement dashboardViewButton = null;
         try {
-            // This finds: <a href="{{p.href}}" class="home-feature">
-            // Note that the script has not executed
+
             dashboardViewButton = driver.findElementByXPath("/html/body/div[2]/div[1]/a[1]/button");
 
         } catch (Exception ex) {
@@ -58,21 +47,9 @@ public class HomePageLinksTest extends BaseTest {
 
         driver.get(baseUrl);
 
-        WebElement titleElement = null;
-        try {
-            titleElement = driver.findElementByXPath("/html/head/title[text() = 'Digital Manufacturing Commons']");
-
-        } catch (Exception ex) {
-            fail("Title element not found!");
-        }
-        assertTrue(titleElement != null);
-
-        // Click on dashboard link
-        // /html/body/div[2]/div[1]/a/button
+        // Click on marketplace link
         WebElement dashboardViewButton = null;
         try {
-            // This finds: <a href="{{p.href}}" class="home-feature">
-            // Note that the script has not executed
             dashboardViewButton = driver.findElementByXPath("/html/body/div[2]/div[2]/a[1]/button");
 
         } catch (Exception ex) {
