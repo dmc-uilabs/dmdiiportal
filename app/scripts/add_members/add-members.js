@@ -33,6 +33,7 @@ angular.module('dmc.add_members', [
       name : 'Member 2'
     });
     $scope.invitees = [];
+    $scope.selectedTab = 0;
 
     $scope.$watchCollection('invitees',function(newArray,oldArray){
       for(var i in $scope.foundMembers){
@@ -110,6 +111,15 @@ angular.module('dmc.add_members', [
         }
     };
 
+    $scope.NextTab = function(){
+        $scope.selectedTab = 1;
+    }
+
+    $scope.BackTab = function(){
+        $scope.selectedTab = 0;
+    }
+
+//members
     $scope.foundMembers = [
     {
         id : 1,
@@ -226,6 +236,7 @@ angular.module('dmc.add_members', [
     }
     ];
 
+//
     $scope.addToInvitation = function(item){
         var found = false;
         for(var i in $scope.invitees){
