@@ -52,13 +52,13 @@
       "lastName": "Sobko",
       "displayName": "Denis Sobko",
       "email": "denis.sobko@gmail.com",
-      "salutation": 2,
-      "suffix": 2,
-      "location": "Poltava, 53",
+      "salutation": 3,
+      "suffix": 1,
+      "location": "",
       "timezone": "",
       "featureImage": {
-        "thumbnail": "/uploads/account-profile/1/20151216102827000000.png",
-        "large": "/uploads/account-profile/1/20151216102827000000.png"
+        "thumbnail": "/uploads/account-profile/1/20151221041331000000.png",
+        "large": "/uploads/account-profile/1/20151221041331000000.png"
       },
       "jobTitle": "Job Title",
       "description": "My description",
@@ -88,7 +88,7 @@
           },
           "location": {
             "enable": "true",
-            "value": ""
+            "value": "Poltava, 53"
           }
         }
       }

@@ -604,9 +604,13 @@ function update_account($params){
     if(isset($params['id']) == true){
         $account = json_decode(httpResponse(dbUrl().'/accounts/' . $params['id'], null, null), true);
         if($account != null and isset($account['id']) == true) {
+            if(strlen(trim($params['displayName'])) == 0 || $params['firstName'] != $account['firstName'] || $params['lastName'] != $account['lastName']) {
+                $account['displayName'] = $params['firstName'].' '.$params['lastName'];
+            }else{
+                $account['displayName'] = $params['displayName'];
+            }
             $account['firstName'] = $params['firstName'];
             $account['lastName'] = $params['lastName'];
-            $account['displayName'] = $params['displayName'];
             $account['email'] = $params['email'];
             $account['salutation'] = $params['salutation'];
             $account['suffix'] = $params['suffix'];

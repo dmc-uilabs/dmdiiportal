@@ -35,23 +35,53 @@ angular.module('dmc.account', [
     }).state('account.basics', {
         url: '/basics',
         controller: 'BasicsAccountCtr',
-        templateUrl: 'templates/account/basics.html'
+        templateUrl: 'templates/account/basics.html',
+        resolve: {
+            accountData: ['AccountModel', '$stateParams',
+                function(AccountModel, $stateParams) {
+                    return AccountModel.getModel($stateParams.accountId);
+                }]
+        }
     }).state('account.privacy', {
         url: '/privacy',
         controller: 'PrivacyAccountCtr',
-        templateUrl: 'templates/account/privacy.html'
+        templateUrl: 'templates/account/privacy.html',
+        resolve: {
+            accountData: ['AccountModel', '$stateParams',
+                function(AccountModel, $stateParams) {
+                    return AccountModel.getModel($stateParams.accountId);
+                }]
+        }
     }).state('account.notifications', {
         url: '/notifications',
         controller: 'NotificationsAccountCtr',
-        templateUrl: 'templates/account/notifications.html'
+        templateUrl: 'templates/account/notifications.html',
+        resolve: {
+            accountData: ['AccountModel', '$stateParams',
+                function(AccountModel, $stateParams) {
+                    return AccountModel.getModel($stateParams.accountId);
+                }]
+        }
     }).state('account.profile', {
         url: '/profile',
         controller: 'ProfileAccountCtr',
-        templateUrl: 'templates/account/profile.html'
+        templateUrl: 'templates/account/profile.html',
+        resolve: {
+            accountData: ['AccountModel', '$stateParams',
+                function(AccountModel, $stateParams) {
+                    return AccountModel.getModel($stateParams.accountId);
+                }]
+        }
     }).state('account.services', {
         url: '/services',
         controller: 'ServicesAccountCtr',
-        templateUrl: 'templates/account/services.html'
+        templateUrl: 'templates/account/services.html',
+        resolve: {
+            accountData: ['AccountModel', '$stateParams',
+                function(AccountModel, $stateParams) {
+                    return AccountModel.getModel($stateParams.accountId);
+                }]
+        }
     });
     $urlRouterProvider.otherwise('/1');
 }).controller('AccountIdLocatorCtrl', [ '$stateParams', '$state', function ($stateParams, $state) {

@@ -7,11 +7,19 @@ angular.module('dmc.account')
         $scope.title = pageTitles[$scope.page];
 
         $scope.profile = accountData;
+        if($scope.profile.displayName == null || $scope.profile.displayName.length == 0) $scope.profile.displayName = $scope.profile.firstName + ' ' + $scope.profile.lastName;
+
+        $scope.blurDisplayName = function(){
+            if($scope.profile.displayName == null || $scope.profile.displayName.trim().length == 0){
+                $scope.profile.displayName = $scope.profile.displayName = $scope.profile.firstName + ' ' + $scope.profile.lastName;
+            }
+        };
 
         var callback = function(success,data){
             if(success == true) {
                 $scope.profile.dataLocation = data;
                 $scope.profile.location = $scope.profile.dataLocation.city + ", " + $scope.profile.dataLocation.region;
+                $scope.profile.timezone = $scope.profile.dataLocation.timezone;
                 accountUpdate.update($scope.profile);
             }
         };

@@ -36,8 +36,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <md-button ng-disabled="$flow.files.length == 0" ng-click="uploadFile($flow)">Submit</md-button>
                                     <md-button ng-click="cancelChangePicture($flow)">Cancel</md-button>
+                                    <md-button ng-disabled="$flow.files.length == 0" ng-click="uploadFile($flow)">Save</md-button>
                                 </div>
                             </div>
                         </div>
@@ -45,14 +45,14 @@
                     <div class="inputs-container" layout="row" layout-align="start center">
                         <md-input-container layout="column" flex="50">
                             <label>Display Name</label>
-                            <input ng-init="profile.displayName = (profile.displayName == null || profile.displayName.length == 0 ? profile.firstName + ' ' + profile.lastName : profile.displayName)" ng-model="profile.displayName" ng-change="changeValue()">
+                            <input ng-blur="blurDisplayName()" ng-model="profile.displayName" ng-change="changeValue()">
                         </md-input-container>
                         <md-input-container layout="column" class="with-icon title-input-left" flex="50">
                             <label>Location</label>
                             <md-icon class="location-gps" ng-click="getLocation()">
                                 <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
                             </md-icon>
-                            <input ng-model="profile.location" type="text">
+                            <input ng-model="profile.location" type="text" ng-change="changeValue()">
                         </md-input-container>
                     </div>
                     <div class="inputs-container" layout="row" layout-align="start center">
