@@ -54,8 +54,8 @@
       "email": "denis.sobko@gmail.com",
       "salutation": 3,
       "suffix": 1,
-      "location": "Poltava, 53",
-      "timezone": "(UTC +02:00) Europe/Kiev",
+      "location": "",
+      "timezone": "",
       "featureImage": {
         "thumbnail": "/uploads/account-profile/1/20151221041331000000.png",
         "large": "/uploads/account-profile/1/20151221041331000000.png"

@@ -52,7 +52,7 @@
                             <md-icon class="location-gps" ng-click="getLocation()">
                                 <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
                             </md-icon>
-                            <input ng-model="profile.location" type="text">
+                            <input ng-model="profile.location" type="text" ng-change="changeValue()">
                         </md-input-container>
                     </div>
                     <div class="inputs-container" layout="row" layout-align="start center">
