@@ -7,7 +7,7 @@
       <div flex="80" layout="column" class="profile-header">
         <div layout="row" layout-align="center center">
           <div layout="column">
-            <h2>{{profile.name}} <span>{{profile.position}}</span></h2>
+            <h2>{{profile.firstName}} {{profile.lastName}} <span>{{profile.position}}</span></h2>
             <h3>{{profile.company}}</h3>
             <h3>{{profile.city}}, {{profile.state}}</h3>
           </div>
@@ -24,7 +24,7 @@
           <span flex></span>
 
         <div layout="row" layout-align="center center">
-          <ui-widget-stars-static size="15" value="{{profile.average_rating}}" text="({{profile.average_rating}})"></ui-widget-stars-static>
+          <ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
           <md-button ng-href="">View Storefront</md-button>
           <span flex></span>
           <md-button ng-href="">Follow</md-button>
@@ -95,45 +95,72 @@
       </md-tab>
 
       <md-tab label="Skills">
-        
+        <md-content class="md-padding">
+          <div layout="row" ng-if="!editFlag" class="tabs-content" layout-wrap>
+            <md-chips ng-repeat="skill in profile.skills track by $index">
+              <md-chip>
+                {{skill}}
+              </md-chip>
+            </md-chips>
+          </div>
+          <div layout="column" ng-if="editFlag">
+            <form ng-submit="addskill(inputskill)" class="add-skills-form" layout="row" layout-align="start center">
+              <md-input-container>
+                <label>Enter skill</label>
+                <input ng-model="inputskill">
+              </md-input-container>
+              <md-button ng-disabled="!inputskill" class="md-raised md-primary">Add</md-button>
+            </form>
+            <div layout="row" class="tabs-content" layout-wrap>
+              <md-chips ng-repeat="skill in profile.skills track by $index">
+                <md-chip class="skills-chip">
+                  {{skill}}
+                  <md-button aria-label="close" ng-click="deleteskill($index)" class="md-icon-button">
+                    <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
+                  </md-button>
+                </md-chip>
+              </md-chips>
+            </div>
+          </div>
+        </md-content>
       </md-tab>
     </md-tabs>
 
     <md-divider></md-divider>
 
     <!--Reviews-->
-    <div layout="row" class="reviews" layout-margin layout-fill>
+    <div ng-if="!editFlag" layout="row" class="reviews" layout-margin layout-fill>
       <!--left column-->
       <div flex class="reviews-rating">
         <!--Rating header-->
         <div layout="row" class="md-toolbar-tools reviews-rating-header">
           <h2>Reviews</h2>
-          <ui-widget-stars-static size="15" value="{{profile.average_rating}}" text="({{profile.average_rating}})"></ui-widget-stars-static>
+          <ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
           <span flex></span>
           <md-button md-no-ink ng-click="ViewAllReview()">View All({{number_of_comments}})</md-button>
         </div>
           <!--Rating-->
-        <div layout="row">
+        <div layout="row" ng-click="SortingReviews('5star')">
           <p>5 STAR</p>
           <md-progress-linear md-mode="determinate" value="{{precentage_stars[4]}}" flex></md-progress-linear>
           <p flex="5">{{precentage_stars[4]}}%</p>
         </div>
-        <div layout="row">
+        <div layout="row" ng-click="SortingReviews('4star')">
           <p>4 STAR</p>
           <md-progress-linear md-mode="determinate" value="{{precentage_stars[3]}}" flex></md-progress-linear>
           <p flex="5">{{precentage_stars[3]}}%</p>
         </div>
-        <div layout="row">
+        <div layout="row" ng-click="SortingReviews('3star')">
           <p>3 STAR</p>
           <md-progress-linear md-mode="determinate" value="{{precentage_stars[2]}}" flex></md-progress-linear>
           <p flex="5">{{precentage_stars[2]}}%</p>
         </div>
-        <div layout="row">
+        <div layout="row" ng-click="SortingReviews('2star')">
           <p>2 STAR</p>
           <md-progress-linear md-mode="determinate" value="{{precentage_stars[1]}}" flex></md-progress-linear>
           <p flex="5">{{precentage_stars[1]}}%</p>
         </div>
-        <div layout="row">
+        <div layout="row" ng-click="SortingReviews('1star')">
           <p>1 STAR</p>
           <md-progress-linear md-mode="determinate" value="{{precentage_stars[0]}}" flex></md-progress-linear>
           <p flex="5">{{precentage_stars[0]}}%</p>
@@ -145,11 +172,8 @@
         <span flex></span>
         <md-input-container>
           <label>Sorting</label>
-          <md-select ng-model="sort" ng-change="SortingReviews(sort)">
-            <md-option value="0" selected>Most Recent</md-option>
-            <md-option value="1">Highest to Lowest Rating</md-option>
-            <md-option value="2">Lowest to Highest Rating</md-option>
-            <md-option value="3">Verified Users</md-option>
+          <md-select ng-model="sortListModel" ng-change="selectItemDropDown(sortListModel)"  md-container-class="margin-dropdown">
+            <md-option ng-repeat="sort in sortList track by $index"  ng-value="$index">{{sort.name}}</md-option>
           </md-select>
         </md-input-container>
       </div>
@@ -173,74 +197,9 @@
 
     <md-divider></md-divider>
 
-    <!--one Reviews-->
-    <div ng-if="!editFlag" class="one-review-panel" ng-repeat="review in profile.reviews">
-      <!--One Review header-->
-      <div class="md-toolbar-tools">
-        <ui-widget-stars-static size="15" value="{{review.rating}}"></ui-widget-stars-static>
-        <h2>{{review.name}} <span>{{(review.status)? 'Verified': 'Unverified'}} User</span></h2>
-        <span flex></span>
-        <span>{{review.date}}</span>
-      </div>
-      <!--One Review content-->
-      <md-content class="md-padding">
-        {{review.comment}}
-        <div layout layout-fill class="one-review-footer">
-          <div flex>
-            <a href="" ng-click="Reply($index)">Reply </a>|<a href="" ng-click="FlagReview($index)"> Flag review</a>
-          </div>
-          <span flex></span>
-          <span>
-            Was this review helpful?
-            <md-button aria-label="Like" md-no-ink class="md-icon-button"  ng-click="Like(review)">
-              <ng-md-icon icon="thumb_up" style="fill: black;" size="14"></ng-md-icon>
-              {{(review.like > 0)? review.like: ''}}
-            </md-button>
-            <md-button aria-label="Dislike" md-no-ink class="md-icon-button"  ng-click="DisLike(review)">
-              <ng-md-icon icon="thumb_down" style="fill: black;" size="14"></ng-md-icon>
-              {{(review.dislike > 0)? review.dislike: ''}}
-            </md-button>
-          </span>
-          </div>
-        </md-content>
-
-        <!--Reply-->
-        <div flex class="new-review" ng-if="replyFlag == $index">
-          <form name="CommentForm">
-            <md-input-container flex>
-              <label>Comment</label>
-              <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="150"></textarea>
-            </md-input-container>
-            <div layout layout-align="end end">
-              <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
-              <md-button class="md-raised" ng-click="SubmitReply(NewReview)" ng-disabled="!NewReview.Comment" >Submit</md-button>
-            </div>
-          </form>
-        </div>
-
-        <!--Flag Review-->
-        <div flex class="new-review" ng-if="flagReviewFlag == $index">
-          <form name="CommentForm" layout="row" layout-align="start start">
-            <md-input-container flex="20">
-              <label>Reasone</label>
-              <md-select ng-model="NewReview.Reasone" ng-change="">
-                <md-option value="1">None</md-option>
-              </md-select>
-            </md-input-container>
-            <div flex layout="column">
-              <md-input-container flex>
-                <label>Comment</label>
-                <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="150"></textarea>
-              </md-input-container>
-              <div layout layout-align="end end">
-                <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
-                <md-button class="md-raised" ng-click="SubmitFlag(NewReview)" ng-disabled="!NewReview.Comment || !NewReview.Reasone" >Submit</md-button>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <md-divider></md-divider>
+    <div ng-if="!editFlag" ng-repeat="review in profile.reviews">
+      <ui-widget-review review="review" userlogin="UserLogin" typereview="'profile_reviews'"></ui-widget-review>
+      <md-divider></md-divider>
     </div>
   </md-content>
 </div>

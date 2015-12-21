@@ -14,6 +14,7 @@ angular.module('dmc.widgets.review',[
     scope: {
       review: "=",
       userlogin: "=",
+      typereview: "="
     },
     controller: function($scope, ajax, dataFactory, $stateParams) {
       $scope.replyFlag = false;  //flag for visibility form Reply
@@ -40,26 +41,48 @@ angular.module('dmc.widgets.review',[
       //Submit Leave A Review form
       $scope.Submit= function(NewReview){
         console.info("review", NewReview);
-        ajax.on(
-          dataFactory.addProductReview(),
-          {
-            productId: $stateParams.productId,
-            productType: $stateParams.typeProduct,
-            name: "DMC Member",
-            reviewId: $scope.review.id,
-            status: true,
-            rating: 0,
-            comment: NewReview.Comment
-          },
-          function(data){
-            $scope.review.replyReviews.push(data);
-            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-          },
-          function(){
-            alert("Ajax fail: getProductReview");
-          },
-          "POST"
-        );
+        if($scope.typereview == "product_reviews"){
+          ajax.on(
+            dataFactory.addProductReview(),
+            {
+              productId: $stateParams.productId,
+              productType: $stateParams.typeProduct,
+              name: "DMC Member",
+              reviewId: $scope.review.id,
+              status: true,
+              rating: 0,
+              comment: NewReview.Comment
+            },
+            function(data){
+              $scope.review.replyReviews.push(data);
+              if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            },
+            function(){
+              alert("Ajax fail: getProductReview");
+            },
+            "POST"
+          );
+        }else if($scope.typereview == "profile_reviews"){
+          ajax.on(
+            dataFactory.addProfileReview(),
+            {
+              productId: $stateParams.profileId,
+              name: "DMC Member",
+              reviewId: $scope.review.id,
+              status: true,
+              rating: 0,
+              comment: NewReview.Comment
+            },
+            function(data){
+              $scope.review.replyReviews.push(data);
+              if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            },
+            function(){
+              alert("Ajax fail: getProductReview");
+            },
+            "POST"
+          );
+        }
 
         $scope.review.reply = true;
         $scope.showReply = true;
@@ -91,7 +114,8 @@ angular.module('dmc.widgets.review',[
             like: item.like,
             dislike: item.dislike,
             ratingReview: item.userRatingReview[$scope.userlogin],
-            userLogin: $scope.userlogin
+            userLogin: $scope.userlogin,
+            typeReview: $scope.typereview
           },
           function(data){
           },
@@ -122,7 +146,8 @@ angular.module('dmc.widgets.review',[
             like: item.like,
             dislike: item.dislike,
             ratingReview: item.userRatingReview[$scope.userlogin],
-            userLogin: $scope.userlogin
+            userLogin: $scope.userlogin,
+            typeReview: $scope.typereview
           },
           function(data){
           },

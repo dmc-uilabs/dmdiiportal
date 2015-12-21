@@ -80,6 +80,14 @@ return call_user_func(function () {
         echo save_company_changes($_GET);
     }else if(strpos($uri,'/update_account') !== false){
         echo update_account($_GET);
+    }else if(strpos($uri,'/profile') !== false){
+      echo get_profile($_GET);
+    }else if(strpos($uri,'/get_profile_review') !== false){
+      echo get_profile_review($_GET);
+    }else if(strpos($uri,'/add_profile_review') !== false){
+      echo add_profile_review($_POST);
+    }else if(strpos($uri,'/edit_profile') !== false){
+      echo edit_profile($_POST);
     }
 });
 
@@ -890,12 +898,12 @@ function add_product_review($params){
 }
 
 function add_like_dislike($params){
-    $review = json_decode(httpResponse(dbUrl().'/product_reviews/'.$params['reviewId'], null, null),true);
+    $review = json_decode(httpResponse(dbUrl().'/'.$params['typeReview'].'/'.$params['reviewId'], null, null),true);
     $review['like'] = $params['like'];
     $review['dislike'] = $params['dislike'];
     $review['userRatingReview'][$params['userLogin']] = $params['ratingReview'];
     $data = json_encode($review);
-    json_decode(httpResponse(dbUrl().'/product_reviews/'.$params['reviewId'], 'PUT', $data),true);
+    json_decode(httpResponse(dbUrl().'/'.$params['typeReview'].'/'.$params['reviewId'], 'PUT', $data),true);
     return json_encode($data);
 }
 
@@ -910,6 +918,116 @@ function edit_product($params){
     $changed_item = json_decode(httpResponse(dbUrl().$service['specifications'], 'PUT', $data),true);
     return json_encode(array('data' => $data, "qqq" => $changed_item ));
   }*/
+
+  if(isset($params['tags'])){
+    $service['tags'] = $params['tags'];
+  }else{
+    $service['tags'] = [];
+  }
+  $service['description'] = $params['description'];
+
+  $data = json_encode($service);
+
+  $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], 'PUT', $data),true);
+  return json_encode(array('result' => $changed_item ));
+}
+
+function get_profile($params){
+  if(isset($params['profileId'])){
+    $query = json_decode(httpResponse(dbUrl().'/profiles/'.$params['profileId'], null, null),true);
+    
+    $query['reviews'] = json_decode(httpResponse(dbUrl().'/profiles/'.$query['id'].'/profile_reviews?reviewId=0', null, null),true);
+    $query['rating'] = [];
+    for($k = 0; $k < count($query['reviews']); ++$k){
+      $query['rating'][] = $query['reviews'][$k]['rating'];
+    }
+  }else{
+    return false;
+  }
+
+  $result = array('result' => $query, "aaa" => "a");
+  return json_encode($result);
+}
+
+function get_profile_review($params){
+    if(isset($params['profileId'])){
+        if(isset($params['sort'])){
+            switch ($params['sort']) {
+                case 'date':
+                    $query = json_decode(httpResponse(dbUrl() . '/profiles/' . $params['profileId'] . '/profile_reviews?reviewId=0', null, null), true);
+                    usort($query, 'sortByReviewDateDESC');
+                    break;
+                case 'rating':
+                    $query = json_decode(httpResponse(dbUrl() . '/profiles/' . $params['profileId'] . '/profile_reviews?reviewId=0', null, null), true);
+                    if ($params['order'] == 'DESC') {
+                        usort($query, 'sortByReviewRatingDESC');
+                    } else {
+                        usort($query, 'sortByReviewRatingASC');
+                    }
+                    break;
+                case 'verified':
+                    $query = json_decode(httpResponse(dbUrl() . '/profiles/' . $params['profileId'] . '/profile_reviews?status=true&reviewId=0', null, null), true);
+                    break;
+                case 'stars':
+                    $query = json_decode(httpResponse(dbUrl() . '/profiles/' . $params['profileId'] . '/profile_reviews?rating=' . $params['order'] . '&reviewId=0', null, null), true);
+                    break;
+                case 'helpful':
+                    $query = json_decode(httpResponse(dbUrl() . '/profiles/' . $params['profileId'] . '/profile_reviews?reviewId=0&_sort=like&_order=DESC', null, null), true);
+                    break;
+            }
+        }
+    }
+
+    if(isset($params['limit'])) {
+        $query = array_slice($query, 0, $params['limit']);
+    }
+    for($i = 0; $i < count($query); ++$i){
+        if($query[$i]['reply']){
+            $query[$i]['replyReviews'] = json_decode(httpResponse(dbUrl() . '/review/' . $query[$i]['id'] . '/profile_reviews?_sort=id&_order=ASC', null, null), true);
+        }else{
+            $query[$i]['replyReviews'] = [];
+        }
+    }
+    $result = array('result' => $query);
+    return json_encode($result);
+}
+
+function add_profile_review($params){
+  $last = json_decode(httpResponse(dbUrl().'/profile_reviews?_sort=id&_order=DESC&_limit=1', null, null),true);
+  if(count($last) > 0){
+    $id = $last[0]['id']+1;
+  }else{
+    $id = 1;
+  }
+
+  if($params['reviewId'] != 0){
+    $review = json_decode(httpResponse(dbUrl().'/profile_reviews/'.$params['reviewId'], null, null),true);
+    $review['reply'] = true;
+    $data = json_encode($review);
+    json_decode(httpResponse(dbUrl().'/profile_reviews/'.$params['reviewId'], 'PUT', $data),true);
+  }
+
+  $data = json_encode(array(
+      "id" => $id,
+      "profileId" => $params['profileId'],
+      "reply" => false,
+      "reviewId" => $params['reviewId'],
+      "name" => $params['name'],
+      "status" => $params['status'],
+      "date" => date("m-d-Y"),
+      "rating" => $params['rating'],
+      "userRatingReview" => array("DMC Member" => "none"),
+      "like" => 0,
+      "dislike" => 0,
+      "comment" => $params['comment']
+  ));
+  $review = json_decode(httpResponse(dbUrl().'/profile_reviews', 'POST', $data),true);
+  return json_encode($review);
+}
+
+function edit_profile($params){
+  $service = json_decode(httpResponse(dbUrl().'/profile/'.$params['profileId'], null, null),true);
+  $service['title'] = $params['title'];
 
   if(isset($params['tags'])){
     $service['tags'] = $params['tags'];

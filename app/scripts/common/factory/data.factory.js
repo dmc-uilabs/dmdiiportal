@@ -134,6 +134,18 @@ angular.module('dmc.data',[])
             },
             updateAccount: function(id){
                 return baseServer+'/update_account'+appendId(id);
+            },
+            getProfile: function(){
+                return baseServer+'/profile';
+            },
+            editProfile: function(){
+                return baseServer+'/edit_profile';
+            },
+            getProfileReview: function(){
+                return baseServer+'/get_profile_review';
+            },
+            addProfileReview: function(){
+                return baseServer+'/add_profile_review';
             }
         };
     }
