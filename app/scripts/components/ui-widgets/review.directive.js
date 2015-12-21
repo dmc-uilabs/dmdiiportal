@@ -52,7 +52,7 @@ angular.module('dmc.widgets.review',[
             comment: NewReview.Comment
           },
           function(data){
-            $scope.review.replyReviews.unshift(data);
+            $scope.review.replyReviews.push(data);
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
           },
           function(){
@@ -72,25 +72,25 @@ angular.module('dmc.widgets.review',[
       }
 
       //Like review
-      $scope.Like = function(){
-        if($scope.review.userRatingReview[$scope.userlogin] == "none"){
-          $scope.review.like++;
-          $scope.review.userRatingReview[$scope.userlogin] = 'like';
-        }else if($scope.review.userRatingReview[$scope.userlogin] == 'like'){
-          $scope.review.like--;
-          $scope.review.userRatingReview[$scope.userlogin] = "none";
+      $scope.Like = function(item){
+        if(item.userRatingReview[$scope.userlogin] == "none"){
+          item.like++;
+          item.userRatingReview[$scope.userlogin] = 'like';
+        }else if(item.userRatingReview[$scope.userlogin] == 'like'){
+          item.like--;
+          item.userRatingReview[$scope.userlogin] = "none";
         }else{
-          $scope.review.like++;
-          $scope.review.userRatingReview[$scope.userlogin] = 'like';
-          $scope.review.dislike--;
+          item.like++;
+          item.userRatingReview[$scope.userlogin] = 'like';
+          item.dislike--;
         }
         ajax.on(
           dataFactory.addLikeDislike(),
           {
-            reviewId: $scope.review.id,
-            like: $scope.review.like,
-            dislike: $scope.review.dislike,
-            ratingReview: $scope.review.userRatingReview[$scope.userlogin],
+            reviewId: item.id,
+            like: item.like,
+            dislike: item.dislike,
+            ratingReview: item.userRatingReview[$scope.userlogin],
             userLogin: $scope.userlogin
           },
           function(data){
@@ -103,25 +103,25 @@ angular.module('dmc.widgets.review',[
       };
 
       //DisLike review
-      $scope.DisLike = function(){
-        if($scope.review.userRatingReview[$scope.userlogin] == "none"){
-          $scope.review.dislike++;
-          $scope.review.userRatingReview[$scope.userlogin] = 'dislike';
-        }else if($scope.review.userRatingReview[$scope.userlogin] == 'dislike'){
-          $scope.review.dislike--;
-          $scope.review.userRatingReview[$scope.userlogin] = "none";
+      $scope.DisLike = function(item){
+        if(item.userRatingReview[$scope.userlogin] == "none"){
+          item.dislike++;
+          item.userRatingReview[$scope.userlogin] = 'dislike';
+        }else if(item.userRatingReview[$scope.userlogin] == 'dislike'){
+          item.dislike--;
+          item.userRatingReview[$scope.userlogin] = "none";
         }else{
-          $scope.review.dislike++;
-          $scope.review.userRatingReview[$scope.userlogin] = 'dislike';
-          $scope.review.like--;
+          item.dislike++;
+          item.userRatingReview[$scope.userlogin] = 'dislike';
+          item.like--;
         }
         ajax.on(
           dataFactory.addLikeDislike(),
           {
-            reviewId: $scope.review.id,
-            like: $scope.review.like,
-            dislike: $scope.review.dislike,
-            ratingReview: $scope.review.userRatingReview[$scope.userlogin],
+            reviewId: item.id,
+            like: item.like,
+            dislike: item.dislike,
+            ratingReview: item.userRatingReview[$scope.userlogin],
             userLogin: $scope.userlogin
           },
           function(data){

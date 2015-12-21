@@ -23,7 +23,10 @@
               aria-label="delete">
               <ng-md-icon icon="close" style="fill: #fff" size="17"></ng-md-icon>
             </md-button>
-            <img ng-src="{{item}}" ng-click="functions.openImage($index + $parent.$parent.$index*showItems)" alt=""/>
+            <img 
+              ng-src="{{item}}" 
+              ng-class="{'selected' : (functions.selected($index + $parent.$parent.$index*showItems) == true)}" 
+              ng-click="functions.openImage($index + $parent.$parent.$index*showItems)" alt=""/>
       </div>
     </slide>
   </slidecontainer>
@@ -37,7 +40,7 @@
       <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
     </md-button>
   </div>
-  <div class="slide-buttons">
+  <div class="slide-buttons" ng-if="typeCarousel !== 'images'">
     <ul>
       <li ng-repeat="item in arrayItems.slice(0, countSlides) track by $index" ng-class="$index == 0 ? 'selected' : ''" ng-click="openSlide($event,$index)">
         <md-button class="md-icon-button" aria-label="More">

@@ -842,7 +842,7 @@ function get_product_review($params){
     }
     for($i = 0; $i < count($query); ++$i){
         if($query[$i]['reply']){
-            $query[$i]['replyReviews'] = json_decode(httpResponse(dbUrl() . '/review/' . $query[$i]['id'] . '/product_reviews?_sort=id&_order=DESC', null, null), true);
+            $query[$i]['replyReviews'] = json_decode(httpResponse(dbUrl() . '/review/' . $query[$i]['id'] . '/product_reviews?_sort=id&_order=ASC', null, null), true);
         }else{
             $query[$i]['replyReviews'] = [];
         }
@@ -874,7 +874,7 @@ function add_product_review($params){
       "reviewId" => $params['reviewId'],
       "name" => $params['name'],
       "status" => $params['status'],
-      "date" => date("d-m-Y H:i:s"),
+      "date" => date("m-d-Y"),
       "rating" => $params['rating'],
       "userRatingReview" => array("DMC Member" => "none"),
       "like" => 0,
