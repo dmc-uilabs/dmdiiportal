@@ -30,4 +30,18 @@
 			}
 		}
 	}
+	.invitees{
+		md-content{
+			position: initial; 
+		}
+		.md-avatar{
+			width: auto;
+		}
+	}
+		.md-toolbar-tools{
+			padding: 0;
+		}
+	.button-aria{
+		background-color: #fff;
+	}
 }

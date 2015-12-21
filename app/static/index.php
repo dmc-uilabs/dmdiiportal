@@ -62,6 +62,8 @@ return call_user_func(function () {
       echo get_product_review($_GET);
     }else if(strpos($uri,'/add_product_review') !== false){
       echo add_product_review($_POST);
+    }else if(strpos($uri,'/add_like_dislike') !== false){
+      echo add_like_dislike($_POST);
     }else if(strpos($uri,'/edit_product') !== false){
       echo edit_product($_POST);
     }else if(strpos($uri,'/upp') !== false){
@@ -95,7 +97,7 @@ function addMore($item){
         $item['currentStatus']['startDate'] = date('m/d/Y', strtotime($item['currentStatus']['startDate']));
     }
 
-    $item['reviews'] = json_decode(httpResponse(dbUrl().'/product/'.$item['id'].'/product_reviews?productType='.$item['type'].'s', null, null),true);
+    $item['reviews'] = json_decode(httpResponse(dbUrl().'/product/'.$item['id'].'/product_reviews?productType='.$item['type'].'s&reviewId=0', null, null),true);
     $item['rating'] = [];
     for($k = 0; $k < count($item['reviews']); ++$k){
       $item['rating'][] = $item['reviews'][$k]['rating'];
@@ -811,38 +813,46 @@ function get_product($params){
 }
 
 function get_product_review($params){
-  if(isset($params['productId']) && isset($params['typeProduct'])){
-    if(isset($params['sort']) && $params['sort'] == 'verified'){
-      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'] . '&status=true', null, null), true);
-    }else {
-      $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'], null, null), true);
+    if(isset($params['productId']) && isset($params['typeProduct'])){
+        if(isset($params['sort'])){
+            switch ($params['sort']) {
+                case 'date':
+                    $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'] . '&reviewId=0', null, null), true);
+                    usort($query, 'sortByReviewDateDESC');
+                    break;
+                case 'rating':
+                    $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'] . '&reviewId=0', null, null), true);
+                    if ($params['order'] == 'DESC') {
+                        usort($query, 'sortByReviewRatingDESC');
+                    } else {
+                        usort($query, 'sortByReviewRatingASC');
+                    }
+                    break;
+                case 'verified':
+                    $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'] . '&status=true&reviewId=0', null, null), true);
+                    break;
+                case 'stars':
+                    $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'] . '&rating=' . $params['order'] . '&reviewId=0', null, null), true);
+                    break;
+                case 'helpful':
+                    $query = json_decode(httpResponse(dbUrl() . '/product/' . $params['productId'] . '/product_reviews?productType=' . $params['typeProduct'] . '&reviewId=0&_sort=like&_order=DESC', null, null), true);
+                    break;
+            }
+        }
     }
-  }else{
-    $query = json_decode(httpResponse(dbUrl().'/product_reviews', null, null),true);
-  }
 
-  if(isset($params['sort'])){
-    if ($params['sort'] == 'date') {
-      if ($params['order'] == 'DESC') {
-        usort($query, 'sortByReviewDateDESC');
-      } else {
-        usort($query, 'sortByReviewDateASC');
-      }
-    }else if ($params['sort'] == 'rating') {
-      if ($params['order'] == 'DESC') {
-        usort($query, 'sortByReviewRatingDESC');
-      } else {
-        usort($query, 'sortByReviewRatingASC');
-      }
+    if(isset($params['limit'])) {
+        $query = array_slice($query, 0, $params['limit']);
     }
-  }
-
-  if(isset($params['limit'])) {
-    $query = array_slice($query, 0, $params['limit']);
-  }
-
-  $result = array('result' => $query);
-  return json_encode($result);
+    for($i = 0; $i < count($query); ++$i){
+        if($query[$i]['reply']){
+            $query[$i]['replyReviews'] = json_decode(httpResponse(dbUrl() . '/review/' . $query[$i]['id'] . '/product_reviews?_sort=id&_order=DESC', null, null), true);
+        }else{
+            $query[$i]['replyReviews'] = [];
+        }
+    }
+    $result = array('result' => $query);
+    return json_encode($result);
 }
 
 function add_product_review($params){
@@ -852,20 +862,41 @@ function add_product_review($params){
   }else{
     $id = 1;
   }
+
+  if($params['reviewId'] != 0){
+    $review = json_decode(httpResponse(dbUrl().'/product_reviews/'.$params['reviewId'], null, null),true);
+    $review['reply'] = true;
+    $data = json_encode($review);
+    json_decode(httpResponse(dbUrl().'/product_reviews/'.$params['reviewId'], 'PUT', $data),true);
+  }
+
   $data = json_encode(array(
       "id" => $id,
       "productId" => $params['productId'],
       "productType" => $params['productType'],
+      "reply" => false,
+      "reviewId" => $params['reviewId'],
       "name" => $params['name'],
       "status" => $params['status'],
       "date" => date("d-m-Y H:i:s"),
       "rating" => $params['rating'],
-      "like" => $params['like'],
-      "dislike" => $params['dislike'],
+      "userRatingReview" => array("DMC Member" => "none"),
+      "like" => 0,
+      "dislike" => 0,
       "comment" => $params['comment']
   ));
-  json_decode(httpResponse(dbUrl().'/product_reviews', 'POST', $data),true);
-  return $data;
+  $review = json_decode(httpResponse(dbUrl().'/product_reviews', 'POST', $data),true);
+  return json_encode($review);
+}
+
+function add_like_dislike($params){
+    $review = json_decode(httpResponse(dbUrl().'/product_reviews/'.$params['reviewId'], null, null),true);
+    $review['like'] = $params['like'];
+    $review['dislike'] = $params['dislike'];
+    $review['userRatingReview'][$params['userLogin']] = $params['ratingReview'];
+    $data = json_encode($review);
+    json_decode(httpResponse(dbUrl().'/product_reviews/'.$params['reviewId'], 'PUT', $data),true);
+    return json_encode($data);
 }
 
 function edit_product($params){

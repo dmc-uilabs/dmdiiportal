@@ -11,6 +11,7 @@ angular.module('dmc.product', [
   'dmc.socket',
   'dmc.widgets.stars',
   'dmc.widgets.documents',
+  'dmc.widgets.review',
   'dmc.component.treemenu',
   'dmc.component.productcard',
   'dmc.common.header',
@@ -29,30 +30,65 @@ angular.module('dmc.product', [
   .controller('ProductController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog) {
 
     $scope.product = [];  //array product
-    $scope.number_of_comments = 0; // number of reviews
-    $scope.sort_review = '-date';  // sorting reviews
+    $scope.number_of_comments = 0; // number of 
     $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
     $scope.submit_rating = 0;  //
     $scope.not_found = false;  //product not fount
     $scope.products_card = [];  //products card
     $scope.limit_reviews = true;  //limit reviews
-    $scope.sort_order = 'DESC';  //sorting order
-    $scope.sort = 'date';  //type sorting
     $scope.precentage_stars = [0,0,0,0,0]; //precentage stars
-    $scope.average_rating = 0;  //average rating
-    $scope.replyFlag = -1;  //flag for visibility form Reply
-    $scope.flagReviewFlag = -1;  //flag for visibility form Flag Review
-    $scope.products = [];   //included services
+    $scope.average_rating = 0;  //average rating$scope.products = [];   //included services
     $scope.editFlag = false;  //flag edit page
     $scope.allServices = [];
     $scope.Specifications = ['Height', 'Length', 'Weight'];
+    $scope.UserLogin = "DMC Member";
 
     $scope.currentImage = 1;
     $scope.images = [];
     $scope.indexImages = 0;
 
-    //var img = [
 
+
+    $scope.sortList = [
+      {
+        id: 0,
+        val: "date",
+        name: "Most recent"
+      },
+      {
+        id: 1,
+        val: "helpful",
+        name: "Most Helpful"
+      },
+      {
+        id: 2,
+        val: "highest", 
+        name: "Highest to Lowest Rating"
+      },
+      {
+        id: 3,
+        val: "lowest", 
+        name: "Lowest to Highest Rating"
+      },
+      {
+        id: 4,
+        val: "verified",
+        name: "Verified Users"
+      }
+    ];
+
+    $scope.sortListModel = 0;
+    $scope.selectItemDropDown = function(value){
+      if(value != 0) {
+          var item = $scope.sortList[value];
+          $scope.sortList.splice(value, 1);
+          $scope.sortList = $scope.sortList.sort(function(a,b){return a.id - b.id});
+          if ($scope.sortList.unshift(item)) this.sortListModel = 0;
+      }
+      $scope.SortingReviews($scope.sortList[0].val);
+    };
+
+    //functions for carousel
     $scope.carouselFunctions = {
       openImage : function(index){
         $scope.indexImages = index;
@@ -70,6 +106,7 @@ angular.module('dmc.product', [
       }
     };
 
+//load data
     //get product
     ajax.on(
       dataFactory.getProduct(),
@@ -98,6 +135,7 @@ angular.module('dmc.product', [
           'images/project_capacitor_compartment.png',
           'images/ge-fuel-cell.png'
         ];
+        $scope.SortingReviews($scope.sortList[0].val);
         }else{
           $scope.not_found = true;
         }
@@ -173,32 +211,15 @@ angular.module('dmc.product', [
       }
     };
 
+//review
     //Show Leave A Review form
     $scope.LeaveAReview = function(){
       $scope.LeaveFlag = !$scope.LeaveFlag;
-      $scope.replyFlag = -1;
-      $scope.flagReviewFlag = -1;
     };
-
-    //Show Reply form
-    $scope.Reply = function(index){
-      $scope.replyFlag = index;
-      $scope.LeaveFlag = false;
-      $scope.flagReviewFlag = -1;
-    }
-
-    //Show Flag Review form
-    $scope.FlagReview = function(index){
-      $scope.flagReviewFlag = index;
-      $scope.LeaveFlag = false;
-      $scope.replyFlag = -1;
-    }
 
     //cancel Review form
     $scope.Cancel = function(){
       $scope.LeaveFlag = false;
-      $scope.replyFlag = -1;
-      $scope.flagReviewFlag = -1;
     };
 
     //Submit Leave A Review form
@@ -208,15 +229,14 @@ angular.module('dmc.product', [
         {
           productId: $scope.product.id,
           productType: $stateParams.typeProduct,
+          reviewId: 0,
           name: "DMC Member",
           status: true,
           rating: $scope.submit_rating,
-          like: 0,
-          dislike: 0,
           comment: NewReview.Comment
         },
         function(data){
-          $scope.SortingReviews(0);
+          $scope.SortingReviews('date');
         },
         function(){
           alert("Ajax fail: getProductReview");
@@ -234,28 +254,56 @@ angular.module('dmc.product', [
 
     //sorting Reviews
     $scope.SortingReviews = function(val){
-      if(val == 0) {
-        $scope.sort = 'date';
-        $scope.sort_order = 'DESC';
-      }
-      if(val == 1) {
-        $scope.sort = 'rating';
-        $scope.sort_order = 'DESC';
-      }
-      if(val == 2) {
-        $scope.sort = 'rating';
-        $scope.sort_order = 'ASC';
-      }
-      if(val == 3) {
-        $scope.sort = 'verified';
-        $scope.sort_order = 'ASC';
+      var sort;
+      var order;
+      switch(val){
+        case "date":
+          sort = 'date';
+          order = 'DESC';
+          break
+        case "helpful":
+          sort = 'helpful';
+          order = 'DESC';
+          break
+        case "lowest":
+          sort = 'rating';
+          order = 'ASC';
+          break
+        case "highest":
+          sort = 'rating';
+          order = 'DESC';
+          break
+        case "verified":
+          sort = 'verified';
+          order = 'ASC';
+          break
+        case "1star":
+          sort = 'stars';
+          order = 1;
+          break
+        case "2star":
+          sort = 'stars';
+          order = 2;
+          break
+        case "3star":
+          sort = 'stars';
+          order = 3;
+          break
+        case "4star":
+          sort = 'stars';
+          order = 4;
+          break
+        case "5star":
+          sort = 'stars';
+          order = 5;
+          break
       }
 
       var params = {
         typeProduct: $stateParams.typeProduct,
         productId: $stateParams.productId,
-        sort: $scope.sort,
-        order: $scope.sort_order
+        sort: sort,
+        order: order
       };
       if ($scope.limit_reviews){
         params['limit'] = 2;
@@ -272,34 +320,22 @@ angular.module('dmc.product', [
           alert("Ajax fail: getProductReview");
         }
       );
+    };
 
+    //Selected rating
+    $scope.stars = function(val){
+      $scope.submit_rating = val;
     };
 
     //View All Review
     $scope.ViewAllReview = function(){
       $scope.limit_reviews = !$scope.limit_reviews;
-      var params = {
-        typeProduct: $stateParams.typeProduct,
-        productId: $stateParams.productId,
-        sort: $scope.sort,
-        order: $scope.sort_order
-      };
-      if ($scope.limit_reviews){
-        params['limit'] = 2;
-      }
-
-      ajax.on(
-        dataFactory.getProductReview(),
-        params,
-        function(data){
-          $scope.product.reviews = data.result;
-          if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-        },
-        function(){
-          alert("Ajax fail: getProductReview");
-        }
-      );
+      $scope.SortingReviews($scope.sortList[0].val);
     };
+
+
+
+
 
     //View All Included
     $scope.ViewIncluded = function(ev){
@@ -319,43 +355,36 @@ angular.module('dmc.product', [
       });
     }
 
-    //selected rating
-    $scope.stars = function(val){
-      $scope.submit_rating = val;
-    };
-
-    $scope.Like = function(review){
-      review.like++;
-    };
-
-    $scope.DisLike = function(review){
-      review.dislike++;
-    };
-
+    //Search products
     $scope.submitSearch = function(text){
       window.location.href = '/marketplace.php#/search/' + $stateParams.typeProduct +'s?text=' + text;
     }
 
+    //Edit product
     $scope.editPage = function () {
       $scope.editFlag = true;
     }
 
+    //query services
     $scope.querySearch = function(query) {
       var results = query ? $scope.allServices.filter( createFilterFor(query) ) : $scope.allServices;
         return results;
     }
 
+    //query specifications
     $scope.specificationsSearch = function(query) {
       var results = query ? $scope.Specifications.filter( createFilterForSpecifications(query) ) : $scope.Specifications;
         return results;
     }
 
+    //Add services to included services
     $scope.AddServices = function(item, text){
       if(!item)return;
       $scope.products.push(item);
       this.$$childHead.$mdAutocompleteCtrl.clear();
     }
 
+    //Add specifications to product
     $scope.AddSpecifications = function(item, text){
       if(!item)return;
       for(var i in $scope.product.specificationsData.special){
@@ -379,6 +408,7 @@ angular.module('dmc.product', [
       };
     }
 
+    //Create filter function
     function createFilterForSpecifications(query) {
       var lowercaseQuery = angular.lowercase(query);
       return function filterFn(state) {
@@ -386,10 +416,12 @@ angular.module('dmc.product', [
       };
     }
 
+    //Remove included services
     $scope.deleteIncluded = function(index){
       $scope.products.splice(index, 1);
     }
 
+    //add tag to product
     $scope.addTag = function(inputTag){
       if(!inputTag)return;
       $scope.product.tags.push(inputTag);
@@ -401,6 +433,7 @@ angular.module('dmc.product', [
       $scope.product.tags.splice(index,1);
     }
 
+    //save edit product
     $scope.saveEdit = function(){
       ajax.on(
         dataFactory.editProduct(),
@@ -422,6 +455,7 @@ angular.module('dmc.product', [
       $scope.editFlag = false;
     }
 
+    //cancel edit product
     $scope.cancelEdit = function(){
       $scope.editFlag = false;
       //get product
@@ -458,6 +492,19 @@ angular.module('dmc.product', [
         },
         function(){
           alert("Ajax fail: getProduct");
+        }
+      );
+
+      ajax.on(
+        dataFactory.getUrlAllServices(),
+        {
+          limit: 8
+        },
+        function(data){
+          $scope.products = data.result;
+        },
+        function(){
+          alert("Ajax fail: getAllServices");
         }
       );
     }
