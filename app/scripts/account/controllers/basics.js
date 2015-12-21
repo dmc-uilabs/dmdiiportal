@@ -1,13 +1,12 @@
 'use strict';
 angular.module('dmc.account')
     .controller('BasicsAccountCtr', [ '$stateParams', '$state', "$scope","$timeout", "$q", "ajax", "location","accountData","accountUpdate", function ($stateParams, $state, $scope,$timeout,$q, ajax, location,accountData,accountUpdate) {
-        $scope.accountData = accountData;
+        //$scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
         $scope.title = pageTitles[$scope.page];
 
         $scope.user = accountData;
-
         var callback = function(success,data){
             if(success) {
                 $scope.user.dataLocation = data;
@@ -52,7 +51,11 @@ angular.module('dmc.account')
             }
         }
         function selectedItemChange(item) {
-            $scope.user.timezone = item.display;
+            if(!item || !item.display) {
+                $scope.user.timezone = null;
+            }else {
+                $scope.user.timezone = item.display;
+            }
             accountUpdate.update($scope.user);
         }
 
@@ -110,26 +113,26 @@ angular.module('dmc.account')
         $scope.suffixes = [
             {
                 id : 1,
-                title : "Suffix 1"
+                title : "S1"
             },
             {
                 id : 2,
-                title : "Suffix 2"
+                title : "S2"
             }
         ];
 
         $scope.salutations = [
             {
                 id : 1,
-                title : "Salutation 1"
+                title : "T1"
             },
             {
                 id : 2,
-                title : "Salutation 2"
+                title : "T2"
             },
             {
                 id : 3,
-                title : "Salutation 3"
+                title : "T3"
             }
         ];
         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
