@@ -114,6 +114,9 @@ angular.module('dmc.data',[])
             uploadCompanyPictureUrl : function(){
                 return baseServer+'/ucp';
             },
+            uploadProfilePictureUrl: function(){
+                return baseServer+'/uprpic';
+            },
             getAccountUrl: function(id){
                 return baseServer+'/get_account'+appendId(id);
             },

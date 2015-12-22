@@ -1,15 +1,41 @@
 <div ng-if="!not_found" class="profile">
   <md-content class="profile-padding">
     <div layout="row">
-      <div flex="20">
+      <div flex="20" layout="column">
         <img class="profile-image" ng-src="{{profile.image}}">
+        <md-button flex="100" ng-if="editFlag" ng-show="!isChangingPicture" ng-click="changePicture()">
+          <ng-md-icon icon="camera_alt" style="fill: #65AF3F;" size="25"></ng-md-icon>
+          Change Photo
+        </md-button>
+
+        <div layout="column" ng-show="isChangingPicture">
+          <div class="flow-box"
+             flow-init
+             flow-drag-enter="pictureDragEnter($flow)"
+             flow-drag-leave="pictureDragLeave($flow)"
+             flow-file-success="$file.msg = $message"
+             flow-file-added="addedNewFile($file, $event, $flow )"
+             layout="column">
+            <!-- <div> -->
+            <md-button ng-click="cancelChangePicture($flow)">Cancel</md-button>
+            <!-- </div> -->
+            <div layout class="alert" flow-drop flow-drop-enabled="true">
+              <div flow-btn class="inner-box" layout="row" layout-align="center center">
+                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="50">
+                  <img flow-img="$flow.files[0]" />
+                </div>
+                <div class="text" flex="50">Drag And Drop your picture here</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div flex="80" layout="column" class="profile-header">
+      <div ng-if="!editFlag" flex="80" layout="column" class="profile-header">
         <div layout="row" layout-align="center center">
           <div layout="column">
-            <h2>{{profile.firstName}} {{profile.lastName}} <span>{{profile.position}}</span></h2>
-            <h3>{{profile.company}}</h3>
-            <h3>{{profile.city}}, {{profile.state}}</h3>
+            <h2>{{profile.displayName}} <span>{{profile.jobTitle}}</span></h2>
+            <h3><a href="">{{profile.company}}</a></h3>
+            <h3>{{profile.location}}</h3>
           </div>
 
           <span flex></span>
@@ -22,19 +48,54 @@
           </md-button>
         </div>
           <span flex></span>
-
         <div layout="row" layout-align="center center">
           <ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
           <md-button ng-href="">View Storefront</md-button>
           <span flex></span>
+          <md-button ng-click="editPage()">Edit profile</md-button>
           <md-button ng-href="">Follow</md-button>
           <md-button ng-href="">Invite to Project</md-button>
         </div>
       </div>
+      <div ng-if="editFlag" class="profile-header" flex="80" layout="row">
+        <div flex="50" layout="column">
+          <div layout="row">
+            <md-input-container flex="50">
+              <label>Diaplay Name</label>
+              <input ng-model="profile.displayName">
+            </md-input-container>
+            <md-input-container flex="50">
+              <label>Job Title</label>
+              <input ng-model="profile.jobTitle">
+            </md-input-container>
+          </div>
+          <md-input-container>
+            <label>Company</label>
+            <input ng-model="profile.company" disabled>
+          </md-input-container>
+          <md-input-container class="md-icon-float">
+            <label>Location</label>
+            <md-icon>
+                <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
+            </md-icon>
+            <input ng-model="profile.location">
+          </md-input-container>
+        </div>
+        <div flex="50" layout="row" layout-align="end start">
+          <md-button ng-click="cancelEdit()" class="md-raised cancel">Cancel</md-button>
+          <md-button ng-click="saveEdit()" class="md-raised save">Save</md-button>
+        </div>
+      </div>
     </div>
     <md-divider></md-divider>
-    <div class="profile-description">
+    <div ng-if="!editFlag" class="profile-description">
       {{profile.description}} <a href="">Read More</a>
+    </div>
+    <div ng-if="editFlag" class="profile-description">
+      <md-input-container>
+        <label>Description</label>
+        <textarea ng-model="profile.description" columns="1" md-maxlength="1000"></textarea>
+      </md-input-container>
     </div>
 
     <md-tabs md-dynamic-height md-border-bottom>
@@ -104,18 +165,18 @@
             </md-chips>
           </div>
           <div layout="column" ng-if="editFlag">
-            <form ng-submit="addskill(inputskill)" class="add-skills-form" layout="row" layout-align="start center">
+            <form ng-submit="addSkill(inputSkill)" class="add-skills-form" layout="row" layout-align="start center">
               <md-input-container>
                 <label>Enter skill</label>
-                <input ng-model="inputskill">
+                <input ng-model="inputSkill">
               </md-input-container>
-              <md-button ng-disabled="!inputskill" class="md-raised md-primary">Add</md-button>
+              <md-button ng-disabled="!inputSkill" class="md-raised md-primary">Add</md-button>
             </form>
             <div layout="row" class="tabs-content" layout-wrap>
               <md-chips ng-repeat="skill in profile.skills track by $index">
                 <md-chip class="skills-chip">
                   {{skill}}
-                  <md-button aria-label="close" ng-click="deleteskill($index)" class="md-icon-button">
+                  <md-button aria-label="close" ng-click="deleteSkill($index)" class="md-icon-button">
                     <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
                   </md-button>
                 </md-chip>
@@ -195,7 +256,7 @@
       </form>
     </div>
 
-    <md-divider></md-divider>
+    <md-divider ng-if="!editFlag" ></md-divider>
 
     <div ng-if="!editFlag" ng-repeat="review in profile.reviews">
       <ui-widget-review review="review" userlogin="UserLogin" typereview="'profile_reviews'"></ui-widget-review>
