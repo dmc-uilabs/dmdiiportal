@@ -85,6 +85,7 @@
     <script src="scripts/common/factory/location.factory.js"></script>
     <script src="scripts/common/models/company-model.js"></script>
     <script src="scripts/components/tree-menu/tree-menu.js"></script>
+    <script src="scripts/components/tree-menu/products-filter.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/products-card/products-card.js"></script>
     <script src="scripts/components/carousel/carousel.js"></script>

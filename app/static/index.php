@@ -80,8 +80,13 @@ return call_user_func(function () {
         echo save_company_changes($_GET);
     }else if(strpos($uri,'/update_account') !== false){
         echo update_account($_GET);
+    }else if(strpos($uri,'/follow_company') !== false){
+        echo follow_company($_GET);
+    }else if(strpos($uri,'/add_product_to_favorite') !== false){
+        echo add_product_to_favorite($_GET);
     }
 });
+
 
 
 
@@ -197,6 +202,77 @@ function remove_from_project($params){
     }
 }
 
+function add_product_to_favorite($params){
+    if(isset($params['productId']) and isset($params['productType'])) {
+        if($params['productType'] == 'service'){
+            $product = json_decode(httpResponse(dbUrl().'/services/' . $params['productId'], null, null), true);
+        }else{
+            $product = json_decode(httpResponse(dbUrl().'/components/' . $params['productId'], null, null), true);
+        }
+        if($product != null and isset($product['id'])) {
+            $favorites = json_decode(httpResponse(dbUrl().'/accounts/1/favorite_products', null, null), true);
+            $exist = null;
+            for($i = 0; $i < count($favorites); ++$i){
+                if($favorites[$i]['productId'] === $product['id'] && $favorites[$i]['productType'] === $params['productType']){
+                    $exist = $favorites[$i];
+                    break;
+                }
+            }
+            if($exist != null){
+                $changed_item = json_decode(httpResponse(dbUrl().'/favorite_products/' . $exist['id'], 'DELETE', null), true);
+                return json_encode(array('favorite' => false));
+            }else{
+                $last = json_decode(httpResponse(dbUrl() . '/favorite_products?_sort=id&_order=DESC&_limit=1', null, null), true);
+                $id = (count($last) > 0 ? $last[0]['id'] + 1 : 1);
+                $data = json_encode(array(
+                    'id' => $id,
+                    'productId' => $product['id'],
+                    'accountId' => 1,
+                    'productType' => $params['productType']
+                ));
+                $add_favorite = json_decode(httpResponse(dbUrl() . '/favorite_products', 'POST', $data), true);
+                return json_encode(array('favorite' => true));
+            }
+        }else{
+            return json_encode(array('error' => 'Product does not exist'));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
+function follow_company($params){
+    if(isset($params['companyId'])) {
+        $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['companyId'], null, null), true);
+        if($company != null and isset($company['id']) == true) {
+            $account_follows = json_decode(httpResponse(dbUrl().'/accounts/1/company_follows?companyId='.$company['id'], null, null), true);
+            $exist = (count($account_follows) > 0 ? $account_follows[0] : null);
+            if($exist != null){
+                $changed_item = json_decode(httpResponse(dbUrl().'/company_follows/' . $exist['id'], 'DELETE', null), true);
+                return json_encode(array('follow' => false));
+            }else{
+                $last = json_decode(httpResponse(dbUrl() . '/company_follows?_sort=id&_order=DESC&_limit=1', null, null), true);
+                $id = (count($last) > 0 ? $last[0]['id'] + 1 : 1);
+                $data = json_encode(array(
+                    'id' => $id,
+                    'companyId' => $params['companyId'],
+                    'accountId' => 1
+                ));
+                $add_follow = json_decode(httpResponse(dbUrl() . '/company_follows', 'POST', $data), true);
+                return json_encode(array('follow' => true));
+            }
+        }else{
+            if($company == null || isset($company['id']) == false) {
+                return json_encode(array('error' => 'Company does not exist'));
+            }else{
+                return json_encode(array('error' => 'Account does not exist'));
+            }
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
 function save_company_changes($params){
     if(isset($params['company_id']) && isset($params['name']) && isset($params['description'])) {
         $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
@@ -229,12 +305,14 @@ function get_featured_company($params){
                     $query = json_decode(httpResponse(dbUrl().'/services/'.$features[$i]['productId'], null, null), true);
                     if($query != null and isset($query['id']) == true) {
                         $query['type'] = 'service';
+                        $query['favorite'] = isFavoriteProduct($query['id'],$query['type'],null);
                         array_push($data['services'], $query);
                     }
                 }else if($features[$i]['type'] == 'component'){
                     $query = json_decode(httpResponse(dbUrl().'/components/'.$features[$i]['productId'], null, null), true);
                     if($query != null and isset($query['id']) == true) {
                         $query['type'] = 'component';
+                        $query['favorite'] = isFavoriteProduct($query['id'],$query['type'],null);
                         array_push($data['components'], $query);
                     }
                 }
@@ -352,15 +430,23 @@ function searchByName($params,$array){
     return $query;
 }
 
+function isFavoriteProduct($id,$type,$accountId){
+    $accountId_ = ($accountId == null ? 1 : $accountId);
+    $favorites = json_decode(httpResponse(dbUrl().'/products/'.$id.'/favorite_products?productType='.$type.'&accountId='.$accountId_, null, null),true);
+    return (count($favorites) == 0 ? false : true);
+}
+
 function get_products($params){
     $components = json_decode(httpResponse(dbUrl().'/components', null, null), true);
     for($i = 0; $i < count($components); ++$i){
         $components[$i]['type'] = 'component';
+        $services[$i]['favorite'] = isFavoriteProduct($components[$i]['id'],$components[$i]['type'],null);
         $components[$i] = addMore($components[$i]);
     }
     $services = json_decode(httpResponse(dbUrl().'/services', null, null),true);
     for($i = 0; $i < count($services); ++$i){
         $services[$i]['type'] = 'service';
+        $services[$i]['favorite'] = isFavoriteProduct($services[$i]['id'],$services[$i]['type'],null);
         $services[$i] = addMore($services[$i]);
     }
     $query = array_merge($components,$services);
@@ -411,6 +497,7 @@ function get_components($params){
     }
     for($i = 0; $i < count($query); ++$i){
         $query[$i]['type'] = 'component';
+        $query[$i]['favorite'] = isFavoriteProduct($query[$i]['id'],$query[$i]['type'],null);
         $query[$i] = addMore($query[$i]);
     }
     $result = array('result' => $query, 'count' => $count);
@@ -485,6 +572,7 @@ function get_services($params){
     }
     for($i = 0; $i < count($query); ++$i){
         $query[$i]['type'] = 'service';
+        $query[$i]['favorite'] = isFavoriteProduct($query[$i]['id'],$query[$i]['type'],null);
         $query[$i] = addMore($query[$i]);
     }
     $result = array('result' => $query, 'count' => $count, 'countTypes' => $countTypes);
@@ -596,6 +684,11 @@ function get_company($params){
     if(isset($params['id']) == true){
         $query = json_decode(httpResponse(dbUrl().'/companies/'.$params['id'], null, null),true);
         $result['result'] = $query;
+        $accountId_ = 1;
+        $account_follow = json_decode(httpResponse(dbUrl().'/accounts/'.$accountId_.'/company_follows?companyId='.$params['id'], null, null), true);
+        $result['result']['follow'] = (count($account_follow) > 0 ? true : false);
+        $account_favorites = json_decode(httpResponse(dbUrl().'/accounts/'.$accountId_.'/favorite_products', null, null),true);
+        $result['result']['favoritesCount'] = count($account_favorites);
     }
     return json_encode($result);
 }
@@ -802,7 +895,7 @@ function get_product($params){
     }else if($params['type'] == 'components'){
         $query['type'] = 'component';
     }
-
+    $query['favorite'] = isFavoriteProduct($query['id'],$query['type'],null);
     $query = addMore($query);
   }else{
     return false;

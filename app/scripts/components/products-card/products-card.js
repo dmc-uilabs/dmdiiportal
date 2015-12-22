@@ -21,7 +21,8 @@ angular.module('dmc.component.productscard', [
           currentPage : "=",
           titleCard: "=",
           cardLoading: "=",
-          searchCard: "="
+          searchCard: "=",
+          updatePageSize : "="
       },
       templateUrl: 'templates/components/products-card/products-card-tpl.html',
       controller: function($scope,$cookies){
@@ -68,11 +69,13 @@ angular.module('dmc.component.productscard', [
               }
           }
 
+
           $scope.selectItemDropDown = function(type){
               if(type == "show"){
                   if($scope.sizeModule != 0) {
                       var item = $scope.showArray[$scope.sizeModule];
                       $scope.pageSize = item.val;
+                      $scope.updatePageSize(item.val);
                       $scope.showArray.splice($scope.sizeModule, 1);
                       $scope.showArray = $scope.showArray.sort(function(a,b){return a.id - b.id});
                       if ($scope.showArray.unshift(item)) $scope.sizeModule = 0;

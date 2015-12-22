@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "The Turbine Company",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "featureImage": {
         "thumbnail": "/uploads/company/picture/1/20151216100049000000.png",
         "large": "/uploads/company/picture/1/20151216100049000000.png"
@@ -33,16 +33,17 @@
       "type": "service"
     },
     {
-      "id": 4,
+      "id": 3,
       "companyId": 1,
-      "productId": 15,
+      "productId": 18,
       "type": "service"
-    },
+    }
+  ],
+  "company_follows": [
     {
-      "id": 12,
+      "id": 1,
       "companyId": 1,
-      "productId": 13,
-      "type": "service"
+      "accountId": 1
     }
   ],
   "accounts": [
@@ -139,6 +140,26 @@
           }
         }
       }
+    }
+  ],
+  "favorite_products": [
+    {
+      "id": 2,
+      "productId": 1,
+      "accountId": 1,
+      "productType": "service"
+    },
+    {
+      "id": 7,
+      "productId": 3,
+      "accountId": 1,
+      "productType": "service"
+    },
+    {
+      "id": 8,
+      "productId": 18,
+      "accountId": 1,
+      "productType": "service"
     }
   ],
   "projects": [
@@ -710,11 +731,11 @@
         "startDate": "20-09-2015",
         "startTime": "06:45:10",
         "project": {
-          "id": 5,
-          "title": "Low Heat Loss Transformer"
+          "id": 3,
+          "title": "Capacitor Design"
         }
       },
-      "projectId": 5
+      "projectId": 3
     },
     {
       "id": 2,

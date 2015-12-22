@@ -41,6 +41,12 @@
     .company-buttons.md-button.md-raised.md-default-theme {
       text-decoration: none;
     }
+    .company-edit{
+      text-transform: none;
+      min-height: 0;
+      line-height: 32px;
+      height: 35px;
+    }
     .company-edit-picture{
       right: 0;
       top: 0;
@@ -69,8 +75,15 @@
       margin-bottom: 0;
       margin-top: 0;
     }
+    p{
+      font-size: 14px;
+      margin-top: 0;
+    }
     .read-more{
       color: #333;
+      text-decoration: underline;
+      color: rgb(81, 136, 200);
+      cursor: pointer;
       &:hover{
         text-decoration: none;
         color: rgb(0,200,83);

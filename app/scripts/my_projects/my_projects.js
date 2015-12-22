@@ -43,7 +43,8 @@ angular.module('dmc.my_projects', [
             id : 5, tag : "id5", name : "ID Project5"
         }
     ];
-        $scope.sortModel = 0;
+
+    $scope.sortModel = 0;
     $scope.selectItemDropDown = function(type){
         if(type == "filter"){
             if($scope.filterModel != 0) {

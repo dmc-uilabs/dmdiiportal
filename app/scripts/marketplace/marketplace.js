@@ -21,7 +21,8 @@ angular.module('dmc.marketplace', [
     'dmc.component.treemenu',
     'dmc.component.productscard',
     'dmc.component.carousel',
-    'dmc.compare'
+    'dmc.compare',
+    'dmc.component.products-filter'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('marketplace', {
@@ -43,7 +44,7 @@ angular.module('dmc.marketplace', [
             }
         }
     });
-    $urlRouterProvider.otherwise('/services');
+    $urlRouterProvider.otherwise('/services?type=analytical');
 })
 .controller('DMCMarketplaceController', function($stateParams,$scope,$cookies,ajax,dataFactory,Products,socketFactory,$location,is_search){
         $scope.isSearch = is_search;
