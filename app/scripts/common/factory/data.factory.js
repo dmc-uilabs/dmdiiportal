@@ -132,14 +132,26 @@ angular.module('dmc.data',[])
             saveCompanyChanges : function(){
                 return baseServer+'/save_company_changes';
             },
-            updateAccount: function(id){
-                return baseServer+'/update_account'+appendId(id);
-            },
             followCompany : function(){
                 return baseServer+'/follow_company';
             },
-            addProductToFavorite: function(){
-                return baseServer+'/add_product_to_favorite';
+            addProductToFavorite: function() {
+                return baseServer + '/add_product_to_favorite';
+            },
+            updateAccount: function(id){
+                return baseServer+'/update_account'+appendId(id);
+            },
+            getProfile: function(){
+                return baseServer+'/profile';
+            },
+            editProfile: function(){
+                return baseServer+'/edit_profile';
+            },
+            getProfileReview: function(){
+                return baseServer+'/get_profile_review';
+            },
+            addProfileReview: function(){
+                return baseServer+'/add_profile_review';
             }
         };
     }

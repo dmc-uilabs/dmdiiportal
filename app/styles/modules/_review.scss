@@ -19,6 +19,12 @@
   &-footer {
     margin-top: 15px;
     a {
+      &:first-child{
+        margin-right: 5px;
+      }
+      &:last-child{
+        margin: 0 5px;
+      }
       text-decoration: none;
       color: #65AF3F;
     }

@@ -57,11 +57,11 @@ function sortByReleaseDateDESC($a, $b) {
 }
 
 function sortByReviewDateDESC($a, $b) {
-  return strtotime($b['date']) > strtotime($a['date']) ? 1 : -1;
+  return strtotime(str_replace('-','/',$b['date'])) > strtotime(str_replace('-','/',$a['date'])) ? 1 : -1;
 }
 
 function sortByReviewDateASC($a, $b) {
-  return strtotime($a['date']) > strtotime($b['date']) ? 1 : -1;
+  return strtotime(str_replace('-','/',$a['date'])) > strtotime(str_replace('-','/',$b['date'])) ? 1 : -1;
 }
 
 function sortByReviewRatingDESC($a, $b) {

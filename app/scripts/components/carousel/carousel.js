@@ -34,6 +34,7 @@ angular.module('dmc.component.carousel', [
           $scope.showItems = (parseInt($scope.showItems) <= 0 ? 2 : parseInt($scope.showItems));
           $scope.arrayItems = ($scope.carouselSource.length > $scope.maxItems ? $scope.carouselSource.slice(0, $scope.maxItems) : $scope.carouselSource);
           $scope.countSlides = ($scope.arrayItems.length == 0 ? 0 : Math.ceil($scope.arrayItems.length / $scope.showItems));
+          $scope.currentSlide = 1;
 
           $scope.$watch(function(){return $scope.carouselSource.length}, function(){
               $scope.arrayItems = ($scope.carouselSource.length > $scope.maxItems ? $scope.carouselSource.slice(0, $scope.maxItems) : $scope.carouselSource);
@@ -74,10 +75,10 @@ angular.module('dmc.component.carousel', [
           */
 
           $scope.selectButton = function(){
-              var cs = Carousel.get($scope.nameCarousel).currentSlide + 1;
-              if (!isNaN(cs)) {
+              $scope.currentSlide = Carousel.get($scope.nameCarousel).currentSlide + 1;
+              if (!isNaN($scope.currentSlide)) {
                   $element.find(".slide-buttons .selected").removeClass("selected");
-                  $element.find(".slide-buttons li:nth-child(" + cs + ")").addClass("selected");
+                  $element.find(".slide-buttons li:nth-child(" + $scope.currentSlide + ")").addClass("selected");
               }
           };
 

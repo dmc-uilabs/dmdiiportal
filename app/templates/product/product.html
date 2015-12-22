@@ -175,15 +175,6 @@
                   </md-chips>
                 </div>
               </div>
-                <!-- <md-chips
-                      ng-if="editFlag && qqq.tags"
-                      ng-model="qqq.tags"
-                      readonly="false"
-                      placeholder="Enter a tag"
-                      delete-button-label="Remove Tag"
-                      delete-hint="Press delete to remove tag"
-                      secondary-placeholder="+Tag">
-                </md-chips> -->
             </md-content>
           </md-tab>
 
@@ -320,7 +311,7 @@
 
         <!--one Reviews-->
         <div ng-if="!editFlag" ng-repeat="review in product.reviews">
-          <ui-widget-review review="review" userlogin="UserLogin"></ui-widget-review>
+          <ui-widget-review review="review" userlogin="UserLogin" typereview="'product_reviews'"></ui-widget-review>
           <md-divider></md-divider>
         </div>
 

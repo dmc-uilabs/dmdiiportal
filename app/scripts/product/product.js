@@ -91,6 +91,7 @@ angular.module('dmc.product', [
     //functions for carousel
     $scope.carouselFunctions = {
       openImage : function(index){
+        console.info("this", this);
         $scope.indexImages = index;
 
       },
@@ -103,6 +104,9 @@ angular.module('dmc.product', [
           $scope.indexImages--;
         }
         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+      },
+      selected: function(index){
+        return index == $scope.indexImages;
       }
     };
 

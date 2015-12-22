@@ -23,21 +23,24 @@
               aria-label="delete">
               <ng-md-icon icon="close" style="fill: #fff" size="17"></ng-md-icon>
             </md-button>
-            <img ng-src="{{item}}" ng-click="functions.openImage($index + $parent.$parent.$index*showItems)" alt=""/>
+            <img 
+              ng-src="{{item}}" 
+              ng-class="{'selected' : (functions.selected($index + $parent.$parent.$index*showItems) == true)}" 
+              ng-click="functions.openImage($index + $parent.$parent.$index*showItems)" alt=""/>
       </div>
     </slide>
   </slidecontainer>
-  <div class="carousel-arrow carousel-arrow-left" ng-class="{'image-button' : typeCarousel === 'images'}" ng-hide="countSlides <= 1">
+  <div class="carousel-arrow carousel-arrow-left" ng-class="{'image-button' : typeCarousel === 'images'}" ng-hide="countSlides <= 1 || currentSlide == 1">
     <md-button aria-label="Left" class="demo-nav" ng-click="prevSlide()">
       <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
     </md-button>
   </div>
-  <div class="carousel-arrow carousel-arrow-right" ng-class="{'image-button' : typeCarousel === 'images'}" ng-hide="countSlides <= 1">
+  <div class="carousel-arrow carousel-arrow-right" ng-class="{'image-button' : typeCarousel === 'images'}" ng-hide="countSlides <= 1 || currentSlide == countSlides">
     <md-button aria-label="Right" class="demo-nav" ng-click="nextSlide()">
       <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
     </md-button>
   </div>
-  <div class="slide-buttons" ng-if="countSlides > 1">
+  <div class="slide-buttons" ng-if="countSlides > 1 && typeCarousel !== 'images'">
     <ul>
       <li ng-repeat="item in arrayItems.slice(0, countSlides) track by $index" ng-class="$index == 0 ? 'selected' : ''" ng-click="openSlide($event,$index)">
         <md-button class="md-icon-button" aria-label="More">
