@@ -1,8 +1,8 @@
 <md-dialog flex="60" aria-label="View" class="view-all-included">
 	<md-dialog-content class="component">
 		<div layout="row" layout-align="space-between center">
-      <md-button href="" aria-label="Favorite" class="md-icon-button">
-        <ng-md-icon icon="favorite_outline" style="fill: grey;" size="25"></ng-md-icon>
+      <md-button ng-click="addToFavorite()" aria-label="Favorite" class="md-icon-button">
+        <ng-md-icon icon="{{ product.favorite ? 'favorite' : 'favorite_outline'}}" ng-class="!product.favorite ? 'not-favorite' : 'is-favorite'" size="25"></ng-md-icon>
       </md-button>
 			<md-button href="product.php#/{{product.type}}s/{{product.id}}" ng-click="cancel()" aria-label="Open" class="md-icon-button">
         <ng-md-icon icon="arrow_forward" style="fill: grey;" size="25"></ng-md-icon>

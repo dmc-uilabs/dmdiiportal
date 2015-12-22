@@ -83,6 +83,7 @@
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
     <script src="scripts/components/tree-menu/tree-menu.js"></script>
+    <script src="scripts/components/tree-menu/products-filter.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/products-card/products-card.js"></script>
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>

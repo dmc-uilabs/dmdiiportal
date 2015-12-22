@@ -40,7 +40,7 @@
       <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
     </md-button>
   </div>
-  <div class="slide-buttons" ng-if="typeCarousel !== 'images'">
+  <div class="slide-buttons" ng-if="countSlides > 1 && typeCarousel !== 'images'">
     <ul>
       <li ng-repeat="item in arrayItems.slice(0, countSlides) track by $index" ng-class="$index == 0 ? 'selected' : ''" ng-click="openSlide($event,$index)">
         <md-button class="md-icon-button" aria-label="More">

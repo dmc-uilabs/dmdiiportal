@@ -10,7 +10,7 @@ angular.module('dmc.compare',[
         'ngtimeago'
     ])
     .controller('CompareController',function($scope,$mdDialog,$cookies,Products,ajax,dataFactory){
-        $scope.currentProductType = 'all';
+        $scope.currentProductType = 'service';
         $scope.switchProductType = function(type){
             $scope.currentProductType = type;
         };
@@ -35,6 +35,12 @@ angular.module('dmc.compare',[
             }else{
                 return '';
             }
+        };
+
+        $scope.clearAll = function(){
+            $cookies.remove('compareProducts');
+            $cookies.changedCompare = new Date();
+            $scope.cancel();
         };
 
         $scope.callbackServices = function(data) {

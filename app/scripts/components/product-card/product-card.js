@@ -5,7 +5,7 @@
 * DMC Tree Menu
 */
 
-
+var updateFavoriteInShowProductCtrl = null;
 
 angular.module('dmc.component.productcard', [
     'dmc.ajax',
@@ -42,6 +42,23 @@ angular.module('dmc.component.productcard', [
       controller: function($scope,$cookies,$timeout,ajax,dataFactory, $mdDialog){
           $scope.projects = [];
           $scope.addingToProject = false;
+          var addToFavoriteCallback = function(data){
+              if(!data.error) {
+                  $scope.cardSource.favorite = data.favorite;
+                  if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+              }else{
+                  alert(data.error);
+              }
+              if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
+          };
+          $scope.addToFavorite = function(){
+              return ajax.on(dataFactory.addProductToFavorite(),{
+                  productId : $scope.cardSource.id,
+                  productType : $scope.typeProduct
+              },addToFavoriteCallback,function(){
+                  alert("Ajax faild: removeFromProject");
+              });
+          };
 
           $scope.addToFeatured = function(){
               $scope.addFeatured($scope.cardSource.id,$scope.cardSource.type);
@@ -75,26 +92,26 @@ angular.module('dmc.component.productcard', [
               if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
           };
 
-          $scope.saveToProject = function(){
+          $scope.saveToProject = function(projectId){
               ajax.on(dataFactory.getUrlAddToProject($scope.cardSource.id),{
                   id : $scope.cardSource.id,
-                  projectId : $scope.projectModel,
+                  projectId : projectId,
                   type : $scope.typeProduct
               },function(data){
                   $scope.cancelAddToProject();
-                  $scope.cardSource.currentStatus.project.id = $scope.projectModel;
-                  $scope.cardSource.projectId = $scope.projectModel;
+                  $scope.cardSource.currentStatus.project.id = projectId;
+                  $scope.cardSource.projectId = projectId;
                   $scope.cardSource.added = true;
                   var project = null;
                   for(var i in $scope.projects){
-                      if($scope.projects[i].id === $scope.projectModel){
+                      if($scope.projects[i].id == projectId){
                           project = $scope.projects[i];
                           break;
                       }
                   }
                   $scope.cardSource.lastProject = {
                       title : project.title,
-                      href : 'http://localhost:9000/project.php#/'+project.id+'/home'
+                      href : '/project.php#/'+project.id+'/home'
                   };
                   $scope.addedTimeout = setTimeout(function(){
                       $scope.cardSource.added = false;
@@ -172,15 +189,30 @@ angular.module('dmc.component.productcard', [
               $scope.addingToProject = false;
           };
 
+          $scope.share = function(ev){
+              $mdDialog.show({
+                  controller: "ShareProductCtrl",
+                  templateUrl: "templates/components/product-card/share-product.html",
+                  parent: angular.element(document.body),
+                  targetEvent: ev,
+                  clickOutsideToClose:true,
+                  locals: {
+                  }
+              }).then(function() {
+              }, function() {
+              });
+          };
+
           $scope.show = function(ev){
             $mdDialog.show({
               controller: "ShowProductCtrl",
-              templateUrl: "templates/components/product-card/show_product.html",
+              templateUrl: "templates/components/product-card/show-product.html",
               parent: angular.element(document.body),
               targetEvent: ev,
               clickOutsideToClose:true,
               locals: {
-                product: $scope.cardSource
+                addToFavorite : $scope.addToFavorite,
+                getProduct : $scope.cardSource
               }
             })
             .then(function() {
@@ -190,11 +222,27 @@ angular.module('dmc.component.productcard', [
       }
     };
 })
-.controller('ShowProductCtrl', function ($scope, $mdDialog, product){
-  $scope.product = product;
-  $scope.cancel = function(){
-    $mdDialog.cancel();
-  }
+.controller('ShowProductCtrl', function ($scope, $mdDialog, getProduct, addToFavorite){
+    $scope.product = getProduct;
+    $scope.addToFavorite = addToFavorite;
+    updateFavoriteInShowProductCtrl = function(data){
+        $scope.product = data;
+        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+    };
+    $scope.cancel = function(){
+        updateFavoriteInShowProductCtrl = null;
+        $mdDialog.cancel();
+    }
+})
+.controller('ShareProductCtrl', function ($scope, $mdDialog){
+    $scope.people = [
+        { name: 'Janet Perkins', img: 'images/avatar-fpo.jpg', newMessage: true },
+        { name: 'Mary Johnson', img: 'images/mackenzie.png', newMessage: false },
+        { name: 'Peter Carlsson', img: 'images/carbone.png', newMessage: false }
+    ];
+    $scope.cancel = function(){
+        $mdDialog.cancel();
+    };
 })
 .factory('Products', function (ajax,dataFactory) {
         var getServices = function(f,data){

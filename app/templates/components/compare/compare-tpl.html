@@ -4,8 +4,7 @@
             <div class="md-toolbar-tools">
                 <h2 class="compare-title">Compare</h2>
                 <md-button class="top-buttons"
-                           ng-class="{'md-raised md-primary' : currentProductType == 'all'}"
-                           ng-click="switchProductType('all')">All ({{compareProducts.services.length+compareProducts.components.length}})</md-button>
+                           ng-click="clearAll()">Clear All</md-button>
                 <md-button class="top-buttons"
                            ng-class="{'md-raised md-primary' : currentProductType == 'service'}"
                            ng-click="switchProductType('service')">Services ({{compareProducts.services.length}})</md-button>

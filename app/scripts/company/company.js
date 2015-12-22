@@ -4,6 +4,7 @@ angular.module('dmc.company', [
     'ngAnimate',
     'ngMaterial',
     'ngCookies',
+    'ngSanitize',
     'ui.router',
     'md.data.table',
     'dmc.configs.ngmaterial',
@@ -20,6 +21,7 @@ angular.module('dmc.company', [
     'dmc.model.fileModel',
     'dmc.model.fileUpload',
     'dmc.model.toast-model',
+    'dmc.component.products-filter',
     'flow'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('company', {
@@ -33,7 +35,7 @@ angular.module('dmc.company', [
                 }]
         }
     }).state('company.storefront', {
-        url: '/storefront/:page?type',
+        url: '/storefront/:page?type?text',
         controller: 'StorefrontCompanyCtr',
         templateUrl: 'templates/company/storefront.html'
     }).state('company.edit', {

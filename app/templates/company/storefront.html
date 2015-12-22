@@ -1,23 +1,28 @@
 <div class="container container-company" layout-padding layout="row" ng-show="companyData.id">
     <div class="content-column left-content" layout="column" flex="20">
         <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
+        <dmc-products-filter ng-if="isSearch"></dmc-products-filter>
     </div>
     <div class="content-column right-content" layout="column" flex="80">
         <div class="content-panel">
             <div class="content-panel-body">
                 <md-content class="company-content">
-                    <div layout="row" layout-align="center center" ng-style="{'background-image' : 'url('+companyData.featureImage.large+')'}" class="company-image">
+                    <div layout="row" layout-align="end start" ng-style="{'background-image' : 'url('+companyData.featureImage.large+')'}" class="company-image">
                        <!--<img ng-src="images/company-logo.jpg" alt=""/>-->
+                        <md-button class="md-raised company-edit" ng-href="/company.php#/{{companyId}}/edit">
+                            Edit Company
+                        </md-button>
                     </div>
                     <div layout="row" layout-padding layout-align="start start" class="company-title">
                         <div layout="column" flex="70">
                             <h2 class="md-title" layout="row" layout-align="start center">{{companyData.name}}<md-button class="company-buttons" ng-href="/">Profile</md-button></h2>
-                            <p>{{companyData.description}}
-                                <a class="read-more" href="/">Read More</a>
+                            <p>
+                                <div ng-bind-html="(companyData.shortDescription == null || isReadMore ? companyData.description : companyData.shortDescription)"></div>
+                                <a class="read-more" ng-show="companyData.shortDescription" ng-click="readMore()">{{(isReadMore ? 'Roll up' : 'Read More')}}</a>
                             </p>
                         </div>
                         <span flex></span>
-                        <md-button class="company-buttons" ng-href="/">Follow</md-button>
+                        <md-button class="company-buttons" ng-click="followCompany()">{{(isFollow ? 'Unfollow' : 'Follow')}}</md-button>
                         <md-button class="md-icon-button message-button" aria-label="Message">
                             <ng-md-icon icon="email" size="32"></ng-md-icon>
                         </md-button>
@@ -25,7 +30,7 @@
                     <md-divider ></md-divider>
                     <div layout="row" layout-padding layout-align="center center" class="company-search">
                         <md-input-container>
-                            <md-select ng-model="selectedProductType" ng-change="productTypeChanged()" aria-label="Product Types">
+                            <md-select ng-model="selectedProductType" ng-change="productTypeChanged(true)" aria-label="Product Types">
                                 <md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>
                             </md-select>
                         </md-input-container>
@@ -41,11 +46,11 @@
                         <span flex></span>
 
                         <div layout="row" layout-align="center center">
-                            <md-button class="company-buttons" href="/"><ng-md-icon icon="favorite" size="14"></ng-md-icon> Favorites</md-button>
+                            <md-button class="company-buttons" href="/"><ng-md-icon icon="favorite" size="14"></ng-md-icon> Favorites ({{companyData.favoritesCount}})</md-button>
                             <md-button class="company-buttons" href="" compare-button>Compare ({{compareProducts.services.length+compareProducts.components.length}})</md-button>
                         </div>
                     </div>
-                    <div layout-padding>
+                    <div layout-padding ng-if="!isSearch">
                         <md-tabs md-dynamic-height md-border-bottom class="company-carousel-tabs">
                             <md-tab label="Featured">
                                 <md-content class="carousel-padding">
@@ -74,26 +79,40 @@
                             </md-tab>
                         </md-tabs>
                     </div>
-                    <div layout="row" layout-padding layout-align="start start" class="company-storefront-title">
+                    <div layout="row" layout-padding layout-align="start start" class="company-storefront-title" ng-if="!isSearch">
                         <div layout="column" flex="70">
                             <h2 class="md-title" layout="row" layout-align="start center">Storefront Items</h2>
                         </div>
                         <span flex></span>
-                        <md-button class="company-buttons" ng-href="/">View All</md-button>
+                        <md-button class="company-buttons" href="" ng-click="showAll()">View All</md-button>
                     </div>
-                    <md-divider ></md-divider>
-                    <div layout-padding class="list-items" layout="row" layout-wrap>
+                    <md-divider  ng-if="!isSearch"></md-divider>
+                    <div layout-padding class="list-items" layout="row" layout-wrap ng-if="!isSearch">
                         <div class="one-item"
                              flex-sm="100"
                              flex-md="50"
                              flex-lg="33"
                              flex-gt-lg="25"
-                             dir-paginate="item in itemsArray | itemsPerPage: pageSize">
+                             ng-repeat="item in itemsArray.arr">
                             <dmc-product-card card-style="'small'" ng-show="item.id"
                                               type-product="item.type"
                                               card-source="item">
                             </dmc-product-card>
                         </div>
+                    </div>
+                    <div ng-if="isSearch">
+                        <dmc-products-card
+                                title-card="'STOREFRONT ITEMS'"
+                                search-card="isSearch"
+                                card-source="itemsArray"
+                                card-loading="downloadData"
+                                page-size="pageSize"
+                                update-page-size="updatePageSize"
+                                current-page="currentStorefrontPage"
+                                total-size="itemsArray.count"
+                                class="content-panel-marketplace"
+                                layout-margin>
+                        </dmc-products-card>
                     </div>
                 </md-content>
             </div>

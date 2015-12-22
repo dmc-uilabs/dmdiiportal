@@ -1,14 +1,15 @@
 <div class="product-card" layout="column">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <md-button href="" aria-label="Favorite" class="md-icon-button" flex>
-        <ng-md-icon icon="favorite_outline" style="fill: grey;" size="25"></ng-md-icon>
+      <md-button ng-click="addToFavorite()" aria-label="Favorite" class="md-icon-button" flex>
+        <ng-md-icon icon="{{ cardSource.favorite ? 'favorite' : 'favorite_outline'}}" ng-class="!cardSource.favorite ? 'not-favorite' : 'is-favorite'" size="25"></ng-md-icon>
       </md-button>
-      <md-button href="product.php#/{{typeProduct}}s/{{cardSource.id}}" aria-label="Open" class="md-icon-button" flex>
-        <ng-md-icon icon="arrow_forward" style="fill: grey;" size="25"></ng-md-icon>
-      </md-button>
-      <md-button ng-click="show()" aria-label="Reply" class="md-icon-button reply" flex>
+      <md-button ng-click="share()" aria-label="Reply" class="md-icon-button reply" flex>
         <ng-md-icon icon="reply" style="fill: grey;" size="25"></ng-md-icon>
+      </md-button>
+      <!--href="product.php#/{{typeProduct}}s/{{cardSource.id}}"-->
+      <md-button ng-click="show()" aria-label="Open" class="md-icon-button" flex>
+        <ng-md-icon icon="arrow_forward" style="fill: grey;" size="25"></ng-md-icon>
       </md-button>
     </div>
   </md-toolbar>
@@ -84,8 +85,12 @@
           <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
         </md-select>
       </div>
-      <md-button aria-label="Add" layout="column" href="" ng-disabled="!projectModel" class="md-raised add"
-                 ng-click="saveToProject()">Add
+      <md-button aria-label="Add"
+                 layout="column"
+                 href=""
+                 ng-disabled="!projectModel"
+                 class="md-raised add"
+                 ng-click="saveToProject(projectModel)">Add
       </md-button>
     </div>
 

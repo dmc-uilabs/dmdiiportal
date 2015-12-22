@@ -1,11 +1,15 @@
 'use strict';
 angular.module('dmc.company')
-    .controller('EditStorefrontCompanyCtr', [
-        '$stateParams', '$state', "$scope", "$cookies", "ajax",
-        'companyData','menuCompany','$location', 'Products','dataFactory','$mdToast','fileUpload','toastModel',
-        function ($stateParams, $state, $scope, $cookies, ajax,
-                  companyData, menuCompany,$location, Products, dataFactory,$mdToast,fileUpload,toastModel) {
+    .controller('EditStorefrontCompanyCtr', ['$stateParams', '$state', "$scope", "$cookies", "ajax", 'companyData','menuCompany','$location', 'Products','dataFactory','$mdToast','fileUpload','toastModel', function ($stateParams, $state, $scope, $cookies, ajax, companyData, menuCompany,$location, Products, dataFactory,$mdToast,fileUpload,toastModel) {
         $scope.companyData = companyData;
+
+        var inputToHtml = function(textInput){
+            return (textInput == null ? null : textInput.trim().replace(/\n/g, '<br>'));
+        };
+        var htmlToInput = function(textInput){
+            return (textInput == null ? null : textInput.trim().replace(/<br>/g, '\n'));
+        };
+        $scope.companyData.description = htmlToInput($scope.companyData.description);
         $scope.companyPicture = {
             'background-image' : 'url('+companyData.featureImage.large+')'
         };
@@ -170,11 +174,12 @@ angular.module('dmc.company')
             $scope.getFeatures();
 
         $scope.saveChanges = function(){
+            var description = inputToHtml($scope.companyData.description);
             ajax.on(dataFactory.saveCompanyChanges(),
                 {
                     company_id : $scope.companyId,
                     name : $scope.companyData.name,
-                    description : $scope.companyData.description
+                    description : description
                 },
                 function(data){
                     if(!data.error){

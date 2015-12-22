@@ -135,6 +135,12 @@ angular.module('dmc.data',[])
             saveCompanyChanges : function(){
                 return baseServer+'/save_company_changes';
             },
+            followCompany : function(){
+                return baseServer+'/follow_company';
+            },
+            addProductToFavorite: function() {
+                return baseServer + '/add_product_to_favorite';
+            },
             updateAccount: function(id){
                 return baseServer+'/update_account'+appendId(id);
             },
