@@ -30,12 +30,12 @@
       </div>
     </slide>
   </slidecontainer>
-  <div class="carousel-arrow carousel-arrow-left" ng-class="{'image-button' : typeCarousel === 'images'}" ng-hide="countSlides <= 1">
+  <div class="carousel-arrow carousel-arrow-left" ng-class="{'image-button' : typeCarousel === 'images'}" ng-hide="countSlides <= 1 || currentSlide == 1">
     <md-button aria-label="Left" class="demo-nav" ng-click="prevSlide()">
       <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
     </md-button>
   </div>
-  <div class="carousel-arrow carousel-arrow-right" ng-class="{'image-button' : typeCarousel === 'images'}" ng-hide="countSlides <= 1">
+  <div class="carousel-arrow carousel-arrow-right" ng-class="{'image-button' : typeCarousel === 'images'}" ng-hide="countSlides <= 1 || currentSlide == countSlides">
     <md-button aria-label="Right" class="demo-nav" ng-click="nextSlide()">
       <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
     </md-button>
