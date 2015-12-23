@@ -1,44 +1,133 @@
-.main-navigation {
-  .md-menu {
-    padding: 0;
-    margin: 0;
-  }
-  .md-button {
-    @extend %nav_item;
-    color: white;
-  }
-  .md-button.md-default-theme{
-    line-height: 34px;
-    min-height: 34px;
-  }
-  .search-button.md-button.md-default-theme{
-    min-width: 45px;
-  }
-}
-.main-header{
-  md-menu{
-    margin-top: 0;
-  }
-}
-.header-menu-button{
-  ng-md-icon {
-    height: 34px;
-    margin-left: -13px;
-    margin-right: -13px;
-    svg {
-      margin-top: -7px;
-    }
-  }
-}
-.md-button.md-default-theme{
-  line-height: 47px;
+$topHeader: #0A0B0C;
+$topHeaderIcon: #FFF;
+$countMessageBackground: #65AF3F;
+$countMessageText: #FFF;
+$HeaderButtonText: #FFF;
+$bottomHeader: #363636;
+$navigation: #FFF;
+$navigationArrow: #65AF3F;
+$navigationActive: #65AF3F;
+
+.space-header{
+  position: relative;
+  width: 100%;
+  height: 99px;
 }
 
-.main-header .menu-toolbar{
-  height: 34px;
-}
-.main-header md-toolbar.md-tall{
-  height: 99px;
-  min-height: 99px;
-  max-height: 99px;
+.main-header{
+  top: 0;
+  z-index: 25;
+  position: fixed;
+  width: 100%;
+
+  .header-padding{
+    padding: 0 30px;
+  }
+  md-menu{
+    margin: 0;
+    padding: 0;
+  }
+
+  .top-header {
+    background-color: $topHeader;
+    height: 55px;
+    .logo{
+      min-width: 191px;
+    }
+    .info-button{
+      .md-button{
+        min-height: 55px;
+        height: 55px;
+        min-width: 55px;
+        width: 55px;
+        margin: 0 10px;
+        padding: 0;
+
+        .count-message{
+          color: $countMessageText;
+          font-weight: bold;
+          font-size: 10px;
+          background-color: $countMessageBackground;
+          border-radius: 50%;
+          height: 15px;
+          width: 15px;
+          line-height: 16px;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+      }
+      ng-md-icon{
+        fill: $topHeaderIcon;
+      }
+    }
+
+    .user-button{
+      min-height: 55px;
+      height: 55px;
+      line-height: 55px;
+      margin: 0 0 0 20px;
+      padding: 0;
+      text-transform: none;
+      color: $HeaderButtonText;
+      ng-md-icon{
+        fill: $topHeaderIcon;
+      }
+
+    }
+  }
+
+  .bottom-header {
+    height: 44px;
+    background-color: $bottomHeader;
+    .navigation{
+      .md-button{
+        text-transform: initial;
+        font-size: 18px;
+        font-weight: 100;
+        color: $navigation;
+        height: 44px;
+        min-height: 44px;
+        line-height: 44px;
+        margin: 0;
+        &.active-page{
+          color: $navigationActive;
+        }
+
+        ng-md-icon {
+          margin: -4px -13px 0;
+          fill: $navigationArrow;
+          svg {
+            vertical-align: middle;
+          }
+        }
+      }
+      .item{
+        margin: 0 16px;
+        &:first-child{
+          margin-left: 0px;
+        }
+        &:last-child{
+          margin-right: 0px;
+        }
+      }
+    }
+
+    .search{
+      ng-md-icon {
+        fill: $navigation;
+        margin-right: 16px;
+        svg {
+          vertical-align: middle;
+        }
+      }
+      md-input-container{
+        padding: 0;
+        width: 300px;
+        input{
+        background-color: #D8D8D8;
+      }
+      }
+    }
+  }
 }

@@ -20,6 +20,9 @@ angular.module('dmc.common.header', ['ngAnimate'])
         $scope.setDropDown = function(event,width){
             width = $(event.currentTarget).width()+12;
         }
+        $scope.service_alert = 0;
+        $scope.notification = 99;
+        $scope.message = 1;
     }
   };
 });
