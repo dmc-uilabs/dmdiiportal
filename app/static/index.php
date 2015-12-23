@@ -759,8 +759,11 @@ function get_projects($params){
         $sl = $default_url.$query[$i]['services']['link'];
         $dl = $default_url.$query[$i]['discussions']['link'];
         $query[$i]['tasks']['totalItems'] = count(json_decode(httpResponse($tl, null, null), true));
+        $query[$i]['tasks']['data'] = json_decode(httpResponse($tl, null, null), true);
         $query[$i]['services']['totalItems'] = count(json_decode(httpResponse($sl, null, null), true));
+        $query[$i]['services']['data'] = json_decode(httpResponse($sl, null, null), true);
         $query[$i]['discussions']['totalItems'] = count(json_decode(httpResponse($dl, null, null), true));
+        $query[$i]['discussions']['data'] = json_decode(httpResponse($dl, null, null), true);
     }
     $result = array('result' => $query);
     return json_encode($result);

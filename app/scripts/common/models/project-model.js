@@ -6,6 +6,7 @@ angular.module('dmc.model.project', ['dmc.data'])
     this.getModel = function(id) {
         return $http.get(dataFactory.getUrlAllProjects(id)).then(
             function(response){
+              console.info("projects", response);
               var arr = response.data.result;
               for (var i = 0, len = arr.length; i < len; i++) {
                   if (arr[i].id == id)

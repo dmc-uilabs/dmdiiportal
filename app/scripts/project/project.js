@@ -158,6 +158,10 @@ angular.module('dmc.project', [
         url: '/rfp-people-invited',
         controller: 'RfpPeopleInvitedCtrl as projectCtrl',
         templateUrl: 'templates/project/rfp/people-invited.html'
+    }).state('project.services', {
+        url: '/services',
+        controller: 'projectServicesCtrl as projectCtrl',
+        templateUrl: 'templates/project/pages/services.html'
     });
     $urlRouterProvider.otherwise('/1');
 })

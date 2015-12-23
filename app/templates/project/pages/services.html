@@ -1,0 +1,63 @@
+<div class="page-header" layout-padding>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<div layout="column">
+				<h1 class="name-project">
+					<div sub-nav-menu-button current-page="1"></div>
+					{{projectData.title}}
+					<span class="small-text small-text--grey">Due in 20 days</span>
+				</h1>
+				<span ng-if="isPreview" class="project-manager">Submitted: {{projectData.projectManager}}</span>
+			</div>      
+		</div>
+	</md-toolbar>
+</div>
+<div class="project-services" layout="column">
+	<div layout="row" layout-align="space-between center">
+		<h2>Services</h2>
+		<md-button class="md-raised">Register Services</md-button>
+	</div>
+	<h2>Project Services</h2>
+	<md-content>
+		<md-list>
+			<div class="header-list" layout="row" layout-align="space-around center">
+				<h2 class="row">Run</h2>
+				<h2 class="row-long">Name</h2>
+				<h2 class="row-long">Component</h2>
+				<h2 class="row">Status</h2>
+				<h2 class="row">Date Added</h2>
+				<h2 class="row">Added By</h2>
+				<h2 class="row">From</h2>
+				<h2 class="row-button">Edit</h2>
+				<h2 class="row-button">Rmove</h2>
+			</div>
+			<md-list-item ng-repeat="item in projectData.services.data">
+				<md-divider></md-divider>
+				<div flex="100" layout="row" layout-align="start center">
+					<div class="row">
+						<md-button class="md-raised run">Run</md-button>
+					</div>
+					<h2 class="row-long">{{item.title}}</h2>
+					<h2 class="row-long">Component Example</h2>
+					<div class="row" layout="column">
+						<md-progress-linear md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
+						<span class="service-progress-info">1:30 of 2:00</span>
+					</div>
+					<h2 class="row">{{item.releaseDate}}</h2>
+					<h2 class="row">{{item.owner}}</h2>
+					<h2 class="row">Project</h2>
+					<div class="row-button">
+						<md-button aria-label="group_add" href="" class="editDelete">
+							<ng-md-icon icon="create" style="fill: #65AF3F;" size="25"></ng-md-icon>
+						</md-button>
+					</div>
+					<div class="row-button">
+						<md-button aria-label="group_add" href="" class="editDelete">
+							<ng-md-icon icon="delete" style="fill: red;" size="25"></ng-md-icon>
+						</md-button>
+					</div>
+				</div>
+			</md-list-item>
+		</md-list>
+	</md-content>
+</div>
