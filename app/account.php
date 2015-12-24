@@ -95,7 +95,7 @@
     <script src="scripts/account/controllers/privacy.js"></script>
     <script src="scripts/account/controllers/notifications.js"></script>
     <script src="scripts/account/controllers/profile.js"></script>
-    <script src="scripts/account/controllers/services.js"></script>
+    <script src="scripts/account/controllers/servers.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         window.apiUrl = '';

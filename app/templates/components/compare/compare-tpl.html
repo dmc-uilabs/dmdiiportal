@@ -5,10 +5,10 @@
                 <h2 class="compare-title">Compare</h2>
                 <md-button class="top-buttons"
                            ng-click="clearAll()">Clear All</md-button>
-                <md-button class="top-buttons"
+                <md-button class="top-buttons" ng-hide="true"
                            ng-class="{'md-raised md-primary' : currentProductType == 'service'}"
                            ng-click="switchProductType('service')">Services ({{compareProducts.services.length}})</md-button>
-                <md-button class="top-buttons"
+                <md-button class="top-buttons" ng-hide="true"
                            ng-class="{'md-raised md-primary' : currentProductType == 'component'}"
                            ng-click="switchProductType('component')">Components ({{compareProducts.components.length}})</md-button>
                 <span flex></span>
@@ -30,8 +30,8 @@
                          ng-show="currentProductType == 'all' || currentProductType == item.type"
                          ng-repeat="item in products.arr">
                         <div layout="row">
-                            <md-button href="" aria-label="Favorite" class="md-icon-button" flex><ng-md-icon icon="favorite_outline" style="fill: grey;" size="18"></ng-md-icon></md-button>
-                            <md-button href="" aria-label="Remove" class="md-icon-button" ng-click="removeFromCompare(item.id,item.type)" flex><ng-md-icon icon="close" style="fill: grey;" size="18"></ng-md-icon></md-button>
+                            <md-button href="" aria-label="Favorite" class="md-icon-button" flex><ng-md-icon icon="favorite_outline" style="fill: grey;" size="23"></ng-md-icon></md-button>
+                            <md-button href="" aria-label="Remove" class="md-icon-button" ng-click="removeFromCompare(item.id,item.type)" flex><ng-md-icon icon="delete" style="fill: grey;" size="23"></ng-md-icon></md-button>
                         </div>
                         <div class="product-image"><img src="{{item.featureImage.thumbnail}}" alt="{{item.title}}"></div>
                         <h2>{{item.title}}</h2>
@@ -74,13 +74,6 @@
                          ng-show="currentProductType == 'all' || currentProductType == item.type"
                          ng-repeat="item in products.arr">{{item.description}}</div>
                 </div>
-                <div layout="row" class="row tags">
-                    <div layout="column" class="column title"><h4>Tags</h4></div>
-                    <div layout="column" class="column"
-                         ng-class="itemClass"
-                         ng-show="currentProductType == 'all' || currentProductType == item.type"
-                         ng-repeat="item in products.arr">{{item.tags.join(', ')}}</div>
-                </div>
                 <div layout="row" class="row specifications">
                     <div layout="column" class="column title"><h4>Specifications</h4></div>
                     <div layout="column" class="column"
@@ -94,6 +87,13 @@
                         <p><strong>Inputs:</strong> {{item.specificationsData.input}}</p>
                         <p><strong>Outputs:</strong> {{item.specificationsData.output}}</p>
                     </div>
+                </div>
+                <div layout="row" class="row tags">
+                    <div layout="column" class="column title"><h4>Tags</h4></div>
+                    <div layout="column" class="column"
+                         ng-class="itemClass"
+                         ng-show="currentProductType == 'all' || currentProductType == item.type"
+                         ng-repeat="item in products.arr">{{item.tags.join(', ')}}</div>
                 </div>
                 <div class="btn-box left-btn" ng-hide="inLeftCount >= products.arr.length-4">
                     <md-button aria-label="Left" class="md-raised md-primary" ng-click="scrollLeft()">

@@ -72,10 +72,10 @@ angular.module('dmc.account', [
                     return AccountModel.getModel($stateParams.accountId);
                 }]
         }
-    }).state('account.services', {
-        url: '/services',
-        controller: 'ServicesAccountCtr',
-        templateUrl: 'templates/account/services.html',
+    }).state('account.servers', {
+        url: '/servers',
+        controller: 'ServersAccountCtr',
+        templateUrl: 'templates/account/servers.html',
         resolve: {
             accountData: ['AccountModel', '$stateParams',
                 function(AccountModel, $stateParams) {
@@ -110,5 +110,5 @@ var pageTitles = {
     privacy : "Privacy",
     notifications : "Notifications",
     profile : "Profile",
-    services : "Services"
+    servers : "Servers"
 };

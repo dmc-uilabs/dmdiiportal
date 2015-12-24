@@ -158,6 +158,18 @@ angular.module('dmc.data',[])
             },
             updateFeaturesPosition: function(){
                 return baseServer+'/update_features_position';
+            },
+            addNewServer: function(){
+                return baseServer+'/add_new_server';
+            },
+            getServers: function(){
+                return baseServer+'/get_servers';
+            },
+            saveChangeServer: function(){
+                return baseServer+'/save_change_server';
+            },
+            deleteServer: function(){
+                return baseServer+'/delete_server';
             }
         };
     }

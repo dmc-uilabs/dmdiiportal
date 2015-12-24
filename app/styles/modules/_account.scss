@@ -122,6 +122,36 @@
       md-checkbox.md-checked .md-icon {
         background-color: #FF9600;
       }
+      .servers-container{
+        border: 1px solid #e1e1e1;
+        margin: 8px 0 13px 0;
+        padding-top: 4px;
+        @include borderRadius(3px);
+      }
+      .servers-table{
+        th,td{
+          text-align: center;
+          div {
+            display: block;
+          }
+        }
+        th:nth-child(2),td:nth-child(2){
+          text-align: left;
+        }
+        tr{
+          outline: none;
+        }
+        .status{
+          ng-md-icon{
+            fill:#ccc;
+          }
+          &.status-online{
+            ng-md-icon{
+              fill:#65AF3F;
+            }
+          }
+        }
+      }
       .blocked-users{
         margin-top: 21px;
         .empty-blocked-list{
@@ -166,6 +196,41 @@
         }
         h2{
           text-transform: uppercase;
+          color: #545454;
+        }
+      }
+      .header-right-content.servers{
+        position: relative;
+        .correct-ip{
+          position: absolute;
+          bottom: 7px;
+          margin-left: -43px;
+          fill:#4CAF50;
+          input{
+            padding-right: 28px;
+          }
+        }
+        md-input-container{
+          padding-bottom: 5px;
+        }
+        .md-button.md-default-theme {
+          min-height: 0;
+          height: 36px;
+          line-height: 36px;
+          &.add-server,&.close-add-server{
+            margin-right: 0;
+            ng-md-icon{
+              fill:#616161;
+            }
+          }
+          &.save-server{
+            ng-md-icon{
+              fill:#fff;
+            }
+          }
+          span {
+            text-decoration: none;
+          }
         }
       }
     }

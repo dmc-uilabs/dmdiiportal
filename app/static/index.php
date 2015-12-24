@@ -96,6 +96,14 @@ return call_user_func(function () {
       echo add_product_to_favorite($_GET);
     }else if(strpos($uri,'/update_features_position') !== false) {
       echo update_features_position($_GET);
+    }else if(strpos($uri,'/add_new_server') !== false) {
+      echo add_new_server($_GET);
+    }else if(strpos($uri,'/get_servers') !== false){
+      echo get_servers($_GET);
+    }else if(strpos($uri,'/save_change_server') !== false){
+        echo save_change_server($_GET);
+    }else if(strpos($uri,'/delete_server') !== false){
+        echo delete_server($_GET);
     }
 });
 
@@ -810,6 +818,61 @@ function update_account($params){
         }
     }else{
         return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
+function delete_server($params){
+    if(isset($params['id'])) {
+        $server = json_decode(httpResponse(dbUrl() . '/account_servers/'.$params['id'], null, null), true);
+        if($server != null and isset($server['id'])){
+            $changed_item = json_decode(httpResponse(dbUrl().'/account_servers/' . $params['id'], 'DELETE', null), true);
+            return json_encode(array('success' => true ));
+        }else{
+            return json_encode(array('error' => 'Server dose not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
+function save_change_server($params){
+    if(isset($params['id']) and isset($params['name']) and isset($params['ip'])) {
+        $server = json_decode(httpResponse(dbUrl() . '/account_servers/'.$params['id'], null, null), true);
+        if($server != null and isset($server['id'])){
+            $server['name'] = $params['name'];
+            $server['ip'] = $params['ip'];
+            $changed_item = json_decode(httpResponse(dbUrl().'/account_servers/'.$server['id'], 'PUT', json_encode($server)),true);
+            return json_encode(array('result' => $changed_item));
+        }else{
+            return json_encode(array('error' => 'Server dose not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
+function get_servers($params){
+    $current_account_id = 1;
+    $servers = json_decode(httpResponse(dbUrl() . '/accounts/'.$current_account_id.'/account_servers?_sort=id&_order=DESC', null, null), true);
+    return json_encode(array('result' => $servers));
+}
+
+function add_new_server($params){
+    $current_account_id = 1;
+    if(isset($params['name']) and isset($params['ip'])){
+        $last = json_decode(httpResponse(dbUrl() . '/account_servers?_sort=id&_order=DESC&_limit=1', null, null), true);
+        $id = (count($last) > 0 ? $last[0]['id'] + 1 : 1);
+        $data = json_encode(array(
+            'id' => $id,
+            'accountId' => $current_account_id,
+            'name' => $params['name'],
+            'ip' => $params['ip'],
+            'status' => 'offline'
+        ));
+        $new_server = json_decode(httpResponse(dbUrl().'/account_servers', 'POST', $data),true);
+        return json_encode(array('result' => $new_server));
+    }else{
+        return json_encode(array('error' => "Data is wrong"));
     }
 }
 

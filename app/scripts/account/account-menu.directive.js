@@ -30,10 +30,10 @@ angular.module('dmc.account').directive('accountMenu', [function () {
                     url : "/account.php#/"+$scope.accountId+"/profile",
                     selected : ($scope.page == "profile" ? true : false)
                 },
-                services : {
-                    title : pageTitles.services,
-                    url : "/account.php#/"+$scope.accountId+"/services",
-                    selected : ($scope.page == "services" ? true : false)
+                servers : {
+                    title : pageTitles.servers,
+                    url : "/account.php#/"+$scope.accountId+"/servers",
+                    selected : ($scope.page == "servers" ? true : false)
                 }
             };
         }
