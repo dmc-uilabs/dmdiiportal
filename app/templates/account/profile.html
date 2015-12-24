@@ -28,11 +28,20 @@
                                  flow-file-added="addedNewFile($file, $event, $flow )"
                                  layout="row" layout-align="start center">
                                 <div class="alert" flow-drop flow-drop-enabled="true">
-                                    <div flow-btn class="inner-box" layout="row" layout-align="center center">
-                                        <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="50">
+                                    <div class="inner-box" layout="row" layout-align="center center">
+                                        <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
                                             <img flow-img="$flow.files[0]" />
+                                            <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
+                                                <ng-md-icon icon="close" size="21"></ng-md-icon>
+                                            </md-button>
                                         </div>
-                                        <div class="text" flex="50">Drag And Drop your picture here</div>
+                                        <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
+                                            Drag And Drop your picture here
+                                            <br>
+                                            or
+                                            <br>
+                                            <strong>Click here</strong>
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
@@ -74,7 +83,7 @@
                             <textarea ng-model="profile.description" columns="1" ng-change="changeValue()"></textarea>
                         </md-input-container>
                     </div>
-                    <div class="inputs-container add-skills-container" layout="row" layout-align="start center">
+                    <div class="inputs-container add-skills-container" layout="row" layout-align="start end">
                         <md-input-container>
                             <label>Skills</label>
                             <input ng-model="newSkill" ng-keypress="keyPress($event)">

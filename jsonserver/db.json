@@ -5,8 +5,8 @@
       "name": "The Turbine Company",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "featureImage": {
-        "thumbnail": "/uploads/company/picture/1/20151224070622000000.jpg",
-        "large": "/uploads/company/picture/1/20151224070622000000.jpg"
+        "thumbnail": "/uploads/company/picture/1/20151224071805000000.jpg",
+        "large": "/uploads/company/picture/1/20151224071805000000.jpg"
       }
     },
     {
@@ -38,42 +38,42 @@
       "id": 8,
       "companyId": 1,
       "productId": 3,
-      "position": 5,
+      "position": 3,
       "type": "service"
     },
     {
       "id": 11,
       "companyId": 1,
       "productId": 2,
-      "position": 7,
+      "position": 2,
       "type": "service"
     },
     {
       "id": 12,
       "companyId": 1,
       "productId": 27,
-      "position": 8,
+      "position": 4,
       "type": "service"
     },
     {
       "id": 13,
       "companyId": 1,
       "productId": 1,
-      "position": 9,
+      "position": 5,
       "type": "component"
     },
     {
       "id": 14,
       "companyId": 1,
       "productId": 18,
-      "position": 10,
+      "position": 7,
       "type": "service"
     },
     {
       "id": 15,
       "companyId": 1,
       "productId": 16,
-      "position": 11,
+      "position": 6,
       "type": "service"
     },
     {
@@ -95,8 +95,8 @@
       "location": "",
       "timezone": "",
       "featureImage": {
-        "thumbnail": "/uploads/account-profile/1/20151221041331000000.png",
-        "large": "/uploads/account-profile/1/20151221041331000000.png"
+        "thumbnail": "/uploads/account-profile/1/20151224072737000000.jpg",
+        "large": "/uploads/account-profile/1/20151224072737000000.jpg"
       },
       "jobTitle": "Job Title",
       "description": "My description",

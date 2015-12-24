@@ -1,6 +1,6 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('ProfileAccountCtr', [ '$stateParams', '$state', "$scope", "location",'fileUpload','accountData','accountUpdate', function ($stateParams, $state, $scope, location,fileUpload,accountData,accountUpdate) {
+    .controller('ProfileAccountCtr', [ '$stateParams', '$state', "$scope", "location",'fileUpload','accountData','accountUpdate','toastModel', function ($stateParams, $state, $scope, location,fileUpload,accountData,accountUpdate,toastModel) {
         $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
@@ -83,8 +83,17 @@ angular.module('dmc.account')
         };
 
         var callbackUploadPicture = function(data){
-            $scope.profile.featureImage.large = data.file.name;
-            $scope.profile.featureImage.thumbnail = data.file.name;
+            if(!data.error){
+                if ($scope.profile.featureImage.large) {
+                    toastModel.showToast('success', 'Picture successfully changed');
+                } else {
+                    toastModel.showToast('success', 'Picture successfully uploaded');
+                }
+                $scope.profile.featureImage.large = data.file.name;
+                $scope.profile.featureImage.thumbnail = data.file.name;
+            }else{
+                toastModel.showToast('error', 'Unable upload picture');
+            }
         };
 
         $scope.uploadFile = function(flow){
@@ -109,6 +118,10 @@ angular.module('dmc.account')
                 flow.files = [$scope.prevPicture];
                 $scope.prevPicture = null;
             }
+        };
+
+        $scope.removePicture = function(flow){
+            flow.files = [];
         };
 
         $scope.addedNewFile = function(file,event,flow){
