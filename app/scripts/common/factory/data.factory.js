@@ -152,6 +152,9 @@ angular.module('dmc.data',[])
             },
             addProfileReview: function(){
                 return baseServer+'/add_profile_review';
+            },
+            updateFeaturesPosition: function(){
+                return baseServer+'/update_features_position';
             }
         };
     }

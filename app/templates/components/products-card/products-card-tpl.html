@@ -44,9 +44,11 @@
                      flex-md="50"
                      flex-lg="33"
                      flex-gt-lg="25"
-                     dir-paginate="item in itemsArray | itemsPerPage: pageSize">
+                     dir-paginate="item in itemsArray | itemsPerPage: pageSize track by $index">
                     <dmc-product-card card-style="'small'" ng-show="item.id"
                                       type-product="item.type"
+                                      add-featured="addFeatured"
+                                      hide-buttons="['share','favorite']"
                                       card-source="item">
                     </dmc-product-card>
                 </div>

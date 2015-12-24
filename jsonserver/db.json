@@ -5,8 +5,8 @@
       "name": "The Turbine Company",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "featureImage": {
-        "thumbnail": "/uploads/company/picture/1/20151216100049000000.png",
-        "large": "/uploads/company/picture/1/20151216100049000000.png"
+        "thumbnail": "/uploads/company/picture/1/20151224070622000000.jpg",
+        "large": "/uploads/company/picture/1/20151224070622000000.jpg"
       }
     },
     {
@@ -14,8 +14,8 @@
       "name": "The Turbine Company 2",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "featureImage": {
-        "thumbnail": "/images/company-logo.jpg",
-        "large": "/images/company-logo.jpg"
+        "thumbnail": "/uploads/company/picture/2/20151223085045000000.jpg",
+        "large": "/uploads/company/picture/2/20151223085045000000.jpg"
       }
     }
   ],
@@ -24,18 +24,56 @@
       "id": 1,
       "companyId": 1,
       "productId": 20,
-      "type": "service"
+      "type": "service",
+      "position": ""
     },
     {
       "id": 2,
       "companyId": 1,
       "productId": 26,
+      "type": "service",
+      "position": ""
+    },
+    {
+      "id": 8,
+      "companyId": 1,
+      "productId": 3,
+      "position": 5,
       "type": "service"
     },
     {
-      "id": 3,
+      "id": 11,
+      "companyId": 1,
+      "productId": 2,
+      "position": 7,
+      "type": "service"
+    },
+    {
+      "id": 12,
+      "companyId": 1,
+      "productId": 27,
+      "position": 8,
+      "type": "service"
+    },
+    {
+      "id": 13,
+      "companyId": 1,
+      "productId": 1,
+      "position": 9,
+      "type": "component"
+    },
+    {
+      "id": 14,
       "companyId": 1,
       "productId": 18,
+      "position": 10,
+      "type": "service"
+    },
+    {
+      "id": 15,
+      "companyId": 1,
+      "productId": 16,
+      "position": 11,
       "type": "service"
     }
   ],
@@ -156,14 +194,14 @@
       "productType": "service"
     },
     {
-      "id": 9,
-      "productId": 3,
+      "id": 10,
+      "productId": 2,
       "accountId": 1,
       "productType": "service"
     },
     {
-      "id": 10,
-      "productId": 2,
+      "id": 11,
+      "productId": 3,
       "accountId": 1,
       "productType": "service"
     }
