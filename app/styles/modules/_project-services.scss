@@ -1,0 +1,52 @@
+.project-services{
+	padding: 0 24px;
+	
+	h2{
+		font-weight: normal;
+	}
+	md-content{
+		margin-bottom: 16px;
+
+	}
+	md-list{
+		font-size: 10px;
+		h2{
+			margin: 0;
+		}
+		md-list-item{
+			padding: 0 16px;
+		}
+		.header-list{
+			padding: 16px 16px;
+		}
+		.editDelete{
+			height: 36px;
+			min-height: 36px;
+			line-height: 36px;
+			min-width: 36px;
+			width: 36px;
+			margin: 0;
+		}
+		.run{
+			height: 36px;
+			min-height: 36px;
+			line-height: 36px;
+			min-width: 60px;
+			margin: 0;
+		}
+		md-divider{
+			bottom: auto;
+		}
+		.row{
+			width: 10%;
+			margin-right: 16px; 
+		}
+		.row-button{
+			width: 8%;
+		}
+		.row-long{
+			width: 20%;
+			margin-right: 16px; 
+		}
+	}
+}

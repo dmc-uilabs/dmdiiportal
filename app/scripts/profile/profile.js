@@ -12,7 +12,9 @@ angular.module('dmc.profile', [
   'dmc.widgets.stars',
   'dmc.widgets.review',
   'dmc.common.header',
-  'dmc.common.footer'
+  'dmc.common.footer',
+  'dmc.model.fileUpload',
+  'flow'
 ])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
     $stateProvider.state('profile', {
@@ -22,7 +24,7 @@ angular.module('dmc.profile', [
     });
     $urlRouterProvider.otherwise('/1');
   })
-  .controller('ProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog) {
+  .controller('ProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload) {
     
     $scope.profile = [];  //array product
     $scope.number_of_comments = 0; // number of 
@@ -32,8 +34,11 @@ angular.module('dmc.profile', [
     $scope.precentage_stars = [0,0,0,0,0]; //precentage stars
     $scope.average_rating = 0;  //average rating$scope.products = [];   //included services
     $scope.editFlag = false;  //flag edit page
-    $scope.UserLogin = "DMC Member";
-    $scope.sortListModel = 0;
+    $scope.UserLogin = "DMC Member";  //Login user for reviews
+    $scope.sortListModel = 0;  //model for drop down menu "sorting"
+    $scope.isChangingPicture = false;  //change profile photo
+    $scope.prevPicture = null;  //
+    $scope.file = '';  //file picture
 
     $scope.sortList = [
       {
@@ -63,6 +68,8 @@ angular.module('dmc.profile', [
       }
     ];
 
+//load data
+    //get profile
     ajax.on(
       dataFactory.getProfile(),
       {
@@ -136,6 +143,7 @@ angular.module('dmc.profile', [
       calculate_rating();
     };
 
+    //selected dorp down menu "sorting"
     $scope.selectItemDropDown = function(value){
       if(value != 0) {
           var item = $scope.sortList[value];
@@ -225,5 +233,111 @@ angular.module('dmc.profile', [
     $scope.ViewAllReview = function(){
       $scope.limit_reviews = !$scope.limit_reviews;
       $scope.SortingReviews($scope.sortList[0].val);
+    };
+
+//edit
+    //Edit profile
+    $scope.editPage = function () {
+      $scope.editFlag = true;
+    }
+
+    //add skill to profile
+    $scope.addSkill = function(inputSkill){
+      if(!inputSkill)return;
+      $scope.profile.skills.push(inputSkill);
+      this.inputSkill = null;
+    }
+
+    //remove skill
+    $scope.deleteSkill = function(index){
+      $scope.profile.skills.splice(index,1);
+    }
+
+    //cancel edit profile
+    $scope.cancelEdit = function(){
+      $scope.editFlag = false;
+      $scope.isChangingPicture = false;
+      
+      //get profile
+      ajax.on(
+        dataFactory.getProfile(),
+        {
+          profileId: $stateParams.profileId
+        },
+        function(data){
+          $scope.profile = data.result;
+          $scope.number_of_comments = $scope.profile.rating.length;
+          if($scope.number_of_comments != 0) {
+            calculate_rating();
+          }
+          $scope.SortingReviews($scope.sortList[0].val);
+        },
+        function(){
+          alert("Ajax fail: getProduct");
+        }
+      );
+    }
+
+    //save edit profile
+    $scope.saveEdit = function(){
+      ajax.on(
+        dataFactory.editProfile(),
+        {
+          profileId: $scope.profile.id,
+          displayName: $scope.profile.displayName,
+          jobTitle: $scope.profile.jobTitle,
+          location: $scope.profile.location,
+          skills: $scope.profile.skills,
+          description: $scope.profile.description
+        },
+        function(data){
+        },
+        function(){
+          console.error("Ajax fail! editProfile()");
+        },
+        "POST"
+      );
+      if($scope.file != ''){
+        fileUpload.uploadFileToUrl($scope.file.files[0].file,{id : $scope.profile.id},'profile',callbackUploadPicture);
+      }
+      $scope.isChangingPicture = false;
+      $scope.editFlag = false;
+    }
+
+//upload profile photo
+    //button "Change photo"
+    $scope.changePicture = function(){
+      $scope.isChangingPicture = true;
+    };
+
+    //cancel Change photo
+    $scope.cancelChangePicture = function(flow){
+      flow.files = [];
+      $scope.isChangingPicture = false;
+    };
+
+    //success upload photo
+    var callbackUploadPicture = function(data){
+      $scope.profile.image = data.file.name;
+    };
+
+    //Drag & Drop enter
+    $scope.pictureDragEnter = function(flow){
+      $scope.prevPicture = flow.files[0];
+      flow.files = [];
+    };
+
+    //Drag & Drop leave
+    $scope.pictureDragLeave = function(flow){
+      if(flow.files.length == 0 && $scope.prevPicture != null) {
+        flow.files = [$scope.prevPicture];
+        $scope.prevPicture = null;
+      }
+    };
+
+    //file added
+    $scope.addedNewFile = function(file,event,flow){
+      flow.files.shift();
+      $scope.file = flow;
     };
   });

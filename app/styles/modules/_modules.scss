@@ -2,8 +2,6 @@
 
 @import 'md-list';
 @import 'main-navigation';
-@import "top-user-menu";
-@import 'notification-nav';
 @import 'content-panel';
 @import 'rp-panel';
 @import 'labels';
@@ -95,3 +93,6 @@
 
 //Add Members page
 @import "add-members";
+
+//Project services
+@import "project-services";

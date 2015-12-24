@@ -107,7 +107,7 @@
     <script src="scripts/project/controllers/rfp-documents.js"></script>
     <script src="scripts/project/controllers/rfp-questions.js"></script>
     <script src="scripts/project/controllers/rfp-people-invited.js"></script>
-    <script src="scripts/common/filters/capitalize.filter.js"></script>
+    <script src="scripts/project/controllers/services.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         window.apiUrl = '';

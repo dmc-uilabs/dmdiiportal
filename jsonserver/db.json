@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "The Turbine Company",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "featureImage": {
         "thumbnail": "/uploads/company/picture/1/20151224070622000000.jpg",
         "large": "/uploads/company/picture/1/20151224070622000000.jpg"
@@ -75,13 +75,12 @@
       "productId": 16,
       "position": 11,
       "type": "service"
-    }
-  ],
-  "company_follows": [
+    },
     {
-      "id": 1,
+      "id": 12,
       "companyId": 1,
-      "accountId": 1
+      "productId": 13,
+      "type": "service"
     }
   ],
   "accounts": [
@@ -775,11 +774,11 @@
         "startDate": "20-09-2015",
         "startTime": "06:45:10",
         "project": {
-          "id": 3,
-          "title": "Capacitor Design"
+          "id": 5,
+          "title": "Low Heat Loss Transformer"
         }
       },
-      "projectId": 3
+      "projectId": 5
     },
     {
       "id": 2,
@@ -1662,13 +1661,11 @@
   "profiles": [
     {
       "id": 1,
-      "firstName": "Thomas",
-      "lastName": "Smith",
+      "displayName": "Thomas Smith",
       "company": "General Electric (GE) Global Research",
-      "position": "Engineering Manager",
-      "city": "Berkeley",
-      "state": "California",
-      "image": "images/marketplace-icon.png",
+      "jobTitle": "Engineering Manager",
+      "location": "Berkeley, California",
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
       "skills": [
         "skill1",
@@ -1752,6 +1749,38 @@
       "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
     },
     {
+      "id": 5,
+      "profileId": null,
+      "reply": false,
+      "reviewId": 4,
+      "name": "Jessica H. Wheaton",
+      "status": true,
+      "date": "12-11-2015",
+      "rating": 0,
+      "userRatingReview": {
+        "DMC Member": "dislike"
+      },
+      "like": 13,
+      "dislike": 7,
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+    },
+    {
+      "id": 6,
+      "profileId": null,
+      "reply": false,
+      "reviewId": 4,
+      "name": "Jessica H. Wheaton",
+      "status": true,
+      "date": "12-02-2015",
+      "rating": 0,
+      "userRatingReview": {
+        "DMC Member": "none"
+      },
+      "like": 0,
+      "dislike": 0,
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+    },
+    {
       "id": 7,
       "profileId": 1,
       "reply": true,
@@ -1765,6 +1794,22 @@
       },
       "like": 4,
       "dislike": 1,
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+    },
+    {
+      "id": 8,
+      "profileId": null,
+      "reply": false,
+      "reviewId": 7,
+      "name": "Jessica H. Wheaton",
+      "status": true,
+      "date": "12-21-2015",
+      "rating": 0,
+      "userRatingReview": {
+        "DMC Member": "none"
+      },
+      "like": 0,
+      "dislike": 7,
       "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
     }
   ]

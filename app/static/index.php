@@ -88,6 +88,8 @@ return call_user_func(function () {
       echo add_profile_review($_POST);
     }else if(strpos($uri,'/edit_profile') !== false){
       echo edit_profile($_POST);
+    }else if(strpos($uri,'/uprpic') !== false){
+      echo upload_edit_profile_picture($_POST,$_FILES);
     }else if(strpos($uri,'/follow_company') !== false){
       echo follow_company($_GET);
     }else if(strpos($uri,'/add_product_to_favorite') !== false) {
@@ -836,8 +838,11 @@ function get_projects($params){
         $sl = $default_url.$query[$i]['services']['link'];
         $dl = $default_url.$query[$i]['discussions']['link'];
         $query[$i]['tasks']['totalItems'] = count(json_decode(httpResponse($tl, null, null), true));
+        $query[$i]['tasks']['data'] = json_decode(httpResponse($tl, null, null), true);
         $query[$i]['services']['totalItems'] = count(json_decode(httpResponse($sl, null, null), true));
+        $query[$i]['services']['data'] = json_decode(httpResponse($sl, null, null), true);
         $query[$i]['discussions']['totalItems'] = count(json_decode(httpResponse($dl, null, null), true));
+        $query[$i]['discussions']['data'] = json_decode(httpResponse($dl, null, null), true);
     }
     $result = array('result' => $query);
     return json_encode($result);
@@ -1197,20 +1202,55 @@ function add_profile_review($params){
 }
 
 function edit_profile($params){
-  $service = json_decode(httpResponse(dbUrl().'/profile/'.$params['profileId'], null, null),true);
-  $service['title'] = $params['title'];
+  $profile = json_decode(httpResponse(dbUrl().'/profiles/'.$params['profileId'], null, null),true);
 
-  if(isset($params['tags'])){
-    $service['tags'] = $params['tags'];
+  if(isset($params['skills'])){
+    $profile['skills'] = $params['skills'];
   }else{
-    $service['tags'] = [];
+    $profile['skills'] = [];
   }
-  $service['description'] = $params['description'];
+  $profile['displayName'] = $params['displayName'];
+  $profile['jobTitle'] = $params['jobTitle'];
+  $profile['location'] = $params['location'];
+  $profile['description'] = $params['description'];
 
-  $data = json_encode($service);
+  $data = json_encode($profile);
 
-  $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], 'PUT', $data),true);
+  $changed_item = json_decode(httpResponse(dbUrl().'/profiles/'.$params['profileId'], 'PUT', $data),true);
   return json_encode(array('result' => $changed_item ));
+}
+
+function upload_edit_profile_picture($params,$file){
+  if(isset($params['id'])) {
+    $profile = json_decode(httpResponse(dbUrl().'/profiles/' . $params['id'], null, null), true);
+    if($profile != null and isset($profile['id']) == true) {
+      $id = $params['id'];
+      $mainDir = dirname(__DIR__);
+      $fileFolder = '\\uploads\\profile\\' . $id;
+      if (is_dir($mainDir . $fileFolder)) delete_directory($mainDir . $fileFolder);
+      if (mkdir($mainDir . $fileFolder, 0755)) {
+        $name_file = basename($file['file']['name']);
+        $type = substr($name_file, strripos($name_file, '.'));
+        $name_file = date('YmdHisu') . $type;
+        $uploadFile = $mainDir . $fileFolder . '\\' . $name_file;
+        if (move_uploaded_file($file['file']['tmp_name'], $uploadFile)) {
+          $otherName = '/uploads/profile/' . $id .'/'.$name_file;
+          $file['name'] = $otherName;
+          $profile['image'] = $otherName;
+          $changed_item = json_decode(httpResponse(dbUrl().'/profiles/'.$params['id'], 'PUT', json_encode($profile)),true);
+          return json_encode(array('result' => 'file saved', 'file' => $file));
+        } else {
+          return json_encode(array('error' => 'Possible attacks via file download'));
+        }
+      } else {
+        return json_encode(array('error' => 'Unable create directory '));
+      }
+    }else{
+      return json_encode(array('error' => 'Profile does not exist' ));
+    }
+  }else{
+    return json_encode(array('error' => 'Profile id does not exist'));
+  }
 }
 
 ?>
