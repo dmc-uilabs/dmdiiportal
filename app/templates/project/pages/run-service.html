@@ -1,0 +1,121 @@
+<div class="page-header" layout-padding>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<div layout="column">
+				<h1 class="name-project">
+					<div sub-nav-menu-button current-page="1"></div>
+					{{projectData.title}}
+					<span class="small-text small-text--grey">Due in 20 days</span>
+				</h1>
+				<span ng-if="isPreview" class="project-manager">Submitted: {{projectData.projectManager}}</span>
+			</div>      
+		</div>
+	</md-toolbar>
+</div>
+<div class="project-run-services" ng-if="!runHistory" layout="column">
+	<h2>{{service.title}}</h2>
+	<div layout="row" layout-align="space-between center">
+		<md-button ng-click="showHistory()" class="historyButton">
+			Run History
+		</md-button>
+		<div>
+			<md-button ng-click="" class="md-raised">
+				Visualize
+			</md-button>
+			<md-button ng-click="run()" class="md-raised md-primary">
+				Run
+			</md-button>
+		</div>
+	</div>
+	<h3>Status: {{status}}</h3>
+	<h3>You Run Time: {{runTime}}s</h3>
+	<h3>Average Run: {{averageRun}}s</h3>
+	<div layout="row">
+		<div flex="50" class="inputs">
+			<div layout="row" layout-align="space-between center">
+				<h2>Inputs</h2>
+				<div>
+					<md-button ng-click="" class="md-raised">
+						Clear
+					</md-button>
+					<md-button ng-click="" class="md-raised md-primary">
+						Save
+					</md-button>
+				</div>
+			</div>
+			<md-content>
+				<md-list>
+					<md-list-item ng-repeat="item in inputs" layout="row">
+						<div flex="50" class="left">
+							<md-input-container>
+							<label>{{item.left}}</label>
+							<input ng-model="item.models">
+							</md-input-container>
+						</div>
+						<div flex="50" class="right">
+							{{item.right}}
+						</div>
+					</md-list-item>
+				</md-list>
+			</md-content>
+		</div>
+		<div flex="50" class="outputs">
+			<h2>Outputs</h2>
+			<md-content>
+				<div class="content">
+					<h2>Magnetic Permeability</h2>
+					<h3>289351.85185185 Permability of Vacuum (real)</h3>
+					<br>
+					<div layout="row">
+					<h4>Magnetic Permeability</h4><h3> Permability of Vacuum (real)</h3>
+					</div>
+				</div>
+			</md-content>
+		</div>
+		
+	</div>
+</div>
+<div class="project-history-services" ng-if="runHistory" layout="column">
+	<h2>{{service.title}}</h2>
+	<div layout="row" layout-align="space-between center">
+		<md-button ng-click="showHistory()" class="historyButton">
+			Run Service
+		</md-button>
+	</div>
+	<h3>Run History</h3>
+	<md-content>
+		<md-list>
+			<div layout="row" class="listHeader">
+				<md-button flex="25" ng-click="sorting('runDate')">
+					Run Date 
+					<ng-md-icon ng-if="(sort == 'runDate' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon ng-if="(sort == 'runDate' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+				</md-button>
+				<md-button flex="25" ng-click="sorting('runBy')">
+					Run By 
+					<ng-md-icon ng-if="(sort == 'runBy' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon ng-if="(sort == 'runBy' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+				</md-button>
+				<md-button flex="25" ng-click="sorting('runTime')">
+					Run Time 
+					<ng-md-icon ng-if="(sort == 'runTime' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon ng-if="(sort == 'runTime' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+				</md-button>
+				<md-button flex="25" ng-click="sorting('results')">
+					Results 
+					<ng-md-icon ng-if="(sort == 'results' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon ng-if="(sort == 'results' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+				</md-button>
+			</div>
+			<md-list-item ng-repeat="item in history | orderBy:sort:order" layout="row">
+				<div flex="25">{{item.runDate}}</div>
+				<div flex="25">{{item.runBy}}</div>
+				<div flex="25">{{item.runTime}}</div>
+				<div flex="25" layout="row" layout-align="start center">
+					<ng-md-icon icon="info" size="16" style="fill: #000"></ng-md-icon>
+					{{item.results}}
+				</div>
+			</md-list-item>
+		</md-list>
+	</md-content>
+</div>
