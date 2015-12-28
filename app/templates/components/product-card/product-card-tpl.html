@@ -80,7 +80,7 @@
   <div class="product-card__footer" layout="row" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured">
     <div layout="row" class="adding-to-project" ng-show="addingToProject" layout-align="center center">
       <md-button aria-label="Cancel" layout="column" href="" class="close" ng-click="cancelAddToProject()">
-        <ng-md-icon icon="close" size="21"></ng-md-icon>
+        <ng-md-icon icon="close" size="17"></ng-md-icon>
       </md-button>
       <div layout="column" class="select-block" flex>
         <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()" style="width:100%">
@@ -96,20 +96,35 @@
       </md-button>
     </div>
 
-    <md-button aria-label="Back to Add" class="back-to-add" ng-click="backToAdd()"
+    <md-button aria-label="Back to Add"
+               class="back-to-add"
+               ng-click="backToAdd()"
                ng-show="addingToProject == false && cardSource.added">
-      <ng-md-icon icon="close" size="17"></ng-md-icon>
+        <ng-md-icon icon="close" size="17"></ng-md-icon>
     </md-button>
 
-    <md-button aria-label="Project Link" flex class="page-href" ng-show="addingToProject == false && cardSource.added"
+    <md-button aria-label="Project Link"
+               flex
+               class="page-href"
+               ng-show="addingToProject == false && cardSource.added"
                href="{{cardSource.lastProject.href}}">
-      Added to {{cardSource.lastProject.title}}
+        Added to {{cardSource.lastProject.title}}
     </md-button>
 
-    <md-button aria-label="Add to Project" flex href="" class="white-button" ng-click="addToProject()"
-               ng-hide="addingToProject || cardSource.added">Add to Project
+    <md-button aria-label="Add to Project"
+               flex
+               href="" class="white-button"
+               ng-click="addToProject()"
+               ng-hide="addingToProject || cardSource.added">
+        Add to Project
     </md-button>
-    <md-button aria-label="Add to Compare" flex href="" class="white-button" ng-click="addToCompare()"
+
+      <!-- buttons for compare -->
+    <md-button aria-label="Add to Compare"
+               flex href=""
+               class="white-button"
+               ng-click="addToCompare()"
+               ng-disabled="(cardSource.type == 'service' && compareProducts.components.length > 0) || (cardSource.type == 'component' && compareProducts.services.length > 0)"
                ng-show="!cardSource.added && addingToProject == false && (typeProduct == 'service' && compareProducts.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && compareProducts.components.indexOf(cardSource.id) == -1)">
       Add to Compare
     </md-button>

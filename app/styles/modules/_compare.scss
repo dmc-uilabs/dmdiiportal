@@ -1,4 +1,80 @@
 .compare-widget{
+  .adding-to-project{
+    width: 100%;
+    margin: 6px;
+    background-color: #909090;
+    @include borderRadius(3px);
+
+    .close{
+      width: 36px;
+      min-width: 36px;
+      height: 36px;
+      min-height: 36px;
+      line-height: 36px;
+    }
+    .close:hover{
+      background-color: #777;
+    }
+    .add{
+      width: 36px;
+      min-width: 36px;
+      height: 36px;
+      min-height: 36px;
+      line-height: 36px;
+    }
+    ng-md-icon{
+      fill: #fff;
+    }
+    md-input-container{
+      padding: 0;
+    }
+    md-select,
+    md-select:not([disabled]):focus {
+      @include borderRadius(3px);
+      margin: 6px 0;
+      background-color: #fff;
+      md-select-value{
+        font-size: 13px;
+        padding: 3px 8px 6px 8px;
+        border: none;
+      }
+    }
+  }
+  .block-buttons{
+    .md-button{
+      color: #fff;
+      text-transform: none;
+      margin: 0;
+    }
+    .white-button{
+      background-color: #909090;
+      &:hover{
+        background-color: #555;
+      }
+    }
+    .back-to-add{
+      min-width: 20px;
+      fill: #fff;
+      background-color: #909090;
+      margin: 0;
+      width: 34px;
+      &:hover{
+        background-color: #555;
+      }
+    }
+    .page-href{
+      margin: 0px 0 0px 2px;
+      &:hover{
+        background-color: #555;
+      }
+      span{
+        overflow: hidden;
+        max-width: 98%;
+        display: block;
+        text-overflow: ellipsis;
+      }
+    }
+  }
   .top-buttons.md-button.md-default-theme{
     min-height: 0;
     line-height: 34px;
@@ -112,13 +188,16 @@
             background-color: inherit;
           }
           .adding-to-project{
+            margin: 0;
             .md-button{
-              margin: -13px 2px 0 2px;
               height: 30px;
+              span {
+                text-transform: none;
+              }
             }
             .close{
-              width: 46px;
-              min-width: 46px;
+              width: 34px;
+              min-width: 36px;
             }
           }
         }

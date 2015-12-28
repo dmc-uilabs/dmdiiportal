@@ -138,9 +138,7 @@ angular.module('dmc.compare',[
         };
 
         $scope.loadProjects = function() {
-            if($scope.projects.length == 0) {
-                $scope.getProjects();
-            }
+            $scope.projects = $scope.$root.projects;
         };
 
         $scope.cancelAddToProject = function(item){
@@ -151,22 +149,59 @@ angular.module('dmc.compare',[
             item.addingToProject = true;
         };
 
-        $scope.saveToProject = function(item){
-            var pid = item.projectModel;
-            item.projectModel = null;
+        $scope.addedTimout = null;
+        $scope.backToAdd = function(item){
+            item.added = false;
+            clearTimeout($scope.addedTimeout);
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+        $scope.saveToProject = function(projectId,item){
             ajax.on(dataFactory.getUrlAddToProject(item.id),{
                 id : item.id,
-                projectId : pid,
-                type : item.type
+                projectId : projectId,
+                type : $scope.typeProduct
             },function(data){
-                item.addingToProject = null;
-                item.currentStatus.project.id = pid;
-                item.projectId = pid;
+                $scope.cancelAddToProject(item);
+                item.currentStatus.project.id = projectId;
+                item.projectId = projectId;
+                item.added = true;
+                var project = null;
+                for(var i in $scope.projects){
+                    if($scope.projects[i].id == projectId){
+                        project = $scope.projects[i];
+                        break;
+                    }
+                }
+                item.lastProject = {
+                    title : project.title,
+                    href : '/project.php#/'+project.id+'/home'
+                };
+                $scope.addedTimeout = setTimeout(function(){
+                    item.added = false;
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                },10000);
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             },function(){
                 alert("Ajax faild: saveToProject");
-            });
+            }, 'POST');
         };
+
+        //$scope.saveToProject = function(item){
+        //    var pid = item.projectModel;
+        //    item.projectModel = null;
+        //    ajax.on(dataFactory.getUrlAddToProject(item.id),{
+        //        id : item.id,
+        //        projectId : pid,
+        //        type : item.type
+        //    },function(data){
+        //        item.addingToProject = null;
+        //        item.currentStatus.project.id = pid;
+        //        item.projectId = pid;
+        //        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        //    },function(){
+        //        alert("Ajax faild: saveToProject");
+        //    });
+        //};
 
         $scope.removeFromProject = function(item){
             ajax.on(dataFactory.getUrlRemoveFromProject(item.id),{
