@@ -28,7 +28,9 @@
     "moment-timezone": "~0.4.1",
     "chosen": "~1.4.2",
     "jstz": "*",
-    "ng-flow": "~2"
+    "ng-flow": "~2",
+    "angular-messages": "~1.4.8",
+    "ngMask": "angular-mask#~3.0.16"
   },
   "devDependencies": {
     "angular": "~1.4.4",

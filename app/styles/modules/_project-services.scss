@@ -50,3 +50,92 @@
 		}
 	}
 }
+
+.project-upload-services{
+	padding: 0 24px;
+	
+	h2{
+		text-transform: uppercase;
+		font-weight: normal;
+	}
+	.content{
+		background-color: #fff;
+		margin-bottom: 16px;
+		padding: 16px;
+		.page1{
+			.preview{
+				height: 100%;
+				padding-left: 16px;
+				h2 {
+					margin: 8px;
+				}
+				md-content{
+					height: 350px;
+				}
+			}
+			md-content{
+				margin-bottom: 0px;
+				padding: 0px;
+				border: 1px solid #b6b6b6;
+			}
+			md-list{
+				padding: 0;
+				md-list-item{
+					height: 36px;
+					min-height: 36px;
+					&.selected{
+						background-color: #65AF3F;
+					}
+					.md-list-item-inner{
+						min-height: 36px;
+					}
+					&:hover{
+						background-color: #eee;
+						button{
+							background-color: transparent;
+						}
+					}
+				}
+			}
+		}
+		h2{
+			margin: 0;
+			text-transform: none;
+			font-weight: normal;
+		}
+		.add{
+			height: 36px;
+			min-height: 36px;
+			line-height: 36px;
+			text-transform: none;
+		}
+	}
+
+	.page2{
+		.add-tags-form{
+			.md-button{
+				min-height: 36px;
+				height: 36px;
+				line-height: 36px;
+			}
+		}
+		
+		md-chips .md-chips{
+			box-shadow: none;
+			.tags-chip{
+				padding-right: 32px;
+				.md-icon-button{
+					position: absolute;
+					right: 0;
+					top: 0;
+					min-height: 32px;
+					height: 32px;
+					line-height: 32px;
+					min-width: 32px;
+					width: 32px;
+					margin: 0;
+				}
+			}
+		}
+	}
+}
