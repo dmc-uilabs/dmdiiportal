@@ -41,6 +41,13 @@ angular.module('dmc.component.productcard', [
       },
       templateUrl: 'templates/components/product-card/product-card-tpl.html',
       controller: function($scope,$cookies,$timeout,ajax,dataFactory, $mdDialog){
+          // get data from cookies
+          var updateCompareCount = function () {
+              var arr = $cookies.getObject('compareProducts');
+              return arr == null ? {services: [], components: []} : arr;
+          };
+          $scope.compareProducts = updateCompareCount();
+
           $scope.projects = [];
           $scope.addingToProject = false;
           var addToFavoriteCallback = function(data){
@@ -162,21 +169,16 @@ angular.module('dmc.component.productcard', [
           $scope.addToCompare = function(){
               // $cookies.remove('compareProducts');
               // Retrieving a cookie
-              var compareProducts = $cookies.getObject('compareProducts');
-              if(compareProducts == null) compareProducts = {
-                  services : [],
-                  components : []
-              };
-              if($scope.typeProduct == 'service') {
-                  if($.inArray( parseInt($scope.cardSource.id), compareProducts.services ) == -1){
-                      compareProducts.services.push(parseInt($scope.cardSource.id));
-                      $cookies.putObject('compareProducts', compareProducts);
+              if($scope.typeProduct == 'service' && $scope.compareProducts.components.length == 0) {
+                  if($.inArray( parseInt($scope.cardSource.id), $scope.compareProducts.services ) == -1){
+                      $scope.compareProducts.services.push(parseInt($scope.cardSource.id));
+                      $cookies.putObject('compareProducts', $scope.compareProducts);
                       $cookies.changedCompare = new Date();
                   }
-              }else if($scope.typeProduct == 'component'){
-                  if($.inArray( parseInt($scope.cardSource.id), compareProducts.components ) == -1){
-                      compareProducts.components.push(parseInt($scope.cardSource.id));
-                      $cookies.putObject('compareProducts', compareProducts);
+              }else if($scope.typeProduct == 'component' && $scope.compareProducts.services.length == 0){
+                  if($.inArray( parseInt($scope.cardSource.id), $scope.compareProducts.components ) == -1){
+                      $scope.compareProducts.components.push(parseInt($scope.cardSource.id));
+                      $cookies.putObject('compareProducts', $scope.compareProducts);
                       $cookies.changedCompare = new Date();
                   }
               }
