@@ -100,7 +100,10 @@
                          ng-repeat="item in products.arr">{{item.description}}</div>
                 </div>
                 <div layout="row" class="row specifications">
-                    <div layout="column" class="column title"><h4>Specifications</h4></div>
+                    <div layout="column" class="column title">
+                        <h4 ng-show="currentProductType == 'service'">Statistics</h4>
+                        <h4 ng-show="currentProductType == 'component'">Specifications</h4>
+                    </div>
                     <div layout="column" class="column"
                          ng-class="itemClass"
                          ng-show="currentProductType == 'all' || currentProductType == item.type"
