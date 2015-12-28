@@ -15,7 +15,7 @@
 <div class="project-services" layout="column">
 	<div layout="row" layout-align="space-between center">
 		<h2>Services</h2>
-		<md-button class="md-raised">Register Services</md-button>
+		<md-button class="md-raised" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</md-button>
 	</div>
 	<h2>Project Services</h2>
 	<md-content>
@@ -47,7 +47,7 @@
 					<h2 class="row">{{item.owner}}</h2>
 					<h2 class="row">Project</h2>
 					<div class="row-button">
-						<md-button aria-label="group_add" href="" class="editDelete">
+						<md-button aria-label="group_add" ng-href="{{'project.php#/' + projectData.id + '/edit-service'}}" class="editDelete">
 							<ng-md-icon icon="create" style="fill: #65AF3F;" size="25"></ng-md-icon>
 						</md-button>
 					</div>

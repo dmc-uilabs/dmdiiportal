@@ -55,6 +55,8 @@
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-aria/angular-aria.js"></script>
     <script src="/bower_components/angular-material/angular-material.js"></script>
+    <script src="/bower_components/angular-messages/angular-messages.js"></script>
+    <script src="/bower_components/ngMask/dist/ngMask.js"></script>
     <script src="/bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
     <script src="/bower_components/angular-material-icons/angular-material-icons.min.js"></script>
     <script src="/bower_components/angular-recursion/angular-recursion.js"></script>
@@ -108,6 +110,7 @@
     <script src="scripts/project/controllers/rfp-questions.js"></script>
     <script src="scripts/project/controllers/rfp-people-invited.js"></script>
     <script src="scripts/project/controllers/services.js"></script>
+    <script src="scripts/project/controllers/upload-service.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         window.apiUrl = '';

@@ -3,6 +3,9 @@
 angular.module('dmc.project', [
         'dmc.configs.ngmaterial',
         'ngMdIcons',
+        'ngMaterial',
+        'ngMessages',
+        'ngMask',
         'dmc.ajax',
         'dmc.data',
         'ngtimeago',
@@ -162,6 +165,14 @@ angular.module('dmc.project', [
         url: '/services',
         controller: 'projectServicesCtrl as projectCtrl',
         templateUrl: 'templates/project/pages/services.html'
+    }).state('project.upload-services', {
+        url: '/upload-service',
+        controller: 'projectUploadServicesCtrl as projectCtrl',
+        templateUrl: 'templates/project/pages/upload-service.html'
+    }).state('project.edit-services', {
+        url: '/edit-service',
+        controller: 'projectUploadServicesCtrl as projectCtrl',
+        templateUrl: 'templates/project/pages/upload-service.html'
     });
     $urlRouterProvider.otherwise('/1');
 })

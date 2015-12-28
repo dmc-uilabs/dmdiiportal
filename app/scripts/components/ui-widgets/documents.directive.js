@@ -101,6 +101,7 @@ angular.module('dmc.widgets.documents',[
                         offset : 0
                     },function(data){
                         $scope.documents = data.result;
+                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     },function(){
                         alert("Ajax faild: getDocuments");
                     });
