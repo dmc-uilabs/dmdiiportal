@@ -30,7 +30,8 @@
     "jstz": "*",
     "ng-flow": "~2",
     "angular-messages": "~1.4.8",
-    "ngMask": "angular-mask#~3.0.16"
+    "ngMask": "angular-mask#~3.0.16",
+    "angular-ui-sortable": "~0.13.4"
   },
   "devDependencies": {
     "angular": "~1.4.4",

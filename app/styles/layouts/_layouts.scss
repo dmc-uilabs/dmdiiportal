@@ -186,3 +186,31 @@ md-toast.md-success-toast-theme {
 md-toast.md-error-toast-theme {
   background-color: #AE2B2B;
 }
+md-toast{
+  position: fixed;
+}
+
+a.md-button.md-fab.dmc-fab, .md-button.md-fab.dmc-fab{
+  background-color: rgb(255, 255, 255);
+  ng-md-icon{
+    fill:#999;
+  }
+  &:not([disabled]):hover{
+    background-color: rgb(228, 228, 228);
+    ng-md-icon{
+      fill:#333;
+    }
+  }
+  &.dmc-fab-delete{
+    background-color: #DE4040;
+    ng-md-icon{
+      fill:#fff;
+    }
+    &:not([disabled]):hover{
+      background-color: #C13434;
+      ng-md-icon{
+        fill:#fff;
+      }
+    }
+  }
+}

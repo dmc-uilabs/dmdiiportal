@@ -5,6 +5,7 @@ angular.module('dmc.company', [
     'ngMaterial',
     'ngCookies',
     'ngSanitize',
+    'ui.sortable',
     'ui.router',
     'md.data.table',
     'dmc.configs.ngmaterial',
@@ -37,11 +38,23 @@ angular.module('dmc.company', [
     }).state('company.storefront', {
         url: '/storefront/:page?type?text',
         controller: 'StorefrontCompanyCtr',
-        templateUrl: 'templates/company/storefront.html'
+        templateUrl: 'templates/company/storefront.html',
+        resolve: {
+            companyData: ['CompanyModel', '$stateParams',
+                function(CompanyModel, $stateParams) {
+                    return CompanyModel.getModel($stateParams.companyId);
+                }]
+        }
     }).state('company.edit', {
-        url: '/edit',
+        url: '/edit?text',
         controller: 'EditStorefrontCompanyCtr',
-        templateUrl: 'templates/company/edit.html'
+        templateUrl: 'templates/company/edit.html',
+        resolve: {
+            companyData: ['CompanyModel', '$stateParams',
+                function(CompanyModel, $stateParams) {
+                    return CompanyModel.getModel($stateParams.companyId);
+                }]
+        }
     });
     $urlRouterProvider.otherwise('/1');
 }).controller('CompanyIdLocatorCtrl', [ '$stateParams', '$state', function ($stateParams, $state) {

@@ -74,6 +74,7 @@
     <script src="/bower_components/ng-timeago/ngtimeago.js"></script>
     <script src="/bower_components/ui-autocomplete/autocomplete.js"></script>
     <script src="/bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
+    <script src="/bower_components/angular-ui-sortable/sortable.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -96,7 +97,7 @@
     <script src="scripts/account/controllers/privacy.js"></script>
     <script src="scripts/account/controllers/notifications.js"></script>
     <script src="scripts/account/controllers/profile.js"></script>
-    <script src="scripts/account/controllers/services.js"></script>
+    <script src="scripts/account/controllers/servers.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         window.apiUrl = '';

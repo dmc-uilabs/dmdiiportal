@@ -122,6 +122,36 @@
       md-checkbox.md-checked .md-icon {
         background-color: #FF9600;
       }
+      .servers-container{
+        border: 1px solid #e1e1e1;
+        margin: 8px 0 13px 0;
+        padding-top: 4px;
+        @include borderRadius(3px);
+      }
+      .servers-table{
+        th,td{
+          text-align: center;
+          div {
+            display: block;
+          }
+        }
+        th:nth-child(2),td:nth-child(2){
+          text-align: left;
+        }
+        tr{
+          outline: none;
+        }
+        .status{
+          ng-md-icon{
+            fill:#ccc;
+          }
+          &.status-online{
+            ng-md-icon{
+              fill:#65AF3F;
+            }
+          }
+        }
+      }
       .blocked-users{
         margin-top: 21px;
         .empty-blocked-list{
@@ -166,6 +196,41 @@
         }
         h2{
           text-transform: uppercase;
+          color: #545454;
+        }
+      }
+      .header-right-content.servers{
+        position: relative;
+        .correct-ip{
+          position: absolute;
+          bottom: 7px;
+          margin-left: -43px;
+          fill:#4CAF50;
+          input{
+            padding-right: 28px;
+          }
+        }
+        md-input-container{
+          padding-bottom: 5px;
+        }
+        .md-button.md-default-theme {
+          min-height: 0;
+          height: 36px;
+          line-height: 36px;
+          &.add-server,&.close-add-server{
+            margin-right: 0;
+            ng-md-icon{
+              fill:#616161;
+            }
+          }
+          &.save-server{
+            ng-md-icon{
+              fill:#fff;
+            }
+          }
+          span {
+            text-decoration: none;
+          }
         }
       }
     }
@@ -214,12 +279,18 @@
 .md-raised.md-primary.md-button.md-default-theme.add-skill{
   min-height: 0;
   min-width: 0;
-  line-height: 32px;
+  line-height: 36px;
+  margin: 3px 0px;
   padding: 0 13px;
 }
 
 .flow-box{
   margin-left: 13px;
+  .md-raised.md-button.md-default-theme{
+    line-height: 36px;
+    min-height: 0;
+    text-transform: none;
+  }
   .alert{
     background-color: #f2f2f2;
     @include borderRadius(3px);
@@ -230,18 +301,43 @@
       min-height: 144px;
       border: 2px dashed #ccc;
       @include borderRadius(3px);
+      cursor: default;
       .uploaded-picture{
         width: 100%;
         text-align: center;
         margin-top: 13px;
         margin-bottom: 13px;
         padding: 0 8px;
+        position: relative;
+        img{
+          max-height: 110px;
+          width: auto;
+        }
+        .remove-picture{
+          position: absolute;
+          right: -13px;
+          top:-13px;
+          background-color: #CD3F3F;
+          ng-md-icon{
+            fill:#fff;
+          }
+        }
       }
       .text {
-        color: #aaa;
+        color: #6f6f6f;
         text-align: center;
         display: block;
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.89);
+        cursor: pointer;
+        strong{
+          font-weight: 100;
+          color: #4C85AF;
+          font-size: 16px;
+          text-decoration: underline;
+          &:hover{
+            text-decoration: none;
+          }
+        }
       }
     }
   }

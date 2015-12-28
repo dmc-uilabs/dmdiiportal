@@ -7,7 +7,6 @@
       }
     }
     md-tabs.editable-featured {
-      text-align: center;
       md-content{
         padding: 8px 0;
       }
@@ -16,6 +15,7 @@
         margin: 5px;
       }
     }
+
     .title-input-edit{
       padding-bottom: 0;
     }
@@ -41,10 +41,10 @@
     .company-buttons.md-button.md-raised.md-default-theme {
       text-decoration: none;
     }
-    .company-edit{
+    .md-button.md-default-theme.company-edit{
       text-transform: none;
       min-height: 0;
-      line-height: 32px;
+      line-height: 37px;
       height: 35px;
     }
     .company-edit-picture{

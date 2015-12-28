@@ -45,15 +45,17 @@ angular.module('dmc.compare',[
 
         $scope.callbackServices = function(data) {
             $scope.products.arr = $.merge($scope.products.arr, data.result);
-            console.log($scope.products.arr);
+            //console.log($scope.products.arr);
             $scope.products.count += data.count;
+            if(data.count > 0) $scope.switchProductType('service');
             $scope.itemClass = $scope.getItemClass();
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };
         $scope.callbackComponents = function(data) {
             $scope.products.arr = $.merge($scope.products.arr,data.result);
-            console.log($scope.products.arr);
+            //console.log($scope.products.arr);
             $scope.products.count += data.count;
+            if(data.count > 0) $scope.switchProductType('component');
             $scope.itemClass = $scope.getItemClass();
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };
@@ -198,7 +200,7 @@ angular.module('dmc.compare',[
                             templateUrl: 'templates/components/compare/compare-tpl.html',
                             parent: angular.element(document.body),
                             targetEvent: ev,
-                            clickOutsideToClose: false
+                            clickOutsideToClose: true
                         }).then(function (answer) {
                             $('html').removeClass('hide-scroll');
                         }, function () {

@@ -5,8 +5,8 @@
       "name": "The Turbine Company",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "featureImage": {
-        "thumbnail": "/uploads/company/picture/1/20151216100049000000.png",
-        "large": "/uploads/company/picture/1/20151216100049000000.png"
+        "thumbnail": "/uploads/company/picture/1/20151224071805000000.jpg",
+        "large": "/uploads/company/picture/1/20151224071805000000.jpg"
       }
     },
     {
@@ -14,8 +14,8 @@
       "name": "The Turbine Company 2",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "featureImage": {
-        "thumbnail": "/images/company-logo.jpg",
-        "large": "/images/company-logo.jpg"
+        "thumbnail": "/uploads/company/picture/2/20151223085045000000.jpg",
+        "large": "/uploads/company/picture/2/20151223085045000000.jpg"
       }
     }
   ],
@@ -24,18 +24,56 @@
       "id": 1,
       "companyId": 1,
       "productId": 20,
-      "type": "service"
+      "type": "service",
+      "position": ""
     },
     {
       "id": 2,
       "companyId": 1,
       "productId": 26,
+      "type": "service",
+      "position": ""
+    },
+    {
+      "id": 8,
+      "companyId": 1,
+      "productId": 3,
+      "position": 3,
       "type": "service"
     },
     {
-      "id": 4,
+      "id": 11,
       "companyId": 1,
-      "productId": 15,
+      "productId": 2,
+      "position": 2,
+      "type": "service"
+    },
+    {
+      "id": 12,
+      "companyId": 1,
+      "productId": 27,
+      "position": 4,
+      "type": "service"
+    },
+    {
+      "id": 13,
+      "companyId": 1,
+      "productId": 1,
+      "position": 5,
+      "type": "component"
+    },
+    {
+      "id": 14,
+      "companyId": 1,
+      "productId": 18,
+      "position": 7,
+      "type": "service"
+    },
+    {
+      "id": 15,
+      "companyId": 1,
+      "productId": 16,
+      "position": 6,
       "type": "service"
     },
     {
@@ -57,8 +95,8 @@
       "location": "",
       "timezone": "",
       "featureImage": {
-        "thumbnail": "/uploads/account-profile/1/20151221041331000000.png",
-        "large": "/uploads/account-profile/1/20151221041331000000.png"
+        "thumbnail": "/uploads/account-profile/1/20151224072737000000.jpg",
+        "large": "/uploads/account-profile/1/20151224072737000000.jpg"
       },
       "jobTitle": "Job Title",
       "description": "My description",
@@ -139,6 +177,48 @@
           }
         }
       }
+    }
+  ],
+  "account_servers": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "name": "Server 1",
+      "ip": "123.125.14.12",
+      "status": "offline"
+    },
+    {
+      "id": 2,
+      "accountId": 1,
+      "name": "Server 2",
+      "ip": "12.12.12.12",
+      "status": "online"
+    }
+  ],
+  "favorite_products": [
+    {
+      "id": 2,
+      "productId": 1,
+      "accountId": 1,
+      "productType": "service"
+    },
+    {
+      "id": 8,
+      "productId": 18,
+      "accountId": 1,
+      "productType": "service"
+    },
+    {
+      "id": 10,
+      "productId": 2,
+      "accountId": 1,
+      "productType": "service"
+    },
+    {
+      "id": 11,
+      "productId": 3,
+      "accountId": 1,
+      "productType": "service"
     }
   ],
   "projects": [
@@ -1685,38 +1765,6 @@
       "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
     },
     {
-      "id": 5,
-      "profileId": null,
-      "reply": false,
-      "reviewId": 4,
-      "name": "Jessica H. Wheaton",
-      "status": true,
-      "date": "12-11-2015",
-      "rating": 0,
-      "userRatingReview": {
-        "DMC Member": "dislike"
-      },
-      "like": 13,
-      "dislike": 7,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
-    },
-    {
-      "id": 6,
-      "profileId": null,
-      "reply": false,
-      "reviewId": 4,
-      "name": "Jessica H. Wheaton",
-      "status": true,
-      "date": "12-02-2015",
-      "rating": 0,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
-      "like": 0,
-      "dislike": 0,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
-    },
-    {
       "id": 7,
       "profileId": 1,
       "reply": true,
@@ -1730,22 +1778,6 @@
       },
       "like": 4,
       "dislike": 1,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
-    },
-    {
-      "id": 8,
-      "profileId": null,
-      "reply": false,
-      "reviewId": 7,
-      "name": "Jessica H. Wheaton",
-      "status": true,
-      "date": "12-21-2015",
-      "rating": 0,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
-      "like": 0,
-      "dislike": 7,
       "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
     }
   ]

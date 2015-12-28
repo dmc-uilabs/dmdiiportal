@@ -22,7 +22,9 @@ angular.module('dmc.component.productscard', [
           titleCard: "=",
           cardLoading: "=",
           searchCard: "=",
-          updatePageSize : "="
+          updatePageSize : "=",
+          addFeatured : "=",
+          hideButtons : "="
       },
       templateUrl: 'templates/components/products-card/products-card-tpl.html',
       controller: function($scope,$cookies){

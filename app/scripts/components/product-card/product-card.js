@@ -36,7 +36,8 @@ angular.module('dmc.component.productcard', [
         typeProduct: '=',
         cardStyle: '=',
         removeFeatured: '=',
-        addFeatured: '='
+        addFeatured: '=',
+        hideButtons: '='
       },
       templateUrl: 'templates/components/product-card/product-card-tpl.html',
       controller: function($scope,$cookies,$timeout,ajax,dataFactory, $mdDialog){

@@ -94,6 +94,16 @@ return call_user_func(function () {
       echo follow_company($_GET);
     }else if(strpos($uri,'/add_product_to_favorite') !== false) {
       echo add_product_to_favorite($_GET);
+    }else if(strpos($uri,'/update_features_position') !== false) {
+      echo update_features_position($_GET);
+    }else if(strpos($uri,'/add_new_server') !== false) {
+      echo add_new_server($_GET);
+    }else if(strpos($uri,'/get_servers') !== false){
+      echo get_servers($_GET);
+    }else if(strpos($uri,'/save_change_server') !== false){
+        echo save_change_server($_GET);
+    }else if(strpos($uri,'/delete_server') !== false){
+        echo delete_server($_GET);
     }
 });
 
@@ -302,7 +312,7 @@ function get_featured_company($params){
     if(isset($params['company_id'])) {
         $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
         if($company != null and isset($company['id']) == true) {
-            $features = json_decode(httpResponse(dbUrl().'/companies/'.$params['company_id'].'/company_features', null, null),true);
+            $features = json_decode(httpResponse(dbUrl().'/companies/'.$params['company_id'].'/company_features?_sort=position&_order=ASC', null, null),true);
             $count = count($features);
             $data = array(
                 'totalCount' => $count,
@@ -310,20 +320,13 @@ function get_featured_company($params){
                 'components' => []
             );
             for($i = 0; $i < count($features); ++$i){
-                if($features[$i]['type'] == 'service'){
-                    $query = json_decode(httpResponse(dbUrl().'/services/'.$features[$i]['productId'], null, null), true);
-                    if($query != null and isset($query['id']) == true) {
-                        $query['type'] = 'service';
-                        $query['favorite'] = isFavoriteProduct($query['id'],$query['type'],null);
-                        array_push($data['services'], $query);
-                    }
-                }else if($features[$i]['type'] == 'component'){
-                    $query = json_decode(httpResponse(dbUrl().'/components/'.$features[$i]['productId'], null, null), true);
-                    if($query != null and isset($query['id']) == true) {
-                        $query['type'] = 'component';
-                        $query['favorite'] = isFavoriteProduct($query['id'],$query['type'],null);
-                        array_push($data['components'], $query);
-                    }
+                $query = json_decode(httpResponse(dbUrl().'/'.$features[$i]['type'].'s/'.$features[$i]['productId'], null, null), true);
+                if($query != null and isset($query['id']) == true) {
+                    $query['type'] = $features[$i]['type'];
+                    $query['favorite'] = isFavoriteProduct($query['id'],$query['type'],null);
+                    $query['featureId'] = $features[$i]['id'];
+                    $query['position'] = ($features[$i]['position'] == null ? 1 : $features[$i]['position']);
+                    array_push($data[$features[$i]['type'].'s'], $query);
                 }
             }
             return json_encode(array('error' => null,'result' => $data));
@@ -360,6 +363,20 @@ function remove_featured_company($params){
     }
 }
 
+function update_features_position($params){
+    if(isset($params['positions'])) {
+        $ids = [];
+        for($i = 0; $i < count($params['positions']); ++$i) {
+            $feature = json_decode(httpResponse(dbUrl().'/company_features/'.$params['positions'][$i][0], null, null),true);
+            $feature['position'] = $params['positions'][$i][1];
+            $changed_item = json_decode(httpResponse(dbUrl().'/company_features/' . $params['positions'][$i][0], 'PUT', json_encode($feature)), true);
+        }
+        return json_encode(array('success' => true ));
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
 function add_featured_company($params){
     if(isset($params['type']) && isset($params['product_id']) && isset($params['company_id'])){
         $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
@@ -374,10 +391,26 @@ function add_featured_company($params){
             if($exist == false) {
                 $last = json_decode(httpResponse(dbUrl() . '/company_features?_sort=id&_order=DESC&_limit=1', null, null), true);
                 $id = (count($last) > 0 ? $last[0]['id'] + 1 : 1);
+                $position = json_decode(httpResponse(dbUrl() . '/companies/'.$params['company_id'].'/company_features?_sort=position&_order=DESC', null, null), true);
+
+                if(count($position) > 0){
+                    $position_ = 0;
+                    $index = 0;
+                    while($index < count($position) and $position_ == 0){
+                        if(isset($position[$index]['position']) and intval($position[$index]['position']) > 0){
+                            $position_ = intval($position[$index]['position'])+1;
+                        }
+                        $index++;
+                    }
+                    $position = ($position_ == 0 ? 1 : $position_);
+                }else{
+                    $position = 1;
+                }
                 $data = json_encode(array(
                     'id' => $id,
                     'companyId' => $params['company_id'],
                     'productId' => $params['product_id'],
+                    'position' => $position,
                     'type' => $params['type']
                 ));
                 $add_featured = json_decode(httpResponse(dbUrl() . '/company_features', 'POST', $data), true);
@@ -445,21 +478,52 @@ function isFavoriteProduct($id,$type,$accountId){
     return (count($favorites) == 0 ? false : true);
 }
 
+function getFeaturesIds($companyId,$fill){
+    $features = array(
+        "services" => [],
+        "components" => []
+    );
+    if($fill) {
+        $query = json_decode(httpResponse(dbUrl() . '/companies/' . $companyId . '/company_features', null, null), true);
+        for ($i = 0; $i < count($query); ++$i) {
+            if (isset($features[$query[$i]["type"] . 's'])) {
+                array_push($features[$query[$i]["type"] . 's'], intval($query[$i]['productId']));
+            }
+        }
+    }
+    return $features;
+}
+
 function get_products($params){
+    $withoutFeatures = (isset($params['withoutFeatures']) and isset($params['companyId']) and $params['withoutFeatures'] == true ? true : false);
+    $features = getFeaturesIds($params['companyId'],$withoutFeatures);
+    $query = [];
     $components = json_decode(httpResponse(dbUrl().'/components', null, null), true);
+    $components = searchByName($params,$components);
     for($i = 0; $i < count($components); ++$i){
-        $components[$i]['type'] = 'component';
-        $services[$i]['favorite'] = isFavoriteProduct($components[$i]['id'],$components[$i]['type'],null);
-        $components[$i] = addMore($components[$i]);
+        if(in_array(intval($components[$i]['id']),$features['components'])) {
+            array_splice($components, $i, ($i+1));
+            $i--;
+        }else{
+            $components[$i]['type'] = 'component';
+            $components[$i]['favorite'] = isFavoriteProduct($components[$i]['id'], $components[$i]['type'], null);
+            $components[$i] = addMore($components[$i]);
+            array_push($query,$components[$i]);
+        }
     }
     $services = json_decode(httpResponse(dbUrl().'/services', null, null),true);
+    $services = searchByName($params,$services);
     for($i = 0; $i < count($services); ++$i){
-        $services[$i]['type'] = 'service';
-        $services[$i]['favorite'] = isFavoriteProduct($services[$i]['id'],$services[$i]['type'],null);
-        $services[$i] = addMore($services[$i]);
+        if(in_array(intval($services[$i]['id']),$features['services'])) {
+            array_splice($services, $i, ($i+1));
+            $i--;
+        }else {
+            $services[$i]['type'] = 'service';
+            $services[$i]['favorite'] = isFavoriteProduct($services[$i]['id'], $services[$i]['type'], null);
+            $services[$i] = addMore($services[$i]);
+            array_push($query,$services[$i]);
+        }
     }
-    $query = array_merge($components,$services);
-    $query = searchByName($params,$query);
     $count = count($query);
     usort($query, 'sortByReleaseDateDESC');
     if(isset($params['offset']) == false) $params['offset'] = 0;
@@ -499,7 +563,17 @@ function get_components($params){
         }
     }
     $query = searchByName($params,$query);
+
+    $withoutFeatures = (isset($params['withoutFeatures']) and isset($params['companyId']) and $params['withoutFeatures'] == true ? true : false);
+    $features = getFeaturesIds($params['companyId'], $withoutFeatures);
+    for ($i = 0; $i < count($query); ++$i) {
+        if (in_array(intval($query[$i]['id']), $features['components'])){
+            array_splice($query, $i, ($i + 1));
+            $i--;
+        }
+    }
     $count = count($query);
+
     if(isset($params['offset']) == false) $params['offset'] = 0;
     if(isset($params['limit'])) {
         $query = array_slice($query, $params['offset'], $params['limit']);
@@ -513,14 +587,16 @@ function get_components($params){
     return json_encode($result);
 }
 
-function get_services($params){
-    if(isset($params['projectId']) == false || $params['projectId'] == null){
-        $query = json_decode(httpResponse(dbUrl().'/services', null, null), true);
-    }else{
-        $query = json_decode(httpResponse(dbUrl().'/projects/'.$params['projectId'].'/services', null, null),true);
+function get_services($params)
+{
+    if (isset($params['projectId']) == false || $params['projectId'] == null) {
+        $query = json_decode(httpResponse(dbUrl() . '/services', null, null), true);
+    } else {
+        $query = json_decode(httpResponse(dbUrl() . '/projects/' . $params['projectId'] . '/services', null, null), true);
     }
-    if(isset($params['sort'])) {
-        if(isset($params['order']) == false) $params['order'] = 'DESC';
+
+    if (isset($params['sort'])) {
+        if (isset($params['order']) == false) $params['order'] = 'DESC';
         if ($params['sort'] == 'name') {
             if ($params['order'] == 'DESC') {
                 usort($query, 'sortByTitleDESC');
@@ -547,19 +623,29 @@ function get_services($params){
             }
         }
     }
-    if(isset($params['ids'])) {
-        if(is_array($params['ids']) && count($params['ids']) > 0) {
+    if (isset($params['ids'])) {
+        if (is_array($params['ids']) && count($params['ids']) > 0) {
             $arr = array();
-            for($i = 0; $i < count($query); ++$i){
+            for ($i = 0; $i < count($query); ++$i) {
                 if (in_array(intval($query[$i]['id']), $params['ids'])) array_push($arr, $query[$i]);
             }
             $query = $arr;
-        }else{
+        } else {
             $query = array();
         }
     }
-    $query = searchByName($params,$query);
+    $query = searchByName($params, $query);
+
+    $withoutFeatures = (isset($params['withoutFeatures']) and isset($params['companyId']) and $params['withoutFeatures'] == true ? true : false);
+    $features = getFeaturesIds($params['companyId'], $withoutFeatures);
+    for ($i = 0; $i < count($query); ++$i) {
+        if (in_array(intval($query[$i]['id']), $features['services'])){
+            array_splice($query, $i, ($i + 1));
+            $i--;
+        }
+    }
     $count = count($query);
+
     $countTypes = array(
         'analytical' => 0,
         'solid' => 0,
@@ -579,9 +665,10 @@ function get_services($params){
     if(isset($params['limit'])) {
         $query = array_slice($query, $params['offset'], $params['limit']);
     }
+
     for($i = 0; $i < count($query); ++$i){
         $query[$i]['type'] = 'service';
-        $query[$i]['favorite'] = isFavoriteProduct($query[$i]['id'],$query[$i]['type'],null);
+        $query[$i]['favorite'] = isFavoriteProduct($query[$i]['id'], $query[$i]['type'], null);
         $query[$i] = addMore($query[$i]);
     }
     $result = array('result' => $query, 'count' => $count, 'countTypes' => $countTypes);
@@ -734,6 +821,61 @@ function update_account($params){
     }
 }
 
+function delete_server($params){
+    if(isset($params['id'])) {
+        $server = json_decode(httpResponse(dbUrl() . '/account_servers/'.$params['id'], null, null), true);
+        if($server != null and isset($server['id'])){
+            $changed_item = json_decode(httpResponse(dbUrl().'/account_servers/' . $params['id'], 'DELETE', null), true);
+            return json_encode(array('success' => true ));
+        }else{
+            return json_encode(array('error' => 'Server dose not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
+function save_change_server($params){
+    if(isset($params['id']) and isset($params['name']) and isset($params['ip'])) {
+        $server = json_decode(httpResponse(dbUrl() . '/account_servers/'.$params['id'], null, null), true);
+        if($server != null and isset($server['id'])){
+            $server['name'] = $params['name'];
+            $server['ip'] = $params['ip'];
+            $changed_item = json_decode(httpResponse(dbUrl().'/account_servers/'.$server['id'], 'PUT', json_encode($server)),true);
+            return json_encode(array('result' => $changed_item));
+        }else{
+            return json_encode(array('error' => 'Server dose not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
+function get_servers($params){
+    $current_account_id = 1;
+    $servers = json_decode(httpResponse(dbUrl() . '/accounts/'.$current_account_id.'/account_servers?_sort=id&_order=DESC', null, null), true);
+    return json_encode(array('result' => $servers));
+}
+
+function add_new_server($params){
+    $current_account_id = 1;
+    if(isset($params['name']) and isset($params['ip'])){
+        $last = json_decode(httpResponse(dbUrl() . '/account_servers?_sort=id&_order=DESC&_limit=1', null, null), true);
+        $id = (count($last) > 0 ? $last[0]['id'] + 1 : 1);
+        $data = json_encode(array(
+            'id' => $id,
+            'accountId' => $current_account_id,
+            'name' => $params['name'],
+            'ip' => $params['ip'],
+            'status' => 'offline'
+        ));
+        $new_server = json_decode(httpResponse(dbUrl().'/account_servers', 'POST', $data),true);
+        return json_encode(array('result' => $new_server));
+    }else{
+        return json_encode(array('error' => "Data is wrong"));
+    }
+}
+
 function get_account($params){
     $result = array('success' => false, 'result' => null);
     if(isset($params['id']) == true){
@@ -805,7 +947,7 @@ function upload_company_picture($params,$file){
                     $changed_item = json_decode(httpResponse(dbUrl().'/companies/'.$params['id'], 'PUT', json_encode($company)),true);
                     return json_encode(array('result' => 'file saved', 'file' => $file));
                 } else {
-                    return json_encode(array('error' => 'Possible attacks via file download'));
+                    return json_encode(array('error' => 'Possible attacks via file download','$file' => $file));
                 }
             } else {
                 return json_encode(array('error' => 'Unable create directory '));
