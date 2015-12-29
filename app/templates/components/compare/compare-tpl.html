@@ -108,12 +108,23 @@
                          ng-class="itemClass"
                          ng-show="currentProductType == 'all' || currentProductType == item.type"
                          ng-repeat="item in products.arr">
-                        <p>{{item.specificationsData.description}}</p>
-                        <p><strong>Created:</strong> {{item.releaseDate|timeago}}</p>
-                        <p><strong>Added:</strong> {{item.specificationsData.usageStats.added}} times by {{item.specificationsData.usageStats.members}} members</p>
-                        <p><strong>Successful Runs:</strong> {{item.specificationsData.runStats.success}}/{{item.specificationsData.runStats.success+item.specificationsData.runStats.fail}}</p>
-                        <p><strong>Inputs:</strong> {{item.specificationsData.input}}</p>
-                        <p><strong>Outputs:</strong> {{item.specificationsData.output}}</p>
+                        <div ng-if="currentProductType == 'component'">
+                            <p>{{item.specificationsData.description}}</p>
+                            <p><strong>Created:</strong> {{item.releaseDate|timeago}}</p>
+                            <p><strong>Added:</strong> {{item.specificationsData.usageStats.added}} times by {{item.specificationsData.usageStats.members}} members</p>
+                            <p><strong>Successful Runs:</strong> {{item.specificationsData.runStats.success}}</p>
+                            <p><strong>Inputs:</strong> {{item.specificationsData.input}}</p>
+                            <p><strong>Outputs:</strong> {{item.specificationsData.output}}</p>
+                        </div>
+                        <div ng-if="currentProductType == 'service'">
+                            <p>{{item.specificationsData.description}}</p>
+                            <p><strong>Successful Runs:</strong> {{item.specificationsData.runStats.success}}</p>
+                            <p><strong>Incomplete Runs:</strong> {{item.specificationsData.runStats.fail}}</p>
+                            <p><strong>Unavailable Runs:</strong> {{item.specificationsData.runStats.fail}}</p>
+                            <p><strong>Runs by Users:</strong> 23</p>
+                            <p><strong>Unique Users:</strong> 18</p>
+                            <p><strong>Average Time (min):</strong> 14.4</p>
+                        </div>
                     </div>
                 </div>
                 <div layout="row" class="row tags">
