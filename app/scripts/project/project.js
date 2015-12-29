@@ -24,6 +24,7 @@ angular.module('dmc.project', [
         'dmc.common.footer',
         'dmc.model.project',
         'ui.autocomplete',
+        'dmc.model.toast-model',
         'dmc.sub-nav-menu'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
@@ -173,6 +174,10 @@ angular.module('dmc.project', [
         url: '/edit-service',
         controller: 'projectUploadServicesCtrl as projectCtrl',
         templateUrl: 'templates/project/pages/upload-service.html'
+    }).state('project.run-services', {
+        url: '/run-service/:ServiceId',
+        controller: 'projectRunServicesCtrl as projectCtrl',
+        templateUrl: 'templates/project/pages/run-service.html'
     });
     $urlRouterProvider.otherwise('/1');
 })

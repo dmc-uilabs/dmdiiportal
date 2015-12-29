@@ -111,6 +111,8 @@
     <script src="scripts/project/controllers/rfp-people-invited.js"></script>
     <script src="scripts/project/controllers/services.js"></script>
     <script src="scripts/project/controllers/upload-service.js"></script>
+    <script src="scripts/project/controllers/run-service.js"></script>
+    <script src="scripts/common/models/toast-model.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         window.apiUrl = '';
