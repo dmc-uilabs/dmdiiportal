@@ -1,0 +1,27 @@
+<div class="documents documents-product" layout="row">
+	<div flex="25" class="exitFolder" ng-if="indexfolder.length">
+		<md-button ng-click="exitFolder()">
+			<ng-md-icon icon="keyboard_return" style="fill: #666" size="35"></ng-md-icon>
+			{{folderName}}
+		</md-button>
+	</div>
+	<md-list layout layout-wrap>
+		<md-list-item flex="33" aria-label="file" ng-repeat="item in folder track by $index">
+			<div layout="row" ng-if="item.file" layout-align="center center">
+				<ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>
+				<p>{{item.title}}</p>
+				<md-button class="md-icon-button download" href="{{item.file}}" download aria-label="Download"><ng-md-icon icon="file_download" style="fill: #666" size="18"></ng-md-icon></md-button>
+				<md-button class="md-raised view" target="_blank" href="{{item.file}}">View</md-button>
+				<md-divider ng-if="$index + 1 <= total - ((total%3 == 0)?3:total%3)"></md-divider>
+			</div>
+			<div layout="row" flex="100" ng-if="!item.file" layout-align="start center">
+				<md-button layout="row" class="folderButton" ng-click="openFolder(item, $index)">
+					<ng-md-icon icon="folder" style="fill: #666" size="35"></ng-md-icon>
+					{{item.title}}
+				</md-button>
+				<md-divider ng-if="$index + 1 <= total - ((total%3 == 0)?3:total%3)"></md-divider>
+			</div>
+		</md-list-item>
+
+	</md-list>
+</div>

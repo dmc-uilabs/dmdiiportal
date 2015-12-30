@@ -37,7 +37,7 @@
 					<div class="row">
 						<md-button class="md-raised run" ng-href="{{'project.php#/' + projectData.id + '/run-service/' + item.id}}">Run</md-button>
 					</div>
-					<h2 class="row-long">{{item.title}}</h2>
+					<a ng-href="{{'project.php#/' + projectData.id + '/services/' + item.id + '/detail'}}" class="row-long"><h2>{{item.title}}</h2></a>
 					<h2 class="row-long">Component Example</h2>
 					<div class="row" layout="column">
 						<md-progress-linear md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>

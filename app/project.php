@@ -90,6 +90,8 @@
     <script src="scripts/components/ui-widgets/questions.directive.js"></script>
     <script src="scripts/components/ui-widgets/submissions.directive.js"></script>
     <script src="scripts/components/ui-widgets/invited-users.directive.js"></script>
+    <script src="scripts/components/ui-widgets/stars.directive.js"></script>
+    <script src="scripts/components/ui-widgets/review.directive.js"></script>
     <script src="scripts/components/sub-nav-menu/sub-nav-menu.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>
@@ -112,6 +114,7 @@
     <script src="scripts/project/controllers/services.js"></script>
     <script src="scripts/project/controllers/upload-service.js"></script>
     <script src="scripts/project/controllers/run-service.js"></script>
+    <script src="scripts/project/controllers/services-detail.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">

@@ -1471,7 +1471,7 @@
   "product_reviews": [
     {
       "id": 1,
-      "productId": 3,
+      "productId": 1,
       "productType": "services",
       "reply": false,
       "reviewId": 0,
@@ -1480,15 +1480,16 @@
       "date": "09-22-2015",
       "rating": 1,
       "userRatingReview": {
-        "DMC Member": "none"
+        "DMC Member": "none",
+        "UserLogin": "none"
       },
       "like": 2,
-      "dislike": 4,
+      "dislike": 3,
       "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
     },
     {
       "id": 2,
-      "productId": 3,
+      "productId": 1,
       "productType": "services",
       "reply": false,
       "reviewId": 0,
@@ -1505,7 +1506,7 @@
     },
     {
       "id": 3,
-      "productId": 3,
+      "productId": 1,
       "productType": "components",
       "reply": false,
       "reviewId": 0,
@@ -1522,7 +1523,7 @@
     },
     {
       "id": 4,
-      "productId": 3,
+      "productId": 1,
       "productType": "services",
       "reply": false,
       "reviewId": 0,
@@ -1573,7 +1574,7 @@
     },
     {
       "id": 7,
-      "productId": 3,
+      "productId": 1,
       "productType": "services",
       "reply": false,
       "reviewId": 0,
@@ -1590,7 +1591,7 @@
     },
     {
       "id": 8,
-      "productId": 3,
+      "productId": 1,
       "productType": "services",
       "reply": false,
       "reviewId": 0,
@@ -1607,9 +1608,9 @@
     },
     {
       "id": 9,
-      "productId": 3,
+      "productId": 1,
       "productType": "services",
-      "reply": true,
+      "reply": false,
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
@@ -1641,7 +1642,7 @@
     },
     {
       "id": 11,
-      "productId": 3,
+      "productId": 1,
       "productType": "services",
       "reply": true,
       "reviewId": 0,
@@ -1658,7 +1659,7 @@
     },
     {
       "id": 12,
-      "productId": 3,
+      "productId": 1,
       "productType": "services",
       "reply": false,
       "reviewId": 11,
@@ -1735,7 +1736,7 @@
     {
       "id": 3,
       "profileId": 1,
-      "reply": true,
+      "reply": false,
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
@@ -1751,7 +1752,7 @@
     {
       "id": 4,
       "profileId": 1,
-      "reply": true,
+      "reply": false,
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
@@ -1767,7 +1768,7 @@
     {
       "id": 7,
       "profileId": 1,
-      "reply": true,
+      "reply": false,
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,

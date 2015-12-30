@@ -26,8 +26,11 @@
   md-list{
     padding: 0;
     md-list-item{
+      &:focus{
+        outline:none;
+      }
       position: relative;
-      padding: 5px 0;
+      padding: 5px 16px;
       p{
         font-size: 13px;
       }
@@ -36,6 +39,13 @@
           font-size: 13px;
           text-transform: none;
         }
+      }
+      .folderButton{
+        margin: 0;
+        height: 56px;
+        min-height: 56px;
+        text-align: left;
+        width: 100%;
       }
       .view{
         width: 50px;

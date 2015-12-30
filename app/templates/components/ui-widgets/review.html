@@ -8,7 +8,7 @@
   <!--One Review content-->
   <md-content class="md-padding">
     {{review.comment}}
-    <div layout="row" layout-align="center center" layout-fill class="review-widget-footer">
+    <div ng-if="typereview != 'reply_reviews'" layout="row" layout-align="center center" layout-fill class="review-widget-footer">
       <div layout="row">
         <a href="" ng-click="Reply($index)">Reply</a>|<a href="" ng-click="FlagReview($index)">Flag Review</a>
       </div>

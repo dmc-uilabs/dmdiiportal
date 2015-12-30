@@ -1,0 +1,281 @@
+<div class="page-header" layout-padding>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<div layout="column">
+				<h1 class="name-project">
+					<div sub-nav-menu-button current-page="1"></div>
+					{{projectData.title}}
+					<span class="small-text small-text--grey">Due in 20 days</span>
+				</h1>
+				<span ng-if="isPreview" class="project-manager">Submitted: {{projectData.projectManager}}</span>
+			</div>      
+		</div>
+	</md-toolbar>
+</div>
+<div class="project-details-services" layout="column">
+	<div>
+		<md-button class="return" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+			Return to Services
+		</md-button>
+	</div>
+	<div layout="row" layout-align="space-between center">
+		<h2><a ng-href="{{'product.php#/'+ service.type + 's/' + service.id}}">{{service.title}}</a> <span>By {{service.owner}}</span></h2>
+		<div class="buttons" layout layout-align="center center">
+			<md-button class="md-raised" ng-href="{{'project.php#/' + projectData.id + '/run-service/' + item.id}}">
+				Run
+			</md-button>
+			<md-button class="md-raised">
+				Follow
+			</md-button>
+			<md-button aria-label="reply" href="" class="md-icon-button header-icon">
+				<ng-md-icon icon="reply" style="fill: #65AF3F;" size="25"></ng-md-icon>
+			</md-button>
+			<md-button aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/edit-service'}}" class="md-icon-button header-icon">
+				<ng-md-icon icon="create" style="fill: #65AF3F;" size="25"></ng-md-icon>
+			</md-button>
+			<md-button aria-label="delete" href="" class="md-icon-button header-icon">
+				<ng-md-icon icon="delete" style="fill: red;" size="25"></ng-md-icon>
+			</md-button>
+		</div>
+	</div>
+	<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}}) {{number_of_comments}} reviews"></ui-widget-stars-static>
+	<div class="description">
+		{{service.description}}
+	</div>
+	<md-tabs md-dynamic-height md-border-bottom>
+		<md-tab label="HISTORY">
+			<md-content class="md-padding" layout="row">
+        <md-list flex class="history-list">
+          <div class="header" layout="row" layout-align="start center">
+            <h2>Public</h2>
+            <md-button class="viewAll">View all</md-button>
+          </div>
+          <md-list-item>
+            <ng-md-icon icon="done_all" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Timmy Thomas successfully ran the service.</h2>
+            <span flex></span>
+            <h3>July 31</h3>
+          </md-list-item>
+          <md-list-item>
+            <ng-md-icon icon="block" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Anna Barton ran the service unsuccessfully.</h2>
+            <span flex></span>
+            <h3>July 30</h3>
+          </md-list-item>
+          <md-list-item>
+            <ng-md-icon icon="file_upload" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Jhon Smith uploaded the service.</h2>
+            <span flex></span>
+            <h3>June 30</h3>
+          </md-list-item>
+          <md-list-item>
+            <ng-md-icon icon="block" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Anna Barton ran the service unsuccessfully.</h2>
+            <span flex></span>
+            <h3>June 30</h3>
+          </md-list-item>
+          <md-list-item>
+            <ng-md-icon icon="block" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Anna Barton ran the service unsuccessfully.</h2>
+            <span flex></span>
+            <h3>June 30</h3>
+          </md-list-item>
+          <md-list-item>
+            <ng-md-icon icon="file_upload" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Jhon Smith uploaded the service.</h2>
+            <span flex></span>
+            <h3>June 30</h3>
+          </md-list-item>
+        </md-list>
+
+        <span class="vertikal-divider"></span>
+
+        <md-list flex class="history-list">
+          <div class="header" layout="row" layout-align="start center">
+            <h2>Shared</h2>
+            <md-button class="viewAll">View all</md-button>
+          </div>
+          <md-list-item>
+            <ng-md-icon icon="edit" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Adam Marks edited the service description</h2>
+            <span flex></span>
+            <h3>June 30</h3>
+          </md-list-item>
+          <md-list-item>
+            <ng-md-icon icon="edit" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Adam Marks edited the service description</h2>
+            <span flex></span>
+            <h3>June 30</h3>
+          </md-list-item>
+          <md-list-item>
+            <ng-md-icon icon="edit" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Adam Marks edited the service description</h2>
+            <span flex></span>
+            <h3>June 30</h3>
+          </md-list-item>
+          <md-list-item>
+            <ng-md-icon icon="edit" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Adam Marks edited the service description</h2>
+            <span flex></span>
+            <h3>June 30</h3>
+          </md-list-item>
+          <md-list-item>
+            <ng-md-icon icon="edit" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Adam Marks edited the service description</h2>
+            <span flex></span>
+            <h3>June 30</h3>
+          </md-list-item>
+          <md-list-item>
+            <ng-md-icon icon="edit" style="fill: #65AF3F;" size="25"></ng-md-icon>
+            <h2>Adam Marks edited the service description</h2>
+            <span flex></span>
+            <h3>June 30</h3>
+          </md-list-item>
+        </md-list>
+      </md-content>
+		</md-tab>
+
+		<md-tab label="STATISTICS">
+			<div class="statistics" layout="column" ng-repeat="(key, item) in statistics">
+				<h2>{{key}}</h2>
+				<md-divider></md-divider>
+				<div layout="row" layout-align="space-between start">
+					<div flex="20" class="rate">
+						<h3>Success Rate</h3>
+						<div class="cell1"></div>
+						<div class="cell2"></div>
+						<div class="cell3"></div>
+					</div>
+					<div flex="20">
+						<div class="section">
+							<h3>Successful Runs</h3>
+							<div class="cell1" layout="row" layout-align="space-between center">
+								<h4>Today</h4>
+								<h5>{{item.SuccessfulRuns.Today}}</h5>
+							</div>
+							<div class="cell2" layout="row" layout-align="space-between center">
+								<h4>Week</h4>
+								<h5>{{item.SuccessfulRuns.Week}}</h5>
+							</div>
+							<div class="cell3" layout="row" layout-align="space-between center">
+								<h4>All-time</h4>
+								<h5>{{item.SuccessfulRuns.AllTime}}</h5>
+							</div>
+						</div>
+
+						<div class="section">
+							<h3>Runs By Users</h3>
+							<div class="cell1" layout="row" layout-align="space-between center">
+								<h4>Today</h4>
+								<h5>{{item.RunsByUsers.Today}}</h5>
+							</div>
+							<div class="cell2" layout="row" layout-align="space-between center">
+								<h4>Week</h4>
+								<h5>{{item.RunsByUsers.Week}}</h5>
+							</div>
+							<div class="cell3" layout="row" layout-align="space-between center">
+								<h4>All-time</h4>
+								<h5>{{item.RunsByUsers.AllTime}}</h5>
+							</div>
+						</div>
+					</div>
+					<div flex="20">
+						<div class="section">
+							<h3>Incomplete Runs</h3>
+							<div class="cell1" layout="row" layout-align="space-between center">
+								<h4>Today</h4>
+								<h5>{{item.IncompleteRuns.Today}}</h5>
+							</div>
+							<div class="cell2" layout="row" layout-align="space-between center">
+								<h4>Week</h4>
+								<h5>{{item.IncompleteRuns.Week}}</h5>
+							</div>
+							<div class="cell3" layout="row" layout-align="space-between center">
+								<h4>Month</h4>
+								<h5>{{item.IncompleteRuns.Month}}</h5>
+							</div>
+						</div>
+
+						<div class="section">
+							<h3>Unique Users</h3>
+							<div class="cell1" layout="row" layout-align="space-between center">
+								<h4>Today</h4>
+								<h5>{{item.UniqueUsers.Today}}</h5>
+							</div>
+							<div class="cell2" layout="row" layout-align="space-between center">
+								<h4>Week</h4>
+								<h5>{{item.UniqueUsers.Week}}</h5>
+							</div>
+							<div class="cell3" layout="row" layout-align="space-between center">
+								<h4>Month</h4>
+								<h5>{{item.UniqueUsers.Month}}</h5>
+							</div>
+						</div>
+					</div>
+					<div flex="20">
+						<div class="section">
+							<h3>Unavailable Runs</h3>
+							<div class="cell1" layout="row" layout-align="space-between center">
+								<h4>Today</h4>
+								<h5>{{item.UnavailableRuns.Today}}</h5>
+							</div>
+							<div class="cell2" layout="row" layout-align="space-between center">
+								<h4>Week</h4>
+								<h5>{{item.UnavailableRuns.Week}}</h5>
+							</div>
+							<div class="cell3" layout="row" layout-align="space-between center">
+								<h4>Month</h4>
+								<h5>{{item.UnavailableRuns.Month}}</h5>
+							</div>
+						</div>
+
+						<div class="section">
+							<h3>Average Time (min)</h3>
+							<div class="cell1" layout="row" layout-align="space-between center">
+								<h4>Today</h4>
+								<h5>{{item.AverageTime.Today}}</h5>
+							</div>
+							<div class="cell2" layout="row" layout-align="space-between center">
+								<h4>Week</h4>
+								<h5>{{item.AverageTime.Week}}</h5>
+							</div>
+							<div class="cell3" layout="row" layout-align="space-between center">
+								<h4>Month</h4>
+								<h5>{{item.AverageTime.Month}}</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</md-tab>
+
+		<md-tab label="TAGS">
+			<md-content class="md-padding">
+				<div layout="row" class="tabs-content" layout-wrap>
+					<md-chips ng-repeat="tag in service.tags track by $index">
+						<md-chip>
+							{{tag}}
+						</md-chip>
+					</md-chips>
+				</div>
+			</md-content>
+		</md-tab>
+
+		<md-tab label="DOCUMENTS">
+			<md-content class="md-padding">
+				<ui-widget-documents-folder></ui-widget-documents-folder>
+			</md-content>
+		</md-tab>
+
+		<md-tab label="Reviews">
+			<div layout="row" layout-align="start center">
+				<h4>{{number_of_comments}} reviews </h4>
+				<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
+			</div>
+			<div ng-repeat="review in service.reviews">
+				<ui-widget-review review="review" userlogin="'UserLogin'" typereview="'reply_reviews'"></ui-widget-review>
+        <md-divider></md-divider>
+      </div>
+		</md-tab>
+	</md-tabs>
+</div>

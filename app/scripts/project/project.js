@@ -17,6 +17,8 @@ angular.module('dmc.project', [
         'dmc.widgets.questions',
         'dmc.widgets.submissions',
         'dmc.widgets.invited-users',
+        'dmc.widgets.stars',
+        'dmc.widgets.review',
         'ui.router',
         'md.data.table',
         'ngCookies',
@@ -178,6 +180,10 @@ angular.module('dmc.project', [
         url: '/run-service/:ServiceId',
         controller: 'projectRunServicesCtrl as projectCtrl',
         templateUrl: 'templates/project/pages/run-service.html'
+    }).state('project.services-detail', {
+        url: '/services/:ServiceId/detail',
+        controller: 'projectServicesDetailCtrl as projectCtrl',
+        templateUrl: 'templates/project/pages/services-detail.html'
     });
     $urlRouterProvider.otherwise('/1');
 })
