@@ -14,6 +14,17 @@ $navigationActive: #65AF3F;
   height: 99px;
 }
 
+.message-container{
+  md-menu-item{ 
+    height: auto;
+    a{
+      line-height: 1.5;
+  max-width: 200px;
+  white-space: normal;
+}
+}
+}
+
 .main-header{
   top: 0;
   z-index: 25;
