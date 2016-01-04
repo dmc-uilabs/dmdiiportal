@@ -1,0 +1,29 @@
+<md-content class="md-padding tabs-history" layout="row">
+	<md-list flex class="history-list">
+		<div class="header" layout="row" layout-align="start center">
+			<h2>{{data.leftColumn.title}}</h2>
+			<md-button class="viewAll" ng-href="{{data.leftColumn.viewAllLink}}">View all</md-button>
+		</div>
+		<md-list-item ng-repeat="item in data.leftColumn.list track by $index">
+			<ng-md-icon icon="{{item.icon}}" style="fill: #65AF3F;" size="25"></ng-md-icon>
+			<h2>{{item.title}}</h2>
+			<span flex></span>
+			<h3>{{item.date}}</h3>
+		</md-list-item>
+	</md-list>
+
+	<span class="vertikal-divider"></span>
+
+	<md-list flex class="history-list">
+		<div class="header" layout="row" layout-align="start center">
+			<h2>{{data.rightColumn.title}}</h2>
+			<md-button class="viewAll" ng-href="{{data.rightColumn.viewAllLink}}">View all</md-button>
+		</div>
+		<md-list-item ng-repeat="item in data.rightColumn.list track by $index">
+			<ng-md-icon icon="{{item.icon}}" style="fill: #65AF3F;" size="25"></ng-md-icon>
+			<h2>{{item.title}}</h2>
+			<span flex></span>
+			<h3>{{item.date}}</h3>
+		</md-list-item>
+	</md-list>
+</md-content>

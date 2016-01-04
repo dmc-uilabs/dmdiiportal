@@ -19,6 +19,7 @@ angular.module('dmc.project', [
         'dmc.widgets.invited-users',
         'dmc.widgets.stars',
         'dmc.widgets.review',
+        'dmc.widgets.tabs',
         'ui.router',
         'md.data.table',
         'ngCookies',

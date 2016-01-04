@@ -316,12 +316,20 @@
         </div>
 
         <div ng-if="!editFlag" class="similar_product">
-          <h2>Similar product</h2>
+          <h2>Similar product</h2> 
           <div layout="row">
-            <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[0].type" card-source="products_card[0]"></dmc-product-card>
-            <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[1].type" card-source="products_card[1]"></dmc-product-card>
-            <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[2].type" card-source="products_card[2]"></dmc-product-card>
-            <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[3].type" card-source="products_card[3]"></dmc-product-card>
+            <div flex="25">
+              <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[0].type" card-source="products_card[0]"></dmc-product-card>
+            </div>
+            <div flex="25">
+              <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[1].type" card-source="products_card[1]"></dmc-product-card>
+            </div>
+            <div flex="25">
+              <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[2].type" card-source="products_card[2]"></dmc-product-card>
+            </div>
+            <div flex="25">
+              <dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[3].type" card-source="products_card[3]"></dmc-product-card>
+            </div>
           </div>
         </div>
       </md-content>

@@ -19,13 +19,6 @@
       }
     }
   ],
-  "company_follows": [
-    {
-      "id": 1,
-      "companyId": 1,
-      "accountId": 1
-    }
-  ],
   "company_features": [
     {
       "id": 1,
@@ -212,6 +205,12 @@
     {
       "id": 8,
       "productId": 18,
+      "accountId": 1,
+      "productType": "service"
+    },
+    {
+      "id": 10,
+      "productId": 2,
       "accountId": 1,
       "productType": "service"
     },
@@ -1674,6 +1673,40 @@
       "like": 0,
       "dislike": 0,
       "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+    },
+    {
+      "id": 13,
+      "productId": 1,
+      "productType": "services",
+      "reply": true,
+      "reviewId": 0,
+      "name": "DMC Member",
+      "status": true,
+      "date": "01-04-2016",
+      "rating": 5,
+      "userRatingReview": {
+        "DMC Member": "none"
+      },
+      "like": 0,
+      "dislike": 0,
+      "comment": "test"
+    },
+    {
+      "id": 14,
+      "productId": 1,
+      "productType": "",
+      "reply": false,
+      "reviewId": 13,
+      "name": "DMC Member",
+      "status": true,
+      "date": "01-04-2016",
+      "rating": 0,
+      "userRatingReview": {
+        "DMC Member": "none"
+      },
+      "like": 0,
+      "dislike": 0,
+      "comment": "reply test"
     }
   ],
   "profiles": [
