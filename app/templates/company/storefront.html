@@ -17,7 +17,7 @@
                             <h2 class="md-title" layout="row" layout-align="start center">{{companyData.name}}<md-button class="company-buttons" ng-href="/">Profile</md-button></h2>
                             <p>
                                 <div ng-bind-html="(companyData.shortDescription == null || isReadMore ? companyData.description : companyData.shortDescription)"></div>
-                                <a class="read-more" ng-show="companyData.shortDescription" ng-click="readMore()">{{(isReadMore ? 'Roll up' : 'Read More')}}</a>
+                                <a class="read-more" ng-show="companyData.shortDescription" ng-click="readMore()">{{(isReadMore ? 'Show Less' : 'Read More')}}</a>
                             </p>
                         </div>
                         <span flex></span>

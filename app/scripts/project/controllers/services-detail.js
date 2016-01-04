@@ -77,7 +77,7 @@ angular.module('dmc.project')
 	ajax.on(
 		dataFactory.getUrlAllServices(),
 		{
-			projectId: projectData.id,
+            productId: projectData.id,
 			ids: [$stateParams.ServiceId]
 		},
 		function(data){
