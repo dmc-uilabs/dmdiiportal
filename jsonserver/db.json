@@ -19,6 +19,13 @@
       }
     }
   ],
+  "company_follows": [
+    {
+      "id": 1,
+      "companyId": 1,
+      "accountId": 1
+    }
+  ],
   "company_features": [
     {
       "id": 1,
@@ -205,12 +212,6 @@
     {
       "id": 8,
       "productId": 18,
-      "accountId": 1,
-      "productType": "service"
-    },
-    {
-      "id": 10,
-      "productId": 2,
       "accountId": 1,
       "productType": "service"
     },

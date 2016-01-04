@@ -29,7 +29,7 @@ angular.module('dmc.component.productscard', [
       templateUrl: 'templates/components/products-card/products-card-tpl.html',
       controller: function($scope,$cookies){
           if(parseInt($scope.currentPage) <= 0) $scope.currentPage = 1;
-
+          if(!$scope.hideButtons) $scope.hideButtons = [];
           $scope.itemsArray = [];
 
           $scope.sortArray = [{
