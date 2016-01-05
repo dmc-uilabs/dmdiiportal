@@ -1,14 +1,13 @@
 <div class="tabs-statistic" layout="column" ng-repeat="item in data">
 	<h2 ng-if="item.title">{{item.title}}</h2>
-	<md-divider ng-if="item.title"></md-divider>
 	<div layout="row" layout-align="space-between start">
-		<div flex="20" class="rate">
+		<div flex="15" class="rate">
 			<h3>Success Rate</h3>
 			<div class="cell1"></div>
 			<div class="cell2"></div>
 			<div class="cell3"></div>
 		</div>
-		<div flex="20">
+		<div flex="15">
 			<div class="section">
 				<h3>Successful Runs</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
@@ -41,7 +40,7 @@
 				</div>
 			</div>
 		</div>
-		<div flex="20">
+		<div flex="15">
 			<div class="section">
 				<h3>Incomplete Runs</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
@@ -53,7 +52,7 @@
 					<h5>{{item.IncompleteRuns.Week}}</h5>
 				</div>
 				<div class="cell3" layout="row" layout-align="space-between center">
-					<h4>Month</h4>
+					<h4>All-time</h4>
 					<h5>{{item.IncompleteRuns.Month}}</h5>
 				</div>
 			</div>
@@ -69,12 +68,12 @@
 					<h5>{{item.UniqueUsers.Week}}</h5>
 				</div>
 				<div class="cell3" layout="row" layout-align="space-between center">
-					<h4>Month</h4>
+					<h4>All-time</h4>
 					<h5>{{item.UniqueUsers.Month}}</h5>
 				</div>
 			</div>
 		</div>
-		<div flex="20">
+		<div flex="15">
 			<div class="section">
 				<h3>Unavailable Runs</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
@@ -86,7 +85,7 @@
 					<h5>{{item.UnavailableRuns.Week}}</h5>
 				</div>
 				<div class="cell3" layout="row" layout-align="space-between center">
-					<h4>Month</h4>
+					<h4>All-time</h4>
 					<h5>{{item.UnavailableRuns.Month}}</h5>
 				</div>
 			</div>
@@ -102,7 +101,7 @@
 					<h5>{{item.AverageTime.Week}}</h5>
 				</div>
 				<div class="cell3" layout="row" layout-align="space-between center">
-					<h4>Month</h4>
+					<h4>All-time</h4>
 					<h5>{{item.AverageTime.Month}}</h5>
 				</div>
 			</div>

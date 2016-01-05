@@ -5,7 +5,7 @@
 		font-weight: normal;
 	}
 	md-content{
-		margin-bottom: 16px;
+		margin: 16px 0;
 
 	}
 
@@ -150,14 +150,18 @@
 }
 
 .project-run-services{
-	margin: 0 24px;
+	margin: 24px 24px;
 	padding: 16px;
 	background-color: #fff;
 	h2{
 		margin: 0;
 	}
+	.md-button{
+		background-color: white
+	}
 	.historyButton{
 		margin: 0;
+		color: inherit;
 	}
 	h3{
 		margin: 0;
@@ -165,6 +169,16 @@
 	}
 	.inputs{
 		padding-right: 8px;
+		h2{
+			font-weight: normal;
+		}
+		.inputs-button{
+			.md-button{
+				height: 24px;
+				min-height: 24px;
+				line-height: 24px
+			}
+		}
 		md-content{
 			height: 350px;
 			border: 1px solid #b6b6b6;
@@ -190,6 +204,7 @@
 		h2{
 			height: 48px;
 			line-height: 48px;
+			font-weight: normal;
 		}
 		md-content{
 		font-size: 10px;
@@ -201,6 +216,7 @@
 			h2{
 				height: inherit;
 				line-height: inherit;
+				font-weight: bold;
 			}
 			h4{
 				color: #b6b6b6;
@@ -212,7 +228,7 @@
 }
 
 .project-history-services{
-	margin: 0 24px;
+	margin: 24px 24px;
 	padding: 16px;
 	background-color: #fff;
 	h2{
@@ -220,8 +236,7 @@
 	}
 	.historyButton{
 		margin: 0;
-		.md-button{
-		}
+		color: inherit;
 	}
 	md-content{
 		height: 450px;
@@ -242,6 +257,13 @@
 				min-height: 36px;
 				.md-list-item-inner{
 					min-height: 36px;
+				}
+				a{
+					text-decoration: none;
+					color: inherit;
+				}
+				ng-md-icon{
+					margin-right: 4px;
 				}
 				div{
 					padding: 0 6px;

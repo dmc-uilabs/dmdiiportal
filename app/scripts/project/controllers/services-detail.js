@@ -114,7 +114,7 @@ angular.module('dmc.project')
 			]
 		},
 		rightColumn: {
-			title: "Shared",
+			title: "Marketplace",
 			viewAllLink: "",
 			list:[
 				{

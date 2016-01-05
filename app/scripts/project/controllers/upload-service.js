@@ -1,8 +1,9 @@
 angular.module('dmc.project')
-.controller('projectUploadServicesCtrl', ['$scope', '$stateParams', 'projectData', function ($scope, $stateParams, projectData) {
+.controller('projectUploadServicesCtrl', ['$scope', '$stateParams', 'projectData', 'edit', function ($scope, $stateParams, projectData, edit) {
 	
 	$scope.projectData = projectData;
 	$scope.page1 = true;
+	$scope.edit = edit;
 	$scope.flagAddServer = false;
 	$scope.serverModel = null;
 
