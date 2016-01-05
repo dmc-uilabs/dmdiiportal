@@ -15,41 +15,41 @@
 <div class="project-run-services" ng-if="!runHistory" layout="column">
 	<h2>{{service.title}}</h2>
 	<div layout="row" layout-align="space-between center">
-		<md-button ng-click="showHistory()" class="historyButton">
+		<a href="" ng-click="showHistory()" class="historyButton">
 			Run History
-		</md-button>
+		</a>
 		<div>
 			<md-button ng-click="" class="md-raised">
 				Visualize
 			</md-button>
-			<md-button ng-click="run()" class="md-raised md-primary">
+			<md-button ng-click="run()" class="md-raised">
 				Run
 			</md-button>
 		</div>
 	</div>
 	<h3>Status: {{status}}</h3>
-	<h3>You Run Time: {{runTime}}s</h3>
+	<h3>Your Run Time: {{runTime}}s</h3>
 	<h3>Average Run: {{averageRun}}s</h3>
 	<div layout="row">
 		<div flex="50" class="inputs">
 			<div layout="row" layout-align="space-between center">
 				<h2>Inputs</h2>
-				<div>
-					<md-button ng-click="" class="md-raised">
+				<div class="inputs-button">
+					<md-button ng-click="clear()" class="md-raised">
 						Clear
 					</md-button>
-					<md-button ng-click="" class="md-raised md-primary">
+					<md-button ng-click="save()" class="md-raised md-primary">
 						Save
 					</md-button>
 				</div>
 			</div>
 			<md-content>
 				<md-list>
-					<md-list-item ng-repeat="item in inputs" layout="row">
+					<md-list-item ng-repeat="item in inputs" layout="row" layout-align="start end">
 						<div flex="50" class="left">
 							<md-input-container>
 							<label>{{item.left}}</label>
-							<input ng-model="item.models">
+							<input type="number" ng-model="item.models">
 							</md-input-container>
 						</div>
 						<div flex="50" class="right">
@@ -78,9 +78,9 @@
 <div class="project-history-services" ng-if="runHistory" layout="column">
 	<h2>{{service.title}}</h2>
 	<div layout="row" layout-align="space-between center">
-		<md-button ng-click="showHistory()" class="historyButton">
-			Run Service
-		</md-button>
+		<a href="" ng-click="showHistory()" class="historyButton">
+			Run History
+		</a>
 	</div>
 	<h3>Run History</h3>
 	<md-content>
@@ -109,8 +109,8 @@
 			</div>
 			<md-list-item ng-repeat="item in history | orderBy:sort:order" layout="row">
 				<div flex="25">{{item.runDate}}</div>
-				<div flex="25">{{item.runBy}}</div>
-				<div flex="25">{{item.runTime}}</div>
+				<div flex="25"><a href="">{{item.runBy}}</a></div>
+				<div flex="25">{{item.runTime}}s</div>
 				<div flex="25" layout="row" layout-align="start center">
 					<ng-md-icon icon="info" size="16" style="fill: #000"></ng-md-icon>
 					{{item.results}}

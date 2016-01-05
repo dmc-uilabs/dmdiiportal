@@ -7,8 +7,9 @@ angular.module('dmc.project')
 	$scope.number_of_comments = 0;
 	$scope.service = null;
 
-	$scope.statistics = {
-		"Project": {
+	$scope.statistics = [
+		{
+			title: "Project",
 			"SuccessfulRuns": {
 				"Today": 8,
 				"Week": 10,
@@ -40,7 +41,8 @@ angular.module('dmc.project')
 				"Month": 22.2
 			}
 		},
-		"Marketplace": {
+		{
+			title: "Marketplace",
 			"SuccessfulRuns": {
 				"Today": 8,
 				"Week": 10,
@@ -71,6 +73,81 @@ angular.module('dmc.project')
 				"Week": 11,
 				"Month": 22.2
 			}
+		}
+	]
+
+	$scope.history = {
+		leftColumn: {
+			title: "Public",
+			viewAllLink: "",
+			list:[
+				{
+					icon: "done_all",
+					title: "Timmy Thomas successfully ran the service.",
+					date: "July 31",
+				},
+				{
+					icon: "block",
+					title: "Anna Barton ran the service unsuccessfully.",
+					date: "July 30",
+				},
+				{
+					icon: "file_upload",
+					title: "Jhon Smith uploaded the service.",
+					date: "June 30",
+				},
+				{
+					icon: "block",
+					title: "Anna Barton ran the service unsuccessfully.",
+					date: "June 30",
+				},
+				{
+					icon: "block",
+					title: "Anna Barton ran the service unsuccessfully.",
+					date: "June 30",
+				},
+				{
+					icon: "file_upload",
+					title: "Jhon Smith uploaded the service.",
+					date: "June 30",
+				},
+			]
+		},
+		rightColumn: {
+			title: "Marketplace",
+			viewAllLink: "",
+			list:[
+				{
+					icon: "edit",
+					title: "Adam Marks edited the service description",
+					date: "June 30",
+				},
+				{
+					icon: "edit",
+					title: "Adam Marks edited the service description",
+					date: "June 30",
+				},
+				{
+					icon: "edit",
+					title: "Adam Marks edited the service description",
+					date: "June 30",
+				},
+				{
+					icon: "edit",
+					title: "Adam Marks edited the service description",
+					date: "June 30",
+				},
+				{
+					icon: "edit",
+					title: "Adam Marks edited the service description",
+					date: "June 30",
+				},
+				{
+					icon: "edit",
+					title: "Adam Marks edited the service description",
+					date: "June 30",
+				}
+			]
 		}
 	}
 

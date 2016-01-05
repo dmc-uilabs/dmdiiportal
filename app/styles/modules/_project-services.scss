@@ -5,8 +5,13 @@
 		font-weight: normal;
 	}
 	md-content{
-		margin-bottom: 16px;
+		margin: 16px 0;
 
+	}
+
+	.register{
+		font-size: 14px;
+		text-transform: none;
 	}
 	md-list{
 		font-size: 10px;
@@ -145,14 +150,18 @@
 }
 
 .project-run-services{
-	margin: 0 24px;
+	margin: 24px 24px;
 	padding: 16px;
 	background-color: #fff;
 	h2{
 		margin: 0;
 	}
+	.md-button{
+		background-color: white
+	}
 	.historyButton{
 		margin: 0;
+		color: inherit;
 	}
 	h3{
 		margin: 0;
@@ -160,6 +169,16 @@
 	}
 	.inputs{
 		padding-right: 8px;
+		h2{
+			font-weight: normal;
+		}
+		.inputs-button{
+			.md-button{
+				height: 24px;
+				min-height: 24px;
+				line-height: 24px
+			}
+		}
 		md-content{
 			height: 350px;
 			border: 1px solid #b6b6b6;
@@ -185,6 +204,7 @@
 		h2{
 			height: 48px;
 			line-height: 48px;
+			font-weight: normal;
 		}
 		md-content{
 		font-size: 10px;
@@ -196,6 +216,7 @@
 			h2{
 				height: inherit;
 				line-height: inherit;
+				font-weight: bold;
 			}
 			h4{
 				color: #b6b6b6;
@@ -207,7 +228,7 @@
 }
 
 .project-history-services{
-	margin: 0 24px;
+	margin: 24px 24px;
 	padding: 16px;
 	background-color: #fff;
 	h2{
@@ -215,8 +236,7 @@
 	}
 	.historyButton{
 		margin: 0;
-		.md-button{
-		}
+		color: inherit;
 	}
 	md-content{
 		height: 450px;
@@ -237,6 +257,13 @@
 				min-height: 36px;
 				.md-list-item-inner{
 					min-height: 36px;
+				}
+				a{
+					text-decoration: none;
+					color: inherit;
+				}
+				ng-md-icon{
+					margin-right: 4px;
 				}
 				div{
 					padding: 0 6px;
@@ -276,110 +303,10 @@
 			margin: 0;
 		}
 	}
-	.history-list{
-		padding: 0;
-		
-		md-list-item{
-			padding: 8px 0px;
-			min-height: 30px;
-			ng-md-icon{
-				padding-right: 16px; 
-			}
-
-
-			h2{
-				font-size: 14px;
-				font-weight: normal;
-				margin: 0;
-				a{
-					color: black;
-				}
-			}
-			h3{
-				font-size: 11px;
-				font-weight: normal;
-				margin: 0;
-			}
-		}
-	}
 	.md-button.viewAll{
 		font-size: 11px;
 		color: #65AF3F;
 		line-height: 36px;
 		margin: 0;
 	}
-	.vertikal-divider{
-		border-left: 1px solid rgba(0,0,0,0.12);
-		margin: 0 16px;
-	}
-
-	.statistics{
-		h2{
-			margin-top: 24px;
-		}
-		.rate{
-			height: 100%;
-			padding-top: 36px;
-			h3{
-				font-size: 16px;
-				border: 1px solid #000;
-				margin: 0;
-				padding: 16px 16px 6px;
-			}
-			.cell1{
-				border: 1px solid #000;
-				border-top: none;
-				height: 75px;
-				background-color: #65AF3F;
-			}
-			.cell2{
-				border: 1px solid #000;
-				border-top: none;
-				height: 39px;
-				background-color: yellow;
-			}
-			.cell3{
-				border: 1px solid #000;
-				border-top: none;
-				height: 39px;
-				background-color: red;
-			}
-		}
-
-		.section{
-			padding-top: 36px;
-			h3{
-				font-size: 16px;
-				border: 1px solid #000;
-				border-bottom: none;
-				margin: 0;
-				padding: 16px 16px 6px;
-			}
-			h4{
-				font-size: 16px;
-				margin: 6px 0;
-				font-weight: normal;
-			}
-			h5{
-				font-size: 22px;
-				margin: 6px 0;
-			}
-			.cell1{
-				border: 1px solid #000;
-				border-top: none;
-				padding: 36px 16px 0;
-			}
-			.cell2{
-				border: 1px solid #000;
-				border-top: none;
-				padding: 0px 16px;
-			}
-			.cell3{
-				border: 1px solid #000;
-				border-top: none;
-				padding: 0px 16px;
-			}
-		}
-	}
-	
 }

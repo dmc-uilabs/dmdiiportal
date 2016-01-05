@@ -165,217 +165,217 @@ angular.module('dmc.project')
 
 	$scope.history = [
 		{
-			runDate: "10-15-2015",
+			runDate: "10/15/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "10-19-2015",
+			runDate: "10/19/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "12-10-2015",
+			runDate: "12/10/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Failed",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-15-2015",
+			runDate: "12/15/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "10-19-2015",
+			runDate: "10/19/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "12-10-2015",
+			runDate: "12/10/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Failed",
 		},
 		{
-			runDate: "10-19-2015",
+			runDate: "10/19/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "12-10-2015",
+			runDate: "12/10/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Failed",
 		},
 		{
-			runDate: "10-19-2015",
+			runDate: "10/19/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "12-10-2015",
+			runDate: "12/10/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Failed",
 		},
 		{
-			runDate: "10-19-2015",
+			runDate: "10/19/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "12-10-2015",
+			runDate: "12/10/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Failed",
 		},
 		{
-			runDate: "10-19-2015",
+			runDate: "10/19/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "12-10-2015",
+			runDate: "12/10/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Failed",
 		},
 		{
-			runDate: "10-19-2015",
+			runDate: "10/19/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "12-10-2015",
+			runDate: "12/10/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Failed",
 		},
 		{
-			runDate: "10-19-2015",
+			runDate: "10/19/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "12-10-2015",
+			runDate: "12/10/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Failed",
 		},
 		{
-			runDate: "10-19-2015",
+			runDate: "10/19/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "12-10-2015",
+			runDate: "12/10/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Failed",
 		},
 		{
-			runDate: "10-19-2015",
+			runDate: "10/19/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "12-10-2015",
+			runDate: "12/10/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Failed",
 		},
 		{
-			runDate: "10-19-2015",
+			runDate: "10/19/2015",
 			runBy: "Forge Admin",
 			runTime: 3.0,
 			results: "Failed",
 		},
 		{
-			runDate: "12-10-2015",
+			runDate: "12/10/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Succesful",
 		},
 		{
-			runDate: "12-11-2015",
+			runDate: "12/11/2015",
 			runBy: "Forge Admin",
 			runTime: 2.9,
 			results: "Failed",
@@ -383,20 +383,21 @@ angular.module('dmc.project')
 	]
 
 	ajax.on(
-			dataFactory.getUrlAllServices(),
-			{
-				projectId: projectData.id,
-				ids: [$stateParams.ServiceId]
-			},
-			function(data){
-				if(data.count > 0){
-					$scope.service = data.result[0];
-				}
-			},
-			function(){
-				alert("Ajax fail: getAllServices");
+		dataFactory.getUrlAllServices(),
+		{
+			projectId: projectData.id,
+			ids: [$stateParams.ServiceId]
+		},
+		function(data){
+			if(data.count > 0){
+				$scope.service = data.result[0];
+				if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 			}
-		);
+		},
+		function(){
+			alert("Ajax fail: getAllServices");
+		}
+	);
 
 	$scope.run = function(){
 		var test = false;
@@ -421,5 +422,26 @@ angular.module('dmc.project')
 	$scope.sorting = function(sort){
 		$scope.sort = sort;
 		$scope.order = !$scope.order;
+	}
+
+	$scope.clear = function(){
+		for(var i in $scope.inputs){
+			$scope.inputs[i].models = "";
+		}
+	}
+
+	$scope.save = function(){
+		var test = false;
+		for(var i in $scope.inputs){
+			if($scope.inputs[i].models != ''){
+				test = true;
+				break;
+			}
+		}
+		if(test == true){
+			toastModel.showToast("success", "The inputs have been saved");
+		}else{
+			toastModel.showToast("error", "Save Failed. Please check your inputs and try again");
+		}
 	}
 }])

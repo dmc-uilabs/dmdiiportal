@@ -92,6 +92,7 @@
     <script src="scripts/components/ui-widgets/invited-users.directive.js"></script>
     <script src="scripts/components/ui-widgets/stars.directive.js"></script>
     <script src="scripts/components/ui-widgets/review.directive.js"></script>
+    <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
     <script src="scripts/components/sub-nav-menu/sub-nav-menu.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>

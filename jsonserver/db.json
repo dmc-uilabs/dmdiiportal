@@ -19,13 +19,6 @@
       }
     }
   ],
-  "company_follows": [
-    {
-      "id": 1,
-      "companyId": 1,
-      "accountId": 1
-    }
-  ],
   "company_features": [
     {
       "id": 1,
@@ -216,6 +209,12 @@
       "productType": "service"
     },
     {
+      "id": 10,
+      "productId": 2,
+      "accountId": 1,
+      "productType": "service"
+    },
+    {
       "id": 11,
       "productId": 3,
       "accountId": 1,
@@ -344,7 +343,7 @@
       "title": "1 Component",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "Steven Jobs",
-      "releaseDate": "25-08-2015",
+      "releaseDate": "25/08/2015",
       "tags": [],
       "specifications": "/components/1/specifications",
       "featureImage": {
@@ -353,7 +352,7 @@
       },
       "currentStatus": {
         "percentCompleted": "5",
-        "startDate": "25-08-2015",
+        "startDate": "25/08/2015",
         "startTime": "11:15:33",
         "project": {
           "id": 0,
@@ -367,7 +366,7 @@
       "title": "2 Component",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       "owner": "Steven Jobs",
-      "releaseDate": "25-08-2015",
+      "releaseDate": "25/08/2015",
       "tags": [],
       "specifications": "/components/2/specifications",
       "featureImage": {
@@ -376,7 +375,7 @@
       },
       "currentStatus": {
         "percentCompleted": "0",
-        "startDate": "25-08-2015",
+        "startDate": "25/08/2015",
         "startTime": "11:16:02",
         "project": {
           "id": 2,
@@ -390,7 +389,7 @@
       "title": "3 Component",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       "owner": "Steven Jobs",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "tags": [],
       "specifications": "/components/3/specifications",
       "featureImage": {
@@ -399,7 +398,7 @@
       },
       "currentStatus": {
         "percentCompleted": "95",
-        "startDate": "01-09-2015",
+        "startDate": "01/09/2015",
         "startTime": "18:13:10",
         "project": {
           "id": 2,
@@ -415,7 +414,7 @@
       "title": "qout-of-balance Testing",
       "description": "out-of-balance Testing",
       "owner": "L.Mason",
-      "releaseDate": "25-08-2015",
+      "releaseDate": "25/08/2015",
       "serviceType": "analytical",
       "tags": [
         "Tag 1",
@@ -428,7 +427,7 @@
       },
       "currentStatus": {
         "percentCompleted": "5",
-        "startDate": "20-09-2015",
+        "startDate": "20/09/2015",
         "startTime": "11:15:33",
         "project": {
           "id": 1,
@@ -442,7 +441,7 @@
       "title": "fan failure mode analysis",
       "description": "fan failure mode analysis.",
       "owner": "P.Ruiz",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -466,7 +465,7 @@
       "title": "Project Cost Analyzer",
       "description": "Project Cost Analyzer",
       "owner": "M.Gill",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "analytical",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -476,7 +475,7 @@
       },
       "currentStatus": {
         "percentCompleted": "95",
-        "startDate": "21-09-2015",
+        "startDate": "21/09/2015",
         "startTime": "15:48:10",
         "project": {
           "id": 2,
@@ -490,7 +489,7 @@
       "title": "Evaluator 4 - heat loss, cost, mfg time",
       "description": "Evaluator 4 - heat loss, cost, mfg time",
       "owner": "J.Cole",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -500,7 +499,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "20-09-2015",
+        "startDate": "20/09/2015",
         "startTime": "15:11:10",
         "project": {
           "id": 5,
@@ -514,7 +513,7 @@
       "title": "Power Factor Correction Analyzer",
       "description": "Power Factor Correction Analyzer.",
       "owner": "J.Sims",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -524,7 +523,7 @@
       },
       "currentStatus": {
         "percentCompleted": "70",
-        "startDate": "21-09-2015",
+        "startDate": "21/09/2015",
         "startTime": "15:15:10",
         "project": {
           "id": 2,
@@ -538,7 +537,7 @@
       "title": "Capacitor Compartment Layout",
       "description": "Capacitor Compartment Layout",
       "owner": "E.Fox",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -548,7 +547,7 @@
       },
       "currentStatus": {
         "percentCompleted": "95",
-        "startDate": "22-09-2015",
+        "startDate": "22/09/2015",
         "startTime": "11:33:10",
         "project": {
           "id": 3,
@@ -562,7 +561,7 @@
       "title": "Should-cost estimator",
       "description": "Should-cost estimator",
       "owner": "G.Baker",
-      "releaseDate": "01-08-2015",
+      "releaseDate": "01/08/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -572,7 +571,7 @@
       },
       "currentStatus": {
         "percentCompleted": "60",
-        "startDate": "19-09-2015",
+        "startDate": "19/09/2015",
         "startTime": "02:10:10",
         "project": {
           "id": 3,
@@ -586,7 +585,7 @@
       "title": "Capacitor Configurator",
       "description": "Capacitor Configurator",
       "owner": "G.Baker",
-      "releaseDate": "01-07-2015",
+      "releaseDate": "01/07/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -596,7 +595,7 @@
       },
       "currentStatus": {
         "percentCompleted": "80",
-        "startDate": "20-09-2015",
+        "startDate": "20/09/2015",
         "startTime": "16:19:10",
         "project": {
           "id": 3,
@@ -610,7 +609,7 @@
       "title": "Transformer Manufacturing Cost Analysis",
       "description": "Transformer Manufacturing Cost Analysis",
       "owner": "m.winand",
-      "releaseDate": "01-05-2015",
+      "releaseDate": "01/05/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -620,7 +619,7 @@
       },
       "currentStatus": {
         "percentCompleted": "35",
-        "startDate": "21-09-2015",
+        "startDate": "21/09/2015",
         "startTime": "11:12:10",
         "project": {
           "id": 4,
@@ -634,7 +633,7 @@
       "title": "Transformer Heat Loss Model",
       "description": "Transformer Heat Loss Model",
       "owner": "m.winand",
-      "releaseDate": "31-05-2015",
+      "releaseDate": "31/05/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -644,7 +643,7 @@
       },
       "currentStatus": {
         "percentCompleted": "95",
-        "startDate": "22-09-2015",
+        "startDate": "22/09/2015",
         "startTime": "17:12:10",
         "project": {
           "id": 4,
@@ -658,7 +657,7 @@
       "title": "Project Scheduler",
       "description": "Project Scheduler",
       "owner": "V.Sutton",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -668,7 +667,7 @@
       },
       "currentStatus": {
         "percentCompleted": "65",
-        "startDate": "20-09-2015",
+        "startDate": "20/09/2015",
         "startTime": "14:10:10",
         "project": {
           "id": 5,
@@ -682,7 +681,7 @@
       "title": "Cost Relation Model",
       "description": "Cost Relation Model",
       "owner": "R.McCoy",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -692,7 +691,7 @@
       },
       "currentStatus": {
         "percentCompleted": "65",
-        "startDate": "20-09-2015",
+        "startDate": "20/09/2015",
         "startTime": "15:37:10",
         "project": {
           "id": 5,
@@ -706,7 +705,7 @@
       "title": "Heat Loss Relation Model",
       "description": "Heat Loss Relation Model",
       "owner": "R.McCoy",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -716,7 +715,7 @@
       },
       "currentStatus": {
         "percentCompleted": "47",
-        "startDate": "21-09-2015",
+        "startDate": "21/09/2015",
         "startTime": "23:13:10",
         "project": {
           "id": 5,
@@ -730,7 +729,7 @@
       "title": "Cost vs. Heat Loss Trade-off Matrix",
       "description": "Cost vs. Heat Loss Trade-off Matrix",
       "owner": "p.koudal",
-      "releaseDate": "22-02-2015",
+      "releaseDate": "22/02/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -740,7 +739,7 @@
       },
       "currentStatus": {
         "percentCompleted": "68",
-        "startDate": "22-09-2015",
+        "startDate": "22/09/2015",
         "startTime": "13:47:10",
         "project": {
           "id": 4,
@@ -754,7 +753,7 @@
       "title": "Cost vs. Heat Loss Trade-off Matrix",
       "description": "Cost vs. Heat Loss Trade-off Matrix",
       "owner": "p.koudal",
-      "releaseDate": "22-02-2015",
+      "releaseDate": "22/02/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -764,7 +763,7 @@
       },
       "currentStatus": {
         "percentCompleted": "68",
-        "startDate": "22-09-2015",
+        "startDate": "22/09/2015",
         "startTime": "16:10:10",
         "project": {
           "id": 4,
@@ -778,7 +777,7 @@
       "title": "Time Relation Model",
       "description": "Time Relation Model",
       "owner": "R.McCoy",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -788,7 +787,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "20-09-2015",
+        "startDate": "20/09/2015",
         "startTime": "06:45:10",
         "project": {
           "id": 5,
@@ -802,7 +801,7 @@
       "title": "PLC program verifier",
       "description": "PLC program verifier.",
       "owner": "D.Black",
-      "releaseDate": "25-08-2015",
+      "releaseDate": "25/08/2015",
       "serviceType": "analytical",
       "tags": [
         "Tag 3"
@@ -814,7 +813,7 @@
       },
       "currentStatus": {
         "percentCompleted": "10",
-        "startDate": "20-09-2015",
+        "startDate": "20/09/2015",
         "startTime": "11:16:02",
         "project": {
           "id": 1,
@@ -828,7 +827,7 @@
       "title": "HDD/CDD Tracker",
       "description": "HDD/CDD Tracker.",
       "owner": "A.Salazaar",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "data",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -838,7 +837,7 @@
       },
       "currentStatus": {
         "percentCompleted": "40",
-        "startDate": "23-09-2015",
+        "startDate": "23/09/2015",
         "startTime": "12:10:10",
         "project": {
           "id": 2,
@@ -852,7 +851,7 @@
       "title": "Evaluator Model",
       "description": "Evaluator Model",
       "owner": "PDM.Co",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -862,7 +861,7 @@
       },
       "currentStatus": {
         "percentCompleted": "0",
-        "startDate": "23-09-2015",
+        "startDate": "23/09/2015",
         "startTime": "18:00:10",
         "project": {
           "id": 5,
@@ -876,7 +875,7 @@
       "title": "Evaluator 1 - heat loss, cost",
       "description": "Evaluator 1 - heat loss, cost",
       "owner": "J.Cole",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -886,7 +885,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "21-09-2015",
+        "startDate": "21/09/2015",
         "startTime": "18:00:10",
         "project": {
           "id": 4,
@@ -900,7 +899,7 @@
       "title": "Evaluator 2 - heat loss, mfg time",
       "description": "Evaluator 2 - heat loss, mfg time",
       "owner": "J.Cole",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -910,7 +909,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "22-09-2015",
+        "startDate": "22/09/2015",
         "startTime": "22:54:10",
         "project": {
           "id": 4,
@@ -924,7 +923,7 @@
       "title": "Evaluator 3 - cost, efficiency",
       "description": "Evaluator 3 - cost, efficiency",
       "owner": "J.Cole",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -934,7 +933,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "20-09-2015",
+        "startDate": "20/09/2015",
         "startTime": "07:27:10",
         "project": {
           "id": 4,
@@ -948,7 +947,7 @@
       "title": "Transformer Efficiency",
       "description": "Transformer Efficiency",
       "owner": "M.Dawson",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -958,7 +957,7 @@
       },
       "currentStatus": {
         "percentCompleted": "60",
-        "startDate": "20-09-2015",
+        "startDate": "20/09/2015",
         "startTime": "12:27:10",
         "project": {
           "id": 5,
@@ -972,7 +971,7 @@
       "title": "Evaluator 5 - cost, mfg time",
       "description": "Evaluator 5 - cost, mfg time",
       "owner": "J.Cole",
-      "releaseDate": "01-09-2015",
+      "releaseDate": "01/09/2015",
       "serviceType": "solid",
       "tags": [],
       "specifications": "/services/3/specifications",
@@ -982,7 +981,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "21-09-2015",
+        "startDate": "21/09/2015",
         "startTime": "02:18:10",
         "project": {
           "id": 4,
@@ -1674,6 +1673,40 @@
       "like": 0,
       "dislike": 0,
       "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+    },
+    {
+      "id": 13,
+      "productId": 1,
+      "productType": "services",
+      "reply": true,
+      "reviewId": 0,
+      "name": "DMC Member",
+      "status": true,
+      "date": "01-04-2016",
+      "rating": 5,
+      "userRatingReview": {
+        "DMC Member": "none"
+      },
+      "like": 0,
+      "dislike": 0,
+      "comment": "test"
+    },
+    {
+      "id": 14,
+      "productId": 1,
+      "productType": "",
+      "reply": false,
+      "reviewId": 13,
+      "name": "DMC Member",
+      "status": true,
+      "date": "01-04-2016",
+      "rating": 0,
+      "userRatingReview": {
+        "DMC Member": "none"
+      },
+      "like": 0,
+      "dislike": 0,
+      "comment": "reply test"
     }
   ],
   "profiles": [
