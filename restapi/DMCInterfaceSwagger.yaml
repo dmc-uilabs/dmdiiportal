@@ -1,0 +1,402 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: DMC Interface Definition
+  description: |
+    **REST service interface definitions for DMC**
+host: dmc.com
+basePath: /
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+  - text/xml
+produces:
+  - application/json
+  - text/html
+paths:
+  /projects:
+    post:
+      tags:
+        - project
+      summary: Post a new project
+      description: Post a new project to store in the database
+      operationId: postProject
+      parameters:
+        - in: body
+          name: body
+          description: Proect object that need to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/Project'
+      responses:
+        '405':
+          description: Invalide input
+  '/projects/{projectID}':
+    get:
+      tags:
+        - project
+        - project.php
+      summary: Get project information by project id
+      description: Get information about a project...
+      operationId: findProjectByID
+      parameters:
+        - name: projectID
+          in: path
+          type: string
+          description: ID of the project
+          required: true
+      responses:
+        '200':
+          description: Sends the project with projectID
+          schema:
+            $ref: '#/definitions/Project'
+  /tasks:
+    post:
+      tags:
+        - task
+      summary: Post a new task
+      description: Post a new task to store in the database
+      operationId: postTask
+      parameters:
+        - in: body
+          name: body
+          description: Task object that need to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/Task'
+      responses:
+        '405':
+          description: Invalide input
+  '/tasks/{taskID}':
+    get:
+      tags:
+        - task
+      summary: Get task information by task id
+      description: Get information about a task...
+      operationId: findTaskByID
+      parameters:
+        - name: taskID
+          in: path
+          type: string
+          description: ID of the task
+          required: true
+      responses:
+        '200':
+          description: send the task with taskID
+          schema:
+            $ref: '#/definitions/Task'
+  /services:
+    post:
+      tags:
+        - service
+      summary: Post a new service
+      description: Post a new service to store in the database
+      operationId: postService
+      parameters:
+        - in: body
+          name: body
+          description: Service object that need to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/Service'
+      responses:
+        '405':
+          description: Invalide input
+  '/services/{serviceID}':
+    get:
+      tags:
+        - service
+      summary: Get information for a service
+      description: Get information about a service...
+      operationId: findServiceByID
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+      responses:
+        '200':
+          description: send the service with serviceID
+          schema:
+            $ref: '#/definitions/Service'
+  '/service/{serviceID}/specifications':
+    post:
+      tags:
+        - service
+        - specification
+      operationId: postServiceSpecification
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+        - in: body
+          name: body
+          description: body of specification
+          required: true
+          schema:
+            $ref: '#/definitions/ServiceSpecification'
+      responses:
+        '200':
+          description: post specification for service
+  /components:
+    post:
+      tags:
+        - component
+      summary: Post a new component
+      description: Post a new component to store in the database
+      operationId: postComponent
+      parameters:
+        - in: body
+          name: body
+          description: Component object that need to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/Component'
+      responses:
+        '405':
+          description: Invalide input
+  '/components/{componentID}':
+    get:
+      tags:
+        - component
+      summary: Get information for a component
+      description: Get specification for a component based on componentID
+      operationId: getComponentByServiceID
+      parameters:
+        - name: componentID
+          in: path
+          type: string
+          description: ID of the component
+          required: true
+      responses:
+        '200':
+          description: send the component with componentID
+          schema:
+            $ref: '#/definitions/Component'
+  /discussions:
+    post:
+      tags:
+        - discussion
+      summary: Post a new discussion
+      description: Post a new discussion to store in the database
+      operationId: postDiscussion
+      parameters:
+        - in: body
+          name: body
+          description: Discussion object that need to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/Discussion'
+      responses:
+        '405':
+          description: Invalide input
+  '/discussions/{discussionID}':
+    get:
+      tags:
+        - discussion
+      summary: Get information for a discussion
+      description: Get discussion basedon discussionID
+      operationId: getDiscussionByDiscussionID
+      parameters:
+        - name: discussionID
+          in: path
+          type: string
+          description: ID of the discussion
+          required: true
+      responses:
+        '200':
+          description: send the discussion with discussionID
+          schema:
+            $ref: '#/definitions/Discussion'
+definitions:
+  FeatureImage:
+    type: object
+    properties:
+      thumbnail:
+        type: string
+      large:
+        type: string
+  Tasks:
+    type: object
+    properties:
+      totalItems:
+        type: integer
+      link:
+        type: string
+        description: it contains /project/{projectID}/tasks, URL that returns JSON data of all tasks.
+  Discussions:
+    type: object
+    properties:
+      totalItems:
+        type: integer
+      link:
+        type: string
+        description: it contains /project/{projectID}/discussions, URL that returns JSON data for project specific blog discussion and live stream (e.g. anytime a service is ran, any new discussion, new services added, etc.)
+  Services:
+    type: object
+    properties:
+      totalItems:
+        type: integer
+      link:
+        type: string
+        description: it contains /project/{projectID}/services, URL that returns JSON data of all services of the project.
+  Components:
+    type: object
+    properties:
+      totalItems:
+        type: integer
+      link:
+        type: string
+        description: it contains /project/{projectID}/components, URL that returns JSON data of all components of the project.
+  Project:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      projectManager:
+        type: string
+      featureImage:
+        $ref: '#/definitions/FeatureImage'
+      images:
+        type: string
+      description:
+        type: string
+      tasks:
+        $ref: '#/definitions/Tasks'
+      discussions:
+        $ref: '#/definitions/Discussions'
+      services:
+        $ref: '#/definitions/Services'
+      components:
+        $ref: '#/definitions/Components'
+  SimplifiedProject:
+    typ: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+
+  Task:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      project:
+        $ref: '#/definitions/SimplifiedProject'
+      assignee:
+        type: string
+      reporter:
+        type: string
+      dueDate:
+        type: string
+        format: date-time
+      priority:
+        type: string
+        format: date-time
+  CurrentStatus:
+    type: object
+    properties:
+      percentCompleted:
+        type: number
+      startDate:
+        type: string
+        format: date
+      startTime:
+        type: string
+        format: time
+      project:
+        $ref: '#/definitions/SimplifiedProject'
+  Service:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      owner:
+        type: string
+      releaseDate:
+        type: string
+        format: date-time
+      serviceType:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+      specifications:
+        type: string
+      featureImage:
+        $ref: '#/definitions/FeatureImage'
+      currentStatus:
+        $ref: '#/definitions/CurrentStatus'
+  RunStatus:
+    type: object
+    properties:
+      success:
+        type: number
+      fail:
+        type: number
+  ServiceSpecification:
+    type: object
+    properties:
+      description:
+        type: string
+      input:
+        type: number
+      output:
+        type: number
+      runStatus:
+        $ref: '#/definitions/RunStatus'
+  Component:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      owner:
+        type: string
+      releaseDate:
+        type: string
+        format: date-time
+      tags:
+        type: array
+        items:
+          type: string
+      featureImage:
+        $ref: '#/definitions/FeatureImage'
+      services:
+        type: array
+        items:
+          $ref: '#/definitions/Service'
+  Discussion:
+    type: object
+    properties:
+      id:
+        type: string
+      text:
+        type: string
+      full_name:
+        type: string
+      create_at:
+        type: string
+        format: date-time
+      avatar:
+        type: string
+      projectID:
+        type: string
