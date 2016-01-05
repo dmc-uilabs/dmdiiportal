@@ -1,0 +1,62 @@
+.notifications{
+	padding: 8px;
+	h2{
+		margin: 16px 0 24px;
+	}
+	.section{
+		border: 1px solid #999;
+		h2{
+			font-size: 14px;
+			margin: 0;
+		}
+		h3{
+			font-weight: normal;
+			margin: 0;
+		}
+		h4{
+			font-size: 20px;
+			margin: 0;
+		}
+		.cell1{
+			padding: 16px;
+		}
+		.cell2{
+			padding: 24px 16px 16px;
+			border-bottom: 1px solid #999;
+		}
+		.cell3{
+			padding: 4px 16px;
+			border-bottom: 1px solid #999;
+		}
+		.cell4{
+			padding: 4px 16px;
+		}
+	}
+	.block{
+		padding-top: 48px;
+		h2{
+			margin: 0;
+		}
+		a{
+			color: inherit;
+		}
+		img{
+			height: 100%;
+			margin-right: 16px;
+		}
+		.first{
+			border: 1px solid #999;
+			padding: 16px 36px;
+		}
+		md-list{
+			border: 1px solid #999;
+			padding: 0;
+			md-list-item{
+				padding: 16px;
+			}
+		}
+		.all{
+			margin: 0;
+		}
+	}
+}
