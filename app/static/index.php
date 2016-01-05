@@ -2,6 +2,7 @@
 include __DIR__.'/http.php';
 include __DIR__.'/functions.php';
 include __DIR__.'/db.php';
+include __DIR__.'/faq.php';
 
 //use ElephantIO\Client,ElephantIO\Engine\SocketIO\Version1X;
 //require __DIR__ . '/vendor/autoload.php';
@@ -104,6 +105,12 @@ return call_user_func(function () {
         echo save_change_server($_GET);
     }else if(strpos($uri,'/delete_server') !== false){
         echo delete_server($_GET);
+    }else if(strpos($uri,'/get_faq_categories') !== false){
+        echo get_faq_categories($_GET);
+    }else if(strpos($uri,'/get_faq_category') !== false){
+        echo get_faq_category($_GET);
+    }else if(strpos($uri,'/get_faq_article') !== false){
+        echo get_faq_article($_GET);
     }
 });
 
