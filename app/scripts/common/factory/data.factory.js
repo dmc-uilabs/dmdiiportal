@@ -170,6 +170,15 @@ angular.module('dmc.data',[])
             },
             deleteServer: function(){
                 return baseServer+'/delete_server';
+            },
+            getFAQCategories: function(){
+                return baseServer+'/get_faq_categories';
+            },
+            getFAQCategory: function(id){
+                return baseServer+'/get_faq_category'+appendId(id);
+            },
+            getFAQArticle: function(id){
+                return baseServer+'/get_faq_article'+appendId(id);
             }
         };
     }
