@@ -1,5 +1,5 @@
-<div class="stars">
-    <div class="stars-button" ng-mouseleave="LeaveStar()">
+<div class="stars" layout layout-align="start center">
+    <div class="stars-button" ng-mouseleave="LeaveStar()" layout="row" layout-align="center start">
         <md-button aria-label="Star" md-no-ink class="md-icon-button" ng-mousemove="MoveStar(1)" ng-click="ClickStar(1)">
            <ng-md-icon aria-label="" icon="star" ng-style="StarStyle[0]" size="{{size}}" ></ng-md-icon>
         </md-button>

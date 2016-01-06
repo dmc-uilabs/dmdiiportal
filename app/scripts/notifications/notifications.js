@@ -20,7 +20,7 @@ angular.module('dmc.notifications', [
 			templateUrl: 'templates/notifications/notifications.html',
 			controller: 'notificationsUserController'
 		});
-		$urlRouterProvider.otherwise('/');
+		$urlRouterProvider.otherwise('/pm');
 	})
 	.controller('notificationsPmController', ['$scope', function ($scope) {
 		$scope.user = false;
