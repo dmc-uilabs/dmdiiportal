@@ -8,7 +8,7 @@ angular.module('dmc.common.header', ['ngAnimate'])
 .config(function($animateProvider) {
     $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
 })
-.directive('dmcTopHeader', function(){
+.directive('dmcTopHeader', ['$window', function($window){
   return {
     restrict: 'A',
     scope: {
@@ -23,6 +23,7 @@ angular.module('dmc.common.header', ['ngAnimate'])
         $scope.service_alert = 0;
         $scope.notification = 99;
         $scope.message = 1;
+        $scope.userName = $window.givenName || 'DMC Member';
     }
   };
-});
+}]);

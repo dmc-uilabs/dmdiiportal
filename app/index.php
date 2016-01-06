@@ -93,8 +93,11 @@
     <script src="scripts/common/footer/footer.js"></script>
     <script src="scripts/home/home.js"></script>
     <!-- endbuild -->
-    
+
     <script type="text/javascript">
+        <?php
+          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+        ?>
         window.apiUrl = '';
     </script>
   </body>

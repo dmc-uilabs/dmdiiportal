@@ -75,7 +75,7 @@
              aria-label="Open Latest Services Menu"
              ng-click="$mdOpenMenu($event)">
           <ng-md-icon icon="person" size="20"></ng-md-icon>
-          Hi, DMC Member
+          Hi, {{userName}}
         </md-button>
         <md-menu-content>
           <md-menu-item>
@@ -123,7 +123,7 @@
         </md-menu-content>
       </md-menu>
 
-      <md-button 
+      <md-button
           href=""
           class="item"
           ng-class="{'active-page' : activePage.indexOf('community') > -1}">
@@ -170,5 +170,5 @@
       <md-input-container md-no-float>
         <input type="text" placeholder="Search" ng-model="searchModel">
       </md-input-container>
-    </form>  
+    </form>
 </header>
