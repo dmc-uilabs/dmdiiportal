@@ -75,7 +75,7 @@
              aria-label="Open Latest Services Menu"
              ng-click="$mdOpenMenu($event)">
           <ng-md-icon icon="person" size="20"></ng-md-icon>
-          Hi, DMC Member
+          Hi, {{userName}}
         </md-button>
         <md-menu-content>
           <md-menu-item>
@@ -123,12 +123,12 @@
         </md-menu-content>
       </md-menu>
 
-      <md-button 
-          href=""
-          class="item"
-          ng-class="{'active-page' : activePage.indexOf('community') > -1}">
-        Community
-      </md-button>
+        <md-button
+                href="community.php"
+                class="item"
+                ng-class="{'active-page' : activePage.indexOf('community') > -1}">
+            Community
+        </md-button>
 
       <md-menu class="item" md-offset="0 57">
         <md-button aria-label="Open Latest Services Menu"
@@ -166,9 +166,11 @@
     </div>
 
     <form ng-submit="submitSearch(searchModel)" class="search" layout="row" layout-align="center center">
-      <ng-md-icon icon="search" size="30"></ng-md-icon>
       <md-input-container md-no-float>
+        <md-icon>
+            <ng-md-icon icon="search" size="21"></ng-md-icon>
+        </md-icon>
         <input type="text" placeholder="Search" ng-model="searchModel">
       </md-input-container>
-    </form>  
+    </form>
 </header>

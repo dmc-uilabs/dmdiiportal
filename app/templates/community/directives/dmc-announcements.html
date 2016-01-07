@@ -1,0 +1,26 @@
+<div class="content-panel-header">
+    <md-toolbar>
+        <div class="md-toolbar-tools widget-toolbar-title">
+            <h2>{{widgetTitle}}</h2>
+            <span flex></span>
+            <md-button href="" target="_blank" md-no-ink class="view-all-button">View All ({{totalAnnouncements}})</md-button>
+        </div>
+    </md-toolbar>
+</div>
+<div class="content-panel-body">
+    <md-content class="md-padding">
+        <div class="announcements-list">
+            <md-list>
+                <md-list-item class="md-2-line" ng-repeat="item in announcements">
+                    <div class="md-list-item-text" layout="column">
+                        <p>{{item.text}}</p>
+                        <div class="info">
+                            <span>{{item.created_at|timeago}}</span>
+                            <span>{{item.comments}} comments</span>
+                        </div>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </div>
+    </md-content>
+</div>

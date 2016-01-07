@@ -126,7 +126,6 @@ $navigationActive: #65AF3F;
 
     .search{
       ng-md-icon {
-        fill: $navigation;
         margin-right: 16px;
         svg {
           vertical-align: middle;
@@ -134,10 +133,28 @@ $navigationActive: #65AF3F;
       }
       md-input-container{
         padding: 0;
-        width: 250px;
+        width: 270px;
+        md-icon{
+          left: 40px;
+          color: #B3B3B3;
+          ng-md-icon {
+            margin-right: -26px;
+            z-index: 2;
+            svg {
+              vertical-align: middle;
+            }
+          }
+        }
+        &:not(.md-input-invalid).md-input-focused md-icon{
+          color: #fff;
+        }
         input{
-        background-color: #D8D8D8;
-      }
+          background-color: #5E5E5E;
+          @include borderRadius(3px);
+          padding-left: 30px;
+          font-size: 15px;
+          color: #fff;
+        }
       }
     }
   }

@@ -1,0 +1,48 @@
+<div class="page-header" layout-padding>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <div layout="row" layout-align="start end" flex>
+                <md-input-container>
+                    <label>People</label>
+                    <md-select ng-model="peopleModel" ng-change="selectItemDropDown()">
+                        <md-option ng-repeat="p in peoples" value="{{p.id}}">{{p.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <form ng-submit="submit()" class="faq-search-field" flex>
+                    <md-input-container md-no-float>
+                        <md-icon>
+                            <ng-md-icon icon="search"></ng-md-icon>
+                        </md-icon>
+                        <input type="text" placeholder="Start typing..." ng-model="searchModel">
+                    </md-input-container>
+                </form>
+                <md-input-container layout="row" layout-wrap>
+                    <md-button class="md-raised md-primary white-label" href="">Following (15)</md-button>
+                    <md-button class="md-raised md-primary white-label" href=""><ng-md-icon icon="account_circle" style="fill: #fff" size="18"></ng-md-icon> Contacts</md-button>
+                </md-input-container>
+            </div>
+        </div>
+    </md-toolbar>
+</div>
+<div class="container" >
+
+    <div layout="row" >
+        <!-- Left Content Column -->
+        <div class="content-column" layout="column" flex="70">
+            <!-- Discussions you follow -->
+            <div class="content-panel project discussions-you-follow" community-discussions widget-title="'Discussions you follow'"></div>
+            <!-- Discussions from people you follow -->
+            <div class="content-panel project discussions-you-follow" community-discussions widget-title="'Discussions from people you follow'"></div>
+            <!-- Popular discussions -->
+            <div class="content-panel project discussions-you-follow" community-discussions widget-title="'Popular discussions'"></div>
+        </div>
+        <!-- Right Content Column -->
+        <div class="content-column" layout="column" flex>
+            <!-- DMC Announcements-->
+            <div class="content-panel project dmc-announcements-content-panel" dmc-announcements widget-title="'DMC Announcements'"></div>
+
+            <!-- DMC Events-->
+            <div class="content-panel project dmc-events-content-panel" dmc-events widget-title="'DMC Events'"></div>
+        </div>
+    </div>
+</div>

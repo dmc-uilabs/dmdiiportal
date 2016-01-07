@@ -277,7 +277,7 @@ definitions:
       components:
         $ref: '#/definitions/Components'
   SimplifiedProject:
-    typ: object
+    type: object
     properties:
       id:
         type: string

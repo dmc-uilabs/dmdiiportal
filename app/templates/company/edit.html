@@ -23,7 +23,7 @@
                                 <div class="alert" flow-drop flow-drop-enabled="true">
                                     <div class="inner-box" layout="row" layout-align="center center">
                                         <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-                                            <img flow-img="$flow.files[0]" />
+                                            <img id="flowImage" flow-img="$flow.files[0]" />
                                             <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
                                                 <ng-md-icon icon="close" size="21"></ng-md-icon>
                                             </md-button>
@@ -47,7 +47,7 @@
                     <div layout="row" layout-padding layout-align="start start" class="company-title">
                         <div layout="column" flex="70">
                             <md-input-container class="title-input-edit">
-                                <label>Title</label>
+                                <label>Company</label>
                                 <input class="md-title" ng-model="companyData.name" ng-change="changedInput('name')">
                             </md-input-container>
                         </div>
@@ -61,7 +61,7 @@
                             <textarea ng-model="companyData.description" ng-change="changedInput('description')" columns="1"></textarea>
                         </md-input-container>
                     </div>
-                    <md-divider ></md-divider>
+
                     <div layout-padding>
                         <md-tabs md-dynamic-height md-border-bottom class="editable-featured">
                             <md-tab label="Featured">
@@ -81,7 +81,7 @@
                         <md-tabs md-dynamic-height md-border-bottom>
                             <md-tab label="Add Featured">
                                 <md-content>
-                                    <div layout="row" layout-padding layout-align="center center" class="company-search">
+                                    <div layout="row" layout-padding layout-align="start center" class="company-search" flex>
                                         <md-input-container>
                                             <md-select ng-model="selectedProductType" ng-change="productTypeChanged(true)" aria-label="Product Types">
                                                 <md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>
