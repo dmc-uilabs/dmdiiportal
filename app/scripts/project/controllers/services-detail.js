@@ -1,8 +1,9 @@
 angular.module('dmc.project')
-.controller('projectServicesDetailCtrl', ['$scope', '$stateParams', 'projectData', 'ajax', 'dataFactory', function ($scope, $stateParams, projectData, ajax, dataFactory) {
+.controller('projectServicesDetailCtrl', ['$scope', '$stateParams', 'projectData', 'ajax', 'dataFactory', '$state', function ($scope, $stateParams, projectData, ajax, dataFactory, $state) {
 	
 	$scope.projectData = projectData;
 	$scope.average_rating = 0;
+	$scope.followFlag = false;
 	$scope.precentage_stars = [0,0,0,0,0];
 	$scope.number_of_comments = 0;
 	$scope.service = null;
@@ -154,7 +155,7 @@ angular.module('dmc.project')
 	ajax.on(
 		dataFactory.getUrlAllServices(),
 		{
-            productId: projectData.id,
+			productId: projectData.id,
 			ids: [$stateParams.ServiceId]
 		},
 		function(data){
@@ -164,23 +165,26 @@ angular.module('dmc.project')
 				if($scope.number_of_comments != 0) {
 					calculate_rating();
 				}
+				if($scope.service.tags.length == 0){
+					$scope.service.tags = ["tag1","tag2","tag3","tag4","tag5","tag6","tag7","tag8","tag9","tag10",]
+				}
 				ajax.on(
-	        dataFactory.getProductReview(),
-	        {
-		        typeProduct: $scope.service.type + 's',
-		        productId: $scope.service.id,
-		        limit: 2,
-		        sort: 'date',
-        		order: 'DESC'
-	        },
-	        function(data){
-	          $scope.service.reviews = data.result;
-	          if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-	        },
-	        function(){
-	          alert("Ajax fail: getProductReview");
-	        }
-	      );
+					dataFactory.getProductReview(),
+					{
+						typeProduct: $scope.service.type + 's',
+						productId: $scope.service.id,
+						limit: 2,
+						sort: 'date',
+						order: 'DESC'
+					},
+					function(data){
+					  $scope.service.reviews = data.result;
+					  if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+					},
+					function(){
+					  alert("Ajax fail: getProductReview");
+					}
+				);
 			}
 		},
 		function(){
@@ -202,5 +206,36 @@ angular.module('dmc.project')
 			$scope.precentage_stars[i] = Math.round($scope.precentage_stars[i]);
 		}
 	};
+
+	$scope.delete = function(){
+		ajax.on(
+			dataFactory.getUrlRemoveFromProject($stateParams.projectId),
+			{
+				'projectId': $stateParams.projectId,
+				'type': 'service',
+				'id': $stateParams.ServiceId,
+			},
+			function(data){
+				console.info("ok", data);
+				for(var index in $scope.projectData.services.data){
+					console.info("index",index)
+					if($scope.projectData.services.data[index].id == $stateParams.ServiceId){
+						$scope.projectData.services.data.splice(index, 1);
+						break;
+					}
+				}
+				$state.go("project.services");
+			},
+			function(){
+				alert("Ajax fail: getAllServices");
+			},
+			"POST"
+		);
+
+	}
+
+	$scope.follow = function(){
+		$scope.followFlag = !$scope.followFlag;
+	}
 
 }])

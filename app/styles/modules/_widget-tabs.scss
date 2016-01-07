@@ -47,29 +47,50 @@
 	.rate{
 		height: 100%;
 		padding-top: 36px;
+		position: relative;
 		h3{
 			font-size: 16px;
 			border: 1px solid #000;
 			margin: 0;
 			padding: 16px 16px 4px;
 		}
+		h4{
+			position: absolute;
+			left: 100%;
+			visibility: hidden;
+		}
 		.cell1{
 			border: 1px solid #000;
 			border-top: none;
 			height: 61px;
 			background-color: #65AF3F;
+			&:hover{
+				h4{
+					visibility: visible;
+				}
+			}
 		}
 		.cell2{
 			border: 1px solid #000;
 			border-top: none;
 			height: 25px;
 			background-color: yellow;
+			&:hover{
+				h4{
+					visibility: visible;
+				}
+			}
 		}
 		.cell3{
 			border: 1px solid #000;
 			border-top: none;
 			height: 25px;
 			background-color: red;
+			&:hover{
+				h4{
+					visibility: visible;
+				}
+			}
 		}
 	}
 

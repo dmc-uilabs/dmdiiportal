@@ -413,7 +413,7 @@
     {
       "id": 1,
       "title": "qout-of-balance Testing",
-      "description": "out-of-balance Testing",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "L.Mason",
       "releaseDate": "25/08/2015",
       "serviceType": "analytical",
@@ -440,7 +440,7 @@
     {
       "id": 5,
       "title": "fan failure mode analysis",
-      "description": "fan failure mode analysis.",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "P.Ruiz",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -464,7 +464,7 @@
     {
       "id": 3,
       "title": "Project Cost Analyzer",
-      "description": "Project Cost Analyzer",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "M.Gill",
       "releaseDate": "01/09/2015",
       "serviceType": "analytical",
@@ -488,7 +488,7 @@
     {
       "id": 30,
       "title": "Evaluator 4 - heat loss, cost, mfg time",
-      "description": "Evaluator 4 - heat loss, cost, mfg time",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "J.Cole",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -512,7 +512,7 @@
     {
       "id": 4,
       "title": "Power Factor Correction Analyzer",
-      "description": "Power Factor Correction Analyzer.",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "J.Sims",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -536,7 +536,7 @@
     {
       "id": 6,
       "title": "Capacitor Compartment Layout",
-      "description": "Capacitor Compartment Layout",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "E.Fox",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -560,7 +560,7 @@
     {
       "id": 7,
       "title": "Should-cost estimator",
-      "description": "Should-cost estimator",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "G.Baker",
       "releaseDate": "01/08/2015",
       "serviceType": "solid",
@@ -584,7 +584,7 @@
     {
       "id": 8,
       "title": "Capacitor Configurator",
-      "description": "Capacitor Configurator",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "G.Baker",
       "releaseDate": "01/07/2015",
       "serviceType": "solid",
@@ -608,7 +608,7 @@
     {
       "id": 9,
       "title": "Transformer Manufacturing Cost Analysis",
-      "description": "Transformer Manufacturing Cost Analysis",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "m.winand",
       "releaseDate": "01/05/2015",
       "serviceType": "solid",
@@ -632,7 +632,7 @@
     {
       "id": 12,
       "title": "Transformer Heat Loss Model",
-      "description": "Transformer Heat Loss Model",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "m.winand",
       "releaseDate": "31/05/2015",
       "serviceType": "solid",
@@ -656,7 +656,7 @@
     {
       "id": 15,
       "title": "Project Scheduler",
-      "description": "Project Scheduler",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "V.Sutton",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -680,7 +680,7 @@
     {
       "id": 16,
       "title": "Cost Relation Model",
-      "description": "Cost Relation Model",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "R.McCoy",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -704,7 +704,7 @@
     {
       "id": 17,
       "title": "Heat Loss Relation Model",
-      "description": "Heat Loss Relation Model",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "R.McCoy",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -728,7 +728,7 @@
     {
       "id": 10,
       "title": "Cost vs. Heat Loss Trade-off Matrix",
-      "description": "Cost vs. Heat Loss Trade-off Matrix",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "p.koudal",
       "releaseDate": "22/02/2015",
       "serviceType": "solid",
@@ -752,7 +752,7 @@
     {
       "id": 11,
       "title": "Cost vs. Heat Loss Trade-off Matrix",
-      "description": "Cost vs. Heat Loss Trade-off Matrix",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "p.koudal",
       "releaseDate": "22/02/2015",
       "serviceType": "solid",
@@ -776,7 +776,7 @@
     {
       "id": 18,
       "title": "Time Relation Model",
-      "description": "Time Relation Model",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "R.McCoy",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -800,7 +800,7 @@
     {
       "id": 2,
       "title": "PLC program verifier",
-      "description": "PLC program verifier.",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "D.Black",
       "releaseDate": "25/08/2015",
       "serviceType": "analytical",
@@ -826,7 +826,7 @@
     {
       "id": 27,
       "title": "HDD/CDD Tracker",
-      "description": "HDD/CDD Tracker.",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "A.Salazaar",
       "releaseDate": "01/09/2015",
       "serviceType": "data",
@@ -850,7 +850,7 @@
     {
       "id": 13,
       "title": "Evaluator Model",
-      "description": "Evaluator Model",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "PDM.Co",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -874,7 +874,7 @@
     {
       "id": 27,
       "title": "Evaluator 1 - heat loss, cost",
-      "description": "Evaluator 1 - heat loss, cost",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "J.Cole",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -898,7 +898,7 @@
     {
       "id": 28,
       "title": "Evaluator 2 - heat loss, mfg time",
-      "description": "Evaluator 2 - heat loss, mfg time",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "J.Cole",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -922,7 +922,7 @@
     {
       "id": 29,
       "title": "Evaluator 3 - cost, efficiency",
-      "description": "Evaluator 3 - cost, efficiency",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "J.Cole",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -946,7 +946,7 @@
     {
       "id": 14,
       "title": "Transformer Efficiency",
-      "description": "Transformer Efficiency",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "M.Dawson",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -970,7 +970,7 @@
     {
       "id": 31,
       "title": "Evaluator 5 - cost, mfg time",
-      "description": "Evaluator 5 - cost, mfg time",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "J.Cole",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -1718,7 +1718,7 @@
       "jobTitle": "Engineering Manager",
       "location": "Berkeley, California",
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
       "skills": [
         "skill1",
         "skill2",

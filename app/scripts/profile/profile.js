@@ -13,6 +13,7 @@ angular.module('dmc.profile', [
   'dmc.widgets.review',
   'dmc.common.header',
   'dmc.common.footer',
+  'dmc.model.toast-model',
   'dmc.model.fileUpload',
   'flow'
 ])
@@ -24,7 +25,7 @@ angular.module('dmc.profile', [
     });
     $urlRouterProvider.otherwise('/1');
   })
-  .controller('ProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload) {
+  .controller('ProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel) {
     
     $scope.profile = [];  //array product
     $scope.number_of_comments = 0; // number of 
@@ -39,6 +40,8 @@ angular.module('dmc.profile', [
     $scope.isChangingPicture = false;  //change profile photo
     $scope.prevPicture = null;  //
     $scope.file = '';  //file picture
+    $scope.showflag = false;
+    $scope.followFlag = false;
 
     $scope.sortList = [
       {
@@ -81,7 +84,10 @@ angular.module('dmc.profile', [
         if($scope.number_of_comments != 0) {
           calculate_rating();
         }
-        console.info("get profile", $scope.profile);
+        $scope.profile.descriptionSmall = $scope.profile.description.slice(0, 1000) + '...';
+        if($scope.profile.description.length >= $scope.profile.descriptionSmall.length){
+          $scope.showflag = true;
+        }
         $scope.SortingReviews($scope.sortList[0].val);
       },
       function(){
@@ -270,12 +276,17 @@ angular.module('dmc.profile', [
           if($scope.number_of_comments != 0) {
             calculate_rating();
           }
+          $scope.profile.descriptionSmall = $scope.profile.description.slice(0, 1000) + '...';
+          if($scope.profile.description.length >= $scope.profile.descriptionSmall.length){
+            $scope.showflag = true;
+          }
           $scope.SortingReviews($scope.sortList[0].val);
         },
         function(){
           alert("Ajax fail: getProduct");
         }
       );
+      toastModel.showToast("error", "Edit Profile Canceled");
     }
 
     //save edit profile
@@ -340,4 +351,19 @@ angular.module('dmc.profile', [
       flow.files.shift();
       $scope.file = flow;
     };
+
+///
+    $scope.goToReview = function(){
+      console.info("go");
+      $location.hash('review');
+      $anchorScroll();
+    }
+
+    $scope.showMore = function(){
+      $scope.showflag = false;
+    }
+
+  $scope.follow = function(){
+    $scope.followFlag = !$scope.followFlag;
+  }
   });

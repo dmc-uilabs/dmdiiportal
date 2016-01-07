@@ -275,7 +275,7 @@
 }
 
 .project-details-services{
-	margin: 0 24px;
+	margin: 24px 24px;
 	padding: 16px;
 	background-color: #fff;
 	h2 {
@@ -297,16 +297,26 @@
 	}
 	.return{
 		margin: 0;
+		color: inherit;
 	}
 	.buttons{
 		.md-icon-button{
 			margin: 0;
 		}
+	  .reply{
+	    -moz-transform: scaleX(-1);
+	    -o-transform: scaleX(-1);
+	    -webkit-transform: scaleX(-1);
+	    transform: scaleX(-1);
+	  }
 	}
 	.md-button.viewAll{
 		font-size: 11px;
 		color: #65AF3F;
 		line-height: 36px;
 		margin: 0;
+	}
+	.description{
+		padding: 16px 0 36px;
 	}
 }

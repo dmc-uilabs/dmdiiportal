@@ -120,10 +120,13 @@
 
 
   .add-skills-form{
-    .md-button{
+    .md-primary.md-default-theme.md-button{
       min-height: 36px;
       height: 36px;
       line-height: 36px;
+      min-width: 0;
+      margin-bottom: 15px;
+      margin-left: 10px;
     }
   }
   .tabs-content{
@@ -134,6 +137,9 @@
     }
     md-chips .md-chips{
       box-shadow: none;
+      .md-chip{
+        border-radius: 0px;
+      }
       .skills-chip{
         padding-right: 32px;
         .md-icon-button{
@@ -148,6 +154,14 @@
           margin: 0;
         }
       }
+    }
+  }
+  .reviews-rating{
+    div:focus{
+      outline: none;
+    };
+    p{
+      cursor: default;
     }
   }
 }

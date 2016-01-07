@@ -75,7 +75,7 @@
              aria-label="Open Latest Services Menu"
              ng-click="$mdOpenMenu($event)">
           <ng-md-icon icon="person" size="20"></ng-md-icon>
-          Hi, DMC Member
+          Hi, {{userName}}
         </md-button>
         <md-menu-content>
           <md-menu-item>
@@ -102,7 +102,7 @@
         Dashboard
       </md-button>
 
-      <md-menu md-offset="0 52" class="item" ng-init="dropDownWidth = 136">
+      <md-menu md-offset="0 57" class="item" ng-init="dropDownWidth = 136">
         <md-button
             aria-label="Open Latest Services Menu"
             ng-click="$mdOpenMenu($event); setDropDown($event,dropDownWidth);"
@@ -123,14 +123,14 @@
         </md-menu-content>
       </md-menu>
 
-      <md-button 
-          href="community.php"
-          class="item"
-          ng-class="{'active-page' : activePage.indexOf('community') > -1}">
-        Community
-      </md-button>
+        <md-button
+                href="community.php"
+                class="item"
+                ng-class="{'active-page' : activePage.indexOf('community') > -1}">
+            Community
+        </md-button>
 
-      <md-menu class="item" md-offset="0 52">
+      <md-menu class="item" md-offset="0 57">
         <md-button aria-label="Open Latest Services Menu"
             ng-click="$mdOpenMenu($event)"
             ng-class="{'active-page' : activePage.indexOf('project') > -1}">
@@ -147,10 +147,10 @@
         </md-menu-content>
       </md-menu>
 
-      <md-menu class="item" md-offset="0 52">
+      <md-menu class="item" md-offset="0 57">
         <md-button
             ng-click="$mdOpenMenu($event)"
-            ng-class="{'active-page' : activePage.indexOf('challenge') > -1}">
+            ng-class="{'active-page' : activePage.indexOf('community') > -1}">
           Challenge
           <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
         </md-button>
@@ -167,10 +167,10 @@
 
     <form ng-submit="submitSearch(searchModel)" class="search" layout="row" layout-align="center center">
       <md-input-container md-no-float>
-          <md-icon>
-              <ng-md-icon icon="search" size="21"></ng-md-icon>
-          </md-icon>
+        <md-icon>
+            <ng-md-icon icon="search" size="21"></ng-md-icon>
+        </md-icon>
         <input type="text" placeholder="Search" ng-model="searchModel">
       </md-input-container>
-    </form>  
+    </form>
 </header>

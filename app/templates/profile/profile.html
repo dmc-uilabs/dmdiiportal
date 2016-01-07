@@ -2,12 +2,8 @@
   <md-content class="profile-padding">
     <div layout="row">
       <div flex="20" layout="column">
-        <img class="profile-image" ng-src="{{profile.image}}">
-        <md-button flex="100" ng-if="editFlag" ng-show="!isChangingPicture" ng-click="changePicture()">
-          <ng-md-icon icon="camera_alt" style="fill: #65AF3F;" size="25"></ng-md-icon>
-          Change Photo
-        </md-button>
-
+        <img class="profile-image" ng-show="!isChangingPicture" ng-src="{{profile.image}}">
+        
         <div layout="column" ng-show="isChangingPicture">
           <div class="flow-box"
              flow-init
@@ -17,8 +13,6 @@
              flow-file-added="addedNewFile($file, $event, $flow )"
              layout="column">
             <!-- <div> -->
-            <md-button ng-click="cancelChangePicture($flow)">Cancel</md-button>
-            <!-- </div> -->
             <div layout class="alert" flow-drop flow-drop-enabled="true">
               <div flow-btn class="inner-box" layout="row" layout-align="center center">
                 <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="50">
@@ -27,8 +21,16 @@
                 <div class="text" flex="50">Drag And Drop your picture here</div>
               </div>
             </div>
+            <!-- </div> -->
+            <md-button ng-click="cancelChangePicture($flow)">Cancel</md-button>
           </div>
         </div>
+
+        <md-button flex="100" ng-if="editFlag" ng-show="!isChangingPicture" class="md-raised" ng-click="changePicture()">
+          <ng-md-icon icon="camera_alt" style="fill: #65AF3F;" size="25"></ng-md-icon>
+          Change Photo
+        </md-button>
+
       </div>
       <div ng-if="!editFlag" flex="80" layout="column" class="profile-header">
         <div layout="row" layout-align="center center">
@@ -49,11 +51,13 @@
         </div>
           <span flex></span>
         <div layout="row" layout-align="center center">
-          <ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
+          <ui-widget-stars-static size="15" ng-click="goToReview()" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
           <md-button ng-href="">View Storefront</md-button>
           <span flex></span>
           <md-button ng-click="editPage()">Edit profile</md-button>
-          <md-button ng-href="">Follow</md-button>
+          <md-button ng-click="follow()">
+            {{(followFlag) ? 'Unfollow' : 'Follow'}}
+          </md-button>
           <md-button ng-href="">Invite to Project</md-button>
         </div>
       </div>
@@ -61,7 +65,7 @@
         <div flex="50" layout="column">
           <div layout="row">
             <md-input-container flex="50">
-              <label>Diaplay Name</label>
+              <label>Display Name</label>
               <input ng-model="profile.displayName">
             </md-input-container>
             <md-input-container flex="50">
@@ -89,7 +93,7 @@
     </div>
     <md-divider></md-divider>
     <div ng-if="!editFlag" class="profile-description">
-      {{profile.description}} <a href="">Read More</a>
+      {{(showflag) ? profile.descriptionSmall : profile.description}} <a ng-click="showMore()" ng-if="showflag" href="">Read More</a>
     </div>
     <div ng-if="editFlag" class="profile-description">
       <md-input-container>
@@ -170,7 +174,7 @@
                 <label>Enter skill</label>
                 <input ng-model="inputSkill">
               </md-input-container>
-              <md-button ng-disabled="!inputSkill" class="md-raised md-primary">Add</md-button>
+              <md-button ng-disabled="!inputSkill" class="md-raised md-primary add-skill">Add</md-button>
             </form>
             <div layout="row" class="tabs-content" layout-wrap>
               <md-chips ng-repeat="skill in profile.skills track by $index">
@@ -190,7 +194,7 @@
     <md-divider></md-divider>
 
     <!--Reviews-->
-    <div ng-if="!editFlag" layout="row" class="reviews" layout-margin layout-fill>
+    <div ng-if="!editFlag" id="review" layout="row" class="reviews" layout-margin layout-fill>
       <!--left column-->
       <div flex class="reviews-rating">
         <!--Rating header-->

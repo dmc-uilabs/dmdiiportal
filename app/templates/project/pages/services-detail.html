@@ -14,31 +14,33 @@
 </div>
 <div class="project-details-services" layout="column">
 	<div>
-		<md-button class="return" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+		<a class="return" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
 			Return to Services
-		</md-button>
+		</a>
 	</div>
 	<div layout="row" layout-align="space-between center">
-		<h2><a ng-href="{{'product.php#/'+ service.type + 's/' + service.id}}">{{service.title}}</a> <span>By {{service.owner}}</span></h2>
+		<div layout="column">
+			<h2><a ng-href="{{'product.php#/'+ service.type + 's/' + service.id}}">{{service.title}}</a> <span>By {{service.owner}}</span></h2>
+			<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}}) {{number_of_comments}} reviews"></ui-widget-stars-static>
+		</div>
 		<div class="buttons" layout layout-align="center center">
 			<md-button class="md-raised" ng-href="{{'project.php#/' + projectData.id + '/run-service/' + item.id}}">
 				Run
 			</md-button>
-			<md-button class="md-raised">
-				Follow
+			<md-button class="md-raised" ng-click="follow()">
+				{{(followFlag) ? 'Unfollow' : 'Follow'}}
 			</md-button>
-			<md-button aria-label="reply" href="" class="md-icon-button header-icon">
+			<md-button aria-label="reply" href="" class="md-icon-button reply header-icon">
 				<ng-md-icon icon="reply" style="fill: #65AF3F;" size="25"></ng-md-icon>
 			</md-button>
 			<md-button aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/edit-service'}}" class="md-icon-button header-icon">
 				<ng-md-icon icon="create" style="fill: #65AF3F;" size="25"></ng-md-icon>
 			</md-button>
-			<md-button aria-label="delete" href="" class="md-icon-button header-icon">
+			<md-button aria-label="delete" ng-click="delete()" class="md-icon-button header-icon">
 				<ng-md-icon icon="delete" style="fill: red;" size="25"></ng-md-icon>
 			</md-button>
 		</div>
 	</div>
-	<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}}) {{number_of_comments}} reviews"></ui-widget-stars-static>
 	<div class="description">
 		{{service.description}}
 	</div>
