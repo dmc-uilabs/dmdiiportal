@@ -4,6 +4,10 @@
 
 .ng-carousel{
   height: 0;
+  .image-padding{
+    text-align: left;
+    padding: 0 35px;
+  }
   .image-item {
     width: 84px;
     height: 84px;

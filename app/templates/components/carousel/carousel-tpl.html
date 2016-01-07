@@ -10,7 +10,8 @@
           </dmc-product-card>
         </div>
       </div>
-      <div class="carousel-item image-item"
+      <div class="image-padding" ng-if="typeCarousel === 'images'">
+        <div class="carousel-item image-item"
              
              ng-class="{'selected-image' : item.selected}"
              ng-if="typeCarousel === 'images'"
@@ -27,6 +28,7 @@
               ng-src="{{item}}" 
               ng-class="{'selected' : (functions.selected($index + $parent.$parent.$index*showItems) == true)}" 
               ng-click="functions.openImage($index + $parent.$parent.$index*showItems)" alt=""/>
+        </div>
       </div>
     </slide>
   </slidecontainer>
