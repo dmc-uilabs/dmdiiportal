@@ -3,6 +3,8 @@ include __DIR__.'/http.php';
 include __DIR__.'/functions.php';
 include __DIR__.'/db.php';
 include __DIR__.'/faq.php';
+include __DIR__.'/events.php';
+include __DIR__.'/announcements.php';
 
 //use ElephantIO\Client,ElephantIO\Engine\SocketIO\Version1X;
 //require __DIR__ . '/vendor/autoload.php';
@@ -111,6 +113,10 @@ return call_user_func(function () {
         echo get_faq_category($_GET);
     }else if(strpos($uri,'/get_faq_article') !== false){
         echo get_faq_article($_GET);
+    }else if(strpos($uri,'/get_events') !== false){
+        echo get_events($_GET);
+    }else if(strpos($uri,'/get_announcements') !== false){
+        echo get_announcements($_GET);
     }
 });
 

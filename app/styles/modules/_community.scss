@@ -1,0 +1,116 @@
+.content-panel.project {
+  .md-toolbar-tools.widget-toolbar-title {
+    padding: 0 8px 0px 0;
+    h2{
+      text-transform: uppercase;
+    }
+  }
+}
+.dmc-announcements-content-panel {
+  .announcements-list {
+    md-list {
+      padding: 0 5px;
+      md-list-item {
+        padding: 0;
+        border-top: 1px solid #ccc;
+        padding-top: 8px;
+        margin-top: 8px;
+        min-height: 0;
+        .md-list-item-text {
+          padding: 0;
+          p {
+            color: #333;
+            font-size: 13px;
+          }
+          .info {
+            span {
+              font-size: 11px;
+              color: #666;
+            }
+            span:first-child {
+              border-right: 1px solid #666;
+              padding-right: 8px;
+              margin-right: 8px;
+            }
+          }
+        }
+      }
+      md-list-item:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+      }
+    }
+  }
+}
+
+.dmc-events-content-panel{
+  .events-list{
+    md-list {
+      padding: 0 5px;
+      md-list-item {
+        padding: 0;
+        border-top: 1px solid #ccc;
+        padding-top: 8px;
+        margin-top: 8px;
+        min-height: 0;
+        .date-item{
+          text-align: center;
+          font-size: 13px;
+          padding-right: 13px;
+          span:first-child {
+            text-transform: uppercase;
+          }
+        }
+        .md-list-item-text{
+          .title{
+            font-size: 13px;
+          }
+        }
+      }
+      md-list-item:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+      }
+    }
+  }
+}
+
+.discussions-follow-list{
+  md-list{
+    padding: 0 8px;
+  }
+  md-list-item{
+    border-top: 1px solid #ccc;
+    padding: 0;
+    .info{
+      span {
+        font-size: 11px;
+        color: #666;
+      }
+      span:first-child {
+        border-right: 1px solid #666;
+        padding-right: 8px;
+        margin-right: 8px;
+      }
+    }
+  }
+  md-list-item:first-child {
+    border-top: none;
+  }
+  .user-info{
+    right: 0;
+    a{
+      color: #333;
+      text-decoration: none;
+      margin-right: 13px;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+    img{
+      @include borderRadius(50%);
+    }
+  }
+}

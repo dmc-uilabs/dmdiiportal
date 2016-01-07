@@ -54,7 +54,7 @@ angular.module('dmc.company')
         };
 
         $scope.isChangingPicture = false;
-
+        $scope.currentPicture = null;
         var callbackUploadPicture = function(data){
             if(!data.error) {
                 $scope.companyData.featureImage.large = data.file.name;
@@ -78,14 +78,16 @@ angular.module('dmc.company')
         $scope.changePicture = function(){
             $scope.isChangingPicture = true;
         };
+
         $scope.cancelChangePicture = function(flow){
             flow.files = [];
+            if($scope.currentPicture) $scope.companyPicture['background-image'] = $scope.currentPicture;
             $scope.isChangingPicture = false;
         };
 
         $scope.prevPicture = null;
         $scope.pictureDragEnter = function(flow){
-        $scope.prevPicture = flow.files[0];
+            $scope.prevPicture = flow.files[0];
             flow.files = [];
         };
 
@@ -100,8 +102,18 @@ angular.module('dmc.company')
             flow.files.shift();
         };
 
+        $scope.$watch(function(){
+            return $("#flowImage").attr("src");
+        },function(newVal,oldVal){
+            if(newVal && newVal != oldVal){
+                $scope.currentPicture = $scope.companyPicture['background-image'];
+                $scope.companyPicture['background-image'] = 'url(' + newVal + ')';
+            }
+        });
+
         $scope.removePicture = function(flow){
             flow.files = [];
+            if($scope.currentPicture) $scope.companyPicture['background-image'] = $scope.currentPicture;
         };
 
         $scope.features = {

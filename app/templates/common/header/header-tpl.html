@@ -124,7 +124,7 @@
       </md-menu>
 
       <md-button 
-          href=""
+          href="community.php"
           class="item"
           ng-class="{'active-page' : activePage.indexOf('community') > -1}">
         Community
@@ -150,7 +150,7 @@
       <md-menu class="item" md-offset="0 52">
         <md-button
             ng-click="$mdOpenMenu($event)"
-            ng-class="{'active-page' : activePage.indexOf('community') > -1}">
+            ng-class="{'active-page' : activePage.indexOf('challenge') > -1}">
           Challenge
           <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
         </md-button>
@@ -166,8 +166,10 @@
     </div>
 
     <form ng-submit="submitSearch(searchModel)" class="search" layout="row" layout-align="center center">
-      <ng-md-icon icon="search" size="30"></ng-md-icon>
       <md-input-container md-no-float>
+          <md-icon>
+              <ng-md-icon icon="search" size="21"></ng-md-icon>
+          </md-icon>
         <input type="text" placeholder="Search" ng-model="searchModel">
       </md-input-container>
     </form>  

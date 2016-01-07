@@ -29,7 +29,7 @@ angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 
         {
             name : "Community",
             text : "Find People",
-            href : "",
+            href : "community.php",
             img : "home-community-icon.png"
         }
     ];

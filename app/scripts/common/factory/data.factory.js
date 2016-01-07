@@ -179,6 +179,12 @@ angular.module('dmc.data',[])
             },
             getFAQArticle: function(id){
                 return baseServer+'/get_faq_article'+appendId(id);
+            },
+            getEvents: function(){
+                return baseServer+'/get_events';
+            },
+            getAnnouncements: function(){
+                return baseServer+'/get_announcements';
             }
         };
     }

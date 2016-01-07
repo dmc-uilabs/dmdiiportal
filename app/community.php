@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FAQ</title>
+    <title>Community</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -29,13 +29,13 @@
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app="dmc.faq">
+  <body ng-app="dmc.community">
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Top Header -->
-    <div dmc-top-header active-page="'faq'"></div>
+    <div dmc-top-header active-page="'community'"></div>
 
     <ui-view></ui-view>
 
@@ -78,7 +78,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/faq/index.js -->
+    <!-- build:js scripts/community/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
@@ -97,8 +97,11 @@
     <script src="scripts/common/models/file-model.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
 
-    <script src="scripts/faq/faq.js"></script>
-    <script src="scripts/faq/controllers/general.js"></script>
+    <script src="scripts/community/community.js"></script>
+    <script src="scripts/community/controllers/home.js"></script>
+    <script src="scripts/community/directives/discussions.js"></script>
+    <script src="scripts/community/directives/dmc-announcements.js"></script>
+    <script src="scripts/community/directives/dmc-events.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         window.apiUrl = '';
