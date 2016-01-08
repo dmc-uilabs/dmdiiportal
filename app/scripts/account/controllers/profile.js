@@ -1,12 +1,13 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('ProfileAccountCtr', [ '$stateParams', '$state', "$scope", "location",'fileUpload','accountData','accountUpdate','toastModel', function ($stateParams, $state, $scope, location,fileUpload,accountData,accountUpdate,toastModel) {
+    .controller('ProfileAccountCtr', [ '$stateParams', '$state', "$scope", "location","$location",'fileUpload','accountData','accountUpdate','toastModel', function ($stateParams, $state, $scope, location,$location,fileUpload,accountData,accountUpdate,toastModel) {
         $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
         $scope.title = pageTitles[$scope.page];
 
-        $scope.profile = accountData;
+        $scope.profile = $.extend(true,{},accountData);
+
         if($scope.profile.displayName == null || $scope.profile.displayName.length == 0) $scope.profile.displayName = $scope.profile.firstName + ' ' + $scope.profile.lastName;
 
         $scope.blurDisplayName = function(){
@@ -20,7 +21,8 @@ angular.module('dmc.account')
                 $scope.profile.dataLocation = data;
                 $scope.profile.location = $scope.profile.dataLocation.city + ", " + $scope.profile.dataLocation.region;
                 $scope.profile.timezone = $scope.profile.dataLocation.timezone;
-                accountUpdate.update($scope.profile);
+                $scope.changeValue('location',$scope.profile.location);
+                $scope.changeValue('timezone',$scope.profile.timezone);
             }
         };
 
@@ -28,9 +30,32 @@ angular.module('dmc.account')
             location.get(callback);
         };
 
-        $scope.changeValue = function(){
-            accountUpdate.update($scope.profile);
+        $scope.changeValue = function(name,value){
+            if(!$scope.changedValues) $scope.changedValues = {};
+            $scope.changedValues[name] = value;
         };
+
+        $scope.cancelChanges = function(){
+            for(var item in $scope.changedValues){
+                $scope.profile[item] = $scope.accountData[item];
+            }
+            $scope.changedValues = null;
+        };
+
+        $scope.saveChanges = function(){
+            accountUpdate.update($scope.profile);
+            $scope.changedValues = null;
+        };
+
+        $scope.$on('$locationChangeStart', function (event, next, current) {
+            if ($scope.changedValues && current.match("\/profile")) {
+                var answer = confirm("You have not saved changes! Are you sure you want to leave this page?");
+                if (!answer) {
+                    event.preventDefault();
+                }
+            }
+        });
+
 
         $scope.profile.skills = [
             {
@@ -127,6 +152,9 @@ angular.module('dmc.account')
         $scope.addedNewFile = function(file,event,flow){
             flow.files.shift();
         };
+
+
+
         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
             $scope.$apply();
         }

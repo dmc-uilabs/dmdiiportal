@@ -97,10 +97,12 @@ angular.module('dmc.account', [
     this.update = function(data){
         ajax.on(dataFactory.updateAccount(data.id),data,function(result){
             if(result.error){
-                toastModel.showToast('success',result.error);
+                toastModel.showToast('error',result.error);
+            }else{
+                toastModel.showToast('success',"Data successfully updated!");
             }
         },function(result){
-            toastModel.showToast('success',"Unable update data");
+            toastModel.showToast('error',"Unable update data");
         });
     }
 }]);

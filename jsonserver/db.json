@@ -94,7 +94,7 @@
       "salutation": 3,
       "suffix": 1,
       "location": "",
-      "timezone": "",
+      "timezone": "Europe/Kiev",
       "featureImage": {
         "thumbnail": "/uploads/account-profile/1/20151224072737000000.jpg",
         "large": "/uploads/account-profile/1/20151224072737000000.jpg"
@@ -112,7 +112,7 @@
             "value": "1234567895"
           },
           "location": {
-            "enable": "true",
+            "enable": "false",
             "value": "USA"
           }
         },
@@ -122,12 +122,12 @@
             "value": "denis.sobko@gmail.com"
           },
           "phone": {
-            "enable": "true",
+            "enable": "false",
             "value": "7896655664"
           },
           "location": {
             "enable": "true",
-            "value": "Poltava, 53"
+            "value": ""
           }
         }
       }

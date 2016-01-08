@@ -235,6 +235,16 @@
             }
           }
         }
+        .md-button.md-default-theme.save-button,
+        .md-button.md-default-theme.cancel-button {
+          line-height: 36px;
+          min-height: 0;
+          height: 36px;
+          span {
+            text-decoration: none;
+          }
+        }
+
         h2{
           text-transform: uppercase;
           color: #545454;

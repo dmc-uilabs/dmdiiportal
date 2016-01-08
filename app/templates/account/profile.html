@@ -11,6 +11,8 @@
                             <h2 class="md-title">{{title}}</h2>
                         </div>
                         <span layout="column" flex></span>
+                        <md-button class="md-raised cancel-button" ng-click="cancelChanges()" ng-disabled="!changedValues">Cancel</md-button>
+                        <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!changedValues">Save</md-button>
                     </div>
                     <div class="inputs-container picture-block" layout="row" layout-align="start center">
                         <div>
@@ -54,14 +56,14 @@
                     <div class="inputs-container" layout="row" layout-align="start center">
                         <md-input-container layout="column" flex="50">
                             <label>Display Name</label>
-                            <input ng-blur="blurDisplayName()" ng-model="profile.displayName" ng-change="changeValue()">
+                            <input ng-blur="blurDisplayName()" ng-model="profile.displayName" ng-change="changeValue('displayName',profile.displayName)">
                         </md-input-container>
                         <md-input-container layout="column" class="with-icon title-input-left" flex="50">
                             <label>Location</label>
                             <md-icon class="location-gps" ng-click="getLocation()">
                                 <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
                             </md-icon>
-                            <input ng-model="profile.location" type="text" ng-change="changeValue()">
+                            <input ng-model="profile.location" type="text" ng-change="changeValue('location',profile.location)">
                         </md-input-container>
                     </div>
                     <div class="inputs-container" layout="row" layout-align="start center">
@@ -74,13 +76,13 @@
                         </md-input-container>
                         <md-input-container layout="column" flex="50">
                             <label>Job Title</label>
-                            <input ng-model="profile.jobTitle" ng-change="changeValue()">
+                            <input ng-model="profile.jobTitle" ng-change="changeValue('jobTitle',profile.jobTitle)">
                         </md-input-container>
                     </div>
                     <div class="inputs-container" layout="row" layout-align="start center">
                         <md-input-container flex>
                             <label>Description</label>
-                            <textarea ng-model="profile.description" columns="1" ng-change="changeValue()"></textarea>
+                            <textarea ng-model="profile.description" columns="1" ng-change="changeValue('description',profile.description)"></textarea>
                         </md-input-container>
                     </div>
                     <div class="inputs-container add-skills-container" layout="row" layout-align="start end">
@@ -88,7 +90,7 @@
                             <label>Skills</label>
                             <input ng-model="newSkill" ng-keypress="keyPress($event)">
                         </md-input-container>
-                        <md-button class="md-raised md-primary add-skill" ng-click="addSkill(newSkill)">ADD</md-button>
+                        <md-button class="md-raised md-primary add-skill" ng-click="addSkill(newSkill)" ng-disabled="!newSkill">ADD</md-button>
                     </div>
                     <div class="inputs-container list-skills-container" layout="row" layout-align="start start">
                         <div class="skill" ng-repeat="skill in profile.skills">
