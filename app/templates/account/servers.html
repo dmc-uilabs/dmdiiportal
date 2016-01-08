@@ -22,7 +22,7 @@
                     </div>
                     <div class="header-right-content servers" layout="row" layout-align="start end" ng-show="isAddingServer">
                         <md-input-container>
-                            <label>Server Name</label>
+                            <label>Server Alias</label>
                             <input ng-model="newServer.name">
                         </md-input-container>
                         <md-input-container>
@@ -30,14 +30,11 @@
                             <input ng-model="newServer.ip" ng-change="changeIP('new')">
                         </md-input-container>
                         <ng-md-icon ng-show="isCorrectNewIP" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
-                        <md-button class="md-raised md-primary save-server" ng-click="saveNewServer()">
-                            <ng-md-icon icon="inbox" size="21" aria-label="Save new server"></ng-md-icon>
-                            Save
-                        </md-button>
+                        <md-button class="md-raised md-primary save-server" ng-click="saveNewServer()">Save</md-button>
                     </div>
                     <div class="header-right-content servers" layout="row" layout-align="start end" ng-show="isEditingServer">
                         <md-input-container>
-                            <label>Server Name</label>
+                            <label>Server Alias</label>
                             <input ng-model="editingServer.name">
                         </md-input-container>
                         <md-input-container>
@@ -64,27 +61,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="item in servers">
-                                    <td width="50px">
-                                        <md-button class="md-fab md-mini dmc-fab" ng-click="editServer(item)">
-                                            <ng-md-icon icon="edit" size="21" aria-label="Edit Server"></ng-md-icon>
-                                        </md-button>
-                                    </td>
-                                    <td>{{item.name}}</td>
-                                    <td>{{item.ip}}</td>
-                                    <td class="status" ng-class="{'status-online' : item.status == 'online'}">
-                                        <ng-md-icon icon="lens" size="10" aria-label="Status"></ng-md-icon>
-                                        {{item.status}}
-                                    </td>
-                                    <td width="50px">
-                                        <md-button class="md-fab md-mini dmc-fab dmc-fab-delete" ng-click="deleteServer(item)">
-                                            <ng-md-icon icon="delete" size="21" aria-label="Delete Server"></ng-md-icon>
-                                        </md-button>
-                                    </td>
-                                </tr>
-                                <tr ng-if="servers.length == 0">
-                                    <td colspan="5" class="empty">No servers</td>
-                                </tr>
+                                    <tr ng-repeat="item in servers">
+                                        <td width="50px">
+                                            <md-button class="md-icon-button" aria-label="Edit"
+                                                       ng-click="editServer(item)">
+                                                <ng-md-icon icon="edit" size="21" style="fill:#666" aria-label="Edit Server"></ng-md-icon>
+                                            </md-button>
+                                        </td>
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.ip}}</td>
+                                        <td class="status" ng-class="{'status-online' : item.status == 'online'}">
+                                            <ng-md-icon icon="lens" size="10" aria-label="Status"></ng-md-icon>
+                                            {{item.status}}
+                                        </td>
+                                        <td width="50px">
+                                            <md-button class="md-icon-button" aria-label="Delete" ng-click="deleteServer(item)">
+                                                <ng-md-icon icon="delete" size="21" style="fill:#666" aria-label="Delete Server"></ng-md-icon>
+                                            </md-button>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="servers.length == 0">
+                                        <td colspan="5" class="empty">No servers</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </md-data-table-container>

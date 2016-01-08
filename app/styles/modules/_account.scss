@@ -173,7 +173,10 @@
             display: block;
           }
         }
-        th:nth-child(2),td:nth-child(2){
+        th:nth-child(3),
+        th:nth-child(2),
+        td:nth-child(3),
+        td:nth-child(2){
           text-align: left;
         }
         tr{
@@ -239,6 +242,7 @@
       }
       .header-right-content.servers{
         position: relative;
+        padding-left: 19px;
         .correct-ip{
           position: absolute;
           bottom: 7px;
