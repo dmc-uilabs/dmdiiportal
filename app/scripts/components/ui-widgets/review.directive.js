@@ -19,6 +19,7 @@ angular.module('dmc.widgets.review',[
     controller: function($scope, ajax, dataFactory, $stateParams) {
       $scope.replyFlag = false;  //flag for visibility form Reply
       $scope.flagReviewFlag = false;  //flag for visibility form Flag Review
+      $scope.flagReplyReviewFlag = false;  //flag for visibility form Flag Review
       $scope.showReply = false;
       //Show Reply form
       $scope.Reply = function(){
@@ -30,12 +31,25 @@ angular.module('dmc.widgets.review',[
       $scope.FlagReview = function(index){
         $scope.flagReviewFlag = !$scope.flagReviewFlag;
         $scope.replyFlag = false;
+        $scope.flagReplyReviewFlag = false;
+      }
+
+      //Show Flag Review form
+      $scope.ReplyFlagReview = function(index){
+        if($scope.flagReplyReviewFlag === index){
+          $scope.flagReplyReviewFlag = false;
+        }else{
+          $scope.flagReplyReviewFlag = index;
+        }
+        $scope.flagReviewFlag = false;
+        $scope.replyFlag = false;
       }
 
       //cancel Review form
       $scope.Cancel = function(){
         $scope.flagReviewFlag = false;
         $scope.replyFlag = false;
+        $scope.flagReplyReviewFlag = false;
       };
 
       //Submit Leave A Review form
@@ -88,7 +102,16 @@ angular.module('dmc.widgets.review',[
         $scope.showReply = true;
         $scope.flagReviewFlag = false;
         $scope.replyFlag = false;
+        $scope.flagReplyReviewFlag = false;
       };
+
+      //Submit Flag Review form
+      $scope.SubmitReview = function(NewReview){
+
+        $scope.flagReplyReviewFlag = false;
+        $scope.flagReviewFlag = false;
+        $scope.replyFlag = false;
+      }
 
       $scope.ShowReply = function(){
         $scope.showReply = !$scope.showReply;
