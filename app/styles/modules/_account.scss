@@ -2,11 +2,49 @@
   .left-content {
     .content-panel {
       .content-panel-body {
+        md-content{
+          overflow: inherit;
+        }
         .left-menu-list {
-          width: 100%;
           padding: 0;
-          .md-list-item-text {
-            width: 100%;
+          width: 100%;
+          md-list-item {
+            min-height: 0;
+            margin-bottom: -1px;
+            cursor: pointer;
+            padding: 0;
+            .md-button.md-default-theme{
+              min-height: 0;
+              height: auto;
+              border: 1px solid #ccc;
+              background-color: #fff;
+              @include borderRadius(0);
+              padding: 8px 0;
+              margin: 0;
+              .md-list-item-inner{
+                min-height: 0;
+              }
+            }
+            .md-list-item-text {
+              font-size: 14px;
+              width: 100%;
+              text-transform: uppercase;
+              text-align: center;
+            }
+            .md-button.md-default-theme:not([disabled]):hover{
+              background-color: #eee;
+            }
+          }
+          .selected{
+            z-index: 2;
+            .md-button.md-default-theme:not([disabled]):hover,
+            .md-button.md-default-theme{
+              background-color: #64B045;
+              color: #fff;
+              border: 1px solid #64B045;
+              cursor: default;
+              z-index: 2;
+            }
           }
         }
       }
@@ -135,7 +173,10 @@
             display: block;
           }
         }
-        th:nth-child(2),td:nth-child(2){
+        th:nth-child(3),
+        th:nth-child(2),
+        td:nth-child(3),
+        td:nth-child(2){
           text-align: left;
         }
         tr{
@@ -194,6 +235,16 @@
             }
           }
         }
+        .md-button.md-default-theme.save-button,
+        .md-button.md-default-theme.cancel-button {
+          line-height: 36px;
+          min-height: 0;
+          height: 36px;
+          span {
+            text-decoration: none;
+          }
+        }
+
         h2{
           text-transform: uppercase;
           color: #545454;
@@ -201,6 +252,7 @@
       }
       .header-right-content.servers{
         position: relative;
+        padding-left: 19px;
         .correct-ip{
           position: absolute;
           bottom: 7px;

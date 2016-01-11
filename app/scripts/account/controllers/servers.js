@@ -17,7 +17,11 @@ angular.module('dmc.account')
         $scope.servers = [];
 
         $scope.addServer = function(){
-            $scope.isAddingServer = true;
+            if($scope.isEditingServer == false) {
+                $scope.isAddingServer = true;
+            }else{
+                toastModel.showToast("error", "At the present time you are editing server.");
+            }
         };
 
         $scope.cancelAdding = function(){
@@ -28,7 +32,8 @@ angular.module('dmc.account')
         };
 
         var ipIsValid = function(ip){
-            if (ip != null && ip.trim().length > 0 && ip != '0.0.0.0' && ip != '255.255.255.255' && ip.match(/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/)){
+            //if (ip != null && ip.trim().length > 0 && ip != '0.0.0.0' && ip != '255.255.255.255' && ip.match(/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/)){
+            if (ip != null && ip.trim().length > 0){
                 return true;
             } else {
                 return false;
@@ -48,6 +53,7 @@ angular.module('dmc.account')
                 function (data) {
                     if (!data.error) {
                         $scope.servers = data.result;
+                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     } else {
                         toastModel.showToast("error", data.error);
                     }
@@ -60,7 +66,7 @@ angular.module('dmc.account')
         $scope.getServers();
 
         $scope.saveNewServer = function(){
-            if(ipIsValid($scope.newServer.ip) && $scope.newServer.name != null && $scope.newServer.name.trim().length > 0){
+            if($scope.newServer.ip && $scope.newServer.ip.trim().length > 0 && $scope.newServer.name != null && $scope.newServer.name.trim().length > 0){
                 ajax.on(dataFactory.addNewServer(), $scope.newServer,
                     function (data) {
                         if (!data.error) {
@@ -84,7 +90,7 @@ angular.module('dmc.account')
         };
 
         $scope.saveChanges = function(){
-            if(ipIsValid($scope.editingServer.ip) && $scope.editingServer.name != null && $scope.editingServer.name.trim().length > 0){
+            if($scope.newServer.ip && $scope.newServer.ip.trim().length > 0 && $scope.editingServer.name != null && $scope.editingServer.name.trim().length > 0){
                 ajax.on(dataFactory.saveChangeServer(), $scope.editingServer,
                     function (data) {
                         if (!data.error) {
@@ -117,9 +123,13 @@ angular.module('dmc.account')
         };
 
         $scope.editServer = function(item){
-            $scope.editingServer = $.extend(true,{},item);
-            $scope.isCorrectChangedIP = ipIsValid($scope.editingServer.ip);
-            $scope.isEditingServer = true;
+            if($scope.isAddingServer == false) {
+                $scope.editingServer = $.extend(true, {}, item);
+                $scope.isCorrectChangedIP = ipIsValid($scope.editingServer.ip);
+                $scope.isEditingServer = true;
+            }else{
+                toastModel.showToast("error", "At the present time you are adding server.");
+            }
         };
 
         $scope.deleteServer = function(item){

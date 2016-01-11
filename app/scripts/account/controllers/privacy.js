@@ -6,7 +6,7 @@ angular.module('dmc.account')
         $scope.page = $state.current.name.split('.')[1];
         $scope.title = pageTitles[$scope.page];
 
-        $scope.userBasics = accountData;
+        $scope.userBasics = $.extend(true,{},accountData);
         if($scope.userBasics.email && $scope.userBasics.email.indexOf('@') != -1) {
             if (!$scope.userBasics.privacy.public.email.value || $scope.userBasics.privacy.public.email.value.length == 0) $scope.userBasics.privacy.public.email.value = $scope.userBasics.email;
             if (!$scope.userBasics.privacy.private.email.value || $scope.userBasics.privacy.private.email.value.length == 0) $scope.userBasics.privacy.private.email.value = $scope.userBasics.email;
@@ -43,13 +43,48 @@ angular.module('dmc.account')
             }
         };
 
-        $scope.changedCheckbox = function(type, container, item){
-            accountUpdate.update($scope.userBasics);
+        $scope.changedCheckbox = function(block,name,value){
+            //accountUpdate.update($scope.userBasics);
+            if(!$scope.changedValues) $scope.changedValues = {};
+            if(!$scope.changedValues.changedCheckbox) $scope.changedValues.changedCheckbox = {};
+            if(!$scope.changedValues.changedCheckbox[block]) $scope.changedValues.changedCheckbox[block] = {};
+            $scope.changedValues.changedCheckbox[block][name] = value;
         };
 
-        $scope.changeValue = function(){
-            accountUpdate.update($scope.userBasics);
+        $scope.changedValue = function(block,name,value){
+            //accountUpdate.update($scope.userBasics);
+            if(!$scope.changedValues) $scope.changedValues = {};
+            if(!$scope.changedValues.changedValue) $scope.changedValues.changedValue = {};
+            if(!$scope.changedValues.changedValue[block]) $scope.changedValues.changedValue[block] = {};
+            $scope.changedValues.changedValue[block][name] = value;
         };
+
+        $scope.cancelChanges = function(){
+            for(var category in $scope.changedValues){
+                for(var block in $scope.changedValues[category]) {
+                    for(var key in $scope.changedValues[category][block]) {
+                        var item = (category === "changedCheckbox" ? "enable" : "value");
+                        $scope.userBasics.privacy[block][key][item] = $scope.accountData.privacy[block][key][item];
+                        if(item == "enable") $scope.userBasics.privacy[block][key][item] = ($scope.userBasics.privacy[block][key][item] == true || $scope.userBasics.privacy[block][key][item] == "true" ? true : false);
+                    }
+                }
+            }
+            $scope.changedValues = null;
+        };
+
+        $scope.saveChanges = function(){
+            accountUpdate.update($scope.userBasics);
+            $scope.changedValues = null;
+        };
+
+        $scope.$on('$locationChangeStart', function (event, next, current) {
+            if ($scope.changedValues && current.match("\/privacy")) {
+                var answer = confirm("You have not saved changes! Are you sure you want to leave this page?");
+                if (!answer) {
+                    event.preventDefault();
+                }
+            }
+        });
 
         $scope.keyDown = function(type, container, $event){
             return false;
