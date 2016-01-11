@@ -35,17 +35,17 @@
 				<div ng-if="flagAddServer">
 					<form novalidate name="addServer" ng-submit="saveServer(serverModel)" layout="row" layout-align="center center">
 						<md-input-container>
-							<label>Server Name</label>
+							<label>Server Alias</label>
 							<input ng-model="serverModel.name" name="serverName" required>
 							<div ng-messages="addServer.serverName.$error">
-								<div ng-message="required">Server Name is required.</div>
+								<div ng-message="required">Server Alias is required.</div>
 							</div>
 						</md-input-container>
 						<md-input-container>
 							<label>Server Host/IP</label>
-							<input ng-model="serverModel.ip" name="serverIp" required ng-pattern='/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/'>
+							<input ng-model="serverModel.ip" name="serverIp" required>
 							<div ng-messages="addServer.serverIp.$error">
-								<div ng-message="pattern">x.x.x.x (x = 0-255)</div>
+								<!-- <div ng-pattern='/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/' ng-message="pattern">x.x.x.x (x = 0-255)</div> -->
 								<div ng-message="required">Server Host/IP is required.</div>
 							</div>
 						</md-input-container>

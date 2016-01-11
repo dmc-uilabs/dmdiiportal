@@ -202,7 +202,7 @@
 	.outputs{
 		padding-left: 8px;
 		h2{
-			height: 48px;
+			height: 36px;
 			line-height: 48px;
 			font-weight: normal;
 		}
@@ -235,7 +235,7 @@
 		margin: 0;
 	}
 	.historyButton{
-		margin: 0;
+		margin: 16px 0 0;
 		color: inherit;
 	}
 	md-content{
@@ -292,11 +292,22 @@
 			color: rgba(0,0,0,0.87);
 		}
 	}
+	.header{
+		.stars{
+			padding-top: 16px;
+		}
+	}
 	h4{
 		margin: 0;
 	}
+	md-chips .md-chips{
+    box-shadow: none;
+    .md-chip{
+      border-radius: 0px;
+    }
+  }
 	.return{
-		margin: 0;
+		margin: 0 0 16px;
 		color: inherit;
 	}
 	.buttons{
