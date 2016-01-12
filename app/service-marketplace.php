@@ -7,7 +7,6 @@
   <title>Service</title>
 <!--  <base href="/">-->
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Place favicon.ico in the root directory -->
 
   <!-- build:css styles/vendor.css -->

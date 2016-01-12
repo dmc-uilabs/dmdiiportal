@@ -34,7 +34,7 @@
 	}
 	.block{
 		padding-top: 48px;
-		h2{
+		h2, h4{
 			margin: 0;
 		}
 		a{
@@ -42,17 +42,29 @@
 		}
 		img{
 			height: 100%;
+			width: auto;
 			margin-right: 16px;
 		}
 		.first{
 			border: 1px solid #999;
-			padding: 16px 36px;
+			padding: 4px 36px;
+				height: 65px;
+				line-height: 65px;
+				div{
+					height: 100%;
+				}
 		}
 		md-list{
 			border: 1px solid #999;
 			padding: 0;
 			md-list-item{
-				padding: 16px;
+				div{
+					height: 100%;
+				}
+				padding: 4px 16px;
+				//margin: 16px;
+				height: 65px;
+				line-height: 65px;
 			}
 		}
 		.all{

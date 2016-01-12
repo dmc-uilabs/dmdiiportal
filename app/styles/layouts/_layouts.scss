@@ -144,6 +144,11 @@ md-input-container{
 .project-manager{
   font-size: 13px;
   padding: 5px 0;
+  ng-md-icon{
+    svg{
+      vertical-align: middle;
+    }
+  }
 }
 
 .widget-toolbar-title{
