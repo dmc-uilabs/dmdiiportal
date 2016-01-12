@@ -12,31 +12,33 @@
                         </div>
                         <span layout="column" flex></span>
                         <md-button ng-href="/">Deactivate My Account</md-button>
+                        <md-button class="md-raised cancel-button" ng-click="cancelChanges()" ng-disabled="!changedValues">Cancel</md-button>
+                        <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!changedValues">Save</md-button>
                     </div>
                     <div class="inputs-container" layout="row">
                         <md-input-container flex="30">
                             <label>First name</label>
-                            <input ng-model="user.firstName" ng-change="changedValue('firstName')">
+                            <input ng-model="user.firstName" ng-change="changedValue('firstName',user.firstName)">
                         </md-input-container>
                         <md-input-container flex="30">
                             <label>Last Name</label>
-                            <input ng-model="user.lastName" ng-change="changedValue('lastName')">
+                            <input ng-model="user.lastName" ng-change="changedValue('lastName',user.lastName)">
                         </md-input-container>
                         <md-input-container flex="40">
                             <label>Email Address</label>
-                            <input ng-model="user.email" type="email" ng-change="changedValue('email')">
+                            <input ng-model="user.email" type="email" ng-change="changedValue('email',user.email)">
                         </md-input-container>
                     </div>
                     <div class="inputs-container" layout="row" layout-align="end end" >
                         <md-input-container flex="15">
                             <label>Title</label>
-                            <md-select ng-model="user.salutation" ng-change="changedValue('salutation')">
+                            <md-select ng-model="user.salutation" ng-change="changedValue('salutation',user.salutation)">
                                 <md-option ng-repeat="item in salutations" value="{{item.id}}">{{item.title}}</md-option>
                             </md-select>
                         </md-input-container>
                         <md-input-container flex="15">
                             <label>Suffix</label>
-                            <md-select ng-model="user.suffix" ng-change="changedValue('suffix')">
+                            <md-select ng-model="user.suffix" ng-change="changedValue('suffix',user.suffix)">
                                 <md-option ng-repeat="item in suffixes" value="{{item.id}}">{{item.title}}</md-option>
                             </md-select>
                         </md-input-container>
@@ -47,7 +49,7 @@
                             <md-icon class="location-gps" ng-click="getLocation()">
                                 <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
                             </md-icon>
-                            <input ng-model="user.location" type="text" ng-change="changedValue('location')">
+                            <input ng-model="user.location" type="text" ng-change="changedValue('location',user.location)">
                         </md-input-container>
                         </div>
                         <div flex="40" layout="column" class="autocomplete-block">

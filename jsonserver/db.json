@@ -94,7 +94,7 @@
       "salutation": 3,
       "suffix": 1,
       "location": "",
-      "timezone": "Europe/Kiev",
+      "timezone": "",
       "featureImage": {
         "thumbnail": "/uploads/account-profile/1/20151224072737000000.jpg",
         "large": "/uploads/account-profile/1/20151224072737000000.jpg"
@@ -210,14 +210,14 @@
       "productType": "service"
     },
     {
-      "id": 10,
-      "productId": 2,
+      "id": 11,
+      "productId": 3,
       "accountId": 1,
       "productType": "service"
     },
     {
-      "id": 11,
-      "productId": 3,
+      "id": 12,
+      "productId": 2,
       "accountId": 1,
       "productType": "service"
     }
@@ -1993,7 +1993,8 @@
       "date": "2016-02-13 15:18:12",
       "startTime": "2016-01-06 15:30:12",
       "endTime": "2016-01-06 17:30:12",
-      "address": "DMDII 100 Main St Chicago, IL"
+      "address": "DMDII 100 Main St Chicago, IL",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
     },
     {
       "id": 2,
@@ -2001,7 +2002,8 @@
       "date": "2016-01-06 15:18:12",
       "startTime": "2016-01-06 10:00:00",
       "endTime": "2016-01-06 12:30:00",
-      "address": "DMDII 100 Main St Chicago, IL"
+      "address": "DMDII 100 Main St Chicago, IL",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
     },
     {
       "id": 3,
@@ -2009,7 +2011,8 @@
       "date": "2016-09-11 15:18:12",
       "startTime": "2016-01-06 12:30:12",
       "endTime": "2016-01-06 14:30:12",
-      "address": "DMDII 100 Main St Chicago, IL"
+      "address": "DMDII 100 Main St Chicago, IL",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
     }
   ]
 }

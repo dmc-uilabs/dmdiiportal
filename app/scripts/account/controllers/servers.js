@@ -90,7 +90,7 @@ angular.module('dmc.account')
         };
 
         $scope.saveChanges = function(){
-            if($scope.newServer.ip && $scope.newServer.ip.trim().length > 0 && $scope.editingServer.name != null && $scope.editingServer.name.trim().length > 0){
+            if($scope.editingServer.ip && $scope.editingServer.ip.trim().length > 0 && $scope.editingServer.name != null && $scope.editingServer.name.trim().length > 0){
                 ajax.on(dataFactory.saveChangeServer(), $scope.editingServer,
                     function (data) {
                         if (!data.error) {
