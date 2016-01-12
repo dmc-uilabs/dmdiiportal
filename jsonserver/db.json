@@ -5,8 +5,8 @@
       "name": "The Turbine Company",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "featureImage": {
-        "thumbnail": "/uploads/company/picture/1/20151224071805000000.jpg",
-        "large": "/uploads/company/picture/1/20151224071805000000.jpg"
+        "thumbnail": "/uploads/company/picture/1/20160107065859000000.png",
+        "large": "/uploads/company/picture/1/20160107065859000000.png"
       }
     },
     {
@@ -63,13 +63,6 @@
       "type": "component"
     },
     {
-      "id": 14,
-      "companyId": 1,
-      "productId": 18,
-      "position": 7,
-      "type": "service"
-    },
-    {
       "id": 15,
       "companyId": 1,
       "productId": 16,
@@ -81,8 +74,16 @@
       "companyId": 1,
       "productId": 13,
       "type": "service"
+    },
+    {
+      "id": 16,
+      "companyId": 1,
+      "productId": 29,
+      "position": 8,
+      "type": "service"
     }
   ],
+  "company_follows": [],
   "accounts": [
     {
       "id": 1,
@@ -92,8 +93,8 @@
       "email": "denis.sobko@gmail.com",
       "salutation": 3,
       "suffix": 1,
-      "location": "Kiev, 30",
-      "timezone": "Europe/Kiev",
+      "location": "",
+      "timezone": "",
       "featureImage": {
         "thumbnail": "/uploads/account-profile/1/20151224072737000000.jpg",
         "large": "/uploads/account-profile/1/20151224072737000000.jpg"
@@ -108,10 +109,10 @@
           },
           "phone": {
             "enable": "true",
-            "value": "2342342343"
+            "value": "1234567895"
           },
           "location": {
-            "enable": "true",
+            "enable": "false",
             "value": "USA"
           }
         },
@@ -121,12 +122,12 @@
             "value": "denis.sobko@gmail.com"
           },
           "phone": {
-            "enable": "true",
+            "enable": "false",
             "value": "7896655664"
           },
           "location": {
             "enable": "true",
-            "value": "Poltava, 53"
+            "value": ""
           }
         }
       }
@@ -203,14 +204,20 @@
       "productType": "service"
     },
     {
-      "id": 10,
+      "id": 11,
+      "productId": 3,
+      "accountId": 1,
+      "productType": "service"
+    },
+    {
+      "id": 12,
       "productId": 2,
       "accountId": 1,
       "productType": "service"
     },
     {
-      "id": 11,
-      "productId": 3,
+      "id": 13,
+      "productId": 1,
       "accountId": 1,
       "productType": "service"
     }
@@ -406,7 +413,7 @@
     {
       "id": 1,
       "title": "qout-of-balance Testing",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "out-of-balance Testing",
       "owner": "L.Mason",
       "releaseDate": "25/08/2015",
       "serviceType": "analytical",
@@ -424,17 +431,16 @@
         "startDate": "20/09/2015",
         "startTime": "11:15:33",
         "project": {
-          "id": 3,
-          "title": "Capacitor Design"
+          "id": 1,
+          "title": "Control Compartment  for LDR Mining"
         }
       },
-      "from": "marketplace",
-      "projectId": 3
+      "projectId": 1
     },
     {
       "id": 5,
       "title": "fan failure mode analysis",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "fan failure mode analysis.",
       "owner": "P.Ruiz",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -453,13 +459,12 @@
           "title": "Control Compartment  for LDR Mining"
         }
       },
-      "from": "marketplace",
       "projectId": 1
     },
     {
       "id": 3,
       "title": "Project Cost Analyzer",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Project Cost Analyzer",
       "owner": "M.Gill",
       "releaseDate": "01/09/2015",
       "serviceType": "analytical",
@@ -478,13 +483,12 @@
           "title": "Capacitor Design"
         }
       },
-      "from": "marketplace",
       "projectId": 2
     },
     {
       "id": 30,
       "title": "Evaluator 4 - heat loss, cost, mfg time",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Evaluator 4 - heat loss, cost, mfg time",
       "owner": "J.Cole",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -503,13 +507,12 @@
           "title": "Incoming Compartment for LDR Mining"
         }
       },
-      "from": "marketplace",
       "projectId": 5
     },
     {
       "id": 4,
       "title": "Power Factor Correction Analyzer",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Power Factor Correction Analyzer.",
       "owner": "J.Sims",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -528,13 +531,12 @@
           "title": "Capacitor Design"
         }
       },
-      "from": "marketplace",
       "projectId": 2
     },
     {
       "id": 6,
       "title": "Capacitor Compartment Layout",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Capacitor Compartment Layout",
       "owner": "E.Fox",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -553,13 +555,12 @@
           "title": "Capacitor Design"
         }
       },
-      "from": "marketplace",
       "projectId": 3
     },
     {
       "id": 7,
       "title": "Should-cost estimator",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Should-cost estimator",
       "owner": "G.Baker",
       "releaseDate": "01/08/2015",
       "serviceType": "solid",
@@ -578,13 +579,12 @@
           "title": "Capacitor Design"
         }
       },
-      "from": "marketplace",
       "projectId": 3
     },
     {
       "id": 8,
       "title": "Capacitor Configurator",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Capacitor Configurator",
       "owner": "G.Baker",
       "releaseDate": "01/07/2015",
       "serviceType": "solid",
@@ -603,13 +603,12 @@
           "title": "Capacitor Design"
         }
       },
-      "from": "marketplace",
       "projectId": 3
     },
     {
       "id": 9,
       "title": "Transformer Manufacturing Cost Analysis",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Transformer Manufacturing Cost Analysis",
       "owner": "m.winand",
       "releaseDate": "01/05/2015",
       "serviceType": "solid",
@@ -628,13 +627,12 @@
           "title": "Incoming Compartment for LDR Mining"
         }
       },
-      "from": "marketplace",
       "projectId": 4
     },
     {
       "id": 12,
       "title": "Transformer Heat Loss Model",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Transformer Heat Loss Model",
       "owner": "m.winand",
       "releaseDate": "31/05/2015",
       "serviceType": "solid",
@@ -653,13 +651,12 @@
           "title": "Incoming Compartment for LDR Mining"
         }
       },
-      "from": "marketplace",
       "projectId": 4
     },
     {
       "id": 15,
       "title": "Project Scheduler",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Project Scheduler",
       "owner": "V.Sutton",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -678,13 +675,12 @@
           "title": "Low Heat Loss Transformer"
         }
       },
-      "from": "marketplace",
       "projectId": 5
     },
     {
       "id": 16,
       "title": "Cost Relation Model",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Cost Relation Model",
       "owner": "R.McCoy",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -703,13 +699,12 @@
           "title": "Low Heat Loss Transformer"
         }
       },
-      "from": "marketplace",
       "projectId": 5
     },
     {
       "id": 17,
       "title": "Heat Loss Relation Model",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Heat Loss Relation Model",
       "owner": "R.McCoy",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -728,13 +723,12 @@
           "title": "Low Heat Loss Transformer"
         }
       },
-      "from": "marketplace",
       "projectId": 5
     },
     {
       "id": 10,
       "title": "Cost vs. Heat Loss Trade-off Matrix",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Cost vs. Heat Loss Trade-off Matrix",
       "owner": "p.koudal",
       "releaseDate": "22/02/2015",
       "serviceType": "solid",
@@ -753,13 +747,12 @@
           "title": "Incoming Compartment for LDR Mining"
         }
       },
-      "from": "marketplace",
       "projectId": 4
     },
     {
       "id": 11,
       "title": "Cost vs. Heat Loss Trade-off Matrix",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Cost vs. Heat Loss Trade-off Matrix",
       "owner": "p.koudal",
       "releaseDate": "22/02/2015",
       "serviceType": "solid",
@@ -778,13 +771,12 @@
           "title": "Incoming Compartment for LDR Mining"
         }
       },
-      "from": "marketplace",
       "projectId": 4
     },
     {
       "id": 18,
       "title": "Time Relation Model",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Time Relation Model",
       "owner": "R.McCoy",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -803,13 +795,12 @@
           "title": "Low Heat Loss Transformer"
         }
       },
-      "from": "marketplace",
       "projectId": 5
     },
     {
       "id": 2,
       "title": "PLC program verifier",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "PLC program verifier.",
       "owner": "D.Black",
       "releaseDate": "25/08/2015",
       "serviceType": "analytical",
@@ -826,17 +817,16 @@
         "startDate": "20/09/2015",
         "startTime": "11:16:02",
         "project": {
-          "id": 4,
-          "title": "Incoming Compartment for LDR Mining"
+          "id": 1,
+          "title": "Control Compartment  for LDR Mining"
         }
       },
-      "from": "marketplace",
-      "projectId": 4
+      "projectId": 1
     },
     {
       "id": 27,
       "title": "HDD/CDD Tracker",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "HDD/CDD Tracker.",
       "owner": "A.Salazaar",
       "releaseDate": "01/09/2015",
       "serviceType": "data",
@@ -855,13 +845,12 @@
           "title": "Capacitor Design"
         }
       },
-      "from": "project",
       "projectId": 2
     },
     {
       "id": 13,
       "title": "Evaluator Model",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Evaluator Model",
       "owner": "PDM.Co",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -880,13 +869,12 @@
           "title": "Low Heat Loss Transformer"
         }
       },
-      "from": "marketplace",
       "projectId": 5
     },
     {
-      "id": 27,
+      "id": 41,
       "title": "Evaluator 1 - heat loss, cost",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Evaluator 1 - heat loss, cost",
       "owner": "J.Cole",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -905,13 +893,12 @@
           "title": "Incoming Compartment for LDR Mining"
         }
       },
-      "from": "marketplace",
       "projectId": 4
     },
     {
       "id": 28,
       "title": "Evaluator 2 - heat loss, mfg time",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Evaluator 2 - heat loss, mfg time",
       "owner": "J.Cole",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -930,13 +917,12 @@
           "title": "Incoming Compartment for LDR Mining"
         }
       },
-      "from": "marketplace",
       "projectId": 4
     },
     {
       "id": 29,
       "title": "Evaluator 3 - cost, efficiency",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Evaluator 3 - cost, efficiency",
       "owner": "J.Cole",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -955,13 +941,12 @@
           "title": "Incoming Compartment for LDR Mining"
         }
       },
-      "from": "marketplace",
       "projectId": 4
     },
     {
       "id": 14,
       "title": "Transformer Efficiency",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Transformer Efficiency",
       "owner": "M.Dawson",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -980,13 +965,12 @@
           "title": "Low Heat Loss Transformer"
         }
       },
-      "from": "marketplace",
       "projectId": 5
     },
     {
       "id": 31,
       "title": "Evaluator 5 - cost, mfg time",
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "description": "Evaluator 5 - cost, mfg time",
       "owner": "J.Cole",
       "releaseDate": "01/09/2015",
       "serviceType": "solid",
@@ -1005,7 +989,6 @@
           "title": "Incoming Compartment for LDR Mining"
         }
       },
-      "from": "marketplace",
       "projectId": 4
     }
   ],
@@ -1742,23 +1725,6 @@
       "like": 0,
       "dislike": 0,
       "comment": "test"
-    },
-    {
-      "id": 16,
-      "productId": 1,
-      "productType": "services",
-      "reply": false,
-      "reviewId": 13,
-      "name": "DMC Member",
-      "status": true,
-      "date": "01-12-2016",
-      "rating": 0,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
-      "like": 0,
-      "dislike": 0,
-      "comment": "test"
     }
   ],
   "profiles": [
@@ -1769,7 +1735,7 @@
       "jobTitle": "Engineering Manager",
       "location": "Berkeley, California",
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "description": "maxlength=\"1000\"maxlength=\"1000\"maxlength=\"1000\"maxlen gth=\"1000\"ffffffffffffffffffffffffffffffffffmaxlength=\"1000\"m axlength=\"1000\"maxlength=\"1000\"maxlength=\"1000\"ffffffffffff ffffffffffffffffffffffmaxlength=\"1000\"maxlength=\"1000\"maxle ngth=\"10  00\"maxlength=\"1000\"ffffffffffffffffffffffffffffffffffmaxlength=\"1000\"maxlength= \"1000\"maxlength=\"1000\"maxlength=\"1000\"ffffffffffffffff ffffffffffffffffffmaxlengt =\"1000\"maxlength=\"1000\"maxle th=\"100 0\"maxlength=\"1000\"maxlength=\"1000\"ffffffffffffffffffffff ffffffffffffmaxlength=\"1000\"maxlength=\"1000\"maxlength=\"1000\"maxlength=\"1000\"ffffffffffffffffffffffffffffffffffmaxle ngth=\"1000\"maxlength=\"1000\"maxlength=\"1000\"maxlength=\"1000\"ffffffffffffffffffffffffffffffffffmaxlength=\"1000\"maxlength=\"1000\"maxlength=\"1000\"maxlength=\"1000\"fffffffffffffffffff fffffffffffffffmaxlengtds lkfsdlkfsl",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
       "skills": [
         "skill1",
         "skill2",
@@ -1978,6 +1944,75 @@
       "faq_subcategoryId": 6,
       "title": "How do I create a project? 10",
       "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }
+  ],
+  "announcements": [
+    {
+      "id": 1,
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
+      "created_at": "2016-02-11 15:18:12"
+    },
+    {
+      "id": 2,
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
+      "created_at": "2016-01-06 15:18:12"
+    },
+    {
+      "id": 3,
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
+      "created_at": "2016-03-08 15:18:12"
+    }
+  ],
+  "announcement_comments": [
+    {
+      "id": 1,
+      "announcementId": 1,
+      "accountId": 1,
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
+      "created_at": "2016-01-06 16:18:12"
+    },
+    {
+      "id": 2,
+      "announcementId": 1,
+      "accountId": 1,
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
+      "created_at": "2016-01-06 16:18:12"
+    },
+    {
+      "id": 3,
+      "announcementId": 2,
+      "accountId": 1,
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
+      "created_at": "2016-01-06 16:18:12"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "DMC Demonstration 1",
+      "date": "2016-02-13 15:18:12",
+      "startTime": "2016-01-06 15:30:12",
+      "endTime": "2016-01-06 17:30:12",
+      "address": "DMDII 100 Main St Chicago, IL",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
+    },
+    {
+      "id": 2,
+      "title": "DMC Demonstration 2",
+      "date": "2016-01-06 15:18:12",
+      "startTime": "2016-01-06 10:00:00",
+      "endTime": "2016-01-06 12:30:00",
+      "address": "DMDII 100 Main St Chicago, IL",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
+    },
+    {
+      "id": 3,
+      "title": "DMC Demonstration 3",
+      "date": "2016-09-11 15:18:12",
+      "startTime": "2016-01-06 12:30:12",
+      "endTime": "2016-01-06 14:30:12",
+      "address": "DMDII 100 Main St Chicago, IL",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
     }
   ]
 }

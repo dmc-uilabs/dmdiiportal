@@ -1,19 +1,20 @@
 'use strict';
 angular.module('dmc.account')
     .controller('BasicsAccountCtr', [ '$stateParams', '$state', "$scope","$timeout", "$q", "ajax", "location","accountData","accountUpdate", function ($stateParams, $state, $scope,$timeout,$q, ajax, location,accountData,accountUpdate) {
-        //$scope.accountData = accountData;
+        $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
         $scope.title = pageTitles[$scope.page];
 
-        $scope.user = accountData;
+        $scope.user = $.extend(true,{},accountData);
         var callback = function(success,data){
             if(success) {
                 $scope.user.dataLocation = data;
                 $scope.user.location = $scope.user.dataLocation.city + ", " + $scope.user.dataLocation.region;
                 $scope.ctrl.searchText = $scope.user.dataLocation.timezone;
                 $scope.user.timezone = $scope.user.dataLocation.timezone;
-                accountUpdate.update($scope.user);
+                $scope.changedValue('timezone',$scope.user.timezone);
+                $scope.changedValue('location',$scope.user.location);
             }
         };
 
@@ -47,7 +48,7 @@ angular.module('dmc.account')
         function searchTextChange(text) {
             if(text.trim().length == 0){
                 $scope.user.timezone = null;
-                accountUpdate.update($scope.user);
+                $scope.changedValue('timezone',$scope.user.timezone);
             }
         }
         function selectedItemChange(item) {
@@ -56,7 +57,7 @@ angular.module('dmc.account')
             }else {
                 $scope.user.timezone = item.display;
             }
-            accountUpdate.update($scope.user);
+            $scope.changedValue('timezone',$scope.user.timezone);
         }
 
         function loadAll() {
@@ -104,10 +105,27 @@ angular.module('dmc.account')
             var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email);
         }
-        $scope.changedValue = function(type){
-            if(type != "email" || (type == "email" && ($scope.user.email.trim().length == 0 || validateEmail($scope.user.email)))) {
-                accountUpdate.update($scope.user);
+        $scope.changedValue = function(name,value){
+            if(!$scope.changedValues) $scope.changedValues = {};
+            $scope.changedValues[name] = value;
+        };
+
+        $scope.cancelChanges = function(){
+            for(var item in $scope.changedValues){
+                $scope.user[item] = $scope.accountData[item];
+                if(item == 'timezone'){
+                    $scope.ctrl.searchText = $scope.accountData[item];
+                }
             }
+            $scope.changedValues = null;
+        };
+
+        $scope.saveChanges = function(){
+            if(!validateEmail($scope.user.email)) {
+                $scope.user.email = $scope.accountData.email;
+            }
+            accountUpdate.update($scope.user);
+            $scope.changedValues = null;
         };
 
         $scope.suffixes = [

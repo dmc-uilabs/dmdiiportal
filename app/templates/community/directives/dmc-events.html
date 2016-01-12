@@ -11,18 +11,24 @@
     <md-content class="md-padding">
         <div class="events-list">
             <md-list>
-                <md-list-item ng-repeat="item in events" layout-align="start start">
-                    <div class="date-item" layout="column">
-                        <span>{{item.date[0]}}</span>
-                        <span>{{item.date[1]}}</span>
+                <md-list-item ng-repeat="item in events" layout-align="start start" layout-wrap>
+                    <div layout="row" flex="100" class="main-block" ng-click="showDescription(item)">
+                        <div class="date-item" layout="column">
+                            <span>{{item.date[0]}}</span>
+                            <span>{{item.date[1]}}</span>
+                        </div>
+                        <div class="md-list-item-text" layout="column" flex>
+                            <div class="title">{{item.title}}</div>
+                            <div>{{item.startTime}} to {{item.endTime}}</div>
+                            <div>{{item.address}}</div>
+                        </div>
+                        <div class="arrow-item" layout="column">
+                            <ng-md-icon icon="keyboard_arrow_down" style="fill: #666" size="32" ng-show="!item.isShowDescription"></ng-md-icon>
+                            <ng-md-icon icon="keyboard_arrow_up" style="fill: #666" size="32" ng-show="item.isShowDescription"></ng-md-icon>
+                        </div>
                     </div>
-                    <div class="md-list-item-text" layout="column" flex>
-                        <div class="title">{{item.title}}</div>
-                        <div>{{item.startTime}} to {{item.endTime}}</div>
-                        <div>{{item.address}}</div>
-                    </div>
-                    <div class="arrow-item" layout="column">
-                        <ng-md-icon icon="keyboard_arrow_down" style="fill: #666" size="32"></ng-md-icon>
+                    <div layout="row" flex="100" ng-show="item.isShowDescription">
+                        <p>{{item.description}}</p>
                     </div>
                 </md-list-item>
             </md-list>

@@ -35,6 +35,10 @@ angular.module('dmc.community.dmc-events',[]).
                 };
 
                 $scope.getEvents();
+
+                $scope.showDescription = function(item){
+                    item.isShowDescription = (!item.isShowDescription ? true : false);
+                };
             }]
         };
     }]);

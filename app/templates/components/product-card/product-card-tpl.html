@@ -3,14 +3,14 @@
     <input class="product-card-position" type="hidden" ng-model="cardSource.position" value="{{cardSource.position}}" ng-if="cardSource.position">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <md-button ng-show="hideButtons.indexOf('favorite') < 0" ng-click="addToFavorite()" aria-label="Favorite" class="md-icon-button" flex>
+      <md-button md-no-ink ng-show="hideButtons.indexOf('favorite') < 0" ng-click="addToFavorite()" aria-label="Favorite" class="md-icon-button" flex>
         <ng-md-icon icon="{{ cardSource.favorite ? 'favorite' : 'favorite_outline'}}" ng-class="!cardSource.favorite ? 'not-favorite' : 'is-favorite'" size="25"></ng-md-icon>
       </md-button>
-      <md-button ng-show="hideButtons.indexOf('share') < 0" ng-click="share()" aria-label="Reply" class="md-icon-button reply" flex>
+      <md-button md-no-ink ng-show="hideButtons.indexOf('share') < 0" ng-click="share()" aria-label="Reply" class="md-icon-button reply" flex>
         <ng-md-icon icon="reply" style="fill: grey;" size="25"></ng-md-icon>
       </md-button>
       <!--href="product.php#/{{typeProduct}}s/{{cardSource.id}}"-->
-      <md-button ng-click="show()" aria-label="Open" class="md-icon-button" flex>
+      <md-button md-no-ink ng-click="show()" aria-label="Open" class="md-icon-button" flex>
         <ng-md-icon icon="arrow_forward" style="fill: grey;" size="25"></ng-md-icon>
       </md-button>
     </div>
