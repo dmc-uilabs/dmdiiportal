@@ -1,16 +1,19 @@
 <div class="tabs-statistic" layout="column" ng-repeat="item in data">
+	<md-divider ng-if="!$first"></md-divider>
 	<h2 ng-if="item.title">{{item.title}}</h2>
 	<div layout="row" layout-align="space-between start">
-		<div flex="15" class="rate">
-			<h3>Success Rate</h3>
-			<div class="cell1">
-				<h4>20% Success</h4>
-			</div>
-			<div class="cell2">
-				<h4>20% Incomplete</h4>
-			</div>
-			<div class="cell3">
-				<h4>20% Failed</h4>
+		<div flex="15">
+			<div class="rate">
+				<h3>Success Rate</h3>
+				<div class="cell1">
+					<h4>20% Success</h4>
+				</div>
+				<div class="cell2">
+					<h4>20% Incomplete</h4>
+				</div>
+				<div class="cell3">
+					<h4>20% Failed</h4>
+				</div>
 			</div>
 		</div>
 		<div flex="15">
@@ -27,39 +30,6 @@
 				<div class="cell3" layout="row" layout-align="space-between center">
 					<h4>All-time</h4>
 					<h5>{{item.SuccessfulRuns.AllTime}}</h5>
-				</div>
-			</div>
-
-			<div class="section">
-				<h3>Runs By Users</h3>
-				<div class="cell1" layout="row" layout-align="space-between center">
-					<h4>Today</h4>
-					<h5>{{item.RunsByUsers.Today}}</h5>
-				</div>
-				<div class="cell2" layout="row" layout-align="space-between center">
-					<h4>Week</h4>
-					<h5>{{item.RunsByUsers.Week}}</h5>
-				</div>
-				<div class="cell3" layout="row" layout-align="space-between center">
-					<h4>All-time</h4>
-					<h5>{{item.RunsByUsers.AllTime}}</h5>
-				</div>
-			</div>
-		</div>
-		<div flex="15">
-			<div class="section">
-				<h3>Incomplete Runs</h3>
-				<div class="cell1" layout="row" layout-align="space-between center">
-					<h4>Today</h4>
-					<h5>{{item.IncompleteRuns.Today}}</h5>
-				</div>
-				<div class="cell2" layout="row" layout-align="space-between center">
-					<h4>Week</h4>
-					<h5>{{item.IncompleteRuns.Week}}</h5>
-				</div>
-				<div class="cell3" layout="row" layout-align="space-between center">
-					<h4>All-time</h4>
-					<h5>{{item.IncompleteRuns.Month}}</h5>
 				</div>
 			</div>
 
@@ -81,18 +51,18 @@
 		</div>
 		<div flex="15">
 			<div class="section">
-				<h3>Unavailable Runs</h3>
+				<h3>Incomplete Runs</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
 					<h4>Today</h4>
-					<h5>{{item.UnavailableRuns.Today}}</h5>
+					<h5>{{item.IncompleteRuns.Today}}</h5>
 				</div>
 				<div class="cell2" layout="row" layout-align="space-between center">
 					<h4>Week</h4>
-					<h5>{{item.UnavailableRuns.Week}}</h5>
+					<h5>{{item.IncompleteRuns.Week}}</h5>
 				</div>
 				<div class="cell3" layout="row" layout-align="space-between center">
 					<h4>All-time</h4>
-					<h5>{{item.UnavailableRuns.Month}}</h5>
+					<h5>{{item.IncompleteRuns.Month}}</h5>
 				</div>
 			</div>
 
@@ -109,6 +79,41 @@
 				<div class="cell3" layout="row" layout-align="space-between center">
 					<h4>All-time</h4>
 					<h5>{{item.AverageTime.Month}}</h5>
+				</div>
+			</div>
+		</div>
+		<div flex="15">
+			<div class="section">
+				<h3>Unavailable Runs</h3>
+				<div class="cell1" layout="row" layout-align="space-between center">
+					<h4>Today</h4>
+					<h5>{{item.UnavailableRuns.Today}}</h5>
+				</div>
+				<div class="cell2" layout="row" layout-align="space-between center">
+					<h4>Week</h4>
+					<h5>{{item.UnavailableRuns.Week}}</h5>
+				</div>
+				<div class="cell3" layout="row" layout-align="space-between center">
+					<h4>All-time</h4>
+					<h5>{{item.UnavailableRuns.Month}}</h5>
+				</div>
+			</div>
+
+		</div>
+		<div flex="15">
+			<div class="section">
+				<h3>Runs By Users</h3>
+				<div class="cell1" layout="row" layout-align="space-between center">
+					<h4>Today</h4>
+					<h5>{{item.RunsByUsers.Today}}</h5>
+				</div>
+				<div class="cell2" layout="row" layout-align="space-between center">
+					<h4>Week</h4>
+					<h5>{{item.RunsByUsers.Week}}</h5>
+				</div>
+				<div class="cell3" layout="row" layout-align="space-between center">
+					<h4>All-time</h4>
+					<h5>{{item.RunsByUsers.AllTime}}</h5>
 				</div>
 			</div>
 		</div>

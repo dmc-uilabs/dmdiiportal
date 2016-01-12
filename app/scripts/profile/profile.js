@@ -42,6 +42,11 @@ angular.module('dmc.profile', [
     $scope.file = '';  //file picture
     $scope.showflag = false;
     $scope.followFlag = false;
+    $scope.inviteToProject = false;
+    $scope.invate = false;
+    $scope.toProject = "";
+    $scope.projects = null;
+
 
     $scope.sortList = [
       {
@@ -92,6 +97,20 @@ angular.module('dmc.profile', [
       },
       function(){
         alert("Ajax fail: getProduct");
+      }
+    );
+
+    //get project
+    ajax.on(
+      dataFactory.getUrlAllProjects(),
+      {
+        limit : 10, offset: 0
+      },
+      function(data){
+        $scope.projects = data.result;
+      },
+      function(){
+        alert("Ajax faild: getProjects");
       }
     );
 
@@ -365,5 +384,26 @@ angular.module('dmc.profile', [
 
   $scope.follow = function(){
     $scope.followFlag = !$scope.followFlag;
+  }
+
+  $scope.btnInviteToProject = function(){
+    $scope.inviteToProject = true;
+  }
+
+  $scope.btnAddToProject = function(title){
+    console.info("add", title)
+    $scope.toProject = title;
+    $scope.invate = true;
+    $scope.inviteToProject = false;
+  }
+  
+  $scope.btnCanselToProject = function(){
+    $scope.inviteToProject = false;
+  }
+  
+  $scope.btnRemoveOfProject = function(){
+    $scope.toProject = "";
+    $scope.invate = false;
+    $scope.inviteToProject = false;
   }
   });

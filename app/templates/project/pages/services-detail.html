@@ -13,13 +13,11 @@
 	</md-toolbar>
 </div>
 <div class="project-details-services" layout="column">
-	<div>
 		<a class="return" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
 			Return to Services
 		</a>
-	</div>
 	<div layout="row" layout-align="space-between center">
-		<div layout="column">
+		<div layout="column" class="header">
 			<h2><a ng-href="{{'product.php#/'+ service.type + 's/' + service.id}}">{{service.title}}</a> <span>By {{service.owner}}</span></h2>
 			<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}}) {{number_of_comments}} reviews"></ui-widget-stars-static>
 		</div>
