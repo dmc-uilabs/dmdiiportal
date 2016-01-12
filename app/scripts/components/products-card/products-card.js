@@ -24,7 +24,8 @@ angular.module('dmc.component.productscard', [
           searchCard: "=",
           updatePageSize : "=",
           addFeatured : "=",
-          hideButtons : "="
+          hideButtons : "=",
+          viewAllLink: "="
       },
       templateUrl: 'templates/components/products-card/products-card-tpl.html',
       controller: function($scope,$cookies){

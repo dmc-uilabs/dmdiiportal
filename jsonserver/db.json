@@ -198,12 +198,6 @@
   ],
   "favorite_products": [
     {
-      "id": 2,
-      "productId": 1,
-      "accountId": 1,
-      "productType": "service"
-    },
-    {
       "id": 8,
       "productId": 18,
       "accountId": 1,
@@ -218,6 +212,12 @@
     {
       "id": 12,
       "productId": 2,
+      "accountId": 1,
+      "productType": "service"
+    },
+    {
+      "id": 13,
+      "productId": 1,
       "accountId": 1,
       "productType": "service"
     }

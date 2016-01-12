@@ -57,7 +57,7 @@
     </md-tabs>
 
     <!-- Favorit items -->
-    <div class="marketplace-favorit">
+    <div class="marketplace-storefronts">
       <dmc-products-card 
           title-card="'ITEMS FROM FAVORITE STOREFRONTS'" 
           search-card="isSearch" 
@@ -68,6 +68,7 @@
           total-size="products.count" 
           class="content-panel-marketplace"
           hide-buttons="[]"
+          view-all-link="'/marketplace.php#/search/'+currentPage"
           layout-margin>
       </dmc-products-card>
     </div>

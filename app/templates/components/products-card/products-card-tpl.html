@@ -3,12 +3,14 @@
         <md-toolbar ng-if="!searchCard">
             <div class="md-toolbar-tools">
               <h1 class="name-card" layout-padding>{{titleCard}}</h1>
+                <span flex></span>
+              <md-button ng-href="{{viewAllLink}}" ng-show="viewAllLink">View All</md-button>
             </div>
         </md-toolbar>
         <div layout='row' layout-align="center center">
-            <h2 class="total-size">{{totalSize}} Results</h2>
+            <h2 class="total-size" ng-show="searchCard">{{totalSize}} Results</h2>
             <md-button ng-click="clearFilter()" ng-if="searchCard" style="display: none">Clear All</md-button>
-            <md-content class="md-padding" layout="column" ng-if="searchCard" style="display: none">
+            <md-content class="md-padding" layout="column" ng-show="searchCard" style="display: none">
                 <md-chips ng-model="filterItems" readonly="false">
                     <md-chip-template>
                         <strong>{{$chip.name}}</strong>
@@ -16,7 +18,7 @@
                 </md-chips>
             </md-content>
             <span flex></span>
-            <md-input-container>
+            <md-input-container ng-show="searchCard">
                 <label>Show</label>
                 <md-select ng-model="sizeModule" ng-change="selectItemDropDown('show')">
                     <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >
@@ -24,7 +26,7 @@
                     </md-option>
                 </md-select>
             </md-input-container>
-            <md-input-container ng-if="searchCard">
+            <md-input-container ng-show="searchCard">
                 <label>Sort</label>
                 <md-select ng-model="pageSort" ng-change="selectItemDropDown('sort')">
                     <md-option ng-repeat="item in sortArray track by $index" ng-value="$index" >
