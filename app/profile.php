@@ -81,6 +81,7 @@
 <script src="scripts/configs/ngMaterial-config.js"></script>
 <script src="scripts/common/header/header.js"></script>
 <script src="scripts/common/footer/footer.js"></script>
+<script src="scripts/common/factory/location.factory.js"></script>
 <script src="scripts/components/ui-widgets/stars.directive.js"></script>
 <script src="scripts/components/ui-widgets/review.directive.js"></script>
 <script src="scripts/common/factory/socket.factory.js"></script>

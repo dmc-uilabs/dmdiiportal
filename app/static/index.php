@@ -450,6 +450,7 @@ function add_to_project($params){
                 $product['currentStatus']['project']['id'] = $project['id'];
                 $product['currentStatus']['project']['title'] = $project['title'];
                 $product['projectId'] = $project['id'];
+                $product['from'] = 'marketplace';
                 $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['type'].'/' . $params['id'], 'PUT', json_encode($product)), true);
                 if($params['type'] == 'services') {
                     $changed_item = addMore($changed_item);

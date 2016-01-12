@@ -93,6 +93,7 @@
 <script src="scripts/components/tree-menu/tree-menu.js"></script>
 <script src="scripts/components/product-card/product-card.js"></script>
 <script src="scripts/components/products-card/products-card.js"></script>
+<script src="scripts/common/models/toast-model.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
         window.apiUrl = '';
