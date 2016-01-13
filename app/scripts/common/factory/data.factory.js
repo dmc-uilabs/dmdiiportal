@@ -10,7 +10,8 @@ angular.module('dmc.data',[])
         var webServiceUrl = function(action, projectId){
             var wsurl;
             if ($window.apiUrl && projectId) {
-                wsurl = '/projects/' + projectId + '/' + action;
+                wsurl = '/projects/' + projectId;
+                wsurl += action ? '/' + action : '';
             } else {
                 wsurl = '/'+action;
             }
@@ -33,7 +34,7 @@ angular.module('dmc.data',[])
                 var obj = {}
                 if ($window.apiUrl) {
                     obj = _.transform(source, function(result, value, key) {
-                      if (value){
+                      if (value && key != "projectId"){
                         result['_'+key] = value;
                       }
                     });
@@ -66,11 +67,11 @@ angular.module('dmc.data',[])
                 // return baseServer+'/discussions'+appendId(id);
                 return baseServer+webServiceUrl('discussions', id);
             },
-            getUrlAllProjects: function(){
+            getUrlAllProjects: function(id){
                 return baseServer+'/projects';
             },
             getUrlAllComponents: function(id){
-                return baseServer+'/components'+appendId(id);
+                return baseServer+webServiceUrl('components', id);
             },
             getUrlAllProducts: function(){
                 return baseServer+'/products';
@@ -144,8 +145,8 @@ angular.module('dmc.data',[])
             updateAccount: function(id){
                 return baseServer+'/update_account'+appendId(id);
             },
-            getProfile: function(){
-                return baseServer+'/profile';
+            getProfile: function(id){
+                return baseServer+'/profiles'+appendId(id);
             },
             editProfile: function(){
                 return baseServer+'/edit_profile';

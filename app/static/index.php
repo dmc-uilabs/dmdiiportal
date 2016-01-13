@@ -84,7 +84,7 @@ return call_user_func(function () {
         echo save_company_changes($_GET);
     }else if(strpos($uri,'/update_account') !== false){
         echo update_account($_GET);
-    }else if(strpos($uri,'/profile') !== false){
+    }else if(strpos($uri,'/profiles') !== false){
       echo get_profile($_GET);
     }else if(strpos($uri,'/get_profile_review') !== false){
       echo get_profile_review($_GET);
@@ -1201,7 +1201,7 @@ function edit_product($params){
 function get_profile($params){
   if(isset($params['profileId'])){
     $query = json_decode(httpResponse(dbUrl().'/profiles/'.$params['profileId'], null, null),true);
-    
+
     $query['reviews'] = json_decode(httpResponse(dbUrl().'/profiles/'.$query['id'].'/profile_reviews?reviewId=0', null, null),true);
     $query['rating'] = [];
     for($k = 0; $k < count($query['reviews']); ++$k){
