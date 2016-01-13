@@ -18,7 +18,7 @@
 		</a>
 	<div layout="row" layout-align="space-between center">
 		<div layout="column" class="header">
-			<h2><a ng-href="{{'product.php#/'+ service.type + 's/' + service.id}}">{{service.title}}</a> <span>By {{service.owner}}</span></h2>
+			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By {{service.owner}}</span></h2>
 			<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}}) {{number_of_comments}} reviews"></ui-widget-stars-static>
 		</div>
 		<div class="buttons" layout layout-align="center center">
@@ -69,7 +69,7 @@
 			</md-content>
 		</md-tab>
 
-		<md-tab label="Reviews">
+		<md-tab ng-if="service.from == 'marketplace'" label="Reviews">
 			<div layout="row" layout-align="start center">
 				<h4>{{number_of_comments}} reviews </h4>
 				<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>

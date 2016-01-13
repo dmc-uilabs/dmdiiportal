@@ -25,7 +25,9 @@
 	<div class="block" ng-if="!user">
 		<h2>Evaluate Project Submissions</h2>
 		<div layout="row" layout-align="center center" class="first">
-			<img flex="15" src="/uploads/company/picture/1/20151224071805000000.jpg">
+			<div flex="15">
+				<img src="/uploads/company/picture/1/20160107065859000000.png">
+			</div>
 			<h4 flex>The Demo Project has closed. <a href="">Evaluate 56 submissions.</a></h4>
 			<h4>2 hours ago</h4>
 		</div>
@@ -34,7 +36,9 @@
 	<div class="block" ng-if="user">
 		<h2>Project invitations</h2>
 		<div layout="row" layout-align="center center" class="first">
-			<img flex="15" src="/uploads/company/picture/1/20151224071805000000.jpg">
+			<div flex="15">
+				<img src="/uploads/company/picture/1/20160107065859000000.png">
+			</div>
 			<h4>John Smith has invited you to join <a href="">The Demo Project.</a></h4>
 			<md-button class="md-raised">
 			Decline
@@ -48,16 +52,15 @@
 	</div>
 
 	<div class="block">
-		<div layout="row" layout-align="space-between center">
+		<div layout="row" layout-align="start center">
 			<h2>Today</h2>
-			<md-button ng-href="" class="all">
-				View All
-			</md-button>
 		</div>
 		<md-list>
 			<md-list-item ng-repeat="item in today track by $index">
 				<div flex="100" layout="row" layout-align="center center" >
-					<img flex="10" ng-src="{{item.image}}">
+					<div flex="10">
+						<img ng-src="{{item.image}}">
+					</div>
 					<h4 flex>{{item.title}} <a href="{{item.link}}">{{item.linkTitle}}</a></h4>
 					<h4>{{item.time}}</h4>
 				</div>
@@ -67,16 +70,15 @@
 	</div>
 
 	<div class="block">
-		<div layout="row" layout-align="space-between center">
+		<div layout="row" layout-align="start center">
 			<h2>Yesterday</h2>
-			<md-button ng-href="" class="all">
-				View All
-			</md-button>
 		</div>
 		<md-list>
 			<md-list-item ng-repeat="item in yesterday track by $index">
 				<div flex="100" layout="row" layout-align="center center" >
-					<img flex="10" ng-src="{{item.image}}">
+					<div flex="10">
+						<img ng-src="{{item.image}}">
+					</div>
 					<h4 flex>{{item.title}} <a href="{{item.link}}">{{item.linkTitle}}</a></h4>
 					<h4>{{item.time}}</h4>
 				</div>

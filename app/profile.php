@@ -7,7 +7,6 @@
   <title>Profile</title>
 <!--  <base href="/">-->
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Place favicon.ico in the root directory -->
 
   <!-- build:css styles/vendor.css -->
@@ -81,6 +80,7 @@
 <script src="scripts/configs/ngMaterial-config.js"></script>
 <script src="scripts/common/header/header.js"></script>
 <script src="scripts/common/footer/footer.js"></script>
+<script src="scripts/common/factory/location.factory.js"></script>
 <script src="scripts/components/ui-widgets/stars.directive.js"></script>
 <script src="scripts/components/ui-widgets/review.directive.js"></script>
 <script src="scripts/common/factory/socket.factory.js"></script>

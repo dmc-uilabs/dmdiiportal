@@ -42,6 +42,24 @@
       margin-top: 0;
       height: 47px;
     }
+
+
+    .add-to-project{
+      md-select{
+        margin: 0;
+      }
+      .md-button{
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .cancelProject,
+      .addProject{
+        min-width: 36px;
+      }
+      .addProject{
+        text-transform: none;
+      }
+    }
   }
 
   .product-image{
@@ -96,6 +114,9 @@
     }
     md-chips .md-chips{
       box-shadow: none;
+      md-chip{
+        border-radius: 0px;
+      }
       .tags-chip{
         padding-right: 32px;
         .md-icon-button{

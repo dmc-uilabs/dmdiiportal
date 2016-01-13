@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Product</title>
+  <title>Discussion</title>
 <!--  <base href="/">-->
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <!-- Place favicon.ico in the root directory -->
@@ -27,14 +27,14 @@
   <script src="/bower_components/modernizr/modernizr.js"></script>
   <!-- endbuild -->
 </head>
-<body ng-app="dmc.product">
+<body ng-app="dmc.individual-discussion">
 
 <!--[if lt IE 10]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
 <!-- Top Header -->
-<div dmc-top-header active-page="'marketplace&market'"></div>
+<div dmc-top-header active-page="'index'"></div>
 <ui-view></ui-view>
 <dmc-footer></dmc-footer>
 
@@ -75,24 +75,15 @@
 <!-- endbower -->
 <!-- endbuild -->
 
-<!-- build:js scripts/product/index.js -->
+<!-- build:js scripts/individual-discussion/index.js -->
 <script src="scripts/socket/socket.io.js"></script>
 <script src="scripts/configs/ngMaterial-config.js"></script>
 <script src="scripts/common/header/header.js"></script>
 <script src="scripts/common/footer/footer.js"></script>
-<script src="scripts/components/ui-widgets/stars.directive.js"></script>
-<script src="scripts/components/ui-widgets/documents.directive.js"></script>
-<script src="scripts/components/ui-widgets/review.directive.js"></script>
-<script src="scripts/components/dropzone/dropzone.directive.js"></script>
-<script src="scripts/common/factory/socket.factory.js"></script>
 <script src="scripts/common/factory/ajax.factory.js"></script>
 <script src="scripts/common/factory/data.factory.js"></script>
-<script src="scripts/components/carousel/carousel.js"></script>
-<script src="scripts/product/product.js"></script>
-<script src="scripts/components/tree-menu/tree-menu.js"></script>
-<script src="scripts/components/product-card/product-card.js"></script>
-<script src="scripts/components/products-card/products-card.js"></script>
 <script src="scripts/common/models/toast-model.js"></script>
+<script src="scripts/individual-discussion/individual-discussion.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
         window.apiUrl = '';
