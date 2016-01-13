@@ -111,6 +111,11 @@
 }
 
 .storefront-message-dialog{
+  .send-to{
+    input{
+      color: #333;
+    }
+  }
   md-toolbar:not(.md-menu-toolbar) {
     color: #fff;
   }

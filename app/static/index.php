@@ -844,7 +844,7 @@ function get_company($params){
         $result['result']['isOwner'] = ($accountId_ == $query["accountId"] ? true : false);
         $result['result']['owner'] = array(
             'id' => $owner["id"],
-            'displayName' => $owner["displayName"]
+            'displayName' => ($owner["displayName"] ? $owner["displayName"] : $owner["firstName"].' '.$owner["lastName"])
         );
         $result['result']['favoritesCount'] = count($account_favorites);
     }
