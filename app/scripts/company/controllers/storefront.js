@@ -1,16 +1,17 @@
 'use strict';
 angular.module('dmc.company')
-    .controller('StorefrontCompanyCtr', ['$stateParams', '$state', "$scope", "$cookies", "ajax","Products","$location",'companyData','menuCompany', 'toastModel','dataFactory', function ($stateParams, $state, $scope, $cookies, ajax,Products,$location,companyData, menuCompany, toastModel, dataFactory ) {
+    .controller('StorefrontCompanyCtr', ['$stateParams', '$state', "$scope", "$cookies", "ajax","Products","$location",'companyData','menuCompany', 'toastModel','dataFactory','$mdDialog', function ($stateParams, $state, $scope, $cookies, ajax,Products,$location,companyData, menuCompany, toastModel, dataFactory, $mdDialog ) {
+
         $scope.companyData  = companyData ;
         if(!$scope.companyData) {
             $location.path('/');
         }else {
             // ------------------------------ get state params
             $scope.companyId = $stateParams.companyId;
-            $scope.selectedProductType = $stateParams.page;
-            $scope.isSearch = ($stateParams.text ? true : false);
+            $scope.selectedProductType = $stateParams.product;
+            $scope.isSearch = ($location.$$path.indexOf('search') != -1 ? true : false);
             $scope.searchModel = $stateParams.text;
-            $scope.pageType = (angular.isDefined($stateParams.type) ? $stateParams.type : 'analytical');
+            $scope.productSubType = (angular.isDefined($stateParams.type) ? $stateParams.type : 'analytical');
             // -----------------------------------------------
             $scope.currentStorefrontPage = 1;
             $scope.pageSize = 10;
@@ -46,9 +47,8 @@ angular.module('dmc.company')
                     },
                     function (data) {
                         if (!data.error) {
-                            //$scope.features.services = data.result.services;
-                            //$scope.features.components = data.result.components;
                             $scope.carouselData.featured.arr = $.merge(data.result.services, data.result.components);
+                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                         } else {
                             toastModel.showToast("error", data.error);
                         }
@@ -63,6 +63,7 @@ angular.module('dmc.company')
             $scope.callbackCarouselData = function (data) {
                 //$scope.carouselData.featured = {arr : data.result, count : data.count};
                 $scope.carouselData.new = {arr: data.result, count: data.count};
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
             Products.get($scope.callbackCarouselData, 'services', {
@@ -74,8 +75,7 @@ angular.module('dmc.company')
             var responseData = {
                 limit: 4,
                 offset: ($scope.currentStorefrontPage - 1) * $scope.pageSize,
-                type: $scope.pageType,
-                name: $scope.searchModel
+                filterData : $stateParams
             };
 
             // function for get all products --------------------------------------------------
@@ -93,7 +93,7 @@ angular.module('dmc.company')
                 Products.get($scope.callbackServices, 'services', responseData);
             };
             $scope.callbackServices = function (data) {
-                $scope.itemsArray = {arr: data.result, count: data.countTypes[$scope.pageType]};
+                $scope.itemsArray = {arr: data.result, count: ($stateParams.type ? data.countTypes[$stateParams.type] : data.count)};
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
             // -----------------------------------------------------------------------------
@@ -107,6 +107,8 @@ angular.module('dmc.company')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
             // -----------------------------------------------------------------------------
+
+            // update products
             $scope.update = function (search) {
                 $scope.isSearch = search;
                 responseData.limit = (search ? $scope.pageSize : 4);
@@ -124,9 +126,10 @@ angular.module('dmc.company')
                     default:
                         break;
                 }
-                ;
             };
+            $scope.update($scope.isSearch);
 
+            // if changed number of page
             $scope.$watch(function () {
                 return $cookies.changedPage;
             }, function (newValue) {
@@ -135,41 +138,30 @@ angular.module('dmc.company')
                     $scope.update(true);
                 }
             });
+
+            // Change count products per page
             $scope.updatePageSize = function (val) {
                 $scope.pageSize = val;
                 $scope.update(true);
             };
 
-            $scope.productTypeChanged = function (search) {
-                $scope.update(search);
-                var item = null;
-                var index = -1;
-                for (var i in $scope.productTypes) {
-                    if ($scope.productTypes[i].name == $scope.selectedProductType) {
-                        item = $.extend(true, {}, $scope.productTypes[i]);
-                        index = i;
-                        break;
-                    }
-                }
-                if (item) {
-                    $scope.productTypes.splice(index, 1);
-                    $scope.productTypes = $scope.productTypes.sort(function (a, b) {
-                        return a.id - b.id
-                    });
-                    $scope.productTypes.unshift(item);
-                }
-                $scope.treeMenuModel = menuCompany.getMenu($scope.selectedProductType, $scope.pageType, $scope.companyId);
-            };
-            $scope.productTypeChanged($scope.isSearch);
-
-            $scope.showAll = function () {
-                $scope.update(true);
+            // Function for product types drop down (all, services, components)
+            $scope.productTypeChanged = function () {
+                var dataSearch = $.extend(true,{},$stateParams);
+                dataSearch.product = $scope.selectedProductType;
+                $location.path('/' + dataSearch.companyId + '/search').search(dataSearch);
             };
 
+            // Function for Search by name
             $scope.submit = function () {
-                var params = {text: $scope.searchModel};
-                if ($scope.selectedProductType == 'services') params.type = $scope.pageType;
-                $location.path('/' + $scope.companyId + '/storefront/' + $scope.selectedProductType).search(params);
+                var dataSearch = $.extend(true,{},$stateParams);
+                dataSearch.text = $scope.searchModel;
+                $location.path('/' + dataSearch.companyId + '/search').search(dataSearch);
+            };
+
+            // Function for "Show All" Button
+            $scope.showAll = function () {
+                $scope.submit();
             };
 
             // get data from cookies
@@ -190,6 +182,7 @@ angular.module('dmc.company')
             if ($scope.companyData.description.length > 200) {
                 $scope.companyData.shortDescription = $scope.companyData.description.replace(/<br>/g, '').substring(0, 200) + '...';
             }
+
             $scope.isReadMore = false;
             $scope.readMore = function () {
                 $scope.isReadMore = ($scope.isReadMore ? false : true);
@@ -214,6 +207,25 @@ angular.module('dmc.company')
                 );
             };
 
-            $scope.treeMenuModel = menuCompany.getMenu($scope.selectedProductType, $scope.pageType, $scope.companyId);
+            // message dialog ---------------------------
+            $scope.openMessageDialog = function(ev) {
+                $mdDialog.show({
+                    controller: messageDialogController,
+                    templateUrl: 'templates/company/message-dialog-tpl.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose:true,
+                    locals : {
+                        owner : $scope.companyData.owner
+                    }
+                }).then(function(answer) {
+                    // $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                    // $scope.status = 'You cancelled the dialog.';
+                });
+            };
+            // ------------------------------------------
+
+            $scope.treeMenuModel = menuCompany.getMenu();
         }
 }]);

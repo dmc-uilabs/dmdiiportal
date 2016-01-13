@@ -124,6 +124,8 @@ return call_user_func(function () {
         echo add_comment_individual_discussion($_POST);
     }else if(strpos($uri,'/add_discussion_like_dislike') !== false){
         echo add_discussion_like_dislike($_POST);
+    }else if(strpos($uri,'/ssm') !== false){
+        echo send_storefront_message($_GET);
     }
 });
 
@@ -148,6 +150,37 @@ function addMore($item){
     }
 
     return $item;
+}
+
+function send_storefront_message($params){
+    $currentAccountId = 1;
+    if(isset($params['text']) and isset($params['accountId'])){
+        $sendTo = $params['accountId'];
+        $text = $params['text'];
+
+        $recipient = json_decode(httpResponse(dbUrl().'/accounts/'.$sendTo, null, null),true);
+        if($recipient != null and isset($recipient['id'])){
+            $data = json_encode(array(
+                "senderId" => $currentAccountId,
+                "recipientId" => $sendTo,
+                "isRead" => false,
+                "senderDelete" => false,
+                "recipientDelete" => false,
+                "text" => $text,
+                "created_at" => date('Y-m-d h:i:s', time())
+            ));
+            $add_discussion = json_decode(httpResponse(dbUrl().'/messages', 'POST', $data),true);
+            if($add_discussion and isset($add_discussion["id"])) {
+                return json_encode(array('result' => true));
+            }else{
+                return json_encode(array('error' => "Unable save the message"));
+            }
+        }else{
+            return json_encode(array('error' => 'Recipient does not exist.' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
 }
 
 function create_task($params){
@@ -298,7 +331,7 @@ function follow_company($params){
                     'accountId' => 1
                 );
                 $add_follow = json_decode(httpResponse(dbUrl() . '/company_follows', 'POST', json_encode($data)), true);
-                return json_encode(array('follow' => true, '$data' => $add_follow));
+                return json_encode(array('follow' => true));
             }
         }else{
             if($company == null || isset($company['id']) == false) {
@@ -313,11 +346,11 @@ function follow_company($params){
 }
 
 function save_company_changes($params){
-    if(isset($params['company_id']) && isset($params['name']) && isset($params['description'])) {
+    if(isset($params['company_id']) && isset($params['description'])) {
         $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
         if($company != null and isset($company['id']) == true) {
-            $company['name'] = $params['name'];
             $company['description'] = $params['description'];
+            update_features_position($params);
             $changed_item = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], 'PUT', json_encode($company)), true);
             return json_encode(array('result' => true));
         }else{
@@ -391,9 +424,9 @@ function update_features_position($params){
             $feature['position'] = $params['positions'][$i][1];
             $changed_item = json_decode(httpResponse(dbUrl().'/company_features/' . $params['positions'][$i][0], 'PUT', json_encode($feature)), true);
         }
-        return json_encode(array('success' => true ));
+        return true;
     }else{
-        return json_encode(array('error' => 'Data is wrong' ));
+        return false;
     }
 }
 
@@ -478,14 +511,15 @@ function add_to_project($params){
     }
 }
 
-function searchByName($params,$array){
+function searchByName($name,$array,$key){
     $query = $array;
-    if(isset($params['name'])) {
-        if(is_string($params['name']) && strlen($params['name']) > 0) {
-            $params['name'] = strtolower($params['name']);
+    $name_ = $name;
+    if($name != null) {
+        if(is_string($name_) && strlen($name_) > 0) {
+            $name_ = strtolower($name_);
             $arr = array();
             for($i = 0; $i < count($query); ++$i){
-                if (strpos(strtolower($query[$i]['title']), $params['name']) !== false) array_push($arr, $query[$i]);
+                if (strpos(strtolower($query[$i][$key]), $name_) !== false) array_push($arr, $query[$i]);
             }
             $query = $arr;
         }
@@ -520,7 +554,7 @@ function get_products($params){
     $features = getFeaturesIds($params['companyId'],$withoutFeatures);
     $query = [];
     $components = json_decode(httpResponse(dbUrl().'/components', null, null), true);
-    $components = searchByName($params,$components);
+    $components = searchByName($params["filterData"]["text"],$components,'title');
     for($i = 0; $i < count($components); ++$i){
         if(in_array(intval($components[$i]['id']),$features['components'])) {
             array_splice($components, $i, ($i+1));
@@ -533,7 +567,7 @@ function get_products($params){
         }
     }
     $services = json_decode(httpResponse(dbUrl().'/services', null, null),true);
-    $services = searchByName($params,$services);
+    $services = searchByName($params["filterData"]["text"],$services,'title');
     for($i = 0; $i < count($services); ++$i){
         if(in_array(intval($services[$i]['id']),$features['services'])) {
             array_splice($services, $i, ($i+1));
@@ -583,7 +617,7 @@ function get_components($params){
             $query = array();
         }
     }
-    $query = searchByName($params,$query);
+    $query = searchByName($params["filterData"]["text"],$query,"title");
 
     $withoutFeatures = (isset($params['withoutFeatures']) and isset($params['companyId']) and $params['withoutFeatures'] == true ? true : false);
     $features = getFeaturesIds($params['companyId'], $withoutFeatures);
@@ -656,10 +690,10 @@ function get_services($params)
             $query = array();
         }
     }
-    $query = searchByName($params, $query);
+    $query = searchByName($params["filterData"]["text"], $query,"title");
 
-    $withoutFeatures = (isset($params['withoutFeatures']) and isset($params['companyId']) and $params['withoutFeatures'] == true ? true : false);
-    $features = getFeaturesIds($params['companyId'], $withoutFeatures);
+    $withoutFeatures = (isset($params['withoutFeatures']) and isset($params["filterData"]['companyId']) and $params['withoutFeatures'] == true ? true : false);
+    $features = getFeaturesIds($params["filterData"]['companyId'], $withoutFeatures);
     for ($i = 0; $i < count($query); ++$i) {
         if (in_array(intval($query[$i]['id']), $features['services'])){
             array_splice($query, $i, ($i + 1));
@@ -673,11 +707,11 @@ function get_services($params)
         'solid' => 0,
         'data' => 0
     );
-    if(isset($params['type']) && in_array($params['type'],array('analytical','solid','data'))) {
+    if(isset($params["filterData"]['type']) && in_array($params["filterData"]['type'],array('analytical','solid','data'))) {
         $arr = array();
         for($i = 0; $i < count($query); ++$i){
             $countTypes[$query[$i]['serviceType']] += 1;
-            if($query[$i]['serviceType'] === $params['type']) array_push($arr, $query[$i]);
+            if($query[$i]['serviceType'] === $params["filterData"]['type']) array_push($arr, $query[$i]);
         }
         $query = $arr;
     }else{
@@ -806,6 +840,12 @@ function get_company($params){
         $account_follow = json_decode(httpResponse(dbUrl().'/accounts/'.$accountId_.'/company_follows?companyId='.$params['id'], null, null), true);
         $result['result']['follow'] = (count($account_follow) > 0 ? true : false);
         $account_favorites = json_decode(httpResponse(dbUrl().'/accounts/'.$accountId_.'/favorite_products', null, null),true);
+        $owner = json_decode(httpResponse(dbUrl().'/accounts/'.$query["accountId"], null, null),true);
+        $result['result']['isOwner'] = ($accountId_ == $query["accountId"] ? true : false);
+        $result['result']['owner'] = array(
+            'id' => $owner["id"],
+            'displayName' => ($owner["displayName"] ? $owner["displayName"] : $owner["firstName"].' '.$owner["lastName"])
+        );
         $result['result']['favoritesCount'] = count($account_favorites);
     }
     return json_encode($result);

@@ -195,6 +195,9 @@ angular.module('dmc.data',[])
             },
             addDiscussionLikeDislike: function(){
                 return baseServer+'/add_discussion_like_dislike';
+            },
+            sendStorefrontMessage: function(){
+                return baseServer+'/ssm';
             }
         };
     }

@@ -3,6 +3,7 @@
     {
       "id": 1,
       "name": "The Turbine Company",
+      "accountId": 1,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "featureImage": {
         "thumbnail": "/uploads/company/picture/1/20160107065859000000.png",
@@ -12,6 +13,7 @@
     {
       "id": 2,
       "name": "The Turbine Company 2",
+      "accountId": 2,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "featureImage": {
         "thumbnail": "/uploads/company/picture/2/20151223085045000000.jpg",
@@ -134,8 +136,8 @@
     },
     {
       "id": 2,
-      "firstName": "First Name 2",
-      "lastName": "Last Name 2",
+      "firstName": "Bill",
+      "lastName": "Gates",
       "displayName": null,
       "email": "email2@gmail.com",
       "salutation": null,
@@ -2015,6 +2017,7 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
     }
   ],
+  "messages": [],
   "individual-discussion": [
     {
       "id": 1,

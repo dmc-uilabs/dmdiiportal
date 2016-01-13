@@ -26,6 +26,9 @@
     .md-list-item-inner{
       min-height: 0px;
       height: 30px;
+      md-checkbox.md-checked .md-icon {
+        background-color: rgb(100, 176, 69);
+      }
     }
   }
 }

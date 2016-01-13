@@ -36,7 +36,7 @@ angular.module('dmc.company', [
                 }]
         }
     }).state('company.storefront', {
-        url: '/storefront/:page?type?text',
+        url: '/storefront?product?type',
         controller: 'StorefrontCompanyCtr',
         templateUrl: 'templates/company/storefront.html',
         resolve: {
@@ -46,9 +46,19 @@ angular.module('dmc.company', [
                 }]
         }
     }).state('company.edit', {
-        url: '/edit?text',
+        url: '/edit?product?type?authors?ratings?favorites?dates?text',
         controller: 'EditStorefrontCompanyCtr',
         templateUrl: 'templates/company/edit.html',
+        resolve: {
+            companyData: ['CompanyModel', '$stateParams',
+                function(CompanyModel, $stateParams) {
+                    return CompanyModel.getModel($stateParams.companyId);
+                }]
+        }
+    }).state('company.search', {
+        url: '/search?product?type?authors?ratings?favorites?dates?text',
+        controller: 'StorefrontCompanyCtr',
+        templateUrl: 'templates/company/storefront.html',
         resolve: {
             companyData: ['CompanyModel', '$stateParams',
                 function(CompanyModel, $stateParams) {
@@ -62,13 +72,14 @@ angular.module('dmc.company', [
         if (companyId === "" || !angular.isDefined($stateParams.companyId)) {
             location.href = "/";
         }
-        //console.log(companyData);
         var hash = window.location.hash;
         if (hash.lastIndexOf('/') == hash.indexOf('/')) {
-            $state.go('company.storefront', {companyId: companyId, page : 'services'})
+            $state.go('company.storefront', {companyId: companyId, product : 'services'})
         }
-}]).service('menuCompany', ['$location',function ($location) {
-    this.getMenu = function(selectedProductType,pageType,companyId){
+}]).service('menuCompany', ['$location','$stateParams',function ($location,$stateParams) {
+    this.getMenu = function(){
+        var dataSearch = $.extend(true,{},$stateParams);
+        var searchPage = ($location.$$path.indexOf("/edit") != -1 ? "edit" : "search");
         return {
             title: 'BROWSE BY',
             data: [
@@ -77,9 +88,10 @@ angular.module('dmc.company', [
                     'title': 'All',
                     'tag' : 'all',
                     'items': 45,
-                    'opened' : (selectedProductType == 'all' ? true : false),
+                    'opened' : (dataSearch.product == 'all' ? true : false),
                     'onClick' : function(){
-                        $location.url(companyId+'/storefront/all');
+                        dataSearch.product = 'all';
+                        $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
                     },
                     'categories': []
                 },
@@ -88,9 +100,10 @@ angular.module('dmc.company', [
                     'title': 'Components',
                     'tag' : 'components',
                     'items': 13,
-                    'opened' : (selectedProductType == 'components' ? true : false),
+                    'opened' : (dataSearch.product == 'components' ? true : false),
                     'onClick' : function(){
-                        $location.url(companyId+'/storefront/components');
+                        dataSearch.product = 'components';
+                        $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
                     },
                     'categories': []
                 },
@@ -99,9 +112,10 @@ angular.module('dmc.company', [
                     'title': 'Services',
                     'tag' : 'services',
                     'items': 32,
-                    'opened' : (selectedProductType == 'services' ? true : false),
+                    'opened' : (dataSearch.product == 'services' ? true : false),
                     'onClick' : function(){
-                        $location.url(companyId+'/storefront/services');
+                        dataSearch.product = 'services';
+                        $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
                     },
                     'categories': [
                         {
@@ -109,9 +123,11 @@ angular.module('dmc.company', [
                             'title': 'Analytical Services',
                             'tag' : 'analytical',
                             'items': 15,
-                            'opened' : (selectedProductType == 'services' && pageType == 'analytical' ? true : false),
+                            'opened' : (dataSearch.product == 'services' && dataSearch.type == 'analytical' ? true : false),
                             'onClick' : function(){
-                                $location.url(companyId+'/storefront/services?type=analytical');
+                                dataSearch.product = 'services';
+                                dataSearch.type = 'analytical';
+                                $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
                             },
                             'categories': []
                         },
@@ -120,9 +136,11 @@ angular.module('dmc.company', [
                             'title': 'Solid Services',
                             'tag' : 'solid',
                             'items': 15,
-                            'opened' : (selectedProductType == 'services' && pageType == 'solid' ? true : false),
+                            'opened' : (dataSearch.product == 'services' && dataSearch.type == 'solid' ? true : false),
                             'onClick' : function(){
-                                $location.url(companyId+'/storefront/services?type=solid');
+                                dataSearch.product = 'services';
+                                dataSearch.type = 'solid';
+                                $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
                             },
                             'categories': []
                         },
@@ -131,9 +149,11 @@ angular.module('dmc.company', [
                             'title': 'Data Services',
                             'tag' : 'data',
                             'items': 2,
-                            'opened' : (selectedProductType == 'services' && pageType == 'data' ? true : false),
+                            'opened' : (dataSearch.product == 'services' && dataSearch.type == 'data' ? true : false),
                             'onClick' : function(){
-                                $location.url(companyId+'/storefront/services?type=data');
+                                dataSearch.product = 'services';
+                                dataSearch.type = 'data';
+                                $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
                             },
                             'categories': []
                         }
