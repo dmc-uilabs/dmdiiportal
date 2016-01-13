@@ -98,6 +98,7 @@
     <script src="scripts/common/models/toast-model.js"></script>
 
     <script src="scripts/company/company.js"></script>
+    <script src="scripts/company/message-dialog.controller.js"></script>
     <script src="scripts/company/controllers/storefront.js"></script>
     <script src="scripts/company/controllers/edit.js"></script>
     <!-- endbuild -->

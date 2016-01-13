@@ -185,6 +185,9 @@ angular.module('dmc.data',[])
             },
             getAnnouncements: function(){
                 return baseServer+'/get_announcements';
+            },
+            sendStorefrontMessage: function(){
+                return baseServer+'/ssm';
             }
         };
     }

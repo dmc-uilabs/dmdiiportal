@@ -4,6 +4,7 @@
       "id": 1,
       "name": "The Turbine Company",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "accountId": 1,
       "featureImage": {
         "thumbnail": "/uploads/company/picture/1/20160107065859000000.png",
         "large": "/uploads/company/picture/1/20160107065859000000.png"
@@ -13,6 +14,7 @@
       "id": 2,
       "name": "The Turbine Company 2",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "accountId": 2,
       "featureImage": {
         "thumbnail": "/uploads/company/picture/2/20151223085045000000.jpg",
         "large": "/uploads/company/picture/2/20151223085045000000.jpg"
@@ -38,14 +40,14 @@
       "id": 8,
       "companyId": 1,
       "productId": 3,
-      "position": 3,
+      "position": 5,
       "type": "service"
     },
     {
       "id": 11,
       "companyId": 1,
       "productId": 2,
-      "position": 2,
+      "position": 3,
       "type": "service"
     },
     {
@@ -59,7 +61,7 @@
       "id": 13,
       "companyId": 1,
       "productId": 1,
-      "position": 5,
+      "position": 8,
       "type": "component"
     },
     {
@@ -79,11 +81,29 @@
       "id": 16,
       "companyId": 1,
       "productId": 29,
-      "position": 8,
+      "position": 7,
+      "type": "service"
+    },
+    {
+      "id": 17,
+      "companyId": 1,
+      "productId": 1,
+      "position": 2,
       "type": "service"
     }
   ],
-  "company_follows": [],
+  "company_follows": [
+    {
+      "id": 1,
+      "companyId": 1,
+      "accountId": 1
+    },
+    {
+      "id": 2,
+      "companyId": 2,
+      "accountId": 1
+    }
+  ],
   "accounts": [
     {
       "id": 1,
@@ -2013,6 +2033,18 @@
       "endTime": "2016-01-06 14:30:12",
       "address": "DMDII 100 Main St Chicago, IL",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
+    }
+  ],
+  "messages": [
+    {
+      "senderId": 1,
+      "recipientId": 1,
+      "isRead": false,
+      "senderDelete": false,
+      "recipientDelete": false,
+      "text": "Hi Denis!<br>How are you?",
+      "created_at": "2016-01-12 01:51:38",
+      "id": 1
     }
   ]
 }

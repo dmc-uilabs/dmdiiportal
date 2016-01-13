@@ -1,0 +1,30 @@
+<md-dialog aria-label="Message Dialog" class="storefront-message-dialog">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>New Message</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-tooltip md-direction="left">Close</md-tooltip>
+                    <ng-md-icon icon="close" size="32"></ng-md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <md-input-container flex>
+                <label>Send To:</label>
+                <input ng-model="sendTo" ng-disabled="true">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Text Message</label>
+                <textarea ng-model="textMessage" columns="1"></textarea>
+            </md-input-container>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-click="sendMessage()" ng-disabled="!textMessage || !sendTo">
+                Send Message
+            </md-button>
+        </div>
+    </form>
+</md-dialog>

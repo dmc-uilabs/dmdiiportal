@@ -18,6 +18,9 @@
 
     .title-input-edit{
       padding-bottom: 0;
+      input{
+        color: #333;
+      }
     }
     .list-items{
       padding-top: 16px;
@@ -74,6 +77,7 @@
     .md-title{
       margin-bottom: 0;
       margin-top: 0;
+      font-size: 28px;
     }
     p{
       font-size: 14px;
@@ -102,6 +106,28 @@
       margin-top: 0;
       text-transform: uppercase;
       margin-bottom: 0;
+    }
+  }
+}
+
+.storefront-message-dialog{
+  md-toolbar:not(.md-menu-toolbar) {
+    color: #fff;
+  }
+  ng-md-icon{
+    fill:#fff;
+  }
+  md-dialog-content{
+    min-width: 500px;
+    padding-bottom: 0;
+    md-input-container{
+      padding-bottom: 15px;
+    }
+  }
+  .md-actions{
+    padding: 0 24px;
+    .md-raised.md-primary.md-button{
+      text-transform: none;
     }
   }
 }
