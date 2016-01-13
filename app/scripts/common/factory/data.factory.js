@@ -185,6 +185,15 @@ angular.module('dmc.data',[])
             },
             getAnnouncements: function(){
                 return baseServer+'/get_announcements';
+            },
+            getIndividualDiscussion: function(){
+                return baseServer+'/get_individual_discussion'
+            },
+            addCommentIndividualDiscussion: function(){
+                return baseServer+'/add_comment_individual_discussion'
+            },
+            addDiscussionLikeDislike: function(){
+                return baseServer+'/add_discussion_like_dislike';
             }
         };
     }

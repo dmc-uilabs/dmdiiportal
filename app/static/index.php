@@ -5,6 +5,7 @@ include __DIR__.'/db.php';
 include __DIR__.'/faq.php';
 include __DIR__.'/events.php';
 include __DIR__.'/announcements.php';
+include __DIR__.'/individual-discussion.php';
 
 //use ElephantIO\Client,ElephantIO\Engine\SocketIO\Version1X;
 //require __DIR__ . '/vendor/autoload.php';
@@ -117,6 +118,12 @@ return call_user_func(function () {
         echo get_events($_GET);
     }else if(strpos($uri,'/get_announcements') !== false){
         echo get_announcements($_GET);
+    }else if(strpos($uri,'/get_individual_discussion') !== false){
+        echo get_individual_discussion($_GET);
+    }else if(strpos($uri,'/add_comment_individual_discussion') !== false){
+        echo add_comment_individual_discussion($_POST);
+    }else if(strpos($uri,'/add_discussion_like_dislike') !== false){
+        echo add_discussion_like_dislike($_POST);
     }
 });
 

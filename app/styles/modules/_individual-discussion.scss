@@ -1,0 +1,99 @@
+.individual-discussion{
+	padding: 8px;
+	.return{
+		padding: 8px 0 24px;
+	}
+	a{
+		color: inherit;
+	}
+	.padding{
+		background-color: white;
+		padding: 16px;
+	}
+	.left-column{
+		border: 1px solid #999;
+		margin-right: 16px;
+		.header{
+			padding: 0 16px;
+		}
+		.comment{
+			padding: 16px;
+			border-bottom: 1px solid #999;
+			.comment-header{
+				height: 65px;
+				img{
+					height: 100%;
+					width: auto;
+					margin-right: 16px;
+				}
+			}
+			.text{
+				padding: 16px 0;
+			}
+			.comment-footer{
+				p {
+					margin: 0;
+				}
+				.md-button{
+					margin: 0;
+					width: auto;
+					min-width: 20px;
+					height: 20px;
+					min-height: 20px;
+					line-height: 20px;
+					text-transform: none;
+				}
+			}
+		}
+
+		form[name=CommentForm]{
+			padding: 15px;
+		}
+	}
+	.right-column{
+		margin-left: 16px;
+		.related{
+			border: 1px solid #999;
+			h2{
+				padding: 0 16px;
+			}
+			md-list{
+				md-list-item{
+					a{
+						text-decoration: none;
+					}
+					height: 36px;
+					min-height: 36px;
+					line-height: 36px;
+				}
+			}
+		}
+		.tags{
+			border: 1px solid #999;
+			margin-top: 32px;
+			padding: 0 8px 16px;
+			
+			md-chips .md-chips{
+			box-shadow: none;
+				md-chip{
+					border-radius: 0px;
+				}
+				.tags-chip{
+					padding-right: 32px;
+					.md-icon-button{
+						position: absolute;
+						right: 0;
+						top: 0;
+						min-height: 32px;
+						height: 32px;
+						line-height: 32px;
+						min-width: 32px;
+						width: 32px;
+						margin: 0;
+					}
+				}
+			}
+		}
+	}
+
+}
