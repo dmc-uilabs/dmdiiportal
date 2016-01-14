@@ -75,6 +75,8 @@
     <script src="/bower_components/ui-autocomplete/autocomplete.js"></script>
     <script src="/bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
     <script src="/bower_components/angular-ui-sortable/sortable.min.js"></script>
+    <script src="/bower_components/ng-autofocus/dist/ng-autofocus.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

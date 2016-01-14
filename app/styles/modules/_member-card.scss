@@ -20,6 +20,13 @@
     .member-name{
       margin: 3px 0;
     }
+    a{
+      color: #333;
+      text-decoration: none;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
   }
   &__content{
     padding-top: 0;

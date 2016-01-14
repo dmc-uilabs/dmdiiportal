@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             <div layout="row" ng-repeat="(key,item) in information.public" ng-if="userBasics.privacy.public[key].enable">
-                                <md-input-container class="md-icon-float" layout="column" flex>
+                                <md-input-container class="md-icon-float information-item" layout="column" flex id="{{'edit_public_'+key}}">
                                     <label>{{item.title}}</label>
                                     <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('public')">
                                         <ng-md-icon icon="{{item.icon}}" size="26"></ng-md-icon>
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div layout="row" ng-repeat="(key,item) in information.private" ng-if="userBasics.privacy.private[key].enable">
-                                <md-input-container class="md-icon-float" layout="column" flex>
+                                <md-input-container class="md-icon-float information-item" layout="column" flex id="{{'edit_private_'+key}}">
                                     <label>{{item.title}}</label>
                                     <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('private')">
                                         <ng-md-icon icon="{{item.icon}}" class="location" size="26"></ng-md-icon>

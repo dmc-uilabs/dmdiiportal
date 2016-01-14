@@ -22,6 +22,11 @@ angular.module('dmc.account')
             location.get(callback);
         };
 
+        // auto focus for First Name input
+        $timeout(function() {
+            $("#editFirstName").focus();
+        });
+
         $scope.zones = [];
         $scope.ctrl = {};
         $scope.ctrl.simulateQuery = false;

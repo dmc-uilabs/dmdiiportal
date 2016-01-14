@@ -29,8 +29,8 @@
   </div>
   <div class="product-card__header" layout="column"
        ng-class="cardStyle == 'small' ? 'title-without-spaces' : ''">
-    <a href="#"><h3>{{cardSource.title}}</h3></a>
-    <a href="#"><span class="user-name">{{cardSource.owner}}</span></a>
+    <a ng-href="{{'/product.php#/'+cardSource.type+'s/'+cardSource.id}}"><h3>{{cardSource.title}}</h3></a>
+    <a ng-href="{{'/profile.php#/1'}}"><span class="user-name">{{cardSource.owner}}</span></a>
   </div>
   <div class="product-card__content" layout="row"  ng-if="cardStyle != 'included'">
     <div class="product-card__content__column" flex="28" layout="column">
@@ -87,7 +87,8 @@
       </div>
   </div>
   <div class="product-card__footer" layout="row" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured">
-    <div layout="row" class="adding-to-project" ng-show="addingToProject" layout-align="center center">
+    <div class="adding-to-project" ng-show="addingToProject">
+        <div layout="row" layout-align="center center" class="inner-add-to-project">
       <md-button aria-label="Cancel" layout="column" href="" class="close" ng-click="cancelAddToProject()">
         <ng-md-icon icon="close" size="17"></ng-md-icon>
       </md-button>
@@ -103,6 +104,7 @@
                  class="md-raised add"
                  ng-click="saveToProject(projectModel)">Add
       </md-button>
+            </div>
     </div>
 
     <md-button aria-label="Back to Add"
@@ -117,7 +119,10 @@
                class="page-href"
                ng-show="addingToProject == false && cardSource.added"
                href="{{cardSource.lastProject.href}}">
-        Added to {{cardSource.lastProject.title}}
+        <span flex>
+            Added to {{cardSource.lastProject.title}}
+        </span>
+        <ng-md-icon icon="keyboard_arrow_right" style="fill: #fff" size="32"></ng-md-icon>
     </md-button>
 
     <md-button aria-label="Add to Project"

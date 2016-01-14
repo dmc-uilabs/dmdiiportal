@@ -49,12 +49,12 @@
                                 <md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>
                             </md-select>
                         </md-input-container>
-                        <form ng-submit="submit()" class="company-search-field" flex="60">
+                        <form ng-submit="submit()" class="company-search-field global-search-form" flex="60">
                             <md-input-container md-no-float>
                                 <md-icon>
                                     <ng-md-icon icon="search"></ng-md-icon>
                                 </md-icon>
-                                <input type="text" placeholder="Start typing..." ng-model="searchModel">
+                                <input type="text" placeholder="Search Storefront" ng-model="searchModel">
                             </md-input-container>
                         </form>
 
@@ -65,7 +65,10 @@
                                 <ng-md-icon icon="favorite" size="14"></ng-md-icon>
                                 Favorites ({{companyData.favoritesCount}})
                             </md-button>
-                            <md-button class="company-buttons" href="" compare-button>Compare ({{compareProducts.services.length+compareProducts.components.length}})</md-button>
+                            <md-button class="company-buttons"
+                                       href=""
+                                       ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
+                                       compare-button>Compare ({{compareProducts.services.length+compareProducts.components.length}})</md-button>
                         </div>
                     </div>
                     <div layout-padding ng-if="!isSearch">

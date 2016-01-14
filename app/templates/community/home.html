@@ -8,12 +8,12 @@
                         <md-option ng-repeat="p in peoples" value="{{p.id}}">{{p.name}}</md-option>
                     </md-select>
                 </md-input-container>
-                <form ng-submit="submit()" class="faq-search-field" flex>
+                <form ng-submit="submit()" class="faq-search-field global-search-form" flex>
                     <md-input-container md-no-float>
                         <md-icon>
                             <ng-md-icon icon="search"></ng-md-icon>
                         </md-icon>
-                        <input type="text" placeholder="Start typing..." ng-model="searchModel">
+                        <input type="text" placeholder="Search Community" ng-model="searchModel">
                     </md-input-container>
                 </form>
                 <md-input-container layout="row" layout-wrap>

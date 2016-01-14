@@ -23,7 +23,8 @@ angular.module('dmc.company', [
     'dmc.model.fileUpload',
     'dmc.model.toast-model',
     'dmc.component.products-filter',
-    'flow'
+    'flow',
+    'ng-autofocus'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('company', {
         url: '/:companyId',
@@ -36,7 +37,7 @@ angular.module('dmc.company', [
                 }]
         }
     }).state('company.storefront', {
-        url: '/storefront?product?type',
+        url: '/storefront?product?type?mw',
         controller: 'StorefrontCompanyCtr',
         templateUrl: 'templates/company/storefront.html',
         resolve: {
@@ -46,7 +47,7 @@ angular.module('dmc.company', [
                 }]
         }
     }).state('company.edit', {
-        url: '/edit?product?type?authors?ratings?favorites?dates?text',
+        url: '/edit?product?type?authors?ratings?favorites?dates?text?mw',
         controller: 'EditStorefrontCompanyCtr',
         templateUrl: 'templates/company/edit.html',
         resolve: {
@@ -56,7 +57,7 @@ angular.module('dmc.company', [
                 }]
         }
     }).state('company.search', {
-        url: '/search?product?type?authors?ratings?favorites?dates?text',
+        url: '/search?product?type?authors?ratings?favorites?dates?text?mw',
         controller: 'StorefrontCompanyCtr',
         templateUrl: 'templates/company/storefront.html',
         resolve: {
@@ -74,7 +75,7 @@ angular.module('dmc.company', [
         }
         var hash = window.location.hash;
         if (hash.lastIndexOf('/') == hash.indexOf('/')) {
-            $state.go('company.storefront', {companyId: companyId, product : 'services'})
+            $state.go('company.storefront', {companyId: companyId, product : 'all'})
         }
 }]).service('menuCompany', ['$location','$stateParams',function ($location,$stateParams) {
     this.getMenu = function(){

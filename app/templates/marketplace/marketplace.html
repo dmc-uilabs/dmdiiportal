@@ -6,21 +6,21 @@
   <!-- Left Content Column -->
   <div class="marketplace" layout="column" flex>
     <md-content class="marketplace-search" layout="row" layout-align="center center">
-      <form ng-submit="submit()" class="marketplace-search-field" flex="60">
+      <form ng-submit="submit()" class="marketplace-search-field global-search-form" flex="60">
         <md-input-container md-no-float>
           <md-icon>
             <ng-md-icon icon="search"></ng-md-icon>
           </md-icon>
-          <input type="text" placeholder="Search the Marketplace" ng-model="searchModel">
+          <input type="text" placeholder="Search Marketplace" ng-model="searchModel">
         </md-input-container>
       </form>
 
       <span flex></span>
 
       <div class="marketplace-search-button" layout="row" layout-align="center start">
-        <md-button href="/">
+        <md-button href="/favorites.php">
           <ng-md-icon icon="favorite" size="14"></ng-md-icon>
-          Favorites
+          Favorites ({{favoritesCount}})
         </md-button>
         <md-button href="" ng-disabled="compareProducts.services.length+compareProducts.components.length == 0" compare-button>
           Compare ({{compareProducts.services.length+compareProducts.components.length}})

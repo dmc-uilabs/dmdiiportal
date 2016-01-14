@@ -222,6 +222,12 @@
       "productId": 1,
       "accountId": 1,
       "productType": "service"
+    },
+    {
+      "id": 14,
+      "productId": 5,
+      "accountId": 1,
+      "productType": "service"
     }
   ],
   "projects": [
@@ -433,11 +439,12 @@
         "startDate": "20/09/2015",
         "startTime": "11:15:33",
         "project": {
-          "id": 1,
-          "title": "Control Compartment  for LDR Mining"
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
         }
       },
-      "projectId": 1
+      "projectId": 4,
+      "from": "marketplace"
     },
     {
       "id": 5,
@@ -867,11 +874,12 @@
         "startDate": "23/09/2015",
         "startTime": "18:00:10",
         "project": {
-          "id": 5,
-          "title": "Low Heat Loss Transformer"
+          "id": 1,
+          "title": "Control Compartment for LDR Mining"
         }
       },
-      "projectId": 5
+      "projectId": 1,
+      "from": "marketplace"
     },
     {
       "id": 41,

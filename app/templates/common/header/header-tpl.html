@@ -17,7 +17,7 @@
           <ng-md-icon icon="extension" size="25"></ng-md-icon>
           <span class="count-message" ng-show="service_alert > 0">{{service_alert}}</span>
         </md-button>
-        <md-menu-content>
+        <md-menu-content class="header-menu-content">
           <md-menu-item>
             <md-button>Service 1</md-button>
           </md-menu-item>
@@ -40,7 +40,7 @@
           <ng-md-icon icon="notifications" size="25"></ng-md-icon>
           <span class="count-message" ng-show="notification > 0">{{notification}}</span>
         </md-button>
-        <md-menu-content>
+        <md-menu-content class="header-menu-content">
           <md-menu-item>
             <md-button>Notification 1</md-button>
           </md-menu-item>
@@ -60,7 +60,7 @@
           <ng-md-icon icon="email" size="25"></ng-md-icon>
           <span class="count-message" ng-show="message > 0">{{message}}</span>
         </md-button>
-        <md-menu-content class="message-container">
+        <md-menu-content class="message-container header-menu-content">
           <md-menu-item>
             <md-button href="/project.php#/preview/5">Pat has invited you to a challenge</md-button>
           </md-menu-item>
@@ -70,14 +70,13 @@
 
     <div layout="column">
       <md-menu md-offset="0 64">
-        <md-button href="#"
-             class="user-button"
+        <md-button class="user-button"
              aria-label="Open Latest Services Menu"
              ng-click="$mdOpenMenu($event)">
           <ng-md-icon icon="person" size="20"></ng-md-icon>
           Hi, {{userName}}
         </md-button>
-        <md-menu-content>
+        <md-menu-content class="header-menu-content">
           <md-menu-item>
             <md-button ng-href='https://apps.cirrusidentity.com/console/ds/index?entityID=https://ben-web.opendmc.org/shibboleth&amp;return=https://ben-web.opendmc.org/Shibboleth.sso/Login%3Ftarget%3Dhttps%3A%2F%2Fben-web.opendmc.org'>Login</md-button>
           </md-menu-item>
@@ -116,15 +115,15 @@
           Marketplace
           <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
         </md-button>
-        <md-menu-content ng-style="{width:dropDownWidth+'px'}">
+        <md-menu-content class="header-menu-content" ng-style="{width:dropDownWidth+'px'}">
           <md-menu-item>
-            <md-button href="marketplace.php">Market</md-button>
+            <md-button href="marketplace.php">Home</md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button>My Storefront</md-button>
+            <md-button href="">My Storefront</md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button>Favorites</md-button>
+            <md-button href="">Favorites</md-button>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
@@ -143,7 +142,7 @@
           Projects
           <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
         </md-button>
-        <md-menu-content>
+        <md-menu-content class="header-menu-content">
           <md-menu-item>
             <md-button href="my-projects.php">My Projects</md-button>
           </md-menu-item>
@@ -160,7 +159,7 @@
           Challenge
           <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
         </md-button>
-        <md-menu-content>
+        <md-menu-content class="header-menu-content">
           <md-menu-item>
             <md-button>Challenge1</md-button>
           </md-menu-item>

@@ -19,10 +19,10 @@ $navigationActive: #65AF3F;
     height: auto;
     a{
       line-height: 1.5;
-  max-width: 200px;
-  white-space: normal;
-}
-}
+      max-width: 200px;
+      white-space: normal;
+    }
+  }
 }
 
 .main-header{
@@ -68,6 +68,7 @@ $navigationActive: #65AF3F;
           right: 10px;
         }
       }
+
       ng-md-icon{
         fill: $topHeaderIcon;
       }
@@ -136,6 +137,7 @@ $navigationActive: #65AF3F;
         width: 270px;
         md-icon{
           left: 40px;
+          top: 5px;
           color: #B3B3B3;
           ng-md-icon {
             margin-right: -26px;
@@ -157,5 +159,11 @@ $navigationActive: #65AF3F;
         }
       }
     }
+  }
+}
+
+.header-menu-content.md-default-theme{
+  a.md-button {
+    line-height: 3.2;
   }
 }

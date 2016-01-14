@@ -56,7 +56,10 @@
                     <div class="inputs-container" layout="row" layout-align="start center">
                         <md-input-container layout="column" flex="50">
                             <label>Display Name</label>
-                            <input ng-blur="blurDisplayName()" ng-model="profile.displayName" ng-change="changeValue('displayName',profile.displayName)">
+                            <input ng-blur="blurDisplayName()"
+                                   autofocus
+                                   ng-model="profile.displayName"
+                                   ng-change="changeValue('displayName',profile.displayName)">
                         </md-input-container>
                         <md-input-container layout="column" class="with-icon title-input-left" flex="50">
                             <label>Location</label>

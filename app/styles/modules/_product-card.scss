@@ -105,11 +105,12 @@ $lines-to-show-title: 2;
   }
   &__footer{
     background-color: #666;
+    padding: 6px 0;
     .white-button{
       background-color: #909090;
     }
     .md-button{
-      margin: 6px;
+      margin: 0 6px;
       height: 47px;
       min-height: 47px;
       text-transform: none;
@@ -120,17 +121,20 @@ $lines-to-show-title: 2;
       min-width: 20px;
       fill: #fff;
     }
-    .page-href span{
-      overflow: hidden;
-      max-width: 98%;
-      display: block;
-      text-overflow: ellipsis;
+    .page-href {
+      display: flex;
+      span{
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .inner-add-to-project{
+      margin: 0 6px;
+      background-color: #909090;
+      @include borderRadius(3px);
     }
     .adding-to-project{
       width: 100%;
-      margin: 6px;
-      background-color: #909090;
-      @include borderRadius(3px);
 
       .close{
         width: 36px;

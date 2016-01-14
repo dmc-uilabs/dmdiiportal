@@ -1,6 +1,6 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('PrivacyAccountCtr', [ '$stateParams', '$state', "$scope", "location","accountData","accountUpdate", function ($stateParams, $state, $scope, location,accountData,accountUpdate) {
+    .controller('PrivacyAccountCtr', [ '$stateParams', '$state', "$scope", "location","accountData","accountUpdate","$timeout", function ($stateParams, $state, $scope, location,accountData,accountUpdate,$timeout) {
         $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
@@ -43,16 +43,22 @@ angular.module('dmc.account')
             }
         };
 
+        // auto focus for edit first input
+        $timeout(function() {
+            $(".information-item:first input").focus();
+        });
+
         $scope.changedCheckbox = function(block,name,value){
-            //accountUpdate.update($scope.userBasics);
             if(!$scope.changedValues) $scope.changedValues = {};
             if(!$scope.changedValues.changedCheckbox) $scope.changedValues.changedCheckbox = {};
             if(!$scope.changedValues.changedCheckbox[block]) $scope.changedValues.changedCheckbox[block] = {};
             $scope.changedValues.changedCheckbox[block][name] = value;
+            $timeout(function() {
+                $("#edit_"+block+"_"+name+" input").focus();
+            });
         };
 
         $scope.changedValue = function(block,name,value){
-            //accountUpdate.update($scope.userBasics);
             if(!$scope.changedValues) $scope.changedValues = {};
             if(!$scope.changedValues.changedValue) $scope.changedValues.changedValue = {};
             if(!$scope.changedValues.changedValue[block]) $scope.changedValues.changedValue[block] = {};

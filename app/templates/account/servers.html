@@ -23,7 +23,7 @@
                     <div class="header-right-content servers" layout="row" layout-align="start end" ng-show="isAddingServer">
                         <md-input-container>
                             <label>Server Alias</label>
-                            <input ng-model="newServer.name">
+                            <input id="createServerAlias" ng-model="newServer.name">
                         </md-input-container>
                         <md-input-container>
                             <label>Server Host/IP</label>
@@ -35,7 +35,7 @@
                     <div class="header-right-content servers" layout="row" layout-align="start end" ng-show="isEditingServer">
                         <md-input-container>
                             <label>Server Alias</label>
-                            <input ng-model="editingServer.name">
+                            <input id="editServerAlias" ng-model="editingServer.name">
                         </md-input-container>
                         <md-input-container>
                             <label>Server Host/IP</label>

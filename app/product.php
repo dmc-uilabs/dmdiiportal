@@ -72,6 +72,8 @@
 <script src="/bower_components/ui-autocomplete/autocomplete.js"></script>
 <script src="/bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
 <script src="/bower_components/angular-ui-sortable/sortable.min.js"></script>
+<script src="/bower_components/ng-autofocus/dist/ng-autofocus.js"></script>
+<script src="/bower_components/angular-route/angular-route.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -88,6 +90,7 @@
 <script src="scripts/common/factory/ajax.factory.js"></script>
 <script src="scripts/common/factory/data.factory.js"></script>
 <script src="scripts/components/carousel/carousel.js"></script>
+<script src="scripts/components/compare/compare.js"></script>
 <script src="scripts/product/product.js"></script>
 <script src="scripts/components/tree-menu/tree-menu.js"></script>
 <script src="scripts/components/product-card/product-card.js"></script>

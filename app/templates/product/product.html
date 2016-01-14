@@ -9,12 +9,12 @@
 		<div ng-if="!not_found">
 			<!-- Search toolbar -->
 			<md-content class="marketplace-search" layout="row" layout-align="center center">
-				<form ng-submit="submitSearch(searchModel)" class="marketplace-search-field" flex="60">
+				<form ng-submit="submitSearch(searchModel)" class="marketplace-search-field global-search-form" flex="60">
 					<md-input-container md-no-float>
 						<md-icon>
 							<ng-md-icon icon="search"></ng-md-icon>
 						</md-icon>
-						<input type="text" placeholder="Search the Marketplace" ng-model="searchModel">
+						<input type="text" placeholder="Search Product" ng-model="searchModel">
 					</md-input-container>
 				</form>
 
@@ -68,7 +68,7 @@
 								<h2 ng-if="!editFlag">{{product.title}} <span>By {{product.owner}}</span></h2>
 								<md-input-container  ng-if="editFlag">
 									<label>Title</label>
-									<input ng-model="qqq.title">
+									<input id="editTitleProduct" ng-model="qqq.title">
 								</md-input-container>
 								<span flex></span>
 								<md-button ng-if="!editFlag" aria-label="favorite" ng-click="addToFavorite()" class="md-icon-button header-icon">

@@ -25,11 +25,11 @@ angular.module('dmc.account').directive('accountMenu', [function () {
                     url : "/account.php#/"+$scope.accountId+"/notifications",
                     selected : ($scope.page == "notifications" ? true : false)
                 },
-                profile : {
-                    title : pageTitles.profile,
-                    url : "/account.php#/"+$scope.accountId+"/profile",
-                    selected : ($scope.page == "profile" ? true : false)
-                },
+                //profile : {
+                //    title : pageTitles.profile,
+                //    url : "/account.php#/"+$scope.accountId+"/profile",
+                //    selected : ($scope.page == "profile" ? true : false)
+                //},
                 servers : {
                     title : pageTitles.servers,
                     url : "/account.php#/"+$scope.accountId+"/servers",

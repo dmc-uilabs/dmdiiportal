@@ -89,18 +89,6 @@
       .md-button{
         text-transform: none;
       }
-      .search-box {
-        padding-left: 50px;
-        input{
-          margin-top: 18px;
-        }
-        ng-md-icon {
-          fill: #999;
-          position: absolute;
-          left: -30px;
-          margin-top: 20px;
-        }
-      }
     }
     .member-cards{
       text-align: center;
@@ -146,5 +134,17 @@
   }
   .model-inputs{
     padding-bottom: 8px;
+  }
+}
+
+.invites-list{
+  .md-list-item-text{
+    a{
+      color: #333;
+      text-decoration: none;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
   }
 }

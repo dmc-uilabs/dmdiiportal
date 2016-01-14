@@ -26,7 +26,7 @@ angular.module('dmc.marketplace', [
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('marketplace', {
-        url: '/:page?type',
+        url: '/:page?type?mw',
         templateUrl: 'templates/marketplace/marketplace.html',
         controller: 'DMCMarketplaceController',
         resolve: {
@@ -35,7 +35,7 @@ angular.module('dmc.marketplace', [
             }
         }
     }).state('marketplace_search', {
-        url: '/search/:page?type?text',
+        url: '/search/:page?type?text?mw',
         templateUrl: 'templates/marketplace/marketplace.html',
         controller: 'DMCMarketplaceController',
         resolve: {
@@ -44,7 +44,7 @@ angular.module('dmc.marketplace', [
             }
         }
     });
-    $urlRouterProvider.otherwise('/services?type=analytical');
+    $urlRouterProvider.otherwise('/all');
 })
 .controller('DMCMarketplaceController', function($stateParams,$scope,$cookies,ajax,dataFactory,Products,socketFactory,$location,is_search){
         $scope.isSearch = is_search;
@@ -61,6 +61,19 @@ angular.module('dmc.marketplace', [
         $scope.currentPage = angular.isDefined($stateParams.page) && defaultPages[$stateParams.page] ? $stateParams.page : 'services';
         $scope.currentPageType = angular.isDefined($stateParams.type) && defaultPages[$stateParams.page][$stateParams.type] ? $stateParams.type : null;
         $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : '';
+
+        $scope.favoritesCount = 3;
+        var getFavoriteCount = function(){
+            ajax.on(dataFactory.getFavoriteProducts(),{
+                accountId : 1
+            },function(data){
+                $scope.favoritesCount = data.length;
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            },function(){
+                alert("Error getFavoriteCount");
+            });
+        };
+        getFavoriteCount();
 
         // get data from cookies
         var updateCompareCount = function(){
@@ -178,7 +191,7 @@ angular.module('dmc.marketplace', [
                     limit : 2,
                     offset: 25,
                     type : $scope.currentPageType
-                }
+                };
                 Products.get($scope.callbackServices,'services',allData);
             } else {
                 Products.get($scope.callbackServices,'services',responseData('services'));

@@ -32,10 +32,9 @@
                                             </md-button>
                                         </div>
                                         <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
-                                            Drag And Drop your picture here ( 600 x 600 )
-                                            <br>
-                                            or
-                                            <br>
+                                            Drag And Drop your picture here<br>
+                                            600 x 600 px (max 2 MB)
+                                            <br>or<br>
                                             <strong>Click here</strong>
                                         </div>
                                     </div>
@@ -61,7 +60,10 @@
                     <div layout="row" layout-padding layout-align="start start" class="company-description">
                         <md-input-container flex="70">
                             <label>Description</label>
-                            <textarea ng-model="companyData.description" ng-change="changedInput('description')" columns="1"></textarea>
+                            <textarea ng-model="companyData.description"
+                                      ng-change="changedInput('description')"
+                                      autofocus
+                                      columns="1"></textarea>
                         </md-input-container>
                     </div>
 
@@ -90,12 +92,12 @@
                                                 <md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>
                                             </md-select>
                                         </md-input-container>
-                                        <form ng-submit="submit()" class="company-search-field" flex="80">
+                                        <form ng-submit="submit()" class="company-search-field global-search-form" flex="80">
                                             <md-input-container md-no-float>
                                                 <md-icon>
                                                     <ng-md-icon icon="search"></ng-md-icon>
                                                 </md-icon>
-                                                <input type="text" placeholder="Start typing..." ng-model="searchModel">
+                                                <input type="text" placeholder="Search Storefront" ng-model="searchModel">
                                             </md-input-container>
                                         </form>
 

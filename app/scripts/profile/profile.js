@@ -27,7 +27,11 @@ angular.module('dmc.profile', [
 		$urlRouterProvider.otherwise('/1');
 	})
 	.controller('ProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location) {
-		
+
+        $scope.clickLabel = function(){
+            console.log(this);
+        };
+
 		$scope.profile = [];  //array product
 		$scope.number_of_comments = 0; // number of 
 		$scope.LeaveFlag = false;  //flag for visibility form Leave A Review
@@ -264,6 +268,10 @@ angular.module('dmc.profile', [
 		//Edit profile
 		$scope.editPage = function () {
 			$scope.editFlag = true;
+            // auto focus for edit Display Name
+            $timeout(function() {
+                $("#editDisplayNameProfile").focus();
+            });
 		}
 
 		//add skill to profile
@@ -339,6 +347,10 @@ angular.module('dmc.profile', [
 		$scope.changePicture = function(){
 			$scope.isChangingPicture = true;
 		};
+
+        $scope.removePicture = function(flow){
+            flow.files = [];
+        };
 
 		//cancel Change photo
 		$scope.cancelChangePicture = function(flow){
@@ -487,5 +499,9 @@ $scope.searchText="";
 	}
 
 	$scope.states = loadAll();
-	
+
+
+
 	});
+
+

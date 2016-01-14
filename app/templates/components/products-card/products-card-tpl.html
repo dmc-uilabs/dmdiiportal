@@ -18,7 +18,7 @@
                 </md-chips>
             </md-content>
             <span flex></span>
-            <md-input-container ng-show="searchCard">
+            <md-input-container ng-show="searchCard" class="show-filter-input-container">
                 <label>Show</label>
                 <md-select ng-model="sizeModule" ng-change="selectItemDropDown('show')">
                     <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >

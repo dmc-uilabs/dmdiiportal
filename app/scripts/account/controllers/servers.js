@@ -1,6 +1,6 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('ServersAccountCtr', [ '$stateParams', '$state', "$scope","accountData","toastModel","ajax","dataFactory", function ($stateParams, $state, $scope,accountData,toastModel,ajax,dataFactory) {
+    .controller('ServersAccountCtr', [ '$stateParams', '$state', "$scope","accountData","toastModel","ajax","dataFactory","$timeout", function ($stateParams, $state, $scope,accountData,toastModel,ajax,dataFactory,$timeout) {
         $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
@@ -19,6 +19,10 @@ angular.module('dmc.account')
         $scope.addServer = function(){
             if($scope.isEditingServer == false) {
                 $scope.isAddingServer = true;
+                // auto focus for create Server Alias input
+                $timeout(function() {
+                    $("#createServerAlias").focus();
+                });
             }else{
                 toastModel.showToast("error", "At the present time you are editing server.");
             }
@@ -127,6 +131,10 @@ angular.module('dmc.account')
                 $scope.editingServer = $.extend(true, {}, item);
                 $scope.isCorrectChangedIP = ipIsValid($scope.editingServer.ip);
                 $scope.isEditingServer = true;
+                // auto focus for edit Server Alias input
+                $timeout(function() {
+                    $("#editServerAlias").focus();
+                });
             }else{
                 toastModel.showToast("error", "At the present time you are adding server.");
             }

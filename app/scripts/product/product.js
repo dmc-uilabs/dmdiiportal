@@ -17,7 +17,8 @@ angular.module('dmc.product', [
 	'dmc.common.header',
 	'dmc.common.footer',
 	'dmc.model.toast-model',
-	'dmc.component.carousel'
+	'dmc.component.carousel',
+    'dmc.compare'
 ])
 	.config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
 		//$locationProvider.html5Mode(true).hashPrefix('#');
@@ -28,7 +29,7 @@ angular.module('dmc.product', [
 		});
 		$urlRouterProvider.otherwise('/services/1');
 	})
-	.controller('ProductController', ['$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$mdToast', 'toastModel', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, $mdToast, toastModel) {
+	.controller('ProductController', ['$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$mdToast', 'toastModel','$timeout','$cookies', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, $mdToast, toastModel,$timeout,$cookies) {
 	
 			$scope.product = [];  //array product
 			$scope.number_of_comments = 0; // number of 
@@ -48,8 +49,19 @@ angular.module('dmc.product', [
 			$scope.currentImage = 1;
 			$scope.images = [];
 			$scope.indexImages = 0;
-	
-	
+
+            // get data from cookies
+            var updateCompareCount = function(){
+                var arr = $cookies.getObject('compareProducts');
+                return arr == null ? {services : [], components : []} : arr;
+            };
+            $scope.compareProducts = updateCompareCount();
+
+            // catch updated changedCompare variable form $cookies
+            $scope.$watch(function() { return $cookies.changedCompare; }, function(newValue) {
+                $scope.compareProducts = updateCompareCount();
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            });
 	
 			$scope.sortList = [
 				{
@@ -370,6 +382,10 @@ angular.module('dmc.product', [
 			//Edit product
 			$scope.editPage = function () {
 				$scope.editFlag = true;
+                // auto focus for edit product's title
+                $timeout(function() {
+                    $("#editTitleProduct").focus();
+                });
 			}
 	
 			//query services

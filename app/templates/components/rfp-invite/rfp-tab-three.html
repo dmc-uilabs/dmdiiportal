@@ -11,21 +11,23 @@
                     </md-toolbar>
                 </div>
                 <div class="content-panel-body">
-                    <md-content class="md-padding top-content" layout="row">
-                        <div layout="column" flex="20">
-                            <md-input-container>
-                                <label>Members</label>
-                                <md-select ng-model="membersModel">
-                                    <md-option ng-repeat="m in members" value="{{m.val}}">{{m.name}}</md-option>
-                                </md-select>
-                            </md-input-container>
-                        </div>
-                        <div layout="column" class="search-box" flex="50">
-                            <form ng-submit="searchMembers()">
-                            <md-input-container md-no-float>
-                                <ng-md-icon icon="search" size="28"></ng-md-icon>
-                                <input ng-model="searchText" type="text" placeholder="Search">
-                            </md-input-container>
+                    <md-content class="md-padding top-content" layout="row" layout-align="start center">
+                        <!--<div layout="column" flex="20" >-->
+                            <!--<md-input-container>-->
+                                <!--<label>Members</label>-->
+                                <!--<md-select ng-model="membersModel">-->
+                                    <!--<md-option ng-repeat="m in members" value="{{m.val}}">{{m.name}}</md-option>-->
+                                <!--</md-select>-->
+                            <!--</md-input-container>-->
+                        <!--</div>-->
+                        <div layout="column" class="search-box" flex="70">
+                            <form ng-submit="searchMembers()" class="global-search-form">
+                                <md-input-container md-no-float>
+                                    <md-icon>
+                                        <ng-md-icon icon="search"></ng-md-icon>
+                                    </md-icon>
+                                    <input ng-model="searchText" type="text" placeholder="Search Members">
+                                </md-input-container>
                             </form>
                         </div>
                         <span flex></span>
