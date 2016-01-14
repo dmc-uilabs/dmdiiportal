@@ -13,23 +13,34 @@ angular.module('dmc.profile', [
 	'dmc.widgets.review',
 	'dmc.common.header',
 	'dmc.common.footer',
-   "dmc.location",
+  "dmc.location",
 	'dmc.model.toast-model',
 	'dmc.model.fileUpload',
+	'dmc.model.profile',
 	'flow'
 ])
 	.config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
 		$stateProvider.state('profile', {
 			url: '/:profileId',
 			templateUrl: 'templates/profile/profile.html',
-			controller: 'ProfileController'
+			controller: 'ProfileController',
+			resolve: {
+			profileData: ['DMCProfileModel', '$stateParams',
+				function(DMCProfileModel, $stateParams) {
+					return DMCProfileModel.getProfileModel($stateParams.profileId);
+				}],
+			profileReviewsData: ['DMCProfileModel', '$stateParams',
+				function(DMCProfileModel, $stateParams) {
+					return DMCProfileModel.getReviewModel($stateParams.profileId);
+				}]
+			}
 		});
 		$urlRouterProvider.otherwise('/1');
 	})
-	.controller('ProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location) {
-		
+	.controller('ProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location, profileData, profileReviewsData) {
+
 		$scope.profile = [];  //array product
-		$scope.number_of_comments = 0; // number of 
+		$scope.number_of_comments = 0; // number of
 		$scope.LeaveFlag = false;  //flag for visibility form Leave A Review
 		$scope.submit_rating = 0;  //
 		$scope.limit_reviews = true;  //limit reviews
@@ -46,7 +57,7 @@ angular.module('dmc.profile', [
 		$scope.inviteToProject = false;
 		$scope.invate = false;
 		$scope.toProject = "";
-		$scope.projects = null;
+		// $scope.projects = null;
 
 		$scope.sortList = [
 			{
@@ -61,12 +72,12 @@ angular.module('dmc.profile', [
 			},
 			{
 				id: 2,
-				val: "highest", 
+				val: "highest",
 				name: "Highest to Lowest Rating"
 			},
 			{
 				id: 3,
-				val: "lowest", 
+				val: "lowest",
 				name: "Lowest to Highest Rating"
 			},
 			{
@@ -78,41 +89,34 @@ angular.module('dmc.profile', [
 
 //load data
 		//get profile
-		ajax.on(
-			dataFactory.getProfile(),
-			{
-				profileId: $stateParams.profileId
-			},
-			function(data){
-				$scope.profile = data.result;
-				$scope.number_of_comments = $scope.profile.rating.length;
-				if($scope.number_of_comments != 0) {
-					calculate_rating();
-				}
-				$scope.profile.descriptionSmall = $scope.profile.description.slice(0, 1000) + '...';
-				if($scope.profile.description.length >= $scope.profile.descriptionSmall.length){
-					$scope.showflag = true;
-				}
-				$scope.SortingReviews($scope.sortList[0].val);
-			},
-			function(){
-				alert("Ajax fail: getProduct");
-			}
-		);
 
-		//get project
-		ajax.on(
-			dataFactory.getUrlAllProjects(),
-			{
-				limit : 10, offset: 0
-			},
-			function(data){
-				$scope.projects = data.result;
-			},
-			function(){
-				alert("Ajax faild: getProjects");
-			}
-		);
+
+		// ajax.on(
+		// 	dataFactory.getProfile($stateParams.profileId),
+		// 	{
+		// 		profileId: $stateParams.profileId
+		// 	},
+		// 	function(data){
+		// 		var data = dataFactory.get_result(data);
+		// 		$scope.profile = profileData.result;
+		// 		$scope.profile.reviews = profileReviewsData.result;
+		// 		$scope.profile.rating = profileReviewsData.result.map(function(value, index){
+		// 			return value.rating;
+		// 		});
+		// 		$scope.number_of_comments = $scope.profile.rating.length;
+		// 		if($scope.number_of_comments != 0) {
+		// 			calculate_rating();
+		// 		}
+		// 		$scope.profile.descriptionSmall = $scope.profile.description.slice(0, 1000) + '...';
+		// 		if($scope.profile.description.length >= $scope.profile.descriptionSmall.length){
+		// 			$scope.showflag = true;
+		// 		}
+		// 		$scope.SortingReviews($scope.sortList[0].val);
+		// 	},
+		// 	function(){
+		// 		alert("Ajax fail: getProduct");
+		// 	}
+		// );
 
 		var calculate_rating = function() {
 			$scope.precentage_stars = [0,0,0,0,0];
@@ -236,9 +240,10 @@ angular.module('dmc.profile', [
 			}
 
 			ajax.on(
-				dataFactory.getProfileReview(),
-				params,
+				dataFactory.getProfileReview($stateParams.profileId),
+				dataFactory.get_request_obj(params),
 				function(data){
+					var data = dataFactory.get_result(data);
 					$scope.profile.reviews = data.result;
 					if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 				},
@@ -282,14 +287,15 @@ angular.module('dmc.profile', [
 		$scope.cancelEdit = function(){
 			$scope.editFlag = false;
 			$scope.isChangingPicture = false;
-			
+
 			//get profile
 			ajax.on(
-				dataFactory.getProfile(),
+				dataFactory.getProfile($stateParams.profileId),
 				{
 					profileId: $stateParams.profileId
 				},
 				function(data){
+					var data = dataFactory.get_result(data);
 					$scope.profile = data.result;
 					$scope.number_of_comments = $scope.profile.rating.length;
 					if($scope.number_of_comments != 0) {
@@ -398,11 +404,11 @@ $scope.searchText="";
 		$scope.invate = true;
 		$scope.inviteToProject = false;
 	}
-	
+
 	$scope.btnCanselToProject = function(){
 		$scope.inviteToProject = false;
 	}
-	
+
 	$scope.btnRemoveOfProject = function(){
 		$scope.toProject = "";
 		$scope.invate = false;
@@ -487,5 +493,23 @@ $scope.searchText="";
 	}
 
 	$scope.states = loadAll();
-	
+
+
+	$scope.profile = profileData.result;
+	if (profileReviewsData.result) {
+		$scope.profile.reviews = profileReviewsData.result;
+		$scope.profile.rating = profileReviewsData.result.map(function(value, index){
+			return value.rating;
+		});
+	}
+	$scope.number_of_comments = $scope.profile.rating.length;
+	if($scope.number_of_comments != 0) {
+		calculate_rating();
+	}
+	$scope.profile.descriptionSmall = $scope.profile.description.slice(0, 1000) + '...';
+	if($scope.profile.description.length >= $scope.profile.descriptionSmall.length){
+		$scope.showflag = true;
+	}
+	$scope.SortingReviews($scope.sortList[0].val);
+
 	});

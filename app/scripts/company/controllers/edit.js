@@ -2,55 +2,44 @@
 angular.module('dmc.company')
     .controller('EditStorefrontCompanyCtr', ['$stateParams', '$state', "$scope", "$cookies", "ajax", 'companyData','menuCompany','$location', 'Products','dataFactory','$mdToast','fileUpload','toastModel', function ($stateParams, $state, $scope, $cookies, ajax, companyData, menuCompany,$location, Products, dataFactory,$mdToast,fileUpload,toastModel) {
         $scope.companyData = companyData;
-
         var inputToHtml = function(textInput){
             return (textInput == null ? null : textInput.trim().replace(/\n/g, '<br>'));
         };
         var htmlToInput = function(textInput){
             return (textInput == null ? null : textInput.trim().replace(/<br>/g, '\n'));
         };
+
         $scope.companyData.description = htmlToInput($scope.companyData.description);
         $scope.companyPicture = {
             'background-image' : (companyData.featureImage && companyData.featureImage.large ? 'url('+companyData.featureImage.large+')' : null)
         };
+
         $scope.companyId = $stateParams.companyId;
         $scope.page = $state.current.name.split('.')[1];
 
         $scope.searchModel = $stateParams.text;
-        $scope.selectedProductType = "all";
+        $scope.selectedProductType = $stateParams.product;
         $scope.pageType = null;
         $scope.isSearch = true;
         $scope.currentStorefrontPage = 1;
         $scope.pageSize = 10;
         $scope.downloadData = false;
 
-
+        $scope.changedPositions = null;
         $scope.sortableOptions = {
             update: function(e, ui) {
-                var data = [];
-                $(".feature-item").each(function(index){
-                    var position = $(this).find(".product-card-position").val((index+1));
-                    var id = $(this).find(".product-card-featureId").val();
-                    data.push([id,index+1]);
-                });
-                updateFeaturesPosition(data);
+                $scope.getChangedPosition();
             }
         };
 
-        var updateFeaturesPosition = function(data){
-            ajax.on(dataFactory.updateFeaturesPosition(),
-                {
-                    positions : data
-                },
-                function(data){
-                    if(!data.error){
-                    }else{
-                        toastModel.showToast("error",data.error);
-                    }
-                },function(data){
-                    toastModel.showToast("error","Error. updateFeaturesPosition() fail");
-                }
-            );
+        $scope.getChangedPosition = function(){
+            var data = [];
+            $(".feature-item").each(function(index){
+                var position = $(this).find(".product-card-position").val((index+1));
+                var id = $(this).find(".product-card-featureId").val();
+                data.push([id,index+1]);
+            });
+            $scope.changedPositions = data;
         };
 
         $scope.isChangingPicture = false;
@@ -99,6 +88,7 @@ angular.module('dmc.company')
         };
 
         $scope.addedNewFile = function(file,event,flow){
+            $scope.flowBoxStyle = {'max-width' : 560};
             flow.files.shift();
         };
 
@@ -113,6 +103,7 @@ angular.module('dmc.company')
 
         $scope.removePicture = function(flow){
             flow.files = [];
+            $scope.flowBoxStyle = null;
             if($scope.currentPicture) $scope.companyPicture['background-image'] = $scope.currentPicture;
         };
 
@@ -127,10 +118,8 @@ angular.module('dmc.company')
         var responseData = {
             limit : 4,
             offset: ($scope.currentStorefrontPage-1)*$scope.pageSize,
-            type : $scope.pageType,
-            name : $scope.searchModel,
             withoutFeatures : true,
-            companyId : $scope.companyId
+            filterData : $stateParams
         };
 
         // function for get all products --------------------------------------------------
@@ -148,7 +137,7 @@ angular.module('dmc.company')
             Products.get($scope.callbackServices,'services',responseData);
         };
         $scope.callbackServices = function(data){
-            $scope.products = {arr : data.result,count : data.count};
+            $scope.products = {arr : data.result,count : ($stateParams.type ? data.countTypes[$stateParams.type] : data.count)};
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };
         // -----------------------------------------------------------------------------
@@ -181,6 +170,7 @@ angular.module('dmc.company')
                     break;
             };
         };
+        $scope.update($scope.isSearch);
 
         $scope.$watch(function() { return $cookies.changedPage; }, function(newValue) {
             if(parseInt(newValue) > 0 && $scope.currentStorefrontPage !== parseInt(newValue)) {
@@ -188,37 +178,22 @@ angular.module('dmc.company')
                 $scope.update(true);
             }
         });
+
         $scope.updatePageSize = function(val){
             $scope.pageSize = val;
             $scope.update(true);
         };
 
-        $scope.productTypeChanged = function(search){
-            $scope.update(search);
-            var item = null;
-            var index = -1;
-            for(var i in $scope.productTypes){
-                if($scope.productTypes[i].name == $scope.selectedProductType){
-                    item = $.extend(true,{},$scope.productTypes[i]);
-                    index = i;
-                    break;
-                }
-            }
-            if(item) {
-                $scope.productTypes.splice(index, 1);
-                $scope.productTypes = $scope.productTypes.sort(function (a, b) {
-                    return a.id - b.id
-                });
-                $scope.productTypes.unshift(item);
-            }
-            $scope.treeMenuModel = menuCompany.getMenu($scope.selectedProductType,$scope.pageType,$scope.companyId);
+        $scope.productTypeChanged = function () {
+            var dataSearch = $.extend(true,{},$stateParams);
+            dataSearch.product = $scope.selectedProductType;
+            $location.path('/' + dataSearch.companyId + '/edit').search(dataSearch);
         };
-        $scope.productTypeChanged($scope.isSearch);
 
         $scope.submit = function(){
-            var params = { text: $scope.searchModel };
-            if($scope.selectedProductType == 'services') params.type = $scope.pageType;
-            $location.path('/'+$scope.companyId+'/edit').search(params);
+            var dataSearch = $.extend(true,{},$stateParams);
+            dataSearch.text = $scope.searchModel;
+            $location.path('/' + dataSearch.companyId + '/edit').search(dataSearch);
         };
 
 
@@ -276,24 +251,9 @@ angular.module('dmc.company')
         };
 
         $scope.cancelChanges = function(){
-            if($scope.changedData && Object.keys($scope.changedData).length > 0){
-                var message = [];
-                for(var key in $scope.changedData) {
-                    switch (key) {
-                        case 'name':
-                            message.push('Title');
-                            break;
-                        case 'description':
-                            message.push('Description');
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                toastModel.showToast("error", "You have not saved your changes: "+message.join(', ')+".");
-            }else{
-                $location.path('/'+$scope.companyId+'/storefront/services');
-            }
+            $location.path('/'+$scope.companyId+'/storefront').search({
+                product : 'services'
+            });
         };
 
         $scope.saveChanges = function(){
@@ -301,14 +261,16 @@ angular.module('dmc.company')
             ajax.on(dataFactory.saveCompanyChanges(),
                 {
                     company_id : $scope.companyId,
-                    name : $scope.companyData.name,
-                    description : description
+                    description : description,
+                    positions : $scope.changedPositions
                 },
                 function(data){
                     if(!data.error){
                         toastModel.showToast('success','Data successfully changed');
                         $scope.changedData = {};
-                        $location.path('/'+$scope.companyId+'/storefront/services');
+                        $location.path('/'+$scope.companyId+'/storefront').search({
+                            product : 'services'
+                        });
                     }else{
                         toastModel.showToast("error",data.error);
                     }
@@ -343,6 +305,7 @@ angular.module('dmc.company')
                                 break;
                             }
                         }
+                        $scope.getChangedPosition();
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     }else{
                         toastModel.showToast("error",data.error);
@@ -379,6 +342,7 @@ angular.module('dmc.company')
                                 break;
                             }
                         }
+                        $scope.getChangedPosition();
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     }else{
                         toastModel.showToast("error",data.error);
@@ -389,5 +353,11 @@ angular.module('dmc.company')
             );
         };
 
-
+        // disable all links in products card
+        $("md-tabs").on("click",".product-card a",function(event){
+            event.preventDefault();
+        }).on("mouseenter",".product-card a",function(){
+            $(this).attr("href","");
+            $(this).css("cursor","default");
+        });
 }]);

@@ -7,10 +7,11 @@ angular.module('dmc.data',[])
         var appendId = function(id){
             return ($window.apiUrl && id ? '/'+id : '');
         };
-        var webServiceUrl = function(action, projectId){
+        var webServiceUrl = function(path, action, id){
             var wsurl;
-            if ($window.apiUrl && projectId) {
-                wsurl = '/projects/' + projectId + '/' + action;
+            if ($window.apiUrl && id) {
+                wsurl = '/'+path+'/' + id;
+                wsurl += action ? '/' + action : '';
             } else {
                 wsurl = '/'+action;
             }
@@ -20,10 +21,12 @@ angular.module('dmc.data',[])
              get_result: function(data) {
                 var obj = {};
                 if ($window.apiUrl) {
-                    if (data.length > 1) {
+                    if (data.length >= 1) {
+                        obj.result = data;
+                        obj.count = data.length;
+                    } else {
                         obj.result = data;
                     }
-                    obj.count = data.length;
                 } else {
                     obj = data;
                 }
@@ -33,7 +36,7 @@ angular.module('dmc.data',[])
                 var obj = {}
                 if ($window.apiUrl) {
                     obj = _.transform(source, function(result, value, key) {
-                      if (value){
+                      if (value && key != "projectId" && key != "profileId"){
                         result['_'+key] = value;
                       }
                     });
@@ -50,27 +53,27 @@ angular.module('dmc.data',[])
             },
             getUrlAllServices: function(id){
                 // return baseServer+'/services'+appendId(id);
-                return baseServer+webServiceUrl('services', id);
+                return baseServer+webServiceUrl('projects', 'services', id);
             },
             getUrlChangeService: function(id){
                 return baseServer+'/change_service'+appendId(id);
             },
             getUrlAllTasks: function(id){
                 // return baseServer+'/tasks'+appendId(id);
-                return baseServer+webServiceUrl('tasks', id);
+                return baseServer+webServiceUrl('projects', 'tasks', id);
             },
             getUrlChangeTask: function(id){
                 return baseServer+'/change_tasks'+appendId(id);
             },
             getUrlAllDiscussions: function(id){
                 // return baseServer+'/discussions'+appendId(id);
-                return baseServer+webServiceUrl('discussions', id);
+                return baseServer+webServiceUrl('projects', 'discussions', id);
             },
-            getUrlAllProjects: function(){
+            getUrlAllProjects: function(id){
                 return baseServer+'/projects';
             },
             getUrlAllComponents: function(id){
-                return baseServer+'/components'+appendId(id);
+                return baseServer+webServiceUrl('projects', 'components', id);
             },
             getUrlAllProducts: function(){
                 return baseServer+'/products';
@@ -150,14 +153,14 @@ angular.module('dmc.data',[])
             updateAccount: function(id){
                 return baseServer+'/update_account'+appendId(id);
             },
-            getProfile: function(){
-                return baseServer+'/profile';
+            getProfile: function(id){
+                return baseServer+'/profiles'+appendId(id);
             },
             editProfile: function(){
                 return baseServer+'/edit_profile';
             },
-            getProfileReview: function(){
-                return baseServer+'/get_profile_review';
+            getProfileReview: function(id){
+                return baseServer+webServiceUrl('profiles', 'profile_reviews', id);
             },
             addProfileReview: function(){
                 return baseServer+'/add_profile_review';
@@ -200,6 +203,9 @@ angular.module('dmc.data',[])
             },
             addDiscussionLikeDislike: function(){
                 return baseServer+'/add_discussion_like_dislike';
+            },
+            sendStorefrontMessage: function(){
+                return baseServer+'/ssm';
             }
         };
     }

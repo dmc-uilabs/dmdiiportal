@@ -1,9 +1,9 @@
 <div class="container container-company" layout-padding layout="row" ng-show="companyData.id">
-    <div class="content-column left-content" layout="column" flex="20">
-        <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
-        <dmc-products-filter ng-if="isSearch"></dmc-products-filter>
-    </div>
-    <div class="content-column right-content" layout="column" flex="80">
+    <!--<div class="content-column left-content" layout="column" flex="20">-->
+        <!--<dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>-->
+        <!--<dmc-products-filter ng-if="isSearch"></dmc-products-filter>-->
+    <!--</div>-->
+    <div class="content-column right-content" layout="column" flex>
         <div class="content-panel">
             <div class="content-panel-body">
                 <md-content class="company-content">
@@ -12,16 +12,19 @@
                         <md-button class="md-fab md-mini company-buttons company-edit-picture" ng-click="changePicture()" ng-show="!isChangingPicture">
                             <ng-md-icon icon="mode_edit" size="21"></ng-md-icon>
                         </md-button>
-                        <div ng-init="isChangingPicture = (companyData.featureImage.large ? false : true)" ng-show="isChangingPicture">
+                        <div ng-init="isChangingPicture = (companyData.featureImage.large ? false : true)"
+                             ng-show="isChangingPicture"
+                             ng-style="flowBoxStyle"
+                             flex>
                             <div class="flow-box"
                                  flow-init
                                  flow-drag-enter="pictureDragEnter($flow)"
                                  flow-drag-leave="pictureDragLeave($flow)"
                                  flow-file-success="$file.msg = $message"
                                  flow-file-added="addedNewFile($file, $event, $flow )"
-                                 layout="row" layout-align="start center">
-                                <div class="alert" flow-drop flow-drop-enabled="true">
-                                    <div class="inner-box" layout="row" layout-align="center center">
+                                 layout="row" layout-align="start start">
+                                <div class="alert" flow-drop flow-drop-enabled="true" flex>
+                                    <div class="inner-box" layout="row" layout-align="center center" flex>
                                         <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
                                             <img id="flowImage" flow-img="$flow.files[0]" />
                                             <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
@@ -29,7 +32,7 @@
                                             </md-button>
                                         </div>
                                         <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
-                                            Drag And Drop your picture here
+                                            Drag And Drop your picture here ( 600 x 600 )
                                             <br>
                                             or
                                             <br>
@@ -38,17 +41,17 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <md-button class="md-raised" ng-if="companyData.featureImage.large" ng-click="cancelChangePicture($flow)">Cancel</md-button>
+                                    <md-button class="md-raised cancel-button" ng-if="companyData.featureImage.large" ng-click="cancelChangePicture($flow)">Cancel</md-button>
                                     <md-button class="md-raised md-primary" ng-disabled="$flow.files.length == 0" ng-click="uploadFile($flow)">Save</md-button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div layout="row" layout-padding layout-align="start start" class="company-title">
+                    <div layout="row" layout-padding layout-align="start center" class="company-title">
                         <div layout="column" flex="70">
                             <md-input-container class="title-input-edit">
                                 <label>Company</label>
-                                <input class="md-title" ng-model="companyData.name" ng-change="changedInput('name')">
+                                <input class="md-title" ng-disabled="true" ng-model="companyData.name" ng-change="changedInput('name')">
                             </md-input-container>
                         </div>
                         <span flex></span>
@@ -56,7 +59,7 @@
                         <md-button class="md-raised md-primary company-buttons" ng-click="saveChanges()">Save</md-button>
                     </div>
                     <div layout="row" layout-padding layout-align="start start" class="company-description">
-                        <md-input-container flex>
+                        <md-input-container flex="70">
                             <label>Description</label>
                             <textarea ng-model="companyData.description" ng-change="changedInput('description')" columns="1"></textarea>
                         </md-input-container>

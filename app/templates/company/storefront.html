@@ -7,26 +7,42 @@
         <div class="content-panel">
             <div class="content-panel-body">
                 <md-content class="company-content">
-                    <div layout="row" layout-align="end start" ng-style="{'background-image' : 'url('+companyData.featureImage.large+')'}" class="company-image">
-                        <md-button class="md-raised company-edit" ng-href="/company.php#/{{companyId}}/edit">
-                            Edit Storefront
-                        </md-button>
-                    </div>
+                    <div layout="row"
+                         layout-align="end start"
+                         ng-style="{'background-image' : 'url('+companyData.featureImage.large+')'}"
+                         class="company-image"></div>
                     <div layout="row" layout-padding layout-align="start start" class="company-title">
+
                         <div layout="column" flex="70">
                             <h2 class="md-title" layout="row" layout-align="start center">{{companyData.name}}<md-button class="company-buttons" ng-href="/">Profile</md-button></h2>
                             <p>
                                 <div ng-bind-html="(companyData.shortDescription == null || isReadMore ? companyData.description : companyData.shortDescription)"></div>
-                                <a class="read-more" ng-show="companyData.shortDescription" ng-click="readMore()">{{(isReadMore ? 'Show Less' : 'Read More')}}</a>
+                                <a class="read-more"
+                                   ng-show="companyData.shortDescription"
+                                   ng-click="readMore()">{{(isReadMore ? 'Show Less' : 'Read More')}}</a>
                             </p>
                         </div>
+
                         <span flex></span>
-                        <md-button class="company-buttons" ng-click="followCompany()">{{(isFollow ? 'Unfollow' : 'Follow')}}</md-button>
-                        <md-button class="md-icon-button message-button" aria-label="Message">
+
+                        <md-button ng-if="!companyData.isOwner"
+                                   class="company-buttons"
+                                   ng-click="followCompany()">{{(isFollow ? 'Unfollow' : 'Follow')}}</md-button>
+
+                        <md-button ng-if="!companyData.isOwner"
+                                   class="md-icon-button message-button"
+                                   ng-click="openMessageDialog($event)"
+                                   aria-label="Message">
                             <ng-md-icon icon="email" size="32"></ng-md-icon>
                         </md-button>
+
+                        <md-button ng-if="companyData.isOwner"
+                                   class="md-raised company-edit"
+                                   ng-href="/company.php#/{{companyId}}/edit?product=services&type=analytical">
+                            Edit Storefront
+                        </md-button>
+
                     </div>
-                    <md-divider ></md-divider>
                     <div layout="row" layout-padding layout-align="center center" class="company-search">
                         <md-input-container>
                             <md-select ng-model="selectedProductType" ng-change="productTypeChanged(true)" aria-label="Product Types">
@@ -45,7 +61,10 @@
                         <span flex></span>
 
                         <div layout="row" layout-align="center center">
-                            <md-button class="company-buttons" href="/"><ng-md-icon icon="favorite" size="14"></ng-md-icon> Favorites ({{companyData.favoritesCount}})</md-button>
+                            <md-button class="company-buttons" href="/" style="display:none">
+                                <ng-md-icon icon="favorite" size="14"></ng-md-icon>
+                                Favorites ({{companyData.favoritesCount}})
+                            </md-button>
                             <md-button class="company-buttons" href="" compare-button>Compare ({{compareProducts.services.length+compareProducts.components.length}})</md-button>
                         </div>
                     </div>
@@ -83,9 +102,8 @@
                             <h2 class="md-title" layout="row" layout-align="start center">Storefront Items</h2>
                         </div>
                         <span flex></span>
-                        <md-button class="company-buttons" href="" ng-click="showAll()">View All</md-button>
+                        <md-button class="company-buttons" ng-click="showAll()">View All</md-button>
                     </div>
-                    <md-divider  ng-if="!isSearch"></md-divider>
                     <div layout-padding class="list-items" layout="row" layout-wrap ng-if="!isSearch">
                         <div class="one-item"
                              flex-sm="100"

@@ -1,50 +1,23 @@
 <md-list class="menu-filter-item">
     <md-subheader>Author</md-subheader>
-    <md-list-item class="md-1-line">
+    <md-list-item class="md-1-line" ng-repeat="author in authors">
         <div class="md-list-item-text" layout="column">
-            <md-checkbox ng-model="authorGe" aria-label="Checkbox1">GE (8)</md-checkbox>
-        </div>
-    </md-list-item>
-    <md-list-item class="md-1-line">
-        <div class="md-list-item-text" layout="column">
-            <md-checkbox ng-model="authorJoeSmith" aria-label="Checkbox2">Joe Smith (7)</md-checkbox>
+            <md-checkbox ng-model="author.checked"
+                         ng-change="checkAuthor(author)"
+                         aria-label="{{author.name}}">{{author.name}} ({{author.count}})</md-checkbox>
         </div>
     </md-list-item>
 </md-list>
 <md-list class="menu-filter-item">
     <md-subheader>Rating</md-subheader>
-    <md-list-item class="md-1-line">
+    <md-list-item class="md-1-line" ng-repeat="rating in ratings">
         <div class="md-list-item-text" layout="column">
-            <md-checkbox ng-model="stars4" aria-label="Checkbox1">
+            <md-checkbox ng-model="rating.checked"
+                         ng-change="checkRating(rating)"
+                         aria-label="{{rating.stars.length+' Stars'}}">
                 <div class="stars">
-                    <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="19"></ng-md-icon>
-                    <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="19"></ng-md-icon>
-                    <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="19"></ng-md-icon>
-                    <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="19"></ng-md-icon>
-                    <span>& up (7)</span>
-                </div>
-            </md-checkbox>
-        </div>
-    </md-list-item>
-    <md-list-item class="md-1-line">
-        <div class="md-list-item-text" layout="column">
-            <md-checkbox ng-model="stars3" aria-label="Checkbox1">
-                <div class="stars">
-                    <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="19"></ng-md-icon>
-                    <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="19"></ng-md-icon>
-                    <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="19"></ng-md-icon>
-                    <span>& up (11)</span>
-                </div>
-            </md-checkbox>
-        </div>
-    </md-list-item>
-    <md-list-item class="md-1-line">
-        <div class="md-list-item-text" layout="column">
-            <md-checkbox ng-model="stars2" aria-label="Checkbox1">
-                <div class="stars">
-                    <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="19"></ng-md-icon>
-                    <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="19"></ng-md-icon>
-                    <span>& up (15)</span>
+                    <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="19" ng-repeat="star in rating.stars track by $index"></ng-md-icon>
+                    <span>& up ({{rating.count}})</span>
                 </div>
             </md-checkbox>
         </div>
@@ -52,27 +25,21 @@
 </md-list>
 <md-list class="menu-filter-item">
     <md-subheader>Favorites</md-subheader>
-    <md-list-item class="md-1-line">
+    <md-list-item class="md-1-line" ng-repeat="item in favorites">
         <div class="md-list-item-text" layout="column">
-            <md-checkbox ng-model="myFavorites" aria-label="Checkbox1">My Favorites</md-checkbox>
+            <md-checkbox ng-model="item.checked"
+                         ng-change="checkFavorite(item)"
+                         aria-label="{{item.name}}">{{item.name}}</md-checkbox>
         </div>
     </md-list-item>
 </md-list>
 <md-list class="menu-filter-item">
     <md-subheader>Date</md-subheader>
-    <md-list-item class="md-1-line">
+    <md-list-item class="md-1-line" ng-repeat="item in dates">
         <div class="md-list-item-text" layout="column">
-            <md-checkbox ng-model="oneWeek" aria-label="Checkbox1">7 days old (6)</md-checkbox>
-        </div>
-    </md-list-item>
-    <md-list-item class="md-1-line">
-        <div class="md-list-item-text" layout="column">
-            <md-checkbox ng-model="oneMonth" aria-label="Checkbox1">1 month old (9)</md-checkbox>
-        </div>
-    </md-list-item>
-    <md-list-item class="md-1-line">
-        <div class="md-list-item-text" layout="column">
-            <md-checkbox ng-model="oneYear" aria-label="Checkbox1">1 year old (15)</md-checkbox>
+            <md-checkbox ng-model="item.checked"
+                         ng-change="checkDate(item)"
+                         aria-label="{{item.name}}">{{item.name}} ({{item.count}})</md-checkbox>
         </div>
     </md-list-item>
 </md-list>
