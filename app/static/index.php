@@ -88,9 +88,9 @@ return call_user_func(function () {
 		echo save_company_changes($_GET);
 	}else if(strpos($uri,'/update_account') !== false){
 		echo update_account($_GET);
-	}else if(strpos($uri,'/profile') !== false){
+	}else if(strpos($uri,'/profiles') !== false){
 	  echo get_profile($_GET);
-	}else if(strpos($uri,'/get_profile_review') !== false){
+	}else if(strpos($uri,'/profile_reviews') !== false){
 	  echo get_profile_review($_GET);
 	}else if(strpos($uri,'/add_profile_review') !== false){
 	  echo add_profile_review($_POST);

@@ -491,9 +491,7 @@ $scope.searchText="";
 			};
 		});
 	}
-
 	$scope.states = loadAll();
-
 
 	$scope.profile = profileData.result;
 	if (profileReviewsData.result) {
