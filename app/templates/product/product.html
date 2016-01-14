@@ -161,6 +161,11 @@
 						</md-content>
 					</md-tab>
 
+
+					<md-tab label="HISTORY">
+						<ui-widget-tabs-history data="history"></ui-widget-tabs-history>
+					</md-tab>
+
 					<md-tab label="Tags">
 						<md-content class="md-padding">
 							<div layout="row" ng-if="!editFlag" class="tabs-content" layout-wrap>
@@ -293,15 +298,18 @@
 						</div>
 					</div>
 					<!--right column-->
-					<div flex layout layout-align="center center">
-						<md-button class="md-raised" ng-click="LeaveAReview()">Leave a Review</md-button>
-						<span flex></span>
+					<div flex layout="row" layout-align="space-betwen center">
+						<div layout="column" layout-align="center center">
+							<md-button class="md-raised" ng-click="LeaveAReview()">Leave a Review</md-button>
+						</div>
+						<div layout="column" layout-align="end end" layout-fill>
 						<md-input-container>
 							<label>Sorting</label>
 							<md-select ng-model="sortListModel" ng-change="selectItemDropDown(sortListModel)"  md-container-class="margin-dropdown">
 								<md-option ng-repeat="sort in sortList track by $index"  ng-value="$index">{{sort.name}}</md-option>
 							</md-select>
 						</md-input-container>
+						</div>
 					</div>
 				</div>
 

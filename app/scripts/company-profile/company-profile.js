@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dmc.profile', [
+angular.module('dmc.company-profile', [
 	'dmc.configs.ngmaterial',
 	'ngMdIcons',
 	'ngtimeago',
@@ -11,38 +11,35 @@ angular.module('dmc.profile', [
 	'dmc.socket',
 	'dmc.widgets.stars',
 	'dmc.widgets.review',
+	'dmc.component.members-card',
 	'dmc.common.header',
 	'dmc.common.footer',
-  "dmc.location",
+   "dmc.location",
 	'dmc.model.toast-model',
 	'dmc.model.fileUpload',
-	'dmc.model.profile',
+	'dmc.model.company',
 	'flow'
 ])
 	.config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
-		$stateProvider.state('profile', {
-			url: '/:profileId',
-			templateUrl: 'templates/profile/profile.html',
-			controller: 'ProfileController',
+		$stateProvider.state('company-profile', {
+			url: '/:companyId',
+			templateUrl: 'templates/company-profile/company-profile.html',
+			controller: 'CompanyProfileController',
 			resolve: {
-			profileData: ['DMCProfileModel', '$stateParams',
-				function(DMCProfileModel, $stateParams) {
-					return DMCProfileModel.getProfileModel($stateParams.profileId);
-				}],
-			profileReviewsData: ['DMCProfileModel', '$stateParams',
-				function(DMCProfileModel, $stateParams) {
-					return DMCProfileModel.getReviewModel($stateParams.profileId);
-				}]
-			}
+	      companyData: ['CompanyModel', '$stateParams',
+          function(CompanyModel, $stateParams) {
+            return CompanyModel.getModel($stateParams.companyId);
+          }
+        ]
+      }
 		});
 		$urlRouterProvider.otherwise('/1');
 	})
-
-	.controller('ProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location, profileData, profileReviewsData) {
-
-
-		$scope.profile = [];  //array product
-		$scope.number_of_comments = 0; // number of
+	.controller('CompanyProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location, companyData) {
+		
+		
+		$scope.company = companyData;
+		$scope.number_of_comments = 0; // number of 
 		$scope.LeaveFlag = false;  //flag for visibility form Leave A Review
 		$scope.submit_rating = 0;  //
 		$scope.limit_reviews = true;  //limit reviews
@@ -59,7 +56,7 @@ angular.module('dmc.profile', [
 		$scope.inviteToProject = false;
 		$scope.invate = false;
 		$scope.toProject = "";
-		// $scope.projects = null;
+		$scope.projects = null;
 
 		$scope.sortList = [
 			{
@@ -74,58 +71,33 @@ angular.module('dmc.profile', [
 			},
 			{
 				id: 2,
-				val: "highest",
-				name: "Highest to Lowest Rating"
+				val: "leasthelpful",
+				name: "Least Helpful"
 			},
 			{
 				id: 3,
-				val: "lowest",
-				name: "Lowest to Highest Rating"
+				val: "highest", 
+				name: "Highest to Lowest Rating"
 			},
 			{
 				id: 4,
+				val: "lowest", 
+				name: "Lowest to Highest Rating"
+			},
+			{
+				id: 5,
 				val: "verified",
 				name: "Verified Users"
 			}
 		];
 
-//load data
-		//get profile
-
-
-		// ajax.on(
-		// 	dataFactory.getProfile($stateParams.profileId),
-		// 	{
-		// 		profileId: $stateParams.profileId
-		// 	},
-		// 	function(data){
-		// 		var data = dataFactory.get_result(data);
-		// 		$scope.profile = profileData.result;
-		// 		$scope.profile.reviews = profileReviewsData.result;
-		// 		$scope.profile.rating = profileReviewsData.result.map(function(value, index){
-		// 			return value.rating;
-		// 		});
-		// 		$scope.number_of_comments = $scope.profile.rating.length;
-		// 		if($scope.number_of_comments != 0) {
-		// 			calculate_rating();
-		// 		}
-		// 		$scope.profile.descriptionSmall = $scope.profile.description.slice(0, 1000) + '...';
-		// 		if($scope.profile.description.length >= $scope.profile.descriptionSmall.length){
-		// 			$scope.showflag = true;
-		// 		}
-		// 		$scope.SortingReviews($scope.sortList[0].val);
-		// 	},
-		// 	function(){
-		// 		alert("Ajax fail: getProduct");
-		// 	}
-		// );
-
 		var calculate_rating = function() {
 			$scope.precentage_stars = [0,0,0,0,0];
 			$scope.average_rating = 0;
-			for (var i in $scope.profile.rating) {
-				$scope.precentage_stars[$scope.profile.rating[i] - 1] += 100 / $scope.number_of_comments;
-				$scope.average_rating += $scope.profile.rating[i];
+			console.info("rating");
+			for (var i in $scope.company.rating) {
+				$scope.precentage_stars[$scope.company.rating[i] - 1] += 100 / $scope.number_of_comments;
+				$scope.average_rating += $scope.company.rating[i];
 			}
 			$scope.average_rating = ($scope.average_rating / $scope.number_of_comments).toFixed(1);
 
@@ -133,6 +105,30 @@ angular.module('dmc.profile', [
 				$scope.precentage_stars[i] = Math.round($scope.precentage_stars[i]);
 			}
 		};
+		$scope.$watch('company',function(){
+			console.info("watch");
+			if($scope.company){
+				console.info("watch if");
+				$scope.number_of_comments = $scope.company.rating.length;
+				if($scope.number_of_comments != 0) {
+					calculate_rating();
+				}
+				$scope.SortingReviews($scope.sortList[0].val);
+			}
+		})
+		//get project
+		ajax.on(
+			dataFactory.getUrlAllProjects(),
+			{
+				limit : 10, offset: 0
+			},
+			function(data){
+				$scope.projects = data.result;
+			},
+			function(){
+				alert("Ajax faild: getProjects");
+			}
+		);
 
 //review
 		//Show Leave A Review form
@@ -148,9 +144,9 @@ angular.module('dmc.profile', [
 		//Submit Leave A Review form
 		$scope.Submit= function(NewReview){
 			ajax.on(
-				dataFactory.addProfileReview(),
+				dataFactory.addCompanyReviewUrl(),
 				{
-					profileId: $scope.profile.id,
+					companyId: $scope.company.id,
 					reviewId: 0,
 					name: "DMC Member",
 					status: true,
@@ -168,7 +164,7 @@ angular.module('dmc.profile', [
 
 
 			$scope.number_of_comments++;
-			$scope.profile.rating.push($scope.submit_rating);
+			$scope.company.rating.push($scope.submit_rating);
 			$scope.submit_rating = 0;
 			$scope.LeaveFlag = !$scope.LeaveFlag;
 			calculate_rating();
@@ -197,6 +193,10 @@ angular.module('dmc.profile', [
 				case "helpful":
 					sort = 'helpful';
 					order = 'DESC';
+					break
+				case "leasthelpful":
+					sort = 'leasthelpful';
+					order = 'ASC';
 					break
 				case "lowest":
 					sort = 'rating';
@@ -233,7 +233,7 @@ angular.module('dmc.profile', [
 			}
 
 			var params = {
-				profileId: $stateParams.profileId,
+				companyId: $stateParams.companyId,
 				sort: sort,
 				order: order
 			};
@@ -242,15 +242,14 @@ angular.module('dmc.profile', [
 			}
 
 			ajax.on(
-				dataFactory.getProfileReview($stateParams.profileId),
-				dataFactory.get_request_obj(params),
+				dataFactory.getCompanyReviewUrl(),
+				params,
 				function(data){
-					var data = dataFactory.get_result(data);
-					$scope.profile.reviews = data.result;
+					$scope.company.reviews = data.result;
 					if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 				},
 				function(){
-					alert("Ajax fail: getProfileReview");
+					alert("Ajax fail: getCompanyReview");
 				}
 
 			);
@@ -271,10 +270,6 @@ angular.module('dmc.profile', [
 		//Edit profile
 		$scope.editPage = function () {
 			$scope.editFlag = true;
-            // auto focus for edit Display Name
-            $timeout(function() {
-                $("#editDisplayNameProfile").focus();
-            });
 		}
 
 		//add skill to profile
@@ -293,15 +288,14 @@ angular.module('dmc.profile', [
 		$scope.cancelEdit = function(){
 			$scope.editFlag = false;
 			$scope.isChangingPicture = false;
-
+			
 			//get profile
 			ajax.on(
-				dataFactory.getProfile($stateParams.profileId),
+				dataFactory.getProfile(),
 				{
 					profileId: $stateParams.profileId
 				},
 				function(data){
-					var data = dataFactory.get_result(data);
 					$scope.profile = data.result;
 					$scope.number_of_comments = $scope.profile.rating.length;
 					if($scope.number_of_comments != 0) {
@@ -352,10 +346,6 @@ angular.module('dmc.profile', [
 			$scope.isChangingPicture = true;
 		};
 
-        $scope.removePicture = function(flow){
-            flow.files = [];
-        };
-
 		//cancel Change photo
 		$scope.cancelChangePicture = function(flow){
 			flow.files = [];
@@ -389,7 +379,6 @@ angular.module('dmc.profile', [
 
 ///
 		$scope.goToReview = function(){
-			console.info("go");
 			$location.hash('review');
 			$anchorScroll();
 		}
@@ -414,11 +403,11 @@ $scope.searchText="";
 		$scope.invate = true;
 		$scope.inviteToProject = false;
 	}
-
+	
 	$scope.btnCanselToProject = function(){
 		$scope.inviteToProject = false;
 	}
-
+	
 	$scope.btnRemoveOfProject = function(){
 		$scope.toProject = "";
 		$scope.invate = false;
@@ -501,29 +490,7 @@ $scope.searchText="";
 			};
 		});
 	}
+
 	$scope.states = loadAll();
-
-<<<<<<< HEAD
-
-=======
-	$scope.profile = profileData.result;
-	if (profileReviewsData.result) {
-		$scope.profile.reviews = profileReviewsData.result;
-		$scope.profile.rating = profileReviewsData.result.map(function(value, index){
-			return value.rating;
-		});
-	}
-	$scope.number_of_comments = $scope.profile.rating.length;
-	if($scope.number_of_comments != 0) {
-		calculate_rating();
-	}
-	$scope.profile.descriptionSmall = $scope.profile.description.slice(0, 1000) + '...';
-	if($scope.profile.description.length >= $scope.profile.descriptionSmall.length){
-		$scope.showflag = true;
-	}
-	$scope.SortingReviews($scope.sortList[0].val);
->>>>>>> 036a7f5be353c71e5d06186f35dee8a6e6deed7f
-
+	
 	});
-
-

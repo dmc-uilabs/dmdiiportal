@@ -1,0 +1,40 @@
+$font-size: 13px;
+$line-height: 1.1;
+$lines-to-show: 4;
+
+.members-card{
+	border: 1px solid grey;
+	border-radius: 6px;
+	padding: 0;
+	.info{
+		padding: 0 8px;
+		h4{
+			font-weight: normal;
+			margin: 0 !important;
+		}
+	}
+	.description{
+		margin: 8px;
+    white-space: initial;
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    -webkit-line-clamp: $lines-to-show;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .footer{
+    background-color: #666;
+    .white-button{
+      background-color: #909090;
+    }
+    .md-button{
+      margin: 6px;
+      height: 47px;
+      min-height: 47px;
+      text-transform: none;
+      font-size: 13px;
+      line-height: 47px;
+    }
+  }
+}

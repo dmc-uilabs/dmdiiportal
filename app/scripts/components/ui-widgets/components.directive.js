@@ -25,13 +25,14 @@ angular.module('dmc.widgets.components',[
 
                 // function for get all components from DB
                 $scope.getComponents = function(){
-                    ajax.on(dataFactory.getUrlAllComponents($scope.projectId),{
+                    ajax.on(dataFactory.getUrlAllComponents($scope.projectId),dataFactory.get_request_obj({
                         projectId : $scope.projectId,
                         sort : $scope.sort,
                         order : $scope.order,
                         offset : 0,
                         limit : 5
-                    },function(data){
+                    }),function(data){
+                        var data = dataFactory.get_result(data);
                         $scope.components = data.result;
                         $scope.total = data.count;
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();

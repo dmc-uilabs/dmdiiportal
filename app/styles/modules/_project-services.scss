@@ -106,6 +106,16 @@
 					}
 				}
 			}
+			md-input-container{
+				div{
+					visibility: hidden;
+				}
+				&.md-input-invalid{
+					div{
+						visibility: visible;
+					}
+				}
+			}
 		}
 		h2{
 			margin: 0;
@@ -116,6 +126,7 @@
 			height: 36px;
 			min-height: 36px;
 			line-height: 36px;
+			min-width: 70px;
 			text-transform: none;
 		}
 	}
@@ -203,7 +214,7 @@
 		padding-left: 8px;
 		h2{
 			height: 36px;
-			line-height: 48px;
+			line-height: 36px;
 			font-weight: normal;
 		}
 		md-content{

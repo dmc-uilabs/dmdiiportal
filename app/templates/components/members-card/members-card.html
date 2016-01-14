@@ -1,0 +1,37 @@
+<div class="members-card" layout="column">
+	<div class="header" layout="row" layout-align="space-between center">
+		<md-button href="" aria-label="grou_add" class="md-icon-button">
+			<ng-md-icon icon="group_add" style="fill: grey;" size="25"></ng-md-icon>
+		</md-button>
+		<a href="">Follow</a>
+		<md-button href="" aria-label="arrow_forward" class="md-icon-button">
+			<ng-md-icon icon="arrow_forward" style="fill: grey;" size="25"></ng-md-icon>
+		</md-button>
+	</div>
+	<div layout layout-align="center center">
+		<div flex="60">
+			<img ng-src="{{profile.avatar}}">
+		</div>
+	</div>
+	<div layout="column" class="info">
+		<h3>{{profile.display_name}}</h3>
+		<h4>{{profile.jobTitle}}</h4>
+		<h4>{{profile.company}}</h4>
+		<ui-widget-stars-static size="15" value="{{profile.rating}}" text="({{profile.rating}})"></ui-widget-stars-static>
+	</div>
+	
+	<div class="description">
+	{{profile.description}}
+	</div>
+	<div class="footer" layout="row" >
+    
+    <md-button href="" class="white-button" aria-label="Add to Project" flex>
+        Add to Project
+    </md-button>
+
+      <!-- buttons for compare -->
+    <md-button href="" class="white-button" aria-label="Add to Compare" flex>
+      Add to Compare
+    </md-button>
+  </div>
+</div>

@@ -89,6 +89,7 @@
 <script src="scripts/common/factory/ajax.factory.js"></script>
 <script src="scripts/common/factory/data.factory.js"></script>
 <script src="scripts/common/models/file-upload.js"></script>
+<script src="scripts/common/models/profile-model.js"></script>
 <script src="scripts/profile/profile.js"></script>
 <script src="scripts/common/models/toast-model.js"></script>
 <!-- endbuild -->
