@@ -32,16 +32,17 @@
 					</md-button>
 				</div>
 
-				<div ng-if="flagAddServer">
-					<form novalidate name="addServer" ng-submit="saveServer(serverModel)" layout="row" layout-align="center center">
-						<md-input-container>
+				<div ng-if="flagAddServer" layout="row" layout-fill>
+					<form flex novalidate name="addServer" ng-submit="saveServer(serverModel)">
+						<div  layout="row" layout-align="center center">
+						<md-input-container flex>
 							<label>Server Alias</label>
 							<input ng-model="serverModel.name" name="serverName" required>
 							<div ng-messages="addServer.serverName.$error">
 								<div ng-message="required">Server Alias is required.</div>
 							</div>
 						</md-input-container>
-						<md-input-container>
+						<md-input-container flex>
 							<label>Server Host/IP</label>
 							<input ng-model="serverModel.ip" name="serverIp" required>
 							<div ng-messages="addServer.serverIp.$error">
@@ -49,9 +50,13 @@
 								<div ng-message="required">Server Host/IP is required.</div>
 							</div>
 						</md-input-container>
+						<md-button ng-click="cancelServer()" class="add"> 
+							cancel
+						</md-button>
 						<md-button ng-disabled="addServer.$invalid" class="add">
 							save
 						</md-button>
+						</div>
 					</form>
 				</div>
 
@@ -94,6 +99,25 @@
 		</div>
 
 		<div layout="column" ng-if="!page1" class="page2">
+
+			<md-content class="md-padding">
+				<div layout="row" layout-align="space-between center">
+					<md-input-container flex="40">
+						<label>Service Name</label>
+						<input ng-model="serviceName">
+					</md-input-container>
+					<md-input-container flex="40">
+						<label>Parent Component</label>
+						<md-select ng-model="parentComponent">
+							<md-option ng-repeat="service in allServices track by $index">{{service.title}}</md-option>
+						</md-select>
+					</md-input-container>
+				</div>
+				<md-input-container>
+					<label>Description</label>
+					<textarea ng-model="serviceDescription" columns="4" md-maxlength="3000"></textarea>
+				</md-input-container>
+			</md-content>
 
 			<md-content class="md-padding">
 				<div layout="column">

@@ -12,6 +12,7 @@ angular.module('dmc.product', [
 	'dmc.widgets.stars',
 	'dmc.widgets.documents',
 	'dmc.widgets.review',
+	'dmc.widgets.tabs',
 	'dmc.component.treemenu',
 	'dmc.component.productcard',
 	'dmc.common.header',
@@ -50,7 +51,81 @@ angular.module('dmc.product', [
 			$scope.indexImages = 0;
 	
 	
-	
+			
+			$scope.history = {
+				leftColumn: {
+					title: "Marketplace",
+					viewAllLink: "",
+					list:[
+						{
+							icon: "edit",
+							title: "Adam Marks edited the service description",
+							date: "June 30",
+						},
+						{
+							icon: "edit",
+							title: "Adam Marks edited the service description",
+							date: "June 30",
+						},
+						{
+							icon: "edit",
+							title: "Adam Marks edited the service description",
+							date: "June 30",
+						},
+						{
+							icon: "edit",
+							title: "Adam Marks edited the service description",
+							date: "June 30",
+						},
+						{
+							icon: "edit",
+							title: "Adam Marks edited the service description",
+							date: "June 30",
+						},
+						{
+							icon: "edit",
+							title: "Adam Marks edited the service description",
+							date: "June 30",
+						}
+					]
+				},
+				rightColumn: {
+					title: "Your Projects",
+					viewAllLink: "",
+					list:[
+						{
+							icon: "done_all",
+							title: "Timmy Thomas successfully ran the service.",
+							date: "July 31",
+						},
+						{
+							icon: "block",
+							title: "Anna Barton ran the service unsuccessfully.",
+							date: "July 30",
+						},
+						{
+							icon: "file_upload",
+							title: "Jhon Smith uploaded the service.",
+							date: "June 30",
+						},
+						{
+							icon: "block",
+							title: "Anna Barton ran the service unsuccessfully.",
+							date: "June 30",
+						},
+						{
+							icon: "block",
+							title: "Anna Barton ran the service unsuccessfully.",
+							date: "June 30",
+						},
+						{
+							icon: "file_upload",
+							title: "Jhon Smith uploaded the service.",
+							date: "June 30",
+						},
+					]
+				}
+			}
 			$scope.sortList = [
 				{
 					id: 0,
@@ -64,20 +139,26 @@ angular.module('dmc.product', [
 				},
 				{
 					id: 2,
+					val: "leasthelpful",
+					name: "Least Helpful"
+				},
+				{
+					id: 3,
 					val: "highest", 
 					name: "Highest to Lowest Rating"
 				},
 				{
-					id: 3,
+					id: 4,
 					val: "lowest", 
 					name: "Lowest to Highest Rating"
 				},
 				{
-					id: 4,
+					id: 5,
 					val: "verified",
 					name: "Verified Users"
 				}
 			];
+
 	
 			$scope.sortListModel = 0;
 			$scope.selectItemDropDown = function(value){
@@ -270,6 +351,10 @@ angular.module('dmc.product', [
 					case "helpful":
 						sort = 'helpful';
 						order = 'DESC';
+						break
+					case "leasthelpful":
+						sort = 'leasthelpful';
+						order = 'ASC';
 						break
 					case "lowest":
 						sort = 'rating';

@@ -79,7 +79,7 @@ angular.module('dmc.project')
 
 	$scope.history = {
 		leftColumn: {
-			title: "Public",
+			title: "Project",
 			viewAllLink: "",
 			list:[
 				{

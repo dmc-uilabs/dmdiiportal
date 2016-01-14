@@ -1,11 +1,12 @@
 angular.module('dmc.project')
-.controller('projectUploadServicesCtrl', ['$scope', '$stateParams', 'projectData', 'edit', function ($scope, $stateParams, projectData, edit) {
+.controller('projectUploadServicesCtrl', ['$scope', '$stateParams', 'ajax', 'dataFactory', 'projectData', 'edit', function ($scope, $stateParams, ajax, dataFactory, projectData, edit) {
 	
 	$scope.projectData = projectData;
 	$scope.page1 = true;
 	$scope.edit = edit;
 	$scope.flagAddServer = false;
 	$scope.serverModel = null;
+	$scope.allServices = null;
 
 	$scope.servers = [
 		{
@@ -352,6 +353,17 @@ angular.module('dmc.project')
 	]
 	$scope.preview = $scope.interfeces[0];
 
+	ajax.on(
+			dataFactory.getUrlAllProducts(),
+			{},
+			function(data){
+				$scope.allServices = data.result;  
+			},
+			function(){
+				console.error("Ajax fail! getAllProducts()");
+			}
+		);
+
 	$scope.selectItemDropDown = function(value){
 		if(value != 0) {
 			var item = $scope.servers[value];
@@ -365,6 +377,10 @@ angular.module('dmc.project')
 	$scope.saveServer = function(server){
 		server.id = $scope.servers.length;
 		$scope.servers.push(server);
+		$scope.flagAddServer = false;
+	}
+
+	$scope.cancelServer = function(){
 		$scope.flagAddServer = false;
 	}
 

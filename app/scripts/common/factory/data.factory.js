@@ -123,6 +123,12 @@ angular.module('dmc.data',[])
             getCompanyUrl: function(id){
                 return baseServer+'/get_company'+appendId(id);
             },
+            getCompanyReviewUrl: function(){
+                return baseServer+'/get_review_company';
+            },
+            addCompanyReviewUrl: function(){
+                return baseServer+'/add_review_company';
+            },
             addFeaturedCompany: function(){
                 return baseServer+'/add_featured_company';
             },
