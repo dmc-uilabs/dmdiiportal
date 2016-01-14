@@ -503,9 +503,7 @@ $scope.searchText="";
 	}
 	$scope.states = loadAll();
 
-<<<<<<< HEAD
 
-=======
 	$scope.profile = profileData.result;
 	if (profileReviewsData.result) {
 		$scope.profile.reviews = profileReviewsData.result;
@@ -522,7 +520,7 @@ $scope.searchText="";
 		$scope.showflag = true;
 	}
 	$scope.SortingReviews($scope.sortList[0].val);
->>>>>>> 036a7f5be353c71e5d06186f35dee8a6e6deed7f
+
 
 	});
 
