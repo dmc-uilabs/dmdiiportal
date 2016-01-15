@@ -125,17 +125,17 @@
           border-bottom: 1px solid #efeced;
         }
         .width-100{
-          max-width: none;
+          max-width: 300px;
           min-width: none;
           width: 100%;
         }
         .width-50{
-          max-width: none;
+          max-width: 300px;
           min-width: none;
           width: 50%;
         }
         .width-33{
-          max-width: none;
+          max-width: 300px;
           min-width: none;
           width: 33%;
         }
@@ -157,6 +157,9 @@
           @include borderRadius(3px 3px 0 0);
           .product-image{
             text-align: center;
+            img{
+              width: 70%;
+            }
           }
           h2,h3{
             color: #62b056;

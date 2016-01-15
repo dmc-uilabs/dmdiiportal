@@ -220,6 +220,22 @@ angular.module('dmc.compare',[
                 alert("Ajax faild: saveToProject");
             });
         };
+
+        $scope.addToFavorite = function(item){
+            return ajax.on(dataFactory.addProductToFavorite(),{
+                productId : item.id,
+                productType : item.type
+            },function(data){
+                if(!data.error) {
+                    item.favorite = data.favorite;
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }else{
+                    alert(data.error);
+                }
+            },function(){
+                alert("Ajax faild: removeFromProject");
+            });
+        };
     })
     .directive('compareButton', ['$parse', function ($parse) {
         return {
