@@ -54,7 +54,7 @@ angular.module('dmc.account')
                             { text : "Service fails" },
                             { text : "You are assigned to a task" },
                             { text : "Change in priority status of task" },
-                            { text : "You receive a questio" },
+                            { text : "You receive a question" },
                             { text : "You receive a project submission" }
                         ]
                     }
@@ -91,7 +91,7 @@ angular.module('dmc.account')
                             { text : "Service fails" },
                             { text : "You are assigned to a task" },
                             { text : "Change in priority status of task" },
-                            { text : "You receive a questio" },
+                            { text : "You receive a question" },
                             { text : "You receive a project submission" }
                         ]
                     }
