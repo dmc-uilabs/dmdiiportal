@@ -98,6 +98,9 @@
     <script src="scripts/marketplace/marketplace.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
+        <?php
+          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+        ?>
         window.apiUrl = '';
     </script>
   </body>
