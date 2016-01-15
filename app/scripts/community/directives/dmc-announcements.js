@@ -19,6 +19,9 @@ angular.module('dmc.community.dmc-announcements',[]).
                     },function(data){
                         if(!data.error){
                             $scope.announcements = data.result;
+                            for(var a in $scope.announcements){
+                                $scope.announcements[a].created_at = moment($scope.announcements[a].created_at).format("MMM Do YYYY");
+                            }
                             $scope.totalAnnouncements = data.count;
                             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                         }else{

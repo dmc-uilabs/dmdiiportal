@@ -1,9 +1,10 @@
 .container.container-search-faq{
   cursor: default;
+  background-color: #d9d9d9;
   .title{
     font-size: 19px;
     font-weight: 100;
-    margin-top: 0;
+    margin-top: 10px;
   }
   .search-block{
     padding: 0 45px;
@@ -13,7 +14,7 @@
       padding: 0;
       md-icon{
         left: 7px;
-        top: 6px;
+        top: 10px;
         fill: rgba(149, 149, 149, 0.87);
       }
       input {
@@ -22,6 +23,11 @@
         margin-left: 0;
       }
     }
+  }
+}
+.faq-search-field.global-search-form{
+  input {
+    background-color: #f6f6f6;
   }
 }
 
@@ -70,6 +76,9 @@
     }
   }
   .right-content {
+    .md-subheader{
+      margin-bottom: 8px;
+    }
     .related-articles-list{
       md-list-item{
         min-height: 0;

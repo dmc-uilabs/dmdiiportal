@@ -57,9 +57,9 @@
         </md-content>
     </div>
     <div class="content-panel-footer storefront-results-footer">
-        <div class="total-items">
-            {{(currentPage-1)*pageSize+1}}-{{currentPage*pageSize > totalSize ? totalSize : currentPage*pageSize}} of {{totalSize}}
-        </div>
+        <!--<div class="total-items">-->
+            <!--{{(currentPage-1)*pageSize+1}}-{{currentPage*pageSize > totalSize ? totalSize : currentPage*pageSize}} of {{totalSize}}-->
+        <!--</div>-->
         <div class="text-center">
             <dir-pagination-controls on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
         </div>
