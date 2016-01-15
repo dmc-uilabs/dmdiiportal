@@ -1,5 +1,5 @@
 'use strict';
-var modalWindowFromLink = null;
+//var modalWindowFromLink = null;
 angular.module('dmc.compare',[
         'dmc.ajax',
         'dmc.data',
@@ -242,39 +242,39 @@ angular.module('dmc.compare',[
             restrict: 'A',
             controller: function($element,$scope,$mdDialog,$location,$stateParams){
 
-                var path = $location.$$path;
-                var url = ($location.$$absUrl.indexOf('?') == -1 ? $location.$$absUrl : $location.$$absUrl.split('?')[0]);
-                //get params for link
-                var params = $.map($stateParams,function(item,key){
-                    if($.type(item) == "array"){
-                        return $.map(item,function(value){
-                           return key+'='+value;
-                        }).join("&");
-                    }else {
-                        if (key == "mw") item = 'compare';
-                        return (item ? key + '=' + item : null);
-                    }
-                });
-                params = params.join('&');
-                var href = (params.length > 0 ? url+"?"+params : url);
-                $element.attr("href",href);
-
-                var searchObject = $.extend(true,{},$location.search());
-
-                var removeModalWindowAttr = function(){
-                    searchObject.mw = null;
-                    $location.path(path,true).search(searchObject);
-                };
-
-                var addModalWindowAttr = function(){
-                    searchObject.mw = 'compare';
-                    $location.path(path,true).search(searchObject);
-                };
+                //var path = $location.$$path;
+                //var url = ($location.$$absUrl.indexOf('?') == -1 ? $location.$$absUrl : $location.$$absUrl.split('?')[0]);
+                ////get params for link
+                //var params = $.map($stateParams,function(item,key){
+                //    if($.type(item) == "array"){
+                //        return $.map(item,function(value){
+                //           return key+'='+value;
+                //        }).join("&");
+                //    }else {
+                //        if (key == "mw") item = 'compare';
+                //        return (item ? key + '=' + item : null);
+                //    }
+                //});
+                //params = params.join('&');
+                //var href = (params.length > 0 ? url+"?"+params : url);
+                //$element.attr("href",href);
+                //
+                //var searchObject = $.extend(true,{},$location.search());
+                //
+                //var removeModalWindowAttr = function(){
+                //    searchObject.mw = null;
+                //    $location.path(path,true).search(searchObject);
+                //};
+                //
+                //var addModalWindowAttr = function(){
+                //    searchObject.mw = 'compare';
+                //    $location.path(path,true).search(searchObject);
+                //};
 
                 $element.on("click",function(ev){
-                    addModalWindowAttr();
-                    modalWindowFromLink = href;
-                    ev.preventDefault();
+                    //addModalWindowAttr();
+                    //modalWindowFromLink = href;
+                    //ev.preventDefault();
                     if($(this).attr("disabled") == null) {
                         $(window).scrollTop(0);
                         $('html').addClass('hide-scroll');
@@ -294,9 +294,9 @@ angular.module('dmc.compare',[
                     }
                 });
 
-                if(modalWindowFromLink == null && searchObject.mw == "compare"){
-                    $element.click();
-                }
+                //if(modalWindowFromLink == null && searchObject.mw == "compare"){
+                //    $element.click();
+                //}
             }
         };
     }]).run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {

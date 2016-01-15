@@ -10,8 +10,8 @@
                         <div layout="column">
                             <h2 class="md-title">{{title}}</h2>
                         </div>
+                        <md-button class="md-raised deactivate-button" ng-click="deactivateAccount()">{{activatedText}}</md-button>
                         <span layout="column" flex></span>
-                        <md-button ng-href="/">Deactivate My Account</md-button>
                         <md-button class="md-raised cancel-button" ng-click="cancelChanges()" ng-disabled="!changedValues">Cancel</md-button>
                         <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!changedValues">Save</md-button>
                     </div>
@@ -20,59 +20,75 @@
                             <label>First name</label>
                             <input ng-model="user.firstName"
                                    id="editFirstName"
+                                   ng-blur="blurInput()"
                                    ng-change="changedValue('firstName',user.firstName)">
                         </md-input-container>
                         <md-input-container flex="30">
                             <label>Last Name</label>
-                            <input ng-model="user.lastName" ng-change="changedValue('lastName',user.lastName)">
+                            <input ng-model="user.lastName"
+                                   ng-blur="blurInput()"
+                                   ng-change="changedValue('lastName',user.lastName)">
                         </md-input-container>
                         <md-input-container flex="40">
                             <label>Email Address</label>
-                            <input ng-model="user.email" type="email" ng-change="changedValue('email',user.email)">
+                            <input ng-model="user.email"
+                                   ng-blur="blurInput()"
+                                   type="email"
+                                   ng-change="changedValue('email',user.email)">
                         </md-input-container>
                     </div>
                     <div class="inputs-container" layout="row" layout-align="end end" >
-                        <md-input-container flex="15">
-                            <label>Title</label>
-                            <md-select ng-model="user.salutation" ng-change="changedValue('salutation',user.salutation)">
-                                <md-option ng-repeat="item in salutations" value="{{item.id}}">{{item.title}}</md-option>
-                            </md-select>
+                        <!--<md-input-container flex="15">-->
+                            <!--<label>Title</label>-->
+                            <!--<md-select ng-model="user.salutation" ng-change="changedValue('salutation',user.salutation)">-->
+                                <!--<md-option ng-repeat="item in salutations" value="{{item.id}}">{{item.title}}</md-option>-->
+                            <!--</md-select>-->
+                        <!--</md-input-container>-->
+                        <!--<md-input-container flex="15">-->
+                            <!--<label>Suffix</label>-->
+                            <!--<md-select ng-model="user.suffix" ng-change="changedValue('suffix',user.suffix)">-->
+                                <!--<md-option ng-repeat="item in suffixes" value="{{item.id}}">{{item.title}}</md-option>-->
+                            <!--</md-select>-->
+                        <!--</md-input-container>-->
+                        <md-input-container flex="30">
+                            <label>Display Name</label>
+                            <input ng-blur="blurInput()"
+                                   autofocus
+                                   ng-model="user.displayName"
+                                   ng-change="changedValue('displayName',user.displayName)">
                         </md-input-container>
-                        <md-input-container flex="15">
-                            <label>Suffix</label>
-                            <md-select ng-model="user.suffix" ng-change="changedValue('suffix',user.suffix)">
-                                <md-option ng-repeat="item in suffixes" value="{{item.id}}">{{item.title}}</md-option>
-                            </md-select>
-                        </md-input-container>
-
                         <div flex="30">
                         <md-input-container class="md-icon-float title-input-left">
                             <label>Location</label>
                             <md-icon class="location-gps" ng-click="getLocation()">
                                 <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
                             </md-icon>
-                            <input ng-model="user.location" type="text" ng-change="changedValue('location',user.location)">
+                            <input ng-model="user.location"
+                                   type="text"
+                                   ng-blur="blurInput()"
+                                   ng-change="changedValue('location',user.location)">
                         </md-input-container>
                         </div>
                         <div flex="40" layout="column" class="autocomplete-block">
-                        <md-autocomplete
-                                ng-disabled="ctrl.isDisabled"
-                                md-no-cache="ctrl.noCache"
-                                md-selected-item="ctrl.selectedItem"
-                                md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-                                md-search-text="ctrl.searchText"
-                                md-selected-item-change="ctrl.selectedItemChange(item)"
-                                md-items="item in ctrl.querySearch(ctrl.searchText)"
-                                md-item-text="item.display"
-                                md-min-length="0"
-                                placeholder="What is your time zone?">
-                            <md-item-template>
-                                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
-                            </md-item-template>
-                            <md-not-found>
-                                No matches found for "{{ctrl.searchText}}".
-                            </md-not-found>
-                        </md-autocomplete>
+                                <md-autocomplete md-floating-label="Time Zone"
+                                                 ng-disabled="ctrl.isDisabled"
+                                                 md-no-cache="ctrl.noCache"
+                                                 md-selected-item="ctrl.selectedItem"
+                                                 md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                                                 md-search-text="ctrl.searchText"
+                                                 md-selected-item-change="ctrl.selectedItemChange(item)"
+                                                 md-items="item in ctrl.querySearch(ctrl.searchText)"
+                                                 md-item-text="item.display"
+                                                 md-min-length="0"
+                                                 ng-blur="blurInput()"
+                                                 placeholder="What is your time zone?">
+                                    <md-item-template>
+                                        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        No matches found for "{{ctrl.searchText}}".
+                                    </md-not-found>
+                                </md-autocomplete>
                         </div>
                     </div>
                 </md-content>

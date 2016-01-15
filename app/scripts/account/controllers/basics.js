@@ -1,11 +1,12 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('BasicsAccountCtr', [ '$stateParams', '$state', "$scope","$timeout", "$q", "ajax", "location","accountData","accountUpdate", function ($stateParams, $state, $scope,$timeout,$q, ajax, location,accountData,accountUpdate) {
+    .controller('BasicsAccountCtr', [ '$stateParams', '$state', "$scope","$timeout", "$q", "ajax", "location","accountData","accountUpdate",'questionToastModel','$document','toastModel', function ($stateParams, $state, $scope,$timeout,$q, ajax, location,accountData,accountUpdate,questionToastModel,$document,toastModel) {
         $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
         $scope.title = pageTitles[$scope.page];
-
+        $scope.activatedText = "Deactivate My Account";
+        $scope.activated = true;
         $scope.user = $.extend(true,{},accountData);
         var callback = function(success,data){
             if(success) {
@@ -26,6 +27,14 @@ angular.module('dmc.account')
         $timeout(function() {
             $("#editFirstName").focus();
         });
+
+        $scope.blurInput = function(){
+            if($scope.user.displayName == null || $scope.user.displayName.trim().length == 0){
+                $scope.user.displayName = $scope.user.displayName = $scope.user.firstName + ' ' + $scope.user.lastName;
+            }
+            $scope.saveChanges();
+        };
+
 
         $scope.zones = [];
         $scope.ctrl = {};
@@ -113,6 +122,9 @@ angular.module('dmc.account')
         $scope.changedValue = function(name,value){
             if(!$scope.changedValues) $scope.changedValues = {};
             $scope.changedValues[name] = value;
+            if(name == "firstName" || name == "lastName") {
+                $scope.user.displayName = $scope.user.displayName = $scope.user.firstName + ' ' + $scope.user.lastName;
+            }
         };
 
         $scope.cancelChanges = function(){
@@ -126,11 +138,13 @@ angular.module('dmc.account')
         };
 
         $scope.saveChanges = function(){
-            if(!validateEmail($scope.user.email)) {
-                $scope.user.email = $scope.accountData.email;
+            if($scope.changedValues) {
+                if (!validateEmail($scope.user.email)) {
+                    $scope.user.email = $scope.accountData.email;
+                }
+                accountUpdate.update($scope.user);
+                $scope.changedValues = null;
             }
-            accountUpdate.update($scope.user);
-            $scope.changedValues = null;
         };
 
         $scope.suffixes = [
@@ -158,7 +172,37 @@ angular.module('dmc.account')
                 title : "T3"
             }
         ];
-        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
-            $scope.$apply();
-        }
+
+        $scope.actionYes = function(){
+            if($scope.activated) {
+                toastModel.showToast('success', "Account successfully deactivated");
+                $scope.activatedText = "Activate My Account";
+                $scope.activated = false;
+            }else{
+                toastModel.showToast('success', "Account successfully activated");
+                $scope.activatedText = "Deactivate My Account";
+                $scope.activated = true;
+            }
+        };
+
+        $scope.actionNo = function(){
+            console.log("No");
+        };
+
+        $scope.deactivateAccount = function(){
+            questionToastModel.show({
+                question : ($scope.activated ? "Deactivate Account?" : "Activate Account?"),
+                buttons: {
+                    yes: {
+                        title: "Yes",
+                        action: $scope.actionYes
+                    },
+                    no: {
+                        title: "No",
+                        action: $scope.actionNo
+                    }
+                }
+            },$document[0].querySelector('.container-account'),999999);
+        };
+
 }]);
