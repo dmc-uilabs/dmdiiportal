@@ -238,4 +238,9 @@ angular.module('dmc.project')
 		$scope.followFlag = !$scope.followFlag;
 	}
 
+	//Search products
+	$scope.search = function(text){
+		window.location.href = '/marketplace.php#/search/services?text=' + text;
+	}
+
 }])

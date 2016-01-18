@@ -91,40 +91,33 @@
 	<md-content>
 		<md-list>
 			<div layout="row" class="listHeader">
-				<md-button flex="20" ng-click="sorting('runDate')">
+				<md-button flex="25" ng-click="sorting('runDate')">
 					Run Date 
 					<ng-md-icon ng-if="(sort == 'runDate' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
 					<ng-md-icon ng-if="(sort == 'runDate' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
 				</md-button>
-				<md-button flex="20" ng-click="sorting('runTimeService')">
-					Time Service
-					<ng-md-icon ng-if="(sort == 'runTimeService' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
-					<ng-md-icon ng-if="(sort == 'runTimeService' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
-				</md-button>
-				<md-button flex="20" ng-click="sorting('runBy')">
+				<md-button flex="25" ng-click="sorting('runBy')">
 					Run By 
 					<ng-md-icon ng-if="(sort == 'runBy' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
 					<ng-md-icon ng-if="(sort == 'runBy' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
 				</md-button>
-				<md-button flex="20" ng-click="sorting('runTime')">
+				<md-button flex="25" ng-click="sorting('runTime')">
 					Run Time 
 					<ng-md-icon ng-if="(sort == 'runTime' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
 					<ng-md-icon ng-if="(sort == 'runTime' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
 				</md-button>
-				<md-button flex="20" ng-click="sorting('results')">
+				<md-button flex="25" ng-click="sorting('results')">
 					Results 
 					<ng-md-icon ng-if="(sort == 'results' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
 					<ng-md-icon ng-if="(sort == 'results' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
 				</md-button>
 			</div>
 			<md-list-item ng-repeat="item in history | orderBy:sort:order" layout="row">
-				<div flex="20">{{item.runDate}}</div>
-				<div flex="20">{{item.runTimeService}}</div>
-				<div flex="20"><a href="">{{item.runBy}}</a></div>
-				<div flex="20">{{item.runTime}}s</div>
-				<div flex="20" layout="row" layout-align="start center">
-					<ng-md-icon icon="info" size="16" style="fill: #000"></ng-md-icon>
-					{{item.results}}
+				<div flex="25">{{item.runDate}} {{item.runTimeService}}</div>
+				<div flex="25"><a href="">{{item.runBy}}</a></div>
+				<div flex="25">{{item.runTime}}s</div>
+				<div flex="25" style="color:{{(item.results == 'Success') ? '#65AF3F': 'red'}}">
+					<a href="" ng-click="openResults(item)" class="href-result">{{item.results}}</a>
 				</div>
 			</md-list-item>
 		</md-list>

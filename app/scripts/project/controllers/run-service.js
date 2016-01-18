@@ -1,5 +1,5 @@
 angular.module('dmc.project')
-.controller('projectRunServicesCtrl', ['$scope', '$stateParams', 'projectData', 'ajax', 'dataFactory', '$mdToast', 'toastModel', function ($scope, $stateParams, projectData, ajax, dataFactory, $mdToast, toastModel) {
+.controller('projectRunServicesCtrl', ['$scope', '$stateParams', 'projectData', 'ajax', 'dataFactory', '$mdToast', 'toastModel', '$mdDialog', function ($scope, $stateParams, projectData, ajax, dataFactory, $mdToast, toastModel, $mdDialog) {
 	
 	$scope.projectData = projectData;
 	$scope.service = null;
@@ -169,252 +169,252 @@ angular.module('dmc.project')
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "10/19/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/10/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/11/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/11/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/15/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "10/19/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/10/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/11/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "10/19/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/10/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/11/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "10/19/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/10/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/11/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "10/19/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/10/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/11/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "10/19/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/10/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/11/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "10/19/2015",
 			runTimeService: "12:22",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/10/2015",
 			runTimeService: "12:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/11/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "10/19/2015",
 			runTimeService: "09:22",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/10/2015",
 			runTimeService: "09:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/09/2015",
 			runTimeService: "09:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "10/19/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/10/2015",
 			runTimeService: "11:22",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/11/2015",
 			runTimeService: "11:35",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "10/19/2015",
 			runTimeService: "11:35",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/10/2015",
 			runTimeService: "11:35",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/11/2015",
 			runTimeService: "11:35",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "10/19/2015",
 			runTimeService: "11:35",
 			runBy: "Forge Admin",
 			runTime: 3.0,
-			results: "Failed",
+			results: "Fail",
 		},
 		{
 			runDate: "12/10/2015",
 			runTimeService: "11:35",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Succesful",
+			results: "Success",
 		},
 		{
 			runDate: "12/11/2015",
 			runTimeService: "11:35",
 			runBy: "Forge Admin",
 			runTime: 2.9,
-			results: "Failed",
+			results: "Fail",
 		},
 	]
 
@@ -480,4 +480,88 @@ angular.module('dmc.project')
 			toastModel.showToast("error", "Save Failed. Please check your inputs and try again");
 		}
 	}
+
+	$scope.openResults = function(history, ev){
+		$(window).scrollTop(0);
+		$mdDialog.show({
+			controller: "ModalResultsController",
+			templateUrl: "templates/project/pages/modal-results.html",
+			parent: angular.element(document.body),
+			targetEvent: ev,
+			locals: {
+				history: history
+			},
+			clickOutsideToClose:true
+		})
+		.then(function() {
+			$scope.runTime = 3;
+			toastModel.showToast("success", "Run Completed Succesfully");
+		}, function() {
+		});
+	}
 }])
+.controller("ModalResultsController", ['$scope', '$mdDialog', 'history', function ($scope, $mdDialog, history) {
+	$scope.history = history;
+
+	$scope.inputs = [
+		"Height: 20ft",
+		"Length: 20ft",
+		"Height: 20ft",
+		"Length: 20ft",
+		"Height: 20ft",
+		"Length: 20ft",
+		"Height: 20ft",
+		"Length: 20ft",
+		"Height: 20ft",
+		"Length: 20ft",
+		"Height: 20ft",
+		"Length: 20ft",
+		"Height: 20ft",
+		"Length: 20ft",
+		"Height: 20ft",
+		"Length: 20ft",
+		"Height: 20ft",
+		"Length: 20ft",
+		"Height: 20ft",
+		"Length: 20ft",
+		"Height: 20ft",
+		"Length: 20ft",
+		"Height: 20ft",
+		"Length: 20ft",
+	];
+	$scope.outputs = [
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+		"Area: 400 square ft",
+	];
+
+	$scope.cancel = function(){
+		$mdDialog.cancel();
+	}
+	$scope.rerun = function(){
+		$mdDialog.hide();
+	}
+}]);

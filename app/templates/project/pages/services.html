@@ -38,8 +38,8 @@
 					</div>
 					<a ng-href="{{'project.php#/' + projectData.id + '/services/' + item.id + '/detail'}}" class="row-long"><h2>{{item.title}}</h2></a>
 					<a ng-href="/" class="row-long"><h2>Component Example</h2></a>
-					<div class="row" layout="column">
-						<md-progress-linear md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
+					<div class="row status" layout="column">
+						<md-progress-linear class="" md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
 						<span class="service-progress-info">1:30 of 2:00</span>
 					</div>
 					<h2 class="row">{{item.releaseDate}}</h2>

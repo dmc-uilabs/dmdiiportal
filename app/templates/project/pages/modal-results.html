@@ -1,0 +1,40 @@
+<md-dialog class="modal-result" flex="70">
+	<div layout="column">
+		<div layout="row" layout-align="space-between center">
+			<h3>Run Date: {{history.runDate}} {{history.runTimeService}}</h3>
+			<md-button class="md-icon-button" ng-click="cancel()">
+				<ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
+			</md-button>
+		</div>
+		<h3>Results: {{history.results}}</h3>
+		<div>
+			<md-button class="md-primary md-raised" ng-click="rerun()">
+				Rerun
+			</md-button>
+		</div>
+		<div layout="row" class="preview" layout-align="space-between center">
+			<div flex="45">
+				<h2>Inputs</h2>
+				<md-divider></md-divider>
+				<md-content>
+					<md-list>
+						<md-list-item ng-repeat="item in inputs track by $index">
+							{{item}}
+						</md-list-item>
+					</md-list>
+				</md-content>
+			</div>
+			<div flex="45" style="margin-left: -1px">
+				<h2>Outputs</h2>
+				<md-divider></md-divider>
+				<md-content>
+					<md-list>
+						<md-list-item ng-repeat="item in outputs track by $index">
+							{{item}}
+						</md-list-item>
+					</md-list>
+				</md-content>
+			</div>
+		</div>
+	</div>
+</md-dialog>

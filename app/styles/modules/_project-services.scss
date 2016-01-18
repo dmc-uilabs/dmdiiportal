@@ -49,6 +49,9 @@
 		.row{
 			width: 10%;
 			margin-right: 16px; 
+			&.status{
+				padding-right: 16px;
+			}
 		}
 		.row-button{
 			width: 8%;
@@ -81,27 +84,39 @@
 				md-content{
 					height: 350px;
 				}
+				md-list-item{
+						height: 36px;
+						min-height: 36px;
+						&.selected{
+							background-color: #65AF3F;
+						}
+						.md-list-item-inner{
+							min-height: 36px;
+						}
+					}
 			}
 			md-content{
 				margin-bottom: 0px;
 				padding: 0px;
 				border: 1px solid #b6b6b6;
 			}
-			md-list{
-				padding: 0;
-				md-list-item{
-					height: 36px;
-					min-height: 36px;
-					&.selected{
-						background-color: #65AF3F;
-					}
-					.md-list-item-inner{
+			.interface{
+				md-list{
+					padding: 0;
+					md-list-item{
+						height: 36px;
 						min-height: 36px;
-					}
-					&:hover{
-						background-color: #eee;
-						button{
-							background-color: transparent;
+						&.selected{
+							background-color: #65AF3F;
+						}
+						.md-list-item-inner{
+							min-height: 36px;
+						}
+						&:hover{
+							background-color: #eee;
+							button{
+								background-color: transparent;
+							}
 						}
 					}
 				}
@@ -144,6 +159,7 @@
 			box-shadow: none;
 			.tags-chip{
 				padding-right: 32px;
+				border-radius: 0;
 				.md-icon-button{
 					position: absolute;
 					right: 0;
@@ -262,6 +278,9 @@
 					font-weight: bold;
 					text-align: left;
 				}
+				a.href-result:hover{
+					text-decoration: underline;
+				}
 			}
 			md-list-item{
 				height: 36px;
@@ -272,6 +291,9 @@
 				a{
 					text-decoration: none;
 					color: inherit;
+				}
+				a.href-result:hover{
+					text-decoration: underline;
 				}
 				ng-md-icon{
 					margin-right: 4px;
@@ -315,6 +337,10 @@
     box-shadow: none;
     .md-chip{
       border-radius: 0px;
+      a{
+      	text-decoration: none;
+      	color: inherit;
+      }
     }
   }
 	.return{
@@ -324,12 +350,21 @@
 	.buttons{
 		.md-icon-button{
 			margin: 0;
+	    min-width: 0;
+	    width: 32px;
+	    min-height: 36px;
+	    line-height: 36px;
+	    height: 36px;
 		}
 	  .reply{
 	    -moz-transform: scaleX(-1);
 	    -o-transform: scaleX(-1);
 	    -webkit-transform: scaleX(-1);
 	    transform: scaleX(-1);
+	  }
+	  .md-button{
+	  	margin-top: 0;
+	  	margin-bottom: 0;
 	  }
 	}
 	.md-button.viewAll{
@@ -340,5 +375,36 @@
 	}
 	.description{
 		padding: 16px 0 36px;
+	}
+}
+
+.modal-result{
+	padding: 16px;
+
+    overflow: hidden;
+    h3{
+    	margin: 0;
+    }
+    .md-button.md-raised{
+    	margin: 24px 0;
+    }
+	.preview{
+		height: 100%;
+		h2 {
+			margin: 8px;
+		}
+		md-content{
+			height: 350px;
+		}
+		md-list-item{
+			height: 36px;
+			min-height: 36px;
+			&.selected{
+				background-color: #65AF3F;
+			}
+			.md-list-item-inner{
+				min-height: 36px;
+			}
+		}
 	}
 }
