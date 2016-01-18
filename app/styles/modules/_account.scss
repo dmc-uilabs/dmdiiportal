@@ -140,17 +140,9 @@
           }
           .disable-enable-button{
             font-size: 16px;
-            text-decoration: underline;
-            padding: 0;
+            text-transform: none;
             cursor: pointer;
-            &:hover{
-              text-decoration: none;
-            }
-          }
-          .disable-enable-button:nth-child(1){
-            border-right: 1px solid #aaa;
-            padding-right: 8px;
-            margin-right: 8px;
+            margin-left: 0;
           }
         }
       }

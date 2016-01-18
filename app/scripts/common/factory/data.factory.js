@@ -179,9 +179,6 @@ angular.module('dmc.data',[])
             addNewServer: function(){
                 return baseServer+'/add_new_server';
             },
-            getServers: function(){
-                return baseServer+'/get_servers';
-            },
             saveChangeServer: function(){
                 return baseServer+'/save_change_server';
             },
@@ -221,6 +218,12 @@ angular.module('dmc.data',[])
             // direct requests
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
+            },
+            getServers: function(){
+                return localhost+'account_servers';
+            },
+            deactivateAccount : function(id){
+                return localhost+'accounts'+(id ? '/'+id : '');
             }
         };
     }

@@ -173,6 +173,7 @@
       "email": "denis.sobko@gmail.com",
       "salutation": 3,
       "suffix": 1,
+      "deactivated": false,
       "location": "",
       "timezone": "",
       "featureImage": {
@@ -210,7 +211,21 @@
             "value": ""
           }
         }
-      }
+      },
+      "featureImage[thumbnail]": "/uploads/account-profile/1/20151224072737000000.jpg",
+      "featureImage[large]": "/uploads/account-profile/1/20151224072737000000.jpg",
+      "privacy[public][email][enable]": true,
+      "privacy[public][email][value]": "email@gmail.com",
+      "privacy[public][phone][enable]": true,
+      "privacy[public][phone][value]": 1234567895,
+      "privacy[public][location][enable]": false,
+      "privacy[public][location][value]": "USA",
+      "privacy[private][email][enable]": true,
+      "privacy[private][email][value]": "denis.sobko@gmail.com",
+      "privacy[private][phone][enable]": false,
+      "privacy[private][phone][value]": 7896655664,
+      "privacy[private][location][enable]": true,
+      "privacy[private][location][value]": ""
     },
     {
       "id": 2,
@@ -220,6 +235,7 @@
       "email": "email2@gmail.com",
       "salutation": null,
       "suffix": null,
+      "deactivated": false,
       "location": null,
       "timezone": null,
       "featureImage": {

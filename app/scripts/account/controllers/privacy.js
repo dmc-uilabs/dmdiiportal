@@ -85,10 +85,16 @@ angular.module('dmc.account')
 
         $scope.$on('$locationChangeStart', function (event, next, current) {
             if ($scope.changedValues && current.match("\/privacy")) {
-                var answer = confirm("You have not saved changes! Are you sure you want to leave this page?");
-                if (!answer) {
+                var answer = confirm("Are you sure you want to leave this page without saving?");
+                if (!answer){
                     event.preventDefault();
                 }
+            }
+        });
+
+        $(window).bind('beforeunload', function(){
+            if($scope.changedValues) {
+                return "Are you sure you want to leave this page without saving?";
             }
         });
 

@@ -1,11 +1,6 @@
 'use strict';
-
-var userData = {
-    buttons : [],
-    question : null
-};
 angular.module('dmc.model.question-toast-model', [])
-    .service('questionToastModel', ['$mdToast', function ($mdToast) {
+    .service('questionToastModel', ['$mdDialog', function ($mdDialog) {
 
         var last = {
             bottom: false,
@@ -32,27 +27,19 @@ angular.module('dmc.model.question-toast-model', [])
             last = angular.extend({},current);
         }
 
-        this.show = function(data,doc,delay){
-            userData = data;
-            $mdToast.show({
-                controller: 'QuestionToastCtrl',
-                templateUrl: 'templates/common/models/question-toast-template.html',
-                hideDelay: (delay ? delay : 6000),
-                parent : doc,
-                position: getToastPosition()
-            }).then(function(response) {
-                for(var button in data.buttons){
-                    if(response == button){
-                        data.buttons[button].action();
-                    }
-                }
+        this.show = function(data,ev){
+
+            var confirm = $mdDialog.confirm()
+                .title(data.question)
+                .ariaLabel('Lucky day')
+                .targetEvent(ev)
+                .cancel('No')
+                .ok('Yes');
+            $mdDialog.show(confirm).then(function() {
+                data.buttons.ok();
+            }, function() {
+                data.buttons.cancel();
             });
         };
 
-    }]).controller('QuestionToastCtrl', ['$scope','$mdToast',function($scope, $mdToast) {
-        $scope.buttons = userData.buttons;
-        $scope.question = userData.question;
-        $scope.action = function(key) {
-            $mdToast.hide(key);
-        };
-    }]);
+    }])

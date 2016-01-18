@@ -15,6 +15,9 @@ angular.module('dmc.account')
         $scope.editingServer = { name : null, ip : null };
 
         $scope.servers = [];
+        $scope.sort = 'name';
+        $scope.order = 'ASC';
+        $scope.changedValues = false;
 
         $scope.addServer = function(){
             if($scope.isEditingServer == false) {
@@ -33,6 +36,7 @@ angular.module('dmc.account')
             $scope.editingServer = { name : null, ip : null };
             $scope.isAddingServer = false;
             $scope.isEditingServer = false;
+            $scope.changedValues = false;
         };
 
         var ipIsValid = function(ip){
@@ -44,19 +48,28 @@ angular.module('dmc.account')
             }
         };
 
+
         $scope.changeIP = function(type){
             if(type == 'new'){
                 $scope.isCorrectNewIP = ipIsValid($scope.newServer.ip);
             }else{
                 $scope.isCorrectChangedIP = ipIsValid($scope.editingServer.ip);
+                $scope.changedValues = true;
             }
         };
 
+        $scope.changeName = function(){
+            $scope.changedValues = true;
+        };
+
         $scope.getServers = function(){
-            ajax.on(dataFactory.getServers(), {id : 1},
-                function (data) {
+            ajax.on(dataFactory.getServers(), {
+                    accountId : 1,
+                    _sort : $scope.sort,
+                    _order : $scope.order
+                }, function (data) {
                     if (!data.error) {
-                        $scope.servers = data.result;
+                        $scope.servers = data;
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     } else {
                         toastModel.showToast("error", data.error);
@@ -128,16 +141,26 @@ angular.module('dmc.account')
 
         $scope.editServer = function(item){
             if($scope.isAddingServer == false) {
-                $scope.editingServer = $.extend(true, {}, item);
-                $scope.isCorrectChangedIP = ipIsValid($scope.editingServer.ip);
-                $scope.isEditingServer = true;
-                // auto focus for edit Server Alias input
-                $timeout(function() {
-                    $("#editServerAlias").focus();
-                });
+                if($scope.changedValues == false) {
+                    $scope.editingServer = $.extend(true, {}, item);
+                    $scope.isCorrectChangedIP = ipIsValid($scope.editingServer.ip);
+                    $scope.isEditingServer = true;
+                    // auto focus for edit Server Alias input
+                    $timeout(function () {
+                        $("#editServerAlias").focus();
+                    });
+                }else{
+                    toastModel.showToast("error", "At the present time you are changing a server.");
+                }
             }else{
-                toastModel.showToast("error", "At the present time you are adding server.");
+                toastModel.showToast("error", "At the present time you are adding a server.");
             }
+        };
+
+        $scope.onOrderChange = function(order){
+            $scope.sort = (order[0] == '-' ? order.substring(1,order.length) : order);
+            $scope.order = (order[0] == '-' ? 'ASC' : 'DESC');
+            $scope.getServers();
         };
 
         $scope.deleteServer = function(item){

@@ -11,53 +11,53 @@
                             <h2 class="md-title">{{title}}</h2>
                         </div>
                         <span layout="column" flex></span>
+                        <div class="header-right-content servers" layout="row" layout-align="start center" ng-show="isAddingServer">
+                            <md-input-container>
+                                <label>Server Alias</label>
+                                <input id="createServerAlias" ng-model="newServer.name">
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Server Host/IP</label>
+                                <input ng-model="newServer.ip" ng-change="changeIP('new')">
+                            </md-input-container>
+                            <ng-md-icon ng-show="isCorrectNewIP" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
+                            <md-button class="md-raised md-primary save-server" ng-click="saveNewServer()">Save</md-button>
+                        </div>
+                        <div class="header-right-content servers" layout="row" layout-align="start center" ng-show="isEditingServer">
+                            <md-input-container>
+                                <label>Server Alias</label>
+                                <input id="editServerAlias" ng-model="editingServer.name" ng-change="changeName()">
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Server Host/IP</label>
+                                <input ng-model="editingServer.ip" ng-change="changeIP('changed')">
+                            </md-input-container>
+                            <ng-md-icon ng-show="isCorrectChangedIP" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
+                            <md-button class="md-raised md-primary save-server" ng-disabled="!changedValues" ng-click="saveChanges()">
+                                Save
+                            </md-button>
+                        </div>
+
                         <md-button class="md-raised add-server" ng-click="addServer()" ng-show="!isAddingServer && !isEditingServer">
                             <ng-md-icon icon="add_circle_outline" fill="#333" size="21" aria-label="Add Server"></ng-md-icon>
                             Add Server
                         </md-button>
                         <md-button class="md-raised close-add-server" ng-click="cancelAdding()" ng-show="isAddingServer || isEditingServer">
                             <ng-md-icon icon="cancel" fill="#333" size="21" aria-label="Close Adding"></ng-md-icon>
-                            Close
-                        </md-button>
-                    </div>
-                    <div class="header-right-content servers" layout="row" layout-align="start end" ng-show="isAddingServer">
-                        <md-input-container>
-                            <label>Server Alias</label>
-                            <input id="createServerAlias" ng-model="newServer.name">
-                        </md-input-container>
-                        <md-input-container>
-                            <label>Server Host/IP</label>
-                            <input ng-model="newServer.ip" ng-change="changeIP('new')">
-                        </md-input-container>
-                        <ng-md-icon ng-show="isCorrectNewIP" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
-                        <md-button class="md-raised md-primary save-server" ng-click="saveNewServer()">Save</md-button>
-                    </div>
-                    <div class="header-right-content servers" layout="row" layout-align="start end" ng-show="isEditingServer">
-                        <md-input-container>
-                            <label>Server Alias</label>
-                            <input id="editServerAlias" ng-model="editingServer.name">
-                        </md-input-container>
-                        <md-input-container>
-                            <label>Server Host/IP</label>
-                            <input ng-model="editingServer.ip" ng-change="changeIP('changed')">
-                        </md-input-container>
-                        <ng-md-icon ng-show="isCorrectChangedIP" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
-                        <md-button class="md-raised md-primary save-server" ng-click="saveChanges()">
-                            <ng-md-icon icon="inbox" fill="#333" size="21" aria-label="Save changes"></ng-md-icon>
-                            Save changes
+                            Cancel
                         </md-button>
                     </div>
                     <div class="inputs-container servers-container" layout="row">
                         <md-content class="md-padding" flex>
                         <md-data-table-container>
                             <table md-data-table class="servers-table">
-                                <thead md-order="priority">
+                                <thead md-order="alias" md-trigger="onOrderChange">
                                 <tr>
                                     <th class="edit-column" name="Edit"></th>
-                                    <th name="Server Alias"></th>
-                                    <th name="Server URL"></th>
-                                    <th name="Status"></th>
-                                    <th class="delete-column" name="Delete"></th>
+                                    <th name="Server Alias" order-by="name"></th>
+                                    <th name="Server URL" order-by="ip"></th>
+                                    <th name="Status" order-by="status"></th>
+                                    <th class="delete-column" name="Remove"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
