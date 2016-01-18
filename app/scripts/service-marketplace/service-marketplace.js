@@ -155,6 +155,61 @@ angular.module('dmc.service-marketplace', [
 		}
 	}
 
+
+	$scope.inputs = [
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+	];
+	$scope.outputs = [
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+		"Height",
+		"Length",
+	];
+
+
 	$scope.sortList = [
 		{
 		id: 0,

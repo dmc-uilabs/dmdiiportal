@@ -56,3 +56,43 @@
     }
   }
 }
+
+.documents-folder{
+  h2{
+    font-weight: normal;
+    cursor: pointer;
+    &.folder-title{
+      font-weight: bold;
+      margin-left: 6px;
+    }
+    &:focus{
+      outline: none;
+    }
+  }
+
+  .folderButton{
+    margin: 0;
+    height: 56px;
+    min-height: 56px;
+    text-align: left;
+    width: 100%;
+    padding: 0;
+    text-transform: none;
+  }
+  md-list{
+    padding: 0;
+    md-list-item{
+      padding: 0;
+      height: 56px;
+      min-height: 56px;
+      md-divider{
+        bottom: auto;
+      }
+      h3{
+        margin: 0;
+        font-size: 14px;
+        font-weight: normal;
+      }
+    }
+  }
+}

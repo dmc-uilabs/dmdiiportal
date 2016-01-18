@@ -233,7 +233,6 @@ angular.module('dmc.widgets.documents',[
 				$scope.folderName = '';
 
 				// function for get all requirement documents
-				$scope.getDocuments = function(){
 					ajax.on(dataFactory.getUrlAllDocuments($scope.projectId),{
 						projectId : 5,
 						sort : $scope.sort,
@@ -245,6 +244,9 @@ angular.module('dmc.widgets.documents',[
 						$scope.documents.push({
 							file: false,
 							title: "Example Folder",
+				      owner: "Bob Smith",
+				      size: "100MB",
+				      modifed: "11/11/2015 12:00",
 							content: [
 								data.result[0], 
 								data.result[0], 
@@ -252,6 +254,9 @@ angular.module('dmc.widgets.documents',[
 								{
 									file: false,
 									title: "Example Folder",
+						      owner: "Bob Smith",
+						      size: "100MB",
+						      modifed: "11/11/2015 12:00",
 									content: [
 										data.result[0], 
 										data.result[0], 
@@ -265,10 +270,16 @@ angular.module('dmc.widgets.documents',[
 								{
 									file: false,
 									title: "Example Folder2",
+						      owner: "Bob Smith",
+						      size: "100MB",
+						      modifed: "11/11/2015 12:00",
 									content: [
 										{
 											file: false,
 											title: "Example Folder3",
+								      owner: "Bob Smith",
+								      size: "100MB",
+								      modifed: "11/11/2015 12:00",
 											content: [
 												data.result[0], 
 												data.result[0], 
@@ -301,27 +312,25 @@ angular.module('dmc.widgets.documents',[
 					},function(){
 						alert("Ajax faild: getDocuments");
 					});
-				};
 
 				$scope.openFolder = function(item, index){
-					$scope.folderName = item.title;
 					$scope.folder = item.content;
-					$scope.total = item.content.length;
-					$scope.indexfolder.push(index);
+					$scope.indexfolder.push({index: index, title: item.title});
 				}
 
-				$scope.exitFolder = function(){
-					$scope.indexfolder.pop();
+				$scope.exitFolder = function(index){
+						console.info("index",index);
+					$scope.indexfolder = $scope.indexfolder.slice(0, index+1);
+						console.info("indexfolder",$scope.indexfolder);
 					$scope.folder = $scope.documents;
 					for(var i in $scope.indexfolder){
-						$scope.folderName = $scope.folder[$scope.indexfolder[i]].title;
-						$scope.folder = $scope.folder[$scope.indexfolder[i]].content;
+						//console.info("i",i);
+
+						//console.info('folder',$scope.folder[$scope.indexfolder[i].index]);
+						$scope.folder = $scope.folder[$scope.indexfolder[i].index].content;
 					}
-					$scope.total = $scope.folder.length;
 				}
 
-				// get all requirement documents (first request)
-				$scope.getDocuments();
 			}
 		};
 	}]);

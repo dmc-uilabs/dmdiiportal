@@ -16,7 +16,7 @@
 		<a class="return" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
 			Return to Services
 		</a>
-	<div layout="row" layout-align="space-between center">
+	<div layout="row" layout-align="space-between start">
 		<div layout="column" class="header">
 			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By {{service.owner}}</span></h2>
 			<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}}) {{number_of_comments}} reviews"></ui-widget-stars-static>
@@ -29,13 +29,13 @@
 				{{(followFlag) ? 'Unfollow' : 'Follow'}}
 			</md-button>
 			<md-button aria-label="reply" href="" class="md-icon-button reply header-icon">
-				<ng-md-icon icon="reply" style="fill: #65AF3F;" size="25"></ng-md-icon>
+				<ng-md-icon icon="reply" style="fill: grey;" size="25"></ng-md-icon>
 			</md-button>
 			<md-button aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/edit-service'}}" class="md-icon-button header-icon">
-				<ng-md-icon icon="create" style="fill: #65AF3F;" size="25"></ng-md-icon>
+				<ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
 			</md-button>
 			<md-button aria-label="delete" ng-click="delete()" class="md-icon-button header-icon">
-				<ng-md-icon icon="delete" style="fill: red;" size="25"></ng-md-icon>
+				<ng-md-icon icon="delete" style="fill: grey;" size="25"></ng-md-icon>
 			</md-button>
 		</div>
 	</div>
@@ -55,8 +55,8 @@
 			<md-content class="md-padding">
 				<div layout="row" class="tabs-content" layout-wrap>
 					<md-chips ng-repeat="tag in service.tags track by $index">
-						<md-chip>
-							{{tag}}
+						<md-chip ng-click="search(tag)">
+							<a ng-href="/marketplace.php#/search/services?text={{tag}}">{{tag}}</a>
 						</md-chip>
 					</md-chips>
 				</div>

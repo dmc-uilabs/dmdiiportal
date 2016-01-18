@@ -125,7 +125,7 @@
   
   .md-button.viewAll{
     font-size: 11px;
-    color: #65AF3F;
+    color: grey;
     line-height: 36px;
     margin: 0;
   }
@@ -176,6 +176,10 @@
     div:focus{
       outline: none;
     };
+    .active-star{
+      border: 1px solid #999;
+      border-radius: 6px;
+    }
     p{
       cursor: default;
     }

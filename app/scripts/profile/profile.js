@@ -59,6 +59,7 @@ angular.module('dmc.profile', [
 		$scope.inviteToProject = false;
 		$scope.invate = false;
 		$scope.toProject = "";
+		$scope.selectSortingStar = 0;
 		// $scope.projects = null;
 
 		$scope.sortList = [
@@ -189,6 +190,7 @@ angular.module('dmc.profile', [
 		$scope.SortingReviews = function(val){
 			var sort;
 			var order;
+			$scope.selectSortingStar = 0;
 			switch(val){
 				case "date":
 					sort = 'date';
@@ -213,22 +215,27 @@ angular.module('dmc.profile', [
 				case "1star":
 					sort = 'stars';
 					order = 1;
+					$scope.selectSortingStar = 1;
 					break
 				case "2star":
 					sort = 'stars';
 					order = 2;
+					$scope.selectSortingStar = 2;
 					break
 				case "3star":
 					sort = 'stars';
 					order = 3;
+					$scope.selectSortingStar = 3;
 					break
 				case "4star":
 					sort = 'stars';
 					order = 4;
+					$scope.selectSortingStar = 4;
 					break
 				case "5star":
 					sort = 'stars';
 					order = 5;
+					$scope.selectSortingStar = 5;
 					break
 			}
 
@@ -443,11 +450,7 @@ $scope.searchText="";
 			}
 		}
 		$scope.selectedItemChange = function(item) {
-			if(!item || !item.display) {
-				$scope.profile.location = null;
-			}else {
-				$scope.profile.location = item.display;
-			}
+			
 		}
 		/**
 		 * Create filter function for a query string
@@ -459,6 +462,7 @@ $scope.searchText="";
 			};
 		}
 
+$scope.searchText="";
 		var callback = function(success,data){
 			if(success) {
 				$scope.profile.location = data.city + ", " + data.region;

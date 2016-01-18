@@ -106,6 +106,27 @@
       line-height: 36px;
     }
   }
+    .preview{
+      height: 100%;
+      padding-top: 16px;
+      h2 {
+        margin: 8px;
+        font-size: 14px;
+      }
+      md-content{
+        height: 350px;
+      }
+      md-list-item{
+        height: 36px;
+        min-height: 36px;
+        &.selected{
+          background-color: #65AF3F;
+        }
+        .md-list-item-inner{
+          min-height: 36px;
+        }
+      }
+    }
   .tabs-content{
     p,
     .add-specification{
@@ -116,6 +137,10 @@
       box-shadow: none;
       md-chip{
         border-radius: 0px;
+        a{
+          text-decoration: none;
+          color: inherit;
+        }
       }
       .tags-chip{
         padding-right: 32px;
@@ -135,6 +160,8 @@
     md-autocomplete{
       margin-bottom: 8px;
     }
+
+
     .included{
       padding: 8px;
       .product-card{
