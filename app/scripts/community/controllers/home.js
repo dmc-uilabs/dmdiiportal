@@ -9,11 +9,13 @@ angular.module('dmc.community')
                 $scope.peoples = [
                     {
                         id : 1,
-                        name : "Item 1"
-                    },
-                    {
+                        name : "People"
+                    },{
                         id : 2,
-                        name : "Item 2"
+                        name : "Organizations"
+                    },{
+                        id : 3,
+                        name : "Discussions"
                     }
                 ];
 

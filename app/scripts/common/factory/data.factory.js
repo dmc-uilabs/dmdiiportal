@@ -224,6 +224,9 @@ angular.module('dmc.data',[])
             },
             deactivateAccount : function(id){
                 return localhost+'accounts'+(id ? '/'+id : '');
+            },
+            getDiscussions : function(){
+                return localhost+'discussions';
             }
         };
     }
