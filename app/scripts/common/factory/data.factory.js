@@ -3,7 +3,7 @@
 angular.module('dmc.data',[])
     .factory('dataFactory', function ($window,$location) {
         var baseServer = $window.apiUrl ? $window.apiUrl : '/static/?p=';
-        var localhost = ($location.$$absUrl.indexOf("http://localhost") != -1 ? "http://localhost:3000/" : "http://ge-dmc-01.thecreativeadvantage.net:3000");
+        var localhost = ($location.$$absUrl.indexOf("http://localhost") != -1 ? "http://localhost:3000/" : "http://ge-dmc-01.thecreativeadvantage.net:3000/");
         var urlSocketServer = 'http://localhost:8080/';
         var appendId = function(id){
             return ($window.apiUrl && id ? '/'+id : '');
@@ -179,9 +179,6 @@ angular.module('dmc.data',[])
             addNewServer: function(){
                 return baseServer+'/add_new_server';
             },
-            getServers: function(){
-                return baseServer+'/get_servers';
-            },
             saveChangeServer: function(){
                 return baseServer+'/save_change_server';
             },
@@ -221,6 +218,12 @@ angular.module('dmc.data',[])
             // direct requests
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
+            },
+            getServers: function(){
+                return localhost+'account_servers';
+            },
+            deactivateAccount : function(id){
+                return localhost+'accounts'+(id ? '/'+id : '');
             }
         };
     }

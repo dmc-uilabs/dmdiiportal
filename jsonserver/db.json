@@ -51,7 +51,7 @@
       ]
     }
   ],
-  "company_features": [
+  "company_featured": [
     {
       "id": 1,
       "companyId": 1,
@@ -67,51 +67,17 @@
       "position": ""
     },
     {
-      "id": 8,
+      "id": 3,
       "companyId": 1,
-      "productId": 3,
-      "position": 3,
+      "productId": 1,
+      "position": 1,
       "type": "service"
     },
     {
-      "id": 11,
+      "id": 4,
       "companyId": 1,
       "productId": 2,
       "position": 2,
-      "type": "service"
-    },
-    {
-      "id": 12,
-      "companyId": 1,
-      "productId": 27,
-      "position": 4,
-      "type": "service"
-    },
-    {
-      "id": 13,
-      "companyId": 1,
-      "productId": 1,
-      "position": 5,
-      "type": "component"
-    },
-    {
-      "id": 15,
-      "companyId": 1,
-      "productId": 16,
-      "position": 6,
-      "type": "service"
-    },
-    {
-      "id": 12,
-      "companyId": 1,
-      "productId": 13,
-      "type": "service"
-    },
-    {
-      "id": 16,
-      "companyId": 1,
-      "productId": 29,
-      "position": 8,
       "type": "service"
     }
   ],
@@ -207,6 +173,7 @@
       "email": "denis.sobko@gmail.com",
       "salutation": 3,
       "suffix": 1,
+      "deactivated": false,
       "location": "",
       "timezone": "",
       "featureImage": {
@@ -244,7 +211,21 @@
             "value": ""
           }
         }
-      }
+      },
+      "featureImage[thumbnail]": "/uploads/account-profile/1/20151224072737000000.jpg",
+      "featureImage[large]": "/uploads/account-profile/1/20151224072737000000.jpg",
+      "privacy[public][email][enable]": true,
+      "privacy[public][email][value]": "email@gmail.com",
+      "privacy[public][phone][enable]": true,
+      "privacy[public][phone][value]": 1234567895,
+      "privacy[public][location][enable]": false,
+      "privacy[public][location][value]": "USA",
+      "privacy[private][email][enable]": true,
+      "privacy[private][email][value]": "denis.sobko@gmail.com",
+      "privacy[private][phone][enable]": false,
+      "privacy[private][phone][value]": 7896655664,
+      "privacy[private][location][enable]": true,
+      "privacy[private][location][value]": ""
     },
     {
       "id": 2,
@@ -254,6 +235,7 @@
       "email": "email2@gmail.com",
       "salutation": null,
       "suffix": null,
+      "deactivated": false,
       "location": null,
       "timezone": null,
       "featureImage": {
@@ -330,14 +312,8 @@
       "productType": "service"
     },
     {
-      "id": 13,
+      "id": 15,
       "productId": 1,
-      "accountId": 1,
-      "productType": "service"
-    },
-    {
-      "id": 14,
-      "productId": 5,
       "accountId": 1,
       "productType": "service"
     }
@@ -2174,7 +2150,18 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "senderId": 1,
+      "recipientId": 2,
+      "isRead": false,
+      "senderDelete": false,
+      "recipientDelete": false,
+      "text": "Hello Bill!",
+      "created_at": "2016-01-15 08:37:33",
+      "id": 1
+    }
+  ],
   "individual-discussion": [
     {
       "id": 1,

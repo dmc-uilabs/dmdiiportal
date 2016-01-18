@@ -95,6 +95,7 @@
       .with-icon.md-input-focused label,
       .with-icon.md-input-has-value label{
         margin-left: 0;
+        top: 3px;
       }
       .picture-block{
         margin-bottom: 21px;
@@ -139,15 +140,9 @@
           }
           .disable-enable-button{
             font-size: 16px;
-            text-decoration: underline;
-            padding: 0 8px;
+            text-transform: none;
             cursor: pointer;
-            &:hover{
-              text-decoration: none;
-            }
-          }
-          .disable-enable-button:nth-child(2){
-            border-right: 1px solid #aaa;
+            margin-left: 0;
           }
         }
       }
@@ -226,7 +221,7 @@
         display: flex;
         .md-button.md-default-theme{
           span {
-            text-transform: capitalize;
+            text-transform: none;
             text-decoration: underline;
           }
           &:hover{
@@ -235,6 +230,10 @@
             }
           }
         }
+        .md-button.md-default-theme.deactivate-button{
+          margin-left:21px;
+        }
+        .md-button.md-default-theme.deactivate-button,
         .md-button.md-default-theme.save-button,
         .md-button.md-default-theme.cancel-button {
           line-height: 36px;
@@ -315,6 +314,9 @@
   transform: translate3d(0, 18px, 0) scale(0.75);
   transition: -webkit-transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.5s;
   transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.5s;
+}
+.title-input-left label{
+  top: 3px;
 }
 .title-input-left.md-input-focused label,
 .title-input-left.md-input-has-value label{
@@ -399,5 +401,15 @@
   }
 }
 .autocomplete-block{
-  padding-bottom: 27px;
+  md-autocomplete{
+    padding-bottom: 26px;
+    label{
+      top: -2px;
+    }
+  }
+  md-input-container:not(.md-input-has-value) input:not(:focus){
+    input{
+      color: #333;
+    }
+  }
 }

@@ -1,10 +1,18 @@
+.container.community-container{
+  padding: 0 17px;
+}
 .content-panel.project {
+  padding: 16px 8.5px;
   .md-toolbar-tools.widget-toolbar-title {
     padding: 0 8px 0px 0;
     h2{
       text-transform: uppercase;
     }
   }
+}
+a.contacts-btn,
+a.following-btn{
+  text-decoration: underline;
 }
 .dmc-announcements-content-panel {
   .announcements-list {
@@ -20,7 +28,7 @@
           padding: 0;
           p {
             color: #333;
-            font-size: 13px;
+            font-size: 14px;
           }
           .info {
             span {
@@ -60,19 +68,32 @@
         }
         .date-item{
           text-align: center;
-          font-size: 13px;
+          font-size: 15px;
+          min-width: 80px;
           padding-right: 13px;
+          div{
+            border: 1px solid #333;
+            padding: 3px 8px;
+          }
+          span{
+            display: block;
+            padding: 2px 0;
+          }
           span:first-child {
             text-transform: uppercase;
           }
         }
         .md-list-item-text{
           .title{
-            font-size: 13px;
+            font-size: 16px;
+          }
+          div{
+            padding: 2px 0;
           }
         }
         p{
           margin-bottom: 0;
+          font-size: 14px;
         }
       }
       md-list-item:first-child {

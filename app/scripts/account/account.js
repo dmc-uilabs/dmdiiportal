@@ -15,6 +15,7 @@ angular.module('dmc.account', [
     'dmc.model.fileModel',
     'dmc.model.fileUpload',
     'dmc.model.toast-model',
+    'dmc.model.question-toast-model',
     'flow'
 ]).config(function(flowFactoryProvider, $stateProvider, $urlRouterProvider, $httpProvider){
 
@@ -99,7 +100,7 @@ angular.module('dmc.account', [
             if(result.error){
                 toastModel.showToast('error',result.error);
             }else{
-                toastModel.showToast('success',"Data successfully updated!");
+                toastModel.showToast('success',"Successfully updated!");
             }
         },function(result){
             toastModel.showToast('error',"Unable update data");

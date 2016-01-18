@@ -13,74 +13,50 @@
                         <span layout="column" flex></span>
                     </div>
                     <div class="inputs-container">
-                        <div class="top-container" layout="row">
-                            <div class="title">{{notifications.email.title}}</div>
-                            <div class="disable-enable-button" ng-click="disableAll('email')">Disable All</div>
-                            <div class="disable-enable-button" ng-click="enableAll('email')">Enable All</div>
-                        </div>
-                        <md-divider></md-divider>
-                        <div layout="row" classs="body-container">
-                            <div layout="column" flex="50">
-                                <div class="block-notification">
-                                    <h2>{{notifications.email.data.marketplace.title}}</h2>
-                                    <md-switch ng-model="item.disabled" aria-label=""
-                                               ng-repeat="item in notifications.email.data.marketplace.data">
-                                        {{item.text}}
-                                    </md-switch>
-                                </div>
-                                <div class="block-notification">
-                                    <h2>{{notifications.email.data.community.title}}</h2>
-                                    <md-switch ng-model="item.disabled" aria-label=""
-                                               ng-repeat="item in notifications.email.data.community.data">
-                                        {{item.text}}
-                                    </md-switch>
-                                </div>
-                            </div>
-                            <div layout="column" flex="50">
-                                <div class="block-notification">
-                                    <h2>{{notifications.email.data.projects.title}}</h2>
-                                    <md-switch ng-model="item.disabled" aria-label=""
-                                               ng-repeat="item in notifications.email.data.projects.data">
-                                        {{item.text}}
-                                    </md-switch>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inputs-container website-container">
-                        <div class="top-container" layout="row">
-                            <div class="title">{{notifications.website.title}}</div>
-                            <div class="disable-enable-button" ng-click="disableAll('website')">Disable All</div>
-                            <div class="disable-enable-button" ng-click="enableAll('website')">Enable All</div>
-                        </div>
-                        <md-divider></md-divider>
-                        <div layout="row" classs="body-container">
-                            <div layout="column" flex="50">
-                                <div class="block-notification">
-                                    <h2>{{notifications.website.data.marketplace.title}}</h2>
-                                    <md-switch ng-model="item.disabled" aria-label=""
-                                               ng-repeat="item in notifications.website.data.marketplace.data">
-                                        {{item.text}}
-                                    </md-switch>
-                                </div>
-                                <div class="block-notification">
-                                    <h2>{{notifications.website.data.community.title}}</h2>
-                                    <md-switch ng-model="item.disabled" aria-label=""
-                                               ng-repeat="item in notifications.website.data.community.data">
-                                        {{item.text}}
-                                    </md-switch>
-                                </div>
-                            </div>
-                            <div layout="column" flex="50">
-                                <div class="block-notification">
-                                    <h2>{{notifications.website.data.projects.title}}</h2>
-                                    <md-switch ng-model="item.disabled" aria-label=""
-                                               ng-repeat="item in notifications.website.data.projects.data">
-                                        {{item.text}}
-                                    </md-switch>
-                                </div>
-                            </div>
-                        </div>
+                        <md-tabs md-dynamic-height md-border-bottom>
+                            <md-tab label="{{notification.title}}" ng-repeat="(key,notification) in notifications">
+                                <md-content class="md-padding">
+                                    <div class="top-container" layout="row">
+                                        <md-button class="md-raised disable-enable-button" ng-click="disableAll(key)">Deactivate All</md-button>
+                                        <md-button class="md-raised disable-enable-button" ng-click="enableAll(key)">Select All</md-button>
+                                    </div>
+                                    <div layout="row" classs="body-container">
+                                        <div layout="column" flex="50">
+                                            <div class="block-notification">
+                                                <h2>{{notification.data.general.title}}</h2>
+                                                <md-switch ng-model="item.disabled" aria-label=""
+                                                           ng-repeat="item in notification.data.general.data">
+                                                    {{item.text}}
+                                                </md-switch>
+                                            </div>
+                                            <div class="block-notification">
+                                                <h2>{{notification.data.community.title}}</h2>
+                                                <md-switch ng-model="item.disabled" aria-label=""
+                                                           ng-repeat="item in notification.data.community.data">
+                                                    {{item.text}}
+                                                </md-switch>
+                                            </div>
+                                        </div>
+                                        <div layout="column" flex="50">
+                                            <div class="block-notification">
+                                                <h2>{{notification.data.marketplace.title}}</h2>
+                                                <md-switch ng-model="item.disabled" aria-label=""
+                                                           ng-repeat="item in notification.data.marketplace.data">
+                                                    {{item.text}}
+                                                </md-switch>
+                                            </div>
+                                            <div class="block-notification">
+                                                <h2>{{notification.data.projects.title}}</h2>
+                                                <md-switch ng-model="item.disabled" aria-label=""
+                                                           ng-repeat="item in notification.data.projects.data">
+                                                    {{item.text}}
+                                                </md-switch>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
                     </div>
                 </md-content>
             </div>

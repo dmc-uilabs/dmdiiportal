@@ -370,7 +370,7 @@ function get_featured_company($params){
 	if(isset($params['company_id'])) {
 		$company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
 		if($company != null and isset($company['id']) == true) {
-			$features = json_decode(httpResponse(dbUrl().'/companies/'.$params['company_id'].'/company_features?_sort=position&_order=ASC', null, null),true);
+			$features = json_decode(httpResponse(dbUrl().'/companies/'.$params['company_id'].'/company_featured?_sort=position&_order=ASC', null, null),true);
 			$count = count($features);
 			$data = array(
 				'totalCount' => $count,
@@ -400,7 +400,7 @@ function remove_featured_company($params){
 	if(isset($params['type']) && isset($params['product_id']) && isset($params['company_id'])) {
 		$company = json_decode(httpResponse(dbUrl() . '/companies/' . $params['company_id'], null, null), true);
 		if ($company != null and isset($company['id']) == true) {
-			$features = json_decode(httpResponse(dbUrl() . '/companies/' . $params['company_id'] . '/company_features', null, null), true);
+			$features = json_decode(httpResponse(dbUrl() . '/companies/' . $params['company_id'] . '/company_featured', null, null), true);
 			$exist = false;
 			for($i = 0; $i < count($features); ++$i) {
 				if($features[$i]['type'] == $params['type'] && intval($features[$i]['productId']) == intval($params['product_id'])){
@@ -408,7 +408,7 @@ function remove_featured_company($params){
 				}
 			}
 			if($exist != false) {
-				$changed_item = json_decode(httpResponse(dbUrl().'/company_features/' . $exist['id'], 'DELETE', null), true);
+				$changed_item = json_decode(httpResponse(dbUrl().'/company_featured/' . $exist['id'], 'DELETE', null), true);
 				return json_encode(array('result' => true ));
 			}else{
 				return json_encode(array('error' => 'Feature does not exist' ));
@@ -426,9 +426,9 @@ function update_features_position($params){
     if(isset($params['positions'])) {
         $ids = [];
         for($i = 0; $i < count($params['positions']); ++$i) {
-            $feature = json_decode(httpResponse(dbUrl().'/company_features/'.$params['positions'][$i][0], null, null),true);
+            $feature = json_decode(httpResponse(dbUrl().'/company_featured/'.$params['positions'][$i][0], null, null),true);
             $feature['position'] = $params['positions'][$i][1];
-            $changed_item = json_decode(httpResponse(dbUrl().'/company_features/' . $params['positions'][$i][0], 'PUT', json_encode($feature)), true);
+            $changed_item = json_decode(httpResponse(dbUrl().'/company_featured/' . $params['positions'][$i][0], 'PUT', json_encode($feature)), true);
         }
         return true;
     }else{
@@ -440,7 +440,7 @@ function add_featured_company($params){
 	if(isset($params['type']) && isset($params['product_id']) && isset($params['company_id'])){
 		$company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
 		if($company != null and isset($company['id']) == true) {
-			$features = json_decode(httpResponse(dbUrl().'/companies/'.$params['company_id'].'/company_features', null, null),true);
+			$features = json_decode(httpResponse(dbUrl().'/companies/'.$params['company_id'].'/company_featured', null, null),true);
 			$exist = false;
 			for($i = 0; $i < count($features); ++$i) {
 				if($features[$i]['type'] == $params['type'] && intval($features[$i]['productId']) == intval($params['product_id'])){
@@ -448,9 +448,9 @@ function add_featured_company($params){
 				}
 			}
 			if($exist == false) {
-				$last = json_decode(httpResponse(dbUrl() . '/company_features?_sort=id&_order=DESC&_limit=1', null, null), true);
+				$last = json_decode(httpResponse(dbUrl() . '/company_featured?_sort=id&_order=DESC&_limit=1', null, null), true);
 				$id = (count($last) > 0 ? $last[0]['id'] + 1 : 1);
-				$position = json_decode(httpResponse(dbUrl() . '/companies/'.$params['company_id'].'/company_features?_sort=position&_order=DESC', null, null), true);
+				$position = json_decode(httpResponse(dbUrl() . '/companies/'.$params['company_id'].'/company_featured?_sort=position&_order=DESC', null, null), true);
 
 				if(count($position) > 0){
 					$position_ = 0;
@@ -472,7 +472,7 @@ function add_featured_company($params){
 					'position' => $position,
 					'type' => $params['type']
 				));
-				$add_featured = json_decode(httpResponse(dbUrl() . '/company_features', 'POST', $data), true);
+				$add_featured = json_decode(httpResponse(dbUrl() . '/company_featured', 'POST', $data), true);
 				return json_encode(array('error' => null, 'result' => $add_featured));
 			}else{
 				return json_encode(array('error' => null, 'result' => $exist));
@@ -545,7 +545,7 @@ function getFeaturesIds($companyId,$fill){
 		"components" => []
 	);
 	if($fill) {
-		$query = json_decode(httpResponse(dbUrl() . '/companies/' . $companyId . '/company_features', null, null), true);
+		$query = json_decode(httpResponse(dbUrl() . '/companies/' . $companyId . '/company_featured', null, null), true);
 		for ($i = 0; $i < count($query); ++$i) {
 			if (isset($features[$query[$i]["type"] . 's'])) {
 				array_push($features[$query[$i]["type"] . 's'], intval($query[$i]['productId']));
@@ -848,7 +848,14 @@ function get_company($params){
 		$account_favorites = json_decode(httpResponse(dbUrl().'/accounts/'.$accountId_.'/favorite_products', null, null),true);
 		$result['result']['favoritesCount'] = count($account_favorites);
 
-		$result['result']['reviews'] = json_decode(httpResponse(dbUrl().'/company/'.$result['result']['id'].'/company_reviews?reviewId=0', null, null),true);
+        $owner = json_decode(httpResponse(dbUrl().'/accounts/'.$query["accountId"], null, null),true);
+        $result['result']['isOwner'] = ($accountId_ == $query["accountId"] ? true : false);
+        $result['result']['owner'] = array(
+            'id' => $owner["id"],
+            'displayName' => ($owner["displayName"] ? $owner["displayName"] : $owner["firstName"].' '.$owner["lastName"])
+         );
+
+        $result['result']['reviews'] = json_decode(httpResponse(dbUrl().'/company/'.$result['result']['id'].'/company_reviews?reviewId=0', null, null),true);
 		$result['result']['rating'] = [];
 		for($k = 0; $k < count($result['result']['reviews']); ++$k){
 		  $result['result']['rating'][] = $result['result']['reviews'][$k]['rating'];

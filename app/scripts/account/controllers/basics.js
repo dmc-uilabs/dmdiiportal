@@ -1,11 +1,13 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('BasicsAccountCtr', [ '$stateParams', '$state', "$scope","$timeout", "$q", "ajax", "location","accountData","accountUpdate", function ($stateParams, $state, $scope,$timeout,$q, ajax, location,accountData,accountUpdate) {
+    .controller('BasicsAccountCtr', [ '$stateParams', '$state', "$scope","$timeout", "$q", "ajax", "location","$location","accountData","accountUpdate",'questionToastModel','$document','toastModel','dataFactory',
+    function ($stateParams, $state, $scope,$timeout,$q, ajax, location,$location,accountData,accountUpdate,questionToastModel,$document,toastModel,dataFactory) {
         $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
         $scope.title = pageTitles[$scope.page];
-
+        $scope.deactivated = $scope.accountData.deactivated;
+        $scope.activatedText = (!$scope.deactivated ? "Deactivate Account?" : "Activate Account?");
         $scope.user = $.extend(true,{},accountData);
         var callback = function(success,data){
             if(success) {
@@ -25,6 +27,27 @@ angular.module('dmc.account')
         // auto focus for First Name input
         $timeout(function() {
             $("#editFirstName").focus();
+        });
+
+        $scope.blurInput = function(){
+            if($scope.user.displayName == null || $scope.user.displayName.trim().length == 0){
+                $scope.user.displayName = $scope.user.displayName = $scope.user.firstName + ' ' + $scope.user.lastName;
+            }
+        };
+
+        $scope.$on('$locationChangeStart', function (event, next, current) {
+            if ($scope.changedValues && current.match("\/basics")) {
+                var answer = confirm("Are you sure you want to leave this page without saving?");
+                if (!answer){
+                    event.preventDefault();
+                }
+            }
+        });
+
+        $(window).bind('beforeunload', function(){
+            if($scope.changedValues) {
+                return "Are you sure you want to leave this page without saving?";
+            }
         });
 
         $scope.zones = [];
@@ -113,6 +136,9 @@ angular.module('dmc.account')
         $scope.changedValue = function(name,value){
             if(!$scope.changedValues) $scope.changedValues = {};
             $scope.changedValues[name] = value;
+            if(name == "firstName" || name == "lastName") {
+                $scope.user.displayName = $scope.user.displayName = $scope.user.firstName + ' ' + $scope.user.lastName;
+            }
         };
 
         $scope.cancelChanges = function(){
@@ -126,11 +152,13 @@ angular.module('dmc.account')
         };
 
         $scope.saveChanges = function(){
-            if(!validateEmail($scope.user.email)) {
-                $scope.user.email = $scope.accountData.email;
+            if($scope.changedValues) {
+                if (!validateEmail($scope.user.email)) {
+                    $scope.user.email = $scope.accountData.email;
+                }
+                accountUpdate.update($scope.user);
+                $scope.changedValues = null;
             }
-            accountUpdate.update($scope.user);
-            $scope.changedValues = null;
         };
 
         $scope.suffixes = [
@@ -158,7 +186,44 @@ angular.module('dmc.account')
                 title : "T3"
             }
         ];
-        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
-            $scope.$apply();
-        }
+
+        $scope.actionYes = function(){
+            $scope.accountData.deactivated = ($scope.deactivated ? false : true);
+            ajax.on(dataFactory.deactivateAccount($scope.accountData.id), {
+                    deactivated : $scope.accountData.deactivated
+                },
+                function (data) {
+                    if (!data.error) {
+                        if(!$scope.deactivated) {
+                            toastModel.showToast('success', "Account successfully deactivated");
+                            $scope.activatedText = "Activate My Account";
+                            $scope.deactivated = true;
+                        }else{
+                            toastModel.showToast('success', "Account successfully activated");
+                            $scope.activatedText = "Deactivate My Account";
+                            $scope.deactivated = false;
+                        }
+                    } else {
+                        toastModel.showToast("error", data.error);
+                    }
+                }, function (data) {
+                    toastModel.showToast("error", "Error. The problem on the server.");
+                }, "PUT"
+            );
+        };
+
+        $scope.actionNo = function(){
+            console.log("No");
+        };
+
+        $scope.deactivateAccount = function(ev){
+            questionToastModel.show({
+                question : (!$scope.deactivated ? "Deactivate Account?" : "Activate Account?"),
+                buttons: {
+                    ok: $scope.actionYes,
+                    cancel: $scope.actionNo
+                }
+            },ev);
+        };
+
 }]);

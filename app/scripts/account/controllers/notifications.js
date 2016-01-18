@@ -23,26 +23,35 @@ angular.module('dmc.account')
         };
 
         $scope.notifications = {
-            email : {
-                title : "Email",
+            website : {
+                title : "Website",
                 data : {
+                    general : {
+                        title : "General",
+                        data : [
+                            { text : "User messages me" },
+                            { text : "DMC posts an event" },
+                            { text : "DMC posts an update" },
+                            { text : "DMC system updates" }
+                        ]
+                    },
+                    community : {
+                        title : "Community",
+                        data : [
+                            { text : "User requests to be a contact" },
+                            { text : "User accepts contact request" },
+                            { text : "User reviews you" },
+                            { text : "User follows you" },
+                            { text : "User you follow publishes a new dicussion" },
+                            { text : "User comments on your Discussion" }
+                        ]
+                    },
                     marketplace : {
                         title : "Marketplace",
                         data : [
                             { text : "Your component/service is reviewed" },
                             { text : "Your component/service is favorited" },
                             { text : "Component/service is shared with you" }
-                        ]
-                    },
-                    community : {
-                        title : "Community",
-                        data : [
-                            { text : "User requests to be contacts" },
-                            { text : "User accepts contact request" },
-                            { text : "User reviews you" },
-                            { text : "User follows you" },
-                            { text : "User you follow publishes a new dicussion" },
-                            { text : "User comments on a Discussion you posted" }
                         ]
                     },
                     projects : {
@@ -54,32 +63,41 @@ angular.module('dmc.account')
                             { text : "Service fails" },
                             { text : "You are assigned to a task" },
                             { text : "Change in priority status of task" },
-                            { text : "You receive a questio" },
-                            { text : "You receive a project submission" }
+                            { text : "You receive a question on your project" },
+                            { text : "You receive a submission for your project" }
                         ]
                     }
                 }
             },
-            website : {
-                title : "Website",
+            email : {
+                title : "Email",
                 data : {
+                    general : {
+                        title : "General",
+                        data : [
+                            { text : "User messages me" },
+                            { text : "DMC posts an event" },
+                            { text : "DMC posts an update" },
+                            { text : "DMC system updates" }
+                        ]
+                    },
+                    community : {
+                        title : "Community",
+                        data : [
+                            { text : "User requests to be a contact" },
+                            { text : "User accepts contact request" },
+                            { text : "User reviews you" },
+                            { text : "User follows you" },
+                            { text : "User you follow publishes a new dicussion" },
+                            { text : "User comments on your Discussion" }
+                        ]
+                    },
                     marketplace : {
                         title : "Marketplace",
                         data : [
                             { text : "Your component/service is reviewed" },
                             { text : "Your component/service is favorited" },
                             { text : "Component/service is shared with you" }
-                        ]
-                    },
-                    community : {
-                        title : "Community",
-                        data : [
-                            { text : "User requests to be contacts" },
-                            { text : "User accepts contact request" },
-                            { text : "User reviews you" },
-                            { text : "User follows you" },
-                            { text : "User you follow publishes a new dicussion" },
-                            { text : "User comments on a Discussion you posted" }
                         ]
                     },
                     projects : {
@@ -91,8 +109,8 @@ angular.module('dmc.account')
                             { text : "Service fails" },
                             { text : "You are assigned to a task" },
                             { text : "Change in priority status of task" },
-                            { text : "You receive a questio" },
-                            { text : "You receive a project submission" }
+                            { text : "You receive a question on your project" },
+                            { text : "You receive a submission for your project" }
                         ]
                     }
                 }
