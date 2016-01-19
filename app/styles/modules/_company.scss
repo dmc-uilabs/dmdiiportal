@@ -10,9 +10,72 @@
       md-content{
         padding: 8px 0;
       }
-      .product-card {
+      .editable-md-content .product-card {
         width: 47%;
         margin: 5px;
+      }
+    }
+
+    .logo-storefront-edit,
+    .logo-storefront{
+      overflow: hidden;
+      width: 100px;
+      height: 100px;
+      img{
+        width: 100px;
+      }
+    }
+    .logo-storefront-edit{
+      width: 194px;
+      min-width: 194px;
+      height: 200px;
+      overflow: inherit;
+      .main-image{
+        width: 100%;
+        margin-top: 13px;
+      }
+      .cancel-change-logo,
+      .upload-logo,
+      .change-logo{
+        margin: 8px 0;
+        width: 100%;
+        text-transform: none;
+      }
+      .cancel-change-logo,
+      .upload-logo{
+        width: 46%;
+      }
+    }
+    .buttons-logo-upload{
+      width: 100%;
+    }
+    .storefront-logo-box{
+      position: relative;
+    }
+    .delete-logo{
+      position: absolute;
+      right: -5px;
+      top: 9px;
+      background-color: #CD3F3F;
+      ng-md-icon{
+        fill:#fff;
+      }
+      &:not([disabled]):hover{
+        background-color: #cd2f30;
+      }
+    }
+    .flow-box.flow-box-logo{
+      margin-left: 0;
+      margin-top: 13px;
+      .inner-box{
+        width: 100%;
+        min-width: 0;
+        .uploaded-picture{
+          width: 170px;
+          img{
+            width: 140px;
+          }
+        }
       }
     }
 
@@ -107,6 +170,13 @@
       text-transform: uppercase;
       margin-bottom: 0;
     }
+  }
+}
+
+.company-description{
+  padding-left: 0;
+  md-input-container{
+    margin-top: 8px;
   }
 }
 

@@ -9,23 +9,37 @@ angular.module('dmc.community.discussions',[]).
                 widgetTitle: "="
             },
             controller: ["$scope", "dataFactory", "ajax" ,"toastModel", function($scope, dataFactory, ajax, toastModel) {
-                $scope.discussionsFollow = [
-                    {
-                        id : 1,
-                        text : "Aenean euismod bibendum laoreet. Cim soci?",
-                        created_at : "2016-06-01 15:59:33",
-                        full_name : "Tony Scarfoni",
-                        image : "/images/carbone.png",
-                        replies : 2
-                    },{
-                        id : 2,
-                        text : "Aenean euismod bibendum laoreet. Cim soci?",
-                        created_at : "2016-06-01 15:59:33",
-                        full_name : "Tony Scarfoni",
-                        image : "/images/carbone.png",
-                        replies : 5
-                    }
-                ];
+                $scope.limit = 3;
+
+                $scope.discussions = [];
+                $scope.totalDiscussions = 0;
+
+                $scope.getDiscussions = function(){
+                    ajax.on(dataFactory.getDiscussions(),{
+                        _limit : $scope.limit,
+                        _sort : "created_at",
+                        _order : "DESC"
+                    },function(data){
+                        if(!data.error){
+                            $scope.discussions = data;
+                            $scope.totalAnnouncements = data.length;
+                            for(var index in $scope.discussions){
+                                $scope.discussions[index].replies = 0;
+                                $scope.discussions[index].created_at = moment($scope.discussions[index].created_at,'DD-MM-YYYY HH:mm:ss');
+                            }
+                            if($scope.totalAnnouncements > 0){
+                                $scope.discussions[0].replies = 2;
+                            }
+                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                        }else{
+                            toastModel.showToast("error", data.error);
+                        }
+                    },function(){
+                        toastModel.showToast("error", "Error. getDiscussions() fail");
+                    });
+                };
+
+                $scope.getDiscussions();
             }]
         };
     }]);

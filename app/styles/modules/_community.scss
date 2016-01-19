@@ -1,18 +1,31 @@
 .container.community-container{
   padding: 0 17px;
+  .content-column{
+    padding: 8px;
+    padding-bottom: 16px;
+  }
 }
 .content-panel.project {
-  padding: 16px 8.5px;
+  padding: 0;
+  margin-bottom: 8px;
   .md-toolbar-tools.widget-toolbar-title {
-    padding: 0 8px 0px 0;
+    padding: 0 8px 8px 0;
     h2{
       text-transform: uppercase;
     }
   }
 }
+.filterBox{
+  md-select {
+    height: 38px;
+  }
+}
 a.contacts-btn,
 a.following-btn{
   text-decoration: underline;
+  span {
+    font-size: 14px;
+  }
 }
 .dmc-announcements-content-panel {
   .announcements-list {
@@ -105,13 +118,16 @@ a.following-btn{
   }
 }
 
-.discussions-follow-list{
+.discussions-list{
   md-list{
     padding: 0 8px;
   }
   md-list-item{
     border-top: 1px solid #ccc;
     padding: 0;
+    img{
+      width: 36px;
+    }
     .info{
       span {
         font-size: 11px;

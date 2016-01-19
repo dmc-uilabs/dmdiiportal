@@ -2,8 +2,8 @@
     <md-toolbar>
         <div class="md-toolbar-tools">
             <div layout="row" layout-align="start end" flex>
-                <md-input-container>
-                    <label>People</label>
+                <md-input-container class="filterBox">
+                    <label>Filter</label>
                     <md-select ng-model="peopleModel" ng-change="selectItemDropDown()">
                         <md-option ng-repeat="p in peoples" value="{{p.id}}">{{p.name}}</md-option>
                     </md-select>

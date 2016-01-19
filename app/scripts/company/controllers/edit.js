@@ -24,6 +24,16 @@ angular.module('dmc.company')
         $scope.currentStorefrontPage = 1;
         $scope.pageSize = 10;
         $scope.downloadData = false;
+        $scope.isChangingLogo = false;
+
+        $scope.changeLogo = function(){
+            $scope.isChangingLogo = true;
+        };
+
+        $scope.cancelChangeLogo = function(){
+            $scope.isChangingLogo = false;
+            $scope.flowLogo = null;
+        };
 
         $scope.changedPositions = null;
         $scope.sortableOptions = {
@@ -58,10 +68,39 @@ angular.module('dmc.company')
             }
         };
 
+        var callbackUploadLogo = function(data){
+            if(!data.error) {
+                $scope.companyData.logoImage = data.file.name;
+                toastModel.showToast('success', 'Logo successfully uploaded');
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            }else{
+                toastModel.showToast('error', 'Unable upload logo');
+            }
+        };
+
         $scope.uploadFile = function(flow){
             $scope.file = flow.files[0].file;
             fileUpload.uploadFileToUrl($scope.file,{id : $scope.companyId},'company',callbackUploadPicture);
             $scope.cancelChangePicture(flow);
+        };
+
+        $scope.flowLogo = null;
+        $scope.uploadLogo = function(){
+            $scope.file = $scope.flowLogo.files[0].file;
+            fileUpload.uploadFileToUrl($scope.file,{id : $scope.companyId},'company-logo',callbackUploadLogo);
+            $scope.cancelChangeLogo();
+        };
+
+        $scope.deleteLogo = function(){
+            ajax.on(dataFactory.deleteCompanyLogo($scope.companyId), {
+                    logoImage : null
+                }, function(data){
+                    $scope.companyData.logoImage = null;
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                },function(data){
+                    toastModel.showToast("error","Error. getFeaturesCompany() fail");
+                },"PUT"
+            );
         };
 
         $scope.changePicture = function(){
@@ -92,6 +131,11 @@ angular.module('dmc.company')
             flow.files.shift();
         };
 
+        $scope.addedNewLogo = function(file,event,flow){
+            $scope.flowLogo = flow;
+            flow.files.shift();
+        };
+
         $scope.$watch(function(){
             return $("#flowImage").attr("src");
         },function(newVal,oldVal){
@@ -105,6 +149,11 @@ angular.module('dmc.company')
             flow.files = [];
             $scope.flowBoxStyle = null;
             if($scope.currentPicture) $scope.companyPicture['background-image'] = $scope.currentPicture;
+        };
+
+        $scope.removeLogo = function(flow){
+            flow.files = [];
+            $scope.flowLogo = null;
         };
 
         $scope.features = {

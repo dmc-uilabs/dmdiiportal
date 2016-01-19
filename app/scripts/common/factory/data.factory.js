@@ -125,6 +125,9 @@ angular.module('dmc.data',[])
             uploadCompanyPictureUrl : function(){
                 return baseServer+'/ucp';
             },
+            uploadCompanyLogoUrl : function(){
+                return baseServer+'/ucl';
+            },
             uploadProfilePictureUrl: function(){
                 return baseServer+'/uprpic';
             },
@@ -224,6 +227,12 @@ angular.module('dmc.data',[])
             },
             deactivateAccount : function(id){
                 return localhost+'accounts'+(id ? '/'+id : '');
+            },
+            getDiscussions : function(){
+                return localhost+'discussions';
+            },
+            deleteCompanyLogo : function(id){
+                return localhost+'companies'+(id ? '/'+id : '');
             }
         };
     }

@@ -10,6 +10,7 @@
         "thumbnail": "/uploads/company/picture/1/20160107065859000000.png",
         "large": "/uploads/company/picture/1/20160107065859000000.png"
       },
+      "logoImage": "/uploads/company/logo/1/20160119093131000000.png",
       "skills": [
         "skill1",
         "skill2",
@@ -35,6 +36,7 @@
         "thumbnail": "/uploads/company/picture/2/20151223085045000000.jpg",
         "large": "/uploads/company/picture/2/20151223085045000000.jpg"
       },
+      "logoImage": "/uploads/company/picture/2/20151223085045000000.png",
       "skills": [
         "skill1",
         "skill2",
@@ -78,6 +80,27 @@
       "companyId": 1,
       "productId": 2,
       "position": 2,
+      "type": "service"
+    },
+    {
+      "id": 5,
+      "companyId": 1,
+      "productId": 13,
+      "position": 3,
+      "type": "service"
+    },
+    {
+      "id": 6,
+      "companyId": 1,
+      "productId": 27,
+      "position": 4,
+      "type": "service"
+    },
+    {
+      "id": 7,
+      "companyId": 1,
+      "productId": 17,
+      "position": 5,
       "type": "service"
     }
   ],
@@ -211,21 +234,7 @@
             "value": ""
           }
         }
-      },
-      "featureImage[thumbnail]": "/uploads/account-profile/1/20151224072737000000.jpg",
-      "featureImage[large]": "/uploads/account-profile/1/20151224072737000000.jpg",
-      "privacy[public][email][enable]": true,
-      "privacy[public][email][value]": "email@gmail.com",
-      "privacy[public][phone][enable]": true,
-      "privacy[public][phone][value]": 1234567895,
-      "privacy[public][location][enable]": false,
-      "privacy[public][location][value]": "USA",
-      "privacy[private][email][enable]": true,
-      "privacy[private][email][value]": "denis.sobko@gmail.com",
-      "privacy[private][phone][enable]": false,
-      "privacy[private][phone][value]": 7896655664,
-      "privacy[private][location][enable]": true,
-      "privacy[private][location][value]": ""
+      }
     },
     {
       "id": 2,
@@ -1579,45 +1588,30 @@
       "id": 1,
       "title": "Low Heat Loss Transformer Specification PDM Co.pdf",
       "projectId": 5,
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015 12:00",
       "file": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
     },
     {
       "id": 2,
       "title": "Low Heat Loss Power Transformer Schedule PDM Co.pdf",
       "projectId": 5,
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015 12:00",
       "file": "/uploads/5/Low Heat Loss Power Transformer Schedule PDM Co.pdf"
     },
     {
       "id": 3,
       "title": "Low Heat Loss Transformer Proposal SAM Co.pdf",
       "projectId": 5,
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015 12:00",
       "file": "/uploads/5/Low Heat Loss Transformer Proposal SAM Co.pdf"
     },
     {
       "id": 4,
       "title": "Edit Company Storefront",
       "projectId": 1,
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015 12:00",
       "file": "/uploads/4/Edit Company Storefront.pdf"
     },
     {
       "id": 5,
       "title": "Edit Company Storefront",
       "projectId": 1,
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015 12:00",
       "file": "/uploads/5/Edit Company Storefront.pdf"
     }
   ],
