@@ -78,6 +78,8 @@ return call_user_func(function () {
 	  echo upload_profile_picture($_POST,$_FILES);
 	}else if(strpos($uri,'/ucp') !== false){
 	  echo upload_company_picture($_POST,$_FILES);
+    }else if(strpos($uri,'/ucl') !== false){
+        echo upload_company_logo($_POST,$_FILES);
 	}else if(strpos($uri,'/add_featured_company') !== false){
 		echo add_featured_company($_GET);
 	}else if(strpos($uri,'/remove_featured_company') !== false){
@@ -1078,6 +1080,39 @@ function get_documents($params){
 	$count = count($query);
 	$result = array('result' => $query, 'count' => $count);
 	return json_encode($result);
+}
+
+function upload_company_logo($params,$file){
+    if(isset($params['id'])) {
+        $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['id'], null, null), true);
+        if($company != null and isset($company['id']) == true) {
+            $id = $params['id'];
+            $mainDir = dirname(__DIR__);
+            $fileFolder = '\\uploads\\company\\logo\\' . $id;
+            if (is_dir($mainDir . $fileFolder)) delete_directory($mainDir . $fileFolder);
+            if (mkdir($mainDir . $fileFolder, 0755)) {
+                $name_file = basename($file['file']['name']);
+                $type = substr($name_file, strripos($name_file, '.'));
+                $name_file = date('YmdHisu') . $type;
+                $uploadFile = $mainDir . $fileFolder . '\\' . $name_file;
+                if (move_uploaded_file($file['file']['tmp_name'], $uploadFile)) {
+                    $otherName = '/uploads/company/logo/' . $id .'/'.$name_file;
+                    $file['name'] = $otherName;
+                    $company['logoImage'] = $otherName;
+                    $changed_item = json_decode(httpResponse(dbUrl().'/companies/'.$params['id'], 'PUT', json_encode($company)),true);
+                    return json_encode(array('result' => 'file saved', 'file' => $file));
+                } else {
+                    return json_encode(array('error' => 'Possible attacks via file download','$file' => $file));
+                }
+            } else {
+                return json_encode(array('error' => 'Unable create directory '));
+            }
+        }else{
+            return json_encode(array('error' => 'Company does not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
 }
 
 function upload_company_picture($params,$file){
