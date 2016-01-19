@@ -509,7 +509,7 @@
     {
       "id": 1,
       "title": "qout-of-balance Testing",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "L.Mason",
       "releaseDate": "25/08/2015",
       "serviceType": "analytical",
@@ -1543,6 +1543,7 @@
   ],
   "specifications": [
     {
+      "id": 1,
       "componentId": 3,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "input": 1,
@@ -1555,6 +1556,22 @@
         "success": 1,
         "fail": 1
       }
+    },
+    {
+      "id": 2,
+      "serviceId": 3,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "input": 4,
+      "output": 7,
+      "usageStats": {
+        "added": 22,
+        "members": 14
+      },
+      "runStats": {
+        "success": 15,
+        "fail": 9
+      },
+      "special": []
     }
   ],
   "documents": [

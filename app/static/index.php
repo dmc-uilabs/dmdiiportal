@@ -1312,14 +1312,6 @@ function edit_product($params){
   $service = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], null, null),true);
   $service['title'] = $params['title'];
 
-  /*if(isset($params['specification'])){
-	$specification = json_decode(httpResponse(dbUrl().$service['specifications'], null, null),true);
-	$specification['0']['special'] = $params['specification'];
-	$data = json_encode($specification['0']);
-	$changed_item = json_decode(httpResponse(dbUrl().$service['specifications'], 'PUT', $data),true);
-	return json_encode(array('data' => $data, "qqq" => $changed_item ));
-  }*/
-
   if(isset($params['tags'])){
 	$service['tags'] = $params['tags'];
   }else{
@@ -1328,6 +1320,18 @@ function edit_product($params){
   $service['description'] = $params['description'];
 
   $data = json_encode($service);
+
+
+  $specification = json_decode(httpResponse(dbUrl() . '/specifications/' . $params['specificationId'], null, null),true);
+  if(isset($params['specification'])){
+	$specification['special'] = $params['specification'];
+  }else{
+  	$specification['special'] = [];
+  }
+  $specification['input'] = $params['inputs'];
+  $specification['output'] = $params['outputs'];
+  $data_sp = json_encode($specification);
+  $changed_item = json_decode(httpResponse(dbUrl() . '/specifications/' . $params['specificationId'], 'PUT', $data_sp),true);
 
   $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], 'PUT', $data),true);
   return json_encode(array('result' => $changed_item ));

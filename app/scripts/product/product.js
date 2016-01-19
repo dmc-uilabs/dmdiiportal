@@ -219,7 +219,7 @@ angular.module('dmc.product', [
 				function(data){
 					if(data.result.id) {
 						$scope.product = data.result;
-						$scope.product.specificationsData.special = []
+						//$scope.product.specificationsData.special = []
 						$scope.number_of_comments = $scope.product.rating.length;
 						if($scope.number_of_comments != 0) {
 							calculate_rating();
@@ -543,9 +543,17 @@ angular.module('dmc.product', [
 			$scope.deleteTag = function(index){
 				$scope.product.tags.splice(index,1);
 			}
+
+			//remove specifications
+			$scope.deleteSpecifications = function(index){
+				$scope.product.specificationsData.special.splice(index,1);
+			}
 	
 			//save edit product
 			$scope.saveEdit = function(){
+				for(var i in $scope.product.specificationsData.special){
+					delete $scope.product.specificationsData.special[i]['$$hasKey'];
+				}
 				ajax.on(
 					dataFactory.editProduct(),
 					{
@@ -554,7 +562,10 @@ angular.module('dmc.product', [
 						title: $scope.product.title,
 						tags: $scope.product.tags,
 						description: $scope.product.description,
-						specification: $scope.product.specificationsData.special
+						specification: $scope.product.specificationsData.special,
+						outputs: $scope.product.specificationsData.output,
+						inputs: $scope.product.specificationsData.input,
+						specificationId: $scope.product.specificationsData.id
 					},
 					function(data){
 					},
