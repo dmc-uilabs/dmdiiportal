@@ -38,26 +38,26 @@
 
     <div class="page-header" layout-padding>
       <md-toolbar>
-        <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="center center">
-          <!-- <div layout="row"> -->
-            <h1>My Projects
-            </h1>
-                <md-button class="md-raised btn-add-project">Add Project</md-button>
-          <!-- </div> -->
-          <!-- fill up the space between left and right area -->
-          <span flex></span>
-          <md-input-container>
-            <label>Sort</label>
-            <md-select ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
-                <md-option ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container>
-            <label>Filter</label>
-            <md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')" md-container-class="margin-dropdown">
-                <md-option ng-repeat="filter in filterList track by $index" ng-value="$index">{{filter.name}}</md-option>
-            </md-select>
-          </md-input-container>
+        <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="space-between center">
+            <h1 flex="33">My Projects</h1>
+            <md-button class="md-raised btn-add-project">Add Project</md-button>
+            <!-- fill up the space between left and right area -->
+            <div laout="column" flex="33">
+                <div layout="row" layout-align="end center">
+                    <md-input-container>
+                        <label>Sort</label>
+                        <md-select ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
+                            <md-option ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Filter</label>
+                        <md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')" md-container-class="margin-dropdown">
+                            <md-option ng-repeat="filter in filterList track by $index" ng-value="$index">{{filter.name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </div>
         </div>
       </md-toolbar>
     </div>
