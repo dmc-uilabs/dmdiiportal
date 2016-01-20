@@ -142,9 +142,19 @@
 								<p>Created: {{product.currentStatus.startDate}}</p>
 								<p>Added: {{product.specificationsData.usageStats.added}} times by {{product.specificationsData.usageStats.members}} members</p>
 								<p>Successful Runs: {{product.specificationsData.runStats.fail}}/{{product.specificationsData.runStats.success}}</p>
-								<p>Inputs: {{product.specificationsData.input}}</p>
-								<p>Outputs: {{product.specificationsData.output}}</p>
-								<div layout="row" ng-if="editFlag" ng-repeat="item in product.specificationsData.special">
+								<p ng-if="!editFlag">Inputs: {{product.specificationsData.input}}</p>
+								<p ng-if="!editFlag">Outputs: {{product.specificationsData.output}}</p>
+								<div layout="row" ng-if="editFlag">
+									<md-input-container>
+										<label>Inputs</label>
+										<input type="number" ng-model="product.specificationsData.input"></input>
+									</md-input-container>
+									<md-input-container>
+										<label>Outputs</label>
+										<input type="number" ng-model="product.specificationsData.output"></input>
+									</md-input-container>
+								</div>
+								<div layout="row" ng-if="editFlag" ng-repeat="item in product.specificationsData.special track by $index">
 									<md-input-container>
 										<label>Specifications</label>
 										<input ng-model="item.specification"></input>
@@ -153,8 +163,11 @@
 										<label>Data</label>
 										<input ng-model="item.data"></input>
 									</md-input-container>
+									<md-button aria-label="close" ng-click="deleteSpecifications($index)" class="md-raised deleteSpecifications">
+										<ng-md-icon icon="close" style="fill: 'grey'" size="25"></ng-md-icon>
+									</md-button>
 								</div>
-								<p ng-if="!editFlag" ng-repeat="item in product.specificationsData.special">
+								<p ng-if="!editFlag" ng-repeat="item in product.specificationsData.special track by $index">
 									{{item.specification}}: {{item.data}}
 								</p>
 							</div>
@@ -199,7 +212,7 @@
 
 					<md-tab label="Documents">
 						<md-content class="md-padding">
-								<ui-widget-documents-product ng-if="!editFlag"></ui-widget-documents-product>
+								<ui-widget-documents-folder></ui-widget-documents-folder>
 								<div ui-widget-upload-documents ng-if="editFlag" class="content-panel" product="true" auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
 						</md-content>
 					</md-tab>

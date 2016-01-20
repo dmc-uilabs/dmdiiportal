@@ -1,6 +1,5 @@
 <?php
 
-
 function add_discussion_like_dislike($params){
     $review = json_decode(httpResponse(dbUrl().'/individual-discussion-comment/'.$params['commentId'], null, null),true);
     $review['like'] = $params['like'];
