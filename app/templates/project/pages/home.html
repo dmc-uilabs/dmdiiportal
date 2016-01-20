@@ -7,7 +7,7 @@
                     {{projectCtrl.projectData.title}}
                     <span class="small-text small-text--grey">Due in 20 days</span>
                 </h1>
-                <span ng-if="isPreview" class="project-manager">Submitted: {{projectCtrl.projectData.projectManager}} <ng-md-icon icon="mail" style="fill: #666" size="22"</span>
+                <span ng-if="isPreview" class="project-manager">Submitted: {{projectCtrl.projectData.projectManager}} <ng-md-icon icon="mail" style="fill: #666" size="20"></ng-md-icon></span>
             </div>
             <!-- fill up the space between left and right area -->
             <span flex></span>
@@ -52,7 +52,7 @@
         <!-- Left Content Column -->
         <div class="content-column" layout="column" flex="70">
             <!-- Overview -->
-            <div class="content-panel project">
+            <div class="content-panel project-review">
                 <div class="content-panel-header">
                     <md-toolbar>
                         <h2>OVERVIEW</h2>
@@ -70,18 +70,18 @@
                 </div>
             </div>
             <!-- Tasks -->
-            <div ng-if="!isPreview" class="content-panel project" ui-widget-tasks project-id="projectCtrl.currentProjectId" columns="['title','priority']" widget-title="'MY TASKS'"></div>
+            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-tasks project-id="projectCtrl.currentProjectId" columns="['title','priority']" widget-title="'MY TASKS'"></div>
             <!-- Discussion -->
-            <div ng-if="!isPreview" class="content-panel project" ui-widget-discussions project-id="projectCtrl.currentProjectId" widget-title="'DISCUSSIONS'"></div>
+            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-discussions project-id="projectCtrl.currentProjectId" widget-title="'DISCUSSIONS'"></div>
         </div>
         <!-- Right Content Column -->
         <div class="content-column" layout="column" flex>
             <!-- Requirement Documents -->
-            <div ng-if="isPreview" class="content-panel project" ui-widget-documents project-id="projectCtrl.currentProjectId" widget-title="'DOCUMENTS'"></div>
+            <div ng-if="isPreview" class="content-panel project-review" ui-widget-documents project-id="projectCtrl.currentProjectId" widget-title="'DOCUMENTS'"></div>
             <!-- Running Services -->
-            <div ng-if="!isPreview" class="content-panel project" ui-widget-services view-all-href="'https://test.projectdmc.org/services/?group_id=7'" title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'" project-id="projectCtrl.currentProjectId" widget-title="'SERVICES'" columns="['name','status']" sort-by="'start'"></div>
+            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-services view-all-href="'https://test.projectdmc.org/services/?group_id=7'" title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'" project-id="projectCtrl.currentProjectId" widget-title="'SERVICES'" columns="['name','status']" sort-by="'start'"></div>
             <!-- Components -->
-            <div ng-if="!isPreview" class="content-panel project" ui-widget-components project-id="projectCtrl.currentProjectId" widget-title="'COMPONENTS'" columns="['name','status']"></div>
+            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-components project-id="projectCtrl.currentProjectId" widget-title="'COMPONENTS'" columns="['name','status']"></div>
         </div>
     </div>
 </div>

@@ -29,7 +29,7 @@ function add_comment_individual_discussion($params){
       "id" => $id,
       "individual-discussionId" => $params['discussionId'],
       "full_name" => $params['name'],
-      "create_at" => date("d/m/Y h:i A"),
+      "create_at" => date("m/d/Y h:i A"),
       "avatar" => $params['avatar'],
       "userRatingReview" => array("DMC Member" => "none"),
       "like" => 0,

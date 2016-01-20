@@ -23,80 +23,8 @@ angular.module('dmc.individual-discussion', [
 		$scope.userlogin = "DMC Member";
 		$scope.NewComment = "";
 		$scope.discussion = null;
-/*
-		$scope.discussion = {
-			title: "Aenean euismod bibendum laoreet. Cum soci?",
-			comments: [
-				{
-					full_name: "DMC Member",
-					avatar: "/images/carbone.png",
-					text: "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?",
-					create_at: "12/01/2015 7:28 PM",
-					userRatingReview: {
-						"DMC Member": "none"
-					},
-					like: 22,
-					dislike: 11,
-				},
-				{
-					full_name: "DMC Member",
-					avatar: "/images/carbone.png",
-					text: "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?",
-					create_at: "12/01/2015 7:28 PM",
-					userRatingReview: {
-						"DMC Member": "like"
-					},
-					like: 22,
-					dislike: 11,
-				},
-				{
-					full_name: "DMC Member",
-					avatar: "/images/carbone.png",
-					text: "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?",
-					create_at: "12/01/2015 7:28 PM",
-					userRatingReview: {
-						"DMC Member": "dislike"
-					},
-					like: 22,
-					dislike: 11,
-				},
-				{
-					full_name: "DMC Member",
-					avatar: "/images/carbone.png",
-					text: "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?",
-					create_at: "12/01/2015 7:28 PM",
-					userRatingReview: {
-						"DMC Member": "none"
-					},
-					like: 22,
-					dislike: 11,
-				},
-				{
-					full_name: "DMC Member",
-					avatar: "/images/carbone.png",
-					text: "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?",
-					create_at: "12/01/2015 7:28 PM",
-					userRatingReview: {
-						"DMC Member": "none"
-					},
-					like: 22,
-					dislike: 11,
-				},
-			],
-			tags:[
-				"Manufacturing",
-				"3D Printering",
-				"Science",
-				"Manufacturing",
-				"3D Printering",
-				"Science",
-				"Manufacturing",
-				"3D Printering",
-				"Science",
-				"Manufacturing",
-			]
-		}
-*/
+		$scope.flagReviewFlag = false;
+
 		$scope.realtedDiscussions = [
 			"Aenean euismod bibendum laoreet.",
 			"Aenean euismod bibendum laoreet.",
@@ -225,5 +153,22 @@ angular.module('dmc.individual-discussion', [
 			);
 			$scope.NewComment = "";
 		};
+
+		$scope.flagPost = function(index){
+			if($scope.flagReviewFlag === index){
+				$scope.flagReviewFlag = false;
+			}else{
+				$scope.flagReviewFlag = index;
+			}
+			
+		}
+
+		$scope.Cancel = function(){
+			$scope.flagReviewFlag = false;
+		}
+
+		$scope.SubmitReview = function(NewReview){
+			$scope.flagReviewFlag = false;
+		}
 
 	}]);

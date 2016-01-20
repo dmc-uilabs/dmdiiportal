@@ -6,6 +6,9 @@
 	a{
 		color: inherit;
 	}
+	h2{
+		font-weight: normal;
+	}
 	.padding{
 		background-color: white;
 		padding: 16px;
@@ -25,6 +28,9 @@
 					height: 100%;
 					width: auto;
 					margin-right: 16px;
+				}
+				h3{
+					font-weight: normal;
 				}
 			}
 			.text{
@@ -56,11 +62,18 @@
 			border: 1px solid #999;
 			h2{
 				padding: 0 16px;
+				font-weight: normal;
+			}
+			h3{
+				font-weight: normal;
 			}
 			md-list{
 				md-list-item{
 					a{
 						text-decoration: none;
+						&:hover{
+							text-decoration: underline;
+						}
 					}
 					height: 36px;
 					min-height: 36px;
@@ -73,10 +86,16 @@
 			margin-top: 32px;
 			padding: 0 8px 16px;
 			
+			h2{
+				font-weight: normal;
+			}
 			md-chips .md-chips{
 			box-shadow: none;
 				md-chip{
 					border-radius: 0px;
+					&:hover{
+						text-decoration: underline;
+					}
 				}
 				.tags-chip{
 					padding-right: 32px;
