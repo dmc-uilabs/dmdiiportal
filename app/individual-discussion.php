@@ -86,6 +86,7 @@
 <script src="scripts/common/factory/data.factory.js"></script>
 <script src="scripts/common/models/toast-model.js"></script>
 <script src="scripts/individual-discussion/individual-discussion.js"></script>
+<script src="scripts/individual-discussion/edit-discussion.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
         window.apiUrl = '';
