@@ -17,7 +17,11 @@
         </div>
           <div class="rp-panel__controls" layout="row">
               <div class="rp-panel__image">
-                  <a href="project.php#/{{item.id}}"><img ng-src="{{item.featureImage.thumbnail}}" alt="{{item.title}}" ng-class="widgetShowAllBlocks ? 'img-size' : ''"></a>
+                  <a href="project.php#/{{item.id}}" ng-if="showImage">
+                      <img ng-src="{{item.featureImage.thumbnail}}"
+                           alt="{{item.title}}"
+                           ng-class="widgetShowAllBlocks ? 'img-size' : ''">
+                  </a>
                   <div ng-if="!widgetShowAllBlocks">
                       <md-button ng-class="item.isShowTasks ? 'md-raised md-primary' : ''" ng-click="showItems(item,'tasks')">TASKS ({{item.tasks.totalItems}})</md-button>
                       <md-button ng-class="item.isShowDiscussions ? 'md-raised md-primary' : ''" ng-click="showItems(item,'discussions')">BLOGS ({{item.discussions.totalItems}})</md-button>

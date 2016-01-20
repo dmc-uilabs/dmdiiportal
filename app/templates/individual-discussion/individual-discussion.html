@@ -14,13 +14,12 @@
 						</md-button>
 					</div>
 					<md-divider></md-divider>
-					<div class="comment" ng-repeat="comment in discussion.comments track by $index" layout="column">
+					<div class="comment" ng-class="{'isOwner' : comment.isOwner}" ng-repeat="comment in discussion.comments.items track by $index" layout="column">
 						<div class="comment-header" layout="row" layout-align="start center">
 							<img ng-src="{{comment.avatar}}">
 							<div layout="row" layout-align="space-between center" layout-fill>
-								
 								<h3>{{comment.full_name}}</h3>
-								<h3>{{comment.create_at}}</h3>
+								<h3>{{comment.created_at}}</h3>
 							</div>
 						</div>
 						<div class="text">
@@ -62,15 +61,15 @@
 					    </form>
 					  </div>
 					</div>
-					<form name="CommentForm">
-						<md-input-container flex>
-							<label>Comment</label>
-							<textarea ng-model="NewComment" columns="1" md-maxlength="1000"></textarea>
-						</md-input-container>
-						<div layout layout-align="end end">
-							<md-button class="md-raised" ng-click="Submit(NewComment)" ng-disabled="!NewComment" >Submit</md-button>
-						</div>
-					</form>
+                    <form name="CommentForm" ng-submit="Submit()">
+                        <md-input-container flex>
+                            <label>Comment</label>
+                            <textarea ng-model="newComment" columns="1" md-maxlength="1000"></textarea>
+                        </md-input-container>
+                        <div layout layout-align="end end">
+                            <md-button class="md-raised" submit ng-disabled="!newComment" >Submit</md-button>
+                        </div>
+                    </form>
 				</div>
 			</div>
 			<div flex="30">
@@ -85,11 +84,14 @@
 					</div>
 					<div class="tags" layout="row" layout-wrap>
 						<h2 flex="100">Tags</h2>
-						<md-chips ng-repeat="tag in discussion.tags track by $index">
+						<md-chips ng-repeat="tag in discussion.tags" ng-show="discussion.tags.length > 0">
 							<md-chip>
-								{{tag}}
+								{{tag.name}}
 							</md-chip>
 						</md-chips>
+                        <div layout="row" flex="100" layout-align="start center" layout-padding ng-show="discussion.tags.length == 0">
+                            No tags
+                        </div>
 					</div>
 				</div>
 			</div>

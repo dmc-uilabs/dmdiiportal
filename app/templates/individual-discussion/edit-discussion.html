@@ -1,0 +1,107 @@
+<div class="individual-discussion">
+	<div layout="column" class="padding">
+		<a class="return" href="community.php">Return to Community</a>
+		<div layout="row">
+			<div  flex="70">
+				<div class="left-column" layout="column">
+					<div class="header" layout="row" layout-align="space-between center">
+						<h2>{{discussion.title}}</h2>
+					</div>
+					<md-divider></md-divider>
+					<div class="comment" ng-class="{'isOwner' : comment.isOwner}" ng-repeat="comment in discussion.comments.items track by $index" layout="column">
+						<div class="comment-header" layout="row" layout-align="start center">
+							<img ng-src="{{comment.avatar}}">
+							<div layout="row" layout-align="start center" layout-fill>
+								<h3>{{comment.full_name}}</h3>
+                                <span flex></span>
+								<h3>{{comment.created_at}}</h3>
+                                <md-button md-no-ink
+                                           ng-click="deleteComment(comment)"
+                                           class="delete-btn md-icon-button"
+                                           ng-if="comment.isOwner"
+                                           aria-label="Delete">
+                                    <ng-md-icon icon="delete" size="14"></ng-md-icon>
+                                </md-button>
+                                <md-button md-no-ink
+                                           ng-click="editComment(comment)"
+                                           class="edit-btn md-icon-button"
+                                           ng-if="comment.isOwner && !comment.isEditing"
+                                           aria-label="Edit">
+                                    <ng-md-icon icon="edit" size="14"></ng-md-icon>
+                                </md-button>
+							</div>
+						</div>
+						<div class="text" ng-if="!comment.isEditing">
+							{{comment.text}}
+						</div>
+                        <div class="text edit-text-box" ng-init="comment.beforeChange = comment.text" ng-if="comment.isEditing">
+                            <md-input-container flex>
+                                <textarea ng-model="comment.text" columns="1"></textarea>
+                            </md-input-container>
+                        </div>
+                        <div layout="row" layout-align="end center" ng-if="comment.isEditing">
+                            <md-button ng-click="cancelChangeComment(comment)"
+                                       class="md-raised cancel-edit-comment">
+                                Cancel
+                            </md-button>
+                            <md-button ng-disabled="comment.beforeChange == comment.text"
+                                       ng-click="saveChangedComment(comment)"
+                                       class="md-raised md-primary save-editing-comment">
+                                Save
+                            </md-button>
+                        </div>
+					</div>
+					<form name="CommentForm" ng-submit="Submit()">
+						<md-input-container flex>
+							<label>Comment</label>
+							<textarea ng-model="newComment" columns="1" md-maxlength="1000"></textarea>
+						</md-input-container>
+						<div layout layout-align="end end">
+							<md-button class="md-raised" submit ng-disabled="!newComment" >Submit</md-button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div flex="30">
+				<div class="right-column" layout="column">
+					<div class="related">
+						<h2>Related Discussions</h2>
+						<md-list>
+							<md-list-item ng-repeat="item in realtedDiscussions track by $index">
+								<a ng-href="individual-discussion.php#/{{item.id}}"><h3>{{item.title}}</h3></a>
+							</md-list-item>
+						</md-list>
+					</div>
+					<div class="tags" layout="row" layout-wrap>
+						<h2 flex="100" class="edit-title-tags">Tags</h2>
+                        <form ng-submit="addTag()" layout="row" layout-align="start end" class="create-tag-box" flex="100">
+                            <md-input-container md-no-float flex>
+                                <input ng-model="newTag" type="text" placeholder="Enter tag">
+                            </md-input-container>
+                            <md-input-container md-no-float>
+                                <md-button ng-disabled="!newTag" type="submit"
+                                           class="md-raised md-primary add-tag-btn">
+                                    Add
+                                </md-button>
+                            </md-input-container>
+                        </form>
+						<md-chips ng-repeat="tag in discussion.tags" ng-show="discussion.tags.length > 0">
+							<md-chip class="tag-chip">
+								{{tag.name}}
+                                <md-button md-no-ink
+                                           ng-click="deleteTag(tag)"
+                                           class="delete-tag-btn md-icon-button"
+                                           aria-label="Delete">
+                                    <ng-md-icon icon="close" size="14"></ng-md-icon>
+                                </md-button>
+							</md-chip>
+						</md-chips>
+                        <div layout="row" flex="100" layout-align="start center" layout-padding ng-show="discussion.tags.length == 0">
+                            No tags
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

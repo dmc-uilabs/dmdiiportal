@@ -1,5 +1,40 @@
 .individual-discussion{
 	padding: 8px;
+    .edit-btn.md-icon-button,
+    .delete-btn.md-icon-button{
+      width: 21px;
+      margin-right: 0;
+      margin-left: 13px;
+    }
+    .delete-tag-btn.md-icon-button{
+      height: 30px;
+      line-height: 28px;
+      min-height: 0;
+      min-width: 0;
+      width: 23px;
+      margin-right: 3px;
+      margin-left: 0;
+    }
+    .save-editing-comment,
+    .cancel-edit-comment{
+      margin-right: 0;
+      margin-left: 13px;
+      text-transform: none;
+    }
+    .tag-chip{
+      padding-right: 0;
+    }
+    .create-tag-box{
+      md-input-container{
+        padding-bottom: 8px;
+      }
+      button{
+        margin-bottom: 0;
+      }
+    }
+    .edit-text-box md-input-container{
+      padding-bottom: 0;
+    }
 	.return{
 		padding: 8px 0 24px;
 	}
@@ -22,6 +57,10 @@
 		.comment{
 			padding: 16px;
 			border-bottom: 1px solid #999;
+            background-color: #f2f2f2;
+            &.isOwner{
+              background-color: #fff;
+            }
 			.comment-header{
 				height: 65px;
 				img{
@@ -85,7 +124,9 @@
 			border: 1px solid #999;
 			margin-top: 32px;
 			padding: 0 8px 16px;
-			
+            & .edit-title-tags{
+              margin-bottom: 0;
+            }
 			h2{
 				font-weight: normal;
 			}

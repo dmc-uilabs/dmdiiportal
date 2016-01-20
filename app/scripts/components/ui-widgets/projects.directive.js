@@ -11,7 +11,8 @@ angular.module('dmc.widgets.projects',[
             templateUrl: '/templates/components/ui-widgets/projects.html',
             scope:{
                 widgetTitle: "=",
-                widgetShowAllBlocks: "="
+                widgetShowAllBlocks: "=",
+                showImage : "="
             },
             link: function (scope, iElement, iAttrs) {
 

@@ -203,12 +203,6 @@ angular.module('dmc.data',[])
             getAnnouncements: function(){
                 return baseServer+'/get_announcements';
             },
-            getIndividualDiscussion: function(){
-                return baseServer+'/get_individual_discussion'
-            },
-            addCommentIndividualDiscussion: function(){
-                return baseServer+'/add_comment_individual_discussion'
-            },
             addDiscussionLikeDislike: function(){
                 return baseServer+'/add_discussion_like_dislike';
             },
@@ -233,6 +227,40 @@ angular.module('dmc.data',[])
             },
             deleteCompanyLogo : function(id){
                 return localhost+'companies'+(id ? '/'+id : '');
+            },
+            saveChangedDiscussionComment : function(id){
+                return localhost+'individual-discussion-comment'+(id ? '/'+id : '');
+            },
+            addDiscussionTag : function(){
+                return localhost+'individual-discussion-tags';
+            },
+            getLastDiscussionTagId : function(){
+                return localhost+'individual-discussion-tags';
+            },
+            getDiscussionTags : function(){
+                return localhost+'individual-discussion-tags';
+            },
+            deleteDiscussionTag : function(id){
+                return localhost+'individual-discussion-tags'+(id ? '/'+id : '');
+            },
+            deleteDiscussionComment : function(id){
+                return localhost+'individual-discussion-comment'+(id ? '/'+id : '');
+            },
+            getDiscussionComments : function(link){
+                var link_ = link.substring(1,link.length);
+                return localhost+link_;
+            },
+            getIndividualDiscussion: function(id){
+                return localhost+'individual-discussion'+(id ? '/'+id : '');
+            },
+            getIndividualDiscussions: function(){
+                return localhost+'individual-discussion';
+            },
+            addCommentIndividualDiscussion: function(){
+                return localhost+'individual-discussion-comment'
+            },
+            getLastDiscussionCommentId : function(){
+                return localhost+'individual-discussion-comment'
             }
         };
     }
