@@ -4,6 +4,7 @@ angular.module('dmc.widgets.tasks',[
         'dmc.ajax',
         'dmc.data',
         'dmc.socket',
+        'dmc.model.task',
         'ui.autocomplete',
         'ngSanitize'
     ]).
@@ -124,7 +125,7 @@ angular.module('dmc.widgets.tasks',[
                 //});
             }
         };
-    }]).controller('CreateTaskController',function($scope,$mdDialog,ajax,dataFactory,projectId,$compile){
+    }]).controller('CreateTaskController',function($scope,$mdDialog,ajax,dataFactory,projectId,$compile, DMCTaskModel){
         $scope.isCreation = false;
         $scope.message = {
             error : false
@@ -159,25 +160,50 @@ angular.module('dmc.widgets.tasks',[
         $scope.createTask = function(){
             $scope.isCreation = true;
             $scope.message.error = false;
-            ajax.on(dataFactory.getUrlCreateTask(projectId),{
-                projectId: projectId,
-                description : $scope.description,
-                assignee : $scope.assignedTo,
-                dueDate : moment($scope.dueDate).format()
-            },function(data){
+            DMCTaskModel.createTask({
+                "title": $scope.description,
+                "description": $scope.description,
+                "assignee": $scope.assignedTo,
+                "reporter": "Jack Graber",
+                "dueDate": moment($scope.dueDate).format(),
+                "priority": moment($scope.dueDate).format(),
+                "projectId": projectId
+            }).then(
+            function(data){
                 $scope.isCreation = false;
                 if(data.error == null) {
                     $mdDialog.cancel(true);
-                }else{
+                } else {
                     $scope.message.error = true;
                     console.error(data.error);
                 }
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            },function(){
+            },
+            function(){
                 $scope.message.error = true;
                 alert("Ajax faild: createTask");
                 $scope.isCreation = false;
-            },
-            'POST');
+            })
+
+            // ajax.on(dataFactory.getUrlCreateTask(projectId),{
+            //     projectId: projectId,
+            //     description : $scope.description,
+            //     assignee : $scope.assignedTo,
+            //     dueDate : moment($scope.dueDate).format()
+            // },function(data){
+            //     $scope.isCreation = false;
+            //     if(data.error == null) {
+            //         $mdDialog.cancel(true);
+            //     }else{
+            //         $scope.message.error = true;
+            //         console.error(data.error);
+            //     }
+            //     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            // },function(){
+            //     $scope.message.error = true;
+            //     alert("Ajax faild: createTask");
+            //     $scope.isCreation = false;
+            // },
+            // 'POST');
         };
     });

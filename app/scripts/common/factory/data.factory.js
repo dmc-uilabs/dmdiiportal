@@ -99,7 +99,11 @@ angular.module('dmc.data',[])
                 return baseServer+'/upload'+appendId(id);
             },
             getUrlCreateTask: function(id){
-                return baseServer+'/create_task'+appendId(id);
+                var url = baseServer+'/create_task'+appendId(id);
+                if (window.apiUrl) {
+                    url = baseServer+'/tasks';
+                }
+                return url
             },
             getUrlCreateDiscussion: function(id){
                 return baseServer+'/create_discussion'+appendId(id);

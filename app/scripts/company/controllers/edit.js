@@ -1,6 +1,12 @@
 'use strict';
+var selectedTabIndex = 0;
 angular.module('dmc.company')
     .controller('EditStorefrontCompanyCtr', ['$stateParams', '$state', "$scope", "$cookies", "ajax", 'companyData','menuCompany','$location', 'Products','dataFactory','$mdToast','fileUpload','toastModel', function ($stateParams, $state, $scope, $cookies, ajax, companyData, menuCompany,$location, Products, dataFactory,$mdToast,fileUpload,toastModel) {
+        $scope.selectedTabIndex = selectedTabIndex;
+        $scope.$watch("selectedTabIndex",function(newVal){
+            selectedTabIndex = newVal;
+        });
+
         $scope.companyData = companyData;
         var inputToHtml = function(textInput){
             return (textInput == null ? null : textInput.trim().replace(/\n/g, '<br>'));

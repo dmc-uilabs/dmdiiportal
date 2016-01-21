@@ -116,7 +116,10 @@
                         </div>
                     </div>
                     <div layout-padding>
-                        <md-tabs md-dynamic-height md-border-bottom class="editable-featured">
+                        <md-tabs md-dynamic-height
+                                 md-border-bottom
+                                 class="editable-featured"
+                                 md-selected="selectedTabIndex">
                             <md-tab label="Featured">
                                 <md-content class="editable-md-content" ui-sortable="sortableOptions">
                                     <dmc-product-card ng-repeat="item in features.all track by $index"

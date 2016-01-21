@@ -9,20 +9,19 @@
 </div>
 <div class="content-panel-body">
   <div class="rp-panel md-padding" layout="row" ng-repeat="item in projects">
+      <div layout="column">
+      <div class="rp-panel__title my-projects" layout="row"  ng-if="widgetShowAllBlocks">
+          <h2><a href="project.php#/{{item.id}}">{{item.title}}</a></h2>
+      </div>
     <div class="rp-panel__tab-content" flex layout="row"
          ng-class="widgetShowAllBlocks == true ? 'widget-blocks' : ''">
-      <div class="rp-panel__details" layout="column" flex="{{flexDetails}}">
-        <div class="rp-panel__title">
-          <h2><a href="project.php#/{{item.id}}">{{item.title}}</a></h2>
-        </div>
+      <div class="rp-panel__details" layout="column" flex="{{flexDetails}}"  ng-if="!widgetShowAllBlocks">
+          <div class="rp-panel__title" layout="row">
+              <h2><a href="project.php#/{{item.id}}">{{item.title}}</a></h2>
+          </div>
           <div class="rp-panel__controls" layout="row">
               <div class="rp-panel__image">
-                  <a href="project.php#/{{item.id}}" ng-if="showImage">
-                      <img ng-src="{{item.featureImage.thumbnail}}"
-                           alt="{{item.title}}"
-                           ng-class="widgetShowAllBlocks ? 'img-size' : ''">
-                  </a>
-                  <div ng-if="!widgetShowAllBlocks">
+                  <div>
                       <md-button ng-class="item.isShowTasks ? 'md-raised md-primary' : ''" ng-click="showItems(item,'tasks')">TASKS ({{item.tasks.totalItems}})</md-button>
                       <md-button ng-class="item.isShowDiscussions ? 'md-raised md-primary' : ''" ng-click="showItems(item,'discussions')">BLOGS ({{item.discussions.totalItems}})</md-button>
                       <md-button ng-class="item.isShowServices ? 'md-raised md-primary' : ''" ng-click="showItems(item,'services')">SERVICES ({{item.services.totalItems}})</md-button>
@@ -41,6 +40,7 @@
                   widget-title="widgetShowAllBlocks == true ? 'Services' : null"
                   progress-position="widgetShowAllBlocks == true ? 'bottom' : 'right'"></md-content>
     </div>
+      </div>
   </div>
 </div>
 

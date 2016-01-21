@@ -1,5 +1,7 @@
-<div class="title-widget" ng-hide="widgetTitle == null">
-    <h2>{{widgetTitle}} ({{totalItems}})</h2>
+<div class="title-widget" ng-hide="widgetTitle == null" layout="row" layout-align="start center">
+    <h2>{{widgetTitle}}</h2>
+    <span flex></span>
+    <md-button href="/" class="view-all-link">View All ({{totalItems}})</md-button>
 </div>
 <md-list class="task-list">
     <md-list-item class="md-3-line" ng-repeat="task in projectTasks">
