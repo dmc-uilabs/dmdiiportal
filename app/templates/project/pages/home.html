@@ -20,7 +20,7 @@
 
             <md-button ng-if="!isPreview" class="md-raised md-primary white-label"><ng-md-icon icon="mode_edit" style="fill: #fff" size="18"></ng-md-icon> Edit</md-button>
             <md-menu  ng-if="!isPreview">
-                <md-button class="md-raised md-primary white-label" ng-click="$mdOpenMenu($event)"><ng-md-icon icon="share" style="fill: #fff" size="18"></ng-md-icon> Share</md-button>
+                <md-button class="md-raised md-primary white-label" ng-click="$mdOpenMenu($event)"><ng-md-icon icon="share" style="fill: #fff" size="18"></ng-md-icon> Invite</md-button>
                 <md-menu-content>
                     <md-menu-item>
                         <md-button>Team</md-button>
@@ -33,7 +33,7 @@
         </div>
     </md-toolbar>
 </div>
-<div class="container" >
+<div class="container project-page-container" >
     <div ng-if="isPreview" layout="row" layout-margin layout-fill layout-padding>
         <div class="content-column" layout="column" flex>
             <div class="content-panel">
@@ -50,7 +50,7 @@
     </div>
     <div layout="row" >
         <!-- Left Content Column -->
-        <div class="content-column" layout="column" flex="70">
+        <div class="content-column" layout="column" flex="65">
             <!-- Overview -->
             <div class="content-panel project-review">
                 <div class="content-panel-header">
@@ -69,10 +69,10 @@
                     </md-content>
                 </div>
             </div>
-            <!-- Tasks -->
-            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-tasks project-id="projectCtrl.currentProjectId" columns="['title','priority']" widget-title="'MY TASKS'"></div>
             <!-- Discussion -->
             <div ng-if="!isPreview" class="content-panel project-review" ui-widget-discussions project-id="projectCtrl.currentProjectId" widget-title="'DISCUSSIONS'"></div>
+            <!-- Tasks -->
+            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-tasks project-id="projectCtrl.currentProjectId" columns="['title','project','dueDate','priority']" widget-title="'MY TASKS'"></div>
         </div>
         <!-- Right Content Column -->
         <div class="content-column" layout="column" flex>
@@ -81,7 +81,7 @@
             <!-- Running Services -->
             <div ng-if="!isPreview" class="content-panel project-review" ui-widget-services view-all-href="'https://test.projectdmc.org/services/?group_id=7'" title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'" project-id="projectCtrl.currentProjectId" widget-title="'SERVICES'" columns="['name','status']" sort-by="'start'"></div>
             <!-- Components -->
-            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-components project-id="projectCtrl.currentProjectId" widget-title="'COMPONENTS'" columns="['name','status']"></div>
+            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-components project-id="projectCtrl.currentProjectId" widget-title="'COMPONENTS'" columns="['name']"></div>
         </div>
     </div>
 </div>
