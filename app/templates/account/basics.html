@@ -10,7 +10,9 @@
                         <div layout="column">
                             <h2 class="md-title">{{title}}</h2>
                         </div>
-                        <md-button class="md-raised deactivate-button" ng-click="deactivateAccount()">{{activatedText}}</md-button>
+                        <md-button class="md-raised deactivate-button"
+                                   style="display:none"
+                                   ng-click="deactivateAccount()">{{activatedText}}</md-button>
                         <span layout="column" flex></span>
                         <md-button class="md-raised cancel-button" ng-click="cancelChanges()" ng-disabled="!changedValues">Cancel</md-button>
                         <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!changedValues">Save</md-button>
