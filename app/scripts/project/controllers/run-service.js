@@ -1,14 +1,17 @@
 angular.module('dmc.project')
-.controller('projectRunServicesCtrl', ['$scope', '$stateParams', 'projectData', 'ajax', 'dataFactory', '$mdToast', 'toastModel', '$mdDialog', function ($scope, $stateParams, projectData, ajax, dataFactory, $mdToast, toastModel, $mdDialog) {
+.controller('projectRunServicesCtrl', ['$scope', '$stateParams', 'projectData', 'ajax', 'dataFactory', '$mdToast', 'toastModel', '$mdDialog', '$state', function ($scope, $stateParams, projectData, ajax, dataFactory, $mdToast, toastModel, $mdDialog, $state) {
 	
+	$scope.ServiceId = $stateParams.ServiceId;
 	$scope.projectData = projectData;
 	$scope.service = null;
 	$scope.status = "Not Running";
 	$scope.runTime = 0;
+	$scope.lastStatus = "Success";
+	$scope.lastRunTime = 3.1;
 	$scope.averageRun = 3;
 	$scope.runHistory = false;
-	$scope.sort = null;
-	$scope.order = false;
+	$scope.sort = "runDate";
+	$scope.order = true;
 
 	$scope.inputs=[
 		{
@@ -425,9 +428,12 @@ angular.module('dmc.project')
 			ids: [$stateParams.ServiceId]
 		},
 		function(data){
+			console.info(data)
 			if(data.count > 0){
 				$scope.service = data.result[0];
 				if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+			}else{
+				$state.go("project.services")
 			}
 		},
 		function(){
@@ -494,8 +500,12 @@ angular.module('dmc.project')
 			clickOutsideToClose:true
 		})
 		.then(function() {
-			$scope.runTime = 3;
-			toastModel.showToast("success", "Run Completed Succesfully");
+			$scope.runHistory = false;
+			$scope.inputs[0].models = "test";
+			$scope.inputs[1].models = "test";
+			$scope.inputs[2].models = "test";
+			//$scope.runTime = 3;
+			//toastModel.showToast("success", "Run Completed Succesfully");
 		}, function() {
 		});
 	}

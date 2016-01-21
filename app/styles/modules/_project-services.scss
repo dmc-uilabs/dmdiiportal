@@ -49,6 +49,7 @@
 		.row{
 			width: 10%;
 			margin-right: 16px; 
+			text-transform: capitalize;
 			&.status{
 				padding-right: 16px;
 			}
@@ -144,6 +145,12 @@
 			min-width: 70px;
 			text-transform: none;
 		}
+		.add-server{
+			height: 36px;
+			min-height: 36px;
+			line-height: 36px;
+			min-width: 70px;
+		}
 	}
 
 	.page2{
@@ -182,6 +189,11 @@
 	background-color: #fff;
 	h2{
 		margin: 0;
+		font-weight: normal;
+		a{
+			color: inherit;
+			text-decoration: none;
+		}
 	}
 	.md-button{
 		background-color: white

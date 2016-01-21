@@ -84,7 +84,7 @@
 					</div>
 					<div class="tags" layout="row" layout-wrap>
 						<h2 flex="100">Tags</h2>
-						<md-chips ng-repeat="tag in discussion.tags" ng-show="discussion.tags.length > 0">
+						<md-chips ng-repeat="tag in discussion.tags track by $index" ng-show="discussion.tags.length > 0">
 							<md-chip>
 								{{tag.name}}
 							</md-chip>

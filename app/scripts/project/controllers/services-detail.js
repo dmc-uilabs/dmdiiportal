@@ -7,6 +7,14 @@ angular.module('dmc.project')
 	$scope.precentage_stars = [0,0,0,0,0];
 	$scope.number_of_comments = 0;
 	$scope.service = null;
+	$scope.flagHistory = false;
+	$scope.sort = "runDate";
+	$scope.order = true;
+	$scope.filter = {
+		block: null,
+		time: null,
+		type: null	
+	}
 
 	$scope.statistics = [
 		{
@@ -152,6 +160,261 @@ angular.module('dmc.project')
 		}
 	}
 
+	$scope.runHistory = [
+		{
+			runDate: "10/15/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "10/19/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "12/10/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "12/11/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Fail",
+		},
+		{
+			runDate: "12/11/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Success",
+		},
+		{
+			runDate: "12/15/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "10/19/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "12/10/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "12/11/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Fail",
+		},
+		{
+			runDate: "10/19/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "12/10/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "12/11/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Fail",
+		},
+		{
+			runDate: "10/19/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "12/10/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "12/11/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Fail",
+		},
+		{
+			runDate: "10/19/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "12/10/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "12/11/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Fail",
+		},
+		{
+			runDate: "10/19/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "12/10/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "12/11/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Fail",
+		},
+		{
+			runDate: "10/19/2015",
+			runTimeService: "12:22",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "12/10/2015",
+			runTimeService: "12:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "12/11/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Fail",
+		},
+		{
+			runDate: "10/19/2015",
+			runTimeService: "09:22",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "12/10/2015",
+			runTimeService: "09:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "12/09/2015",
+			runTimeService: "09:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Fail",
+		},
+		{
+			runDate: "10/19/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "12/10/2015",
+			runTimeService: "11:22",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "12/11/2015",
+			runTimeService: "11:35",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Fail",
+		},
+		{
+			runDate: "10/19/2015",
+			runTimeService: "11:35",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "12/10/2015",
+			runTimeService: "11:35",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "12/11/2015",
+			runTimeService: "11:35",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Fail",
+		},
+		{
+			runDate: "10/19/2015",
+			runTimeService: "11:35",
+			runBy: "Forge Admin",
+			runTime: 3.0,
+			results: "Fail",
+		},
+		{
+			runDate: "12/10/2015",
+			runTimeService: "11:35",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Success",
+		},
+		{
+			runDate: "12/11/2015",
+			runTimeService: "11:35",
+			runBy: "Forge Admin",
+			runTime: 2.9,
+			results: "Fail",
+		},
+	]
+
 	ajax.on(
 		dataFactory.getUrlAllServices(),
 		{
@@ -241,6 +504,15 @@ angular.module('dmc.project')
 	//Search products
 	$scope.search = function(text){
 		window.location.href = '/marketplace.php#/search/services?text=' + text;
+	}
+
+	$scope.showHistory = function(){
+		$scope.flagHistory = !$scope.flagHistory;
+	}
+
+	$scope.sorting = function(sort){
+		$scope.sort = sort;
+		$scope.order = !$scope.order;
 	}
 
 }])
