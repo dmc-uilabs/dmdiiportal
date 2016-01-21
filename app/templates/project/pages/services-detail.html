@@ -12,17 +12,20 @@
 		</div>
 	</md-toolbar>
 </div>
-<div class="project-details-services" layout="column">
-		<a class="return" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
-			Return to Services
-		</a>
+<div class="project-details-services" ng-if="!flagHistory" layout="column">
+	<a class="return" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+		Return to Services
+	</a>
 	<div layout="row" layout-align="space-between start">
 		<div layout="column" class="header">
 			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By {{service.owner}}</span></h2>
+			<a href="" ng-click="showHistory()" class="historyButton">
+				Run History
+			</a>
 			<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}}) {{number_of_comments}} reviews"></ui-widget-stars-static>
 		</div>
 		<div class="buttons" layout layout-align="center center">
-			<md-button class="md-raised" ng-href="{{'project.php#/' + projectData.id + '/run-service/' + item.id}}">
+			<md-button class="md-raised" ui-sref="project.run-services({ServiceId : service.id})">
 				Run
 			</md-button>
 			<md-button class="md-raised" ng-click="follow()">
@@ -44,11 +47,11 @@
 	</div>
 	<md-tabs md-dynamic-height md-border-bottom>
 		<md-tab label="STATISTICS">
-			<ui-widget-tabs-statistic data="statistics"></ui-widget-tabs-history>
+			<ui-widget-tabs-statistic data="statistics" filter="filter"></ui-widget-tabs-history>
 		</md-tab>
 		
 		<md-tab label="HISTORY">
-			<ui-widget-tabs-history data="history"></ui-widget-tabs-history>
+			<ui-widget-tabs-history data="history" filters="filter"></ui-widget-tabs-history>
 		</md-tab>
 
 		<md-tab label="TAGS">
@@ -80,4 +83,48 @@
       </div>
 		</md-tab>
 	</md-tabs>
+</div>
+
+<div class="project-history-services" ng-if="flagHistory" layout="column">
+	<h2>{{service.title}}</h2>
+	<div layout="row" layout-align="space-between center">
+		<a href="" ng-click="showHistory()" class="historyButton">
+			Detail Service
+		</a>
+	</div>
+	<h3>Run History</h3>
+	<md-content>
+		<md-list>
+			<div layout="row" class="listHeader">
+				<md-button flex="25" ng-click="sorting('runDate')">
+					Run Date 
+					<ng-md-icon ng-if="(sort == 'runDate' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon ng-if="(sort == 'runDate' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+				</md-button>
+				<md-button flex="25" ng-click="sorting('runBy')">
+					Run By 
+					<ng-md-icon ng-if="(sort == 'runBy' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon ng-if="(sort == 'runBy' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+				</md-button>
+				<md-button flex="25" ng-click="sorting('runTime')">
+					Run Time 
+					<ng-md-icon ng-if="(sort == 'runTime' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon ng-if="(sort == 'runTime' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+				</md-button>
+				<md-button flex="25" ng-click="sorting('results')">
+					Results 
+					<ng-md-icon ng-if="(sort == 'results' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon ng-if="(sort == 'results' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+				</md-button>
+			</div>
+			<md-list-item ng-repeat="item in runHistory | orderBy:sort:order" layout="row">
+				<div flex="25">{{item.runDate}} {{item.runTimeService}}</div>
+				<div flex="25"><a href="">{{item.runBy}}</a></div>
+				<div flex="25">{{item.runTime}}s</div>
+				<div flex="25" style="color:{{(item.results == 'Success') ? '#65AF3F': 'red'}}">
+					<a href="" ng-click="openResults(item)" class="href-result">{{item.results}}</a>
+				</div>
+			</md-list-item>
+		</md-list>
+	</md-content>
 </div>

@@ -56,6 +56,7 @@
 			border: 1px solid #000;
 			margin: 0;
 			padding: 16px 16px 4px;
+			height: 30px;
 		}
 		h4{
 			position: absolute;
@@ -100,17 +101,30 @@
 
 	.section{
 		padding: 36px 16px 0;
+		&.none-cliks{
+			h3, h4{
+				cursor: default;
+			}
+		}
 		h3{
 			font-size: 14px;
 			border: 1px solid #000;
 			border-bottom: none;
 			margin: 0;
 			padding: 16px 16px 4px;
+			height: 30px;
+			&:focus{
+				outline: none;
+			}
 		}
 		h4{
 			font-size: 14px;
 			margin: 4px 0;
 			font-weight: normal;
+			cursor: pointer;
+			&:focus{
+				outline: none;
+			}
 		}
 		h5{
 			font-size: 18px;

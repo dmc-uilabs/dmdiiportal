@@ -261,6 +261,12 @@ angular.module('dmc.data',[])
             },
             getLastDiscussionCommentId : function(){
                 return localhost+'individual-discussion-comment'
+            },
+            getLastDiscussionId : function(){
+                return localhost+'individual-discussion'
+            },
+            addDiscussion : function(){
+                return localhost+'individual-discussion'
             }
         };
     }

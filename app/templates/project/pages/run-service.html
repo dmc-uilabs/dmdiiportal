@@ -13,13 +13,13 @@
 	</md-toolbar>
 </div>
 <div class="project-run-services" ng-if="!runHistory" layout="column">
-	<h2>{{service.title}}</h2>
+	<h2><a ui-sref="project.services-detail({ServiceId: ServiceId})" >{{service.title}}</a></h2>
 	<div layout="row" layout-align="space-between center">
 		<a href="" ng-click="showHistory()" class="historyButton">
 			Run History
 		</a>
 		<div>
-			<md-button ng-click="" class="md-raised">
+			<md-button ng-click="" ng-show="false" class="md-raised">
 				Visualize
 			</md-button>
 			<md-button ng-click="run()" class="md-raised">
@@ -28,7 +28,9 @@
 		</div>
 	</div>
 	<h3>Status: {{status}}</h3>
+	<h3>Last Run Status: {{lastStatus}}</h3>
 	<h3>Your Run Time: {{runTime}}s</h3>
+	<h3>Last Run Time: {{lastRunTime}}s</h3>
 	<h3>Average Run: {{averageRun}}s</h3>
 	<div layout="row">
 		<div flex="50" class="inputs">
@@ -36,7 +38,7 @@
 				<h2>Inputs</h2>
 				<div class="inputs-button">
 					<md-button ng-click="clear()" class="md-raised">
-						Clear
+						Reset
 					</md-button>
 					<md-button ng-click="save()" class="md-raised md-primary">
 						Save

@@ -50,10 +50,10 @@
 								<div ng-message="required">Server Host/IP is required.</div>
 							</div>
 						</md-input-container>
-						<md-button ng-click="cancelServer()" class="add"> 
+						<md-button ng-click="cancelServer()" class="md-raised add-server"> 
 							cancel
 						</md-button>
-						<md-button ng-disabled="addServer.$invalid" class="add">
+						<md-button ng-disabled="addServer.$invalid" class="md-raised add-server">
 							save
 						</md-button>
 						</div>
@@ -149,6 +149,10 @@
 		</div>
 
 		<div layout="row" layout-align="end center">
+			<md-button class="md-primary md-raised" ng-if="page1" ui-sref="project.services">
+				Cancel
+			</md-button>
+
 			<md-button class="md-primary md-raised" ng-if="page1" ng-disabled="serverModel != 0" ng-click="next()">
 				Next
 			</md-button>

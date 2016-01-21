@@ -242,7 +242,7 @@ angular.module('dmc.individual-discussion', [
 		}
 
 	}])
-	.controller("ComposeDiscussionController", ['$scope', 'ajax', 'dataFactory', '$mdDialog',  function ($scope, ajax, dataFactory, $mdDialog) {
+	.controller("ComposeDiscussionController", ['$scope', 'ajax', 'dataFactory', '$mdDialog', "$mdToast", "toastModel",  function ($scope, ajax, dataFactory, $mdDialog, $mdToast, toastModel) {
 		$scope.tags=["Metal", "Dashboard", "Dashboard",
 		"Metal", "Dashboard", "Dashboard",
 		"Metal", "Dashboard", "Dashboard"
@@ -265,8 +265,36 @@ angular.module('dmc.individual-discussion', [
 			$scope.tags.splice(index,1);
 		}
 
-		$scope.save = function(message, subject){
-			console.info("save", message, subject)
+		$scope.save = function(message, subject){    
+        ajax.on(dataFactory.getLastDiscussionId(), {
+            "_limit" : 1,
+            "_order" : "DESC",
+            "_sort" : "id"
+        }, function(data){
+            var lastId = (data.length == 0 ? 1 : parseInt(data[0].id)+1);
+            
+            ajax.on(
+                dataFactory.addDiscussion(),
+                {
+                    "id": lastId,
+                    "title": subject,
+                    "comments": { 
+							        "link": "/individual-discussion/" + lastId + "/individual-discussion-comment",
+							        "totalItems": 0
+							      }
+                },
+                function(data){
+                    toastModel.showToast("success", "Discuseion created");
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                },
+                function(){
+                    toastModel.showToast("error", "Fail add discussion");
+                }, "POST"
+            );
+        }, function(){
+            toastModel.showToast("error", "Unable get last id");
+        },"GET");
+
 			$mdDialog.hide();
 		}
 	}]);;
