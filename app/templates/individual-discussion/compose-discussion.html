@@ -1,0 +1,54 @@
+<md-dialog class="compose-discussion" flex="90">
+	<div layout="column">
+		<md-input-container>
+			<label>Subject</label>
+			<input ng-model="subject">
+		</md-input-container>
+		<div layout="row">
+			<div flex="70">
+				<h2>Message</h2>
+				<div class="left-column" layout="column">
+					<div class="header">
+						<h3>WYSIWYG</h3>
+					</div>
+					<div class="message">
+						<md-input-container>
+							<textarea ng-model="message" columns="9" md-maxlength="3000"></textarea>
+						</md-input-container>
+					</div>
+				</div>
+			</div>
+			<div flex="30">
+				<h2 class="header-tags">Tags</h2>
+				<div class="right-column" layout="column">
+					<form ng-submit="addTag(inputTag)" class="add-tags-form" layout="row" layout-align="start center">
+						<md-input-container>
+							<label>Enter Tag</label>
+							<input ng-model="inputTag">
+						</md-input-container>
+						<md-button ng-disabled="!inputTag" class="md-raised md-primary">Add</md-button>
+					</form>
+					<div layout="row" class="tabs-content" layout-wrap>
+						<md-chips ng-repeat="tag in tags track by $index">
+							<md-chip class="tags-chip">
+								{{tag}}
+								<md-button aria-label="close" ng-click="deleteTag($index)" class="md-icon-button">
+									<ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
+								</md-button>
+							</md-chip>
+						</md-chips>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div layout="row" layout-align="end end">
+			<md-button ng-click="cancel()">
+				Cancel
+			</md-button>
+			<md-button class="md-raised md-primary" ng-click="save(message, subject)" ng-disabled="!subject || !message || tags.length == 0">
+				Post
+			</md-button>
+		</div>
+	</div>
+</md-dialog>

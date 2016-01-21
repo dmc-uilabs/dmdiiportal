@@ -112,6 +112,7 @@
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
+    <script src="scripts/common/models/task-model.js"></script>
     <script src="scripts/components/ui-widgets/tasks.directive.js"></script>
     <script src="scripts/components/ui-widgets/services.directive.js"></script>
     <script src="scripts/components/ui-widgets/discussions.directive.js"></script>

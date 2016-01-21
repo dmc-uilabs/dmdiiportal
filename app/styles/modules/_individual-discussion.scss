@@ -157,3 +157,56 @@
 	}
 
 }
+
+.compose-discussion{
+	padding: 16px;
+	.left-column{
+		border: 1px solid #666;
+		margin-right: 16px;
+		.header{
+			border-bottom: 1px solid #666;
+			padding: 0 8px;
+			text-align: center;
+		}
+		.message{
+			padding: 8px;
+		}
+	}
+	.right-column{
+		border: 1px solid #666;
+		padding: 8px;
+		.add-tags-form{
+			.md-button{
+				height: 36px;
+				line-height: 36px;
+				min-height: 36px;
+				min-width: 0;
+				width: 64px;
+			}
+		}
+    md-chips .md-chips{
+      box-shadow: none;
+      md-chip{
+        border-radius: 0px;
+        a{
+          text-decoration: none;
+          color: inherit;
+        }
+      }
+      .tags-chip{
+        padding-right: 32px;
+        .md-icon-button{
+          position: absolute;
+          right: 0;
+          top: 0;
+          min-height: 32px;
+          height: 32px;
+          line-height: 32px;
+          min-width: 32px;
+          width: 32px;
+          margin: 0;
+        }
+      }
+    }
+	}
+}
