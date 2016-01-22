@@ -288,7 +288,7 @@ angular.module('dmc.compare',[
                             removeModalWindowAttr();
                             $('html').removeClass('hide-scroll');
                         }, function () {
-                            removeModalWindowAttr();
+                            //removeModalWindowAttr();
                             $('html').removeClass('hide-scroll');
                         });
                     }

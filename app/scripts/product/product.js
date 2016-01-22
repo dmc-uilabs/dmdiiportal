@@ -15,6 +15,7 @@ angular.module('dmc.product', [
 	'dmc.widgets.tabs',
 	'dmc.component.treemenu',
 	'dmc.component.productcard',
+	'dmc.component.members-card',
 	'dmc.common.header',
 	'dmc.common.footer',
 	'dmc.model.toast-model',
@@ -46,26 +47,13 @@ angular.module('dmc.product', [
 			$scope.Specifications = ['Height', 'Length', 'Weight'];
 			$scope.UserLogin = "DMC Member";
 			$scope.adding_to_project = false;
+			$scope.selectSortingStar = 0;
 	
 			$scope.currentImage = 1;
 			$scope.images = [];
 			$scope.indexImages = 0;
 
-            // get data from cookies
-            var updateCompareCount = function(){
-                var arr = $cookies.getObject('compareProducts');
-                return arr == null ? {services : [], components : []} : arr;
-            };
-            $scope.compareProducts = updateCompareCount();
-
-            // catch updated changedCompare variable form $cookies
-            $scope.$watch(function() { return $cookies.changedCompare; }, function(newValue) {
-                $scope.compareProducts = updateCompareCount();
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            });
-	
-
-			
+            			
 			$scope.history = {
 				leftColumn: {
 					title: "Marketplace",
@@ -358,6 +346,7 @@ angular.module('dmc.product', [
 			$scope.SortingReviews = function(val){
 				var sort;
 				var order;
+				$scope.selectSortingStar = 0;
 				switch(val){
 					case "date":
 						sort = 'date';
@@ -386,22 +375,27 @@ angular.module('dmc.product', [
 					case "1star":
 						sort = 'stars';
 						order = 1;
+						$scope.selectSortingStar = 1;
 						break
 					case "2star":
 						sort = 'stars';
 						order = 2;
+						$scope.selectSortingStar = 2;
 						break
 					case "3star":
 						sort = 'stars';
 						order = 3;
+						$scope.selectSortingStar = 3;
 						break
 					case "4star":
 						sort = 'stars';
 						order = 4;
+						$scope.selectSortingStar = 4;
 						break
 					case "5star":
 						sort = 'stars';
 						order = 5;
+						$scope.selectSortingStar = 5;
 						break
 				}
 	
@@ -671,7 +665,55 @@ angular.module('dmc.product', [
 					toastModel.showToast("error", "Failed Add To Project");
 				}, 'POST');
 			}
+
+			var updateCompareCount = function () {
+          var arr = $cookies.getObject('compareProducts');
+          return arr == null ? {services: [], components: []} : arr;
+      };
+      $scope.compareProducts = updateCompareCount();
 	
+      $scope.$watch(function() { return $cookies.changedCompare; }, function(newValue) {
+          $scope.compareProducts = updateCompareCount();
+          if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+      });
+
+      $scope.removeFromCompare = function(){
+          var compareProducts = $cookies.getObject('compareProducts');
+          if(compareProducts != null){
+              if($scope.product.type == 'service') {
+                  if($.inArray( parseInt($scope.product.id), compareProducts.services ) != -1){
+                      compareProducts.services.splice( $.inArray(parseInt($scope.product.id), compareProducts.services), 1);
+                      $cookies.putObject('compareProducts', compareProducts);
+                      $cookies.changedCompare = new Date();
+                  }
+              }else if($scope.product.type == 'component'){
+                  if($.inArray( parseInt($scope.product.id), compareProducts.components ) != -1){
+                      compareProducts.components.splice($.inArray(parseInt($scope.product.id), compareProducts.components), 1);
+                      $cookies.putObject('compareProducts', compareProducts);
+                      $cookies.changedCompare = new Date();
+                  }
+              }
+          }
+      };
+
+      $scope.addToCompare = function(){
+          // $cookies.remove('compareProducts');
+          // Retrieving a cookie
+          if($scope.product.type == 'service' && $scope.compareProducts.components.length == 0) {
+              if($.inArray( parseInt($scope.product.id), $scope.compareProducts.services ) == -1){
+                  $scope.compareProducts.services.push(parseInt($scope.product.id));
+                  $cookies.putObject('compareProducts', $scope.compareProducts);
+                  $cookies.changedCompare = new Date();
+              }
+          }else if($scope.product.type == 'component' && $scope.compareProducts.services.length == 0){
+              if($.inArray( parseInt($scope.product.id), $scope.compareProducts.components ) == -1){
+                  $scope.compareProducts.components.push(parseInt($scope.product.id));
+                  $cookies.putObject('compareProducts', $scope.compareProducts);
+                  $cookies.changedCompare = new Date();
+              }
+          }
+      };
+
 			$scope.treeMenuModel = {
 					title: 'BROWSE BY',
 					data: [

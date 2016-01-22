@@ -72,10 +72,10 @@
 								</md-input-container>
 								<span flex></span>
 								<md-button ng-if="!editFlag" aria-label="favorite" ng-click="addToFavorite()" class="md-icon-button header-icon">
-									<ng-md-icon icon="favorite" style="fill:{{(product.favorite) ? '#65AF3F': 'red'}}" size="25"></ng-md-icon>
+									<ng-md-icon icon="favorite" style="fill:{{(product.favorite) ? 'grey': '#65AF3F'}}" size="25"></ng-md-icon>
 								</md-button>
 								<md-button ng-if="!editFlag" aria-label="share" href="" class="md-icon-button header-icon">
-									<ng-md-icon icon="share" style="fill: #65AF3F;" size="25"></ng-md-icon>
+									<ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
 								</md-button>
 								<md-button ng-if="editFlag" ng-click="cancelEdit()" class="md-raised cancel">Cancel</md-button>
 								<md-button ng-if="editFlag" ng-click="saveEdit()" class="md-raised save">Save</md-button>
@@ -84,9 +84,21 @@
 								<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
 								<span flex></span>
 								<div  ng-if="!adding_to_project" layout="row" layout-align="center end">
-									<md-button ng-if="!editFlag" ng-click="editPage()" md-no-ink class="add">Edit product</md-button>
-									<md-button ng-if="!editFlag" ng-click="toProject()" md-no-ink class="add">Add to project</md-button>
-									<md-button ng-if="!editFlag" href="" md-no-ink class="add">Add to Compare</md-button>
+									<md-button ng-if="!editFlag" ng-click="editPage()" class="md-raised add">Edit Product</md-button>
+									<md-button ng-if="!editFlag" ng-click="toProject()" class="md-raised add">Add to Project</md-button>
+									<md-button  
+											ng-click="addToCompare()" 
+											class="md-raised add"
+											ng-if="!editFlag && (product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)">
+										Add to Compare
+									</md-button>
+									<md-button 
+											ng-click="removeFromCompare()"
+											class="md-raised add"
+											ng-if="!editFlag && !(product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)">
+										<ng-md-icon icon="close" size="17"></ng-md-icon>
+										Compare
+									</md-button>
 								</div>
 
 			          <div flex="50" ng-if="adding_to_project" layout="row" layout-align="center center" class="add-to-project">
@@ -131,7 +143,8 @@
 										md-selected-item-change="AddSpecifications(item, searchText)"
 										md-item-text="item"
 										md-min-length="0"
-										placeholder="Search for specifications">
+										md-input-name="specificationsField"
+										md-floating-label="Search for specifications">
 									<md-item-template>
 										<span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
 									</md-item-template>
@@ -175,7 +188,7 @@
 					</md-tab>
 
 
-					<md-tab label="HISTORY">
+					<md-tab label="HISTORY" ng-if="!editFlag">
 						<ui-widget-tabs-history data="history"></ui-widget-tabs-history>
 					</md-tab>
 
@@ -212,7 +225,7 @@
 
 					<md-tab label="Documents">
 						<md-content class="md-padding">
-								<ui-widget-documents-folder></ui-widget-documents-folder>
+								<ui-widget-documents-folder ng-if="!editFlag"></ui-widget-documents-folder>
 								<div ui-widget-upload-documents ng-if="editFlag" class="content-panel" product="true" auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
 						</md-content>
 					</md-tab>
@@ -220,7 +233,7 @@
 					<md-tab label="Included Services">
 						<md-content ng-if="!editFlag" class="md-padding">
 							<div layout layout-align="end end">
-								<md-button ng-click="ViewIncluded()" class="viewAll">View all</md-button>
+								<a ng-click="ViewIncluded()" class="viewAll">View all</a>
 							</div>
 							<div layout="row" class="tabs-content" layout-wrap>
 								<div flex="25" ng-repeat="oneProdut in products" class="included">
@@ -268,6 +281,14 @@
 							</div>
 						</md-content>
 					</md-tab>
+
+					<md-tab label="Authors">
+						<md-content layout="row">
+							<div flex="25" class="padding-card" ng-repeat="item in [0,1,2,3]">
+								<dmc-members-card></dmc-members-card>
+							</div>
+						</md-content>
+					</md-tab>
 				</md-tabs>
 
 				<md-divider ng-if="!editFlag"></md-divider>
@@ -281,30 +302,30 @@
 							<h2>Reviews</h2>
 							<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
 							<span flex></span>
-							<md-button md-no-ink ng-click="ViewAllReview()">View All({{number_of_comments}})</md-button>
+							<md-button md-no-ink class="md-raised" ng-click="ViewAllReview()">View All({{number_of_comments}})</md-button>
 						</div>
 							<!--Rating-->
-						<div layout="row" ng-click="SortingReviews('5star')">
+						<div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
 							<p>5 STAR</p>
 							<md-progress-linear md-mode="determinate" value="{{precentage_stars[4]}}" flex></md-progress-linear>
 							<p flex="5">{{precentage_stars[4]}}%</p>
 						</div>
-						<div layout="row" ng-click="SortingReviews('4star')">
+						<div layout="row" ng-class="{'active-star' : (selectSortingStar!=4 && selectSortingStar!=0)}" ng-click="SortingReviews('4star')">
 							<p>4 STAR</p>
 							<md-progress-linear md-mode="determinate" value="{{precentage_stars[3]}}" flex></md-progress-linear>
 							<p flex="5">{{precentage_stars[3]}}%</p>
 						</div>
-						<div layout="row" ng-click="SortingReviews('3star')">
+						<div layout="row" ng-class="{'active-star' : (selectSortingStar!=3 && selectSortingStar!=0)}" ng-click="SortingReviews('3star')">
 							<p>3 STAR</p>
 							<md-progress-linear md-mode="determinate" value="{{precentage_stars[2]}}" flex></md-progress-linear>
 							<p flex="5">{{precentage_stars[2]}}%</p>
 						</div>
-						<div layout="row" ng-click="SortingReviews('2star')">
+						<div layout="row" ng-class="{'active-star' : (selectSortingStar!=2 && selectSortingStar!=0)}" ng-click="SortingReviews('2star')">
 							<p>2 STAR</p>
 							<md-progress-linear md-mode="determinate" value="{{precentage_stars[1]}}" flex></md-progress-linear>
 							<p flex="5">{{precentage_stars[1]}}%</p>
 						</div>
-						<div layout="row" ng-click="SortingReviews('1star')">
+						<div layout="row" ng-class="{'active-star' : (selectSortingStar!=1 && selectSortingStar!=0)}" ng-click="SortingReviews('1star')">
 							<p>1 STAR</p>
 							<md-progress-linear md-mode="determinate" value="{{precentage_stars[0]}}" flex></md-progress-linear>
 							<p flex="5">{{precentage_stars[0]}}%</p>

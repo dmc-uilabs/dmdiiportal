@@ -12,6 +12,7 @@ angular.module('dmc.company-profile', [
 	'dmc.widgets.stars',
 	'dmc.widgets.review',
 	'dmc.component.members-card',
+	'dmc.component.contacts-card',
 	'dmc.common.header',
 	'dmc.common.footer',
    "dmc.location",
@@ -53,10 +54,7 @@ angular.module('dmc.company-profile', [
 		$scope.file = '';  //file picture
 		$scope.showflag = false;
 		$scope.followFlag = false;
-		$scope.inviteToProject = false;
-		$scope.invate = false;
-		$scope.toProject = "";
-		$scope.projects = null;
+		$scope.selectSortingStar = 0;
 
 		$scope.sortList = [
 			{
@@ -91,6 +89,57 @@ angular.module('dmc.company-profile', [
 			}
 		];
 
+		$scope.contacts = [
+			{
+				position: "Technical",
+				avatar: "/uploads/profile/1/20151222084711000000.jpg",
+				display_name: "Bob Smith",
+				jobTitle: "Head of Engineering",
+				phone: "111-111-1111",
+				email: "bobs@gmail.com"
+			},
+			{
+				position: "Legal",
+				avatar: "/uploads/profile/1/20151222084711000000.jpg",
+				display_name: "Bob Smith",
+				jobTitle: "Head of Engineering",
+				phone: "111-111-1111",
+				email: "bobs@gmail.com"
+			},
+			{
+				position: "Admin",
+				avatar: "/uploads/profile/1/20151222084711000000.jpg",
+				display_name: "Bob Smith",
+				jobTitle: "Head of Engineering",
+				phone: "111-111-1111",
+				email: "bobs@gmail.com"
+			},
+			{
+				position: "Communication",
+				avatar: "/uploads/profile/1/20151222084711000000.jpg",
+				display_name: "Bob Smith",
+				jobTitle: "Head of Engineering",
+				phone: "111-111-1111",
+				email: "bobs@gmail.com"
+			},
+			{
+				position: "R&D",
+				avatar: "/uploads/profile/1/20151222084711000000.jpg",
+				display_name: "Bob Smith",
+				jobTitle: "Head of Engineering",
+				phone: "111-111-1111",
+				email: "bobs@gmail.com"
+			},
+			{
+				position: "General",
+				avatar: "/uploads/profile/1/20151222084711000000.jpg",
+				display_name: "Bob Smith",
+				jobTitle: "Head of Engineering",
+				phone: "111-111-1111",
+				email: "bobs@gmail.com"
+			},
+		]
+
 		var calculate_rating = function() {
 			$scope.precentage_stars = [0,0,0,0,0];
 			$scope.average_rating = 0;
@@ -115,20 +164,7 @@ angular.module('dmc.company-profile', [
 				}
 				$scope.SortingReviews($scope.sortList[0].val);
 			}
-		})
-		//get project
-		ajax.on(
-			dataFactory.getUrlAllProjects(),
-			{
-				limit : 10, offset: 0
-			},
-			function(data){
-				$scope.projects = data.result;
-			},
-			function(){
-				alert("Ajax faild: getProjects");
-			}
-		);
+		});
 
 //review
 		//Show Leave A Review form
@@ -185,6 +221,7 @@ angular.module('dmc.company-profile', [
 		$scope.SortingReviews = function(val){
 			var sort;
 			var order;
+			$scope.selectSortingStar = 0;
 			switch(val){
 				case "date":
 					sort = 'date';
@@ -213,22 +250,27 @@ angular.module('dmc.company-profile', [
 				case "1star":
 					sort = 'stars';
 					order = 1;
+					$scope.selectSortingStar = 1;
 					break
 				case "2star":
 					sort = 'stars';
 					order = 2;
+					$scope.selectSortingStar = 2;
 					break
 				case "3star":
 					sort = 'stars';
 					order = 3;
+					$scope.selectSortingStar = 3;
 					break
 				case "4star":
 					sort = 'stars';
 					order = 4;
+					$scope.selectSortingStar = 4;
 					break
 				case "5star":
 					sort = 'stars';
 					order = 5;
+					$scope.selectSortingStar = 5;
 					break
 			}
 
@@ -387,32 +429,12 @@ angular.module('dmc.company-profile', [
 			$scope.showflag = false;
 		}
 
-	$scope.follow = function(){
-		$scope.followFlag = !$scope.followFlag;
-	}
+		$scope.follow = function(){
+			$scope.followFlag = !$scope.followFlag;
+		}
 
 
-$scope.searchText="";
-	$scope.btnInviteToProject = function(){
-		$scope.inviteToProject = true;
-	}
-
-	$scope.btnAddToProject = function(title){
-		console.info("add", title)
-		$scope.toProject = title;
-		$scope.invate = true;
-		$scope.inviteToProject = false;
-	}
-	
-	$scope.btnCanselToProject = function(){
-		$scope.inviteToProject = false;
-	}
-	
-	$scope.btnRemoveOfProject = function(){
-		$scope.toProject = "";
-		$scope.invate = false;
-		$scope.inviteToProject = false;
-	}
+		$scope.searchText="";
 
 		$scope.querySearch = function(query) {
 			console.info("selectedItemChange");

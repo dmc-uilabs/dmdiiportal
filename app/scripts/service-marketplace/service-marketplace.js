@@ -15,6 +15,7 @@ angular.module('dmc.service-marketplace', [
 	'dmc.widgets.tabs',
 	'dmc.component.treemenu',
 	'dmc.component.productcard',
+	'dmc.component.members-card',
 	'dmc.common.header',
 	'dmc.common.footer',
 	'dmc.component.carousel'
@@ -27,7 +28,7 @@ angular.module('dmc.service-marketplace', [
 	});
 	$urlRouterProvider.otherwise('/1');
 	})
-	.controller('ServiceMarketplaceController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog) {
+	.controller('ServiceMarketplaceController', ['$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$cookies', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, $cookies) {
 
 	$scope.product = [];  //array product
 	$scope.number_of_comments = 0; // number of 
@@ -38,7 +39,12 @@ angular.module('dmc.service-marketplace', [
 	$scope.limit_reviews = true;  //limit reviews
 	$scope.precentage_stars = [0,0,0,0,0]; //precentage stars
 	$scope.average_rating = 0;  //average rating
+	$scope.editFlag = false;  //flag edit page
+	$scope.allServices = [];
+	$scope.Specifications = ['Height', 'Length', 'Weight'];
 	$scope.UserLogin = "DMC Member";
+	$scope.adding_to_project = false;
+	$scope.selectSortingStar = 0;
 
 	$scope.currentImage = 1;
 	$scope.images = [];
@@ -383,6 +389,7 @@ angular.module('dmc.service-marketplace', [
 	$scope.SortingReviews = function(val){
 		var sort;
 		var order;
+		$scope.selectSortingStar = 0;
 		switch(val){
 		case "date":
 			sort = 'date';
@@ -407,22 +414,27 @@ angular.module('dmc.service-marketplace', [
 		case "1star":
 			sort = 'stars';
 			order = 1;
+			$scope.selectSortingStar = 1;
 			break
 		case "2star":
 			sort = 'stars';
 			order = 2;
+			$scope.selectSortingStar = 2;
 			break
 		case "3star":
 			sort = 'stars';
 			order = 3;
+			$scope.selectSortingStar = 3;
 			break
 		case "4star":
 			sort = 'stars';
 			order = 4;
+			$scope.selectSortingStar = 4;
 			break
 		case "5star":
 			sort = 'stars';
 			order = 5;
+			$scope.selectSortingStar = 5;
 			break
 		}
 
@@ -487,9 +499,98 @@ angular.module('dmc.service-marketplace', [
 		window.location.href = '/marketplace.php#/search/' + $stateParams.typeProduct +'s?text=' + text;
 	}
 
+//add to project
+	$scope.addToFavorite = function(){
+		return ajax.on(dataFactory.addProductToFavorite(),{
+			productId : $scope.product.id,
+			productType : $scope.product.type
+		},
+		function(data){
+			console.info("Favorite", data);
+			$scope.product.favorite = data.favorite;
+			if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+		},
+		function(){
+			toastModel.showToast("error", "Failed Add To Favorite");
+		});
+	};
 
-	})
-	.controller("ViewIncludedController", function ($scope, ajax, dataFactory, $mdDialog, $location, products) {
+	$scope.toProject = function(){
+		$scope.adding_to_project = true;
+	};
+
+	$scope.btnCanselToProject = function(){
+		$scope.adding_to_project = false;
+	}
+
+	$scope.btnAddToProject = function(id){
+		console.info("project", id);
+		ajax.on(dataFactory.getUrlAddToProject($scope.product.id),{
+			id : $scope.product.id,
+			projectId : id,
+			type : $scope.product.type
+		},function(data){
+			$scope.adding_to_project = false;
+			console.info("data", data);
+			toastModel.showToast("success", "Product added to "+data.result.currentStatus.project.title);
+		},function(){
+			toastModel.showToast("error", "Failed Add To Project");
+		}, 'POST');
+	}
+
+//compare
+	
+	var updateCompareCount = function () {
+  var arr = $cookies.getObject('compareProducts');
+    return arr == null ? {services: [], components: []} : arr;
+  };
+  $scope.compareProducts = updateCompareCount();
+	
+  $scope.$watch(function() { return $cookies.changedCompare; }, function(newValue) {
+      $scope.compareProducts = updateCompareCount();
+      if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+  });
+
+  $scope.removeFromCompare = function(){
+      var compareProducts = $cookies.getObject('compareProducts');
+      if(compareProducts != null){
+          if($scope.product.type == 'service') {
+              if($.inArray( parseInt($scope.product.id), compareProducts.services ) != -1){
+                  compareProducts.services.splice( $.inArray(parseInt($scope.product.id), compareProducts.services), 1);
+                  $cookies.putObject('compareProducts', compareProducts);
+                  $cookies.changedCompare = new Date();
+              }
+          }else if($scope.product.type == 'component'){
+              if($.inArray( parseInt($scope.product.id), compareProducts.components ) != -1){
+                  compareProducts.components.splice($.inArray(parseInt($scope.product.id), compareProducts.components), 1);
+                  $cookies.putObject('compareProducts', compareProducts);
+                  $cookies.changedCompare = new Date();
+              }
+          }
+      }
+  };
+
+  $scope.addToCompare = function(){
+      // $cookies.remove('compareProducts');
+      // Retrieving a cookie
+      if($scope.product.type == 'service' && $scope.compareProducts.components.length == 0) {
+          if($.inArray( parseInt($scope.product.id), $scope.compareProducts.services ) == -1){
+              $scope.compareProducts.services.push(parseInt($scope.product.id));
+              $cookies.putObject('compareProducts', $scope.compareProducts);
+              $cookies.changedCompare = new Date();
+          }
+      }else if($scope.product.type == 'component' && $scope.compareProducts.services.length == 0){
+          if($.inArray( parseInt($scope.product.id), $scope.compareProducts.components ) == -1){
+              $scope.compareProducts.components.push(parseInt($scope.product.id));
+              $cookies.putObject('compareProducts', $scope.compareProducts);
+              $cookies.changedCompare = new Date();
+          }
+      }
+  };
+
+
+	}])
+	.controller("ViewIncludedController", ['$scope', 'ajax', 'dataFactory', '$mdDialog', '$location', 'products', function ($scope, ajax, dataFactory, $mdDialog, $location, products) {
 	$scope.products = products;
 	$scope.product = null;
 	$scope.product = $scope.products[0];
@@ -501,4 +602,4 @@ angular.module('dmc.service-marketplace', [
 		$scope.product = $scope.products[index];
 		$scope.index = index;
 	}
-	});
+	}]);
