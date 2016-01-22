@@ -213,6 +213,42 @@ paths:
           description: send the discussion with discussionID
           schema:
             $ref: '#/definitions/Discussion'
+  '/profiles/{profileID}':
+    get:
+      tags:
+        - profiles
+      summary: Get information for a member profile
+      description: Get profile based on profileID
+      parameters:
+        - name: profileID
+          in: path
+          type: string
+          description: ID of the profile
+          required: true
+      responses:
+        '200':
+          description: send the profile with profileID
+          schema:
+            $ref: '#/definitions/Profile'
+  '/profiles/{profileID}/profile_reviews':
+    get:
+      tags:
+        - profiles
+      summary: Get reviews for a member profile
+      description: Get profile reviews based on profileID
+      parameters:
+        - name: profileID
+          in: path
+          type: string
+          description: ID of the profile
+          required: true
+      responses:
+        '200':
+          description: send the reviews with profileID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProfileReview'
 definitions:
   FeatureImage:
     type: object
@@ -399,4 +435,56 @@ definitions:
       avatar:
         type: string
       projectID:
+        type: string
+  Profile:
+    type: object
+    properties:
+      id:
+        type: string
+      displayName:
+        type: string
+      company:
+        type: string
+      jobTitle:
+        type: string
+      phone:
+        type: string
+      email:
+        type: string
+      location:
+        type: string
+      image:
+        type: string
+      description:
+        type: string
+      skills:
+        type: array
+        items:
+          type: string
+  ProfileReview:
+    type: object
+    properties:
+      id:
+        type: string
+      profileId:
+        type: string
+      name:
+        type: string
+      reply:
+        type: boolean
+      reviewId:
+        type: string
+      status:
+        type: boolean
+      date:
+        type: string
+      rating:
+        type: integer
+      userRatingReview:
+        type: object
+      like:
+        type: integer
+      dislike:
+        type: integer
+      comment:
         type: string
