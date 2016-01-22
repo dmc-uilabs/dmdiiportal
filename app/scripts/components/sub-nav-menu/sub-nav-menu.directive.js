@@ -34,7 +34,7 @@ angular.module('dmc.sub-nav-menu',[
                 $scope.currentPageName = $scope.getCurrentPageName();
 
 
-                $element.on("click",function(event){
+                $element.on("click",".squares,.title",function(event){
                     $mdDialog.show({
                         controller: "SubNavDialogController",
                         templateUrl: 'templates/components/sub-nav-menu/sub-nav-dialog.html',
@@ -94,6 +94,18 @@ var SubNavPages = [
         title : 'Discussions',
         icon : 'forum',
         state : 'project.discussions'
+    },
+    {
+        id : 7,
+        title : 'Services',
+        icon : 'receipt',
+        state : 'project.services'
+    },
+    {
+        id : 8,
+        title : 'Components',
+        icon : 'receipt',
+        state : 'project.components'
     }
 ];
 

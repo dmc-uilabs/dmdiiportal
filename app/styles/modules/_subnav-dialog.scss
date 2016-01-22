@@ -34,9 +34,10 @@
 }
 
 .nav-menu-button{
-  cursor: pointer;
   display: block;
+  cursor: default;
   .squares{
+    cursor: pointer;
     max-width: 36px;
     text-align: left;
     display: inline-block;
@@ -54,6 +55,7 @@
     }
   }
   .title{
+    cursor: pointer;
     display: inline-block;
     font-size: 13px;
     vertical-align: top;
