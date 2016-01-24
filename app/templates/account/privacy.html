@@ -70,21 +70,21 @@
                             </div>
                         </div>
                     </div>
-                    <md-divider ></md-divider>
-                    <div class="inputs-container blocked-users" layout="row">
-                        <div layout="column" flex="50">
-                            <h2 class="md-title title-block">Blocked Users</h2>
-                            <div layout="row">
-                                <div class="blocked-user" ng-repeat="user in blockedUser">
-                                    <a ng-href="/user?id={{user.id}}">{{user.fullName}}</a>
-                                    <md-button class="md-icon-button" ng-click="deleteBlockedUser(user.id)" aria-label="Delete Blocked User">
-                                        <ng-md-icon icon="clear" ng-style="{'fill' : '#444'}" size="26"></ng-md-icon>
-                                    </md-button>
-                                </div>
-                                <div class="empty-blocked-list" ng-show="blockedUser.length == 0">List is empty</div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--<md-divider ></md-divider>-->
+                    <!--<div class="inputs-container blocked-users" layout="row">-->
+                        <!--<div layout="column" flex="50">-->
+                            <!--<h2 class="md-title title-block">Blocked Users</h2>-->
+                            <!--<div layout="row">-->
+                                <!--<div class="blocked-user" ng-repeat="user in blockedUser">-->
+                                    <!--<a ng-href="/user?id={{user.id}}">{{user.fullName}}</a>-->
+                                    <!--<md-button class="md-icon-button" ng-click="deleteBlockedUser(user.id)" aria-label="Delete Blocked User">-->
+                                        <!--<ng-md-icon icon="clear" ng-style="{'fill' : '#444'}" size="26"></ng-md-icon>-->
+                                    <!--</md-button>-->
+                                <!--</div>-->
+                                <!--<div class="empty-blocked-list" ng-show="blockedUser.length == 0">List is empty</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </md-content>
             </div>
         </div>

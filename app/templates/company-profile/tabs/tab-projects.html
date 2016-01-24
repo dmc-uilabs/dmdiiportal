@@ -1,0 +1,32 @@
+<div layout="row" class="line-block" layout-align="start start">
+    <md-input-container flex class="company-postCollaborations right-space" >
+        <label>Post Collaborations</label>
+        <textarea ng-init="changes.postCollaborations = source.postCollaborations"
+                  ng-model="changes.postCollaborations"
+                  ng-change="changedValue('postCollaborations')"
+                  columns="1"></textarea>
+    </md-input-container>
+    <md-input-container flex class="company-collaborationInterests left-space" >
+        <label>Collaboration Interests</label>
+        <textarea ng-init="changes.collaborationInterests = source.collaborationInterests"
+                  ng-model="changes.collaborationInterests"
+                  ng-change="changedValue('collaborationInterests')"
+                  columns="1"></textarea>
+    </md-input-container>
+</div>
+<div layout="row" class="line-block" layout-align="start start">
+    <md-input-container flex class="company-pastProjects right-space" >
+        <label>Past DMDII Projects</label>
+        <textarea ng-init="changes.pastProjects = source.pastProjects"
+                  ng-model="changes.pastProjects"
+                  ng-change="changedValue('pastProjects')"
+                  columns="1"></textarea>
+    </md-input-container>
+    <md-input-container flex class="company-upcomingProjectInterests left-space" >
+        <label>Upcoming DMDII Project Interests</label>
+        <textarea ng-init="changes.upcomingProjectInterests = source.upcomingProjectInterests"
+                  ng-model="changes.upcomingProjectInterests"
+                  ng-change="changedValue('upcomingProjectInterests')"
+                  columns="1"></textarea>
+    </md-input-container>
+</div>

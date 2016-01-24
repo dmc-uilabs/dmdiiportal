@@ -1,0 +1,127 @@
+<div ng-if="!not_found" class="edit-company-profile">
+    <md-content class="company-profile-padding">
+        <div layout="row" layout-align="end start">
+            <md-button class="md-raised cancel-button" ng-click="cancelChanges()">Cancel</md-button>
+            <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!isDataChanged">Save</md-button>
+        </div>
+        <div layout="row">
+            <div layout="column" class="logo-column" ng-show="!changingLogo">
+                <div class="profile-logo">
+                    <img ng-src="{{company.logoImage}}" class="logo" alt="{{company.name}}" />
+                </div>
+                <md-button flex class="md-raised change-logo" ng-click="changeLogo()">Change Logo</md-button>
+            </div>
+            <div ng-if="changingLogo">
+                <div>
+                    <div class="flow-box"
+                         flow-init
+                         flow-drag-enter="pictureDragEnter($flow)"
+                         flow-drag-leave="pictureDragLeave($flow)"
+                         flow-file-success="$file.msg = $message"
+                         flow-file-added="addedNewFile($file, $event, $flow )"
+                         layout="row" flex layout-align="start start">
+                        <div class="alert" flow-drop flow-drop-enabled="true" flex>
+                            <div class="inner-box" layout="row" layout-align="center center" flex>
+                                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
+                                    <img id="flowImage" flow-img="$flow.files[0]" />
+                                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
+                                        <ng-md-icon icon="close" size="21"></ng-md-icon>
+                                    </md-button>
+                                </div>
+                                <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
+                                    Drag And Drop your picture here<br>
+                                    300 x 300 px (max 2 MB)
+                                    <br>or<br>
+                                    <strong>Click here</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div layout="row" layout-aling="space-between start">
+                    <md-button flex class="md-raised md-primary upload-logo" ng-disabled="!newLogo" ng-click="uploadLogo()">Upload</md-button>
+                    <md-button flex class="md-raised cancel-change-logo" ng-click="cancelChangingLogo()">Cancel</md-button>
+                </div>
+            </div>
+            <div layout="column" flex class="inputs-top">
+                <div layout="row">
+                    <md-input-container flex="35" class="company-name">
+                        <label>Company Name</label>
+                        <input ng-init="changes.name = company.name"
+                               ng-model="changes.name"
+                               ng-change="changedValue('name')">
+                    </md-input-container>
+                    <md-input-container flex="35" class="company-division">
+                        <label>Division</label>
+                        <input ng-init="changes.division = company.division"
+                               ng-model="changes.division"
+                               ng-change="changedValue('division')">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex="35" class="company-industry">
+                        <label>Industry</label>
+                        <input ng-init="changes.industry = company.industry"
+                               ng-model="changes.industry"
+                               ng-change="changedValue('industry')">
+                    </md-input-container>
+                    <md-input-container flex="35" class="company-NAICSCode" >
+                        <label>NAICS Code</label>
+                        <input ng-init="changes.NAICSCode = company.NAICSCode"
+                               maxlength="11"
+                               ng-model="changes.NAICSCode"
+                               ng-change="changedValue('NAICSCode')">
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+        <div layout="row">
+            <md-input-container flex class="company-descriptionOrganization" >
+                <label>Description of Organization</label>
+                <textarea ng-init="changes.description = company.description"
+                          ng-model="changes.description"
+                          columns="1"
+                          ng-change="changedValue('description')"
+                          md-maxlength="1000"></textarea>
+            </md-input-container>
+        </div>
+        <div layout="row">
+            <md-tabs class="edit-profile-company-tabs"
+                     md-selected="currentSection.index"
+                     md-dynamic-height
+                     md-border-bottom>
+                <md-tab label="{{section.title}}"
+                        md-on-select="onSectionSelected(key)"
+                        ng-repeat="(key,section) in sections">
+                    <md-content class="mainSectionsContent" ng-switch on="key">
+                        <div tab-overview
+                             source="company"
+                             changes="changes"
+                             changed-value="changedValue"
+                             ng-switch-when="overview"></div>
+                        <div tab-skills
+                             source="company"
+                             changes="changes"
+                             changed-value="changedValue"
+                             ng-switch-when="skills"></div>
+                        <div tab-projects
+                             source="company"
+                             changes="changes"
+                             changed-value="changedValue"
+                             ng-switch-when="projects"></div>
+                        <div tab-contact
+                             source="company"
+                             changes="changes"
+                             changed-value="changedValue"
+                             ng-switch-when="contact"></div>
+                        <div tab-membership
+                             source="company"
+                             changes="changes"
+                             changed-value="changedValue"
+                             ng-switch-when="membership"></div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </div>
+    </md-content>
+</div>

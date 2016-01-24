@@ -132,8 +132,14 @@ angular.module('dmc.data',[])
             uploadCompanyLogoUrl : function(){
                 return baseServer+'/ucl';
             },
+            uploadCompanyProfileImageUrl: function(){
+                return baseServer+'/uci';
+            },
             uploadProfilePictureUrl: function(){
                 return baseServer+'/uprpic';
+            },
+            removeCompanyImages : function(){
+                return baseServer+'/remove_company_images';
             },
             getAccountUrl: function(id){
                 return baseServer+'/get_account'+appendId(id);
@@ -271,6 +277,57 @@ angular.module('dmc.data',[])
             },
             addDiscussion : function(){
                 return localhost+'individual-discussion'
+            },
+            getCompanyImages : function(id){
+                return localhost+'companies/'+id+'/company_images'
+            },
+            getCompanyVideos : function(id){
+                return localhost+'companies/'+id+'/company_videos'
+            },
+            getCompanySkills : function(id){
+                return localhost+'companies/'+id+'/company_skills'
+            },
+            getCompanyKeyContacts : function(id){
+                return localhost+'companies/'+id+'/company_key_contacts'
+            },
+            addCompanySkill: function(){
+                return localhost+'company_skills'
+            },
+            getLastCompanySkillId : function(){
+                return localhost+'company_skills'
+            },
+            deleteCompanySkill : function(id){
+                return localhost+'company_skills/'+id;
+            },
+            getLastCompanyContactId : function(){
+                return localhost+'company_key_contacts'
+            },
+            addCompanyContact : function(){
+                return localhost+'company_key_contacts'
+            },
+            updateCompanyProfile: function(id){
+                return localhost+'companies/'+id;
+            },
+            getLastCompanyVideoId: function(){
+                return localhost+'company_videos';
+            },
+            addCompanyVideo: function(){
+                return localhost+'company_videos';
+            },
+            deleteCompanyVideo: function(id){
+                return localhost+'company_videos/'+id;
+            },
+            deleteCompanyContact: function(id){
+                return localhost+'company_key_contacts/'+id;
+            },
+            updateCompanyImage: function(id){
+                return localhost+'company_images/'+id;
+            },
+            updateCompanyVideo: function(id){
+                return localhost+'company_videos/'+id;
+            },
+            updateCompanyContact: function(id){
+                return localhost+'company_key_contacts/'+id;
             }
         };
     }
