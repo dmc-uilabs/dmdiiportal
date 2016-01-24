@@ -80,6 +80,10 @@ return call_user_func(function () {
 	  echo upload_company_picture($_POST,$_FILES);
     }else if(strpos($uri,'/ucl') !== false){
         echo upload_company_logo($_POST,$_FILES);
+    }else if(strpos($uri,'/uci') !== false) {
+        echo upload_company_image($_POST, $_FILES);
+    }else if(strpos($uri,'/remove_company_images') !== false){
+        echo remove_company_images($_POST);
 	}else if(strpos($uri,'/add_featured_company') !== false){
 		echo add_featured_company($_GET);
 	}else if(strpos($uri,'/remove_featured_company') !== false){
@@ -1115,6 +1119,59 @@ function upload_company_logo($params,$file){
     }
 }
 
+function remove_company_images($params){
+    if(isset($params['ids'])){
+        $mainDir = dirname(__DIR__);
+        for($i = 0; $i < count($params['ids']); ++$i){
+            $fileFolder = '\\uploads\\company\\image\\' . $params['ids'][$i];
+            if (is_dir($mainDir . $fileFolder)) delete_directory($mainDir . $fileFolder);
+            $delete_image = json_decode(httpResponse(dbUrl().'/company_images/'.$params['ids'][$i], 'DELETE', null),true);
+        }
+    }
+    return json_encode(array('result' => 'success'));
+}
+
+function upload_company_image($params,$file){
+    if(isset($params['id'])) {
+        $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['id'], null, null), true);
+        if($company != null and isset($company['id']) == true) {
+            $last = json_decode(httpResponse(dbUrl() . '/company_images?_sort=id&_order=DESC&_limit=1', null, null), true);
+            $last_id = (count($last) > 0 ? $last[0]['id'] + 1 : 1);
+
+            $id = $last_id;
+            $mainDir = dirname(__DIR__);
+            $fileFolder = '\\uploads\\company\\image\\' . $id;
+            if (is_dir($mainDir . $fileFolder)) delete_directory($mainDir . $fileFolder);
+            if (mkdir($mainDir . $fileFolder, 0755)) {
+                $name_file = basename($file['file']['name']);
+                $type = substr($name_file, strripos($name_file, '.'));
+                $name_file = date('YmdHisu') . $type;
+                $uploadFile = $mainDir . $fileFolder . '\\' . $name_file;
+                if (move_uploaded_file($file['file']['tmp_name'], $uploadFile)) {
+                    $otherName = '/uploads/company/image/' . $id .'/'.$name_file;
+                    $file['name'] = $otherName;
+                    $image = array(
+                        'id' => $last_id,
+                        'companyId' => $params['id'],
+                        'url' => $otherName,
+                        'title' => $params['title']
+                    );
+                    $added_image = json_decode(httpResponse(dbUrl().'/company_images', 'POST', json_encode($image)),true);
+                    return json_encode(array('result' => $added_image));
+                } else {
+                    return json_encode(array('error' => 'Possible attacks via file download','$file' => $file));
+                }
+            } else {
+                return json_encode(array('error' => 'Unable create directory '));
+            }
+        }else{
+            return json_encode(array('error' => 'Company does not exist' ));
+        }
+    }else{
+        return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
 function upload_company_picture($params,$file){
 	if(isset($params['id'])) {
 		$company = json_decode(httpResponse(dbUrl().'/companies/' . $params['id'], null, null), true);
@@ -1484,6 +1541,8 @@ function edit_profile($params){
   $changed_item = json_decode(httpResponse(dbUrl().'/profiles/'.$params['profileId'], 'PUT', $data),true);
   return json_encode(array('result' => $changed_item ));
 }
+
+
 
 function upload_edit_profile_picture($params,$file){
   if(isset($params['id'])) {

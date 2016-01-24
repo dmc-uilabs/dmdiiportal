@@ -285,10 +285,10 @@ angular.module('dmc.compare',[
                             targetEvent: ev,
                             clickOutsideToClose: true
                         }).then(function (answer) {
-                            removeModalWindowAttr();
+                            //removeModalWindowAttr();
                             $('html').removeClass('hide-scroll');
                         }, function () {
-                            removeModalWindowAttr();
+                            //removeModalWindowAttr();
                             $('html').removeClass('hide-scroll');
                         });
                     }

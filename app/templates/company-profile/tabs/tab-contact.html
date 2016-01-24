@@ -1,0 +1,191 @@
+<div layout="row" class="line-block">
+    <md-input-container flex="40" class="right-space">
+        <label>Address</label>
+        <input ng-init="changes.address = source.address"
+               ng-change="changedValue('address')"
+               ng-model="changes.address">
+    </md-input-container>
+    <md-input-container flex class="left-space right-space">
+        <label>City</label>
+        <input ng-init="changes.city = source.city"
+               ng-change="changedValue('city')"
+               ng-model="changes.city">
+    </md-input-container>
+    <md-input-container flex class="left-space right-space">
+        <label>State</label>
+        <md-select ng-init="changes.state = source.state"
+                   ng-change="changedValue('state')"
+                   ng-model="changes.state">
+            <md-option ng-repeat="state in states" value="{{state.id}}">{{state.name}}</md-option>
+        </md-select>
+    </md-input-container>
+    <md-input-container flex class="left-space">
+        <label>Zip Code</label>
+        <input zip-code-input
+               maxlength="10"
+               ng-init="changes.zipCode = source.zipCode"
+               ng-change="changedValue('zipCode')"
+               ng-model="changes.zipCode">
+    </md-input-container>
+</div>
+<div layout="row" class="line-block">
+    <md-input-container flex class="md-icon-float right-space" >
+        <label>Twitter</label>
+        <md-icon>
+            <ng-md-icon icon="twitter" size="32"></ng-md-icon>
+        </md-icon>
+        <input ng-init="changes.twitter = source.twitter"
+               ng-change="changedValue('twitter')"
+               ng-model="changes.twitter" type="text">
+    </md-input-container>
+    <md-input-container flex class="md-icon-float left-space">
+        <label>LinkedIn</label>
+        <md-icon>
+            <ng-md-icon icon="linkedin-box" size="32"></ng-md-icon>
+        </md-icon>
+        <input ng-init="changes.linkedIn = source.linkedIn"
+               ng-change="changedValue('linkedIn')"
+               ng-model="changes.linkedIn">
+    </md-input-container>
+</div>
+<div layout="row" class="line-block">
+    <md-input-container flex="50" class="right-space">
+        <label>Website</label>
+        <input ng-init="changes.website = source.website"
+               ng-change="changedValue('website')"
+               ng-model="changes.website">
+    </md-input-container>
+    <md-input-container flex="25" class="left-space right-space">
+        <label>Preferred Method of Communication</label>
+        <md-select ng-init="changes.methodCommunication = source.methodCommunication"
+                   ng-change="changedValue('methodCommunication')"
+                   ng-model="changes.methodCommunication">
+            <md-option ng-repeat="method in preferredMethods" value="{{method.id}}">{{method.name}}</md-option>
+        </md-select>
+    </md-input-container>
+    <md-input-container flex="25" class="left-space">
+        <label>Email</label>
+        <input ng-init="changes.email = source.email"
+               ng-change="changedValue('email')"
+               ng-model="changes.email">
+    </md-input-container>
+</div>
+<div layout="row">
+    <div class="list-contacts" flex="100">
+        <div layout="row" class="title-list-contacts" layout-align="space-between center">
+            <div class="title">Key Contacts</div>
+            <md-button class="md-raised md-primary add-new-contact"
+                       ng-click="addNewContact()"
+                       ng-show="!isAddingContact"
+                       aria-label="Add Contact">
+                Add New Contact
+            </md-button>
+        </div>
+        <div layout="row" class="boxForAddContact" flex ng-if="isAddingContact">
+            <form name="formAddContact" ng-submit="saveContact(newContact)" layout="column" flex>
+                <div layout="row" flex>
+                    <div layout="column" class="right-space" flex="20">
+                        <md-input-container>
+                            <label>Type</label>
+                            <md-select required name="type" ng-model="newContact.type">
+                                <md-option ng-repeat="c in keyContactTypes" value="{{c.id}}">{{c.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="column" class="left-space" flex>
+                        <div layout="row">
+                            <md-input-container flex="50" class="right-space">
+                                <label>Name</label>
+                                <input required name="name" ng-model="newContact.name">
+                            </md-input-container>
+                            <md-input-container flex="50" class="left-space">
+                                <label>Title</label>
+                                <input required name="title" ng-model="newContact.title">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex="50" class="right-space">
+                                <label>Phone Number</label>
+                                <input required
+                                       name="phoneNumber"
+                                       phone-input
+                                       maxlength="12"
+                                       ng-model="newContact.phoneNumber">
+                            </md-input-container>
+                            <md-input-container flex="50" class="left-space">
+                                <label>Email</label>
+                                <input required type="email" name="email" ng-model="newContact.email">
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-raised" type="button" ng-click="cancelAddContact()">
+                        Cancel
+                    </md-button>
+                    <md-button class="md-raised md-primary"
+                               type="submit"
+                               ng-disabled="!formAddContact.$valid">
+                        Save
+                    </md-button>
+                </div>
+            </form>
+        </div>
+        <div layout="row"
+             layout-align="start start"
+             class="contact-item"
+             ng-repeat="item in source.contacts" ng-show="!item.hide" flex>
+            <div layout="column" class="right-space" flex="20">
+                <md-input-container>
+                    <label>Type</label>
+                    <md-select ng-init="item.changedType = item.type"
+                               ng-change="changedValue('contact')"
+                               ng-model="item.changedType">
+                        <md-option ng-repeat="c in keyContactTypes" value="{{c.id}}">{{c.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div layout="column" class="left-space" flex>
+                <div layout="row">
+                    <md-input-container flex="50" class="right-space">
+                        <label>Name</label>
+                        <input ng-init="item.changedName = item.name"
+                               ng-change="changedValue('contact')"
+                               ng-model="item.changedName">
+                    </md-input-container>
+                    <md-input-container flex="50" class="left-space">
+                        <label>Title</label>
+                        <input ng-init="item.changedTitle = item.title"
+                               ng-change="changedValue('contact')"
+                               ng-model="item.changedTitle">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex="50" class="right-space">
+                        <label>Phone Number</label>
+                        <input phone-input
+                               maxlength="12"
+                               ng-init="item.changedPhoneNumber = item.phoneNumber"
+                               ng-change="changedValue('contact')"
+                               ng-model="item.changedPhoneNumber">
+                    </md-input-container>
+                    <md-input-container flex="50" class="left-space">
+                        <label>Email</label>
+                        <input ng-init="item.changedEmail = item.email"
+                               ng-change="changedValue('contact')"
+                               ng-model="item.changedEmail">
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="column" class="left-space">
+                <md-button md-no-ink
+                           ng-click="deleteContact(item)"
+                           class="md-icon-button delete-contact"
+                           aria-label="Delete Contact">
+                    <ng-md-icon icon="delete" size="32"></ng-md-icon>
+                </md-button>
+            </div>
+        </div>
+        <div layout="row" ng-if="source.contacts.length == 0 && !isAddingContact">No contacts</div>
+    </div>
+</div>
