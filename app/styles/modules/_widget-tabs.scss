@@ -5,7 +5,13 @@
 			.viewAll{
 				margin-left: 16px;
 				font-size: 14px;
-				text-decoration: underline;
+				text-decoration: none;
+				text-transform: uppercase;
+				cursor: pointer;
+				&:hover{
+					text-decoration: underline;
+				}
+
 			}
 		}
 

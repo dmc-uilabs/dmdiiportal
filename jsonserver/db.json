@@ -86,11 +86,6 @@
   ],
   "company_skills": [
     {
-      "id": 2,
-      "companyId": 1,
-      "name": "New Skill 2"
-    },
-    {
       "id": 4,
       "companyId": 1,
       "name": "Skill 1"

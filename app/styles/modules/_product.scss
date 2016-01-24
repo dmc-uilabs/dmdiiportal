@@ -174,9 +174,16 @@
       padding: 8px;
       .product-card{
         width: 100%;
-        padding-bottom: 16px
+        padding-bottom: 16px;
+        a{
+          color: grey;
+        }
       }
     }
+
+  }
+  .padding-card{
+    padding: 8px;
   }
   .md-button.viewAll{
     font-size: 11px;
@@ -184,11 +191,25 @@
     line-height: 36px;
     margin: 0;
   }
+  a.viewAll{
+    margin-right: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover{
+      text-decoration: underline;
+    }
+
+  }
 }
 
 .reviews{
   margin: 15px 0;
   .reviews-rating{
+    div:focus{
+      outline: none;
+    };
     .reviews-rating-header{
       padding: 0;
       h2{
@@ -203,13 +224,31 @@
     }
     md-progress-linear {
       margin: auto 0 !important;
-      height: 15px !important;
+      height: 15px ;
+      .md-container{
+        height: 15px ;
+        .md-bar2{
+          height: 15px ;
+        }
+      }
     }
-    md-progress-linear > .md-container{
+    .active-star{
+      md-progress-linear {
+        .md-container{
+          background-color: #CCC;
+          .md-bar2{
+            background-color: #999;
+          }
+        }
+      }
+    }
+    /*md-progress-linear > .md-container{
       height: 15px !important;
     }
     md-progress-linear > .md-container> .md-bar2 {
       height: 15px !important;
+    }*/
+    .active-star{
     }
     div {
       p{

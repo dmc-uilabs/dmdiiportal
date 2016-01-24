@@ -12,6 +12,7 @@ angular.module('dmc.company-profile', [
 	'dmc.widgets.stars',
 	'dmc.widgets.review',
 	'dmc.component.members-card',
+	'dmc.component.contacts-card',
 	'dmc.common.header',
 	'dmc.common.footer',
     'dmc.location',
@@ -52,6 +53,7 @@ angular.module('dmc.company-profile', [
             url: '/contact'
         });
 		$urlRouterProvider.otherwise('/1');
+
 	}).service('companyProfileModel', ['dataFactory','ajax', function(dataFactory,ajax) {
         // get company skills
         this.getSkills = function(id, callback) {
@@ -73,7 +75,7 @@ angular.module('dmc.company-profile', [
                     toastModel.showToast("error", "Error. The problem on the server (get images).");
                 },"GET"
             );
-        }
+        };
 
         // get company videos
         this.getVideos = function(id, callback){

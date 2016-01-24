@@ -43,35 +43,21 @@
 					<span flex></span>
 
 					<md-button aria-label="location_city" href="" class="md-icon-button">
-						<ng-md-icon icon="location_city" style="fill: #65AF3F;" size="25"></ng-md-icon>
+						<md-icon md-svg-src="images/icon_add_company.svg" class="header-icon" aria-label="company"></md-icon>
+						<!-- <ng-md-icon icon="location_city" style="fill: grey;" size="25"></ng-md-icon> -->
 					</md-button>
 					<md-button aria-label="email" href="" class="md-icon-button">
-						<ng-md-icon icon="email" style="fill: #65AF3F;" size="25"></ng-md-icon>
+						<ng-md-icon icon="email" style="fill: grey;" size="25"></ng-md-icon>
 					</md-button>
 				</div>
 					<span flex></span>
 				<div layout="row" layout-align="center center">
 					<ui-widget-stars-static size="15" ng-click="goToReview()" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
-					<md-button ng-href="company.php#/1/storefront/services">View Storefront</md-button>
+					<a ng-href="company.php#/1/storefront/services">View Storefront</a>
 					<span flex></span>
-					<div layout="row" ng-if="!inviteToProject">
-						<md-button ng-click="follow()">
+					<div layout="row">
+						<md-button class="md-raised" ng-click="follow()">
 							{{(followFlag) ? 'Unfollow' : 'Follow'}}
-						</md-button>
-						<md-button ng-if="!invate" ng-click="btnInviteToProject()">Invite to Project</md-button>
-						<md-button ng-if="invate" ng-click="btnRemoveOfProject()">
-							<ng-md-icon icon="close" size="17"></ng-md-icon>{{ toProject}}
-						</md-button>
-					</div>
-					<div flex="50" layout="row"  layout-align="center center" class="invite" ng-show="inviteToProject">
-						<md-button class="md-raised cancelProject" ng-click="btnCanselToProject()">
-							<ng-md-icon icon="close" size="17"></ng-md-icon>
-						</md-button>
-						<md-select placeholder="Select Project" ng-model="projectModel" style="width:100%">
-							<md-option ng-repeat="p in projects">{{p.title}}</md-option>
-						</md-select>
-						<md-button ng-disabled="!projectModel" class="md-raised addProject" ng-click="btnAddToProject(projectModel)">
-							Add
 						</md-button>
 					</div>
 				</div>
@@ -141,22 +127,22 @@
 					<md-list flex class="company-profile-list">
 						<md-subheader class="md-no-sticky">
 							Public
-							<md-button class="viewAll">View all</md-button>
+							<a class="viewAll">View all</a>
 						</md-subheader>
 						<md-list-item>
-							<ng-md-icon icon="done_all" style="fill: #65AF3F;" size="25"></ng-md-icon>
+							<ng-md-icon icon="done_all" style="fill: grey;" size="25"></ng-md-icon>
 							<h2>First Name completed <a href="">The First Project</a></h2>
 							<span flex></span>
 							<h3>June 30</h3>
 						</md-list-item>
 						<md-list-item>
-							<ng-md-icon icon="done_all" style="fill: #65AF3F;" size="25"></ng-md-icon>
+							<ng-md-icon icon="done_all" style="fill: grey;" size="25"></ng-md-icon>
 							<h2>First Name completed <a href="">The Project</a></h2>
 							<span flex></span>
 							<h3>May 29</h3>
 						</md-list-item>
 						<md-list-item>
-							<ng-md-icon icon="done_all" style="fill: #65AF3F;" size="25"></ng-md-icon>
+							<ng-md-icon icon="done_all" style="fill: grey;" size="25"></ng-md-icon>
 							<h2>First Name completed <a href="">The First Project</a></h2>
 							<span flex></span>
 							<h3>June 30</h3>
@@ -167,23 +153,23 @@
 
 					<md-list flex class="company-profile-list">
 						<md-subheader class="md-no-sticky">
-							Shared
-							<md-button class="viewAll">View all</md-button>
+							Mutual
+							<a class="viewAll">View all</a>
 						</md-subheader>
 						<md-list-item>
-							<ng-md-icon icon="person" style="fill: #65AF3F;" size="25"></ng-md-icon>
+							<ng-md-icon icon="person" style="fill: grey;" size="25"></ng-md-icon>
 							<h2>You added First Name as a contact</h2>
 							<span flex></span>
 							<h3>June 30</h3>
 						</md-list-item>
 						<md-list-item>
-							<ng-md-icon icon="create" style="fill: #65AF3F;" size="25"></ng-md-icon>
+							<ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
 							<h2>You rated First Name's <a href="">Product Name.</a><a href="">View your review.</a></h2>
 							<span flex></span>
 							<h3>May 01</h3>
 						</md-list-item>
 						<md-list-item>
-							<ng-md-icon icon="supervisor_account" style="fill: #65AF3F;" size="25"></ng-md-icon>
+							<ng-md-icon icon="supervisor_account" style="fill: grey;" size="25"></ng-md-icon>
 							<h2>You worked with First Name on <a href="">The First Project.</a></h2>
 							<span flex></span>
 							<h3>March 30</h3>
@@ -224,6 +210,11 @@
 			</md-tab>
 
 			<md-tab label="Key contacts">
+				<div layout="row" layout-wrap>
+					<div flex="25" class="padding-contact-card" ng-repeat="item in contacts">
+						<dmc-contacts-card card-source="item"></dmc-contacts-card>
+					</div>
+				</div>
 			</md-tab>
 		</md-tabs>
 
@@ -235,7 +226,7 @@
 					<h3>MEMBERS</h3>
 					<h4>11,000 total</h4>
 				</div>
-				<a href="">ViewAll</a>
+				<a class="viewAll" href="">View All</a>
 			</div>
 			<md-divider></md-divider>
 			<div layout="row">
@@ -254,30 +245,30 @@
 					<h2>Reviews</h2>
 					<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
 					<span flex></span>
-					<md-button md-no-ink ng-click="ViewAllReview()">View All({{number_of_comments}})</md-button>
+					<md-button class="viewAll md-raised" ng-click="ViewAllReview()">View All({{number_of_comments}})</md-button>
 				</div>
 					<!--Rating-->
-				<div layout="row" ng-click="SortingReviews('5star')">
+				<div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
 					<p>5 STAR</p>
 					<md-progress-linear md-mode="determinate" value="{{precentage_stars[4]}}" flex></md-progress-linear>
 					<p flex="5">{{precentage_stars[4]}}%</p>
 				</div>
-				<div layout="row" ng-click="SortingReviews('4star')">
+				<div layout="row" ng-class="{'active-star' : (selectSortingStar!=4 && selectSortingStar!=0)}" ng-click="SortingReviews('4star')">
 					<p>4 STAR</p>
 					<md-progress-linear md-mode="determinate" value="{{precentage_stars[3]}}" flex></md-progress-linear>
 					<p flex="5">{{precentage_stars[3]}}%</p>
 				</div>
-				<div layout="row" ng-click="SortingReviews('3star')">
+				<div layout="row" ng-class="{'active-star' : (selectSortingStar!=3 && selectSortingStar!=0)}" ng-click="SortingReviews('3star')">
 					<p>3 STAR</p>
 					<md-progress-linear md-mode="determinate" value="{{precentage_stars[2]}}" flex></md-progress-linear>
 					<p flex="5">{{precentage_stars[2]}}%</p>
 				</div>
-				<div layout="row" ng-click="SortingReviews('2star')">
+				<div layout="row" ng-class="{'active-star' : (selectSortingStar!=2 && selectSortingStar!=0)}" ng-click="SortingReviews('2star')">
 					<p>2 STAR</p>
 					<md-progress-linear md-mode="determinate" value="{{precentage_stars[1]}}" flex></md-progress-linear>
 					<p flex="5">{{precentage_stars[1]}}%</p>
 				</div>
-				<div layout="row" ng-click="SortingReviews('1star')">
+				<div layout="row" ng-class="{'active-star' : (selectSortingStar!=1 && selectSortingStar!=0)}" ng-click="SortingReviews('1star')">
 					<p>1 STAR</p>
 					<md-progress-linear md-mode="determinate" value="{{precentage_stars[0]}}" flex></md-progress-linear>
 					<p flex="5">{{precentage_stars[0]}}%</p>

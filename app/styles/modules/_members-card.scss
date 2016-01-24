@@ -4,14 +4,27 @@ $lines-to-show: 4;
 
 .members-card{
 	border: 1px solid grey;
-	border-radius: 6px;
+	border-radius: 3px;
 	padding: 0;
+  .header{
+    a{
+      color: inherit;
+    }
+  }
 	.info{
 		padding: 0 8px;
 		h4{
 			font-weight: normal;
-			margin: 0 !important;
+			margin: 6px 0;
 		}
+    .stars{
+      margin: 6px 0;
+    }
+    .contact{
+      h4{
+        margin-left: 16px;
+      }
+    }
 	}
 	.description{
 		margin: 8px;
