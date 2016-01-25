@@ -135,11 +135,17 @@ angular.module('dmc.data',[])
             uploadCompanyProfileImageUrl: function(){
                 return baseServer+'/uci';
             },
+            uploadCompanyProfileSkillImageUrl: function(){
+                return baseServer+'/ucsi';
+            },
             uploadProfilePictureUrl: function(){
                 return baseServer+'/uprpic';
             },
             removeCompanyImages : function(){
                 return baseServer+'/remove_company_images';
+            },
+            removeCompanySkillsImages : function(){
+                return baseServer+'/remove_company_skills_images';
             },
             getAccountUrl: function(id){
                 return baseServer+'/get_account'+appendId(id);
@@ -281,6 +287,9 @@ angular.module('dmc.data',[])
             getCompanyImages : function(id){
                 return localhost+'companies/'+id+'/company_images'
             },
+            getCompanySkillsImages: function(id){
+                return localhost+'companies/'+id+'/company_skill_images'
+            },
             getCompanyVideos : function(id){
                 return localhost+'companies/'+id+'/company_videos'
             },
@@ -322,6 +331,9 @@ angular.module('dmc.data',[])
             },
             updateCompanyImage: function(id){
                 return localhost+'company_images/'+id;
+            },
+            updateCompanySkillsImage: function(id){
+                return localhost+'company_skill_images/'+id;
             },
             updateCompanyVideo: function(id){
                 return localhost+'company_videos/'+id;

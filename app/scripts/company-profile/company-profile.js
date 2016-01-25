@@ -77,6 +77,17 @@ angular.module('dmc.company-profile', [
             );
         };
 
+        // get company images
+        this.getSkillsImages = function(id, callback){
+            return ajax.on(dataFactory.getCompanySkillsImages(id),{
+                    "_order" : "DESC",
+                    "_sort" : "id"
+                }, callback,function(){
+                    toastModel.showToast("error", "Error. The problem on the server (get images).");
+                },"GET"
+            );
+        };
+
         // get company videos
         this.getVideos = function(id, callback){
             return ajax.on(dataFactory.getCompanyVideos(id),{

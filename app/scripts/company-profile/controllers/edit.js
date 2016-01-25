@@ -61,13 +61,17 @@ angular.module('dmc.company-profile')
         var updateDataChangedStatus = function(){
             var isChange = false;
             for(var key in $scope.changes){
-                if(key != 'removedImages') {
+                if(key != 'removedImages' && key != 'removedSkillsImages') {
                     if ($scope.changes[key] != $scope.company[key]) {
                         isChange = true;
                         break;
                     }
                 }else{
                     if($.type($scope.changes.removedImages) == 'array' && $scope.changes.removedImages.length > 0){
+                        isChange = true;
+                        break;
+                    }
+                    if($.type($scope.changes.removedSkillsImages) == 'array' && $scope.changes.removedSkillsImages.length > 0){
                         isChange = true;
                         break;
                     }
@@ -78,6 +82,15 @@ angular.module('dmc.company-profile')
             if($scope.company.images && $.type($scope.company.images) == 'array') {
                 for (var index in $scope.company.images) {
                     if($scope.company.images[index].title != $scope.company.images[index].changedTitle){
+                        isChange = true;
+                        break;
+                    }
+                }
+            }
+            // if changed skills images
+            if($scope.company.skillsImages && $.type($scope.company.skillsImages) == 'array') {
+                for (var index in $scope.company.skillsImages) {
+                    if($scope.company.skillsImages[index].title != $scope.company.skillsImages[index].changedTitle){
                         isChange = true;
                         break;
                     }
@@ -118,13 +131,19 @@ angular.module('dmc.company-profile')
             if($scope.isDataChanged){
                 var changedData = {};
                 for(var key in $scope.changes){
-                    if(key != 'removedImages') {
+                    if(key != 'removedImages' && key != 'removedSkillsImages') {
                         if ($scope.changes[key] != $scope.company[key]) {
                             changedData[key] = $scope.changes[key];
                         }
                     }else{
-                        if($scope.changes.removedImages && $.type($scope.changes.removedImages) == 'array'){
-                            removeImages();
+                        if(key == 'removedImages') {
+                            if ($scope.changes.removedImages && $.type($scope.changes.removedImages) == 'array') {
+                                removeImages();
+                            }
+                        }else if(key == 'removedSkillsImages'){
+                            if ($scope.changes.removedSkillsImages && $.type($scope.changes.removedSkillsImages) == 'array') {
+                                removeSkillsImages();
+                            }
                         }
                     }
                 }
@@ -155,6 +174,32 @@ angular.module('dmc.company-profile')
                                         for(var i in $scope.company.images){
                                             if($scope.company.images[i].id == data.id){
                                                 $scope.company.images[i].title = $scope.company.images[i].changedTitle;
+                                                break;
+                                            }
+                                        }
+                                        updateDataChangedStatus();
+                                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                                    }, function () {
+                                        toastModel.showToast("error", "Error. The problem on the server (update image).");
+                                    }, "PUT"
+                                );
+                            }
+                        }
+                    }
+                }
+
+                // save changed skills images
+                if($scope.company.skillsImages && $.type($scope.company.skillsImages) == 'array' && $scope.company.skillsImages.length > 0){
+                    for(var index in $scope.company.skillsImages){
+                        if(!$scope.company.skillsImages[index].hide){
+                            if($scope.company.skillsImages[index].title != $scope.company.skillsImages[index].changedTitle){
+                                ajax.on(dataFactory.updateCompanySkillsImage($scope.company.skillsImages[index].id),{
+                                        title : $scope.company.skillsImages[index].changedTitle
+                                    },
+                                    function (data) {
+                                        for(var i in $scope.company.skillsImages){
+                                            if($scope.company.skillsImages[i].id == data.id){
+                                                $scope.company.skillsImages[i].title = $scope.company.skillsImages[i].changedTitle;
                                                 break;
                                             }
                                         }
@@ -310,6 +355,28 @@ angular.module('dmc.company-profile')
             }
         };
 
+        // function for delete array of skills images
+        var removeSkillsImages = function(){
+            if($scope.changes.removedSkillsImages.length > 0){
+                ajax.on(dataFactory.removeCompanySkillsImages(),{
+                        ids : $scope.changes.removedSkillsImages
+                    },
+                    function (data) {
+                        for ( var index = 0; index < $scope.company.skillsImages.length; index++) {
+                            if($scope.changes.removedSkillsImages.indexOf($scope.company.skillsImages[index].id) != -1){
+                                $scope.company.skillsImages.splice(index,1);
+                            }
+                        }
+                        $scope.changes.removedSkillsImages = [];
+                        updateDataChangedStatus();
+                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    }, function () {
+                        toastModel.showToast("error", "Error. The problem on the server (remove images).");
+                    }, "POST"
+                );
+            }
+        };
+
         $scope.currentSection = {
             index : 0,
             name : 'overview'
@@ -361,6 +428,13 @@ angular.module('dmc.company-profile')
                 for (var index in $scope.company.images) {
                     $scope.company.images[index].hide = false;
                     $scope.company.images[index].changedTitle = $scope.company.images[index].title;
+                }
+            }
+            // cancel remove skills images
+            if ($scope.company.skillsImages && $.type($scope.company.skillsImages) == 'array') {
+                for (var index in $scope.company.skillsImages) {
+                    $scope.company.skillsImages[index].hide = false;
+                    $scope.company.skillsImages[index].changedTitle = $scope.company.skillsImages[index].title;
                 }
             }
             // cancel remove videos

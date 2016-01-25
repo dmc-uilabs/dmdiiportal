@@ -14,7 +14,7 @@
       "awardsReceived": "Best Company in USA",
       "technicalExpertise": "Lorem Ipsum is simply dummy text",
       "toolsSoftwareEquipmentMachines": "Lorem Ipsum is simply dummy text",
-      "postCollaborations": "Lorem Ipsum is simply dummy text",
+      "pastCollaborations": "Lorem Ipsum is simply dummy text",
       "collaborationInterests": "Lorem Ipsum is simply dummy text",
       "pastProjects": "Lorem Ipsum is simply dummy text",
       "upcomingProjectInterests": "Lorem Ipsum is simply dummy text",
@@ -32,8 +32,8 @@
       "dateJoined": "2016-01-01",
       "reasonJoining": "Lorem Ipsum is simply dummy text",
       "featureImage": {
-        "thumbnail": "/uploads/company/picture/1/20160107065859000000.png",
-        "large": "/uploads/company/picture/1/20160107065859000000.png"
+        "thumbnail": "/uploads/company/picture/1/20160124094823000000.png",
+        "large": "/uploads/company/picture/1/20160124094823000000.png"
       },
       "logoImage": "/uploads/company/logo/1/20160124090158000000.png"
     },
@@ -48,6 +48,26 @@
         "large": "/uploads/company/picture/2/20151223085045000000.jpg"
       },
       "logoImage": "/uploads/company/picture/2/20151223085045000000.png"
+    }
+  ],
+  "company_skill_images": [
+    {
+      "id": 1,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/1/20160125045919000000.jpg",
+      "title": "Skill Image"
+    },
+    {
+      "id": 2,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/2/20160125051445000000.png",
+      "title": "New Image"
+    },
+    {
+      "id": 3,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/3/20160125051456000000.png",
+      "title": "New Image 2"
     }
   ],
   "company_images": [

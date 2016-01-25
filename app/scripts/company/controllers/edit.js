@@ -1,10 +1,19 @@
 'use strict';
 var selectedTabIndex = 0;
+var isFocused = false;
 angular.module('dmc.company')
-    .controller('EditStorefrontCompanyCtr', ['$stateParams', '$state', "$scope", "$cookies", "ajax", 'companyData','menuCompany','$location', 'Products','dataFactory','$mdToast','fileUpload','toastModel', function ($stateParams, $state, $scope, $cookies, ajax, companyData, menuCompany,$location, Products, dataFactory,$mdToast,fileUpload,toastModel) {
+    .controller('EditStorefrontCompanyCtr', ['$stateParams', '$state', "$scope", "$cookies", "ajax", 'companyData','menuCompany','$location', 'Products','dataFactory','$mdToast','fileUpload','toastModel','$timeout', function ($stateParams, $state, $scope, $cookies, ajax, companyData, menuCompany,$location, Products, dataFactory,$mdToast,fileUpload,toastModel,$timeout) {
         $scope.selectedTabIndex = selectedTabIndex;
         $scope.$watch("selectedTabIndex",function(newVal){
             selectedTabIndex = newVal;
+        });
+
+        // auto focus for First Name input
+        $timeout(function() {
+            if(!isFocused) {
+                isFocused = true;
+                $("#descriptionCompany").focus();
+            }
         });
 
         $scope.companyData = companyData;

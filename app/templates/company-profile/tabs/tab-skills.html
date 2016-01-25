@@ -105,8 +105,8 @@
         <div layout="row"
              layout-wrap
              layout-align="start start"
-             flex ng-if="source.images.length > 0">
-            <div class="list-images-item" ng-repeat="image in source.images" ng-show="!image.hide">
+             flex ng-if="source.skillsImages.length > 0">
+            <div class="list-images-item" ng-repeat="image in source.skillsImages" ng-show="!image.hide">
                 <div class="img"><img ng-src="{{image.url}}"/></div>
                 <md-input-container md-no-float>
                     <input ng-init="image.changedTitle = image.title"
@@ -123,6 +123,6 @@
                 </md-button>
             </div>
         </div>
-        <div layout="row" ng-if="source.images.length == 0 && !isAddingImage">No images</div>
+        <div layout="row" ng-if="source.skillsImages.length == 0 && !isAddingImage">No images</div>
     </div>
 </div>

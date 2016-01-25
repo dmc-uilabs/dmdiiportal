@@ -13,10 +13,10 @@ angular.module('dmc.company-profile').
 
                 // get company images
                 var callbackImages = function(data){
-                    $scope.source.images = data;
+                    $scope.source.skillsImages = data;
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
-                companyProfileModel.getImages($scope.source.id, callbackImages);
+                companyProfileModel.getSkillsImages($scope.source.id, callbackImages);
 
                 // get company skills
                 var callbackSkills = function(data){
@@ -106,14 +106,14 @@ angular.module('dmc.company-profile').
 
                 $scope.saveImage = function(newImage){
                     if(newImage && $scope.newAddedImage){
-                        fileUpload.uploadFileToUrl($scope.newAddedImage.file,{id : $scope.source.id, title : newImage.title},'company-profile',callbackUploadPicture);
+                        fileUpload.uploadFileToUrl($scope.newAddedImage.file,{id : $scope.source.id, title : newImage.title},'company-profile-skill',callbackUploadPicture);
                         $scope.cancelAddImage();
                     }
                 };
 
                 var callbackUploadPicture = function(data){
                     if(!data.error) {
-                        $scope.source.images.unshift(data.result);
+                        $scope.source.skillsImages.unshift(data.result);
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                         toastModel.showToast('success', 'Image successfully added');
                     }else{
@@ -122,8 +122,8 @@ angular.module('dmc.company-profile').
                 };
 
                 $scope.deleteImage = function(img){
-                    if(!$scope.changes.removedImages) $scope.changes.removedImages = [];
-                    $scope.changes.removedImages.push(img.id);
+                    if(!$scope.changes.removedSkillsImages) $scope.changes.removedSkillsImages = [];
+                    $scope.changes.removedSkillsImages.push(img.id);
                     img.hide = true;
                     $scope.changedValue('image');
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
