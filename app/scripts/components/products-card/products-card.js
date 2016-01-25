@@ -24,6 +24,7 @@ angular.module('dmc.component.productscard', [
           searchCard: "=",
           updatePageSize : "=",
           addFeatured : "=",
+          removeFeatured : "=",
           hideButtons : "=",
           viewAllLink: "="
       },

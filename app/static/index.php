@@ -394,6 +394,7 @@ function get_featured_company($params){
 					$query['favorite'] = isFavoriteProduct($query['id'],$query['type'],null);
 					$query['featureId'] = $features[$i]['id'];
 					$query['position'] = ($features[$i]['position'] == null ? 1 : $features[$i]['position']);
+                    $query['inFeatured'] = true;
 					array_push($data[$features[$i]['type'].'s'], $query);
 				}
 			}
@@ -566,34 +567,30 @@ function getFeaturesIds($companyId,$fill){
 }
 
 function get_products($params){
-    $withoutFeatures = (isset($params['withoutFeatures']) and isset($params['companyId']) and $params['withoutFeatures'] == true ? true : false);
-    $features = getFeaturesIds($params['companyId'],$withoutFeatures);
+    $checkFeatures = (isset($params['checkFeatures']) and isset($params['filterData']['companyId']) and $params['checkFeatures'] == true ? true : false);
+    $features = getFeaturesIds($params['filterData']['companyId'],$checkFeatures);
     $query = [];
     $components = json_decode(httpResponse(dbUrl().'/components', null, null), true);
     $components = searchByName($params["filterData"]["text"],$components,'title');
     for($i = 0; $i < count($components); ++$i){
         if(in_array(intval($components[$i]['id']),$features['components'])) {
-            array_splice($components, $i, ($i+1));
-            $i--;
-        }else{
-            $components[$i]['type'] = 'component';
-            $components[$i]['favorite'] = isFavoriteProduct($components[$i]['id'], $components[$i]['type'], null);
-            $components[$i] = addMore($components[$i]);
-            array_push($query,$components[$i]);
+            $components[$i]['inFeatured'] = true;
         }
+        $components[$i]['type'] = 'component';
+        $components[$i]['favorite'] = isFavoriteProduct($components[$i]['id'], $components[$i]['type'], null);
+        $components[$i] = addMore($components[$i]);
+        array_push($query,$components[$i]);
     }
     $services = json_decode(httpResponse(dbUrl().'/services', null, null),true);
     $services = searchByName($params["filterData"]["text"],$services,'title');
     for($i = 0; $i < count($services); ++$i){
         if(in_array(intval($services[$i]['id']),$features['services'])) {
-            array_splice($services, $i, ($i+1));
-            $i--;
-        }else {
-            $services[$i]['type'] = 'service';
-            $services[$i]['favorite'] = isFavoriteProduct($services[$i]['id'], $services[$i]['type'], null);
-            $services[$i] = addMore($services[$i]);
-            array_push($query,$services[$i]);
+            $services[$i]['inFeatured'] = true;
         }
+        $services[$i]['type'] = 'service';
+        $services[$i]['favorite'] = isFavoriteProduct($services[$i]['id'], $services[$i]['type'], null);
+        $services[$i] = addMore($services[$i]);
+        array_push($query,$services[$i]);
     }
     $count = count($query);
     usort($query, 'sortByReleaseDateDESC');
@@ -635,12 +632,11 @@ function get_components($params){
     }
     $query = searchByName($params["filterData"]["text"],$query,"title");
 
-    $withoutFeatures = (isset($params['withoutFeatures']) and isset($params['companyId']) and $params['withoutFeatures'] == true ? true : false);
-    $features = getFeaturesIds($params['companyId'], $withoutFeatures);
+    $checkFeatures = (isset($params['checkFeatures']) and isset($params['filterData']['companyId']) and $params['checkFeatures'] == true ? true : false);
+    $features = getFeaturesIds($params['filterData']['companyId'], $checkFeatures);
     for ($i = 0; $i < count($query); ++$i) {
         if (in_array(intval($query[$i]['id']), $features['components'])){
-            array_splice($query, $i, ($i + 1));
-            $i--;
+            $query[$i]['inFeatured'] = true;
         }
     }
     $count = count($query);
@@ -708,12 +704,11 @@ function get_services($params)
     }
     $query = searchByName($params["filterData"]["text"], $query,"title");
 
-    $withoutFeatures = (isset($params['withoutFeatures']) and isset($params["filterData"]['companyId']) and $params['withoutFeatures'] == true ? true : false);
-    $features = getFeaturesIds($params["filterData"]['companyId'], $withoutFeatures);
+    $checkFeatures = (isset($params['checkFeatures']) and isset($params["filterData"]['companyId']) and $params['checkFeatures'] == true ? true : false);
+    $features = getFeaturesIds($params["filterData"]['companyId'], $checkFeatures);
     for ($i = 0; $i < count($query); ++$i) {
         if (in_array(intval($query[$i]['id']), $features['services'])){
-            array_splice($query, $i, ($i + 1));
-            $i--;
+            $query[$i]['inFeatured'] = true;
         }
     }
     $count = count($query);

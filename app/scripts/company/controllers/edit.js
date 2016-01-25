@@ -182,7 +182,7 @@ angular.module('dmc.company')
         var responseData = {
             limit : 4,
             offset: ($scope.currentStorefrontPage-1)*$scope.pageSize,
-            withoutFeatures : true,
+            checkFeatures : true,
             filterData : $stateParams
         };
 
@@ -358,11 +358,9 @@ angular.module('dmc.company')
                             if($scope.products.arr[i].type == type && $scope.products.arr[i].id == product_id){
                                 $scope.products.arr[i].featureId = data.result.id;
                                 $scope.products.arr[i].position = data.result.position;
+                                $scope.products.arr[i].inFeatured = true;
                                 $scope.features[$scope.products.arr[i].type+'s'].push($.extend(true,{},$scope.products.arr[i]));
                                 $scope.features.all.push($.extend(true,{},$scope.products.arr[i]));
-                                var arr = $scope.products.arr;
-                                arr.splice(i,1);
-                                $scope.products = {arr : arr, count : $scope.products.count-1 };
                                 $scope.features.all.sort(function(a,b){
                                     return a.position > b.position;
                                 });
@@ -397,12 +395,15 @@ angular.module('dmc.company')
                         }
                         for(var i=0;i<$scope.features.all.length;i++){
                             if($scope.features.all[i].id == product_id && $scope.features.all[i].type == type){
-                                if($scope.selectedProductType == 'all' || $scope.selectedProductType == type+'s') {
-                                    var arr = $scope.products.arr;
-                                    arr.push($.extend(true, {}, $scope.features.all[i]));
-                                    $scope.products = {arr : arr, count : $scope.products.count+1 };
-                                }
                                 $scope.features.all.splice(i,1);
+                                break;
+                            }
+                        }
+                        for(var i=0;i < $scope.products.arr.length;i++) {
+                            if($scope.products.arr[i].type == type && $scope.products.arr[i].id == product_id){
+                                delete $scope.products.arr[i].featureId;
+                                delete $scope.products.arr[i].position;
+                                delete $scope.products.arr[i].inFeatured;
                                 break;
                             }
                         }
