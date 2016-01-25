@@ -33,7 +33,7 @@ angular.module('dmc.widgets.discussions',[
                         $scope.discussions = data.result;
                         $scope.total = data.count;
                         for(var index in $scope.discussions){
-                            $scope.discussions[index].created_at = moment($scope.discussions[index].created_at,'DD-MM-YYYY HH:mm:ss');
+                            $scope.discussions[index].created_at = moment($scope.discussions[index].created_at,'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
                         }
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     },function(){

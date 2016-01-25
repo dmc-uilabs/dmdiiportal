@@ -25,7 +25,7 @@ angular.module('dmc.community.discussions',[]).
                             $scope.totalAnnouncements = data.length;
                             for(var index in $scope.discussions){
                                 $scope.discussions[index].replies = 0;
-                                $scope.discussions[index].created_at = moment($scope.discussions[index].created_at,'DD-MM-YYYY HH:mm:ss');
+                                $scope.discussions[index].created_at = moment($scope.discussions[index].created_at,'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
                             }
                             if($scope.totalAnnouncements > 0){
                                 $scope.discussions[0].replies = 2;

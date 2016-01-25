@@ -15,15 +15,8 @@
                     <div class="md-list-item-text">
                         <h3>{{item.text}}</h3>
                         <div class="info">
-                            <span>{{item.replies > 0 ? 'Commented on' : 'Posted'}} {{item.created_at|timeago}}</span>
-                            <span>{{item.replies}} replies</span>
+                            <span>{{item.full_name}} replied | {{item.created_at}}</span>
                         </div>
-                    </div>
-                    <div class="md-secondary md-list-item-inner user-info">
-                        <span><a href="/">by {{item.full_name}}</a></span>
-                        <a href="/">
-                            <img ng-src="{{item.avatar}}" class="md-avatar" alt="{{item.full_name}}" />
-                        </a>
                     </div>
                 </md-list-item>
             </md-list>
