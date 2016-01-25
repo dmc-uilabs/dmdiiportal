@@ -1,30 +1,110 @@
 {
+  "profile": {
+    "id": 1,
+    "displayName": "Thomas Smith",
+    "company": "General Electric (GE) Global Research",
+    "jobTitle": "Engineering Manager",
+    "phone": "",
+    "email": "",
+    "location": "Berkeley, California",
+    "image": "/uploads/profile/1/20151222084711000000.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+    "skills": [
+      "skill1",
+      "skill2",
+      "skill3",
+      "skill4",
+      "skill5",
+      "skill6",
+      "skill7",
+      "skill8",
+      "skill9",
+      "skill10",
+      "skill11",
+      "skill12"
+    ],
+    "profile_reviews": "/profiles/1/profile_reviews"
+  },
+  "account": {
+    "id": 3,
+    "profile": "/profiles/1",
+    "company": "/companies/1",
+    "servers": "/accounts/3/account_servers",
+    "firstName": "Thomas",
+    "lastName": "Smith",
+    "displayName": "Thomas Smith",
+    "email": "thomas.smith@gm.com",
+    "deactivated": false,
+    "location": "",
+    "timezone": "",
+    "privacy": {
+      "public": {
+        "email": {
+          "enable": "true",
+          "value": "thomas.smith@gm.com"
+        },
+        "phone": {
+          "enable": "true",
+          "value": "1234567895"
+        },
+        "location": {
+          "enable": "false",
+          "value": "USA"
+        }
+      },
+      "private": {
+        "email": {
+          "enable": "true",
+          "value": "thomas.smith@gm.com"
+        },
+        "phone": {
+          "enable": "false",
+          "value": "7896655664"
+        },
+        "location": {
+          "enable": "true",
+          "value": ""
+        }
+      }
+    }
+  },
   "companies": [
     {
       "id": 1,
+      "accountId": 1,
       "name": "The Turbine Company",
       "location": "Berkeley, California",
-      "accountId": 1,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "division": "The Helicopter Company",
+      "industry": "The Helicopter Company",
+      "NAICSCode": 31111111111,
+      "RDFocus": "The Helicopter Company",
+      "customers": "General Electric",
+      "awardsReceived": "Best Company in USA",
+      "technicalExpertise": "Lorem Ipsum is simply dummy text",
+      "toolsSoftwareEquipmentMachines": "Lorem Ipsum is simply dummy text",
+      "pastCollaborations": "Lorem Ipsum is simply dummy text",
+      "collaborationInterests": "Lorem Ipsum is simply dummy text",
+      "pastProjects": "Lorem Ipsum is simply dummy text",
+      "upcomingProjectInterests": "Lorem Ipsum is simply dummy text",
+      "address": "Martin Luther King Blvd",
+      "city": "Berkeley",
+      "state": 1,
+      "zipCode": "11111-1111",
+      "twitter": "https://twitter.com/thehelicoptercompany",
+      "linkedIn": "https://www.linkedin.com/in/thehelicoptercompany",
+      "website": "http://www.google.com",
+      "methodCommunication": 1,
+      "email": "thehelicoptercompany@gmail.com",
+      "phone": "",
+      "categoryTier": 1,
+      "dateJoined": "2016-01-01",
+      "reasonJoining": "Lorem Ipsum is simply dummy text",
       "featureImage": {
-        "thumbnail": "/uploads/company/picture/1/20160107065859000000.png",
-        "large": "/uploads/company/picture/1/20160107065859000000.png"
+        "thumbnail": "/uploads/company/picture/1/20160124094823000000.png",
+        "large": "/uploads/company/picture/1/20160124094823000000.png"
       },
-      "logoImage": "/uploads/company/logo/1/20160119093131000000.png",
-      "skills": [
-        "skill1",
-        "skill2",
-        "skill3",
-        "skill4",
-        "skill5",
-        "skill6",
-        "skill7",
-        "skill8",
-        "skill9",
-        "skill10",
-        "skill11",
-        "skill12"
-      ]
+      "logoImage": "/uploads/company/logo/1/20160124090158000000.png"
     },
     {
       "id": 2,
@@ -36,21 +116,93 @@
         "thumbnail": "/uploads/company/picture/2/20151223085045000000.jpg",
         "large": "/uploads/company/picture/2/20151223085045000000.jpg"
       },
-      "logoImage": "/uploads/company/picture/2/20151223085045000000.png",
-      "skills": [
-        "skill1",
-        "skill2",
-        "skill3",
-        "skill4",
-        "skill5",
-        "skill6",
-        "skill7",
-        "skill8",
-        "skill9",
-        "skill10",
-        "skill11",
-        "skill12"
-      ]
+      "logoImage": "/uploads/company/picture/2/20151223085045000000.png"
+    }
+  ],
+  "company_skill_images": [
+    {
+      "id": 1,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/1/20160125045919000000.jpg",
+      "title": "Skill Image"
+    },
+    {
+      "id": 2,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/2/20160125051445000000.png",
+      "title": "New Image"
+    },
+    {
+      "id": 3,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/3/20160125051456000000.png",
+      "title": "New Image 2"
+    }
+  ],
+  "company_images": [
+    {
+      "id": 1,
+      "companyId": 1,
+      "url": "/uploads/company/image/1/20160124071204000000.png",
+      "title": "Best Company Image"
+    },
+    {
+      "id": 2,
+      "companyId": 1,
+      "url": "/uploads/company/image/2/20160124071327000000.JPG",
+      "title": "Best Company Image 2"
+    },
+    {
+      "id": 3,
+      "companyId": 1,
+      "url": "/uploads/company/image/3/20160124071349000000.jpg",
+      "title": "Best Company Image 3"
+    }
+  ],
+  "company_videos": [
+    {
+      "title": "Best Company Video",
+      "link": "http://youtube.com",
+      "id": 1,
+      "companyId": 1
+    },
+    {
+      "title": "Best Company Video 2",
+      "link": "http://youtube.com",
+      "id": 2,
+      "companyId": 1
+    }
+  ],
+  "company_skills": [
+    {
+      "id": 4,
+      "companyId": 1,
+      "name": "Skill 1"
+    },
+    {
+      "id": 5,
+      "companyId": 1,
+      "name": "Skill 2"
+    }
+  ],
+  "company_key_contacts": [
+    {
+      "phoneNumber": 1111111111,
+      "type": 1,
+      "name": "Bridget Cohen",
+      "title": "User Experience Designer",
+      "email": "bcohen@email.com",
+      "id": 1,
+      "companyId": 1
+    },
+    {
+      "type": 1,
+      "name": "Denis Sobko",
+      "phoneNumber": 1234567890,
+      "title": "Programmer",
+      "email": "denis.sobko@gmail.com",
+      "id": 2,
+      "companyId": 1
     }
   ],
   "company_featured": [
@@ -283,6 +435,50 @@
           }
         }
       }
+    },
+    {
+      "id": 3,
+      "profile": "/profiles/1",
+      "company": "/companies/1",
+      "servers": "/accounts/3/account_servers",
+      "firstName": "Thomas",
+      "lastName": "Smith",
+      "displayName": "Thomas Smith",
+      "email": "thomas.smith@gm.com",
+      "deactivated": false,
+      "location": "",
+      "timezone": "",
+      "description": "My description",
+      "privacy": {
+        "public": {
+          "email": {
+            "enable": "true",
+            "value": "thomas.smith@gm.com"
+          },
+          "phone": {
+            "enable": "true",
+            "value": "1234567895"
+          },
+          "location": {
+            "enable": "false",
+            "value": "USA"
+          }
+        },
+        "private": {
+          "email": {
+            "enable": "true",
+            "value": "thomas.smith@gm.com"
+          },
+          "phone": {
+            "enable": "false",
+            "value": "7896655664"
+          },
+          "location": {
+            "enable": "true",
+            "value": ""
+          }
+        }
+      }
     }
   ],
   "account_servers": [
@@ -321,7 +517,7 @@
       "productType": "service"
     },
     {
-      "id": 13,
+      "id": 15,
       "productId": 1,
       "accountId": 1,
       "productType": "service"
@@ -1552,7 +1748,6 @@
   ],
   "specifications": [
     {
-      "id": 1,
       "componentId": 3,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "input": 1,
@@ -1565,22 +1760,6 @@
         "success": 1,
         "fail": 1
       }
-    },
-    {
-      "id": 2,
-      "serviceId": 3,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "input": 4,
-      "output": 7,
-      "usageStats": {
-        "added": 22,
-        "members": 14
-      },
-      "runStats": {
-        "success": 15,
-        "fail": 9
-      },
-      "special": []
     }
   ],
   "documents": [
@@ -1894,6 +2073,8 @@
       "displayName": "Thomas Smith",
       "company": "General Electric (GE) Global Research",
       "jobTitle": "Engineering Manager",
+      "phone": "",
+      "email": "",
       "location": "Berkeley, California",
       "image": "/uploads/profile/1/20151222084711000000.jpg",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
@@ -1910,7 +2091,8 @@
         "skill10",
         "skill11",
         "skill12"
-      ]
+      ],
+      "profile_reviews": "/profiles/1/profile_reviews"
     }
   ],
   "profile_reviews": [

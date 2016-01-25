@@ -101,6 +101,13 @@
     <script src="scripts/account/controllers/notifications.js"></script>
     <script src="scripts/account/controllers/profile.js"></script>
     <script src="scripts/account/controllers/servers.js"></script>
+    <script src="scripts/account/controllers/dmd-profile.js"></script>
+    <script src="scripts/common/models/phone-model.js"></script>
+    <script src="scripts/account/dmd-profile-directives/basics.js"></script>
+    <script src="scripts/account/dmd-profile-directives/overview.js"></script>
+    <script src="scripts/account/dmd-profile-directives/capabilities.js"></script>
+    <script src="scripts/account/dmd-profile-directives/membership.js"></script>
+    <script src="scripts/account/dmd-profile-directives/contacts.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

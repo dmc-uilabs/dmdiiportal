@@ -16,76 +16,57 @@ angular.module('dmc.account', [
     'dmc.model.fileUpload',
     'dmc.model.toast-model',
     'dmc.model.question-toast-model',
+    'dmc.phone-format',
     'flow'
 ]).config(function(flowFactoryProvider, $stateProvider, $urlRouterProvider, $httpProvider){
 
     flowFactoryProvider.on('catchAll', function (event) {
         //console.log('catchAll', arguments);
     });
-
+    var resolve = {
+        accountData: ['AccountModel', '$stateParams',
+            function(AccountModel, $stateParams) {
+                return AccountModel.getModel($stateParams.accountId);
+            }]
+    };
     $stateProvider.state('account', {
         url: '/:accountId',
         controller: 'AccountIdLocatorCtrl',
         template: '<ui-view />',
-        resolve: {
-            accountData: ['AccountModel', '$stateParams',
-                function(AccountModel, $stateParams) {
-                    return AccountModel.getModel($stateParams.accountId);
-                }]
-        }
+        resolve: resolve
     }).state('account.basics', {
         url: '/basics',
         controller: 'BasicsAccountCtr',
         templateUrl: 'templates/account/basics.html',
-        resolve: {
-            accountData: ['AccountModel', '$stateParams',
-                function(AccountModel, $stateParams) {
-                    return AccountModel.getModel($stateParams.accountId);
-                }]
-        }
+        resolve: resolve
     }).state('account.privacy', {
         url: '/privacy',
         controller: 'PrivacyAccountCtr',
         templateUrl: 'templates/account/privacy.html',
-        resolve: {
-            accountData: ['AccountModel', '$stateParams',
-                function(AccountModel, $stateParams) {
-                    return AccountModel.getModel($stateParams.accountId);
-                }]
-        }
+        resolve: resolve
     }).state('account.notifications', {
         url: '/notifications',
         controller: 'NotificationsAccountCtr',
         templateUrl: 'templates/account/notifications.html',
-        resolve: {
-            accountData: ['AccountModel', '$stateParams',
-                function(AccountModel, $stateParams) {
-                    return AccountModel.getModel($stateParams.accountId);
-                }]
-        }
+        resolve: resolve
     }).state('account.profile', {
         url: '/profile',
         controller: 'ProfileAccountCtr',
         templateUrl: 'templates/account/profile.html',
-        resolve: {
-            accountData: ['AccountModel', '$stateParams',
-                function(AccountModel, $stateParams) {
-                    return AccountModel.getModel($stateParams.accountId);
-                }]
-        }
+        resolve: resolve
     }).state('account.servers', {
         url: '/servers',
         controller: 'ServersAccountCtr',
         templateUrl: 'templates/account/servers.html',
-        resolve: {
-            accountData: ['AccountModel', '$stateParams',
-                function(AccountModel, $stateParams) {
-                    return AccountModel.getModel($stateParams.accountId);
-                }]
-        }
-    });
+        resolve: resolve
+    }).state('account.dmd-profile', {
+        url: '/dmd-profile',
+        controller: 'DMDProfileAccountCtr',
+        templateUrl: 'templates/account/dmd-profile.html',
+        resolve: resolve
+    })
     $urlRouterProvider.otherwise('/1');
-}).controller('AccountIdLocatorCtrl', [ '$stateParams', '$state', function ($stateParams, $state) {
+}).controller('AccountIdLocatorCtrl', [ '$stateParams', '$state','$location', function ($stateParams, $state, $location) {
         var accountId = $stateParams.accountId;
         if (accountId === "" || !angular.isDefined($stateParams.accountId)) {
             location.href = "/";
