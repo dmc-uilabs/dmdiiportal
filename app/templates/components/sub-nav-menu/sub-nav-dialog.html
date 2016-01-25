@@ -6,8 +6,10 @@
                  ng-class="{'selected' : p.id === currentPage}">
         <ng-md-icon icon="{{p.icon}}"
                     style="fill: white"
+                    ng-show="p.location != 'folder'"
                     size="120">
         </ng-md-icon>
+          <div class="folder-icon" style="-webkit-mask: url(images/{{p.icon}}.svg) center / contain no-repeat;" ng-show="p.location == 'folder'"></div>
         <div class="dmc-project-subnav-dialog-btn__caption">
           {{p.title}}
         </div>

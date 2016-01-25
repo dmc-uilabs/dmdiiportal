@@ -98,7 +98,8 @@ var SubNavPages = [
     {
         id : 7,
         title : 'Services',
-        icon : 'receipt',
+        icon : 'icon_service',
+        location : 'folder',
         state : 'project.services'
     },
     {
