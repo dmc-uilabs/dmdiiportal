@@ -78,7 +78,8 @@ angular.module('dmc.widgets.discussions',[
                 projectId: "=",
                 widgetTitle: "=",
                 withAvatar: "=",
-                totalItems: "="
+                totalItems: "=",
+                widgetFormat: "="
             },
             link: function (scope, iElement, iAttrs) {
             },
@@ -101,7 +102,7 @@ angular.module('dmc.widgets.discussions',[
                         var data = dataFactory.get_result(data);
                         $scope.projectDiscussions = data.result;
                         for(var index in $scope.projectDiscussions){
-                            $scope.projectDiscussions[index].created_at = moment($scope.projectDiscussions[index].created_at,'DD-MM-YYYY HH:mm:ss');
+                            $scope.projectDiscussions[index].created_at = moment($scope.projectDiscussions[index].created_at,'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
                         }
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     },function(){

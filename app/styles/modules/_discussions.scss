@@ -42,7 +42,13 @@
     text-decoration: underline;
   }
 }
-.discussion-list md-list-item.md-2-line .md-list-item-text h4{
-  margin: 0;
-  line-height: 1em;
+.discussion-list md-list-item.md-2-line .md-list-item-text{
+  h4{
+    margin: 0;
+    font-size: 12px;
+  }
+  h3{
+    margin: 5px 0;
+    font-size: 16px;
+  }
 }

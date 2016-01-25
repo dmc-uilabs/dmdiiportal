@@ -1,5 +1,18 @@
 .my-projects-container{
   padding: 8px 24px 24px 24px;
+  .rp-panel__tab-content md-content{
+    padding-right: 16px;
+    &:nth-child(1){
+      padding-right: 25px;
+    }
+    &:nth-child(2){
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+    &:nth-child(3){
+      padding-left: 25px;
+    }
+  }
 }
 .md-toolbar-tools.my-projects-title{
   padding: 0;

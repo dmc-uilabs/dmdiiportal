@@ -12,7 +12,8 @@ angular.module('dmc.widgets.projects',[
             scope:{
                 widgetTitle: "=",
                 widgetShowAllBlocks: "=",
-                showImage : "="
+                showImage : "=",
+                widgetFormat: "="
             },
             link: function (scope, iElement, iAttrs) {
 
@@ -24,7 +25,7 @@ angular.module('dmc.widgets.projects',[
                 $scope.order = 'DESC';
                 $scope.limit = ($scope.widgetShowAllBlocks == true ? 10 : 2);
 
-                $scope.flexBox = ($scope.widgetShowAllBlocks == true ? 26 : 60);
+                $scope.flexBox = ($scope.widgetShowAllBlocks == true ? 28 : 60);
                 $scope.flexDetails = ($scope.widgetShowAllBlocks == true ? 20 : 40);
 
                 $scope.showItems = function(item,name){
