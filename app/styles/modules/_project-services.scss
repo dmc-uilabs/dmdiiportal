@@ -289,6 +289,12 @@
 					text-transform: none;
 					font-weight: bold;
 					text-align: left;
+					ng-md-icon{
+				    transition: transform 0.25s;
+				    
+						svg{
+				  }
+					}
 				}
 				a.href-result:hover{
 					text-decoration: underline;

@@ -40,8 +40,11 @@
 					<md-button ng-click="clear()" class="md-raised">
 						Reset
 					</md-button>
+					<md-button ng-click="default()" class="md-raised">
+						Default
+					</md-button>
 					<md-button ng-click="save()" class="md-raised md-primary">
-						Save
+						Save Order
 					</md-button>
 				</div>
 			</div>
@@ -95,23 +98,39 @@
 			<div layout="row" class="listHeader">
 				<md-button flex="25" ng-click="sorting('runDate')">
 					Run Date 
-					<ng-md-icon ng-if="(sort == 'runDate' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
-					<ng-md-icon ng-if="(sort == 'runDate' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon  
+						icon="arrow_forward" 
+						size="18" 
+						ng-if="sort == 'runDate'"
+						style="fill: #000"
+						ng-style="(sort == 'runDate' && order)? {transform: 'rotate(-90deg)',transition: 'transform 0.25s'}: {transform: 'rotate(90deg)',transition: 'transform 0.25s'}"></ng-md-icon>
 				</md-button>
 				<md-button flex="25" ng-click="sorting('runBy')">
-					Run By 
-					<ng-md-icon ng-if="(sort == 'runBy' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
-					<ng-md-icon ng-if="(sort == 'runBy' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+					Run By
+					<ng-md-icon  
+						icon="arrow_forward" 
+						size="18" 
+						ng-if="sort == 'runBy'"
+						style="fill: #000"
+						ng-style="(sort == 'runBy' && order)? {transform: 'rotate(-90deg)'}: {transform: 'rotate(90deg)'}"></ng-md-icon>
 				</md-button>
 				<md-button flex="25" ng-click="sorting('runTime')">
 					Run Time 
-					<ng-md-icon ng-if="(sort == 'runTime' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
-					<ng-md-icon ng-if="(sort == 'runTime' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon  
+						icon="arrow_forward" 
+						size="18" 
+						ng-if="sort == 'runTime'"
+						style="fill: #000"
+						ng-style="(sort == 'runTime' && order)? {transform: 'rotate(-90deg)'}: {transform: 'rotate(90deg)'}"></ng-md-icon>
 				</md-button>
 				<md-button flex="25" ng-click="sorting('results')">
 					Results 
-					<ng-md-icon ng-if="(sort == 'results' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
-					<ng-md-icon ng-if="(sort == 'results' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon  
+						icon="arrow_forward" 
+						size="18" 
+						ng-if="sort == 'results'"
+						style="fill: #000"
+						ng-style="(sort == 'results' && order)? {transform: 'rotate(-90deg)'}: {transform: 'rotate(90deg)'}"></ng-md-icon>
 				</md-button>
 			</div>
 			<md-list-item ng-repeat="item in history | orderBy:sort:order" layout="row">

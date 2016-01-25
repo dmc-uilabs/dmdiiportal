@@ -13,13 +13,13 @@
 	</md-toolbar>
 </div>
 <div class="project-details-services" ng-if="!flagHistory" layout="column">
-	<a class="return" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+	<a class="link margin-bottom8" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
 		Return to Services
 	</a>
 	<div layout="row" layout-align="space-between start">
 		<div layout="column" class="header">
 			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By {{service.owner}}</span></h2>
-			<a href="" ng-click="showHistory()" class="historyButton">
+			<a ng-click="showHistory()" class="link margin-top8">
 				Run History
 			</a>
 			<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}}) {{number_of_comments}} reviews"></ui-widget-stars-static>
@@ -88,7 +88,7 @@
 <div class="project-history-services" ng-if="flagHistory" layout="column">
 	<h2>{{service.title}}</h2>
 	<div layout="row" layout-align="space-between center">
-		<a href="" ng-click="showHistory()" class="historyButton">
+		<a href="" ng-click="showHistory()" class="link">
 			Detail Service
 		</a>
 	</div>
@@ -98,23 +98,39 @@
 			<div layout="row" class="listHeader">
 				<md-button flex="25" ng-click="sorting('runDate')">
 					Run Date 
-					<ng-md-icon ng-if="(sort == 'runDate' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
-					<ng-md-icon ng-if="(sort == 'runDate' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon  
+						icon="arrow_forward" 
+						size="18" 
+						ng-if="sort == 'runDate'"
+						style="fill: #000"
+						ng-style="(sort == 'runDate' && order)? {transform: 'rotate(-90deg)',transition: 'transform 0.25s'}: {transform: 'rotate(90deg)',transition: 'transform 0.25s'}"></ng-md-icon>
 				</md-button>
 				<md-button flex="25" ng-click="sorting('runBy')">
-					Run By 
-					<ng-md-icon ng-if="(sort == 'runBy' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
-					<ng-md-icon ng-if="(sort == 'runBy' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+					Run By
+					<ng-md-icon  
+						icon="arrow_forward" 
+						size="18" 
+						ng-if="sort == 'runBy'"
+						style="fill: #000"
+						ng-style="(sort == 'runBy' && order)? {transform: 'rotate(-90deg)'}: {transform: 'rotate(90deg)'}"></ng-md-icon>
 				</md-button>
 				<md-button flex="25" ng-click="sorting('runTime')">
 					Run Time 
-					<ng-md-icon ng-if="(sort == 'runTime' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
-					<ng-md-icon ng-if="(sort == 'runTime' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon  
+						icon="arrow_forward" 
+						size="18" 
+						ng-if="sort == 'runTime'"
+						style="fill: #000"
+						ng-style="(sort == 'runTime' && order)? {transform: 'rotate(-90deg)'}: {transform: 'rotate(90deg)'}"></ng-md-icon>
 				</md-button>
 				<md-button flex="25" ng-click="sorting('results')">
 					Results 
-					<ng-md-icon ng-if="(sort == 'results' && order)" icon="keyboard_arrow_down" size="24" style="fill: #000"></ng-md-icon>
-					<ng-md-icon ng-if="(sort == 'results' && !order)" icon="keyboard_arrow_up" size="24" style="fill: #000"></ng-md-icon>
+					<ng-md-icon  
+						icon="arrow_forward" 
+						size="18" 
+						ng-if="sort == 'results'"
+						style="fill: #000"
+						ng-style="(sort == 'results' && order)? {transform: 'rotate(-90deg)'}: {transform: 'rotate(90deg)'}"></ng-md-icon>
 				</md-button>
 			</div>
 			<md-list-item ng-repeat="item in runHistory | orderBy:sort:order" layout="row">

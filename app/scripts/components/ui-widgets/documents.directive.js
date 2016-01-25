@@ -241,12 +241,15 @@ angular.module('dmc.widgets.documents',[
 						offset : 0
 					},function(data){
 						//this need delete
+						for(var i in data.result){
+							data.result[i].modifed = moment(data.result[i].modifed).format('MM/DD/YYYY, h:mm A');
+						}
 						$scope.documents.push({
 							file: false,
 							title: "Example Folder",
 				      owner: "Bob Smith",
 				      size: "100MB",
-				      modifed: "11/11/2015 12:00",
+				      modifed: moment("11/11/2015 12:00").format('MM/DD/YYYY, h:mm A'),
 							content: [
 								data.result[0], 
 								data.result[0], 
@@ -256,7 +259,7 @@ angular.module('dmc.widgets.documents',[
 									title: "Example Folder",
 						      owner: "Bob Smith",
 						      size: "100MB",
-						      modifed: "11/11/2015 12:00",
+						      modifed: moment("11/11/2015 12:00").format('MM/DD/YYYY, h:mm A'),
 									content: [
 										data.result[0], 
 										data.result[0], 
@@ -272,14 +275,14 @@ angular.module('dmc.widgets.documents',[
 									title: "Example Folder2",
 						      owner: "Bob Smith",
 						      size: "100MB",
-						      modifed: "11/11/2015 12:00",
+						      modifed: moment("11/11/2015 12:00").format('MM/DD/YYYY, h:mm A'),
 									content: [
 										{
 											file: false,
 											title: "Example Folder3",
 								      owner: "Bob Smith",
 								      size: "100MB",
-								      modifed: "11/11/2015 12:00",
+								      modifed: moment("11/11/2015 12:00").format('MM/DD/YYYY, h:mm A'),
 											content: [
 												data.result[0], 
 												data.result[0], 

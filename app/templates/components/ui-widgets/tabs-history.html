@@ -1,11 +1,11 @@
 <md-content class="md-padding tabs-history" layout="row">
 	<md-list ng-if="filters.block != 'Project'" flex class="history-list">
-		<div class="header" layout="row" layout-align="start center">
+		<div class="header" layout="row" layout-align="start end">
 			<h2>{{data.leftColumn.title}}</h2>
-			<a class="viewAll" ng-href="{{data.leftColumn.viewAllLink}}">View all</a>
+			<a class="link margin-left16" ng-href="{{data.leftColumn.viewAllLink}}">View all</a>
 		</div>
 		<md-list-item ng-repeat="item in data.leftColumn.list track by $index">
-			<ng-md-icon icon="{{item.icon}}" style="fill: #65AF3F;" size="25"></ng-md-icon>
+			<ng-md-icon icon="{{item.icon}}" style="fill: grey;" size="25"></ng-md-icon>
 			<a href=""><h2>{{item.title}}</h2></a>
 			<span flex></span>
 			<h3>{{item.date}}</h3>
@@ -13,12 +13,12 @@
 	</md-list>
 
 	<md-list flex class="history-list" ng-if="filters.block == 'Project'">
-		<div class="header" layout="row" layout-align="start center">
+		<div class="header" layout="row" layout-align="start end">
 			<h2>{{filters.block}}</h2>
-			<a class="viewAll" ng-href="{{data.leftColumn.viewAllLink}}">View all</a>
+			<a class="link margin-left16" ng-href="{{data.leftColumn.viewAllLink}}">View all</a>
 		</div>
 		<md-list-item ng-repeat="item in history | filter: filterBy">
-			<ng-md-icon icon="{{item.icon}}" style="fill: #65AF3F;" size="25"></ng-md-icon>
+			<ng-md-icon icon="{{item.icon}}" style="fill: grey;" size="25"></ng-md-icon>
 			<a href=""><h2>{{item.title}}</h2></a>
 			<span flex></span>
 			<h3>{{item.date}}</h3>
@@ -28,12 +28,12 @@
 	<span class="vertikal-divider"></span>
 
 	<md-list flex class="history-list" ng-if="filters.block != 'Marketplace'">
-		<div class="header" layout="row" layout-align="start center">
+		<div class="header" layout="row" layout-align="start end">
 			<h2>{{data.rightColumn.title}}</h2>
-			<a class="viewAll" ng-href="{{data.rightColumn.viewAllLink}}">View all</a>
+			<a class="link margin-left16" ng-href="{{data.rightColumn.viewAllLink}}">View all</a>
 		</div>
 		<md-list-item ng-repeat="item in data.rightColumn.list track by $index">
-			<ng-md-icon icon="{{item.icon}}" style="fill: #65AF3F;" size="25"></ng-md-icon>
+			<ng-md-icon icon="{{item.icon}}" style="fill: grey;" size="25"></ng-md-icon>
 			<h2>{{item.title}}</h2>
 			<span flex></span>
 			<h3>{{item.date}}</h3>
@@ -41,12 +41,12 @@
 	</md-list>
 
 	<md-list flex class="history-list" ng-if="filters.block == 'Marketplace'">
-		<div class="header" layout="row" layout-align="start center">
+		<div class="header" layout="row" layout-align="start end">
 			<h2>{{filters.block}}</h2>
-			<a class="viewAll" ng-href="{{data.leftColumn.viewAllLink}}">View all</a>
+			<a class="link margin-left16" ng-href="{{data.leftColumn.viewAllLink}}">View all</a>
 		</div>
 		<md-list-item ng-repeat="item in history | filter: filterBy">
-			<ng-md-icon icon="{{item.icon}}" style="fill: #65AF3F;" size="25"></ng-md-icon>
+			<ng-md-icon icon="{{item.icon}}" style="fill: grey;" size="25"></ng-md-icon>
 			<a href=""><h2>{{item.title}}</h2></a>
 			<span flex></span>
 			<h3>{{item.date}}</h3>

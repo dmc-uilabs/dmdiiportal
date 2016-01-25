@@ -16,9 +16,8 @@
 	<div layout="row" layout-align="space-between center">
 		<h2>Services</h2>
 		<div layout="row">
-			<md-button class="md-raised register" href="marketplace.php">Browse Services</md-button>
-			<md-button class="md-raised register" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</md-button>
-			
+			<a class="link" href="marketplace.php">Browse Services</a>
+			<a class="link margin-left16" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</a>
 		</div>
 	</div>
 	<md-content ng-if="projectData.services.data.length">
