@@ -7,20 +7,24 @@ angular.module('dmc.account')
         $scope.title = $scope.page;
 
         $scope.isAddingServer = false;
-        $scope.isEditingServer = false;
         $scope.isCorrectNewIP = false;
         $scope.isCorrectChangedIP = false;
 
         $scope.newServer = { name : null, ip : null };
-        $scope.editingServer = { name : null, ip : null };
 
         $scope.servers = [];
         $scope.sort = 'name';
-        $scope.order = 'ASC';
-        $scope.changedValues = false;
+        $scope.order = 'DESC';
 
         $scope.addServer = function(){
-            if($scope.isEditingServer == false) {
+            var isEditing = false;
+            for(var i=0;i<$scope.servers.length;i++){
+                if($scope.servers[i].isChanging){
+                    isEditing = true;
+                    break;
+                }
+            }
+            if(!isEditing) {
                 $scope.isAddingServer = true;
                 // auto focus for create Server Alias input
                 $timeout(function() {
@@ -33,10 +37,7 @@ angular.module('dmc.account')
 
         $scope.cancelAdding = function(){
             $scope.newServer = { name : null, ip : null };
-            $scope.editingServer = { name : null, ip : null };
             $scope.isAddingServer = false;
-            $scope.isEditingServer = false;
-            $scope.changedValues = false;
         };
 
         var ipIsValid = function(ip){
@@ -52,20 +53,14 @@ angular.module('dmc.account')
         $scope.changeIP = function(type){
             if(type == 'new'){
                 $scope.isCorrectNewIP = ipIsValid($scope.newServer.ip);
-            }else{
-                $scope.isCorrectChangedIP = ipIsValid($scope.editingServer.ip);
-                $scope.changedValues = true;
             }
         };
 
-        $scope.changeName = function(){
-            $scope.changedValues = true;
-        };
 
         $scope.getServers = function(){
             ajax.on(dataFactory.getServers(), {
                     accountId : 1,
-                    _sort : $scope.sort,
+                    _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1,$scope.sort.length) : $scope.sort),
                     _order : $scope.order
                 }, function (data) {
                     if (!data.error) {
@@ -106,65 +101,45 @@ angular.module('dmc.account')
             }
         };
 
-        $scope.saveChanges = function(){
-            if($scope.editingServer.ip && $scope.editingServer.ip.trim().length > 0 && $scope.editingServer.name != null && $scope.editingServer.name.trim().length > 0){
-                ajax.on(dataFactory.saveChangeServer(), $scope.editingServer,
-                    function (data) {
-                        if (!data.error) {
-                            for(var i=0;i<$scope.servers.length;i++){
-                                if($scope.servers[i].id == data.result.id){
-                                    $scope.servers[i] = data.result;
-                                    break;
-                                }
-                            }
-                            $scope.cancelAdding();
-                            toastModel.showToast("success", "Server successfully updated!");
-                        } else {
-                            toastModel.showToast("error", data.error);
-                        }
-                    }, function (data) {
-                        toastModel.showToast("error", "Error. The problem on the server.");
+        $scope.saveChanges = function(item){
+            ajax.on(dataFactory.saveChangeServer(item.id), {
+                    name : item.changedName,
+                    ip :  item.changedIp
+                },
+                function (data) {
+                    if (!data.error) {
+                        item.name = item.changedName;
+                        item.ip = item.changedIp;
+                        $scope.cancelEditServer(item);
+                        toastModel.showToast("success", "Server successfully updated!");
+                    } else {
+                        toastModel.showToast("error", data.error);
                     }
-                );
-            }else{
-                if($scope.editingServer.name == null || $scope.editingServer.name.trim().length == 0 ) {
-                    toastModel.showToast("error", "Server Name can not be empty.");
-                }else{
-                    if($scope.editingServer.ip == null || $scope.editingServer.ip.trim().length == 0){
-                        toastModel.showToast("error", "Server Host/IP can not be empty.");
-                    }else{
-                        toastModel.showToast("error", "Server Host/IP has wrong format");
-                    }
-                }
-            }
+                }, function (data) {
+                    toastModel.showToast("error", "Error. The problem on the server.");
+                }, "PUT"
+            );
         };
 
-        $scope.editServer = function(item){
-            if($scope.isAddingServer == false) {
-                if($scope.changedValues == false) {
-                    $scope.editingServer = $.extend(true, {}, item);
-                    $scope.isCorrectChangedIP = ipIsValid($scope.editingServer.ip);
-                    $scope.isEditingServer = true;
-                    // auto focus for edit Server Alias input
-                    $timeout(function () {
-                        $("#editServerAlias").focus();
-                    });
-                }else{
-                    toastModel.showToast("error", "At the present time you are changing a server.");
-                }
-            }else{
-                toastModel.showToast("error", "At the present time you are adding a server.");
-            }
+        $scope.cancelEditServer = function(item){
+            item.isChanging = false;
+        };
+
+        $scope.editServer = function(item,e){
+            if($scope.isAddingServer) $scope.cancelAdding();
+            item.isChanging = true;
+            $timeout(function() {
+                $(e.currentTarget).parents(".one-server").find(".nameEditInput").focus();
+            });
         };
 
         $scope.onOrderChange = function(order){
-            $scope.sort = (order[0] == '-' ? order.substring(1,order.length) : order);
             $scope.order = (order[0] == '-' ? 'ASC' : 'DESC');
             $scope.getServers();
         };
 
         $scope.deleteServer = function(item){
-            ajax.on(dataFactory.deleteServer(), {id : item.id},
+            ajax.on(dataFactory.deleteServer(item.id), {},
                 function (data) {
                     if (!data.error) {
                         for(var i=0;i<$scope.servers.length;i++){
@@ -179,7 +154,7 @@ angular.module('dmc.account')
                     }
                 }, function (data) {
                     toastModel.showToast("error", "Error. The problem on the server.");
-                }
+                }, "DELETE"
             );
         };
 }]);

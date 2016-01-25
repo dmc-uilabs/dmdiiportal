@@ -177,6 +177,12 @@
         tr{
           outline: none;
         }
+        td{
+          font-size: 16px;
+          md-input-container{
+            padding-bottom: 0;
+          }
+        }
         .status{
           ng-md-icon{
             fill:#ccc;
