@@ -18,11 +18,13 @@
       <span flex></span>
 
       <div class="marketplace-search-button" layout="row" layout-align="center start">
-        <md-button href="/favorites.php">
+        <md-button class="link-button" href="/favorites.php">
           <ng-md-icon icon="favorite" size="14"></ng-md-icon>
           Favorites ({{favoritesCount}})
         </md-button>
-        <md-button href="" ng-disabled="compareProducts.services.length+compareProducts.components.length == 0" compare-button>
+        <md-button class="md-raised dmc-button"
+                   ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
+                   compare-button>
           Compare ({{compareProducts.services.length+compareProducts.components.length}})
         </md-button>
       </div>

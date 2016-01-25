@@ -240,11 +240,23 @@ md-tooltip{
   }
 }
 
-
-.view-all-link{
-  text-decoration: underline;
-  font-size: 13px;
+.link-button{
+  text-decoration: none;
+  text-transform: initial;
   &:hover{
-    text-decoration: none;
+    text-decoration: underline;
+  }
+}
+
+.dmc-button{
+  text-transform: initial;
+}
+
+.view-all-link.md-button.md-default-theme{
+  text-decoration: none;
+  font-size: 13px;
+  color: #333;
+  &:hover{
+    text-decoration: underline;
   }
 }
