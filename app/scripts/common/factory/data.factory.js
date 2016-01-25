@@ -101,7 +101,7 @@ angular.module('dmc.data',[])
             getUrlCreateTask: function(id){
                 var url = baseServer+'/create_task'+appendId(id);
                 if (window.apiUrl) {
-                    url = baseServer+'/tasks';
+                    url = baseServer+'/tasks/create';
                 }
                 return url
             },
