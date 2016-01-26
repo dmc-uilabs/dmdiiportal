@@ -17,23 +17,20 @@ angular.module('dmc.account', [
     'dmc.model.toast-model',
     'dmc.model.question-toast-model',
     'dmc.phone-format',
+    'dmc.by-parameter',
     'flow'
 ]).config(function(flowFactoryProvider, $stateProvider, $urlRouterProvider, $httpProvider){
 
-    flowFactoryProvider.on('catchAll', function (event) {
-        //console.log('catchAll', arguments);
-    });
     var resolve = {
         accountData: ['AccountModel', '$stateParams',
             function(AccountModel, $stateParams) {
-                return AccountModel.getModel($stateParams.accountId);
+                return AccountModel.get($stateParams.accountId);
             }]
     };
     $stateProvider.state('account', {
         url: '/:accountId',
         controller: 'AccountIdLocatorCtrl',
-        template: '<ui-view />',
-        resolve: resolve
+        template: '<ui-view />'
     }).state('account.basics', {
         url: '/basics',
         controller: 'BasicsAccountCtr',
@@ -66,7 +63,7 @@ angular.module('dmc.account', [
         resolve: resolve
     })
     $urlRouterProvider.otherwise('/1');
-}).controller('AccountIdLocatorCtrl', [ '$stateParams', '$state','$location', function ($stateParams, $state, $location) {
+}).controller('AccountIdLocatorCtrl', [ '$stateParams', '$state', function ($stateParams, $state) {
         var accountId = $stateParams.accountId;
         if (accountId === "" || !angular.isDefined($stateParams.accountId)) {
             location.href = "/";
@@ -75,19 +72,7 @@ angular.module('dmc.account', [
         if (hash.lastIndexOf('/') == hash.indexOf('/')) {
             $state.go('account.basics', {accountId: accountId})
         }
-}]).service('accountUpdate', ['ajax','dataFactory','toastModel', function (ajax,dataFactory,toastModel) {
-    this.update = function(data){
-        ajax.on(dataFactory.updateAccount(data.id),data,function(result){
-            if(result.error){
-                toastModel.showToast('error',result.error);
-            }else{
-                toastModel.showToast('success',"Successfully updated!");
-            }
-        },function(result){
-            toastModel.showToast('error',"Unable update data");
-        });
-    }
-}]);
+}])
 
 var pageTitles = {
     basics : "Account Basics",

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('PrivacyAccountCtr', [ '$stateParams', '$state', "$scope", "location","accountData","accountUpdate","$timeout", function ($stateParams, $state, $scope, location,accountData,accountUpdate,$timeout) {
+    .controller('PrivacyAccountCtr', [ '$stateParams', '$state', "$scope", "location","accountData","AccountModel","$timeout", function ($stateParams, $state, $scope, location,accountData,AccountModel,$timeout) {
         $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
@@ -79,7 +79,7 @@ angular.module('dmc.account')
         };
 
         $scope.saveChanges = function(){
-            accountUpdate.update($scope.userBasics);
+            AccountModel.update($scope.userBasics);
             $scope.changedValues = null;
         };
 

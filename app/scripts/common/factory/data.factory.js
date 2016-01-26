@@ -177,9 +177,6 @@ angular.module('dmc.data',[])
             addProductToFavorite: function() {
                 return baseServer + '/add_product_to_favorite';
             },
-            updateAccount: function(id){
-                return baseServer+'/update_account'+appendId(id);
-            },
             getProfile: function(id){
                 return baseServer+'/profiles'+appendId(id);
             },
@@ -194,9 +191,6 @@ angular.module('dmc.data',[])
             },
             updateFeaturesPosition: function(){
                 return baseServer+'/update_features_position';
-            },
-            addNewServer: function(){
-                return baseServer+'/add_new_server';
             },
             getFAQCategories: function(){
                 return baseServer+'/get_faq_categories';
@@ -223,17 +217,26 @@ angular.module('dmc.data',[])
 
 
             // direct requests
-            saveChangeServer: function(id){
-                return localhost+'account_servers/'+id;
+            updateAccount: function(id){
+                return localhost+'accounts/'+id;
             },
-            deleteServer: function(id){
-                return localhost+'account_servers/'+id;
+            getAccount: function(id){
+                return localhost+'accounts/'+id;
             },
+            // servers ------------------
+            serverURL : function(id){
+                var name = 'account_servers';
+                return {
+                    get : localhost+name+'/'+id,
+                    update : localhost+name+'/'+id,
+                    delete : localhost+name+'/'+id,
+                    create : localhost+name,
+                    all : localhost+name
+                }
+            },
+            // ---------------------------
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
-            },
-            getServers: function(){
-                return localhost+'account_servers';
             },
             deactivateAccount : function(id){
                 return localhost+'accounts'+(id ? '/'+id : '');
