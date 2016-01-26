@@ -148,13 +148,13 @@ angular.module('dmc.company-profile')
                     }
                 }
                 if(Object.keys(changedData).length > 0) {
-                    ajax.on(dataFactory.updateCompanyProfile($scope.company.id),changedData,
+                    ajax.update(dataFactory.updateCompanyProfile($scope.company.id),changedData,
                         function (data) {
                             $location.path('/'+$scope.company.id).search();
                             toastModel.showToast("success", "Data successfully updated.");
                         }, function () {
                             toastModel.showToast("error", "Error. The problem on the server (update data).");
-                        }, "PUT"
+                        }
                     );
                 }
 
@@ -163,10 +163,11 @@ angular.module('dmc.company-profile')
                     for(var index in $scope.company.images){
                         if(!$scope.company.images[index].hide){
                             if($scope.company.images[index].title != $scope.company.images[index].changedTitle){
-                                ajax.on(dataFactory.updateCompanyImage($scope.company.images[index].id),{
+                                ajax.update(dataFactory.updateCompanyImage($scope.company.images[index].id),{
                                         title : $scope.company.images[index].changedTitle
                                     },
-                                    function (data) {
+                                    function (response) {
+                                        var data = response.data ? response.data : response;
                                         for(var i in $scope.company.images){
                                             if($scope.company.images[i].id == data.id){
                                                 $scope.company.images[i].title = $scope.company.images[i].changedTitle;
@@ -177,7 +178,7 @@ angular.module('dmc.company-profile')
                                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                                     }, function () {
                                         toastModel.showToast("error", "Error. The problem on the server (update image).");
-                                    }, "PUT"
+                                    }
                                 );
                             }
                         }
@@ -189,10 +190,11 @@ angular.module('dmc.company-profile')
                     for(var index in $scope.company.skillsImages){
                         if(!$scope.company.skillsImages[index].hide){
                             if($scope.company.skillsImages[index].title != $scope.company.skillsImages[index].changedTitle){
-                                ajax.on(dataFactory.updateCompanySkillsImage($scope.company.skillsImages[index].id),{
+                                ajax.update(dataFactory.updateCompanySkillsImage($scope.company.skillsImages[index].id),{
                                         title : $scope.company.skillsImages[index].changedTitle
                                     },
                                     function (data) {
+                                        var data = response.data ? response.data : response;
                                         for(var i in $scope.company.skillsImages){
                                             if($scope.company.skillsImages[i].id == data.id){
                                                 $scope.company.skillsImages[i].title = $scope.company.skillsImages[i].changedTitle;
@@ -203,7 +205,7 @@ angular.module('dmc.company-profile')
                                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                                     }, function () {
                                         toastModel.showToast("error", "Error. The problem on the server (update image).");
-                                    }, "PUT"
+                                    }
                                 );
                             }
                         }
@@ -253,8 +255,9 @@ angular.module('dmc.company-profile')
 
         // function for update contact
         var updateContact = function(contact,updatedData){
-            ajax.on(dataFactory.updateCompanyContact(contact.id), updatedData,
+            ajax.update(dataFactory.updateCompanyContact(contact.id), updatedData,
                 function (data) {
+                    var data = response.data ? response.data : response;
                     for (var i in $scope.company.contacts) {
                         if ($scope.company.contacts[i].id == contact.id) {
                             $scope.company.contacts[i].type = $scope.company.contacts[i].changedType;
@@ -269,15 +272,16 @@ angular.module('dmc.company-profile')
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }, function () {
                     toastModel.showToast("error", "Error. The problem on the server (update contact).");
-                }, "PUT"
+                }
             );
         };
 
 
         // function for delete contact
         var deleteContact = function(contact){
-            ajax.on(dataFactory.deleteCompanyContact(contact.id),{},
-                function(data){
+            ajax.delete(dataFactory.deleteCompanyContact(contact.id),{},
+                function(response){
+                    var data = response.data ? response.data : response;
                     for(var index in $scope.company.contacts){
                         if($scope.company.contacts[index].id == contact.id){
                             $scope.company.contacts.splice(index,1);
@@ -288,14 +292,15 @@ angular.module('dmc.company-profile')
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 },function(){
                     toastModel.showToast("error", "Error. The problem on the server (delete contact).");
-                },"DELETE"
+                }
             );
         };
 
         // function for update video
         var updateVideo = function(video,updatedData){
-            ajax.on(dataFactory.updateCompanyVideo(video.id), updatedData,
-                function (data) {
+            ajax.update(dataFactory.updateCompanyVideo(video.id), updatedData,
+                function (response) {
+                    var data = response.data ? response.data : response;
                     for (var i in $scope.company.videos) {
                         if ($scope.company.videos[i].id == video.id) {
                             $scope.company.videos[i].title = $scope.company.videos[i].changedTitle;
@@ -307,14 +312,15 @@ angular.module('dmc.company-profile')
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }, function () {
                     toastModel.showToast("error", "Error. The problem on the server (update video).");
-                }, "PUT"
+                }
             );
         };
 
         // function for delete video
         var deleteVideo = function(video){
-            ajax.on(dataFactory.deleteCompanyVideo(video.id),{},
-                function(data){
+            ajax.delete(dataFactory.deleteCompanyVideo(video.id),{},
+                function(response){
+                    var data = response.data ? response.data : response;
                     for(var i in $scope.company.videos){
                         if($scope.company.videos[i].id == video.id){
                             $scope.company.videos.splice(i,1);
@@ -325,7 +331,7 @@ angular.module('dmc.company-profile')
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 },function(){
                     toastModel.showToast("error", "Error. The problem on the server (delete video).");
-                },"DELETE"
+                }
             );
         };
 

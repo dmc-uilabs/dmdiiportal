@@ -20,13 +20,12 @@ paths:
     post:
       tags:
         - project
-      summary: Post a new project
       description: Post a new project to store in the database
       operationId: postProject
       parameters:
         - in: body
           name: body
-          description: Proect object that need to be added to the database
+          description: Project object to be added to the database
           required: false
           schema:
             $ref: '#/definitions/Project'
@@ -62,7 +61,7 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Task object that need to be added to the database
+          description: Task object to be added to the database
           required: false
           schema:
             $ref: '#/definitions/Task'
@@ -97,7 +96,7 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Service object that need to be added to the database
+          description: Service object to be added to the database
           required: false
           schema:
             $ref: '#/definitions/Service'
@@ -153,7 +152,7 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Component object that need to be added to the database
+          description: Component object to be added to the database
           required: false
           schema:
             $ref: '#/definitions/Component'
@@ -188,7 +187,7 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Discussion object that need to be added to the database
+          description: Discussion object to be added to the database
           required: false
           schema:
             $ref: '#/definitions/Discussion'
@@ -266,6 +265,25 @@ paths:
           description: send the company profile with companyID
           schema:
             $ref: '#/definitions/Company'
+    put:
+      tags:
+      - company
+      description: Update information for company profile by ID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+        - name: company
+          in: body
+          schema:
+            $ref: '#/definitions/Company'
+      responses:
+        200:
+          description: returns updated company profile
+          schema:
+            $ref: '#/definitions/Company'
   '/companies/{companyID}/company_images':
     get:
       tags:
@@ -285,6 +303,26 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CompanyImage'
+  '/company_images/{imageID}':
+    put:
+      tags:
+      - company
+      description: Update company image by ID
+      parameters:
+        - name: imageID
+          in: path
+          type: string
+          description: ID of the company image
+          required: true
+        - name: image
+          in: body
+          schema:
+            $ref: '#/definitions/CompanyImage'
+      responses:
+        200:
+          description: returns updated company image
+          schema:
+            $ref: '#/definitions/CompanyImage'
   '/companies/{companyID}/company_videos':
     get:
       tags:
@@ -361,6 +399,26 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CompanySkillImage'
+  '/company_skill_images/{imageID}':
+    put:
+      tags:
+      - company
+      description: Update company skill image by ID
+      parameters:
+        - name: imageID
+          in: path
+          type: string
+          description: ID of the company skill image
+          required: true
+        - name: image
+          in: body
+          schema:
+            $ref: '#/definitions/CompanySkillImage'
+      responses:
+        200:
+          description: returns updated company skill image
+          schema:
+            $ref: '#/definitions/CompanySkillImage'
   '/companies/{companyID}/company_reviews':
     get:
       tags:
@@ -416,14 +474,16 @@ paths:
       description: Post a new company skill
       parameters:
         - in: body
-          name: body
-          description: skill object that need to be added to the database
+          name: CompanySkill
+          description: skill object to be added to the database
           required: false
           schema:
             $ref: '#/definitions/CompanySkill'
       responses:
-        '405':
-          description: Invalide input
+        '201':
+          description: new skill added to the database
+          schema:
+            $ref: '#/definitions/CompanySkill'
   '/company_skills/{skillID}':
     delete:
       tags:
@@ -436,8 +496,110 @@ paths:
           required: true
           type: string
       responses:
-        '405':
-          description: Invalid Input
+        '200':
+          description: OK
+  /company_videos:
+    post:
+      tags:
+        - company
+      summary: Post a new company video
+      description: Post a new company video
+      parameters:
+        - in: body
+          name: body
+          description: Video object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/CompanyVideo'
+      responses:
+        '201':
+          description: new video added to the database
+          schema:
+            $ref: '#/definitions/CompanyVideo'
+  '/company_videos/{videoID}':
+    delete:
+      tags:
+        - company
+      description: Delete a video by id
+      parameters:
+        - in: path
+          name: videoID
+          description: ID of video to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+      - company
+      description: Update company videos by ID
+      parameters:
+        - name: videoID
+          in: path
+          type: string
+          description: ID of the company video
+          required: true
+        - name: video
+          in: body
+          schema:
+            $ref: '#/definitions/CompanyVideo'
+      responses:
+        200:
+          description: returns updated company video
+          schema:
+            $ref: '#/definitions/CompanyVideo'
+  /company_key_contacts:
+    post:
+      tags:
+        - company
+      summary: Post a new company contact
+      description: Post a new company contact
+      parameters:
+        - in: body
+          name: body
+          description: contact object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/CompanyKeyContact'
+      responses:
+        '201':
+          description: new contact added to the database
+          schema:
+            $ref: '#/definitions/CompanyKeyContact'
+  '/company_key_contacts/{contactID}':
+    delete:
+      tags:
+        - company
+      description: Delete a contact by id
+      parameters:
+        - in: path
+          name: contactID
+          description: ID of contact to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+      - company
+      description: Update company contact by ID
+      parameters:
+        - name: contactID
+          in: path
+          type: string
+          description: ID of the company contact
+          required: true
+        - name: contact
+          in: body
+          schema:
+            $ref: '#/definitions/CompanyKeyContact'
+      responses:
+        200:
+          description: returns updated company contact
+          schema:
+            $ref: '#/definitions/CompanyKeyContact'
 definitions:
   FeatureImage:
     type: object
