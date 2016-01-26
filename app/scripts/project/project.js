@@ -28,6 +28,7 @@ angular.module('dmc.project', [
 		'dmc.model.project',
 		'ui.autocomplete',
 		'dmc.model.toast-model',
+		'dmc.model.services',
 		'dmc.sub-nav-menu'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){

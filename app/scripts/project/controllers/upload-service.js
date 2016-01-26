@@ -1,5 +1,5 @@
 angular.module('dmc.project')
-.controller('projectUploadServicesCtrl', ['$scope', '$stateParams', 'ajax', 'dataFactory', 'projectData', 'edit', function ($scope, $stateParams, ajax, dataFactory, projectData, edit) {
+.controller('projectUploadServicesCtrl', ['$scope', '$state', 'projectData', 'edit', 'DMCServicesModel', function ($scope, $state, projectData, edit, DMCServicesModel) {
 	
 	$scope.projectData = projectData;
 	$scope.page1 = true;
@@ -7,6 +7,11 @@ angular.module('dmc.project')
 	$scope.flagAddServer = false;
 	$scope.serverModel = null;
 	$scope.allServices = null;
+	$scope.NewService = {
+		serviceName: null,
+		parentComponent: null,
+		serviceDescription: null,
+	}
 
 	$scope.servers = [
 		{
@@ -334,35 +339,12 @@ angular.module('dmc.project')
 		}
 	]
 
-	$scope.tags = [
-		"tag1",
-		"tag2",
-		"tag3",
-		"tag4",
-		"tag5",
-		"tag6",
-		"tag7",
-		"tag8",
-		"tag9",
-		"tag10",
-		"tag11",
-		"tag12",
-		"tag13",
-		"tag14",
-		"tag15",
-	]
+	$scope.tags = []
 	$scope.preview = $scope.interfeces[0];
 
-	ajax.on(
-			dataFactory.getUrlAllProducts(),
-			{},
-			function(data){
-				$scope.allServices = data.result;  
-			},
-			function(){
-				console.error("Ajax fail! getAllProducts()");
-			}
-		);
+	DMCServicesModel.list().then(function(data){
+		$scope.allServices = data;
+	})
 
 	$scope.selectItemDropDown = function(value){
 		if(value != 0) {
@@ -377,6 +359,7 @@ angular.module('dmc.project')
 	$scope.saveServer = function(server){
 		server.id = $scope.servers.length;
 		$scope.servers.push(server);
+		$scope.selectItemDropDown(server.id);
 		$scope.flagAddServer = false;
 	}
 
@@ -389,23 +372,51 @@ angular.module('dmc.project')
 		$scope.preview = item;
 	}
 	
-  //add tag to product
-  $scope.addTag = function(inputTag){
-    if(!inputTag)return;
-    $scope.tags.push(inputTag);
-    this.inputTag = null;
-  }
+	//add tag to product
+	$scope.addTag = function(inputTag){
+		if(!inputTag)return;
+		$scope.tags.push(inputTag);
+		this.inputTag = null;
+	}
 
-  //remove tag
-  $scope.deleteTag = function(index){
-    $scope.tags.splice(index,1);
-  }
+	//remove tag
+	$scope.deleteTag = function(index){
+		$scope.tags.splice(index,1);
+	}
 
-  $scope.next = function(){
-  	$scope.page1 = false;
-  }
+	$scope.next = function(){
+		$scope.page1 = false;
+	}
 
-  $scope.back = function(){
-  	$scope.page1 = true;
-  }
+	$scope.back = function(){
+		$scope.page1 = true;
+	}
+
+	$scope.finish = function(){
+		if(edit){
+			DMCServicesModel.create({
+				title: $scope.NewService.serviceName,
+				description: $scope.NewService.serviceDescription,
+				from: 'project',
+				pojectId: projectData.id,
+				pojectTitle: projectData.title,
+				tags: $scope.tags
+			}).then(function(data){
+				$state.go('project.services-detail', {ServiceId: data});
+				console.info("finish save", data);
+			});
+		}else{
+			DMCServicesModel.create({
+				title: $scope.NewService.serviceName,
+				description: $scope.NewService.serviceDescription,
+				from: 'project',
+				pojectId: projectData.id,
+				pojectTitle: projectData.title,
+				tags: $scope.tags
+			}).then(function(data){
+				$state.go('project.services-detail', {ServiceId: data});
+				console.info("finish save", data);
+			});
+		}
+	}
 }])

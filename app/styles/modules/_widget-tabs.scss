@@ -2,6 +2,10 @@
 	.history-list{
 		padding: 0;
 		.header{
+			h2{
+				margin: 0;
+				font-weight: normal;
+			}
 			.viewAll{
 				margin-left: 16px;
 				font-size: 14px;
@@ -150,6 +154,30 @@
 			border: 1px solid #000;
 			border-top: none;
 			padding: 0px 16px;
+		}
+	}
+}
+
+.tabs-author{
+	.one{
+		padding: 16px;
+		border: 1px solid #999;
+		height: 100px;
+		margin: 8px;
+		img{
+			width: auto;
+			height: 100%;
+			margin-right: 16px;
+		}
+		.md-button{
+			margin: 0;
+		}
+		h2{
+			margin: 0 16px 0 0;
+		}
+		h3{
+			margin: 0;
+			font-weight: normal;
 		}
 	}
 }

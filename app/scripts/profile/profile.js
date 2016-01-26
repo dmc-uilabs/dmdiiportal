@@ -121,6 +121,12 @@ angular.module('dmc.profile', [
 		// 	}
 		// );
 
+ 		$(window).bind('beforeunload', function(){
+           
+                return "Are you sure you want to leave this page without saving?";
+            
+        });
+
 		var calculate_rating = function() {
 			$scope.precentage_stars = [0,0,0,0,0];
 			$scope.average_rating = 0;

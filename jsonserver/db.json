@@ -124,19 +124,37 @@
       "id": 1,
       "companyId": 1,
       "url": "/uploads/company/skill-image/1/20160125045919000000.jpg",
-      "title": "Skill Image"
+      "title": "Best Company Image"
     },
     {
       "id": 2,
       "companyId": 1,
       "url": "/uploads/company/skill-image/2/20160125051445000000.png",
-      "title": "New Image"
+      "title": "Best Company Image"
     },
     {
       "id": 3,
       "companyId": 1,
       "url": "/uploads/company/skill-image/3/20160125051456000000.png",
-      "title": "New Image 2"
+      "title": "Best Company Image"
+    },
+    {
+      "id": 4,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/1/20160125045919000000.jpg",
+      "title": "Best Company Image"
+    },
+    {
+      "id": 5,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/2/20160125051445000000.png",
+      "title": "Best Company Image"
+    },
+    {
+      "id": 6,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/3/20160125051456000000.png",
+      "title": "Best Company Image"
     }
   ],
   "company_images": [
@@ -729,7 +747,7 @@
       },
       "currentStatus": {
         "percentCompleted": "5",
-        "startDate": "20/09/2015",
+        "startDate": "20-09-2015",
         "startTime": "11:15:33",
         "project": {
           "id": 4,
@@ -779,7 +797,7 @@
       },
       "currentStatus": {
         "percentCompleted": "95",
-        "startDate": "21/09/2015",
+        "startDate": "21-09-2015",
         "startTime": "15:48:10",
         "project": {
           "id": 2,
@@ -804,7 +822,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "20/09/2015",
+        "startDate": "20-09-2015",
         "startTime": "15:11:10",
         "project": {
           "id": 5,
@@ -829,7 +847,7 @@
       },
       "currentStatus": {
         "percentCompleted": "70",
-        "startDate": "21/09/2015",
+        "startDate": "21-09-2015",
         "startTime": "15:15:10",
         "project": {
           "id": 2,
@@ -854,7 +872,7 @@
       },
       "currentStatus": {
         "percentCompleted": "95",
-        "startDate": "22/09/2015",
+        "startDate": "22-09-2015",
         "startTime": "11:33:10",
         "project": {
           "id": 3,
@@ -879,7 +897,7 @@
       },
       "currentStatus": {
         "percentCompleted": "60",
-        "startDate": "19/09/2015",
+        "startDate": "19-09-2015",
         "startTime": "02:10:10",
         "project": {
           "id": 3,
@@ -904,7 +922,7 @@
       },
       "currentStatus": {
         "percentCompleted": "80",
-        "startDate": "20/09/2015",
+        "startDate": "20-09-2015",
         "startTime": "16:19:10",
         "project": {
           "id": 3,
@@ -929,7 +947,7 @@
       },
       "currentStatus": {
         "percentCompleted": "35",
-        "startDate": "21/09/2015",
+        "startDate": "21-09-2015",
         "startTime": "11:12:10",
         "project": {
           "id": 4,
@@ -954,7 +972,7 @@
       },
       "currentStatus": {
         "percentCompleted": "95",
-        "startDate": "22/09/2015",
+        "startDate": "22-09-2015",
         "startTime": "17:12:10",
         "project": {
           "id": 4,
@@ -979,7 +997,7 @@
       },
       "currentStatus": {
         "percentCompleted": "65",
-        "startDate": "20/09/2015",
+        "startDate": "20-09-2015",
         "startTime": "14:10:10",
         "project": {
           "id": 5,
@@ -1004,7 +1022,7 @@
       },
       "currentStatus": {
         "percentCompleted": "65",
-        "startDate": "20/09/2015",
+        "startDate": "20-09-2015",
         "startTime": "15:37:10",
         "project": {
           "id": 5,
@@ -1029,7 +1047,7 @@
       },
       "currentStatus": {
         "percentCompleted": "47",
-        "startDate": "21/09/2015",
+        "startDate": "21-09-2015",
         "startTime": "23:13:10",
         "project": {
           "id": 5,
@@ -1054,7 +1072,7 @@
       },
       "currentStatus": {
         "percentCompleted": "68",
-        "startDate": "22/09/2015",
+        "startDate": "22-09-2015",
         "startTime": "13:47:10",
         "project": {
           "id": 4,
@@ -1079,7 +1097,7 @@
       },
       "currentStatus": {
         "percentCompleted": "68",
-        "startDate": "22/09/2015",
+        "startDate": "22-09-2015",
         "startTime": "16:10:10",
         "project": {
           "id": 4,
@@ -1104,7 +1122,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "20/09/2015",
+        "startDate": "20-09-2015",
         "startTime": "06:45:10",
         "project": {
           "id": 5,
@@ -1131,7 +1149,7 @@
       },
       "currentStatus": {
         "percentCompleted": "10",
-        "startDate": "20/09/2015",
+        "startDate": "20-09-2015",
         "startTime": "11:16:02",
         "project": {
           "id": 1,
@@ -1156,7 +1174,7 @@
       },
       "currentStatus": {
         "percentCompleted": "40",
-        "startDate": "23/09/2015",
+        "startDate": "23-09-2015",
         "startTime": "12:10:10",
         "project": {
           "id": 2,
@@ -1181,7 +1199,7 @@
       },
       "currentStatus": {
         "percentCompleted": "0",
-        "startDate": "23/09/2015",
+        "startDate": "23-09-2015",
         "startTime": "18:00:10",
         "project": {
           "id": 1,
@@ -1206,7 +1224,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "21/09/2015",
+        "startDate": "21-09-2015",
         "startTime": "18:00:10",
         "project": {
           "id": 4,
@@ -1231,7 +1249,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "22/09/2015",
+        "startDate": "22-09-2015",
         "startTime": "22:54:10",
         "project": {
           "id": 4,
@@ -1256,7 +1274,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "20/09/2015",
+        "startDate": "20-09-2015",
         "startTime": "07:27:10",
         "project": {
           "id": 4,
@@ -1281,7 +1299,7 @@
       },
       "currentStatus": {
         "percentCompleted": "60",
-        "startDate": "20/09/2015",
+        "startDate": "20-09-2015",
         "startTime": "12:27:10",
         "project": {
           "id": 5,
@@ -1306,7 +1324,7 @@
       },
       "currentStatus": {
         "percentCompleted": "13",
-        "startDate": "21/09/2015",
+        "startDate": "21-09-2015",
         "startTime": "02:18:10",
         "project": {
           "id": 4,
@@ -1748,6 +1766,7 @@
   ],
   "specifications": [
     {
+      "id": 1,
       "componentId": 3,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "input": 1,
@@ -1759,6 +1778,21 @@
       "runStats": {
         "success": 1,
         "fail": 1
+      }
+    },
+    {
+      "id": 2,
+      "serviceId": 3,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "input": 4,
+      "output": 7,
+      "usageStats": {
+        "added": 22,
+        "members": 14
+      },
+      "runStats": {
+        "success": 15,
+        "fail": 9
       }
     }
   ],

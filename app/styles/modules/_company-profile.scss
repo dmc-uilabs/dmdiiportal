@@ -162,6 +162,56 @@
 			margin-left: 16px;
 		}
 	}
+	.text-row{
+		margin-top: 16px;
+		h2{
+			margin: 0;
+		}
+	}
+
+	.images-carousel{
+		.arrow-right,
+		.arrow-left{
+			width: 36px;
+			.md-button{
+				min-width: 0;
+				line-height: 62px;
+				width: 36px;
+				margin: 0;
+				ng-md-icon{
+					margin-left: -17px;
+				}
+			}
+		}
+		h2{
+			font-weight: normal;	
+		}
+	}
+
+	.contat-tab{
+		margin: 16px 0;
+		h2{
+			text-transform: uppercase;
+			margin: 8px 0;
+			font-weight: normal;
+		}
+		h3{
+			font-weight: normal;
+		}
+		h4{
+			font-size: 14px;
+			font-weight: normal;
+		}
+		.vertical-divider{
+			border-right: 1px solid #999;
+		}
+		.contact{
+			padding: 0 32px;
+			h3,h4{
+				margin: 8px 0;
+			}
+		}
+	}
 
 
 	.company-members{

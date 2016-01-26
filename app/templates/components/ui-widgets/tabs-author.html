@@ -1,0 +1,23 @@
+<div class="tabs-author" layout="row" layout-wrap>
+	<div ng-repeat="author in data" flex="50">
+		<div class="one" layout="row" layout-align="space-between center">
+			<img ng-src="{{author.avatar}}">
+			<div layout="column">
+				<div layout="row" layout-align="start center">
+					<h2>{{author.display_name}}</h2>
+					<h3>{{author.jobTitle}}</h3>
+				</div>
+				<h3>{{author.company}}</h3>
+			</div>
+			<md-button aria-label="mail" href="" class="md-icon-button">
+				<ng-md-icon icon="mail" style="fill: grey;" size="25"></ng-md-icon>
+			</md-button>
+			<md-button aria-label="share" href="" class="md-icon-button">
+				<ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
+			</md-button>
+			<md-button class="md-raised" ng-click="follow(author)">
+				{{(author.follow)? 'Unfollow': 'Follow'}}
+			</md-button>
+		</div>
+	</div>
+</div>

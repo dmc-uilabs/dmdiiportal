@@ -27,7 +27,7 @@
 							<md-option ng-repeat="server in servers track by $index"  ng-value="$index">{{server.name}} - {{server.ip}}</md-option>
 						</md-select>
 					</md-input-container>
-					<md-button class="add" ng-click="$parent.$parent.flagAddServer = true">
+					<md-button class="md-raised add" ng-click="$parent.$parent.flagAddServer = true">
 						Add New Server
 					</md-button>
 				</div>
@@ -104,18 +104,18 @@
 				<div layout="row" layout-align="space-between center">
 					<md-input-container flex="40">
 						<label>Service Name</label>
-						<input ng-model="serviceName">
+						<input ng-model="NewService.serviceName">
 					</md-input-container>
 					<md-input-container flex="40">
 						<label>Parent Component</label>
-						<md-select ng-model="parentComponent">
-							<md-option ng-repeat="service in allServices track by $index">{{service.title}}</md-option>
+						<md-select ng-model="NewService.parentComponent">
+							<md-option ng-repeat="service in allServices track by $index" ng-value="service.title">{{service.title}}</md-option>
 						</md-select>
 					</md-input-container>
 				</div>
 				<md-input-container>
 					<label>Description</label>
-					<textarea ng-model="serviceDescription" columns="4" md-maxlength="3000"></textarea>
+					<textarea ng-model="NewService.serviceDescription" columns="4" md-maxlength="3000"></textarea>
 				</md-input-container>
 			</md-content>
 
@@ -160,7 +160,8 @@
 			<md-button class="md-primary md-raised" ng-if="!page1" ng-click="back()">
 				Back
 			</md-button>
-			<md-button class="md-primary md-raised" ng-if="!page1" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+			 <!-- ng-disabled="!NewService.serviceName || !NewService.parentComponent || !NewService.serviceDescription || !tags.length" -->
+			<md-button class="md-primary md-raised" ng-disabled="!NewService.serviceName || !NewService.parentComponent || !NewService.serviceDescription || !tags.length" ng-if="!page1" ng-click="finish()">
 				Finish
 			</md-button>
 		</div>

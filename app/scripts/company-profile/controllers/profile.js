@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dmc.company-profile')
-    .controller('CompanyProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location, companyData) {
+    .controller('CompanyProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location, companyData, companyProfileModel) {
 
         $scope.company = companyData;
         $scope.number_of_comments = 0; // number of
@@ -19,6 +19,7 @@ angular.module('dmc.company-profile')
         $scope.showflag = false;
         $scope.followFlag = false;
         $scope.selectSortingStar = 0;
+        $scope.index = 0;
 
         $scope.sortList = [
             {
@@ -104,6 +105,50 @@ angular.module('dmc.company-profile')
             },
         ]
 
+        // get company contacts
+        var callbackContacts = function(data){
+            console.info(data);
+            for(var i in data){
+                console.info(data[i]);
+                if(data[i].type == 1){
+                    data[i].type = "LEGAL";
+                }else if(data[i].type == 2){
+                    data[i].type = "LEGAL 2";
+                }
+            }
+            $scope.company.keyContacts = data;
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+        companyProfileModel.getKeyContacts($scope.company.id, callbackContacts);
+        
+
+        // get company images
+        var callbackVideaos = function(data){
+            $scope.company.videaos = data;
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+        companyProfileModel.getImages($scope.company.id, callbackVideaos);
+        
+        // get company images
+        var callbackImages = function(data){
+            $scope.company.images = data;
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+        companyProfileModel.getImages($scope.company.id, callbackImages);
+        
+        // get company skills images
+        var callbackSkillsImages = function(data){
+            $scope.company.skillsImages = data;
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+        companyProfileModel.getSkillsImages($scope.company.id, callbackSkillsImages);
+
+        // get company skills
+        var callbackSkills = function(data){
+            $scope.company.skills = data;
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+        companyProfileModel.getSkills($scope.company.id, callbackSkills);
         var calculate_rating = function() {
             $scope.precentage_stars = [0,0,0,0,0];
             $scope.average_rating = 0;
