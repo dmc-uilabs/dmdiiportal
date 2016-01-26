@@ -5,12 +5,25 @@ angular.module('dmc.model.company', [
 ])
 .service('CompanyModel', ['dataFactory','$http', function(dataFactory,$http) {
     this.getModel = function(id) {
-        return $http.get(dataFactory.getCompanyUrl(id)+"&id="+id).then(
+        return $http.get(dataFactory.getCompanyUrl(id)).then(
             function(response){
-                if(response.data.result == null || response.data.result.length == 0) {
-                    window.location.href = "/";
-                }
-                return response.data.result;
+                // if(response.data.result == null || response.data.result.length == 0) {
+                //     window.location.href = "/";
+                // }
+                var data = dataFactory.get_result(response.data).result
+                return data;
+            },
+            function(response){
+                return response;
+            }
+        );
+    };
+
+    this.getReviewModel = function(id) {
+        return $http.get(dataFactory.getCompanyReviewUrl(id)).then(
+            function(response){
+                var data = dataFactory.get_result(response.data).result
+                return data;
             },
             function(response){
                 return response;

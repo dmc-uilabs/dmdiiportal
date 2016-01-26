@@ -40,9 +40,9 @@ return call_user_func(function () {
 		echo get_discussions($_GET);
 	}else if(strpos($uri,'/projects') !== false) {
 		echo get_projects($_GET);
-	}else if(strpos($uri,'/get_company') !== false){
+	}else if(strpos($uri,'/companies') !== false){
 		echo get_company($_GET);
-	}else if(strpos($uri,'/get_review_company') !== false){
+	}else if(strpos($uri,'/company_reviews') !== false){
 		echo get_company_review($_GET);
 	}else if(strpos($uri,'/add_review_company') !== false){
 		echo add_company_review($_POST);
@@ -92,7 +92,7 @@ return call_user_func(function () {
 		echo add_featured_company($_GET);
 	}else if(strpos($uri,'/remove_featured_company') !== false){
 		echo remove_featured_company($_GET);
-	}else if(strpos($uri,'/get_featured_company') !== false){
+	}else if(strpos($uri,'/company_featured') !== false){
 		echo get_featured_company($_GET);
 	}else if(strpos($uri,'/save_company_changes') !== false){
 		echo save_company_changes($_GET);

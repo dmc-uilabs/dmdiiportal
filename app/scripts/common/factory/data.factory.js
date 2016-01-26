@@ -4,6 +4,7 @@ angular.module('dmc.data',[])
     .factory('dataFactory', function ($window,$location) {
         var baseServer = $window.apiUrl ? $window.apiUrl : '/static/?p=';
         var localhost = ($location.$$absUrl.indexOf("http://localhost") != -1 ? "http://localhost:3000/" : "http://ge-dmc-01.thecreativeadvantage.net:3000/");
+        localhost = $window.apiUrl ? $window.apiUrl + '/' : localhost;
         var urlSocketServer = 'http://localhost:8080/';
         var appendId = function(id){
             return ($window.apiUrl && id ? '/'+id : '');
@@ -44,7 +45,7 @@ angular.module('dmc.data',[])
                 var obj = {}
                 if ($window.apiUrl) {
                     obj = _.transform(source, function(result, value, key) {
-                      if (value && key != "projectId" && key != "profileId"){
+                      if (value && key != "projectId" && key != "profileId" && key != "companyId"){
                         result['_'+key] = value;
                       }
                     });
@@ -151,10 +152,12 @@ angular.module('dmc.data',[])
                 return baseServer+'/get_account'+appendId(id);
             },
             getCompanyUrl: function(id){
-                return baseServer+'/get_company'+appendId(id);
+                var idString = $window.apiUrl ? '' : '&id='+id;
+                return baseServer+'/companies'+appendId(id)+idString;
             },
-            getCompanyReviewUrl: function(){
-                return baseServer+'/get_review_company';
+            getCompanyReviewUrl: function(id){
+                // return baseServer+'/get_review_company';
+                return baseServer+webServiceUrl('companies', 'company_reviews', id);;
             },
             addCompanyReviewUrl: function(){
                 return baseServer+'/add_review_company';
@@ -165,8 +168,9 @@ angular.module('dmc.data',[])
             removeFeaturedCompany: function(){
                 return baseServer+'/remove_featured_company';
             },
-            getFeaturesCompany: function(){
-                return baseServer+'/get_featured_company';
+            getFeaturesCompany: function(id){
+                // return baseServer+'/company_featured';
+                return baseServer+webServiceUrl('companies', 'company_featured', id);
             },
             saveCompanyChanges : function(){
                 return baseServer+'/save_company_changes';
@@ -213,9 +217,6 @@ angular.module('dmc.data',[])
             sendStorefrontMessage: function(){
                 return baseServer+'/ssm';
             },
-
-
-
             // direct requests
             updateAccount: function(id){
                 return localhost+'accounts/'+id;
