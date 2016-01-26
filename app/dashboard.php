@@ -98,7 +98,7 @@
               <div class="md-toolbar-tools widget-toolbar-title">
                 <h2>FOLLOWING</h2>
                 <span flex></span>
-                <md-button href="/" md-no-ink class="view-all-button">View All</md-button>
+                <md-button href="/" md-no-ink class="view-all-button view-all-link">View All (5)</md-button>
               </div>
             </md-toolbar>
           </div>

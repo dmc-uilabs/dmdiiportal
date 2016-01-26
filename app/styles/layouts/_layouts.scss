@@ -278,3 +278,9 @@ md-dialog[md-theme="default"]{
     }
   }
 }
+
+a{
+  &:hover{
+    text-decoration: underline;
+  }
+}
