@@ -423,6 +423,6 @@ angular.module('dmc.company')
             event.preventDefault();
         }).on("mouseenter",".product-card a",function(){
             $(this).attr("href","");
-            $(this).css("cursor","default");
+            $(this).css("cursor","move");
         });
 }]);

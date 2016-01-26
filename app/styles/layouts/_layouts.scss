@@ -249,6 +249,8 @@ md-tooltip{
 }
 
 .dmc-button{
+  height: 36px;
+  min-height: 0;
   text-transform: initial;
   ng-md-icon{
     fill: #333;

@@ -6,6 +6,15 @@
         background-color: #ddd;
       }
     }
+    .editable-md-content .product-card,
+    .products-for-add .product-card{
+      a{
+        cursor: move;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
     md-tabs.editable-featured {
       md-content{
         padding: 8px 0;
@@ -98,11 +107,7 @@
     .company-buttons.md-button.md-default-theme {
       line-height: 36px;
       min-height: 0;
-      text-decoration: underline;
       text-transform: none;
-      &:hover{
-        text-decoration: none;
-      }
     }
     .company-buttons.md-button.md-raised.md-default-theme {
       text-decoration: none;

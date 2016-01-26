@@ -40,8 +40,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <md-button class="md-raised cancel-button" ng-if="companyData.featureImage.large" ng-click="cancelChangePicture($flow)">Cancel</md-button>
-                                    <md-button class="md-raised md-primary" ng-disabled="$flow.files.length == 0" ng-click="uploadFile($flow)">Save</md-button>
+                                    <md-button class="md-raised cancel-button dmc-button" ng-if="companyData.featureImage.large" ng-click="cancelChangePicture($flow)">Cancel</md-button>
+                                    <md-button class="md-raised md-primary dmc-button" ng-disabled="$flow.files.length == 0" ng-click="uploadFile($flow)">Save</md-button>
                                 </div>
                             </div>
                         </div>
@@ -101,8 +101,8 @@
                                     <input class="md-title" ng-disabled="true" ng-model="companyData.name" ng-change="changedInput('name')">
                                 </md-input-container>
                                 <span flex></span>
-                                <md-button class="md-raised company-buttons" ng-click="cancelChanges()" >Cancel</md-button>
-                                <md-button class="md-raised md-primary company-buttons" ng-click="saveChanges()">Save</md-button>
+                                <md-button class="md-raised dmc-button" ng-click="cancelChanges()" >Cancel</md-button>
+                                <md-button class="md-raised md-primary dmc-button" ng-click="saveChanges()">Save</md-button>
                             </div>
                             <div layout="row" flex layout-align="start start" class="company-description">
                                 <md-input-container flex="60">

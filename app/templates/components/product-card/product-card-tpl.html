@@ -75,12 +75,12 @@
   </div>
   <div class="product-card__footer" layout="row" ng-if="removeFeatured || addFeatured">
       <div layout="row" class="remove-from-featured" flex layout-align="center center" ng-show="cardSource.inFeatured && removeFeatured">
-          <md-button aria-label="Remove from Featured" layout="column" flex href="" ng-click="removeFromFeatured()">
+          <md-button aria-label="Remove from Featured" layout="column" flex ng-click="removeFromFeatured()">
               Remove from Featured
         </md-button>
       </div>
       <div layout="row" class="add-to-featured" flex layout-align="center center" ng-show="!cardSource.inFeatured && addFeatured">
-          <md-button aria-label="Add to Featured" layout="column" flex href="" ng-click="addToFeatured()">
+          <md-button aria-label="Add to Featured" layout="column" flex ng-click="addToFeatured()">
               Add to Featured
           </md-button>
       </div>
@@ -88,7 +88,7 @@
   <div class="product-card__footer" layout="row" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured">
     <div class="adding-to-project" ng-show="addingToProject">
         <div layout="row" layout-align="center center" class="inner-add-to-project">
-      <md-button aria-label="Cancel" layout="column" href="" class="close" ng-click="cancelAddToProject()">
+      <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">
         <ng-md-icon icon="close" size="17"></ng-md-icon>
       </md-button>
       <div layout="column" class="select-block" flex>
@@ -98,7 +98,6 @@
       </div>
       <md-button aria-label="Add"
                  layout="column"
-                 href=""
                  ng-disabled="!projectModel"
                  class="md-raised add"
                  ng-click="saveToProject(projectModel)">Add
@@ -126,7 +125,7 @@
 
     <md-button aria-label="Add to Project"
                flex
-               href="" class="white-button"
+               class="white-button"
                ng-click="addToProject()"
                ng-hide="addingToProject || cardSource.added">
         Add to Project
@@ -134,14 +133,14 @@
 
       <!-- buttons for compare -->
     <md-button aria-label="Add to Compare"
-               flex href=""
+               flex
                class="white-button"
                ng-click="addToCompare()"
                ng-disabled="(cardSource.type == 'service' && compareProducts.components.length > 0) || (cardSource.type == 'component' && compareProducts.services.length > 0)"
                ng-show="!cardSource.added && addingToProject == false && (typeProduct == 'service' && compareProducts.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && compareProducts.components.indexOf(cardSource.id) == -1)">
       Add to Compare
     </md-button>
-    <md-button aria-label="Compare" flex href="" ng-click="removeFromCompare()" class="remove"
+    <md-button aria-label="Compare" flex ng-click="removeFromCompare()" class="remove"
                ng-hide="cardSource.added || addingToProject == true || (typeProduct == 'service' && compareProducts.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && compareProducts.components.indexOf(cardSource.id) == -1)">
       <ng-md-icon icon="close" size="17"></ng-md-icon>
       Compare
