@@ -29,7 +29,11 @@ angular.module('dmc.company-profile', [
                 function(CompanyModel, $stateParams) {
                     return CompanyModel.getModel($stateParams.companyId);
                 }
-            ]
+            ],
+            companyReview: ['CompanyModel', '$stateParams',
+                function(CompanyModel, $stateParams) {
+                    return CompanyModel.getReviewModel($stateParams.profileId);
+                }]
         };
         $stateProvider.state('company-profile', {
 			url: '/:companyId',

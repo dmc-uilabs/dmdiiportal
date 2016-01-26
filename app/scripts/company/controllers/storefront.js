@@ -41,11 +41,12 @@ angular.module('dmc.company')
             };
 
             $scope.getFeatures = function () {
-                ajax.on(dataFactory.getFeaturesCompany(),
-                    {
+                ajax.on(dataFactory.getFeaturesCompany($scope.companyId),
+                    dataFactory.get_request_obj({
                         company_id: $scope.companyId
-                    },
+                    }),
                     function (data) {
+                        var data = dataFactory.get_result(data);
                         if (!data.error) {
                             $scope.carouselData.featured.arr = $.merge(data.result.services, data.result.components);
                             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
