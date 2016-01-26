@@ -1,73 +1,4 @@
 {
-  "profile": {
-    "id": 1,
-    "displayName": "Thomas Smith",
-    "company": "General Electric (GE) Global Research",
-    "jobTitle": "Engineering Manager",
-    "phone": "",
-    "email": "",
-    "location": "Berkeley, California",
-    "image": "/uploads/profile/1/20151222084711000000.jpg",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
-    "skills": [
-      "skill1",
-      "skill2",
-      "skill3",
-      "skill4",
-      "skill5",
-      "skill6",
-      "skill7",
-      "skill8",
-      "skill9",
-      "skill10",
-      "skill11",
-      "skill12"
-    ],
-    "profile_reviews": "/profiles/1/profile_reviews"
-  },
-  "account": {
-    "id": 3,
-    "profile": "/profiles/1",
-    "company": "/companies/1",
-    "servers": "/accounts/3/account_servers",
-    "firstName": "Thomas",
-    "lastName": "Smith",
-    "displayName": "Thomas Smith",
-    "email": "thomas.smith@gm.com",
-    "deactivated": false,
-    "location": "",
-    "timezone": "",
-    "privacy": {
-      "public": {
-        "email": {
-          "enable": "true",
-          "value": "thomas.smith@gm.com"
-        },
-        "phone": {
-          "enable": "true",
-          "value": "1234567895"
-        },
-        "location": {
-          "enable": "false",
-          "value": "USA"
-        }
-      },
-      "private": {
-        "email": {
-          "enable": "true",
-          "value": "thomas.smith@gm.com"
-        },
-        "phone": {
-          "enable": "false",
-          "value": "7896655664"
-        },
-        "location": {
-          "enable": "true",
-          "value": ""
-        }
-      }
-    }
-  },
   "companies": [
     {
       "id": 1,
@@ -253,25 +184,39 @@
       "type": "service"
     },
     {
-      "id": 5,
-      "companyId": 1,
-      "productId": 13,
-      "position": 3,
-      "type": "service"
-    },
-    {
-      "id": 6,
-      "companyId": 1,
-      "productId": 27,
-      "position": 4,
-      "type": "service"
-    },
-    {
       "id": 7,
       "companyId": 1,
       "productId": 17,
       "position": 5,
       "type": "service"
+    },
+    {
+      "id": 8,
+      "companyId": 1,
+      "productId": 18,
+      "position": 6,
+      "type": "service"
+    },
+    {
+      "id": 9,
+      "companyId": 1,
+      "productId": 29,
+      "position": 7,
+      "type": "service"
+    },
+    {
+      "id": 10,
+      "companyId": 1,
+      "productId": 16,
+      "position": 8,
+      "type": "service"
+    },
+    {
+      "id": 11,
+      "companyId": 1,
+      "productId": 2,
+      "position": 9,
+      "type": "component"
     }
   ],
   "company_reviews": [
@@ -453,50 +398,6 @@
           }
         }
       }
-    },
-    {
-      "id": 3,
-      "profile": "/profiles/1",
-      "company": "/companies/1",
-      "servers": "/accounts/3/account_servers",
-      "firstName": "Thomas",
-      "lastName": "Smith",
-      "displayName": "Thomas Smith",
-      "email": "thomas.smith@gm.com",
-      "deactivated": false,
-      "location": "",
-      "timezone": "",
-      "description": "My description",
-      "privacy": {
-        "public": {
-          "email": {
-            "enable": "true",
-            "value": "thomas.smith@gm.com"
-          },
-          "phone": {
-            "enable": "true",
-            "value": "1234567895"
-          },
-          "location": {
-            "enable": "false",
-            "value": "USA"
-          }
-        },
-        "private": {
-          "email": {
-            "enable": "true",
-            "value": "thomas.smith@gm.com"
-          },
-          "phone": {
-            "enable": "false",
-            "value": "7896655664"
-          },
-          "location": {
-            "enable": "true",
-            "value": ""
-          }
-        }
-      }
     }
   ],
   "account_servers": [
@@ -511,8 +412,8 @@
       "id": 2,
       "accountId": 1,
       "name": "Server 2",
-      "ip": "12.12.12.12",
-      "status": "online"
+      "ip": "123.0.0.0",
+      "status": "offline"
     }
   ],
   "favorite_products": [
@@ -535,7 +436,7 @@
       "productType": "service"
     },
     {
-      "id": 15,
+      "id": 13,
       "productId": 1,
       "accountId": 1,
       "productType": "service"
@@ -1801,45 +1702,30 @@
       "id": 1,
       "title": "Low Heat Loss Transformer Specification PDM Co.pdf",
       "projectId": 5,
-      "modifed": "2016-01-25 15:18:12",
-      "size": "100MB",
-      "owner": "Bob Smith",
       "file": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
     },
     {
       "id": 2,
       "title": "Low Heat Loss Power Transformer Schedule PDM Co.pdf",
       "projectId": 5,
-      "modifed": "2016-01-25 15:18:12",
-      "size": "100MB",
-      "owner": "Bob Smith",
       "file": "/uploads/5/Low Heat Loss Power Transformer Schedule PDM Co.pdf"
     },
     {
       "id": 3,
       "title": "Low Heat Loss Transformer Proposal SAM Co.pdf",
       "projectId": 5,
-      "modifed": "2016-01-25 15:18:12",
-      "size": "100MB",
-      "owner": "Bob Smith",
       "file": "/uploads/5/Low Heat Loss Transformer Proposal SAM Co.pdf"
     },
     {
       "id": 4,
       "title": "Edit Company Storefront",
       "projectId": 1,
-      "modifed": "2016-01-25 15:18:12",
-      "size": "100MB",
-      "owner": "Bob Smith",
       "file": "/uploads/4/Edit Company Storefront.pdf"
     },
     {
       "id": 5,
       "title": "Edit Company Storefront",
       "projectId": 1,
-      "modifed": "2016-01-25 15:18:12",
-      "size": "100MB",
-      "owner": "Bob Smith",
       "file": "/uploads/5/Edit Company Storefront.pdf"
     }
   ],
@@ -2107,8 +1993,6 @@
       "displayName": "Thomas Smith",
       "company": "General Electric (GE) Global Research",
       "jobTitle": "Engineering Manager",
-      "phone": "",
-      "email": "",
       "location": "Berkeley, California",
       "image": "/uploads/profile/1/20151222084711000000.jpg",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
@@ -2125,8 +2009,7 @@
         "skill10",
         "skill11",
         "skill12"
-      ],
-      "profile_reviews": "/profiles/1/profile_reviews"
+      ]
     }
   ],
   "profile_reviews": [

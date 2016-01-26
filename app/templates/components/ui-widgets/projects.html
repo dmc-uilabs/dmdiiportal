@@ -13,7 +13,7 @@
       <div class="rp-panel__title my-projects" layout="row"  ng-if="widgetShowAllBlocks">
           <h2><a href="project.php#/{{item.id}}">{{item.title}}</a></h2>
       </div>
-    <div class="rp-panel__tab-content" flex layout="row"
+    <div class="rp-panel__tab-content" flex layout="row" layout-align="space-between start"
          ng-class="widgetShowAllBlocks == true ? 'widget-blocks' : ''">
       <div class="rp-panel__details" layout="column" flex="{{flexDetails}}"  ng-if="!widgetShowAllBlocks">
           <div class="rp-panel__title" layout="row">
@@ -32,7 +32,7 @@
       <md-content flex="{{flexBox}}" ng-show="item.isShowTasks" layout-padding ui-project-tasks total-items="item.tasks.totalItems"
                   project-id="item.id" widget-title="widgetShowAllBlocks == true ? 'Tasks' : null"></md-content>
       <md-content flex="{{flexBox}}" ng-show="item.isShowDiscussions" layout-padding ui-project-discussions
-                  total-items="item.discussions.totalItems" project-id="item.id"
+                  total-items="item.discussions.totalItems" widget-format="widgetFormat" project-id="item.id"
                   widget-title="widgetShowAllBlocks == true ? 'Discussions' : null"
                   with-avatar="widgetShowAllBlocks == true ? false : true"></md-content>
       <md-content flex="{{flexBox}}" ng-show="item.isShowServices" layout-padding ui-project-services

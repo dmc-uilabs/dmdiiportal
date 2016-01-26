@@ -74,12 +74,12 @@
     </div>
   </div>
   <div class="product-card__footer" layout="row" ng-if="removeFeatured || addFeatured">
-      <div layout="row" class="remove-from-featured" flex layout-align="center center" ng-show="removeFeatured">
+      <div layout="row" class="remove-from-featured" flex layout-align="center center" ng-show="cardSource.inFeatured && removeFeatured">
           <md-button aria-label="Remove from Featured" layout="column" flex href="" ng-click="removeFromFeatured()">
               Remove from Featured
         </md-button>
       </div>
-      <div layout="row" class="add-to-featured" flex layout-align="center center" ng-show="addFeatured">
+      <div layout="row" class="add-to-featured" flex layout-align="center center" ng-show="!cardSource.inFeatured && addFeatured">
           <md-button aria-label="Add to Featured" layout="column" flex href="" ng-click="addToFeatured()">
               Add to Featured
           </md-button>

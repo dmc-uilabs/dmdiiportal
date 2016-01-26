@@ -101,7 +101,7 @@ angular.module('dmc.data',[])
             getUrlCreateTask: function(id){
                 var url = baseServer+'/create_task'+appendId(id);
                 if (window.apiUrl) {
-                    url = baseServer+'/tasks';
+                    url = baseServer+'/tasks/create';
                 }
                 return url
             },
@@ -198,12 +198,6 @@ angular.module('dmc.data',[])
             addNewServer: function(){
                 return baseServer+'/add_new_server';
             },
-            saveChangeServer: function(){
-                return baseServer+'/save_change_server';
-            },
-            deleteServer: function(){
-                return baseServer+'/delete_server';
-            },
             getFAQCategories: function(){
                 return baseServer+'/get_faq_categories';
             },
@@ -229,6 +223,12 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            saveChangeServer: function(id){
+                return localhost+'account_servers/'+id;
+            },
+            deleteServer: function(id){
+                return localhost+'account_servers/'+id;
+            },
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
             },

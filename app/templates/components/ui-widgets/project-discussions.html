@@ -6,12 +6,10 @@
 <md-list class="discussion-list">
     <md-list-item class="md-2-line" ng-repeat="discussion in projectDiscussions">
         <div class="md-list-item-text">
-            <h4>{{discussion.full_name}}</h4>
+            <h4 ng-if="widgetFormat == 'my-projects'">{{discussion.created_at}}</h4>
             <h3>{{discussion.text}}</h3>
-            <h4>{{discussion.created_at|timeago}}</h4>
-        </div>
-        <div class="md-secondary md-list-item-inner user-info" ng-if="withAvatar == true">
-            <img alt="{{discussion.full_name}}" class="md-avatar" ng-src="{{discussion.avatar}}">
+            <h4 ng-if="widgetFormat == 'my-projects'">{{discussion.full_name}} replied</h4>
+            <h4 ng-if="widgetFormat != 'my-projects'">{{discussion.full_name}} replied | {{discussion.created_at}}</h4>
         </div>
         <md-divider ng-if="$index < projectDiscussions.length-1"></md-divider>
     </md-list-item>

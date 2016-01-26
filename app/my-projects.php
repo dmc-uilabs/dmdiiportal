@@ -63,7 +63,12 @@
     </div>
 
     <div class="container my-projects-container" layout="row" layout-padding>
-        <div class="content-panel" id="myProjectsList" ui-widget-projects widget-title="null" widget-show-all-blocks="true"></div>
+        <div class="content-panel"
+             id="myProjectsList"
+             ui-widget-projects
+             widget-format="'my-projects'"
+             widget-title="null"
+             widget-show-all-blocks="true"></div>
     </div>
 
     <!-- Footer -->

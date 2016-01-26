@@ -23,26 +23,12 @@
                             <ng-md-icon ng-show="isCorrectNewIP" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
                             <md-button class="md-raised md-primary save-server" ng-click="saveNewServer()">Save</md-button>
                         </div>
-                        <div class="header-right-content servers" layout="row" layout-align="start center" ng-show="isEditingServer">
-                            <md-input-container>
-                                <label>Server Alias</label>
-                                <input id="editServerAlias" ng-model="editingServer.name" ng-change="changeName()">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Server Host/IP</label>
-                                <input ng-model="editingServer.ip" ng-change="changeIP('changed')">
-                            </md-input-container>
-                            <ng-md-icon ng-show="isCorrectChangedIP" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
-                            <md-button class="md-raised md-primary save-server" ng-disabled="!changedValues" ng-click="saveChanges()">
-                                Save
-                            </md-button>
-                        </div>
 
-                        <md-button class="md-raised add-server" ng-click="addServer()" ng-show="!isAddingServer && !isEditingServer">
+                        <md-button class="md-raised add-server" ng-click="addServer()" ng-show="!isAddingServer">
                             <ng-md-icon icon="add_circle_outline" fill="#333" size="21" aria-label="Add Server"></ng-md-icon>
                             Add Server
                         </md-button>
-                        <md-button class="md-raised close-add-server" ng-click="cancelAdding()" ng-show="isAddingServer || isEditingServer">
+                        <md-button class="md-raised close-add-server" ng-click="cancelAdding()" ng-show="isAddingServer">
                             <ng-md-icon icon="cancel" fill="#333" size="21" aria-label="Close Adding"></ng-md-icon>
                             Cancel
                         </md-button>
@@ -51,7 +37,7 @@
                         <md-content class="md-padding" flex>
                         <md-data-table-container>
                             <table md-data-table class="servers-table">
-                                <thead md-order="name" md-trigger="onOrderChange">
+                                <thead md-order="sort" md-trigger="onOrderChange">
                                 <tr>
                                     <th class="edit-column" name="Edit"></th>
                                     <th name="Server Alias" order-by="name"></th>
@@ -61,18 +47,40 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in servers">
+                                    <tr ng-repeat="item in servers" class="one-server">
                                         <td width="50px">
-                                            <md-button class="md-icon-button" aria-label="Edit"
-                                                       ng-click="editServer(item)">
+                                            <md-button class="md-icon-button" ng-show="!item.isChanging" aria-label="Edit"
+                                                       ng-click="editServer(item,$event)">
                                                 <ng-md-icon icon="edit" size="21" style="fill:#666" aria-label="Edit Server"></ng-md-icon>
                                             </md-button>
+                                            <md-button class="md-icon-button" ng-show="item.isChanging" aria-label="Edit"
+                                                       ng-click="cancelEditServer(item)">
+                                                <ng-md-icon icon="cancel" size="21" style="fill:#666" aria-label="Cancel Edit Server"></ng-md-icon>
+                                            </md-button>
                                         </td>
-                                        <td>{{item.name}}</td>
-                                        <td>{{item.ip}}</td>
+                                        <td>
+                                            <div ng-show="!item.isChanging">{{item.name}}</div>
+                                            <md-input-container md-no-float ng-init="item.changedName = item.name" ng-show="item.isChanging">
+                                                <input ng-model="item.changedName" class="nameEditInput" placeholder="Server Alias">
+                                            </md-input-container>
+                                        </td>
+                                        <td>
+                                            <div ng-show="!item.isChanging">{{item.ip}}</div>
+                                            <md-input-container md-no-float ng-init="item.changedIp = item.ip" ng-show="item.isChanging">
+                                                <input ng-model="item.changedIp" placeholder="Server Host/IP">
+                                            </md-input-container>
+                                        </td>
                                         <td class="status" ng-class="{'status-online' : item.status == 'online'}">
-                                            <ng-md-icon icon="lens" size="10" aria-label="Status"></ng-md-icon>
-                                            {{item.status}}
+                                            <div ng-show="!item.isChanging">
+                                                <ng-md-icon icon="lens" size="10" aria-label="Status"></ng-md-icon>
+                                                {{item.status}}
+                                            </div>
+                                            <md-button class="md-raised md-primary save-server"
+                                                       ng-if="item.isChanging"
+                                                       ng-disabled="item.name == item.changedName && item.ip == item.changedIp"
+                                                       ng-click="saveChanges(item)">
+                                                Save
+                                            </md-button>
                                         </td>
                                         <td width="50px">
                                             <md-button class="md-icon-button" aria-label="Delete" ng-click="deleteServer(item)">

@@ -10,25 +10,22 @@
 </div>
 <div class="content-panel-body">
     <md-content class="view-project-padding">
-        <md-list>
-            <md-list-item class="md-2-line" ng-repeat="item in discussions">
-                <div class="md-list-item-text">
-                    <h3><a href="/">{{item.text}}</a></h3>
-                    <h4>{{item.created_at|timeago}}</h4>
-                </div>
-                <div class="md-secondary md-list-item-inner user-info">
-                    <span><a href="/">{{item.full_name}}</a></span>
-                    <a href="/"><img alt="{{item.full_name}}"
-                         class="md-avatar"
-                         ng-src="{{item.avatar}}"></a>
-                </div>
-                <md-divider ng-if="!$last"></md-divider>
-            </md-list-item>
+        <div class="discussions-list">
+            <md-list>
+                <md-list-item ng-repeat="item in discussions" class="md-3-line">
+                    <div class="md-list-item-text">
+                        <h3>{{item.text}}</h3>
+                        <div class="info">
+                            <span>{{item.full_name}} replied | {{item.created_at}}</span>
+                        </div>
+                    </div>
+                </md-list-item>
+            </md-list>
             <md-list-item ng-if="discussions.length == 0">
                 <div class="md-list-item-text">
                     <span>No discussions</span>
                 </div>
             </md-list-item>
-        </md-list>
+        </div>
     </md-content>
 </div>
