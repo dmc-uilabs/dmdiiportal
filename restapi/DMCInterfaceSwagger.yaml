@@ -600,7 +600,7 @@ definitions:
         type: string
       from:
         type: string
-      productType:
+      type:
         type: string
       favorite:
         type: boolean
@@ -654,7 +654,7 @@ definitions:
           $ref: '#/definitions/Service'
       projectId:
         type: string
-      productType:
+      type:
         type: string
   ComponentFeatured:
     type: object
@@ -682,7 +682,7 @@ definitions:
           $ref: '#/definitions/Service'
       projectId:
         type: string
-      productType:
+      type:
         type: string
       favorite:
         type: boolean
@@ -911,7 +911,7 @@ definitions:
         type: string
       companyId:
         type: string
-      contactType:
+      type:
         type: integer
       name:
         type: string
