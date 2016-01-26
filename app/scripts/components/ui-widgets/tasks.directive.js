@@ -165,8 +165,8 @@ angular.module('dmc.widgets.tasks',[
                 "description": $scope.description,
                 "assignee": $scope.assignedTo,
                 "reporter": "Jack Graber",
-                "dueDate": moment($scope.dueDate).format(),
-                "priority": moment($scope.dueDate).format(),
+                "dueDate": moment($scope.dueDate).unix(),
+                "priority": moment($scope.dueDate).unix(),
                 "projectId": projectId
             }).then(
             function(data){
