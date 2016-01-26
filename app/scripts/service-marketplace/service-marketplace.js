@@ -161,6 +161,65 @@ angular.module('dmc.service-marketplace', [
 		}
 	}
 
+	$scope.authors = [
+		{
+			display_name: "John Thomas",
+			jobTitle: "Engineering Manager",
+			follow: false,
+			avatar: "/uploads/profile/1/20151222084711000000.jpg",
+			company: "General Electric (GE) Software",
+		},
+		{
+			display_name: "John Thomas",
+			jobTitle: "Engineering Manager",
+			follow: false,
+			avatar: "/uploads/profile/1/20151222084711000000.jpg",
+			company: "General Electric (GE) Software",
+		},
+		{
+			display_name: "John Thomas",
+			jobTitle: "Engineering Manager",
+			follow: false,
+			avatar: "/uploads/profile/1/20151222084711000000.jpg",
+			company: "General Electric (GE) Software",
+		},
+		{
+			display_name: "John Thomas",
+			jobTitle: "Engineering Manager",
+			follow: false,
+			avatar: "/uploads/profile/1/20151222084711000000.jpg",
+			company: "General Electric (GE) Software",
+		},
+		{
+			display_name: "John Thomas",
+			jobTitle: "Engineering Manager",
+			follow: false,
+			avatar: "/uploads/profile/1/20151222084711000000.jpg",
+			company: "General Electric (GE) Software",
+		},
+		{
+			display_name: "John Thomas",
+			jobTitle: "Engineering Manager",
+			follow: false,
+			avatar: "/uploads/profile/1/20151222084711000000.jpg",
+			company: "General Electric (GE) Software",
+		},
+		{
+			display_name: "John Thomas",
+			jobTitle: "Engineering Manager",
+			follow: false,
+			avatar: "/uploads/profile/1/20151222084711000000.jpg",
+			company: "General Electric (GE) Software",
+		},
+		{
+			display_name: "John Thomas",
+			jobTitle: "Engineering Manager",
+			follow: false,
+			avatar: "/uploads/profile/1/20151222084711000000.jpg",
+			company: "General Electric (GE) Software",
+		},
+	]
+
 
 	$scope.inputs = [
 		"Height",

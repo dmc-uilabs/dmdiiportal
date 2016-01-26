@@ -101,7 +101,7 @@ angular.module('dmc.data',[])
             getUrlCreateTask: function(id){
                 var url = baseServer+'/create_task'+appendId(id);
                 if (window.apiUrl) {
-                    url = baseServer+'/tasks';
+                    url = baseServer+'/tasks/create';
                 }
                 return url
             },
@@ -340,6 +340,9 @@ angular.module('dmc.data',[])
             },
             updateCompanyContact: function(id){
                 return localhost+'company_key_contacts/'+id;
+            },
+            getService: function(){
+                return localhost+'services/';
             }
         };
     }

@@ -165,4 +165,19 @@ angular.module('dmc.widgets.tabs',[
 				}
 			}
 		};
+	}])
+	.directive('uiWidgetTabsAuthor', [ function () {
+		return {
+			restrict: 'E',
+			templateUrl: 'templates/components/ui-widgets/tabs-author.html',
+			transclude: true,
+			scope: {
+				data: "=",
+			},
+			controller: function($scope) {
+				$scope.follow = function(item){
+					item.follow = !item.follow;
+				}
+			}
+		};
 	}]);

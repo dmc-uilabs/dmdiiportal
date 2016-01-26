@@ -97,5 +97,16 @@ angular.module('dmc.company-profile', [
                     toastModel.showToast("error", "Error. The problem on the server (get videos).");
                 },"GET"
             );
+        };
+
+        // get company contacts
+        this.getKeyContacts = function(id, callback){
+            return ajax.on(dataFactory.getCompanyKeyContacts(id),{
+                    "_order" : "DESC",
+                    "_sort" : "id"
+                }, callback,function(){
+                    toastModel.showToast("error", "Error. The problem on the server (get Key Contacts).");
+                },"GET"
+            );
         }
     }]);

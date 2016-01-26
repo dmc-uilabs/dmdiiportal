@@ -32,7 +32,7 @@
                 <md-button ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="21"></ng-md-icon></md-button>
                 <p ng-show="item.delete">Are you sure you want to remove this document?</p>
                 <md-button ng-show="item.delete" class="md-raised cancel" ng-click="cancelConfirm(item)" aria-label="Cancel">Cancel</md-button>
-                <md-button ng-show="item.delete" class="md-raised md-warn" ng-click="removeFile(item)" aria-label="Delete">Delete</md-button>
+                <md-button ng-show="item.delete" class="md-raised md-warn" ng-click="removeFile(item)" aria-label="Delete">Remove</md-button>
                 <md-divider></md-divider>
             </md-list-item>
         </md-list>

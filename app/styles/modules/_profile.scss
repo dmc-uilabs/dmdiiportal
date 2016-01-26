@@ -177,8 +177,14 @@
       outline: none;
     };
     .active-star{
-      border: 1px solid #999;
-      border-radius: 6px;
+      md-progress-linear {
+        .md-container{
+          background-color: #CCC;
+          .md-bar2{
+            background-color: #999;
+          }
+        }
+      }
     }
     p{
       cursor: default;

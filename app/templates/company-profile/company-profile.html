@@ -2,41 +2,14 @@
 	<md-content class="company-profile-padding">
 		<div layout="row">
 			<div flex="20" layout="column">
-				<img class="company-profile-image" ng-show="!isChangingPicture" ng-src="{{company.featureImage.large}}">
-				
-				<div layout="column" ng-show="isChangingPicture">
-					<div class="flow-box"
-						 flow-init
-						 flow-drag-enter="pictureDragEnter($flow)"
-						 flow-drag-leave="pictureDragLeave($flow)"
-						 flow-file-success="$file.msg = $message"
-						 flow-file-added="addedNewFile($file, $event, $flow )"
-						 layout="column">
-						<!-- <div> -->
-						<div layout class="alert" flow-drop flow-drop-enabled="true">
-							<div flow-btn class="inner-box" layout="row" layout-align="center center">
-								<div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="50">
-									<img flow-img="$flow.files[0]" />
-								</div>
-								<div class="text" flex="50">Drag And Drop your picture here</div>
-							</div>
-						</div>
-						<!-- </div> -->
-						<md-button ng-click="cancelChangePicture($flow)">Cancel</md-button>
-					</div>
-				</div>
-
-				<md-button flex="100" ng-if="editFlag" ng-show="!isChangingPicture" class="md-raised" ng-click="changePicture()">
-					<ng-md-icon icon="camera_alt" style="fill: #65AF3F;" size="25"></ng-md-icon>
-					Change Photo
-				</md-button>
-
+				<img class="company-profile-image" ng-src="{{company.featureImage.large}}">
 			</div>
-			<div ng-if="!editFlag" flex="80" layout="column" class="company-profile-header">
+			<div flex="80" layout="column" class="company-profile-header">
 				<div layout="row" layout-align="center center">
 					<div layout="column">
 						<h2>{{company.name}}</h2>
-						<h3>Aerospace Industry</h3>
+						<h3>{{company.division}}</h3>
+						<h3>{{company.industry}}</h3>
 						<h3>{{company.location}}</h3>
 					</div>
 
@@ -56,73 +29,175 @@
 					<a ng-href="company.php#/1/storefront/services">View Storefront</a>
 					<span flex></span>
 					<div layout="row">
-						<md-button class="md-raised" ng-click="follow()">
+						<md-button ng-if="!company.isOwner" class="md-raised" ng-click="follow()">
 							{{(followFlag) ? 'Unfollow' : 'Follow'}}
 						</md-button>
+						<md-button ng-if="company.isOwner"
+	                     class="md-raised"
+	                     ui-sref="company-profile-edit({companyId: company.id})">
+	              Edit Company
+	          </md-button>
 					</div>
-				</div>
-			</div>
-			<div ng-if="editFlag" class="company-profile-header" flex="80" layout="row">
-				<div flex="50" layout="column">
-					<div layout="row">
-						<md-input-container flex="50">
-							<label>Display Name</label>
-							<input ng-model="profile.displayName">
-						</md-input-container>
-						<md-input-container flex="50">
-							<label>Job Title</label>
-							<input ng-model="profile.jobTitle">
-						</md-input-container>
-					</div>
-					<md-input-container>
-						<label>Company</label>
-						<input ng-model="profile.company" disabled>
-					</md-input-container>
-					
-					<md-input-container class="md-icon-float title-input-left">
-						<label>Location</label>
-						<md-icon class="location-gps" ng-click="getLocation()">
-							<ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
-						</md-icon>
-						<input ng-model="profile.location" type="text">
-					</md-input-container>
-					<md-autocomplete
-							md-no-cache="true"
-							md-selected-item="selectedItem"
-							md-search-text-change="searchTextChange(searchText)"
-							md-search-text="searchText"
-							md-selected-item-change="selectedItemChange(item)"
-							md-items="item in querySearch(searchText)"
-							md-item-text="item.display"
-							md-min-length="0"
-							placeholder="What is your time zone?">
-						<md-item-template>
-							<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
-						</md-item-template>
-						<md-not-found>
-							No matches found for "{{searchText}}".
-						</md-not-found>
-					</md-autocomplete>
-				</div>
-				<div flex="50" layout="row" layout-align="end start">
-					<md-button ng-click="cancelEdit()" class="md-raised cancel">Cancel</md-button>
-					<md-button ng-click="saveEdit()" class="md-raised save md-primary">Save</md-button>
 				</div>
 			</div>
 		</div>
 		<md-divider></md-divider>
-		<div ng-if="!editFlag" class="company-profile-description">
+		<div class="company-profile-description">
 			{{(showflag) ? company.descriptionSmall : company.description}} <a ng-click="showMore()" ng-if="showflag" href="">Read More</a>
 		</div>
-		<div ng-if="editFlag" class="company-profile-description">
-			<md-input-container>
-				<label>Description</label>
-				<textarea ng-model="profile.description" columns="1" maxlength="3000" md-maxlength="3000"></textarea>
-			</md-input-container>
-		</div>
-
 		<md-tabs md-dynamic-height md-border-bottom>
-			<md-tab ng-if="!editFlag" label="History">
+			<md-tab label="Overview">
+				<md-content class="tab-projects">
+					<div layout="row" class="text-row">
+						<div layout="column">
+							<h2>R&D Focus</h2>
+							<p>{{company.RDFocus}}</p>
+						</div>
+					</div>
+
+					<div layout="row" class="text-row">
+						<div layout="column" flex="50" class="padding-right8">
+							<h2>Customers</h2>
+							<p>{{company.customers}}</p>
+						</div>
+						<div layout="column" flex="50" class="padding-left8">
+							<h2>Awards Received</h2>
+							<p>{{company.awardsReceived}}</p>
+						</div>
+					</div>
+
+					<md-divider></md-divider>
+
+					<div layout="column">
+						<h2>Images</h2>
+						<div layout="row" class="images-carousel" layout-align="space-between center">
+							<div class="arrow-left">
+						    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1" ng-hide="company.skillsImages.length <= 5 || index == 0">
+						      <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
+						    </md-button>
+						  </div>
+
+							<div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">
+								<div class="one-image">
+									<img ng-src="{{company.images[item+index].url}}">
+								</div>
+								<h2>{{company.images[item].title}}</h2>
+							</div>
+
+						  <div class="arrow-right">
+						    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1" ng-hide="company.skillsImages.length <= 5 || index == company.skillsImages.length - 5">
+						      <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
+						    </md-button>
+						  </div>
+						</div>
+					</div>
+
+					<div layout="column">
+						<h2>Videos</h2>
+						<div layout="row" class="images-carousel" layout-align="space-between center">
+							<div class="arrow-left">
+						    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1" ng-hide="company.skillsImages.length <= 5 || index == 0">
+						      <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
+						    </md-button>
+						  </div>
+
+							<div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">
+								<div class="one-image">
+									<img ng-src="{{company.images[item+index].url}}">
+								</div>
+								<h2>{{company.images[item].title}}</h2>
+							</div>
+
+						  <div class="arrow-right">
+						    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1" ng-hide="company.skillsImages.length <= 5 || index == company.skillsImages.length - 5">
+						      <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
+						    </md-button>
+						  </div>
+						</div>
+					</div>
+				</md-content>
+			</md-tab>
+
+			<md-tab label="Skills">
+				<md-content class="md-padding">
+					<div layout="row" class="tabs-content" layout-wrap>
+						<md-chips ng-repeat="skill in company.skills track by $index">
+							<md-chip>
+								{{skill.name}}
+							</md-chip>
+						</md-chips>
+					</div>
+
+					<md-divider></md-divider>
+
+					<div layout="row" class="text-row">
+						<div layout="column" flex="50" class="padding-right8">
+							<h2>Technical Expertise</h2>
+							<p>{{company.technicalExpertise}}</p>
+						</div>
+						<div layout="column" flex="50" class="padding-left8">
+							<h2>Tools, Software, Equipment, Machines</h2>
+							<p>{{company.toolsSoftwareEquipmentMachines}}</p>
+						</div>
+					</div>
+					
+					<md-divider></md-divider>
+
+					<div layout="column">
+						<h2>Images</h2>
+						<div layout="row" class="images-carousel" layout-align="space-between center">
+							<div class="arrow-left">
+						    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1" ng-hide="company.skillsImages.length <= 5 || index == 0">
+						      <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
+						    </md-button>
+						  </div>
+
+							<div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">
+								<div class="one-image">
+									<img ng-src="{{company.skillsImages[item+index].url}}">
+								</div>
+								<h2>{{company.skillsImages[item].title}}</h2>
+							</div>
+
+						  <div class="arrow-right">
+						    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1" ng-hide="company.skillsImages.length <= 5 || index == company.skillsImages.length - 5">
+						      <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
+						    </md-button>
+						  </div>
+						</div>
+					</div>
+				</md-content>
+			</md-tab>
+
+			<md-tab label="Projects">
+				<md-content class="tab-projects">
+					<div layout="row" class="text-row">
+						<div layout="column" flex="50" class="padding-right8">
+							<h2>Past Collaboration</h2>
+							<p>{{company.pastCollaborations}}</p>
+						</div>
+						<div layout="column" flex="50" class="padding-left8">
+							<h2>Collaboration Interests</h2>
+							<p>{{company.collaborationInterests}}</p>
+						</div>
+					</div>
+
+					<md-divider></md-divider>
+
+					<div layout="row" class="text-row">
+						<div layout="column" flex="50" class="padding-right8">
+							<h2>Past DMDll Projects</h2>
+							<p>{{company.pastProjects}}</p>
+						</div>
+						<div layout="column" flex="50" class="padding-left8">
+							<h2>Upcoming DMDll Project Interests</h2>
+							<p>{{company.upcomingProjectInterests}}</p>
+						</div>
+					</div>
+				</md-content>
+			</md-tab>
+
+			<md-tab label="History">
 				<md-content class="md-padding" layout="row">
 					<md-list flex class="company-profile-list">
 						<md-subheader class="md-no-sticky">
@@ -178,42 +253,58 @@
 				</md-content>
 			</md-tab>
 
-			<md-tab label="Skills">
-				<md-content class="md-padding">
-					<div layout="row" ng-if="!editFlag" class="tabs-content" layout-wrap>
-						<md-chips ng-repeat="skill in company.skills track by $index">
-							<md-chip>
-								{{skill}}
-							</md-chip>
-						</md-chips>
-					</div>
-					<div layout="column" ng-if="editFlag">
-						<form ng-submit="addSkill(inputSkill)" class="add-skills-form" layout="row" layout-align="start center">
-							<md-input-container>
-								<label>Enter skill</label>
-								<input ng-model="inputSkill">
-							</md-input-container>
-							<md-button ng-disabled="!inputSkill" class="md-raised md-primary add-skill">Add</md-button>
-						</form>
-						<div layout="row" class="tabs-content" layout-wrap>
-							<md-chips ng-repeat="skill in profile.skills track by $index">
-								<md-chip class="skills-chip">
-									{{skill}}
-									<md-button aria-label="close" ng-click="deleteSkill($index)" class="md-icon-button">
-										<ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
-									</md-button>
-								</md-chip>
-							</md-chips>
+			<md-tab label="Contact">
+				<div layout="row" class="contat-tab">
+					<div layout="column" flex="40">
+						<h2>General</h2>
+						<div layout="row" layout-align="start center" layout-align="start center">
+							<ng-md-icon icon="room" style="fill: grey" size="30" flex="10"></ng-md-icon>
+							<h3>{{company.state}}, {{company.city}}, {{company.zipCode}}</h3>
+						</div>
+						<div layout="row" layout-align="start center">
+							<ng-md-icon icon="phone" style="fill: grey" size="30" flex="10"></ng-md-icon>
+							<h3>{{company.phone}}</h3>
+						</div>
+						<div layout="row" layout-align="start center">
+							<ng-md-icon icon="mail" style="fill: grey" size="30" flex="10"></ng-md-icon>
+							<h3>{{company.email}}</h3>
+						</div>
+						<div layout="row" layout-align="start center">
+							<ng-md-icon icon="twitter" style="fill: grey" size="30" flex="10"></ng-md-icon>
+							<h3>{{company.twitter}}</h3>
+						</div>
+						<div layout="row" layout-align="start center">
+							<ng-md-icon icon="linkedin-box" style="fill: grey" size="30" flex="10"></ng-md-icon>
+							<h3>{{company.linkedIn}}</h3>
+						</div>
+						<div layout="row" layout-align="start center">
+							<ng-md-icon icon="link" style="fill: grey" size="30" flex="10"></ng-md-icon>
+							<h3>{{company.website}}</h3>
 						</div>
 					</div>
-				</md-content>
-			</md-tab>
 
-			<md-tab label="Key contacts">
-				<div layout="row" layout-wrap>
-					<div flex="25" class="padding-contact-card" ng-repeat="item in contacts">
-						<dmc-contacts-card card-source="item"></dmc-contacts-card>
+					<div class="vertical-divider"></div>
+
+					<div layout="row" flex="60" layout-wrap>
+						<div flex="50" class="contact" ng-repeat="contact in company.keyContacts">
+							<h2>{{contact.type}}</h2>
+							<div layout="row" layout-align="start center" layout-align="start center">
+								<h4>{{contact.name}}</h3>
+							</div>
+							<div layout="row" layout-align="start center">
+								<h3>{{contact.title}}</h3>
+							</div>
+							<div layout="row" layout-align="start center">
+								<ng-md-icon icon="phone" style="fill: grey" size="30" flex="10"></ng-md-icon>
+								<h3>{{contact.phoneNumber}}</h3>
+							</div>
+							<div layout="row" layout-align="start center">
+								<ng-md-icon icon="mail" style="fill: grey" size="30" flex="10"></ng-md-icon>
+								<h3>{{contact.email}}</h3>
+							</div>
+						</div>
 					</div>
+
 				</div>
 			</md-tab>
 		</md-tabs>
