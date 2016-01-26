@@ -250,6 +250,12 @@ md-tooltip{
 
 .dmc-button{
   text-transform: initial;
+  ng-md-icon{
+    fill: #333;
+  }
+  span{
+    font-size: 14px;
+  }
 }
 
 .view-all-link.md-button.md-default-theme{
