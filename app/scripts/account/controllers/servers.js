@@ -1,6 +1,6 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('ServersAccountCtr', [ '$stateParams', '$state', "$scope","accountData","toastModel","ajax","dataFactory","$timeout", function ($stateParams, $state, $scope,accountData,toastModel,ajax,dataFactory,$timeout) {
+    .controller('ServersAccountCtr', [ '$stateParams', '$state', "$scope","accountData","toastModel","ajax","dataFactory","$timeout","questionToastModel", function ($stateParams, $state, $scope,accountData,toastModel,ajax,dataFactory,$timeout,questionToastModel) {
         $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
@@ -8,7 +8,6 @@ angular.module('dmc.account')
 
         $scope.isAddingServer = false;
         $scope.isCorrectNewIP = false;
-        $scope.isCorrectChangedIP = false;
 
         $scope.newServer = { name : null, ip : null };
 
@@ -16,7 +15,7 @@ angular.module('dmc.account')
         $scope.sort = 'name';
         $scope.order = 'DESC';
 
-        $scope.addServer = function(){
+        $scope.addServer = function(e){
             var isEditing = false;
             for(var i=0;i<$scope.servers.length;i++){
                 if($scope.servers[i].isChanging){
@@ -24,19 +23,32 @@ angular.module('dmc.account')
                     break;
                 }
             }
-            if(!isEditing) {
+            if(!$scope.currentEditingServer || ($scope.currentEditingServer.changedIp == $scope.currentEditingServer.ip && $scope.currentEditingServer.changedName == $scope.currentEditingServer.name)) {
+                if($scope.currentEditingServer) $scope.cancelEditServer();
                 $scope.isAddingServer = true;
                 // auto focus for create Server Alias input
                 $timeout(function() {
                     $("#createServerAlias").focus();
-                });
+                },300);
             }else{
-                toastModel.showToast("error", "At the present time you are editing server.");
+                questionToastModel.show({
+                    question : "Do you want to save the previous changes?",
+                    buttons: {
+                        ok: function(){
+                            $scope.saveChanges($scope.currentEditingServer,null,e);
+                        },
+                        cancel: function(){
+                            $scope.cancelEditServer();
+                            $scope.addServer(e);
+                        }
+                    }
+                },e);
             }
         };
 
         $scope.cancelAdding = function(){
             $scope.newServer = { name : null, ip : null };
+            $scope.isCorrectNewIP = false;
             $scope.isAddingServer = false;
         };
 
@@ -101,7 +113,7 @@ angular.module('dmc.account')
             }
         };
 
-        $scope.saveChanges = function(item){
+        $scope.saveChanges = function(item, nextForChange, addServer){
             ajax.on(dataFactory.saveChangeServer(item.id), {
                     name : item.changedName,
                     ip :  item.changedIp
@@ -110,7 +122,9 @@ angular.module('dmc.account')
                     if (!data.error) {
                         item.name = item.changedName;
                         item.ip = item.changedIp;
-                        $scope.cancelEditServer(item);
+                        $scope.cancelEditServer();
+                        if(nextForChange) $scope.editServer(nextForChange.item, nextForChange.e);
+                        if(addServer) $scope.addServer(addServer);
                         toastModel.showToast("success", "Server successfully updated!");
                     } else {
                         toastModel.showToast("error", data.error);
@@ -121,16 +135,40 @@ angular.module('dmc.account')
             );
         };
 
-        $scope.cancelEditServer = function(item){
-            item.isChanging = false;
+        $scope.currentEditingServer = null;
+
+        $scope.cancelEditServer = function(){
+            $scope.currentEditingServer.changedIp = $scope.currentEditingServer.ip;
+            $scope.currentEditingServer.changedName = $scope.currentEditingServer.name;
+            $scope.currentEditingServer.isChanging = false;
+            $scope.currentEditingServer = null;
         };
 
         $scope.editServer = function(item,e){
-            if($scope.isAddingServer) $scope.cancelAdding();
-            item.isChanging = true;
-            $timeout(function() {
-                $(e.currentTarget).parents(".one-server").find(".nameEditInput").focus();
-            });
+            if(!$scope.currentEditingServer || ($scope.currentEditingServer.changedIp == $scope.currentEditingServer.ip && $scope.currentEditingServer.changedName == $scope.currentEditingServer.name)) {
+                if($scope.currentEditingServer) $scope.cancelEditServer();
+
+                $scope.currentEditingServer = item;
+                $scope.currentEditingServer.isChanging = true;
+                if ($scope.isAddingServer) $scope.cancelAdding();
+                $timeout(function () {
+                    console.log(e);
+                    $(e.currentTarget).parents(".one-server").find(".nameEditInput").focus();
+                },300);
+            }else{
+                questionToastModel.show({
+                    question : "Do you want to save the previous changes?",
+                    buttons: {
+                        ok: function(){
+                            $scope.saveChanges($scope.currentEditingServer, {item : item, e : e});
+                        },
+                        cancel: function(){
+                            $scope.cancelEditServer();
+                            $scope.editServer(item,e);
+                        }
+                    }
+                },e);
+            }
         };
 
         $scope.onOrderChange = function(order){

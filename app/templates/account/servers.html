@@ -21,10 +21,12 @@
                                 <input ng-model="newServer.ip" ng-change="changeIP('new')">
                             </md-input-container>
                             <ng-md-icon ng-show="isCorrectNewIP" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
-                            <md-button class="md-raised md-primary save-server" ng-click="saveNewServer()">Save</md-button>
+                            <md-button class="md-raised md-primary save-server"
+                                       ng-disabled="!newServer.ip && !newServer.name"
+                                       ng-click="saveNewServer()">Save</md-button>
                         </div>
 
-                        <md-button class="md-raised add-server" ng-click="addServer()" ng-show="!isAddingServer">
+                        <md-button class="md-raised add-server" ng-click="addServer($event)" ng-show="!isAddingServer">
                             <ng-md-icon icon="add_circle_outline" fill="#333" size="21" aria-label="Add Server"></ng-md-icon>
                             Add Server
                         </md-button>
@@ -54,7 +56,7 @@
                                                 <ng-md-icon icon="edit" size="21" style="fill:#666" aria-label="Edit Server"></ng-md-icon>
                                             </md-button>
                                             <md-button class="md-icon-button" ng-show="item.isChanging" aria-label="Edit"
-                                                       ng-click="cancelEditServer(item)">
+                                                       ng-click="cancelEditServer()">
                                                 <ng-md-icon icon="cancel" size="21" style="fill:#666" aria-label="Cancel Edit Server"></ng-md-icon>
                                             </md-button>
                                         </td>

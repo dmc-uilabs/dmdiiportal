@@ -266,3 +266,15 @@ md-tooltip{
     text-decoration: underline;
   }
 }
+
+md-dialog[md-theme="default"]{
+  .md-actions{
+    button.md-primary.md-button{
+      background-color: #eee;
+      span{
+        text-transform: none;
+        color: #333;
+      }
+    }
+  }
+}
