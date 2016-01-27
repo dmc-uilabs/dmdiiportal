@@ -22,105 +22,105 @@ angular.module('dmc.widgets.tabs',[
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/19/2016 12:00:00"
+					date: moment("01-19-2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/19/2016 12:00:00"
+					date: moment("01/19/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/19/2016 12:00:00"
+					date: moment("01/19/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/19/2016 12:00:00"
+					date: moment("01/19/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/19/2016 12:00:00"
+					date: moment("01/19/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/19/2016 12:00:00"
+					date: moment("01/19/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/19/2016 12:00:00"
+					date: moment("01/19/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/19/2016 12:00:00"
+					date: moment("01/19/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/17/2016 12:00:00"
+					date: moment("01/17/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/18/2016 12:00:00"
+					date: moment("01/18/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/11/2016 12:00:00"
+					date: moment("01/11/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
-					date: "01/11/2016 12:00:00"
+					date: moment("01/11/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 	//Incomplete Runs
 				{
 					icon: "done_all",
 					title: "Timmy Thomas Incomplete ran the service.",
 					type: "Incomplete Runs",
-					date: "01/19/2016 12:00:00"
+					date: moment("01/19/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas Incomplete ran the service.",
 					type: "Incomplete Runs",
-					date: "01/17/2016 12:00:00"
+					date: moment("01/17/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "done_all",
 					title: "Timmy Thomas Incomplete ran the service.",
 					type: "Incomplete Runs",
-					date: "01/16/2016 12:00:00"
+					date: moment("01/16/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 	//Unavailable Runs
 				{
 					icon: "block",
 					title: "Anna Barton ran the service unsuccessfully.",
 					type: "Unavailable Runs",
-					date: "01/19/2016 12:00:00"
+					date: moment("01/19/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 				{
 					icon: "block",
 					title: "Anna Barton ran the service unsuccessfully.",
 					type: "Unavailable Runs",
-					date: "01/18/2016 12:00:00"
+					date: moment("01/18/2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
 			]
 

@@ -284,7 +284,7 @@ angular.module('dmc.individual-discussion', [
 							      }
                 },
                 function(data){
-                    toastModel.showToast("success", "Discuseion created");
+                    toastModel.showToast("success", "Discussion created");
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 },
                 function(){

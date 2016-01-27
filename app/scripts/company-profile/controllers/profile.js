@@ -130,11 +130,11 @@ angular.module('dmc.company-profile')
 
         // get company images
         var callbackVideaos = function(data){
-            $scope.company.videaos = data;
+            $scope.company.videos = data;
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };
-        companyProfileModel.getImages($scope.company.id, callbackVideaos);
-
+        companyProfileModel.getVideos($scope.company.id, callbackVideaos);
+        
         // get company images
         var callbackImages = function(data){
             $scope.company.images = data;

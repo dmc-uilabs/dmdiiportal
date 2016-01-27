@@ -1,8 +1,7 @@
 <div class="individual-discussion">
 	<div layout="column" class="padding">
 		<div class="return" layout="row" layout-align="space-between center">
-			<a href="community.php">Return to Community</a>
-			<a href="" ng-click="createDiscussion()">Compose Discussion</a>
+			<a class="link" href="community.php">Return to Community</a>
 		</div>
 		<div layout="row">
 			<div  flex="70">
@@ -13,7 +12,6 @@
 							{{(followFlag) ? 'Unfollow' : 'Follow'}}
 						</md-button>
 					</div>
-					<md-divider></md-divider>
 					<div class="comment" ng-class="{'isOwner' : comment.isOwner}" ng-repeat="comment in discussion.comments.items track by $index" layout="column">
 						<div class="comment-header" layout="row" layout-align="start center">
 							<img ng-src="{{comment.avatar}}">

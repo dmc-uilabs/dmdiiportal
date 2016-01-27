@@ -344,6 +344,7 @@ angular.module('dmc.project')
 
 	DMCServicesModel.list().then(function(data){
 		$scope.allServices = data;
+		$scope.allServices.unshift({id: 0, title: "None"})
 	})
 
 	$scope.selectItemDropDown = function(value){
