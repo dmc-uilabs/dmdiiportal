@@ -44,28 +44,30 @@ angular.module('dmc.company-profile').
 
                 // save new video
                 $scope.saveVideo = function(newVideo){
-                    ajax.on(dataFactory.getLastCompanyVideoId(),{
+                    ajax.get(dataFactory.getLastCompanyVideoId(),{
                             "_order" : "DESC",
                             "_limit" : 1,
                             "_sort" : "id"
                         },
-                        function(data){
+                        function(response){
+                            var data = response.data ? response.data : response;
                             var lastId = (data.length == 0 ? 1 : data[0].id+1);
                             newVideo.id = lastId;
                             newVideo.companyId = $scope.source.id;
-                            ajax.on(dataFactory.addCompanyVideo(),newVideo,
-                                function(data){
+                            ajax.create(dataFactory.addCompanyVideo(),newVideo,
+                                function(response){
+                                    var data = response.data ? response.data : response;
                                     if(!$scope.source.videos) $scope.source.videos = [];
                                     $scope.source.videos.unshift(data);
                                     $scope.cancelAddVideo();
                                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                                 },function(){
                                     toastModel.showToast("error", "Error. The problem on the server (add video).");
-                                },"POST"
+                                }
                             );
                         },function(){
                             toastModel.showToast("error", "Error. The problem on the server (get last video id).");
-                        },"GET"
+                        }
                     );
                 };
 

@@ -27,37 +27,40 @@ angular.module('dmc.company-profile').
 
                 // add new skill
                 $scope.sendSkill = function(){
-                    ajax.on(dataFactory.getLastCompanySkillId(),{
+                    ajax.get(dataFactory.getLastCompanySkillId(),{
                             "_order" : "DESC",
                             "_limit" : 1,
                             "_sort" : "id"
                         },
-                        function(data){
+                        function(response){
+                            var data = response.data ? response.data : response;
                             var lastId = (data.length == 0 ? 1 : data[0].id+1);
-                            ajax.on(dataFactory.addCompanySkill(),{
+                            ajax.create(dataFactory.addCompanySkill(),{
                                     id : lastId,
                                     companyId : $scope.source.id,
                                     name : $scope.newSkill
                                 },
-                                function(data){
+                                function(response){
+                                    var data = response.data ? response.data : response;
                                     if(!$scope.source.skills) $scope.source.skills = [];
                                     $scope.source.skills.unshift(data);
                                     $scope.newSkill = null;
                                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                                 },function(){
                                     toastModel.showToast("error", "Error. The problem on the server (add skill).");
-                                },"POST"
+                                }
                             );
                         },function(){
                             toastModel.showToast("error", "Error. The problem on the server (get last skill id).");
-                        },"GET"
+                        }
                     );
                 };
 
                 // delete skill
                 $scope.deleteSkill = function(skill){
-                    ajax.on(dataFactory.deleteCompanySkill(skill.id),{},
-                        function(data){
+                    ajax.delete(dataFactory.deleteCompanySkill(skill.id),{},
+                        function(response){
+                            var data = response.data ? response.data : response;
                             for(var index in $scope.source.skills){
                                 if($scope.source.skills[index].id == skill.id){
                                     $scope.source.skills.splice(index,1);
@@ -67,7 +70,7 @@ angular.module('dmc.company-profile').
                             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                         },function(){
                             toastModel.showToast("error", "Error. The problem on the server.");
-                        },"DELETE"
+                        }
                     );
                 };
 
