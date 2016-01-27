@@ -123,6 +123,9 @@
     <script src="scripts/common/models/services.model.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
+        <?php
+          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+        ?>
         window.apiUrl = '';
     </script>
   </body>
