@@ -1,0 +1,79 @@
+<div class="container container-company" layout-padding layout="row">
+  <div class="content-column left-content" layout="column" flex="20">
+    <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
+    <dmc-products-filter ng-if="isSearch"></dmc-products-filter>
+  </div>
+  <div class="content-column right-content" layout="column" flex="80">
+    <div class="content-panel">
+      <div class="content-panel-body">
+        <md-content class="company-content">
+          
+          <div layout="row" layout-padding layout-align="center center" class="company-search">
+            <md-input-container>
+              <md-select ng-model="selectedProductType" ng-change="productTypeChanged(true)" aria-label="Product Types">
+                <md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>
+              </md-select>
+            </md-input-container>
+            <form ng-submit="submit()" class="company-search-field global-search-form" flex="60">
+              <md-input-container md-no-float>
+                <md-icon>
+                  <ng-md-icon icon="search"></ng-md-icon>
+                </md-icon>
+                <input type="text" placeholder="Search Storefront" ng-model="searchModel">
+              </md-input-container>
+            </form>
+
+            <span flex></span>
+
+            <div layout="row" layout-align="center center">
+              <md-button class="company-buttons" href="/">
+                <ng-md-icon icon="favorite" size="14"></ng-md-icon>
+                Favorites ({{companyData.favoritesCount}})
+              </md-button>
+              <md-button class="company-buttons"
+                     href=""
+                     ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
+                     compare-button>
+                     Compare ({{compareProducts.services.length+compareProducts.components.length}})
+              </md-button>
+            </div>
+          </div>
+          <div layout="row" layout-padding layout-align="start start" class="company-storefront-title" ng-if="!isSearch">
+            <div layout="column" flex="70">
+              <h2 class="md-title" layout="row" layout-align="start center">Storefront Items</h2>
+            </div>
+            <span flex></span>
+            <md-button class="company-buttons" ng-click="showAll()">View All</md-button>
+          </div>
+          <div layout-padding class="list-items" layout="row" layout-wrap ng-if="!isSearch">
+            <div class="one-item"
+               flex-sm="100"
+               flex-md="50"
+               flex-lg="33"
+               flex-gt-lg="25"
+               ng-repeat="item in itemsArray.arr">
+              <dmc-product-card card-style="'small'" ng-show="item.id"
+                        type-product="item.type"
+                        card-source="item">
+              </dmc-product-card>
+            </div>
+          </div>
+          <div ng-if="!isSearch">
+            <dmc-products-card
+                title-card="'STOREFRONT ITEMS'"
+                search-card="isSearch"
+                card-source="allFavorites"
+                card-loading="downloadData"
+                page-size="pageSize"
+                 update-page-size="updatePageSize"
+                current-page="currentStorefrontPage"
+                total-size="allFavorites.count"
+                class="content-panel-marketplace"
+                layout-margin>
+            </dmc-products-card>
+          </div>
+        </md-content>
+      </div>
+    </div>
+  </div>
+</div>

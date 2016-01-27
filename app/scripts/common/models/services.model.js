@@ -88,4 +88,32 @@ angular.module('dmc.model.services', [
 		return deffered.promise;
 	}
 
+	this.favorite = function(id){
+		$http({
+			method: "GET",
+			url: dataFactory.getFavoriteService(id),
+			params: {
+				"_order" : "DESC",
+				"_sort" : "id"
+			}
+		}).then(function(response){
+			var favorite = []
+			for(var i in response.data){
+				$http({
+					method: "GET",
+					url: dataFactory.getService()+ response.data[i].productId,
+					params: {}
+				}).then(function(response){
+					favorite.push(response.data);
+				})
+			}
+			deffered.resolve(favorite, favorite.length);
+		},
+		function(){
+			toastModel.showToast("error", "Fail Get Favorites Services");
+			deffered.reject();
+		}
+		)
+		return deffered.promise;
+	}
 }]);

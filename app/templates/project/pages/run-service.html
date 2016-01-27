@@ -22,7 +22,10 @@
 			<md-button ng-click="" ng-show="false" class="md-raised">
 				Visualize
 			</md-button>
-			<md-button ng-click="run()" class="md-raised">
+			<md-button ng-click="saveRun()" class="md-raised">
+				Save Run
+			</md-button>
+			<md-button ng-click="run()" class="md-raised md-primary">
 				Run
 			</md-button>
 		</div>
@@ -37,11 +40,11 @@
 			<div layout="row" layout-align="space-between center">
 				<h2>Inputs</h2>
 				<div class="inputs-button">
-					<md-button ng-click="clear()" class="md-raised">
-						Reset
-					</md-button>
 					<md-button ng-click="default()" class="md-raised">
 						Default
+					</md-button>
+					<md-button ng-click="clear()" class="md-raised">
+						Reset
 					</md-button>
 					<md-button ng-click="save()" class="md-raised md-primary">
 						Save Order

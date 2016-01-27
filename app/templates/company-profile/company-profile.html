@@ -85,7 +85,7 @@
 							</div>
 
 						  <div class="arrow-right">
-						    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1" ng-hide="company.skillsImages.length <= 5 || index == company.skillsImages.length - 5">
+						    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1" ng-hide="company.images.length <= 5 || index <= company.skillsImages.length - 5">
 						      <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
 						    </md-button>
 						  </div>
@@ -96,20 +96,19 @@
 						<h2>Videos</h2>
 						<div layout="row" class="images-carousel" layout-align="space-between center">
 							<div class="arrow-left">
-						    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1" ng-hide="company.skillsImages.length <= 5 || index == 0">
+						    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1" ng-hide="company.images.length <= 5 || index == 0">
 						      <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
 						    </md-button>
 						  </div>
 
 							<div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">
 								<div class="one-image">
-									<img ng-src="{{company.images[item+index].url}}">
+									<a ng-href="{{company.videos[item+index].link}}">{{company.videos[item+index].title}}</a>
 								</div>
-								<h2>{{company.images[item].title}}</h2>
 							</div>
 
 						  <div class="arrow-right">
-						    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1" ng-hide="company.skillsImages.length <= 5 || index == company.skillsImages.length - 5">
+						    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1" ng-hide="company.skillsImages.length <= 5 || index <= company.skillsImages.length - 5">
 						      <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
 						    </md-button>
 						  </div>
