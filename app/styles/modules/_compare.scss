@@ -65,7 +65,7 @@
     .page-href{
       margin: 0px 0 0px 2px;
       &:hover{
-        background-color: #555;
+        text-decoration: underline;
       }
       span{
         overflow: hidden;
@@ -161,6 +161,13 @@
             color: #62b056;
             margin: 2px 0;
             font-size: 13px;
+            a{
+              color: #62b056;
+              text-decoration: none;
+              &:hover{
+                text-decoration: underline;
+              }
+            }
           }
           h2{
             text-transform: uppercase;

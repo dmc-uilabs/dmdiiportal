@@ -3,7 +3,7 @@
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
             <span flex></span>
-            <md-button href="" target="_blank" md-no-ink class="view-all-button view-all-link">View All ({{totalAnnouncements}})</md-button>
+            <md-button href="" target="_blank" md-no-ink class="view-all-button view-all-link">View All ({{totalDiscussions}})</md-button>
         </div>
     </md-toolbar>
 </div>
@@ -13,7 +13,7 @@
             <md-list>
                 <md-list-item ng-repeat="item in discussions" class="md-3-line">
                     <div class="md-list-item-text">
-                        <h3>{{item.text}}</h3>
+                        <h3><a href="/individual-discussion.php#/1" class="link-button" target="_blank">{{item.text}}</a></h3>
                         <div class="info">
                             <span>{{item.full_name}} replied | {{item.created_at}}</span>
                         </div>

@@ -23,16 +23,20 @@
                     <tbody>
                     <tr ng-repeat="item in services" ng-click="changeItem(item)">
                         <td ng-show="columns.indexOf('name') > -1">
-                            <a href="{{titleHref}}" target="_blank">
+                            <a href="/component.php#/services/{{item.id}}" class="link-button" target="_blank">
                                 <em>{{item.title}}</em>
-                                <span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDate}}</span>
                             </a>
+                            <span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDate}}</span>
                         </td>
-                        <td ng-show="columns.indexOf('project') > -1"><a href="/project.php#/{{item.currentStatus.project.id}}">{{item.currentStatus.project.title}}</a></td>
+                        <td ng-show="columns.indexOf('project') > -1">
+                            <a href="/project.php#/{{item.currentStatus.project.id}}/home" class="link-button">{{item.currentStatus.project.title}}</a>
+                        </td>
                         <td ng-show="columns.indexOf('start') > -1">{{item.currentStatus.startDate}}<span class="services-time-info">{{item.currentStatus.startTime}}</span></td>
                         <td ng-show="columns.indexOf('status') > -1">
-                            <md-progress-linear md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
-                            <span class="service-progress-info">1:30 of 2:00</span>
+                            <a href="/project.php#/{{item.currentStatus.project.id}}/run-service/{{item.id}}" class="link-button">
+                                <md-progress-linear md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
+                                <span class="service-progress-info">1:30 of 2:00</span>
+                            </a>
                         </td>
                     </tr>
                     <tr ng-if="services.length == 0">

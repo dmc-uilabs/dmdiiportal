@@ -32,7 +32,7 @@ angular.module('dmc.product', [
 	$urlRouterProvider.otherwise('/services/1');
 })
 .controller('ProductController', ['$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$mdToast', 'toastModel','$timeout', '$cookies', 'DMCServicesModel', 
-												function ( $stateParams,   $scope,   ajax,   dataFactory,   $mdDialog,   $mdToast,   toastModel,  $timeout,   $cookies,   DMCServicesModel) {
+    function ( $stateParams,   $scope,   ajax,   dataFactory,   $mdDialog,   $mdToast,   toastModel,  $timeout,   $cookies,   DMCServicesModel) {
 
 	$scope.product = [];  //array product
 	$scope.number_of_comments = 0; // number of 
@@ -53,6 +53,35 @@ angular.module('dmc.product', [
 	$scope.currentImage = 1;
 	$scope.images = [];
 	$scope.indexImages = 0;
+
+        // get favorites count ------------------
+        $scope.favoritesCount = 0;
+        var getFavoriteCount = function(){
+            ajax.on(dataFactory.getFavoriteProducts(),{
+                accountId : 1
+            },function(data){
+                $scope.favoritesCount = data.length;
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            },function(){
+                alert("Error getFavoriteCount");
+            });
+        };
+        getFavoriteCount();
+        // ---------------------------------------
+
+        $scope.share = function(ev){
+            $mdDialog.show({
+                controller: "ShareProductCtrl",
+                templateUrl: "templates/components/product-card/share-product.html",
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                locals: {
+                }
+            }).then(function() {
+            }, function() {
+            });
+        };
 
         			
 	$scope.history = {

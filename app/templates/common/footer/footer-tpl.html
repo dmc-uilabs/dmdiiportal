@@ -1,14 +1,16 @@
 <div class="footer" layout-padding>
     <div class="footer-menu" ng-if="type == 'home'">
         <ul>
-            <li><md-button href="/" md-no-ink>Lorem Ipsum</md-button></li>
-            <li><md-button href="/" md-no-ink>Lorem Ipsum</md-button></li>
-            <li><md-button href="/" md-no-ink>Lorem Ipsum</md-button></li>
-            <li><md-button href="/" md-no-ink>Lorem Ipsum</md-button></li>
+            <li><md-button href="faq.php" md-no-ink>FAQ</md-button></li>
+            <li><md-button href="/" md-no-ink>Terms of Service</md-button></li>
+            <li><md-button href="/" md-no-ink>Help</md-button></li>
+            <li><md-button href="/" md-no-ink>Contact Us</md-button></li>
         </ul>
     </div>
     <div class="copyright" ng-class="{'copyright-home' : type == 'home'}">
-    <img alt="Digitial Manufacturing and Design Innovation Institute" src="images/ui-labs-logo.svg"  style="max-width:20%">
+        <a href="company-profile.php">
+            <img alt="Digitial Manufacturing and Design Innovation Institute" src="images/ui-labs-logo.svg"  style="max-width:20%">
+        </a>
         <p>© 2015 Digital Manufacturing Commons</p>
     </div>
     <div class="footer-links" ng-if="type != 'home'">

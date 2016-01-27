@@ -13,7 +13,6 @@ angular.module('dmc.model.company', [
                 var data = response.data;
                 // get owner
                 data.owner = AccountModel.get(data.accountId);
-
                 if(data.accountId == currentAccountId) data.isOwner = true;
                 return data;
             },function(response){

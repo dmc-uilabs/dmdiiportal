@@ -240,13 +240,18 @@ md-tooltip{
   }
 }
 
+a.link-button,
 a.link-button.md-button.md-default-theme{
   text-decoration: none;
   text-transform: initial;
+  color: #333;
   &:hover{
     background: none;
     background-color: none;
     text-decoration: underline;
+    span{
+      text-decoration: underline;
+    }
   }
 }
 
@@ -254,6 +259,7 @@ a.link-button.md-button.md-default-theme{
   height: 36px;
   min-height: 0;
   text-transform: initial;
+  color: #333;
   ng-md-icon{
     fill: #333;
   }
@@ -261,6 +267,7 @@ a.link-button.md-button.md-default-theme{
     font-size: 14px;
   }
 }
+
 
 .view-all-link.md-button.md-default-theme{
   background-color: none;

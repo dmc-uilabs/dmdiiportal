@@ -7,7 +7,7 @@
     <md-list-item class="md-3-line" ng-repeat="task in projectTasks">
         <div class="md-list-item-text">
             <h3><a href="/" class="task-title">{{task.title}}</a></h3>
-            <h4>Assigned To: {{task.assignee}}</h4>
+            <h4>Assigned To: <a href="/profile.php#/1" class="link-button">{{task.assignee}}</a></h4>
             <div class="label" ng-bind-html="task.priority[1]" ng-class="task.priority[0] == 'date' ? 'label--date' : (task.priority[0] == 'tomorrow' ? 'label--tomorrow' : (task.priority[0] == 'today' || task.priority[0] == 'after' ? 'label--warn' : 'label--date'))"></div>
         </div>
         <md-divider ng-if="$index < projectTasks.length-1"></md-divider>

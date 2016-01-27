@@ -105,25 +105,14 @@
           <div class="content-panel-body">
             <md-content class="md-padding">
               <md-list>
-                    <md-list-item class="md-2-line">
+                    <md-list-item class="md-2-line" ng-repeat="item in [1,2]">
                       <div class="md-list-item-text">
-                        <h3><a class="member-text" href="/">Run services on clutch plates and pressure plates components</a></h3>
+                        <h3><a class="member-text" href="/individual-discussion.php">Run services on clutch plates and pressure plates components</a></h3>
                         <h4>9 minutes</h4>
                       </div>
                       <div class="md-secondary md-list-item-inner user-info">
-                        <a class="member-name" href="/">Janet Perkins</a>
-                        <a href="/"><img alt="Janet Perkins" class="md-avatar" src="images/avatar-fpo.jpg"></a>
-                      </div>
-                    </md-list-item>
-                    <md-divider></md-divider>
-                    <md-list-item class="md-2-line">
-                      <div class="md-list-item-text">
-                        <h3><a class="member-text" href="/">Run services on clutch plates and pressure plates components</a></h3>
-                        <h4>9 minutes</h4>
-                      </div>
-                      <div class="md-secondary md-list-item-inner user-info">
-                        <a class="member-name" href="/">Janet Perkins</a>
-                        <a href="/"><img alt="Janet Perkins" class="md-avatar" src="images/avatar-fpo.jpg"></a>
+                        <a class="member-name" href="/profile.php">Janet Perkins</a>
+                        <a href="/profile.php"><img alt="Janet Perkins" class="md-avatar" src="images/avatar-fpo.jpg"></a>
                       </div>
                     </md-list-item>
 

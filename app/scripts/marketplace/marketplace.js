@@ -62,7 +62,7 @@ angular.module('dmc.marketplace', [
         $scope.currentPageType = angular.isDefined($stateParams.type) && defaultPages[$stateParams.page][$stateParams.type] ? $stateParams.type : null;
         $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : '';
 
-        $scope.favoritesCount = 3;
+        $scope.favoritesCount = 0;
         var getFavoriteCount = function(){
             ajax.on(dataFactory.getFavoriteProducts(),{
                 accountId : 1
@@ -278,9 +278,7 @@ angular.module('dmc.marketplace', [
                     'tag' : 'all',
                     'items': 0,
                     'opened' : $scope.currentPage == 'all' ? true : false,
-                    'onClick' : function(){
-                        $location.url('/all');
-                    },
+                    'href' : '/marketplace.php#/all',
                     'categories': []
                 },
                 {
@@ -289,9 +287,7 @@ angular.module('dmc.marketplace', [
                     'tag' : 'components',
                     'items': 0,
                     'opened' : $scope.currentPage == 'components' ? true : false,
-                    'onClick' : function(){
-                        $location.url('/components');
-                    },
+                    'href' : '/marketplace.php#/components',
                     'categories': []
                 },
                 {
@@ -300,9 +296,7 @@ angular.module('dmc.marketplace', [
                     'tag' : 'services',
                     'items': 0,
                     'opened' : $scope.currentPage == 'services' ? true : false,
-                    'onClick' : function(){
-                        $location.url('/services');
-                    },
+                    'href' : '/marketplace.php#/services',
                     'categories': [
                         {
                             'id': 31,
@@ -310,9 +304,7 @@ angular.module('dmc.marketplace', [
                             'tag' : 'analytical',
                             'items': 0,
                             'opened' : $scope.currentPageType == 'analytical' ? true : false,
-                            'onClick' : function(){
-                                $location.url('/services?type=analytical');
-                            },
+                            'href' : '/marketplace.php#/services?type=analytical',
                             'categories': []
                         },
                         {
@@ -321,9 +313,7 @@ angular.module('dmc.marketplace', [
                             'tag' : 'solid',
                             'items': 0,
                             'opened' : $scope.currentPageType == 'solid' ? true : false,
-                            'onClick' : function(){
-                                $location.url('/services?type=solid');
-                            },
+                            'href' : '/marketplace.php#/services?type=solid',
                             'categories': []
                         },
                         {
@@ -332,9 +322,7 @@ angular.module('dmc.marketplace', [
                             'tag' : 'data',
                             'items': 0,
                             'opened' : $scope.currentPageType == 'data' ? true : false,
-                            'onClick' : function(){
-                                $location.url('/services?type=data');
-                            },
+                            'href' : '/marketplace.php#/services?type=data',
                             'categories': []
                         }
                     ]

@@ -121,8 +121,12 @@ $lines-to-show-title: 2;
       min-width: 20px;
       fill: #fff;
     }
-    .page-href {
+    a.page-href {
       display: flex;
+      &:hover{
+        background: none;
+        text-decoration: underline;
+      }
       span{
         overflow: hidden;
         text-overflow: ellipsis;
@@ -173,6 +177,9 @@ $lines-to-show-title: 2;
     }
     .md-button {
       color: white;
+    }
+    .md-button.md-raised {
+      color: #333;
     }
     .remove{
       background-color: #65AF3F;

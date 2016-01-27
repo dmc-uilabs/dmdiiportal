@@ -436,6 +436,12 @@
       "productId": 1,
       "accountId": 1,
       "productType": "service"
+    },
+    {
+      "id": 14,
+      "productId": 2,
+      "accountId": 1,
+      "productType": "component"
     }
   ],
   "projects": [
@@ -651,7 +657,7 @@
           "title": "Incoming Compartment for LDR Mining"
         }
       },
-      "projectId": 1,
+      "projectId": 4,
       "from": "marketplace"
     },
     {

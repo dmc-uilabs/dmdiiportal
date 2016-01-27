@@ -6,18 +6,24 @@
 <md-list>
   <md-list-item class="md-2-line service-list-item" ng-repeat="service in projectServices track by $index">
     <div class="md-list-item-text" layout="column" ng-show="progressPosition == 'bottom'">
-      <h3><a href="/" class="service-title">{{service.title}}</a></h3>
-      <md-progress-linear md-mode="determinate" value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
-      <span>Estimated - 1:30 of 2:00</span>
+      <h3>
+          <a href="/component.php#/services/{{service.id}}" class="service-title link-button">{{service.title}}</a>
+      </h3>
+      <a href="/project.php#/{{service.currentStatus.project.id}}/run-service/{{service.id}}" class="link-button">
+        <md-progress-linear md-mode="determinate" value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
+        <span>Estimated - 1:30 of 2:00</span>
+      </a>
     </div>
     <div class="md-list-item-text item-text-service" ng-hide="progressPosition == 'bottom'">
-      <h3 class="title"><a href="/" class="service-title">{{service.title}}</a></h3>
+      <h3 class="title"><a href="/component.php#/services/{{service.id}}" class="service-title">{{service.title}}</a></h3>
       <h4 ng-hide="progressPosition == 'bottom'">{{service.releaseDate}}</h4>
     </div>
     <div class="md-secondary md-list-item-inner services-item-progress"
          ng-hide="progressPosition == 'bottom'">
-        <md-progress-linear md-mode="determinate" value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
-        <span class="service-progress-info">1:30 of 2:00</span>
+        <a href="/project.php#/{{service.currentStatus.project.id}}/run-service/{{service.id}}" class="link-button">
+            <md-progress-linear md-mode="determinate" value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
+            <span class="service-progress-info">1:30 of 2:00</span>
+        </a>
     </div>
     <md-divider ng-if="$index < projectServices.length-1"></md-divider>
   </md-list-item>

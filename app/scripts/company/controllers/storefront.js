@@ -26,8 +26,8 @@ angular.module('dmc.company')
                                $mdDialog ) {
 
         $scope.companyData  = companyData ;
-
         if($scope.companyData && $scope.companyData.id) {
+            $scope.owner = $scope.companyData.owner.$$state.value;
             // ------------------------------ get state params
             $scope.companyId = $stateParams.companyId;
             $scope.selectedProductType = $stateParams.product;

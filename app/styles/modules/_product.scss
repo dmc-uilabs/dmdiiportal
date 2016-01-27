@@ -21,8 +21,6 @@
       text-transform: initial;
       margin-bottom: 0;
       margin-top: 0;
-      height: 47px;
-      line-height: 47px;
     }
     .save{
       &:hover{
@@ -219,7 +217,7 @@
         font-weight: normal;
       }
       .md-button{
-        color: #64B045;
+        //color: #64B045;
       }
     }
     md-progress-linear {

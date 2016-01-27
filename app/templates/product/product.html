@@ -21,11 +21,13 @@
 				<span flex></span>
 
 				<div class="marketplace-search-button" layout="row" layout-align="center center">
-					<md-button href="/">
+					<md-button href="/favorites.php" class="link-button">
 						<ng-md-icon icon="favorite" size="14"></ng-md-icon>
-						Favorites
+						Favorites ({{favoritesCount}})
 					</md-button>
-					<md-button href="" ng-disabled="compareProducts.services.length+compareProducts.components.length == 0" compare-button>
+					<md-button ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
+                               class="md-raised dmc-button"
+                               compare-button>
 						Compare ({{compareProducts.services.length+compareProducts.components.length}})
 					</md-button>
 				</div>
@@ -65,7 +67,7 @@
 						<!--product header-->
 						<div class="product-header">
 							<div layout="row">
-								<h2 ng-if="!editFlag">{{product.title}} <span>By {{product.owner}}</span></h2>
+								<h2 ng-if="!editFlag">{{product.title}} <span>By <a href="/company.php#/1" class="link-button">{{product.owner}}</a></span></h2>
 								<md-input-container  ng-if="editFlag">
 									<label>Title</label>
 									<input id="editTitleProduct" ng-model="qqq.title">
@@ -75,7 +77,7 @@
 									<ng-md-icon icon="favorite_outline" style="fill: grey" size="25" ng-show="!product.favorite"></ng-md-icon>
                                     <ng-md-icon icon="favorite" style="fill: #65AF3F;" size="25" ng-show="product.favorite"></ng-md-icon>
 								</md-button>
-								<md-button ng-if="!editFlag" aria-label="share" href="" class="md-icon-button header-icon">
+								<md-button ng-if="!editFlag" aria-label="share" ng-click="share()" class="md-icon-button header-icon">
 									<ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
 								</md-button>
 								<md-button ng-if="editFlag" ng-click="cancelEdit()" class="md-raised cancel">Cancel</md-button>
@@ -85,11 +87,11 @@
 								<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
 								<span flex></span>
 								<div  ng-if="!adding_to_project" layout="row" layout-align="center end">
-									<md-button ng-if="!editFlag" ng-click="editPage()" class="md-raised add">Edit Product</md-button>
-									<md-button ng-if="!editFlag" ng-click="toProject()" class="md-raised add">Add to Project</md-button>
+									<md-button ng-if="!editFlag" ng-click="editPage()" class="md-raised add dmc-button">Edit Product</md-button>
+									<md-button ng-if="!editFlag" ng-click="toProject()" class="md-raised add dmc-button">Add to Project</md-button>
 									<md-button  
 											ng-click="addToCompare()" 
-											class="md-raised add"
+											class="md-raised add dmc-button"
 											ng-if="!editFlag && (product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)">
 										Add to Compare
 									</md-button>
@@ -234,7 +236,7 @@
 					<md-tab label="Included Services">
 						<md-content ng-if="!editFlag" class="md-padding">
 							<div layout layout-align="end end">
-								<a ng-click="ViewIncluded()" class="viewAll">View all</a>
+								<a ng-click="ViewIncluded()" class="viewAll view-all-link">View all</a>
 							</div>
 							<div layout="row" class="tabs-content" layout-wrap>
 								<div flex="25" ng-repeat="oneProdut in products" class="included">
@@ -303,7 +305,7 @@
 							<h2>Reviews</h2>
 							<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
 							<span flex></span>
-							<md-button md-no-ink class="md-raised" ng-click="ViewAllReview()">View All({{number_of_comments}})</md-button>
+							<md-button md-no-ink class="md-raised dmc-button" ng-click="ViewAllReview()">View All ({{number_of_comments}})</md-button>
 						</div>
 							<!--Rating-->
 						<div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
@@ -335,7 +337,7 @@
 					<!--right column-->
 					<div flex layout="row" layout-align="space-betwen center">
 						<div layout="column" layout-align="center center">
-							<md-button class="md-raised" ng-click="LeaveAReview()">Leave a Review</md-button>
+							<md-button class="md-raised dmc-button" ng-click="LeaveAReview()">Leave a Review</md-button>
 						</div>
 						<div layout="column" layout-align="end end" layout-fill>
 						<md-input-container>

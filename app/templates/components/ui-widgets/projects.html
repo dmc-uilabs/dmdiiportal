@@ -11,13 +11,13 @@
   <div class="rp-panel md-padding" layout="row" ng-repeat="item in projects">
       <div layout="column" flex>
           <div class="rp-panel__title my-projects" layout="row"  ng-if="widgetShowAllBlocks">
-              <h2><a href="project.php#/{{item.id}}">{{item.title}}</a></h2>
+              <h2><a href="project.php#/{{item.id}}" class="link-button">{{item.title}}</a></h2>
           </div>
           <div class="rp-panel__tab-content" flex="100" layout="row" layout-align="space-between start"
                ng-class="widgetShowAllBlocks == true ? 'widget-blocks' : ''">
               <div class="rp-panel__details" layout="column" flex="{{flexDetails}}"  ng-if="!widgetShowAllBlocks">
                   <div class="rp-panel__title" layout="row">
-                      <h2><a href="project.php#/{{item.id}}">{{item.title}}</a></h2>
+                      <h2><a href="project.php#/{{item.id}}" class="link-button">{{item.title}}</a></h2>
                   </div>
                   <div class="rp-panel__controls" layout="row">
                       <div class="rp-panel__image">
