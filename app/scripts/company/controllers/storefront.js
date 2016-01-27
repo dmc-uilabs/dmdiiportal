@@ -1,11 +1,33 @@
 'use strict';
 angular.module('dmc.company')
-    .controller('StorefrontCompanyCtr', ['$stateParams', '$state', "$scope", "$cookies", "ajax","Products","$location",'companyData','menuCompany', 'toastModel','dataFactory','$mdDialog', function ($stateParams, $state, $scope, $cookies, ajax,Products,$location,companyData, menuCompany, toastModel, dataFactory, $mdDialog ) {
+    .controller('StorefrontCompanyCtr', [
+        '$stateParams',
+        '$state',
+        "$scope",
+        "$cookies",
+        "ajax",
+        "Products",
+        "$location",
+        'companyData',
+        'CompanyModel',
+        'toastModel',
+        'dataFactory',
+        '$mdDialog', function ($stateParams,
+                               $state,
+                               $scope,
+                               $cookies,
+                               ajax,
+                               Products,
+                               $location,
+                               companyData,
+                               CompanyModel,
+                               toastModel,
+                               dataFactory,
+                               $mdDialog ) {
 
         $scope.companyData  = companyData ;
-        if(!$scope.companyData) {
-            $location.path('/');
-        }else {
+
+        if($scope.companyData && $scope.companyData.id) {
             // ------------------------------ get state params
             $scope.companyId = $stateParams.companyId;
             $scope.selectedProductType = $stateParams.product;
@@ -41,11 +63,12 @@ angular.module('dmc.company')
             };
 
             $scope.getFeatures = function () {
-                ajax.on(dataFactory.getFeaturesCompany(),
-                    {
+                ajax.on(dataFactory.getFeaturesCompany($scope.companyId),
+                    dataFactory.get_request_obj({
                         company_id: $scope.companyId
-                    },
+                    }),
                     function (data) {
+                        var data = dataFactory.get_result(data);
                         if (!data.error) {
                             $scope.carouselData.featured.arr = $.merge(data.result.services, data.result.components);
                             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -216,7 +239,8 @@ angular.module('dmc.company')
                     targetEvent: ev,
                     clickOutsideToClose:true,
                     locals : {
-                        owner : $scope.companyData.owner
+                        owner : $scope.companyData.owner,
+                        currentUser : {id : currentAccountId}
                     }
                 }).then(function(answer) {
                     // $scope.status = 'You said the information was "' + answer + '".';
@@ -226,6 +250,6 @@ angular.module('dmc.company')
             };
             // ------------------------------------------
 
-            $scope.treeMenuModel = menuCompany.getMenu();
+            $scope.treeMenuModel = CompanyModel.getMenu();
         }
 }]);

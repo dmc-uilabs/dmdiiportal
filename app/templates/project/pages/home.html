@@ -12,15 +12,15 @@
             <!-- fill up the space between left and right area -->
             <span flex></span>
             <!-- buttons for preview -->
-            <md-button ng-if="isPreview" class="md-raised md-warn white-label" href="/"><ng-md-icon icon="close" style="fill: #fff" size="18"></ng-md-icon> Decline Invitation</md-button>
-            <md-button ng-if="isPreview" class="md-raised md-primary white-label" href="/project.php#/submission/blank/{{projectCtrl.projectData.id}}"><ng-md-icon icon="done" style="fill: #fff" size="18"></ng-md-icon> Accept Invitation</md-button>
+            <md-button ng-if="isPreview" class="md-raised dmc-button" href="/"><ng-md-icon icon="close" size="18"></ng-md-icon> Decline Invitation</md-button>
+            <md-button ng-if="isPreview" class="md-raised dmc-button" href="/project.php#/submission/blank/{{projectCtrl.projectData.id}}"><ng-md-icon icon="done" size="18"></ng-md-icon> Accept Invitation</md-button>
 
             <!-- buttons for submission -->
-            <md-button ng-if="isSubmission" class="md-raised md-primary white-label" href="/project.php#/submit/{{projectCtrl.projectData.id}}"><ng-md-icon icon="send" style="fill: #fff" size="18"></ng-md-icon> Submit</md-button>
+            <md-button ng-if="isSubmission" class="md-raised dmc-button" href="/project.php#/submit/{{projectCtrl.projectData.id}}"><ng-md-icon icon="send" size="18"></ng-md-icon> Submit</md-button>
 
-            <md-button ng-if="!isPreview" class="md-raised md-primary white-label"><ng-md-icon icon="mode_edit" style="fill: #fff" size="18"></ng-md-icon> Edit</md-button>
+            <md-button ng-if="!isPreview" class="md-raised dmc-button"><ng-md-icon icon="mode_edit" size="18"></ng-md-icon> Edit</md-button>
             <md-menu  ng-if="!isPreview">
-                <md-button class="md-raised md-primary white-label" ng-click="$mdOpenMenu($event)"><ng-md-icon icon="share" style="fill: #fff" size="18"></ng-md-icon> Invite</md-button>
+                <md-button class="md-raised dmc-button" ng-click="$mdOpenMenu($event) "><ng-md-icon icon="share" size="18"></ng-md-icon> Invite</md-button>
                 <md-menu-content>
                     <md-menu-item>
                         <md-button>Team</md-button>

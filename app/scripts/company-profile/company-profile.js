@@ -1,5 +1,7 @@
 'use strict';
 
+var currentAccountId = 1;
+
 angular.module('dmc.company-profile', [
 	'dmc.configs.ngmaterial',
 	'ngMdIcons',
@@ -21,6 +23,7 @@ angular.module('dmc.company-profile', [
 	'dmc.model.company',
     'dmc.phone-format',
     'dmc.zip-code-format',
+    'dmc.model.account',
 	'flow'
 ])
 	.config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
@@ -29,7 +32,11 @@ angular.module('dmc.company-profile', [
                 function(CompanyModel, $stateParams) {
                     return CompanyModel.getModel($stateParams.companyId);
                 }
-            ]
+            ],
+            companyReview: ['CompanyModel', '$stateParams',
+                function(CompanyModel, $stateParams) {
+                    return CompanyModel.getReviewModel($stateParams.profileId);
+                }]
         };
         $stateProvider.state('company-profile', {
 			url: '/:companyId',

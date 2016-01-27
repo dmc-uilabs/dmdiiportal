@@ -20,13 +20,12 @@ paths:
     post:
       tags:
         - project
-      summary: Post a new project
       description: Post a new project to store in the database
       operationId: postProject
       parameters:
         - in: body
           name: body
-          description: Proect object that need to be added to the database
+          description: Project object to be added to the database
           required: false
           schema:
             $ref: '#/definitions/Project'
@@ -62,7 +61,7 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Task object that need to be added to the database
+          description: Task object to be added to the database
           required: false
           schema:
             $ref: '#/definitions/Task'
@@ -97,7 +96,7 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Service object that need to be added to the database
+          description: Service object to be added to the database
           required: false
           schema:
             $ref: '#/definitions/Service'
@@ -153,7 +152,7 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Component object that need to be added to the database
+          description: Component object to be added to the database
           required: false
           schema:
             $ref: '#/definitions/Component'
@@ -188,7 +187,7 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Discussion object that need to be added to the database
+          description: Discussion object to be added to the database
           required: false
           schema:
             $ref: '#/definitions/Discussion'
@@ -216,7 +215,7 @@ paths:
   '/profiles/{profileID}':
     get:
       tags:
-        - profiles
+        - profile
       summary: Get information for a member profile
       description: Get profile based on profileID
       parameters:
@@ -233,7 +232,7 @@ paths:
   '/profiles/{profileID}/profile_reviews':
     get:
       tags:
-        - profiles
+        - profile
       summary: Get reviews for a member profile
       description: Get profile reviews based on profileID
       parameters:
@@ -249,6 +248,358 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ProfileReview'
+  '/companies/{companyID}':
+    get:
+      tags:
+        - company
+      summary: Get information for a company profile
+      description: Get profile based on companyID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+      responses:
+        '200':
+          description: send the company profile with companyID
+          schema:
+            $ref: '#/definitions/Company'
+    put:
+      tags:
+      - company
+      description: Update information for company profile by ID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+        - name: company
+          in: body
+          schema:
+            $ref: '#/definitions/Company'
+      responses:
+        200:
+          description: returns updated company profile
+          schema:
+            $ref: '#/definitions/Company'
+  '/companies/{companyID}/company_images':
+    get:
+      tags:
+        - company
+      summary: Get company profile images
+      description: Get company profile images based on companyID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+      responses:
+        '200':
+          description: send the profile images with companyID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CompanyImage'
+  '/company_images/{imageID}':
+    put:
+      tags:
+      - company
+      description: Update company image by ID
+      parameters:
+        - name: imageID
+          in: path
+          type: string
+          description: ID of the company image
+          required: true
+        - name: image
+          in: body
+          schema:
+            $ref: '#/definitions/CompanyImage'
+      responses:
+        200:
+          description: returns updated company image
+          schema:
+            $ref: '#/definitions/CompanyImage'
+  '/companies/{companyID}/company_videos':
+    get:
+      tags:
+        - company
+      summary: Get company profile videos
+      description: Get company profile videos based on companyID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+      responses:
+        '200':
+          description: send the profile videos with companyID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CompanyVideo'
+  '/companies/{companyID}/company_skills':
+    get:
+      tags:
+        - company
+      summary: Get company profile skill
+      description: Get company profile skill based on companyID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+      responses:
+        '200':
+          description: send the profile skill with companyID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CompanySkill'
+  '/companies/{companyID}/company_key_contacts':
+    get:
+      tags:
+        - company
+      summary: Get company profile contacts
+      description: Get company profile contacts based on companyID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+      responses:
+        '200':
+          description: send the profile contacts with companyID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CompanyKeyContact'
+  '/companies/{companyID}/company_skill_images':
+    get:
+      tags:
+        - company
+      summary: Get company profile skill images
+      description: Get company profile skill images based on companyID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+      responses:
+        '200':
+          description: send the profile skill images with companyID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CompanySkillImage'
+  '/company_skill_images/{imageID}':
+    put:
+      tags:
+      - company
+      description: Update company skill image by ID
+      parameters:
+        - name: imageID
+          in: path
+          type: string
+          description: ID of the company skill image
+          required: true
+        - name: image
+          in: body
+          schema:
+            $ref: '#/definitions/CompanySkillImage'
+      responses:
+        200:
+          description: returns updated company skill image
+          schema:
+            $ref: '#/definitions/CompanySkillImage'
+  '/companies/{companyID}/company_reviews':
+    get:
+      tags:
+        - company
+      summary: Get reviews for a company
+      description: Get company reviews based on companyID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+      responses:
+        '200':
+          description: send the reviews with companyID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CompanyReview'
+  '/companies/{companyID}/company_featured':
+    get:
+      tags:
+        - company
+      summary: Get featured products for a company
+      description: Get company featured products based on companyID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+      responses:
+        '200':
+          description: send an object with featured products based on companyID
+          schema:
+            type: object
+            properties:
+              totalCount:
+                type: integer
+              services:
+                type: array
+                items:
+                  $ref: '#/definitions/ServiceFeatured'
+              components:
+                type: array
+                items:
+                  $ref: '#/definitions/ComponentFeatured'
+  /company_skills:
+    post:
+      tags:
+        - company
+      summary: Post a new company skill
+      description: Post a new company skill
+      parameters:
+        - in: body
+          name: CompanySkill
+          description: skill object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/CompanySkill'
+      responses:
+        '201':
+          description: new skill added to the database
+          schema:
+            $ref: '#/definitions/CompanySkill'
+  '/company_skills/{skillID}':
+    delete:
+      tags:
+        - company
+      description: Delete a skill by id
+      parameters:
+        - in: path
+          name: skillID
+          description: ID of skill to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+  /company_videos:
+    post:
+      tags:
+        - company
+      summary: Post a new company video
+      description: Post a new company video
+      parameters:
+        - in: body
+          name: body
+          description: Video object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/CompanyVideo'
+      responses:
+        '201':
+          description: new video added to the database
+          schema:
+            $ref: '#/definitions/CompanyVideo'
+  '/company_videos/{videoID}':
+    delete:
+      tags:
+        - company
+      description: Delete a video by id
+      parameters:
+        - in: path
+          name: videoID
+          description: ID of video to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+      - company
+      description: Update company videos by ID
+      parameters:
+        - name: videoID
+          in: path
+          type: string
+          description: ID of the company video
+          required: true
+        - name: video
+          in: body
+          schema:
+            $ref: '#/definitions/CompanyVideo'
+      responses:
+        200:
+          description: returns updated company video
+          schema:
+            $ref: '#/definitions/CompanyVideo'
+  /company_key_contacts:
+    post:
+      tags:
+        - company
+      summary: Post a new company contact
+      description: Post a new company contact
+      parameters:
+        - in: body
+          name: body
+          description: contact object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/CompanyKeyContact'
+      responses:
+        '201':
+          description: new contact added to the database
+          schema:
+            $ref: '#/definitions/CompanyKeyContact'
+  '/company_key_contacts/{contactID}':
+    delete:
+      tags:
+        - company
+      description: Delete a contact by id
+      parameters:
+        - in: path
+          name: contactID
+          description: ID of contact to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+      - company
+      description: Update company contact by ID
+      parameters:
+        - name: contactID
+          in: path
+          type: string
+          description: ID of the company contact
+          required: true
+        - name: contact
+          in: body
+          schema:
+            $ref: '#/definitions/CompanyKeyContact'
+      responses:
+        200:
+          description: returns updated company contact
+          schema:
+            $ref: '#/definitions/CompanyKeyContact'
 definitions:
   FeatureImage:
     type: object
@@ -319,7 +670,6 @@ definitions:
         type: string
       title:
         type: string
-
   Task:
     type: object
     properties:
@@ -378,6 +728,50 @@ definitions:
         $ref: '#/definitions/FeatureImage'
       currentStatus:
         $ref: '#/definitions/CurrentStatus'
+      projectId:
+        type: string
+      from:
+        type: string
+  ServiceFeatured:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      owner:
+        type: string
+      releaseDate:
+        type: string
+        format: date-time
+      serviceType:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+      specifications:
+        type: string
+      featureImage:
+        $ref: '#/definitions/FeatureImage'
+      currentStatus:
+        $ref: '#/definitions/CurrentStatus'
+      projectId:
+        type: string
+      from:
+        type: string
+      type:
+        type: string
+      favorite:
+        type: boolean
+      featureId:
+        type: string
+      position:
+        type: integer
+      inFeatured:
+        type: boolean
   RunStatus:
     type: object
     properties:
@@ -420,6 +814,46 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Service'
+      projectId:
+        type: string
+      type:
+        type: string
+  ComponentFeatured:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      owner:
+        type: string
+      releaseDate:
+        type: string
+        format: date-time
+      tags:
+        type: array
+        items:
+          type: string
+      featureImage:
+        $ref: '#/definitions/FeatureImage'
+      services:
+        type: array
+        items:
+          $ref: '#/definitions/Service'
+      projectId:
+        type: string
+      type:
+        type: string
+      favorite:
+        type: boolean
+      featureId:
+        type: string
+      position:
+        type: integer
+      inFeatured:
+        type: boolean
   Discussion:
     type: object
     properties:
@@ -487,4 +921,165 @@ definitions:
       dislike:
         type: integer
       comment:
+        type: string
+  Company:
+    type: object
+    properties:
+      id:
+        type: string
+      accountId:
+        type: string
+      name:
+        type: string
+      location:
+        type: string
+      description:
+        type: string
+      division:
+        type: string
+      industry:
+        type: string
+      NAICSCode:
+        type: string
+      RDFocus:
+        type: string
+      customers:
+        type: string
+      awardsReceived:
+        type: string
+      technicalExpertise:
+        type: string
+      toolsSoftwareEquipmentMachines:
+        type: string
+      postCollaborations:
+        type: string
+      collaborationInterests:
+        type: string
+      pastProjects:
+        type: string
+      upcomingProjectInterests:
+        type: string
+      address:
+        type: string
+      city:
+        type: string
+      state:
+        type: integer
+      zipCode:
+        type: string
+      twitter:
+        type: string
+      linkedIn:
+        type: string
+      website:
+        type: string
+      methodCommunication:
+        type: string
+      email:
+        type: string
+      phone:
+        type: string
+      categoryTier:
+        type: integer
+      dateJoined:
+        type: string
+      reasonJoining:
+        type: string
+      featureImage:
+        $ref: "#/definitions/FeatureImage"
+      logoImage:
+        type: string
+      follow:
+        type: boolean
+      favoritesCount:
+        type: integer
+      isOwner:
+        type: boolean
+      owner:
+        type: object
+  CompanyReview:
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
+        type: string
+      name:
+        type: string
+      reply:
+        type: boolean
+      reviewId:
+        type: string
+      status:
+        type: boolean
+      date:
+        type: string
+      rating:
+        type: integer
+      userRatingReview:
+        type: object
+      like:
+        type: integer
+      dislike:
+        type: integer
+      comment:
+        type: string
+  CompanyImage:
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
+        type: string
+      url:
+        type: string
+      title:
+        type: string
+  CompanyVideo:
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
+        type: string
+      title:
+        type: string
+      link:
+        type: string
+  CompanySkillImage:
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
+        type: string
+      url:
+        type: string
+      title:
+        type: string
+  CompanySkill:
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
+        type: string
+      name:
+        type: string
+  CompanyKeyContact:
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
+        type: string
+      type:
+        type: integer
+      name:
+        type: string
+      phoneNumber:
+        type: string
+      title:
+        type: string
+      email:
         type: string

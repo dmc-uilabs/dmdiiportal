@@ -1,95 +1,185 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('BasicsAccountCtr', [ '$stateParams', '$state', "$scope","$timeout", "$q", "ajax", "location","$location","accountData","accountUpdate",'questionToastModel','$document','toastModel','dataFactory',
-    function ($stateParams, $state, $scope,$timeout,$q, ajax, location,$location,accountData,accountUpdate,questionToastModel,$document,toastModel,dataFactory) {
+    .controller('BasicsAccountCtr', [ '$stateParams', '$state', "$scope","$timeout", "$q", "ajax", "location","$location","accountData","AccountModel",'questionToastModel','$document','toastModel','dataFactory',
+    function ($stateParams, $state, $scope,$timeout,$q, ajax, location,$location,accountData,AccountModel,questionToastModel,$document,toastModel,dataFactory) {
         $scope.accountData = accountData;
-        $scope.accountId = $stateParams.accountId;
-        $scope.page = $state.current.name.split('.')[1];
-        $scope.title = pageTitles[$scope.page];
-        $scope.deactivated = $scope.accountData.deactivated;
-        $scope.activatedText = (!$scope.deactivated ? "Deactivate Account?" : "Activate Account?");
-        $scope.user = $.extend(true,{},accountData);
-        var callback = function(success,data){
-            if(success) {
-                $scope.user.dataLocation = data;
-                $scope.user.location = $scope.user.dataLocation.city + ", " + $scope.user.dataLocation.region;
-                $scope.ctrl.searchText = $scope.user.dataLocation.timezone;
-                $scope.user.timezone = $scope.user.dataLocation.timezone;
-                $scope.changedValue('timezone',$scope.user.timezone);
-                $scope.changedValue('location',$scope.user.location);
-            }
-        };
-
-        $scope.getLocation = function(){
-            location.get(callback);
-        };
-
-        // auto focus for First Name input
-        $timeout(function() {
-            $("#editFirstName").focus();
-        });
-
-        $scope.blurInput = function(){
-            if($scope.user.displayName == null || $scope.user.displayName.trim().length == 0){
-                $scope.user.displayName = $scope.user.displayName = $scope.user.firstName + ' ' + $scope.user.lastName;
-            }
-        };
-
-        $scope.$on('$locationChangeStart', function (event, next, current) {
-            if ($scope.changedValues && current.match("\/basics")) {
-                var answer = confirm("Are you sure you want to leave this page without saving?");
-                if (!answer){
-                    event.preventDefault();
+        if($scope.accountData && $scope.accountData.id) {
+            $scope.accountId = $stateParams.accountId;
+            $scope.page = $state.current.name.split('.')[1];
+            $scope.title = pageTitles[$scope.page];
+            $scope.deactivated = $scope.accountData.deactivated;
+            $scope.activatedText = (!$scope.deactivated ? "Deactivate Account?" : "Activate Account?");
+            $scope.user = $.extend(true, {}, accountData);
+            var callback = function (success, data) {
+                if (success) {
+                    $scope.user.dataLocation = data;
+                    $scope.user.location = $scope.user.dataLocation.city + ", " + $scope.user.dataLocation.region;
+                    $scope.ctrl.searchText = $scope.user.dataLocation.timezone;
+                    $scope.user.timezone = $scope.user.dataLocation.timezone;
+                    $scope.changedValue('timezone', $scope.user.timezone);
+                    $scope.changedValue('location', $scope.user.location);
                 }
-            }
-        });
+            };
 
-        $(window).bind('beforeunload', function(){
-            if($scope.changedValues) {
-                return "Are you sure you want to leave this page without saving?";
-            }
-        });
+            $scope.getLocation = function () {
+                location.get(callback);
+            };
 
-        $scope.zones = [];
-        $scope.ctrl = {};
-        $scope.ctrl.simulateQuery = false;
-        $scope.ctrl.isDisabled    = false;
-        // list of `state` value/display objects
-        $scope.ctrl.states        = loadAll();
-        $scope.ctrl.querySearch   = querySearch;
-        $scope.ctrl.selectedItemChange = selectedItemChange;
-        $scope.ctrl.searchTextChange   = searchTextChange;
+            // auto focus for First Name input
+            $timeout(function () {
+                $("#editFirstName").focus();
+            });
 
-        $scope.ctrl.searchText = $scope.user.timezone;
+            $scope.blurInput = function () {
+                if ($scope.user.displayName == null || $scope.user.displayName.trim().length == 0) {
+                    $scope.user.displayName = $scope.user.displayName = $scope.user.firstName + ' ' + $scope.user.lastName;
+                }
+            };
 
-        function querySearch (query) {
-            var results = query ? $scope.ctrl.states.filter( createFilterFor(query) ) : $scope.ctrl.states,
-                deferred;
-            if ($scope.ctrl.simulateQuery) {
-                deferred = $q.defer();
-                $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-                return deferred.promise;
-            } else {
-                return results;
-            }
+            $scope.$on('$locationChangeStart', function (event, next, current) {
+                if ($scope.changedValues && current.match("\/basics")) {
+                    var answer = confirm("Are you sure you want to leave this page without saving?");
+                    if (!answer) {
+                        event.preventDefault();
+                    }
+                }
+            });
+
+            $(window).bind('beforeunload', function () {
+                if ($scope.changedValues) {
+                    return "Are you sure you want to leave this page without saving?";
+                }
+            });
+
+            $scope.zones = [];
+            $scope.ctrl = {};
+            $scope.ctrl.simulateQuery = false;
+            $scope.ctrl.isDisabled = false;
+            // list of `state` value/display objects
+            $scope.ctrl.states = loadAll();
+            $scope.ctrl.querySearch = querySearch;
+            $scope.ctrl.selectedItemChange = selectedItemChange;
+            $scope.ctrl.searchTextChange = searchTextChange;
+
+            $scope.ctrl.searchText = $scope.user.timezone;
+
+            $scope.changedValue = function (name, value) {
+                if (!$scope.changedValues) $scope.changedValues = {};
+                $scope.changedValues[name] = value;
+                if (name == "firstName" || name == "lastName") {
+                    $scope.user.displayName = $scope.user.displayName = $scope.user.firstName + ' ' + $scope.user.lastName;
+                }
+            };
+
+            $scope.cancelChanges = function () {
+                for (var item in $scope.changedValues) {
+                    $scope.user[item] = $scope.accountData[item];
+                    if (item == 'timezone') {
+                        $scope.ctrl.searchText = $scope.accountData[item];
+                    }
+                }
+                $scope.changedValues = null;
+            };
+
+            $scope.saveChanges = function () {
+                if ($scope.changedValues) {
+                    if (!validateEmail($scope.user.email)) {
+                        $scope.user.email = $scope.accountData.email;
+                    }
+                    AccountModel.update($scope.user);
+                    $scope.changedValues = null;
+                }
+            };
+
+            $scope.suffixes = [
+                {
+                    id: 1,
+                    title: "S1"
+                },
+                {
+                    id: 2,
+                    title: "S2"
+                }
+            ];
+
+            $scope.salutations = [
+                {
+                    id: 1,
+                    title: "T1"
+                },
+                {
+                    id: 2,
+                    title: "T2"
+                },
+                {
+                    id: 3,
+                    title: "T3"
+                }
+            ];
+
+            $scope.actionYes = function () {
+                $scope.accountData.deactivated = ($scope.deactivated ? false : true);
+                ajax.on(dataFactory.deactivateAccount($scope.accountData.id), {
+                        deactivated: $scope.accountData.deactivated
+                    },
+                    function (data) {
+                        if (!data.error) {
+                            if (!$scope.deactivated) {
+                                toastModel.showToast('success', "Account successfully deactivated");
+                                $scope.activatedText = "Activate My Account";
+                                $scope.deactivated = true;
+                            } else {
+                                toastModel.showToast('success', "Account successfully activated");
+                                $scope.activatedText = "Deactivate My Account";
+                                $scope.deactivated = false;
+                            }
+                        } else {
+                            toastModel.showToast("error", data.error);
+                        }
+                    }, function (data) {
+                        toastModel.showToast("error", "Error. The problem on the server.");
+                    }, "PUT"
+                );
+            };
+
+            $scope.actionNo = function () {
+                console.log("No");
+            };
+
+            $scope.deactivateAccount = function (ev) {
+                questionToastModel.show({
+                    question: (!$scope.deactivated ? "Deactivate Account?" : "Activate Account?"),
+                    buttons: {
+                        ok: $scope.actionYes,
+                        cancel: $scope.actionNo
+                    }
+                }, ev);
+            };
         }
-        function searchTextChange(text) {
-            if(text.trim().length == 0){
-                $scope.user.timezone = null;
-                $scope.changedValue('timezone',$scope.user.timezone);
-            }
+
+        function createFilterFor(query) {
+            var lowercaseQuery = angular.lowercase(query);
+            return function filterFn(state) {
+                return (state.value.indexOf(lowercaseQuery) != -1);
+            };
         }
+
+        function validateEmail(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+
         function selectedItemChange(item) {
-            if(!item || !item.display) {
+            if (!item || !item.display) {
                 $scope.user.timezone = null;
-            }else {
+            } else {
                 $scope.user.timezone = item.display;
             }
-            $scope.changedValue('timezone',$scope.user.timezone);
+            $scope.changedValue('timezone', $scope.user.timezone);
         }
 
         function loadAll() {
-            if($scope.zones.length == 0) {
+            if ($scope.zones.length == 0) {
                 var zones = moment.tz.names();
                 for (var i = 0; i < zones.length; i++) {
                     var zone = moment.tz.zone(zones[i]);
@@ -111,119 +201,32 @@ angular.module('dmc.account')
                     }
                 }
             }
-            return $scope.zones.map( function (state) {
+            return $scope.zones.map(function (state) {
                 return {
                     value: state.toLowerCase(),
                     display: state
                 };
             });
         }
-        /**
-         * Create filter function for a query string
-         */
-        function createFilterFor(query) {
-            var lowercaseQuery = angular.lowercase(query);
-            return function filterFn(state) {
-                return (state.value.indexOf(lowercaseQuery) != -1);
-            };
+
+        function querySearch(query) {
+            var results = query ? $scope.ctrl.states.filter(createFilterFor(query)) : $scope.ctrl.states,
+                deferred;
+            if ($scope.ctrl.simulateQuery) {
+                deferred = $q.defer();
+                $timeout(function () {
+                    deferred.resolve(results);
+                }, Math.random() * 1000, false);
+                return deferred.promise;
+            } else {
+                return results;
+            }
         }
 
-
-        function validateEmail(email) {
-            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(email);
+        function searchTextChange(text) {
+            if (text.trim().length == 0) {
+                $scope.user.timezone = null;
+                $scope.changedValue('timezone', $scope.user.timezone);
+            }
         }
-        $scope.changedValue = function(name,value){
-            if(!$scope.changedValues) $scope.changedValues = {};
-            $scope.changedValues[name] = value;
-            if(name == "firstName" || name == "lastName") {
-                $scope.user.displayName = $scope.user.displayName = $scope.user.firstName + ' ' + $scope.user.lastName;
-            }
-        };
-
-        $scope.cancelChanges = function(){
-            for(var item in $scope.changedValues){
-                $scope.user[item] = $scope.accountData[item];
-                if(item == 'timezone'){
-                    $scope.ctrl.searchText = $scope.accountData[item];
-                }
-            }
-            $scope.changedValues = null;
-        };
-
-        $scope.saveChanges = function(){
-            if($scope.changedValues) {
-                if (!validateEmail($scope.user.email)) {
-                    $scope.user.email = $scope.accountData.email;
-                }
-                accountUpdate.update($scope.user);
-                $scope.changedValues = null;
-            }
-        };
-
-        $scope.suffixes = [
-            {
-                id : 1,
-                title : "S1"
-            },
-            {
-                id : 2,
-                title : "S2"
-            }
-        ];
-
-        $scope.salutations = [
-            {
-                id : 1,
-                title : "T1"
-            },
-            {
-                id : 2,
-                title : "T2"
-            },
-            {
-                id : 3,
-                title : "T3"
-            }
-        ];
-
-        $scope.actionYes = function(){
-            $scope.accountData.deactivated = ($scope.deactivated ? false : true);
-            ajax.on(dataFactory.deactivateAccount($scope.accountData.id), {
-                    deactivated : $scope.accountData.deactivated
-                },
-                function (data) {
-                    if (!data.error) {
-                        if(!$scope.deactivated) {
-                            toastModel.showToast('success', "Account successfully deactivated");
-                            $scope.activatedText = "Activate My Account";
-                            $scope.deactivated = true;
-                        }else{
-                            toastModel.showToast('success', "Account successfully activated");
-                            $scope.activatedText = "Deactivate My Account";
-                            $scope.deactivated = false;
-                        }
-                    } else {
-                        toastModel.showToast("error", data.error);
-                    }
-                }, function (data) {
-                    toastModel.showToast("error", "Error. The problem on the server.");
-                }, "PUT"
-            );
-        };
-
-        $scope.actionNo = function(){
-            console.log("No");
-        };
-
-        $scope.deactivateAccount = function(ev){
-            questionToastModel.show({
-                question : (!$scope.deactivated ? "Deactivate Account?" : "Activate Account?"),
-                buttons: {
-                    ok: $scope.actionYes,
-                    cancel: $scope.actionNo
-                }
-            },ev);
-        };
-
 }]);

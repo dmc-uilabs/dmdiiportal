@@ -1,6 +1,6 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('ProfileAccountCtr', [ '$stateParams', '$state', "$scope", "location","$location",'fileUpload','accountData','accountUpdate','toastModel', function ($stateParams, $state, $scope, location,$location,fileUpload,accountData,accountUpdate,toastModel) {
+    .controller('ProfileAccountCtr', [ '$stateParams', '$state', "$scope", "location","$location",'fileUpload','accountData','AccountModel','toastModel', function ($stateParams, $state, $scope, location,$location,fileUpload,accountData,AccountModel,toastModel) {
         $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
@@ -43,7 +43,7 @@ angular.module('dmc.account')
         };
 
         $scope.saveChanges = function(){
-            accountUpdate.update($scope.profile);
+            AccountModel.update($scope.profile);
             $scope.changedValues = null;
         };
 

@@ -95,6 +95,9 @@ angular.module('dmc.widgets.services',[
                     }),function(data){
                         var data = dataFactory.get_result(data);
                         $scope.projectServices = data.result;
+                            for(var s in $scope.projectServices){
+                                $scope.projectServices[s].releaseDate = moment($scope.projectServices[s].releaseDate).format("MM/DD/YYYY");
+                            }
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     },function(){
                         alert("Ajax faild: getProjectServices");

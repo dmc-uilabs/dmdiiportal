@@ -99,6 +99,7 @@
 <script src="scripts/company-profile/directives/contact.js"></script>
 <script src="scripts/common/models/toast-model.js"></script>
 <script src="scripts/common/models/company-model.js"></script>
+<script src="scripts/common/models/account-model.js"></script>
 <script src="scripts/common/models/phone-model.js"></script>
 <script src="scripts/common/models/zipcode-model.js"></script>
 <!-- endbuild -->

@@ -88,7 +88,6 @@
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
     <script src="scripts/common/factory/location.factory.js"></script>
-    <script src="scripts/common/models/company-model.js"></script>
     <script src="scripts/components/tree-menu/tree-menu.js"></script>
     <script src="scripts/components/tree-menu/products-filter.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
@@ -98,6 +97,8 @@
     <script src="scripts/common/models/file-upload.js"></script>
     <script src="scripts/common/models/file-model.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
+    <script src="scripts/common/models/company-model.js"></script>
+    <script src="scripts/common/models/account-model.js"></script>
 
     <script src="scripts/company/company.js"></script>
     <script src="scripts/company/message-dialog.controller.js"></script>

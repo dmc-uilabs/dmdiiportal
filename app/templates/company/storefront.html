@@ -1,4 +1,4 @@
-<div class="container container-company" layout-padding layout="row" ng-show="companyData.id">
+<div class="container container-company" layout-padding layout="row" ng-if="companyData.id">
     <div class="content-column left-content" layout="column" flex="20">
         <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
         <dmc-products-filter ng-if="isSearch"></dmc-products-filter>
@@ -16,7 +16,7 @@
                             <div><img ng-src="{{companyData.logoImage}}" alt=""/></div>
                         </div>
                         <div layout="column" flex="70">
-                            <h2 class="md-title" layout="row" layout-align="start center">{{companyData.name}}<md-button class="company-buttons" ng-href="/">Profile</md-button></h2>
+                            <h2 class="md-title" layout="row" layout-align="start center">{{companyData.name}}<md-button class="company-buttons link-button" ng-href="/">Profile</md-button></h2>
                             <p>
                                 <div ng-bind-html="(companyData.shortDescription == null || isReadMore ? companyData.description : companyData.shortDescription)"></div>
                                 <a class="read-more"
@@ -39,7 +39,7 @@
                         </md-button>
 
                         <md-button ng-if="companyData.isOwner"
-                                   class="md-raised company-edit"
+                                   class="link-button"
                                    ng-href="/company.php#/{{companyId}}/edit?product=all">
                             Edit Storefront
                         </md-button>
@@ -67,8 +67,7 @@
                                 <ng-md-icon icon="favorite" size="14"></ng-md-icon>
                                 Favorites ({{companyData.favoritesCount}})
                             </md-button>
-                            <md-button class="company-buttons"
-                                       href=""
+                            <md-button class="md-raised dmc-button"
                                        ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
                                        compare-button>Compare ({{compareProducts.services.length+compareProducts.components.length}})</md-button>
                         </div>
@@ -107,7 +106,7 @@
                             <h2 class="md-title" layout="row" layout-align="start center">Storefront Items</h2>
                         </div>
                         <span flex></span>
-                        <md-button class="company-buttons" ng-click="showAll()">View All</md-button>
+                        <md-button class="view-all-link" ng-click="showAll()">View All</md-button>
                     </div>
                     <div layout-padding class="list-items" layout="row" layout-wrap ng-if="!isSearch">
                         <div class="one-item"

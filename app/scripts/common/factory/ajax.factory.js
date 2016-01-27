@@ -1,6 +1,23 @@
 'use strict';
 
-angular.module('dmc.ajax',[]).factory('ajax', function () {
+angular.module('dmc.ajax',[]).factory('ajax', ["$http", function ($http) {
+        var request = function(urlAddress,dataObject,successFunction,errorFunction,method){
+            var config = {
+                url: urlAddress,
+                dataType: 'json',
+                method: method,
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                }
+            };
+            if(method == "GET"){
+                config.params = dataObject;
+            }else{
+                config.data = JSON.stringify(dataObject);
+            }
+            return $http(config).then(successFunction, errorFunction);
+        };
+
         return {
             on: function(urlAddress,dataObject,successFunction,errorFunction, method){
                 $.ajax({
@@ -16,7 +33,19 @@ angular.module('dmc.ajax',[]).factory('ajax', function () {
                         errorFunction()
                     }
                 });
+            },
+            update: function(urlAddress,dataObject,successFunction,errorFunction){
+                return request(urlAddress,dataObject,successFunction,errorFunction,"PUT");
+            },
+            delete: function(urlAddress,dataObject,successFunction,errorFunction){
+                return request(urlAddress,dataObject,successFunction,errorFunction,"DELETE");
+            },
+            get: function(urlAddress,dataObject,successFunction,errorFunction){
+                return request(urlAddress,dataObject,successFunction,errorFunction,"GET");
+            },
+            create: function(urlAddress,dataObject,successFunction,errorFunction){
+                return request(urlAddress,dataObject,successFunction,errorFunction,"POST");
             }
         };
-    }
+    }]
 );

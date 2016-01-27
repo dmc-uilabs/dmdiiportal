@@ -1,9 +1,15 @@
 'use strict';
 
 angular.module('dmc.company-profile')
-    .controller('CompanyProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location, companyData, companyProfileModel) {
+    .controller('CompanyProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location, companyData, companyReview, companyProfileModel) {
 
         $scope.company = companyData;
+        if (companyReview) {
+            $scope.company.reviews = companyReview;
+            $scope.company.rating = companyReview.map(function(value, index){
+                return value.rating;
+            });
+        }
         $scope.number_of_comments = 0; // number of
         $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
         $scope.submit_rating = 0;  //
@@ -107,9 +113,9 @@ angular.module('dmc.company-profile')
 
         // get company contacts
         var callbackContacts = function(data){
-            console.info(data);
+            // console.info(data);
             for(var i in data){
-                console.info(data[i]);
+                // console.info(data[i]);
                 if(data[i].type == 1){
                     data[i].type = "LEGAL";
                 }else if(data[i].type == 2){
@@ -120,7 +126,7 @@ angular.module('dmc.company-profile')
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };
         companyProfileModel.getKeyContacts($scope.company.id, callbackContacts);
-        
+
 
         // get company images
         var callbackVideaos = function(data){
@@ -135,7 +141,7 @@ angular.module('dmc.company-profile')
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };
         companyProfileModel.getImages($scope.company.id, callbackImages);
-        
+
         // get company skills images
         var callbackSkillsImages = function(data){
             $scope.company.skillsImages = data;
@@ -152,7 +158,7 @@ angular.module('dmc.company-profile')
         var calculate_rating = function() {
             $scope.precentage_stars = [0,0,0,0,0];
             $scope.average_rating = 0;
-            console.info("rating");
+            // console.info("rating");
             for (var i in $scope.company.rating) {
                 $scope.precentage_stars[$scope.company.rating[i] - 1] += 100 / $scope.number_of_comments;
                 $scope.average_rating += $scope.company.rating[i];
@@ -163,10 +169,11 @@ angular.module('dmc.company-profile')
                 $scope.precentage_stars[i] = Math.round($scope.precentage_stars[i]);
             }
         };
+
         $scope.$watch('company',function(){
-            console.info("watch");
+            // console.info("watch");
             if($scope.company){
-                console.info("watch if");
+                // console.info("watch if");
                 $scope.number_of_comments = $scope.company.rating.length;
                 if($scope.number_of_comments != 0) {
                     calculate_rating();
@@ -293,9 +300,10 @@ angular.module('dmc.company-profile')
             }
 
             ajax.on(
-                dataFactory.getCompanyReviewUrl(),
-                params,
+                dataFactory.getCompanyReviewUrl($stateParams.companyId),
+                dataFactory.get_request_obj(params),
                 function(data){
+                    var data = dataFactory.get_result(data);
                     $scope.company.reviews = data.result;
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 },
@@ -446,7 +454,7 @@ angular.module('dmc.company-profile')
         $scope.searchText="";
 
         $scope.querySearch = function(query) {
-            console.info("selectedItemChange");
+            // console.info("selectedItemChange");
             var results = query ? $scope.states.filter( createFilterFor(query) ) : $scope.states,
                 deferred;
             if ($scope.simulateQuery) {

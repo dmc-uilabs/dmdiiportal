@@ -4,6 +4,7 @@ angular.module('dmc.data',[])
     .factory('dataFactory', function ($window,$location) {
         var baseServer = $window.apiUrl ? $window.apiUrl : '/static/?p=';
         var localhost = ($location.$$absUrl.indexOf("http://localhost") != -1 ? "http://localhost:3000/" : "http://ge-dmc-01.thecreativeadvantage.net:3000/");
+        localhost = $window.apiUrl ? $window.apiUrl + '/' : localhost;
         var urlSocketServer = 'http://localhost:8080/';
         var appendId = function(id){
             return ($window.apiUrl && id ? '/'+id : '');
@@ -44,7 +45,7 @@ angular.module('dmc.data',[])
                 var obj = {}
                 if ($window.apiUrl) {
                     obj = _.transform(source, function(result, value, key) {
-                      if (value && key != "projectId" && key != "profileId"){
+                      if (value && key != "projectId" && key != "profileId" && key != "companyId"){
                         result['_'+key] = value;
                       }
                     });
@@ -106,7 +107,11 @@ angular.module('dmc.data',[])
                 return url
             },
             getUrlCreateDiscussion: function(id){
-                return baseServer+'/create_discussion'+appendId(id);
+                var url = baseServer+'/create_discussion'+appendId(id);
+                if (window.apiUrl) {
+                    url = baseServer+'/discussions/create';
+                }
+                return url
             },
             getProduct: function(){
                 return baseServer+'/product';
@@ -151,10 +156,12 @@ angular.module('dmc.data',[])
                 return baseServer+'/get_account'+appendId(id);
             },
             getCompanyUrl: function(id){
-                return baseServer+'/get_company'+appendId(id);
+                var idString = $window.apiUrl ? '' : '&id='+id;
+                return baseServer+'/companies'+appendId(id)+idString;
             },
-            getCompanyReviewUrl: function(){
-                return baseServer+'/get_review_company';
+            getCompanyReviewUrl: function(id){
+                // return baseServer+'/get_review_company';
+                return baseServer+webServiceUrl('companies', 'company_reviews', id);;
             },
             addCompanyReviewUrl: function(){
                 return baseServer+'/add_review_company';
@@ -165,8 +172,9 @@ angular.module('dmc.data',[])
             removeFeaturedCompany: function(){
                 return baseServer+'/remove_featured_company';
             },
-            getFeaturesCompany: function(){
-                return baseServer+'/get_featured_company';
+            getFeaturesCompany: function(id){
+                // return baseServer+'/company_featured';
+                return baseServer+webServiceUrl('companies', 'company_featured', id);
             },
             saveCompanyChanges : function(){
                 return baseServer+'/save_company_changes';
@@ -176,9 +184,6 @@ angular.module('dmc.data',[])
             },
             addProductToFavorite: function() {
                 return baseServer + '/add_product_to_favorite';
-            },
-            updateAccount: function(id){
-                return baseServer+'/update_account'+appendId(id);
             },
             getProfile: function(id){
                 return baseServer+'/profiles'+appendId(id);
@@ -194,9 +199,6 @@ angular.module('dmc.data',[])
             },
             updateFeaturesPosition: function(){
                 return baseServer+'/update_features_position';
-            },
-            addNewServer: function(){
-                return baseServer+'/add_new_server';
             },
             getFAQCategories: function(){
                 return baseServer+'/get_faq_categories';
@@ -216,24 +218,45 @@ angular.module('dmc.data',[])
             addDiscussionLikeDislike: function(){
                 return baseServer+'/add_discussion_like_dislike';
             },
-            sendStorefrontMessage: function(){
-                return baseServer+'/ssm';
-            },
 
 
 
             // direct requests
-            saveChangeServer: function(id){
-                return localhost+'account_servers/'+id;
+            createStorefrontMessage: function(){
+                return localhost+'messages';
             },
-            deleteServer: function(id){
-                return localhost+'account_servers/'+id;
+            // companies ------------------
+            companyURL: function(id){
+                var name = 'companies';
+                return {
+                    get : localhost+name+'/'+id,
+                    update : localhost+name+'/'+id,
+                    delete : localhost+name+'/'+id,
+                    create : localhost+name,
+                    all : localhost+name
+                }
             },
+            // ---------------------------
+            updateAccount: function(id){
+                return localhost+'accounts/'+id;
+            },
+            getAccount: function(id){
+                return localhost+'accounts/'+id;
+            },
+            // servers ------------------
+            serverURL : function(id){
+                var name = 'account_servers';
+                return {
+                    get : localhost+name+'/'+id,
+                    update : localhost+name+'/'+id,
+                    delete : localhost+name+'/'+id,
+                    create : localhost+name,
+                    all : localhost+name
+                }
+            },
+            // ---------------------------
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
-            },
-            getServers: function(){
-                return localhost+'account_servers';
             },
             deactivateAccount : function(id){
                 return localhost+'accounts'+(id ? '/'+id : '');

@@ -240,22 +240,51 @@ md-tooltip{
   }
 }
 
-.link-button{
+a.link-button.md-button.md-default-theme{
   text-decoration: none;
   text-transform: initial;
   &:hover{
+    background: none;
+    background-color: none;
     text-decoration: underline;
   }
 }
 
 .dmc-button{
+  height: 36px;
+  min-height: 0;
   text-transform: initial;
+  ng-md-icon{
+    fill: #333;
+  }
+  span{
+    font-size: 14px;
+  }
 }
 
 .view-all-link.md-button.md-default-theme{
-  text-decoration: none;
+  background-color: none;
   font-size: 13px;
   color: #333;
+  &:hover{
+    background: none;
+    text-decoration: underline;
+  }
+}
+
+md-dialog[md-theme="default"]{
+  .md-actions{
+    button.md-primary.md-button{
+      background-color: #eee;
+      span{
+        text-transform: none;
+        color: #333;
+      }
+    }
+  }
+}
+
+a{
   &:hover{
     text-decoration: underline;
   }
