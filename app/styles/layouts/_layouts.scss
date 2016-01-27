@@ -240,10 +240,12 @@ md-tooltip{
   }
 }
 
-.link-button{
+a.link-button.md-button.md-default-theme{
   text-decoration: none;
   text-transform: initial;
   &:hover{
+    background: none;
+    background-color: none;
     text-decoration: underline;
   }
 }
@@ -261,10 +263,11 @@ md-tooltip{
 }
 
 .view-all-link.md-button.md-default-theme{
-  text-decoration: none;
+  background-color: none;
   font-size: 13px;
   color: #333;
   &:hover{
+    background: none;
     text-decoration: underline;
   }
 }

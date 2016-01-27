@@ -1,7 +1,23 @@
 'use strict';
 
 angular.module('dmc.company-profile')
-    .controller('EditCompanyProfileController', [ "$stateParams", "$scope", "ajax", "dataFactory", "companyData", "$location", "toastModel", "fileUpload", function ($stateParams, $scope, ajax, dataFactory, companyData, $location, toastModel, fileUpload) {
+    .controller('EditCompanyProfileController', [
+        "$stateParams",
+        "$scope",
+        "ajax",
+        "dataFactory",
+        "companyData",
+        "$location",
+        "toastModel",
+        "fileUpload", function ($stateParams,
+                                $scope,
+                                ajax,
+                                dataFactory,
+                                companyData,
+                                $location,
+                                toastModel,
+                                fileUpload) {
+
         $scope.company = companyData;
 
         $scope.changes = {};

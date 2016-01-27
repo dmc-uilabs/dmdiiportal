@@ -22,7 +22,6 @@ angular.module('dmc.model.account', [
             for(var i=0; i<params.length; i++) updatedParams[params[i]] = data[params[i]];
             ajax.update(dataFactory.updateAccount(data.id),updatedParams,
                 function(result){
-                    console.log(result);
                     if(result.status == 200){
                         toastModel.showToast('success',"Successfully updated!");
                     }

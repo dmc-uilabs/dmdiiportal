@@ -1,5 +1,7 @@
 'use strict';
 
+var currentAccountId = 1;
+
 angular.module('dmc.company-profile', [
 	'dmc.configs.ngmaterial',
 	'ngMdIcons',
@@ -21,6 +23,7 @@ angular.module('dmc.company-profile', [
 	'dmc.model.company',
     'dmc.phone-format',
     'dmc.zip-code-format',
+    'dmc.model.account',
 	'flow'
 ])
 	.config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){

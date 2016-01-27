@@ -130,9 +130,7 @@ return call_user_func(function () {
 		echo add_comment_individual_discussion($_POST);
 	}else if(strpos($uri,'/add_discussion_like_dislike') !== false){
 		echo add_discussion_like_dislike($_POST);
-	}else if(strpos($uri,'/ssm') !== false){
-        echo send_storefront_message($_GET);
-    }
+	}
 });
 
 
@@ -156,37 +154,6 @@ function addMore($item){
 	}
 
 	return $item;
-}
-
-function send_storefront_message($params){
-    $currentAccountId = 1;
-    if(isset($params['text']) and isset($params['accountId'])){
-        $sendTo = $params['accountId'];
-        $text = $params['text'];
-
-        $recipient = json_decode(httpResponse(dbUrl().'/accounts/'.$sendTo, null, null),true);
-        if($recipient != null and isset($recipient['id'])){
-            $data = json_encode(array(
-                "senderId" => $currentAccountId,
-                "recipientId" => $sendTo,
-                "isRead" => false,
-                "senderDelete" => false,
-                "recipientDelete" => false,
-                "text" => $text,
-                "created_at" => date('Y-m-d h:i:s', time())
-            ));
-            $add_discussion = json_decode(httpResponse(dbUrl().'/messages', 'POST', $data),true);
-            if($add_discussion and isset($add_discussion["id"])) {
-                return json_encode(array('result' => true));
-            }else{
-                return json_encode(array('error' => "Unable save the message"));
-            }
-        }else{
-            return json_encode(array('error' => 'Recipient does not exist.' ));
-        }
-    }else{
-        return json_encode(array('error' => 'Data is wrong' ));
-    }
 }
 
 function create_task($params){

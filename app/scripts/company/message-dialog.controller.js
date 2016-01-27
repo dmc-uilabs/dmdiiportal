@@ -1,6 +1,8 @@
-function messageDialogController($scope, $mdDialog, owner, ajax, dataFactory,toastModel){
+function messageDialogController($scope, $mdDialog, currentUser, owner, ajax, dataFactory,toastModel){
     $scope.owner = owner;
-
+    if(!$scope.owner.displayName){
+        $scope.owner.displayName = $scope.owner.firstName + ' ' + $scope.owner.lastName;
+    }
     $scope.sendTo = $scope.owner.displayName;
 
     $scope.cancel = function() {
@@ -14,9 +16,14 @@ function messageDialogController($scope, $mdDialog, owner, ajax, dataFactory,toa
     $scope.sendMessage = function(){
         var text = inputToHtml($scope.textMessage);
         if(text) {
-            ajax.on(dataFactory.sendStorefrontMessage(), {
-                accountId: $scope.owner.id,
-                text: text
+            ajax.create(dataFactory.createStorefrontMessage(), {
+                senderId : currentUser.id,
+                recipientId : $scope.owner.id,
+                isRead : false,
+                senderDelete : false,
+                recipientDelete : false,
+                text : text,
+                created_at : moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
             }, function (data) {
                 if (!data.error) {
                     toastModel.showToast("success", "Your message successfully sent!");

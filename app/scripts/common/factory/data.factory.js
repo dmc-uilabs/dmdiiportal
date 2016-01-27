@@ -214,10 +214,25 @@ angular.module('dmc.data',[])
             addDiscussionLikeDislike: function(){
                 return baseServer+'/add_discussion_like_dislike';
             },
-            sendStorefrontMessage: function(){
-                return baseServer+'/ssm';
-            },
+
+
+
             // direct requests
+            createStorefrontMessage: function(){
+                return localhost+'messages';
+            },
+            // companies ------------------
+            companyURL: function(id){
+                var name = 'companies';
+                return {
+                    get : localhost+name+'/'+id,
+                    update : localhost+name+'/'+id,
+                    delete : localhost+name+'/'+id,
+                    create : localhost+name,
+                    all : localhost+name
+                }
+            },
+            // ---------------------------
             updateAccount: function(id){
                 return localhost+'accounts/'+id;
             },
