@@ -27,7 +27,31 @@ angular.module('dmc.all-favorites', [
 	$stateProvider.state('allFavorites', {
 		url: '/',
 		controller: 'AllFavoritesCtrl',
-		templateUrl: 'templates/all-favorites/all-favorites.html'
+		templateUrl: 'templates/all-favorites/all-favorites.html',
+		resolve: {
+			allFavorites: ['ajax', 'dataFactory', 'toastModel', function(ajax, dataFactory, toastModel){
+				return ajax.get(dataFactory.getFavoriteService(1), 
+					{
+						_expand: ["service", "component"]
+					},
+					function(response){
+						var data = [];
+						for (var i in response.data){
+							if(response.data[i].service){
+								data.push(response.data[i].service);
+							}else if(response.data[i].component){
+								data.push(response.data[i].component);
+							}
+							data[i].favorite = true;
+						}
+						return data;
+					},
+					function(response){
+						toastModel.showToast("error", "Error." + response.statusText);
+					}
+					)
+			}]
+		}
 	})
 	.state('allFavoritesSearch', {
         url: '/search?product?type?authors?ratings?favorites?dates?text?mw',
@@ -38,25 +62,34 @@ angular.module('dmc.all-favorites', [
 	$urlRouterProvider.otherwise('/');
 })
 
-.controller('AllFavoritesCtrl', [ '$scope', '$stateParams', '$state', '$location', 'menuFavorite', 'DMCServicesModel',
-					   function (  $scope,   $stateParams,   $state,   $location,   menuFavorite,   DMCServicesModel) {
+.controller('AllFavoritesCtrl', [ '$scope', '$stateParams', '$state', '$location', 'menuFavorite', 'ajax', 'dataFactory', 'allFavorites', '$cookies',
+					   function (  $scope,   $stateParams,   $state,   $location,   menuFavorite,   ajax,   dataFactory,   allFavorites,   $cookies) {
 	$scope.treeMenuModel = menuFavorite.getMenu();
     $scope.selectedProductType = 'service';
 	$scope.isSearch = ($location.$$path.indexOf('search') != -1 ? true : false);
-	$scope.allFavorites = {arr:[], count: 0}
+	$scope.allFavorites = {
+		arr: allFavorites, 
+		count: allFavorites.length
+	}
 	$scope.currentStorefrontPage = 1;
     $scope.pageSize = 10;
     $scope.downloadData = false;
 
-	DMCServicesModel.favorite(1).then(function(data, count){
-		$scope.allFavorites.arr = data;
-		$scope.allFavorites.count = 4;
-		console.info(count);
-		if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+// get data from cookies
+    var updateCompareCount = function () {
+        var arr = $cookies.getObject('compareProducts');
+        return arr == null ? {services: [], components: []} : arr;
+    };
+    $scope.compareProducts = updateCompareCount();
 
-	})
+    // catch updated changedCompare variable form $cookies
+    $scope.$watch(function () {
+        return $cookies.changedCompare;
+    }, function (newValue) {
+        $scope.compareProducts = updateCompareCount();
+        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+    });
 
-	console.info($scope.isSearch);
 	$scope.productTypes = [
                 {
                     id: 1,
@@ -82,9 +115,8 @@ angular.module('dmc.all-favorites', [
 
     $scope.updatePageSize = function (val) {
         $scope.pageSize = val;
-        $scope.update(true);
+        //$scope.update(true);
     };
-
 
 	console.info("AllFavoritesCtrl");
 }])
@@ -103,6 +135,7 @@ angular.module('dmc.all-favorites', [
 					'items': 45,
 					'opened' : (dataSearch.product == 'all' ? true : false),
 					'onClick' : function(){
+						console.info("dfd")
 						dataSearch.product = 'all';
 						$location.path('/search').search(dataSearch);
 					},

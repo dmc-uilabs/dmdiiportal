@@ -26,11 +26,10 @@
             <span flex></span>
 
             <div layout="row" layout-align="center center">
-              <md-button class="company-buttons" href="/">
-                <ng-md-icon icon="favorite" size="14"></ng-md-icon>
-                Favorites ({{companyData.favoritesCount}})
+              <md-button class="link-button" href="/marketplace.php">
+                Marketplace
               </md-button>
-              <md-button class="company-buttons"
+              <md-button class="md-raised dmc-button"
                      href=""
                      ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
                      compare-button>
@@ -38,34 +37,14 @@
               </md-button>
             </div>
           </div>
-          <div layout="row" layout-padding layout-align="start start" class="company-storefront-title" ng-if="!isSearch">
-            <div layout="column" flex="70">
-              <h2 class="md-title" layout="row" layout-align="start center">Storefront Items</h2>
-            </div>
-            <span flex></span>
-            <md-button class="company-buttons" ng-click="showAll()">View All</md-button>
-          </div>
-          <div layout-padding class="list-items" layout="row" layout-wrap ng-if="!isSearch">
-            <div class="one-item"
-               flex-sm="100"
-               flex-md="50"
-               flex-lg="33"
-               flex-gt-lg="25"
-               ng-repeat="item in itemsArray.arr">
-              <dmc-product-card card-style="'small'" ng-show="item.id"
-                        type-product="item.type"
-                        card-source="item">
-              </dmc-product-card>
-            </div>
-          </div>
           <div ng-if="!isSearch">
             <dmc-products-card
-                title-card="'STOREFRONT ITEMS'"
-                search-card="isSearch"
+                title-card="'ALL FAVORITES'"
+                search-card="true"
                 card-source="allFavorites"
                 card-loading="downloadData"
                 page-size="pageSize"
-                 update-page-size="updatePageSize"
+                update-page-size="updatePageSize"
                 current-page="currentStorefrontPage"
                 total-size="allFavorites.count"
                 class="content-panel-marketplace"

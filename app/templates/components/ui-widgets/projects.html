@@ -7,13 +7,13 @@
         </div>
     </md-toolbar>
 </div>
-<div class="content-panel-body">
-  <div class="rp-panel md-padding" layout="row" ng-repeat="item in projects">
+<div class="content-panel-body" layout="column">
+  <md-content class="rp-panel md-padding" layout="row" ng-repeat="item in projects">
       <div layout="column" flex>
           <div class="rp-panel__title my-projects" layout="row"  ng-if="widgetShowAllBlocks">
               <h2><a href="project.php#/{{item.id}}" class="link-button">{{item.title}}</a></h2>
           </div>
-          <div class="rp-panel__tab-content" flex="100" layout="row" layout-align="space-between start"
+          <div class="rp-panel__tab-content" layout="row" layout-align="space-between start"
                ng-class="widgetShowAllBlocks == true ? 'widget-blocks' : ''">
               <div class="rp-panel__details" layout="column" flex="{{flexDetails}}"  ng-if="!widgetShowAllBlocks">
                   <div class="rp-panel__title" layout="row">
@@ -41,6 +41,6 @@
                           progress-position="widgetShowAllBlocks == true ? 'bottom' : 'right'"></md-content>
           </div>
       </div>
-  </div>
+  </md-content>
 </div>
 

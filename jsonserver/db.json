@@ -414,34 +414,34 @@
   ],
   "favorite_products": [
     {
-      "id": 8,
-      "productId": 18,
-      "accountId": 1,
-      "productType": "service"
-    },
-    {
-      "id": 11,
-      "productId": 3,
-      "accountId": 1,
-      "productType": "service"
-    },
-    {
-      "id": 12,
-      "productId": 2,
-      "accountId": 1,
-      "productType": "service"
-    },
-    {
       "id": 13,
-      "productId": 1,
-      "accountId": 1,
-      "productType": "service"
+      "serviceId": 1,
+      "accountId": 1
     },
     {
       "id": 14,
-      "productId": 2,
+      "componentId": 2,
+      "accountId": 1
+    },
+    {
+      "id": 15,
+      "serviceId": 1,
+      "accountId": 1
+    },
+    {
+      "serviceId": 18,
       "accountId": 1,
-      "productType": "component"
+      "id": 16
+    },
+    {
+      "serviceId": 3,
+      "accountId": 1,
+      "id": 17
+    },
+    {
+      "serviceId": 2,
+      "accountId": 1,
+      "id": 18
     }
   ],
   "projects": [
@@ -582,7 +582,8 @@
           "title": null
         }
       },
-      "projectId": 1
+      "projectId": 1,
+      "type": "component"
     },
     {
       "id": 2,
@@ -605,7 +606,8 @@
           "title": "Project 2"
         }
       },
-      "projectId": 2
+      "projectId": 2,
+      "type": "component"
     },
     {
       "id": 3,
@@ -628,7 +630,8 @@
           "title": "Project 2"
         }
       },
-      "projectId": 2
+      "projectId": 2,
+      "type": "component"
     }
   ],
   "services": [
@@ -658,6 +661,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -683,6 +687,7 @@
         }
       },
       "projectId": 1,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -708,6 +713,7 @@
         }
       },
       "projectId": 2,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -733,6 +739,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -758,6 +765,7 @@
         }
       },
       "projectId": 2,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -783,6 +791,7 @@
         }
       },
       "projectId": 3,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -808,6 +817,7 @@
         }
       },
       "projectId": 3,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -833,6 +843,7 @@
         }
       },
       "projectId": 3,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -858,6 +869,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -883,6 +895,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -908,6 +921,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -933,6 +947,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -958,6 +973,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -983,6 +999,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1008,6 +1025,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1033,6 +1051,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1060,6 +1079,7 @@
         }
       },
       "projectId": 1,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1085,6 +1105,7 @@
         }
       },
       "projectId": 2,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1110,6 +1131,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1135,6 +1157,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1160,6 +1183,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1185,6 +1209,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1210,6 +1235,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1235,6 +1261,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     }
   ],
@@ -1668,7 +1695,7 @@
     }
   ],
   "specifications": [
-    {      
+    {
       "id": 1,
       "componentId": 3,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -1683,7 +1710,7 @@
         "fail": 1
       }
     },
-    {      
+    {
       "id": 2,
       "componentId": 3,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
