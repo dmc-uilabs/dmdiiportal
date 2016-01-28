@@ -3,6 +3,8 @@
 angular.module('dmc.widgets.discussions',[
         'dmc.ajax',
         'dmc.data',
+        'dmc.model.discussion',
+        'ngSanitize',
         'dmc.socket'
     ]).
     directive('uiWidgetDiscussions', ['$parse', function ($parse) {
@@ -117,7 +119,7 @@ angular.module('dmc.widgets.discussions',[
                 //});
             }
         };
-    }]).controller('CreateDiscussionController',function($scope,$mdDialog,projectId,ajax,dataFactory){
+    }]).controller('CreateDiscussionController',function($scope,$mdDialog,projectId,ajax,dataFactory, DMCDiscussionModel){
         $scope.isCreation = false;
         $scope.message = {
             error : false
@@ -129,23 +131,46 @@ angular.module('dmc.widgets.discussions',[
         $scope.createDiscussion = function(){
             $scope.isCreation = true;
             $scope.message.error = false;
-            ajax.on(dataFactory.getUrlCreateDiscussion(projectId),{
-                projectId: projectId,
-                subject : $scope.subject,
-                text : $scope.content
-            },function(data){
-                $scope.isCreation = false;
-                if(data.error == null) {
-                    $mdDialog.cancel(true);
-                }else{
-                    $scope.message.error = true;
-                    console.error(data.error);
+            DMCDiscussionModel.createDiscussion(
+                {
+                    "projectId": projectId,
+                    "text": $scope.content,
+                    "subject": $scope.subject,
+                    "created_at": moment($scope.dueDate).format('DD-MM-YYYY HH:mm:ss')
                 }
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            },function(){
-                $scope.message.error = true;
-                alert("Ajax faild: createDiscussion");
-                $scope.isCreation = false;
-            }, 'POST');
+            ).then(
+                function(data){
+                    $scope.isCreation = false;
+                    if(data.error == null) {
+                        $mdDialog.cancel(true);
+                    }else{
+                        $scope.message.error = true;
+                        console.error(data.error);
+                    }
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                },function(){
+                    $scope.message.error = true;
+                    alert("Ajax faild: createDiscussion");
+                    $scope.isCreation = false;
+                }
+            )
+            // ajax.on(dataFactory.getUrlCreateDiscussion(projectId),{
+            //     projectId: projectId,
+            //     subject : $scope.subject,
+            //     text : $scope.content
+            // },function(data){
+            //     $scope.isCreation = false;
+            //     if(data.error == null) {
+            //         $mdDialog.cancel(true);
+            //     }else{
+            //         $scope.message.error = true;
+            //         console.error(data.error);
+            //     }
+            //     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            // },function(){
+            //     $scope.message.error = true;
+            //     alert("Ajax faild: createDiscussion");
+            //     $scope.isCreation = false;
+            // }, 'POST');
         };
     });

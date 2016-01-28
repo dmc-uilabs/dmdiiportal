@@ -107,6 +107,7 @@
     <script src="scripts/project/controllers/documents.js"></script>
     <script src="scripts/project/controllers/home.js"></script>
     <script src="scripts/common/models/task-model.js"></script>
+    <script src="scripts/common/models/discussion-model.js"></script>
     <script src="scripts/project/controllers/tasks.js"></script>
     <script src="scripts/project/controllers/team.js"></script>
     <script src="scripts/project/controllers/workspace.js"></script>
@@ -123,6 +124,9 @@
     <script src="scripts/common/models/services.model.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
+        <?php
+          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+        ?>
         window.apiUrl = '';
     </script>
   </body>
