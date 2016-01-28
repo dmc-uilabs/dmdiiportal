@@ -14,7 +14,8 @@
         <md-button class="md-button"
              aria-label="Service alerts"
              ng-click="$mdOpenMenu($event)">
-          <ng-md-icon icon="extension" size="25"></ng-md-icon>
+            <div class="svg-icon" style="mask-image: url(images/icon_service.svg) center / contain no-repeat;
+             -webkit-mask: url(images/icon_service.svg) center / contain no-repeat;"></div>
           <span class="count-message" ng-show="service_alert > 0">{{service_alert}}</span>
         </md-button>
         <md-menu-content class="header-menu-content">

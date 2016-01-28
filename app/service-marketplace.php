@@ -97,7 +97,10 @@
 <script src="scripts/components/products-card/products-card.js"></script>
 <script src="scripts/components/members-card/members-card.js"></script>
 <!-- endbuild -->
-<script type="text/javascript">
+    <script type="text/javascript">
+        <?php
+          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+        ?>
         window.apiUrl = '';
     </script>
 </body>
