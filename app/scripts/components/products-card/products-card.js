@@ -98,7 +98,6 @@ angular.module('dmc.component.productscard', [
               $scope.itemsArray = new Array($scope.totalSize);
               for(var i=0;i<$scope.itemsArray.length;i++) $scope.itemsArray[i] = i;
               var j = ($scope.currentPage-1)*$scope.pageSize;
-                console.info("add", $scope.totalSize)
               for(var i=0;i<$scope.cardSource.arr.length;i++){
                   $scope.itemsArray[j] = $scope.cardSource.arr[i];
                   j++;

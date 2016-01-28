@@ -8,7 +8,7 @@
             </div>
         </md-toolbar>
         <div layout='row' layout-align="center center">
-            <h2 class="total-size" ng-show="searchCard">{{totalSize}} Results</h2>
+            <h2 class="total-size" ng-show="searchCard">{{totalSize}} {{(titleCard=="ALL FAVORITES")? 'Favorites': 'Results'}}</h2>
             <md-button ng-click="clearFilter()" ng-if="searchCard" style="display: none">Clear All</md-button>
             <md-content class="md-padding" layout="column" ng-show="searchCard" style="display: none">
                 <md-chips ng-model="filterItems" readonly="false">

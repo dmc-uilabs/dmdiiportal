@@ -94,6 +94,9 @@
     <script src="scripts/add_members/add-members.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
+        <?php
+          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+        ?>
         window.apiUrl = '';
     </script>
 </body>

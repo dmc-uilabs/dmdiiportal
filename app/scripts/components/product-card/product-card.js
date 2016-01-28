@@ -51,6 +51,7 @@ angular.module('dmc.component.productcard', [
 
           $scope.projects = [];
           $scope.addingToProject = false;
+
           var addToFavoriteCallback = function(data){
               if(!data.error) {
                   $scope.cardSource.favorite = data.favorite;
@@ -60,13 +61,32 @@ angular.module('dmc.component.productcard', [
               }
               if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
           };
+
           $scope.addToFavorite = function(){
-              return ajax.on(dataFactory.addProductToFavorite(),{
-                  productId : $scope.cardSource.id,
-                  productType : $scope.typeProduct
-              },addToFavoriteCallback,function(){
-                  alert("Ajax faild: removeFromProject");
-              });
+              return ajax.get(dataFactory.getFavorite($scope.typeProduct,$scope.cardSource.id),
+                {},
+                function(response){
+                  if(response.data.length === 0){
+                    ajax.create(dataFactory.addFavorite(),
+                    {
+                      "serviceId": $scope.cardSource.id,
+                      "accountId": 1
+                    }, 
+                    function(response){ $scope.cardSource.favorite = true},
+                    function(response){})
+                  }else{
+                    ajax.delete(dataFactory.deleteFavorite(response.data[0].id),
+                    {}, 
+                    function(response){ 
+                      $scope.cardSource.favorite = false;
+                      if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                      if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
+                    },
+                    function(response){})
+                  }
+                },
+                function(response){}
+              )
           };
 
           $scope.addToFeatured = function(){

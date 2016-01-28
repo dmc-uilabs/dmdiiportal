@@ -381,34 +381,34 @@
   ],
   "favorite_products": [
     {
-      "id": 8,
-      "productId": 18,
-      "accountId": 1,
-      "productType": "service"
-    },
-    {
-      "id": 11,
-      "productId": 3,
-      "accountId": 1,
-      "productType": "service"
-    },
-    {
-      "id": 12,
-      "productId": 2,
-      "accountId": 1,
-      "productType": "service"
-    },
-    {
       "id": 13,
-      "productId": 1,
-      "accountId": 1,
-      "productType": "service"
+      "serviceId": 1,
+      "accountId": 1
     },
     {
       "id": 14,
-      "productId": 2,
+      "componentId": 2,
+      "accountId": 1
+    },
+    {
+      "id": 15,
+      "serviceId": 1,
+      "accountId": 1
+    },
+    {
+      "serviceId": 18,
       "accountId": 1,
-      "productType": "component"
+      "id": 16
+    },
+    {
+      "serviceId": 3,
+      "accountId": 1,
+      "id": 17
+    },
+    {
+      "serviceId": 2,
+      "accountId": 1,
+      "id": 18
     }
   ],
   "projects": [
@@ -549,7 +549,8 @@
           "title": null
         }
       },
-      "projectId": 1
+      "projectId": 1,
+      "type": "component"
     },
     {
       "id": 2,
@@ -572,7 +573,8 @@
           "title": "Project 2"
         }
       },
-      "projectId": 2
+      "projectId": 2,
+      "type": "component"
     },
     {
       "id": 3,
@@ -595,7 +597,8 @@
           "title": "Project 2"
         }
       },
-      "projectId": 2
+      "projectId": 2,
+      "type": "component"
     }
   ],
   "company_services": [
@@ -785,6 +788,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -810,6 +814,7 @@
         }
       },
       "projectId": 1,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -835,6 +840,7 @@
         }
       },
       "projectId": 2,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -860,6 +866,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -885,6 +892,7 @@
         }
       },
       "projectId": 2,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -910,6 +918,7 @@
         }
       },
       "projectId": 3,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -935,6 +944,7 @@
         }
       },
       "projectId": 3,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -960,6 +970,7 @@
         }
       },
       "projectId": 3,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -985,6 +996,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1010,6 +1022,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1035,6 +1048,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1060,6 +1074,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1085,6 +1100,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1110,6 +1126,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1135,6 +1152,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1160,6 +1178,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1187,6 +1206,7 @@
         }
       },
       "projectId": 1,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1212,6 +1232,7 @@
         }
       },
       "projectId": 2,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1237,6 +1258,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1262,6 +1284,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1287,6 +1310,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1312,6 +1336,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1337,6 +1362,7 @@
         }
       },
       "projectId": 5,
+      "type": "service",
       "from": "marketplace"
     },
     {
@@ -1362,6 +1388,7 @@
         }
       },
       "projectId": 4,
+      "type": "service",
       "from": "marketplace"
     }
   ],
@@ -1796,6 +1823,7 @@
   ],
   "specifications": [
     {
+      "id": 1,
       "componentId": 3,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "input": 1,
@@ -1808,6 +1836,21 @@
         "success": 1,
         "fail": 1
       }
+    },
+    {
+      "id": 2,
+      "componentId": 3,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "input": 4,
+      "output": 7,
+      "usageStats": {
+        "added": 22,
+        "members": 14
+      },
+      "runStats": {
+        "success": 15,
+        "fail": 9
+      }
     }
   ],
   "documents": [
@@ -1815,30 +1858,45 @@
       "id": 1,
       "title": "Low Heat Loss Transformer Specification PDM Co.pdf",
       "projectId": 5,
+      "modifed": "2016-01-25 15:18:12",
+      "size": "100MB",
+      "owner": "Bob Smith",
       "file": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
     },
     {
       "id": 2,
       "title": "Low Heat Loss Power Transformer Schedule PDM Co.pdf",
       "projectId": 5,
+      "modifed": "2016-01-25 15:18:12",
+      "size": "100MB",
+      "owner": "Bob Smith",
       "file": "/uploads/5/Low Heat Loss Power Transformer Schedule PDM Co.pdf"
     },
     {
       "id": 3,
       "title": "Low Heat Loss Transformer Proposal SAM Co.pdf",
       "projectId": 5,
+      "modifed": "2016-01-25 15:18:12",
+      "size": "100MB",
+      "owner": "Bob Smith",
       "file": "/uploads/5/Low Heat Loss Transformer Proposal SAM Co.pdf"
     },
     {
       "id": 4,
       "title": "Edit Company Storefront",
       "projectId": 1,
+      "modifed": "2016-01-25 15:18:12",
+      "size": "100MB",
+      "owner": "Bob Smith",
       "file": "/uploads/4/Edit Company Storefront.pdf"
     },
     {
       "id": 5,
       "title": "Edit Company Storefront",
       "projectId": 1,
+      "modifed": "2016-01-25 15:18:12",
+      "size": "100MB",
+      "owner": "Bob Smith",
       "file": "/uploads/5/Edit Company Storefront.pdf"
     }
   ],
