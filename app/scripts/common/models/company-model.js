@@ -9,10 +9,10 @@ angular.module('dmc.model.company', [
         function(dataFactory, ajax, $http, $location, $stateParams, AccountModel) {
 
         this.get = function(id) {
-            return ajax.get(dataFactory.companyURL(id).get,{},function(response){
+            return ajax.get(dataFactory.companyURL(id).get,{
+                "_expand" : "account"
+            },function(response){
                 var data = response.data;
-                // get owner
-                data.owner = AccountModel.get(data.accountId);
                 if(data.accountId == currentAccountId) data.isOwner = true;
                 return data;
             },function(response){
@@ -47,6 +47,21 @@ angular.module('dmc.model.company', [
         this.getMenu = function(){
             var dataSearch = $.extend(true,{},$stateParams);
             var searchPage = ($location.$$path.indexOf("/edit") != -1 ? "edit" : "search");
+
+            var getUrl = function(product,type){
+                if(product) dataSearch.product = product;
+                if(type) dataSearch.type = type;
+                return 'company.php#/'+dataSearch.companyId+'/'+searchPage+'?'+$.param(dataSearch);
+            };
+
+            var isOpened = function(product,type){
+                if ($stateParams.product === product) {
+                    return (!type || $stateParams.type === type ? true : false);
+                }else{
+                    return false;
+                }
+            };
+
             return {
                 title: 'BROWSE BY',
                 data: [
@@ -55,11 +70,8 @@ angular.module('dmc.model.company', [
                         'title': 'All',
                         'tag' : 'all',
                         'items': 45,
-                        'opened' : (dataSearch.product == 'all' ? true : false),
-                        'onClick' : function(){
-                            dataSearch.product = 'all';
-                            $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
-                        },
+                        'opened' : isOpened('all'),
+                        'href' : getUrl('all'),
                         'categories': []
                     },
                     {
@@ -67,11 +79,8 @@ angular.module('dmc.model.company', [
                         'title': 'Components',
                         'tag' : 'components',
                         'items': 13,
-                        'opened' : (dataSearch.product == 'components' ? true : false),
-                        'onClick' : function(){
-                            dataSearch.product = 'components';
-                            $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
-                        },
+                        'opened' : isOpened('components'),
+                        'href' : getUrl('components'),
                         'categories': []
                     },
                     {
@@ -79,23 +88,16 @@ angular.module('dmc.model.company', [
                         'title': 'Services',
                         'tag' : 'services',
                         'items': 32,
-                        'opened' : (dataSearch.product == 'services' ? true : false),
-                        'onClick' : function(){
-                            dataSearch.product = 'services';
-                            $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
-                        },
+                        'opened' : isOpened('services'),
+                        'href' : getUrl('services'),
                         'categories': [
                             {
                                 'id': 31,
                                 'title': 'Analytical Services',
                                 'tag' : 'analytical',
                                 'items': 15,
-                                'opened' : (dataSearch.product == 'services' && dataSearch.type == 'analytical' ? true : false),
-                                'onClick' : function(){
-                                    dataSearch.product = 'services';
-                                    dataSearch.type = 'analytical';
-                                    $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
-                                },
+                                'opened' : isOpened('services','analytical'),
+                                'href' : getUrl('services','analytical'),
                                 'categories': []
                             },
                             {
@@ -103,12 +105,8 @@ angular.module('dmc.model.company', [
                                 'title': 'Solid Services',
                                 'tag' : 'solid',
                                 'items': 15,
-                                'opened' : (dataSearch.product == 'services' && dataSearch.type == 'solid' ? true : false),
-                                'onClick' : function(){
-                                    dataSearch.product = 'services';
-                                    dataSearch.type = 'solid';
-                                    $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
-                                },
+                                'opened' : isOpened('services','solid'),
+                                'href' : getUrl('services','solid'),
                                 'categories': []
                             },
                             {
@@ -116,12 +114,8 @@ angular.module('dmc.model.company', [
                                 'title': 'Data Services',
                                 'tag' : 'data',
                                 'items': 2,
-                                'opened' : (dataSearch.product == 'services' && dataSearch.type == 'data' ? true : false),
-                                'onClick' : function(){
-                                    dataSearch.product = 'services';
-                                    dataSearch.type = 'data';
-                                    $location.path('/'+dataSearch.companyId+'/'+searchPage).search(dataSearch);
-                                },
+                                'opened' : isOpened('services','data'),
+                                'href' : getUrl('services','data'),
                                 'categories': []
                             }
                         ]

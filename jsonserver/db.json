@@ -5,10 +5,10 @@
       "accountId": 1,
       "name": "The Turbine Company",
       "location": "Berkeley, California",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "description": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariaturd",
       "division": "The Helicopter Company",
       "industry": "The Helicopter Company",
-      "NAICSCode": 31111111111,
+      "NAICSCode": 11111111111,
       "RDFocus": "The Helicopter Company",
       "customers": "General Electric",
       "awardsReceived": "Best Company in USA",
@@ -138,67 +138,34 @@
   ],
   "company_featured": [
     {
-      "id": 1,
       "companyId": 1,
-      "productId": 20,
-      "type": "service",
-      "position": ""
-    },
-    {
-      "id": 2,
-      "companyId": 1,
-      "productId": 26,
-      "type": "service",
-      "position": ""
-    },
-    {
-      "id": 3,
-      "companyId": 1,
-      "productId": 1,
-      "position": 1,
-      "type": "service"
-    },
-    {
-      "id": 4,
-      "companyId": 1,
-      "productId": 2,
       "position": 2,
-      "type": "service"
+      "company_componentId": 2,
+      "id": 1
     },
     {
-      "id": 7,
       "companyId": 1,
-      "productId": 17,
+      "position": 1,
+      "company_componentId": 3,
+      "id": 2
+    },
+    {
+      "companyId": 1,
+      "position": 3,
+      "company_componentId": 1,
+      "id": 6
+    },
+    {
+      "companyId": 1,
+      "position": 4,
+      "company_serviceId": 2,
+      "id": 7
+    },
+    {
+      "companyId": 1,
       "position": 5,
-      "type": "service"
-    },
-    {
-      "id": 8,
-      "companyId": 1,
-      "productId": 18,
-      "position": 6,
-      "type": "service"
-    },
-    {
-      "id": 9,
-      "companyId": 1,
-      "productId": 29,
-      "position": 7,
-      "type": "service"
-    },
-    {
-      "id": 10,
-      "companyId": 1,
-      "productId": 16,
-      "position": 8,
-      "type": "service"
-    },
-    {
-      "id": 11,
-      "companyId": 1,
-      "productId": 2,
-      "position": 9,
-      "type": "component"
+      "company_serviceId": 3,
+      "id": 8
     }
   ],
   "company_reviews": [
@@ -610,6 +577,166 @@
     {
       "id": 3,
       "title": "3 Component",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "owner": "Steven Jobs",
+      "releaseDate": "01/09/2015",
+      "tags": [],
+      "specifications": "/components/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "95",
+        "startDate": "01/09/2015",
+        "startTime": "18:13:10",
+        "project": {
+          "id": 2,
+          "title": "Project 2"
+        }
+      },
+      "projectId": 2
+    }
+  ],
+  "company_services": [
+    {
+      "id": 1,
+      "title": "qout-of-balance Testing",
+      "companyId": 1,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "owner": "L.Mason",
+      "releaseDate": "25/08/2015",
+      "serviceType": "analytical",
+      "tags": [
+        "Tag 1",
+        "Tag 2"
+      ],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "5",
+        "startDate": "20/09/2015",
+        "startTime": "11:15:33",
+        "project": {
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      },
+      "projectId": 4,
+      "from": "marketplace"
+    },
+    {
+      "id": 2,
+      "title": "Fan failure mode analysis",
+      "companyId": 1,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "owner": "L.Mason",
+      "releaseDate": "25/08/2015",
+      "serviceType": "analytical",
+      "tags": [
+        "Tag 1",
+        "Tag 2"
+      ],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "5",
+        "startDate": "20/09/2015",
+        "startTime": "11:15:33",
+        "project": {
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      },
+      "projectId": 4,
+      "from": "marketplace"
+    },
+    {
+      "id": 3,
+      "title": "Project Cost Analyzer",
+      "companyId": 1,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "owner": "M.Gill",
+      "releaseDate": "01/09/2015",
+      "serviceType": "analytical",
+      "tags": [],
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "95",
+        "startDate": "21/09/2015",
+        "startTime": "15:48:10",
+        "project": {
+          "id": 2,
+          "title": "Capacitor Design"
+        }
+      },
+      "projectId": 2,
+      "from": "marketplace"
+    }
+  ],
+  "company_components": [
+    {
+      "id": 1,
+      "title": "1 Component",
+      "companyId": 1,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "owner": "Steven Jobs",
+      "releaseDate": "25/08/2015",
+      "tags": [],
+      "specifications": "/components/1/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "5",
+        "startDate": "25/08/2015",
+        "startTime": "11:15:33",
+        "project": {
+          "id": 0,
+          "title": null
+        }
+      },
+      "projectId": 1
+    },
+    {
+      "id": 2,
+      "title": "2 Component",
+      "companyId": 1,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "owner": "Steven Jobs",
+      "releaseDate": "25/08/2015",
+      "tags": [],
+      "specifications": "/components/2/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "currentStatus": {
+        "percentCompleted": "0",
+        "startDate": "25/08/2015",
+        "startTime": "11:16:02",
+        "project": {
+          "id": 2,
+          "title": "Project 2"
+        }
+      },
+      "projectId": 2
+    },
+    {
+      "id": 3,
+      "title": "3 Component",
+      "companyId": 1,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       "owner": "Steven Jobs",
       "releaseDate": "01/09/2015",

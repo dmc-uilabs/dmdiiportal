@@ -70,11 +70,11 @@ angular.module('dmc.component.productcard', [
           };
 
           $scope.addToFeatured = function(){
-              $scope.addFeatured($scope.cardSource.id,$scope.cardSource.type);
+              $scope.addFeatured($scope.cardSource);
           };
 
           $scope.removeFromFeatured = function(){
-              $scope.removeFeatured($scope.cardSource.id,$scope.cardSource.type);
+              $scope.removeFeatured($scope.cardSource);
           };
 
           $scope.removeFromProject = function(){

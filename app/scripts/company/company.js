@@ -40,17 +40,17 @@ angular.module('dmc.company', [
         controller: 'CompanyIdLocatorCtrl',
         template: '<ui-view />'
     }).state('company.storefront', {
-        url: '/storefront?product?type?mw',
+        url: '/storefront?product?type',
         controller: 'StorefrontCompanyCtr',
         templateUrl: 'templates/company/storefront.html',
         resolve: resolve
     }).state('company.edit', {
-        url: '/edit?product?type?authors?ratings?favorites?dates?text?mw',
+        url: '/edit?product?type?authors?ratings?favorites?dates?text',
         controller: 'EditStorefrontCompanyCtr',
         templateUrl: 'templates/company/edit.html',
         resolve: resolve
     }).state('company.search', {
-        url: '/search?product?type?authors?ratings?favorites?dates?text?mw',
+        url: '/search?product?type?authors?ratings?favorites?dates?text',
         controller: 'StorefrontCompanyCtr',
         templateUrl: 'templates/company/storefront.html',
         resolve: resolve

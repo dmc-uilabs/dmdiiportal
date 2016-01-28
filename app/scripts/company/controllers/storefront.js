@@ -27,7 +27,7 @@ angular.module('dmc.company')
 
         $scope.companyData  = companyData ;
         if($scope.companyData && $scope.companyData.id) {
-            $scope.owner = $scope.companyData.owner.$$state.value;
+            $scope.owner = $scope.companyData.account;
             // ------------------------------ get state params
             $scope.companyId = $stateParams.companyId;
             $scope.selectedProductType = $stateParams.product;
@@ -62,83 +62,133 @@ angular.module('dmc.company')
                 new: {arr: [], count: 0}
             };
 
-            $scope.getFeatures = function () {
-                ajax.on(dataFactory.getFeaturesCompany($scope.companyId),
-                    dataFactory.get_request_obj({
-                        company_id: $scope.companyId
-                    }),
-                    function (data) {
-                        var data = dataFactory.get_result(data);
-                        if (!data.error) {
-                            $scope.carouselData.featured.arr = $.merge(data.result.services, data.result.components);
-                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                        } else {
-                            toastModel.showToast("error", data.error);
+            // get company Featured
+            $scope.getFeatured = function () {
+                ajax.get(dataFactory.getCompanyFeatured($scope.companyId), {
+                        "_order" : "DESC",
+                        "_sort" : "position",
+                        "_expand" : ["company_service","company_component"]
+                    },
+                    function (response) {
+                        $scope.carouselData.featured.arr = [];
+                        for(var index in response.data){
+                            var item_ = null;
+                            if(response.data[index].company_service){
+                                item_ = response.data[index].company_service;
+                                item_.type = "service";
+                            }else if(response.data[index].company_component){
+                                item_ = response.data[index].company_component;
+                                item_.type = "component";
+                            }
+                            if(item_) {
+                                item_.featureId = response.data[index].id;
+                                item_.inFeatured = true;
+                                item_.position = response.data[index].position;
+                                $scope.carouselData.featured.arr.push(item_);
+                            }
                         }
-                    }, function (data) {
-                        toastModel.showToast("error", "Error. getFeaturesCompany() fail");
+                        $scope.carouselData.featured.count = $scope.carouselData.featured.arr.length;
+                        $scope.carouselData.featured.arr.sort(function(a,b){
+                            return a.position > b.position;
+                        });
+                        apply();
                     }
                 );
             };
-            $scope.getFeatures();
+            $scope.getFeatured();
 
-            // get featured and new for Carousel -------------------------------
-            $scope.callbackCarouselData = function (data) {
-                //$scope.carouselData.featured = {arr : data.result, count : data.count};
-                $scope.carouselData.new = {arr: data.result, count: data.count};
+            // get new services and components for Carousel
+            ajax.get(dataFactory.getNewCompanyServices($scope.companyId), {
+                    "_limit" : 10,
+                    "_order" : "DESC",
+                    "_sort" : "id"
+                },
+                function (response) {
+                    $scope.carouselData.new = {arr: response.data, count: response.data.length};
+                    apply();
+                }
+            );
+
+            var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
-            Products.get($scope.callbackCarouselData, 'services', {
-                limit: 10, offset: 0
-            });
-            // ---------------------------------------------------------
 
-            $scope.itemsArray = {arr: [], count: 0};
+            $scope.storefrontItems = {arr: [], count: 0};
+
             var responseData = {
-                limit: 4,
-                offset: ($scope.currentStorefrontPage - 1) * $scope.pageSize,
-                filterData : $stateParams
+                _limit : 4,
+                _embed : "company_featured",
+                _start : ($scope.currentStorefrontPage-1)*$scope.pageSize
             };
 
-            // function for get all products --------------------------------------------------
-            $scope.getAllProducts = function () {
-                Products.get($scope.callbackProducts, 'all', responseData);
+            // insert response data to array of storefront items
+            var isFirstCallback = true;
+            var insertData = function(data){
+                if($scope.selectedProductType == 'all' && !isFirstCallback){
+                    $scope.storefrontItems = {
+                        arr : $.merge($scope.storefrontItems.arr, data),
+                        count : $scope.storefrontItems.arr.length
+                    };
+                    apply();
+                }else{
+                    isFirstCallback = false;
+                    $scope.storefrontItems = {
+                        arr : data,
+                        count : data.length
+                    };
+                    if($scope.selectedProductType != 'all') apply();
+                }
             };
-            $scope.callbackProducts = function (data) {
-                $scope.itemsArray = {arr: data.result, count: data.count};
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            };
-            // ---------------------------------------------------------------------------------
 
-            // function for get services --------------------------------------------------
-            $scope.getServices = function () {
-                Products.get($scope.callbackServices, 'services', responseData);
+            // callback for services
+            var callbackCompanyServices = function(response){
+                for(var index in response.data){
+                    response.data[index].type = "service";
+                }
+                insertData(response.data);
             };
-            $scope.callbackServices = function (data) {
-                $scope.itemsArray = {arr: data.result, count: ($stateParams.type ? data.countTypes[$stateParams.type] : data.count)};
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            };
-            // -----------------------------------------------------------------------------
 
-            // function for get components --------------------------------------------------
-            $scope.getComponents = function () {
-                Products.get($scope.callbackComponents, 'components', responseData);
+            // callback for components
+            var callbackCompanyComponents = function(response){
+                for(var index in response.data){
+                    response.data[index].type = "component";
+                }
+                insertData(response.data);
             };
-            $scope.callbackComponents = function (data) {
-                $scope.itemsArray = {arr: data.result, count: data.count};
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+
+            // get all services and components
+            $scope.getServicesAndComponents = function(){
+                isFirstCallback = true;
+                ajax.get(dataFactory.getCompanyServices($scope.companyId), responseData, callbackCompanyServices);
+                ajax.get(dataFactory.getCompanyComponents($scope.companyId), responseData, callbackCompanyComponents);
             };
-            // -----------------------------------------------------------------------------
+
+            // get all services --------------------------------------------------
+            $scope.getServices = function(){
+                isFirstCallback = true;
+                ajax.get(dataFactory.getCompanyServices($scope.companyId), responseData, callbackCompanyServices);
+            };
+
+            // get all components --------------------------------------------------
+            $scope.getComponents = function(){
+                isFirstCallback = true;
+                ajax.get(dataFactory.getCompanyComponents($scope.companyId), responseData,callbackCompanyComponents);
+            };
 
             // update products
             $scope.update = function (search) {
                 $scope.isSearch = search;
-                responseData.limit = (search ? $scope.pageSize : 4);
-                responseData.offset = ($scope.currentStorefrontPage - 1) * $scope.pageSize;
+                if($scope.searchModel){
+                    responseData.title_like = $scope.searchModel;
+                }else{
+                    delete responseData.title_like;
+                }
+                responseData._limit = (search ? $scope.pageSize : 4);
+                responseData._start = ($scope.currentStorefrontPage - 1) * $scope.pageSize;
                 switch ($scope.selectedProductType) {
                     case 'all':
-                        $scope.getAllProducts();
+                        $scope.getServicesAndComponents();
                         break;
                     case 'services':
                         $scope.getServices();
@@ -169,14 +219,16 @@ angular.module('dmc.company')
             };
 
             // Function for product types drop down (all, services, components)
-            $scope.productTypeChanged = function () {
+            $scope.productTypeChanged = function (type) {
+                $scope.selectedProductType = type;
                 var dataSearch = $.extend(true,{},$stateParams);
                 dataSearch.product = $scope.selectedProductType;
                 $location.path('/' + dataSearch.companyId + '/search').search(dataSearch);
             };
 
             // Function for Search by name
-            $scope.submit = function () {
+            $scope.submit = function (text) {
+                $scope.searchModel = text;
                 var dataSearch = $.extend(true,{},$stateParams);
                 dataSearch.text = $scope.searchModel;
                 $location.path('/' + dataSearch.companyId + '/search').search(dataSearch);

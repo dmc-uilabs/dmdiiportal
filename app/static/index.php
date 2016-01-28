@@ -88,12 +88,6 @@ return call_user_func(function () {
         echo remove_company_images($_POST);
     }else if(strpos($uri,'/remove_company_skills_images') !== false){
         echo remove_company_skills_images($_POST);
-	}else if(strpos($uri,'/add_featured_company') !== false){
-		echo add_featured_company($_GET);
-	}else if(strpos($uri,'/remove_featured_company') !== false){
-		echo remove_featured_company($_GET);
-	}else if(strpos($uri,'/company_featured') !== false){
-		echo get_featured_company($_GET);
 	}else if(strpos($uri,'/save_company_changes') !== false){
 		echo save_company_changes($_GET);
 	}else if(strpos($uri,'/update_account') !== false){
@@ -112,8 +106,6 @@ return call_user_func(function () {
 	  echo follow_company($_GET);
 	}else if(strpos($uri,'/add_product_to_favorite') !== false) {
 	  echo add_product_to_favorite($_GET);
-	}else if(strpos($uri,'/update_features_position') !== false) {
-	  echo update_features_position($_GET);
 	}else if(strpos($uri,'/get_faq_categories') !== false){
 		echo get_faq_categories($_GET);
 	}else if(strpos($uri,'/get_faq_category') !== false){
@@ -124,10 +116,6 @@ return call_user_func(function () {
 		echo get_events($_GET);
 	}else if(strpos($uri,'/get_announcements') !== false){
 		echo get_announcements($_GET);
-	}else if(strpos($uri,'/get_individual_discussion') !== false){
-		echo get_individual_discussion($_GET);
-	}else if(strpos($uri,'/add_comment_individual_discussion') !== false){
-		echo add_comment_individual_discussion($_POST);
 	}else if(strpos($uri,'/add_discussion_like_dislike') !== false){
 		echo add_discussion_like_dislike($_POST);
 	}
@@ -319,141 +307,6 @@ function follow_company($params){
     }
 }
 
-function save_company_changes($params){
-    if(isset($params['company_id']) && isset($params['description'])) {
-        $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
-        if($company != null and isset($company['id']) == true) {
-            $company['description'] = $params['description'];
-            update_features_position($params);
-            $changed_item = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], 'PUT', json_encode($company)), true);
-            return json_encode(array('result' => true));
-        }else{
-            return json_encode(array('error' => 'Company does not exist' ));
-        }
-    }else{
-        return json_encode(array('error' => 'Data is wrong' ));
-    }
-}
-
-function get_featured_company($params){
-	if(isset($params['company_id'])) {
-		$company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
-		if($company != null and isset($company['id']) == true) {
-			$features = json_decode(httpResponse(dbUrl().'/companies/'.$params['company_id'].'/company_featured?_sort=position&_order=ASC', null, null),true);
-			$count = count($features);
-			$data = array(
-				'totalCount' => $count,
-				'services' => [],
-				'components' => []
-			);
-			for($i = 0; $i < count($features); ++$i){
-				$query = json_decode(httpResponse(dbUrl().'/'.$features[$i]['type'].'s/'.$features[$i]['productId'], null, null), true);
-				if($query != null and isset($query['id']) == true) {
-					$query['type'] = $features[$i]['type'];
-					$query['favorite'] = isFavoriteProduct($query['id'],$query['type'],null);
-					$query['featureId'] = $features[$i]['id'];
-					$query['position'] = ($features[$i]['position'] == null ? 1 : $features[$i]['position']);
-                    $query['inFeatured'] = true;
-					array_push($data[$features[$i]['type'].'s'], $query);
-				}
-			}
-			return json_encode(array('error' => null,'result' => $data));
-		}else{
-			return json_encode(array('error' => 'Company does not exist' ));
-		}
-	}else{
-		return json_encode(array('error' => 'Data is wrong' ));
-	}
-}
-
-function remove_featured_company($params){
-	if(isset($params['type']) && isset($params['product_id']) && isset($params['company_id'])) {
-		$company = json_decode(httpResponse(dbUrl() . '/companies/' . $params['company_id'], null, null), true);
-		if ($company != null and isset($company['id']) == true) {
-			$features = json_decode(httpResponse(dbUrl() . '/companies/' . $params['company_id'] . '/company_featured', null, null), true);
-			$exist = false;
-			for($i = 0; $i < count($features); ++$i) {
-				if($features[$i]['type'] == $params['type'] && intval($features[$i]['productId']) == intval($params['product_id'])){
-					$exist = $features[$i];
-				}
-			}
-			if($exist != false) {
-				$changed_item = json_decode(httpResponse(dbUrl().'/company_featured/' . $exist['id'], 'DELETE', null), true);
-				return json_encode(array('result' => true ));
-			}else{
-				return json_encode(array('error' => 'Feature does not exist' ));
-			}
-		}else{
-			return json_encode(array('error' => 'Company does not exist' ));
-		}
-	}else{
-		return json_encode(array('error' => 'Data is wrong' ));
-	}
-}
-
-function update_features_position($params){
-
-    if(isset($params['positions'])) {
-        $ids = [];
-        for($i = 0; $i < count($params['positions']); ++$i) {
-            $feature = json_decode(httpResponse(dbUrl().'/company_featured/'.$params['positions'][$i][0], null, null),true);
-            $feature['position'] = $params['positions'][$i][1];
-            $changed_item = json_decode(httpResponse(dbUrl().'/company_featured/' . $params['positions'][$i][0], 'PUT', json_encode($feature)), true);
-        }
-        return true;
-    }else{
-        return false;
-    }
-}
-
-function add_featured_company($params){
-	if(isset($params['type']) && isset($params['product_id']) && isset($params['company_id'])){
-		$company = json_decode(httpResponse(dbUrl().'/companies/' . $params['company_id'], null, null), true);
-		if($company != null and isset($company['id']) == true) {
-			$features = json_decode(httpResponse(dbUrl().'/companies/'.$params['company_id'].'/company_featured', null, null),true);
-			$exist = false;
-			for($i = 0; $i < count($features); ++$i) {
-				if($features[$i]['type'] == $params['type'] && intval($features[$i]['productId']) == intval($params['product_id'])){
-					$exist = $features[$i];
-				}
-			}
-			if($exist == false) {
-				$last = json_decode(httpResponse(dbUrl() . '/company_featured?_sort=id&_order=DESC&_limit=1', null, null), true);
-				$id = (count($last) > 0 ? $last[0]['id'] + 1 : 1);
-				$position = json_decode(httpResponse(dbUrl() . '/companies/'.$params['company_id'].'/company_featured?_sort=position&_order=DESC', null, null), true);
-
-				if(count($position) > 0){
-					$position_ = 0;
-					$index = 0;
-					while($index < count($position) and $position_ == 0){
-						if(isset($position[$index]['position']) and intval($position[$index]['position']) > 0){
-							$position_ = intval($position[$index]['position'])+1;
-						}
-						$index++;
-					}
-					$position = ($position_ == 0 ? 1 : $position_);
-				}else{
-					$position = 1;
-				}
-				$data = json_encode(array(
-					'id' => $id,
-					'companyId' => $params['company_id'],
-					'productId' => $params['product_id'],
-					'position' => $position,
-					'type' => $params['type']
-				));
-				$add_featured = json_decode(httpResponse(dbUrl() . '/company_featured', 'POST', $data), true);
-				return json_encode(array('error' => null, 'result' => $add_featured));
-			}else{
-				return json_encode(array('error' => null, 'result' => $exist));
-			}
-		}else{
-			return json_encode(array('error' => 'Company does not exist' ));
-		}
-	}else{
-		return json_encode(array('error' => 'Data is wrong' ));
-	}
-}
 
 function add_to_project($params){
 	if(isset($params['type'])) {

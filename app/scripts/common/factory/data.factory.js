@@ -166,12 +166,6 @@ angular.module('dmc.data',[])
             addCompanyReviewUrl: function(){
                 return baseServer+'/add_review_company';
             },
-            addFeaturedCompany: function(){
-                return baseServer+'/add_featured_company';
-            },
-            removeFeaturedCompany: function(){
-                return baseServer+'/remove_featured_company';
-            },
             getFeaturesCompany: function(id){
                 // return baseServer+'/company_featured';
                 return baseServer+webServiceUrl('companies', 'company_featured', id);
@@ -222,6 +216,27 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            updateCompanyFeaturedPosition: function(id){
+                return localhost+'company_featured/'+id;
+            },
+            addCompanyFeatured: function(){
+                return localhost+'company_featured';
+            },
+            removeCompanyFeatured: function(id){
+                return localhost+'company_featured/'+id;
+            },
+            getCompanyFeatured: function(id){
+                return localhost+'companies/'+id+'/company_featured';
+            },
+            getCompanyServices: function(id){
+                return localhost+'companies/'+id+'/company_services';
+            },
+            getCompanyComponents: function(id){
+                return localhost+'companies/'+id+'/company_components';
+            },
+            getNewCompanyServices: function(id){
+                return localhost+'companies/'+id+'/company_services';
+            },
             createStorefrontMessage: function(){
                 return localhost+'messages';
             },
@@ -336,6 +351,9 @@ angular.module('dmc.data',[])
             },
             addCompanyContact : function(){
                 return localhost+'company_key_contacts'
+            },
+            updateCompany: function(id){
+                return localhost+'companies/'+id;
             },
             updateCompanyProfile: function(id){
                 return localhost+'companies/'+id;

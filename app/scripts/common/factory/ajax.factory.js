@@ -1,6 +1,12 @@
 'use strict';
 
-angular.module('dmc.ajax',[]).factory('ajax', ["$http", function ($http) {
+angular.module('dmc.ajax',[
+
+]).factory('ajax', ["$http","toastModel", function ($http,toastModel) {
+        var errorCallback = function(response){
+            toastModel.showToast("error", response.statusText);
+        };
+
         var request = function(urlAddress,dataObject,successFunction,errorFunction,method){
             var config = {
                 url: urlAddress,
@@ -15,7 +21,7 @@ angular.module('dmc.ajax',[]).factory('ajax', ["$http", function ($http) {
             }else{
                 config.data = JSON.stringify(dataObject);
             }
-            return $http(config).then(successFunction, errorFunction);
+            return $http(config).then(successFunction, (errorFunction ? errorFunction : errorCallback));
         };
 
         return {
@@ -35,7 +41,7 @@ angular.module('dmc.ajax',[]).factory('ajax', ["$http", function ($http) {
                 });
             },
             update: function(urlAddress,dataObject,successFunction,errorFunction){
-                return request(urlAddress,dataObject,successFunction,errorFunction,"PUT");
+                return request(urlAddress,dataObject,successFunction,errorFunction,"PATCH");
             },
             delete: function(urlAddress,dataObject,successFunction,errorFunction){
                 return request(urlAddress,dataObject,successFunction,errorFunction,"DELETE");

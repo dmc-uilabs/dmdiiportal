@@ -1,6 +1,8 @@
 'use strict';
-var selectedTabIndex = 0;
+
+var selectedIndexTab = 0;
 var isFocused = false;
+
 angular.module('dmc.company')
     .controller('EditStorefrontCompanyCtr', [
         '$stateParams',
@@ -32,12 +34,14 @@ angular.module('dmc.company')
                               $timeout) {
 
             $scope.companyData = companyData;
+            $scope.selectedIndexTab = selectedIndexTab;
+            $scope.onTabSelected = function(tab){
+                selectedIndexTab = tab;
+            };
 
             if($scope.companyData && $scope.companyData.id){
-                $scope.selectedTabIndex = selectedTabIndex;
-                $scope.$watch("selectedTabIndex",function(newVal){
-                    selectedTabIndex = newVal;
-                });
+                $scope.owner = $scope.companyData.account;
+
 
                 // auto focus for First Name input
                 $timeout(function() {
@@ -71,6 +75,19 @@ angular.module('dmc.company')
                 $scope.downloadData = false;
                 $scope.isChangingLogo = false;
 
+                $scope.productTypes = [
+                    {
+                        name : "all",
+                        title : "All"
+                    },{
+                        name : "services",
+                        title : "Services"
+                    },{
+                        name : "components",
+                        title : "Components"
+                    }
+                ];
+
                 $scope.changeLogo = function(){
                     $scope.isChangingLogo = true;
                 };
@@ -78,23 +95,6 @@ angular.module('dmc.company')
                 $scope.cancelChangeLogo = function(){
                     $scope.isChangingLogo = false;
                     $scope.flowLogo = null;
-                };
-
-                $scope.changedPositions = null;
-                $scope.sortableOptions = {
-                    update: function(e, ui) {
-                        $scope.getChangedPosition();
-                    }
-                };
-
-                $scope.getChangedPosition = function(){
-                    var data = [];
-                    $(".feature-item").each(function(index){
-                        var position = $(this).find(".product-card-position").val((index+1));
-                        var id = $(this).find(".product-card-featureId").val();
-                        data.push([id,index+1]);
-                    });
-                    $scope.changedPositions = data;
                 };
 
                 $scope.isChangingPicture = false;
@@ -201,58 +201,98 @@ angular.module('dmc.company')
                     $scope.flowLogo = null;
                 };
 
-                $scope.features = {
-                    services : [],
-                    components : [],
-                    all : []
-                };
-                $scope.products = {arr : [],count : 0};
+                $scope.featuredItems = [];
+                $scope.storefrontItems = {arr : [],count : 0};
 
+                var apply = function(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                };
+
+                // callback for services
+                var callbackCompanyServices = function(response){
+                    for(var index in response.data){
+                        response.data[index].type = "service";
+                        checkIfFeatured(response.data[index]);
+                    }
+                    insertData(response.data);
+                };
+
+                // callback for components
+                var callbackCompanyComponents = function(response){
+                    for(var index in response.data){
+                        response.data[index].type = "component";
+                        checkIfFeatured(response.data[index]);
+                    }
+                    insertData(response.data);
+                };
+
+                // check if storefront item is added to Featured
+                var checkIfFeatured = function(item){
+                    if(item.company_featured && $.type(item.company_featured) == "array" && item.company_featured.length > 0){
+                        var featured = item.company_featured[0];
+                        item.featureId = featured.id;
+                        item.inFeatured = true;
+                        item.position = featured.position;
+                    }
+                };
+
+                // insert response data to array of storefront items
+                var isFirstCallback = true;
+                var insertData = function(data){
+                    if($scope.selectedProductType == 'all' && !isFirstCallback){
+                        $scope.storefrontItems = {
+                            arr : $.merge($scope.storefrontItems.arr, data),
+                            count : $scope.storefrontItems.arr.length
+                        };
+                        apply();
+                    }else{
+                        isFirstCallback = false;
+                        $scope.storefrontItems = {
+                            arr : data,
+                            count : data.length
+                        };
+                        if($scope.selectedProductType != 'all') apply();
+                    }
+                };
 
                 var responseData = {
-                    limit : 4,
-                    offset: ($scope.currentStorefrontPage-1)*$scope.pageSize,
-                    checkFeatures : true,
-                    filterData : $stateParams
+                    _limit : 4,
+                    _embed : "company_featured",
+                    _start : ($scope.currentStorefrontPage-1)*$scope.pageSize
                 };
 
-                // function for get all products --------------------------------------------------
-                $scope.getAllProducts = function(){
-                    Products.get($scope.callbackProducts,'all',responseData);
+                // get all services and components
+                $scope.getServicesAndComponents = function(){
+                    isFirstCallback = true;
+                    ajax.get(dataFactory.getCompanyServices($scope.companyId), responseData, callbackCompanyServices);
+                    ajax.get(dataFactory.getCompanyComponents($scope.companyId), responseData, callbackCompanyComponents);
                 };
-                $scope.callbackProducts = function(data){
-                    $scope.products = {arr : data.result,count : data.count};
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                };
-                // ---------------------------------------------------------------------------------
 
-                // function for get services --------------------------------------------------
+                // get all services --------------------------------------------------
                 $scope.getServices = function(){
-                    Products.get($scope.callbackServices,'services',responseData);
+                    isFirstCallback = true;
+                    ajax.get(dataFactory.getCompanyServices($scope.companyId), responseData, callbackCompanyServices);
                 };
-                $scope.callbackServices = function(data){
-                    $scope.products = {arr : data.result,count : ($stateParams.type ? data.countTypes[$stateParams.type] : data.count)};
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                };
-                // -----------------------------------------------------------------------------
 
-                // function for get components --------------------------------------------------
+                // get all components --------------------------------------------------
                 $scope.getComponents = function(){
-                    Products.get($scope.callbackComponents,'components',responseData);
+                    isFirstCallback = true;
+                    ajax.get(dataFactory.getCompanyComponents($scope.companyId), responseData,callbackCompanyComponents);
                 };
-                $scope.callbackComponents = function(data){
-                    $scope.products = {arr : data.result,count : data.count};
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                };
-                // -----------------------------------------------------------------------------
 
+                // update storefront data
                 $scope.update = function(search){
                     $scope.isSearch = search;
-                    responseData.limit = $scope.pageSize;
-                    responseData.offset = ($scope.currentStorefrontPage-1)*$scope.pageSize;
+                    if($scope.searchModel){
+                        responseData.title_like = $scope.searchModel;
+                    }else{
+                        delete responseData.title_like;
+                    }
+                    responseData._limit = $scope.pageSize;
+                    responseData._start = ($scope.currentStorefrontPage-1)*$scope.pageSize;
                     switch($scope.selectedProductType){
                         case 'all':
-                            $scope.getAllProducts();
+                            $scope.getServicesAndComponents();
                             break;
                         case 'services':
                             $scope.getServices();
@@ -262,7 +302,7 @@ angular.module('dmc.company')
                             break;
                         default:
                             break;
-                    };
+                    }
                 };
                 $scope.update($scope.isSearch);
 
@@ -278,65 +318,21 @@ angular.module('dmc.company')
                     $scope.update(true);
                 };
 
-                $scope.productTypeChanged = function () {
+                $scope.productTypeChanged = function (type) {
+                    $scope.selectedProductType = type;
                     var dataSearch = $.extend(true,{},$stateParams);
                     dataSearch.product = $scope.selectedProductType;
                     $location.path('/' + dataSearch.companyId + '/edit').search(dataSearch);
                 };
 
-                $scope.submit = function(){
+                $scope.submit = function(text){
+                    $scope.searchModel = text;
                     var dataSearch = $.extend(true,{},$stateParams);
                     dataSearch.text = $scope.searchModel;
-                    $location.path('/' + dataSearch.companyId + '/edit').search(dataSearch);
+                    $location.path(dataSearch.companyId + '/edit').search(dataSearch);
                 };
 
-
-                $scope.productTypes = [
-                    {
-                        name : "all",
-                        title : "All"
-                    },{
-                        name : "services",
-                        title : "Services"
-                    },{
-                        name : "components",
-                        title : "Components"
-                    }
-                ];
-
-                $scope.featuredIds = [];
-                $scope.getFeatures = function(){
-                    ajax.on(dataFactory.getFeaturesCompany(),
-                        {
-                            company_id : $scope.companyId
-                        },
-                        function(data){
-                            if(!data.error){
-                                $scope.features.services = data.result.services;
-                                $scope.features.components = data.result.components;
-                                $scope.features.all = [];
-                                for(var s in $scope.features.services){
-                                    $scope.features.all.push($scope.features.services[s]);
-                                }
-                                for(var s in $scope.features.components){
-                                    $scope.features.all.push($scope.features.components[s]);
-                                }
-                                $scope.features.all.sort(function(a,b){
-                                    return a.position > b.position;
-                                });
-                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
-                                    $scope.$apply();
-                                }
-                            }else{
-                                toastModel.showToast("error",data.error);
-                            }
-                        },function(data){
-                            toastModel.showToast("error","Error. getFeaturesCompany() fail");
-                        }
-                    );
-                };
-                $scope.getFeatures();
-
+                // save changes
                 $scope.changedData = {};
 
                 $scope.changedInput = function(type){
@@ -349,105 +345,144 @@ angular.module('dmc.company')
                     });
                 };
 
+                var changedPositions = null; // changed featured positions
+
+                // sortable options for featured
+                $scope.sortableOptions = {
+                    update: function(e, ui) {
+                        getChangedPosition();
+                    }
+                };
+
+                var getChangedPosition = function(){
+                    var data = [];
+                    $(".feature-item").each(function(index){
+                        if((index + 1) != parseInt($(this).find(".product-card-position").val())) {
+                            $(this).find(".product-card-position").val((index + 1));
+                            var id = $(this).find(".product-card-featureId").val();
+                            data.push({id: id, position: (index + 1)});
+                        }
+                    });
+                    changedPositions = (data.length > 0 ? data : null);
+                };
+
+                // save company changes
                 $scope.saveChanges = function(){
+                    // save new positions
+                    if(changedPositions){
+                        for(var index in changedPositions){
+                            ajax.update(dataFactory.updateCompanyFeaturedPosition(changedPositions[index].id),{
+                                position : changedPositions[index].position
+                            },function(response){});
+                        }
+                    }
+
+                    // save changed description
                     var description = inputToHtml($scope.companyData.description);
-                    ajax.on(dataFactory.saveCompanyChanges(),
-                        {
-                            company_id : $scope.companyId,
-                            description : description,
-                            positions : $scope.changedPositions
+                    ajax.update(dataFactory.updateCompany($scope.companyId),{
+                        description : description
+                    },function(response){
+                        toastModel.showToast('success','Data successfully changed');
+                        $scope.changedData = {};
+                        $location.path('/'+$scope.companyId+'/storefront').search({
+                            product : 'services'
+                        });
+                    });
+                };
+
+                // get company Featured
+                var lastPosition = 0;
+                $scope.getFeatured = function () {
+                    ajax.get(dataFactory.getCompanyFeatured($scope.companyId), {
+                            "_order" : "DESC",
+                            "_sort" : "position",
+                            "_expand" : ["company_service","company_component"]
                         },
-                        function(data){
-                            if(!data.error){
-                                toastModel.showToast('success','Data successfully changed');
-                                $scope.changedData = {};
-                                $location.path('/'+$scope.companyId+'/storefront').search({
-                                    product : 'services'
-                                });
-                            }else{
-                                toastModel.showToast("error",data.error);
+                        function (response) {
+                            $scope.featuredItems = [];
+                            for(var index in response.data){
+                                if(response.data[index].position > lastPosition) lastPosition = response.data[index].position;
+                                var item_ = null;
+                                if(response.data[index].company_service){
+                                    item_ = response.data[index].company_service;
+                                    item_.type = "service";
+                                }else if(response.data[index].company_component){
+                                    item_ = response.data[index].company_component;
+                                    item_.type = "component";
+                                }
+                                if(item_) {
+                                    item_.featureId = response.data[index].id;
+                                    item_.inFeatured = true;
+                                    item_.position = response.data[index].position;
+                                    $scope.featuredItems.push(item_);
+                                }
                             }
-                        },function(data){
-                            toastModel.showToast("error","Error. saveChanges() fail");
+                            $scope.featuredItems.sort(function(a,b){
+                                return a.position > b.position;
+                            });
+                            apply();
+                        }
+                    );
+                };
+                $scope.getFeatured();
+
+                // add to featured
+                $scope.addFeatured = function(item){
+                    lastPosition++;
+                    var requestData = {
+                        companyId : $scope.companyId,
+                        position : lastPosition
+                    };
+                    if(item.type == "service"){
+                        requestData.company_serviceId = item.id;
+                    }else{
+                        requestData.company_componentId = item.id;
+                    }
+                    ajax.create(dataFactory.addCompanyFeatured(), requestData,
+                        function(response){
+                            for(var i=0;i < $scope.storefrontItems.arr.length;i++) {
+                                if($scope.storefrontItems.arr[i].type == item.type && $scope.storefrontItems.arr[i].id == item.id){
+                                    $scope.storefrontItems.arr[i].featureId = response.data.id;
+                                    $scope.storefrontItems.arr[i].position = response.data.position;
+                                    $scope.storefrontItems.arr[i].inFeatured = true;
+                                    $scope.featuredItems.push($scope.storefrontItems.arr[i]);
+                                    $scope.featuredItems.sort(function(a,b){
+                                        return a.position > b.position;
+                                    });
+                                    break;
+                                }
+                            }
+                            getChangedPosition();
+                            apply();
                         }
                     );
                 };
 
-
-                $scope.addFeatured = function(product_id,type){
-                    ajax.on(dataFactory.addFeaturedCompany(),
-                        {
-                            company_id : $scope.companyId,
-                            product_id : product_id,
-                            type : type
-                        },
-                        function(data){
-                            if(!data.error){
-                                for(var i=0;i < $scope.products.arr.length;i++) {
-                                    if($scope.products.arr[i].type == type && $scope.products.arr[i].id == product_id){
-                                        $scope.products.arr[i].featureId = data.result.id;
-                                        $scope.products.arr[i].position = data.result.position;
-                                        $scope.products.arr[i].inFeatured = true;
-                                        $scope.features[$scope.products.arr[i].type+'s'].push($.extend(true,{},$scope.products.arr[i]));
-                                        $scope.features.all.push($.extend(true,{},$scope.products.arr[i]));
-                                        $scope.features.all.sort(function(a,b){
-                                            return a.position > b.position;
-                                        });
-                                        break;
-                                    }
+                // remove from featured
+                $scope.removeFeatured = function(item){
+                    ajax.delete(dataFactory.removeCompanyFeatured(item.featureId),{},
+                        function(response){
+                            for(var i=0; i < $scope.featuredItems.length; i++){
+                                if($scope.featuredItems[i].type == item.type && $scope.featuredItems[i].id == item.id){
+                                    $scope.featuredItems.splice(i,1);
+                                    break;
                                 }
-                                $scope.getChangedPosition();
-                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                            }else{
-                                toastModel.showToast("error",data.error);
                             }
-                        },function(data){
-                            toastModel.showToast("error","Error. Adding featured company fail");
+                            for(var i=0;i < $scope.storefrontItems.arr.length;i++) {
+                                if($scope.storefrontItems.arr[i].type == item.type && $scope.storefrontItems.arr[i].id == item.id){
+                                    delete $scope.storefrontItems.arr[i].featureId;
+                                    delete $scope.storefrontItems.arr[i].position;
+                                    delete $scope.storefrontItems.arr[i].inFeatured;
+                                    break;
+                                }
+                            }
+                            getChangedPosition();
+                            apply();
                         }
                     );
                 };
 
-                $scope.removeFeatured = function(product_id,type){
-                    ajax.on(dataFactory.removeFeaturedCompany(),
-                        {
-                            company_id : $scope.companyId,
-                            product_id : product_id,
-                            type : type
-                        },
-                        function(data){
-                            if(!data.error){
-                                for(var i=0;i<$scope.features[$scope.products.arr[i].type+'s'].length;i++){
-                                    if($scope.features[$scope.products.arr[i].type+'s'][i].id == product_id){
-                                        $scope.features[$scope.products.arr[i].type+'s'].splice(i,1);
-                                        break;
-                                    }
-                                }
-                                for(var i=0;i<$scope.features.all.length;i++){
-                                    if($scope.features.all[i].id == product_id && $scope.features.all[i].type == type){
-                                        $scope.features.all.splice(i,1);
-                                        break;
-                                    }
-                                }
-                                for(var i=0;i < $scope.products.arr.length;i++) {
-                                    if($scope.products.arr[i].type == type && $scope.products.arr[i].id == product_id){
-                                        delete $scope.products.arr[i].featureId;
-                                        delete $scope.products.arr[i].position;
-                                        delete $scope.products.arr[i].inFeatured;
-                                        break;
-                                    }
-                                }
-                                $scope.getChangedPosition();
-                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                            }else{
-                                toastModel.showToast("error",data.error);
-                            }
-                        },function(data){
-                            toastModel.showToast("error","Error. Removing featured company fail");
-                        }
-                    );
-                };
-
-                // disable all links in products card
+                // disable all links in storefront card
                 $("md-tabs").on("click",".product-card a",function(event){
                     event.preventDefault();
                 }).on("mouseenter",".product-card a",function(){
