@@ -20,7 +20,6 @@ angular.module('dmc.component.carousel', [
         carouselSource: '=',
         runCarousel: '=',
         edit: '='
-        //timeout: '=' // seconds
       },
       templateUrl: 'templates/components/carousel/carousel-tpl.html',
       link: function(scope, element, attrs){
@@ -29,7 +28,6 @@ angular.module('dmc.component.carousel', [
       controller: function($element,$scope,$timeout,Carousel,socketFactory){
           $scope.intervalCarousel = null;
 
-          //$scope.timeout = (parseInt($scope.timeout) <= 0 ? 5 : parseInt($scope.timeout));
           $scope.maxItems = (parseInt($scope.maxItems) <= 0 ? 10 : parseInt($scope.maxItems));
           $scope.showItems = (parseInt($scope.showItems) <= 0 ? 2 : parseInt($scope.showItems));
           $scope.arrayItems = ($scope.carouselSource.length > $scope.maxItems ? $scope.carouselSource.slice(0, $scope.maxItems) : $scope.carouselSource);
@@ -63,17 +61,6 @@ angular.module('dmc.component.carousel', [
               Carousel.get($scope.nameCarousel).toIndex(number);
           };
 
-          /*
-          $scope.run = function(){
-              if($scope.runCarousel == true && $scope.countSlides > 1) {
-                  $scope.intervalCarousel = setInterval(function () {
-                      $scope.nextSlide();
-                      $scope.selectButton();
-                  }, $scope.timeout * 1000);
-              }
-          };
-          */
-
           $scope.selectButton = function(){
               $scope.currentSlide = Carousel.get($scope.nameCarousel).currentSlide + 1;
               if (!isNaN($scope.currentSlide)) {
@@ -82,33 +69,32 @@ angular.module('dmc.component.carousel', [
               }
           };
 
-          /*
-          $scope.stop = function(){
-              if($scope.intervalCarousel != null) clearInterval($scope.intervalCarousel);
-          };
+          //var heightInterval;
+          //$scope.$watch("arrayItems",function(){
+          //    heightInterval = setInterval(function(){
+          //        $scope.setHeight();
+          //    },500);
+          //});
 
-          $element.mouseover(function() {
-              $scope.stop();
-          }).mouseout(function() {
-              $scope.run();
+          $scope.$watch(function(){
+              return $(".carousel-items slidecontainer").height();
+          },function(newHeight){
+              if(newHeight) {
+                  $element.find(".ng-carousel").css("height", (newHeight + 65) + "px");
+              }
           });
-          */
 
-          var h = setInterval(function(){
-              if($element.find(".ng-carousel").height() < 100) $scope.setHeight();
-          },100);
-
-          $scope.setHeight = function(){
-              var maxHeight = 0;
-              $element.find(".product-card").each(function(){
-                  if($(this).height() > maxHeight) maxHeight = $(this).height();
-              });
-              $element.find(".carousel-item").each(function(){
-                if($(this).height() > maxHeight) maxHeight = $(this).height();
-              });
-              $element.find(".ng-carousel").css("height", (maxHeight + 65) + "px");
-              if($element.find(".ng-carousel").height() > 100) clearInterval(h);
-          };
+          //$scope.setHeight = function(){
+          //    var maxHeight = 0;
+          //    $element.find(".product-card").each(function(){
+          //        if($(this).height() > maxHeight) maxHeight = $(this).height();
+          //    });
+          //    $element.find(".carousel-item").each(function(){
+          //        if($(this).height() > maxHeight) maxHeight = $(this).height();
+          //    });
+          //    $element.find(".ng-carousel").css("height", (maxHeight + 65) + "px");
+          //    if(heightInterval && $element.find(".ng-carousel").height() > 100) clearInterval(heightInterval);
+          //};
 
           var updateItem = function(item){
               for(var i=0;i<$scope.arrayItems.length;i++){
