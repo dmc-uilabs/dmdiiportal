@@ -12,7 +12,7 @@
       </div>
       <div class="image-padding" ng-if="typeCarousel === 'images'">
         <div class="carousel-item image-item"
-             
+
              ng-class="{'selected-image' : item.selected}"
              ng-if="typeCarousel === 'images'"
              ng-repeat="item in arrayItems.slice($index*showItems, $index*showItems+showItems) track by $index">
