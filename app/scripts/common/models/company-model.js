@@ -14,6 +14,13 @@ angular.module('dmc.model.company', [
             },function(response){
                 var data = response.data;
                 if(data.accountId == currentAccountId) data.isOwner = true;
+                ajax.get(dataFactory.followCompany(),{
+                        accountId : currentAccountId,
+                        companyId : data.id
+                    }, function(res){
+                        if(res.data.length > 0) data.follow = res.data[0];
+                    }
+                );
                 return data;
             },function(response){
                 return response.data;
@@ -65,24 +72,24 @@ angular.module('dmc.model.company', [
             return {
                 title: 'BROWSE BY',
                 data: [
-                    {
-                        'id': 1,
-                        'title': 'All',
-                        'tag' : 'all',
-                        'items': 45,
-                        'opened' : isOpened('all'),
-                        'href' : getUrl('all'),
-                        'categories': []
-                    },
-                    {
-                        'id': 2,
-                        'title': 'Components',
-                        'tag' : 'components',
-                        'items': 13,
-                        'opened' : isOpened('components'),
-                        'href' : getUrl('components'),
-                        'categories': []
-                    },
+                    //{
+                    //    'id': 1,
+                    //    'title': 'All',
+                    //    'tag' : 'all',
+                    //    'items': 45,
+                    //    'opened' : isOpened('all'),
+                    //    'href' : getUrl('all'),
+                    //    'categories': []
+                    //},
+                    //{
+                    //    'id': 2,
+                    //    'title': 'Components',
+                    //    'tag' : 'components',
+                    //    'items': 13,
+                    //    'opened' : isOpened('components'),
+                    //    'href' : getUrl('components'),
+                    //    'categories': []
+                    //},
                     {
                         'id': 3,
                         'title': 'Services',

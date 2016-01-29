@@ -12,6 +12,7 @@ angular.module('dmc.company')
         'CompanyModel',
         'toastModel',
         'dataFactory',
+        'isFavorite',
         '$mdDialog', function ($stateParams,
                                $state,
                                $scope,
@@ -23,6 +24,7 @@ angular.module('dmc.company')
                                CompanyModel,
                                toastModel,
                                dataFactory,
+                               isFavorite,
                                $mdDialog ) {
 
         $scope.companyData  = companyData ;
@@ -41,19 +43,21 @@ angular.module('dmc.company')
             $scope.page = $state.current.name.split('.')[1];
 
             $scope.productTypes = [
+                //{
+                //    id: 1,
+                //    name: "all",
+                //    title: "All"
+                //},
                 {
-                    id: 1,
-                    name: "all",
-                    title: "All"
-                }, {
                     id: 2,
                     name: "services",
                     title: "Services"
-                }, {
-                    id: 3,
-                    name: "components",
-                    title: "Components"
                 }
+                //, {
+                //    id: 3,
+                //    name: "components",
+                //    title: "Components"
+                //}
             ];
 
 
@@ -67,17 +71,17 @@ angular.module('dmc.company')
                 ajax.get(dataFactory.getCompanyFeatured($scope.companyId), {
                         "_order" : "DESC",
                         "_sort" : "position",
-                        "_expand" : ["company_service","company_component"]
+                        "_expand" : ["service","component"]
                     },
                     function (response) {
                         $scope.carouselData.featured.arr = [];
                         for(var index in response.data){
                             var item_ = null;
-                            if(response.data[index].company_service){
-                                item_ = response.data[index].company_service;
+                            if(response.data[index].service){
+                                item_ = response.data[index].service;
                                 item_.type = "service";
-                            }else if(response.data[index].company_component){
-                                item_ = response.data[index].company_component;
+                            }else if(response.data[index].component){
+                                item_ = response.data[index].component;
                                 item_.type = "component";
                             }
                             if(item_) {
@@ -88,6 +92,7 @@ angular.module('dmc.company')
                             }
                         }
                         $scope.carouselData.featured.count = $scope.carouselData.featured.arr.length;
+                        isFavorite.check($scope.carouselData.featured.arr);
                         $scope.carouselData.featured.arr.sort(function(a,b){
                             return a.position > b.position;
                         });
@@ -95,19 +100,22 @@ angular.module('dmc.company')
                     }
                 );
             };
-            $scope.getFeatured();
+            if(!$scope.isSearch) $scope.getFeatured();
 
             // get new services and components for Carousel
-            ajax.get(dataFactory.getNewCompanyServices($scope.companyId), {
-                    "_limit" : 10,
-                    "_order" : "DESC",
-                    "_sort" : "id"
-                },
-                function (response) {
-                    $scope.carouselData.new = {arr: response.data, count: response.data.length};
-                    apply();
-                }
-            );
+            $scope.getNewCompanyServices = function(){
+                ajax.get(dataFactory.getNewCompanyServices($scope.companyId), {
+                        "_limit" : 10,
+                        "_order" : "DESC",
+                        "_sort" : "id"
+                    }, function (response) {
+                        $scope.carouselData.new = {arr: response.data, count: response.data.length};
+                        isFavorite.check($scope.carouselData.new.arr);
+                        apply();
+                    }
+                );
+            };
+            if(!$scope.isSearch) $scope.getNewCompanyServices();
 
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -130,6 +138,7 @@ angular.module('dmc.company')
                         arr : $.merge($scope.storefrontItems.arr, data),
                         count : $scope.storefrontItems.arr.length
                     };
+                    isFavorite.check($scope.storefrontItems.arr);
                     apply();
                 }else{
                     isFirstCallback = false;
@@ -137,7 +146,10 @@ angular.module('dmc.company')
                         arr : data,
                         count : data.length
                     };
-                    if($scope.selectedProductType != 'all') apply();
+                    if($scope.selectedProductType != 'all'){
+                        isFavorite.check($scope.storefrontItems.arr);
+                        apply();
+                    }
                 }
             };
 
@@ -183,6 +195,11 @@ angular.module('dmc.company')
                     responseData.title_like = $scope.searchModel;
                 }else{
                     delete responseData.title_like;
+                }
+                if($scope.productSubType){
+                    responseData.serviceType = $scope.productSubType;
+                }else{
+                    delete responseData.serviceType;
                 }
                 responseData._limit = (search ? $scope.pageSize : 4);
                 responseData._start = ($scope.currentStorefrontPage - 1) * $scope.pageSize;
@@ -263,23 +280,22 @@ angular.module('dmc.company')
                 $scope.isReadMore = ($scope.isReadMore ? false : true);
             };
 
-            $scope.isFollow = $scope.companyData.follow;
             $scope.followCompany = function () {
-                ajax.on(dataFactory.followCompany(), {
-                        companyId: $scope.companyId,
-                        accountId: 1
-                    },
-                    function (data) {
-                        if (!data.error) {
-                            $scope.isFollow = data.follow;
-                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                        } else {
-                            toastModel.showToast("error", data.error);
+                if(!$scope.companyData.follow){
+                    ajax.create(dataFactory.followCompany(),{
+                        accountId : currentAccountId,
+                        companyId : $scope.companyId
+                    },function(response){
+                        $scope.companyData.follow = response.data;
+                        apply();
+                    });
+                }else{
+                    ajax.delete(dataFactory.unfollowCompany($scope.companyData.follow.id),{},
+                        function(response){
+                            $scope.companyData.follow = null;
                         }
-                    }, function (data) {
-                        toastModel.showToast("error", "Error. followCompany() fail");
-                    }
-                );
+                    );
+                }
             };
 
             // message dialog ---------------------------
@@ -291,7 +307,7 @@ angular.module('dmc.company')
                     targetEvent: ev,
                     clickOutsideToClose:true,
                     locals : {
-                        owner : $scope.companyData.owner,
+                        owner : $scope.companyData.account,
                         currentUser : {id : currentAccountId}
                     }
                 }).then(function(answer) {

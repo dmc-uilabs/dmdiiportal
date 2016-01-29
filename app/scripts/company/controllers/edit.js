@@ -76,16 +76,18 @@ angular.module('dmc.company')
                 $scope.isChangingLogo = false;
 
                 $scope.productTypes = [
+                    //{
+                    //    name : "all",
+                    //    title : "All"
+                    //},
                     {
-                        name : "all",
-                        title : "All"
-                    },{
                         name : "services",
                         title : "Services"
-                    },{
-                        name : "components",
-                        title : "Components"
                     }
+                    //,{
+                    //    name : "components",
+                    //    title : "Components"
+                    //}
                 ];
 
                 $scope.changeLogo = function(){
@@ -257,6 +259,8 @@ angular.module('dmc.company')
 
                 var responseData = {
                     _limit : 4,
+                    _sort : "id",
+                    _order : "DESC",
                     _embed : "company_featured",
                     _start : ($scope.currentStorefrontPage-1)*$scope.pageSize
                 };
@@ -396,18 +400,18 @@ angular.module('dmc.company')
                     ajax.get(dataFactory.getCompanyFeatured($scope.companyId), {
                             "_order" : "DESC",
                             "_sort" : "position",
-                            "_expand" : ["company_service","company_component"]
+                            "_expand" : ["service","component"]
                         },
                         function (response) {
                             $scope.featuredItems = [];
                             for(var index in response.data){
                                 if(response.data[index].position > lastPosition) lastPosition = response.data[index].position;
                                 var item_ = null;
-                                if(response.data[index].company_service){
-                                    item_ = response.data[index].company_service;
+                                if(response.data[index].service){
+                                    item_ = response.data[index].service;
                                     item_.type = "service";
-                                }else if(response.data[index].company_component){
-                                    item_ = response.data[index].company_component;
+                                }else if(response.data[index].component){
+                                    item_ = response.data[index].component;
                                     item_.type = "component";
                                 }
                                 if(item_) {
@@ -434,9 +438,9 @@ angular.module('dmc.company')
                         position : lastPosition
                     };
                     if(item.type == "service"){
-                        requestData.company_serviceId = item.id;
+                        requestData.serviceId = item.id;
                     }else{
-                        requestData.company_componentId = item.id;
+                        requestData.componentId = item.id;
                     }
                     ajax.create(dataFactory.addCompanyFeatured(), requestData,
                         function(response){

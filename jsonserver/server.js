@@ -7,7 +7,13 @@ var server = jsonServer.create();
 // Set default middlewares (logger, static, cors and no-cache)
 //server.use(jsonServer.defaults());
 server.use(jsonServer.defaults());
-
+// Add this before server.use(router)
+server.use(jsonServer.rewriter({
+    '/company_services': '/services',
+    '/company_components': '/components',
+    '/companies/:id/company_services' : '/companies/:id/services',
+    '/companies/:id/company_components' : '/companies/:id/components'
+}));
 // Returns an Express router
 var router = jsonServer.router('db.json');
 server.use(router);

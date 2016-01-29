@@ -64,6 +64,6 @@ angular.module('dmc.company', [
     }
     var hash = window.location.hash;
     if (hash.lastIndexOf('/') == hash.indexOf('/')) {
-        $state.go('company.storefront', {companyId: companyId, product : 'all'})
+        $state.go('company.storefront', {companyId: companyId, product : 'services'})
     }
 }])

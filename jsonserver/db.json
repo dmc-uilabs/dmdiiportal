@@ -74,7 +74,7 @@
       "accountId": 1,
       "name": "The Turbine Company",
       "location": "Berkeley, California",
-      "description": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariaturd",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariaturd",
       "division": "The Helicopter Company",
       "industry": "The Helicopter Company",
       "NAICSCode": 11111111111,
@@ -116,7 +116,7 @@
         "thumbnail": "/uploads/company/picture/2/20151223085045000000.jpg",
         "large": "/uploads/company/picture/2/20151223085045000000.jpg"
       },
-      "logoImage": "/uploads/company/picture/2/20151223085045000000.png"
+      "logoImage": null
     }
   ],
   "company_skill_images": [
@@ -208,33 +208,27 @@
   "company_featured": [
     {
       "companyId": 1,
-      "position": 2,
-      "company_componentId": 2,
+      "position": 3,
+      "serviceId": 41,
       "id": 1
     },
     {
       "companyId": 1,
-      "position": 1,
-      "company_componentId": 3,
+      "position": 4,
+      "serviceId": 31,
       "id": 2
     },
     {
       "companyId": 1,
-      "position": 3,
-      "company_componentId": 1,
-      "id": 6
-    },
-    {
-      "companyId": 1,
-      "position": 4,
-      "company_serviceId": 2,
-      "id": 7
-    },
-    {
-      "companyId": 1,
       "position": 5,
-      "company_serviceId": 3,
-      "id": 8
+      "serviceId": 30,
+      "id": 3
+    },
+    {
+      "companyId": 1,
+      "position": 6,
+      "serviceId": 29,
+      "id": 4
     }
   ],
   "company_reviews": [
@@ -319,7 +313,13 @@
       "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
     }
   ],
-  "company_follows": [],
+  "company_follows": [
+    {
+      "accountId": 1,
+      "companyId": 2,
+      "id": 1
+    }
+  ],
   "accounts": [
     {
       "id": 1,
@@ -455,11 +455,6 @@
       "accountId": 1
     },
     {
-      "id": 14,
-      "componentId": 2,
-      "accountId": 1
-    },
-    {
       "id": 15,
       "serviceId": 1,
       "accountId": 1
@@ -478,6 +473,36 @@
       "serviceId": 2,
       "accountId": 1,
       "id": 18
+    },
+    {
+      "accountId": 1,
+      "serviceId": 28,
+      "id": 22
+    },
+    {
+      "accountId": 1,
+      "serviceId": 27,
+      "id": 23
+    },
+    {
+      "accountId": 1,
+      "componentId": 2,
+      "id": 24
+    },
+    {
+      "accountId": 1,
+      "componentId": 2,
+      "id": 26
+    },
+    {
+      "accountId": 1,
+      "serviceId": 4,
+      "id": 27
+    },
+    {
+      "accountId": 1,
+      "serviceId": 5,
+      "id": 28
     }
   ],
   "projects": [
@@ -599,6 +624,7 @@
   "components": [
     {
       "id": 1,
+      "companyId": 1,
       "title": "1 Component",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "owner": "Steven Jobs",
@@ -623,6 +649,7 @@
     },
     {
       "id": 2,
+      "companyId": 1,
       "title": "2 Component",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       "owner": "Steven Jobs",
@@ -647,6 +674,7 @@
     },
     {
       "id": 3,
+      "companyId": 2,
       "title": "3 Component",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       "owner": "Steven Jobs",
@@ -668,171 +696,12 @@
       },
       "projectId": 2,
       "type": "component"
-    }
-  ],
-  "company_services": [
-    {
-      "id": 1,
-      "title": "qout-of-balance Testing",
-      "companyId": 1,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-      "owner": "L.Mason",
-      "releaseDate": "25/08/2015",
-      "serviceType": "analytical",
-      "tags": [
-        "Tag 1",
-        "Tag 2"
-      ],
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "currentStatus": {
-        "percentCompleted": "5",
-        "startDate": "20/09/2015",
-        "startTime": "11:15:33",
-        "project": {
-          "id": 4,
-          "title": "Incoming Compartment for LDR Mining"
-        }
-      },
-      "projectId": 4,
-      "from": "marketplace"
-    },
-    {
-      "id": 2,
-      "title": "Fan failure mode analysis",
-      "companyId": 1,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-      "owner": "L.Mason",
-      "releaseDate": "25/08/2015",
-      "serviceType": "analytical",
-      "tags": [
-        "Tag 1",
-        "Tag 2"
-      ],
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "currentStatus": {
-        "percentCompleted": "5",
-        "startDate": "20/09/2015",
-        "startTime": "11:15:33",
-        "project": {
-          "id": 4,
-          "title": "Incoming Compartment for LDR Mining"
-        }
-      },
-      "projectId": 4,
-      "from": "marketplace"
-    },
-    {
-      "id": 3,
-      "title": "Project Cost Analyzer",
-      "companyId": 1,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-      "owner": "M.Gill",
-      "releaseDate": "01/09/2015",
-      "serviceType": "analytical",
-      "tags": [],
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "currentStatus": {
-        "percentCompleted": "95",
-        "startDate": "21/09/2015",
-        "startTime": "15:48:10",
-        "project": {
-          "id": 2,
-          "title": "Capacitor Design"
-        }
-      },
-      "projectId": 2,
-      "from": "marketplace"
-    }
-  ],
-  "company_components": [
-    {
-      "id": 1,
-      "title": "1 Component",
-      "companyId": 1,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "owner": "Steven Jobs",
-      "releaseDate": "25/08/2015",
-      "tags": [],
-      "specifications": "/components/1/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "currentStatus": {
-        "percentCompleted": "5",
-        "startDate": "25/08/2015",
-        "startTime": "11:15:33",
-        "project": {
-          "id": 0,
-          "title": null
-        }
-      },
-      "projectId": 1
-    },
-    {
-      "id": 2,
-      "title": "2 Component",
-      "companyId": 1,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      "owner": "Steven Jobs",
-      "releaseDate": "25/08/2015",
-      "tags": [],
-      "specifications": "/components/2/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "currentStatus": {
-        "percentCompleted": "0",
-        "startDate": "25/08/2015",
-        "startTime": "11:16:02",
-        "project": {
-          "id": 2,
-          "title": "Project 2"
-        }
-      },
-      "projectId": 2
-    },
-    {
-      "id": 3,
-      "title": "3 Component",
-      "companyId": 1,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      "owner": "Steven Jobs",
-      "releaseDate": "01/09/2015",
-      "tags": [],
-      "specifications": "/components/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "currentStatus": {
-        "percentCompleted": "95",
-        "startDate": "01/09/2015",
-        "startTime": "18:13:10",
-        "project": {
-          "id": 2,
-          "title": "Project 2"
-        }
-      },
-      "projectId": 2
     }
   ],
   "services": [
     {
       "id": 1,
+      "companyId": 2,
       "title": "qout-of-balance Testing",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "L.Mason",
@@ -862,6 +731,7 @@
     },
     {
       "id": 5,
+      "companyId": 2,
       "title": "fan failure mode analysis",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "P.Ruiz",
@@ -888,6 +758,7 @@
     },
     {
       "id": 3,
+      "companyId": 1,
       "title": "Project Cost Analyzer",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "M.Gill",
@@ -914,6 +785,7 @@
     },
     {
       "id": 30,
+      "companyId": 1,
       "title": "Evaluator 4 - heat loss, cost, mfg time",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "J.Cole",
@@ -940,6 +812,7 @@
     },
     {
       "id": 4,
+      "companyId": 1,
       "title": "Power Factor Correction Analyzer",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "J.Sims",
@@ -966,6 +839,7 @@
     },
     {
       "id": 6,
+      "companyId": 1,
       "title": "Capacitor Compartment Layout",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "E.Fox",
@@ -992,6 +866,7 @@
     },
     {
       "id": 7,
+      "companyId": 1,
       "title": "Should-cost estimator",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "G.Baker",
@@ -1018,6 +893,7 @@
     },
     {
       "id": 8,
+      "companyId": 1,
       "title": "Capacitor Configurator",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "G.Baker",
@@ -1044,6 +920,7 @@
     },
     {
       "id": 9,
+      "companyId": 1,
       "title": "Transformer Manufacturing Cost Analysis",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "m.winand",
@@ -1070,6 +947,7 @@
     },
     {
       "id": 12,
+      "companyId": 1,
       "title": "Transformer Heat Loss Model",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "m.winand",
@@ -1096,6 +974,7 @@
     },
     {
       "id": 15,
+      "companyId": 1,
       "title": "Project Scheduler",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "V.Sutton",
@@ -1122,6 +1001,7 @@
     },
     {
       "id": 16,
+      "companyId": 1,
       "title": "Cost Relation Model",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "R.McCoy",
@@ -1148,6 +1028,7 @@
     },
     {
       "id": 17,
+      "companyId": 1,
       "title": "Heat Loss Relation Model",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "R.McCoy",
@@ -1174,6 +1055,7 @@
     },
     {
       "id": 10,
+      "companyId": 1,
       "title": "Cost vs. Heat Loss Trade-off Matrix",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "p.koudal",
@@ -1200,6 +1082,7 @@
     },
     {
       "id": 11,
+      "companyId": 1,
       "title": "Cost vs. Heat Loss Trade-off Matrix",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "p.koudal",
@@ -1226,6 +1109,7 @@
     },
     {
       "id": 18,
+      "companyId": 1,
       "title": "Time Relation Model",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "R.McCoy",
@@ -1252,6 +1136,7 @@
     },
     {
       "id": 2,
+      "companyId": 1,
       "title": "PLC program verifier",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "D.Black",
@@ -1280,6 +1165,7 @@
     },
     {
       "id": 27,
+      "companyId": 1,
       "title": "HDD/CDD Tracker",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "A.Salazaar",
@@ -1306,6 +1192,7 @@
     },
     {
       "id": 13,
+      "companyId": 1,
       "title": "Evaluator Model",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "PDM.Co",
@@ -1332,6 +1219,7 @@
     },
     {
       "id": 41,
+      "companyId": 1,
       "title": "Evaluator 1 - heat loss, cost",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "J.Cole",
@@ -1358,6 +1246,7 @@
     },
     {
       "id": 28,
+      "companyId": 1,
       "title": "Evaluator 2 - heat loss, mfg time",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "J.Cole",
@@ -1384,6 +1273,7 @@
     },
     {
       "id": 29,
+      "companyId": 1,
       "title": "Evaluator 3 - cost, efficiency",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "J.Cole",
@@ -1410,6 +1300,7 @@
     },
     {
       "id": 14,
+      "companyId": 1,
       "title": "Transformer Efficiency",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "M.Dawson",
@@ -1436,6 +1327,7 @@
     },
     {
       "id": 31,
+      "companyId": 1,
       "title": "Evaluator 5 - cost, mfg time",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "J.Cole",
@@ -2555,6 +2447,16 @@
       "text": "New Message",
       "created_at": "2016-01-26 20:01:26",
       "id": 9
+    },
+    {
+      "senderId": 1,
+      "recipientId": 2,
+      "isRead": false,
+      "senderDelete": false,
+      "recipientDelete": false,
+      "text": 159,
+      "created_at": "2016-01-29 18:24:20",
+      "id": 10
     }
   ],
   "individual-discussion-tags": [

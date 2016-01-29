@@ -13,22 +13,17 @@ angular.module('dmc.community.dmc-announcements',[]).
                 $scope.totalAnnouncements = 0;
 
                 $scope.getAnnouncements = function(){
-                    ajax.on(dataFactory.getAnnouncements(),{
-                        limit : 5,
-                        offset : 0
-                    },function(data){
-                        if(!data.error){
-                            $scope.announcements = data.result;
-                            for(var a in $scope.announcements){
-                                $scope.announcements[a].created_at = moment($scope.announcements[a].created_at).format("MMM Do YYYY");
-                            }
-                            $scope.totalAnnouncements = data.count;
-                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                        }else{
-                            toastModel.showToast("error", data.error);
+                    ajax.get(dataFactory.getAnnouncements(),{
+                        _limit : 5,
+                        _start : 0,
+                        _embed : "announcement_comments"
+                    },function(response){
+                        $scope.announcements = response.data;
+                        $scope.totalAnnouncements = $scope.announcements.length;
+                        for(var a in $scope.announcements){
+                            $scope.announcements[a].created_at = moment($scope.announcements[a].created_at).format("MMM Do YYYY");
                         }
-                    },function(){
-                        toastModel.showToast("error", "Error. getAnnouncements() fail");
+                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     });
                 };
 

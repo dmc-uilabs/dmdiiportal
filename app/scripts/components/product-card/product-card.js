@@ -52,41 +52,38 @@ angular.module('dmc.component.productcard', [
           $scope.projects = [];
           $scope.addingToProject = false;
 
-          var addToFavoriteCallback = function(data){
-              if(!data.error) {
-                  $scope.cardSource.favorite = data.favorite;
-                  if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-              }else{
-                  alert(data.error);
-              }
+          // success callback for add to favorites
+          var addToFavoriteCallback = function(response){
+              $scope.cardSource.favorite = true;
               if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
+              apply();
+          };
+
+          // success callback for remove from favorites
+          var removeFromFavoritesCallback = function(response){
+              $scope.cardSource.favorite = false;
+              if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
+              apply();
           };
 
           $scope.addToFavorite = function(){
-              return ajax.get(dataFactory.getFavorite($scope.typeProduct,$scope.cardSource.id),
-                {},
-                function(response){
-                  if(response.data.length === 0){
-                    ajax.create(dataFactory.addFavorite(),
-                    {
-                      "serviceId": $scope.cardSource.id,
-                      "accountId": 1
-                    }, 
-                    function(response){ $scope.cardSource.favorite = true},
-                    function(response){})
-                  }else{
-                    ajax.delete(dataFactory.deleteFavorite(response.data[0].id),
-                    {}, 
-                    function(response){ 
-                      $scope.cardSource.favorite = false;
-                      if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                      if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
-                    },
-                    function(response){})
-                  }
-                },
-                function(response){}
-              )
+            if(!$scope.cardSource.favorite){
+                // add to favorites
+                var requestData = { "accountId": 1 };
+                if($scope.cardSource.type == "service"){
+                    requestData.serviceId = $scope.cardSource.id;
+                }else if($scope.cardSource.type == "component"){
+                    requestData.componentId = $scope.cardSource.id;
+                }
+                ajax.create(dataFactory.addFavorite(), requestData, addToFavoriteCallback );
+            }else{
+                // remove from favorites
+                ajax.delete(dataFactory.deleteFavorite($scope.cardSource.favorite.id), {}, removeFromFavoritesCallback);
+            }
+          };
+
+          var apply = function(){
+              if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
           };
 
           $scope.addToFeatured = function(){
@@ -257,7 +254,39 @@ angular.module('dmc.component.productcard', [
         updateFavoriteInShowProductCtrl = null;
         $mdDialog.cancel();
     }
-})
+}).service('isFavorite', ['dataFactory','ajax', function(dataFactory,ajax) {
+
+    this.check = function(items) {
+        if (items && items.length > 0){
+            var services_id = [];
+            var components_id = [];
+            for (var i in items) {
+                if (items[i].type == 'service') {
+                    services_id.push(items[i].id);
+                } else if (items[i].type == 'component') {
+                    components_id.push(items[i].id);
+                }
+            }
+            ajax.get(dataFactory.getFavorites(), {
+                    accountId: 1,
+                    serviceId: services_id,
+                    componentId: components_id
+                }, function (response) {
+                    for (var i in items) {
+                        items[i].favorite = false;
+                        for (var j in response.data) {
+                            if ((response.data[j].serviceId && items[i].type == "service" && items[i].id == response.data[j].serviceId) ||
+                                (response.data[j].componentId && items[i].type == "component" && items[i].id == response.data[j].componentId)) {
+                                items[i].favorite = response.data[j];
+                                break;
+                            }
+                        }
+                    }
+                }
+            );
+        }
+    };
+}])
 .controller('ShareProductCtrl', function ($scope, $mdDialog){
     $scope.people = [
         { name: 'Janet Perkins', img: 'images/avatar-fpo.jpg', newMessage: true },

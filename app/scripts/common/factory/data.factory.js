@@ -173,9 +173,6 @@ angular.module('dmc.data',[])
             saveCompanyChanges : function(){
                 return baseServer+'/save_company_changes';
             },
-            followCompany : function(){
-                return baseServer+'/follow_company';
-            },
             addProductToFavorite: function() {
                 return baseServer + '/add_product_to_favorite';
             },
@@ -194,21 +191,6 @@ angular.module('dmc.data',[])
             updateFeaturesPosition: function(){
                 return baseServer+'/update_features_position';
             },
-            getFAQCategories: function(){
-                return baseServer+'/get_faq_categories';
-            },
-            getFAQCategory: function(id){
-                return baseServer+'/get_faq_category'+appendId(id);
-            },
-            getFAQArticle: function(id){
-                return baseServer+'/get_faq_article'+appendId(id);
-            },
-            getEvents: function(){
-                return baseServer+'/get_events';
-            },
-            getAnnouncements: function(){
-                return baseServer+'/get_announcements';
-            },
             addDiscussionLikeDislike: function(){
                 return baseServer+'/add_discussion_like_dislike';
             },
@@ -216,6 +198,30 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            followCompany : function(){
+                return localhost+'company_follows';
+            },
+            unfollowCompany : function(id){
+                return localhost+'company_follows/'+id;
+            },
+            getRelatedArticles: function(id){
+                return localhost+'faq_articles';
+            },
+            getFAQArticle: function(id){
+                return localhost+'faq_articles/'+id;
+            },
+            getFAQSubcategories: function(){
+                return localhost+'faq_subcategories';
+            },
+            getFAQCategories: function(){
+                return localhost+'faq_categories';
+            },
+            getEvents: function(){
+                return localhost+'events';
+            },
+            getAnnouncements: function(){
+                return localhost+'announcements';
+            },
             updateCompanyFeaturedPosition: function(id){
                 return localhost+'company_featured/'+id;
             },
@@ -385,14 +391,17 @@ angular.module('dmc.data',[])
             getService: function(){
                 return localhost+'services/';
             },
+            getFavorites: function(){
+                return localhost+'favorite_products';
+            },
             getFavoriteService: function(id){
                 return localhost+'account/'+id+'/favorite_products/';
             },
-            getFavorite: function(type, id){
-                return localhost+type+'/'+id+'/favorite_products/';
+            getFavorite: function(){
+                return localhost+'favorite_products';
             },
             addFavorite: function(){
-                return localhost+'favorite_products/';
+                return localhost+'favorite_products';
             },
             deleteFavorite: function(id){
                 return localhost+'favorite_products/'+id;

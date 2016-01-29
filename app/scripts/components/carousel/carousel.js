@@ -26,6 +26,7 @@ angular.module('dmc.component.carousel', [
 
       },
       controller: function($element,$scope,$timeout,Carousel,socketFactory,$animate){
+          $element.addClass($scope.nameCarousel);
           $scope.intervalCarousel = null;
           $animate.enabled(false);
           $scope.maxItems = (parseInt($scope.maxItems) <= 0 ? 10 : parseInt($scope.maxItems));
@@ -77,7 +78,7 @@ angular.module('dmc.component.carousel', [
           //});
 
           $scope.$watch(function(){
-              return $(".carousel-items slidecontainer").height();
+              return $('.'+$scope.nameCarousel+' .carousel-items slidecontainer').height();
           },function(newHeight){
               if(newHeight) {
                   $element.find(".ng-carousel").css("height", (newHeight + 65) + "px");

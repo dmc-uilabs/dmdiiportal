@@ -9,85 +9,86 @@ angular.module('dmc.faq')
         $scope.categories = {};
         $scope.selectedCategory = null;
         $scope.showAllCategories = showAllCategories;
-        $scope.limitCategories = ($scope.showAllCategories ? 0 : 2);
+        $scope.limitCategories = 2;
         $scope.totalCategories = 0;
         $scope.article = null;
         $scope.relatedArticles = [];
         $scope.searchModel = $stateParams.text;
 
-        $scope.getFAQCategories = function(){
-            ajax.on(dataFactory.getFAQCategories(), {
-                    categoryId : $scope.categoryId,
-                    limit : $scope.limitCategories,
-                    text : $scope.searchModel
-                }, function(data){
-                    if(!data.error){
-                        if(data.categoryId != $scope.categoryId){
-                            $scope.categoryId = data.categoryId;
-                            if(data.categoryId != null) {
-                                $scope.submit();
-                            }
-                        }else {
-                            $scope.categories = data.result;
-                            $scope.totalCategories = data.totalCategories;
-                            $scope.getFAQCategory();
-                        }
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    }else{
-                        toastModel.showToast("error", data.error);
-                    }
-                },function(data){
-                    toastModel.showToast("error", "Error. getFAQCategories() fail");
+        var apply = function(){
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+
+        // get total count categories
+        $scope.getTotalCategories = function(){
+            ajax.get(dataFactory.getFAQCategories(), {
+                    title_like : $scope.searchModel
+                }, function(response){
+                    $scope.totalCategories = response.data.length;
+                    apply();
                 }
             );
         };
 
-        $scope.getFAQCategory = function(){
-            if($scope.categoryId) {
-                ajax.on(dataFactory.getFAQCategory($scope.categoryId), {
-                        categoryId: $scope.categoryId,
-                        text: $scope.searchModel
-                    }, function (data) {
-                        if (!data.error) {
-                            if ($scope.categoryId != data.categoryId) {
-                                $scope.categoryId = data.categoryId;
-                                $scope.getFAQCategory();
-                            } else {
-                                $scope.selectedCategory = data.result;
-                            }
-                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                        } else {
-                            if(data.categoryId != null) {
-                                toastModel.showToast("error", data.error);
-                            }
-                        }
-                    }, function (data) {
-                        toastModel.showToast("error", "Error. getFAQCategory() fail");
-                    }
-                );
-            }
+        // get categories
+        $scope.getFAQCategories = function(){
+            var requestData = {};
+            if($scope.searchModel) requestData.title_like = $scope.searchModel;
+            if(!$scope.showAllCategories)  requestData._limit = $scope.limitCategories;
+            ajax.get(dataFactory.getFAQCategories(), requestData,
+                function(response){
+                    $scope.categories = response.data;
+                    $scope.getFAQSubcategories();
+                    apply();
+                }
+            );
         };
 
-        $scope.getArticle = function(){
-            ajax.on(dataFactory.getFAQArticle($scope.articleId), {
-                    articleId : $scope.articleId,
-                    text : $scope.searchModel
-                }, function(data){
-                    if(!data.error){
-                        $scope.article = data.result;
-                        $scope.relatedArticles = data.relatedArticles;
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    }else{
-                        toastModel.showToast("error", data.error);
+        // get all subcategories with articles for opened category
+        $scope.getFAQSubcategories = function(){
+            ajax.get(dataFactory.getFAQSubcategories(), {
+                    faq_categoryId : $scope.categoryId,
+                    _embed : "faq_articles"
+                }, function (response) {
+                    for(var c in $scope.categories) {
+                        if($scope.categories[c].id == $scope.categoryId) {
+                            $scope.selectedCategory = $scope.categories[c];
+                            break;
+                        }
                     }
-                },function(data){
-                    toastModel.showToast("error", "Error. getFAQCategory() fail");
+                    $scope.selectedCategory.faq_subcategories = response.data;
+                    apply();
+                }
+            );
+        };
+
+        // get article
+        $scope.getArticle = function(){
+            ajax.get(dataFactory.getFAQArticle($scope.articleId), {},
+                function(response){
+                    $scope.article = response.data;
+                    $scope.getRelatedArticles();
+                    apply();
+                }
+            );
+        };
+
+        // get related articles
+        $scope.getRelatedArticles = function(){
+            ajax.get(dataFactory.getRelatedArticles($scope.article.faq_subcategoryId), {
+                    faq_subcategoryId : $scope.article.faq_subcategoryId,
+                    id_ne : $scope.article.id
+                },
+                function(response){
+                    $scope.relatedArticles = response.data;
+                    apply();
                 }
             );
         };
 
         $scope.getFAQCategories();
-        if ($.isNumeric($scope.categoryId)) $scope.getFAQCategory();
+        $scope.getTotalCategories();
+
         if($scope.articleId > 0) $scope.getArticle();
 
         $scope.viewAll = function(){
