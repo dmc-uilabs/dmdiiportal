@@ -25,9 +25,9 @@ angular.module('dmc.component.carousel', [
       link: function(scope, element, attrs){
 
       },
-      controller: function($element,$scope,$timeout,Carousel,socketFactory){
+      controller: function($element,$scope,$timeout,Carousel,socketFactory,$animate){
           $scope.intervalCarousel = null;
-
+          $animate.enabled(false);
           $scope.maxItems = (parseInt($scope.maxItems) <= 0 ? 10 : parseInt($scope.maxItems));
           $scope.showItems = (parseInt($scope.showItems) <= 0 ? 2 : parseInt($scope.showItems));
           $scope.arrayItems = ($scope.carouselSource.length > $scope.maxItems ? $scope.carouselSource.slice(0, $scope.maxItems) : $scope.carouselSource);
