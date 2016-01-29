@@ -1,9 +1,9 @@
 <md-dialog class="compose-discussion" flex="90">
 	<div layout="column">
-		<md-input-container>
-			<label>Subject</label>
-			<input ng-model="subject">
-		</md-input-container>
+			<md-input-container>
+				<label>Subject</label>
+				<input ng-model="NewDiscussion.subject">
+			</md-input-container>
 		<div layout="row">
 			<div flex="70">
 				<h2>Message</h2>
@@ -12,9 +12,11 @@
 						<h3>WYSIWYG</h3>
 					</div>
 					<div class="message">
-						<md-input-container>
-							<textarea ng-model="message" columns="9" md-maxlength="3000"></textarea>
-						</md-input-container>
+						<md-content>
+							<md-input-container>
+								<textarea ng-model="NewDiscussion.message" columns="9" md-maxlength="3000"></textarea>
+							</md-input-container>
+						</md-content>
 					</div>
 				</div>
 			</div>
@@ -29,7 +31,7 @@
 						<md-button ng-disabled="!inputTag" class="md-raised md-primary">Add</md-button>
 					</form>
 					<div layout="row" class="tabs-content" layout-wrap>
-						<md-chips ng-repeat="tag in tags track by $index">
+						<md-chips ng-repeat="tag in NewDiscussion.tags track by $index">
 							<md-chip class="tags-chip">
 								{{tag}}
 								<md-button aria-label="close" ng-click="deleteTag($index)" class="md-icon-button">
@@ -46,7 +48,7 @@
 			<md-button ng-click="cancel()">
 				Cancel
 			</md-button>
-			<md-button class="md-raised md-primary" ng-click="save(message, subject)" ng-disabled="!subject || !message || tags.length == 0">
+			<md-button class="md-raised md-primary" ng-click="save(message, subject)" ng-disabled="!NewDiscussion.subject || !NewDiscussion.message || NewDiscussion.tags.length == 0">
 				Post
 			</md-button>
 		</div>

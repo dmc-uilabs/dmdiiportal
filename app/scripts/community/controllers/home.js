@@ -62,26 +62,41 @@ angular.module('dmc.community')
         "ComposeDiscussionController", [
             '$scope', 'ajax', 'dataFactory', '$mdDialog', "$mdToast", "toastModel",  
             function ($scope, ajax, dataFactory, $mdDialog, $mdToast, toastModel) {
-                $scope.tags=["Metal", "Dashboard", "Dashboard",
-                "Metal", "Dashboard", "Dashboard",
-                "Metal", "Dashboard", "Dashboard"
-                ]
-                $scope.message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+                
+                $scope.NewDiscussion = {
+                    subject: "",
+                    tags: [
+                        "Metal", 
+                        "Dashboard",
+                        "Dashboard",
+                        "Metal", 
+                        "Dashboard", 
+                        "Dashboard",
+                        "Metal", 
+                        "Dashboard", 
+                        "Dashboard"
+                    ],
+                    message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+                }
 
 
                 $scope.cancel = function(){
-                    $mdDialog.cancel();
+                    $scope.NewDiscussion = {
+                        subject: "",
+                        tags: [],
+                        message: ""
+                    }
                 }
 
                 $scope.addTag = function(inputTag){
                     if(!inputTag)return;
-                    $scope.tags.push(inputTag);
+                    $scope.NewDiscussion.tags.push(inputTag);
                     this.inputTag = null;
                 }
 
                 //remove tag
                 $scope.deleteTag = function(index){
-                    $scope.tags.splice(index,1);
+                    $scope.NewDiscussion.tags.splice(index,1);
                 }
 
                 $scope.save = function(message, subject){    
@@ -96,7 +111,7 @@ angular.module('dmc.community')
                         dataFactory.addDiscussion(),
                         {
                             "id": lastId,
-                            "title": subject,
+                            "title": $scope.NewDiscussion.subject,
                             "comments": { 
                                             "link": "/individual-discussion/" + lastId + "/individual-discussion-comment",
                                             "totalItems": 0

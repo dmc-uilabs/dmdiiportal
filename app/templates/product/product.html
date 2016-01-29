@@ -234,7 +234,7 @@
 					</md-tab>
 
 					<md-tab label="Included Services">
-						<md-content ng-if="!editFlag" class="md-padding">
+						<md-content class="md-padding">
 							<div layout layout-align="end end">
 								<a ng-click="ViewIncluded()" class="viewAll view-all-link">View all</a>
 							</div>
@@ -286,9 +286,48 @@
 					</md-tab>
 
 					<md-tab label="Authors">
-						<md-content layout="row">
+						<md-content ng-if="!editFlag" layout="row">
 							<div flex="25" class="padding-card" ng-repeat="item in [0,1,2,3]">
 								<dmc-members-card></dmc-members-card>
+							</div>
+						</md-content>
+
+						<md-content ng-if="editFlag" class="md-padding">
+							<md-autocomplete
+									md-no-cache="true"
+									md-selected-item="selectedItem"
+									md-search-text="searchText"
+									md-items="item in querySearch(searchText)"
+									md-selected-item-change="AddServices(item, searchText)"
+									md-item-text="item.title"
+									md-min-length="0"
+									placeholder="Search for services">
+								<md-item-template>
+									<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.title}}</span>
+								</md-item-template>
+								<md-not-found>
+									No matches found for "{{searchText}}".
+								</md-not-found>
+							</md-autocomplete>
+							
+							<div layout="row" class="tabs-content" layout-wrap>
+								<div flex="25" ng-repeat="oneProdut in products track by $index" class="included">
+
+									<div class="product-card" layout="column">
+										<md-toolbar>
+											<div class="md-toolbar-tools" layout layout-align="end center">
+												<md-button ng-click="deleteIncluded($index)" aria-label="close" class="md-icon-button">
+													<ng-md-icon icon="close" style="fill: grey;" size="25"></ng-md-icon>
+												</md-button>
+											</div>
+										</md-toolbar>
+										<div class="product-card__header" layout="column">
+											<h3>{{oneProdut.title}}</h3>
+											<span class="user-name">{{oneProdut.owner}}</span>
+										</div>
+									</div>
+
+								</div>
 							</div>
 						</md-content>
 					</md-tab>

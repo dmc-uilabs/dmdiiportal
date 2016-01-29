@@ -1,10 +1,14 @@
 .notifications{
 	padding: 8px;
+	md-content{
+		background-color: transparent;
+	}
 	h2{
 		margin: 16px 0 24px;
 	}
 	.section{
-		border: 1px solid #999;
+		//border: 1px solid #999;
+		background-color: #fff;
 		h2{
 			font-size: 14px;
 			margin: 0;
@@ -54,7 +58,8 @@
 			margin-right: 16px;
 		}
 		.first{
-			border: 1px solid #999;
+			background-color: #fff;
+			//border: 1px solid #999;
 			padding: 4px 36px;
 			height: 65px;
 			line-height: 65px;
@@ -68,7 +73,8 @@
 			}
 		}
 		md-list{
-			border: 1px solid #999;
+			//border: 1px solid #999;
+			background-color: #fff;
 			padding: 0;
 			md-list-item{
 				div{
