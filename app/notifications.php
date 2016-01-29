@@ -84,6 +84,7 @@
 <script src="scripts/common/footer/footer.js"></script>
 <script src="scripts/common/factory/ajax.factory.js"></script>
 <script src="scripts/common/factory/data.factory.js"></script>
+<script src="scripts/common/models/toast-model.js"></script>
 <script src="scripts/notifications/notifications.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">

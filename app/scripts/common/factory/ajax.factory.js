@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dmc.ajax',[
-
+    'dmc.model.toast-model'
 ]).factory('ajax', ["$http","toastModel", function ($http,toastModel) {
         var errorCallback = function(response){
             toastModel.showToast("error", response.statusText);
