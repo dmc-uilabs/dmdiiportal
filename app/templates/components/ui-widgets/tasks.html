@@ -16,6 +16,7 @@
                 <tr>
                     <th class="title" ng-show="columns.indexOf('title') > -1" name="Task" order-by="name"></th>
                     <th ng-show="columns.indexOf('project') > -1" name="Project" order-by="project"></th>
+                    <th ng-show="columns.indexOf('assignee') > -1" name="Assigned To" order-by="assignee"></th>
                     <th ng-show="columns.indexOf('dueDate') > -1" name="Due Date" order-by="dueDate"></th>
                     <th ng-show="columns.indexOf('priority') > -1" name="Priority" order-by="priority"></th>
                 </tr>
@@ -24,6 +25,9 @@
                 <tr md-auto-select ng-repeat="item in tasks">
                     <td class="title" ng-show="columns.indexOf('title') > -1">
                         <a href="/" class="link-button">{{item.title}}</a>
+                    </td>
+                    <td class="assignee" ng-show="columns.indexOf('assignee') > -1">
+                        <a href="/profile.php#/1" class="link-button">{{item.assignee}}</a>
                     </td>
                     <td class="project" ng-show="columns.indexOf('project') > -1">
                         <a href="/project.php#/{{item.project.id}}/home" class="link-button">{{item.project.title}}</a>
