@@ -1,7 +1,7 @@
 <div ng-if="!not_found" class="company-profile">
 	<md-content class="company-profile-padding">
 		<div layout="row">
-			<div flex="20" layout="column">
+			<div flex="20">
 				<img class="company-profile-image" ng-src="{{company.featureImage.large}}">
 			</div>
 			<div flex="80" layout="column" class="company-profile-header">
@@ -199,10 +199,10 @@
 			<md-tab label="History">
 				<md-content class="md-padding" layout="row">
 					<md-list flex class="company-profile-list">
-						<md-subheader class="md-no-sticky">
-							Public
+						<div class="md-no-sticky" layout="row" layout-align="space-between center">
+							<h2>Public</h2>
 							<a class="viewAll">View all</a>
-						</md-subheader>
+						</div>
 						<md-list-item>
 							<ng-md-icon icon="done_all" style="fill: grey;" size="25"></ng-md-icon>
 							<h2>First Name completed <a href="">The First Project</a></h2>
@@ -226,10 +226,10 @@
 					<span class="vertikal-divider"></span>
 
 					<md-list flex class="company-profile-list">
-						<md-subheader class="md-no-sticky">
-							Mutual
+						<div class="md-no-sticky" layout="row" layout-align="space-between center">
+							<h2>Mutual</h2>
 							<a class="viewAll">View all</a>
-						</md-subheader>
+						</div>
 						<md-list-item>
 							<ng-md-icon icon="person" style="fill: grey;" size="25"></ng-md-icon>
 							<h2>You added First Name as a contact</h2>
@@ -305,6 +305,23 @@
 					</div>
 
 				</div>
+			</md-tab>
+
+			<md-tab label="Membership">
+				<md-content class="tab-projects" layout="row">
+					<div layout="column" flex="33" class="padding-right8">
+						<h2>Category & Tier</h2>
+						<p>{{company.categoryTier}}</p>
+					</div>
+					<div layout="column" flex="33" class="padding-left8">
+						<h2>Data Joined DMDll</h2>
+						<p>{{company.dateJoined}}</p>
+					</div>
+					<div layout="column" flex="33" class="padding-left8">
+						<h2>Reason for Joinig DMDll</h2>
+						<p>{{company.reasonJoining}}</p>
+					</div>
+				</md-content>
 			</md-tab>
 		</md-tabs>
 

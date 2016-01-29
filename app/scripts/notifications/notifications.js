@@ -525,7 +525,12 @@ angular.module('dmc.notifications', [
 			},
 		];
 
+		$scope.reset = function() {
+			$scope.filterFlag = false;
+		}
+
 		$scope.filtered = function(time, type){
+			$scope.typeNotifications = type
 			$scope.filterFlag = true;
 			$scope.filterBy = function(val){
 				var day, month, nowDay=19, nowMonth=1;
@@ -1049,7 +1054,12 @@ angular.module('dmc.notifications', [
 			},
 		];
 
+		$scope.reset = function() {
+			$scope.filterFlag = false;
+		}
+		
 		$scope.filtered = function(time, type){
+			$scope.typeNotifications = type
 			$scope.filterFlag = true;
 			$scope.filterBy = function(val){
 				var day, month, nowDay=19, nowMonth=1;

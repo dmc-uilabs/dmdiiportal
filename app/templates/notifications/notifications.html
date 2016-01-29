@@ -21,7 +21,7 @@
 		</div>
 	</div>
 
-	<div class="block" ng-if="!user">
+	<div class="block" ng-if="!user && !filterFlag">
 		<h2>Evaluate Project Submissions</h2>
 		<div layout="row" layout-align="center center" class="first">
 			<div flex="15">
@@ -32,7 +32,7 @@
 		</div>
 	</div>
 
-	<div class="block" ng-if="user">
+	<div class="block" ng-if="user && !filterFlag">
 		<h2>Project invitations</h2>
 		<div layout="row" layout-align="center center" class="first">
 			<div flex="15">
@@ -86,8 +86,11 @@
 			</md-list-item>
 		</md-list>
 	</div>
-
 	<div class="block" ng-if="filterFlag">
+		<div layout="row" layout-align="space-between center">
+			<h2>{{typeNotifications}}</h2>
+			<md-button class="md-raised dmc-button" ng-click="reset()">View All</md-button>
+		</div>
 		<md-list>
 			<md-list-item ng-repeat="item in notificationsData | filter: filterBy">
 				<div flex="100" layout="row" layout-align="center center" >

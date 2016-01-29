@@ -4,6 +4,8 @@ angular.module('dmc.company-profile')
     .controller('CompanyProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location, companyData, companyReview, companyProfileModel) {
 
         $scope.company = companyData;
+        $scope.company.dateJoined = moment( $scope.company.dateJoined,"YYYY-DD-MM").format("MM/DD/YYYY");
+        $scope.company.dateJoined = "Tier 4 Academic / Nonprofit";
         if (companyReview) {
             $scope.company.reviews = companyReview;
             $scope.company.rating = companyReview.map(function(value, index){

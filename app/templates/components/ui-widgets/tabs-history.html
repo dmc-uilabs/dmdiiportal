@@ -28,7 +28,7 @@
 	<span class="vertikal-divider"></span>
 
 	<md-list flex class="history-list" ng-if="filters.block != 'Marketplace'">
-		<div class="header" layout="row" layout-align="start end">
+		<div class="header" layout="row" layout-align="space-between center">
 			<h2>{{data.rightColumn.title}}</h2>
 			<a class="link margin-left16" ng-href="{{data.rightColumn.viewAllLink}}">View all</a>
 		</div>
@@ -41,7 +41,7 @@
 	</md-list>
 
 	<md-list flex class="history-list" ng-if="filters.block == 'Marketplace'">
-		<div class="header" layout="row" layout-align="start end">
+		<div class="header" layout="row" layout-align="space-between center">
 			<h2>{{filters.block}}</h2>
 			<a class="link margin-left16" ng-href="{{data.leftColumn.viewAllLink}}">View all</a>
 		</div>
