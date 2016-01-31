@@ -11,15 +11,9 @@ angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 
      url: '/',
      templateUrl: 'templates/index/index.html',
      controller: 'HomeCtr',
-     resolve: {
-        userData: ['DMCUserModel', function(DMCUserModel){
-            return DMCUserModel.getUserData();
-        }]
-     }
     });
   $urlRouterProvider.otherwise('/');
-}).controller('HomeCtr',['$scope', 'userData', function($scope, userData){
-    $scope.userData = userData;
+}).controller('HomeCtr',['$scope', function($scope){
     $scope.pages = [
         {
             name : "My Dashboard",
