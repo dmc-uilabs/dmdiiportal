@@ -1,0 +1,10 @@
+<div layout="row" layout-align="center center" layout-padding>
+  <div class="content-column" layout="column" ng-repeat="p in pages">
+    <a href="{{p.href}}" class="home-feature">
+      <img src="images/{{p.img}}" class="md-card-image" alt="{{p.name}}">
+       <h2>{{p.name}}</h2>
+       <p>{{p.text}}</p>
+       <md-button class="md-raised md-primary">View</md-button>
+    </a>
+  </div>
+</div>

@@ -121,6 +121,7 @@
     <script src="scripts/project/controllers/run-service.js"></script>
     <script src="scripts/project/controllers/services-detail.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
+    <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/services.model.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">

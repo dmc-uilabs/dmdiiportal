@@ -405,6 +405,9 @@ angular.module('dmc.data',[])
             },
             deleteFavorite: function(id){
                 return localhost+'favorite_products/'+id;
+            },
+            getUserUrl: function(){
+                return localhost+'user';
             }
         };
     }

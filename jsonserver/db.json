@@ -1,71 +1,42 @@
 {
-  "profile": {
-    "id": 1,
+  "user": {
     "displayName": "Thomas Smith",
-    "company": "General Electric (GE) Global Research",
-    "jobTitle": "Engineering Manager",
-    "phone": "",
-    "email": "",
-    "location": "Berkeley, California",
-    "image": "/uploads/profile/1/20151222084711000000.jpg",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
-    "skills": [
-      "skill1",
-      "skill2",
-      "skill3",
-      "skill4",
-      "skill5",
-      "skill6",
-      "skill7",
-      "skill8",
-      "skill9",
-      "skill10",
-      "skill11",
-      "skill12"
-    ],
-    "profile_reviews": "/profiles/1/profile_reviews"
-  },
-  "account": {
-    "id": 3,
-    "profile": "/profiles/1",
-    "company": "/companies/1",
-    "servers": "/accounts/3/account_servers",
-    "firstName": "Thomas",
-    "lastName": "Smith",
-    "displayName": "Thomas Smith",
-    "email": "thomas.smith@gm.com",
-    "deactivated": false,
-    "location": "",
-    "timezone": "",
-    "privacy": {
-      "public": {
-        "email": {
-          "enable": "true",
-          "value": "thomas.smith@gm.com"
-        },
-        "phone": {
-          "enable": "true",
-          "value": "1234567895"
-        },
-        "location": {
-          "enable": "false",
-          "value": "USA"
+    "accountId": 1,
+    "profileId": 1,
+    "companyId": 1,
+    "role": 1,
+    "notifications": {
+      "total": 2,
+      "items": [
+        {
+          "title": "Commented on your discussion",
+          "link": "/project.php#/2/run-service/3"
         }
-      },
-      "private": {
-        "email": {
-          "enable": "true",
-          "value": "thomas.smith@gm.com"
+      ]
+    },
+    "runningServices": {
+      "total": 2,
+      "items": [
+        {
+          "title": "Capacitor Bank For Ldr Mining Co",
+          "serviceId": 3,
+          "projectId": 2
         },
-        "phone": {
-          "enable": "false",
-          "value": "7896655664"
-        },
-        "location": {
-          "enable": "true",
-          "value": ""
+        {
+          "title": "Incoming Compartment For Ldr Mining",
+          "serviceId": 1,
+          "projectId": 4
         }
-      }
+      ]
+    },
+    "messages": {
+      "total": 1,
+      "items": [
+        {
+          "title": "Patt has invited you to a challenge",
+          "link": "/project.php#/preview/5"
+        }
+      ]
     }
   },
   "companies": [
@@ -323,21 +294,15 @@
   "accounts": [
     {
       "id": 1,
-      "firstName": "Denis",
-      "lastName": "Sobko",
-      "displayName": "Denis Sobko",
-      "email": "denis.sobko@gmail.com",
-      "salutation": 3,
-      "suffix": 1,
+      "companyId": 1,
+      "profileId": 1,
+      "firstName": "Thomas",
+      "lastName": "Smith",
+      "displayName": "Thomas Smith",
+      "email": "thomas.smith@ge.com",
       "deactivated": false,
       "location": "",
       "timezone": "",
-      "featureImage": {
-        "thumbnail": "/uploads/account-profile/1/20151224072737000000.jpg",
-        "large": "/uploads/account-profile/1/20151224072737000000.jpg"
-      },
-      "jobTitle": "Job Title",
-      "description": "My description",
       "privacy": {
         "public": {
           "email": {
@@ -373,19 +338,11 @@
       "id": 2,
       "firstName": "Bill",
       "lastName": "Gates",
-      "displayName": null,
+      "displayName": "Bill",
       "email": "email2@gmail.com",
-      "salutation": null,
-      "suffix": null,
       "deactivated": false,
       "location": null,
       "timezone": null,
-      "featureImage": {
-        "thumbnail": "/uploads/account-profile/1/20151214141255000000.png",
-        "large": "/uploads/account-profile/1/20151214141255000000.png"
-      },
-      "jobTitle": null,
-      "description": null,
       "privacy": {
         "public": {
           "email": {
@@ -424,13 +381,6 @@
       "accountId": 1,
       "name": "Server 2",
       "ip": "123.0.0.0",
-      "status": "offline"
-    },
-    {
-      "id": 3,
-      "accountId": 1,
-      "name": "New Server",
-      "ip": "10.10.10.10",
       "status": "offline"
     },
     {

@@ -129,6 +129,7 @@
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
+    <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/my_projects/my_projects.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">

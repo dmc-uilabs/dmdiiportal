@@ -16,8 +16,7 @@ angular.module('dmc.model.account', [
 
         // update account
         this.update = function(data){
-            var params = ['displayName', 'firstName', 'lastName', 'email' ,'salutation',
-                'suffix', 'location', 'timezone' , 'featureImage', 'jobTitle', 'description', 'privacy'];
+            var params = ['displayName', 'firstName', 'lastName', 'email' , 'location', 'timezone', 'jobTitle', 'description', 'privacy'];
             var updatedParams = {};
             for(var i=0; i<params.length; i++) updatedParams[params[i]] = data[params[i]];
             ajax.update(dataFactory.updateAccount(data.id),updatedParams,

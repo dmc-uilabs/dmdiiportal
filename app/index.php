@@ -28,23 +28,15 @@
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app="dmc.home" ng-controller="HomeCtr">
+  <body ng-app="dmc.home">
     <!--[if lt IE 10]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Top Header -->
     <div dmc-top-header active-page="'index'"></div>
-
     <div class="container index-container" layout="row" layout-align="center center" layout-padding>
-      <div class="content-column" layout="column" ng-repeat="p in pages">
-        <a href="{{p.href}}" class="home-feature">
-          <img src="images/{{p.img}}" class="md-card-image" alt="{{p.name}}">
-           <h2>{{p.name}}</h2>
-           <p>{{p.text}}</p>
-           <md-button class="md-raised md-primary">View</md-button>
-        </a>
-      </div>
+      <ui-view></ui-view>
     </div>
 
     <!-- Footer -->
@@ -94,6 +86,9 @@
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
+    <script src="scripts/common/factory/ajax.factory.js"></script>
+    <script src="scripts/common/factory/data.factory.js"></script>
+    <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/home/home.js"></script>
     <!-- endbuild -->
 

@@ -19,14 +19,8 @@
           <span class="count-message" ng-show="service_alert > 0">{{service_alert}}</span>
         </md-button>
         <md-menu-content class="header-menu-content">
-          <md-menu-item>
-            <md-button>Service 1</md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button>Service 2</md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button>Service 3</md-button>
+          <md-menu-item ng-repeat="item in runningServicesList">
+            <md-button ng-href='/project.php#/{{item.projectId}}/run-service/{{item.serviceId}}'>{{item.title}}</md-button>
           </md-menu-item>
           <md-menu-item>
             <md-button>See All</md-button>
@@ -39,17 +33,11 @@
              aria-label="Notifications"
              ng-click="$mdOpenMenu($event)">
           <ng-md-icon icon="notifications" size="25"></ng-md-icon>
-          <span class="count-message" ng-show="notification > 0">{{notification}}</span>
+          <span class="count-message" ng-show="notification_alert > 0">{{notification_alert}}</span>
         </md-button>
         <md-menu-content class="header-menu-content">
-          <md-menu-item>
-            <md-button>Notification 1</md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button>Notification 2</md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button>Notification 3</md-button>
+          <md-menu-item ng-repeat="item in notificationsList">
+            <md-button ng-href='{{item.link}}'>{{item.title}}</md-button>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
@@ -59,11 +47,11 @@
              aria-label="Messages"
              ng-click="$mdOpenMenu($event)">
           <ng-md-icon icon="email" size="25"></ng-md-icon>
-          <span class="count-message" ng-show="message > 0">{{message}}</span>
+          <span class="count-message" ng-show="message_alert > 0">{{message_alert}}</span>
         </md-button>
         <md-menu-content class="message-container header-menu-content">
-          <md-menu-item>
-            <md-button href="/project.php#/preview/5">Pat has invited you to a challenge</md-button>
+          <md-menu-item ng-repeat="item in messagesList">
+            <md-button ng-href='{{item.link}}'>{{item.title}}</md-button>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
@@ -82,10 +70,10 @@
             <md-button ng-href='https://apps.cirrusidentity.com/console/ds/index?entityID=https://ben-web.opendmc.org/shibboleth&amp;return=https://ben-web.opendmc.org/Shibboleth.sso/Login%3Ftarget%3Dhttps%3A%2F%2Fben-web.opendmc.org'>Login</md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-href='account.php'>My Account</md-button>
+            <md-button ng-href='/account.php#/{{userAccountId}}/basics'>My Account</md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-href='profile.php'>My Profile</md-button>
+            <md-button ng-href='/profile.php#/{{userProfileId}}'>My Profile</md-button>
           </md-menu-item>
           <md-menu-item>
             <md-button href="my-projects.php">My Projects</md-button>
@@ -121,7 +109,7 @@
             <md-button href="marketplace.php">Home</md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button href="company.php">My Storefront</md-button>
+            <md-button href="/company.php#/{{userCompanyId}}/storefront?product=services">My Storefront</md-button>
           </md-menu-item>
           <md-menu-item>
             <md-button href="#">Favorites</md-button>

@@ -98,7 +98,7 @@
     <script src="scripts/common/models/file-upload.js"></script>
     <script src="scripts/common/models/file-model.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
-
+    <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/faq/faq.js"></script>
     <script src="scripts/faq/controllers/general.js"></script>
     <!-- endbuild -->
