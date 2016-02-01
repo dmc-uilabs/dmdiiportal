@@ -260,6 +260,7 @@ angular.module('dmc.component.productcard', [
         if (items && items.length > 0){
             var services_id = [];
             var components_id = [];
+
             for (var i in items) {
                 if (items[i].type == 'service') {
                     services_id.push(items[i].id);
@@ -267,23 +268,28 @@ angular.module('dmc.component.productcard', [
                     components_id.push(items[i].id);
                 }
             }
-            ajax.get(dataFactory.getFavorites(), {
-                    accountId: 1,
-                    serviceId: services_id,
-                    componentId: components_id
-                }, function (response) {
-                    for (var i in items) {
-                        items[i].favorite = false;
-                        for (var j in response.data) {
-                            if ((response.data[j].serviceId && items[i].type == "service" && items[i].id == response.data[j].serviceId) ||
-                                (response.data[j].componentId && items[i].type == "component" && items[i].id == response.data[j].componentId)) {
-                                items[i].favorite = response.data[j];
-                                break;
-                            }
+
+            var check = function(data){
+                for (var i in items) {
+                    items[i].favorite = false;
+                    for (var j in data) {
+                        if ((data[j].serviceId && items[i].type == "service" && items[i].id == data[j].serviceId) ||
+                            (data[j].componentId && items[i].type == "component" && items[i].id == data[j].componentId)) {
+                            items[i].favorite = data[j];
+                            break;
                         }
                     }
                 }
-            );
+            };
+
+            var callback = function (response) {
+                check(response.data);
+            };
+
+            // services
+            ajax.get(dataFactory.getFavorites(), { accountId: 1, serviceId: services_id }, callback );
+            // components
+            ajax.get(dataFactory.getFavorites(), { accountId: 1, componentId: components_id }, callback );
         }
     };
 }])

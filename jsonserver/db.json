@@ -450,59 +450,49 @@
   ],
   "favorite_products": [
     {
-      "id": 13,
+      "accountId": 1,
       "serviceId": 1,
-      "accountId": 1
-    },
-    {
-      "id": 15,
-      "serviceId": 1,
-      "accountId": 1
-    },
-    {
-      "serviceId": 18,
-      "accountId": 1,
-      "id": 16
-    },
-    {
-      "serviceId": 3,
-      "accountId": 1,
-      "id": 17
-    },
-    {
-      "serviceId": 2,
-      "accountId": 1,
-      "id": 18
-    },
-    {
-      "accountId": 1,
-      "serviceId": 28,
-      "id": 22
-    },
-    {
-      "accountId": 1,
-      "serviceId": 27,
-      "id": 23
-    },
-    {
-      "accountId": 1,
-      "componentId": 2,
-      "id": 24
-    },
-    {
-      "accountId": 1,
-      "componentId": 2,
-      "id": 26
-    },
-    {
-      "accountId": 1,
-      "serviceId": 4,
-      "id": 27
+      "id": 1
     },
     {
       "accountId": 1,
       "serviceId": 5,
-      "id": 28
+      "id": 2
+    },
+    {
+      "accountId": 1,
+      "serviceId": 3,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "serviceId": 7,
+      "id": 4
+    },
+    {
+      "accountId": 1,
+      "serviceId": 8,
+      "id": 5
+    },
+    {
+      "accountId": 1,
+      "serviceId": 9,
+      "id": 6
+    },
+    {
+      "accountId": 1,
+      "serviceId": 27,
+      "id": 7
+    },
+    {
+      "accountId": 1,
+      "serviceId": 28,
+      "id": 8
+    },
+    {
+      "accountId": 1,
+      "serviceId": 41,
+      "id": 9
     }
   ],
   "projects": [

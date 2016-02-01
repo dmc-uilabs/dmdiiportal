@@ -57,7 +57,11 @@ angular.module('dmc.model.company', [
 
             var getUrl = function(product,type){
                 if(product) dataSearch.product = product;
-                if(type) dataSearch.type = type;
+                if(type){
+                    dataSearch.type = type;
+                }else{
+                    delete dataSearch.type;
+                }
                 return 'company.php#/'+dataSearch.companyId+'/'+searchPage+'?'+$.param(dataSearch);
             };
 

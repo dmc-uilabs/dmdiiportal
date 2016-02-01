@@ -276,6 +276,18 @@ angular.module('dmc.data',[])
                 }
             },
             // ---------------------------
+            getServices: function(){
+                return localhost+'services';
+            },
+            getComponents: function(){
+                return localhost+'components';
+            },
+            getPopularServices : function(){
+                return localhost+'services';
+            },
+            getNewServices : function(){
+                return localhost+'services';
+            },
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
             },
