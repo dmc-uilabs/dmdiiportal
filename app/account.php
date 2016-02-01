@@ -102,11 +102,12 @@
     <script src="scripts/account/controllers/profile.js"></script>
     <script src="scripts/account/controllers/servers.js"></script>
     <script src="scripts/common/models/phone-model.js"></script>
+    <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/by-parameter.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php
-          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
         ?>
         window.apiUrl = '';
     </script>

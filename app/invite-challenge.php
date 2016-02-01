@@ -93,11 +93,12 @@
     <script src="scripts/components/rfp-invite/rfp-invite.directive.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
+    <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/add_project/add_project.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php
-          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
         ?>
         window.apiUrl = '';
     </script>

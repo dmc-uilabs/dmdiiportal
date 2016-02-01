@@ -103,11 +103,12 @@
     <script src="scripts/community/controllers/home.js"></script>
     <script src="scripts/community/directives/discussions.js"></script>
     <script src="scripts/community/directives/dmc-announcements.js"></script>
+    <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/community/directives/dmc-events.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php
-          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
         ?>
         window.apiUrl = '';
     </script>

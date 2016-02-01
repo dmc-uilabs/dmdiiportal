@@ -62,10 +62,10 @@
                         <h2 class="title">{{selectedCategory.title}}</h2>
                     </div>
                     <div class="block-content subcategories-content" layout="row" layout-wrap>
-                        <div class="subcategory" ng-repeat="subcategory in selectedCategory.subcategories" flex="33" flex-sm="55">
+                        <div class="subcategory" ng-repeat="subcategory in selectedCategory.faq_subcategories" flex="33" flex-sm="55">
                             <md-list>
                                 <md-subheader>{{subcategory.title}}</md-subheader>
-                                <md-list-item ng-repeat="item in subcategory.items">
+                                <md-list-item ng-repeat="item in subcategory.faq_articles">
                                     <div class="md-list-item-text" layout="column">
                                         <a ng-href="{{'/faq.php#/article/'+selectedCategory.id+'/'+item.id+(searchModel ? '?text='+searchModel : '')}}">{{item.title}}</a>
                                     </div>
@@ -97,7 +97,7 @@
                     <md-list class="related-articles-list">
                         <md-list-item ng-repeat="item in relatedArticles">
                             <div class="md-list-item-text" layout="column">
-                                <a ng-href="{{'/faq.php#/article/'+item.categoryId+'/'+item.id+(searchModel ? '?text='+searchModel : '')}}">{{item.title}}</a>
+                                <a ng-href="{{'/faq.php#/article/'+categoryId+'/'+item.id+(searchModel ? '?text='+searchModel : '')}}">{{item.title}}</a>
                             </div>
                         </md-list-item>
                         <md-list-item ng-if="relatedArticles.length == 0">

@@ -2,9 +2,6 @@
 include __DIR__.'/http.php';
 include __DIR__.'/functions.php';
 include __DIR__.'/db.php';
-include __DIR__.'/faq.php';
-include __DIR__.'/events.php';
-include __DIR__.'/announcements.php';
 include __DIR__.'/individual-discussion.php';
 
 //use ElephantIO\Client,ElephantIO\Engine\SocketIO\Version1X;
@@ -88,10 +85,6 @@ return call_user_func(function () {
         echo remove_company_images($_POST);
     }else if(strpos($uri,'/remove_company_skills_images') !== false){
         echo remove_company_skills_images($_POST);
-	}else if(strpos($uri,'/save_company_changes') !== false){
-		echo save_company_changes($_GET);
-	}else if(strpos($uri,'/update_account') !== false){
-		echo update_account($_GET);
 	}else if(strpos($uri,'/profiles') !== false){
 	  echo get_profile($_GET);
 	}else if(strpos($uri,'/profile_reviews') !== false){
@@ -102,20 +95,8 @@ return call_user_func(function () {
 	  echo edit_profile($_POST);
 	}else if(strpos($uri,'/uprpic') !== false){
 	  echo upload_edit_profile_picture($_POST,$_FILES);
-	}else if(strpos($uri,'/follow_company') !== false){
-	  echo follow_company($_GET);
 	}else if(strpos($uri,'/add_product_to_favorite') !== false) {
 	  echo add_product_to_favorite($_GET);
-	}else if(strpos($uri,'/get_faq_categories') !== false){
-		echo get_faq_categories($_GET);
-	}else if(strpos($uri,'/get_faq_category') !== false){
-		echo get_faq_category($_GET);
-	}else if(strpos($uri,'/get_faq_article') !== false){
-		echo get_faq_article($_GET);
-	}else if(strpos($uri,'/get_events') !== false){
-		echo get_events($_GET);
-	}else if(strpos($uri,'/get_announcements') !== false){
-		echo get_announcements($_GET);
 	}else if(strpos($uri,'/add_discussion_like_dislike') !== false){
 		echo add_discussion_like_dislike($_POST);
 	}
@@ -273,40 +254,6 @@ function add_product_to_favorite($params){
 		return json_encode(array('error' => 'Data is wrong' ));
 	}
 }
-
-function follow_company($params){
-
-    if(isset($params['companyId'])) {
-        $company = json_decode(httpResponse(dbUrl().'/companies/' . $params['companyId'], null, null), true);
-        if($company != null and isset($company['id']) == true) {
-            $account_follows = json_decode(httpResponse(dbUrl().'/accounts/1/company_follows?companyId='.$company['id'], null, null), true);
-            $exist = (count($account_follows) > 0 ? $account_follows[0] : null);
-            if($exist != null){
-                $changed_item = json_decode(httpResponse(dbUrl().'/company_follows/' . $exist['id'], 'DELETE', null), true);
-                return json_encode(array('follow' => false));
-            }else{
-                $last = json_decode(httpResponse(dbUrl() . '/company_follows?_sort=id&_order=DESC&_limit=1', null, null), true);
-                $id = (count($last) > 0 ? $last[0]['id'] + 1 : 1);
-                $data = array(
-                    'id' => $id,
-                    'companyId' => $params['companyId'],
-                    'accountId' => 1
-                );
-                $add_follow = json_decode(httpResponse(dbUrl() . '/company_follows', 'POST', json_encode($data)), true);
-                return json_encode(array('follow' => true));
-            }
-        }else{
-            if($company == null || isset($company['id']) == false) {
-                return json_encode(array('error' => 'Company does not exist'));
-            }else{
-                return json_encode(array('error' => 'Account does not exist'));
-            }
-        }
-    }else{
-        return json_encode(array('error' => 'Data is wrong' ));
-    }
-}
-
 
 function add_to_project($params){
 	if(isset($params['type'])) {

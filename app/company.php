@@ -103,11 +103,12 @@
     <script src="scripts/company/company.js"></script>
     <script src="scripts/company/message-dialog.controller.js"></script>
     <script src="scripts/company/controllers/storefront.js"></script>
+    <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/company/controllers/edit.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php
-          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
         ?>
         window.apiUrl = '';
     </script>
