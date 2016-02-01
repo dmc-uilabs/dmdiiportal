@@ -40,7 +40,7 @@
       <md-toolbar>
         <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="space-between center">
             <h1 flex="33">My Projects</h1>
-            <md-button class="md-raised dmc-button"
+            <md-button class="link-button"
                        href="/invite-challenge.php">Add Project</md-button>
             <!-- fill up the space between left and right area -->
             <div laout="column" flex="33">
