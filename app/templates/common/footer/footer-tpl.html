@@ -1,21 +1,21 @@
 <div class="footer" layout-padding>
-    <div class="footer-menu" ng-if="type == 'home'">
+    <div class="footer-menu">
         <ul>
-            <li><md-button href="faq.php" md-no-ink>FAQ</md-button></li>
-            <li><md-button href="/" md-no-ink>Terms of Service</md-button></li>
-            <li><md-button href="/" md-no-ink>Help</md-button></li>
-            <li><md-button href="/" md-no-ink>Contact Us</md-button></li>
+            <li><md-button class="link-button" href="faq.php" md-no-ink>FAQ</md-button></li>
+            <li><md-button class="link-button" href="/" md-no-ink>Terms of Service</md-button></li>
+            <li><md-button class="link-button" href="/" md-no-ink>Help</md-button></li>
+            <li><md-button class="link-button" href="/" md-no-ink>Contact Us</md-button></li>
         </ul>
     </div>
-    <div class="copyright" ng-class="{'copyright-home' : type == 'home'}">
+    <div class="copyright copyright-home">
         <a href="company-profile.php">
             <img alt="Digitial Manufacturing and Design Innovation Institute" src="images/ui-labs-logo.svg"  style="max-width:20%">
         </a>
         <p>© 2015 Digital Manufacturing Commons</p>
     </div>
-    <div class="footer-links" ng-if="type != 'home'">
-        <md-button href="/feedback" md-no-ink>
-            <span>Feedback</span> <ng-md-icon icon="swap_horiz" style="fill: white;" size="16"></ng-md-icon>
-        </md-button>
-    </div>
+    <!--<div class="footer-links" ng-if="type != 'home'">-->
+        <!--<md-button href="/feedback" md-no-ink>-->
+            <!--<span>Feedback</span> <ng-md-icon icon="swap_horiz" style="fill: white;" size="16"></ng-md-icon>-->
+        <!--</md-button>-->
+    <!--</div>-->
 </div>
