@@ -270,6 +270,19 @@ angular.module('dmc.data',[])
                 }
             },
             // ---------------------------
+
+            /// profiles -----------------
+            profiles : function(id) {
+                var name = 'profiles';
+                return {
+                    get : localhost + name + '/' + id,
+                    update : localhost + name + '/' + id,
+                    reviews : localhost + name +'/' + id + '/profile_reviews',
+                    addReviews : localhost + 'profile_reviews'
+                }
+            },
+            // ---------------------------
+
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
             },

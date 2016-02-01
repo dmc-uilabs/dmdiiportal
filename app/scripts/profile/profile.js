@@ -1,537 +1,159 @@
 'use strict';
 
 angular.module('dmc.profile', [
-	'dmc.configs.ngmaterial',
-	'ngMdIcons',
-	'ngtimeago',
-	'ui.router',
-	'md.data.table',
-	'dmc.ajax',
-	'dmc.data',
-	'dmc.socket',
-	'dmc.widgets.stars',
-	'dmc.widgets.review',
-	'dmc.common.header',
-	'dmc.common.footer',
-  "dmc.location",
-	'dmc.model.toast-model',
-	'dmc.model.fileUpload',
-	'dmc.model.profile',
-	'flow'
+    'dmc.configs.ngmaterial',
+    'ngMdIcons',
+    'ngtimeago',
+    'ui.router',
+    'md.data.table',
+    'dmc.ajax',
+    'dmc.data',
+    'dmc.socket',
+    'dmc.widgets.stars',
+    'dmc.widgets.review',
+    'dmc.common.header',
+    'dmc.common.footer',
+    'dmc.location',
+    'dmc.model.toast-model',
+    'dmc.model.fileUpload',
+    'dmc.model.profile',
+    'flow'
 ])
-	.config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
-		$stateProvider.state('profile', {
-			url: '/:profileId',
-			templateUrl: 'templates/profile/profile.html',
-			controller: 'ProfileController',
-			resolve: {
-			profileData: ['DMCProfileModel', '$stateParams',
-				function(DMCProfileModel, $stateParams) {
-					return DMCProfileModel.getProfileModel($stateParams.profileId);
-				}],
-			profileReviewsData: ['DMCProfileModel', '$stateParams',
-				function(DMCProfileModel, $stateParams) {
-					return DMCProfileModel.getReviewModel($stateParams.profileId);
-				}]
-			}
-		});
-		$urlRouterProvider.otherwise('/1');
-	})
-
-	.controller('ProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location, profileData, profileReviewsData) {
-
-
-		$scope.profile = [];  //array product
-		$scope.number_of_comments = 0; // number of
-		$scope.LeaveFlag = false;  //flag for visibility form Leave A Review
-		$scope.submit_rating = 0;  //
-		$scope.limit_reviews = true;  //limit reviews
-		$scope.precentage_stars = [0,0,0,0,0]; //precentage stars
-		$scope.average_rating = 0;  //average rating$scope.products = [];   //included services
-		$scope.editFlag = false;  //flag edit page
-		$scope.UserLogin = "DMC Member";  //Login user for reviews
-		$scope.sortListModel = 0;  //model for drop down menu "sorting"
-		$scope.isChangingPicture = false;  //change profile photo
-		$scope.prevPicture = null;  //
-		$scope.file = '';  //file picture
-		$scope.showflag = false;
-		$scope.followFlag = false;
-		$scope.inviteToProject = false;
-		$scope.invate = false;
-		$scope.toProject = "";
-		$scope.selectSortingStar = 0;
-		// $scope.projects = null;
-
-		$scope.sortList = [
-			{
-				id: 0,
-				val: "date",
-				name: "Most recent"
-			},
-			{
-				id: 1,
-				val: "helpful",
-				name: "Most Helpful"
-			},
-			{
-				id: 2,
-				val: "highest",
-				name: "Highest to Lowest Rating"
-			},
-			{
-				id: 3,
-				val: "lowest",
-				name: "Lowest to Highest Rating"
-			},
-			{
-				id: 4,
-				val: "verified",
-				name: "Verified Users"
-			}
-		];
-
-//load data
-		//get profile
-
-
-		// ajax.on(
-		// 	dataFactory.getProfile($stateParams.profileId),
-		// 	{
-		// 		profileId: $stateParams.profileId
-		// 	},
-		// 	function(data){
-		// 		var data = dataFactory.get_result(data);
-		// 		$scope.profile = profileData.result;
-		// 		$scope.profile.reviews = profileReviewsData.result;
-		// 		$scope.profile.rating = profileReviewsData.result.map(function(value, index){
-		// 			return value.rating;
-		// 		});
-		// 		$scope.number_of_comments = $scope.profile.rating.length;
-		// 		if($scope.number_of_comments != 0) {
-		// 			calculate_rating();
-		// 		}
-		// 		$scope.profile.descriptionSmall = $scope.profile.description.slice(0, 1000) + '...';
-		// 		if($scope.profile.description.length >= $scope.profile.descriptionSmall.length){
-		// 			$scope.showflag = true;
-		// 		}
-		// 		$scope.SortingReviews($scope.sortList[0].val);
-		// 	},
-		// 	function(){
-		// 		alert("Ajax fail: getProduct");
-		// 	}
-		// );
-
- 		$(window).bind('beforeunload', function(){
-           
-                return "Are you sure you want to leave this page without saving?";
-            
-        });
-
-		var calculate_rating = function() {
-			$scope.precentage_stars = [0,0,0,0,0];
-			$scope.average_rating = 0;
-			for (var i in $scope.profile.rating) {
-				$scope.precentage_stars[$scope.profile.rating[i] - 1] += 100 / $scope.number_of_comments;
-				$scope.average_rating += $scope.profile.rating[i];
-			}
-			$scope.average_rating = ($scope.average_rating / $scope.number_of_comments).toFixed(1);
-
-			for (var i in $scope.precentage_stars) {
-				$scope.precentage_stars[i] = Math.round($scope.precentage_stars[i]);
-			}
-		};
-
-//review
-		//Show Leave A Review form
-		$scope.LeaveAReview = function(){
-			$scope.LeaveFlag = !$scope.LeaveFlag;
-		};
-
-		//cancel Review form
-		$scope.Cancel = function(){
-			$scope.LeaveFlag = false;
-		};
-
-		//Submit Leave A Review form
-		$scope.Submit= function(NewReview){
-			ajax.on(
-				dataFactory.addProfileReview(),
-				{
-					profileId: $scope.profile.id,
-					reviewId: 0,
-					name: "DMC Member",
-					status: true,
-					rating: $scope.submit_rating,
-					comment: NewReview.Comment
-				},
-				function(data){
-					$scope.SortingReviews('date');
-				},
-				function(){
-					alert("Ajax fail: getProductReview");
-				},
-				"POST"
-			);
-
-
-			$scope.number_of_comments++;
-			$scope.profile.rating.push($scope.submit_rating);
-			$scope.submit_rating = 0;
-			$scope.LeaveFlag = !$scope.LeaveFlag;
-			calculate_rating();
-		};
-
-		//selected dorp down menu "sorting"
-		$scope.selectItemDropDown = function(value){
-			if(value != 0) {
-					var item = $scope.sortList[value];
-					$scope.sortList.splice(value, 1);
-					$scope.sortList = $scope.sortList.sort(function(a,b){return a.id - b.id});
-					if ($scope.sortList.unshift(item)) this.sortListModel = 0;
-			}
-			$scope.SortingReviews($scope.sortList[0].val);
-		};
-
-		//sorting Reviews
-		$scope.SortingReviews = function(val){
-			var sort;
-			var order;
-			$scope.selectSortingStar = 0;
-			switch(val){
-				case "date":
-					sort = 'date';
-					order = 'DESC';
-					break
-				case "helpful":
-					sort = 'helpful';
-					order = 'DESC';
-					break
-				case "lowest":
-					sort = 'rating';
-					order = 'ASC';
-					break
-				case "highest":
-					sort = 'rating';
-					order = 'DESC';
-					break
-				case "verified":
-					sort = 'verified';
-					order = 'ASC';
-					break
-				case "1star":
-					sort = 'stars';
-					order = 1;
-					$scope.selectSortingStar = 1;
-					break
-				case "2star":
-					sort = 'stars';
-					order = 2;
-					$scope.selectSortingStar = 2;
-					break
-				case "3star":
-					sort = 'stars';
-					order = 3;
-					$scope.selectSortingStar = 3;
-					break
-				case "4star":
-					sort = 'stars';
-					order = 4;
-					$scope.selectSortingStar = 4;
-					break
-				case "5star":
-					sort = 'stars';
-					order = 5;
-					$scope.selectSortingStar = 5;
-					break
-			}
-
-			var params = {
-				profileId: $stateParams.profileId,
-				sort: sort,
-				order: order
-			};
-			if ($scope.limit_reviews){
-				params['limit'] = 2;
-			}
-
-			ajax.on(
-				dataFactory.getProfileReview($stateParams.profileId),
-				dataFactory.get_request_obj(params),
-				function(data){
-					var data = dataFactory.get_result(data);
-					$scope.profile.reviews = data.result;
-					if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-				},
-				function(){
-					alert("Ajax fail: getProfileReview");
-				}
-
-			);
-		};
-
-		//Selected rating
-		$scope.stars = function(val){
-			$scope.submit_rating = val;
-		};
-
-		//View All Review
-		$scope.ViewAllReview = function(){
-			$scope.limit_reviews = !$scope.limit_reviews;
-			$scope.SortingReviews($scope.sortList[0].val);
-		};
-
-//edit
-		//Edit profile
-		$scope.editPage = function () {
-			$scope.editFlag = true;
-            // auto focus for edit Display Name
-            $timeout(function() {
-                $("#editDisplayNameProfile").focus();
+    .config(function ($stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state('profile', {
+                url: '/:profileId',
+                templateUrl: 'templates/profile/profile.html',
+                controller: 'profileController',
+                resolve: {
+                    profileData: ['profileModel', '$stateParams', function (profileModel, $stateParams) {
+                        console.info("model");
+                        return profileModel.get_profile($stateParams.profileId);
+                    }]
+                }
+            })
+            .state('edit',{
+                url: '/:profileId/edit',
+                templateUrl: 'templates/profile/edit.html',
+                controller: 'profileEditController',
+                resolve: {
+                    profileData: ['profileModel', '$stateParams', function (profileModel, $stateParams) {
+                        return profileModel.get_profile($stateParams.profileId);
+                    }]
+                }
             });
-		}
+        $urlRouterProvider.otherwise('/1');
+    })
+    .service('profileModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel',
+                            function (ajax, dataFactory, $stateParams, toastModel) {
+        this.get_profile = function(id){
+            return ajax.get(dataFactory.profiles(id).get,
+                {
+                    _embed: ["profile_reviews"]
+                },
+                function(response){
+                    var profile = response.data;
+                    profile.rating = profile.profile_reviews.map(function(value, index){
+                        return value.rating;
+                    });
+                    profile.number_of_comments = profile.profile_reviews.length;
+                    
+                    if(profile.number_of_comments != 0) {
+                        profile.precentage_stars = [0, 0, 0, 0, 0];
+                        profile.average_rating = 0;
+                        for (var i in profile.rating) {
+                            profile.precentage_stars[profile.rating[i] - 1] += 100 / profile.number_of_comments;
+                            profile.average_rating += profile.rating[i];
+                        }
+                        profile.average_rating = (profile.average_rating / profile.number_of_comments).toFixed(1);
 
-		//add skill to profile
-		$scope.addSkill = function(inputSkill){
-			if(!inputSkill)return;
-			$scope.profile.skills.push(inputSkill);
-			this.inputSkill = null;
-		}
+                        for (var i in profile.precentage_stars) {
+                            profile.precentage_stars[i] = Math.round(profile.precentage_stars[i]);
+                        }
+                    }
+                    return profile;
+                },
+                function(response){
+                    toastModel.showToast("error", "Error." + response.statusText);
+                }
+            )
+        }
 
-		//remove skill
-		$scope.deleteSkill = function(index){
-			$scope.profile.skills.splice(index,1);
-		}
+        this.get_profile_reviews = function(id, params, callback){
+            return ajax.get(dataFactory.profiles(id).reviews,
+                params,
+                function(response){
+                    callback(response.data)
+                },
+                function(response){
+                    toastModel.showToast("error", "Error." + response.statusText);
+                }
+            )
+        }
 
-		//cancel edit profile
-		$scope.cancelEdit = function(){
-			$scope.editFlag = false;
-			$scope.isChangingPicture = false;
+        this.add_profile_reviews = function(id, params, callback){
+            ajax.get(dataFactory.profiles(id).addReviews, 
+                {
+                    "_limit" : 1,
+                    "_order" : "DESC",
+                    "_sort" : "id"
+                }, 
+                function(response){  
+                    var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1); 
+                    params["id"] = lastId;
+                    params["profileId"] = id;
+                    params["reply"] = false;
+                    params["reviewId"] = 0;
+                    params["status"] = true;
+                    params["date"] = moment().format('MM/DD/YYYY');
+                    params["userRatingReview"] = {
+                        "DMC Member": "none"
+                    };
+                    params["like"] = 0;
+                    params["dislike"] = 0;
 
-			//get profile
-			ajax.on(
-				dataFactory.getProfile($stateParams.profileId),
-				{
-					profileId: $stateParams.profileId
-				},
-				function(data){
-					var data = dataFactory.get_result(data);
-					$scope.profile = data.result;
-					$scope.number_of_comments = $scope.profile.rating.length;
-					if($scope.number_of_comments != 0) {
-						calculate_rating();
-					}
-					$scope.profile.descriptionSmall = $scope.profile.description.slice(0, 1000) + '...';
-					if($scope.profile.description.length >= $scope.profile.descriptionSmall.length){
-						$scope.showflag = true;
-					}
-					$scope.SortingReviews($scope.sortList[0].val);
-				},
-				function(){
-					alert("Ajax fail: getProduct");
-				}
-			);
-			toastModel.showToast("error", "Edit Profile Canceled");
-		}
+                    return ajax.create(dataFactory.profiles(id).addReviews,
+                        params,
+                        function(response){
+                            toastModel.showToast("success", "Review added");
+                            if(callback) callback(response.data)
+                        },
+                        function(response){
+                            toastModel.showToast("error", "Error." + response.statusText);
+                        }
+                    )
+                },
+                function(response){
+                    toastModel.showToast("error", "Error." + response.statusText);
+                }
+            )  
+        }
 
-		//save edit profile
-		$scope.saveEdit = function(){
-			ajax.on(
-				dataFactory.editProfile(),
-				{
-					profileId: $scope.profile.id,
-					displayName: $scope.profile.displayName,
-					jobTitle: $scope.profile.jobTitle,
-					location: $scope.profile.location,
-					skills: $scope.profile.skills,
-					description: $scope.profile.description
-				},
-				function(data){
-				},
-				function(){
-					console.error("Ajax fail! editProfile()");
-				},
-				"POST"
-			);
-			if($scope.file != ''){
-				fileUpload.uploadFileToUrl($scope.file.files[0].file,{id : $scope.profile.id},'profile',callbackUploadPicture);
-			}
-			$scope.isChangingPicture = false;
-			$scope.editFlag = false;
-		}
+        this.edit_profile = function(id, params, callback){
+            ajax.get(dataFactory.profiles(id).get,
+                {},
+                function(response){
+                    console.info(response.data);
+                    var profile = response.data;
+                    profile['description'] = params['description'];
+                    profile['displayName'] = params['displayName'];
+                    profile['jobTitle'] = params['jobTitle'];
+                    profile['skills'] = params['skills'];
+                    profile['location'] = params['location'];
 
-//upload profile photo
-		//button "Change photo"
-		$scope.changePicture = function(){
-			$scope.isChangingPicture = true;
-		};
-
-        $scope.removePicture = function(flow){
-            flow.files = [];
-        };
-
-		//cancel Change photo
-		$scope.cancelChangePicture = function(flow){
-			flow.files = [];
-			$scope.isChangingPicture = false;
-		};
-
-		//success upload photo
-		var callbackUploadPicture = function(data){
-			$scope.profile.image = data.file.name;
-		};
-
-		//Drag & Drop enter
-		$scope.pictureDragEnter = function(flow){
-			$scope.prevPicture = flow.files[0];
-			flow.files = [];
-		};
-
-		//Drag & Drop leave
-		$scope.pictureDragLeave = function(flow){
-			if(flow.files.length == 0 && $scope.prevPicture != null) {
-				flow.files = [$scope.prevPicture];
-				$scope.prevPicture = null;
-			}
-		};
-
-		//file added
-		$scope.addedNewFile = function(file,event,flow){
-			flow.files.shift();
-			$scope.file = flow;
-		};
-
-///
-		$scope.goToReview = function(){
-			console.info("go");
-			$location.hash('review');
-			$anchorScroll();
-		}
-
-		$scope.showMore = function(){
-			$scope.showflag = false;
-		}
-
-	$scope.follow = function(){
-		$scope.followFlag = !$scope.followFlag;
-	}
-
-
-$scope.searchText="";
-	$scope.btnInviteToProject = function(){
-		$scope.inviteToProject = true;
-	}
-
-	$scope.btnAddToProject = function(title){
-		console.info("add", title)
-		$scope.toProject = title;
-		$scope.invate = true;
-		$scope.inviteToProject = false;
-	}
-
-	$scope.btnCanselToProject = function(){
-		$scope.inviteToProject = false;
-	}
-
-	$scope.btnRemoveOfProject = function(){
-		$scope.toProject = "";
-		$scope.invate = false;
-		$scope.inviteToProject = false;
-	}
-
-		$scope.querySearch = function(query) {
-			console.info("selectedItemChange");
-			var results = query ? $scope.states.filter( createFilterFor(query) ) : $scope.states,
-				deferred;
-			if ($scope.simulateQuery) {
-				deferred = $q.defer();
-				$timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-				return deferred.promise;
-			} else {
-				return results;
-			}
-		}
-		$scope.searchTextChange = function(text) {
-			if(text.trim().length == 0){
-				//$scope.user.timezone = null;
-			}
-		}
-		$scope.selectedItemChange = function(item) {
-			
-		}
-		/**
-		 * Create filter function for a query string
-		 */
-		function createFilterFor(query) {
-			var lowercaseQuery = angular.lowercase(query);
-			return function filterFn(state) {
-				return (state.value.indexOf(lowercaseQuery) != -1);
-			};
-		}
-
-$scope.searchText="";
-		var callback = function(success,data){
-			if(success) {
-				$scope.profile.location = data.city + ", " + data.region;
-				$scope.searchText = data.timezone;
-			}
-		};
-
-		$scope.getLocation = function(){
-			location.get(callback);
-		};
-
-  $scope.zones = [];
-	function loadAll() {
-		if($scope.zones.length == 0) {
-			var zones = moment.tz.names();
-			for (var i = 0; i < zones.length; i++) {
-				var zone = moment.tz.zone(zones[i]);
-				if (Date.UTC(2012, 1, 1)) {
-					var time = Math.round((zone.parse(Date.UTC(2012, 1, 1)) / 60));
-					var t = time;
-					if (t > 0) {
-						if (t < 10) t = "0" + t;
-						t = "(UTC -" + t + ":00)";
-					} else if (t < 0) {
-						t *= -1;
-						if (t < 10) t = "0" + t;
-						t = "(UTC +" + t + ":00)";
-					} else {
-						t = "(UTC 00:00)";
-					}
-					$scope.zones.push(t + " " + zones[i]);
-					//$scope.zones.push(zones[i]);
-				}
-			}
-		}
-		return $scope.zones.map( function (state) {
-			return {
-				value: state.toLowerCase(),
-				display: state
-			};
-		});
-	}
-	$scope.states = loadAll();
-
-
-	$scope.profile = profileData.result;
-	if (profileReviewsData.result) {
-		$scope.profile.reviews = profileReviewsData.result;
-		$scope.profile.rating = profileReviewsData.result.map(function(value, index){
-			return value.rating;
-		});
-	}
-	$scope.number_of_comments = $scope.profile.rating.length;
-	if($scope.number_of_comments != 0) {
-		calculate_rating();
-	}
-	$scope.profile.descriptionSmall = $scope.profile.description.slice(0, 1000) + '...';
-	if($scope.profile.description.length >= $scope.profile.descriptionSmall.length){
-		$scope.showflag = true;
-	}
-	$scope.SortingReviews($scope.sortList[0].val);
-
-
-	});
-
-
+                    return ajax.update(dataFactory.profiles(id).update,
+                        profile,
+                        function(response){
+                            callback(response.data)
+                        },
+                        function(response){
+                            toastModel.showToast("error", "Error." + response.statusText);
+                        }
+                    )
+                },
+                function(response){
+                    toastModel.showToast("error", "Error." + response.statusText);
+                }
+            )
+        }
+    }])

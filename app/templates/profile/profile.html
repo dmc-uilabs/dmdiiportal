@@ -1,77 +1,52 @@
 <div ng-if="!not_found" class="profile">
   <md-content class="profile-padding">
     <div layout="row">
-      <div flex="15" layout="column">
-        <img class="profile-image" ng-show="!isChangingPicture" ng-src="{{profile.image}}">
-        
-        <div layout="column" ng-show="isChangingPicture">
-          <div class="flow-box"
-             flow-init
-             flow-drag-enter="pictureDragEnter($flow)"
-             flow-drag-leave="pictureDragLeave($flow)"
-             flow-file-success="$file.msg = $message"
-             flow-file-added="addedNewFile($file, $event, $flow )"
-             layout="column">
-            <!-- <div> -->
-            <div layout class="alert" flow-drop flow-drop-enabled="true">
-              <div class="inner-box" layout="row" layout-align="center center" style="min-width: 235px;">
-                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-                  <img flow-img="$flow.files[0]" />
-                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
-                        <ng-md-icon icon="close" size="21"></ng-md-icon>
-                    </md-button>
-                </div>
-                <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
-                    Drag And Drop your picture here<br>
-                    600 x 600 px (max 2 MB)
-                    <br>or<br>
-                    <strong>Click here</strong>
-                </div>
-              </div>
-            </div>
-            <!-- </div> -->
-            <md-button ng-click="cancelChangePicture($flow)">Cancel</md-button>
-          </div>
-        </div>
 
-        <md-button flex="100" ng-if="editFlag" ng-show="!isChangingPicture" class="md-raised" ng-click="changePicture()">
-          <ng-md-icon icon="camera_alt" style="fill: grey;" size="25"></ng-md-icon>
-          Change Photo
-        </md-button>
-
+      <div flex="15">
+        <img class="profile-image" ng-src="{{profile.image}}">
       </div>
-      <div ng-if="!editFlag" flex="85" layout="column" class="profile-header">
-        <div layout="row" layout-align="center center">
+
+      <div flex="85" layout="column" class="profile-header">
+        <div layout="row" layout-align="space-between center">
           <div layout="column">
             <h2>{{profile.displayName}} <span>{{profile.jobTitle}}</span></h2>
             <h3><a href="#" class="link-button">{{profile.company}}</a></h3>
             <h3>{{profile.location}}</h3>
           </div>
-
-          <span flex></span>
-
-          <md-button aria-label="group_add" class="md-icon-button">
-            <ng-md-icon icon="group_add" style="fill: grey;" size="25"></ng-md-icon>
-          </md-button>
-          <md-button aria-label="email" class="md-icon-button">
-            <ng-md-icon icon="email" style="fill: grey;" size="25"></ng-md-icon>
-          </md-button>
+          <div layout="row">
+            <md-button aria-label="group_add" class="md-icon-button">
+              <ng-md-icon icon="group_add" style="fill: grey;" size="25"></ng-md-icon>
+            </md-button>
+            <md-button aria-label="email" class="md-icon-button">
+              <ng-md-icon icon="email" style="fill: grey;" size="25"></ng-md-icon>
+            </md-button>
+          </div>
         </div>
-          <span flex></span>
+
+        <span flex></span>
+
         <div layout="row" layout-align="center center">
-          <ui-widget-stars-static size="15" ng-click="goToReview()" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
+          <ui-widget-stars-static size="15" ng-click="goToReview()" value="{{profile.average_rating}}" text="({{profile.average_rating}})"></ui-widget-stars-static>
+          
           <a class="link margin-left16" ng-href="company.php#/1/storefront/services">View Storefront</a>
+          
           <span flex></span>
+
           <div layout="row" ng-if="!inviteToProject">
-            <md-button class="md-raised" ng-click="editPage()">Edit profile</md-button>
+            <md-button class="md-raised" ui-sref="edit({profileId: profile.id})">
+              Edit profile
+            </md-button>
             <md-button class="md-raised" ng-click="follow()">
               {{(followFlag) ? 'Unfollow' : 'Follow'}}
             </md-button>
-            <md-button class="md-raised" ng-if="!invate" ng-click="btnInviteToProject()">Invite to Project</md-button>
+            <md-button class="md-raised" ng-if="!invate" ng-click="btnInviteToProject()">
+              Invite to Project
+            </md-button>
             <md-button class="md-raised" ng-if="invate" ng-click="btnRemoveOfProject()">
               <ng-md-icon icon="close" size="17"></ng-md-icon>{{ toProject}}
             </md-button>
           </div>
+
           <div flex="50" layout="row"  layout-align="center center" class="invite" ng-show="inviteToProject">
             <md-button class="md-raised cancelProject" ng-click="btnCanselToProject()">
               <ng-md-icon icon="close" size="17"></ng-md-icon>
@@ -85,57 +60,22 @@
           </div>
         </div>
       </div>
-      <div ng-if="editFlag" class="profile-header" flex="85" layout="row">
-        <div flex="50" layout="column">
-          <div layout="row">
-            <md-input-container flex="50">
-              <label>Display Name</label>
-              <input id="editDisplayNameProfile" ng-model="profile.displayName">
-            </md-input-container>
-            <md-input-container flex="50">
-              <label>Job Title</label>
-              <input ng-model="profile.jobTitle">
-            </md-input-container>
-          </div>
-          <md-input-container>
-            <label>Company</label>
-            <input ng-model="profile.company" disabled>
-          </md-input-container>
-          
-          <md-input-container class="md-icon-float title-input-left">
-            <label>Location</label>
-            <md-icon class="location-gps" ng-click="getLocation()">
-              <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
-            </md-icon>
-            <input ng-model="profile.location" type="text">
-          </md-input-container>
-          
-        </div>
-        <div flex="50" layout="row" layout-align="end start">
-          <md-button ng-click="cancelEdit()" class="md-raised cancel">Cancel</md-button>
-          <md-button ng-click="saveEdit()" class="md-raised save md-primary">Save</md-button>
-        </div>
-      </div>
     </div>
+
     <md-divider></md-divider>
-    <div ng-if="!editFlag" class="profile-description">
+
+    <div class="profile-description">
       {{(showflag) ? profile.descriptionSmall : profile.description}} <a ng-click="showMore()" ng-if="showflag" href="">Read More</a>
-    </div>
-    <div ng-if="editFlag" class="profile-description">
-      <md-input-container>
-        <label>Description</label>
-        <textarea ng-model="profile.description" columns="1" maxlength="3000" md-maxlength="3000"></textarea>
-      </md-input-container>
     </div>
 
     <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab ng-if="!editFlag" label="History">
+      <md-tab label="History">
         <md-content class="md-padding" layout="row">
           <md-list flex class="profile-list">
-            <md-subheader class="md-no-sticky">
-              Public
+            <div layout="row" layout-align="space-between center">
+              <h2>Public</h2>
               <a class="link margin-left16">View all</a>
-            </md-subheader>
+            </div>
             <md-list-item>
               <ng-md-icon icon="done_all" style="fill: grey;" size="25"></ng-md-icon>
               <h2>First Name completed <a href="">The First Project</a></h2>
@@ -159,10 +99,10 @@
           <span class="vertikal-divider"></span>
 
           <md-list flex class="profile-list">
-            <md-subheader class="md-no-sticky">
-              Mutual
+            <div layout="row" layout-align="space-between center">
+              <h2>Mutual</h2>
               <a class="link margin-left16">View all</a>
-            </md-subheader>
+            </div>
             <md-list-item>
               <ng-md-icon icon="person" style="fill: grey;" size="25"></ng-md-icon>
               <h2>You added First Name as a contact</h2>
@@ -187,31 +127,12 @@
 
       <md-tab label="Skills">
         <md-content class="md-padding">
-          <div layout="row" ng-if="!editFlag" class="tabs-content" layout-wrap>
+          <div layout="row" class="tabs-content" layout-wrap>
             <md-chips ng-repeat="skill in profile.skills track by $index">
               <md-chip>
                 {{skill}}
               </md-chip>
             </md-chips>
-          </div>
-          <div layout="column" ng-if="editFlag">
-            <form ng-submit="addSkill(inputSkill)" class="add-skills-form" layout="row" layout-align="start center">
-              <md-input-container>
-                <label>Enter skill</label>
-                <input ng-model="inputSkill">
-              </md-input-container>
-              <md-button ng-disabled="!inputSkill" class="md-raised md-primary add-skill">Add</md-button>
-            </form>
-            <div layout="row" class="tabs-content" layout-wrap>
-              <md-chips ng-repeat="skill in profile.skills track by $index">
-                <md-chip class="skills-chip">
-                  {{skill}}
-                  <md-button aria-label="close" ng-click="deleteSkill($index)" class="md-icon-button">
-                    <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
-                  </md-button>
-                </md-chip>
-              </md-chips>
-            </div>
           </div>
         </md-content>
       </md-tab>
@@ -220,41 +141,41 @@
     <md-divider></md-divider>
 
     <!--Reviews-->
-    <div ng-if="!editFlag" id="review" layout="row" class="reviews" layout-margin layout-fill>
+    <div id="review" layout="row" class="reviews" layout-margin layout-fill>
       <!--left column-->
       <div flex class="reviews-rating">
         <!--Rating header-->
         <div layout="row" class="md-toolbar-tools reviews-rating-header">
           <h2>Reviews</h2>
-          <ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
+          <ui-widget-stars-static size="15" value="{{profile.average_rating}}" text="({{profile.average_rating}})"></ui-widget-stars-static>
           <span flex></span>
-          <md-button class="md-raised" ng-click="ViewAllReview()">View All({{number_of_comments}})</md-button>
+          <md-button class="md-raised" ng-click="ViewAllReview()">View All({{profile.number_of_comments}})</md-button>
         </div>
           <!--Rating-->
         <div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
           <p>5 STAR</p>
-          <md-progress-linear md-mode="determinate" value="{{precentage_stars[4]}}" flex></md-progress-linear>
-          <p flex="5">{{precentage_stars[4]}}%</p>
+          <md-progress-linear md-mode="determinate" value="{{profile.precentage_stars[4]}}" flex></md-progress-linear>
+          <p flex="5">{{profile.precentage_stars[4]}}%</p>
         </div>
         <div layout="row" ng-class="{'active-star' : (selectSortingStar!=4 && selectSortingStar!=0)}" ng-click="SortingReviews('4star')">
           <p>4 STAR</p>
-          <md-progress-linear md-mode="determinate" value="{{precentage_stars[3]}}" flex></md-progress-linear>
-          <p flex="5">{{precentage_stars[3]}}%</p>
+          <md-progress-linear md-mode="determinate" value="{{profile.precentage_stars[3]}}" flex></md-progress-linear>
+          <p flex="5">{{profile.precentage_stars[3]}}%</p>
         </div>
         <div layout="row" ng-class="{'active-star' : (selectSortingStar!=3 && selectSortingStar!=0)}" ng-click="SortingReviews('3star')">
           <p>3 STAR</p>
-          <md-progress-linear md-mode="determinate" value="{{precentage_stars[2]}}" flex></md-progress-linear>
-          <p flex="5">{{precentage_stars[2]}}%</p>
+          <md-progress-linear md-mode="determinate" value="{{profile.precentage_stars[2]}}" flex></md-progress-linear>
+          <p flex="5">{{profile.precentage_stars[2]}}%</p>
         </div>
         <div layout="row" ng-class="{'active-star' : (selectSortingStar!=2 && selectSortingStar!=0)}" ng-click="SortingReviews('2star')">
           <p>2 STAR</p>
-          <md-progress-linear md-mode="determinate" value="{{precentage_stars[1]}}" flex></md-progress-linear>
-          <p flex="5">{{precentage_stars[1]}}%</p>
+          <md-progress-linear md-mode="determinate" value="{{profile.precentage_stars[1]}}" flex></md-progress-linear>
+          <p flex="5">{{profile.precentage_stars[1]}}%</p>
         </div>
         <div layout="row" ng-class="{'active-star' : (selectSortingStar!=1 && selectSortingStar!=0)}" ng-click="SortingReviews('1star')">
           <p>1 STAR</p>
-          <md-progress-linear md-mode="determinate" value="{{precentage_stars[0]}}" flex></md-progress-linear>
-          <p flex="5">{{precentage_stars[0]}}%</p>
+          <md-progress-linear md-mode="determinate" value="{{profile.precentage_stars[0]}}" flex></md-progress-linear>
+          <p flex="5">{{profile.precentage_stars[0]}}%</p>
         </div>
       </div>
       <!--right column-->
@@ -286,9 +207,9 @@
       </form>
     </div>
 
-    <md-divider ng-if="!editFlag" ></md-divider>
+    <md-divider></md-divider>
 
-    <div ng-if="!editFlag" ng-repeat="review in profile.reviews">
+    <div ng-repeat="review in profile.reviews">
       <ui-widget-review review="review" userlogin="UserLogin" typereview="'profile_reviews'"></ui-widget-review>
       <md-divider></md-divider>
     </div>
