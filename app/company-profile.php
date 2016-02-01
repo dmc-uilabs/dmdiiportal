@@ -101,11 +101,12 @@
 <script src="scripts/common/models/company-model.js"></script>
 <script src="scripts/common/models/account-model.js"></script>
 <script src="scripts/common/models/phone-model.js"></script>
+<script src="scripts/common/models/user-model.js"></script>
 <script src="scripts/common/models/zipcode-model.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
         <?php
-          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
         ?>
         window.apiUrl = '';
     </script>

@@ -4,15 +4,16 @@
 *
 * Dashboard
 */
-angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 'md.data.table', 'dmc.common.header', 'dmc.common.footer'])
+angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 'md.data.table', 'dmc.common.header', 'dmc.common.footer', 'dmc.model.user'])
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
     .state('home', {
-      url: '',
-      abstract: true
+     url: '/',
+     templateUrl: 'templates/index/index.html',
+     controller: 'HomeCtr',
     });
   $urlRouterProvider.otherwise('/');
-}).controller('HomeCtr',['$scope',function($scope){
+}).controller('HomeCtr',['$scope', function($scope){
     $scope.pages = [
         {
             name : "My Dashboard",

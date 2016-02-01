@@ -85,12 +85,13 @@
 <script src="scripts/common/factory/ajax.factory.js"></script>
 <script src="scripts/common/factory/data.factory.js"></script>
 <script src="scripts/common/models/toast-model.js"></script>
+<script src="scripts/common/models/user-model.js"></script>
 <script src="scripts/individual-discussion/individual-discussion.js"></script>
 <script src="scripts/individual-discussion/edit-discussion.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
         <?php
-          echo('window.givenName = "'.$_SERVER['givenName'].'";');
+          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
         ?>
         window.apiUrl = '';
     </script>

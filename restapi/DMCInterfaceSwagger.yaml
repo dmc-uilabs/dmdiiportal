@@ -16,6 +16,116 @@ produces:
   - application/json
   - text/html
 paths:
+  /user:
+    get:
+      tags:
+        - account
+      description: Get currently logged in user details
+      responses:
+        '200':
+          description: Sends the project with projectID
+          schema:
+            $ref: '#/definitions/UserDetails'
+  '/accounts/{accountID}':
+    get:
+      tags:
+        - account
+      description: Get account information by account id
+      parameters:
+        - name: accountID
+          in: path
+          type: string
+          description: ID of the account
+          required: true
+      responses:
+        '200':
+          description: Sends the account with accountID
+          schema:
+            $ref: '#/definitions/UserAccount'
+    put:
+      tags:
+      - account
+      description: Update account information by account id
+      parameters:
+        - name: accountID
+          in: path
+          type: string
+          description: ID of the account
+          required: true
+        - name: account
+          in: body
+          schema:
+            $ref: '#/definitions/UserAccount'
+      responses:
+        200:
+          description: returns updated User Account
+          schema:
+            $ref: '#/definitions/UserAccount'
+  '/account_servers':
+    post:
+      tags:
+        - account
+      description: Create a new account server
+      parameters:
+        - in: body
+          name: AccountServer
+          description: server object to be created
+          required: false
+          schema:
+            $ref: '#/definitions/UserAccountServer'
+      responses:
+        '201':
+          description: new server added
+          schema:
+            $ref: '#/definitions/UserAccountServer'
+  '/account_servers/{serverID}':
+    get:
+      tags:
+        - account
+      description: Get server by server id
+      parameters:
+        - name: serverID
+          in: path
+          type: string
+          description: ID of the server
+          required: true
+      responses:
+        '200':
+          description: Sends the server information
+          schema:
+            $ref: '#/definitions/UserAccountServer'
+    put:
+      tags:
+      - account
+      description: Update server information by server id
+      parameters:
+        - name: serverID
+          in: path
+          type: string
+          description: ID of the server
+          required: true
+        - name: server
+          in: body
+          schema:
+            $ref: '#/definitions/UserAccountServer'
+      responses:
+        200:
+          description: returns updated server information
+          schema:
+            $ref: '#/definitions/UserAccountServer'
+    delete:
+      tags:
+        - account
+      description: Delete a server by id
+      parameters:
+        - in: path
+          name: serverID
+          description: ID of server to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
   /projects:
     post:
       tags:
@@ -772,24 +882,37 @@ definitions:
         type: integer
       inFeatured:
         type: boolean
-  RunStatus:
+  RunStats:
     type: object
     properties:
       success:
         type: number
       fail:
         type: number
+  UsageStats:
+    type: object
+    properties:
+      added:
+        type: number
+      members:
+        type: number
   ServiceSpecification:
     type: object
     properties:
+      id:
+        type: string
+      serviceId:
+        type: string
       description:
         type: string
       input:
         type: number
       output:
         type: number
-      runStatus:
-        $ref: '#/definitions/RunStatus'
+      usageStats:
+        $ref: '#/definitions/UsageStats'
+      runStats:
+        $ref: '#/definitions/RunStats'
   Component:
     type: object
     properties:
@@ -1082,4 +1205,153 @@ definitions:
       title:
         type: string
       email:
+        type: string
+  ProjectDocument:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      projectId:
+        type: string
+      modifed:
+        type: string
+        format: date
+      size:
+        type: string
+      owner:
+        type: string
+      file:
+        type: string
+  NotificationsListItem:
+    type: object
+    properties:
+      title:
+        type: string
+      link:
+        type: string
+  RunningServicesListItem:
+    type: object
+    properties:
+      title:
+        type: string
+      serviceId:
+        type: string
+      projectId:
+        type: string
+  MessagesListItem:
+    type: object
+    properties:
+      title:
+        type: string
+      link:
+        type: string
+  UserDetails:
+    type: object
+    properties:
+      displayName:
+        type: string
+      accountId:
+        type: string
+      profileId:
+        type: string
+      companyId:
+        type: string
+      role:
+        type: string
+      notifications:
+        type: object
+        properties:
+          total:
+            type: integer
+          items:
+            type: array
+            items:
+              type: object
+              $ref: '#/definitions/NotificationsListItem'
+      runningServices:
+        type: object
+        properties:
+          total:
+            type: integer
+          items:
+            type: array
+            items:
+              type: object
+              $ref: '#/definitions/RunningServicesListItem'
+
+      messages:
+        type: object
+        properties:
+          total:
+            type: integer
+          items:
+            type: array
+            items:
+              type: object
+              $ref: '#/definitions/MessagesListItem'
+  UserAccountPrivacy:
+    type: object
+    properties:
+      email:
+        type: object
+        $ref: '#/definitions/UserAccountPrivacyItem'
+      phone:
+        type: object
+        $ref: '#/definitions/UserAccountPrivacyItem'
+      location:
+        type: object
+        $ref: '#/definitions/UserAccountPrivacyItem'
+  UserAccountPrivacyItem:
+    type: object
+    properties:
+      enable:
+        type: boolean
+      value:
+        type: string
+  UserAccount:
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
+        type: string
+      profileId:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      displayName:
+        type: string
+      email:
+        type: string
+      deactivated:
+        type: boolean
+      location:
+        type: string
+      timezone:
+        type: string
+      privacy:
+        type: object
+        properties:
+          public:
+            type: object
+            $ref: '#/definitions/UserAccountPrivacy'
+          private:
+            type: object
+            $ref: '#/definitions/UserAccountPrivacy'
+  UserAccountServer:
+    type: object
+    properties:
+      id:
+        type: string
+      accountId:
+        type: string
+      name:
+        type: string
+      ip:
+        type: string
+      status:
         type: string

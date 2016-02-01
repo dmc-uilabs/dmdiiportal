@@ -133,7 +133,7 @@ angular.module('dmc.account')
             // function for get account servers
             $scope.getServers = function(){
                 ajax.get(dataFactory.serverURL().all, {
-                        accountId : 1,
+                        accountId : $scope.accountId,
                         _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1,$scope.sort.length) : $scope.sort),
                         _order : $scope.order
                     }, function (response) {
@@ -153,7 +153,7 @@ angular.module('dmc.account')
                     $scope.newServer.name != null && $scope.newServer.name.trim().length > 0){
                     // send request
                     var data = $.extend(true,{},$scope.newServer);
-                    data.accountId = 1;
+                    data.accountId = $scope.accountId;
                     data.status = "offline";
                     ajax.create(dataFactory.serverURL().create, data,
                         function (response) {

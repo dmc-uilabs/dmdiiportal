@@ -288,6 +288,17 @@ angular.module('dmc.data',[])
             getNewServices : function(){
                 return localhost+'services';
             },
+            /// profiles -----------------
+            profiles : function(id) {
+                var name = 'profiles';
+                return {
+                    get : localhost + name + '/' + id,
+                    update : localhost + name + '/' + id,
+                    reviews : localhost + name +'/' + id + '/profile_reviews',
+                    addReviews : localhost + 'profile_reviews'
+                }
+            },
+            // ---------------------------
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
             },
@@ -417,6 +428,9 @@ angular.module('dmc.data',[])
             },
             deleteFavorite: function(id){
                 return localhost+'favorite_products/'+id;
+            },
+            getUserUrl: function(){
+                return localhost+'user';
             }
         };
     }

@@ -12,7 +12,7 @@ angular.module('dmc.model.company', [
             return ajax.get(dataFactory.companyURL(id).get,{
                 "_expand" : "account"
             },function(response){
-                var data = response.data;
+                var data = response.data ? response.data : response;
                 if(data.accountId == currentAccountId) data.isOwner = true;
                 ajax.get(dataFactory.followCompany(),{
                         accountId : currentAccountId,
