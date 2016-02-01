@@ -20,6 +20,7 @@
   background: map-get($colors, primary);
   color: white;
   text-align: center;
+  position: relative;
   .copyright{
     text-align: left;
     width: 49%;
@@ -29,11 +30,13 @@
       padding-top: 9px;
     }
   }
-  .footer-links{
-    width: 49%;
-    display: inline-block;
-    vertical-align: top;
-    text-align: right;
+  .feedback-link {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    span {
+      color: #fff;
+    }
   }
   .copyright-home{
     width: 100%;
