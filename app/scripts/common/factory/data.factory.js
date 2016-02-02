@@ -494,6 +494,15 @@ angular.module('dmc.data',[])
             },
             getUserUrl: function(){
                 return localhost+'user';
+            },
+            getAccountNotifications: function(){
+                return localhost+'account-notification-categories';
+            },
+            getUserAccountNotifications: function(account_id){
+                return localhost+'accounts/'+account_id+'/user-notification-items';
+            },
+            updateUserAccountNotification: function(id){
+                return localhost+'update-user-notification-item/'+id;
             }
         };
     }

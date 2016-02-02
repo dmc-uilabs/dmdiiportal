@@ -16,7 +16,8 @@ server.use(jsonServer.rewriter({
     '/following_discussions' : '/discussions',
     '/projects/:id/following_discussions' : '/projects/:id/discussions',
     '/discussions/create' : '/discussions',
-    '/tasks/create' : '/tasks'
+    '/tasks/create' : '/tasks',
+    '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 // Returns an Express router
 var router = jsonServer.router('db.json');
