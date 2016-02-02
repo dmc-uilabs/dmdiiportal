@@ -38,23 +38,24 @@
       "total": 2,
       "items": [
         {
-            "title": "Capacitor Bank For Ldr Mining Co",
-            "serviceId": 3,
-            "projectId": 2,
-            "currentStatus": {
-                "percentCompleted": "25",
-                "startDate": "09/20/2015",
-                "startTime": "11:15:33"
-            }
-        }, {
-            "title": "Incoming Compartment For Ldr Mining",
-            "serviceId": 1,
-            "projectId": 4,
-            "currentStatus": {
-                "percentCompleted": "55",
-                "startDate": "09/22/2015",
-                "startTime": "11:15:33"
-            }
+          "title": "Capacitor Bank For Ldr Mining Co",
+          "serviceId": 3,
+          "projectId": 2,
+          "currentStatus": {
+            "percentCompleted": "25",
+            "startDate": "09/20/2015",
+            "startTime": "11:15:33"
+          }
+        },
+        {
+          "title": "Incoming Compartment For Ldr Mining",
+          "serviceId": 1,
+          "projectId": 4,
+          "currentStatus": {
+            "percentCompleted": "55",
+            "startDate": "09/22/2015",
+            "startTime": "11:15:33"
+          }
         }
       ]
     },
@@ -62,23 +63,25 @@
       "total": 3,
       "items": [
         {
-            "user_name" : "John Smith",
-            "image" : "/images/carbone.png",
-            "text": "How was your meeting with the Bill Gates?",
-            "link": "/message.php#/1",
-            "created_at": "8:00 PM"
-        },{
-            "user_name" : "John Smith",
-            "image" : "/images/carbone.png",
-            "text": "How was your meeting with the Bill Gates?",
-            "link": "/message.php#/1",
-            "created_at": "10:46 PM"
-        },{
-            "user_name" : "John Smith",
-            "image" : "/images/carbone.png",
-            "text": "How was your meeting with the Bill Gates?",
-            "link": "/message.php#/1",
-            "created_at": "1:15 PM"
+          "user_name": "John Smith",
+          "image": "/images/carbone.png",
+          "text": "How was your meeting with the Bill Gates?",
+          "link": "/message.php#/1",
+          "created_at": "8:00 PM"
+        },
+        {
+          "user_name": "John Smith",
+          "image": "/images/carbone.png",
+          "text": "How was your meeting with the Bill Gates?",
+          "link": "/message.php#/1",
+          "created_at": "10:46 PM"
+        },
+        {
+          "user_name": "John Smith",
+          "image": "/images/carbone.png",
+          "text": "How was your meeting with the Bill Gates?",
+          "link": "/message.php#/1",
+          "created_at": "1:15 PM"
         }
       ]
     }
