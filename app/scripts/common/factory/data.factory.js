@@ -289,6 +289,22 @@ angular.module('dmc.data',[])
             },
             // ---------------------------
 
+
+            /// components -----------------
+            components : function(type, id) {
+                var name = type;
+                return {
+                    get : localhost + name + '/' + id,
+                    update : localhost + name + '/' + id,
+                    all: localhost + name,
+                    getReply : localhost + 'review/' + id + '/product_reviews?_sort=id&_order=ASC',
+                    reviews : localhost + 'product/' + id + '/product_reviews?productType=' + type + '&reviewId=0',
+                    addReviews : localhost + 'product_reviews'
+                }
+            },
+            // ---------------------------
+
+
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
             },

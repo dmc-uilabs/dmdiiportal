@@ -92,7 +92,6 @@
 <script src="scripts/common/factory/data.factory.js"></script>
 <script src="scripts/components/carousel/carousel.js"></script>
 <script src="scripts/components/compare/compare.js"></script>
-<script src="scripts/product/product.js"></script>
 <script src="scripts/components/tree-menu/tree-menu.js"></script>
 <script src="scripts/components/product-card/product-card.js"></script>
 <script src="scripts/components/products-card/products-card.js"></script>
@@ -100,6 +99,10 @@
 <script src="scripts/common/models/toast-model.js"></script>
 <script src="scripts/common/models/user-model.js"></script>
 <script src="scripts/common/models/services.model.js"></script>
+
+<script src="scripts/product/product.js"></script>
+<script src="scripts/product/controllers/component.js"></script>
+<script src="scripts/product/controllers/edit.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
         <?php
