@@ -24,5 +24,5 @@ angular.module('dmc.faq', [
         controller: 'GeneralFAQCtr',
         templateUrl: 'templates/faq/general.html'
     });
-    $urlRouterProvider.otherwise('/general/all');
+    $urlRouterProvider.otherwise('/general/1');
 });
