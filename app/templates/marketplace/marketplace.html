@@ -6,7 +6,7 @@
   <!-- Left Content Column -->
   <div class="marketplace" layout="column" flex>
     <md-content class="marketplace-search" layout="row" layout-align="center center">
-      <form ng-submit="submit()" class="marketplace-search-field global-search-form" flex="60">
+      <form ng-submit="submit(searchModel)" class="marketplace-search-field global-search-form" flex="60">
         <md-input-container md-no-float>
           <md-icon>
             <ng-md-icon icon="search"></ng-md-icon>
@@ -37,7 +37,7 @@
               name-carousel="'carouselPopular'" 
               max-items="10" 
               show-items="2" 
-              carousel-source="carouselData.arr" 
+              carousel-source="carouselData.popular.arr"
               run-carousel="true" 
               timeout="5">
           </div>
@@ -50,7 +50,7 @@
               name-carousel="'carouselNew'" 
               max-items="10" 
               show-items="2"
-              carousel-source="carouselData.arr" 
+              carousel-source="carouselData.new.arr"
               run-carousel="true" 
               timeout="5">
           </div>
@@ -63,14 +63,14 @@
       <dmc-products-card 
           title-card="'ITEMS FROM FAVORITE STOREFRONTS'" 
           search-card="isSearch" 
-          card-source="products"
+          card-source="marketplaceItems"
           card-loading="downloadData" 
           page-size="productCardPageSize" 
           current-page="productCardCurrentPage"
-          total-size="products.count" 
+          total-size="marketplaceItems.count"
           class="content-panel-marketplace"
           hide-buttons="[]"
-          view-all-link="'/marketplace.php#/search/'+currentPage"
+          view-all-link="'/marketplace.php#/search?page=services&type=analytical'"
           layout-margin>
       </dmc-products-card>
     </div>

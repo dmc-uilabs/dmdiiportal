@@ -39,6 +39,20 @@
       ]
     }
   },
+  "assign_users": [
+    {
+      "accountId": 1,
+      "name": "Bridget Cohen"
+    },
+    {
+      "accountId": 2,
+      "name": "Denis Sobko"
+    },
+    {
+      "accountId": 3,
+      "name": "Thomas Smith"
+    }
+  ],
   "companies": [
     {
       "id": 1,
@@ -400,59 +414,49 @@
   ],
   "favorite_products": [
     {
-      "id": 13,
+      "accountId": 1,
       "serviceId": 1,
-      "accountId": 1
-    },
-    {
-      "id": 15,
-      "serviceId": 1,
-      "accountId": 1
-    },
-    {
-      "serviceId": 18,
-      "accountId": 1,
-      "id": 16
-    },
-    {
-      "serviceId": 3,
-      "accountId": 1,
-      "id": 17
-    },
-    {
-      "serviceId": 2,
-      "accountId": 1,
-      "id": 18
-    },
-    {
-      "accountId": 1,
-      "serviceId": 28,
-      "id": 22
-    },
-    {
-      "accountId": 1,
-      "serviceId": 27,
-      "id": 23
-    },
-    {
-      "accountId": 1,
-      "componentId": 2,
-      "id": 24
-    },
-    {
-      "accountId": 1,
-      "componentId": 2,
-      "id": 26
-    },
-    {
-      "accountId": 1,
-      "serviceId": 4,
-      "id": 27
+      "id": 1
     },
     {
       "accountId": 1,
       "serviceId": 5,
-      "id": 28
+      "id": 2
+    },
+    {
+      "accountId": 1,
+      "serviceId": 3,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "serviceId": 7,
+      "id": 4
+    },
+    {
+      "accountId": 1,
+      "serviceId": 8,
+      "id": 5
+    },
+    {
+      "accountId": 1,
+      "serviceId": 9,
+      "id": 6
+    },
+    {
+      "accountId": 1,
+      "serviceId": 27,
+      "id": 7
+    },
+    {
+      "accountId": 1,
+      "serviceId": 28,
+      "id": 8
+    },
+    {
+      "accountId": 1,
+      "serviceId": 41,
+      "id": 9
     }
   ],
   "projects": [
@@ -1311,11 +1315,12 @@
         "id": 1,
         "title": "Control Compartment for LDR Mining"
       },
-      "assignee": "E.Ryan",
+      "assignee": "Bridget Cohen",
       "reporter": "J.Knight",
-      "dueDate": "25-09-2015 10:21:30",
-      "priority": "Today",
-      "projectId": 1
+      "dueDate": "01-02-2016 00:00:00",
+      "priority": "High",
+      "projectId": 1,
+      "status": "Open"
     },
     {
       "id": 2,
@@ -1324,11 +1329,12 @@
         "id": 1,
         "title": "Control Compartment for LDR Mining"
       },
-      "assignee": "E.Francis",
+      "assignee": "Bridget Cohen",
       "reporter": "B.Hines",
-      "dueDate": "25-09-2015 10:21:30",
-      "priority": "11-09-2015",
-      "projectId": 1
+      "dueDate": "03-02-2016 00:00:00",
+      "priority": "Medium",
+      "projectId": 1,
+      "status": "Complited"
     },
     {
       "id": 3,
@@ -1337,11 +1343,12 @@
         "id": 1,
         "title": "Control Compartment for LDR Mining"
       },
-      "assignee": "E.Harmon",
+      "assignee": "Denis Sobko",
       "reporter": "B.Franks",
-      "dueDate": "25-09-2015 11:21:30",
-      "priority": "Today",
-      "projectId": 1
+      "dueDate": "02-02-2016 00:00:00",
+      "priority": "Low",
+      "projectId": 1,
+      "status": "Open"
     },
     {
       "id": 4,
@@ -1350,11 +1357,12 @@
         "id": 1,
         "title": "Control Compartment for LDR Mining"
       },
-      "assignee": "E.Bowen",
+      "assignee": "Denis Sobko",
       "reporter": "R.Scott",
-      "dueDate": "25-09-2015 11:23:30",
-      "priority": "Today",
-      "projectId": 1
+      "dueDate": "01-02-2016 00:00:00",
+      "priority": "Medium",
+      "projectId": 1,
+      "status": "Open"
     },
     {
       "id": 5,
@@ -1363,11 +1371,12 @@
         "id": 2,
         "title": "Capacitor Design"
       },
-      "assignee": "S.Crawford",
+      "assignee": "Bridget Cohen",
       "reporter": "E.Henderson",
-      "dueDate": "25-09-2015 15:30:30",
-      "priority": "Urgent",
-      "projectId": 2
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 2,
+      "status": "Open"
     },
     {
       "id": 6,
@@ -1376,11 +1385,12 @@
         "id": 2,
         "title": "Capacitor Design"
       },
-      "assignee": "L.Morre",
+      "assignee": "Bridget Cohen",
       "reporter": "E.Parson",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 2
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Critical",
+      "projectId": 2,
+      "status": "Open"
     },
     {
       "id": 7,
@@ -1389,11 +1399,12 @@
         "id": 2,
         "title": "Capacitor Design"
       },
-      "assignee": "G.Baker",
+      "assignee": "Bridget Cohen",
       "reporter": "G.Flores",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 2
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 2,
+      "status": "Open"
     },
     {
       "id": 8,
@@ -1402,11 +1413,12 @@
         "id": 2,
         "title": "Capacitor Design"
       },
-      "assignee": "B.Black",
+      "assignee": "Bridget Cohen",
       "reporter": "S.Synder",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 2
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 2,
+      "status": "Open"
     },
     {
       "id": 9,
@@ -1415,11 +1427,12 @@
         "id": 3,
         "title": "Capacitor Design"
       },
-      "assignee": "J.Johnson",
+      "assignee": "Bridget Cohen",
       "reporter": "R.Jefferson",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 3
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 3,
+      "status": "Open"
     },
     {
       "id": 10,
@@ -1428,11 +1441,12 @@
         "id": 3,
         "title": "Capacitor Design"
       },
-      "assignee": "k.Walker",
+      "assignee": "Bridget Cohen",
       "reporter": "W.Simpson",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 3
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 3,
+      "status": "Open"
     },
     {
       "id": 11,
@@ -1441,11 +1455,12 @@
         "id": 3,
         "title": "Capacitor Design"
       },
-      "assignee": "S.Berry",
+      "assignee": "Bridget Cohen",
       "reporter": "G.Apple",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 3
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 3,
+      "status": "Open"
     },
     {
       "id": 12,
@@ -1454,11 +1469,12 @@
         "id": 3,
         "title": "Capacitor Design"
       },
-      "assignee": "T.Goodman",
+      "assignee": "Bridget Cohen",
       "reporter": "U.Leonard",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 3
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 3,
+      "status": "Open"
     },
     {
       "id": 13,
@@ -1467,11 +1483,12 @@
         "id": 4,
         "title": "Incoming Compartment for LDR Mining"
       },
-      "assignee": "T.Goodman",
+      "assignee": "Bridget Cohen",
       "reporter": "U.Leonard",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 4
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 4,
+      "status": "Open"
     },
     {
       "id": 14,
@@ -1480,11 +1497,12 @@
         "id": 4,
         "title": "Incoming Compartment for LDR Mining"
       },
-      "assignee": "Y.Taylor",
+      "assignee": "Bridget Cohen",
       "reporter": "R.Farmer",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 4
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 4,
+      "status": "Open"
     },
     {
       "id": 15,
@@ -1493,11 +1511,12 @@
         "id": 4,
         "title": "Incoming Compartment for LDR Mining"
       },
-      "assignee": "D.Rhodes",
+      "assignee": "Bridget Cohen",
       "reporter": "V.Watkins",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 4
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 4,
+      "status": "Open"
     },
     {
       "id": 16,
@@ -1506,11 +1525,12 @@
         "id": 4,
         "title": "Incoming Compartment for LDR Mining"
       },
-      "assignee": "D.Rhodes",
+      "assignee": "Bridget Cohen",
       "reporter": "V.Watkins",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 4
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 4,
+      "status": "Open"
     },
     {
       "id": 17,
@@ -1519,11 +1539,12 @@
         "id": 5,
         "title": "Low Heat Loss Transformer"
       },
-      "assignee": "a.giani",
+      "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 5
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 5,
+      "status": "Open"
     },
     {
       "id": 18,
@@ -1532,11 +1553,12 @@
         "id": 5,
         "title": "Low Heat Loss Transformer"
       },
-      "assignee": "i.coleman",
+      "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 5
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 5,
+      "status": "Open"
     },
     {
       "id": 19,
@@ -1545,11 +1567,12 @@
         "id": 5,
         "title": "Low Heat Loss Transformer"
       },
-      "assignee": "c.castro",
+      "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 5
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 5,
+      "status": "Open"
     },
     {
       "id": 20,
@@ -1558,11 +1581,12 @@
         "id": 5,
         "title": "Low Heat Loss Transformer"
       },
-      "assignee": "a.giani",
+      "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 5
+      "dueDate": "25-09-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 5,
+      "status": "Open"
     },
     {
       "id": 21,
@@ -1571,11 +1595,46 @@
         "id": 5,
         "title": "Low Heat Loss Transformer"
       },
-      "assignee": "b.beckmann",
+      "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
-      "dueDate": "25-09-2015 15:30:12",
-      "priority": "Urgent",
-      "projectId": 5
+      "dueDate": "04-11-2015 00:00:00",
+      "priority": "Low",
+      "projectId": 5,
+      "status": "Open"
+    },
+    {
+      "id": 22,
+      "title": "New Task",
+      "project": {
+        "id": "5",
+        "title": "Low Heat Loss Transformer"
+      },
+      "assignee": "Denis Sobko",
+      "reporter": "Jack Graber",
+      "dueDate": "03-02-2016 00:00:00",
+      "priority": "Critical",
+      "projectId": 5,
+      "status": "Open"
+    },
+    {
+      "title": "New Task 2",
+      "description": "New Task 2",
+      "assignee": "Bridget Cohen",
+      "reporter": "Jack Graber",
+      "dueDate": "02-02-2016 00:00:00",
+      "priority": "High",
+      "projectId": 5,
+      "id": 23
+    },
+    {
+      "title": "New Task 3",
+      "description": "New Task 3",
+      "assignee": "Thomas Smith",
+      "reporter": "Jack Graber",
+      "dueDate": "17-02-2016 00:00:00",
+      "priority": "Medium",
+      "projectId": 5,
+      "id": 24
     }
   ],
   "discussions": [
@@ -1730,6 +1789,15 @@
       "created_at": "23-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
       "projectId": 5
+    },
+    {
+      "projectId": 2,
+      "subject": "Subject Discussion",
+      "created_at": "02-02-2016 09:08:24",
+      "text": "Discussion content",
+      "full_name": "Jack Graber",
+      "avatar": "/images/avatar-fpo.jpg",
+      "id": 20
     }
   ],
   "specifications": [

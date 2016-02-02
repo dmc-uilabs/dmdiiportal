@@ -4,7 +4,7 @@ var showAllCategories = false;
 
 angular.module('dmc.faq')
     .controller('GeneralFAQCtr', ['$stateParams', '$state', "$scope", "ajax", "$location","dataFactory","toastModel", function ($stateParams, $state, $scope, ajax, $location, dataFactory, toastModel) {
-        $scope.categoryId = $stateParams.categoryId;
+        $scope.categoryId = (angular.isDefined($stateParams.categoryId) ? $stateParams.categoryId : 1);
         $scope.articleId = parseInt($stateParams.articleId);
         $scope.categories = {};
         $scope.selectedCategory = null;

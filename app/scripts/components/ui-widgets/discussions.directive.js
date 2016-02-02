@@ -13,34 +13,33 @@ angular.module('dmc.widgets.discussions',[
             templateUrl: 'templates/components/ui-widgets/discussions.html',
             scope: {
                 widgetTitle: "=",
-                projectId: "="
+                projectId: "=",
+                widgetDataType: "="
             },
             link: function (scope, iElement, iAttrs) {
 
             },
-            controller: function($scope, $element, $attrs, $mdDialog, socketFactory, dataFactory, ajax) {
+            controller: function($scope, $element, $attrs, $mdDialog, socketFactory, dataFactory, ajax, toastModel) {
                 $scope.discussions = [];
                 $scope.total = 0;
                 // function for get all discussions from DB
                 $scope.getDiscussions = function(){
-                    ajax.on(dataFactory.getUrlAllDiscussions($scope.projectId),
-                        dataFactory.get_request_obj({
-                        projectId : $scope.projectId,
-                        sort : 'created_at',
-                        order : 'DESC',
-                        limit : 4,
-                        offset: 0
-                    }),function(data){
-                        var data = dataFactory.get_result(data);
-                        $scope.discussions = data.result;
-                        $scope.total = data.count;
-                        for(var index in $scope.discussions){
-                            $scope.discussions[index].created_at = moment($scope.discussions[index].created_at,'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
+                    ajax.get(dataFactory.getDiscussions($scope.projectId,$scope.widgetDataType),{
+                            _limit : 4,
+                            _start : 0,
+                            _order : "DESC",
+                            _sort : "created_at"
+                        }, function(response){
+                            $scope.discussions = response.data;
+                            $scope.total = $scope.discussions.length;
+                            for(var index in $scope.discussions){
+                                $scope.discussions[index].created_at = moment($scope.discussions[index].created_at,'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
+                            }
+                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                        },function(){
+                            toastModel.showToast("error", "Ajax faild: getDiscussions");
                         }
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    },function(){
-                        alert("Ajax faild: getDiscussions");
-                    });
+                    );
                 };
 
                 // get all discussions (first request)
@@ -81,35 +80,33 @@ angular.module('dmc.widgets.discussions',[
                 widgetTitle: "=",
                 withAvatar: "=",
                 totalItems: "=",
-                widgetFormat: "="
+                widgetFormat: "=",
+                widgetDataType: "="
             },
-            link: function (scope, iElement, iAttrs) {
-            },
-            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax) {
+            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
                 $scope.projectDiscussions = [];
                 $scope.sort = 'created_at';
                 $scope.order = 'DESC';
 
-                $scope.totalCount = 0;
+                $scope.totalItems = 0;
 
                 $scope.getProjectDiscussions = function(){
-                    ajax.on(dataFactory.getUrlAllDiscussions($scope.projectId),
-                        dataFactory.get_request_obj({
-                        projectId: $scope.projectId,
-                        sort : $scope.sort,
-                        order : $scope.order,
-                        limit : 3,
-                        offset: 0
-                    }),function(data){
-                        var data = dataFactory.get_result(data);
-                        $scope.projectDiscussions = data.result;
-                        for(var index in $scope.projectDiscussions){
-                            $scope.projectDiscussions[index].created_at = moment($scope.projectDiscussions[index].created_at,'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
+                    ajax.get(dataFactory.getDiscussions($scope.projectId,$scope.widgetDataType),{
+                            _limit : 4,
+                            _start : 0,
+                            _order : $scope.order,
+                            _sort : $scope.sort
+                        }, function(response){
+                            $scope.projectDiscussions = response.data;
+                            $scope.totalItems = $scope.projectDiscussions.length;
+                            for(var index in $scope.projectDiscussions){
+                                $scope.projectDiscussions[index].created_at = moment($scope.projectDiscussions[index].created_at,'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
+                            }
+                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                        },function(){
+                            toastModel.showToast("error", "Ajax faild: getProjectDiscussions");
                         }
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    },function(){
-                        alert("Ajax faild: getProjectDiscussions");
-                    });
+                    );
                 };
 
                 $scope.getProjectDiscussions();
@@ -119,7 +116,7 @@ angular.module('dmc.widgets.discussions',[
                 //});
             }
         };
-    }]).controller('CreateDiscussionController',function($scope,$mdDialog,projectId,ajax,dataFactory, DMCDiscussionModel){
+    }]).controller('CreateDiscussionController',function($scope,$mdDialog,projectId,ajax,dataFactory,toastModel){
         $scope.isCreation = false;
         $scope.message = {
             error : false
@@ -131,46 +128,22 @@ angular.module('dmc.widgets.discussions',[
         $scope.createDiscussion = function(){
             $scope.isCreation = true;
             $scope.message.error = false;
-            DMCDiscussionModel.createDiscussion(
-                {
+            ajax.create(dataFactory.createDiscussion(),{
                     "projectId": projectId,
-                    "text": $scope.content,
                     "subject": $scope.subject,
-                    "created_at": moment($scope.dueDate).format('DD-MM-YYYY HH:mm:ss')
-                }
-            ).then(
-                function(data){
+                    "created_at": moment(new Date()).format('DD-MM-YYYY HH:mm:ss'),
+                    "text": $scope.content,
+                    "full_name": "Jack Graber",
+                    "avatar": "/images/avatar-fpo.jpg"
+                }, function(response){
                     $scope.isCreation = false;
-                    if(data.error == null) {
-                        $mdDialog.cancel(true);
-                    }else{
-                        $scope.message.error = true;
-                        console.error(data.error);
-                    }
+                    $mdDialog.cancel(true);
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                },function(){
+                },function(response){
                     $scope.message.error = true;
-                    alert("Ajax faild: createDiscussion");
+                    toastModel.showToast("error", "Ajax faild: createDiscussion");
                     $scope.isCreation = false;
                 }
-            )
-            // ajax.on(dataFactory.getUrlCreateDiscussion(projectId),{
-            //     projectId: projectId,
-            //     subject : $scope.subject,
-            //     text : $scope.content
-            // },function(data){
-            //     $scope.isCreation = false;
-            //     if(data.error == null) {
-            //         $mdDialog.cancel(true);
-            //     }else{
-            //         $scope.message.error = true;
-            //         console.error(data.error);
-            //     }
-            //     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            // },function(){
-            //     $scope.message.error = true;
-            //     alert("Ajax faild: createDiscussion");
-            //     $scope.isCreation = false;
-            // }, 'POST');
+            );
         };
     });

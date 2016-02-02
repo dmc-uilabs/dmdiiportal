@@ -2,6 +2,11 @@
   .title {
     width: 100%;
   }
+  .one-task{
+    .title{
+      cursor: pointer;
+    }
+  }
   .title,.project{
     a {
       color: inherit;

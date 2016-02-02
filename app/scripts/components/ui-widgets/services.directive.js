@@ -22,34 +22,35 @@ angular.module('dmc.widgets.services',[
             link: function (scope, iElement, iAttrs) {
 
             },
-            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax) {
+            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
                 $scope.services = [];
                 $scope.total = 0;
-                $scope.sort = 'status';
-                $scope.order = 'DESC';
+                $scope.sort = 'title';
+                $scope.order = 'ASC';
 
                 // function for get all services from DB
                 $scope.getServices = function(){
-                    ajax.on(dataFactory.getUrlAllServices($scope.projectId),
-                        dataFactory.get_request_obj({
-                        projectId : $scope.projectId,
-                        sort : $scope.sortBy || 0,
-                        order : $scope.order,
-                        offset : $scope.startAtOffset || 0,
-                        limit : 5
-                    }),function(data){
-                        var data = dataFactory.get_result(data);
-                        $scope.services = data.result;
-                        $scope.total = data.count;
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    },function(){
-                        alert("Ajax faild: getServices");
-                    });
+                    ajax.get(dataFactory.getServices($scope.projectId),{
+                            _sort : $scope.sort,
+                            _order : $scope.order,
+                            _limit : 5
+                        }, function(response){
+                            $scope.services = response.data;
+                            $scope.total = $scope.services.length;
+                            for(var s in $scope.services){
+                                $scope.services[s].releaseDate = moment($scope.services[s].releaseDate,"DD/MM/YYYY").format("MM/DD/YYYY");
+                                $scope.services[s].currentStatus.startDate = moment($scope.services[s].currentStatus.startDate,"DD/MM/YYYY").format("MM/DD/YYYY");
+                            }
+                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                        },function(response){
+                            toastModel.showToast("error", "Ajax faild: getServices");
+                        }
+                    );
                 };
 
-                $scope.onOrderChange = function(order){
+                $scope.onOrderChange = function (order) {
                     $scope.sort = (order[0] == '-' ? order.substring(1,order.length) : order);
-                    $scope.order = (order[0] == '-' ? 'ASC' : 'DESC');
+                    $scope.order = (order[0] == '-' ? 'DESC' : 'ASC');
                     $scope.getServices();
                 };
 
@@ -77,30 +78,32 @@ angular.module('dmc.widgets.services',[
             },
             link: function (scope, iElement, iAttrs) {
             },
-            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax) {
+            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
                 $scope.projectServices = [];
-                $scope.sort = 'status';
+                $scope.sort = 'title';
                 $scope.order = 'DESC';
 
-                $scope.totalCount = 0;
+                $scope.totalItems = 0;
+
+                var apply = function(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                };
 
                 $scope.getProjectServices = function(){
-                    ajax.on(dataFactory.getUrlAllServices($scope.projectId),
-                        dataFactory.get_request_obj({
-                        projectId: $scope.projectId,
-                        sort : $scope.sort,
-                        order : $scope.order,
-                        limit : 3,
-                        offset : 0
-                    }),function(data){
-                        var data = dataFactory.get_result(data);
-                        $scope.projectServices = data.result;
-                            for(var s in $scope.projectServices){
-                                $scope.projectServices[s].releaseDate = moment($scope.projectServices[s].releaseDate).format("MM/DD/YYYY");
-                            }
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    },function(){
-                        alert("Ajax faild: getProjectServices");
+                    ajax.get(dataFactory.getServices($scope.projectId),{
+                        _sort : $scope.sort,
+                        _order : $scope.order,
+                        _limit : 3,
+                        _start : 0
+                    },function(response){
+                        $scope.projectServices = response.data;
+                        $scope.totalItems = $scope.projectServices.length;
+                        for(var s in $scope.projectServices){
+                            $scope.projectServices[s].releaseDate = moment($scope.projectServices[s].releaseDate,"DD/MM/YYYY").format("MM/DD/YYYY");
+                        }
+                        apply();
+                    },function(response){
+                        toastModel.showToast("error", "Ajax faild: getProjectServices");
                     });
                 };
 

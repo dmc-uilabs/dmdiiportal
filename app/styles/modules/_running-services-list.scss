@@ -43,6 +43,8 @@ md-list md-list-item.md-2-line .item-text-service{
   }
 }
 .service-list-item{
+  min-height: 0;
+  height: 45px;
   .md-secondary-container,
   .md-secondary,
   .md-list-item-inner .md-secondary-container,
@@ -58,6 +60,14 @@ md-list md-list-item.md-2-line .item-text-service{
       width: 80px;
       right: 0;
       bottom: -3px;
+    }
+  }
+  .title, .release-date{
+    font-size: 14px;
+  }
+  .service-progress{
+    &-info{
+      margin-top: 5px;
     }
   }
 }

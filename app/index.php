@@ -40,7 +40,7 @@
     </div>
 
     <!-- Footer -->
-    <dmc-footer type="'home'"></dmc-footer>
+    <dmc-footer></dmc-footer>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->

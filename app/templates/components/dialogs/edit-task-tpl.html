@@ -2,7 +2,7 @@
     <form name="form">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Adding New Task</h2>
+                <h2>Edit Task</h2>
                 <span flex></span>
                 <md-button class="md-icon-button btn-close" ng-click="cancel()">
                     <ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
@@ -19,28 +19,35 @@
             </div>
             <md-input-container flex>
                 <label>Description</label>
-                <textarea ng-model="description" columns="1" required></textarea>
+                <textarea ng-model="task.title" columns="1" required></textarea>
             </md-input-container>
             <div class="block" layout="row" layout-align="space-between end">
+
                 <md-input-container flex="45">
-                    <md-select placeholder="Assigned To" required ng-model="assignedTo">
+                    <md-select placeholder="Assigned To" required ng-model="task.assignee">
                         <md-option ng-value="user.name" ng-repeat="user in users">{{user.name}}</md-option>
                     </md-select>
                 </md-input-container>
 
                 <md-input-container flex="45">
                     <label>Priority</label>
-                    <md-select required ng-model="priorityModel">
+                    <md-select required ng-model="task.priority">
                         <md-option ng-repeat="p in priorities" value="{{p}}">{{p}}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
-            <div class="block" layout="row">
-                <md-datepicker  flex="50" class="dueDatePicker" ng-model="dueDate" md-placeholder="Due Date" required></md-datepicker>
+            <div class="block" layout="row" layout-align="space-between start">
+                <md-datepicker  flex="45" class="dueDatePicker" ng-model="task.dueDateForEdit" md-placeholder="Due Date" required></md-datepicker>
+                <md-input-container flex="45">
+                    <label>Status</label>
+                    <md-select required ng-model="task.status">
+                        <md-option ng-repeat="s in statuses" value="{{s}}">{{s}}</md-option>
+                    </md-select>
+                </md-input-container>
             </div>
             <div class="block" layout="row">
                 <span flex></span>
-                <md-button class="md-raised md-primary" ng-click="createTask()" ng-disabled="!form.$valid">Create</md-button>
+                <md-button class="md-raised md-primary" ng-click="updateTask()" ng-disabled="!form.$valid">Update</md-button>
             </div>
             <div class="block" layout="row" ng-if="isCreation">
                 <md-progress-linear md-mode="indeterminate"></md-progress-linear>

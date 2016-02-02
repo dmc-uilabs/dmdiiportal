@@ -3,42 +3,68 @@
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
             <span flex></span>
-            <md-button href="/" md-no-ink class="view-all-button view-all-link">View All</md-button>
+            <md-button href="/" md-no-ink class="view-all-button view-all-link">View All ({{total}})</md-button>
         </div>
     </md-toolbar>
 </div>
 <div class="content-panel-body" layout="column">
   <md-content class="rp-panel md-padding" layout="row" ng-repeat="item in projects">
       <div layout="column" flex>
-          <div class="rp-panel__title my-projects" layout="row"  ng-if="widgetShowAllBlocks">
-              <h2><a href="project.php#/{{item.id}}" class="link-button">{{item.title}}</a></h2>
+          <div class="rp-panel__title my-projects" layout="row">
+              <h2>
+                  <a href="project.php#/{{item.id}}" class="link-button">{{item.title}}</a>
+                  <span>Due in 20 days</span>
+              </h2>
           </div>
-          <div class="rp-panel__tab-content" layout="row" layout-align="space-between start"
-               ng-class="widgetShowAllBlocks == true ? 'widget-blocks' : ''">
-              <div class="rp-panel__details" layout="column" flex="{{flexDetails}}"  ng-if="!widgetShowAllBlocks">
-                  <div class="rp-panel__title" layout="row">
-                      <h2><a href="project.php#/{{item.id}}" class="link-button">{{item.title}}</a></h2>
-                  </div>
-                  <div class="rp-panel__controls" layout="row">
-                      <div class="rp-panel__image">
-                          <div>
-                              <md-button ng-class="item.isShowTasks ? 'md-raised md-primary' : ''" ng-click="showItems(item,'tasks')">TASKS ({{item.tasks.totalItems}})</md-button>
-                              <md-button ng-class="item.isShowDiscussions ? 'md-raised md-primary' : ''" ng-click="showItems(item,'discussions')">BLOGS ({{item.discussions.totalItems}})</md-button>
-                              <md-button ng-class="item.isShowServices ? 'md-raised md-primary' : ''" ng-click="showItems(item,'services')">SERVICES ({{item.services.totalItems}})</md-button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <md-content flex="{{flexBox}}" ng-show="item.isShowTasks" layout-padding ui-project-tasks total-items="item.tasks.totalItems"
-                          project-id="item.id" widget-title="widgetShowAllBlocks == true ? 'Tasks' : null"></md-content>
-              <md-content flex="{{flexBox}}" ng-show="item.isShowDiscussions" layout-padding ui-project-discussions
-                          total-items="item.discussions.totalItems" widget-format="widgetFormat" project-id="item.id"
-                          widget-title="widgetShowAllBlocks == true ? 'Discussions' : null"
-                          with-avatar="widgetShowAllBlocks == true ? false : true"></md-content>
-              <md-content flex="{{flexBox}}" ng-show="item.isShowServices" layout-padding ui-project-services
-                          total-items="item.services.totalItems" project-id="item.id"
-                          widget-title="widgetShowAllBlocks == true ? 'Services' : null"
-                          progress-position="widgetShowAllBlocks == true ? 'bottom' : 'right'"></md-content>
+
+          <md-content ng-if="!widgetShowAllBlocks">
+              <md-tabs md-dynamic-height md-border-bottom>
+                  <md-tab label="Tasks">
+                      <md-content flex
+                                  ui-project-tasks
+                                  total-items="item.tasks.totalItems"
+                                  project-id="item.id"></md-content>
+                  </md-tab>
+                  <md-tab label="Discussions">
+                      <md-content flex
+                                  ui-project-discussions
+                                  total-items="item.discussions.totalItems"
+                                  project-id="item.id"></md-content>
+                  </md-tab>
+                  <md-tab label="Services">
+                      <md-content flex
+                                  ui-project-services
+                                  total-items="item.services.totalItems"
+                                  project-id="item.id"></md-content>
+                  </md-tab>
+              </md-tabs>
+          </md-content>
+
+          <div class="rp-panel__tab-content widget-blocks" layout="row" layout-align="space-between start" ng-if="widgetShowAllBlocks">
+              <!-- Tasks -->
+              <md-content flex="{{flexBox}}"
+                          layout-padding
+                          ui-project-tasks
+                          total-items="item.tasks.totalItems"
+                          project-id="item.id"
+                          widget-title="'Tasks'"></md-content>
+              <!-- Discussions -->
+              <md-content flex="{{flexBox}}"
+                          layout-padding
+                          ui-project-discussions
+                          total-items="item.discussions.totalItems"
+                          widget-format="widgetFormat"
+                          project-id="item.id"
+                          widget-title="'Discussions'"
+                          with-avatar="false"></md-content>
+              <!-- Services -->
+              <md-content flex="{{flexBox}}"
+                          layout-padding
+                          ui-project-services
+                          total-items="item.services.totalItems"
+                          project-id="item.id"
+                          widget-title="'Services'"
+                          progress-position="'bottom'"></md-content>
           </div>
       </div>
   </md-content>

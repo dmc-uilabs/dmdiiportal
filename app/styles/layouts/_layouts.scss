@@ -20,6 +20,7 @@
   background: map-get($colors, primary);
   color: white;
   text-align: center;
+  position: relative;
   .copyright{
     text-align: left;
     width: 49%;
@@ -28,12 +29,6 @@
     p {
       padding-top: 9px;
     }
-  }
-  .footer-links{
-    width: 49%;
-    display: inline-block;
-    vertical-align: top;
-    text-align: right;
   }
   .copyright-home{
     width: 100%;
@@ -44,6 +39,7 @@
   .footer-menu{
     display: inline-block;
     position: relative;
+    margin-bottom: 13px;
     ul{
       list-style: none;
       padding: 0;
@@ -57,6 +53,8 @@
           margin: 0;
           padding: 0 13px;
           color: #999;
+          min-height: 0;
+          line-height: 21px;
         }
         .md-button:hover{
           color: #eee;
