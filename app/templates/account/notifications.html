@@ -11,6 +11,8 @@
                             <h2 class="md-title">{{title}}</h2>
                         </div>
                         <span layout="column" flex></span>
+                        <md-button class="md-raised cancel-button" ng-click="cancelChanges()" ng-disabled="changedItems.length == 0">Cancel</md-button>
+                        <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="changedItems.length == 0">Save</md-button>
                     </div>
                     <div class="inputs-container">
                         <md-tabs md-dynamic-height md-border-bottom>
@@ -20,38 +22,14 @@
                                         <md-button class="md-raised disable-enable-button" ng-click="disableAll(key)">Deactivate All</md-button>
                                         <md-button class="md-raised disable-enable-button" ng-click="enableAll(key)">Select All</md-button>
                                     </div>
-                                    <div layout="row" classs="body-container">
-                                        <div layout="column" flex="50">
-                                            <div class="block-notification">
-                                                <h2>{{notification.data.general.title}}</h2>
-                                                <md-switch ng-model="item.disabled" aria-label=""
-                                                           ng-repeat="item in notification.data.general.data">
-                                                    {{item.text}}
-                                                </md-switch>
-                                            </div>
-                                            <div class="block-notification">
-                                                <h2>{{notification.data.community.title}}</h2>
-                                                <md-switch ng-model="item.disabled" aria-label=""
-                                                           ng-repeat="item in notification.data.community.data">
-                                                    {{item.text}}
-                                                </md-switch>
-                                            </div>
-                                        </div>
-                                        <div layout="column" flex="50">
-                                            <div class="block-notification">
-                                                <h2>{{notification.data.marketplace.title}}</h2>
-                                                <md-switch ng-model="item.disabled" aria-label=""
-                                                           ng-repeat="item in notification.data.marketplace.data">
-                                                    {{item.text}}
-                                                </md-switch>
-                                            </div>
-                                            <div class="block-notification">
-                                                <h2>{{notification.data.projects.title}}</h2>
-                                                <md-switch ng-model="item.disabled" aria-label=""
-                                                           ng-repeat="item in notification.data.projects.data">
-                                                    {{item.text}}
-                                                </md-switch>
-                                            </div>
+                                    <div layout="row" classs="body-container" layout-wrap>
+                                        <div class="block-notification" flex="50" ng-repeat="category in notification.data">
+                                            <h2>{{category.title}}</h2>
+                                            <md-switch ng-init="item.user_item.changedSelected = item.user_item.selected" ng-model="item.user_item.changedSelected" aria-label=""
+                                                       ng-change="changedNotification(item.user_item)"
+                                                       ng-repeat="item in category['account-notification-category-items']">
+                                                {{item.title}}
+                                            </md-switch>
                                         </div>
                                     </div>
                                 </md-content>

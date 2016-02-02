@@ -31,16 +31,6 @@ angular.module('dmc.individual-discussion', [
         $scope.accountId = 1;
 		$scope.flagReviewFlag = false;
 
-		$scope.realtedDiscussions = [
-			"Aenean euismod bibendum laoreet.",
-			"Aenean euismod bibendum laoreet.",
-			"Aenean euismod bibendum laoreet.",
-			"Aenean euismod bibendum laoreet.",
-			"Aenean euismod bibendum laoreet.",
-			"Aenean euismod bibendum laoreet.",
-			"Aenean euismod bibendum laoreet."
-		];
-
 		//load Discussion
         ajax.on(
             dataFactory.getIndividualDiscussion($stateParams.discussionId), {},
@@ -241,72 +231,4 @@ angular.module('dmc.individual-discussion', [
 				});
 		}
 
-	}])
-	.controller("ComposeDiscussionController", ['$scope', 'ajax', 'dataFactory', '$mdDialog', "$mdToast", "toastModel",  function ($scope, ajax, dataFactory, $mdDialog, $mdToast, toastModel) {
-		
-		$scope.newDiscussion = {
-			subject: "",
-			tags: [
-				"Metal", 
-				"Dashboard",
-				"Dashboard",
-				"Metal", 
-				"Dashboard", 
-				"Dashboard",
-				"Metal", 
-				"Dashboard", 
-				"Dashboard"
-			],
-			message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
-		}
-
-
-		$scope.cancel = function(){
-			$scope.NewDiscussion.tags = [];
-			$scope.message = [];
-		}
-
-		$scope.addTag = function(inputTag){
-			if(!inputTag)return;
-			$scope.NewDiscussion.tags.push(inputTag);
-			this.inputTag = null;
-		}
-
-		//remove tag
-		$scope.deleteTag = function(index){
-			$scope.NewDiscussion.tags.splice(index,1);
-		}
-
-		$scope.save = function(message, subject){    
-        ajax.on(dataFactory.getLastDiscussionId(), {
-            "_limit" : 1,
-            "_order" : "DESC",
-            "_sort" : "id"
-        }, function(data){
-            var lastId = (data.length == 0 ? 1 : parseInt(data[0].id)+1);
-            
-            ajax.on(
-                dataFactory.addDiscussion(),
-                {
-                    "id": lastId,
-                    "title": $scope.NewDiscussion.subject,
-                    "comments": { 
-							        "link": "/individual-discussion/" + lastId + "/individual-discussion-comment",
-							        "totalItems": 0
-							      }
-                },
-                function(data){
-                    toastModel.showToast("success", "Discussion created");
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                },
-                function(){
-                    toastModel.showToast("error", "Fail add discussion");
-                }, "POST"
-            );
-        }, function(){
-            toastModel.showToast("error", "Unable get last id");
-        },"GET");
-
-			$mdDialog.hide();
-		}
-	}]);;
+	}]);

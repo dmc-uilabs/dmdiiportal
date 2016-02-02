@@ -244,16 +244,99 @@ angular.module('dmc.component.productcard', [
     };
 })
 .controller('ShowProductCtrl', function ($scope, $mdDialog, getProduct, addToFavorite){
-    $scope.product = getProduct;
-    $scope.addToFavorite = addToFavorite;
-    updateFavoriteInShowProductCtrl = function(data){
-        $scope.product = data;
-        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-    };
-    $scope.cancel = function(){
-        updateFavoriteInShowProductCtrl = null;
-        $mdDialog.cancel();
-    }
+        $scope.product = getProduct;
+        $scope.addToFavorite = addToFavorite;
+        updateFavoriteInShowProductCtrl = function(data){
+            $scope.product = data;
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+        $scope.cancel = function(){
+            updateFavoriteInShowProductCtrl = null;
+            $mdDialog.cancel();
+        };
+
+        $scope.share = function(ev){
+            var share = $mdDialog.show({
+                controller: "ShareProductCtrl",
+                templateUrl: "templates/components/product-card/share-product.html",
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                locals: {
+                }
+            }).then(function() {
+            }, function() {
+            });
+        };
+
+        $scope.statistics = [
+            {
+                title: "Project",
+                "SuccessfulRuns": {
+                    "Today": 8,
+                    "Week": 10,
+                    "AllTime": 12
+                },
+                "IncompleteRuns": {
+                    "Today": 1,
+                    "Week": 3,
+                    "Month": 3
+                },
+                "UnavailableRuns": {
+                    "Today": 1,
+                    "Week": 2,
+                    "Month": 2
+                },
+                "RunsByUsers": {
+                    "Today": 10,
+                    "Week": 15,
+                    "AllTime": 17
+                },
+                "UniqueUsers": {
+                    "Today": 10,
+                    "Week": 2,
+                    "Month": 5
+                },
+                "AverageTime": {
+                    "Today": 10.1,
+                    "Week": 11,
+                    "Month": 22.2
+                }
+            },
+            {
+                title: "Marketplace",
+                "SuccessfulRuns": {
+                    "Today": 8,
+                    "Week": 10,
+                    "AllTime": 12
+                },
+                "IncompleteRuns": {
+                    "Today": 1,
+                    "Week": 3,
+                    "Month": 3
+                },
+                "UnavailableRuns": {
+                    "Today": 1,
+                    "Week": 2,
+                    "Month": 2
+                },
+                "RunsByUsers": {
+                    "Today": 10,
+                    "Week": 15,
+                    "AllTime": 17
+                },
+                "UniqueUsers": {
+                    "Today": 10,
+                    "Week": 2,
+                    "Month": 5
+                },
+                "AverageTime": {
+                    "Today": 10.1,
+                    "Week": 11,
+                    "Month": 22.2
+                }
+            }
+        ]
 }).service('isFavorite', ['dataFactory','ajax', function(dataFactory,ajax) {
 
     this.check = function(items) {

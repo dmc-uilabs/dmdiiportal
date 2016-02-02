@@ -6,11 +6,31 @@
     "companyId": 1,
     "role": 1,
     "notifications": {
-      "total": 2,
+      "total": 4,
       "items": [
         {
-          "title": "Commented on your discussion",
-          "link": "/project.php#/2/run-service/3"
+          "event": "new-contact",
+          "created_at": "8:00 PM",
+          "title": "John Smith added you as a contact",
+          "link": "/profile.php#/1"
+        },
+        {
+          "event": "replied-discussion",
+          "created_at": "6:00 AM",
+          "title": "Bill Gates replied to your discussion",
+          "link": "/individual-discussion.php#/1"
+        },
+        {
+          "event": "new-contact",
+          "created_at": "6:25 PM",
+          "title": "Bill Gates added you as a contact",
+          "link": "/profile.php#/2"
+        },
+        {
+          "event": "replied-discussion",
+          "created_at": "3:12 PM",
+          "title": "John Smith replied to your discussion",
+          "link": "/individual-discussion.php#/1"
         }
       ]
     },
@@ -20,21 +40,48 @@
         {
           "title": "Capacitor Bank For Ldr Mining Co",
           "serviceId": 3,
-          "projectId": 2
+          "projectId": 2,
+          "currentStatus": {
+            "percentCompleted": "25",
+            "startDate": "09/20/2015",
+            "startTime": "11:15:33"
+          }
         },
         {
           "title": "Incoming Compartment For Ldr Mining",
           "serviceId": 1,
-          "projectId": 4
+          "projectId": 4,
+          "currentStatus": {
+            "percentCompleted": "55",
+            "startDate": "09/22/2015",
+            "startTime": "11:15:33"
+          }
         }
       ]
     },
     "messages": {
-      "total": 1,
+      "total": 3,
       "items": [
         {
-          "title": "Patt has invited you to a challenge",
-          "link": "/project.php#/preview/5"
+          "user_name": "John Smith",
+          "image": "/images/carbone.png",
+          "text": "How was your meeting with the Bill Gates?",
+          "link": "/message.php#/1",
+          "created_at": "8:00 PM"
+        },
+        {
+          "user_name": "John Smith",
+          "image": "/images/carbone.png",
+          "text": "How was your meeting with the Bill Gates?",
+          "link": "/message.php#/1",
+          "created_at": "10:46 PM"
+        },
+        {
+          "user_name": "John Smith",
+          "image": "/images/carbone.png",
+          "text": "How was your meeting with the Bill Gates?",
+          "link": "/message.php#/1",
+          "created_at": "1:15 PM"
         }
       ]
     }
@@ -2499,17 +2546,17 @@
     {
       "id": 1,
       "name": "Manufacturing",
-      "individualDiscussionId": 1
+      "individual-discussionId": 1
     },
     {
       "id": 2,
       "name": "3D Printering",
-      "individualDiscussionId": 1
+      "individual-discussionId": 1
     },
     {
       "id": 3,
       "name": "Science",
-      "individualDiscussionId": 1
+      "individual-discussionId": 1
     }
   ],
   "individual-discussion": [
@@ -2668,6 +2715,431 @@
       "userRatingReview[DMC Member]": "like",
       "like": 0,
       "dislike": 0
+    }
+  ],
+  "account-notification-categories": [
+    {
+      "id": 1,
+      "title": "General",
+      "position": 1
+    },
+    {
+      "id": 2,
+      "title": "Community",
+      "position": 3
+    },
+    {
+      "id": 3,
+      "title": "Marketplace",
+      "position": 2
+    },
+    {
+      "id": 4,
+      "title": "Projects",
+      "position": 4
+    }
+  ],
+  "account-notification-category-items": [
+    {
+      "id": 1,
+      "account-notification-categoryId": 1,
+      "title": "User messages me"
+    },
+    {
+      "id": 2,
+      "account-notification-categoryId": 1,
+      "title": "DMC posts an event"
+    },
+    {
+      "id": 3,
+      "account-notification-categoryId": 1,
+      "title": "DMC posts an update"
+    },
+    {
+      "id": 4,
+      "account-notification-categoryId": 1,
+      "title": "DMC system updates"
+    },
+    {
+      "id": 5,
+      "account-notification-categoryId": 2,
+      "title": "User requests to be a contact"
+    },
+    {
+      "id": 6,
+      "account-notification-categoryId": 2,
+      "title": "User accepts contact request"
+    },
+    {
+      "id": 7,
+      "account-notification-categoryId": 2,
+      "title": "User reviews you"
+    },
+    {
+      "id": 8,
+      "account-notification-categoryId": 2,
+      "title": "User follows you"
+    },
+    {
+      "id": 9,
+      "account-notification-categoryId": 2,
+      "title": "User you follow publishes a new dicussion"
+    },
+    {
+      "id": 10,
+      "account-notification-categoryId": 2,
+      "title": "User comments on your Discussion"
+    },
+    {
+      "id": 11,
+      "account-notification-categoryId": 3,
+      "title": "Your component/service is reviewed"
+    },
+    {
+      "id": 12,
+      "account-notification-categoryId": 3,
+      "title": "Your component/service is favorited"
+    },
+    {
+      "id": 13,
+      "account-notification-categoryId": 3,
+      "title": "Component/service is shared with you"
+    },
+    {
+      "id": 14,
+      "account-notification-categoryId": 4,
+      "title": "User invites you to a project"
+    },
+    {
+      "id": 15,
+      "account-notification-categoryId": 4,
+      "title": "User accepts your project invitation"
+    },
+    {
+      "id": 16,
+      "account-notification-categoryId": 4,
+      "title": "Service completes"
+    },
+    {
+      "id": 17,
+      "account-notification-categoryId": 4,
+      "title": "Service fails"
+    },
+    {
+      "id": 18,
+      "account-notification-categoryId": 4,
+      "title": "You are assigned to a task"
+    },
+    {
+      "id": 19,
+      "account-notification-categoryId": 4,
+      "title": "Change in priority status of task"
+    },
+    {
+      "id": 20,
+      "account-notification-categoryId": 4,
+      "title": "You receive a question on your project"
+    },
+    {
+      "id": 21,
+      "account-notification-categoryId": 4,
+      "title": "You receive a submission for your project"
+    }
+  ],
+  "user-notification-items": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 1,
+      "selected": false
+    },
+    {
+      "id": 2,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 2,
+      "selected": true
+    },
+    {
+      "id": 3,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 3,
+      "selected": true
+    },
+    {
+      "id": 4,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 4,
+      "selected": false
+    },
+    {
+      "id": 5,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 5,
+      "selected": false
+    },
+    {
+      "id": 6,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 6,
+      "selected": false
+    },
+    {
+      "id": 7,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 7,
+      "selected": true
+    },
+    {
+      "id": 8,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 8,
+      "selected": true
+    },
+    {
+      "id": 9,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 9,
+      "selected": false
+    },
+    {
+      "id": 10,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 10,
+      "selected": false
+    },
+    {
+      "id": 11,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 11,
+      "selected": false
+    },
+    {
+      "id": 12,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 12,
+      "selected": true
+    },
+    {
+      "id": 13,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 13,
+      "selected": false
+    },
+    {
+      "id": 14,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 14,
+      "selected": false
+    },
+    {
+      "id": 15,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 15,
+      "selected": true
+    },
+    {
+      "id": 16,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 16,
+      "selected": false
+    },
+    {
+      "id": 17,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 17,
+      "selected": false
+    },
+    {
+      "id": 18,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 18,
+      "selected": false
+    },
+    {
+      "id": 19,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 19,
+      "selected": false
+    },
+    {
+      "id": 20,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 20,
+      "selected": false
+    },
+    {
+      "id": 21,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 21,
+      "selected": false
+    },
+    {
+      "id": 22,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 1,
+      "selected": true
+    },
+    {
+      "id": 23,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 2,
+      "selected": true
+    },
+    {
+      "id": 24,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 3,
+      "selected": true
+    },
+    {
+      "id": 25,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 4,
+      "selected": true
+    },
+    {
+      "id": 26,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 5,
+      "selected": false
+    },
+    {
+      "id": 27,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 6,
+      "selected": false
+    },
+    {
+      "id": 28,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 7,
+      "selected": false
+    },
+    {
+      "id": 29,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 8,
+      "selected": true
+    },
+    {
+      "id": 30,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 9,
+      "selected": true
+    },
+    {
+      "id": 31,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 10,
+      "selected": true
+    },
+    {
+      "id": 32,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 11,
+      "selected": false
+    },
+    {
+      "id": 33,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 12,
+      "selected": true
+    },
+    {
+      "id": 34,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 13,
+      "selected": false
+    },
+    {
+      "id": 35,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 14,
+      "selected": false
+    },
+    {
+      "id": 36,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 15,
+      "selected": true
+    },
+    {
+      "id": 37,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 16,
+      "selected": false
+    },
+    {
+      "id": 38,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 17,
+      "selected": true
+    },
+    {
+      "id": 39,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 18,
+      "selected": false
+    },
+    {
+      "id": 40,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 19,
+      "selected": true
+    },
+    {
+      "id": 41,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 20,
+      "selected": false
+    },
+    {
+      "id": 42,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 21,
+      "selected": true
     }
   ]
 }

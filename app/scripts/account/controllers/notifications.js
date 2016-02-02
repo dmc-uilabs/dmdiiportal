@@ -1,119 +1,132 @@
 'use strict';
 angular.module('dmc.account')
-    .controller('NotificationsAccountCtr', [ '$stateParams', '$state', "$scope","accountData", function ($stateParams, $state, $scope,accountData) {
+    .controller('NotificationsAccountCtr', [ '$stateParams', '$state', "$scope","accountData","ajax","dataFactory", function ($stateParams, $state, $scope,accountData,ajax,dataFactory) {
         $scope.accountData = accountData;
         $scope.accountId = $stateParams.accountId;
         $scope.page = $state.current.name.split('.')[1];
         $scope.title = pageTitles[$scope.page];
 
+        // disable all notification for one section (website, email)
         $scope.disableAll = function(type){
-            for(var block in $scope.notifications[type].data){
-                for(var item in $scope.notifications[type].data[block].data){
-                    $scope.notifications[type].data[block].data[item].disabled = false;
+            for(var k in $scope.notifications) {
+                for (var i in $scope.notifications[k].data) {
+                    for (var j in $scope.notifications[k].data[i]['account-notification-category-items']) {
+                        if(type == $scope.notifications[k].data[i]['account-notification-category-items'][j].user_item.section && $scope.notifications[k].data[i]['account-notification-category-items'][j].user_item.changedSelected == true) {
+                            $scope.notifications[k].data[i]['account-notification-category-items'][j].user_item.changedSelected = false;
+                            $scope.changedNotification($scope.notifications[k].data[i]['account-notification-category-items'][j].user_item);
+                        }
+                    }
                 }
             }
         };
 
+        // enable all notifications for one section (website, email)
         $scope.enableAll = function(type){
-            for(var block in $scope.notifications[type].data){
-                for(var item in $scope.notifications[type].data[block].data){
-                    $scope.notifications[type].data[block].data[item].disabled = true;
+            for(var k in $scope.notifications) {
+                for (var i in $scope.notifications[k].data) {
+                    for (var j in $scope.notifications[k].data[i]['account-notification-category-items']) {
+                        if(type == $scope.notifications[k].data[i]['account-notification-category-items'][j].user_item.section && $scope.notifications[k].data[i]['account-notification-category-items'][j].user_item.changedSelected == false) {
+                            $scope.notifications[k].data[i]['account-notification-category-items'][j].user_item.changedSelected = true;
+                            $scope.changedNotification($scope.notifications[k].data[i]['account-notification-category-items'][j].user_item);
+                        }
+                    }
                 }
             }
         };
 
-        $scope.notifications = {
-            website : {
-                title : "Website",
-                data : {
-                    general : {
-                        title : "General",
-                        data : [
-                            { text : "User messages me" },
-                            { text : "DMC posts an event" },
-                            { text : "DMC posts an update" },
-                            { text : "DMC system updates" }
-                        ]
-                    },
-                    community : {
-                        title : "Community",
-                        data : [
-                            { text : "User requests to be a contact" },
-                            { text : "User accepts contact request" },
-                            { text : "User reviews you" },
-                            { text : "User follows you" },
-                            { text : "User you follow publishes a new dicussion" },
-                            { text : "User comments on your Discussion" }
-                        ]
-                    },
-                    marketplace : {
-                        title : "Marketplace",
-                        data : [
-                            { text : "Your component/service is reviewed" },
-                            { text : "Your component/service is favorited" },
-                            { text : "Component/service is shared with you" }
-                        ]
-                    },
-                    projects : {
-                        title : "Projects",
-                        data : [
-                            { text : "User invites you to a project" },
-                            { text : "User accepts your project invitation" },
-                            { text : "Service completes" },
-                            { text : "Service fails" },
-                            { text : "You are assigned to a task" },
-                            { text : "Change in priority status of task" },
-                            { text : "You receive a question on your project" },
-                            { text : "You receive a submission for your project" }
-                        ]
+        $scope.notificationCategories = [];
+        // get all notification categories
+        $scope.getNotifications = function(){
+            ajax.get(dataFactory.getAccountNotifications(),{
+                    _sort : "position",
+                    _order : "ASC",
+                    _embed : "account-notification-category-items"
+                }, function(response){
+                    $scope.notificationCategories = response.data;
+                    $scope.getUserNotifications();
+                }
+            );
+        };
+        $scope.getNotifications();
+
+        // get notifications for current account
+        $scope.getUserNotifications = function(){
+            ajax.get(dataFactory.getUserAccountNotifications($scope.accountId),{}, function(response){
+                    $scope.notifications = {};
+                    for(var k in response.data){
+                        if(!$scope.notifications[response.data[k].section]){
+                            $scope.notifications[response.data[k].section] = {};
+                            $scope.notifications[response.data[k].section].title = response.data[k].section;
+                            $scope.notifications[response.data[k].section].data = $.extend(true,{},$scope.notificationCategories);
+                        }
+                    }
+                    for(var k in $scope.notifications) {
+                        for (var i in $scope.notifications[k].data) {
+                            for (var j in $scope.notifications[k].data[i]['account-notification-category-items']) {
+                                for(var d in response.data){
+                                    if(k == response.data[d].section && response.data[d]['account-notification-category-itemId'] == $scope.notifications[k].data[i]['account-notification-category-items'][j].id){
+                                        $scope.notifications[k].data[i]['account-notification-category-items'][j].user_item = response.data[d];
+                                        break;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-            },
-            email : {
-                title : "Email",
-                data : {
-                    general : {
-                        title : "General",
-                        data : [
-                            { text : "User messages me" },
-                            { text : "DMC posts an event" },
-                            { text : "DMC posts an update" },
-                            { text : "DMC system updates" }
-                        ]
-                    },
-                    community : {
-                        title : "Community",
-                        data : [
-                            { text : "User requests to be a contact" },
-                            { text : "User accepts contact request" },
-                            { text : "User reviews you" },
-                            { text : "User follows you" },
-                            { text : "User you follow publishes a new dicussion" },
-                            { text : "User comments on your Discussion" }
-                        ]
-                    },
-                    marketplace : {
-                        title : "Marketplace",
-                        data : [
-                            { text : "Your component/service is reviewed" },
-                            { text : "Your component/service is favorited" },
-                            { text : "Component/service is shared with you" }
-                        ]
-                    },
-                    projects : {
-                        title : "Projects",
-                        data : [
-                            { text : "User invites you to a project" },
-                            { text : "User accepts your project invitation" },
-                            { text : "Service completes" },
-                            { text : "Service fails" },
-                            { text : "You are assigned to a task" },
-                            { text : "Change in priority status of task" },
-                            { text : "You receive a question on your project" },
-                            { text : "You receive a submission for your project" }
-                        ]
+            );
+        };
+
+        $scope.changedItems = [];
+        // function for catch changes
+        $scope.changedNotification = function(item){
+            var exist = false;
+            for(var i in $scope.changedItems) {
+                if($scope.changedItems[i].id == item.id) {
+                    if(item.selected == item.changedSelected){
+                        $scope.changedItems.splice(i,1);
+                        exist = true;
+                        break;
+                    }else {
+                        exist = true;
+                        break;
                     }
                 }
             }
+            if(!exist){
+                $scope.changedItems.push(item);
+            }
+            apply();
+        };
+
+        // cancel changes
+        $scope.cancelChanges = function(){
+            for(var i in $scope.changedItems){
+                $scope.changedItems[i].changedSelected = $scope.changedItems[i].selected;
+            }
+            $scope.changedItems = [];
+            apply();
+        };
+
+        // save changes
+        $scope.saveChanges = function(){
+            if($scope.changedItems.length > 0){
+                for(var i in $scope.changedItems) {
+                    ajax.update(dataFactory.updateUserAccountNotification($scope.changedItems[i].id), {
+                        selected : $scope.changedItems[i].changedSelected
+                    }, function (response) {
+                        for(var j in $scope.changedItems){
+                            if($scope.changedItems[j].id == response.data.id){
+                                $scope.changedItems.splice(j,1);
+                                break;
+                            }
+                        }
+                        apply();
+                    });
+                }
+            }
+        };
+
+        var apply = function(){
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };
 }]);

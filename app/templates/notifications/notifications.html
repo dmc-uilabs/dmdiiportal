@@ -1,5 +1,8 @@
 <div class="notifications" layout="column">
-	<h2>My Notifications <a href="/account.php#/1/notifications"><ng-md-icon icon="settings" size="18"></ng-md-icon></a></h2>
+	<div layout="row" layout-align="space-between center">
+		<h2>My Notifications <a href="/account.php#/1/notifications"><ng-md-icon icon="settings" size="18"></ng-md-icon></a></h2>
+		<md-button ng-if="filterFlag" class="md-raised dmc-button" ng-click="reset()">View All</md-button>
+	</div>
 <md-content class="md-padding">
 	<div layout="row" layout-align="space-between start">
 		<div flex="15" class="section" ng-repeat="(key, item) in notifications track by $index" >
@@ -89,7 +92,6 @@
 	<div class="block" ng-if="filterFlag">
 		<div layout="row" layout-align="space-between center">
 			<h2>{{typeNotifications}}</h2>
-			<md-button class="md-raised dmc-button" ng-click="reset()">View All</md-button>
 		</div>
 		<md-list>
 			<md-list-item ng-repeat="item in notificationsData | filter: filterBy">
