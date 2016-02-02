@@ -1858,11 +1858,12 @@
       "runStats": {
         "success": 1,
         "fail": 1
-      }
+      },
+      "special": []
     },
     {
       "id": 2,
-      "componentId": 3,
+      "serviceId": 3,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "input": 4,
       "output": 7,
@@ -1873,7 +1874,24 @@
       "runStats": {
         "success": 15,
         "fail": 9
-      }
+      },
+      "special": []
+    },
+    {
+      "id": 3,
+      "serviceId": 1,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "input": 4,
+      "output": 7,
+      "usageStats": {
+        "added": 22,
+        "members": 14
+      },
+      "runStats": {
+        "success": 15,
+        "fail": 9
+      },
+      "special": []
     }
   ],
   "documents": [
@@ -2525,17 +2543,17 @@
     {
       "id": 1,
       "name": "Manufacturing",
-      "individualDiscussionId": 1
+      "individual-discussionId": 1
     },
     {
       "id": 2,
       "name": "3D Printering",
-      "individualDiscussionId": 1
+      "individual-discussionId": 1
     },
     {
       "id": 3,
       "name": "Science",
-      "individualDiscussionId": 1
+      "individual-discussionId": 1
     }
   ],
   "individual-discussion": [
