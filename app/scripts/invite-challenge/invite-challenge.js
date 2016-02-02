@@ -1,7 +1,7 @@
 'use strict';
 angular.module('dmc.add_project', [
     'dmc.configs.ngmaterial',
-    'dmc.add_project.directive',
+    'dmc.rfpInvite',
     'ngMdIcons',
     'ui.router',
     'md.data.table',

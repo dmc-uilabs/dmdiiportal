@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,48 +28,15 @@
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
 </head>
-<body ng-app="dmc.my_projects" ng-controller="DMCMyProjectsController" id="my-projects-page">
+<body ng-app="dmc.add_project">
     <!--[if lt IE 10]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
     <!-- Top Header -->
-    <div dmc-top-header active-page="'project&my-projects'"></div>
+    <div dmc-top-header active-page="'project'"></div>
 
-    <div class="page-header" layout-padding>
-      <md-toolbar>
-        <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="space-between center">
-            <h1 flex="33">My Projects</h1>
-            <md-button class="link-button add-project-button" md-no-ink
-                       href="/add-project.php">Add Project</md-button>
-            <!-- fill up the space between left and right area -->
-            <div laout="column" flex="33">
-                <div layout="row" layout-align="end center">
-                    <md-input-container>
-                        <label>Sort</label>
-                        <md-select ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
-                            <md-option ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Filter</label>
-                        <md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')" md-container-class="margin-dropdown">
-                            <md-option ng-repeat="filter in filterList track by $index" ng-value="$index">{{filter.name}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-            </div>
-        </div>
-      </md-toolbar>
-    </div>
-
-    <div class="container my-projects-container" layout="row" layout-padding>
-        <div class="content-panel"
-             id="myProjectsList"
-             ui-widget-projects
-             widget-format="'my-projects'"
-             widget-title="null"
-             widget-show-all-blocks="true"></div>
+    <div class="container">
+        <div class="content-panel" add-project-tabs=""></div>
     </div>
 
     <!-- Footer -->
@@ -110,27 +77,27 @@
     <script src="/bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
     <script src="/bower_components/angular-ui-sortable/sortable.min.js"></script>
     <script src="/bower_components/ng-autofocus/dist/ng-autofocus.js"></script>
-    <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/my-projects/index.js -->
+    <!-- build:js scripts/add_project/index.js -->
+    <script src="scripts/socket/socket.io.js"></script>
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
-    <script src="scripts/common/models/task-model.js"></script>
-    <script src="scripts/common/models/discussion-model.js"></script>
-    <script src="scripts/components/ui-widgets/tasks.directive.js"></script>
-    <script src="scripts/components/ui-widgets/services.directive.js"></script>
-    <script src="scripts/components/ui-widgets/discussions.directive.js"></script>
-    <script src="scripts/components/ui-widgets/projects.directive.js"></script>
-    <script src="scripts/components/rfp-invite/rfp-invite.directive.js"></script>
-    <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
-    <script src="scripts/common/models/toast-model.js"></script>
+    <script src="scripts/components/ui-widgets/documents.directive.js"></script>
+    <script src="scripts/components/dropzone/dropzone.directive.js"></script>
+    <script src="scripts/components/add-project/add-project.directive.js"></script>
+    <script src="scripts/components/product-card/product-card.js"></script>
+    <script src="scripts/components/compare/compare.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
-    <script src="scripts/my_projects/my_projects.js"></script>
+    <script src="scripts/common/models/project-model.js"></script>
+    <script src="scripts/common/models/member-model.js"></script>
+    <script src="scripts/add_project/add_project.js"></script>
+    <script src="scripts/common/models/toast-model.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php
@@ -138,5 +105,5 @@
         ?>
         window.apiUrl = '';
     </script>
-  </body>
+</body>
 </html>

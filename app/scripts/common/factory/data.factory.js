@@ -198,6 +198,12 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            getMembersUrl: function() {
+                return localhost+'members';
+            },
+            getCreateProject: function() {
+                return localhost+'projects';
+            },
             getProjects: function(){
                 return localhost+'projects';
             },
@@ -340,7 +346,7 @@ angular.module('dmc.data',[])
                 }
             },
             // ---------------------------
-            
+
 
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
