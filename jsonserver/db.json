@@ -2499,17 +2499,17 @@
     {
       "id": 1,
       "name": "Manufacturing",
-      "individualDiscussionId": 1
+      "individual-discussionId": 1
     },
     {
       "id": 2,
       "name": "3D Printering",
-      "individualDiscussionId": 1
+      "individual-discussionId": 1
     },
     {
       "id": 3,
       "name": "Science",
-      "individualDiscussionId": 1
+      "individual-discussionId": 1
     }
   ],
   "individual-discussion": [
