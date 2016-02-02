@@ -13,7 +13,11 @@
       margin-top: 0;
       a {
         text-decoration: none;
-        font-weight: bold;
+        color: #333;
+      }
+      span{
+        font-size: 12px;
+        text-transform: uppercase;
         color: map-get($colors, text_grey);
       }
     }
@@ -31,6 +35,18 @@
     text-align: left;
     .img-size {
       width: 75%;
+    }
+  }
+  md-tabs{
+    md-list{
+      padding-top: 0;
+      padding-bottom: 0;
+      md-list-item.md-2-line .md-list-item-text{
+        padding-top: 16px;
+        h3{
+          margin-top: 0;
+        }
+      }
     }
   }
   &__tab-content {

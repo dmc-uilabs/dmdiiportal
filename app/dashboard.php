@@ -92,34 +92,8 @@
               </div>
           </div>
         <div class="content-panel content-panel-dashboard" ui-widget-tasks columns="['title','project','dueDate','priority']" widget-title="'MY TASKS'"></div>
-        <div class="content-panel content-panel-dashboard" >
-          <div class="content-panel-header">
-           <md-toolbar>
-              <div class="md-toolbar-tools widget-toolbar-title">
-                <h2>FOLLOWING</h2>
-                <span flex></span>
-                <md-button href="/" md-no-ink class="view-all-button view-all-link">View All (5)</md-button>
-              </div>
-            </md-toolbar>
-          </div>
-          <div class="content-panel-body">
-            <md-content class="md-padding">
-              <md-list>
-                    <md-list-item class="md-2-line" ng-repeat="item in [1,2]">
-                      <div class="md-list-item-text">
-                        <h3><a class="member-text" href="/individual-discussion.php">Run services on clutch plates and pressure plates components</a></h3>
-                        <h4>9 minutes</h4>
-                      </div>
-                      <div class="md-secondary md-list-item-inner user-info">
-                        <a class="member-name" href="/profile.php">Janet Perkins</a>
-                        <a href="/profile.php"><img alt="Janet Perkins" class="md-avatar" src="images/avatar-fpo.jpg"></a>
-                      </div>
-                    </md-list-item>
-
-                  </md-list>
-            </md-content>
-          </div>
-        </div>
+        <!-- Discussion -->
+        <div class="content-panel content-panel-dashboard" ui-widget-discussions widget-data-type="'following'" widget-title="'FOLLOWING'"></div>
       </div>
     </div>
 

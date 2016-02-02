@@ -1,5 +1,6 @@
 .my-projects-container{
   padding: 8px 24px 24px 24px;
+
   .rp-panel__tab-content md-content{
     padding-right: 16px;
     &:nth-child(1){
@@ -21,6 +22,9 @@
     span{
       padding: 0;
     }
+  }
+  .add-project-button{
+    font-size: 15px;
   }
 }
 .margin-dropdown{

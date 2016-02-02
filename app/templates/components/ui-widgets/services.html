@@ -12,9 +12,9 @@
         <div class="running-services-list">
             <md-data-table-container>
                 <table md-data-table>
-                    <thead md-order="priority" md-trigger="onOrderChange" ng-if="services.length > 0">
+                    <thead md-order="sort" md-trigger="onOrderChange" ng-if="services.length > 0">
                     <tr>
-                        <th ng-show="columns.indexOf('name') > -1" name="Name" order-by="name"></th>
+                        <th ng-show="columns.indexOf('name') > -1" name="Name" order-by="title"></th>
                         <th ng-show="columns.indexOf('project') > -1" name="Project" order-by="project"></th>
                         <th ng-show="columns.indexOf('start') > -1" name="Start" order-by="start"></th>
                         <th ng-show="columns.indexOf('status') > -1" name="Status" order-by="status"></th>

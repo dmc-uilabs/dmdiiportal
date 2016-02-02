@@ -95,6 +95,7 @@
     <script src="scripts/components/compare/compare.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/add_project/add_project.js"></script>
+    <script src="scripts/common/models/toast-model.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

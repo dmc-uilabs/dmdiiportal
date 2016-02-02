@@ -15,10 +15,7 @@ angular.module('dmc.widgets.projects',[
                 showImage : "=",
                 widgetFormat: "="
             },
-            link: function (scope, iElement, iAttrs) {
-
-            },
-            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax) {
+            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
                 $scope.projects = [];
                 $scope.total = 0;
                 $scope.sort = 'id';
@@ -28,46 +25,23 @@ angular.module('dmc.widgets.projects',[
                 $scope.flexBox = ($scope.widgetShowAllBlocks == true ? 28 : 60);
                 $scope.flexDetails = ($scope.widgetShowAllBlocks == true ? 20 : 40);
 
-                $scope.showItems = function(item,name){
-                    item.isShowTasks = ($scope.widgetShowAllBlocks == true || name == 'tasks' ? true : false);
-                    item.isShowServices = ($scope.widgetShowAllBlocks == true || name == 'services' ? true : false);
-                    item.isShowDiscussions = ($scope.widgetShowAllBlocks == true || name == 'discussions' ? true : false);
+                var apply = function(){
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
 
                 // function for get all projects from DB
                 $scope.getProjects = function(){
-                    ajax.on(dataFactory.getUrlAllProjects(),
-                        dataFactory.get_request_obj({
-                        sort : $scope.sort,
-                        order : $scope.order,
-                        offset : 0,
-                        limit : $scope.limit
-                    }),function(data){
-                        var projects_ = $scope.projects;
-                        var data = dataFactory.get_result(data);
-                        $scope.total = data.count;
-                        $scope.projects = data.result;
-                        for(var i in $scope.projects){
-                            var found = false;
-                            for(var j in projects_){
-                                if($scope.projects[i].id === projects_[j].id){
-                                    $scope.projects[i].isShowTasks = projects_[j].isShowTasks;
-                                    $scope.projects[i].isShowServices = projects_[j].isShowServices;
-                                    $scope.projects[i].isShowDiscussions = projects_[j].isShowDiscussions;
-                                    found = true;
-                                    break;
-                                }
-                            }
-                            if(!found){
-                                $scope.projects[i].isShowTasks = true;
-                                $scope.projects[i].isShowServices = ($scope.widgetShowAllBlocks == true ? true : false);
-                                $scope.projects[i].isShowDiscussions = ($scope.widgetShowAllBlocks == true ? true : false);
-                            }
-                        }
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    },function(){
-                        alert("Ajax faild: getProjects");
+                    ajax.get(dataFactory.getProjects(),{
+                        _sort : $scope.sort,
+                        _order : $scope.order,
+                        _start : 0,
+                        _limit : $scope.limit
+                    },function(response){
+                        $scope.projects = response.data;
+                        $scope.total = $scope.projects.length;
+                        apply();
+                    },function(response){
+                        toastModel.showToast("error", "Ajax faild: getProjects");
                     });
                 };
 

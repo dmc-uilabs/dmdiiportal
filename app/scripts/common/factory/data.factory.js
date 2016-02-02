@@ -198,6 +198,28 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            getProjects: function(){
+                return localhost+'projects';
+            },
+            createDiscussion: function(id){
+                return localhost+'discussions/create';
+            },
+            getAssignUsers: function(){
+                return localhost+'assign_users';
+            },
+            createTask: function(){
+                return localhost+'tasks/create';
+            },
+            updateTask: function(id){
+                return localhost+'tasks/'+id;
+            },
+            getTasks: function(projectId){
+                if(projectId){
+                    return localhost+'projects/'+projectId+'/tasks';
+                }else{
+                    return localhost+'tasks';
+                }
+            },
             followCompany : function(){
                 return localhost+'company_follows';
             },
@@ -276,8 +298,12 @@ angular.module('dmc.data',[])
                 }
             },
             // ---------------------------
-            getServices: function(){
-                return localhost+'services';
+            getServices: function(projectId){
+                if(projectId){
+                    return localhost+'projects/'+projectId+'/services';
+                }else{
+                    return localhost+'services';
+                }
             },
             getComponents: function(){
                 return localhost+'components';
@@ -305,8 +331,28 @@ angular.module('dmc.data',[])
             deactivateAccount : function(id){
                 return localhost+'accounts'+(id ? '/'+id : '');
             },
-            getDiscussions : function(){
-                return localhost+'discussions';
+            getDiscussions : function(projectId,dataTypeWidget){
+                if(!projectId && !dataTypeWidget) {
+                    return localhost + 'discussions';
+                }else{
+                    if(projectId){
+                        if(dataTypeWidget){
+                            if(dataTypeWidget == "following"){
+                                return localhost + 'projects/'+projectId+'/following_discussions';
+                            }else{
+                                return localhost + 'projects/'+projectId+'/discussions';
+                            }
+                        }else{
+                            return localhost + 'projects/'+projectId+'/discussions';
+                        }
+                    }else if(dataTypeWidget){
+                        if(dataTypeWidget == "following"){
+                            return localhost + 'following_discussions';
+                        }else{
+                            return localhost + 'discussions';
+                        }
+                    }
+                }
             },
             deleteCompanyLogo : function(id){
                 return localhost+'companies'+(id ? '/'+id : '');
