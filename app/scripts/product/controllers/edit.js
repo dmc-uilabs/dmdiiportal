@@ -10,6 +10,9 @@ angular.module('dmc.product')
 	$scope.not_found = false;  //product not fount
 	$scope.products_card = [];  //products card
 	$scope.allServices = [];
+	$scope.includedServices = [];
+	$scope.removeIncluded = [];
+	$scope.addIncluded = [];
 	$scope.Specifications = ['Height', 'Length', 'Weight'];
 
 	$scope.currentImage = 1;
@@ -81,8 +84,8 @@ angular.module('dmc.product')
 	};
 
 //load data
-	serviceModel.get_all_component({"_limit": 8}, function(data){
-		$scope.products = data;
+	serviceModel.get_included_services(function(data){
+		$scope.includedServices = data;
 	    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 	});
 
@@ -126,9 +129,9 @@ angular.module('dmc.product')
 
 	//Add services to included services
 	$scope.AddServices = function(item, text){
-		console.info("AddServices");
 		if(!item)return;
-		$scope.products.push(item);
+		$scope.addIncluded.push(item.id);
+		$scope.includedServices.push({service: item});
 		this.$$childHead.$mdAutocompleteCtrl.clear();
 	}
 
@@ -166,8 +169,9 @@ angular.module('dmc.product')
 	}
 
 	//Remove included services
-	$scope.deleteIncluded = function(index){
-		$scope.products.splice(index, 1);
+	$scope.deleteIncluded = function(index, id){
+		$scope.removeIncluded.push(id);
+		$scope.includedServices.splice(index, 1);
 	}
 
 	//remove specifications
@@ -192,14 +196,18 @@ angular.module('dmc.product')
 		for(var i in $scope.product.specifications[0].special){
 			delete $scope.product.specifications[0].special[i]['$$hasKey'];
 		}
+
+		serviceModel.remove_included_services($scope.removeIncluded)
+		serviceModel.add_included_services($scope.addIncluded)
+		
 		serviceModel.edit_component({
 			title: $scope.product.title,
 			tags: $scope.product.tags,
 			description: $scope.product.description,
 			specification: $scope.product.specifications[0],
 		},
+
         function(data){
-            console.info(data);
             $scope.save = true;
             $scope.isChangingPicture = false;
             $state.go('component', {typeProduct: $scope.product.type+'s', productId: $scope.product.id});

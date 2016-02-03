@@ -17,4 +17,18 @@ angular.module('dmc.model.project', ['dmc.data'])
             }
           );
     };
+
+    this.createProject = function(project) {
+      ajax.create(
+        dataFactory.getCreateProject(),
+        project,
+        function(response){
+          var data = response.data ? response.data : response;
+          deffered.resolve(data)
+        },
+        function(){
+          deffered.reject();
+        }
+      );
+    }
 }]);

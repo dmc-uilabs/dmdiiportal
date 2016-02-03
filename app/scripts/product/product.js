@@ -104,6 +104,65 @@ angular.module('dmc.product', [
             )
         }
 
+        this.get_included_services = function(callback){
+            return ajax.get(dataFactory.components($stateParams.typeProduct, $stateParams.productId).get_included,
+                {
+                    "includeTo": $stateParams.productId,
+                    "_expand": "service"
+                },
+                function(response){
+                    callback(response.data);
+                },
+                function(response){
+                    toastModel.showToast("error", "Error." + response.statusText);
+                }
+            )
+        }
+
+        this.add_included_services = function(array){
+            ajax.get(dataFactory.components($stateParams.typeProduct, $stateParams.productId).get_included, 
+                {
+                    "_limit" : 1,
+                    "_order" : "DESC",
+                    "_sort" : "id"
+                }, 
+                function(response){  
+                    var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1); 
+                    for(var i in array){
+                        ajax.create(dataFactory.components($stateParams.typeProduct, $stateParams.productId).add_included,
+                            {
+                                "id": lastId,
+                                "includeTo": $stateParams.productId,
+                                "serviceId": array[i]
+                            },
+                            function(response){
+                            },
+                            function(response){
+                                toastModel.showToast("error", "Error." + response.statusText);
+                            }
+                        )
+                        lastId++;
+                    }
+                },
+                function(response){
+                    toastModel.showToast("error", "Error." + response.statusText);
+                }
+            )  
+        }
+
+        this.remove_included_services = function(array){
+            for(var i in array){
+                ajax.delete(dataFactory.components($stateParams.typeProduct, array[i]).remove_included,
+                    {},
+                    function(response){
+                    },
+                    function(response){
+                        toastModel.showToast("error", "Error." + response.statusText);
+                    }
+                )
+            }
+        }
+
         this.get_component_reviews = function(params, callback){
             return ajax.get(dataFactory.components($stateParams.typeProduct, $stateParams.productId).reviews,
                 params,

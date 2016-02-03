@@ -352,6 +352,68 @@
       "id": 1
     }
   ],
+  "company_members": [
+    {
+      "id": 1,
+      "companyId": 1,
+      "position": "Technical",
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "display_name": "Bob Smith",
+      "jobTitle": "Head of Engineering",
+      "phone": "111-111-1111",
+      "email": "bobs@gmail.com"
+    },
+    {
+      "id": 2,
+      "companyId": 1,
+      "position": "Legal",
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "display_name": "Bob Smith",
+      "jobTitle": "Head of Engineering",
+      "phone": "111-111-1111",
+      "email": "bobs@gmail.com"
+    },
+    {
+      "id": 3,
+      "companyId": 1,
+      "position": "Admin",
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "display_name": "Bob Smith",
+      "jobTitle": "Head of Engineering",
+      "phone": "111-111-1111",
+      "email": "bobs@gmail.com"
+    },
+    {
+      "id": 4,
+      "companyId": 1,
+      "position": "Communication",
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "display_name": "Bob Smith",
+      "jobTitle": "Head of Engineering",
+      "phone": "111-111-1111",
+      "email": "bobs@gmail.com"
+    },
+    {
+      "id": 5,
+      "companyId": 1,
+      "position": "R&D",
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "display_name": "Bob Smith",
+      "jobTitle": "Head of Engineering",
+      "phone": "111-111-1111",
+      "email": "bobs@gmail.com"
+    },
+    {
+      "id": 6,
+      "companyId": 1,
+      "position": "General",
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "display_name": "Bob Smith",
+      "jobTitle": "Head of Engineering",
+      "phone": "111-111-1111",
+      "email": "bobs@gmail.com"
+    }
+  ],
   "accounts": [
     {
       "id": 1,
@@ -622,6 +684,7 @@
       }
     }
   ],
+  "projets_members": [],
   "components": [
     {
       "id": 1,
@@ -1352,6 +1415,53 @@
       "projectId": 4,
       "type": "service",
       "from": "marketplace"
+    }
+  ],
+  "included-services": [
+    {
+      "id": 1,
+      "includeTo": 1,
+      "serviceId": 2
+    },
+    {
+      "id": 2,
+      "includeTo": 1,
+      "serviceId": 3
+    },
+    {
+      "id": 3,
+      "includeTo": 2,
+      "serviceId": 3
+    },
+    {
+      "id": 4,
+      "includeTo": 3,
+      "serviceId": 8
+    },
+    {
+      "id": 5,
+      "includeTo": 1,
+      "serviceId": 4
+    },
+    {
+      "id": 6,
+      "includeTo": 1,
+      "serviceId": 5
+    },
+    {
+      "id": 7,
+      "includeTo": 1,
+      "serviceId": 6
+    },
+    {
+      "id": 8,
+      "includeTo": 1,
+      "serviceId": 7
+    },
+    {
+      "id": 9,
+      "includeTo": 1,
+      "serviceId": 1
     }
   ],
   "tasks": [

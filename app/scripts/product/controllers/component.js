@@ -10,6 +10,7 @@ angular.module('dmc.product')
 	$scope.submit_rating = 0;  //
 	$scope.not_found = false;  //product not fount
 	$scope.products_card = [];  //products card
+	$scope.includedServices = [];
 	$scope.limit_reviews = true;  //limit reviews
 	$scope.allServices = [];
 	$scope.UserLogin = "DMC Member";
@@ -204,8 +205,8 @@ angular.module('dmc.product')
 	};
 
 //load data
-	serviceModel.get_all_component({"_limit": 8}, function(data){
-		$scope.products = data;
+	serviceModel.get_included_services(function(data){
+		$scope.includedServices = data;
 	    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 	});
 
@@ -255,6 +256,18 @@ angular.module('dmc.product')
 	            $scope.submit_rating = 0;
 	            $scope.LeaveFlag = !$scope.LeaveFlag;
 
+                $scope.product.precentage_stars = [0, 0, 0, 0, 0];
+                $scope.product.average_rating = 0;
+                for (var i in $scope.product.rating) {
+                    $scope.product.precentage_stars[$scope.product.rating[i] - 1] += 100 / $scope.product.number_of_comments;
+                    $scope.product.average_rating += $scope.product.rating[i];
+                }
+                $scope.product.average_rating = ($scope.product.average_rating / $scope.product.number_of_comments).toFixed(1);
+
+                for (var i in $scope.product.precentage_stars) {
+                    $scope.product.precentage_stars[i] = Math.round($scope.product.precentage_stars[i]);
+                }
+                    
                 $scope.SortingReviews('date');
             	if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }

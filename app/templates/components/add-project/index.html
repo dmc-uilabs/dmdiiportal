@@ -1,0 +1,40 @@
+<div class="content-column">
+  <div class="content-panel">
+    <div class="content-panel-header">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>CREATE PROJECT</h2>
+        </div>
+      </md-toolbar>
+    </div>
+    <div class="content-panel-body">
+      <md-content class="md-padding rfp-invitation">
+        <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom md-autoselect>
+          <!--Tab -->
+          <div layout="row" layout-align="space-between center">
+            <md-tab label="1 ENTER PROJECT INFORMATION">
+              <md-content class="md-padding">
+                <ap-tab-one go-to-tab="goToNextTab" disable-enable-tab="disableEnable"></ap-tab-one>
+              </md-content>
+            </md-tab>
+            <md-tab label="2 ENTER EVALUATION CRITERIA" ng-disabled="data.secondLocked">
+              <md-content class="md-padding">
+                <ap-tab-two go-to-tab="goToNextTab" disable-enable-tab="disableEnable"></ap-tab-two>
+              </md-content>
+            </md-tab>
+            <md-tab label="3 SELECT MEMBERS TO INVITE" ng-disabled="data.thirdLocked">
+              <md-content class="md-padding">
+                <ap-tab-three go-to-tab="goToNextTab" invitees="invitees" disable-enable-tab="disableEnable"></ap-tab-three>
+              </md-content>
+            </md-tab>
+            <md-tab label="4 SEND MESSAGE TO INVITED MEMBERS" ng-disabled="data.fourthLocked">
+              <md-content class="md-padding">
+                <ap-tab-four go-to-tab="goToNextTab" invitees="invitees" disable-enable-tab="disableEnable"></ap-tab-four>
+              </md-content>
+            </md-tab>
+          </div>
+        </md-tabs>
+      </md-content>
+    </div>
+  </div>
+</div>
