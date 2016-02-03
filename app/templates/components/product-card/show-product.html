@@ -1,4 +1,4 @@
-<md-dialog flex="60" aria-label="View" class="view-all-included">
+<md-dialog aria-label="View" class="view-all-included">
 	<md-dialog-content class="component">
 		<div layout="row" layout-align="space-between center">
             <md-button md-no-ink ng-click="addToFavorite()" aria-label="Favorite" class="md-icon-button">
@@ -16,59 +16,60 @@
             <md-button md-no-ink href="" class="md-icon-button" ng-click="cancel()">
                 <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
             </md-button>
-    </div>
+        </div>
 		<md-content class="product">
-      <div layout="row">
-        <!--product image-->
-        <div class="product-image-modal" flex="30">
-          <img class="main-image" ng-src="{{product.featureImage.thumbnail}}">
-        </div>
-        <div flex>
-          <!--product header-->
-          <div class="product-header">
-              <h2>{{product.title}} <span>By {{product.owner}}</span></h2>
-              <ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>
-          </div>
+            <div layout="row">
+                <!--product image-->
+                <div class="product-image-modal" flex="30">
+                    <img class="main-image" ng-src="{{product.featureImage.thumbnail}}">
+                </div>
+                <div flex>
+                    <!--product header-->
+                    <div class="product-header">
+                        <h2>{{product.title}} <span>By {{product.owner}}</span></h2>
+                        <ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>
+                    </div>
 
-          <md-divider></md-divider>
+                    <md-divider></md-divider>
 
-          <!--product description-->
-          <div class="product-description">
-            {{product.description}}
-          </div>
-        </div>
-      </div>
-      <!--product tabs-->
-      <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab label="STATISTICS">
-            <ui-widget-tabs-statistic data="statistics" filter="filter"></ui-widget-tabs-statistic>
-        </md-tab>
-        <md-tab label="Specifications">
-          <md-content class="md-padding">
-            <div class="tabs-content" layout="column">
-              <p>Created: {{product.currentStatus.startDate}}</p>
-              <p>Added: {{product.specificationsData.usageStats.added}} times by {{product.specificationsData.usageStats.members}} members</p>
-              <p>Successful Runs: {{product.specificationsData.runStats.fail}}/{{product.specificationsData.runStats.success}}</p>
-              <p>Inputs: {{product.specificationsData.input}}</p>
-              <p>Outputs: {{product.specificationsData.output}}</p>
+                    <!--product description-->
+                    <div class="product-description">
+                        {{product.description}}
+                    </div>
+                </div>
             </div>
-          </md-content>
-        </md-tab>
-        <md-tab label="Tags">
-          <md-content class="md-padding">
-            <div layout="row" class="tabs-content" layout-wrap>
-              <md-chips ng-repeat="tag in product.tags track by $index">
-                <md-chip >{{tag}}</md-chip>
-              </md-chips>
-              <!-- <p ng-repeat="tag in product.tags track by $index" flex="15">{{tag}}</p> -->
-            </div>
-          </md-content>
-        </md-tab>
-        <md-tab label="Documents">
-          <md-content class="md-padding">
-              <ui-widget-documents-product></ui-widget-documents-product>
-          </md-content>
-        </md-tab>
-      </md-tabs>
+            <!--product tabs-->
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="STATISTICS">
+                    <ui-widget-tabs-statistic data="statistics" filter="filter"></ui-widget-tabs-statistic>
+                </md-tab>
+                <md-tab label="Specifications">
+                    <md-content class="md-padding">
+                        <div class="tabs-content" layout="column">
+                            <p>Created: {{product.currentStatus.startDate}}</p>
+                            <p>Added: {{product.specificationsData.usageStats.added}} times by {{product.specificationsData.usageStats.members}} members</p>
+                            <p>Successful Runs: {{product.specificationsData.runStats.fail}}/{{product.specificationsData.runStats.success}}</p>
+                            <p>Inputs: {{product.specificationsData.input}}</p>
+                            <p>Outputs: {{product.specificationsData.output}}</p>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Tags">
+                    <md-content class="md-padding">
+                        <div layout="row" class="tabs-content" layout-wrap>
+                            <md-chips ng-repeat="tag in product.tags track by $index">
+                                <md-chip >{{tag}}</md-chip>
+                            </md-chips>
+                            <!-- <p ng-repeat="tag in product.tags track by $index" flex="15">{{tag}}</p> -->
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Documents">
+                    <md-content class="md-padding">
+                        <ui-widget-documents-product></ui-widget-documents-product>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+      </md-content>
   </md-dialog-content>
 </md-dialog>

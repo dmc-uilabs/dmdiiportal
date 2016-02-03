@@ -27,6 +27,8 @@ angular.module('dmc.company', [
     'dmc.model.toast-model',
     'dmc.component.products-filter',
     'flow',
+    'dmc.widgets.tasks',
+    'dmc.widgets.tabs',
     'ng-autofocus'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
     var resolve = {

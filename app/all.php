@@ -80,7 +80,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/community/index.js -->
+    <!-- build:js scripts/all/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>

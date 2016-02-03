@@ -2,7 +2,7 @@
 	<md-divider ng-if="!$first"></md-divider>
 	<h2 ng-if="item.title">{{item.title}}</h2>
 	<div layout="row" layout-align="space-between start">
-		<div flex="15">
+		<div flex="20">
 			<div class="rate">
 				<h3>Success Rate</h3>
 				<div class="cell1">
@@ -16,7 +16,7 @@
 				</div>
 			</div>
 		</div>
-		<div flex="15">
+		<div flex="20">
 			<div class="section">
 				<h3 ng-click="filtered(item.title, 'all','Successful Runs')">Successful Runs</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
@@ -49,7 +49,7 @@
 				</div>
 			</div>
 		</div>
-		<div flex="15">
+		<div flex="20">
 			<div class="section">
 				<h3 ng-click="filtered(item.title, 'all','Incomplete Runs')">Incomplete Runs</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
@@ -82,7 +82,7 @@
 				</div>
 			</div>
 		</div>
-		<div flex="15">
+		<div flex="20">
 			<div class="section">
 				<h3 ng-click="filtered(item.title, 'all','Unavailable Runs')">Unavailable Runs</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
@@ -100,7 +100,7 @@
 			</div>
 
 		</div>
-		<div flex="15">
+		<div flex="20">
 			<div class="section">
 				<h3 ng-click="filtered(item.title, 'all','Runs By Users')">Runs By Users</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">

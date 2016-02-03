@@ -22,6 +22,8 @@ angular.module('dmc.marketplace', [
     'dmc.component.productscard',
     'dmc.component.carousel',
     'dmc.compare',
+    'dmc.widgets.tasks',
+    'dmc.widgets.tabs',
     'dmc.component.products-filter'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
