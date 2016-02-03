@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="content-panel-body">
                                     <md-content layout="row" layout-wrap>
-                                        <div flex="33" ng-if="item.isShow" class="container-member-card" ng-repeat="item in foundMembers">
+                                        <div flex="33" class="container-member-card" ng-repeat="item in foundMembers">
                                             <div dmc-member-card
                                                     compare-member="compareMember"
                                                     invite-member="addToInvitation"
@@ -70,6 +70,6 @@
     <div layout="row" class="btn-next-block" layout-padding>
         <md-button class="md-raised md-primary" ng-click="goToTab(1)">Back</md-button>
         <span flex></span>
-        <md-button class="md-raised md-primary" ng-click="submitProjectDetails(projectDetails)" ng-disabled="invitees.length == 0">Create</md-button>
+        <md-button class="md-raised md-primary" ng-click="submitProjectDetails(invitees)" ng-disabled="invitees.length == 0">Create</md-button>
     </div>
 </div>

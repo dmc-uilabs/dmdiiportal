@@ -3,11 +3,11 @@
         <md-button aria-label="Favorite" class="md-icon-button" flex><ng-md-icon icon="favorite_outline" style="fill: grey;" size="18"></ng-md-icon></md-button>
     </div>
     <div class="member-card__image">
-        <img ng-src="{{cardSource.avatar}}" alt="Name member">
+        <img ng-src="{{cardSource.image}}" alt="Name member">
     </div>
     <div class="member-card__header" layout="column" layout-padding layout-margin>
-        <h3 class="member-name"><a href="#">{{cardSource.name}}</a></h3>
-        <span class="company-name"><a href="#">{{cardSource.company}}</a></span>
+        <h3 class="member-name"><a >{{cardSource.displayName}}</a></h3>
+        <span class="company-name"><a >{{cardSource.company}}</a></span>
     </div>
     <div class="member-card__content" layout="row" layout-padding flex>
         <div class="member-card__content__column" flex="28" layout="column">
