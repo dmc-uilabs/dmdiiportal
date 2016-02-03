@@ -263,7 +263,7 @@ angular.module('dmc.widgets.tasks',[
         $scope.task.dueDateForEdit = new Date(moment($scope.task.dueDateForEdit,"DD-MM-YYYY").format("MM/DD/YYYY"));
         $scope.priorities = ["Low", "Medium", "High", "Critical"];
 
-        $scope.statuses = ["Open","Complited"];
+        $scope.statuses = ["Open","Completed"];
 
         $scope.cancel = function() {
             $mdDialog.cancel(false);
