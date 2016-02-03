@@ -10,6 +10,7 @@ angular.module('dmc.product')
 	$scope.submit_rating = 0;  //
 	$scope.not_found = false;  //product not fount
 	$scope.products_card = [];  //products card
+	$scope.includedServices = [];
 	$scope.limit_reviews = true;  //limit reviews
 	$scope.allServices = [];
 	$scope.UserLogin = "DMC Member";
@@ -204,8 +205,8 @@ angular.module('dmc.product')
 	};
 
 //load data
-	serviceModel.get_all_component({"_limit": 8}, function(data){
-		$scope.products = data;
+	serviceModel.get_included_services(function(data){
+		$scope.includedServices = data;
 	    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 	});
 

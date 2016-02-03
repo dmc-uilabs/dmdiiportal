@@ -336,7 +336,10 @@ angular.module('dmc.data',[])
                     all: localhost + name,
                     getReply : localhost + 'review/' + id + '/product_reviews?_sort=id&_order=ASC',
                     reviews : localhost + 'product/' + id + '/product_reviews?productType=' + type + '&reviewId=0',
-                    addReviews : localhost + 'product_reviews'
+                    addReviews : localhost + 'product_reviews',
+                    get_included : localhost + 'included-services',
+                    remove_included : localhost + 'included-services/' + id,
+                    add_included : localhost + 'included-services'
                 }
             },
             // ---------------------------

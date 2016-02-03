@@ -158,8 +158,8 @@
 								<a ng-click="ViewIncluded()" class="viewAll view-all-link">View all</a>
 							</div>
 							<div layout="row" class="tabs-content" layout-wrap>
-								<div flex="25" ng-repeat="oneProdut in products" class="included">
-									<dmc-product-card card-style="'included'" type-product="oneProdut.type" card-source="oneProdut"></dmc-product-card>
+								<div flex="25" ng-repeat="oneProdut in includedServices" class="included">
+									<dmc-product-card card-style="'included'" type-product="oneProdut.service.type" card-source="oneProdut.service"></dmc-product-card>
 								</div>
 							</div>
 						</md-content>

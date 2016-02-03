@@ -196,19 +196,19 @@
 							</md-autocomplete>
 							
 							<div layout="row" class="tabs-content" layout-wrap>
-								<div flex="25" ng-repeat="oneProdut in products track by $index" class="included">
+								<div flex="25" ng-repeat="oneProdut in includedServices track by $index" class="included">
 
 									<div class="product-card" layout="column">
 										<md-toolbar>
 											<div class="md-toolbar-tools" layout layout-align="end center">
-												<md-button ng-click="deleteIncluded($index)" aria-label="close" class="md-icon-button">
+												<md-button ng-click="deleteIncluded($index, oneProdut.id)" aria-label="close" class="md-icon-button">
 													<ng-md-icon icon="close" style="fill: grey;" size="25"></ng-md-icon>
 												</md-button>
 											</div>
 										</md-toolbar>
 										<div class="product-card__header" layout="column">
-											<a href=""><h3>{{oneProdut.title}}</h3></a>
-											<a href=""><span class="user-name">{{oneProdut.owner}}</span></a>
+											<a href=""><h3>{{oneProdut.service.title}}</h3></a>
+											<a href=""><span class="user-name">{{oneProdut.service.owner}}</span></a>
 										</div>
 									</div>
 
