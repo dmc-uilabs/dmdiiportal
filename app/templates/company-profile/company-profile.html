@@ -25,7 +25,7 @@
 				</div>
 					<span flex></span>
 				<div layout="row" layout-align="center center">
-					<ui-widget-stars-static size="15" ng-click="goToReview()" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
+					<ui-widget-stars-static size="15" ng-click="goToReview()" value="{{company.average_rating}}" text="({{company.average_rating}})"></ui-widget-stars-static>
 					<a ng-href="company.php#/1/storefront/services">View Storefront</a>
 					<span flex></span>
 					<div layout="row">
@@ -314,7 +314,7 @@
 						<p>{{company.categoryTier}}</p>
 					</div>
 					<div layout="column" flex="33" class="padding-left8">
-						<h2>Data Joined DMDll</h2>
+						<h2>Date Joined DMDll</h2>
 						<p>{{company.dateJoined}}</p>
 					</div>
 					<div layout="column" flex="33" class="padding-left8">
@@ -344,41 +344,41 @@
 		</div>
 
 		<!--Reviews-->
-		<div ng-if="!editFlag" id="review" layout="row" class="reviews" layout-margin layout-fill>
+		<div id="review" layout="row" class="reviews" layout-margin layout-fill>
 			<!--left column-->
 			<div flex class="reviews-rating">
 				<!--Rating header-->
 				<div layout="row" class="md-toolbar-tools reviews-rating-header">
 					<h2>Reviews</h2>
-					<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
+					<ui-widget-stars-static size="15" value="{{company.average_rating}}" text="({{company.average_rating}})"></ui-widget-stars-static>
 					<span flex></span>
-					<md-button class="viewAll md-raised" ng-click="ViewAllReview()">View All({{number_of_comments}})</md-button>
+					<md-button class="viewAll md-raised" ng-click="ViewAllReview()">View All({{company.number_of_comments}})</md-button>
 				</div>
 					<!--Rating-->
 				<div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
 					<p>5 STAR</p>
-					<md-progress-linear md-mode="determinate" value="{{precentage_stars[4]}}" flex></md-progress-linear>
-					<p flex="5">{{precentage_stars[4]}}%</p>
+					<md-progress-linear md-mode="determinate" value="{{company.precentage_stars[4]}}" flex></md-progress-linear>
+					<p flex="5">{{company.precentage_stars[4]}}%</p>
 				</div>
 				<div layout="row" ng-class="{'active-star' : (selectSortingStar!=4 && selectSortingStar!=0)}" ng-click="SortingReviews('4star')">
 					<p>4 STAR</p>
-					<md-progress-linear md-mode="determinate" value="{{precentage_stars[3]}}" flex></md-progress-linear>
-					<p flex="5">{{precentage_stars[3]}}%</p>
+					<md-progress-linear md-mode="determinate" value="{{company.precentage_stars[3]}}" flex></md-progress-linear>
+					<p flex="5">{{company.precentage_stars[3]}}%</p>
 				</div>
 				<div layout="row" ng-class="{'active-star' : (selectSortingStar!=3 && selectSortingStar!=0)}" ng-click="SortingReviews('3star')">
 					<p>3 STAR</p>
-					<md-progress-linear md-mode="determinate" value="{{precentage_stars[2]}}" flex></md-progress-linear>
-					<p flex="5">{{precentage_stars[2]}}%</p>
+					<md-progress-linear md-mode="determinate" value="{{company.precentage_stars[2]}}" flex></md-progress-linear>
+					<p flex="5">{{company.precentage_stars[2]}}%</p>
 				</div>
 				<div layout="row" ng-class="{'active-star' : (selectSortingStar!=2 && selectSortingStar!=0)}" ng-click="SortingReviews('2star')">
 					<p>2 STAR</p>
-					<md-progress-linear md-mode="determinate" value="{{precentage_stars[1]}}" flex></md-progress-linear>
-					<p flex="5">{{precentage_stars[1]}}%</p>
+					<md-progress-linear md-mode="determinate" value="{{company.precentage_stars[1]}}" flex></md-progress-linear>
+					<p flex="5">{{company.precentage_stars[1]}}%</p>
 				</div>
 				<div layout="row" ng-class="{'active-star' : (selectSortingStar!=1 && selectSortingStar!=0)}" ng-click="SortingReviews('1star')">
 					<p>1 STAR</p>
-					<md-progress-linear md-mode="determinate" value="{{precentage_stars[0]}}" flex></md-progress-linear>
-					<p flex="5">{{precentage_stars[0]}}%</p>
+					<md-progress-linear md-mode="determinate" value="{{company.precentage_stars[0]}}" flex></md-progress-linear>
+					<p flex="5">{{company.precentage_stars[0]}}%</p>
 				</div>
 			</div>
 			<!--right column-->
@@ -398,7 +398,7 @@
 		<div flex class="new-review" ng-if="LeaveFlag">
 			<form name="CommentForm">
 				<h2>Rating</h2>
-				<ui-widget-stars-active size="20" value="{{average_rating}}" select-star="stars(star)"></ui-widget-stars-active>
+				<ui-widget-stars-active size="20" select-star="stars(star)"></ui-widget-stars-active>
 				<md-input-container flex>
 					<label>Comment</label>
 					<textarea ng-model="NewReview.Comment" columns="1" md-maxlength="150"></textarea>
@@ -410,9 +410,9 @@
 			</form>
 		</div>
 
-		<md-divider ng-if="!editFlag" ></md-divider>
+		<md-divider ></md-divider>
 
-		<div ng-if="!editFlag" ng-repeat="review in company.reviews">
+		<div ng-repeat="review in company.company_reviews">
 			<ui-widget-review review="review" userlogin="UserLogin" typereview="'company_reviews'"></ui-widget-review>
 			<md-divider></md-divider>
 		</div>

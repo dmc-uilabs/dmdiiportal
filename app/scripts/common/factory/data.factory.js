@@ -285,7 +285,10 @@ angular.module('dmc.data',[])
                     update : localhost+name+'/'+id,
                     delete : localhost+name+'/'+id,
                     create : localhost+name,
-                    all : localhost+name
+                    all : localhost+name,
+                    reviews : localhost + name +'/' + id + '/company_reviews',
+                    addReviews : localhost + 'company_reviews',
+                    addReviews : localhost + 'companies/' + id + '/company_members'
                 }
             },
             // ---------------------------
