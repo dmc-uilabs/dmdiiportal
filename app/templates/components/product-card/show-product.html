@@ -1,15 +1,21 @@
 <md-dialog flex="60" aria-label="View" class="view-all-included">
 	<md-dialog-content class="component">
 		<div layout="row" layout-align="space-between center">
-      <md-button md-no-ink ng-click="addToFavorite()" aria-label="Favorite" class="md-icon-button">
-        <ng-md-icon icon="{{ product.favorite ? 'favorite' : 'favorite_outline'}}" ng-class="!product.favorite ? 'not-favorite' : 'is-favorite'" size="25"></ng-md-icon>
-      </md-button>
-	  <md-button md-no-ink href="product.php#/{{product.type}}s/{{product.id}}" ng-click="cancel()" aria-label="Open" class="md-icon-button">
-        <ng-md-icon icon="arrow_forward" style="fill: grey;" size="25"></ng-md-icon>
-      </md-button>
-      <md-button md-no-ink href="" class="md-icon-button" ng-click="cancel()">
-        <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
-      </md-button>
+            <md-button md-no-ink ng-click="addToFavorite()" aria-label="Favorite" class="md-icon-button">
+                <ng-md-icon icon="{{ product.favorite ? 'favorite' : 'favorite_outline'}}" ng-class="!product.favorite ? 'not-favorite' : 'is-favorite'" size="25"></ng-md-icon>
+            </md-button>
+            <!--<md-button md-no-ink href="product.php#/{{product.type}}s/{{product.id}}" ng-click="cancel()" aria-label="Open" class="md-icon-button">-->
+            <!--<ng-md-icon icon="arrow_forward" style="fill: grey;" size="25"></ng-md-icon>-->
+            <!--</md-button>-->
+            <md-button md-no-ink
+                       ng-click="share()"
+                       aria-label="Reply"
+                       class="md-icon-button" flex>
+                <ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
+            </md-button>
+            <md-button md-no-ink href="" class="md-icon-button" ng-click="cancel()">
+                <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
     </div>
 		<md-content class="product">
       <div layout="row">
@@ -34,6 +40,9 @@
       </div>
       <!--product tabs-->
       <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="STATISTICS">
+            <ui-widget-tabs-statistic data="statistics" filter="filter"></ui-widget-tabs-statistic>
+        </md-tab>
         <md-tab label="Specifications">
           <md-content class="md-padding">
             <div class="tabs-content" layout="column">

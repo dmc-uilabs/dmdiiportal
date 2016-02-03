@@ -31,6 +31,8 @@ $navigationActive: #65AF3F;
   position: fixed;
   width: 100%;
 
+
+
   .header-padding{
     padding: 0 30px;
   }
@@ -172,5 +174,123 @@ $navigationActive: #65AF3F;
 .header-menu-content.md-default-theme{
   a.md-button {
     line-height: 3.2;
+  }
+  &.messages-list{
+    width: 350px;
+  }
+  &.service-status-list{
+    width: 250px;
+  }
+  &.service-status-list,
+  &.messages-list,
+  &.notifications-list{
+    padding-bottom: 0;
+    ng-md-icon{
+      fill: #444;
+      margin-right: 8px;
+      display: inline-block;
+    }
+    md-menu-item{
+      max-height: none;
+      height: auto;
+      border-bottom: 1px solid #ccc;
+      &:hover{
+        background-color: #f2f2f2;
+      }
+      img{
+        width: 50px;
+        display: inline-block;
+        position: absolute;
+        left: 17px;
+      }
+      a {
+        text-decoration: none;
+        color: #333;
+        padding: 6px 16px;
+        span{
+          display: inline-block;
+        }
+      }
+      i{
+        display: block;
+        font-style: normal;
+        font-size: 13px;
+        max-width: 215px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      i:last-child{
+        font-size: 12px;
+        color: #777;
+      }
+      .user-name{
+        font-weight: bold;
+      }
+      .text{
+        max-width: 250px;
+      }
+    }
+    md-menu-item:last-child{
+      border: none;
+    }
+    .zone-top{
+      padding: 0 17px 8px 17px;
+      border-bottom: 1px solid #ccc;
+      h3{
+        margin: 0;
+        font-weight: 100;
+        font-size: 15px;
+      }
+      .md-button{
+        margin: 0;
+        min-height: 0;
+        line-height: 23px;
+        padding: 0;
+        min-width: 0;
+      }
+    }
+  }
+  &.messages-list{
+    md-menu-item {
+      a {
+        width: 100%;
+        display: block;
+        max-width: none;
+        padding-left: 80px;
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+  &.service-status-list{
+    .title-service{
+      width: 100%;
+      i:last-child,
+      i {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 3px;
+      }
+    }
+    .time{
+      width: 100%;
+      margin-top: 4px;
+      i{
+        font-size: 11px;
+        color: #777;
+        display: inline-block;
+        width: 48%;
+        &:last-child{
+          text-align: right;
+          position: absolute;
+          font-size: 11px;
+          left: 50%;
+          width: auto;
+          right: 16px;
+        }
+      }
+    }
   }
 }

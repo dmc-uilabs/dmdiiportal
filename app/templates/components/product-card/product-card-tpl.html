@@ -12,7 +12,11 @@
                     size="25"></ng-md-icon>
       </md-button>
 
-      <md-button md-no-ink ng-show="hideButtons.indexOf('share') < 0" ng-click="share()" aria-label="Reply" class="md-icon-button" flex>
+      <md-button md-no-ink
+                 ng-show="hideButtons.indexOf('share') < 0"
+                 ng-click="share()"
+                 aria-label="Reply"
+                 class="md-icon-button" flex>
         <ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
       </md-button>
       <md-button md-no-ink
@@ -28,7 +32,7 @@
   </div>
   <div class="product-card__header" layout="column"
        ng-class="cardStyle == 'small' ? 'title-without-spaces' : ''">
-    <a ng-href="{{'/product.php#/'+cardSource.type+'s/'+cardSource.id}}"><h3>{{cardSource.title}}</h3></a>
+    <a ng-href="{{'/component.php#/'+cardSource.type+'s/'+cardSource.id}}"><h3>{{cardSource.title}}</h3></a>
     <a ng-href="{{'/profile.php#/1'}}"><span class="user-name">{{cardSource.owner}}</span></a>
   </div>
   <div class="product-card__content" layout="row"  ng-if="cardStyle != 'included'">

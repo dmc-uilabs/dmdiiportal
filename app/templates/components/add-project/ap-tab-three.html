@@ -1,0 +1,44 @@
+<div class="container">
+    <div layout="row" layout-margin layout-fill layout-padding>
+        <!-- Left Content Column -->
+        <div class="content-column" layout="column" flex="29">
+            <div dmc-selected-invitees class="content-panel invitees" invitees="invitees"></div>
+        </div>
+
+        <!-- Right Content Column -->
+        <div class="content-column" layout="column" flex="70">
+            <div class="content-panel rfp-four">
+                <div class="content-panel-header">
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <h2>Create Message</h2>
+                        </div>
+                    </md-toolbar>
+                </div>
+                <div class="content-panel-body">
+                    <md-content class="md-padding top-content">
+                        <form name="form">
+                        <div layout="row">
+                            <md-input-container flex="100">
+                                <label>Subject</label>
+                                <input ng-model="subject" required>
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex="100">
+                                <label>Message</label>
+                                <textarea ng-model="message" columns="1" required></textarea>
+                            </md-input-container>
+                        </div>
+                        </form>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div layout="row" class="btn-next-block" layout-padding>
+        <md-button class="md-raised md-primary" ng-click="goToTab(3)">Back</md-button>
+        <span flex></span>
+        <md-button class="md-raised md-primary" ng-disabled="invitees.length == 0 || !form.$valid" href="/project.php#/rfp/blank/5">Send</md-button>
+    </div>
+</div>

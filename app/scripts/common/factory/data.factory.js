@@ -198,6 +198,12 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            getMembersUrl: function() {
+                return localhost+'members';
+            },
+            getCreateProject: function() {
+                return localhost+'projects';
+            },
             getProjects: function(){
                 return localhost+'projects';
             },
@@ -343,7 +349,7 @@ angular.module('dmc.data',[])
                 }
             },
             // ---------------------------
-            
+
 
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
@@ -497,6 +503,15 @@ angular.module('dmc.data',[])
             },
             getUserUrl: function(){
                 return localhost+'user';
+            },
+            getAccountNotifications: function(){
+                return localhost+'account-notification-categories';
+            },
+            getUserAccountNotifications: function(account_id){
+                return localhost+'accounts/'+account_id+'/user-notification-items';
+            },
+            updateUserAccountNotification: function(id){
+                return localhost+'update-user-notification-item/'+id;
             }
         };
     }
