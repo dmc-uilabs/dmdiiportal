@@ -95,6 +95,7 @@
     <script src="scripts/all/all.js"></script>
     <script src="scripts/all/tasks.controller.js"></script>
     <script src="scripts/all/services.controller.js"></script>
+    <script src="scripts/all/user-services.controller.js"></script>
 
     <!-- endbuild -->
     <script type="text/javascript">

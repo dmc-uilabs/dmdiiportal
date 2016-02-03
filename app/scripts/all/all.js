@@ -33,7 +33,10 @@ angular.module('dmc.view-all', [
             controller: 'ViewAllServicesController',
             templateUrl: 'templates/all/all-services.html',
             resolve : resolve
-        }
-    );
+        }).state('user-services', {
+            url: '/services',
+            controller: 'ViewAllUserServicesController',
+            templateUrl: 'templates/all/user-all-services.html'
+        });
 	$urlRouterProvider.otherwise('/services/1');
 });
