@@ -122,7 +122,7 @@
 					</md-tab>
 
 					<md-tab label="STATISTICS">
-						<ui-widget-tabs-statistic data="statistics"></ui-widget-tabs-history>
+						<ui-widget-tabs-statistic data="statistics"></ui-widget-tabs-statistic>
 					</md-tab>
 
 					<md-tab label="HISTORY">
@@ -175,7 +175,7 @@
 					</md-tab>
 
 					<md-tab label="Authors">
-						<ui-widget-tabs-author data="product.service_authors"></ui-widget-tabs-history>
+						<ui-widget-tabs-author data="product.service_authors"></ui-widget-tabs-author>
 					</md-tab>
 				</md-tabs>
 
@@ -259,17 +259,8 @@
 				<div class="similar_product">
 					<h2>Similar product</h2>
 					<div layout="row">
-						<div flex="25">
-							<dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[0].type" card-source="products_card[0]"></dmc-product-card>
-						</div>
-						<div flex="25">
-							<dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[1].type" card-source="products_card[1]"></dmc-product-card>
-						</div>
-						<div flex="25">
-							<dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[2].type" card-source="products_card[2]"></dmc-product-card>
-						</div>
-						<div flex="25">
-							<dmc-product-card layout layout-margin card-style="'small'" type-product="products_card[3].type" card-source="products_card[3]"></dmc-product-card>
+						<div flex="25" ng-repeat="item in products_card">
+							<dmc-product-card layout layout-margin card-style="'small'" type-product="item.type" card-source="item"></dmc-product-card>
 						</div>
 					</div>
 				</div>

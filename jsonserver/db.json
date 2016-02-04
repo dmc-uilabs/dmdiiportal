@@ -511,16 +511,6 @@
   "favorite_products": [
     {
       "accountId": 1,
-      "serviceId": 1,
-      "id": 1
-    },
-    {
-      "accountId": 1,
-      "serviceId": 5,
-      "id": 2
-    },
-    {
-      "accountId": 1,
       "serviceId": 3,
       "id": 3
     },
@@ -558,6 +548,16 @@
       "accountId": 1,
       "serviceId": 41,
       "id": 10
+    },
+    {
+      "accountId": 1,
+      "serviceId": 3,
+      "id": 12
+    },
+    {
+      "accountId": 1,
+      "serviceId": 1,
+      "id": 13
     }
   ],
   "projects": [
@@ -773,15 +773,12 @@
         "large": "images/marketplace-card-image-1.jpg"
       },
       "currentStatus": {
-        "percentCompleted": "5",
-        "startDate": "20/09/2015",
-        "startTime": "11:15:33",
         "project": {
-          "id": 4,
-          "title": "Incoming Compartment for LDR Mining"
+          "id": 3,
+          "title": "Capacitor Design"
         }
       },
-      "projectId": 4,
+      "projectId": 3,
       "type": "service",
       "from": "marketplace"
     },
@@ -1289,11 +1286,11 @@
       },
       "currentStatus": {
         "project": {
-          "id": 3,
-          "title": "Capacitor Design"
+          "id": 1,
+          "title": "Control Compartment for LDR Mining"
         }
       },
-      "projectId": 3,
+      "projectId": 1,
       "type": "service",
       "from": "marketplace"
     },
@@ -1393,15 +1390,12 @@
         "large": "images/marketplace-card-image-1.jpg"
       },
       "currentStatus": {
-        "percentCompleted": "13",
-        "startDate": "21/09/2015",
-        "startTime": "02:18:10",
         "project": {
-          "id": 4,
-          "title": "Incoming Compartment for LDR Mining"
+          "id": 3,
+          "title": "Capacitor Design"
         }
       },
-      "projectId": 4,
+      "projectId": 3,
       "type": "service",
       "from": "marketplace"
     }
