@@ -210,6 +210,9 @@ angular.module('dmc.data',[])
             getProjects: function(){
                 return localhost+'projects';
             },
+            getProject: function(id){
+                return localhost+'projects/'+id;
+            },
             createDiscussion: function(id){
                 return localhost+'discussions/create';
             },

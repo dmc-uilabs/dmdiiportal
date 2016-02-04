@@ -32,172 +32,133 @@ angular.module('dmc.project', [
 		'dmc.sub-nav-menu'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
-	$stateProvider.state('project', {
-		url: '/:projectId',
-		controller: 'IdLocatorCtrl',
-		template: '<ui-view />',
-		resolve: {
-			projectData: ['DMCProjectModel', '$stateParams',
-				function(DMCProjectModel, $stateParams) {
-				return DMCProjectModel.getModel($stateParams.projectId);
-			}]
-		}
-	}).state('preview', {
-		url: '/preview/:projectId',
-		templateUrl: 'templates/project/pages/home.html',
-		controller: 'DMCPreviewProjectController as projectCtrl',
-		resolve: {
-			projectData: ['DMCProjectModel', '$stateParams',
-				function(DMCProjectModel, $stateParams) {
-					return DMCProjectModel.getModel($stateParams.projectId);
-				}]
-		}
-	}).state('blank_submission', {
-		url: '/submission/blank/:projectId',
-		templateUrl: 'templates/project/blank-submission.html',
-		controller: 'DMCBlankSubmissionProjectController as projectCtrl',
-		resolve: {
-			projectData: ['DMCProjectModel', '$stateParams',
-				function(DMCProjectModel, $stateParams) {
-					return DMCProjectModel.getModel($stateParams.projectId);
-				}]
-		}
-	}).state('submission', {
-		url: '/submission/:projectId',
-		templateUrl: 'templates/project/pages/home.html',
-		controller: 'DMCSubmissionProjectController as projectCtrl',
-		resolve: {
-			projectData: ['DMCProjectModel', '$stateParams',
-				function(DMCProjectModel, $stateParams) {
-					return DMCProjectModel.getModel($stateParams.projectId);
-				}]
-		}
-	}).state('submissions', {
-		url: '/submissions/:projectId',
-		templateUrl: 'templates/project/submissions.html',
-		controller: 'DMCSubmissionsProjectController as projectCtrl',
-		resolve: {
-			projectData: ['DMCProjectModel', '$stateParams',
-				function(DMCProjectModel, $stateParams) {
-					return DMCProjectModel.getModel($stateParams.projectId);
-				}]
-		}
-	}).state('project_rfp_blank', {
-		url: '/rfp/blank/:projectId',
-		templateUrl: 'templates/project/rfp-home-blank.html',
-		controller: 'DMCRfpBlankHomeProjectController as projectCtrl',
-		resolve: {
-			projectData: ['DMCProjectModel', '$stateParams',
-				function(DMCProjectModel, $stateParams) {
-					return DMCProjectModel.getModel($stateParams.projectId);
-				}]
-		}
-	}).state('project_rfp', {
-		url: '/rfp/:projectId',
-		templateUrl: 'templates/project/rfp-home.html',
-		controller: 'DMCRfpHomeProjectController as projectCtrl',
-		resolve: {
-			projectData: ['DMCProjectModel', '$stateParams',
-				function(DMCProjectModel, $stateParams) {
-					return DMCProjectModel.getModel($stateParams.projectId);
-				}]
-		}
-	}).state('submit', {
-		url: '/submit/:projectId',
-		templateUrl: 'templates/project/submit.html',
-		controller: 'DMCSubmitProjectController as projectCtrl',
-		resolve: {
-			projectData: ['DMCProjectModel', '$stateParams',
-				function(DMCProjectModel, $stateParams) {
-					return DMCProjectModel.getModel($stateParams.projectId);
-				}]
-		}
-	}).state('submitted', {
-		url: '/submitted/:projectId',
-		templateUrl: 'templates/project/submitted.html',
-		controller: 'DMCSubmittedProjectController as projectCtrl',
-		resolve: {
-			projectData: ['DMCProjectModel', '$stateParams',
-				function(DMCProjectModel, $stateParams) {
-					return DMCProjectModel.getModel($stateParams.projectId);
-				}]
-		}
-	}).state('project.home', {
-		url: '/home',
-		controller: 'HomeCtrl as projectCtrl',
-		templateUrl: 'templates/project/pages/home.html'
-	}).state('project.workspace', {
-		url: '/workspace',
-		controller: 'WorkspaceCtrl as projectCtrl',
-		templateUrl: 'templates/project/pages/workspace.html'
-	}).state('project.documents', {
-		url: '/documents',
-		controller: 'DocumentsCtrl as projectCtrl',
-		templateUrl: 'templates/project/pages/documents.html'
-	}).state('project.tasks', {
-		url: '/tasks',
-		controller: 'TasksCtrl as projectCtrl',
-		templateUrl: 'templates/project/pages/tasks.html'
-	}).state('project.team', {
-		url: '/team',
-		controller: 'TeamCtrl as projectCtrl',
-		templateUrl: 'templates/project/pages/team.html'
-	}).state('project.discussions', {
-		url: '/discussions',
-		controller: 'DiscussionsCtrl as projectCtrl',
-		templateUrl: 'templates/project/pages/discussions.html'
-	}).state('project.rfp-home', {
-		url: '/rfp-home',
-		controller: 'RfpHomeCtrl as projectCtrl',
-		templateUrl: 'templates/project/rfp/home.html'
-	}).state('project.rfp-submissions', {
-		url: '/rfp-submissions',
-		controller: 'RfpSubmissionsCtrl as projectCtrl',
-		templateUrl: 'templates/project/rfp/submissions.html'
-	}).state('project.rfp-documents', {
-		url: '/rfp-documents',
-		controller: 'RfpDocumentsCtrl as projectCtrl',
-		templateUrl: 'templates/project/rfp/documents.html'
-	}).state('project.rfp-questions', {
-		url: '/rfp-questions',
-		controller: 'RfpQuestionsCtrl as projectCtrl',
-		templateUrl: 'templates/project/rfp/questions.html'
-	}).state('project.rfp-people-invited', {
-		url: '/rfp-people-invited',
-		controller: 'RfpPeopleInvitedCtrl as projectCtrl',
-		templateUrl: 'templates/project/rfp/people-invited.html'
-	}).state('project.services', {
-		url: '/services',
-		controller: 'projectServicesCtrl as projectCtrl',
-		templateUrl: 'templates/project/pages/services.html'
-	}).state('project.upload-services', {
-		url: '/upload-service',
-		controller: 'projectUploadServicesCtrl as projectCtrl',
-		templateUrl: 'templates/project/pages/upload-service.html',
-		resolve:{
-			edit: function(){
-				return false
-		  }
-		}
-	}).state('project.edit-services', {
-		url: '/edit-service',
-		controller: 'projectUploadServicesCtrl as projectCtrl',
-		templateUrl: 'templates/project/pages/upload-service.html',
-		resolve:{
-			edit: function(){
-			  return true
-			}
-		}
-	}).state('project.run-services', {
-		url: '/run-service/:ServiceId',
-		controller: 'projectRunServicesCtrl as projectCtrl',
-		templateUrl: 'templates/project/pages/run-service.html'
-	}).state('project.services-detail', {
-		url: '/services/:ServiceId/detail',
-		controller: 'projectServicesDetailCtrl as projectCtrl',
-		templateUrl: 'templates/project/pages/services-detail.html'
-	});
-	$urlRouterProvider.otherwise('/1');
+        var resolve = {
+            projectData: ['DMCProjectModel', '$stateParams',
+                function(DMCProjectModel, $stateParams) {
+                    return DMCProjectModel.getModel($stateParams.projectId);
+                }]
+        };
+        $stateProvider.state('project', {
+            url: '/:projectId',
+            controller: 'IdLocatorCtrl',
+            template: '<ui-view />',
+            resolve: resolve
+        }).state('preview', {
+            url: '/preview/:projectId',
+            templateUrl: 'templates/project/pages/home.html',
+            controller: 'DMCPreviewProjectController as projectCtrl',
+            resolve: resolve
+        }).state('blank_submission', {
+            url: '/submission/blank/:projectId',
+            templateUrl: 'templates/project/blank-submission.html',
+            controller: 'DMCBlankSubmissionProjectController as projectCtrl',
+            resolve: resolve
+        }).state('submission', {
+            url: '/submission/:projectId',
+            templateUrl: 'templates/project/pages/home.html',
+            controller: 'DMCSubmissionProjectController as projectCtrl',
+            resolve: resolve
+        }).state('submissions', {
+            url: '/submissions/:projectId',
+            templateUrl: 'templates/project/submissions.html',
+            controller: 'DMCSubmissionsProjectController as projectCtrl',
+            resolve: resolve
+        }).state('project_rfp_blank', {
+            url: '/rfp/blank/:projectId',
+            templateUrl: 'templates/project/rfp-home-blank.html',
+            controller: 'DMCRfpBlankHomeProjectController as projectCtrl',
+            resolve: resolve
+        }).state('project_rfp', {
+            url: '/rfp/:projectId',
+            templateUrl: 'templates/project/rfp-home.html',
+            controller: 'DMCRfpHomeProjectController as projectCtrl',
+            resolve: resolve
+        }).state('submit', {
+            url: '/submit/:projectId',
+            templateUrl: 'templates/project/submit.html',
+            controller: 'DMCSubmitProjectController as projectCtrl',
+            resolve: resolve
+        }).state('submitted', {
+            url: '/submitted/:projectId',
+            templateUrl: 'templates/project/submitted.html',
+            controller: 'DMCSubmittedProjectController as projectCtrl',
+            resolve: resolve
+        }).state('project.home', {
+            url: '/home',
+            controller: 'HomeCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/home.html'
+        }).state('project.workspace', {
+            url: '/workspace',
+            controller: 'WorkspaceCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/workspace.html'
+        }).state('project.documents', {
+            url: '/documents',
+            controller: 'DocumentsCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/documents.html'
+        }).state('project.tasks', {
+            url: '/tasks',
+            controller: 'TasksCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/tasks.html'
+        }).state('project.team', {
+            url: '/team',
+            controller: 'TeamCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/team.html'
+        }).state('project.discussions', {
+            url: '/discussions',
+            controller: 'DiscussionsCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/discussions.html'
+        }).state('project.rfp-home', {
+            url: '/rfp-home',
+            controller: 'RfpHomeCtrl as projectCtrl',
+            templateUrl: 'templates/project/rfp/home.html'
+        }).state('project.rfp-submissions', {
+            url: '/rfp-submissions',
+            controller: 'RfpSubmissionsCtrl as projectCtrl',
+            templateUrl: 'templates/project/rfp/submissions.html'
+        }).state('project.rfp-documents', {
+            url: '/rfp-documents',
+            controller: 'RfpDocumentsCtrl as projectCtrl',
+            templateUrl: 'templates/project/rfp/documents.html'
+        }).state('project.rfp-questions', {
+            url: '/rfp-questions',
+            controller: 'RfpQuestionsCtrl as projectCtrl',
+            templateUrl: 'templates/project/rfp/questions.html'
+        }).state('project.rfp-people-invited', {
+            url: '/rfp-people-invited',
+            controller: 'RfpPeopleInvitedCtrl as projectCtrl',
+            templateUrl: 'templates/project/rfp/people-invited.html'
+        }).state('project.services', {
+            url: '/services',
+            controller: 'projectServicesCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/services.html'
+        }).state('project.upload-services', {
+            url: '/upload-service',
+            controller: 'projectUploadServicesCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/upload-service.html',
+            resolve:{
+                edit: function(){
+                    return false
+                }
+            }
+        }).state('project.edit-services', {
+            url: '/edit-service',
+            controller: 'projectUploadServicesCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/upload-service.html',
+            resolve:{
+                edit: function(){
+                    return true
+                }
+            }
+        }).state('project.run-services', {
+            url: '/run-service/:ServiceId',
+            controller: 'projectRunServicesCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/run-service.html'
+        }).state('project.services-detail', {
+            url: '/services/:ServiceId/detail',
+            controller: 'projectServicesDetailCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/services-detail.html'
+        });
+        $urlRouterProvider.otherwise('/1');
 })
 	.controller('DMCPreviewProjectController', ['$scope','$stateParams', 'projectData', function ($scope, $stateParams, projectData) {
 		var projectCtrl = this;
