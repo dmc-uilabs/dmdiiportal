@@ -52,7 +52,7 @@ angular.module('dmc.product', [
 
         this.get_component = function(type, id){
             return ajax.get(dataFactory.components(type, id).get, {
-            	"_embed": "specifications",
+            	"_embed": ["specifications","service_authors","service_tags"],
             },
                 function(response){
                 	var component = response.data;
@@ -238,6 +238,44 @@ angular.module('dmc.product', [
                     toastModel.showToast("error", "Error." + response.statusText);
                 }
             )
+        }
+
+        this.add_services_tags = function(array){
+            ajax.get(dataFactory.components($stateParams.typeProduct, $stateParams.productId).get_tags, 
+                {
+                    "_limit" : 1,
+                    "_order" : "DESC",
+                    "_sort" : "id"
+                }, 
+                function(response){  
+                    var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1); 
+                    for(var i in array){
+                        ajax.create(dataFactory.components($stateParams.typeProduct, $stateParams.productId).add_tags,
+                            {
+                                "id": lastId,
+                                "serviceId": $stateParams.serviceId,
+                                "name": array[i]
+                            },
+                            function(response){
+                            },
+                            function(response){
+                                toastModel.showToast("error", "Error." + response.statusText);
+                            }
+                        )
+                        lastId++;
+                    }
+                }
+            )  
+        }
+
+        this.remove_services_tags = function(array){
+            for(var i in array){
+                ajax.delete(dataFactory.components($stateParams.typeProduct, array[i]).remove_tags,
+                    {},
+                    function(response){
+                    }
+                )
+            }
         }
     }])
 .controller("ViewIncludedController", ['$scope', 'ajax', 'dataFactory', '$mdDialog', '$location', 'products', function ($scope, ajax, dataFactory, $mdDialog, $location, products) {

@@ -137,9 +137,9 @@
 					<md-tab label="Tags">
 						<md-content class="md-padding">
 							<div layout="row" class="tabs-content" layout-wrap>
-								<md-chips ng-repeat="tag in product.tags track by $index">
+								<md-chips ng-repeat="tag in product.service_tags track by $index">
 									<md-chip>
-										{{tag}}
+										{{tag.name}}
 									</md-chip>
 								</md-chips>
 							</div>
