@@ -21,7 +21,7 @@
         <md-menu-content class="header-menu-content service-status-list">
             <div class="zone-top" layout="row" layout-align="space-between center">
                 <h3>Service Status</h3>
-                <md-button md-no-ink href="/all.php#/services" class="view-all-link">View All</md-button>
+                <md-button md-no-ink href="/all.php#/run-services" class="view-all-link">View All</md-button>
             </div>
           <md-menu-item ng-repeat="item in runningServicesList">
               <a ng-href='/project.php#/{{item.projectId}}/run-service/{{item.serviceId}}'>

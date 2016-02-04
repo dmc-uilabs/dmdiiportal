@@ -1,45 +1,40 @@
 'use strict';
 angular.module('dmc.view-all')
-    .controller('ViewAllTasksController', [
+    .controller('ViewAllUserTasksController', [
         '$scope',
         '$stateParams',
         '$state',
         '$location',
         'ajax',
-        'projectData',
         'dataFactory',
         function (  $scope,
                     $stateParams,
                     $state,
                     $location,
                     ajax,
-                    projectData,
                     dataFactory) {
 
-            $("title").text("View All Tasks");
+            $("title").text("All My Tasks");
 
-            $scope.projectData = projectData;
-            $scope.projectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : null;
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
             $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "tasks1";
 
-            if($scope.projectData && $scope.projectData.id && $scope.projectId) {
                 $scope.tasks = [];
                 $scope.order = "DESC";
                 $scope.sort = "priority";
 
-                $scope.types = [
-                    {
-                        tag: "tasks1",
-                        name: "Tasks 1"
-                    }, {
-                        tag: "tasks2",
-                        name: "Tasks 2"
-                    }
-                ];
+            $scope.types = [
+                {
+                    tag: "tasks1",
+                    name: "Tasks 1"
+                }, {
+                    tag: "tasks2",
+                    name: "Tasks 2"
+                }
+            ];
 
                 $scope.getTasks = function () {
-                    ajax.get(dataFactory.getTasks($scope.projectId), {
+                    ajax.get(dataFactory.getMyTasks(), {
                             _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
                             _order: $scope.order,
                             title_like: $scope.searchModel,
@@ -93,7 +88,7 @@ angular.module('dmc.view-all')
                     dataSearch.type = type;
                     $state.go('tasks', dataSearch, {reload: true});
                 };
-            }
+
         }
     ]
 );

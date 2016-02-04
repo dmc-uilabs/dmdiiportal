@@ -222,6 +222,12 @@ angular.module('dmc.data',[])
             updateTask: function(id){
                 return localhost+'tasks/'+id;
             },
+            getMyServices: function(){
+                return localhost+'my-services';
+            },
+            getMyTasks: function(){
+                return localhost+'my-tasks';
+            },
             getTasks: function(projectId){
                 if(projectId){
                     return localhost+'projects/'+projectId+'/tasks';

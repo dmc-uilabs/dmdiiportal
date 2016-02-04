@@ -68,16 +68,14 @@ angular.module('dmc.view-all')
                 $scope.submit = function (text) {
                     $scope.searchModel = text;
                     var dataSearch = $.extend(true, {}, $stateParams);
-                    delete dataSearch.projectId;
                     dataSearch.text = $scope.searchModel;
-                    $location.path('/services/'+$scope.projectId).search(dataSearch);
+                    $state.go('services', dataSearch, {reload: true});
                 };
 
                 $scope.changedType = function (type) {
                     var dataSearch = $.extend(true, {}, $stateParams);
-                    delete dataSearch.projectId;
                     dataSearch.type = type;
-                    $location.path('/services/'+$scope.projectId).search(dataSearch);
+                    $state.go('services', dataSearch, {reload: true});
                 };
             }
         }
