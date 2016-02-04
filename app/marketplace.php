@@ -97,6 +97,8 @@
     <script src="scripts/components/compare/compare.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
+    <script src="scripts/components/ui-widgets/tasks.directive.js"></script>
+    <script src="scripts/common/models/task-model.js"></script>
     <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
     <script src="scripts/marketplace/marketplace.js"></script>
     <script src="scripts/marketplace/marketplace.controller.js"></script>

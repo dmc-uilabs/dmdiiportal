@@ -16,7 +16,7 @@
                             <div><img ng-src="{{companyData.logoImage}}" alt=""/></div>
                         </div>
                         <div layout="column" flex="70">
-                            <h2 class="md-title" layout="row" layout-align="start center">{{companyData.name}}<md-button class="company-buttons link-button" ng-href="/profile.php#/{{owner.id}}">Profile</md-button></h2>
+                            <h2 class="md-title" layout="row" layout-align="start center">{{companyData.name}}<md-button class="company-buttons link-button" ng-href="/company-profile.php#/{{companyData.id}}">Profile</md-button></h2>
                             <p>
                                 <div ng-bind-html="(companyData.shortDescription == null || isReadMore ? companyData.description : companyData.shortDescription)"></div>
                                 <a class="read-more"

@@ -1,21 +1,14 @@
 'use strict';
 
 angular.module('dmc.model.project', ['dmc.data'])
- .service('DMCProjectModel', ['$http', 'dataFactory', function($http, dataFactory) {
+ .service('DMCProjectModel', ['$http', 'ajax', 'dataFactory', function($http, ajax, dataFactory) {
 
     this.getModel = function(id) {
-        return $http.get(dataFactory.getUrlAllProjects(id)).then(
+        return ajax.get(dataFactory.getProject(id),{},
             function(response){
-              var arr = dataFactory.get_result(response.data).result;
-              for (var i = 0, len = arr.length; i < len; i++) {
-                  if (arr[i].id == id)
-                      return arr[i]; // Return as soon as the object is found
-              }
-            },
-            function(response){
-              return response;
+                return response.data;
             }
-          );
+        );
     };
 
     this.createProject = function(project) {

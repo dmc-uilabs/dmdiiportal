@@ -269,6 +269,12 @@ angular.module('dmc.component.productcard', [
             });
         };
 
+        $scope.filter = {
+            block: null,
+            time: null,
+            type: null
+        };
+
         $scope.statistics = [
             {
                 title: "Project",

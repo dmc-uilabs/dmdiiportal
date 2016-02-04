@@ -1,0 +1,62 @@
+<div class="container container-view-all" layout-padding layout="row">
+    <div layout="column" flex>
+        <div class="content-panel">
+            <div class="content-panel-body">
+                <md-content layout-padding>
+                    <div class="services-list">
+                        <md-data-table-container>
+                            <table md-data-table>
+                                <thead md-order="sort" md-trigger="onOrderChange">
+                                <tr>
+                                    <th name="Run" class="run-column"></th>
+                                    <th name="Name" order-by="title"></th>
+                                    <th name="Component" order-by="component" class="component"></th>
+                                    <th name="Status" order-by="dueDate" class="status"></th>
+                                    <th name="Date Added" order-by="priority"></th>
+                                    <th name="Added By" order-by="priority"></th>
+                                    <th name="From" order-by="from"></th>
+                                    <th name="Edit" class="edit-column"></th>
+                                    <th name="Remove" class="remove-column"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in services">
+                                    <td>
+                                        <md-button class="md-raised dmc-button" ng-click="run(item)">Run</md-button>
+                                    </td>
+                                    <td>
+                                        <a href="/component.php#/services/{{item.id}}" class="link-button">{{item.title}}</a>
+                                    </td>
+                                    <td>Component Example</td>
+                                    <td class="">
+                                        <a href="/project.php#/{{item.currentStatus.project.id}}/run-service/{{item.id}}" class="link-button">
+                                            <md-progress-linear md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
+                                            <span class="service-progress-info">1:30 of 2:00</span>
+                                        </a>
+                                    </td>
+                                    <td>{{item.releaseDate}}</td>
+                                    <td>{{item.owner}}</td>
+                                    <td>{{item.from}}</td>
+                                    <td>
+                                        <md-button md-no-ink class="md-icon-button" aria-label="Edit">
+                                            <ng-md-icon icon="edit" size="25" style="fill: grey;"></ng-md-icon>
+                                        </md-button>
+                                    </td>
+                                    <td>
+                                        <md-button md-no-ink class="md-icon-button" aria-label="Delete">
+                                            <ng-md-icon icon="delete" size="25" style="fill: grey;"></ng-md-icon>
+                                        </md-button>
+                                    </td>
+                                </tr>
+                                <tr ng-if="services.length == 0">
+                                    <td class="empty" colspan="9">No services</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </md-data-table-container>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

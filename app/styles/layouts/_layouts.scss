@@ -276,7 +276,9 @@ a.link-button.md-button.md-default-theme{
     text-decoration: underline;
   }
 }
-
+md-dialog{
+  max-height: 600px;
+}
 md-dialog[md-theme="default"]{
   .md-actions{
     button.md-primary.md-button{

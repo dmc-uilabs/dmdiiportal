@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contact Us</title>
+    <title>View All</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
     <link rel="stylesheet" href="/bower_components/dropzone/dist/min/dropzone.min.css" />
     <link rel="stylesheet" href="/bower_components/md-data-table/dist/md-data-table-style.css" />
+    <link rel="stylesheet" href="/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -28,17 +29,16 @@
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app="dmc.contact-us">
+  <body ng-app="dmc.view-all">
     <!--[if lt IE 10]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Top Header -->
-    <div dmc-top-header active-page="'contact-us'"></div>
+    <div dmc-top-header active-page="'all'"></div>
 
     <ui-view></ui-view>
 
-    <!-- Footer -->
     <dmc-footer></dmc-footer>
 
     <!-- build:js scripts/vendor.js -->
@@ -80,19 +80,28 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/contact-us/index.js -->
-    <script src="scripts/common/models/toast-model.js"></script>
+    <!-- build:js scripts/all/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
+    <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
+    <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
+    <script src="scripts/common/models/project-model.js"></script>
 
-    <script src="scripts/contact-us/contact-us.js"></script>
-    <script src="scripts/contact-us/contact-us.controller.js"></script>
+
+    <script src="scripts/all/all.js"></script>
+    <script src="scripts/all/tasks.controller.js"></script>
+    <script src="scripts/all/services.controller.js"></script>
+    <script src="scripts/all/discussions.controller.js"></script>
+    <script src="scripts/all/user-services.controller.js"></script>
+    <script src="scripts/all/user-tasks.controller.js"></script>
+    <script src="scripts/all/user-discussions.controller.js"></script>
+    <script src="scripts/all/run-services.controller.js"></script>
+
     <!-- endbuild -->
-
     <script type="text/javascript">
         <?php
           echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');

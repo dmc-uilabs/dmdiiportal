@@ -14,11 +14,15 @@ server.use(jsonServer.rewriter({
     '/companies/:id/company_services' : '/companies/:id/services',
     '/companies/:id/company_components' : '/companies/:id/components',
     '/following_discussions' : '/discussions',
+    '/follow_people_discussions' : '/discussions',
+    '/popular_discussions' : '/discussions',
     '/projects/:id/following_discussions' : '/projects/:id/discussions',
     '/discussions/create' : '/discussions',
     '/tasks/create' : '/tasks',
     '/members' : '/profiles?_embed=profile_reviews',
-    '/update-user-notification-item/:id' : '/user-notification-items/:id'
+    '/my-tasks' : '/tasks',
+    '/my-services' : '/services'
+    // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 // Returns an Express router
 var router = jsonServer.router('db.json');

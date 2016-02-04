@@ -210,6 +210,9 @@ angular.module('dmc.data',[])
             getProjects: function(){
                 return localhost+'projects';
             },
+            getProject: function(id){
+                return localhost+'projects/'+id;
+            },
             createDiscussion: function(id){
                 return localhost+'discussions/create';
             },
@@ -221,6 +224,12 @@ angular.module('dmc.data',[])
             },
             updateTask: function(id){
                 return localhost+'tasks/'+id;
+            },
+            getMyServices: function(){
+                return localhost+'my-services';
+            },
+            getMyTasks: function(){
+                return localhost+'my-tasks';
             },
             getTasks: function(projectId){
                 if(projectId){
@@ -308,6 +317,9 @@ angular.module('dmc.data',[])
                     all : localhost+name
                 }
             },
+            getAccountServersUrl: function(id){
+                return localhost+'accounts/'+id+'/account_servers';
+            },
             // ---------------------------
             getServices: function(projectId){
                 if(projectId){
@@ -382,25 +394,38 @@ angular.module('dmc.data',[])
             deactivateAccount : function(id){
                 return localhost+'accounts'+(id ? '/'+id : '');
             },
+            getAllDiscussions: function(projectId){
+                if(projectId) {
+                    return localhost + 'projects/' + projectId + '/all-discussions';
+                }else{
+                    return localhost + 'all-discussions';
+                }
+            },
             getDiscussions : function(projectId,dataTypeWidget){
                 if(!projectId && !dataTypeWidget) {
                     return localhost + 'discussions';
                 }else{
                     if(projectId){
                         if(dataTypeWidget){
-                            if(dataTypeWidget == "following"){
-                                return localhost + 'projects/'+projectId+'/following_discussions';
-                            }else{
-                                return localhost + 'projects/'+projectId+'/discussions';
+                            switch(dataTypeWidget){
+                                case 'following':
+                                    return localhost + 'projects/' + projectId + '/following_discussions';
+                                default:
+                                    return localhost + 'projects/' + projectId + '/discussions';
                             }
                         }else{
                             return localhost + 'projects/'+projectId+'/discussions';
                         }
                     }else if(dataTypeWidget){
-                        if(dataTypeWidget == "following"){
-                            return localhost + 'following_discussions';
-                        }else{
-                            return localhost + 'discussions';
+                        switch(dataTypeWidget){
+                            case 'following':
+                                return localhost + 'following_discussions';
+                            case 'popular':
+                                return localhost + 'popular_discussions';
+                            case 'follow-people':
+                                return localhost + 'follow_people_discussions';
+                            default:
+                                return localhost + 'discussions';
                         }
                     }
                 }
@@ -536,7 +561,7 @@ angular.module('dmc.data',[])
                 return localhost+'accounts/'+account_id+'/user-notification-items';
             },
             updateUserAccountNotification: function(id){
-                return localhost+'update-user-notification-item/'+id;
+                return localhost+'user-notification-items/'+id;
             }
         };
     }

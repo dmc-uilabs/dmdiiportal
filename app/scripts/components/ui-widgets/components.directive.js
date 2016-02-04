@@ -23,27 +23,26 @@ angular.module('dmc.widgets.components',[
                 $scope.sort = 'status';
                 $scope.order = 'DESC';
 
+                var apply = function(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                };
+
                 // function for get all components from DB
                 $scope.getComponents = function(){
-                    ajax.on(dataFactory.getUrlAllComponents($scope.projectId),dataFactory.get_request_obj({
-                        projectId : $scope.projectId,
-                        sort : $scope.sort,
-                        order : $scope.order,
-                        offset : 0,
-                        limit : 5
-                    }),function(data){
-                        var data = dataFactory.get_result(data);
-                        $scope.components = data.result;
-                        $scope.total = data.count;
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    },function(){
-                        alert("Ajax faild: getComponents");
+                    ajax.get(dataFactory.getComponents($scope.projectId),{
+                        _limit : 5,
+                        _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
+                        _order : $scope.order
+                    },function(response){
+                        $scope.components = response.data;
+                        $scope.total =  $scope.components.length;
+                        apply();
                     });
                 };
 
                 $scope.onOrderChange = function(order){
-                    $scope.sort = (order[0] == '-' ? order.substring(1,order.length) : order);
-                    $scope.order = (order[0] == '-' ? 'ASC' : 'DESC');
+                    $scope.sort = order;
+                    $scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
                     $scope.getComponents();
                 };
 

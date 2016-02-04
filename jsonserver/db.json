@@ -1948,6 +1948,116 @@
       "id": 24
     }
   ],
+  "all-discussions": [
+    {
+      "id": 1,
+      "projectId": 1,
+      "text": "I just submitted the latest PLC code to the repository",
+      "replies": 8,
+      "created-by": "John Smith",
+      "created-at": "12/05/15 11:00 PM",
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
+    },
+    {
+      "id": 2,
+      "projectId": 1,
+      "text": "OK, I'll run the verification",
+      "replies": 3,
+      "created-by": "John Smith",
+      "created-at": "12/05/15 11:00 PM",
+      "latest-post": {
+        "created-by": "Peter Koudal",
+        "created-at": "13/05/15 5:00 PM"
+      }
+    },
+    {
+      "id": 3,
+      "projectId": 1,
+      "text": "I am certain we will need to be creative building this transformer.  COTS is not going to cut it.",
+      "replies": 11,
+      "created-by": "Peter Koudal",
+      "created-at": "12/05/15 11:00 PM",
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
+    },
+    {
+      "id": 4,
+      "projectId": 2,
+      "text": "Hey Peter, I'm having a heck of a time finding a transformer with the heat loss requirements we have",
+      "replies": 13,
+      "created-by": "John Carbone",
+      "created-at": "12/05/15 11:00 PM",
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
+    },
+    {
+      "id": 5,
+      "projectId": 2,
+      "text": "OK, I'll run the verification",
+      "replies": 1,
+      "created-by": "John Smith",
+      "created-at": "12/05/15 11:00 PM",
+      "latest-post": {
+        "created-by": "Peter Koudal",
+        "created-at": "13/05/15 5:00 PM"
+      }
+    },
+    {
+      "id": 6,
+      "projectId": 3,
+      "text": "I am certain we will need to be creative building this transformer.  COTS is not going to cut it.",
+      "replies": 25,
+      "created-by": "John Carbone",
+      "created-at": "12/05/15 11:00 PM",
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
+    },
+    {
+      "id": 7,
+      "projectId": 5,
+      "text": "I am certain we will need to be creative building this transformer.  COTS is not going to cut it.",
+      "replies": 8,
+      "created-by": "John Carbone",
+      "created-at": "12/05/15 11:00 PM",
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
+    },
+    {
+      "id": 8,
+      "projectId": 5,
+      "text": "OK, I'll run the verification",
+      "replies": 4,
+      "created-by": "John Carbone",
+      "created-at": "12/05/15 11:00 PM",
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
+    },
+    {
+      "id": 9,
+      "projectId": 5,
+      "text": "I am certain we will need to be creative building this transformer.  COTS is not going to cut it.",
+      "replies": 13,
+      "created-by": "John Carbone",
+      "created-at": "12/05/15 11:00 PM",
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
+    }
+  ],
   "discussions": [
     {
       "id": 1,

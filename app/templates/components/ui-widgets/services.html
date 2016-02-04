@@ -3,7 +3,7 @@
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
             <span flex></span>
-            <md-button href="{{viewAllHref}}" target="_blank" md-no-ink class="view-all-button view-all-link">View All ({{total}})</md-button>
+            <md-button ng-href="{{'/all.php#/services'+(projectId ? '/'+projectId : '')}}" target="_blank" md-no-ink class="view-all-button view-all-link">View All ({{total}})</md-button>
         </div>
     </md-toolbar>
 </div>
@@ -23,7 +23,7 @@
                     <tbody>
                     <tr ng-repeat="item in services" ng-click="changeItem(item)">
                         <td ng-show="columns.indexOf('name') > -1">
-                            <a href="/component.php#/services/{{item.id}}" class="link-button" target="_blank">
+                            <a href="/component.php#/services/{{item.id}}" class="link-button">
                                 <em>{{item.title}}</em>
                             </a>
                             <span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDate}}</span>
