@@ -49,6 +49,10 @@ angular.module('dmc.view-all', [
             url: '/tasks?text?type',
             controller: 'ViewAllUserTasksController',
             templateUrl: 'templates/all/user-all-tasks.html'
+        }).state('user-discussions', {
+            url: '/discussions?text?type',
+            controller: 'ViewAllUserDiscussionsController',
+            templateUrl: 'templates/all/user-all-discussions.html'
         });
 	$urlRouterProvider.otherwise('/services/1');
 });

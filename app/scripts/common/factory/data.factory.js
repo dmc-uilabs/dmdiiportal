@@ -376,7 +376,11 @@ angular.module('dmc.data',[])
                 return localhost+'accounts'+(id ? '/'+id : '');
             },
             getAllDiscussions: function(projectId){
-                return localhost + 'projects/'+projectId+'/all-discussions';
+                if(projectId) {
+                    return localhost + 'projects/' + projectId + '/all-discussions';
+                }else{
+                    return localhost + 'all-discussions';
+                }
             },
             getDiscussions : function(projectId,dataTypeWidget){
                 if(!projectId && !dataTypeWidget) {
@@ -384,19 +388,25 @@ angular.module('dmc.data',[])
                 }else{
                     if(projectId){
                         if(dataTypeWidget){
-                            if(dataTypeWidget == "following"){
-                                return localhost + 'projects/'+projectId+'/following_discussions';
-                            }else{
-                                return localhost + 'projects/'+projectId+'/discussions';
+                            switch(dataTypeWidget){
+                                case 'following':
+                                    return localhost + 'projects/' + projectId + '/following_discussions';
+                                default:
+                                    return localhost + 'projects/' + projectId + '/discussions';
                             }
                         }else{
                             return localhost + 'projects/'+projectId+'/discussions';
                         }
                     }else if(dataTypeWidget){
-                        if(dataTypeWidget == "following"){
-                            return localhost + 'following_discussions';
-                        }else{
-                            return localhost + 'discussions';
+                        switch(dataTypeWidget){
+                            case 'following':
+                                return localhost + 'following_discussions';
+                            case 'popular':
+                                return localhost + 'popular_discussions';
+                            case 'follow-people':
+                                return localhost + 'follow_people_discussions';
+                            default:
+                                return localhost + 'discussions';
                         }
                     }
                 }

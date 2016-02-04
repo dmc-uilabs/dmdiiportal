@@ -14,6 +14,8 @@ server.use(jsonServer.rewriter({
     '/companies/:id/company_services' : '/companies/:id/services',
     '/companies/:id/company_components' : '/companies/:id/components',
     '/following_discussions' : '/discussions',
+    '/follow_people_discussions' : '/discussions',
+    '/popular_discussions' : '/discussions',
     '/projects/:id/following_discussions' : '/projects/:id/discussions',
     '/discussions/create' : '/discussions',
     '/tasks/create' : '/tasks',

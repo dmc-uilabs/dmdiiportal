@@ -98,6 +98,7 @@
     <script src="scripts/all/discussions.controller.js"></script>
     <script src="scripts/all/user-services.controller.js"></script>
     <script src="scripts/all/user-tasks.controller.js"></script>
+    <script src="scripts/all/user-discussions.controller.js"></script>
     <script src="scripts/all/run-services.controller.js"></script>
 
     <!-- endbuild -->
