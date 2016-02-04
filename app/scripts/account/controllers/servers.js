@@ -132,8 +132,7 @@ angular.module('dmc.account')
 
             // function for get account servers
             $scope.getServers = function(){
-                ajax.get(dataFactory.serverURL().all, {
-                        accountId : $scope.accountId,
+                ajax.get(dataFactory.getAccountServersUrl($scope.accountId), {
                         _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1,$scope.sort.length) : $scope.sort),
                         _order : $scope.order
                     }, function (response) {

@@ -61,6 +61,89 @@ paths:
           description: returns updated User Account
           schema:
             $ref: '#/definitions/UserAccount'
+  '/accounts/{accountID}/account_servers':
+    get:
+      tags:
+        - account
+      description: Get servers by account id
+      parameters:
+        - name: accountID
+          in: path
+          type: string
+          description: ID of the account
+          required: true
+      responses:
+        '200':
+          description: Sends the servers by account id
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/UserAccountServer'
+  '/accounts/{accountID}/user-notification-items':
+    get:
+      tags:
+        - account
+      description: Get user notification settings by accound id
+      parameters:
+        - name: accountID
+          in: path
+          type: string
+          description: ID of the account
+          required: true
+      responses:
+        '200':
+          description: Sends user notification settings by account id
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/UserNotificationItem'
+  '/user-notification-items/{userNotificationID}':
+    get:
+      tags:
+        - account
+      description: Get user notification setting by id
+      parameters:
+        - name: userNotificationID
+          in: path
+          type: string
+          description: ID of the user notification
+          required: true
+      responses:
+        '200':
+          description: Sends the notification information
+          schema:
+            $ref: '#/definitions/UserNotificationItem'
+    put:
+      tags:
+      - account
+      description: Update user notification by id
+      parameters:
+        - name: userNotificationID
+          in: path
+          type: string
+          description: ID of the user notification
+          required: true
+        - name: userNotification
+          in: body
+          schema:
+            $ref: '#/definitions/UserNotificationItem'
+      responses:
+        200:
+          description: returns updated user notification information
+          schema:
+            $ref: '#/definitions/UserNotificationItem'
+  '/account-notification-categories':
+    get:
+      tags:
+        - account
+      description: Get categories and labels for Account Notification tab
+      responses:
+        '200':
+          description: send an array of notification categories
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AccountNotificationCategory'
   '/account_servers':
     post:
       tags:
@@ -161,7 +244,7 @@ paths:
           description: Sends the project with projectID
           schema:
             $ref: '#/definitions/Project'
-  /tasks:
+  /tasks/create:
     post:
       tags:
         - task
@@ -287,7 +370,7 @@ paths:
           description: send the component with componentID
           schema:
             $ref: '#/definitions/Component'
-  /discussions:
+  /discussions/create:
     post:
       tags:
         - discussion
@@ -1268,7 +1351,6 @@ definitions:
           items:
             type: array
             items:
-              type: object
               $ref: '#/definitions/NotificationsListItem'
       runningServices:
         type: object
@@ -1278,7 +1360,6 @@ definitions:
           items:
             type: array
             items:
-              type: object
               $ref: '#/definitions/RunningServicesListItem'
 
       messages:
@@ -1289,19 +1370,15 @@ definitions:
           items:
             type: array
             items:
-              type: object
               $ref: '#/definitions/MessagesListItem'
   UserAccountPrivacy:
     type: object
     properties:
       email:
-        type: object
         $ref: '#/definitions/UserAccountPrivacyItem'
       phone:
-        type: object
         $ref: '#/definitions/UserAccountPrivacyItem'
       location:
-        type: object
         $ref: '#/definitions/UserAccountPrivacyItem'
   UserAccountPrivacyItem:
     type: object
@@ -1337,10 +1414,8 @@ definitions:
         type: object
         properties:
           public:
-            type: object
             $ref: '#/definitions/UserAccountPrivacy'
           private:
-            type: object
             $ref: '#/definitions/UserAccountPrivacy'
   UserAccountServer:
     type: object
@@ -1355,3 +1430,38 @@ definitions:
         type: string
       status:
         type: string
+  AccountNotificationCategoryItem:
+    type: object
+    properties:
+      id:
+        type: string
+      account-notification-categoryId:
+        type: string
+      title:
+        type: string
+  AccountNotificationCategory:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      position:
+        type: number
+      account-notification-category-items:
+        type: array
+        items:
+          $ref: '#/definitions/AccountNotificationCategoryItem'
+  UserNotificationItem:
+    type: object
+    properties:
+      id:
+        type: string
+      accountId:
+        type: string
+      section:
+        type: string
+      account-notification-category-itemId:
+        type: string
+      selected:
+        type: boolean

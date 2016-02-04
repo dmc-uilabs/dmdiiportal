@@ -18,7 +18,7 @@
       <span flex></span>
 
       <div class="marketplace-search-button" layout="row" layout-align="center start">
-        <md-button class="link-button" href="/favorites.php">
+        <md-button class="link-button" href="/all-favorites.php">
           <ng-md-icon icon="favorite" size="14"></ng-md-icon>
           Favorites ({{favoritesCount}})
         </md-button>
@@ -33,12 +33,12 @@
     <md-tabs md-dynamic-height md-border-bottom ng-if="!isSearch" class="marketplace-carousel-tabs">
       <md-tab label="Popular">
         <md-content class="carousel-padding">
-          <div dmc-carousel 
-              name-carousel="'carouselPopular'" 
-              max-items="10" 
-              show-items="2" 
+          <div dmc-carousel
+              name-carousel="'carouselPopular'"
+              max-items="10"
+              show-items="2"
               carousel-source="carouselData.popular.arr"
-              run-carousel="true" 
+              run-carousel="true"
               timeout="5">
           </div>
         </md-content>
@@ -46,12 +46,12 @@
 
       <md-tab label="New">
         <md-content class="carousel-padding">
-          <div dmc-carousel 
-              name-carousel="'carouselNew'" 
-              max-items="10" 
+          <div dmc-carousel
+              name-carousel="'carouselNew'"
+              max-items="10"
               show-items="2"
               carousel-source="carouselData.new.arr"
-              run-carousel="true" 
+              run-carousel="true"
               timeout="5">
           </div>
         </md-content>
@@ -60,12 +60,12 @@
 
     <!-- Favorit items -->
     <div class="marketplace-storefronts">
-      <dmc-products-card 
-          title-card="'ITEMS FROM FAVORITE STOREFRONTS'" 
-          search-card="isSearch" 
+      <dmc-products-card
+          title-card="'ITEMS FROM FAVORITE STOREFRONTS'"
+          search-card="isSearch"
           card-source="marketplaceItems"
-          card-loading="downloadData" 
-          page-size="productCardPageSize" 
+          card-loading="downloadData"
+          page-size="productCardPageSize"
           current-page="productCardCurrentPage"
           total-size="marketplaceItems.count"
           class="content-panel-marketplace"
