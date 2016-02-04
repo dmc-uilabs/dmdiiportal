@@ -11,13 +11,13 @@
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
+      <link rel="stylesheet" href="/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css" />
     <link rel="stylesheet" href="/bower_components/angular-carousel/angular-carousel.css" />
     <link rel="stylesheet" href="/bower_components/angular-datepicker/dist/angular-datepicker.css" />
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
     <link rel="stylesheet" href="/bower_components/dropzone/dist/min/dropzone.min.css" />
     <link rel="stylesheet" href="/bower_components/md-data-table/dist/md-data-table-style.css" />
-    <link rel="stylesheet" href="/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
