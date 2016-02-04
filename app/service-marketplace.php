@@ -87,17 +87,21 @@
 <script src="scripts/components/ui-widgets/review.directive.js"></script>
 <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
 <script src="scripts/components/dropzone/dropzone.directive.js"></script>
-<script src="scripts/common/factory/socket.factory.js"></script>
 <script src="scripts/common/factory/ajax.factory.js"></script>
 <script src="scripts/common/factory/data.factory.js"></script>
+<script src="scripts/common/factory/socket.factory.js"></script>
 <script src="scripts/components/carousel/carousel.js"></script>
-<script src="scripts/service-marketplace/service-marketplace.js"></script>
+<script src="scripts/components/compare/compare.js"></script>
 <script src="scripts/components/tree-menu/tree-menu.js"></script>
 <script src="scripts/components/product-card/product-card.js"></script>
 <script src="scripts/components/products-card/products-card.js"></script>
 <script src="scripts/common/models/toast-model.js"></script>
 <script src="scripts/common/models/user-model.js"></script>
 <script src="scripts/components/members-card/members-card.js"></script>
+
+<script src="scripts/service-marketplace/service-marketplace.js"></script>
+<script src="scripts/service-marketplace/controllers/home.js"></script>
+<script src="scripts/service-marketplace/controllers/edit.js"></script>
 <!-- endbuild -->
     <script type="text/javascript">
         <?php

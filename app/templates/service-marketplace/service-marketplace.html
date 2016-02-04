@@ -9,18 +9,20 @@
 						<md-icon>
 							<ng-md-icon icon="search"></ng-md-icon>
 						</md-icon>
-						<input type="text" placeholder="Search Service" ng-model="searchModel">
+						<input type="text" placeholder="Search Product" ng-model="searchModel">
 					</md-input-container>
 				</form>
 
 				<span flex></span>
 
 				<div class="marketplace-search-button" layout="row" layout-align="center center">
-					<md-button href="/">
+					<md-button href="/favorites.php" class="link-button">
 						<ng-md-icon icon="favorite" size="14"></ng-md-icon>
-						Favorites
+						Favorites ({{favoritesCount}})
 					</md-button>
-					<md-button href="" ng-disabled="compareProducts.services.length+compareProducts.components.length == 0" compare-button>
+					<md-button ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
+                               class="md-raised dmc-button"
+                               compare-button>
 						Compare ({{compareProducts.services.length+compareProducts.components.length}})
 					</md-button>
 				</div>
@@ -60,21 +62,21 @@
 								</md-button>
 							</div>
 							<div layout="row">
-								<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
+								<ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>
 								<span flex></span>
-								<div  ng-if="!adding_to_project" layout="row" layout-align="center end">
-									<md-button ng-if="!editFlag" ng-click="editPage()" class="md-raised add">Edit Product</md-button>
-									<md-button ng-if="!editFlag" ng-click="toProject()" class="md-raised add">Add to Project</md-button>
+								<div ng-if="!adding_to_project" layout="row" layout-align="center end">
+									<md-button ui-sref="service-marketplace-edit({serviceId: product.id})" class="md-raised add">Edit Product</md-button>
+									<md-button ng-click="toProject()" class="md-raised add">Add to Project</md-button>
 									<md-button  
 											ng-click="addToCompare()" 
 											class="md-raised add"
-											ng-if="!editFlag && (product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)">
+											ng-if="(product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)">
 										Add to Compare
 									</md-button>
 									<md-button 
 											ng-click="removeFromCompare()"
 											class="md-raised add"
-											ng-if="!editFlag && !(product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)">
+											ng-if="!(product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)">
 										<ng-md-icon icon="close" size="17"></ng-md-icon>
 										Compare
 									</md-button>
@@ -108,12 +110,11 @@
 						<md-content class="md-padding">
 							<div class="tabs-content" layout="column">
 								<p>Created: {{product.currentStatus.startDate}}</p>
-								<p>Added: {{product.specificationsData.usageStats.added}} times by {{product.specificationsData.usageStats.members}} members</p>
-								<p>Successful Runs: {{product.specificationsData.runStats.fail}}/{{product.specificationsData.runStats.success}}</p>
-								<p>Inputs: {{product.specificationsData.input}}</p>
-								<p>Outputs: {{product.specificationsData.output}}</p>
-								
-								<p ng-repeat="item in product.specificationsData.special">
+								<p>Added: {{product.specifications[0].usageStats.added}} times by {{product.specifications[0].usageStats.members}} members</p>
+								<p>Successful Runs: {{product.specifications[0].runStats.fail}}/{{product.specifications[0].runStats.success}}</p>
+								<p>Inputs: {{product.specifications[0].input}}</p>
+								<p>Outputs: {{product.specifications[0].output}}</p>
+								<p ng-repeat="item in product.specifications[0].special track by $index">
 									{{item.specification}}: {{item.data}}
 								</p>
 							</div>
@@ -131,9 +132,9 @@
 					<md-tab label="TAGS">
 						<md-content class="md-padding">
 							<div layout="row" class="tabs-content" layout-wrap>
-								<md-chips ng-repeat="tag in product.tags track by $index">
+								<md-chips ng-repeat="tag in product.service_tags track by $index">
 									<md-chip>
-										<a ng-href="/marketplace.php#/search/services?text={{tag}}">{{tag}}</a>
+										<a ng-href="/marketplace.php#/search/services?text={{tag.name}}">{{tag.name}}</a>
 									</md-chip>
 								</md-chips>
 							</div>
@@ -153,7 +154,7 @@
 								<md-divider></md-divider>
 								<md-content>
 									<md-list>
-										<md-list-item ng-repeat="item in inputs track by $index">
+										<md-list-item ng-repeat="item in product.service_input_output[0].inputs track by $index">
 											{{item}}
 										</md-list-item>
 									</md-list>
@@ -164,7 +165,7 @@
 								<md-divider></md-divider>
 								<md-content>
 									<md-list>
-										<md-list-item ng-repeat="item in outputs track by $index">
+										<md-list-item ng-repeat="item in product.service_input_output[0].outputs track by $index">
 											{{item}}
 										</md-list-item>
 									</md-list>
@@ -174,11 +175,11 @@
 					</md-tab>
 
 					<md-tab label="Authors">
-						<ui-widget-tabs-author data="authors"></ui-widget-tabs-history>
+						<ui-widget-tabs-author data="product.service_authors"></ui-widget-tabs-history>
 					</md-tab>
 				</md-tabs>
 
-				<md-divider ng-if="!editFlag"></md-divider>
+				<md-divider></md-divider>
 
 				<!--Reviews-->
 				<div layout="row" class="reviews" layout-margin layout-fill>
@@ -187,35 +188,35 @@
 						<!--Rating header-->
 						<div layout="row" class="md-toolbar-tools reviews-rating-header">
 							<h2>Reviews</h2>
-							<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
+							<ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>
 							<span flex></span>
-							<md-button class="md-raised" ng-click="ViewAllReview()">View All({{number_of_comments}})</md-button>
+							<md-button class="md-raised" ng-click="ViewAllReview()">View All({{product.number_of_comments}})</md-button>
 						</div>
 							<!--Rating-->
 						<div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
 							<p>5 STAR</p>
-							<md-progress-linear md-mode="determinate" value="{{precentage_stars[4]}}" flex></md-progress-linear>
-							<p flex="5">{{precentage_stars[4]}}%</p>
+							<md-progress-linear md-mode="determinate" value="{{product.precentage_stars[4]}}" flex></md-progress-linear>
+							<p flex="5">{{product.precentage_stars[4]}}%</p>
 						</div>
 						<div layout="row" ng-class="{'active-star' : (selectSortingStar!=4 && selectSortingStar!=0)}" ng-click="SortingReviews('4star')">
 							<p>4 STAR</p>
-							<md-progress-linear md-mode="determinate" value="{{precentage_stars[3]}}" flex></md-progress-linear>
-							<p flex="5">{{precentage_stars[3]}}%</p>
+							<md-progress-linear md-mode="determinate" value="{{product.precentage_stars[3]}}" flex></md-progress-linear>
+							<p flex="5">{{product.precentage_stars[3]}}%</p>
 						</div>
 						<div layout="row" ng-class="{'active-star' : (selectSortingStar!=3 && selectSortingStar!=0)}" ng-click="SortingReviews('3star')">
 							<p>3 STAR</p>
-							<md-progress-linear md-mode="determinate" value="{{precentage_stars[2]}}" flex></md-progress-linear>
-							<p flex="5">{{precentage_stars[2]}}%</p>
+							<md-progress-linear md-mode="determinate" value="{{product.precentage_stars[2]}}" flex></md-progress-linear>
+							<p flex="5">{{product.precentage_stars[2]}}%</p>
 						</div>
 						<div layout="row" ng-class="{'active-star' : (selectSortingStar!=2 && selectSortingStar!=0)}" ng-click="SortingReviews('2star')">
 							<p>2 STAR</p>
-							<md-progress-linear md-mode="determinate" value="{{precentage_stars[1]}}" flex></md-progress-linear>
-							<p flex="5">{{precentage_stars[1]}}%</p>
+							<md-progress-linear md-mode="determinate" value="{{product.precentage_stars[1]}}" flex></md-progress-linear>
+							<p flex="5">{{product.precentage_stars[1]}}%</p>
 						</div>
 						<div layout="row" ng-class="{'active-star' : (selectSortingStar!=1 && selectSortingStar!=0)}" ng-click="SortingReviews('1star')">
 							<p>1 STAR</p>
-							<md-progress-linear md-mode="determinate" value="{{precentage_stars[0]}}" flex></md-progress-linear>
-							<p flex="5">{{precentage_stars[0]}}%</p>
+							<md-progress-linear md-mode="determinate" value="{{product.precentage_stars[0]}}" flex></md-progress-linear>
+							<p flex="5">{{product.precentage_stars[0]}}%</p>
 						</div>
 					</div>
 					<!--right column-->
@@ -235,7 +236,7 @@
 				<div flex class="new-review" ng-if="LeaveFlag">
 					<form name="CommentForm">
 						<h2>Rating</h2>
-						<ui-widget-stars-active size="20" value="{{average_rating}}" select-star="stars(star)"></ui-widget-stars-active>
+						<ui-widget-stars-active size="20" select-star="stars(star)"></ui-widget-stars-active>
 						<md-input-container flex>
 							<label>Comment</label>
 							<textarea ng-model="NewReview.Comment" columns="1" md-maxlength="150"></textarea>
@@ -250,12 +251,12 @@
 				<md-divider></md-divider>
 
 				<!--one Reviews-->
-				<div ng-if="!editFlag" ng-repeat="review in product.reviews">
+				<div ng-repeat="review in product.service_reviews">
 					<ui-widget-review review="review" userlogin="UserLogin" typereview="'product_reviews'"></ui-widget-review>
 					<md-divider></md-divider>
 				</div>
 
-				<div ng-if="!editFlag" class="similar_product">
+				<div class="similar_product">
 					<h2>Similar product</h2>
 					<div layout="row">
 						<div flex="25">

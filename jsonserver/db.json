@@ -1453,6 +1453,160 @@
       "serviceId": 1
     }
   ],
+  "service_authors": [
+    {
+      "id": 1,
+      "serviceId": 1,
+      "display_name": "John Thomas",
+      "jobTitle": "Engineering Manager",
+      "follow": false,
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software"
+    },
+    {
+      "id": 2,
+      "serviceId": 1,
+      "display_name": "John Thomas",
+      "jobTitle": "Engineering Manager",
+      "follow": false,
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software"
+    },
+    {
+      "id": 3,
+      "serviceId": 1,
+      "display_name": "John Thomas",
+      "jobTitle": "Engineering Manager",
+      "follow": false,
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software"
+    },
+    {
+      "id": 4,
+      "serviceId": 1,
+      "display_name": "John Thomas",
+      "jobTitle": "Engineering Manager",
+      "follow": false,
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software"
+    },
+    {
+      "id": 5,
+      "serviceId": 1,
+      "display_name": "John Thomas",
+      "jobTitle": "Engineering Manager",
+      "follow": false,
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software"
+    },
+    {
+      "id": 6,
+      "serviceId": 1,
+      "display_name": "John Thomas",
+      "jobTitle": "Engineering Manager",
+      "follow": false,
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software"
+    },
+    {
+      "id": 7,
+      "serviceId": 1,
+      "display_name": "John Thomas",
+      "jobTitle": "Engineering Manager",
+      "follow": false,
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software"
+    },
+    {
+      "id": 8,
+      "serviceId": 1,
+      "display_name": "John Thomas",
+      "jobTitle": "Engineering Manager",
+      "follow": false,
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software"
+    }
+  ],
+  "service_input_output": [
+    {
+      "id": 1,
+      "serviceId": 1,
+      "inputs": [
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ],
+      "outputs": [
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ]
+    }
+  ],
+  "service_tags": [
+    {
+      "id": 1,
+      "serviceId": 1,
+      "name": "tag1"
+    },
+    {
+      "id": 2,
+      "serviceId": 1,
+      "name": "tag2"
+    },
+    {
+      "id": 3,
+      "serviceId": 1,
+      "name": "tag3"
+    },
+    {
+      "id": 4,
+      "serviceId": 1,
+      "name": "tag4"
+    }
+  ],
   "tasks": [
     {
       "id": 1,

@@ -175,6 +175,7 @@ angular.module('dmc.widgets.tabs',[
 				data: "=",
 			},
 			controller: function($scope) {
+				console.info("direcrive", $scope.data);
 				$scope.follow = function(item){
 					item.follow = !item.follow;
 				}

@@ -1,11 +1,6 @@
 <div class="container marketplace-box"  layout="row">
-	<!--Tree menu-->
-	<div class="content-column" layout="column" flex='20'>
-		<md-button href="marketplace.php" md-no-ink>Return to Search</md-button>
-		<dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
-	</div>
 	<!--Product-->
-	<div class="content-column" flex='80'>
+	<div class="content-column" flex='100'>
 		<div ng-if="!not_found">
 			<!-- Search toolbar -->
 			<md-content class="marketplace-search" layout="row" layout-align="center center">
@@ -73,7 +68,7 @@
 								</md-input-container>
 								<span flex></span>
 								
-								<md-button ui-sref="component({typeProduct:product.type+'s', productId:product.id})" class="md-raised dmc-button">Cancel</md-button>
+								<md-button ui-sref="service-marketplace({ serviceId:product.id})" class="md-raised dmc-button">Cancel</md-button>
 								<md-button ng-click="saveEdit()" class="md-raised dmc-button md-primary">Save</md-button>
 							</div>
 							<div layout="row">
@@ -176,47 +171,6 @@
 						</md-content>
 					</md-tab>
 
-					<md-tab label="Included Services">
-						<md-content class="md-padding" ng-if="true">
-							<md-autocomplete
-									md-no-cache="true"
-									md-selected-item="selectedItem"
-									md-search-text="searchText"
-									md-items="item in querySearch(searchText)"
-									md-selected-item-change="AddServices(item, searchText)"
-									md-item-text="item.title"
-									md-min-length="0"
-									placeholder="Search for services">
-								<md-item-template>
-									<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.title}}</span>
-								</md-item-template>
-								<md-not-found>
-									No matches found for "{{searchText}}".
-								</md-not-found>
-							</md-autocomplete>
-							
-							<div layout="row" class="tabs-content" layout-wrap>
-								<div flex="25" ng-repeat="oneProdut in includedServices track by $index" class="included">
-
-									<div class="product-card" layout="column">
-										<md-toolbar>
-											<div class="md-toolbar-tools" layout layout-align="end center">
-												<md-button ng-click="deleteIncluded($index, oneProdut.id)" aria-label="close" class="md-icon-button">
-													<ng-md-icon icon="close" style="fill: grey;" size="25"></ng-md-icon>
-												</md-button>
-											</div>
-										</md-toolbar>
-										<div class="product-card__header" layout="column">
-											<a href=""><h3>{{oneProdut.service.title}}</h3></a>
-											<a href=""><span class="user-name">{{oneProdut.service.owner}}</span></a>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</md-content>
-					</md-tab>
-
 					<md-tab label="Authors">
 						<md-content class="md-padding" ng-if="true">
 							<md-autocomplete
@@ -237,19 +191,19 @@
 							</md-autocomplete>
 							
 							<div layout="row" class="tabs-content" layout-wrap>
-								<div flex="25" ng-repeat="oneProdut in [0,1,2,3] track by $index" class="included">
+								<div flex="25" ng-repeat="oneAuthor in product.service_authors track by $index" class="included">
 
 									<div class="product-card" layout="column">
 										<md-toolbar>
 											<div class="md-toolbar-tools" layout layout-align="end center">
-												<md-button ng-click="deleteAthors($index)" aria-label="close" class="md-icon-button">
+												<md-button ng-click="deleteAthors($index, oneAuthor.id)" aria-label="close" class="md-icon-button">
 													<ng-md-icon icon="close" style="fill: grey;" size="25"></ng-md-icon>
 												</md-button>
 											</div>
 										</md-toolbar>
 										<div class="product-card__header" layout="column">
-											<h3>John Thomas</h3>
-											<span class="user-name">Engineering Manager</span>
+											<h3>{{oneAuthor.display_name}}</h3>
+											<span class="user-name">{{oneAuthor.jobTitle}}</span>
 										</div>
 									</div>
 
