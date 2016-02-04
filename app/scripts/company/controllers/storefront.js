@@ -201,6 +201,10 @@ angular.module('dmc.company')
                 }
                 responseData._limit = (search ? $scope.pageSize : 4);
                 responseData._start = ($scope.currentStorefrontPage - 1) * $scope.pageSize;
+                if(angular.isDefined($stateParams.authors)) responseData._authors = $stateParams.authors;
+                if(angular.isDefined($stateParams.ratings)) responseData._ratings = $stateParams.ratings;
+                if(angular.isDefined($stateParams.favorites)) responseData._favorites = $stateParams.favorites;
+                if(angular.isDefined($stateParams.dates)) responseData._dates = $stateParams.dates;
                 switch ($scope.selectedProductType) {
                     case 'all':
                         $scope.getServicesAndComponents();
@@ -235,18 +239,16 @@ angular.module('dmc.company')
 
             // Function for product types drop down (all, services, components)
             $scope.productTypeChanged = function (type) {
-                $scope.selectedProductType = type;
                 var dataSearch = $.extend(true,{},$stateParams);
-                dataSearch.product = $scope.selectedProductType;
-                $location.path('/' + dataSearch.companyId + '/search').search(dataSearch);
+                dataSearch.product = type;
+                $state.go('company.search', dataSearch, {reload: true});
             };
 
             // Function for Search by name
             $scope.submit = function (text) {
-                $scope.searchModel = text;
                 var dataSearch = $.extend(true,{},$stateParams);
-                dataSearch.text = $scope.searchModel;
-                $location.path('/' + dataSearch.companyId + '/search').search(dataSearch);
+                dataSearch.text = text;
+                $state.go('company.search', dataSearch, {reload: true});
             };
 
             // Function for "Show All" Button
@@ -266,7 +268,7 @@ angular.module('dmc.company')
                 return $cookies.changedCompare;
             }, function (newValue) {
                 $scope.compareProducts = updateCompareCount();
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                apply();
             });
 
             if ($scope.companyData.description.length > 200) {

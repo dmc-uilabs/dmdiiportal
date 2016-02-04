@@ -1,7 +1,7 @@
 <div class="container marketplace-box" layout="row" >
   <div class="content-column" layout="column" flex='20' layout-padding>
     <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
-    <dmc-products-filter ng-if="isSearch"></dmc-products-filter>
+    <dmc-products-filter state-name="'marketplace_search'" ng-if="isSearch"></dmc-products-filter>
   </div>
   <!-- Left Content Column -->
   <div class="marketplace" layout="column" flex>
@@ -18,7 +18,7 @@
       <span flex></span>
 
       <div class="marketplace-search-button" layout="row" layout-align="center start">
-        <md-button class="link-button" href="/all-favorites.php">
+        <md-button class="link-button" href="/favorites.php">
           <ng-md-icon icon="favorite" size="14"></ng-md-icon>
           Favorites ({{favoritesCount}})
         </md-button>
@@ -70,7 +70,7 @@
           total-size="marketplaceItems.count"
           class="content-panel-marketplace"
           hide-buttons="[]"
-          view-all-link="'/marketplace.php#/search?page=services&type=analytical'"
+          view-all-link="'/marketplace.php#/search?product=services&type=analytical'"
           layout-margin>
       </dmc-products-card>
     </div>

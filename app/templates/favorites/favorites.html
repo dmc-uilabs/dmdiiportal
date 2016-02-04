@@ -1,7 +1,7 @@
 <div class="container container-company" layout-padding layout="row">
   <div class="content-column left-content" layout="column" flex="20">
     <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
-    <dmc-products-filter ng-if="isSearch"></dmc-products-filter>
+    <dmc-products-filter state-name="'allFavoritesSearch'" ng-if="isSearch"></dmc-products-filter>
   </div>
   <div class="content-column right-content" layout="column" flex="80">
     <div class="content-panel">
@@ -10,11 +10,11 @@
           
           <div layout="row" layout-padding layout-align="center center" class="company-search">
             <md-input-container>
-              <md-select ng-model="selectedProductType" ng-change="productTypeChanged(true)" aria-label="Product Types">
+              <md-select ng-model="selectedProduct" ng-change="productTypeChanged(selectedProduct)" aria-label="Product Types">
                 <md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>
               </md-select>
             </md-input-container>
-            <form ng-submit="submit()" class="company-search-field global-search-form" flex="60">
+            <form ng-submit="submit(searchModel)" class="company-search-field global-search-form" flex="60">
               <md-input-container md-no-float>
                 <md-icon>
                   <ng-md-icon icon="search"></ng-md-icon>
@@ -37,7 +37,7 @@
               </md-button>
             </div>
           </div>
-          <div ng-if="!isSearch">
+          <div>
             <dmc-products-card
                 title-card="'ALL FAVORITES'"
                 search-card="true"

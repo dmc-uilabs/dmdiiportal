@@ -511,11 +511,6 @@
   "favorite_products": [
     {
       "accountId": 1,
-      "serviceId": 3,
-      "id": 3
-    },
-    {
-      "accountId": 1,
       "serviceId": 7,
       "id": 4
     },
@@ -536,16 +531,6 @@
     },
     {
       "accountId": 1,
-      "serviceId": 28,
-      "id": 8
-    },
-    {
-      "accountId": 1,
-      "serviceId": 31,
-      "id": 9
-    },
-    {
-      "accountId": 1,
       "serviceId": 41,
       "id": 10
     },
@@ -553,11 +538,6 @@
       "accountId": 1,
       "serviceId": 3,
       "id": 12
-    },
-    {
-      "accountId": 1,
-      "serviceId": 1,
-      "id": 13
     }
   ],
   "projects": [

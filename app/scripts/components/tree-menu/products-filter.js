@@ -11,9 +11,12 @@ angular.module('dmc.component.products-filter', [
         restrict: 'E',
         transclude: true,
         templateUrl: 'templates/components/tree-menu/products-filter-tpl.html',
-        controller: function($scope, $location, $stateParams){
+        scope : {
+            stateName : "="
+        },
+        controller: function($scope, $location, $stateParams, $state){
             var filterData = $stateParams;
-            var searchPage = ($location.$$path.indexOf("/edit") != -1 ? "edit" : "search");
+            // var searchPage = ($location.$$path.indexOf("/edit") != -1 ? "edit" : "search");
             // Authors for filter
             $scope.authors = [
                 {
@@ -162,7 +165,8 @@ angular.module('dmc.component.products-filter', [
                 if(checkedRatings.length > 0) filterData.ratings = checkedRatings;
                 if(checkedFavorites.length > 0) filterData.favorites = checkedFavorites;
                 if(checkedDates.length > 0) filterData.dates = checkedDates;
-                $location.path('/'+filterData.companyId+'/'+searchPage).search(filterData);
+                //$location.path('/'+filterData.companyId+'/'+searchPage).search(filterData);
+                $state.go($scope.stateName, filterData, {reload: true});
             };
         }
       };

@@ -80,7 +80,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/all-favorites/index.js -->
+    <!-- build:js scripts/favorites/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
@@ -98,7 +98,8 @@
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/services.model.js"></script>
 
-    <script src="scripts/all-favorites/all-favorites.js"></script>
+    <script src="scripts/favorites/favorites.js"></script>
+    <script src="scripts/favorites/favorites.controller.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

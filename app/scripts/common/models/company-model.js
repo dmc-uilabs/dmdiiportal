@@ -5,8 +5,8 @@ angular.module('dmc.model.company', [
     'dmc.ajax',
     'dmc.model.account'
 ])
-    .service('CompanyModel', ['dataFactory', 'ajax', '$http', '$location', '$stateParams','AccountModel',
-        function(dataFactory, ajax, $http, $location, $stateParams, AccountModel) {
+    .service('CompanyModel', ['dataFactory', 'ajax','$state', '$http', '$location', '$stateParams','AccountModel',
+        function(dataFactory, ajax,$state, $http, $location, $stateParams, AccountModel) {
 
         this.get = function(id) {
             return ajax.get(dataFactory.companyURL(id).get,{
@@ -62,7 +62,7 @@ angular.module('dmc.model.company', [
                 }else{
                     delete dataSearch.type;
                 }
-                return 'company.php#/'+dataSearch.companyId+'/'+searchPage+'?'+$.param(dataSearch);
+                return 'company.php'+$state.href('company.search',dataSearch);
             };
 
             var isOpened = function(product,type){

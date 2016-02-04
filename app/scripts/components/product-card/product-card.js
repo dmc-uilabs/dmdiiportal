@@ -364,9 +364,9 @@ angular.module('dmc.component.productcard', [
             };
 
             // services
-            ajax.get(dataFactory.getFavorites(), { accountId: 1, serviceId: services_id }, callback );
+            if( services_id.length > 0 ) ajax.get(dataFactory.getFavorites(), { accountId: 1, serviceId: services_id }, callback );
             // components
-            ajax.get(dataFactory.getFavorites(), { accountId: 1, componentId: components_id }, callback );
+            if( components_id.length > 0 ) ajax.get(dataFactory.getFavorites(), { accountId: 1, componentId: components_id }, callback );
         }
     };
 }])

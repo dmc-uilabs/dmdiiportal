@@ -28,7 +28,7 @@ angular.module('dmc.marketplace', [
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('marketplace', {
-        url: '/home?page?type',
+        url: '/home?product?type?text',
         templateUrl: 'templates/marketplace/marketplace.html',
         controller: 'DMCMarketplaceController',
         resolve: {
@@ -37,7 +37,7 @@ angular.module('dmc.marketplace', [
             }
         }
     }).state('marketplace_search', {
-        url: '/search?page?type?text',
+        url: '/search?product?type?authors?ratings?favorites?dates?text',
         templateUrl: 'templates/marketplace/marketplace.html',
         controller: 'DMCMarketplaceController',
         resolve: {
@@ -46,5 +46,5 @@ angular.module('dmc.marketplace', [
             }
         }
     });
-    $urlRouterProvider.otherwise('/home?page=services&type=analytical');
-})
+    $urlRouterProvider.otherwise('/home?product=services&type=analytical');
+});
