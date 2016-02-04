@@ -57,6 +57,7 @@ angular.module('dmc.view-all')
                 $scope.getServices();
 
                 $scope.onOrderChange = function (order) {
+                    $scope.sort = order;
                     $scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
                     $scope.getServices();
                 };

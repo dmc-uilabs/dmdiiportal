@@ -52,10 +52,14 @@
       height: 46px;
     }
   }
+  .discussions-list,
   .tasks-list{
     margin-top: 21px;
     th{
       min-width: 150px;
+    }
+    td{
+      text-transform: none !important;
     }
     .title{
       width: 100%;
@@ -65,6 +69,9 @@
     margin-top: 21px;
     md-progress-linear {
       margin-bottom: 5px !important;
+    }
+    td{
+      text-transform: none !important;
     }
     th{
       min-width: 100px;

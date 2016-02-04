@@ -27,11 +27,15 @@ angular.module('dmc.view-all', [
     		controller: 'ViewAllTasksController',
     		templateUrl: 'templates/all/all-tasks.html',
             resolve : resolve
-	    })
-        .state('services', {
+	    }).state('services', {
             url: '/services/:projectId?text?type',
             controller: 'ViewAllServicesController',
             templateUrl: 'templates/all/all-services.html',
+            resolve : resolve
+        }).state('discussions', {
+            url: '/discussions/:projectId?text?type',
+            controller: 'ViewAllDiscussionsController',
+            templateUrl: 'templates/all/all-discussions.html',
             resolve : resolve
         }).state('run-services', {
             url: '/run-services',

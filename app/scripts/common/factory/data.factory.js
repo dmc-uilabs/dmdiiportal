@@ -372,6 +372,9 @@ angular.module('dmc.data',[])
             deactivateAccount : function(id){
                 return localhost+'accounts'+(id ? '/'+id : '');
             },
+            getAllDiscussions: function(projectId){
+                return localhost + 'projects/'+projectId+'/all-discussions';
+            },
             getDiscussions : function(projectId,dataTypeWidget){
                 if(!projectId && !dataTypeWidget) {
                     return localhost + 'discussions';

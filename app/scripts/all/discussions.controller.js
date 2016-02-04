@@ -1,61 +1,61 @@
 'use strict';
 angular.module('dmc.view-all')
-    .controller('ViewAllUserServicesController', [
+    .controller('ViewAllDiscussionsController', [
         '$scope',
         '$stateParams',
         '$state',
         '$location',
         'ajax',
+        'projectData',
         'dataFactory',
         function (  $scope,
                     $stateParams,
                     $state,
                     $location,
                     ajax,
+                    projectData,
                     dataFactory) {
 
+            $("title").text("View All Discussions");
 
-            $("title").text("View All Services");
-
+            $scope.projectData = projectData;
+            $scope.projectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : null;
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-            $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "tasks";
+            $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "tasks1";
 
-
-                $scope.services = [];
+            if($scope.projectData && $scope.projectData.id && $scope.projectId) {
+                $scope.discussions = [];
                 $scope.order = "DESC";
-                $scope.sort = "title";
+                $scope.sort = "text";
 
                 $scope.types = [
                     {
-                        tag: "people1",
-                        name: "People 1"
+                        tag: "discussions1",
+                        name: "Discussions 1"
                     }, {
-                        tag: "people2",
-                        name: "People 2"
+                        tag: "discussions2",
+                        name: "Discussions 2"
                     }
                 ];
 
-                $scope.getServices = function () {
-                    ajax.get(dataFactory.getMyServices(), {
+                $scope.getDiscussions = function () {
+                    ajax.get(dataFactory.getAllDiscussions($scope.projectId), {
                             _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
                             _order: $scope.order,
-                            title_like: $scope.searchModel,
+                            text_like: $scope.searchModel,
                             _type: $scope.typeModel
                         }, function (response) {
-                            $scope.services = response.data;
-                            for(var i in $scope.services){
-                                $scope.services[i].releaseDate = moment($scope.services[i].releaseDate,"DD/MM/YYYY").format("MM/DD/YYYY");
-                            }
+                            $scope.discussions = response.data;
                             apply();
                         }
                     );
                 };
-                $scope.getServices();
+                $scope.getDiscussions();
 
                 $scope.onOrderChange = function (order) {
                     $scope.sort = order;
                     $scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
-                    $scope.getServices();
+                    $scope.getDiscussions();
                 };
 
                 var apply = function () {
@@ -66,15 +66,15 @@ angular.module('dmc.view-all')
                     $scope.searchModel = text;
                     var dataSearch = $.extend(true, {}, $stateParams);
                     dataSearch.text = $scope.searchModel;
-                    $state.go('user-services', dataSearch, {reload: true});
+                    $state.go('discussions', dataSearch, {reload: true});
                 };
 
                 $scope.changedType = function (type) {
                     var dataSearch = $.extend(true, {}, $stateParams);
                     dataSearch.type = type;
-                    $state.go('user-services', dataSearch, {reload: true});
+                    $state.go('discussions', dataSearch, {reload: true});
                 };
-
+            }
         }
     ]
 );
