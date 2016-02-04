@@ -1,6 +1,9 @@
 <div>
-    <div layout="row">
-        <md-button aria-label="Favorite" class="md-icon-button" flex><ng-md-icon icon="favorite_outline" style="fill: grey;" size="18"></ng-md-icon></md-button>
+    <div layout="row" layout-align="center center">
+        <md-button aria-label="Favorite" ng-click="addToFavorite()" class="md-icon-button" flex>
+            <ng-md-icon ng-if="!cardSource.favorite" icon="favorite_outline" style="fill: grey;" size="18"></ng-md-icon>
+            <ng-md-icon ng-if="cardSource.favorite" icon="favorite" style="fill: #689F38;" size="18"></ng-md-icon>
+        </md-button>
     </div>
     <div class="member-card__image">
         <img ng-src="{{cardSource.image}}" alt="Name member">
@@ -20,7 +23,7 @@
                     <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon></md-button>
                 </div>
                 <div class="star-rating__value">
-                    <span class="small-text">({{cardSource.rating}})</span>
+                    <span class="small-text">(2,2)</span>
                 </div>
             </div>
             <div class="member-card__details">
