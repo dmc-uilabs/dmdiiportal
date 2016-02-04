@@ -309,6 +309,9 @@ angular.module('dmc.data',[])
                     all : localhost+name
                 }
             },
+            getAccountServersUrl: function(id){
+                return localhost+'accounts/'+id+'/account_servers';
+            },
             // ---------------------------
             getServices: function(projectId){
                 if(projectId){
@@ -517,7 +520,7 @@ angular.module('dmc.data',[])
                 return localhost+'accounts/'+account_id+'/user-notification-items';
             },
             updateUserAccountNotification: function(id){
-                return localhost+'update-user-notification-item/'+id;
+                return localhost+'user-notification-items/'+id;
             }
         };
     }
