@@ -86,20 +86,7 @@
       ]
     }
   },
-  "assign_users": [
-    {
-      "accountId": 1,
-      "name": "Bridget Cohen"
-    },
-    {
-      "accountId": 2,
-      "name": "Denis Sobko"
-    },
-    {
-      "accountId": 3,
-      "name": "Thomas Smith"
-    }
-  ],
+  "assign_users": [],
   "companies": [
     {
       "id": 1,
@@ -564,8 +551,13 @@
     },
     {
       "accountId": 1,
-      "serviceId": 41,
+      "serviceId": 31,
       "id": 9
+    },
+    {
+      "accountId": 1,
+      "serviceId": 41,
+      "id": 10
     }
   ],
   "projects": [
@@ -1296,15 +1288,12 @@
         "large": "images/marketplace-card-image-1.jpg"
       },
       "currentStatus": {
-        "percentCompleted": "13",
-        "startDate": "21/09/2015",
-        "startTime": "18:00:10",
         "project": {
-          "id": 4,
-          "title": "Incoming Compartment for LDR Mining"
+          "id": 3,
+          "title": "Capacitor Design"
         }
       },
-      "projectId": 4,
+      "projectId": 3,
       "type": "service",
       "from": "marketplace"
     },
