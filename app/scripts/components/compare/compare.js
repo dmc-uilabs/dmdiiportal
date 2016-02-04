@@ -10,7 +10,7 @@ angular.module('dmc.compare',[
         'ngtimeago',
         'ngRoute'
     ])
-    .controller('CompareController',function($scope,$mdDialog,$cookies,Products,ajax,dataFactory){
+    .controller('CompareController',function($scope,$mdDialog,$cookies,ajax,dataFactory,isFavorite){
         $scope.currentProductType = 'service';
         $scope.switchProductType = function(type){
             $scope.currentProductType = type;
@@ -44,29 +44,40 @@ angular.module('dmc.compare',[
             $scope.cancel();
         };
 
-        $scope.callbackServices = function(data) {
-            $scope.products.arr = $.merge($scope.products.arr, data.result);
-            //console.log($scope.products.arr);
-            $scope.products.count += data.count;
-            if(data.count > 0) $scope.switchProductType('service');
-            $scope.itemClass = $scope.getItemClass();
-            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        // get services
+        $scope.getServices = function(){
+            if($scope.compareProducts.services.length > 0) {
+                ajax.get(dataFactory.getServices(), {
+                        id : $scope.compareProducts.services
+                    }, function (response) {
+                        $scope.products.arr = $.merge($scope.products.arr, response.data);
+                        isFavorite.check($scope.products.arr);
+                        $scope.products.count += response.data.length;
+                        if (response.data.length > 0) $scope.switchProductType('service');
+                        $scope.itemClass = $scope.getItemClass();
+                        apply();
+                    }
+                );
+            }
         };
-        $scope.callbackComponents = function(data) {
-            $scope.products.arr = $.merge($scope.products.arr,data.result);
-            //console.log($scope.products.arr);
-            $scope.products.count += data.count;
-            if(data.count > 0) $scope.switchProductType('component');
-            $scope.itemClass = $scope.getItemClass();
-            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-        };
+        $scope.getServices();
 
-        Products.get($scope.callbackServices,'services',{
-            ids : ($scope.compareProducts.services.length > 0 ? $scope.compareProducts.services : null)
-        }); // get services
-        Products.get($scope.callbackComponents,'components',{
-            ids : ($scope.compareProducts.components.length > 0 ? $scope.compareProducts.components : null)
-        }); // get components
+        // get components
+        $scope.getComponents = function(){
+            if($scope.compareProducts.components.length > 0) {
+                ajax.get(dataFactory.getComponents(), {
+                        id : $scope.compareProducts.components
+                    }, function (response) {
+                        $scope.products.arr = $.merge($scope.products.arr, response.data);
+                        $scope.products.count += response.data.length;
+                        if (response.data.length > 0) $scope.switchProductType('component');
+                        $scope.itemClass = $scope.getItemClass();
+                        apply();
+                    }
+                );
+            }
+        };
+        $scope.getComponents();
 
         $scope.cancel = function() {
             $mdDialog.cancel();
@@ -127,14 +138,19 @@ angular.module('dmc.compare',[
             if($scope.products.arr.length == 0) $scope.cancel();
         };
 
+        var apply = function(){
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+
+        // get all projects
         $scope.getProjects = function(){
-            ajax.on(dataFactory.getUrlAllProjects(),{
-                offset: 0
-            },function(data){
-                $scope.projects = data.result;
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            },function(){
-                alert("Ajax faild: getProjects");
+            ajax.get(dataFactory.getProjects(),{
+                _sort : "id",
+                _order: "DESC",
+                _start: 0
+            },function(response){
+                $scope.projects = response.data;
+                apply();
             });
         };
 
@@ -151,90 +167,72 @@ angular.module('dmc.compare',[
         };
 
         $scope.addedTimout = null;
+
         $scope.backToAdd = function(item){
             item.added = false;
             clearTimeout($scope.addedTimeout);
-            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            apply();
         };
+
         $scope.saveToProject = function(projectId,item){
-            ajax.on(dataFactory.getUrlAddToProject(item.id),{
-                id : item.id,
-                projectId : projectId,
-                type : $scope.typeProduct
-            },function(data){
-                $scope.cancelAddToProject(item);
-                item.currentStatus.project.id = projectId;
-                item.projectId = projectId;
-                item.added = true;
-                var project = null;
-                for(var i in $scope.projects){
-                    if($scope.projects[i].id == projectId){
-                        project = $scope.projects[i];
-                        break;
+            var project = null;
+            for(var i in $scope.projects){
+                if($scope.projects[i].id == projectId){
+                    project = $scope.projects[i];
+                    break;
+                }
+            }
+            if(project) {
+                ajax.update(dataFactory.addServiceToProject(item.id), {
+                        currentStatus: {
+                            project: {
+                                id: project.id,
+                                title: project.title
+                            }
+                        },
+                        projectId: projectId,
+                        from: 'marketplace'
+                    }, function (response) {
+                        $scope.cancelAddToProject(item);
+                        item.currentStatus.project.id = projectId;
+                        item.currentStatus.project.title = project.title;
+                        item.projectId = projectId;
+                        item.added = true;
+
+                        item.lastProject = {
+                            title: project.title,
+                            href: '/project.php#/' + project.id + '/home'
+                        };
+                        $scope.addedTimeout = setTimeout(function () {
+                            item.added = false;
+                            apply();
+                        }, 10000);
+                        apply();
                     }
-                }
-                item.lastProject = {
-                    title : project.title,
-                    href : '/project.php#/'+project.id+'/home'
-                };
-                $scope.addedTimeout = setTimeout(function(){
-                    item.added = false;
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                },10000);
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            },function(){
-                alert("Ajax faild: saveToProject");
-            }, 'POST');
-        };
-
-        //$scope.saveToProject = function(item){
-        //    var pid = item.projectModel;
-        //    item.projectModel = null;
-        //    ajax.on(dataFactory.getUrlAddToProject(item.id),{
-        //        id : item.id,
-        //        projectId : pid,
-        //        type : item.type
-        //    },function(data){
-        //        item.addingToProject = null;
-        //        item.currentStatus.project.id = pid;
-        //        item.projectId = pid;
-        //        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-        //    },function(){
-        //        alert("Ajax faild: saveToProject");
-        //    });
-        //};
-
-        $scope.removeFromProject = function(item){
-            ajax.on(dataFactory.getUrlRemoveFromProject(item.id),{
-                id : item.id,
-                projectId : item.currentStatus.project.id,
-                type : item.type
-            },function(data){
-                if(data.error == null) {
-                    item.currentStatus.project.id = 0;
-                    item.currentStatus.project.title = null;
-                    item.projectId = 0;
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                }
-            },function(){
-                alert("Ajax faild: saveToProject");
-            });
+                );
+            }
         };
 
         $scope.addToFavorite = function(item){
-            return ajax.on(dataFactory.addProductToFavorite(),{
-                productId : item.id,
-                productType : item.type
-            },function(data){
-                if(!data.error) {
-                    item.favorite = data.favorite;
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                }else{
-                    alert(data.error);
+            if(!item.favorite){
+                // add to favorites
+                var requestData = { "accountId": 1 };
+                if(item.type == "service"){
+                    requestData.serviceId = item.id;
+                }else if(item.type == "component"){
+                    requestData.componentId = item.id;
                 }
-            },function(){
-                alert("Ajax faild: removeFromProject");
-            });
+                ajax.create(dataFactory.addFavorite(), requestData, function(response){
+                    item.favorite = response.data;
+                    apply();
+                });
+            }else{
+                // remove from favorites
+                ajax.delete(dataFactory.deleteFavorite(item.favorite.id), {}, function(response){
+                    item.favorite = null;
+                    apply();
+                });
+            }
         };
     })
     .directive('compareButton', ['$parse', function ($parse) {
@@ -242,39 +240,7 @@ angular.module('dmc.compare',[
             restrict: 'A',
             controller: function($element,$scope,$mdDialog,$location,$stateParams){
 
-                //var path = $location.$$path;
-                //var url = ($location.$$absUrl.indexOf('?') == -1 ? $location.$$absUrl : $location.$$absUrl.split('?')[0]);
-                ////get params for link
-                //var params = $.map($stateParams,function(item,key){
-                //    if($.type(item) == "array"){
-                //        return $.map(item,function(value){
-                //           return key+'='+value;
-                //        }).join("&");
-                //    }else {
-                //        if (key == "mw") item = 'compare';
-                //        return (item ? key + '=' + item : null);
-                //    }
-                //});
-                //params = params.join('&');
-                //var href = (params.length > 0 ? url+"?"+params : url);
-                //$element.attr("href",href);
-                //
-                //var searchObject = $.extend(true,{},$location.search());
-                //
-                //var removeModalWindowAttr = function(){
-                //    searchObject.mw = null;
-                //    $location.path(path,true).search(searchObject);
-                //};
-                //
-                //var addModalWindowAttr = function(){
-                //    searchObject.mw = 'compare';
-                //    $location.path(path,true).search(searchObject);
-                //};
-
                 $element.on("click",function(ev){
-                    //addModalWindowAttr();
-                    //modalWindowFromLink = href;
-                    //ev.preventDefault();
                     if($(this).attr("disabled") == null) {
                         $(window).scrollTop(0);
                         $('html').addClass('hide-scroll');
@@ -285,18 +251,12 @@ angular.module('dmc.compare',[
                             targetEvent: ev,
                             clickOutsideToClose: true
                         }).then(function (answer) {
-                            //removeModalWindowAttr();
                             $('html').removeClass('hide-scroll');
                         }, function () {
-                            //removeModalWindowAttr();
                             $('html').removeClass('hide-scroll');
                         });
                     }
                 });
-
-                //if(modalWindowFromLink == null && searchObject.mw == "compare"){
-                //    $element.click();
-                //}
             }
         };
     }]).run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {

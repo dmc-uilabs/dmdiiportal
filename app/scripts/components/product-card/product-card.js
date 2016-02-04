@@ -13,18 +13,14 @@ angular.module('dmc.component.productcard', [
     'ngCookies'
 ])
 .run(function($rootScope,ajax,dataFactory){
-  ajax.on(
-    dataFactory.getUrlAllProjects(),
-    {
-      limit : 10, offset: 0
-    },
-    function(data){
-      $rootScope.projects = data.result;
-    },
-    function(){
-      alert("Ajax faild: getProjects");
-    }
-  );
+        // get all projects and save to $rootScope
+        // need for add service to project
+        ajax.get(
+            dataFactory.getProjects(), {},
+            function(response){
+                $rootScope.projects = response.data;
+            }
+        );
 })
 .directive('dmcProductCard', function(){
      return {
@@ -54,7 +50,7 @@ angular.module('dmc.component.productcard', [
 
           // success callback for add to favorites
           var addToFavoriteCallback = function(response){
-              $scope.cardSource.favorite = true;
+              $scope.cardSource.favorite = response.data;
               if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
               apply();
           };
@@ -94,23 +90,6 @@ angular.module('dmc.component.productcard', [
               $scope.removeFeatured($scope.cardSource);
           };
 
-          $scope.removeFromProject = function(){
-              ajax.on(dataFactory.getUrlRemoveFromProject($scope.cardSource.id),{
-                  id : $scope.cardSource.id,
-                  projectId : $scope.cardSource.currentStatus.project.id,
-                  type : $scope.typeProduct
-              },function(data){
-                  if(data.error == null) {
-                      $scope.cardSource.currentStatus.project.id = 0;
-                      $scope.cardSource.currentStatus.project.title = null;
-                      $scope.cardSource.projectId = 0;
-                      if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                  }
-              },function(){
-                  alert("Ajax faild: removeFromProject");
-              }, 'POST');
-          };
-
           $scope.addedTimout = null;
           $scope.backToAdd = function(){
               $scope.cardSource.added = false;
@@ -118,35 +97,44 @@ angular.module('dmc.component.productcard', [
               if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
           };
 
+          // add service to project
           $scope.saveToProject = function(projectId){
-              ajax.on(dataFactory.getUrlAddToProject($scope.cardSource.id),{
-                  id : $scope.cardSource.id,
-                  projectId : projectId,
-                  type : $scope.typeProduct
-              },function(data){
-                  $scope.cancelAddToProject();
-                  $scope.cardSource.currentStatus.project.id = projectId;
-                  $scope.cardSource.projectId = projectId;
-                  $scope.cardSource.added = true;
-                  var project = null;
-                  for(var i in $scope.projects){
-                      if($scope.projects[i].id == projectId){
-                          project = $scope.projects[i];
-                          break;
-                      }
+              var project = null;
+              for(var i in $scope.projects){
+                  if($scope.projects[i].id == projectId){
+                      project = $scope.projects[i];
+                      break;
                   }
-                  $scope.cardSource.lastProject = {
-                      title : project.title,
-                      href : '/project.php#/'+project.id+'/home'
-                  };
-                  $scope.addedTimeout = setTimeout(function(){
-                      $scope.cardSource.added = false;
-                      if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                  },10000);
-                  if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-              },function(){
-                  alert("Ajax faild: saveToProject");
-              }, 'POST');
+              }
+              if(project) {
+                  ajax.update(dataFactory.addServiceToProject($scope.cardSource.id), {
+                          currentStatus: {
+                              project: {
+                                  id: project.id,
+                                  title: project.title
+                              }
+                          },
+                          projectId: projectId,
+                          from: 'marketplace'
+                      }, function (response) {
+                          $scope.cancelAddToProject($scope.cardSource);
+                          $scope.cardSource.currentStatus.project.id = projectId;
+                          $scope.cardSource.currentStatus.project.title = project.title;
+                          $scope.cardSource.projectId = projectId;
+                          $scope.cardSource.added = true;
+
+                          $scope.cardSource.lastProject = {
+                              title: project.title,
+                              href: '/project.php#/' + project.id + '/home'
+                          };
+                          $scope.addedTimeout = setTimeout(function () {
+                              $scope.cardSource.added = false;
+                              apply();
+                          }, 10000);
+                          apply();
+                      }
+                  );
+              }
           };
 
           $scope.loadProjects = function() {
@@ -392,40 +380,40 @@ angular.module('dmc.component.productcard', [
         $mdDialog.cancel();
     };
 })
-.factory('Products', function (ajax,dataFactory) {
-        var getServices = function(f,data){
-            ajax.on(dataFactory.getUrlAllServices(),data,f,function(){
-                console.error("Ajax fail! getServices()");
-            });
-        };
-        var getComponents = function(f,data){
-            ajax.on(dataFactory.getUrlAllComponents(),data,f,function(){
-                console.error("Ajax fail! getComponents()");
-            });
-        };
-
-        var getAllProducts = function(f,data){
-            ajax.on(dataFactory.getUrlAllProducts(),data,f,function(){
-                console.error("Ajax fail! getAllProducts()");
-            });
-        };
-
-        return {
-            get : function(f,type,data){
-                switch(type){
-                    case 'services':
-                        getServices(f,data);
-                        break;
-                    case 'components':
-                        getComponents(f,data);
-                        break;
-                    case 'all':
-                        getAllProducts(f,data);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
-    }
-);
+//.factory('Products', function (ajax,dataFactory) {
+//        var getServices = function(f,data){
+//            ajax.on(dataFactory.getUrlAllServices(),data,f,function(){
+//                console.error("Ajax fail! getServices()");
+//            });
+//        };
+//        var getComponents = function(f,data){
+//            ajax.on(dataFactory.getUrlAllComponents(),data,f,function(){
+//                console.error("Ajax fail! getComponents()");
+//            });
+//        };
+//
+//        var getAllProducts = function(f,data){
+//            ajax.on(dataFactory.getUrlAllProducts(),data,f,function(){
+//                console.error("Ajax fail! getAllProducts()");
+//            });
+//        };
+//
+//        return {
+//            get : function(f,type,data){
+//                switch(type){
+//                    case 'services':
+//                        getServices(f,data);
+//                        break;
+//                    case 'components':
+//                        getComponents(f,data);
+//                        break;
+//                    case 'all':
+//                        getAllProducts(f,data);
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        };
+//    }
+//);

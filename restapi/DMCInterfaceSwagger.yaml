@@ -79,11 +79,11 @@ paths:
             type: array
             items:
               $ref: '#/definitions/UserAccountServer'
-  '/accounts/{accountID}/user-notification-items':
+  '/accounts/{accountID}/account-notification-settings':
     get:
       tags:
         - account
-      description: Get user notification settings by accound id
+      description: Get account notification settings by accound id
       parameters:
         - name: accountID
           in: path
@@ -92,46 +92,46 @@ paths:
           required: true
       responses:
         '200':
-          description: Sends user notification settings by account id
+          description: Sends account notification settings by account id
           schema:
             type: array
             items:
-              $ref: '#/definitions/UserNotificationItem'
-  '/user-notification-items/{userNotificationID}':
+              $ref: '#/definitions/AccountNotificationSetting'
+  '/account-notification-settings/{notificationSettingID}':
     get:
       tags:
         - account
-      description: Get user notification setting by id
+      description: Get account notification setting by id
       parameters:
-        - name: userNotificationID
+        - name: notificationSettingID
           in: path
           type: string
-          description: ID of the user notification
+          description: ID of the account notification
           required: true
       responses:
         '200':
           description: Sends the notification information
           schema:
-            $ref: '#/definitions/UserNotificationItem'
+            $ref: '#/definitions/AccountNotificationSetting'
     put:
       tags:
       - account
-      description: Update user notification by id
+      description: Update account notification by id
       parameters:
-        - name: userNotificationID
+        - name: notificationSettingID
           in: path
           type: string
-          description: ID of the user notification
+          description: ID of the account notification
           required: true
         - name: userNotification
           in: body
           schema:
-            $ref: '#/definitions/UserNotificationItem'
+            $ref: '#/definitions/AccountNotificationSetting'
       responses:
         200:
-          description: returns updated user notification information
+          description: returns updated account notification information
           schema:
-            $ref: '#/definitions/UserNotificationItem'
+            $ref: '#/definitions/AccountNotificationSetting'
   '/account-notification-categories':
     get:
       tags:
@@ -1452,7 +1452,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/AccountNotificationCategoryItem'
-  UserNotificationItem:
+  AccountNotificationSetting:
     type: object
     properties:
       id:
