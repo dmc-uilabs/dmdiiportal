@@ -3203,7 +3203,7 @@
       "title": "You receive a submission for your project"
     }
   ],
-  "user-notification-items": [
+  "account-notification-settings": [
     {
       "id": 1,
       "accountId": 1,
@@ -3356,7 +3356,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 1,
-      "selected": true
+      "selected": false
     },
     {
       "id": 23,

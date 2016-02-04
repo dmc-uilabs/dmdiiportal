@@ -561,10 +561,10 @@ angular.module('dmc.data',[])
                 return localhost+'account-notification-categories';
             },
             getUserAccountNotifications: function(account_id){
-                return localhost+'accounts/'+account_id+'/user-notification-items';
+                return localhost+'accounts/'+account_id+'/account-notification-settings';
             },
             updateUserAccountNotification: function(id){
-                return localhost+'user-notification-items/'+id;
+                return localhost+'account-notification-settings/'+id;
             }
         };
     }
