@@ -333,6 +333,12 @@ angular.module('dmc.compare',[
         };
         $scope.itemClass = $scope.getItemClass();
 
+        $scope.clearAll = function(){
+            //$scope.compareMembers = null;
+            $scope.compareMembers.splice(0);
+            $scope.cancel();
+        };
+
         $scope.scrollLeft = function(){
             $scope.inLeftCount++;
             $(".compare-list-products .row").each(function(){

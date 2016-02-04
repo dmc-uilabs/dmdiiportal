@@ -3,6 +3,8 @@
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Compare</h2>
+                <md-button class="top-buttons"
+                           ng-click="clearAll()">Remove All</md-button>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
@@ -18,8 +20,8 @@
                             <md-button href="" aria-label="Favorite" class="md-icon-button" flex><ng-md-icon icon="favorite_outline" style="fill: grey;" size="18"></ng-md-icon></md-button>
                             <md-button href="" aria-label="Remove" class="md-icon-button" ng-click="removeFromCompare(item.id)" flex><ng-md-icon icon="close" style="fill: grey;" size="18"></ng-md-icon></md-button>
                         </div>
-                        <div class="product-image"><img ng-src="{{item.avatar}}" alt="{{item.name}}, {{item.company}}"></div>
-                        <h2>{{item.name}}</h2>
+                        <div class="product-image"><img ng-src="{{item.image}}" alt="{{item.name}}, {{item.company}}"></div>
+                        <h2>{{item.displayName}}</h2>
                         <h3>{{item.company}}</h3>
                         <div class="star-rating">
                             <div class="star-rating__buttons">

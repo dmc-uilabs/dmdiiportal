@@ -132,6 +132,9 @@ angular.module('dmc.add_project.directive', [
 
                 $scope.members = [];
 
+                $scope.favorites = [];
+                $scope.showFavoritesFlag = false;
+
                 $scope.$watchCollection('invitees',function(newArray,oldArray){
                     for(var i in $scope.foundMembers){
                         var found = false;
@@ -146,6 +149,19 @@ angular.module('dmc.add_project.directive', [
                 });
 
                 $scope.$watchCollection('compare',function(newArray,oldArray){
+                    for(var i in $scope.foundMembers){
+                        var found = false;
+                        for(var j in newArray){
+                            if($scope.foundMembers[i].id == newArray[j].id){
+                                found = true;
+                                break;
+                            }
+                        }
+                        $scope.foundMembers[i].isCompare = found;
+                    }
+                });
+
+                $scope.$watchCollection('favorite',function(newArray,oldArray){
                     for(var i in $scope.foundMembers){
                         var found = false;
                         for(var j in newArray){
@@ -190,6 +206,23 @@ angular.module('dmc.add_project.directive', [
                     if(!found) $scope.invitees.push(item);
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
+
+                $scope.addToFavorite = function(item){
+                    var found = false;
+                    for(var i in $scope.favorites){
+                        if($scope.favorites[i].id === item.id) {
+                            $scope.favorites.splice(i, 1);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found) $scope.favorites.push(item);
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                };
+
+                $scope.showFavorites = function(){
+                    $scope.showFavoritesFlag = !$scope.showFavoritesFlag;
+                }
             }
         }
     })
@@ -261,7 +294,8 @@ angular.module('dmc.add_project.directive', [
             scope:{
                 compareMember: '=',
                 cardSource: '=',
-                inviteMember: '='
+                inviteMember: '=',
+                favoriteMember: '='
             },
             controller: function ($scope) {
                 $scope.addToInvitation = function(){
@@ -272,7 +306,14 @@ angular.module('dmc.add_project.directive', [
                 $scope.addToCompare = function(){
                     $scope.compareMember($scope.cardSource);
                     $scope.cardSource.isCompare = ($scope.cardSource.isCompare ? false : true);
+
                 };
+
+                $scope.addToFavorite = function(){
+                    $scope.favoriteMember($scope.cardSource);
+                    $scope.cardSource.favorite = ($scope.cardSource.favorite ? false : true);
+                };
+
             }
         }
     });

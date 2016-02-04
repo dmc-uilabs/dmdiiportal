@@ -31,29 +31,36 @@
                             </form>
                         </div>
                         <span flex></span>
-                        <md-button class="md-raised">Favorites</md-button>
+                        <md-button class="md-raised" ng-click="showFavorites()" ng-disabled="favorites.length == 0">
+                            {{(showFavoritesFlag == false) ? 'Favorites(' + favorites.length + ')' : 'All'}}     
+                        </md-button>
                         <md-button class="md-raised" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button>
                     </md-content>
                     <md-content class="md-padding top-content" layout="row">
                         <div class="content-column" layout="column" flex="100">
                             <div class="content-panel rfp-three">
-                                <div class="content-panel-header">
-                                    <md-toolbar>
-                                        <div class="md-toolbar-tools">
-                                            <!-- <h2>Recently Searched</h2> -->
-                                        </div>
-                                        <md-divider ></md-divider>
-                                    </md-toolbar>
-                                </div>
+                                
+                                <md-divider ></md-divider>
                                 <div class="content-panel-body">
                                     <md-content layout="row" layout-wrap>
-                                        <div flex="33" class="container-member-card" ng-repeat="item in foundMembers">
+                                        <div flex="33" ng-if="!showFavoritesFlag" class="container-member-card" ng-repeat="item in foundMembers">
                                             <div dmc-member-card
                                                     compare-member="compareMember"
                                                     invite-member="addToInvitation"
+                                                    favorite-member="addToFavorite"
                                                     card-source="item"
-                                                    class="member-card"></div>
-                                                </div>
+                                                    class="member-card">
+                                            </div>
+                                        </div>
+                                        <div flex="33" ng-if="showFavoritesFlag" class="container-member-card" ng-repeat="item in favorites">
+                                            <div dmc-member-card
+                                                    compare-member="compareMember"
+                                                    invite-member="addToInvitation"
+                                                    favorite-member="addToFavorite"
+                                                    card-source="item"
+                                                    class="member-card">
+                                            </div>
+                                        </div>
                                       </md-content>
                                 </div>
                             </div>
@@ -67,9 +74,8 @@
             <div dmc-selected-invitees class="content-panel invitees" invitees="invitees"></div>
         </div>
     </div>
-    <div layout="row" class="btn-next-block" layout-padding>
-        <md-button class="md-raised md-primary" ng-click="goToTab(1)">Back</md-button>
-        <span flex></span>
+    <div layout="row" class="btn-next-block" layout-padding layout-align="end center">
+        <md-button class="md-raised" ng-click="goToTab(1)">Back</md-button>
         <md-button class="md-raised md-primary" ng-click="submitProjectDetails(invitees)" ng-disabled="invitees.length == 0">Create</md-button>
     </div>
 </div>
