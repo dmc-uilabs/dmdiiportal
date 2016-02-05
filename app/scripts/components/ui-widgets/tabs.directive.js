@@ -18,9 +18,7 @@ angular.module('dmc.widgets.tabs',[
 	//Successful Runs
 				{
 					icon: "done_all",
-					
-					icon: "done_all",
-					title: "Timmy Thomas successfully ran the service.",title: "Timmy Thomas successfully ran the service.",
+					title: "Timmy Thomas successfully ran the service.",
 					type: "Successful Runs",
 					date: moment("01-19-2016 12:00:00").format("MM/DD/YYYY, h:mm A")
 				},
@@ -172,7 +170,7 @@ angular.module('dmc.widgets.tabs',[
 			templateUrl: 'templates/components/ui-widgets/tabs-author.html',
 			transclude: true,
 			scope: {
-				data: "=",
+				data: "="
 			},
 			controller: function($scope) {
 				console.info("direcrive", $scope.data);

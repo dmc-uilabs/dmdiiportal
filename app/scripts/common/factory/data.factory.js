@@ -198,6 +198,9 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            getServiceDocuments: function(id){
+                return localhost+'service/'+id+'/service-documents';
+            },
             addServiceToProject: function(id){
                 return localhost+'services/'+id;
             },
