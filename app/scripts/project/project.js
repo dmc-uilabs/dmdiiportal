@@ -96,7 +96,7 @@ angular.module('dmc.project', [
             controller: 'DocumentsCtrl as projectCtrl',
             templateUrl: 'templates/project/pages/documents.html'
         }).state('project.tasks', {
-            url: '/tasks',
+            url: '/tasks?text?type',
             controller: 'TasksCtrl as projectCtrl',
             templateUrl: 'templates/project/pages/tasks.html'
         }).state('project.team', {
