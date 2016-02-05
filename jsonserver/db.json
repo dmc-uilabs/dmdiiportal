@@ -3216,6 +3216,7 @@
   "account-notification-category-items": [
     {
       "id": 1,
+      "hide": true,
       "account-notification-categoryId": 1,
       "title": "User messages me"
     },
@@ -3311,11 +3312,13 @@
     },
     {
       "id": 20,
+      "hide": true,
       "account-notification-categoryId": 4,
       "title": "You receive a question on your project"
     },
     {
       "id": 21,
+      "hide": true,
       "account-notification-categoryId": 4,
       "title": "You receive a submission for your project"
     }
