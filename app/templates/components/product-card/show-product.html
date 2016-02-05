@@ -40,9 +40,6 @@
             </div>
             <!--product tabs-->
             <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="STATISTICS">
-                    <ui-widget-tabs-statistic data="statistics" filter="filter"></ui-widget-tabs-statistic>
-                </md-tab>
                 <md-tab label="Specifications">
                     <md-content class="md-padding">
                         <div class="tabs-content" layout="column">
@@ -53,6 +50,9 @@
                             <p>Outputs: {{product.specificationsData.output}}</p>
                         </div>
                     </md-content>
+                </md-tab>
+                <md-tab label="Statistic">
+                    <ui-widget-tabs-statistic data="statistics" filter="filter"></ui-widget-tabs-statistic>
                 </md-tab>
                 <md-tab label="Tags">
                     <md-content class="md-padding">
@@ -66,7 +66,7 @@
                 </md-tab>
                 <md-tab label="Documents">
                     <md-content class="md-padding">
-                        <ui-widget-documents-product></ui-widget-documents-product>
+                        <ui-widget-documents-folder documents-type="'service'" type-id="product.id"></ui-widget-documents-folder>
                     </md-content>
                 </md-tab>
             </md-tabs>

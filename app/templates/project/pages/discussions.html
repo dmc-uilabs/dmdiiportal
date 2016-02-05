@@ -11,6 +11,66 @@
         </div>
     </md-toolbar>
 </div>
-<div class="container" >
-
+<div class="container container-view-all all-project-discussions" layout-padding>
+    <div class="content-panel-body" layout-padding>
+        <md-content layout-padding>
+            <div layout="row" flex layout-align="start end" class="search-content">
+                <md-input-container class="filterBox">
+                    <md-select placeholder="Discussions" ng-model="typeModel" ng-change="changedType(typeModel)">
+                        <md-option ng-repeat="item in types" value="{{item.tag}}">{{item.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <form ng-submit="submit(searchModel)" class="view-all-search-field global-search-form" flex>
+                    <div layout="column">
+                        <div layout="row">
+                            <div layout="column" flex>
+                                <md-input-container md-no-float>
+                                    <md-icon>
+                                        <ng-md-icon icon="search"></ng-md-icon>
+                                    </md-icon>
+                                    <input type="text" placeholder="Search Discussion" ng-model="searchModel">
+                                </md-input-container>
+                            </div>
+                            <div layout="column">
+                                <md-input-container>
+                                    <md-button type="submit" class="search-button">Search</md-button>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="discussions-list">
+                <md-data-table-container>
+                    <table md-data-table>
+                        <thead md-order="sort" md-trigger="onOrderChange">
+                        <tr>
+                            <th name="Discussion" order-by="text" class="title"></th>
+                            <th name="Replies" order-by="replies"></th>
+                            <th name="Created by" order-by="createdBy"></th>
+                            <th name="Latest Post" order-by="latestPost"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in discussions">
+                            <td>{{item.text}}</td>
+                            <td>{{item.replies}} replies</td>
+                            <td>
+                                {{item['created-by']}} at<br>
+                                {{item['created-at']}}
+                            </td>
+                            <td>
+                                {{item['latest-post']['created-by']}} updated<br>
+                                {{item['latest-post']['created-at']}}
+                            </td>
+                        </tr>
+                        <tr ng-if="discussions.length == 0">
+                            <td class="empty" colspan="4">No discussions</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </md-data-table-container>
+            </div>
+        </md-content>
+    </div>
 </div>

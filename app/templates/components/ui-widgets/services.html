@@ -3,7 +3,7 @@
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
             <span flex></span>
-            <md-button ng-href="{{'/all.php#/services'+(projectId ? '/'+projectId : '')}}" target="_blank" md-no-ink class="view-all-button view-all-link">View All ({{total}})</md-button>
+            <md-button ng-href="{{(projectId ? '/project.php#/'+projectId+'/services' : '/all.php#/services')}}" md-no-ink class="view-all-button view-all-link">View All ({{total}})</md-button>
         </div>
     </md-toolbar>
 </div>

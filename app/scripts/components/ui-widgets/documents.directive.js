@@ -221,118 +221,67 @@ angular.module('dmc.widgets.documents',[
 	directive('uiWidgetDocumentsFolder', ['$parse', function ($parse) {
 		return {
 			restrict: 'E',
-			scope:{},
+			scope:{
+                documentsType : "=",
+                typeId : "="
+            },
 			templateUrl: 'templates/components/ui-widgets/documents-folder.html',
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
 				$scope.documents = [];
 				$scope.total = 0;
-				$scope.sort = 'name';
+				$scope.sort = 'title';
 				$scope.order = 'DESC';
 				$scope.folder = [];
 				$scope.indexfolder = [];
 				$scope.folderName = '';
 
-				// function for get all requirement documents
-					ajax.on(dataFactory.getUrlAllDocuments($scope.projectId),{
-						projectId : 5,
-						sort : $scope.sort,
-						order : $scope.order,
-						limit : 5,
-						offset : 0
-					},function(data){
-						//this need delete
-						for(var i in data.result){
-							data.result[i].modifed = moment(data.result[i].modifed).format('MM/DD/YYYY, h:mm A');
-						}
-						$scope.documents.push({
-							file: false,
-							title: "Example Folder",
-				      owner: "Bob Smith",
-				      size: "100MB",
-				      modifed: moment("11/11/2015 12:00").format('MM/DD/YYYY, h:mm A'),
-							content: [
-								data.result[0], 
-								data.result[0], 
-								data.result[0],
-								{
-									file: false,
-									title: "Example Folder",
-						      owner: "Bob Smith",
-						      size: "100MB",
-						      modifed: moment("11/11/2015 12:00").format('MM/DD/YYYY, h:mm A'),
-									content: [
-										data.result[0], 
-										data.result[0], 
-										data.result[0],
-										data.result[0],
-										data.result[0],
-									]
-								},
-								data.result[0],
-								data.result[0],
-								{
-									file: false,
-									title: "Example Folder2",
-						      owner: "Bob Smith",
-						      size: "100MB",
-						      modifed: moment("11/11/2015 12:00").format('MM/DD/YYYY, h:mm A'),
-									content: [
-										{
-											file: false,
-											title: "Example Folder3",
-								      owner: "Bob Smith",
-								      size: "100MB",
-								      modifed: moment("11/11/2015 12:00").format('MM/DD/YYYY, h:mm A'),
-											content: [
-												data.result[0], 
-												data.result[0], 
-												data.result[0],
-												data.result[0],
-												data.result[0],
-											]
-										},
-										data.result[0], 
-										data.result[0],
-									]
-								},
-							]
-						});
-						$scope.documents.push(data.result[0]);
-						$scope.documents.push(data.result[1]);
-						$scope.documents.push(data.result[2]);
-						$scope.documents.push(data.result[0]);
-						$scope.documents.push(data.result[1]);
-						$scope.documents.push(data.result[2]);
-						$scope.documents.push(data.result[0]);
-						$scope.documents.push(data.result[1]);
-						$scope.total = $scope.documents.length;
-						$scope.folder = $scope.documents;
-						//end delete
+                console.log($scope.documentsType);
+                console.log($scope.typeId);
+                // function for get all requirement documents
+                $scope.serviceDocumentId = 0;
+                $scope.getDocuments = function() {
+                    var url = null;
+                    if($scope.documentsType == "service"){
+                        url = dataFactory.getServiceDocuments($scope.typeId);
+                    }else if($scope.documentsType == "project"){
+                        url = dataFactory.getProjectDocuments($scope.typeId);
+                    }
+                    ajax.get(url, {
+                            _order : $scope.order,
+                            _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
+                            "service-documentId": $scope.serviceDocumentId
+                        },
+                        function (response) {
+                            $scope.documents = response.data;
+                            $scope.total = $scope.documents.length;
+                            $scope.folder = $scope.documents;
+                            apply();
+                        }
+                    );
+                };
+                $scope.getDocuments();
 
-						//$scope.documents = data.result;
-						//$scope.total = data.count*2;
-						if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-					},function(){
-						alert("Ajax faild: getDocuments");
-					});
+                $scope.onOrderChange = function (order) {
+                    $scope.sort = order;
+                    $scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
+                    $scope.getDocuments();
+                };
+
+                var apply = function(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                };
 
 				$scope.openFolder = function(item, index){
-					$scope.folder = item.content;
-					$scope.indexfolder.push({index: index, title: item.title});
-				}
+					$scope.indexfolder.push({id: item.id, title: item.title});
+                    $scope.serviceDocumentId = item.id;
+                    $scope.getDocuments();
+				};
 
-				$scope.exitFolder = function(index){
-						console.info("index",index);
-					$scope.indexfolder = $scope.indexfolder.slice(0, index+1);
-						console.info("indexfolder",$scope.indexfolder);
-					$scope.folder = $scope.documents;
-					for(var i in $scope.indexfolder){
-						//console.info("i",i);
-
-						//console.info('folder',$scope.folder[$scope.indexfolder[i].index]);
-						$scope.folder = $scope.folder[$scope.indexfolder[i].index].content;
-					}
-				}
+				$scope.exitFolder = function(id,index){
+                    $scope.indexfolder.splice(index+1,$scope.indexfolder.length);
+                    $scope.serviceDocumentId = id;
+                    $scope.getDocuments();
+				};
 
 			}
 		};

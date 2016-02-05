@@ -1,36 +1,82 @@
-<div class="documents-folder" layout="column">
-	<div layout="row" class="header">
-		<h2  ng-click="exitFolder(-1)">All Documents</h2>
-		<h2 class="folder-title" ng-click="exitFolder($index)" ng-repeat="item in indexfolder">
-			{{"> "+item.title }}
-		</h2>
+<div class="documents-folder" layout="column" flex>
+	<div layout="row" class="header" layout-wrap layout-align="start center" flex="100">
+		<div class="root" layout="column"  ng-click="exitFolder(0,-1)">
+            <span>All Documents</span>
+        </div>
+		<div layout="column"
+            class="folder-title"
+            ng-class="{'current-folder' : serviceDocumentId == item.id}"
+            ng-click="exitFolder(item.id,$index)"
+            ng-repeat="item in indexfolder track by $index">
+            <div layout="row" layout-align="start center">
+			    <ng-md-icon icon="keyboard_arrow_right" size="32"></ng-md-icon>
+                <span>{{item.title }}</span>
+            </div>
+		</div>
 	</div>
 
-	<md-list>
-		<div class="header-list" layout="row" layout-align="space-around center">
-			<h3 flex="50" class="row">Name</h3>
-			<h3 flex="20" class="row">Owner</h3>
-			<h3 flex="20" class="row">Size</h3>
-			<h3 flex="10" class="row">Last Modifed</h3>
-		</div>
-		<md-list-item aria-label="file" ng-repeat="item in folder track by $index">
-			<md-divider></md-divider>
-			<div layout="row" flex="100" layout-align="start center">
-				<md-button ng-if="!item.file" layout="row" flex="50" class="folderButton" ng-click="openFolder(item, $index)">
-						<ng-md-icon icon="folder" style="fill: #666" size="35"></ng-md-icon>
-						{{item.title}}
-				</md-button>
-				<div layout="row" flex="50" ng-if="item.file"  layout-align="start center">
-				<ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>
-				<h3>
-					
-					{{item.title}}
-				</h3>
-				</div>
-				<h3 flex="20">{{item.owner}}</h3>
-				<h3 flex="20">{{item.size}}</h3>
-				<h3 flex="10">{{item.modifed}}</h3>
-			</div>
-		</md-list-item>
-	</md-list>
+    <md-data-table-container layout="row" flex=100>
+        <table md-data-table>
+            <thead md-order="sort" md-trigger="onOrderChange" ng-if="folder.length > 0">
+            <tr>
+                <th name="Name" order-by="title"></th>
+                <th name="Owner" order-by="owner"></th>
+                <th name="Size" order-by="size"></th>
+                <th name="Last Modifed" order-by="modifed"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in folder track by $index" ng-click="changeItem(item)">
+                <td class="folder" ng-if="!item.file" ng-click="openFolder(item, $index)">
+                    <div layout="row" layout-align="start center">
+                        <ng-md-icon icon="folder" style="fill: #666" size="35"></ng-md-icon>
+                        <span>{{item.title}}</span>
+                    </div>
+                </td>
+                <td class="file" ng-if="item.file">
+                    <div layout="row" layout-align="start center">
+                        <ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>
+                        <a ng-href="{{item.link}}" ng-if="item.link">{{item.title}}</a>
+                    </div>
+                </td>
+                <td>{{item.owner}}</td>
+                <td>{{item.size}}</td>
+                <td>{{item.modifed}}</td>
+            </tr>
+            <tr ng-if="folder.length == 0">
+                <td class="empty" colspan="4">Folder is Empty</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-data-table-container>
+
+	<!--<md-list>-->
+		<!--<div class="header-list" layout="row" layout-align="space-around center" ng-if="folder.length > 0">-->
+			<!--<h3 flex="50" class="row">Name</h3>-->
+			<!--<h3 flex="20" class="row">Owner</h3>-->
+			<!--<h3 flex="20" class="row">Size</h3>-->
+			<!--<h3 flex="10" class="row">Last Modifed</h3>-->
+		<!--</div>-->
+		<!--<md-list-item aria-label="file" ng-repeat="item in folder track by $index">-->
+			<!--<md-divider></md-divider>-->
+			<!--<div layout="row" flex="100" layout-align="start center">-->
+				<!--<md-button ng-if="!item.file" layout="row" flex="50" class="folderButton" ng-click="openFolder(item, $index)">-->
+						<!--<ng-md-icon icon="folder" style="fill: #666" size="35"></ng-md-icon>-->
+                    <!--{{item.title}}-->
+				<!--</md-button>-->
+				<!--<div layout="row" flex="50" ng-if="item.file"  layout-align="start center">-->
+				<!--<ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>-->
+				<!--<h3>-->
+					<!--<a ng-href="{{item.link}}" ng-if="item.link">{{item.title}}</a>-->
+				<!--</h3>-->
+				<!--</div>-->
+				<!--<h3 flex="20">{{item.owner}}</h3>-->
+				<!--<h3 flex="20">{{item.size}}</h3>-->
+				<!--<h3 flex="10">{{item.modifed}}</h3>-->
+			<!--</div>-->
+		<!--</md-list-item>-->
+        <!--<md-list-item aria-label="file" ng-if="folder.length == 0">-->
+            <!--Folder is Empty-->
+        <!--</md-list-item>-->
+	<!--</md-list>-->
 </div>
