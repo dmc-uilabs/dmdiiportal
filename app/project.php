@@ -120,6 +120,7 @@
     <script src="scripts/project/controllers/upload-service.js"></script>
     <script src="scripts/project/controllers/run-service.js"></script>
     <script src="scripts/project/controllers/services-detail.js"></script>
+    <script src="scripts/project/controllers/publish-service-marketplace.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/services.model.js"></script>

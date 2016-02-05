@@ -198,6 +198,12 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            getFollowCompanies: function(id){
+                return localhost+'accounts/'+id+'/company_follows';
+            },
+            getFollowCompanyServices: function(){
+                return localhost+'follow-company-services';
+            },
             getServiceDocuments: function(id){
                 return localhost+'service/'+id+'/service-documents';
             },
