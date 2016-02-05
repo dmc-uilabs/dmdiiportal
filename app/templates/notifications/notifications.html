@@ -5,26 +5,26 @@
 	</div>
 <md-content class="md-padding">
 	<div layout="row" layout-align="space-between start">
-		<div flex="15" class="section" ng-repeat="(key, item) in notifications track by $index" >
+		<div flex="15" class="section" ng-repeat="item in notifications track by $index" >
 			<div class="cell1" layout layout-align="center center">
-				<h2 ng-click="filtered('all',key)">{{key}}</h2>
+				<h2 ng-click="filtered('month', item.type, item.name)">{{item.name}}</h2>
 			</div>
 			<div class="cell2" layout="row" layout-align="space-between center">
-				<h3 ng-click="filtered('today',key)">Today</h3>
+				<h3 ng-click="filtered('today', item.type, item.name)">Today</h3>
 				<h4>{{item.today}}</h4>
 			</div>
 			<div class="cell3" layout="row" layout-align="space-between center">
-				<h3 ng-click="filtered('week',key)">This Week</h3>
+				<h3 ng-click="filtered('week', item.type, item.name)">This Week</h3>
 				<h4>{{item.week}}</h4>
 			</div>
 			<div class="cell4" layout="row" layout-align="space-between center">
-				<h3 ng-click="filtered('month',key)">This Month</h3>
+				<h3 ng-click="filtered('month', item.type, item.name)">This Month</h3>
 				<h4>{{item.month}}</h4>
 			</div>
 		</div>
 	</div>
 
-	<div class="block" ng-if="!user && !filterFlag">
+	<div class="block" ng-if="version1 && !user && !filterFlag">
 		<h2>Evaluate Project Submissions</h2>
 		<div layout="row" layout-align="center center" class="first">
 			<div flex="15">
@@ -35,7 +35,7 @@
 		</div>
 	</div>
 
-	<div class="block" ng-if="user && !filterFlag">
+	<div class="block" ng-if="version1 && user && !filterFlag">
 		<h2>Project invitations</h2>
 		<div layout="row" layout-align="center center" class="first">
 			<div flex="15">
@@ -54,42 +54,7 @@
 		</div>
 	</div>
 
-	<div class="block" ng-if="!filterFlag">
-		<div layout="row" layout-align="start center">
-			<h2>Today</h2>
-		</div>
-		<md-list>
-			<md-list-item ng-repeat="item in today track by $index">
-				<div flex="100" layout="row" layout-align="center center" >
-					<div flex="10">
-						<img ng-src="{{item.image}}">
-					</div>
-					<h4 flex>{{item.title}} <a href="{{item.link}}">{{item.linkTitle}}</a></h4>
-					<h4>{{item.time}}</h4>
-				</div>
-			<md-divider ng-if="!$last"></md-divider>
-			</md-list-item>
-		</md-list>
-	</div>
-
-	<div class="block" ng-if="!filterFlag">
-		<div layout="row" layout-align="start center">
-			<h2>Yesterday</h2>
-		</div>
-		<md-list>
-			<md-list-item ng-repeat="item in yesterday track by $index">
-				<div flex="100" layout="row" layout-align="center center" >
-					<div flex="10">
-						<img ng-src="{{item.image}}">
-					</div>
-					<h4 flex>{{item.title}} <a href="{{item.link}}">{{item.linkTitle}}</a></h4>
-					<h4>{{item.time}}</h4>
-				</div>
-			<md-divider ng-if="!$last"></md-divider>
-			</md-list-item>
-		</md-list>
-	</div>
-	<div class="block" ng-if="filterFlag">
+	<div class="block" >
 		<div layout="row" layout-align="space-between center">
 			<h2>{{typeNotifications}}</h2>
 		</div>
