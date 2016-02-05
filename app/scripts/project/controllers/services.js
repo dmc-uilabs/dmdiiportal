@@ -18,12 +18,26 @@ angular.module('dmc.project')
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };
 
-        $scope.getServices();
 
         $scope.delete = function(item, index){
-            $scope.projectData.services.data.splice(index, 1);
+            
+            ajax.get(dataFactory.services(item.id).get,{},
+                function(response){
+                    var services = response.data;
+                    services['projectId'] = 0;
+                    services['currentStatus']['project']['id'] = 0;
+                    services['currentStatus']['project']['title'] = "";
+
+                    ajax.update(dataFactory.services(item.id).update, services,
+                        function(response){
+                            $scope.projectData.services.data.splice(index, 1);
+                        }
+                    );
+                }
+            );
         };
 
+        $scope.getServices();
         $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
 
 }])

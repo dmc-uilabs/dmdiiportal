@@ -103,7 +103,7 @@ angular.module('dmc.marketplace')
             };
             // function for get Popular marketplace services
             $scope.getPopularServices = function(){
-                ajax.get(dataFactory.getPopularServices(), responseDataForCarousel,
+                ajax.get(dataFactory.getMarketPopularServices(), responseDataForCarousel,
                     function(response){
                         $scope.carouselData.popular.arr = response.data;
                         $scope.carouselData.popular.cout = response.data.length;
@@ -116,7 +116,7 @@ angular.module('dmc.marketplace')
 
             // function for get New marketplace services
             $scope.getNewServices = function(){
-                ajax.get(dataFactory.getNewServices(), responseDataForCarousel,
+                ajax.get(dataFactory.getMarketNewServices(), responseDataForCarousel,
                     function(response){
                         $scope.carouselData.new.arr = response.data;
                         $scope.carouselData.new.cout = response.data.length;
@@ -199,22 +199,22 @@ angular.module('dmc.marketplace')
             $scope.getServicesAndComponents = function(){
                 isFirstCallback = true;
                 loadingData(true);
-                ajax.get(dataFactory.getServices(), responseData(), callbackServices);
-                ajax.get(dataFactory.getComponents(), responseData(), callbackComponents);
+                ajax.get(dataFactory.getMarketServices(), responseData(), callbackServices);
+                ajax.get(dataFactory.getMarketComponents(), responseData(), callbackComponents);
             };
 
             // get all services --------------------------------------------------
             $scope.getServices = function(){
                 isFirstCallback = true;
                 loadingData(true);
-                ajax.get(dataFactory.getServices(), responseData(), callbackServices);
+                ajax.get(dataFactory.getMarketServices(), responseData(), callbackServices);
             };
 
             // get all components --------------------------------------------------
             $scope.getComponents = function(){
                 isFirstCallback = true;
                 loadingData(true);
-                ajax.get(dataFactory.getComponents(), responseData(),callbackComponents);
+                ajax.get(dataFactory.getMarketComponents(), responseData(),callbackComponents);
             };
 
             // get all follow companies
