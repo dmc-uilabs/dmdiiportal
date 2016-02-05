@@ -210,6 +210,17 @@ paths:
         '200':
           description: OK
   /projects:
+    get:
+      tags:
+        - project
+      description: Get all user projects
+      responses:
+        '200':
+          description: return array of projects
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Project'
     post:
       tags:
         - project
@@ -244,6 +255,25 @@ paths:
           description: Sends the project with projectID
           schema:
             $ref: '#/definitions/Project'
+  '/projects/{projectID}/following_discussions':
+    get:
+      tags:
+        - project
+        - discussion
+      description: Get all project discussions being followed
+      parameters:
+        - name: projectID
+          in: path
+          type: string
+          description: ID of the project
+          required: true
+      responses:
+        '200':
+          description: return all project discussions being followed
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Discussion'
   /tasks/create:
     post:
       tags:
@@ -370,6 +400,55 @@ paths:
           description: send the component with componentID
           schema:
             $ref: '#/definitions/Component'
+  '/popular_discussions':
+    get:
+      tags:
+        - discussion
+      description: Get popular discussions
+      responses:
+        '200':
+          description: return popular discussions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Discussion'
+  '/follow_people_discussions':
+    get:
+      tags:
+        - discussion
+      description: Get discussion of people being followed
+      responses:
+        '200':
+          description: return discussions of people being
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Discussion'
+  '/following_discussions':
+    get:
+      tags:
+        - discussion
+        - dashboard.php
+      description: Get discussion being followed
+      responses:
+        '200':
+          description: return discussons being followed
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Discussion'
+  '/discussions':
+    get:
+      tags:
+        - discussion
+      description: Get all user relalted discussion
+      responses:
+        '200':
+          description: return all user relalted discussion
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Discussion'
   /discussions/create:
     post:
       tags:
@@ -391,8 +470,7 @@ paths:
     get:
       tags:
         - discussion
-      summary: Get information for a discussion
-      description: Get discussion basedon discussionID
+      description: Get discussion based on discussionID
       operationId: getDiscussionByDiscussionID
       parameters:
         - name: discussionID
@@ -631,6 +709,44 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CompanyReview'
+  '/companies/{companyID}/company_services':
+    get:
+      tags:
+        - company
+        - service
+      description: Get company services based on companyID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+      responses:
+        '200':
+          description: send the services with companyID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Service'
+  '/companies/{companyID}/company_components':
+    get:
+      tags:
+        - company
+        - component
+      description: Get company components based on companyID
+      parameters:
+        - name: companyID
+          in: path
+          type: string
+          description: ID of the company
+          required: true
+      responses:
+        '200':
+          description: send the components with companyID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Component'
   '/companies/{companyID}/company_featured':
     get:
       tags:
@@ -808,7 +924,7 @@ definitions:
         type: integer
       link:
         type: string
-        description: it contains /project/{projectID}/tasks, URL that returns JSON data of all tasks.
+        description: it contains /projects/{projectID}/tasks, URL that returns JSON data of all project tasks.
   Discussions:
     type: object
     properties:
@@ -816,7 +932,7 @@ definitions:
         type: integer
       link:
         type: string
-        description: it contains /project/{projectID}/discussions, URL that returns JSON data for project specific blog discussion and live stream (e.g. anytime a service is ran, any new discussion, new services added, etc.)
+        description: it contains /projects/{projectID}/discussions, URL that returns JSON data for project specific blog discussion and live stream (e.g. anytime a service is ran, any new discussion, new services added, etc.)
   Services:
     type: object
     properties:
@@ -824,7 +940,7 @@ definitions:
         type: integer
       link:
         type: string
-        description: it contains /project/{projectID}/services, URL that returns JSON data of all services of the project.
+        description: it contains /project/{projectID}/services, URL that returns JSON data of all services in a project.
   Components:
     type: object
     properties:
@@ -1461,6 +1577,7 @@ definitions:
         type: string
       section:
         type: string
+        enum: ['website', 'email']
       account-notification-category-itemId:
         type: string
       selected:
