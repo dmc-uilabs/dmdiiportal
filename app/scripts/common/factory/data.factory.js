@@ -245,10 +245,10 @@ angular.module('dmc.data',[])
                 }
             },
             followCompany : function(){
-                return localhost+'company_follows';
+                return localhost+'following_companies';
             },
             unfollowCompany : function(id){
-                return localhost+'company_follows/'+id;
+                return localhost+'following_companies/'+id;
             },
             getRelatedArticles: function(id){
                 return localhost+'faq_articles';
@@ -337,11 +337,17 @@ angular.module('dmc.data',[])
             getComponents: function(){
                 return localhost+'components';
             },
-            getPopularServices : function(){
-                return localhost+'services';
+            getMarketPopularServices : function(){
+                return localhost+'market/popular_services';
             },
-            getNewServices : function(){
-                return localhost+'services';
+            getMarketNewServices : function(){
+                return localhost+'market/new_services';
+            },
+            getMarketServices : function(){
+                 return localhost+'market/services';
+            },
+            getMarketComponents : function(){
+                 return localhost+'market/components';
             },
             /// profiles -----------------
             profiles : function(id) {

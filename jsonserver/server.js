@@ -21,7 +21,11 @@ server.use(jsonServer.rewriter({
     '/tasks/create' : '/tasks',
     '/members' : '/profiles?_embed=profile_reviews',
     '/my-tasks' : '/tasks',
-    '/my-services' : '/services'
+    '/my-services' : '/services',
+    '/market/popular_services': '/services',
+    '/market/new_services': '/services',
+    '/market/services': '/services',
+    '/market/components': '/services',
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 // Returns an Express router

@@ -909,6 +909,58 @@ paths:
           description: returns updated company contact
           schema:
             $ref: '#/definitions/CompanyKeyContact'
+  '/market/popular_services':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get popular services in marketplace
+      responses:
+        '200':
+          description: return popular services in marketplace
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Service'
+  '/market/new_services':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get latest services in marketplace
+      responses:
+        '200':
+          description: return latest services in marketplace
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Service'
+  '/market/services':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get all services in marketplace
+      responses:
+        '200':
+          description: return all services in marketplace
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Service'
+  '/market/components':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get all components in marketplace
+      responses:
+        '200':
+          description: return all components in marketplace
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Component'
 definitions:
   FeatureImage:
     type: object
