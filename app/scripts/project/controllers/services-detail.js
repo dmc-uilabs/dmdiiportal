@@ -1,164 +1,107 @@
 angular.module('dmc.project')
-.controller('projectServicesDetailCtrl', ['$scope', '$stateParams', 'projectData', 'ajax', 'dataFactory', '$state', function ($scope, $stateParams, projectData, ajax, dataFactory, $state) {
+.controller('projectServicesDetailCtrl', ['serviceData', 'serviceModel', '$scope', '$stateParams', 'projectData', 'ajax', 'dataFactory', '$state', 
+	function (serviceData, serviceModel ,$scope, $stateParams, projectData, ajax, dataFactory, $state) {
 	
 	$scope.projectData = projectData;
+	$scope.service = serviceData;
 	$scope.average_rating = 0;
 	$scope.followFlag = false;
 	$scope.precentage_stars = [0,0,0,0,0];
 	$scope.number_of_comments = 0;
-	$scope.service = null;
+	// $scope.service = null;
 	$scope.flagHistory = false;
 	$scope.sort = "runDate";
 	$scope.order = true;
-	$scope.filter = {
-		block: null,
-		time: null,
-		type: null	
-	}
-
-	$scope.statistics = [
-		{
-			title: "Project",
-			"SuccessfulRuns": {
-				"Today": 8,
-				"Week": 10,
-				"AllTime": 12
-			},
-			"IncompleteRuns": {
-				"Today": 1,
-				"Week": 3,
-				"Month": 3
-			},
-			"UnavailableRuns": {
-				"Today": 1,
-				"Week": 2,
-				"Month": 2
-			},
-			"RunsByUsers": {
-				"Today": 10,
-				"Week": 15,
-				"AllTime": 17
-			},
-			"UniqueUsers": {
-				"Today": 10,
-				"Week": 2,
-				"Month": 5
-			},
-			"AverageTime": {
-				"Today": 10.1,
-				"Week": 11,
-				"Month": 22.2
-			}
-		},
-		{
-			title: "Marketplace",
-			"SuccessfulRuns": {
-				"Today": 8,
-				"Week": 10,
-				"AllTime": 12
-			},
-			"IncompleteRuns": {
-				"Today": 1,
-				"Week": 3,
-				"Month": 3
-			},
-			"UnavailableRuns": {
-				"Today": 1,
-				"Week": 2,
-				"Month": 2
-			},
-			"RunsByUsers": {
-				"Today": 10,
-				"Week": 15,
-				"AllTime": 17
-			},
-			"UniqueUsers": {
-				"Today": 10,
-				"Week": 2,
-				"Month": 5
-			},
-			"AverageTime": {
-				"Today": 10.1,
-				"Week": 11,
-				"Month": 22.2
-			}
-		}
-	]
+    $scope.selectedTab = 0;
 
 	$scope.history = {
 		leftColumn: {
 			title: "Project",
 			viewAllLink: "",
-			list:[
-				{
-					icon: "done_all",
-					title: "Timmy Thomas successfully ran the service.",
-					date: "July 31",
-				},
-				{
-					icon: "block",
-					title: "Anna Barton ran the service unsuccessfully.",
-					date: "July 30",
-				},
-				{
-					icon: "file_upload",
-					title: "Jhon Smith uploaded the service.",
-					date: "June 30",
-				},
-				{
-					icon: "block",
-					title: "Anna Barton ran the service unsuccessfully.",
-					date: "June 30",
-				},
-				{
-					icon: "block",
-					title: "Anna Barton ran the service unsuccessfully.",
-					date: "June 30",
-				},
-				{
-					icon: "file_upload",
-					title: "Jhon Smith uploaded the service.",
-					date: "June 30",
-				},
-			]
+			list:[]
 		},
 		rightColumn: {
 			title: "Marketplace",
 			viewAllLink: "",
-			list:[
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				},
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				},
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				},
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				},
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				},
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				}
-			]
+			list:[]
 		}
 	}
+
+            serviceModel.get_service_hystory(
+                {
+                    "period": "today",
+                    "section": "project"
+                },
+                function(data){
+                    for(var i in data){
+                        data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                        if(data[i].type == "successful_runs"){
+                            data[i].icon = "done_all";
+                        }else if(data[i].type == "unavailable_runs"){
+                            data[i].icon = "block";
+                        }else if(data[i].type == "incomplete_runs"){
+                            data[i].icon = "file_upload";
+                        };
+                    }
+                    $scope.history.leftColumn.list = data;
+                }
+            );
+            serviceModel.get_service_hystory(
+                {
+                    "period": "today",
+                    "section": "marketplace"
+                },
+                function(data){
+                    for(var i in data){
+                        data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                        if(data[i].type == "edited"){
+                            data[i].icon = "edit";
+                        }
+                    }
+                    $scope.history.rightColumn.list = data;
+                }
+            );
+
+            $scope.getHistory = function(type, time){
+                var period = "";
+                var params = {"section": "project"};
+                if(time == "today"){
+                    period = "today";
+                }else if (time == "week"){
+                    period = ["today","week"];
+                }else{
+                    period = ["today","week","all"];
+                };
+
+                params['period'] = period;
+
+                if(type != "runs_by_users"){
+                    params['type'] = type;
+                };
+
+                serviceModel.get_service_hystory(
+                    params,
+                    function(data){
+                        for(var i in data){
+                            data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                            if(data[i].type == "successful_runs"){
+                                data[i].icon = "done_all";
+                            }else if(data[i].type == "unavailable_runs"){
+                                data[i].icon = "block";
+                            }else if(data[i].type == "incomplete_runs"){
+                                data[i].icon = "file_upload";
+                            };
+                        }
+                        $scope.history.leftColumn.list = data;
+                        $scope.selectedTab = 1;
+                        apply();
+                    }
+                );
+            }
+
+            var apply = function(){
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            };
 
 	$scope.runHistory = [
 		{
@@ -414,7 +357,7 @@ angular.module('dmc.project')
 			results: "Fail",
 		},
 	]
-
+/*
 	ajax.on(
 		dataFactory.getUrlAllServices(),
 		{
@@ -454,7 +397,7 @@ angular.module('dmc.project')
 			alert("Ajax fail: getAllServices");
 		}
 	);
-
+*/
 	//Calculate Rating
 	var calculate_rating = function() {
 		$scope.precentage_stars = [0,0,0,0,0];

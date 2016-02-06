@@ -1,4 +1,4 @@
-<div class="tabs-statistic" layout="column" ng-repeat="item in data">
+<div class="tabs-statistic" layout="column">
 	<md-divider ng-if="!$first"></md-divider>
 	<h2 ng-if="item.title">{{item.title}}</h2>
 	<div layout="row" layout-align="space-between start">
@@ -6,63 +6,63 @@
 			<div class="rate">
 				<h3>Success Rate</h3>
 				<div class="cell1">
-					<h4>20% Success</h4>
+					<h4>{{data.success_rate.success}}%</h4>
 				</div>
 				<div class="cell2">
-					<h4>20% Incomplete</h4>
+					<h4>{{data.success_rate.incomplete}}%</h4>
 				</div>
 				<div class="cell3">
-					<h4>20% Failed</h4>
+					<h4>{{data.success_rate.failed}}%</h4>
 				</div>
 			</div>
 		</div>
 		<div flex="20">
 			<div class="section">
-				<h3 ng-click="filtered(item.title, 'all','Successful Runs')">Successful Runs</h3>
+				<h3 ng-click="filter('successful_runs', 'all')">Successful Runs</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'today','Successful Runs')">Today</h4>
-					<h5>{{item.SuccessfulRuns.Today}}</h5>
+					<h4 ng-click="filter('successful_runs', 'today')">Today</h4>
+					<h5>{{data.successful_runs.today}}</h5>
 				</div>
 				<div class="cell2" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'week','Successful Runs')">Week</h4>
-					<h5>{{item.SuccessfulRuns.Week}}</h5>
+					<h4 ng-click="filter('successful_runs', 'week')">Week</h4>
+					<h5>{{data.successful_runs.week}}</h5>
 				</div>
 				<div class="cell3" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'all','Successful Runs')">All-time</h4>
-					<h5>{{item.SuccessfulRuns.AllTime}}</h5>
+					<h4 ng-click="filter('successful_runs', 'all')">All-time</h4>
+					<h5>{{data.successful_runs.all}}</h5>
 				</div>
 			</div>
 
-			<div class="section">
-				<h3 ng-click="filtered(item.title, 'all','Unique Users')">Unique Users</h3>
+			<div class="section none-cliks">
+				<h3>Unique Users</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'today','Unique Users')">Today</h4>
-					<h5>{{item.UniqueUsers.Today}}</h5>
+					<h4>Today</h4>
+					<h5>{{data.unique_users.today}}</h5>
 				</div>
 				<div class="cell2" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'week','Unique Users')">Week</h4>
-					<h5>{{item.UniqueUsers.Week}}</h5>
+					<h4>Week</h4>
+					<h5>{{data.unique_users.week}}</h5>
 				</div>
 				<div class="cell3" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'all','Unique Users')">All-time</h4>
-					<h5>{{item.UniqueUsers.Month}}</h5>
+					<h4>All-time</h4>
+					<h5>{{data.unique_users.all}}</h5>
 				</div>
 			</div>
 		</div>
 		<div flex="20">
 			<div class="section">
-				<h3 ng-click="filtered(item.title, 'all','Incomplete Runs')">Incomplete Runs</h3>
+				<h3 ng-click="filter('incomplete_runs', 'all','Incomplete Runs')">Incomplete Runs</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'today','Incomplete Runs')">Today</h4>
-					<h5>{{item.IncompleteRuns.Today}}</h5>
+					<h4 ng-click="filter('incomplete_runs', 'today')">Today</h4>
+					<h5>{{data.incomplete_runs.today}}</h5>
 				</div>
 				<div class="cell2" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'week','Incomplete Runs')">Week</h4>
-					<h5>{{item.IncompleteRuns.Week}}</h5>
+					<h4 ng-click="filter('incomplete_runs', 'week')">Week</h4>
+					<h5>{{data.incomplete_runs.week}}</h5>
 				</div>
 				<div class="cell3" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'all','Incomplete Runs')">All-time</h4>
-					<h5>{{item.IncompleteRuns.Month}}</h5>
+					<h4 ng-click="filter('incomplete_runs', 'all')">All-time</h4>
+					<h5>{{data.incomplete_runs.all}}</h5>
 				</div>
 			</div>
 
@@ -70,50 +70,50 @@
 				<h3>Average Time (min)</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
 					<h4>Today</h4>
-					<h5>{{item.AverageTime.Today}}</h5>
+					<h5>{{data.average_time.today}}</h5>
 				</div>
 				<div class="cell2" layout="row" layout-align="space-between center">
 					<h4>Week</h4>
-					<h5>{{item.AverageTime.Week}}</h5>
+					<h5>{{data.average_time.week}}</h5>
 				</div>
 				<div class="cell3" layout="row" layout-align="space-between center">
 					<h4>All-time</h4>
-					<h5>{{item.AverageTime.Month}}</h5>
+					<h5>{{data.average_time.all}}</h5>
 				</div>
 			</div>
 		</div>
 		<div flex="20">
 			<div class="section">
-				<h3 ng-click="filtered(item.title, 'all','Unavailable Runs')">Unavailable Runs</h3>
+				<h3 ng-click="filter('unavailable_runs', 'all')">Unavailable Runs</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'today','Unavailable Runs')">Today</h4>
-					<h5>{{item.UnavailableRuns.Today}}</h5>
+					<h4 ng-click="filter('unavailable_runs', 'today')">Today</h4>
+					<h5>{{data.unavailable_runs.today}}</h5>
 				</div>
 				<div class="cell2" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'week','Unavailable Runs')">Week</h4>
-					<h5>{{item.UnavailableRuns.Week}}</h5>
+					<h4 ng-click="filter('unavailable_runs', 'week')">Week</h4>
+					<h5>{{data.unavailable_runs.week}}</h5>
 				</div>
 				<div class="cell3" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'all','Unavailable Runs')">All-time</h4>
-					<h5>{{item.UnavailableRuns.Month}}</h5>
+					<h4 ng-click="filter('unavailable_runs', 'all')">All-time</h4>
+					<h5>{{data.unavailable_runs.all}}</h5>
 				</div>
 			</div>
 
 		</div>
 		<div flex="20">
 			<div class="section">
-				<h3 ng-click="filtered(item.title, 'all','Runs By Users')">Runs By Users</h3>
+				<h3 ng-click="filter('runs_by_users', 'all')">Runs By Users</h3>
 				<div class="cell1" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'today','Runs By Users')">Today</h4>
-					<h5>{{item.RunsByUsers.Today}}</h5>
+					<h4 ng-click="filter('runs_by_users', 'today')">Today</h4>
+					<h5>{{data.runs_by_users.today}}</h5>
 				</div>
 				<div class="cell2" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'week','Runs By Users')">Week</h4>
-					<h5>{{item.RunsByUsers.Week}}</h5>
+					<h4 ng-click="filter('runs_by_users', 'week')">Week</h4>
+					<h5>{{data.runs_by_users.week}}</h5>
 				</div>
 				<div class="cell3" layout="row" layout-align="space-between center">
-					<h4 ng-click="filtered(item.title, 'all','Runs By Users')">All-time</h4>
-					<h5>{{item.RunsByUsers.AllTime}}</h5>
+					<h4 ng-click="filter('runs_by_users', 'all')">All-time</h4>
+					<h5>{{data.runs_by_users.all}}</h5>
 				</div>
 			</div>
 		</div>

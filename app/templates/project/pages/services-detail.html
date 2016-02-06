@@ -22,7 +22,7 @@
 			<a ng-click="showHistory()" class="link margin-top8">
 				Run History
 			</a>
-			<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}}) {{number_of_comments}} reviews"></ui-widget-stars-static>
+			<ui-widget-stars-static size="15" value="{{service.average_rating}}" text="({{service.average_rating}}) {{service.number_of_comments}} reviews"></ui-widget-stars-static>
 		</div>
 		<div class="buttons" layout layout-align="center center">
 			<md-button class="md-raised" ui-sref="project.run-services({ServiceId : service.id})">
@@ -45,21 +45,21 @@
 	<div class="description">
 		{{service.description}}
 	</div>
-	<md-tabs md-dynamic-height md-border-bottom>
+	<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom>
 		<md-tab label="STATISTICS">
-			<ui-widget-tabs-statistic data="statistics" filter="filter"></ui-widget-tabs-statistic>
+			<ui-widget-tabs-statistic data="service.services_statistic[0]" filter="getHistory"></ui-widget-tabs-statistic>
 		</md-tab>
 		
 		<md-tab label="HISTORY">
-			<ui-widget-tabs-history data="history" filters="filter"></ui-widget-tabs-history>
+			<ui-widget-tabs-history data="history"></ui-widget-tabs-history>
 		</md-tab>
 
 		<md-tab label="TAGS">
 			<md-content class="md-padding">
 				<div layout="row" class="tabs-content" layout-wrap>
-					<md-chips ng-repeat="tag in service.tags track by $index">
-						<md-chip ng-click="search(tag)">
-							<a ng-href="/marketplace.php#/search/services?text={{tag}}">{{tag}}</a>
+					<md-chips ng-repeat="tag in service.service_tags track by $index">
+						<md-chip ng-click="search(tag.name)">
+							<a ng-href="/marketplace.php#/search/services?text={{tag.name}}">{{tag.name}}</a>
 						</md-chip>
 					</md-chips>
 				</div>
@@ -74,10 +74,10 @@
 
 		<md-tab ng-if="service.from == 'marketplace'" label="Reviews">
 			<div layout="row" layout-align="start center">
-				<h4>{{number_of_comments}} reviews </h4>
-				<ui-widget-stars-static size="15" value="{{average_rating}}" text="({{average_rating}})"></ui-widget-stars-static>
+				<h4>{{service.number_of_comments}} reviews </h4>
+				<ui-widget-stars-static size="15" value="{{service.average_rating}}" text="({{service.average_rating}})"></ui-widget-stars-static>
 			</div>
-			<div ng-repeat="review in service.reviews">
+			<div ng-repeat="review in service.service_reviews">
 				<ui-widget-review review="review" userlogin="'UserLogin'" typereview="'reply_reviews'"></ui-widget-review>
         <md-divider></md-divider>
       </div>

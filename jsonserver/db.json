@@ -1361,6 +1361,289 @@
       "from": "marketplace"
     }
   ],
+  "services_history": [
+    {
+      "type": "successful_runs",
+      "link": "",
+      "period": "today",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas successfully ran the service.",
+      "id": 1
+    },
+    {
+      "type": "successful_runs",
+      "link": "",
+      "period": "week",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas successfully ran the service.",
+      "id": 2
+    },
+    {
+      "type": "successful_runs",
+      "link": "",
+      "period": "week",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas successfully ran the service.",
+      "id": 3
+    },
+    {
+      "type": "successful_runs",
+      "link": "",
+      "period": "all",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas successfully ran the service.",
+      "id": 4
+    },
+    {
+      "type": "incomplete_runs",
+      "link": "",
+      "period": "today",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas Incomplete ran the service.",
+      "id": 5
+    },
+    {
+      "type": "incomplete_runs",
+      "link": "",
+      "period": "week",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas Incomplete ran the service.",
+      "id": 6
+    },
+    {
+      "type": "incomplete_runs",
+      "link": "",
+      "period": "week",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas Incomplete ran the service.",
+      "id": 7
+    },
+    {
+      "type": "unavailable_runs",
+      "link": "",
+      "period": "all",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas ran the service unsuccessfully.",
+      "id": 8
+    },
+    {
+      "type": "unavailable_runs",
+      "link": "",
+      "period": "today",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas ran the service unsuccessfully.",
+      "id": 9
+    },
+    {
+      "type": "incomplete_runs",
+      "link": "",
+      "period": "week",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas Incomplete ran the service.",
+      "id": 10
+    },
+    {
+      "type": "unavailable_runs",
+      "link": "",
+      "period": "week",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas ran the service unsuccessfully.",
+      "id": 11
+    },
+    {
+      "type": "unavailable_runs",
+      "link": "",
+      "period": "all",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas ran the service unsuccessfully.",
+      "id": 12
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "today",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 13
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "today",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 14
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "today",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 15
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "week",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 16
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "week",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 17
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "week",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 18
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "week",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 19
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "week",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 20
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "all",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 21
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "all",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 22
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "all",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 23
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "all",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "id": 24
+    }
+  ],
+  "services_statistic": [
+    {
+      "id": 1,
+      "serviceId": 1,
+      "success_rate": {
+        "success": 20,
+        "incomplete": 20,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 1,
+        "week": 3,
+        "all": 4
+      },
+      "incomplete_runs": {
+        "today": 1,
+        "week": 3,
+        "all": 4
+      },
+      "unavailable_runs": {
+        "today": 1,
+        "week": 3,
+        "all": 4
+      },
+      "runs_by_users": {
+        "today": 3,
+        "week": 6,
+        "all": 12
+      },
+      "unique_users": {
+        "today": 1,
+        "week": 3,
+        "all": 4
+      },
+      "average_time": {
+        "today": 10.1,
+        "week": 11,
+        "all": 22.2
+      }
+    }
+  ],
   "included-services": [
     {
       "id": 1,

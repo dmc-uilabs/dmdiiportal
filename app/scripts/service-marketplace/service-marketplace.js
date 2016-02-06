@@ -55,7 +55,7 @@ angular.module('dmc.service-marketplace', [
                   toastModel) {
             this.get_service = function(id){
                 return ajax.get(dataFactory.services(id).get, {
-                        "_embed": ["specifications","service_authors", "service_input_output", "service_tags"]
+                        "_embed": ["specifications","service_authors", "service_input_output", "service_tags", "services_statistic"]
                     },
                     function(response){
                         var service = response.data;
@@ -120,7 +120,7 @@ angular.module('dmc.service-marketplace', [
                     function(response){
                         var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
                         params["id"] = lastId;
-                        params["productId"] = $stateParams.productId;
+                        params["productId"] = $stateParams.serviceId;
                         params["productType"] = "service";
                         params["reply"] = false;
                         params["reviewId"] = 0;
@@ -170,7 +170,7 @@ angular.module('dmc.service-marketplace', [
             };
 
             this.add_services_authors = function(array){
-                ajax.get(dataFactory.services($stateParams.productId).get_authors,
+                ajax.get(dataFactory.services($stateParams.serviceId).get_authors,
                     {
                         "_limit" : 1,
                         "_order" : "DESC",
@@ -179,7 +179,7 @@ angular.module('dmc.service-marketplace', [
                     function(response){
                         var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
                         for(var i in array){
-                            ajax.create(dataFactory.services($stateParams.productId).add_authors,
+                            ajax.create(dataFactory.services($stateParams.servicetId).add_authors,
                                 {
                                     "id": lastId,
                                     "includeTo": $stateParams.productId,
@@ -235,6 +235,15 @@ angular.module('dmc.service-marketplace', [
                         function(response){}
                     )
                 }
+            };
+
+            this.get_service_hystory = function(params, callback){
+                return ajax.get(dataFactory.services($stateParams.serviceId).get_history,
+                    params,
+                    function(response){
+                        callback(response.data)
+                    }
+                )
             };
 
     	    }
