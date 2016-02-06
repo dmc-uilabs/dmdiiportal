@@ -1,0 +1,70 @@
+.publish-service{
+  &-title{
+    text-transform: uppercase;
+    margin: 13px 0 0 0;
+    font-size: 19px;
+    padding: 8px 24px;
+  }
+  &-marketplace {
+    padding: 8px 17px;
+    .service{
+      &-name{
+        md-input-container{
+          padding-bottom: 0;
+          min-width: 200px;
+        }
+      }
+      &-description{
+        md-input-container{
+          padding-bottom: 0;
+        }
+      }
+      &-tags,
+      &-specifications{
+        .one-specification{
+          margin: 5px 0;
+        }
+        h3{
+          margin-top: 0;
+        }
+        md-input-container{
+          padding-bottom: 0;
+        }
+      }
+      &-tags{
+        .tag{
+          display: inline-block;
+          white-space: nowrap;
+          margin-right: 8px;
+          background-color: #ddd;
+          padding-left: 13px;
+          padding-right: 3px;
+          @include borderRadius(3px);
+          .md-button.md-icon-button{
+            margin: 0;
+            height: 0;
+            width: 30px;
+            line-height: 36px;
+          }
+          span{
+            color:#333;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+    .md-button.md-default-theme.md-raised{
+      &.add-tag,
+      &.delete-specification,
+      &.add-specification {
+        margin: 0 0 0 13px;
+      }
+      &.delete-specification{
+        min-width: 0;
+      }
+    }
+    md-divider{
+      margin: 21px 10px;
+    }
+  }
+}

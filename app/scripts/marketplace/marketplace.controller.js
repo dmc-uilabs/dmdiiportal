@@ -103,7 +103,7 @@ angular.module('dmc.marketplace')
             };
             // function for get Popular marketplace services
             $scope.getPopularServices = function(){
-                ajax.get(dataFactory.getPopularServices(), responseDataForCarousel,
+                ajax.get(dataFactory.getMarketPopularServices(), responseDataForCarousel,
                     function(response){
                         $scope.carouselData.popular.arr = response.data;
                         $scope.carouselData.popular.cout = response.data.length;
@@ -116,7 +116,7 @@ angular.module('dmc.marketplace')
 
             // function for get New marketplace services
             $scope.getNewServices = function(){
-                ajax.get(dataFactory.getNewServices(), responseDataForCarousel,
+                ajax.get(dataFactory.getMarketNewServices(), responseDataForCarousel,
                     function(response){
                         $scope.carouselData.new.arr = response.data;
                         $scope.carouselData.new.cout = response.data.length;
@@ -144,26 +144,21 @@ angular.module('dmc.marketplace')
             // insert response data to array of marketplace items
             var isFirstCallback = true;
             var insertData = function(data){
-                if($scope.currentProduct == 'all' && !isFirstCallback){
-                    $scope.marketplaceItems = {
-                        arr : $.merge($scope.marketplaceItems.arr, data),
-                        count : $scope.marketplaceItems.arr.length
-                    };
-                    isFavorite.check($scope.marketplaceItems.arr);
-                    loadingData(false);
-                    apply();
+                if(!isFirstCallback){
+                    $scope.marketplaceItems = { arr : $.merge($scope.marketplaceItems.arr, data) };
+                    checkFavorites();
                 }else{
                     isFirstCallback = false;
-                    $scope.marketplaceItems = {
-                        arr : data,
-                        count : data.length
-                    };
-                    if($scope.currentProduct != 'all'){
-                        isFavorite.check($scope.marketplaceItems.arr);
-                        loadingData(false);
-                        apply();
-                    }
+                    $scope.marketplaceItems = { arr : data };
+                    if($scope.currentProduct != 'all') checkFavorites();
                 }
+            };
+
+            var checkFavorites = function(){
+                $scope.marketplaceItems.count = $scope.marketplaceItems.arr.length;
+                isFavorite.check($scope.marketplaceItems.arr);
+                loadingData(false);
+                apply();
             };
 
             // callback for services
@@ -204,28 +199,61 @@ angular.module('dmc.marketplace')
             $scope.getServicesAndComponents = function(){
                 isFirstCallback = true;
                 loadingData(true);
-                ajax.get(dataFactory.getServices(), responseData(), callbackServices);
-                ajax.get(dataFactory.getComponents(), responseData(), callbackComponents);
+                ajax.get(dataFactory.getMarketServices(), responseData(), callbackServices);
+                ajax.get(dataFactory.getMarketComponents(), responseData(), callbackComponents);
             };
 
             // get all services --------------------------------------------------
             $scope.getServices = function(){
                 isFirstCallback = true;
                 loadingData(true);
-                ajax.get(dataFactory.getServices(), responseData(), callbackServices);
+                ajax.get(dataFactory.getMarketServices(), responseData(), callbackServices);
             };
 
             // get all components --------------------------------------------------
             $scope.getComponents = function(){
                 isFirstCallback = true;
                 loadingData(true);
-                ajax.get(dataFactory.getComponents(), responseData(),callbackComponents);
+                ajax.get(dataFactory.getMarketComponents(), responseData(),callbackComponents);
+            };
+
+            // get all follow companies
+            $scope.getFollowCompanies = function(){
+                var accountId = 1;
+                ajax.get(dataFactory.getFollowCompanies(accountId), {},
+                    function(response){
+                        if(response.data.length > 0){
+                            var companies = $.map( response.data, function( x ) { return x.companyId; });
+                            $scope.getFollowCompaniesServices(companies);
+                        }
+                    }
+                );
+            };
+
+            // get all services from follow companies
+            $scope.getFollowCompaniesServices = function(companies){
+                ajax.get(dataFactory.getFollowCompanyServices(), {
+                        companyId : companies
+                    },
+                    function(response){
+                        $scope.marketplaceItems = {
+                            arr : response.data,
+                            count : response.data.length
+                        };
+                        isFavorite.check($scope.marketplaceItems.arr);
+                        apply();
+                    }
+                );
             };
 
             $scope.getData = function(){
-                if($scope.currentProduct === 'all') $scope.getServicesAndComponents();
-                if($scope.currentProduct === 'components') $scope.getComponents();
-                if($scope.currentProduct === 'services') $scope.getServices();
+                if($location.$$path.indexOf('search') > -1) {
+                    if ($scope.currentProduct === 'all') $scope.getServicesAndComponents();
+                    if ($scope.currentProduct === 'components') $scope.getComponents();
+                    if ($scope.currentProduct === 'services') $scope.getServices();
+                }else{
+                    $scope.getFollowCompanies();
+                }
             };
             $scope.getData();
 

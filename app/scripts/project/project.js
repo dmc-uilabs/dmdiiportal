@@ -83,6 +83,10 @@ angular.module('dmc.project', [
             templateUrl: 'templates/project/submitted.html',
             controller: 'DMCSubmittedProjectController as projectCtrl',
             resolve: resolve
+        }).state('project.publish-service-marketplace', {
+            url: '/publish-service',
+            controller: 'PublishServiceMarketplaceCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/publish-service-marketplace.html'
         }).state('project.home', {
             url: '/home',
             controller: 'HomeCtrl as projectCtrl',
