@@ -276,7 +276,16 @@ angular.module('dmc.product', [
                     }
                 )
             }
-        }
+        };
+        
+        this.get_service_hystory = function(params, callback){
+            return ajax.get(dataFactory.services($stateParams.productId).get_history,
+                params,
+                function(response){
+                    callback(response.data)
+                }
+            )
+        };
     }])
 .controller("ViewIncludedController", ['$scope', 'ajax', 'dataFactory', '$mdDialog', '$location', 'products', function ($scope, ajax, dataFactory, $mdDialog, $location, products) {
 	$scope.products = products;

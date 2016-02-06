@@ -390,6 +390,7 @@ angular.module('dmc.data',[])
                     get_tags : localhost + 'service_tags',
                     add_tags : localhost + 'service_tags',
                     remove_tags : localhost + 'service_tags/' + id,
+                    get_history : localhost + 'services_history'
                 }
             },
             // ---------------------------

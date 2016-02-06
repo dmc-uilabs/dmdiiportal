@@ -66,76 +66,53 @@ angular.module('dmc.product')
 		leftColumn: {
 			title: "Marketplace",
 			viewAllLink: "",
-			list:[
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				},
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				},
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				},
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				},
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				},
-				{
-					icon: "edit",
-					title: "Adam Marks edited the service description",
-					date: "June 30",
-				}
-			]
+			list:[]
 		},
 		rightColumn: {
 			title: "Your Projects",
 			viewAllLink: "",
-			list:[
-				{
-					icon: "done_all",
-					title: "Timmy Thomas successfully ran the service.",
-					date: "July 31",
-				},
-				{
-					icon: "block",
-					title: "Anna Barton ran the service unsuccessfully.",
-					date: "July 30",
-				},
-				{
-					icon: "file_upload",
-					title: "Jhon Smith uploaded the service.",
-					date: "June 30",
-				},
-				{
-					icon: "block",
-					title: "Anna Barton ran the service unsuccessfully.",
-					date: "June 30",
-				},
-				{
-					icon: "block",
-					title: "Anna Barton ran the service unsuccessfully.",
-					date: "June 30",
-				},
-				{
-					icon: "file_upload",
-					title: "Jhon Smith uploaded the service.",
-					date: "June 30",
-				},
-			]
+			list:[]
 		}
 	}
+
+    serviceModel.get_service_hystory(
+        {
+            "period": "today",
+            "section": "project"
+        },
+        function(data){
+            for(var i in data){
+                data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                if(data[i].type == "successful_runs"){
+                    data[i].icon = "done_all";
+                }else if(data[i].type == "unavailable_runs"){
+                    data[i].icon = "block";
+                }else if(data[i].type == "incomplete_runs"){
+                    data[i].icon = "file_upload";
+                };
+            }
+            $scope.history.rightColumn.list = data;
+        }
+    );
+    serviceModel.get_service_hystory(
+        {
+            "period": "today",
+            "section": "marketplace"
+        },
+        function(data){
+            for(var i in data){
+                data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                if(data[i].type == "edited"){
+                    data[i].icon = "edit";
+                }
+            }
+            $scope.history.leftColumn.list = data;
+        }
+    );
+
+    var apply = function(){
+        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+    };
 
 	$scope.sortList = [
 		{
