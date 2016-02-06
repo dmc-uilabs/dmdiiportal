@@ -1,12 +1,12 @@
-<div class="content-panel-header">
+<div class="content-panel-header" ng-if="widgetTitle">
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>{{widgetTitle}}</h2>
         </div>
     </md-toolbar>
 </div>
-<div class="content-panel-body" layout="row">
-    <md-content class="md-padding" flex>
+<div class="content-panel-body" layout="row" layout-align="space-between start">
+    <md-content class="md-padding" flex="47">
         <form style="z-index: 8" class="dropzone dropzone-sm dz-clickable" id="documentDropZone" dropzone="dropzoneConfig">
             <div class="dz-default dz-message">
                 <div>
@@ -17,7 +17,7 @@
             </div>
         </form>
     </md-content>
-    <md-content class="md-padding upload-documents" ng-if="documents.length > 0" flex>
+    <md-content class="md-padding upload-documents" ng-if="documents.length > 0" flex="47">
         <md-list>
             <md-list-item ng-repeat="item in documents">
                 <p ng-show="!item.editing && !item.delete">{{item.title}}</p>
@@ -26,14 +26,17 @@
                     <label>Document name</label>
                     <input ng-value="item.title" ng-model="item.title">
                 </md-input-container>
-                <md-button ng-show="item.editing" class="md-raised cancel" ng-click="cancelEdit(item)" aria-label="Cancel">Cancel</md-button>
-                <md-button ng-show="item.editing" class="md-raised save" ng-click="saveEdit(item)" aria-label="Save">Save</md-button>
+                <md-input-container ng-show="item.editing">
+                    <md-button class="md-raised cancel" ng-click="cancelEdit(item)" aria-label="Cancel">Cancel</md-button>
+                </md-input-container>
+                <md-input-container ng-show="item.editing">
+                    <md-button class="md-raised save" ng-click="saveEdit(item)" aria-label="Save">Save</md-button>
+                </md-input-container>
 
                 <md-button ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="21"></ng-md-icon></md-button>
                 <p ng-show="item.delete">Are you sure you want to remove this document?</p>
                 <md-button ng-show="item.delete" class="md-raised cancel" ng-click="cancelConfirm(item)" aria-label="Cancel">Cancel</md-button>
                 <md-button ng-show="item.delete" class="md-raised md-warn" ng-click="removeFile(item)" aria-label="Delete">Remove</md-button>
-                <md-divider></md-divider>
             </md-list-item>
         </md-list>
     </md-content>

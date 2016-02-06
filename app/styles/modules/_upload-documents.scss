@@ -21,6 +21,15 @@
   }
 }
 .upload-documents{
+  md-list-item{
+    border-bottom: 1px solid #ddd;
+    p{
+      padding: 8px 0;
+    }
+    &:last-child{
+      border-bottom: none;
+    }
+  }
   .md-button{
     min-height: 36px;
     height: 36px;
@@ -35,5 +44,8 @@
     background-color: #65AF3F;
     margin-bottom: 0;
     margin-top: 0;
+  }
+  md-input-container{
+    padding: 0;
   }
 }

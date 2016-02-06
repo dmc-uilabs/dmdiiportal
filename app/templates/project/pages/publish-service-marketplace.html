@@ -135,24 +135,65 @@
                         <h3>Authors</h3>
                     </div>
                     <form ng-submit="addAuthor()" layout="row" flex layout-align="start end">
-                        <md-autocomplete flex="35"
+                        <md-autocomplete flex="50"
                                          md-selected-item="newAuthor.selectedItem"
                                          md-search-text="newAuthor.searchText"
-                                         md-items="item in newAuthor.querySearch(newAuthor.searchText)"
-                                         md-item-text="item.display"
+                                         md-items="item in newAuthor.authors(newAuthor.searchText)"
+                                         md-item-text="item.display_name"
                                          md-min-length="0"
                                          placeholder="Enter Author">
                             <md-item-template>
-                                <span md-highlight-text="newAuthor.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                                <span md-highlight-text="newAuthor.searchText" md-highlight-flags="^i">{{item.display_name}}</span>
                             </md-item-template>
                             <md-not-found>
                                 No authors matching "{{newAuthor.searchText}}" were found.
                             </md-not-found>
                         </md-autocomplete>
                         <md-button class="md-raised md-primary dmc-button add-specification"
-                                   ng-disabled="!newAuthor.searchText" type="submit">Add</md-button>
+                                   ng-disabled="!newAuthor.selectedItem" type="submit">Add</md-button>
                     </form>
                 </div>
+            </div>
+            <div layout="row" flex layout-align="start start" class="service-authors" layout-wrap ng-if="publishService2.authors.length > 0">
+                <div layout="column" layout-align="start center" class="one-author" ng-repeat="item in publishService2.authors track by $index">
+                    <div layout="row">
+                        <div class="avatar">
+                            <img ng-src="{{item.avatar}}" alt="{{item.display_name}}"/>
+                        </div>
+                        <div class="info">
+                            <div class="name" flex layout-align="start center">
+                                <h4>{{item.display_name}}<span>{{item.jobTitle}}</span></h4>
+                            </div>
+                            <div class="company-name" flex>
+                                {{item.company}}
+                            </div>
+                            <md-button md-no-ink class="md-icon-button delete-author"
+                                       ng-click="deleteAuthor($index)"
+                                       aria-label="Delete Author">
+                                <md-tooltip md-direction="left">Delete</md-tooltip>
+                                <ng-md-icon icon="clear" size="25"></ng-md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row" flex layout-align="start start" class="service-documents" layout-wrap>
+                <div layout="column" flex="100">
+                    <div flex>
+                        <h3>Documents</h3>
+                    </div>
+                    <div layout="row" flex>
+                        <div ui-widget-upload-documents class="content-panel" product="false" source="publishService2.documents" auto-upload="false" flex></div>
+                    </div>
+                </div>
+            </div>
+            <div layout="row" flex>
+                <span flex></span>
+                <md-button class="md-raised dmc-button next-page"
+                           ng-click="backPage()">Back</md-button>
+                <md-button class="md-raised md-primary dmc-button next-page"
+                           ng-disabled="isDisabledSecondPage" ng-click="finish()">Finish Publishing</md-button>
             </div>
         </md-content>
     </div>

@@ -1408,6 +1408,29 @@
       "serviceId": 1
     }
   ],
+  "authors": [
+    {
+      "id": 1,
+      "display_name": "John Thomas",
+      "jobTitle": "Engineering Manager",
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software"
+    },
+    {
+      "id": 2,
+      "display_name": "Thomas Smith",
+      "jobTitle": "Engineering Manager",
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software"
+    },
+    {
+      "id": 3,
+      "display_name": "Bill Gates",
+      "jobTitle": "Engineering Manager",
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software"
+    }
+  ],
   "service_authors": [
     {
       "id": 1,
@@ -2215,6 +2238,8 @@
       "special": []
     }
   ],
+  "publish-services": [
+  ],
   "service-documents": [
     {
       "id": 1,
@@ -2426,6 +2451,18 @@
       "size": "100MB",
       "owner": "Bob Smith",
       "file": "/uploads/5/Edit Company Storefront.pdf"
+    },
+    {
+      "id": 6,
+      "title": "B4",
+      "projectId": "undefined",
+      "file": "/uploads/6/B4.pdf"
+    },
+    {
+      "id": 7,
+      "title": "MathTeacher",
+      "projectId": "undefined",
+      "file": "/uploads/7/MathTeacher.pdf"
     }
   ],
   "product_reviews": [
