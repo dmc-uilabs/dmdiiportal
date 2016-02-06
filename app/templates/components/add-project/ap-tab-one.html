@@ -17,11 +17,12 @@
             <label>Project Title</label>
             <input ng-model="projectDetails.title" required>
           </md-input-container>
-          <div layout="row" layout-align="space-between end">
+          <div layout="row" layout-align="start end">
             <md-input-container>
               <md-datepicker class="dueDatePicker" ng-model="projectDetails.dueDate" md-placeholder="Due Date"></md-datepicker>
             </md-input-container>
-            <md-input-container flex="30">
+            <md-input-container flex="30" class="margin-left16">
+              <label>Type</label>
               <md-select ng-model="projectDetails.type" aria-label="Types" required>
                 <md-option value="public">Public</md-option>
                 <md-option value="private">Private</md-option>
