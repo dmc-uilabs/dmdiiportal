@@ -162,10 +162,10 @@
 .compose-discussion{
 	padding: 16px;
 	.left-column{
-		border: 1px solid #666;
+		border: 1px solid grey;
 		margin-right: 16px;
 		.header{
-			border-bottom: 1px solid #666;
+			border-bottom: 1px solid grey;
 			padding: 0 8px;
 			text-align: center;
 		}
@@ -174,7 +174,7 @@
 		}
 	}
 	.right-column{
-		border: 1px solid #666;
+		border: 1px solid grey;
 		padding: 8px;
 		.add-tags-form{
 			.md-button{
