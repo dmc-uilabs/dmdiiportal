@@ -198,6 +198,12 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            createPublishService: function(){
+                return localhost + 'publish-services';
+            },
+            getAuthors: function(){
+                return localhost + 'authors';
+            },
             getFollowCompanies: function(id){
                 return localhost+'accounts/'+id+'/company_follows';
             },
@@ -206,6 +212,9 @@ angular.module('dmc.data',[])
             },
             getServiceDocuments: function(id){
                 return localhost+'service/'+id+'/service-documents';
+            },
+            getProjectDocuments: function(id){
+                return localhost+'projects/'+id+'/documents';
             },
             addServiceToProject: function(id){
                 return localhost+'services/'+id;
@@ -552,8 +561,8 @@ angular.module('dmc.data',[])
             updateCompanyContact: function(id){
                 return localhost+'company_key_contacts/'+id;
             },
-            getService: function(){
-                return localhost+'services/';
+            getService: function(id){
+                return localhost+'services'+(id ? '/'+id : '');
             },
             getFavorites: function(){
                 return localhost+'favorite_products';

@@ -81,32 +81,37 @@ angular.module('dmc.widgets.documents',[
 			restrict: 'A',
 			templateUrl: 'templates/components/ui-widgets/upload-documents.html',
 			scope: {
+                source : "=",
 				widgetTitle: "=",
 				projectId: "=",
 				autoUpload: "=",
+                serviceId: "=",
 				product: "="
 			},
-			link: function (scope, iElement, iAttrs) {
-
-			},
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
+                $scope.documentDropZone;
 				$scope.autoProcessQueue = ($scope.autoUpload != null ? $scope.autoUpload : true);
-				$scope.documents = [];
-				if($scope.product){
-					ajax.on(dataFactory.getUrlAllDocuments($scope.projectId),{
-						projectId : 5,
-						sort : 'name',
-						order : 'DESC',
-						limit : 5,
-						offset : 0
-					},function(data){
-						$scope.documents = data.result;
-						if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-					},function(){
-						alert("Ajax faild: getDocuments");
-					});
-				}
-				$scope.documentDropZone;
+				$scope.documents = $scope.source ? $scope.source : [];
+                var requestData = {
+                    _sort : 'name',
+                    _order : 'DESC'
+                };
+
+				if($scope.projectId){
+					ajax.get(dataFactory.getProjectDocuments($scope.projectId), requestData,
+                        function(response){
+						    $scope.documents = response.data;
+                            apply();
+					    }
+                    );
+				}else if($scope.serviceId){
+                    ajax.get(dataFactory.getServiceDocuments($scope.serviceId), requestData,
+                        function(response){
+                            $scope.documents = response.data;
+                            apply();
+                        }
+                    );
+                }
 
 				$scope.removeFile = function(item){
 					if(item.file._removeLink){
@@ -123,22 +128,22 @@ angular.module('dmc.widgets.documents',[
 
 				$scope.confirmDeleteFile = function(item){
 					item.delete = true;
-				}
+				};
 
 				$scope.cancelConfirm = function(item){
 					item.delete = false;
-				}
+				};
 
 				$scope.editFile = function(item){
 					item.oldTitle = item.title;
 					item.editing = true;
-					if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    apply();
 				};
 
 				$scope.cancelEdit = function(item){
 					item.editing = false;
 					item.title = item.oldTitle;
-					if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    apply();
 				};
 
 				$scope.saveEdit = function(item){
@@ -147,8 +152,11 @@ angular.module('dmc.widgets.documents',[
 					if(item.file.title){
 						item.file.title = item.title;
 					}
-					if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 				};
+
+                var apply = function(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                };
 
 				$scope.dropzoneConfig = {
 					'options': { // passed into the Dropzone constructor
@@ -171,6 +179,7 @@ angular.module('dmc.widgets.documents',[
 										editing : false,
 										type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length)
 									});
+                                    apply();
 								}
 							});
 							this.on('removedfile', function (file) {
@@ -188,9 +197,6 @@ angular.module('dmc.widgets.documents',[
 							var title = file.name.substring(0,file.name.lastIndexOf('.'));
 							formData.append('projectId',$scope.projectId);
 							formData.append('title',title);
-							console.log(file);
-							console.log(xhr);
-							console.log(formData);
 						},
 						'success': function (file, response) {
 							var data = jQuery.parseJSON(response);
@@ -207,7 +213,7 @@ angular.module('dmc.widgets.documents',[
 									editing : false,
 									type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length)
 								});
-								if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                                apply();
 							}else{
 								console.error(data.error);
 							}
