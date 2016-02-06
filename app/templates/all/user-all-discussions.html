@@ -3,7 +3,12 @@
         <div class="return-block">
             <a href="/community.php" >Return to Community</a>
         </div>
-        <h2 class="page-title">View All discussions</h2>
+        <div class="animate-switch-container" ng-switch on="typeModel">
+            <h2 class="animate-switch page-title" ng-switch-when="following">View All Discussions you Follow</h2>
+            <h2 class="animate-switch page-title" ng-switch-when="follow-people">View All Discussions from People you Follow</h2>
+            <h2 class="animate-switch page-title" ng-switch-when="popular">View All Popular Discussions</h2>
+            <h2 class="animate-switch page-title" ng-switch-default>View All discussions</h2>
+        </div>
         <div class="content-panel">
             <div class="content-panel-body">
                 <md-content layout-padding>
