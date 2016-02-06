@@ -2522,6 +2522,9 @@
     }
   ],
   "publish-services": [
+    {
+      "id": 1
+    }
   ],
   "service-documents": [
     {

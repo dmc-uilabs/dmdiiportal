@@ -83,10 +83,6 @@ angular.module('dmc.project', [
             templateUrl: 'templates/project/submitted.html',
             controller: 'DMCSubmittedProjectController as projectCtrl',
             resolve: resolve
-        }).state('project.publish-service-marketplace', {
-            url: '/publish-service',
-            controller: 'PublishServiceMarketplaceCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/publish-service-marketplace.html'
         }).state('project.home', {
             url: '/home',
             controller: 'HomeCtrl as projectCtrl',
@@ -166,6 +162,15 @@ angular.module('dmc.project', [
 	                return serviceModel.get_service($stateParams.ServiceId);
 	            }]
 	        }
+        }).state('project.publish-service-marketplace', {
+            url: '/services/:ServiceId/publish',
+            controller: 'PublishServiceMarketplaceCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/publish-service-marketplace.html',
+            resolve: {
+                serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
+                    return serviceModel.get_service($stateParams.ServiceId);
+                }]
+            }
         });
         $urlRouterProvider.otherwise('/1');
 })

@@ -6,6 +6,7 @@ angular.module('dmc.project')
         "$stateParams",
         "$mdDialog",
         "projectData",
+        "serviceData",
         "$timeout",
         "ajax",
         "$http",
@@ -17,6 +18,7 @@ angular.module('dmc.project')
                   $stateParams,
                   $mdDialog,
                   projectData,
+                  serviceData,
                   $timeout,
                   ajax,
                   $http,
@@ -26,18 +28,19 @@ angular.module('dmc.project')
             projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
             projectCtrl.projectData = projectData;
 
+            $scope.serviceData = serviceData;
             $scope.currentPage = 1;
             $scope.isDisabledFirstPage = true;
             $scope.isDisabledSecondPage = true;
 
             // First Page
             $scope.publishService = {
-                name : null,
-                description : null,
-                inputs : null,
-                outputs : null,
+                name : $scope.serviceData.title,
+                description : $scope.serviceData.description,
+                inputs : $scope.serviceData.specifications[0].input,
+                outputs : $scope.serviceData.specifications[0].output,
                 specifications : [],
-                tags : []
+                tags : $scope.serviceData.service_tags
             };
 
             $scope.newSpecification = {};
@@ -116,6 +119,7 @@ angular.module('dmc.project')
                 }
                 $scope.isDisabledFirstPage = disabled;
             };
+            $scope.changedInput();
 
             $scope.nextPage = function(){
                 $scope.currentPage++;
@@ -124,7 +128,7 @@ angular.module('dmc.project')
             // Second Page
 
             $scope.publishService2 = {
-                authors : [],
+                authors : $scope.serviceData.service_authors,
                 documents : []
             };
 
@@ -173,6 +177,7 @@ angular.module('dmc.project')
                 }
                 $scope.isDisabledSecondPage = disabled;
             };
+            $scope.changedInput2();
 
             $scope.deleteAuthor = function(index){
                 $scope.publishService2.authors.splice(index,1);

@@ -561,8 +561,8 @@ angular.module('dmc.data',[])
             updateCompanyContact: function(id){
                 return localhost+'company_key_contacts/'+id;
             },
-            getService: function(){
-                return localhost+'services/';
+            getService: function(id){
+                return localhost+'services'+(id ? '/'+id : '');
             },
             getFavorites: function(){
                 return localhost+'favorite_products';
