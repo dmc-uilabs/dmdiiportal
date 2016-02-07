@@ -8,17 +8,18 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
 .config(function($animateProvider) {
     $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
 })
-.directive('dmcTopHeader', ['$window', 'DMCUserModel', function($window, userModel){
+.directive('dmcTopHeader', ['$window', 'DMCUserModel', '$mdMenu', function($window, userModel, $mdMenu){
   return {
     restrict: 'A',
     scope: {
       showNotification: '=',
       activePage: '=',
-      userData: '='
+      //userData: '='
     },
     templateUrl: 'templates/common/header/header-tpl.html',
     controller : function($scope){
         $scope.userData;
+        $scope.isLogged = true;
         userModel.getUserData().then(
           function(response){
             var data = response.data ? response.data : response
@@ -122,6 +123,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
 
         var initUserData = function(data) {
           $scope.userData = data;
+
           $scope.userProfileId = $scope.userData.profileId;
           $scope.userAccountId = $scope.userData.accountId;
           $scope.userCompanyId = $scope.userData.companyId;
@@ -138,6 +140,18 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
 
         $scope.setDropDown = function(event,width){
             width = $(event.currentTarget).width()+12;
+        }
+
+        $scope.login = function(){
+          $scope.isLogged = true;
+        }
+
+        $scope.logout = function(){
+          $scope.isLogged = false;
+        }
+
+        $scope.closeMenu = function(){
+          $mdMenu.cancel();
         }
 
         $scope.userName = $window.givenName || 'DMC Member';

@@ -1,5 +1,5 @@
 <div class="space-header"></div>
-<header class='main-header' layout="column">
+<header class='main-header' layout="column"  ng-click="closeMenu()">
   <!-- upper part of header -->
   <div class="top-header header-padding" layout="row" layout-align="center center">
     <div class="logo">
@@ -13,7 +13,7 @@
       <md-menu md-offset="0 64">
         <md-button class="md-button"
              aria-label="Service alerts"
-             ng-click="$mdOpenMenu($event)">
+             ng-click="closeMenu(); $mdOpenMenu($event)">
             <div class="svg-icon" style="mask-image: url(images/icon_service.svg) center / contain no-repeat;
              -webkit-mask: url(images/icon_service.svg) center / contain no-repeat;"></div>
           <span class="count-message" ng-show="service_alert > 0">{{service_alert}}</span>
@@ -39,7 +39,7 @@
       <md-menu md-offset="0 64">
         <md-button class="md-button"
              aria-label="Notifications"
-             ng-click="$mdOpenMenu($event)">
+             ng-click="closeMenu(); $mdOpenMenu($event)">
           <ng-md-icon icon="notifications" size="25"></ng-md-icon>
           <span class="count-message" ng-show="notification_alert > 0">{{notification_alert}}</span>
         </md-button>
@@ -64,7 +64,7 @@
       <md-menu md-offset="0 64">
         <md-button class="md-button"
              aria-label="Messages"
-             ng-click="$mdOpenMenu($event)">
+             ng-click="closeMenu(); $mdOpenMenu($event)">
           <ng-md-icon icon="email" size="25"></ng-md-icon>
           <span class="count-message" ng-show="message_alert > 0">{{message_alert}}</span>
         </md-button>
@@ -88,17 +88,17 @@
     </div>
 
     <div layout="column">
-      <md-menu md-offset="0 64">
+      <md-button class="login-button" ng-click="login()" ng-if="!isLogged">
+        Login
+      </md-button>
+      <md-menu md-offset="0 64" ng-if="isLogged">
         <md-button class="user-button"
              aria-label="Open Latest Services Menu"
-             ng-click="$mdOpenMenu($event)">
+             ng-click="closeMenu(); $mdOpenMenu($event)">
           <ng-md-icon icon="person" size="20"></ng-md-icon>
-          Hi, {{userName}}
+          Hi, {{userData.displayName}}
         </md-button>
         <md-menu-content class="header-menu-content">
-          <md-menu-item>
-            <md-button ng-href='loginURL'>Login</md-button>
-          </md-menu-item>
           <md-menu-item>
             <md-button ng-href='/account.php#/{{userAccountId}}/basics'>My Account</md-button>
           </md-menu-item>
@@ -108,8 +108,11 @@
           <md-menu-item>
             <md-button href="my-projects.php">My Projects</md-button>
           </md-menu-item>
-          <md-menu-item>
+          <md-menu-item ng-if="version1">
             <md-button href="#">My Submissions</md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click='logout()'>Logout</md-button>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
@@ -129,20 +132,20 @@
       <md-menu md-offset="0 57" class="item" ng-init="dropDownWidth = 136">
         <md-button
             aria-label="Open Latest Services Menu"
-            ng-click="$mdOpenMenu($event); setDropDown($event,dropDownWidth);"
+            ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"
             ng-class="{'active-page' : activePage.indexOf('marketplace') > -1}">
           Marketplace
           <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
         </md-button>
         <md-menu-content class="header-menu-content" ng-style="{width:dropDownWidth+'px'}">
           <md-menu-item>
-            <md-button href="marketplace.php">Home</md-button>
+            <md-button ng-click="$mdCloseMenu($event);" href="marketplace.php">Home</md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button href="/company.php#/{{userCompanyId}}/storefront?product=services">My Storefront</md-button>
+            <md-button ng-click="$mdCloseMenu($event);" href="/company.php#/{{userCompanyId}}/storefront?product=services">My Storefront</md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button href="#">Favorites</md-button>
+            <md-button ng-click="$mdCloseMenu($event);" href="/favorites.php#/">Favorites</md-button>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
@@ -156,34 +159,34 @@
 
       <md-menu class="item" md-offset="0 57">
         <md-button aria-label="Open Latest Services Menu"
-            ng-click="$mdOpenMenu($event)"
+            ng-click="closeMenu(); $mdOpenMenu($event);"
             ng-class="{'active-page' : activePage.indexOf('project') > -1}">
           Projects
           <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
         </md-button>
         <md-menu-content class="header-menu-content">
           <md-menu-item>
-            <md-button href="my-projects.php">My Projects</md-button>
+            <md-button ng-click="$mdCloseMenu($event);" href="my-projects.php">My Projects</md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button href="#">All Projects</md-button>
+            <md-button ng-click="$mdCloseMenu($event);" href="#">All Projects</md-button>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
 
-      <md-menu class="item" md-offset="0 57">
+      <md-menu class="item" md-offset="0 57" ng-if="version1">
         <md-button
-            ng-click="$mdOpenMenu($event)"
+            ng-click="closeMenu(); $mdOpenMenu($event)"
             ng-class="{'active-page' : activePage.indexOf('challenge') > -1}">
           Challenge
           <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
         </md-button>
         <md-menu-content class="header-menu-content">
           <md-menu-item>
-            <md-button>Challenge1</md-button>
+            <md-button ng-click="$mdCloseMenu($event);">Challenge1</md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button>Challenge2</md-button>
+            <md-button ng-click="$mdCloseMenu($event);">Challenge2</md-button>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
