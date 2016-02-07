@@ -88,15 +88,13 @@
     </div>
 
     <div layout="column">
-      <md-button class="login-button" ng-click="login()" ng-if="!isLogged">
-        Login
-      </md-button>
+      <md-button ng-href='loginURL' class="login-button" ng-if="!isLogged">Login</md-button>
       <md-menu md-offset="0 64" ng-if="isLogged">
         <md-button class="user-button"
              aria-label="Open Latest Services Menu"
              ng-click="closeMenu(); $mdOpenMenu($event)">
           <ng-md-icon icon="person" size="20"></ng-md-icon>
-          Hi, {{userData.displayName}}
+          Hi, {{userName}}
         </md-button>
         <md-menu-content class="header-menu-content">
           <md-menu-item>
