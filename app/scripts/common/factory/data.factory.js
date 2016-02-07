@@ -205,7 +205,7 @@ angular.module('dmc.data',[])
                 return localhost + 'authors';
             },
             getFollowCompanies: function(id){
-                return localhost+'accounts/'+id+'/company_follows';
+                return localhost+'accounts/'+id+'/following_companies';
             },
             getFollowCompanyServices: function(){
                 return localhost+'follow-company-services';
