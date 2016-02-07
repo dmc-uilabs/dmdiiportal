@@ -182,11 +182,12 @@ angular.module('dmc.individual-discussion', [
                         "dislike": 0
                     },
                     function(data){
-                        $scope.newComment = null;
+                        $scope.newComment = "";
                         data.created_at = moment(data.created_at).format('MM/DD/YYYY, h:mm A');
                         data.isOwner = true;
                         $scope.discussion.comments.items.push(data);
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    	$('.md-char-counter').text('0/1000');
                     },
                     function(){
                         toastModel.showToast("error", "Fail add comment");
