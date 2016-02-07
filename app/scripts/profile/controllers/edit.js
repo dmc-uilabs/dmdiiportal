@@ -6,13 +6,14 @@ angular.module('dmc.profile')
         $scope.prevPicture = null;  //
         $scope.file = '';  //file picture
         $scope.save = false;
+        $scope.isChange = false;
 
         console.info($rootScope);
         console.info($state);
 
 
         $scope.$on('$stateChangeStart', function (event, next) {
-            if(!$scope.save){
+            if(!$scope.save && $scope.isChange){
                 var answer = confirm("Are you sure you want to leave this page without saving?");
                 if (!answer) {
                     event.preventDefault();
@@ -21,9 +22,13 @@ angular.module('dmc.profile')
         });
 
         $(window).bind('beforeunload', function () {
-            if($state.current.name == "edit")
+            if($state.current.name == "edit" && $scope.isChange)
                 return "Are you sure you want to leave this page without saving?";
         });
+
+        $scope.change = function(){
+            $scope.isChange = true;
+        }
 
         //Edit profile
         $scope.editPage = function () {
@@ -37,12 +42,14 @@ angular.module('dmc.profile')
         //add skill to profile
         $scope.addSkill = function (inputSkill) {
             if (!inputSkill)return;
+            $scope.isChange = true;
             $scope.profile.skills.push(inputSkill);
             this.inputSkill = null;
         }
 
         //remove skill
         $scope.deleteSkill = function (index) {
+            $scope.isChange = true;
             $scope.profile.skills.splice(index, 1);
         }
 
@@ -63,6 +70,12 @@ angular.module('dmc.profile')
             if ($scope.file != '') {
                 fileUpload.uploadFileToUrl($scope.file.files[0].file, {id: $scope.profile.id}, 'profile', callbackUploadPicture);
             }
+            $scope.save = true;
+            $scope.isChangingPicture = false;
+            $state.go("profile",{profileId: $scope.profile.id})
+        }
+
+        $scope.cancelEdit = function(){
             $scope.save = true;
             $scope.isChangingPicture = false;
             $state.go("profile",{profileId: $scope.profile.id})
