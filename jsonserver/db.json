@@ -227,27 +227,21 @@
   "company_featured": [
     {
       "companyId": 1,
-      "position": 3,
-      "serviceId": 41,
-      "id": 1
+      "position": 2,
+      "serviceId": 29,
+      "id": 4
+    },
+    {
+      "companyId": 1,
+      "position": 2,
+      "serviceId": 30,
+      "id": 5
     },
     {
       "companyId": 1,
       "position": 4,
-      "serviceId": 31,
-      "id": 2
-    },
-    {
-      "companyId": 1,
-      "position": 5,
-      "serviceId": 30,
-      "id": 3
-    },
-    {
-      "companyId": 1,
-      "position": 6,
-      "serviceId": 29,
-      "id": 4
+      "serviceId": 27,
+      "id": 6
     }
   ],
   "company_reviews": [
@@ -2528,148 +2522,6 @@
   ],
   "service-documents": [
     {
-      "id": 1,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 2,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 1,
-      "title": "1 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 3,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 1,
-      "title": "2 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 4,
-      "serviceId": 1,
-      "service-documentId": 1,
-      "title": "Example Folder 2",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 5,
-      "serviceId": 1,
-      "service-documentId": 4,
-      "title": "Example Folder 3",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 6,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 0,
-      "title": "3 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 7,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 0,
-      "title": "4 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 8,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 1,
-      "title": "5 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 9,
-      "serviceId": 1,
-      "service-documentId": 1,
-      "title": "Example Folder 4",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 10,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder 9",
-      "owner": "Bob Smith",
-      "size": "120MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 11,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder 10",
-      "owner": "Bob Smith",
-      "size": "13MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 12,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 10,
-      "title": "17 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 12,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 10,
-      "title": "35 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 13,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 10,
-      "title": "55 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
       "id": 14,
       "serviceId": 1,
       "file": true,
@@ -2737,18 +2589,6 @@
       "size": "100MB",
       "owner": "Bob Smith",
       "file": "/uploads/5/Edit Company Storefront.pdf"
-    },
-    {
-      "id": 6,
-      "title": "B4",
-      "projectId": "undefined",
-      "file": "/uploads/6/B4.pdf"
-    },
-    {
-      "id": 7,
-      "title": "MathTeacher",
-      "projectId": "undefined",
-      "file": "/uploads/7/MathTeacher.pdf"
     }
   ],
   "product_reviews": [

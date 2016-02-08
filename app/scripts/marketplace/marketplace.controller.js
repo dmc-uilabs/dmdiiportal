@@ -233,7 +233,8 @@ angular.module('dmc.marketplace')
             // get all services from follow companies
             $scope.getFollowCompaniesServices = function(companies){
                 ajax.get(dataFactory.getFollowCompanyServices(), {
-                        companyId : companies
+                        companyId : companies,
+                        _limit: 8
                     },
                     function(response){
                         $scope.marketplaceItems = {

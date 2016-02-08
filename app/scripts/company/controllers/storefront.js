@@ -90,11 +90,25 @@ angular.module('dmc.company')
                             }
                         }
                         $scope.carouselData.featured.count = $scope.carouselData.featured.arr.length;
-                        isFavorite.check($scope.carouselData.featured.arr);
-                        $scope.carouselData.featured.arr.sort(function(a,b){
-                            return a.position > b.position;
-                        });
-                        apply();
+                        if($scope.carouselData.featured.count == 0) {
+                            ajax.get(dataFactory.getCompanyServices($scope.companyId), {
+                                    "_order" : "DESC",
+                                    "_sort" : "id",
+                                    "_limit" : 2
+                                }, function (response) {
+                                    $scope.carouselData.featured.arr = response.data;
+                                    $scope.carouselData.featured.count = response.data.length;
+                                    isFavorite.check($scope.carouselData.featured.arr);
+                                    apply();
+                                }
+                            );
+                        }else{
+                            $scope.carouselData.featured.arr.sort(function (a, b) {
+                                return a.position > b.position;
+                            });
+                            isFavorite.check($scope.carouselData.featured.arr);
+                            apply();
+                        }
                     }
                 );
             };

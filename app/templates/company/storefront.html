@@ -31,12 +31,12 @@
                                    class="company-buttons"
                                    ng-click="followCompany()">{{(companyData.follow ? 'Unfollow' : 'Follow')}}</md-button>
 
-                        <md-button ng-if="!companyData.isOwner"
-                                   class="md-icon-button message-button"
-                                   ng-click="openMessageDialog($event)"
-                                   aria-label="Message">
-                            <ng-md-icon icon="email" size="32"></ng-md-icon>
-                        </md-button>
+                        <!--<md-button ng-if="!companyData.isOwner"-->
+                                   <!--class="md-icon-button message-button"-->
+                                   <!--ng-click="openMessageDialog($event)"-->
+                                   <!--aria-label="Message">-->
+                            <!--<ng-md-icon icon="email" size="32"></ng-md-icon>-->
+                        <!--</md-button>-->
 
                         <md-button ng-if="companyData.isOwner"
                                    class="md-raised dmc-button"
