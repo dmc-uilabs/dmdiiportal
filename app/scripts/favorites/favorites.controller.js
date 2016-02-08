@@ -33,6 +33,13 @@ angular.module('dmc.all-favorites')
             $scope.pageSize = 10;
             $scope.downloadData = false;
 
+            $scope.$watch(function() { return $cookies.currentStorefrontPage; }, function(newValue) {
+                if(parseInt(newValue) > 0 && $scope.currentStorefrontPage !== parseInt(newValue)) {
+                    $scope.currentStorefrontPage = newValue; // save new page number
+                    $scope.getFavorites();
+                }
+            });
+
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
@@ -51,8 +58,11 @@ angular.module('dmc.all-favorites')
                         break;
                 }
                 var data = {
-                    _expand: types
+                    _expand: types,
+                    _limit: $scope.pageSize,
+                    _start: ($scope.currentStorefrontPage-1)*$scope.pageSize
                 };
+                if($scope.pageSize == 0) delete data._limit;
                 if($scope.selectedProduct == "services" && $scope.selectedProductType) data._type = $scope.selectedProductType;
                 if($scope.searchModel) data._title = $scope.searchModel;
                 if(angular.isDefined($stateParams.authors)) data._authors = $stateParams.authors;
@@ -136,6 +146,7 @@ angular.module('dmc.all-favorites')
 
             $scope.updatePageSize = function (val) {
                 $scope.pageSize = val;
+                $scope.getFavorites();
             };
         }
     ]

@@ -260,10 +260,10 @@ angular.module('dmc.data',[])
                 }
             },
             followCompany : function(){
-                return localhost+'following_companies';
+                return localhost+'company/follow';
             },
             unfollowCompany : function(id){
-                return localhost+'following_companies/'+id;
+                return localhost+'company/unfollow/'+id;
             },
             getRelatedArticles: function(id){
                 return localhost+'faq_articles';
@@ -284,10 +284,10 @@ angular.module('dmc.data',[])
                 return localhost+'announcements';
             },
             updateCompanyFeaturedPosition: function(id){
-                return localhost+'company_featured/'+id;
+                return localhost+'company_featured/'+id+'/position';
             },
             addCompanyFeatured: function(){
-                return localhost+'company_featured';
+                return localhost+'company_featured/add';
             },
             removeCompanyFeatured: function(id){
                 return localhost+'company_featured/'+id;
@@ -302,7 +302,7 @@ angular.module('dmc.data',[])
                 return localhost+'companies/'+id+'/company_components';
             },
             getNewCompanyServices: function(id){
-                return localhost+'companies/'+id+'/company_services';
+                return localhost+'companies/'+id+'/new';
             },
             createStorefrontMessage: function(){
                 return localhost+'messages';
@@ -391,7 +391,7 @@ angular.module('dmc.data',[])
                     remove_included : localhost + 'included-services/' + id,
                     add_included : localhost + 'included-services',
                     add_tags : localhost + 'service_tags',
-                    remove_tags : localhost + 'service_tags/' + id,
+                    remove_tags : localhost + 'service_tags/' + id
                 }
             },
             // ---------------------------
@@ -575,7 +575,7 @@ angular.module('dmc.data',[])
                 return localhost+'favorite_products';
             },
             getFavoriteService: function(id){
-                return localhost+'account/'+id+'/favorite_products/';
+                return localhost+'account/'+id+'/favorite_products';
             },
             getFavorite: function(){
                 return localhost+'favorite_products';

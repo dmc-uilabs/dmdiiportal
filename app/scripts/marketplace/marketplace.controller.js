@@ -91,6 +91,10 @@ angular.module('dmc.marketplace')
             }, true);
             // -----------------------------------------------------------------------------------
 
+            $scope.updatePageSize = function(pageSize){
+                $scope.productCardPageSize = pageSize;
+            };
+
             // get services for Carousel -------------------------------
             $scope.carouselData = {
                 popular : {arr : [], count : 0},
@@ -184,9 +188,8 @@ angular.module('dmc.marketplace')
                     _start : ($scope.productCardCurrentPage-1)*$scope.productCardPageSize,
                     title_like : $scope.searchModel
                 };
-                if($scope.currentProduct == 'services'){
-                    data.serviceType = $scope.currentProductType;
-                }
+                if($scope.productCardPageSize == 0) delete data._limit;
+                if($scope.currentProduct == 'services') data.serviceType = $scope.currentProductType;
                 if(angular.isDefined($stateParams.authors)) data._authors = $stateParams.authors;
                 if(angular.isDefined($stateParams.ratings)) data._ratings = $stateParams.ratings;
                 if(angular.isDefined($stateParams.favorites)) data._favorites = $stateParams.favorites;

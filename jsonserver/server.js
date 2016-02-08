@@ -26,7 +26,13 @@ server.use(jsonServer.rewriter({
     '/market/popular_services': '/services',
     '/market/new_services': '/services',
     '/market/services': '/services',
-    '/market/components': '/services'
+    '/market/components': '/services',
+    '/companies/:id/new': '/companies/:id/services',
+    '/company/follow': '/following_companies',
+    '/company/unfollow/:id': '/following_companies/:id',
+    '/company_featured/:id/position': '/company_featured/:id',
+    '/company_featured/add': '/company_featured',
+    '/company_featured/:id': '/company_featured/:id'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 // Returns an Express router

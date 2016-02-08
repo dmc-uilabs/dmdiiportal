@@ -12,6 +12,7 @@ angular.module('dmc.company')
         'toastModel',
         'dataFactory',
         'isFavorite',
+        'DMCUserModel',
         '$mdDialog', function ($stateParams,
                                $state,
                                $scope,
@@ -23,10 +24,13 @@ angular.module('dmc.company')
                                toastModel,
                                dataFactory,
                                isFavorite,
+                               DMCUserModel,
                                $mdDialog ) {
 
         $scope.companyData  = companyData ;
         if($scope.companyData && $scope.companyData.id) {
+            $scope.currentUser = DMCUserModel.getUserData();
+            $scope.currentUser = ($scope.currentUser.$$state && $scope.currentUser.$$state.value ? $scope.currentUser.$$state.value : null);
             $scope.owner = $scope.companyData.account;
             // ------------------------------ get state params
             $scope.companyId = $stateParams.companyId;
@@ -137,7 +141,7 @@ angular.module('dmc.company')
             $scope.storefrontItems = {arr: [], count: 0};
 
             var responseData = {
-                _limit : 4,
+                _limit : $scope.pageSize,
                 _embed : "company_featured",
                 _start : ($scope.currentStorefrontPage-1)*$scope.pageSize
             };
@@ -214,6 +218,7 @@ angular.module('dmc.company')
                     delete responseData.serviceType;
                 }
                 responseData._limit = (search ? $scope.pageSize : 4);
+                if(responseData._limit == 0) delete responseData._limit;
                 responseData._start = ($scope.currentStorefrontPage - 1) * $scope.pageSize;
                 if(angular.isDefined($stateParams.authors)) responseData._authors = $stateParams.authors;
                 if(angular.isDefined($stateParams.ratings)) responseData._ratings = $stateParams.ratings;
@@ -295,40 +300,46 @@ angular.module('dmc.company')
             };
 
             $scope.followCompany = function () {
-                if(!$scope.companyData.follow){
-                    ajax.create(dataFactory.followCompany(),{
-                        accountId : currentAccountId,
-                        companyId : $scope.companyId
-                    },function(response){
-                        $scope.companyData.follow = response.data;
-                        apply();
-                    });
-                }else{
-                    ajax.delete(dataFactory.unfollowCompany($scope.companyData.follow.id),{},
-                        function(response){
-                            $scope.companyData.follow = null;
-                        }
-                    );
+                if($scope.currentUser) {
+                    if (!$scope.companyData.follow) {
+                        ajax.create(dataFactory.followCompany(), {
+                            accountId: $scope.currentUser.accountId,
+                            companyId: $scope.companyId
+                        }, function (response) {
+                            $scope.companyData.follow = response.data;
+                            apply();
+                        });
+                    } else {
+                        ajax.delete(dataFactory.unfollowCompany($scope.companyData.follow.id), {},
+                            function (response) {
+                                $scope.companyData.follow = null;
+                            }
+                        );
+                    }
                 }
             };
 
             // message dialog ---------------------------
             $scope.openMessageDialog = function(ev) {
-                $mdDialog.show({
-                    controller: messageDialogController,
-                    templateUrl: 'templates/company/message-dialog-tpl.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose:true,
-                    locals : {
-                        owner : $scope.companyData.account,
-                        currentUser : {id : currentAccountId}
-                    }
-                }).then(function(answer) {
-                    // $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    // $scope.status = 'You cancelled the dialog.';
-                });
+                if($scope.currentUser) {
+                    $mdDialog.show({
+                        controller: messageDialogController,
+                        templateUrl: 'templates/company/message-dialog-tpl.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true,
+                        locals: {
+                            owner: $scope.companyData.account,
+                            currentUser: {id: $scope.currentUser.accountId}
+                        }
+                    }).then(function (answer) {
+                        // $scope.status = 'You said the information was "' + answer + '".';
+                    }, function () {
+                        // $scope.status = 'You cancelled the dialog.';
+                    });
+                }else{
+                    toastModel.showToast("error","You can't send message");
+                }
             };
             // ------------------------------------------
 
