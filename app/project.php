@@ -101,13 +101,17 @@
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
+    <script src="scripts/common/models/task-model.js"></script>
+    <script src="scripts/common/models/discussion-model.js"></script>
+    <script src="scripts/common/models/toast-model.js"></script>
+    <script src="scripts/common/models/user-model.js"></script>
+    <script src="scripts/common/models/services.model.js"></script>
+
     <script src="scripts/project/project.js"></script>
     <script src="scripts/project/controllers/id-locator.js"></script>
     <script src="scripts/project/controllers/discussions.js"></script>
     <script src="scripts/project/controllers/documents.js"></script>
     <script src="scripts/project/controllers/home.js"></script>
-    <script src="scripts/common/models/task-model.js"></script>
-    <script src="scripts/common/models/discussion-model.js"></script>
     <script src="scripts/project/controllers/tasks.js"></script>
     <script src="scripts/project/controllers/team.js"></script>
     <script src="scripts/project/controllers/workspace.js"></script>
@@ -118,12 +122,11 @@
     <script src="scripts/project/controllers/rfp-people-invited.js"></script>
     <script src="scripts/project/controllers/services.js"></script>
     <script src="scripts/project/controllers/upload-service.js"></script>
+    <script src="scripts/project/controllers/edit-service.js"></script>
     <script src="scripts/project/controllers/run-service.js"></script>
+    <script src="scripts/project/controllers/run-history.js"></script>
     <script src="scripts/project/controllers/services-detail.js"></script>
     <script src="scripts/project/controllers/publish-service-marketplace.js"></script>
-    <script src="scripts/common/models/toast-model.js"></script>
-    <script src="scripts/common/models/user-model.js"></script>
-    <script src="scripts/common/models/services.model.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

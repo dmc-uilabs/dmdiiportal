@@ -33,6 +33,7 @@ angular.module('dmc.add_project', [
                         {
                             "id": lastId,
                             "title": params.title,
+                            "type": params.type,
                             "projectManager": "DMC member",
                             "featureImage": {
                                 "thumbnail": "/images/project_relay_controller.png",

@@ -8,17 +8,19 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
 .config(function($animateProvider) {
     $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
 })
-.directive('dmcTopHeader', ['$window', 'DMCUserModel', function($window, userModel){
+.directive('dmcTopHeader', ['$window', 'DMCUserModel', '$mdMenu', function($window, userModel, $mdMenu){
   return {
     restrict: 'A',
     scope: {
       showNotification: '=',
       activePage: '=',
-      userData: '='
+      //userData: '='
     },
     templateUrl: 'templates/common/header/header-tpl.html',
     controller : function($scope){
         $scope.userData;
+        $scope.userName = $window.apiUrl ? $window.givenName : 'DMC Member';
+        $scope.isLogged = $scope.userName == ''  ? false : true;
         userModel.getUserData().then(
           function(response){
             var data = response.data ? response.data : response
@@ -140,7 +142,18 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
             width = $(event.currentTarget).width()+12;
         }
 
-        $scope.userName = $window.givenName || 'DMC Member';
+        $scope.login = function(){
+          $scope.isLogged = true;
+        }
+
+        $scope.logout = function(){
+          $scope.isLogged = false;
+        }
+
+        $scope.closeMenu = function(){
+          $mdMenu.cancel();
+        }
+
     }
   };
 }]);

@@ -1,0 +1,55 @@
+<div class="page-header" layout-padding>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<div layout="column">
+				<h1 class="name-project">
+					<div sub-nav-menu-button current-page="1"></div>
+					{{projectData.title}}
+					<span class="small-text small-text--grey">Due in 20 days</span>
+				</h1>
+				<span ng-if="isPreview" class="project-manager">Submitted: {{projectData.projectManager}}</span>
+			</div>      
+		</div>
+	</md-toolbar>
+</div>
+<div class="project-history-services" layout="column">
+	<h2>{{service.title}}</h2>
+	<div layout="row" layout-align="space-between center">
+		<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/' + from}}" ng-click="showHistory()" class="link margin-top8">
+			{{from}} Service
+		</a>
+	</div>
+	<h3>Run History</h3>
+
+    <md-data-table-container>
+        <table md-data-table>
+            <thead md-order="sort" md-trigger="onOrderChange">
+            <tr>
+                <th name="Run Date" order-by="date"></th>
+                <th name="Run By" order-by="runBy"></th>
+                <th name="Run Time" order-by="runTime"></th>
+                <th name="Results" order-by="results"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in history">
+                <td>
+                    {{item.date}}
+                </td>
+                <td>
+                    <a href="" >{{item.runBy}}</a>
+                </td>
+                <td>
+                    {{item.runTime}}s
+                </td>
+                <td style="color:{{(item.results == 'Success') ? '#65AF3F': 'red'}}">
+                    <a href="" ng-click="openResults(item)">{{item.results}}</a>
+                </td>
+            </tr>
+            <tr ng-if="history.length == 0">
+                <td class="empty" colspan="7">No services</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-data-table-container>
+</div>

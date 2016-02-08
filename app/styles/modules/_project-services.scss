@@ -211,13 +211,7 @@
 		h2{
 			font-weight: normal;
 		}
-		.inputs-button{
-			.md-button{
-//				height: 24px;
-//				min-height: 24px;
-//				line-height: 24px
-			}
-		}
+		
 		md-content{
 			height: 350px;
 			border: 1px solid #b6b6b6;
@@ -241,8 +235,8 @@
 	.outputs{
 		padding-left: 8px;
 		h2{
-			height: 36px;
-			line-height: 36px;
+			height: 48px;
+			line-height: 48px;
 			font-weight: normal;
 		}
 		md-content{
@@ -273,10 +267,16 @@
 	h2{
 		margin: 0;
 	}
-	.historyButton{
-		margin: 16px 0 0;
-		color: inherit;
+	md-data-table-container{
+		a{
+			text-decoration: none;
+			color: inherit;
+			&:hover{
+				text-decoration: underline;
+			}
+		}
 	}
+	
 	md-content{
 		height: 450px;
 		border: 1px solid #b6b6b6;

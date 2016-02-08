@@ -36,10 +36,8 @@ angular.module('dmc.add_project.directive', [
                 }
                 $scope.createNewProject = function(data) {
                     newProject.dueDate = moment(newProject.dueDate).format("YYYY-MM-DD hh:mm:ss");
-                    console.info("data",data);
-                    console.info("proj", newProject);
                     projectModel.add_project(newProject, data, function(data){
-                        //document.location.href = "project.php#/"+data+"/home";
+                        document.location.href = "project.php#/"+data+"/home";
                     })
                 }
                 $scope.goToNextTab = function(number, obj){

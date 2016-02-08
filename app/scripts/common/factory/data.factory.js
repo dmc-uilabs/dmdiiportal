@@ -401,6 +401,8 @@ angular.module('dmc.data',[])
                 var name = "services";
                 return {
                     get : localhost + name + '/' + id,
+                    add : localhost + name,
+                    get_for_project : localhost + 'projects/' + id + '/' + name,
                     update : localhost + name + '/' + id,
                     all: localhost + name,
                     getReply : localhost + 'review/' + id + '/product_reviews?_sort=id&_order=ASC',
@@ -411,7 +413,12 @@ angular.module('dmc.data',[])
                     get_tags : localhost + 'service_tags',
                     add_tags : localhost + 'service_tags',
                     remove_tags : localhost + 'service_tags/' + id,
-                    get_history : localhost + 'services_history'
+                    get_history : localhost + 'services_history',
+                    get_run_history : localhost + name + '/' + id + '/services_run_history',
+                    get_interfeces : localhost + 'services_interface',
+                    get_servers : localhost + 'services_servers',
+                    add_servers : localhost + 'services_servers'
+
                 }
             },
             // ---------------------------
@@ -462,7 +469,7 @@ angular.module('dmc.data',[])
                 return localhost+'companies'+(id ? '/'+id : '');
             },
             saveChangedDiscussionComment : function(id){
-                return localhost+'individual-discussion-comment'+(id ? '/'+id : '');
+                return localhost+'individual-discussion-comments'+(id ? '/'+id : '');
             },
             addDiscussionTag : function(){
                 return localhost+'individual-discussion-tags';
@@ -470,14 +477,14 @@ angular.module('dmc.data',[])
             getLastDiscussionTagId : function(){
                 return localhost+'individual-discussion-tags';
             },
-            getDiscussionTags : function(){
-                return localhost+'individual-discussion-tags';
+            getDiscussionTags : function(id){
+                return localhost+'individual-discussion/'+id+'/individual-discussion-tags'
             },
             deleteDiscussionTag : function(id){
                 return localhost+'individual-discussion-tags'+(id ? '/'+id : '');
             },
             deleteDiscussionComment : function(id){
-                return localhost+'individual-discussion-comment'+(id ? '/'+id : '');
+                return localhost+'individual-discussion-comments'+(id ? '/'+id : '');
             },
             getDiscussionComments : function(link){
                 var link_ = link.substring(1,link.length);
@@ -490,10 +497,10 @@ angular.module('dmc.data',[])
                 return localhost+'individual-discussion';
             },
             addCommentIndividualDiscussion: function(){
-                return localhost+'individual-discussion-comment'
+                return localhost+'individual-discussion-comments'
             },
             getLastDiscussionCommentId : function(){
-                return localhost+'individual-discussion-comment'
+                return localhost+'individual-discussion-comments'
             },
             getLastDiscussionId : function(){
                 return localhost+'individual-discussion'

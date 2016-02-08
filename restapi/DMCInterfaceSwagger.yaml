@@ -123,7 +123,7 @@ paths:
           type: string
           description: ID of the account notification
           required: true
-        - name: userNotification
+        - name: userNotificationSetting
           in: body
           schema:
             $ref: '#/definitions/AccountNotificationSetting'
@@ -255,6 +255,25 @@ paths:
           description: Sends the project with projectID
           schema:
             $ref: '#/definitions/Project'
+  '/projects/{projectID}/documents':
+    get:
+      tags:
+        - project
+        - document
+      description: Get all documents in a project
+      parameters:
+        - name: projectID
+          in: path
+          type: string
+          description: ID of the project
+          required: true
+      responses:
+        '200':
+          description: return all project documents
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProjectDocument'
   '/projects/{projectID}/following_discussions':
     get:
       tags:
@@ -344,6 +363,44 @@ paths:
           description: send the service with serviceID
           schema:
             $ref: '#/definitions/Service'
+    put:
+      tags:
+      - service
+      description: Update information for service by ID
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+        - name: service
+          in: body
+          schema:
+            $ref: '#/definitions/Service'
+      responses:
+        200:
+          description: returns updated service
+          schema:
+            $ref: '#/definitions/Service'
+  '/services/{serviceID}/service-documents':
+    get:
+      tags:
+        - service
+        - document
+      description: Get all documents in a service
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+      responses:
+        '200':
+          description: return all service documents
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceDocument'
   '/service/{serviceID}/specifications':
     post:
       tags:
@@ -961,6 +1018,213 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Component'
+  '/notifications':
+    get:
+      tags:
+        - notification
+      description: Get all notifications for the user
+      parameters:
+        - name: period
+          in: query
+          description: value filters result by period
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - today
+            - week
+            - month
+        - name: type
+          in: query
+          description: value filters result by type
+          type: string
+          required: false
+          enum:
+            - projects
+            - services
+            - task
+            - contact
+            - review
+      responses:
+        '200':
+          description: return all notifications
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/UserNotification'
+  '/notifications-statistic':
+    get:
+      tags:
+        - notification
+      description: Get all notification statistics for the user
+      responses:
+        '200':
+          description: return all notification statistics
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/UserNotificationStat'
+  '/announcements':
+    get:
+      tags:
+        - community
+      description: Get all community announcements
+      responses:
+        '200':
+          description: return all community announcements
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CommunityAnnouncemnt'
+  '/events':
+    get:
+      tags:
+        - community
+      description: Get all community events
+      responses:
+        '200':
+          description: return all community events
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CommunityEvent'
+  '/individual-discussion':
+    get:
+      tags:
+        - discussion
+        - community
+      description: Get all community individual discussions
+      responses:
+        '200':
+          description: return all community individual discussions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IndividualDiscussion'
+  '/individual-discussion/{individualDiscussionID}/individual-discussion-comments':
+    get:
+      tags:
+        - discussion
+        - community
+      description: Get all individual discussions comments
+      parameters:
+        - in: path
+          name: individualDiscussionID
+          description: ID of individual discussions
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return all all individual discussions comments
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IndividualDiscussionComment'
+  '/individual-discussion-comments':
+    post:
+      tags:
+        - discussion
+        - community
+      description: Create a new individual discussions comment
+      parameters:
+        - in: body
+          name: DiscussionComment
+          description: Individual discussions comment to be created
+          required: false
+          schema:
+            $ref: '#/definitions/IndividualDiscussionComment'
+      responses:
+        '201':
+          description: New individual discussion comment
+          schema:
+            $ref: '#/definitions/IndividualDiscussionComment'
+  '/individual-discussion-comments/{commentID}':
+    delete:
+      tags:
+        - discussion
+        - community
+      description: Delete a individual discussions comment
+      parameters:
+        - in: path
+          name: commentID
+          description: ID of individual discussions comment
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+        - discussion
+        - community
+      description: Update a individual discussions comment
+      parameters:
+        - name: commentID
+          in: path
+          type: string
+          description: ID of the comment
+          required: true
+        - name: comment
+          in: body
+          schema:
+            $ref: '#/definitions/IndividualDiscussionComment'
+      responses:
+        200:
+          description: returns updated individual discussions comment
+          schema:
+            $ref: '#/definitions/IndividualDiscussionComment'
+  '/individual-discussion/{individualDiscussionID}/individual-discussion-tags':
+    get:
+      tags:
+        - discussion
+        - community
+      description: Get all individual discussions tags
+      parameters:
+        - in: path
+          name: individualDiscussionID
+          description: ID of individual discussions
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return all all individual discussions tags
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IndividualDiscussionTag'
+  '/individual-discussion-tags':
+    post:
+      tags:
+        - discussion
+        - community
+      description: Create a new individual discussions tag
+      parameters:
+        - in: body
+          name: DiscussionTag
+          description: Individual discussions tag to be created
+          required: false
+          schema:
+            $ref: '#/definitions/IndividualDiscussionTag'
+      responses:
+        '201':
+          description: New individual discussion tag
+          schema:
+            $ref: '#/definitions/IndividualDiscussionTag'
+  '/individual-discussion-tags/{disscusionTagID}':
+    delete:
+      tags:
+        - discussion
+        - community
+      description: Delete a individual discussions tag
+      parameters:
+        - in: path
+          name: disscusionTagID
+          description: ID of individual discussions tag
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
 definitions:
   FeatureImage:
     type: object
@@ -1296,6 +1560,39 @@ definitions:
         type: integer
       comment:
         type: string
+  ProductReview:
+    type: object
+    properties:
+      id:
+        type: string
+      productId:
+        type: string
+      productType:
+        type: string
+        enum:
+          - services
+          - components
+      reply:
+        type: boolean
+      reviewId:
+        type: string
+      name:
+        type: string
+      status:
+        type: boolean
+      date:
+        type: string
+        format: date
+      rating:
+        type: integer
+      userRatingReview:
+        type: object
+      like:
+        type: integer
+      dislike:
+        type: integer
+      comment:
+        type: string
   Company:
     type: object
     properties:
@@ -1468,16 +1765,41 @@ definitions:
         type: string
       modifed:
         type: string
-        format: date
+        format: dateTime
       size:
         type: string
       owner:
         type: string
       file:
         type: string
+  ServiceDocument:
+    type: object
+    properties:
+      id:
+        type: string
+      serviceId:
+        type: string
+      service-documentId:
+        type: string
+      owner:
+        type: string
+      title:
+        type: string
+      modifed:
+        type: string
+        format: dateTime
+      size:
+        type: string
+      file:
+        type: string
   NotificationsListItem:
     type: object
     properties:
+      event:
+        type: string
+      created_at:
+        type: string
+        format: dateTime
       title:
         type: string
       link:
@@ -1491,9 +1813,19 @@ definitions:
         type: string
       projectId:
         type: string
+      currentStatus:
+        $ref: '#/definitions/CurrentStatus'
   MessagesListItem:
     type: object
     properties:
+      user_name:
+        type: string
+      image:
+        type: string
+      text:
+        type: string
+      created_at:
+        type: string
       title:
         type: string
       link:
@@ -1629,8 +1961,157 @@ definitions:
         type: string
       section:
         type: string
-        enum: ['website', 'email']
+        enum:
+          - 'website'
+          - 'email'
       account-notification-category-itemId:
         type: string
       selected:
         type: boolean
+  UserNotification:
+    type: object
+    properties:
+      id:
+        type: string
+      image:
+        type: string
+      link:
+        type: string
+      period:
+        type: string
+        enum:
+          - today
+          - week
+          - month
+      type:
+        type: string
+        enum:
+          - projects
+          - services
+          - task
+          - contact
+          - review
+      date:
+        type: string
+        format: dateTime
+      title:
+        type: string
+      linkTitle:
+        type: string
+  UserNotificationStat:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+        enum:
+          - projects
+          - services
+          - task
+          - contact
+          - review
+      today:
+        type: number
+      week:
+        type: number
+      month:
+        type: number
+  CommunityAnnouncemntComment:
+    type: object
+    properties:
+      id:
+        type: string
+      accountId:
+        type: string
+      announcementId:
+        type: string
+      text:
+        type: string
+      created_at:
+        type: string
+        format: dateTime
+  CommunityAnnouncemnt:
+    type: object
+    properties:
+      id:
+        type: string
+      text:
+        type: string
+      created_at:
+        type: string
+        format: dateTime
+      announcement_comments:
+        type: array
+        items:
+          $ref: '#/definitions/CommunityAnnouncemntComment'
+  CommunityEvent:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      date:
+        type: string
+        format: dateTime
+      startTime:
+        type: string
+        format: dateTime
+      endTime:
+        type: string
+        format: dateTime
+      address:
+        type: string
+      description:
+        type: string
+  IndividualDiscussionComment:
+    type: object
+    properties:
+      id:
+        type: string
+      individual-discussionId:
+        type: string
+      accountId:
+        type: string
+      full_name:
+        type: string
+      avatar:
+        type: string
+      text:
+        type: string
+      created_at:
+        type: string
+        format: dateTime
+      userRatingReview:
+        type: object
+      like:
+        type: number
+      dislike:
+        type: number
+  IndividualDiscussion:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      comments:
+        type: object
+        properties:
+          totalItems:
+            type: number
+          link:
+            type: string
+  IndividualDiscussionTag:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      individual-discussionId:
+        type: string
+

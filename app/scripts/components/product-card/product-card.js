@@ -36,7 +36,7 @@ angular.module('dmc.component.productcard', [
         hideButtons: '='
       },
       templateUrl: 'templates/components/product-card/product-card-tpl.html',
-      controller: function($scope,$cookies,$timeout,ajax,dataFactory, $mdDialog){
+      controller: function($scope, $rootScope, $cookies,$timeout,ajax,dataFactory, $mdDialog){
           if(!$scope.hideButtons) $scope.hideButtons = [];
           // get data from cookies
           var updateCompareCount = function () {
@@ -58,6 +58,7 @@ angular.module('dmc.component.productcard', [
           // success callback for remove from favorites
           var removeFromFavoritesCallback = function(response){
               $scope.cardSource.favorite = false;
+              $rootScope.$broadcast("RemoveFavorite");
               if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
               apply();
           };

@@ -753,14 +753,18 @@
         "large": "images/marketplace-card-image-1.jpg"
       },
       "currentStatus": {
+        "percentCompleted": "44",
+        "startDate": "19-09-2015",
+        "startTime": "16:00:10",
         "project": {
-          "id": 3,
-          "title": "Capacitor Design"
+          "id": 1,
+          "title": "Control Compartment  for LDR Mining"
         }
       },
-      "projectId": 3,
+      "projectId": 1,
       "type": "service",
-      "from": "marketplace"
+      "from": "marketplace",
+      "parent": 0
     },
     {
       "id": 5,
@@ -1251,7 +1255,7 @@
       },
       "projectId": 1,
       "type": "service",
-      "from": "marketplace"
+      "from": "project"
     },
     {
       "id": 28,
@@ -1860,6 +1864,463 @@
       "id": 4,
       "serviceId": 1,
       "name": "tag4"
+    }
+  ],
+  "services_run_history": [
+    {
+      "id": 1,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Success"
+    },
+    {
+      "id": 2,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-01-02 12:10:31",
+      "results": "Fail"
+    },
+    {
+      "id": 3,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-01 12:10:31",
+      "results": "Success"
+    },
+    {
+      "id": 4,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-03-02 12:10:31",
+      "results": "Fail"
+    },
+    {
+      "id": 5,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-07-01 12:10:31",
+      "results": "Success"
+    },
+    {
+      "id": 6,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Success"
+    },
+    {
+      "id": 7,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Fail"
+    },
+    {
+      "id": 8,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Success"
+    },
+    {
+      "id": 9,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Success"
+    },
+    {
+      "id": 10,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Success"
+    },
+    {
+      "id": 11,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Fail"
+    },
+    {
+      "id": 12,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Success"
+    },
+    {
+      "id": 13,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Fail"
+    },
+    {
+      "id": 14,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Success"
+    },
+    {
+      "id": 15,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Success"
+    },
+    {
+      "id": 16,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Success"
+    },
+    {
+      "id": 17,
+      "serviceId": 1,
+      "runBy": "Forge Admin",
+      "runTime": 2,
+      "date": "2016-08-02 12:10:31",
+      "results": "Fail"
+    }
+  ],
+  "services_servers": [
+    {
+      "id": 1,
+      "ip": "192.168.1.1",
+      "name": "server1"
+    },
+    {
+      "id": 2,
+      "ip": "192.168.1.2",
+      "name": "server2"
+    },
+    {
+      "id": 3,
+      "ip": "192.168.1.3",
+      "name": "server3"
+    },
+    {
+      "id": 4,
+      "ip": "192.168.1.4",
+      "name": "server4"
+    },
+    {
+      "id": 5,
+      "ip": "192.168.1.5",
+      "name": "server5"
+    }
+  ],
+  "services_interface": [
+    {
+      "id": 1,
+      "name": "interfece1",
+      "inputs": [
+        "test1",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ],
+      "outputs": [
+        "test1",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "interfece2",
+      "inputs": [
+        "test2",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ],
+      "outputs": [
+        "test2",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "interfece3",
+      "inputs": [
+        "test3",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ],
+      "outputs": [
+        "test3",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "interfece4",
+      "inputs": [
+        "test4",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ],
+      "outputs": [
+        "test4",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "interfece5",
+      "inputs": [
+        "test5",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ],
+      "outputs": [
+        "test5",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length",
+        "Height",
+        "Length"
+      ]
     }
   ],
   "tasks": [
@@ -3211,7 +3672,7 @@
       "id": 1,
       "title": "Aenean euismod bibendum laoreet. Cum soci?",
       "comments": {
-        "link": "/individual-discussion/1/individual-discussion-comment",
+        "link": "/individual-discussion/1/individual-discussion-comments",
         "totalItems": 9
       }
     },
@@ -3219,7 +3680,7 @@
       "id": 2,
       "title": "Aenean euismod bibendum laoreet2.",
       "comments": {
-        "link": "/individual-discussion/2/individual-discussion-comment",
+        "link": "/individual-discussion/2/individual-discussion-comments",
         "totalItems": 2
       }
     },
@@ -3227,7 +3688,7 @@
       "id": 3,
       "title": "Aenean euismod bibendum laoreet3.",
       "comments": {
-        "link": "/individual-discussion/3/individual-discussion-comment",
+        "link": "/individual-discussion/3/individual-discussion-comments",
         "totalItems": 0
       }
     },
@@ -3235,7 +3696,7 @@
       "id": 4,
       "title": "Aenean euismod bibendum laoreet4.",
       "comments": {
-        "link": "/individual-discussion/4/individual-discussion-comment",
+        "link": "/individual-discussion/4/individual-discussion-comments",
         "totalItems": 0
       }
     },
@@ -3243,7 +3704,7 @@
       "id": 5,
       "title": "Aenean euismod bibendum laoreet5.",
       "comments": {
-        "link": "/individual-discussion/5/individual-discussion-comment",
+        "link": "/individual-discussion/5/individual-discussion-comments",
         "totalItems": 0
       }
     },
@@ -3251,12 +3712,12 @@
       "id": 6,
       "title": "Aenean euismod bibendum laoreet6.",
       "comments": {
-        "link": "/individual-discussion/6/individual-discussion-comment",
+        "link": "/individual-discussion/6/individual-discussion-comments",
         "totalItems": 0
       }
     }
   ],
-  "individual-discussion-comment": [
+  "individual-discussion-comments": [
     {
       "id": 1,
       "individual-discussionId": 1,

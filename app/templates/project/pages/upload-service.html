@@ -33,16 +33,16 @@
 				</div>
 
 				<div ng-if="flagAddServer" layout="row" layout-fill>
-					<form flex novalidate name="addServer" ng-submit="saveServer(serverModel)">
+					<form flex="100" novalidate name="addServer" ng-submit="saveServer(serverModel)">
 						<div  layout="row" layout-align="center center">
-						<md-input-container flex>
+						<md-input-container flex="35">
 							<label>Server Alias</label>
 							<input ng-model="serverModel.name" name="serverName" required>
 							<div ng-messages="addServer.serverName.$error">
 								<div ng-message="required">Server Alias is required.</div>
 							</div>
 						</md-input-container>
-						<md-input-container flex>
+						<md-input-container  flex="35">
 							<label>Server Host/IP</label>
 							<input ng-model="serverModel.ip" name="serverIp" required>
 							<div ng-messages="addServer.serverIp.$error">
@@ -69,7 +69,7 @@
 					</md-list>
 				</md-content>
 			</div>
-			<div flex="60" layout="column" class="preview" ng-show="serverModel == 0">
+			<div flex="60" layout="column" class="preview" ng-show="preview.name">
 				<h2 flex>Preview Interface</h2>
 				<div layout="row">
 					<div flex="50">
@@ -109,7 +109,7 @@
 					<md-input-container flex="40">
 						<label>Parent Component</label>
 						<md-select ng-model="NewService.parentComponent">
-							<md-option ng-repeat="service in allServices track by $index" ng-value="service.title">{{service.title}}</md-option>
+							<md-option ng-repeat="service in allServices track by $index" ng-value="service.id">{{service.title}}</md-option>
 						</md-select>
 					</md-input-container>
 				</div>
@@ -129,9 +129,9 @@
 						<md-button ng-disabled="!inputTag" class="md-raised md-primary">Add</md-button>
 					</form>
 					<div layout="row" class="tabs-content" layout-wrap>
-						<md-chips ng-repeat="tag in tags track by $index">
+						<md-chips ng-repeat="tag in service_tags track by $index">
 							<md-chip class="tags-chip">
-								{{tag}}
+								{{tag.name}}
 								<md-button aria-label="close" ng-click="deleteTag($index)" class="md-icon-button">
 									<ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
 								</md-button>
@@ -161,7 +161,7 @@
 				Back
 			</md-button>
 			 <!-- ng-disabled="!NewService.serviceName || !NewService.parentComponent || !NewService.serviceDescription || !tags.length" -->
-			<md-button class="md-primary md-raised" ng-disabled="!NewService.serviceName || !NewService.parentComponent || !NewService.serviceDescription || !tags.length" ng-if="!page1" ng-click="finish()">
+			<md-button class="md-primary md-raised" ng-disabled="!NewService.serviceName || (!NewService.parentComponent && NewService.parentComponent !== 0) || !NewService.serviceDescription || !service_tags.length" ng-if="!page1" ng-click="finish()">
 				Finish
 			</md-button>
 		</div>

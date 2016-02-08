@@ -1,18 +1,18 @@
 angular.module('dmc.project')
-.controller('projectUploadServicesCtrl', [
-	'$scope', '$state', 'projectData', 'serviceModel', 
-	function ($scope, $state, projectData, serviceModel) {
+.controller('projectEditServicesCtrl', [
+	'$scope', '$state', 'projectData', 'serviceModel', 'serviceData',
+	function ($scope, $state, projectData, serviceModel, serviceData) {
 	
 	$scope.projectData = projectData;
 	$scope.page1 = true;
-	$scope.edit = false;
+	$scope.edit = true;
 	$scope.flagAddServer = false;
 	$scope.serverModel = null;
 	$scope.allServices = null;
 	$scope.NewService = {
-		serviceName: null,
-		parentComponent: null,
-		serviceDescription: null,
+		serviceName: serviceData.title,
+		parentComponent: 0,
+		serviceDescription: serviceData.description,
 	}
 
 	$scope.addTags=[];
@@ -32,7 +32,7 @@ angular.module('dmc.project')
 		apply();
 	})
 
-	$scope.service_tags = []
+	$scope.service_tags = serviceData.service_tags;
 	$scope.preview = [];
 
 	serviceModel.get_all_service({}, function(data){
@@ -95,15 +95,13 @@ angular.module('dmc.project')
 	}
 
 	$scope.finish = function(){
-		serviceModel.upload_services({
+		serviceModel.edit_service({
 			title: $scope.NewService.serviceName,
 			description: $scope.NewService.serviceDescription,
-			from: 'project',
-			pojectId: projectData.id,
-			pojectTitle: projectData.title,
 			parent: $scope.NewService.parentComponent
 		},function(data){
-			serviceModel.add_services_tags($scope.addTags, data.id);
+			serviceModel.remove_services_tags($scope.removeTags);
+			serviceModel.add_services_tags($scope.addTags);
 			$state.go('project.services-detail', {ServiceId: data.id});
 		});
 	}

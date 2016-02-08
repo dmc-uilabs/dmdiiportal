@@ -46,16 +46,16 @@
           <div layout="row">
             <md-input-container flex="50">
               <label>Display Name</label>
-              <input id="editDisplayNameProfile" ng-model="profile.displayName">
+              <input id="editDisplayNameProfile" ng-change="change()" ng-model="profile.displayName">
             </md-input-container>
             <md-input-container flex="50">
               <label>Job Title</label>
-              <input ng-model="profile.jobTitle">
+              <input ng-model="profile.jobTitle" ng-change="change()">
             </md-input-container>
           </div>
           <md-input-container>
             <label>Company</label>
-            <input ng-model="profile.company" disabled>
+            <input ng-model="profile.company" ng-change="change()" disabled>
           </md-input-container>
           
           <md-input-container class="md-icon-float title-input-left">
@@ -63,12 +63,12 @@
             <md-icon class="location-gps" ng-click="getLocation()">
               <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
             </md-icon>
-            <input ng-model="profile.location" type="text">
+            <input ng-model="profile.location" ng-change="change()" type="text">
           </md-input-container>
           
         </div>
         <div flex="50" layout="row" layout-align="end start">
-          <md-button ui-sref="profile({profileId: profile.id})" class="md-raised dmc-button">Cancel</md-button>
+          <md-button ng-click="cancelEdit()" class="md-raised dmc-button">Cancel</md-button>
           <md-button ng-click="saveEdit()" class="md-raised dmc-button md-primary">Save</md-button>
         </div>
       </div>

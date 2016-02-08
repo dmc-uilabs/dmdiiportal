@@ -2,9 +2,9 @@ angular.module('dmc.community')
 
     .controller(
         "ComposeDiscussionController", [
-            '$scope', 'ajax', 'dataFactory', '$mdDialog', "$mdToast", "toastModel",  
+            '$scope', 'ajax', 'dataFactory', '$mdDialog', "$mdToast", "toastModel",
             function ($scope, ajax, dataFactory, $mdDialog, $mdToast, toastModel) {
-                
+
                 $scope.NewDiscussion = {
                     subject: "",
                     tags: [],
@@ -32,26 +32,26 @@ angular.module('dmc.community')
                     $scope.NewDiscussion.tags.splice(index,1);
                 }
 
-                $scope.save = function(message, subject){    
+                $scope.save = function(message, subject){
 	                ajax.get(
-	                	dataFactory.getLastDiscussionId(), 
+	                	dataFactory.getLastDiscussionId(),
 	                	{
 		                    "_limit" : 1,
 		                    "_order" : "DESC",
 		                    "_sort" : "id"
-		                }, 
+		                },
 		                function(response){
 	                    	console.info(response)
 	                    	var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
-	                    
+
 	                    	ajax.create(
 		                        dataFactory.addDiscussion(),
 		                        {
 		                            "id": lastId,
 		                            "message": $scope.NewDiscussion.message,
 		                            "title": $scope.NewDiscussion.subject,
-		                            "comments": { 
-			                            "link": "/individual-discussion/" + lastId + "/individual-discussion-comment",
+		                            "comments": {
+			                            "link": "/individual-discussion/" + lastId + "/individual-discussion-comments",
 			                            "totalItems": 0
 		                          	}
 		                        },
@@ -62,7 +62,7 @@ angular.module('dmc.community')
 		                    );
 
 	                    	ajax.get(
-	                    		dataFactory.getLastDiscussionTagId(), 
+	                    		dataFactory.getLastDiscussionTagId(),
 	                    		{
 				                    "_limit" : 1,
 				                    "_order" : "DESC",
@@ -84,13 +84,13 @@ angular.module('dmc.community')
 			                    	}
 		                		}
 		                	);
-		                }, 
+		                },
 	                	function(){
 		                    toastModel.showToast("error", "Unable get last id");
 		                }
 		             );
 
                 }
-            }       
+            }
         ]
     );

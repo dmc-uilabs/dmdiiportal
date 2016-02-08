@@ -64,26 +64,17 @@ angular.module('dmc.individual-discussion')
 
         // add discussion tag
         $scope.addTag = function(){
-            ajax.on(dataFactory.getLastDiscussionTagId(), {
-                "_limit" : 1,
-                "_order" : "DESC",
-                "_sort" : "id"
-            }, function(data){
-                var lastId = (data.length == 0 ? 1 : parseInt(data[0].id)+1);
-                ajax.on(dataFactory.addDiscussionTag(), {
-                    "id" : lastId,
+            ajax.create(dataFactory.addDiscussionTag(), {
                     "name" : $scope.newTag,
-                    "individualDiscussionId" : $stateParams.discussionId
-                }, function(data){
-                    $scope.newTag = null;
-                    $scope.discussion.tags.unshift(data);
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                }, function(){
-                    toastModel.showToast("error", "Unable to add a tag");
-                },"POST");
+                    "individual-discussionId": $stateParams.discussionId
+            }, function(response){
+                var data = response.data ? response.data : response;
+                $scope.newTag = null;
+                $scope.discussion.tags.unshift(data);
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }, function(){
-                toastModel.showToast("error", "Unable get last id");
-            },"GET");
+                toastModel.showToast("error", "Unable to add a tag");
+            });
         };
 
         //load Discussion
@@ -104,10 +95,9 @@ angular.module('dmc.individual-discussion')
 
         // load tags
         $scope.loadTags = function(){
-            ajax.on(dataFactory.getDiscussionTags(), {
+            ajax.on(dataFactory.getDiscussionTags($stateParams.discussionId), {
                 "_order" : "DESC",
                 "_sort" : "id",
-                "individualDiscussionId" : $stateParams.discussionId
             }, function(data){
                 $scope.discussion.tags = data;
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -150,16 +140,9 @@ angular.module('dmc.individual-discussion')
 
         //Submit Leave A Review form
         $scope.Submit = function(){
-            ajax.on(dataFactory.getLastDiscussionCommentId(), {
-                "_limit" : 1,
-                "_order" : "DESC",
-                "_sort" : "id"
-            }, function(data){
-                var lastId = (data.length == 0 ? 1 : parseInt(data[0].id)+1);
-                ajax.on(
+            ajax.create(
                     dataFactory.addCommentIndividualDiscussion(),
                     {
-                        "id": lastId,
                         "individual-discussionId": $stateParams.discussionId,
                         "full_name": "DMC Member",
                         "accountId": $scope.accountId,
@@ -172,7 +155,8 @@ angular.module('dmc.individual-discussion')
                         "like": 0,
                         "dislike": 0
                     },
-                    function(data){
+                    function(response){
+                        var data = response.data ? response.data : response;
                         $scope.newComment = null;
                         data.created_at = moment(data.created_at).format('MM/DD/YYYY, h:mm A');
                         data.isOwner = true;
@@ -181,11 +165,8 @@ angular.module('dmc.individual-discussion')
                     },
                     function(){
                         toastModel.showToast("error", "Fail add comment");
-                    }, "POST"
+                    }
                 );
-            }, function(){
-                toastModel.showToast("error", "Unable get last id");
-            },"GET");
         };
 
 	}]);

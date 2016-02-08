@@ -10,6 +10,9 @@
   }
 }
 
+.md-dialog-container{
+  z-index: 100;
+}
 
 .container {
   background: map-get($colors, body_color);

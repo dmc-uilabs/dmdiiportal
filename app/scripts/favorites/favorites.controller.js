@@ -99,6 +99,10 @@ angular.module('dmc.all-favorites')
                 apply();
             });
 
+            $scope.$on("RemoveFavorite", function(){
+                $scope.getFavorites();
+            });
+
             $scope.productTypes = [
                 //{
                 //    id: 1,

@@ -31,7 +31,7 @@
                             </form>
                         </div>
                         <span flex></span>
-                        <md-button class="md-raised" ng-click="showFavorites()" ng-disabled="favorites.length == 0">
+                        <md-button class="md-raised" ng-click="showFavorites()" ng-disabled="favorites.length == 0 && !showFavoritesFlag">
                             {{(showFavoritesFlag == false) ? 'Favorites(' + favorites.length + ')' : 'All'}}     
                         </md-button>
                         <md-button class="md-raised" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button>
