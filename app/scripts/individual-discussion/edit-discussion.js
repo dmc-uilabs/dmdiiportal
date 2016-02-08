@@ -70,10 +70,9 @@ angular.module('dmc.individual-discussion')
                 "_sort" : "id"
             }, function(data){
                 var lastId = (data.length == 0 ? 1 : parseInt(data[0].id)+1);
-                ajax.on(dataFactory.addDiscussionTag(), {
+                ajax.on(dataFactory.addDiscussionTag($stateParams.discussionId), {
                     "id" : lastId,
                     "name" : $scope.newTag,
-                    "individualDiscussionId" : $stateParams.discussionId
                 }, function(data){
                     $scope.newTag = null;
                     $scope.discussion.tags.unshift(data);
@@ -104,10 +103,9 @@ angular.module('dmc.individual-discussion')
 
         // load tags
         $scope.loadTags = function(){
-            ajax.on(dataFactory.getDiscussionTags(), {
+            ajax.on(dataFactory.getDiscussionTags($stateParams.discussionId), {
                 "_order" : "DESC",
                 "_sort" : "id",
-                "individualDiscussionId" : $stateParams.discussionId
             }, function(data){
                 $scope.discussion.tags = data;
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();

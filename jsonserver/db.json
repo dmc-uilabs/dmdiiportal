@@ -3371,7 +3371,7 @@
       "id": 1,
       "title": "Aenean euismod bibendum laoreet. Cum soci?",
       "comments": {
-        "link": "/individual-discussion/1/individual-discussion-comment",
+        "link": "/individual-discussion/1/individual-discussion-comments",
         "totalItems": 9
       }
     },
@@ -3379,7 +3379,7 @@
       "id": 2,
       "title": "Aenean euismod bibendum laoreet2.",
       "comments": {
-        "link": "/individual-discussion/2/individual-discussion-comment",
+        "link": "/individual-discussion/2/individual-discussion-comments",
         "totalItems": 2
       }
     },
@@ -3387,7 +3387,7 @@
       "id": 3,
       "title": "Aenean euismod bibendum laoreet3.",
       "comments": {
-        "link": "/individual-discussion/3/individual-discussion-comment",
+        "link": "/individual-discussion/3/individual-discussion-comments",
         "totalItems": 0
       }
     },
@@ -3395,7 +3395,7 @@
       "id": 4,
       "title": "Aenean euismod bibendum laoreet4.",
       "comments": {
-        "link": "/individual-discussion/4/individual-discussion-comment",
+        "link": "/individual-discussion/4/individual-discussion-comments",
         "totalItems": 0
       }
     },
@@ -3403,7 +3403,7 @@
       "id": 5,
       "title": "Aenean euismod bibendum laoreet5.",
       "comments": {
-        "link": "/individual-discussion/5/individual-discussion-comment",
+        "link": "/individual-discussion/5/individual-discussion-comments",
         "totalItems": 0
       }
     },
@@ -3411,12 +3411,12 @@
       "id": 6,
       "title": "Aenean euismod bibendum laoreet6.",
       "comments": {
-        "link": "/individual-discussion/6/individual-discussion-comment",
+        "link": "/individual-discussion/6/individual-discussion-comments",
         "totalItems": 0
       }
     }
   ],
-  "individual-discussion-comment": [
+  "individual-discussion-comments": [
     {
       "id": 1,
       "individual-discussionId": 1,
