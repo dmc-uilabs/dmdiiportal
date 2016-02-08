@@ -67,9 +67,9 @@ angular.module('dmc.service-marketplace', [
                                 });
                                 service.number_of_comments = service.service_reviews.length;
 
+                                service.precentage_stars = [0, 0, 0, 0, 0];
+                                service.average_rating = 0;
                                 if(service.number_of_comments != 0) {
-                                    service.precentage_stars = [0, 0, 0, 0, 0];
-                                    service.average_rating = 0;
                                     for (var i in service.rating) {
                                         service.precentage_stars[service.rating[i] - 1] += 100 / service.number_of_comments;
                                         service.average_rating += service.rating[i];
@@ -105,6 +105,9 @@ angular.module('dmc.service-marketplace', [
                 return ajax.get(dataFactory.services($stateParams.serviceId).reviews,
                     params,
                     function(response){
+                        for(var i in response.data){
+                            response.data[i].date = moment(response.data[i].date).format("DD/MM/YYYY")
+                        }
                         callback(response.data)
                     }
                 )
@@ -125,7 +128,7 @@ angular.module('dmc.service-marketplace', [
                         params["reply"] = false;
                         params["reviewId"] = 0;
                         params["status"] = true;
-                        params["date"] = moment().format('MM/DD/YYYY');
+                        params["date"] = moment().format('YYYY-MM-DD HH:mm:ss');
                         params["userRatingReview"] = {
                             "DMC Member": "none"
                         };

@@ -36,7 +36,7 @@
                 <td class="file" ng-if="item.file">
                     <div layout="row" layout-align="start center">
                         <ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>
-                        <a ng-href="{{item.link}}" ng-if="item.link">{{item.title}}</a>
+                        <a target="_blank" ng-href="{{item.link}}" ng-if="item.link">{{item.title}}</a>
                     </div>
                 </td>
                 <td>{{item.owner}}</td>

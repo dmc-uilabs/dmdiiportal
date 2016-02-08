@@ -12,6 +12,7 @@ angular.module('dmc.service-marketplace')
         '$cookies',
         'toastModel',
         'isFavorite',
+        '$location',
         function (serviceData,
                   serviceModel,
                   $stateParams,
@@ -21,7 +22,8 @@ angular.module('dmc.service-marketplace')
                   $mdDialog,
                   $cookies,
                   toastModel,
-                  isFavorite) {
+                  isFavorite,
+                  $location) {
 
             $scope.product = serviceData;  //array product
             $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
@@ -33,6 +35,7 @@ angular.module('dmc.service-marketplace')
             $scope.UserLogin = "DMC Member";
             $scope.adding_to_project = false;
             $scope.selectSortingStar = 0;
+
 
             // check if service is favorite for current user
             isFavorite.check([$scope.product]);
@@ -371,13 +374,13 @@ angular.module('dmc.service-marketplace')
                     };
                     ajax.create(dataFactory.addFavorite(), requestData, function(response){
                         $scope.product.favorite = response.data;
-                        apply();
+                        getFavoriteCount();
                     });
                 }else{
                     // remove from favorites
                     ajax.delete(dataFactory.deleteFavorite($scope.product.favorite.id), {}, function(response){
                         $scope.product.favorite = false;
-                        apply();
+                        getFavoriteCount();
                     });
                 }
             };
