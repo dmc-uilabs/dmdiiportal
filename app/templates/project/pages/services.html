@@ -37,7 +37,7 @@
 				<md-divider></md-divider>
 				<div flex="100" layout="row" layout-align="start center">
 					<div class="row">
-						<md-button class="md-raised run" ng-href="{{'project.php#/' + projectData.id + '/run-service/' + item.id}}">Run</md-button>
+						<md-button class="md-raised run" ng-href="{{'project.php#/' + projectData.id + '/services/' + item.id + '/run'}}">Run</md-button>
 					</div>
 					<a ng-href="{{'project.php#/' + projectData.id + '/services/' + item.id + '/detail'}}" class="row-long"><h2>{{item.title}}</h2></a>
 					<a ng-href="/" class="row-long"><h2>Component Example</h2></a>
@@ -49,7 +49,7 @@
 					<a ng-href="/" class="row"><h2>{{item.owner}}</h2></a>
 					<h2 class="row">{{item.from}}</h2>
 					<div class="row-button">
-						<md-button aria-label="group_add" ng-href="{{'project.php#/' + projectData.id + '/edit-service'}}" class="editDelete">
+						<md-button aria-label="group_add" ng-href="{{'project.php#/' + projectData.id  + '/services/' + item.id + '/edit'}}" class="editDelete">
 							<ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
 						</md-button>
 					</div>
