@@ -49,10 +49,9 @@ angular.module('dmc.individual-discussion', [
 
         // load tags
         $scope.loadTags = function(){
-            ajax.on(dataFactory.getDiscussionTags(), {
+            ajax.on(dataFactory.getDiscussionTags($stateParams.discussionId), {
                 "_order" : "DESC",
                 "_sort" : "id",
-                "individualDiscussionId" : $stateParams.discussionId
             }, function(data){
                 $scope.discussion.tags = data;
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -204,7 +203,7 @@ angular.module('dmc.individual-discussion', [
 			}else{
 				$scope.flagReviewFlag = index;
 			}
-			
+
 		};
 
 		$scope.Cancel = function(){

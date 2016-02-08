@@ -19,7 +19,8 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
     templateUrl: 'templates/common/header/header-tpl.html',
     controller : function($scope){
         $scope.userData;
-        $scope.isLogged = true;
+        $scope.userName = $window.apiUrl ? $window.givenName : 'DMC Member';
+        $scope.isLogged = $scope.userName == ''  ? false : true;
         userModel.getUserData().then(
           function(response){
             var data = response.data ? response.data : response
@@ -123,7 +124,6 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
 
         var initUserData = function(data) {
           $scope.userData = data;
-
           $scope.userProfileId = $scope.userData.profileId;
           $scope.userAccountId = $scope.userData.accountId;
           $scope.userCompanyId = $scope.userData.companyId;
@@ -154,7 +154,6 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
           $mdMenu.cancel();
         }
 
-        $scope.userName = $window.givenName || 'DMC Member';
     }
   };
 }]);
