@@ -146,6 +146,9 @@
         a{
           text-decoration: none;
           color: inherit;
+          &:hover{
+            text-decoration: underline;
+          }
         }
       }
       .tags-chip{
@@ -229,6 +232,7 @@
           height: 15px ;
         }
       }
+      cursor: pointer;
     }
     .active-star{
       md-progress-linear {
@@ -240,13 +244,10 @@
         }
       }
     }
-    /*md-progress-linear > .md-container{
-      height: 15px !important;
-    }
-    md-progress-linear > .md-container> .md-bar2 {
-      height: 15px !important;
-    }*/
-    .active-star{
+    .review-stars{
+      .md-button{
+        cursor: default;
+      }
     }
     div {
       p{
