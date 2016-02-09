@@ -42,7 +42,7 @@ paths:
           description: Sends the account with accountID
           schema:
             $ref: '#/definitions/UserAccount'
-    put:
+    patch:
       tags:
       - account
       description: Update account information by account id
@@ -113,7 +113,7 @@ paths:
           description: Sends the notification information
           schema:
             $ref: '#/definitions/AccountNotificationSetting'
-    put:
+    patch:
       tags:
       - account
       description: Update account notification by id
@@ -177,7 +177,7 @@ paths:
           description: Sends the server information
           schema:
             $ref: '#/definitions/UserAccountServer'
-    put:
+    patch:
       tags:
       - account
       description: Update server information by server id
@@ -494,7 +494,7 @@ paths:
           description: send the service with serviceID
           schema:
             $ref: '#/definitions/Service'
-    put:
+    patch:
       tags:
       - service
       description: Update information for service by ID
@@ -855,9 +855,37 @@ paths:
           type: string
           description: ID of the profile
           required: true
+        - name: _embed
+          in: query
+          description: Add profile reviews associed with the profile
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+          enum:
+            - profile_reviews
       responses:
         '200':
           description: send the profile with profileID
+          schema:
+            $ref: '#/definitions/Profile'
+    patch:
+      tags:
+        - profile
+      description: Update information for profile by ID
+      parameters:
+        - name: profileID
+          in: path
+          type: string
+          description: ID of the profile
+          required: true
+        - name: profile
+          in: body
+          schema:
+            $ref: '#/definitions/Profile'
+      responses:
+        200:
+          description: returns updated profile
           schema:
             $ref: '#/definitions/Profile'
   '/profiles/{profileID}/profile_reviews':
@@ -935,7 +963,7 @@ paths:
             items:
               $ref: '#/definitions/CompanyImage'
   '/company_images/{imageID}':
-    put:
+    patch:
       tags:
       - company
       description: Update company image by ID
@@ -1031,7 +1059,7 @@ paths:
             items:
               $ref: '#/definitions/CompanySkillImage'
   '/company_skill_images/{imageID}':
-    put:
+    patch:
       tags:
       - company
       description: Update company skill image by ID
@@ -1402,7 +1430,7 @@ paths:
       responses:
         '200':
           description: OK
-    put:
+    patch:
       tags:
       - company
       description: Update company videos by ID
@@ -1453,7 +1481,7 @@ paths:
       responses:
         '200':
           description: OK
-    put:
+    patch:
       tags:
       - company
       description: Update company contact by ID
@@ -2129,6 +2157,23 @@ paths:
             type: array
             items:
               $ref: '#/definitions/IndividualDiscussion'
+    post:
+      tags:
+        - discussion
+        - community
+      description: Create a new individual discussions
+      parameters:
+        - in: body
+          name: Discussion
+          description: Individual discussions to be created
+          required: false
+          schema:
+            $ref: '#/definitions/IndividualDiscussion'
+      responses:
+        '201':
+          description: New individual discussion comment
+          schema:
+            $ref: '#/definitions/IndividualDiscussion'
   '/individual-discussion/{individualDiscussionID}/individual-discussion-comments':
     get:
       tags:
@@ -2181,7 +2226,7 @@ paths:
       responses:
         '200':
           description: OK
-    put:
+    patch:
       tags:
         - discussion
         - community
