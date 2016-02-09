@@ -49,48 +49,66 @@ angular.module('dmc.service-marketplace', [
         'dataFactory',
         '$stateParams',
         'toastModel',
+        '$q',
+        '$http',
         function (ajax,
                   dataFactory,
                   $stateParams,
-                  toastModel) {
+                  toastModel,
+                  $q,
+                  $http) {
             this.get_service = function(id){
-                return ajax.get(dataFactory.services(id).get, {
-                        "_embed": ["specifications","service_authors", "service_input_output", "service_tags", "services_statistic"]
-                    },
-                    function(response){
-                        var service = response.data;
-                        return ajax.get(dataFactory.services(id).reviews, {},
-                            function(response){
-                                service["service_reviews"] = response.data;
-                                service.rating = service.service_reviews.map(function(value, index){
-                                    return value.rating;
-                                });
-                                service.number_of_comments = service.service_reviews.length;
+                var promises = {
+                  "service": $http.get(dataFactory.services(id).get),
+                  "specifications": $http.get(dataFactory.services(id).get_specifications),
+                  "service_authors": $http.get(dataFactory.services(id).get_authors),
+                  "service_input_output": $http.get(dataFactory.services(id).get_inputs_outputs),
+                  "service_tags": $http.get(dataFactory.services(id).get_tags),
+                  "services_statistic": $http.get(dataFactory.services(id).get_statistics),
+                  "service_reviews": $http.get(dataFactory.services(id).reviews)
+                  }
 
-                                service.precentage_stars = [0, 0, 0, 0, 0];
-                                service.average_rating = 0;
-                                if(service.number_of_comments != 0) {
-                                    for (var i in service.rating) {
-                                        service.precentage_stars[service.rating[i] - 1] += 100 / service.number_of_comments;
-                                        service.average_rating += service.rating[i];
-                                    }
-                                    service.average_rating = (service.average_rating / service.number_of_comments).toFixed(1);
+                  var extractData = function(response){
+                    return response.data ? response.data : response;
+                  }
 
-                                    for (var i in service.precentage_stars) {
-                                        service.precentage_stars[i] = Math.round(service.precentage_stars[i]);
-                                    }
-                                }
-                                for(var i in service["service_reviews"]){
-                                    service["service_reviews"][i]['replyReviews'] = [];
-                                }
-                                return service;
-                            },
-                            function(response){
-                                toastModel.showToast("error", "Error." + response.statusText);
-                            }
-                        )
+                  return $q.all(promises).then(function(responses){
+                    var service = extractData(responses.service);
+                    service.specifications = extractData(responses.specifications);
+                    service.service_authors = extractData(responses.service_authors);
+                    service.service_input_output = extractData(responses.service_input_output);
+                    service.service_tags = extractData(responses.service_tags);
+                    service.services_statistic = extractData(responses.services_statistic);
+                    service.service_reviews = extractData(responses.service_reviews);
+
+                    service.rating = service.service_reviews.map(function(value, index){
+                        return value.rating;
+                    });
+                    service.number_of_comments = service.service_reviews.length;
+
+                    service.precentage_stars = [0, 0, 0, 0, 0];
+                    service.average_rating = 0;
+                    if(service.number_of_comments != 0) {
+                        for (var i in service.rating) {
+                            service.precentage_stars[service.rating[i] - 1] += 100 / service.number_of_comments;
+                            service.average_rating += service.rating[i];
+                        }
+                        service.average_rating = (service.average_rating / service.number_of_comments).toFixed(1);
+
+                        for (var i in service.precentage_stars) {
+                            service.precentage_stars[i] = Math.round(service.precentage_stars[i]);
+                        }
                     }
-                )
+                    for(var i in service["service_reviews"]){
+                        service["service_reviews"][i]['replyReviews'] = [];
+                    }
+                    return service;
+
+                  },
+                  function(reponse){
+                     toastModel.showToast("error", "Error." + response.statusText);
+                  }
+                );
             };
 
             this.get_all_service = function(params, callback){

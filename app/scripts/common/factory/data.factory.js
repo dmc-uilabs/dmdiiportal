@@ -408,16 +408,19 @@ angular.module('dmc.data',[])
                     getReply : localhost + 'review/' + id + '/product_reviews?_sort=id&_order=ASC',
                     reviews : localhost + 'product/' + id + '/product_reviews?reviewId=0',
                     addReviews : localhost + 'product_reviews',
-                    get_authors : localhost + 'service_authors',
+                    get_authors : localhost + name + '/' + id + '/service_authors',
                     remove_authors : localhost + 'service_authors/' + id,
-                    get_tags : localhost + 'service_tags',
+                    get_tags : localhost + name + '/' + id + '/service_tags',
                     add_tags : localhost + 'service_tags',
                     remove_tags : localhost + 'service_tags/' + id,
-                    get_history : localhost + 'services_history',
+                    get_history : localhost + name + '/' + id + '/services_history',
                     get_run_history : localhost + name + '/' + id + '/services_run_history',
                     get_interfeces : localhost + 'services_interface',
                     get_servers : localhost + 'services_servers',
-                    add_servers : localhost + 'services_servers'
+                    add_servers : localhost + 'services_servers',
+                    get_specifications: localhost + name + '/' + id + '/specifications',
+                    get_inputs_outputs: localhost + name + '/' + id + '/service_input_output',
+                    get_statistics: localhost + name + '/' + id + '/services_statistic',
 
                 }
             },
