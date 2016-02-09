@@ -24,11 +24,11 @@ angular.module('dmc.onboarding', [
                 url: '/',
                 templateUrl: 'templates/onboarding/home.html',
                 controller: 'homeController'
-                
+
             });
-        $urlRouterProvider.otherwise('/1');
+        $urlRouterProvider.otherwise('/');
     })
     .service('onboardingModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel',
                             function (ajax, dataFactory, $stateParams, toastModel) {
-       
+
     }])
