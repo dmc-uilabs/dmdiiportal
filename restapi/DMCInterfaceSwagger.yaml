@@ -479,6 +479,7 @@ paths:
     get:
       tags:
         - service
+        - marketplace
       summary: Get information for a service
       description: Get information about a service...
       operationId: findServiceByID
@@ -512,11 +513,32 @@ paths:
           description: returns updated service
           schema:
             $ref: '#/definitions/Service'
+    patch:
+      tags:
+        - service
+        - marketplace
+      description: Update information for service by ID
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+        - name: service
+          in: body
+          schema:
+            $ref: '#/definitions/Service'
+      responses:
+        200:
+          description: returns updated service
+          schema:
+            $ref: '#/definitions/Service'
   '/services/{serviceID}/service_history':
     get:
       tags:
         - service
         - history
+        - marketplace
       description: Get service history by service id
       parameters:
         - name: serviceID
@@ -546,6 +568,7 @@ paths:
       tags:
         - service
         - document
+        - marketplace
       description: Get all documents in a service
       parameters:
         - name: serviceID
@@ -564,6 +587,7 @@ paths:
     get:
       tags:
         - service
+        - marketplace
       description: Get all authors for a service
       parameters:
         - name: serviceID
@@ -582,6 +606,7 @@ paths:
     get:
       tags:
         - service
+        - marketplace
       description: Get all statistics for a service
       parameters:
         - name: serviceID
@@ -600,6 +625,7 @@ paths:
     get:
       tags:
         - service
+        - marketplace
       description: Get all tags for a service
       parameters:
         - name: serviceID
@@ -618,6 +644,7 @@ paths:
     post:
       tags:
         - service
+        - marketplace
       description: Create a new service tag
       parameters:
         - in: body
@@ -631,6 +658,38 @@ paths:
           description: New service tag
           schema:
             $ref: '#/definitions/ServiceTag'
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get latest service tag
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (id, title, etc.)
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return latest service tag
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceTag'
   '/service_tags/{serviceTagID}':
     delete:
       tags:
@@ -643,7 +702,7 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        '204':
           description: OK
   '/service/{serviceID}/specifications':
     post:
@@ -1778,6 +1837,126 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Component'
+  '/product/{serviceID}/product_reviews':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get all reviews service in marketplace
+      parameters:
+        - name: serviceID
+          in: path
+          type: integer
+          description: service id in marketplace
+          required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (date, like, rating)
+          type: string
+          required: false
+        - name: rating
+          in: query
+          description: Sort by rating
+          type: integer
+          required: false
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+        - name: status
+          in: query
+          description: Sort by verified user
+          type: boolean
+          required: false
+      responses:
+        '200':
+          description: return reviews service in marketplace
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductReview'
+      tags:
+        - service
+        - marketplace
+      description: Get latest review service in marketplace
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (id, title, etc.)
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return latest review service in marketplace
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductReview'
+  '/product_reviews':
+    get:
+    post:
+      tags:
+        - service
+        - marketplace
+      description: Added new review or reply service in marketplace
+      parameters:
+        - in: body
+          name: body
+          description: Review object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/ProductReview'
+      responses:
+        '201':
+          description: return reviews service in marketplace
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductReview'
+  '/service_authors/{autorhId}':
+    delete:
+      tags:
+        - service
+        - marketplace
+      description: Remove  with service author
+      parameters:
+        - in: path
+          name: autorhId
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: OK
   '/follow-company-services':
     get:
       tags:

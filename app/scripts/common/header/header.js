@@ -8,7 +8,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
 .config(function($animateProvider) {
     $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
 })
-.directive('dmcTopHeader', ['$window', 'DMCUserModel', '$mdMenu', function($window, userModel, $mdMenu){
+.directive('dmcTopHeader', ['$window', 'DMCUserModel', '$mdMenu', '$rootScope', function($window, userModel, $mdMenu, $rootScope){
   return {
     restrict: 'A',
     scope: {
@@ -124,6 +124,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
 
         var initUserData = function(data) {
           $scope.userData = data;
+          $rootScope.userData = data;
           $scope.userProfileId = $scope.userData.profileId;
           $scope.userAccountId = $scope.userData.accountId;
           $scope.userCompanyId = $scope.userData.companyId;
