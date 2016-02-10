@@ -1,169 +1,173 @@
 <div class="page-header" layout-padding>
-	<md-toolbar>
-		<div class="md-toolbar-tools">
-			<div layout="column">
-				<h1 class="name-project">
-					<div sub-nav-menu-button current-page="1"></div>
-					{{projectData.title}}
-					<span class="small-text small-text--grey">Due in 20 days</span>
-				</h1>
-				<span ng-if="isPreview" class="project-manager">Submitted: {{projectData.projectManager}}</span>
-			</div>      
-		</div>
-	</md-toolbar>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <div layout="column">
+                <h1 class="name-project">
+                    <div sub-nav-menu-button current-page="1"></div>
+                    {{projectData.title}}
+                    <span class="small-text small-text--grey">Due in 20 days</span>
+                </h1>
+                <span ng-if="isPreview" class="project-manager">Submitted: {{projectData.projectManager}}</span>
+            </div>
+        </div>
+    </md-toolbar>
 </div>
 <div class="project-upload-services" layout="column">
-	<div layout="row" layout-align="start center">
-		<h2>{{(edit)? 'Edit': 'Register'}} Service</h2>
-	</div>
-	<div class="content">
-		<h2 flex>All fields are required</h2>
-		<div layout="row" ng-if="page1" class="page1">
-			<div flex="40" layout="column">
-				<div layout="row" layout-align="center center" ng-if="!flagAddServer">
-					<md-input-container flex>
-						<label>Server</label>
-						<md-select ng-model="serverModel" ng-change="selectItemDropDown(serverModel)"  md-container-class="margin-dropdown">
-							<md-option ng-repeat="server in servers track by $index"  ng-value="$index">{{server.name}} - {{server.ip}}</md-option>
-						</md-select>
-					</md-input-container>
-					<md-button class="md-raised add" ng-click="$parent.$parent.flagAddServer = true">
-						Add New Server
-					</md-button>
-				</div>
+    <div layout="row" layout-align="start center">
+        <h2>{{(edit)? 'Edit': 'Register'}} Service</h2>
+    </div>
+    <div class="content">
+        <h2 flex>All fields are required</h2>
+        <div layout="row" ng-if="page1" class="page1">
+            <div flex="40" layout="column">
+                <div layout="row" layout-align="start center" ng-if="!flagAddServer">
+                    <md-input-container flex>
+                        <label>Server</label>
+                        <md-select ng-model="serverModel" ng-change="selectItemDropDown(serverModel)"  md-container-class="margin-dropdown">
+                            <md-option ng-repeat="server in servers track by $index"  ng-value="$index">{{server.name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-button class="md-raised add" ng-click="$parent.$parent.flagAddServer = true">
+                            Add New Server
+                        </md-button>
+                    </md-input-container>
+                </div>
 
-				<div ng-if="flagAddServer" layout="row" layout-fill>
-					<form flex="100" novalidate name="addServer" ng-submit="saveServer(serverModel)">
-						<div  layout="row" layout-align="center center">
-						<md-input-container flex="35">
-							<label>Server Alias</label>
-							<input ng-model="serverModel.name" name="serverName" required>
-							<div ng-messages="addServer.serverName.$error">
-								<div ng-message="required">Server Alias is required.</div>
-							</div>
-						</md-input-container>
-						<md-input-container  flex="35">
-							<label>Server Host/IP</label>
-							<input ng-model="serverModel.ip" name="serverIp" required>
-							<div ng-messages="addServer.serverIp.$error">
-								<!-- <div ng-pattern='/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/' ng-message="pattern">x.x.x.x (x = 0-255)</div> -->
-								<div ng-message="required">Server Host/IP is required.</div>
-							</div>
-						</md-input-container>
-						<md-button ng-click="cancelServer()" class="md-raised add-server"> 
-							cancel
-						</md-button>
-						<md-button ng-disabled="addServer.$invalid" class="md-raised add-server">
-							save
-						</md-button>
-						</div>
-					</form>
-				</div>
+                <div ng-if="flagAddServer" layout="row" layout-fill>
+                    <form flex="100" novalidate name="addServer" ng-submit="saveServer(serverModel)">
+                        <div  layout="row" layout-align="center center">
+                            <md-input-container flex="35">
+                                <label>Server Alias</label>
+                                <input ng-model="serverModel.name" name="serverName" required>
+                                <div ng-messages="addServer.serverName.$error">
+                                    <div ng-message="required">Server Alias is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container  flex="35">
+                                <label>Server Host/IP</label>
+                                <input ng-model="serverModel.ip" name="serverIp" required>
+                                <div ng-messages="addServer.serverIp.$error">
+                                    <!-- <div ng-pattern='/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/' ng-message="pattern">x.x.x.x (x = 0-255)</div> -->
+                                    <div ng-message="required">Server Host/IP is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container>
+                                <md-button ng-click="cancelServer()" class="md-raised add-server">
+                                    cancel
+                                </md-button>
+                            </md-input-container>
+                            <md-input-container>
+                                <md-button ng-disabled="addServer.$invalid" class="md-raised add-server">
+                                    save
+                                </md-button>
+                            </md-input-container>
+                        </div>
+                    </form>
+                </div>
 
-				<h2 ng-show="serverModel == 0">Interface</h2>
-				<md-content class="interface" ng-show="serverModel == 0">
-					<md-list>
-						<md-list-item ng-click="selectInterface(item)" ng-repeat="item in interfeces" ng-class="(item.id == preview.id) ? 'selected' : ''">
-							{{item.name}}
-						</md-list-item>
-					</md-list>
-				</md-content>
-			</div>
-			<div flex="60" layout="column" class="preview" ng-show="preview.name">
-				<h2 flex>Preview Interface</h2>
-				<div layout="row">
-					<div flex="50">
-					<md-content>
-						<md-list>
-							<h2>Inputs</h2>
-							<md-divider></md-divider>
-							<md-list-item ng-repeat="item in preview.inputs track by $index">
-								{{item}}
-							</md-list-item>
-						</md-list>
-					</md-content>
-					</div>
-					<div flex="50">
-					<md-content>
-						<md-list>
-							<h2>Outputs</h2>
-							<md-divider></md-divider>
-							<md-list-item ng-repeat="item in preview.inputs track by $index">
-								{{item}}
-							</md-list-item>
-						</md-list>
-					</md-content>
-					</div>
-				</div>
-			</div>
-		</div>
+                <md-content dmc-interfaces
+                            server-ip="selectedServerIp"
+                            class="interface"
+                            selected-interface="getSelectedInterface"
+                            ng-if="selectedServerIp"></md-content>
+            </div>
+            <div flex="60" layout="column" class="preview" ng-if="selectedInterface != null">
+                <h2 flex>Preview Interface</h2>
+                <div layout="row">
+                    <div flex="50">
+                        <md-content>
+                            <md-list>
+                                <h2>Inputs</h2>
+                                <md-divider></md-divider>
+                                <md-list-item ng-repeat="item in selectedInterface.inParams track by $index">
+                                    <span>{{item.name}}</span>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </div>
+                    <div flex="50">
+                        <md-content>
+                            <md-list>
+                                <h2>Outputs</h2>
+                                <md-divider></md-divider>
+                                <md-list-item ng-repeat="item in selectedInterface.outParams track by $index">
+                                    {{item.name}}
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<div layout="column" ng-if="!page1" class="page2">
+        <div layout="column" ng-if="!page1" class="page2">
 
-			<md-content class="md-padding">
-				<div layout="row" layout-align="space-between center">
-					<md-input-container flex="40">
-						<label>Service Name</label>
-						<input ng-model="NewService.serviceName">
-					</md-input-container>
-					<md-input-container flex="40">
-						<label>Parent Component</label>
-						<md-select ng-model="NewService.parentComponent">
-							<md-option ng-repeat="service in allServices track by $index" ng-value="service.id">{{service.title}}</md-option>
-						</md-select>
-					</md-input-container>
-				</div>
-				<md-input-container>
-					<label>Description</label>
-					<textarea ng-model="NewService.serviceDescription" columns="4" md-maxlength="3000"></textarea>
-				</md-input-container>
-			</md-content>
+            <md-content class="md-padding">
+                <div layout="row" layout-align="space-between center">
+                    <md-input-container flex="40">
+                        <label>Service Name</label>
+                        <input ng-model="NewService.serviceName">
+                    </md-input-container>
+                    <!--<md-input-container flex="40">-->
+                        <!--<label>Parent Component</label>-->
+                        <!--<md-select ng-model="NewService.parentComponent">-->
+                            <!--<md-option ng-repeat="service in allServices track by $index" ng-value="service.id">{{service.title}}</md-option>-->
+                        <!--</md-select>-->
+                    <!--</md-input-container>-->
+                </div>
+                <md-input-container>
+                    <label>Description</label>
+                    <textarea ng-model="NewService.serviceDescription" columns="4" md-maxlength="3000"></textarea>
+                </md-input-container>
+            </md-content>
 
-			<md-content class="md-padding">
-				<div layout="column">
-					<form ng-submit="addTag(inputTag)" class="add-tags-form" layout="row" layout-align="start center">
-						<md-input-container>
-							<label>Enter Tag</label>
-							<input ng-model="inputTag">
-						</md-input-container>
-						<md-button ng-disabled="!inputTag" class="md-raised md-primary">Add</md-button>
-					</form>
-					<div layout="row" class="tabs-content" layout-wrap>
-						<md-chips ng-repeat="tag in service_tags track by $index">
-							<md-chip class="tags-chip">
-								{{tag.name}}
-								<md-button aria-label="close" ng-click="deleteTag($index)" class="md-icon-button">
-									<ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
-								</md-button>
-							</md-chip>
-						</md-chips>
-					</div>
-				</div>
-			</md-content>
+            <md-content class="md-padding">
+                <div layout="column">
+                    <form ng-submit="addTag(inputTag)" class="add-tags-form" layout="row" layout-align="start center">
+                        <md-input-container>
+                            <label>Enter Tag</label>
+                            <input ng-model="inputTag">
+                        </md-input-container>
+                        <md-button ng-disabled="!inputTag" class="md-raised md-primary">Add</md-button>
+                    </form>
+                    <div layout="row" class="tabs-content" layout-wrap>
+                        <md-chips ng-repeat="tag in service_tags track by $index">
+                            <md-chip class="tags-chip">
+                                {{tag.name}}
+                                <md-button aria-label="close" ng-click="deleteTag($index)" class="md-icon-button">
+                                    <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
+                                </md-button>
+                            </md-chip>
+                        </md-chips>
+                    </div>
+                </div>
+            </md-content>
 
-			<md-divider></md-divider>
+            <md-divider></md-divider>
 
-			<md-content class="md-padding">
-				<div ui-widget-upload-documents class="content-panel" product="true" auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
-			</md-content>
-		</div>
+            <md-content class="md-padding">
+                <div ui-widget-upload-documents class="content-panel" product="true" auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
+            </md-content>
+        </div>
 
-		<div layout="row" layout-align="end center">
-			<md-button class="md-raised" ng-if="page1" ui-sref="project.services">
-				Cancel
-			</md-button>
+        <div layout="row" layout-align="end center">
+            <md-button class="md-raised" ng-if="page1" ui-sref="project.services">
+                Cancel
+            </md-button>
 
-			<md-button class="md-primary md-raised" ng-if="page1" ng-disabled="serverModel != 0" ng-click="next()">
-				Next
-			</md-button>
+            <md-button class="md-primary md-raised" ng-if="page1" ng-disabled="serverModel != 0" ng-click="next()">
+                Next
+            </md-button>
 
-			<md-button class="md-raised" ng-if="!page1" ng-click="back()">
-				Back
-			</md-button>
-			 <!-- ng-disabled="!NewService.serviceName || !NewService.parentComponent || !NewService.serviceDescription || !tags.length" -->
-			<md-button class="md-primary md-raised" ng-disabled="!NewService.serviceName || (!NewService.parentComponent && NewService.parentComponent !== 0) || !NewService.serviceDescription || !service_tags.length" ng-if="!page1" ng-click="finish()">
-				Finish
-			</md-button>
-		</div>
-	</div>
+            <md-button class="md-raised" ng-if="!page1" ng-click="back()">
+                Back
+            </md-button>
+            <!-- ng-disabled="!NewService.serviceName || !NewService.parentComponent || !NewService.serviceDescription || !tags.length" -->
+            <!--<md-button class="md-primary md-raised" ng-disabled="!NewService.serviceName || (!NewService.parentComponent && NewService.parentComponent !== 0) || !NewService.serviceDescription || !service_tags.length" ng-if="!page1" ng-click="finish()">-->
+            <md-button class="md-primary md-raised" ng-disabled="!NewService.serviceName || !NewService.serviceDescription || !service_tags.length" ng-if="!page1" ng-click="finish()">
+                Finish
+            </md-button>
+        </div>
+    </div>
 </div>

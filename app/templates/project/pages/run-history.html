@@ -25,10 +25,10 @@
         <table md-data-table>
             <thead md-order="sort" md-trigger="onOrderChange">
             <tr>
-                <th name="Run Date" order-by="date"></th>
+                <th name="Run Date" order-by="startDate"></th>
                 <th name="Run By" order-by="runBy"></th>
                 <th name="Run Time" order-by="runTime"></th>
-                <th name="Results" order-by="results"></th>
+                <th name="Results" order-by="status"></th>
             </tr>
             </thead>
             <tbody>
@@ -37,13 +37,13 @@
                     {{item.date}}
                 </td>
                 <td>
-                    <a href="" >{{item.runBy}}</a>
+                    <a href="/profile.php#/{{item.accountId}}" >{{item.runBy}}</a>
                 </td>
                 <td>
-                    {{item.runTime}}s
+                    {{item.runTime}}s.
                 </td>
-                <td style="color:{{(item.results == 'Success') ? '#65AF3F': 'red'}}">
-                    <a href="" ng-click="openResults(item)">{{item.results}}</a>
+                <td ng-style="{color: (item.status == 'success' ? '#65AF3F': 'red')}">
+                    <a ng-click="openResults(item)">{{item.status}}</a>
                 </td>
             </tr>
             <tr ng-if="history.length == 0">

@@ -43,68 +43,31 @@ angular.module('dmc.project')
             });
         }
 }])
-.controller("ModalResultsController", ['$scope', '$mdDialog', 'history', function ($scope, $mdDialog, history) {
-    $scope.history = history;
+.controller("ModalResultsController", [
+        '$scope',
+        '$state',
+        '$mdDialog',
+        '$stateParams',
+        'history',
+        function (
+            $scope,
+            $state,
+            $mdDialog,
+            $stateParams,
+            history) {
 
-    $scope.inputs = [
-        "Height: 20ft",
-        "Length: 20ft",
-        "Height: 20ft",
-        "Length: 20ft",
-        "Height: 20ft",
-        "Length: 20ft",
-        "Height: 20ft",
-        "Length: 20ft",
-        "Height: 20ft",
-        "Length: 20ft",
-        "Height: 20ft",
-        "Length: 20ft",
-        "Height: 20ft",
-        "Length: 20ft",
-        "Height: 20ft",
-        "Length: 20ft",
-        "Height: 20ft",
-        "Length: 20ft",
-        "Height: 20ft",
-        "Length: 20ft",
-        "Height: 20ft",
-        "Length: 20ft",
-        "Height: 20ft",
-        "Length: 20ft",
-    ];
-    $scope.outputs = [
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-        "Area: 400 square ft",
-    ];
+            $scope.history = history;
 
-    $scope.cancel = function(){
-        $mdDialog.cancel();
-    }
-    $scope.rerun = function(){
-        $mdDialog.hide();
-    }
-}]);
+            $scope.cancel = function(){
+                $mdDialog.cancel();
+            };
+            $scope.rerun = function(){
+                $scope.cancel();
+                var dataSearch = $stateParams;
+                dataSearch.rerun = history.id;
+                $state.go('project.run-services', dataSearch);
+            };
+
+        }
+    ]
+);

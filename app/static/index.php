@@ -102,8 +102,6 @@ return call_user_func(function () {
 	}
 });
 
-
-
 function addMore($item){
 	$item['specificationsData'] = json_decode(httpResponse(dbUrl().$item['specifications'], null, null),true);
 	if(count($item['specificationsData']) > 0){

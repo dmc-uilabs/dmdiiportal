@@ -99,28 +99,82 @@
 			md-content{
 				margin-bottom: 0px;
 				padding: 0px;
-				border: 1px solid #b6b6b6;
+                border: 1px solid #ddd;
 			}
 			.interface{
-				md-list{
-					padding: 0;
-					md-list-item{
-						height: 36px;
-						min-height: 36px;
-						&.selected{
-							background-color: #65AF3F;
-						}
-						.md-list-item-inner{
-							min-height: 36px;
-						}
-						&:hover{
-							background-color: #eee;
-							button{
-								background-color: transparent;
-							}
-						}
-					}
-				}
+              .loading-liner{
+                height: 5px;
+                width: 100%;
+              }
+              .folder-title,
+              .main-title{
+                outline: none;
+                margin: 13px 0 3px 0;
+                font-size: 14px;
+                color: gray;
+                cursor: pointer;
+                ng-md-icon{
+                  fill: gray;
+                }
+                span{
+                  margin-top: -2px;
+                }
+                &:hover{
+                  text-decoration: underline;
+                }
+              }
+              .main-title{
+                font-size: 19px;
+                color: #333;
+                margin-left: 8px;
+                span{
+                  margin-top: 0px;
+                }
+              }
+              .current-folder{
+                color: #333;
+                cursor: default;
+                ng-md-icon{
+                  fill: #333;
+                }
+                &:hover{
+                  text-decoration: none;
+                }
+              }
+              .folder-title{
+
+              }
+				ul{
+                  list-style: none;
+                  margin: 0;
+                  padding-left: 0;
+                  li{
+                    cursor: pointer;
+                    outline: none;
+                    .name {
+                      padding: 7px 8px;
+                      font-size: 14px;
+                      border-top: 1px solid #ddd;
+                      ng-md-icon{
+                        margin-right: 8px;
+                      }
+                      &:hover {
+                        background-color: #f6f6f6;
+                      }
+                    }
+                    &:first-child{
+                      .name{
+                        border-top: none;
+                      }
+                    }
+                    &.selected{
+                      .name:hover,
+                      .name {
+                        background-color: #64B045;
+                      }
+                    }
+                  }
+                }
 			}
 			md-input-container{
 				div{
@@ -134,7 +188,7 @@
 			}
 		}
 		h2{
-			margin: 0;
+			margin: 0 0 8px 0;
 			text-transform: none;
 			font-weight: normal;
 		}
@@ -144,8 +198,10 @@
 			line-height: 36px;
 			min-width: 70px;
 			text-transform: none;
+            margin-right: 0;
 		}
 		.add-server{
+            margin-right: 0;
 			height: 36px;
 			min-height: 36px;
 			line-height: 36px;
@@ -271,6 +327,7 @@
 		a{
 			text-decoration: none;
 			color: inherit;
+            cursor: pointer;
 			&:hover{
 				text-decoration: underline;
 			}
