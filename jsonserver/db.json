@@ -84,6 +84,12 @@
           "created_at": "1:15 PM"
         }
       ]
+    },
+    "onboarding": {
+      "profile": true,
+      "account": true,
+      "company": true,
+      "storefront": false
     }
   },
   "assign_users": [],

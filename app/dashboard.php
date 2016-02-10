@@ -94,6 +94,7 @@
         <div class="content-panel content-panel-dashboard" ui-widget-tasks columns="['title','project','dueDate','priority']" widget-title="'MY TASKS'"></div>
         <!-- Discussion -->
         <div class="content-panel content-panel-dashboard" ui-widget-discussions widget-data-type="'following'" widget-title="'FOLLOWING'"></div>
+        <div class="content-panel content-panel-dashboard" ui-widget-onboarding widget-title="'ONBOARDING'"></div>
       </div>
     </div>
 
@@ -145,6 +146,7 @@
     <script src="scripts/components/ui-widgets/services.directive.js"></script>
     <script src="scripts/components/ui-widgets/projects.directive.js"></script>
     <script src="scripts/components/ui-widgets/discussions.directive.js"></script>
+    <script src="scripts/components/ui-widgets/onboarding.directive.js"></script>
     <script src="scripts/common/models/task-model.js"></script>
     <script src="scripts/common/models/discussion-model.js"></script>
     <script src="scripts/common/header/header.js"></script>

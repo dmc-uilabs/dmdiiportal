@@ -37,6 +37,37 @@
 		}
 	}
 }
+
+.onboarding-widget{
+	padding: 0 16px;
+	.section{
+		padding: 16px 0;
+		
+		img{
+			height: auto;
+		}
+		.text{
+			padding: 0 16px;
+		}
+		h3{
+			font-weight: normal;
+			margin: 4px 0;
+		}
+		h2{
+			margin: 4px 0;
+			a{
+				text-decoration: none;
+				color: inherit;
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	md-divider{
+		width: 100%
+	}
+}
 .basic-informations{
 	padding: 36px;
 	h3{

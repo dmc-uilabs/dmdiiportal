@@ -15,9 +15,12 @@
 					<h2><a ng-href="{{'profile.php#/' + userData.profileId}}">Fill out your profile</a></h2>
 					<h3>Tell everyone about yourself and brag about your skills</h3>
 				</div>
-				<md-button class="md-raised md-primary dmc-button" flex="25">
+				<md-button class="md-raised md-primary dmc-button" ng-if="userData.onboarding.profile" flex="25">
 					Completed
 					<ng-md-icon icon="done" style="fill: #fff" size"14">
+				</md-button>
+				<md-button ng-href="{{'profile.php#/' + userData.profileId}}" class="md-raised dmc-button" ng-if="!userData.onboarding.profile" flex="25">
+					Go To
 				</md-button>
 			</div>
 
@@ -29,9 +32,12 @@
 					<h2><a ng-href="{{'account.php#/' + userData.accountId}}">Manage your account</a></h2>
 					<h3>Customize your account the way you want it</h3>
 				</div>
-				<md-button class="md-raised md-primary dmc-button" flex="25">
+				<md-button class="md-raised md-primary dmc-button" ng-if="userData.onboarding.account" flex="25">
 					Completed
 					<ng-md-icon icon="done" style="fill: #fff" size"14">
+				</md-button>
+				<md-button ng-href="{{'account.php#/' + userData.accountId}}" class="md-raised dmc-button" ng-if="!userData.onboarding.account" flex="25">
+					Go To
 				</md-button>
 			</div>
 
@@ -43,9 +49,12 @@
 					<h2><a ng-href="{{'company-profile.php#/' + userData.companyId}}">Fill out the company profile</a></h2>
 					<h3>Tell everyone about the company, its skills, and accomplishments</h3>
 				</div>
-				<md-button class="md-raised md-primary dmc-button" flex="25">
+				<md-button class="md-raised md-primary dmc-button" ng-if="userData.onboarding.company" flex="25">
 					Completed
 					<ng-md-icon icon="done" style="fill: #fff" size"14">
+				</md-button>
+				<md-button ng-href="{{'company-profile.php#/' + userData.companyId}}" class="md-raised dmc-button" ng-if="!userData.onboarding.company" flex="25">
+					Go To
 				</md-button>
 			</div>
 
@@ -57,9 +66,12 @@
 					<h2><a ng-href="{{'company.php#/' + userData.companyId + '/storefront?product=services'}}">Customize the company storefront</a></h2>
 					<h3>Market creations with a beautiful storefront</h3>
 				</div>
-				<md-button class="md-raised md-primary dmc-button" flex="25">
+				<md-button class="md-raised md-primary dmc-button" ng-if="userData.onboarding.storefront" flex="25">
 					Completed
 					<ng-md-icon icon="done" style="fill: #fff" size"14">
+				</md-button>
+				<md-button ng-href="{{'company.php#/' + userData.companyId + '/storefront?product=services'}}" class="md-raised dmc-button" ng-if="!userData.onboarding.storefront" flex="25">
+					Go To
 				</md-button>
 			</div>
 
