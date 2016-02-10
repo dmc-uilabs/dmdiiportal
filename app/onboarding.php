@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Company Profile</title>
+  <title>Onboarding</title>
 <!--  <base href="/">-->
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <!-- Place favicon.ico in the root directory -->
@@ -27,7 +27,7 @@
   <script src="/bower_components/modernizr/modernizr.js"></script>
   <!-- endbuild -->
 </head>
-<body ng-app="dmc.company-profile">
+<body ng-app="dmc.onboarding">
 
 <!--[if lt IE 10]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -72,10 +72,12 @@
 <script src="/bower_components/ui-autocomplete/autocomplete.js"></script>
 <script src="/bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
 <script src="/bower_components/angular-ui-sortable/sortable.min.js"></script>
+<script src="/bower_components/ng-autofocus/dist/ng-autofocus.js"></script>
+<script src="/bower_components/angular-route/angular-route.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
-<!-- build:js scripts/company-profile/index.js -->
+<!-- build:js scripts/onboarding/index.js -->
 <script src="scripts/socket/socket.io.js"></script>
 <script src="scripts/configs/ngMaterial-config.js"></script>
 <script src="scripts/common/header/header.js"></script>
@@ -83,27 +85,18 @@
 <script src="scripts/common/factory/location.factory.js"></script>
 <script src="scripts/components/ui-widgets/stars.directive.js"></script>
 <script src="scripts/components/ui-widgets/review.directive.js"></script>
-<script src="scripts/components/ui-widgets/tabs.directive.js"></script>
-<script src="scripts/components/members-card/members-card.js"></script>
-<script src="scripts/components/contacts-card/contacts-card.js"></script>
 <script src="scripts/common/factory/socket.factory.js"></script>
 <script src="scripts/common/factory/ajax.factory.js"></script>
 <script src="scripts/common/factory/data.factory.js"></script>
 <script src="scripts/common/models/file-upload.js"></script>
-<script src="scripts/company-profile/company-profile.js"></script>
-<script src="scripts/company-profile/controllers/edit.js"></script>
-<script src="scripts/company-profile/controllers/profile.js"></script>
-<script src="scripts/company-profile/directives/overview.js"></script>
-<script src="scripts/company-profile/directives/skills.js"></script>
-<script src="scripts/company-profile/directives/projects.js"></script>
-<script src="scripts/company-profile/directives/membership.js"></script>
-<script src="scripts/company-profile/directives/contact.js"></script>
-<script src="scripts/common/models/toast-model.js"></script>
-<script src="scripts/common/models/company-model.js"></script>
-<script src="scripts/common/models/account-model.js"></script>
-<script src="scripts/common/models/phone-model.js"></script>
+<script src="scripts/common/models/profile-model.js"></script>
 <script src="scripts/common/models/user-model.js"></script>
-<script src="scripts/common/models/zipcode-model.js"></script>
+<script src="scripts/common/models/toast-model.js"></script>
+
+<script src="scripts/onboarding/onboarding.js"></script>
+<script src="scripts/onboarding/controllers/home.js"></script>
+<script src="scripts/onboarding/controllers/basic-informations.js"></script>
+<script src="scripts/onboarding/controllers/terms-conditions.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
         <?php

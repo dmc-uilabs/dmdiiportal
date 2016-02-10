@@ -1,0 +1,37 @@
+<md-dialog flex="80" aria-label="View" class="basic-informations">
+	<md-content layout="column">
+		<div layout="row" flex="100" class="header">
+			<div layout="column">
+				<h2>Basic Information</h2>
+				<h3>Tell us some basic information to enter the site.</h3>
+			</div>
+		</div>
+		<form name="basic">
+			<div layout="row" flex="100" class="section">
+				<md-input-container flex="50" class="left-input">
+					<label>First Name</label>
+					<input type="text" ng-model="info.firstName">
+				</md-input-container>
+				<md-input-container flex="50" class="right-input">
+					<label>Last Name</label>
+					<input type="text" ng-model="info.lastName">
+				</md-input-container>
+			</div>
+			<div layout="row" flex="100" class="section">
+				<md-input-container flex="50" class="left-input">
+					<label>Email Address</label>
+					<input type="text" ng-model="info.email">
+				</md-input-container>
+				<md-input-container flex="50" class="right-input">
+					<label>company</label>
+					<input type="text" ng-model="info.company">
+				</md-input-container>
+			</div>
+		</form>
+		<div layout="row" layout-align="end center" class="button-aria">
+			<md-button class="dmc-button md-raised md-primary" ng-click="enter()" ng-disabled="!info.firstName || !info.lastName || !info.email">
+				ENTER SITE
+			</md-button>
+		</div>
+	</md-content>
+</md-dialog>

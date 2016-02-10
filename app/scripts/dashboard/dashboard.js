@@ -11,6 +11,7 @@ angular.module('dmc.dashboard', [
         'dmc.widgets.services',
         'dmc.widgets.projects',
         'dmc.widgets.discussions',
+        'dmc.widgets.onboarding',
         'ngMdIcons',
         'ngtimeago',
         'ui.router',

@@ -13,6 +13,7 @@ angular.module('dmc.company-profile', [
 	'dmc.socket',
 	'dmc.widgets.stars',
 	'dmc.widgets.review',
+    'dmc.widgets.tabs',
 	'dmc.component.members-card',
 	'dmc.component.contacts-card',
 	'dmc.common.header',
@@ -121,6 +122,33 @@ angular.module('dmc.company-profile', [
                     toastModel.showToast("error", "Error. The problem on the server (get Key Contacts).");
                 },"GET"
             );
+        };
+
+        // get company contacts
+        this.getMembers = function(id, callback){
+            ajax.get(dataFactory.getCompanyMembers(id),{},
+                function(response){
+                    var members = [];
+                    for(var i in response.data){
+                        ajax.get(dataFactory.profiles(id).get,{},
+                            function(response){
+                                members.push(response.data ? response.data : response);
+                            }
+                        )
+                    }
+                    callback(members);
+                }
+            );
+        };
+
+
+        this.getCompanyHistory = function(params, callback){
+            return ajax.get(dataFactory.companyURL($stateParams.companyId).history,
+                params,
+                function(response){
+                    callback(response.data)
+                }
+            )
         };
 
         this.get_company = function(id){

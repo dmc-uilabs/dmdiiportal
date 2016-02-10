@@ -1,107 +1,115 @@
 <div class="add-members">
-  <md-tabs md-dynamic-height md-border-bottom md-selected="selectedTab">
-    <md-tab label="Select Members to Invite">
-      <!-- Left Content Column -->
-    	<div layout="row">
-        <div class="content-column" layout="column" flex="70">
-          <md-toolbar class="add-members-header">
-            <h2>Search for Members to Invite</h2>
-          </md-toolbar>
-          <md-content class="add-members-active" layout="row" layout-padding layout-fill layout-align="center center">
-            <div layout="column" flex="20">
-              <md-input-container md-no-float>
-                <label>Members</label>
-                <md-select ng-model="membersModel" md-container-class="margin-dropdown">
-                  <md-option ng-repeat="m in members" value="{{m.val}}">
-                  	{{m.name}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
+    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedTab">
+        <md-tab label="Select Members to Invite">
+            <div class="container">
+              	<div layout="row">
+                    <!-- Left Content Column -->
+                    <div class="content-column" layout="column" flex="70">
+                        <md-toolbar class="add-members-header">
+                            <h2>Search for Members to Invite</h2>
+                        </md-toolbar>
+                        <md-content class="add-members-active" layout="row" layout-padding layout-fill layout-align="center center">
+                            <form ng-submit="searchMembers()" layout="row" class="search-box" flex>
+                                <md-input-container md-no-float flex>
+                                    <md-icon>
+                                		<ng-md-icon icon="search"></ng-md-icon>
+                              		</md-icon>
+                                    <input ng-model="searchText" type="text" placeholder="Search">
+                                </md-input-container>
+                            </form>
+                          <md-button class="md-raised" ng-click="showFavorites()" ng-disabled="favorites.length == 0 && !showFavoritesFlag">
+                              {{(showFavoritesFlag == false) ? 'Favorites(' + favorites.length + ')' : 'All'}}     
+                          </md-button>
+                          <md-button class="md-raised" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button>
+                        </md-content>
+
+                        <md-content class="md-padding top-content" layout="row">
+                            <div class="content-column" layout="column" flex="100">
+                                <div class="content-panel rfp-three">
+                                    
+                                    <md-divider ></md-divider>
+                                    <div class="content-panel-body">
+                                        <md-content layout="row" layout-wrap>
+                                            <div flex="33" ng-if="!showFavoritesFlag" class="container-member-card" ng-repeat="item in foundMembers">
+                                                <dmc-add-members-card
+                                                        compare-member="compareMember"
+                                                        invite-member="addToInvitation"
+                                                        favorite-member="addToFavorite"
+                                                        card-source="item"
+                                                        class="member-card">
+                                                </dmc-add-members-card>
+                                            </div>
+                                            <div flex="33" ng-if="showFavoritesFlag" class="container-member-card" ng-repeat="item in favorites">
+                                                <dmc-add-members-card
+                                                        compare-member="compareMember"
+                                                        invite-member="addToInvitation"
+                                                        favorite-member="addToFavorite"
+                                                        card-source="item"
+                                                        class="member-card">
+                                                </dmc-add-members-card>
+                                            </div>
+                                          </md-content>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-content>
+                    </div>
+                  <!-- Right Content Column -->
+                    <div class="content-column" layout="column" flex="29">
+                        <div dmc-selected-invitees class="content-panel invitees" invitees="invitees"></div>
+                        
+                    </div>
+              	</div>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-raised md-primary" ng-click="NextTab()" ng-disabled="invitees.length == 0">Next</md-button>
+                </div>
             </div>
-            <form ng-submit="searchMembers()" layout="row" class="search-box" flex>
-              <md-input-container md-no-float flex>
-                <md-icon>
-              		<ng-md-icon icon="search"></ng-md-icon>
-            		</md-icon>
-                <input ng-model="searchText" type="text" placeholder="Search">
-              </md-input-container>
-            </form>
-            <md-button class="md-raised">Favorites</md-button>
-            <md-button class="md-raised" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button>
-          </md-content>
+        </md-tab>
 
-          <md-content class="md-padding top-content" layout="column">
-            <md-toolbar class="add-members-header">
-               <h2>Recently Searched</h2>
-              <md-divider ></md-divider>
-            </md-toolbar>
-            <md-content layout="row" layout-wrap>
-            	<div flex="33" ng-if="item.isShow" class="container-member-card" ng-repeat="item in foundMembers">
-              	<div dmc-member-card 
-              			compare-member="compareMember" 
-              			invite-member="addToInvitation" 
-              			card-source="item"  
-              			class="member-card"></div>
-          			</div>
-            </md-content>
-          </md-content>
-        </div>
-        <!-- Right Content Column -->
-        <div class="content-column" layout="column" flex="29">
-          <div dmc-selected-invitees class="content-panel invitees" invitees="invitees"></div>
-          <div layout="row" class="button-aria" layout-align="end center">
-            <md-button class="md-raised md-primary" ng-click="NextTab()" ng-disabled="invitees.length == 0">Next</md-button>
-          </div>
-        </div>
-    	</div>
-    </md-tab>
+        <md-tab label="Send Message to Invited Members" ng-disabled="invitees.length == 0">
+            <div class="container">
+                <div layout="row" layout-margin layout-fill layout-padding>
+                    <!-- Left Content Column -->
+                    <div class="content-column" layout="column" flex="29">
+                        <div dmc-selected-invitees class="content-panel invitees" invitees="invitees"></div>
+                    </div>
 
-    <md-tab label="Send Message to Invited Members" ng-disabled="invitees.length == 0">
-      <div class="container">
-        <div layout="row" layout-margin layout-fill layout-padding>
-          <!-- Left Content Column -->
-          <div class="content-column" layout="column" flex="29">
-            <div dmc-selected-invitees class="content-panel invitees" invitees="invitees"></div>
-            <div layout="row" class="button-aria" layout-align="start center">
-              <md-button class="md-raised md-primary" ng-click="BackTab()">Back</md-button>
+                  <!-- Right Content Column -->
+                    <div class="content-column" layout="column" flex="70">
+                      <div class="content-panel rfp-four">
+                          <div class="content-panel-header">
+                              <md-toolbar>
+                                  <div class="md-toolbar-tools">
+                                      <h2>Create Message</h2>
+                                  </div>
+                              </md-toolbar>
+                          </div>
+                          <div class="content-panel-body">
+                              <md-content class="md-padding top-content">
+                                  <form name="form">
+                                      <div layout="row">
+                                          <md-input-container flex="100">
+                                              <label>Subject</label>
+                                              <input ng-model="sendMessage.subject" required>
+                                          </md-input-container>
+                                      </div>
+                                      <div layout="row">
+                                          <md-input-container flex="100">
+                                              <label>Message</label>
+                                              <textarea ng-model="sendMessage.message" columns="1" required></textarea>
+                                          </md-input-container>
+                                      </div>
+                                  </form>
+                              </md-content>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-raised md-primary" ng-click="BackTab()">Back</md-button>
+                    <md-button class="md-raised md-primary" ng-disabled="invitees.length == 0 || !form.$valid" ng-click="send()">Send</md-button>
+                </div>
             </div>
-          </div>
-
-          <!-- Right Content Column -->
-          <div class="content-column" layout="column" flex="70">
-              <div class="content-panel rfp-four">
-                  <div class="content-panel-header">
-                      <md-toolbar>
-                          <div class="md-toolbar-tools">
-                              <h2>Create Message</h2>
-                          </div>
-                      </md-toolbar>
-                  </div>
-                  <div class="content-panel-body">
-                      <md-content class="md-padding top-content">
-                          <form name="form">
-                          <div layout="row">
-                              <md-input-container flex="100">
-                                  <label>Subject</label>
-                                  <input ng-model="subject" required>
-                              </md-input-container>
-                          </div>
-                          <div layout="row">
-                              <md-input-container flex="100">
-                                  <label>Message</label>
-                                  <textarea ng-model="message" columns="1" required></textarea>
-                              </md-input-container>
-                          </div>
-                          </form>
-                      </md-content>
-                  </div>
-              </div>
-              <div layout="row" class="button-aria" layout-align="end center">
-                <md-button class="md-raised md-primary" ng-disabled="invitees.length == 0 || !form.$valid" href="/project.php#/rfp/blank/5">Send</md-button>
-              </div>
-          </div>
-        </div>
-      </div>
-    </md-tab>
-  </md-tabs>
+        </md-tab>
+    </md-tabs>
 </div>

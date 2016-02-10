@@ -196,60 +196,8 @@
 				</md-content>
 			</md-tab>
 
-			<md-tab label="History">
-				<md-content class="md-padding" layout="row">
-					<md-list flex class="company-profile-list">
-						<div class="md-no-sticky" layout="row" layout-align="space-between center">
-							<h2>Public</h2>
-							<a class="viewAll">View all</a>
-						</div>
-						<md-list-item>
-							<ng-md-icon icon="done_all" style="fill: grey;" size="25"></ng-md-icon>
-							<h2>First Name completed <a href="">The First Project</a></h2>
-							<span flex></span>
-							<h3>June 30</h3>
-						</md-list-item>
-						<md-list-item>
-							<ng-md-icon icon="done_all" style="fill: grey;" size="25"></ng-md-icon>
-							<h2>First Name completed <a href="">The Project</a></h2>
-							<span flex></span>
-							<h3>May 29</h3>
-						</md-list-item>
-						<md-list-item>
-							<ng-md-icon icon="done_all" style="fill: grey;" size="25"></ng-md-icon>
-							<h2>First Name completed <a href="">The First Project</a></h2>
-							<span flex></span>
-							<h3>June 30</h3>
-						</md-list-item>
-					</md-list>
-
-					<span class="vertikal-divider"></span>
-
-					<md-list flex class="company-profile-list">
-						<div class="md-no-sticky" layout="row" layout-align="space-between center">
-							<h2>Mutual</h2>
-							<a class="viewAll">View all</a>
-						</div>
-						<md-list-item>
-							<ng-md-icon icon="person" style="fill: grey;" size="25"></ng-md-icon>
-							<h2>You added First Name as a contact</h2>
-							<span flex></span>
-							<h3>June 30</h3>
-						</md-list-item>
-						<md-list-item>
-							<ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
-							<h2>You rated First Name's <a href="">Product Name.</a><a href="">View your review.</a></h2>
-							<span flex></span>
-							<h3>May 01</h3>
-						</md-list-item>
-						<md-list-item>
-							<ng-md-icon icon="supervisor_account" style="fill: grey;" size="25"></ng-md-icon>
-							<h2>You worked with First Name on <a href="">The First Project.</a></h2>
-							<span flex></span>
-							<h3>March 30</h3>
-						</md-list-item>
-					</md-list>
-				</md-content>
+			<md-tab label="HISTORY">
+				<ui-widget-tabs-history data="history"></ui-widget-tabs-history>
 			</md-tab>
 
 			<md-tab label="Contact">
@@ -327,18 +275,18 @@
 
 		<!--MEMBERS -->
 
-		<div class="company-members">
+		<div class="company-members" ng-if="company.members.length">
 			<div layout="row" layout-align="space-between center">
 				<div layout="row" layout-align="center center">
 					<h3>MEMBERS</h3>
-					<h4>11,000 total</h4>
+					<h4>{{company.members.length}} total</h4>
 				</div>
 				<a class="viewAll" href="">View All</a>
 			</div>
 			<md-divider></md-divider>
 			<div layout="row">
-				<div flex="20" class="padding-card" ng-repeat="item in [0,1,2,3,4]">
-					<dmc-members-card></dmc-members-card>
+				<div flex="20" class="padding-card" ng-repeat="item in company.members">
+					<dmc-members-card card-source="item"></dmc-members-card>
 				</div>
 			</div>
 		</div>

@@ -87,13 +87,17 @@
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
+    <script src="scripts/components/ui-widgets/stars.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
-    <script src="scripts/components/rfp-invite/rfp-invite.directive.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
+    <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
-    <script src="scripts/add_members/add-members.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
+    <script src="scripts/common/models/member-model.js"></script>
+
+    <script src="scripts/add_members/add-members.js"></script>
+    <script src="scripts/add_members/controllers/home.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

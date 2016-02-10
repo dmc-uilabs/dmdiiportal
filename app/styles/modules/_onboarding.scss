@@ -1,0 +1,92 @@
+.onboarding-home{
+	padding: 8px;
+	.section{
+		padding: 16px 0;
+		&.first{
+			padding-top: 46px;
+		}
+		img{
+			height: auto;
+		}
+		.text{
+			padding: 0 16px;
+		}
+		h3{
+			font-weight: normal;
+			margin: 4px 0;
+			a{
+				text-decoration: none;
+				color: inherit;
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+		h2{
+			margin: 4px 0;
+			a{
+				text-decoration: none;
+				color: inherit;
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+		.md-button.dmc-button{
+			text-transform: uppercase;
+		}
+	}
+}
+
+.onboarding-widget{
+	padding: 0 16px;
+	.section{
+		padding: 16px 0;
+		
+		img{
+			height: auto;
+		}
+		.text{
+			padding: 0 16px;
+		}
+		h3{
+			font-weight: normal;
+			margin: 4px 0;
+		}
+		h2{
+			margin: 4px 0;
+			a{
+				text-decoration: none;
+				color: inherit;
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	md-divider{
+		width: 100%
+	}
+}
+.basic-informations{
+	padding: 36px;
+	h3{
+		font-weight: normal;
+		margin: 4px 0;
+	}
+	h2{
+		margin: 4px 0;
+	}
+	.header{
+		margin-bottom: 36px;
+	}
+	.left-input{
+		padding-right: 16px;
+	}
+	.right-input{
+		padding-left: 16px;
+	}
+	.button-aria{
+		margin-top: 36px;
+	}
+}

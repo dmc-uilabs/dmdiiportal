@@ -42,7 +42,7 @@ paths:
           description: Sends the account with accountID
           schema:
             $ref: '#/definitions/UserAccount'
-    put:
+    patch:
       tags:
       - account
       description: Update account information by account id
@@ -113,7 +113,7 @@ paths:
           description: Sends the notification information
           schema:
             $ref: '#/definitions/AccountNotificationSetting'
-    put:
+    patch:
       tags:
       - account
       description: Update account notification by id
@@ -177,7 +177,7 @@ paths:
           description: Sends the server information
           schema:
             $ref: '#/definitions/UserAccountServer'
-    put:
+    patch:
       tags:
       - account
       description: Update server information by server id
@@ -316,9 +316,9 @@ paths:
           required: false
           collectionFormat: multi
           enum:
-            - 7d 
+            - 7d
             - 1m
-            - 1y  
+            - 1y
       responses:
         '200':
           description: Return favorite services/companies. One response object has service and serviceId or component and componentId.
@@ -331,13 +331,13 @@ paths:
                   type: integer
                 accountId:
                   type: integer
-                serviceId: 
+                serviceId:
                   type: integer
-                componentId: 
+                componentId:
                   type: integer
-                service: 
+                service:
                   $ref: '#/definitions/Service'
-                component: 
+                component:
                   $ref: '#/definitions/Component'
   /projects:
     get:
@@ -479,6 +479,7 @@ paths:
     get:
       tags:
         - service
+        - marketplace
       summary: Get information for a service
       description: Get information about a service...
       operationId: findServiceByID
@@ -493,7 +494,7 @@ paths:
           description: send the service with serviceID
           schema:
             $ref: '#/definitions/Service'
-    put:
+    patch:
       tags:
       - service
       description: Update information for service by ID
@@ -512,11 +513,62 @@ paths:
           description: returns updated service
           schema:
             $ref: '#/definitions/Service'
+    patch:
+      tags:
+        - service
+        - marketplace
+      description: Update information for service by ID
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+        - name: service
+          in: body
+          schema:
+            $ref: '#/definitions/Service'
+      responses:
+        200:
+          description: returns updated service
+          schema:
+            $ref: '#/definitions/Service'
+  '/services/{serviceID}/service_history':
+    get:
+      tags:
+        - service
+        - history
+        - marketplace
+      description: Get service history by service id
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+        - name: period
+          in: query
+          description: Filter by period
+          type: string
+          required: false
+        - name: section
+          in: query
+          description: Filter by section
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return service history
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceHistory'
   '/services/{serviceID}/service-documents':
     get:
       tags:
         - service
         - document
+        - marketplace
       description: Get all documents in a service
       parameters:
         - name: serviceID
@@ -531,6 +583,127 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ServiceDocument'
+  '/services/{serviceID}/service_authors':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get all authors for a service
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+      responses:
+        '200':
+          description: return all authors for a service
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceAuthor'
+  '/services/{serviceID}/services_statistic':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get all statistics for a service
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+      responses:
+        '200':
+          description: return all statistics for a service
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceStats'
+  '/services/{serviceID}/service_tags':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get all tags for a service
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+      responses:
+        '200':
+          description: return all tags for a service
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceTag'
+  '/service_tags':
+    post:
+      tags:
+        - service
+        - marketplace
+      description: Create a new service tag
+      parameters:
+        - in: body
+          name: ServiceTag
+          description: Service tag to be created
+          required: false
+          schema:
+            $ref: '#/definitions/ServiceTag'
+      responses:
+        '201':
+          description: New service tag
+          schema:
+            $ref: '#/definitions/ServiceTag'
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get latest service tag
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (id, title, etc.)
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return latest service tag
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceTag'
+  '/service_tags/{serviceTagID}':
+    delete:
+      tags:
+        - service
+      description: Delete a service tag
+      parameters:
+        - in: path
+          name: serviceTagID
+          description: ID of service tag
+          required: true
+          type: string
+      responses:
+        '204':
+          description: OK
   '/service/{serviceID}/specifications':
     post:
       tags:
@@ -682,9 +855,37 @@ paths:
           type: string
           description: ID of the profile
           required: true
+        - name: _embed
+          in: query
+          description: Add profile reviews associed with the profile
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+          enum:
+            - profile_reviews
       responses:
         '200':
           description: send the profile with profileID
+          schema:
+            $ref: '#/definitions/Profile'
+    patch:
+      tags:
+        - profile
+      description: Update information for profile by ID
+      parameters:
+        - name: profileID
+          in: path
+          type: string
+          description: ID of the profile
+          required: true
+        - name: profile
+          in: body
+          schema:
+            $ref: '#/definitions/Profile'
+      responses:
+        200:
+          description: returns updated profile
           schema:
             $ref: '#/definitions/Profile'
   '/profiles/{profileID}/profile_reviews':
@@ -762,7 +963,7 @@ paths:
             items:
               $ref: '#/definitions/CompanyImage'
   '/company_images/{imageID}':
-    put:
+    patch:
       tags:
       - company
       description: Update company image by ID
@@ -858,7 +1059,7 @@ paths:
             items:
               $ref: '#/definitions/CompanySkillImage'
   '/company_skill_images/{imageID}':
-    put:
+    patch:
       tags:
       - company
       description: Update company skill image by ID
@@ -975,7 +1176,7 @@ paths:
           required: false
           collectionFormat: multi
           enum:
-            - 7d 
+            - 7d
             - 1m
             - 1y
       responses:
@@ -1064,7 +1265,7 @@ paths:
           required: false
           collectionFormat: multi
           enum:
-            - 7d 
+            - 7d
             - 1m
             - 1y
       responses:
@@ -1106,7 +1307,7 @@ paths:
           in: query
           description: Select all featured services and/or components
           type: array
-          items: 
+          items:
             type: string
           collectionFormat: multi
           enum:
@@ -1229,7 +1430,7 @@ paths:
       responses:
         '200':
           description: OK
-    put:
+    patch:
       tags:
       - company
       description: Update company videos by ID
@@ -1280,7 +1481,7 @@ paths:
       responses:
         '200':
           description: OK
-    put:
+    patch:
       tags:
       - company
       description: Update company contact by ID
@@ -1570,7 +1771,7 @@ paths:
           required: false
           collectionFormat: multi
           enum:
-            - 7d 
+            - 7d
             - 1m
             - 1y
       responses:
@@ -1654,7 +1855,7 @@ paths:
           required: false
           collectionFormat: multi
           enum:
-            - 7d 
+            - 7d
             - 1m
             - 1y
       responses:
@@ -1664,6 +1865,126 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Component'
+  '/product/{serviceID}/product_reviews':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get all reviews service in marketplace
+      parameters:
+        - name: serviceID
+          in: path
+          type: integer
+          description: service id in marketplace
+          required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (date, like, rating)
+          type: string
+          required: false
+        - name: rating
+          in: query
+          description: Sort by rating
+          type: integer
+          required: false
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+        - name: status
+          in: query
+          description: Sort by verified user
+          type: boolean
+          required: false
+      responses:
+        '200':
+          description: return reviews service in marketplace
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductReview'
+      tags:
+        - service
+        - marketplace
+      description: Get latest review service in marketplace
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (id, title, etc.)
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return latest review service in marketplace
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductReview'
+  '/product_reviews':
+    get:
+    post:
+      tags:
+        - service
+        - marketplace
+      description: Added new review or reply service in marketplace
+      parameters:
+        - in: body
+          name: body
+          description: Review object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/ProductReview'
+      responses:
+        '201':
+          description: return reviews service in marketplace
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductReview'
+  '/service_authors/{autorhId}':
+    delete:
+      tags:
+        - service
+        - marketplace
+      description: Remove  with service author
+      parameters:
+        - in: path
+          name: autorhId
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: OK
   '/follow-company-services':
     get:
       tags:
@@ -1836,6 +2157,23 @@ paths:
             type: array
             items:
               $ref: '#/definitions/IndividualDiscussion'
+    post:
+      tags:
+        - discussion
+        - community
+      description: Create a new individual discussions
+      parameters:
+        - in: body
+          name: Discussion
+          description: Individual discussions to be created
+          required: false
+          schema:
+            $ref: '#/definitions/IndividualDiscussion'
+      responses:
+        '201':
+          description: New individual discussion comment
+          schema:
+            $ref: '#/definitions/IndividualDiscussion'
   '/individual-discussion/{individualDiscussionID}/individual-discussion-comments':
     get:
       tags:
@@ -1888,7 +2226,7 @@ paths:
       responses:
         '200':
           description: OK
-    put:
+    patch:
       tags:
         - discussion
         - community
@@ -2096,13 +2434,13 @@ definitions:
     type: object
     properties:
       id:
-        type: integer
+        type: string
       companyId:
-        type: integer
+        type: string
       position:
         type: integer
       serviceId:
-        type: integer
+        type: string
       service:
         type: object
         properties:
@@ -2206,13 +2544,13 @@ definitions:
     type: object
     properties:
       id:
-        type: integer
+        type: string
       companyId:
-        type: integer
+        type: string
       position:
         type: integer
       serviceId:
-        type: integer
+        type: string
       component:
         type: object
         properties:
@@ -2528,6 +2866,62 @@ definitions:
       owner:
         type: string
       file:
+        type: string
+  ServiceAuthor:
+    type: object
+    properties:
+      id:
+        type: string
+      serviceId:
+        type: string
+      display_name:
+        type: string
+      jobTitle:
+        type: string
+      follow:
+        type: boolean
+      avatar:
+        type: string
+      company:
+        type: string
+  ServiceStatsItem:
+    type: object
+    properties:
+      today:
+        type: number
+      week:
+        type: number
+      all:
+        type: number
+  ServiceStats:
+    type: object
+    properties:
+      id:
+        type: string
+      serviceId:
+        type: string
+      success_rate:
+        $ref: '#/definitions/ServiceStatsItem'
+      successful_runs:
+        $ref: '#/definitions/ServiceStatsItem'
+      incomplete_runs:
+        $ref: '#/definitions/ServiceStatsItem'
+      unavailable_runs:
+        $ref: '#/definitions/ServiceStatsItem'
+      runs_by_users:
+        $ref: '#/definitions/ServiceStatsItem'
+      unique_users:
+        $ref: '#/definitions/ServiceStatsItem'
+      average_time:
+        $ref: '#/definitions/ServiceStatsItem'
+  ServiceTag:
+    type: object
+    properties:
+      id:
+        type: string
+      serviceId:
+        type: string
+      name:
         type: string
   ServiceDocument:
     type: object
@@ -2871,13 +3265,38 @@ definitions:
         type: string
       individual-discussionId:
         type: string
-        
   FollowingCompany:
     type: object
     properties:
       id:
-        type: integer
+        type: string
       accountId:
-        type: integer
+        type: string
       companyId:
-        type: integer
+        type: string
+  ServiceHistory:
+    type: object
+    properties:
+      id:
+        type: string
+      serviceId:
+        type: string
+      title:
+        type: string
+      date:
+        type: string
+        format: dateTime
+      user:
+        type: string
+      link:
+        type: string
+      section:
+        type: string
+        enum:
+          - project
+          - marketplace
+      period:
+        type: string
+        enum:
+          - today
+          - week

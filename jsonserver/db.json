@@ -84,6 +84,12 @@
           "created_at": "1:15 PM"
         }
       ]
+    },
+    "onboarding": {
+      "profile": true,
+      "account": true,
+      "company": true,
+      "storefront": false
     }
   },
   "assign_users": [],
@@ -326,6 +332,103 @@
       "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
     }
   ],
+  "company_history": [
+    {
+      "type": "completed",
+      "link": "",
+      "period": "today",
+      "section": "public",
+      "user": "Timmy Thomas",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas completed The First Project",
+      "companyId": 1,
+      "id": 1
+    },
+    {
+      "type": "completed",
+      "link": "",
+      "period": "week",
+      "section": "public",
+      "user": "Timmy Thomas",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas completed The First Project",
+      "companyId": 1,
+      "id": 2
+    },
+    {
+      "type": "completed",
+      "link": "",
+      "period": "week",
+      "section": "public",
+      "user": "Timmy Thomas",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas completed The First Project",
+      "companyId": 1,
+      "id": 3
+    },
+    {
+      "type": "completed",
+      "link": "",
+      "period": "all",
+      "section": "public",
+      "user": "Timmy Thomas",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas completed The First Project",
+      "id": 4
+    },
+    {
+      "type": "added",
+      "link": "",
+      "period": "today",
+      "section": "mutual",
+      "user": "Adam Marks",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "You added Adam Marks as a contact",
+      "companyId": 1,
+      "id": 5
+    },
+    {
+      "type": "rated",
+      "link": "",
+      "period": "today",
+      "section": "mutual",
+      "user": "Adam Marks",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "You rated Adam Marks Product Name.View your review.",
+      "companyId": 1,
+      "id": 6
+    },
+    {
+      "type": "worked",
+      "link": "",
+      "period": "today",
+      "section": "mutual",
+      "user": "Adam Marks",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "You worked with First Name on The First Project.",
+      "companyId": 1,
+      "id": 7
+    },
+    {
+      "type": "worked",
+      "link": "",
+      "period": "week",
+      "section": "mutual",
+      "user": "Adam Marks",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "You worked with First Name on The First Project.",
+      "companyId": 1,
+      "id": 8
+    }
+  ],
   "following_companies": [
     {
       "accountId": 1,
@@ -337,62 +440,7 @@
     {
       "id": 1,
       "companyId": 1,
-      "position": "Technical",
-      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
-      "display_name": "Bob Smith",
-      "jobTitle": "Head of Engineering",
-      "phone": "111-111-1111",
-      "email": "bobs@gmail.com"
-    },
-    {
-      "id": 2,
-      "companyId": 1,
-      "position": "Legal",
-      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
-      "display_name": "Bob Smith",
-      "jobTitle": "Head of Engineering",
-      "phone": "111-111-1111",
-      "email": "bobs@gmail.com"
-    },
-    {
-      "id": 3,
-      "companyId": 1,
-      "position": "Admin",
-      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
-      "display_name": "Bob Smith",
-      "jobTitle": "Head of Engineering",
-      "phone": "111-111-1111",
-      "email": "bobs@gmail.com"
-    },
-    {
-      "id": 4,
-      "companyId": 1,
-      "position": "Communication",
-      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
-      "display_name": "Bob Smith",
-      "jobTitle": "Head of Engineering",
-      "phone": "111-111-1111",
-      "email": "bobs@gmail.com"
-    },
-    {
-      "id": 5,
-      "companyId": 1,
-      "position": "R&D",
-      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
-      "display_name": "Bob Smith",
-      "jobTitle": "Head of Engineering",
-      "phone": "111-111-1111",
-      "email": "bobs@gmail.com"
-    },
-    {
-      "id": 6,
-      "companyId": 1,
-      "position": "General",
-      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
-      "display_name": "Bob Smith",
-      "jobTitle": "Head of Engineering",
-      "phone": "111-111-1111",
-      "email": "bobs@gmail.com"
+      "profileId": 1
     }
   ],
   "accounts": [
@@ -1957,6 +2005,7 @@
       "user": "Timmy Thomas",
       "date": "2016-02-02 12:10:31",
       "title": "Timmy Thomas successfully ran the service.",
+      "serviceId": 1,
       "id": 1
     },
     {
@@ -1967,6 +2016,7 @@
       "user": "Timmy Thomas",
       "date": "2016-02-02 12:10:31",
       "title": "Timmy Thomas successfully ran the service.",
+      "serviceId": 1,
       "id": 2
     },
     {
@@ -1977,6 +2027,7 @@
       "user": "Timmy Thomas",
       "date": "2016-02-02 12:10:31",
       "title": "Timmy Thomas successfully ran the service.",
+      "serviceId": 1,
       "id": 3
     },
     {
@@ -1997,6 +2048,7 @@
       "user": "Timmy Thomas",
       "date": "2016-02-02 12:10:31",
       "title": "Timmy Thomas Incomplete ran the service.",
+      "serviceId": 1,
       "id": 5
     },
     {
@@ -2007,6 +2059,7 @@
       "user": "Timmy Thomas",
       "date": "2016-02-02 12:10:31",
       "title": "Timmy Thomas Incomplete ran the service.",
+      "serviceId": 1,
       "id": 6
     },
     {
@@ -2017,6 +2070,7 @@
       "user": "Timmy Thomas",
       "date": "2016-02-02 12:10:31",
       "title": "Timmy Thomas Incomplete ran the service.",
+      "serviceId": 1,
       "id": 7
     },
     {
@@ -2027,6 +2081,7 @@
       "user": "Timmy Thomas",
       "date": "2016-02-02 12:10:31",
       "title": "Timmy Thomas ran the service unsuccessfully.",
+      "serviceId": 1,
       "id": 8
     },
     {
@@ -2037,6 +2092,7 @@
       "user": "Timmy Thomas",
       "date": "2016-02-02 12:10:31",
       "title": "Timmy Thomas ran the service unsuccessfully.",
+      "serviceId": 1,
       "id": 9
     },
     {
@@ -2047,6 +2103,7 @@
       "user": "Timmy Thomas",
       "date": "2016-02-02 12:10:31",
       "title": "Timmy Thomas Incomplete ran the service.",
+      "serviceId": 1,
       "id": 10
     },
     {
@@ -2057,16 +2114,18 @@
       "user": "Timmy Thomas",
       "date": "2016-02-02 12:10:31",
       "title": "Timmy Thomas ran the service unsuccessfully.",
+      "serviceId": 1,
       "id": 11
     },
     {
       "type": "unavailable_runs",
       "link": "",
-      "period": "all",
+      "period": "today",
       "section": "project",
       "user": "Timmy Thomas",
       "date": "2016-02-02 12:10:31",
       "title": "Timmy Thomas ran the service unsuccessfully.",
+      "serviceId": 16,
       "id": 12
     },
     {
@@ -2077,6 +2136,7 @@
       "user": "Adam Marks",
       "date": "2016-02-02 12:10:31",
       "title": "Adam Marks edited the service description",
+      "serviceId": 16,
       "id": 13
     },
     {
@@ -2087,6 +2147,7 @@
       "user": "Adam Marks",
       "date": "2016-02-02 12:10:31",
       "title": "Adam Marks edited the service description",
+      "serviceId": 1,
       "id": 14
     },
     {
@@ -2097,6 +2158,7 @@
       "user": "Adam Marks",
       "date": "2016-02-02 12:10:31",
       "title": "Adam Marks edited the service description",
+      "serviceId": 1,
       "id": 15
     },
     {
@@ -2107,6 +2169,7 @@
       "user": "Adam Marks",
       "date": "2016-02-02 12:10:31",
       "title": "Adam Marks edited the service description",
+      "serviceId": 2,
       "id": 16
     },
     {
@@ -2117,6 +2180,7 @@
       "user": "Adam Marks",
       "date": "2016-02-02 12:10:31",
       "title": "Adam Marks edited the service description",
+      "serviceId": 2,
       "id": 17
     },
     {
@@ -2127,6 +2191,7 @@
       "user": "Adam Marks",
       "date": "2016-02-02 12:10:31",
       "title": "Adam Marks edited the service description",
+      "serviceId": 1,
       "id": 18
     },
     {
@@ -2137,7 +2202,41 @@
       "user": "Adam Marks",
       "date": "2016-02-02 12:10:31",
       "title": "Adam Marks edited the service description",
+      "serviceId": 1,
       "id": 19
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "today",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "serviceId": 2,
+      "id": 20
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "today",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "serviceId": 2,
+      "id": 21
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "today",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "serviceId": 2,
+      "id": 22
     },
     {
       "type": "edited",
@@ -2147,46 +2246,18 @@
       "user": "Adam Marks",
       "date": "2016-02-02 12:10:31",
       "title": "Adam Marks edited the service description",
-      "id": 20
-    },
-    {
-      "type": "edited",
-      "link": "",
-      "period": "all",
-      "section": "marketplace",
-      "user": "Adam Marks",
-      "date": "2016-02-02 12:10:31",
-      "title": "Adam Marks edited the service description",
-      "id": 21
-    },
-    {
-      "type": "edited",
-      "link": "",
-      "period": "all",
-      "section": "marketplace",
-      "user": "Adam Marks",
-      "date": "2016-02-02 12:10:31",
-      "title": "Adam Marks edited the service description",
-      "id": 22
-    },
-    {
-      "type": "edited",
-      "link": "",
-      "period": "all",
-      "section": "marketplace",
-      "user": "Adam Marks",
-      "date": "2016-02-02 12:10:31",
-      "title": "Adam Marks edited the service description",
+      "serviceId": 2,
       "id": 23
     },
     {
       "type": "edited",
       "link": "",
-      "period": "all",
+      "period": "today",
       "section": "marketplace",
       "user": "Adam Marks",
       "date": "2016-02-02 12:10:31",
       "title": "Adam Marks edited the service description",
+      "serviceId": 16,
       "id": 24
     }
   ],
