@@ -196,14 +196,22 @@ angular.module('dmc.product')
 		$scope.allServices = data;
 		for(var i in $scope.allServices){
 			$scope.allServices[i].average_rating = 0;
-			var number_of_comments = $scope.allServices[i].rating.length;
-			if(number_of_comments != 0) {
-				var average_rating = 0;
-				for (var k in $scope.allServices[i].rating) {
-					average_rating += $scope.allServices[i].rating[k];
-				}
-				$scope.allServices[i].average_rating = (average_rating / number_of_comments).toFixed(1);
-			}
+			ajax.get(dataFactory.components('service', $scope.allServices[i].id).reviews, {},
+        		function(response){
+        			$scope.allServices[i]["component_reviews"] = response.data;
+        			$scope.allServices[i].rating = $scope.allServices[i].component_reviews.map(function(value, index){
+                        return value.rating;
+                    });
+					var number_of_comments = $scope.allServices[i].rating.length;
+					if(number_of_comments != 0) {
+						var average_rating = 0;
+						for (var k in $scope.allServices[i].rating) {
+							average_rating += $scope.allServices[i].rating[k];
+						}
+						$scope.allServices[i].average_rating = (average_rating / number_of_comments).toFixed(1);
+					}
+                }
+            );
 		}
 	    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 	});

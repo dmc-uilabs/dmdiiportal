@@ -327,18 +327,18 @@
 
 		<!--MEMBERS -->
 
-		<div class="company-members">
+		<div class="company-members" ng-if="company.members.length">
 			<div layout="row" layout-align="space-between center">
 				<div layout="row" layout-align="center center">
 					<h3>MEMBERS</h3>
-					<h4>11,000 total</h4>
+					<h4>{{company.members.length}} total</h4>
 				</div>
 				<a class="viewAll" href="">View All</a>
 			</div>
 			<md-divider></md-divider>
 			<div layout="row">
-				<div flex="20" class="padding-card" ng-repeat="item in [0,1,2,3,4]">
-					<dmc-members-card></dmc-members-card>
+				<div flex="20" class="padding-card" ng-repeat="item in company.members">
+					<dmc-members-card card-source="item"></dmc-members-card>
 				</div>
 			</div>
 		</div>

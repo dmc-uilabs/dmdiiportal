@@ -523,6 +523,9 @@ angular.module('dmc.data',[])
             getCompanySkills : function(id){
                 return localhost+'companies/'+id+'/company_skills'
             },
+            getCompanyMembers : function(id){
+                return localhost+'companies/'+id+'/company_members'
+            },
             getCompanyKeyContacts : function(id){
                 return localhost+'companies/'+id+'/company_key_contacts'
             },

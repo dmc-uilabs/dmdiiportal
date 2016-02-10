@@ -96,6 +96,13 @@ angular.module('dmc.company-profile')
         };
         companyProfileModel.getSkills($scope.company.id, callbackSkills);
 
+        // get company members
+        var callbackMembers = function(data){
+            $scope.company.members = data;
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+        companyProfileModel.getMembers($scope.company.id, callbackMembers);
+
 //review
         //Show Leave A Review form
         $scope.LeaveAReview = function(){

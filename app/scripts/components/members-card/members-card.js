@@ -12,14 +12,36 @@ angular.module('dmc.component.members-card', [
 		},
 		templateUrl: 'templates/components/members-card/members-card.html',
 		controller: function($scope){
-			$scope.profile = {
-				display_name: "John Thomas",
-				jobTitle: "Engineering Manager",
-				avatar: "/uploads/profile/1/20151222084711000000.jpg",
-      			company: "General Electric (GE) Global Research",
-		      	rating: 3.4,
-		      	description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
-			}
 		}
 	}
+})
+.directive('dmcAddMembersCard', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/components/members-card/add-members-card.html',
+        scope:{
+            compareMember: '=',
+            cardSource: '=',
+            inviteMember: '=',
+            favoriteMember: '='
+        },
+        controller: function ($scope) {
+            $scope.addToInvitation = function(){
+                $scope.inviteMember($scope.cardSource);
+                $scope.cardSource.isInvite = ($scope.cardSource.isInvite ? false : true);
+            };
+
+            $scope.addToCompare = function(){
+                $scope.compareMember($scope.cardSource);
+                $scope.cardSource.isCompare = ($scope.cardSource.isCompare ? false : true);
+
+            };
+
+            $scope.addToFavorite = function(){
+                $scope.favoriteMember($scope.cardSource);
+                $scope.cardSource.favorite = ($scope.cardSource.favorite ? false : true);
+            };
+
+        }
+    }
 })

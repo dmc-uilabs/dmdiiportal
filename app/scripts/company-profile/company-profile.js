@@ -123,6 +123,23 @@ angular.module('dmc.company-profile', [
             );
         };
 
+        // get company contacts
+        this.getMembers = function(id, callback){
+            ajax.get(dataFactory.getCompanyMembers(id),{},
+                function(response){
+                    var members = [];
+                    for(var i in response.data){
+                        ajax.get(dataFactory.profiles(id).get,{},
+                            function(response){
+                                members.push(response.data ? response.data : response);
+                            }
+                        )
+                    }
+                    callback(members);
+                }
+            );
+        };
+
         this.get_company = function(id){
             return ajax.get(
                 dataFactory.companyURL(id).get, 
