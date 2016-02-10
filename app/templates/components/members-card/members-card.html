@@ -1,7 +1,7 @@
 <div class="members-card" layout="column">
 	<div class="header" layout="row" layout-align="space-between center">
 		<md-button href="" aria-label="grou_add" class="md-icon-button">
-			<ng-md-icon icon="group_add" style="fill: grey;" size="25"></ng-md-icon>
+			<ng-md-icon ng-if="version1" icon="group_add" style="fill: grey;" size="25"></ng-md-icon>
 		</md-button>
 		<a href="">Follow</a>
 		<md-button ng-href="{{'profile.php#/'+cardSource.id}}" aria-label="arrow_forward" class="md-icon-button">

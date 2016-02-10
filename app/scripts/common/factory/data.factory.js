@@ -317,7 +317,8 @@ angular.module('dmc.data',[])
                     create : localhost+name,
                     all : localhost+name,
                     reviews : localhost + name +'/' + id + '/company_reviews',
-                    addReviews : localhost + 'company_reviews'
+                    addReviews : localhost + 'company_reviews',
+                    history : localhost + name +'/' + id + '/company_history'
                 }
             },
             // ---------------------------

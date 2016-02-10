@@ -13,6 +13,7 @@ angular.module('dmc.company-profile', [
 	'dmc.socket',
 	'dmc.widgets.stars',
 	'dmc.widgets.review',
+    'dmc.widgets.tabs',
 	'dmc.component.members-card',
 	'dmc.component.contacts-card',
 	'dmc.common.header',
@@ -138,6 +139,16 @@ angular.module('dmc.company-profile', [
                     callback(members);
                 }
             );
+        };
+
+
+        this.getCompanyHistory = function(params, callback){
+            return ajax.get(dataFactory.companyURL($stateParams.companyId).history,
+                params,
+                function(response){
+                    callback(response.data)
+                }
+            )
         };
 
         this.get_company = function(id){

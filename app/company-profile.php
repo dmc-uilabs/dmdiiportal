@@ -83,6 +83,7 @@
 <script src="scripts/common/factory/location.factory.js"></script>
 <script src="scripts/components/ui-widgets/stars.directive.js"></script>
 <script src="scripts/components/ui-widgets/review.directive.js"></script>
+<script src="scripts/components/ui-widgets/tabs.directive.js"></script>
 <script src="scripts/components/members-card/members-card.js"></script>
 <script src="scripts/components/contacts-card/contacts-card.js"></script>
 <script src="scripts/common/factory/socket.factory.js"></script>

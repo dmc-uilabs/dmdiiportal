@@ -51,6 +51,19 @@ angular.module('dmc.company-profile')
             }
         ];
 
+        $scope.history = {
+            leftColumn: {
+                title: "Public",
+                viewAllLink: "",
+                list: []
+            },
+            rightColumn: {
+                title: "Mutual",
+                viewAllLink: "",
+                list:[]
+            }
+        }
+
         // get company contacts
         var callbackContacts = function(data){
             // console.info(data);
@@ -102,6 +115,48 @@ angular.module('dmc.company-profile')
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };
         companyProfileModel.getMembers($scope.company.id, callbackMembers);
+
+        // get company history
+        var callbackPublicHistory = function(data){
+            for(var i in data){
+                data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                if(data[i].type == "completed"){
+                    data[i].icon = "done_all";
+                };
+            }
+            $scope.history.leftColumn.list = data;
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+        companyProfileModel.getCompanyHistory( 
+            {
+                "_limit": 3,
+                "section": "public"
+            }, 
+            callbackPublicHistory
+        );
+
+        // get company history
+        var callbackMutualHistory = function(data){
+            for(var i in data){
+                data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                if(data[i].type == "added"){
+                    data[i].icon = "person";
+                }else if(data[i].type == "rated"){
+                    data[i].icon = "edit";
+                }else if(data[i].type == "worked"){
+                    data[i].icon = "supervisor_account";
+                };
+            }
+            $scope.history.rightColumn.list = data;
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
+        companyProfileModel.getCompanyHistory( 
+            {
+                "_limit": 3,
+                "section": "mutual"
+            }, 
+            callbackMutualHistory
+        );
 
 //review
         //Show Leave A Review form
