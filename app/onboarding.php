@@ -95,7 +95,8 @@
 
 <script src="scripts/onboarding/onboarding.js"></script>
 <script src="scripts/onboarding/controllers/home.js"></script>
-<!-- <script src="scripts/onboarding/controllers/edit.js"></script> -->
+<script src="scripts/onboarding/controllers/basic-informations.js"></script>
+<script src="scripts/onboarding/controllers/terms-conditions.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
         <?php

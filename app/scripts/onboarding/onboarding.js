@@ -24,7 +24,6 @@ angular.module('dmc.onboarding', [
                 url: '/',
                 templateUrl: 'templates/onboarding/home.html',
                 controller: 'homeController'
-
             });
         $urlRouterProvider.otherwise('/');
     })
