@@ -41,7 +41,8 @@
     "orchestrator": "^0.3.7",
     "socket.io": "^1.3.6",
     "vinyl-fs": "^1.0.0",
-    "wiredep": "^2.2.2"
+    "wiredep": "^2.2.2",
+      "ajax-request": "^1.2.1"
   },
   "eslintConfig": {
     "env": {
@@ -56,7 +57,5 @@
     }
   },
   "dependencies": {
-    "ajax-request": "^1.2.1",
-    "form-data": "^0.2.0"
   }
 }

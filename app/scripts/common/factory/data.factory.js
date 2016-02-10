@@ -438,7 +438,7 @@ angular.module('dmc.data',[])
                     get_history : localhost + name + '/' + id + '/services_history',
                     get_run_history : localhost + name + '/' + id + '/service_runs',
                     get_interfaces : localhost + 'services_interface',
-                    get_servers : localhost + 'services_servers',
+                    get_servers : localhost + 'account_servers',
                     add_servers : localhost + 'services_servers',
                     get_specifications: localhost + name + '/' + id + '/specifications',
                     get_inputs_outputs: localhost + name + '/' + id + '/service_input_output',

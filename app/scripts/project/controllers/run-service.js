@@ -78,8 +78,7 @@ angular.module('dmc.project')
                 return $scope.service.currentStatus;
             },function(newVal){
                 // get current status
-                console.log($scope.service.currentStatus);
-                if($scope.service.currentStatus){
+                if($scope.service.currentStatus && $scope.service.currentStatus.status){
                     $scope.status = "running";
                     //runModel();
                     $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
@@ -92,7 +91,6 @@ angular.module('dmc.project')
             },function(newVal){
                 // get last run time and get lastStatus
                 if(newVal){
-                    console.log(newVal);
                     $scope.lastRunTime = $scope.calcRunTime(newVal);
                     $scope.lastStatus = $scope.service.lastStatus.status;
                     apply();
@@ -130,8 +128,10 @@ angular.module('dmc.project')
             // run Model
             function runModel(){
                 $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
-                ajax.get(dataFactory.runModel(),$scope.service.interface,
-                    function(response){
+                ajax.get(dataFactory.runModel(),{
+                        interface : $scope.service.interface,
+                        url : $scope.service.serverIp
+                    }, function(response){
                         updateStatus("success",response.data.pkg);
                         $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
                     },function(){
@@ -199,7 +199,6 @@ angular.module('dmc.project')
                         ajax.update(dataFactory.services($scope.service.id).update, {
                                 averageRun: averageRun
                             }, function(response){
-                                console.log(response.data);
                                 $scope.service.averageRun = response.data.averageRun;
                                 $scope.averageRun = $scope.service.averageRun.toFixed(2);
                                 apply();

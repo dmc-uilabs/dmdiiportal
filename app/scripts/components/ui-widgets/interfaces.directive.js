@@ -30,6 +30,7 @@ angular.module('dmc.widgets.interfaces',[
                     for (var key in item) {
                         if (key != 'interfaces') dataRequest[key] = item[key];
                     }
+                    dataRequest.url = $scope.serverIp;
                     $scope.current = null;
                     ajax.get(dataFactory.getChildren(), dataRequest,
                         function (response) {
@@ -65,6 +66,7 @@ angular.module('dmc.widgets.interfaces',[
                     for(var key in item){
                         if(key != 'interfaces') dataRequest[key] = item[key];
                     }
+                    dataRequest.url = $scope.serverIp;
                     ajax.get(dataFactory.getModel(), dataRequest,
                         function(response){
                             if(response.status != "error") {

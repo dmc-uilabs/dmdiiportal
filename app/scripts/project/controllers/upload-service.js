@@ -99,7 +99,8 @@ angular.module('dmc.project')
                 pojectId: projectData.id,
                 pojectTitle: projectData.title,
                 parent: $scope.NewService.parentComponent,
-                interface: $scope.selectedInterface
+                interface: $scope.selectedInterface,
+                serverIp: $scope.selectedServerIp
             },function(data){
                 serviceModel.add_services_tags($scope.addTags, data.id);
                 $state.go('project.services-detail', {ServiceId: data.id});

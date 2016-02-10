@@ -587,6 +587,7 @@ angular.module('dmc.project', [
                         },
                         "averageRun" : 0,
                         "interface" : params.interface,
+                        "serverIp" : params.serverIp,
                         "parent_component": params.parent,
                         "projectId": params.pojectId,
                         "from": params.from
@@ -775,7 +776,8 @@ angular.module('dmc.project', [
             };
 
             this.get_servers = function(callback){
-                return ajax.get(dataFactory.services($stateParams.ServiceId).get_servers,
+                var currentUser = DMCUserModel.getUserData().$$state.value;
+                return ajax.get(dataFactory.getAccountServersUrl(currentUser.accountId),
                     {},
                     function(response){
                         callback(response.data)
