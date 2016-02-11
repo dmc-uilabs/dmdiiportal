@@ -22,213 +22,254 @@ angular.module('dmc.individual-discussion', [
         });
 		$urlRouterProvider.otherwise('/1');
 	})
-	.controller('individual-discussionController', ['$scope', '$stateParams', 'ajax', 'dataFactory', '$mdDialog', '$mdToast', 'toastModel', function ($scope, $stateParams, ajax, dataFactory, $mdDialog, $mdToast, toastModel) {
-		$scope.followFlag = false;
-		$scope.userlogin = "DMC Member";
-		$scope.NewComment = "";
-		$scope.discussion = null;
+	.controller('individual-discussionController', [
+        '$scope',
+        '$stateParams',
+        'ajax',
+        'dataFactory',
+        '$mdDialog',
+        '$mdToast',
+        '$rootScope',
+        'DMCUserModel',
+        'toastModel',
+        function ($scope,
+                  $stateParams,
+                  ajax,
+                  dataFactory,
+                  $mdDialog,
+                  $mdToast,
+                  $rootScope,
+                  DMCUserModel,
+                  toastModel) {
 
-        $scope.accountId = 1;
-		$scope.flagReviewFlag = false;
+            $scope.followFlag = null;
+            $scope.userData = $rootScope.userData;
+            $scope.NewComment = "";
+            $scope.discussion = null;
+            $scope.flagReviewFlag = false;
 
-		//load Discussion
-        ajax.on(
-            dataFactory.getIndividualDiscussion($stateParams.discussionId), {},
-            function(data){
-                $scope.discussion = data;
-                if($scope.discussion) {
-                    $scope.loadTags();
-                    $scope.loadComments();
-                }
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            },
-            function(){
-                toastModel.showToast("error", "Fail Load IndividualDiscussion");
-            }
-        );
+            $scope.userData = DMCUserModel.getUserData();
+            $scope.userData.then(function(result) {  // this is only run after $http completes
+                $scope.userData = result;
+                init();
+            });
 
-        // load tags
-        $scope.loadTags = function(){
-            ajax.on(dataFactory.getDiscussionTags($stateParams.discussionId), {
-                "_order" : "DESC",
-                "_sort" : "id",
-            }, function(data){
-                $scope.discussion.tags = data;
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            }, function(){
-                toastModel.showToast("error", "Unable get tags");
-            },"GET");
-        };
-
-        // load comments
-        $scope.loadComments = function(){
-            ajax.on(dataFactory.getDiscussionComments($scope.discussion.comments.link), {
-                "_order" : "DESC",
-                "_sort" : "created_at"
-            }, function(data){
-                $scope.discussion.comments.items = data.reverse();
-                for (var c in $scope.discussion.comments.items) {
-                    $scope.discussion.comments.items[c].created_at = moment($scope.discussion.comments.items[c].created_at).format('MM/DD/YYYY, h:mm A');
-                    if ($scope.accountId == $scope.discussion.comments.items[c].accountId) $scope.discussion.comments.items[c].isOwner = true;
-                }
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            }, function(){
-                toastModel.showToast("error", "Unable get comments");
-            },"GET");
-        };
-
-        //load realted Disscussion
-        ajax.on(
-            dataFactory.getIndividualDiscussions(),{
-                "_limit" : 5
-            },
-            function(data){
-                $scope.realtedDiscussions = data;
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            },
-            function(){
-                toastModel.showToast("error", "Fail Load IndividualDiscussion");
-            }
-        );
-
-
-		$scope.follow = function(){
-			$scope.followFlag = !$scope.followFlag;
-		}
-
-		//Like review
-		$scope.Like = function(item){
-			if(item.userRatingReview[$scope.userlogin] == "none"){
-				item.like++;
-				item.userRatingReview[$scope.userlogin] = 'like';
-			}else if(item.userRatingReview[$scope.userlogin] == 'like'){
-				item.like--;
-				item.userRatingReview[$scope.userlogin] = "none";
-			}else{
-				item.like++;
-				item.userRatingReview[$scope.userlogin] = 'like';
-				item.dislike--;
-			}
-			ajax.on(
-				dataFactory.addDiscussionLikeDislike(),
-				{
-					commentId: item.id,
-					like: item.like,
-					dislike: item.dislike,
-					ratingComment: item.userRatingReview[$scope.userlogin],
-					userLogin: $scope.userlogin
-				},
-				function(data){
-				},
-				function(){
-				},
-				"POST"
-			);
-		};
-
-		//DisLike review
-		$scope.DisLike = function(item){
-			if(item.userRatingReview[$scope.userlogin] == "none"){
-				item.dislike++;
-				item.userRatingReview[$scope.userlogin] = 'dislike';
-			}else if(item.userRatingReview[$scope.userlogin] == 'dislike'){
-				item.dislike--;
-				item.userRatingReview[$scope.userlogin] = "none";
-			}else{
-				item.dislike++;
-				item.userRatingReview[$scope.userlogin] = 'dislike';
-				item.like--;
-			}
-			ajax.on(
-				dataFactory.addDiscussionLikeDislike(),
-				{
-					commentId: item.id,
-					like: item.like,
-					dislike: item.dislike,
-					ratingComment: item.userRatingReview[$scope.userlogin],
-					userLogin: $scope.userlogin
-				},
-				function(data){
-				},
-				function(){
-				},
-				"POST"
-			);
-		};
-
-        //Submit Leave A Review form
-        $scope.Submit = function(){
-            ajax.on(dataFactory.getLastDiscussionCommentId(), {
-                "_limit" : 1,
-                "_order" : "DESC",
-                "_sort" : "id"
-            }, function(data){
-                var lastId = (data.length == 0 ? 1 : parseInt(data[0].id)+1);
+            function init(){
+                //load Discussion
                 ajax.on(
-                    dataFactory.addCommentIndividualDiscussion(),
-                    {
-                        "id": lastId,
-                        "individual-discussionId": $stateParams.discussionId,
-                        "full_name": "DMC Member",
-                        "accountId": $scope.accountId,
-                        "avatar": "/images/carbone.png",
-                        "text": $scope.newComment,
-                        "created_at": moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
-                        "userRatingReview": {
-                            "DMC Member": "like"
-                        },
-                        "like": 0,
-                        "dislike": 0
-                    },
+                    dataFactory.getIndividualDiscussion($stateParams.discussionId), {},
                     function(data){
-                        $scope.newComment = "";
-                        data.created_at = moment(data.created_at).format('MM/DD/YYYY, h:mm A');
-                        data.isOwner = true;
-                        $scope.discussion.comments.items.push(data);
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    	$('.md-char-counter').text('0/1000');
-                    },
-                    function(){
-                        toastModel.showToast("error", "Fail add comment");
-                    }, "POST"
+                        $scope.discussion = data;
+                        if($scope.discussion) {
+                            $scope.loadTags();
+                            $scope.loadComments();
+                            isFollowed();
+                        }
+                        apply();
+                    }, function(){
+                        toastModel.showToast("error", "Fail Load IndividualDiscussion");
+                    }
                 );
-            }, function(){
-                toastModel.showToast("error", "Unable get last id");
-            },"GET");
-        };
 
-		$scope.flagPost = function(index){
-			if($scope.flagReviewFlag === index){
-				$scope.flagReviewFlag = false;
-			}else{
-				$scope.flagReviewFlag = index;
-			}
+                // load tags
+                $scope.loadTags = function(){
+                    ajax.on(dataFactory.getDiscussionTags($stateParams.discussionId), {
+                        "_order" : "DESC",
+                        "_sort" : "id"
+                    }, function(data){
+                        $scope.discussion.tags = data;
+                        apply();
+                    }, function(){
+                        toastModel.showToast("error", "Unable get tags");
+                    },"GET");
+                };
 
-		};
+                // load comments
+                $scope.loadComments = function(){
+                    ajax.on(dataFactory.getDiscussionComments($scope.discussion.id), {
+                        "_order" : "DESC",
+                        "_sort" : "created_at"
+                    }, function(response){
+                        $scope.discussion.comments = {};
+                        $scope.discussion.comments.items = response.reverse();
+                        for (var c in $scope.discussion.comments.items) {
+                            $scope.discussion.comments.items[c].created_at = moment($scope.discussion.comments.items[c].created_at).format('MM/DD/YYYY, h:mm A');
+                            if ($scope.userData.accountId == $scope.discussion.comments.items[c].accountId) $scope.discussion.comments.items[c].isOwner = true;
+                        }
+                        apply();
+                    }, function(){
+                        toastModel.showToast("error", "Unable get comments");
+                    }, "GET");
+                };
 
-		$scope.Cancel = function(){
-			$scope.flagReviewFlag = false;
-		};
+                //load realted Disscussion
+                ajax.on(
+                    dataFactory.getIndividualDiscussions(),{
+                        "_limit" : 5
+                    }, function(data){
+                        $scope.realtedDiscussions = data;
+                        apply();
+                    }, function(){
+                        toastModel.showToast("error", "Fail Load IndividualDiscussion");
+                    }
+                );
 
-		$scope.SubmitReview = function(NewReview){
-			$scope.flagReviewFlag = false;
-		};
 
-		$scope.createDiscussion = function(ev){
-			$(window).scrollTop(0);
-				$mdDialog.show({
-					controller: "ComposeDiscussionController",
-					templateUrl: "templates/individual-discussion/compose-discussion.html",
-					parent: angular.element(document.body),
-					targetEvent: ev,
-					locals: {
-						products: $scope.allServices
-					},
-					clickOutsideToClose:true
-				})
-				.then(function() {
-				}, function() {
-				});
-		}
+                $scope.follow = function(){
+                    if(!$scope.followFlag) {
+                        ajax.create(dataFactory.followDiscussion(), {
+                            "accountId": $scope.userData.accountId,
+                            "individual-discussionId": $scope.discussion.id
+                        }, function (response) {
+                            $scope.followFlag = response.data;
+                            apply();
+                        });
+                    }else{
+                        ajax.delete(dataFactory.unfollowDiscussion($scope.followFlag.id), {},
+                            function (response) {
+                                $scope.followFlag = null;
+                                apply();
+                            }
+                        );
+                    }
+                };
 
-	}]);
+                //Like review
+                $scope.Like = function(item){
+                    if(item.userRatingReview[$scope.userData.displayName] == "none"){
+                        item.like++;
+                        item.userRatingReview[$scope.userData.displayName] = 'like';
+                    }else if(item.userRatingReview[$scope.userData.displayName] == 'like'){
+                        item.like--;
+                        item.userRatingReview[$scope.userData.displayName] = "none";
+                    }else{
+                        item.like++;
+                        item.userRatingReview[$scope.userData.displayName] = 'like';
+                        item.dislike--;
+                    }
+                    ajax.on(
+                        dataFactory.addDiscussionLikeDislike(),
+                        {
+                            commentId: item.id,
+                            like: item.like,
+                            dislike: item.dislike,
+                            ratingComment: item.userRatingReview[$scope.userData.displayName],
+                            userLogin: $scope.userData.displayName
+                        },
+                        function(data){
+                        },
+                        function(){
+                        },
+                        "POST"
+                    );
+                };
+
+                //DisLike review
+                $scope.DisLike = function(item){
+                    if(item.userRatingReview[$scope.userData.displayName] == "none"){
+                        item.dislike++;
+                        item.userRatingReview[$scope.userData.displayName] = 'dislike';
+                    }else if(item.userRatingReview[$scope.userData.displayName] == 'dislike'){
+                        item.dislike--;
+                        item.userRatingReview[$scope.userData.displayName] = "none";
+                    }else{
+                        item.dislike++;
+                        item.userRatingReview[$scope.userData.displayName] = 'dislike';
+                        item.like--;
+                    }
+                    ajax.on(
+                        dataFactory.addDiscussionLikeDislike(),
+                        {
+                            commentId: item.id,
+                            like: item.like,
+                            dislike: item.dislike,
+                            ratingComment: item.userRatingReview[$scope.userData.displayName],
+                            userLogin: $scope.userData.displayName
+                        },
+                        function(data){},
+                        function(){},
+                        "POST"
+                    );
+                };
+
+                //Submit Leave A Review form
+                $scope.Submit = function(){
+                    ajax.on(dataFactory.getLastDiscussionCommentId(), {
+                        "_limit" : 1,
+                        "_order" : "DESC",
+                        "_sort" : "id"
+                    }, function(data){
+                        var lastId = (data.length == 0 ? 1 : parseInt(data[0].id)+1);
+                        ajax.on(
+                            dataFactory.addCommentIndividualDiscussion(), {
+                                "id": lastId,
+                                "individual-discussionId": $stateParams.discussionId,
+                                "full_name": $scope.userData.displayName,
+                                "accountId": $scope.userData.accountId,
+                                "avatar": "/images/carbone.png",
+                                "text": $scope.newComment,
+                                "created_at": moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
+                                "userRatingReview": {
+                                    "DMC Member": "like"
+                                },
+                                "like": 0,
+                                "dislike": 0
+                            },
+                            function(data){
+                                $scope.newComment = "";
+                                data.created_at = moment(data.created_at).format('MM/DD/YYYY, h:mm A');
+                                data.isOwner = true;
+                                $scope.discussion.comments.items.push(data);
+                                apply();
+                                $('.md-char-counter').text('0/1000');
+                            }, function(){
+                                toastModel.showToast("error", "Fail add comment");
+                            }, "POST"
+                        );
+                    }, function(){
+                        toastModel.showToast("error", "Unable get last id");
+                    },"GET");
+                };
+
+                $scope.flagPost = function(index){
+                    $scope.flagReviewFlag = ( $scope.flagReviewFlag === index ? false : index );
+                };
+
+                $scope.Cancel = function(){
+                    $scope.flagReviewFlag = false;
+                };
+
+                $scope.SubmitReview = function(NewReview){
+                    $scope.flagReviewFlag = false;
+                };
+
+                $scope.createDiscussion = function(ev){
+                    $(window).scrollTop(0);
+                    $mdDialog.show({
+                        controller: "ComposeDiscussionController",
+                        templateUrl: "templates/individual-discussion/compose-discussion.html",
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        locals: {
+                            products: $scope.allServices
+                        },
+                        clickOutsideToClose:true
+                    }).then(function() {}, function() {});
+                }
+            }
+
+            function apply(){
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            }
+
+            function isFollowed(){
+                ajax.get(dataFactory.isUserFollowedDiscussion($scope.userData.accountId),{
+                    "individual-discussionId": $scope.discussion.id
+                },function(response){
+                    $scope.followFlag = (response.data && response.data.length > 0 && response.data[0].id ? response.data[0] : null);
+                    apply();
+                })
+            }
+	    }
+    ]
+);

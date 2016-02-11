@@ -198,6 +198,15 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            followDiscussion: function(){
+                return localhost + 'follow_discussions';
+            },
+            isUserFollowedDiscussion: function(id){
+                return localhost + 'accounts/'+id+'/follow_discussions';
+            },
+            unfollowDiscussion: function(id){
+                return localhost + 'follow_discussions/'+id;
+            },
             getChildren: function(){
                 return localhost + 'getChildren';
             },
@@ -518,9 +527,8 @@ angular.module('dmc.data',[])
             deleteDiscussionComment : function(id){
                 return localhost+'individual-discussion-comments'+(id ? '/'+id : '');
             },
-            getDiscussionComments : function(link){
-                var link_ = link.substring(1,link.length);
-                return localhost+link_;
+            getDiscussionComments : function(id){
+                return localhost+'individual-discussion/'+id+'/individual-discussion-comments';
             },
             getIndividualDiscussion: function(id){
                 return localhost+'individual-discussion'+(id ? '/'+id : '');

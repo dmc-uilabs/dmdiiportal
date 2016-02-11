@@ -134,7 +134,7 @@
                             <md-tab label="Add Featured" md-on-select="onTabSelected(1)">
                                 <md-content>
                                     <div layout="row" layout-padding layout-align="start center" class="company-search" flex>
-                                        <md-input-container>
+                                        <md-input-container style="display:none;">
                                             <md-select ng-model="selectedProductType" ng-change="productTypeChanged(selectedProductType)" aria-label="Product Types">
                                                 <md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>
                                             </md-select>

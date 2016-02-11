@@ -34,7 +34,7 @@ angular.module('dmc.model.toast-model', [])
                     .content(text)
                     .position(getToastPosition())
                     .theme(success+"-toast")
-                    .hideDelay(3000)
+                    .hideDelay(30009999)
             );
         };
 
