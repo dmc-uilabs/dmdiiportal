@@ -19,17 +19,25 @@
             <md-button ng-if="isSubmission" class="md-raised dmc-button" href="/project.php#/submit/{{projectCtrl.projectData.id}}"><ng-md-icon icon="send" size="18"></ng-md-icon> Submit</md-button>
 
             <md-button ng-if="!isPreview" class="md-raised dmc-button"><ng-md-icon icon="mode_edit" size="18"></ng-md-icon> Edit</md-button>
-            <md-menu  ng-if="!isPreview">
-                <md-button class="md-raised dmc-button" ng-click="$mdOpenMenu($event) "><ng-md-icon icon="share" size="18"></ng-md-icon> Invite</md-button>
-                <md-menu-content>
-                    <md-menu-item>
-                        <md-button>Team</md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button href="/invite-challenge.php">Challenge</md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
+
+            <md-button md-no-ink
+                       ng-if="!isPreview"
+                       ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
+                       class="link-button">
+                <ng-md-icon icon="share" size="18"></ng-md-icon>
+                Invite
+            </md-button>
+            <!--<md-menu  ng-if="!isPreview"> -->
+                <!--<md-button class="md-raised dmc-button" ng-click="$mdOpenMenu($event) "><ng-md-icon icon="share" size="18"></ng-md-icon> Invite</md-button>-->
+                <!--<md-menu-content>-->
+                    <!--<md-menu-item>-->
+                        <!--<md-button>Team</md-button>-->
+                    <!--</md-menu-item>-->
+                    <!--<md-menu-item>-->
+                        <!--<md-button href="/invite-challenge.php">Challenge</md-button>-->
+                    <!--</md-menu-item>-->
+                <!--</md-menu-content>-->
+            <!--</md-menu>-->
         </div>
     </md-toolbar>
 </div>
@@ -81,7 +89,7 @@
             <!-- Running Services -->
             <div ng-if="!isPreview" class="content-panel project-review" ui-widget-services view-all-href="'https://test.projectdmc.org/services/?group_id=7'" title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'" project-id="projectCtrl.currentProjectId" widget-title="'SERVICES'" columns="['name','status']" sort-by="'start'"></div>
             <!-- Components -->
-            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-components project-id="projectCtrl.currentProjectId" widget-title="'COMPONENTS'" columns="['name']"></div>
+            <!--<div ng-if="!isPreview" class="content-panel project-review" ui-widget-components project-id="projectCtrl.currentProjectId" widget-title="'COMPONENTS'" columns="['name']"></div>-->
         </div>
     </div>
 </div>

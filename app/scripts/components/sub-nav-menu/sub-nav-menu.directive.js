@@ -56,6 +56,9 @@ angular.module('dmc.sub-nav-menu',[
             $mdDialog.cancel(false);
         };
 
+        $scope.openPage = function(){
+            $mdDialog.cancel(false);
+        };
     });
 
 var SubNavPages = [
@@ -65,12 +68,12 @@ var SubNavPages = [
         icon : 'home',
         state : 'project.home'
     },
-    {
-        id : 2,
-        title : 'Workspace',
-        icon : 'view_quilt',
-        state : 'project.workspace'
-    },
+    //{
+    //    id : 2,
+    //    title : 'Workspace',
+    //    icon : 'view_quilt',
+    //    state : 'project.workspace'
+    //},
     {
         id : 3,
         title : 'Documents',
@@ -102,12 +105,12 @@ var SubNavPages = [
         location : 'folder',
         state : 'project.services'
     },
-    {
-        id : 8,
-        title : 'Components',
-        icon : 'receipt',
-        state : 'project.components'
-    }
+    //{
+    //    id : 8,
+    //    title : 'Components',
+    //    icon : 'receipt',
+    //    state : 'project.components'
+    //}
 ];
 
 var RfpSubNavPages = [

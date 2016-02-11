@@ -23,7 +23,7 @@
                     <tbody>
                     <tr ng-repeat="item in services" ng-click="changeItem(item)">
                         <td ng-show="columns.indexOf('name') > -1">
-                            <a href="/component.php#/services/{{item.id}}" class="link-button">
+                            <a ng-href="{{ projectId ? '/project.php#/'+projectId+'/services/'+item.id+'/run' : '/component.php#/services/'+item.id }}" class="link-button">
                                 <em>{{item.title}}</em>
                             </a>
                             <span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDate}}</span>

@@ -904,7 +904,8 @@
       },
       "projectId": 2,
       "type": "service",
-      "from": "marketplace"
+      "from": "marketplace",
+      "averageRun": 15
     },
     {
       "id": 6,
@@ -3341,6 +3342,22 @@
           "space": "USER"
         }
       }
+    },
+    {
+      "serviceId": 4,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "error",
+      "percentCompleted": 100,
+      "startDate": "2016-02-11",
+      "startTime": "21:56:01",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 22,
+      "stopDate": "2016-02-11",
+      "stopTime": "21:56:16"
     }
   ],
   "services_history": [
