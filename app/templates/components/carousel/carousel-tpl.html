@@ -25,7 +25,7 @@
               <ng-md-icon icon="close" style="fill: #fff" size="17"></ng-md-icon>
             </md-button>
             <img 
-              ng-src="{{item}}" 
+              ng-src="{{item.url}}" 
               ng-class="{'selected' : (functions.selected($index + $parent.$parent.$index*showItems) == true)}" 
               ng-click="functions.openImage($index + $parent.$parent.$index*showItems)" alt=""/>
         </div>

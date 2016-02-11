@@ -65,7 +65,8 @@ angular.module('dmc.service-marketplace', [
                   "service_input_output": $http.get(dataFactory.services(id).get_inputs_outputs),
                   "service_tags": $http.get(dataFactory.services(id).get_tags),
                   "services_statistic": $http.get(dataFactory.services(id).get_statistics),
-                  "service_reviews": $http.get(dataFactory.services(id).reviews)
+                  "service_reviews": $http.get(dataFactory.services(id).reviews),
+                  "service_images": $http.get(dataFactory.services(id).get_images)
                   }
 
                   var extractData = function(response){
@@ -80,6 +81,7 @@ angular.module('dmc.service-marketplace', [
                     service.service_tags = extractData(responses.service_tags);
                     service.services_statistic = extractData(responses.services_statistic);
                     service.service_reviews = extractData(responses.service_reviews);
+                    service.service_images = extractData(responses.service_images);
 
                     service.rating = service.service_reviews.map(function(value, index){
                         return value.rating;
@@ -178,7 +180,6 @@ angular.module('dmc.service-marketplace', [
                     function(response){
                         var component = response.data;
                         component['title'] = params['title'];
-                        component['images'] = params['images'];
                         component['description'] = params['description'];
 
                         return ajax.update(dataFactory.services($stateParams.serviceId).update,
@@ -261,6 +262,14 @@ angular.module('dmc.service-marketplace', [
                     )
                 }
             };
+
+            this.remove_services_images = function(array){
+                for(var i in array){
+                    ajax.delete(dataFactory.services(array[i]).remove_images, {},
+                        function(response){}
+                    )
+                }
+            }
 
             this.get_service_hystory = function(params, callback){
                 return ajax.get(dataFactory.services($stateParams.serviceId).get_history,

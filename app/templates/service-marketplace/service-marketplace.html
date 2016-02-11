@@ -35,18 +35,18 @@
 				<div layout="row" layout-margin>
 					<!--product image-->
 					<div class="product-image" layout="column">
-						<img class="main-image" ng-if="product.images.length" ng-src="{{product.images[indexImages]}}">
-						<div class="no-image" ng-if="!product.images.length" layout layout-align="center center">
+						<img class="main-image" ng-if="product.service_images.length" ng-src="{{product.service_images[indexImages].url}}">
+						<div class="no-image" ng-if="!product.service_images.length" layout layout-align="center center">
 							<h2>No Images</h2>
 						</div>
 						<div dmc-carousel 
 								functions="carouselFunctions" 
 								name-carousel="'carouselImages'" 
 								type-carousel="'images'" 
-								carouselSource="product.images" 
+								carouselSource="product.service_images" 
 								max-items="10" 
 								show-items="4" 
-								carousel-source="product.images" 
+								carousel-source="product.service_images" 
 								edit="false">
 						</div>
 					</div>

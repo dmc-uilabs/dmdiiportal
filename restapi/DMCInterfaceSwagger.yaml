@@ -765,6 +765,40 @@ paths:
           description: returns updated specifications
           schema:
             $ref: '#/definitions/ServiceSpecifications'
+  '/services/{serviceID}/service_images':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: get images for service
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+      responses:
+        '200':
+          description: send images for service
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceImages'
+  '/service_images/{imageId}':
+    delete:
+      tags:
+        - service
+        - marketplace
+      description: remove image
+      parameters:
+        - name: imageId
+          in: path
+          type: string
+          description: Id of the image
+          required: true
+      responses:
+        '204':
+          description: Ok
   /components:
     post:
       tags:
@@ -2512,10 +2546,6 @@ definitions:
         type: array
         items:
           type: string
-      images:
-        type: array
-        items:
-          type: string
       specifications:
         type: string
       featureImage:
@@ -2525,6 +2555,15 @@ definitions:
       projectId:
         type: string
       from:
+        type: string
+  ServiceImages:
+    type: object
+    properties:
+      id:
+        type: string
+      serviceId:
+        type: string
+      url:
         type: string
   ServiceFeatured:
     type: object

@@ -30,6 +30,7 @@ angular.module('dmc.service-marketplace')
             $scope.removeTags =[];
             $scope.addTags =[];
             $scope.removeAuthors = [];
+            $scope.removeImages = [];
             $scope.addAuthors = [];
             $scope.arraySpecifications = [];
 
@@ -90,7 +91,9 @@ angular.module('dmc.service-marketplace')
                 },
                 deleteImage: function(index){
                     $scope.isChange = true;
-                    $scope.product.images.splice(index, 1);
+                    $scope.removeImages.push($scope.product.service_images[index].id);
+                    console.info($scope.removeImages);
+                    $scope.product.service_images.splice(index, 1);
                     if ($scope.indexImages == index){
                         $scope.indexImages = 0;
                     }
@@ -208,12 +211,12 @@ angular.module('dmc.service-marketplace')
                 }
 
                 serviceModel.remove_services_tags($scope.removeTags);
+                serviceModel.remove_services_images($scope.removeImages);
                 serviceModel.add_services_tags($scope.addTags);
                 serviceModel.remove_services_authors($scope.removeAuthors);
 
                 serviceModel.edit_service({
                         title: $scope.product.title,
-                        images: $scope.product.images,
                         description: $scope.product.description,
                         specification: $scope.product.specifications[0]
                     },
