@@ -475,6 +475,24 @@ paths:
       responses:
         '405':
           description: Invalide input
+    get:
+      tags:
+        - service
+        - marketplace
+      description: get all services
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+      responses:
+        '200':
+          description: send all services
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Service'
   '/services/{serviceID}':
     get:
       tags:
@@ -492,25 +510,6 @@ paths:
       responses:
         '200':
           description: send the service with serviceID
-          schema:
-            $ref: '#/definitions/Service'
-    patch:
-      tags:
-      - service
-      description: Update information for service by ID
-      parameters:
-        - name: serviceID
-          in: path
-          type: string
-          description: ID of the service
-          required: true
-        - name: service
-          in: body
-          schema:
-            $ref: '#/definitions/Service'
-      responses:
-        200:
-          description: returns updated service
           schema:
             $ref: '#/definitions/Service'
     patch:
@@ -694,6 +693,7 @@ paths:
     delete:
       tags:
         - service
+        - marketplace
       description: Delete a service tag
       parameters:
         - in: path
@@ -721,10 +721,50 @@ paths:
           description: body of specification
           required: true
           schema:
-            $ref: '#/definitions/ServiceSpecification'
+            $ref: '#/definitions/ServiceSpecifications'
       responses:
         '200':
           description: post specification for service
+  '/services/{serviceID}/specifications':
+    get:
+      tags:
+        - service
+        - specification
+        - marketplace
+      parameters:
+        - name: serviceID
+          in: path
+          type: string
+          description: ID of the service
+          required: true
+      responses:
+        '200':
+          description: send specification for service
+          schema:
+            $ref: '#/definitions/ServiceSpecifications'
+  '/specifications/{specificationId}':
+    patch:
+      tags:
+        - service
+        - specifications
+        - marketplace
+      parameters:
+        - name: specificationId
+          in: path
+          type: string
+          description: ID of the specifications
+          required: true
+        - in: body
+          name: body
+          description: body of specification
+          required: true
+          schema:
+            $ref: '#/definitions/ServiceSpecifications'
+      responses:
+        200:
+          description: returns updated specifications
+          schema:
+            $ref: '#/definitions/ServiceSpecifications'
   /components:
     post:
       tags:
@@ -1865,17 +1905,17 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Component'
-  '/product/{serviceID}/product_reviews':
+  '/product/{service_Id}/product_reviews':
     get:
       tags:
         - service
         - marketplace
       description: Get all reviews service in marketplace
       parameters:
-        - name: serviceID
-          in: path
-          type: integer
-          description: service id in marketplace
+        - in: path
+          name: service_Id
+          type: string
+          description: Service id in marketplace
           required: true
         - name: _limit
           in: query
@@ -1919,6 +1959,8 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ProductReview'
+  '/product_reviews':
+    get:
       tags:
         - service
         - marketplace
@@ -1950,8 +1992,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ProductReview'
-  '/product_reviews':
-    get:
     post:
       tags:
         - service
@@ -1985,6 +2025,58 @@ paths:
       responses:
         '200':
           description: OK
+  '/array_specifications/':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get array of specifications for services 
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (id, title, etc.)
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return array of specifications for services 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ArraySpecifications'
+    post:
+      tags:
+        - service
+        - marketplace
+      description: Add elements to array of specifications for services 
+      parameters:
+        - in: body
+          name: body
+          description: array of specifications object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/ArraySpecifications'
+      responses:
+        '200':
+          description: return array of specifications for services 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ArraySpecifications'
   '/follow-company-services':
     get:
       tags:
@@ -2420,6 +2512,10 @@ definitions:
         type: array
         items:
           type: string
+      images:
+        type: array
+        items:
+          type: string
       specifications:
         type: string
       featureImage:
@@ -2495,7 +2591,14 @@ definitions:
         type: number
       members:
         type: number
-  ServiceSpecification:
+  ArraySpecifications:
+    type: object
+    properties:
+      id: 
+        type: string
+      name: 
+        type: string
+  ServiceSpecifications:
     type: object
     properties:
       id:
