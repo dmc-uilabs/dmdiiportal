@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var jsonServer = require('json-server');
-
+var request = require('ajax-request');
 // Returns an Express server
 var server = jsonServer.create();
 // Set default middlewares (logger, static, cors and no-cache)
@@ -35,6 +35,82 @@ server.use(jsonServer.rewriter({
     '/company_featured/:id': '/company_featured/:id'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
+
+
+
+server.get('/getChildren', function (req, res) {
+
+    var data = (req.query ? req.query : null);
+    var url = data.url;
+    if(url) {
+        delete data.url;
+        if (data) {
+            if (Array.isArray(data.path)) {
+                for (var i in data.path) {
+                    data.path[i] = parseInt(data.path[i]);
+                }
+            } else {
+                data.path = [parseInt(data.path)];
+            }
+        }
+        var query = ( data ? '?data=' + JSON.stringify(data) : '');
+        request({
+            url: url + '/getChildren' + query,
+            method: 'GET',
+            json: true
+        }, function (err, response, body) {
+            res.json(body);
+        });
+    }else{
+        res.json({status : "error", msg : "Wrong url"});
+    }
+});
+
+server.get('/getModel', function(req, res){
+    var data = (req.query ? req.query : null);
+    var url = data.url;
+    if(url) {
+        delete data.url;
+        if (data) {
+            if (Array.isArray(data.path)) {
+                for (var i in data.path) {
+                    data.path[i] = parseInt(data.path[i]);
+                }
+            } else {
+                data.path = [parseInt(data.path)];
+            }
+        }
+        var query = ( data ? '?data=' + JSON.stringify(data) : '');
+        request({
+            url: url+'/getModel' + query,
+            method: 'GET',
+            json: true
+        }, function (err, response, body) {
+            res.json(body);
+        });
+    }else{
+        res.json({status : "error", msg : "Wrong url"});
+    }
+});
+
+
+server.get('/runModel', function(req, res){
+    var interface = req.query.interface;
+    interface = JSON.parse(interface);
+    //interface.interFace = JSON.parse(interface.interFace);
+    //interface.inParams = JSON.parse(interface.inParams);
+    //interface.outParams = JSON.parse(interface.outParams);
+    //interface.server = JSON.parse(interface.server);
+    var url = (req.query.url ? req.query.url : 'http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7');
+    request({
+        url: url+'/runModel?queue=DOME_Model_Run_TestQueue&data='+JSON.stringify(interface),
+        method: 'POST',
+        json : true
+    }, function(err, response, body) {
+        res.json(body);
+    });
+});
+
 // Returns an Express router
 var router = jsonServer.router('db.json');
 server.use(router);

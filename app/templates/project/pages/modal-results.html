@@ -6,7 +6,7 @@
 				<ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
 			</md-button>
 		</div>
-		<h3>Results: {{history.results}}</h3>
+		<h3>Results: {{history.status}}</h3>
 		<div>
 			<md-button class="md-primary md-raised" ng-click="rerun()">
 				Rerun
@@ -18,8 +18,8 @@
 				<md-divider></md-divider>
 				<md-content>
 					<md-list>
-						<md-list-item ng-repeat="item in inputs track by $index">
-							{{item}}
+						<md-list-item ng-repeat="item in history.interface.inParams track by $index">
+							{{item.name}}: {{item.value}} {{item.unit}}
 						</md-list-item>
 					</md-list>
 				</md-content>
@@ -29,8 +29,8 @@
 				<md-divider></md-divider>
 				<md-content>
 					<md-list>
-						<md-list-item ng-repeat="item in outputs track by $index">
-							{{item}}
+						<md-list-item ng-repeat="item in history.interface.outParams track by $index">
+                            {{item.name}}: {{item.value}} {{item.unit}}
 						</md-list-item>
 					</md-list>
 				</md-content>

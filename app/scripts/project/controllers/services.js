@@ -7,7 +7,7 @@ angular.module('dmc.project')
         for(var item in $scope.projectData.services.data){
             $scope.projectData.services.data[item].releaseDate = moment($scope.projectData.services.data[item].releaseDate,"DD/MM/YYYY").format("MM/DD/YYYY");
         }
-        
+        $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
 
         var apply = function(){
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();

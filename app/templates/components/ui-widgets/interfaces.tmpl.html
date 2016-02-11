@@ -1,0 +1,30 @@
+<div layout="row" layout-wrap>
+    <div layout="column"
+         ng-click="exitFolder(-1)"
+         class="main-title">
+        <div layout="row" layout-align="start center">
+            <span>All Interfaces</span>
+        </div>
+    </div>
+    <div layout="column"
+         class="folder-title"
+         ng-class="{'current-folder' : $index == currentFolder}"
+         ng-click="exitFolder($index)"
+         ng-repeat="item in track track by $index">
+        <div layout="row" layout-align="start center">
+            <ng-md-icon icon="keyboard_arrow_right" size="23"></ng-md-icon>
+            <span>{{item.name }}</span>
+        </div>
+    </div>
+</div>
+<div class="loading-liner">
+    <md-progress-linear md-mode="indeterminate" ng-show="isLoading"></md-progress-linear>
+</div>
+<ul ng-if="interfaces.length > 0">
+    <li ng-click="selectInterface(item,$index,$event)" ng-class="{'selected' : $index == current}" ng-repeat="item in interfaces track by $index">
+        <div class="name" layout="row" layout-align="start center">
+            <ng-md-icon ng-show="item.type == 'folder'" icon="folder" style="fill: gray" size="21"></ng-md-icon>
+            {{item.name}}
+        </div>
+    </li>
+</ul>

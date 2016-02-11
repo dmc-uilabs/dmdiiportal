@@ -20,6 +20,7 @@ angular.module('dmc.project', [
 		'dmc.widgets.stars',
 		'dmc.widgets.review',
 		'dmc.widgets.tabs',
+        'dmc.widgets.interfaces',
 		'ui.router',
 		'md.data.table',
 		'ngCookies',
@@ -33,6 +34,7 @@ angular.module('dmc.project', [
 		'dmc.sub-nav-menu'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
+
         var resolve = {
             projectData: ['DMCProjectModel', '$stateParams',
                 function(DMCProjectModel, $stateParams) {
@@ -142,7 +144,7 @@ angular.module('dmc.project', [
         }).state('project.upload-services', {
             url: '/upload-service',
             controller: 'projectUploadServicesCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/upload-service.html',
+            templateUrl: 'templates/project/pages/upload-service.html'
             
         }).state('project.edit-services', {
             url: '/services/:ServiceId/edit',
@@ -154,7 +156,7 @@ angular.module('dmc.project', [
 	            }]
             }
         }).state('project.run-services', {
-            url: '/services/:ServiceId/run',
+            url: '/services/:ServiceId/run?rerun',
             controller: 'projectRunServicesCtrl as projectCtrl',
             templateUrl: 'templates/project/pages/run-service.html',
             resolve: {
@@ -477,11 +479,18 @@ angular.module('dmc.project', [
         'ajax',
         'dataFactory',
         '$stateParams',
+        '$http',
+        'DMCUserModel',
+        '$q',
         'toastModel',
         function (ajax,
                   dataFactory,
                   $stateParams,
+                  $http,
+                  DMCUserModel,
+                  $q,
                   toastModel) {
+
             this.get_service = function(id){
                 return ajax.get(dataFactory.services(id).get, {
                         "_embed": ["specifications","service_authors", "service_input_output", "service_tags", "services_statistic"]
@@ -512,6 +521,29 @@ angular.module('dmc.project', [
                                 for(var i in service["service_reviews"]){
                                     service["service_reviews"][i]['replyReviews'] = [];
                                 }
+
+                                var currentUser = DMCUserModel.getUserData().$$state.value;
+                                // get current Status
+                                ajax.get(dataFactory.getServiceStatus(service.id),{
+                                        _limit : 1,
+                                        _order : "DESC",
+                                        _sort : "id",
+                                        status : "running",
+                                        accountId : currentUser.accountId
+                                    },function(response){
+                                        if(response.data.length > 0) service.currentStatus = response.data[0];
+                                    }
+                                );
+                                // get last status
+                                ajax.get(dataFactory.getServiceStatus(service.id),{
+                                        _limit : 1,
+                                        _order : "DESC",
+                                        _sort : "id",
+                                        status_ne : "running"
+                                    },function(response){
+                                        if(response.data.length > 0) service.lastStatus = response.data[0];
+                                    }
+                                );
                                 return service;
                             },
                             function(response){
@@ -541,46 +573,29 @@ angular.module('dmc.project', [
 //moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
 
             this.upload_services = function(params, callback){
-                ajax.get(dataFactory.services($stateParams.ServiceId).add,
+                ajax.create(dataFactory.services($stateParams.ServiceId).add,
                     {
-                        "_limit" : 1,
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        "title": params.title,
+                        "description": params.description,
+                        "owner": "M.Dawson",
+                        "releaseDate": moment(new Date).format("MM/DD/YYYY"),
+                        "serviceType": "analytical",
+                        "specifications": "/services/3/specifications",
+                        "featureImage": {
+                            "thumbnail": "images/marketplace-card-image-1.jpg",
+                            "large": "images/marketplace-card-image-1.jpg"
+                        },
+                        "averageRun" : 0,
+                        "interface" : params.interface,
+                        "serverIp" : params.serverIp,
+                        "parent_component": params.parent,
+                        "projectId": params.pojectId,
+                        "from": params.from
                     },
                     function(response){
-                        var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
-                        return ajax.create(dataFactory.services($stateParams.ServiceId).add,
-                            {
-								"id": lastId,
-								"title": params.title,
-								"description": params.description,
-								"owner": "M.Dawson",
-								"releaseDate": moment(new Date).format("YYYY-MM-DD"),
-								"serviceType": "analytical",
-								"specifications": "/services/3/specifications",
-								"featureImage": {
-									"thumbnail": "images/marketplace-card-image-1.jpg",
-									"large": "images/marketplace-card-image-1.jpg"
-								},
-								"currentStatus": {
-									"percentCompleted": 0,
-									"startDate": moment(new Date).format("YYYY-MM-DD"),
-									"startTime": moment(new Date).format("hh:mm:ss"),
-									"project": {
-										"id": params.pojectId,
-										"title": params.pojectTitle
-									}
-								},
-								"parent_component": params.parent,
-								"projectId": params.pojectId,
-								"from": params.from           
-							},
-                            function(response){
-                            	callback(response.data);
-                            }
-                        )
+                        callback(response.data);
                     }
-                )
+                );
             };
 
 
@@ -729,17 +744,23 @@ angular.module('dmc.project', [
                 )
             };
 
+            function calcRunTime(status){
+                var runTime = (status.stopTime ? new Date(status.stopDate+' '+status.stopTime) - new Date(status.startDate+' '+status.startTime) : new Date() - new Date(status.startDate+' '+status.startTime));
+                return (runTime/1000).toFixed(2);
+            };
+
             this.get_service_run_history = function(id, params, callback){
-            	return ajax.get(
-            		dataFactory.services(id).get_run_history,
+            	return ajax.get(dataFactory.services(id).get_run_history,
             		(params)? params : {
-            			_sort: 'date',
-                    	_order: "DESC"
+            			_sort: 'id',
+                    	_order: "DESC",
+                        status_ne : 'running'
             		},
             		function(response){
             			var history = response.data;
             			for(var i in history){
-                    		history[i].date = moment(history[i].date).format("MM/DD/YYYY h:mm A");
+                            history[i].runTime = calcRunTime(history[i]);
+                    		history[i].date = moment(new Date(history[i].startDate+' '+history[i].startTime)).format("MM/DD/YYYY h:mm A");
                     	}
                     	if(callback){
                     		callback(history);
@@ -750,17 +771,13 @@ angular.module('dmc.project', [
             	)
             };
 
-            this.get_interfeces = function(callback){
-                return ajax.get(dataFactory.services($stateParams.ServiceId).get_interfeces,
-                    {},
-                    function(response){
-                        callback(response.data)
-                    }
-                )
+            this.get_interfaces = function(item,callback){
+
             };
 
             this.get_servers = function(callback){
-                return ajax.get(dataFactory.services($stateParams.ServiceId).get_servers,
+                var currentUser = DMCUserModel.getUserData().$$state.value;
+                return ajax.get(dataFactory.getAccountServersUrl(currentUser.accountId),
                     {},
                     function(response){
                         callback(response.data)
@@ -780,4 +797,3 @@ angular.module('dmc.project', [
     	    }
         ]
     );
-

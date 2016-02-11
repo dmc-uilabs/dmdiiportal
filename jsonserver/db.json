@@ -529,25 +529,11 @@
   ],
   "account_servers": [
     {
-      "id": 2,
-      "accountId": 1,
-      "name": "Server 2",
-      "ip": "123.0.0.0",
-      "status": "offline"
-    },
-    {
-      "name": "Server 4",
-      "ip": "13.15.111.14",
+      "name": "amazonaws",
+      "ip": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
       "accountId": 1,
       "status": "offline",
-      "id": 4
-    },
-    {
-      "name": "Server 3",
-      "ip": "11.11.11.11",
-      "accountId": 1,
-      "status": "offline",
-      "id": 5
+      "id": 1
     }
   ],
   "favorite_products": [
@@ -822,7 +808,8 @@
       "projectId": 1,
       "type": "service",
       "from": "marketplace",
-      "parent": 0
+      "parent": 0,
+      "averageRun": 13
     },
     {
       "id": 5,
@@ -860,7 +847,8 @@
       },
       "projectId": 1,
       "type": "service",
-      "from": "marketplace"
+      "from": "marketplace",
+      "averageRun": 10
     },
     {
       "id": 3,
@@ -1691,6 +1679,1787 @@
       "projectId": 3,
       "type": "service",
       "from": "marketplace"
+    },
+    {
+      "title": "New Service",
+      "description": "Description new service",
+      "owner": "M.Dawson",
+      "releaseDate": "02/10/2016",
+      "serviceType": "analytical",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "aff647da-d82f-1004-8e7b-5de38b2eeb0f",
+          "interfaceId": "aff647db-d82f-1004-8e7b-5de38b2eeb0f",
+          "type": "interface",
+          "name": "Default Interface",
+          "path": [
+            30
+          ]
+        },
+        "inParams": {
+          "SpecimenWidth": {
+            "name": "SpecimenWidth",
+            "type": "Real",
+            "unit": "meter",
+            "category": "length",
+            "value": 3,
+            "parameterid": "d9f30f3a-d800-1004-8f53-704dbfababa8"
+          },
+          "CrackLength": {
+            "name": "CrackLength",
+            "type": "Real",
+            "unit": "meter",
+            "category": "length",
+            "value": 1,
+            "parameterid": "d9f30f37-d800-1004-8f53-704dbfababa8"
+          }
+        },
+        "outParams": {
+          "Alpha": {
+            "name": "Alpha",
+            "type": "Real",
+            "unit": "no unit",
+            "category": "no unit",
+            "value": 0.3333333333333333,
+            "parameterid": "d9f30f3d-d800-1004-8f53-704dbfababa8",
+            "instancename": "Alpha"
+          }
+        },
+        "modelName": "Default Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      },
+      "parent_component": 1,
+      "projectId": 1,
+      "from": "project",
+      "id": 42,
+      "averageRun": 14.035714285714286
+    },
+    {
+      "title": "Velocity1 Interface",
+      "description": "Velocity description",
+      "owner": "M.Dawson",
+      "releaseDate": "02/10/2016",
+      "serviceType": "analytical",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "averageRun": 17.6,
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8657-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity1 Interface",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": 5,
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": 7,
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 4,
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity1 Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      },
+      "parent_component": 1,
+      "projectId": 1,
+      "from": "project",
+      "id": 43
+    },
+    {
+      "title": "Velocity2",
+      "description": "Description Velocity2",
+      "owner": "M.Dawson",
+      "releaseDate": "02/10/2016",
+      "serviceType": "analytical",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "averageRun": 15.5,
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8659-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f865b-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity2",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": 2,
+            "parameterid": "5c3b5e1d-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "v_0": {
+            "name": "v_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 1,
+            "parameterid": "5c3b5e1c-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "x": {
+            "name": "x",
+            "type": "Real",
+            "unit": "centimeter",
+            "category": "length",
+            "value": 3,
+            "parameterid": "5c3b5e1e-d8ee-1004-8963-88bc307cbc0d"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 34.655446902326915,
+            "parameterid": "5c3b5e1f-d8ee-1004-8963-88bc307cbc0d",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity2",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      },
+      "parent_component": null,
+      "projectId": 1,
+      "from": "project",
+      "id": 44
+    },
+    {
+      "title": "Second Law Model Interface",
+      "description": "Second Law Model Interface",
+      "owner": "M.Dawson",
+      "releaseDate": "02/10/2016",
+      "serviceType": "analytical",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "averageRun": 27,
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "cab7f36e-d926-1004-86b5-5c67b137b86b",
+          "interfaceId": "cab7f370-d926-1004-86b5-5c67b137b86b",
+          "type": "interface",
+          "name": "Second Law Model Interface",
+          "path": [
+            33,
+            38
+          ]
+        },
+        "inParams": {
+          "a": {
+            "name": "a",
+            "type": "Vector",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": [
+              5,
+              10
+            ],
+            "parameterid": "23306ec7-d8fc-1004-8144-11424eace53c"
+          },
+          "m": {
+            "name": "m",
+            "type": "Real",
+            "unit": "kilogram",
+            "category": "mass",
+            "value": 2,
+            "parameterid": "23306ec6-d8fc-1004-8144-11424eace53c"
+          }
+        },
+        "outParams": {
+          "f": {
+            "name": "f",
+            "type": "Vector",
+            "unit": "Newton",
+            "category": "force",
+            "value": [
+              10,
+              20
+            ],
+            "parameterid": "23306ec8-d8fc-1004-8144-11424eace53c",
+            "instancename": "f"
+          }
+        },
+        "modelName": "Second Law Model Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      },
+      "parent_component": null,
+      "projectId": 1,
+      "from": "project",
+      "id": 45
+    },
+    {
+      "title": "Torque Model Interface",
+      "description": "Torque Model Interface",
+      "owner": "M.Dawson",
+      "releaseDate": "02/10/2016",
+      "serviceType": "analytical",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "averageRun": 17.666666666666668,
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "cab7f396-d926-1004-86b5-5c67b137b86b",
+          "interfaceId": "cab7f398-d926-1004-86b5-5c67b137b86b",
+          "type": "interface",
+          "name": "Torque Model Interface",
+          "path": [
+            33,
+            39
+          ]
+        },
+        "inParams": {
+          "F": {
+            "name": "F",
+            "type": "Real",
+            "unit": "Newton",
+            "category": "force",
+            "value": 10,
+            "parameterid": "23307131-d8fc-1004-8144-11424eace53c"
+          },
+          "theta": {
+            "name": "theta",
+            "type": "Real",
+            "unit": "no unit",
+            "category": "no unit",
+            "value": 30,
+            "parameterid": "23307130-d8fc-1004-8144-11424eace53c"
+          },
+          "r": {
+            "name": "r",
+            "type": "Real",
+            "unit": "meter",
+            "category": "length",
+            "value": 1,
+            "parameterid": "23307132-d8fc-1004-8144-11424eace53c"
+          }
+        },
+        "outParams": {
+          "Torque": {
+            "name": "Torque",
+            "type": "Real",
+            "unit": "newton-meter",
+            "category": "torque",
+            "value": -9.880316240928618,
+            "parameterid": "23307133-d8fc-1004-8144-11424eace53c",
+            "instancename": "Torque"
+          }
+        },
+        "modelName": "Torque Model Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      },
+      "serverIp": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "parent_component": null,
+      "projectId": 1,
+      "from": "project",
+      "id": 46
+    }
+  ],
+  "service_runs": [
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "14:55:34",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 1,
+      "stopDate": "2016-02-10",
+      "stopTime": "14:55:46",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8657-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity1 Interface",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "5",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "7",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "4",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity1 Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "14:55:54",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 2,
+      "stopDate": "2016-02-10",
+      "stopTime": "14:56:17",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8657-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity1 Interface",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "56",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "71",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "42",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity1 Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "14:56:38",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 3,
+      "stopDate": "2016-02-10",
+      "stopTime": "14:56:51",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8657-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity1 Interface",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "56",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "71",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "42",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity1 Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "16:05:01",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 4,
+      "stopDate": "2016-02-10",
+      "stopTime": "16:05:25",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8657-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity1 Interface",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "5",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "7",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "4",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity1 Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "16:07:26",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 5,
+      "stopDate": "2016-02-10",
+      "stopTime": "16:07:33",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8659-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f865b-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity2",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "2",
+            "parameterid": "5c3b5e1d-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "v_0": {
+            "name": "v_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "1",
+            "parameterid": "5c3b5e1c-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "x": {
+            "name": "x",
+            "type": "Real",
+            "unit": "centimeter",
+            "category": "length",
+            "value": "3",
+            "parameterid": "5c3b5e1e-d8ee-1004-8963-88bc307cbc0d"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 34.655446902326915,
+            "parameterid": "5c3b5e1f-d8ee-1004-8963-88bc307cbc0d",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity2",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "16:20:15",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 6,
+      "stopDate": "2016-02-10",
+      "stopTime": "16:20:31",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8657-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity1 Interface",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "5",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "7",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "4",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity1 Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 1,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "error",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "16:22:37",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 7,
+      "stopDate": "2016-02-10",
+      "stopTime": "16:22:50"
+    },
+    {
+      "serviceId": 5,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "error",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "16:25:47",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 8,
+      "stopDate": "2016-02-10",
+      "stopTime": "16:25:57"
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "16:26:21",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 9,
+      "stopDate": "2016-02-10",
+      "stopTime": "16:26:38",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8659-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f865b-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity2",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "56",
+            "parameterid": "5c3b5e1d-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "v_0": {
+            "name": "v_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "13333",
+            "parameterid": "5c3b5e1c-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "x": {
+            "name": "x",
+            "type": "Real",
+            "unit": "centimeter",
+            "category": "length",
+            "value": "21",
+            "parameterid": "5c3b5e1e-d8ee-1004-8963-88bc307cbc0d"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 34.655446902326915,
+            "parameterid": "5c3b5e1f-d8ee-1004-8963-88bc307cbc0d",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity2",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "16:26:42",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 10,
+      "stopDate": "2016-02-10",
+      "stopTime": "16:26:52",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8659-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f865b-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity2",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "56",
+            "parameterid": "5c3b5e1d-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "v_0": {
+            "name": "v_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "13333",
+            "parameterid": "5c3b5e1c-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "x": {
+            "name": "x",
+            "type": "Real",
+            "unit": "centimeter",
+            "category": "length",
+            "value": "21",
+            "parameterid": "5c3b5e1e-d8ee-1004-8963-88bc307cbc0d"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 34.655446902326915,
+            "parameterid": "5c3b5e1f-d8ee-1004-8963-88bc307cbc0d",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity2",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 45,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "16:33:56",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 11,
+      "stopDate": "2016-02-10",
+      "stopTime": "16:34:23",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "cab7f36e-d926-1004-86b5-5c67b137b86b",
+          "interfaceId": "cab7f370-d926-1004-86b5-5c67b137b86b",
+          "type": "interface",
+          "name": "Second Law Model Interface",
+          "path": [
+            33,
+            38
+          ]
+        },
+        "inParams": {
+          "a": {
+            "name": "a",
+            "type": "Vector",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": [
+              {
+                "value": "5"
+              },
+              {
+                "value": "10"
+              }
+            ],
+            "parameterid": "23306ec7-d8fc-1004-8144-11424eace53c"
+          },
+          "m": {
+            "name": "m",
+            "type": "Real",
+            "unit": "kilogram",
+            "category": "mass",
+            "value": "2",
+            "parameterid": "23306ec6-d8fc-1004-8144-11424eace53c"
+          }
+        },
+        "outParams": {
+          "f": {
+            "name": "f",
+            "type": "Vector",
+            "unit": "Newton",
+            "category": "force",
+            "value": [
+              10,
+              20
+            ],
+            "parameterid": "23306ec8-d8fc-1004-8144-11424eace53c",
+            "instancename": "f"
+          }
+        },
+        "modelName": "Second Law Model Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 46,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "error",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "16:59:14",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 12,
+      "stopDate": "2016-02-10",
+      "stopTime": "16:59:22",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "cab7f396-d926-1004-86b5-5c67b137b86b",
+          "interfaceId": "cab7f398-d926-1004-86b5-5c67b137b86b",
+          "type": "interface",
+          "name": "Torque Model Interface",
+          "path": [
+            33,
+            39
+          ]
+        },
+        "inParams": {
+          "F": {
+            "name": "F",
+            "type": "Real",
+            "unit": "Newton",
+            "category": "force",
+            "value": 10,
+            "parameterid": "23307131-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 10
+          },
+          "theta": {
+            "name": "theta",
+            "type": "Real",
+            "unit": "no unit",
+            "category": "no unit",
+            "value": 30,
+            "parameterid": "23307130-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 30
+          },
+          "r": {
+            "name": "r",
+            "type": "Real",
+            "unit": "meter",
+            "category": "length",
+            "value": 1,
+            "parameterid": "23307132-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 1
+          }
+        },
+        "outParams": {
+          "Torque": {
+            "name": "Torque",
+            "type": "Real",
+            "unit": "newton-meter",
+            "category": "torque",
+            "value": -9.880316240928618,
+            "parameterid": "23307133-d8fc-1004-8144-11424eace53c",
+            "instancename": "Torque"
+          }
+        },
+        "modelName": "Torque Model Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 46,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "error",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "17:00:26",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 13,
+      "stopDate": "2016-02-10",
+      "stopTime": "17:00:52",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "cab7f396-d926-1004-86b5-5c67b137b86b",
+          "interfaceId": "cab7f398-d926-1004-86b5-5c67b137b86b",
+          "type": "interface",
+          "name": "Torque Model Interface",
+          "path": [
+            33,
+            39
+          ]
+        },
+        "inParams": {
+          "F": {
+            "name": "F",
+            "type": "Real",
+            "unit": "Newton",
+            "category": "force",
+            "value": 10,
+            "parameterid": "23307131-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 10
+          },
+          "theta": {
+            "name": "theta",
+            "type": "Real",
+            "unit": "no unit",
+            "category": "no unit",
+            "value": 30,
+            "parameterid": "23307130-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 30
+          },
+          "r": {
+            "name": "r",
+            "type": "Real",
+            "unit": "meter",
+            "category": "length",
+            "value": 1,
+            "parameterid": "23307132-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 1
+          }
+        },
+        "outParams": {
+          "Torque": {
+            "name": "Torque",
+            "type": "Real",
+            "unit": "newton-meter",
+            "category": "torque",
+            "value": -9.880316240928618,
+            "parameterid": "23307133-d8fc-1004-8144-11424eace53c",
+            "instancename": "Torque"
+          }
+        },
+        "modelName": "Torque Model Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 46,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "error",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "17:02:20",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 14,
+      "stopDate": "2016-02-10",
+      "stopTime": "17:02:31",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "cab7f396-d926-1004-86b5-5c67b137b86b",
+          "interfaceId": "cab7f398-d926-1004-86b5-5c67b137b86b",
+          "type": "interface",
+          "name": "Torque Model Interface",
+          "path": [
+            33,
+            39
+          ]
+        },
+        "inParams": {
+          "F": {
+            "name": "F",
+            "type": "Real",
+            "unit": "Newton",
+            "category": "force",
+            "value": 10,
+            "parameterid": "23307131-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 10
+          },
+          "theta": {
+            "name": "theta",
+            "type": "Real",
+            "unit": "no unit",
+            "category": "no unit",
+            "value": 30,
+            "parameterid": "23307130-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 30
+          },
+          "r": {
+            "name": "r",
+            "type": "Real",
+            "unit": "meter",
+            "category": "length",
+            "value": 1,
+            "parameterid": "23307132-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 1
+          }
+        },
+        "outParams": {
+          "Torque": {
+            "name": "Torque",
+            "type": "Real",
+            "unit": "newton-meter",
+            "category": "torque",
+            "value": -9.880316240928618,
+            "parameterid": "23307133-d8fc-1004-8144-11424eace53c",
+            "instancename": "Torque"
+          }
+        },
+        "modelName": "Torque Model Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 46,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "error",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "17:03:07",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 15,
+      "stopDate": "2016-02-10",
+      "stopTime": "17:03:35",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "cab7f396-d926-1004-86b5-5c67b137b86b",
+          "interfaceId": "cab7f398-d926-1004-86b5-5c67b137b86b",
+          "type": "interface",
+          "name": "Torque Model Interface",
+          "path": [
+            33,
+            39
+          ]
+        },
+        "inParams": {
+          "F": {
+            "name": "F",
+            "type": "Real",
+            "unit": "Newton",
+            "category": "force",
+            "value": 10,
+            "parameterid": "23307131-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 10
+          },
+          "theta": {
+            "name": "theta",
+            "type": "Real",
+            "unit": "no unit",
+            "category": "no unit",
+            "value": 30,
+            "parameterid": "23307130-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 30
+          },
+          "r": {
+            "name": "r",
+            "type": "Real",
+            "unit": "meter",
+            "category": "length",
+            "value": 1,
+            "parameterid": "23307132-d8fc-1004-8144-11424eace53c",
+            "defaultValue": 1
+          }
+        },
+        "outParams": {
+          "Torque": {
+            "name": "Torque",
+            "type": "Real",
+            "unit": "newton-meter",
+            "category": "torque",
+            "value": -9.880316240928618,
+            "parameterid": "23307133-d8fc-1004-8144-11424eace53c",
+            "instancename": "Torque"
+          }
+        },
+        "modelName": "Torque Model Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 46,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "17:03:38",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 16,
+      "stopDate": "2016-02-10",
+      "stopTime": "17:03:56",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "cab7f396-d926-1004-86b5-5c67b137b86b",
+          "interfaceId": "cab7f398-d926-1004-86b5-5c67b137b86b",
+          "type": "interface",
+          "name": "Torque Model Interface",
+          "path": [
+            33,
+            39
+          ]
+        },
+        "inParams": {
+          "F": {
+            "name": "F",
+            "type": "Real",
+            "unit": "Newton",
+            "category": "force",
+            "value": "10",
+            "parameterid": "23307131-d8fc-1004-8144-11424eace53c"
+          },
+          "theta": {
+            "name": "theta",
+            "type": "Real",
+            "unit": "no unit",
+            "category": "no unit",
+            "value": "30",
+            "parameterid": "23307130-d8fc-1004-8144-11424eace53c"
+          },
+          "r": {
+            "name": "r",
+            "type": "Real",
+            "unit": "meter",
+            "category": "length",
+            "value": "1",
+            "parameterid": "23307132-d8fc-1004-8144-11424eace53c"
+          }
+        },
+        "outParams": {
+          "Torque": {
+            "name": "Torque",
+            "type": "Real",
+            "unit": "newton-meter",
+            "category": "torque",
+            "value": -9.880316240928618,
+            "parameterid": "23307133-d8fc-1004-8144-11424eace53c",
+            "instancename": "Torque"
+          }
+        },
+        "modelName": "Torque Model Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 46,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "17:04:18",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 17,
+      "stopDate": "2016-02-10",
+      "stopTime": "17:04:33",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "cab7f396-d926-1004-86b5-5c67b137b86b",
+          "interfaceId": "cab7f398-d926-1004-86b5-5c67b137b86b",
+          "type": "interface",
+          "name": "Torque Model Interface",
+          "path": [
+            33,
+            39
+          ]
+        },
+        "inParams": {
+          "F": {
+            "name": "F",
+            "type": "Real",
+            "unit": "Newton",
+            "category": "force",
+            "value": "10",
+            "parameterid": "23307131-d8fc-1004-8144-11424eace53c"
+          },
+          "theta": {
+            "name": "theta",
+            "type": "Real",
+            "unit": "no unit",
+            "category": "no unit",
+            "value": "30",
+            "parameterid": "23307130-d8fc-1004-8144-11424eace53c"
+          },
+          "r": {
+            "name": "r",
+            "type": "Real",
+            "unit": "meter",
+            "category": "length",
+            "value": "1",
+            "parameterid": "23307132-d8fc-1004-8144-11424eace53c"
+          }
+        },
+        "outParams": {
+          "Torque": {
+            "name": "Torque",
+            "type": "Real",
+            "unit": "newton-meter",
+            "category": "torque",
+            "value": -9.880316240928618,
+            "parameterid": "23307133-d8fc-1004-8144-11424eace53c",
+            "instancename": "Torque"
+          }
+        },
+        "modelName": "Torque Model Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "17:05:05",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 18,
+      "stopDate": "2016-02-10",
+      "stopTime": "17:05:26",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8659-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f865b-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity2",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "2",
+            "parameterid": "5c3b5e1d-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "v_0": {
+            "name": "v_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "1",
+            "parameterid": "5c3b5e1c-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "x": {
+            "name": "x",
+            "type": "Real",
+            "unit": "centimeter",
+            "category": "length",
+            "value": "3",
+            "parameterid": "5c3b5e1e-d8ee-1004-8963-88bc307cbc0d"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 34.655446902326915,
+            "parameterid": "5c3b5e1f-d8ee-1004-8963-88bc307cbc0d",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity2",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "17:05:28",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 19,
+      "stopDate": "2016-02-10",
+      "stopTime": "17:05:48",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8659-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f865b-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity2",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "2",
+            "parameterid": "5c3b5e1d-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "v_0": {
+            "name": "v_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "1",
+            "parameterid": "5c3b5e1c-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "x": {
+            "name": "x",
+            "type": "Real",
+            "unit": "centimeter",
+            "category": "length",
+            "value": "3",
+            "parameterid": "5c3b5e1e-d8ee-1004-8963-88bc307cbc0d"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 34.655446902326915,
+            "parameterid": "5c3b5e1f-d8ee-1004-8963-88bc307cbc0d",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity2",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-10",
+      "startTime": "17:09:08",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 20,
+      "stopDate": "2016-02-10",
+      "stopTime": "17:09:26",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8659-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f865b-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity2",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "2",
+            "parameterid": "5c3b5e1d-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "v_0": {
+            "name": "v_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "1",
+            "parameterid": "5c3b5e1c-d8ee-1004-8963-88bc307cbc0d"
+          },
+          "x": {
+            "name": "x",
+            "type": "Real",
+            "unit": "centimeter",
+            "category": "length",
+            "value": "3",
+            "parameterid": "5c3b5e1e-d8ee-1004-8963-88bc307cbc0d"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 34.655446902326915,
+            "parameterid": "5c3b5e1f-d8ee-1004-8963-88bc307cbc0d",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity2",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
     }
   ],
   "services_history": [
@@ -2204,8 +3973,8 @@
   "service_tags": [
     {
       "id": 1,
-      "serviceId": 1,
-      "name": "tag1"
+      "serviceId": 46,
+      "name": "tag"
     },
     {
       "id": 2,
@@ -2221,6 +3990,26 @@
       "id": 4,
       "serviceId": 1,
       "name": "tag4"
+    },
+    {
+      "id": 5,
+      "serviceId": 42,
+      "name": "Test tag"
+    },
+    {
+      "id": 6,
+      "serviceId": 43,
+      "name": "Velocity Tag"
+    },
+    {
+      "id": 7,
+      "serviceId": 43,
+      "name": "Velocity Tag"
+    },
+    {
+      "id": 8,
+      "serviceId": 44,
+      "name": "Test Tag"
     }
   ],
   "services_run_history": [

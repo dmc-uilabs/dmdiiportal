@@ -3,7 +3,7 @@
 angular.module('dmc.data',[])
     .factory('dataFactory', function ($window,$location) {
         var baseServer = $window.apiUrl ? $window.apiUrl : '/static/?p=';
-        var localhost = ($location.$$absUrl.indexOf("http://localhost") != -1 ? "http://localhost:3000/" : "http://ge-dmc-01.thecreativeadvantage.net:3000/");
+        var localhost = ($location.$$absUrl.indexOf("http://localhost") != -1  || $location.$$absUrl.indexOf(':9000') != -1 ? "http://localhost:3000/" : "http://ge-dmc-01.thecreativeadvantage.net:3000/");
         localhost = $window.apiUrl ? $window.apiUrl + '/' : localhost;
         var urlSocketServer = 'http://localhost:8080/';
         var appendId = function(id){
@@ -198,6 +198,27 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            getChildren: function(){
+                return localhost + 'getChildren';
+            },
+            getModel: function(){
+                return localhost + 'getModel';
+            },
+            runModel: function(){
+                return localhost + 'runModel';
+            },
+            updateServiceStatus: function(id){
+                return localhost + 'service_runs/'+id;
+            },
+            getServiceRun: function(id){
+                return localhost + 'service_runs/'+id;
+            },
+            runService: function(){
+                return localhost + 'service_runs';
+            },
+            getServiceStatus: function(id){
+                return localhost + 'services/'+id+'/service_runs';
+            },
             createPublishService: function(){
                 return localhost + 'publish-services';
             },
@@ -420,17 +441,16 @@ angular.module('dmc.data',[])
                     add_tags : localhost + 'service_tags',
                     remove_tags : localhost + 'service_tags/' + id,
                     get_history : localhost + name + '/' + id + '/services_history',
-                    get_run_history : localhost + name + '/' + id + '/services_run_history',
-                    get_interfeces : localhost + 'services_interface',
-                    get_servers : localhost + 'services_servers',
+                    get_run_history : localhost + name + '/' + id + '/service_runs',
+                    get_interfaces : localhost + 'services_interface',
+                    get_servers : localhost + 'account_servers',
                     add_servers : localhost + 'services_servers',
                     get_array_specifications: localhost + 'array_specifications',
                     add_array_specifications: localhost + 'array_specifications',
                     get_specifications: localhost + name + '/' + id + '/specifications',
                     edit_specifications: localhost + 'specifications/' + id,
                     get_inputs_outputs: localhost + name + '/' + id + '/service_input_output',
-                    get_statistics: localhost + name + '/' + id + '/services_statistic',
-
+                    get_statistics: localhost + name + '/' + id + '/services_statistic'
                 }
             },
             // ---------------------------
