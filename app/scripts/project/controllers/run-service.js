@@ -10,7 +10,7 @@ angular.module('dmc.project')
         'toastModel',
         '$timeout',
         '$interval',
-        'DMCUserModel',
+        '$rootScope',
         '$state',
         function ($scope,
                   $stateParams,
@@ -22,14 +22,13 @@ angular.module('dmc.project')
                   toastModel,
                   $timeout,
                   $interval,
-                  DMCUserModel,
+                  $rootScope,
                   $state) {
 
             $scope.ServiceId = $stateParams.ServiceId;
             $scope.rerun = (angular.isDefined($stateParams.rerun) ? $stateParams.rerun : null);
             $scope.projectData = projectData;
             $scope.service = serviceData;
-            $scope.currentUser = DMCUserModel.getUserData().$$state.value;
 
             if($scope.service.interface && $scope.service.interface.inParams) {
                 for (var key in $scope.service.interface.inParams) {
@@ -103,8 +102,8 @@ angular.module('dmc.project')
             $scope.run = function(){
                 ajax.create(dataFactory.runService(),{
                         serviceId : $scope.service.id,
-                        accountId : $scope.currentUser.accountId,
-                        runBy : $scope.currentUser.displayName,
+                        accountId : $rootScope.userData.accountId,
+                        runBy : $rootScope.userData.displayName,
                         status : "running",
                         percentCompleted: 0,
                         startDate: moment(new Date()).format("YYYY-MM-DD"),
