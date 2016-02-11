@@ -37,8 +37,8 @@
 				<div layout="row" layout-margin>
 					<!--product image-->
 					<div class="product-image" layout="column">
-						<img class="main-image" ng-if="images.length" ng-src="{{images[indexImages]}}">
-						<div class="no-image" ng-if="!images.length" layout layout-align="center center">
+						<img class="main-image" ng-if="product.images.length" ng-src="{{product.images[indexImages]}}">
+						<div class="no-image" ng-if="!product.images.length" layout layout-align="center center">
 							<h2>No Images</h2>
 						</div>
 						
@@ -46,10 +46,10 @@
 								functions="carouselFunctions" 
 								name-carousel="'carouselImages'" 
 								type-carousel="'images'" 
-								carouselSource="images" 
+								carouselSource="product.images" 
 								max-items="10" 
 								show-items="4" 
-								carousel-source="images" 
+								carousel-source="product.images" 
 								edit="editFlag">
 						</div>
 					</div>
@@ -57,7 +57,7 @@
 						<!--product header-->
 						<div class="product-header">
 							<div layout="row">
-								<h2>{{product.title}} <span>By <a href="/company.php#/1" class="link-button">{{product.owner}}</a></span></h2>
+								<h2>{{product.title}} <span>By <a href="/company.php#/1/storefront?product=services" class="link-button">{{product.owner}}</a></span></h2>
 								<span flex></span>
 								<md-button aria-label="favorite" ng-click="addToFavorite()" class="md-icon-button header-icon">
 									<ng-md-icon icon="favorite_outline" style="fill: grey" size="25" ng-show="!product.favorite"></ng-md-icon>

@@ -10,6 +10,7 @@ angular.module('dmc.marketplace')
         "$state",
         "$stateParams",
         "$scope",
+        "$rootScope",
         "$cookies",
         "ajax",
         "dataFactory",
@@ -20,6 +21,7 @@ angular.module('dmc.marketplace')
         function($state,
                  $stateParams,
                  $scope,
+                 $rootScope,
                  $cookies,
                  ajax,
                  dataFactory,
@@ -49,13 +51,17 @@ angular.module('dmc.marketplace')
             $scope.favoritesCount = 0;
             var getFavoriteCount = function(){
                 ajax.get(dataFactory.getFavoriteProducts(),{
-                    accountId : 1
+                    accountId : ($rootScope.userData)? $rootScope.userData.accountId:1,
                 },function(response){
                     $scope.favoritesCount = response.data.length;
                     apply();
                 });
             };
             getFavoriteCount();
+
+            $scope.$on("UpdateFavorite", function(){
+                getFavoriteCount();
+            });
 
             // get data from cookies
             var updateCompareCount = function(){
@@ -222,7 +228,7 @@ angular.module('dmc.marketplace')
 
             // get all follow companies
             $scope.getFollowCompanies = function(){
-                var accountId = 1;
+                var accountId = ($rootScope.userData)? $rootScope.userData.accountId:1;
                 ajax.get(dataFactory.getFollowCompanies(accountId), {},
                     function(response){
                         if(response.data.length > 0){

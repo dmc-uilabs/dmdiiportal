@@ -51,6 +51,7 @@ angular.module('dmc.component.productcard', [
           // success callback for add to favorites
           var addToFavoriteCallback = function(response){
               $scope.cardSource.favorite = response.data;
+              $rootScope.$broadcast("UpdateFavorite");
               if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
               apply();
           };
@@ -58,7 +59,7 @@ angular.module('dmc.component.productcard', [
           // success callback for remove from favorites
           var removeFromFavoritesCallback = function(response){
               $scope.cardSource.favorite = false;
-              $rootScope.$broadcast("RemoveFavorite");
+              $rootScope.$broadcast("UpdateFavorite");
               if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
               apply();
           };
@@ -66,7 +67,7 @@ angular.module('dmc.component.productcard', [
           $scope.addToFavorite = function(){
             if(!$scope.cardSource.favorite){
                 // add to favorites
-                var requestData = { "accountId": 1 };
+                var requestData = { "accountId": $scope.$root.userData.accountId, };
                 if($scope.cardSource.type == "service"){
                     requestData.serviceId = $scope.cardSource.id;
                 }else if($scope.cardSource.type == "component"){
@@ -332,7 +333,7 @@ angular.module('dmc.component.productcard', [
                 }
             }
         ]
-}).service('isFavorite', ['dataFactory','ajax', function(dataFactory,ajax) {
+}).service('isFavorite', ['dataFactory','ajax', '$rootScope', function(dataFactory,ajax, $rootScope) {
 
     this.check = function(items) {
         if (items && items.length > 0){
@@ -365,9 +366,9 @@ angular.module('dmc.component.productcard', [
             };
 
             // services
-            if( services_id.length > 0 ) ajax.get(dataFactory.getFavorites(), { accountId: 1, serviceId: services_id }, callback );
+            if( services_id.length > 0 ) ajax.get(dataFactory.getFavorites(), { accountId: $rootScope.userData.accountId, serviceId: services_id }, callback );
             // components
-            if( components_id.length > 0 ) ajax.get(dataFactory.getFavorites(), { accountId: 1, componentId: components_id }, callback );
+            if( components_id.length > 0 ) ajax.get(dataFactory.getFavorites(), { accountId: $rootScope.userData.accountId, componentId: components_id }, callback );
         }
     };
 }])

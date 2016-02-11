@@ -41,6 +41,7 @@ angular.module('dmc.add_project.directive', [
                     })
                 }
                 $scope.goToNextTab = function(number, obj){
+                    $(window).scrollTop(0);
                     if (obj) {
                         setProjectDetails(obj);
                     }
@@ -116,7 +117,6 @@ angular.module('dmc.add_project.directive', [
                 projectDetails: '='
             },
             controller: function ($scope) {
-
                 DMCMemberModel.getMembers().then(
                     function(data){
                          $scope.foundMembers = data;

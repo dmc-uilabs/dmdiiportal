@@ -11,6 +11,7 @@ angular.module('dmc.profile', [
     'dmc.socket',
     'dmc.widgets.stars',
     'dmc.widgets.review',
+    'dmc.widgets.tabs',
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.location',
@@ -156,4 +157,13 @@ angular.module('dmc.profile', [
                 }
             )
         }
+
+        this.getProfileHistory = function(params, callback){
+            return ajax.get(dataFactory.profiles($stateParams.profileId).history,
+                params,
+                function(response){
+                    callback(response.data)
+                }
+            )
+        };
     }])

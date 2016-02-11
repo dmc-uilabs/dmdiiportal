@@ -168,13 +168,17 @@ angular.module('dmc.service-marketplace', [
             };
 
             this.edit_service = function(params, callback){
+                ajax.update(dataFactory.services( params["specification"].id).edit_specifications,
+                    params["specification"],
+                    function(response){
+                    }
+                )
                 ajax.get(dataFactory.services($stateParams.serviceId).get,
                     {},
                     function(response){
-                        console.info(response.data);
                         var component = response.data;
                         component['title'] = params['title'];
-                        component['tags'] = params['tags'];
+                        component['images'] = params['images'];
                         component['description'] = params['description'];
 
                         return ajax.update(dataFactory.services($stateParams.serviceId).update,
@@ -266,6 +270,37 @@ angular.module('dmc.service-marketplace', [
                     }
                 )
             };
+
+            this.get_array_specifications = function(callback){
+                return ajax.get(dataFactory.services($stateParams.serviceId).get_array_specifications,
+                    {},
+                    function(response){
+                        callback(response.data)
+                    }
+                )
+            }
+
+            this.add_array_specifications = function(name, callback){
+                ajax.get(dataFactory.services($stateParams.serviceId).get_array_specifications,
+                    {
+                        "_limit" : 1,
+                        "_order" : "DESC",
+                        "_sort" : "id"
+                    },
+                    function(response){
+                        var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
+                        ajax.create(dataFactory.services($stateParams.serviceId).add_array_specifications,
+                            {
+                                "id": lastId,
+                                "name": name
+                            },
+                            function(response){
+                                callback(response.data)
+                            }
+                        )
+                    }
+                )
+            }
 
     	    }
         ]

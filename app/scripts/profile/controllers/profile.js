@@ -16,7 +16,6 @@ angular.module('dmc.profile')
         $scope.invate = false;
         $scope.toProject = "";
         $scope.selectSortingStar = 0;
-        console.info($stateParams);
 
         $scope.sortList = [
             {
@@ -45,7 +44,59 @@ angular.module('dmc.profile')
                 name: "Verified Users"
             }
         ];
-        console.info($scope);
+
+        $scope.history = {
+            leftColumn: {
+                title: "Public",
+                viewAllLink: "",
+                list: []
+            },
+            rightColumn: {
+                title: "Mutual",
+                viewAllLink: "",
+                list:[]
+            }
+        }
+
+        // get profile history
+        profileModel.getProfileHistory( 
+            {
+                "_limit": 3,
+                "section": "public"
+            }, 
+            function(data){
+                for(var i in data){
+                    data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                    if(data[i].type == "completed"){
+                        data[i].icon = "done_all";
+                    };
+                }
+                $scope.history.leftColumn.list = data;
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            }
+        );
+
+        // get Profile history
+        profileModel.getProfileHistory( 
+            {
+                "_limit": 3,
+                "section": "mutual"
+            }, 
+            function(data){
+                for(var i in data){
+                    data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                    if(data[i].type == "added"){
+                        data[i].icon = "person";
+                    }else if(data[i].type == "rated"){
+                        data[i].icon = "edit";
+                    }else if(data[i].type == "worked"){
+                        data[i].icon = "supervisor_account";
+                    };
+                }
+                $scope.history.rightColumn.list = data;
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            }
+        );
 
 //review
         //Show Leave A Review form

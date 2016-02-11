@@ -2,8 +2,8 @@
 
 angular.module('dmc.product')
 
-.controller('componentController', ['componentData', 'serviceModel', '$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$mdToast', 'toastModel','$timeout', '$cookies', 
-    function (componentData, serviceModel, $stateParams,   $scope,   ajax,   dataFactory,   $mdDialog,   $mdToast,   toastModel,  $timeout,   $cookies) {
+.controller('componentController', ['componentData', 'serviceModel', '$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$mdToast', 'toastModel','$timeout', '$cookies', 'isFavorite',
+    function (componentData, serviceModel, $stateParams,   $scope,   ajax,   dataFactory,   $mdDialog,   $mdToast,   toastModel,  $timeout,   $cookies, isFavorite) {
 
 	$scope.product = componentData  //array product
 	$scope.LeaveFlag = false;  //flag for visibility form Leave A Review
@@ -17,26 +17,16 @@ angular.module('dmc.product')
 	$scope.adding_to_project = false;
 	$scope.selectSortingStar = 0;
 
+	isFavorite.check([$scope.product]);
+
 	$scope.currentImage = 1;
-	$scope.images = [
-		$scope.product.featureImage.thumbnail,
-		'images/3d-printing.png',
-		'images/project_generator.png',
-		'images/plasticity.png',
-		'images/project-1-image.jpg',
-		'images/project_relay_controller.png',
-		'images/project_controller_pg2.png',
-		'images/project_capacitor-bank.png',
-		'images/project_capacitor_compartment.png',
-		'images/ge-fuel-cell.png'
-	];
 	$scope.indexImages = 0;
 
     // get favorites count ------------------
     $scope.favoritesCount = 0;
     var getFavoriteCount = function(){
         ajax.on(dataFactory.getFavoriteProducts(),{
-            accountId : 1
+            accountId : $scope.$root.userData.accountId
         },function(data){
             $scope.favoritesCount = data.length;
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -162,12 +152,11 @@ angular.module('dmc.product')
 	//functions for carousel
 	$scope.carouselFunctions = {
 		openImage : function(index){
-			console.info("this", this);
 			$scope.indexImages = index;
 
 		},
 		deleteImage: function(index){
-			$scope.images.splice(index, 1);
+			$scope.product.images.splice(index, 1);
 			if ($scope.indexImages == index){
 				$scope.indexImages = 0;
 			}
@@ -369,18 +358,23 @@ angular.module('dmc.product')
 
 //functional
 	$scope.addToFavorite = function(){
-		return ajax.on(dataFactory.addProductToFavorite(),{
-			productId : $scope.product.id,
-			productType : $scope.product.type
-		},
-		function(data){
-			console.info("Favorite", data);
-			$scope.product.favorite = data.favorite;
-			if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-		},
-		function(){
-			toastModel.showToast("error", "Failed Add To Favorite");
-		});
+		if(!$scope.product.favorite){
+	        // add to favorites
+	        var requestData = {
+	            accountId : $scope.$root.userData.accountId,
+	            serviceId : $scope.product.id
+	        };
+	        ajax.create(dataFactory.addFavorite(), requestData, function(response){
+	            $scope.product.favorite = response.data;
+	            getFavoriteCount();
+	        });
+	    }else{
+	        // remove from favorites
+	        ajax.delete(dataFactory.deleteFavorite($scope.product.favorite.id), {}, function(response){
+	            $scope.product.favorite = false;
+	            getFavoriteCount();
+	        });
+	    }
 	};
 
 	$scope.toProject = function(){
@@ -392,7 +386,6 @@ angular.module('dmc.product')
 	}
 
 	$scope.btnAddToProject = function(id){
-		console.info("project", id);
 		ajax.on(dataFactory.getUrlAddToProject($scope.product.id),{
 			id : $scope.product.id,
 			projectId : id,

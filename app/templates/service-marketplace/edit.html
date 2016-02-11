@@ -34,13 +34,13 @@
 					<div class="product-image" layout="column">
 						<md-button 
 							class="md-icon-button md-warn md-raised delete-image" 
-							ng-if="images.length" 
+							ng-if="product.images.length" 
 							ng-click="carouselFunctions.deleteImage(indexImages)" 
 							aria-label="delete">
 							<ng-md-icon icon="close" style="fill: #fff" size="25"></ng-md-icon>
 						</md-button>
-						<img class="main-image" ng-if="images.length" ng-src="{{images[indexImages]}}">
-						<div class="no-image" ng-if="!images.length" layout layout-align="center center">
+						<img class="main-image" ng-if="product.images.length" ng-src="{{product.images[indexImages]}}">
+						<div class="no-image" ng-if="!product.images.length" layout layout-align="center center">
 							<h2>No Images</h2>
 						</div>
 						<md-button ng-click="loadImage()">
@@ -51,10 +51,10 @@
 								functions="carouselFunctions" 
 								name-carousel="'carouselImages'" 
 								type-carousel="'images'" 
-								carouselSource="images" 
+								carouselSource="product.images" 
 								max-items="10" 
 								show-items="4" 
-								carousel-source="images" 
+								carousel-source="product.images" 
 								edit="true">
 						</div>
 					</div>
@@ -64,25 +64,20 @@
 							<div layout="row">
 								<md-input-container>
 									<label>Title</label>
-									<input id="editTitleProduct" ng-model="product.title">
+									<input id="editTitleProduct" ng-change="change()" ng-model="product.title">
 								</md-input-container>
 								<span flex></span>
 								
-								<md-button ui-sref="service-marketplace({ serviceId:product.id})" class="md-raised dmc-button">Cancel</md-button>
+								<md-button ng-click="cancelEdit()" class="md-raised dmc-button">Cancel</md-button>
 								<md-button ng-click="saveEdit()" class="md-raised dmc-button md-primary">Save</md-button>
 							</div>
-							<div layout="row">
-								<ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>          
-							</div>
 						</div>
-
-						<md-divider></md-divider>
 
 						<!--product description-->
 						<div>
 							<md-input-container>
 								<label>Description</label>
-								<textarea ng-model="product.description" columns="1" md-maxlength="1000"></textarea>
+								<textarea ng-model="product.description" ng-change="change()" columns="1" md-maxlength="1000"></textarea>
 							</md-input-container>
 						</div>
 					</div>
@@ -92,49 +87,47 @@
 					<md-tab label="Specifications">
 						<md-content class="md-padding" ng-if="true">
 							<div class="tabs-content" layout="column">
-								<md-autocomplete
-										md-no-cache="true"
-										md-selected-item="selectedItem"
-										md-search-text="searchText"
-										md-items="item in specificationsSearch(searchText)"
-										md-selected-item-change="AddSpecifications(item, searchText)"
-										md-item-text="item"
-										md-min-length="0"
-										md-input-name="specificationsField"
-										md-floating-label="Search for specifications">
-									<md-item-template>
-										<span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
-									</md-item-template>
-									<md-not-found>
-										No matches found for "{{searchText}}".
-									</md-not-found>
-								</md-autocomplete>
+								<div layout="row">
+									<md-autocomplete 
+											flex
+											md-no-cache="true"
+											md-selected-item="selectedItem"
+											md-search-text="searchText"
+											md-items="item in specificationsSearch(searchText)"
+											md-selected-item-change="AddSpecifications(item, searchText)"
+											md-item-text="item.name"
+											md-min-length="0"
+											md-input-name="specificationsField"
+											md-floating-label="Search for specifications">
+										<md-item-template>
+											<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.name}}</span>
+										</md-item-template>
+										<md-not-found>
+											No matches found for "{{searchText}}".
+										</md-not-found>
+									</md-autocomplete>
+									<md-button class="dmc-button md-raised" ng-disabled="!searchText" ng-click="addNewSpecifications(searchText)">
+										Add
+									</md-button>
+								</div>
 								<p>Created: {{product.currentStatus.startDate}}</p>
 								<p>Added: {{product.specifications[0].usageStats.added}} times by {{product.specifications[0].usageStats.members}} members</p>
 								<p>Successful Runs: {{product.specifications[0].runStats.fail}}/{{product.specifications[0].runStats.success}}</p>
+								<p>Inputs: {{product.specifications[0].input}}</p>
+								<p>Outputs: {{product.specifications[0].output}}</p>
 								
-								<div layout="row">
-									<md-input-container>
-										<label>Inputs</label>
-										<input type="number" ng-model="product.specifications[0].input"></input>
-									</md-input-container>
-									<md-input-container>
-										<label>Outputs</label>
-										<input type="number" ng-model="product.specifications[0].output"></input>
-									</md-input-container>
-								</div>
 								<div layout="row" ng-repeat="item in product.specifications[0].special track by $index">
+									<md-button aria-label="close" ng-click="deleteSpecifications($index)" class="md-raised deleteSpecifications">
+										<ng-md-icon icon="close" style="fill: 'grey'" size="25"></ng-md-icon>
+									</md-button>
 									<md-input-container>
 										<label>Specifications</label>
-										<input ng-model="item.specification"></input>
+										<input id="{{'sipecification'+$index}}" ng-focus="true" ng-model="item.specification"></input>
 									</md-input-container>
 									<md-input-container>
 										<label>Data</label>
 										<input ng-model="item.data"></input>
 									</md-input-container>
-									<md-button aria-label="close" ng-click="deleteSpecifications($index)" class="md-raised deleteSpecifications">
-										<ng-md-icon icon="close" style="fill: 'grey'" size="25"></ng-md-icon>
-									</md-button>
 								</div>
 							</div>
 						</md-content>

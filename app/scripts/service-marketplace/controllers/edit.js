@@ -31,36 +31,41 @@ angular.module('dmc.service-marketplace')
             $scope.addTags =[];
             $scope.removeAuthors = [];
             $scope.addAuthors = [];
-            $scope.Specifications = ['Height', 'Length', 'Weight'];
+            $scope.arraySpecifications = [];
+
+            serviceModel.get_array_specifications(function(data){
+                $scope.arraySpecifications = data;
+                for(var i in $scope.product.specifications[0].special){
+                    for(var j in $scope.arraySpecifications){
+                        if($scope.arraySpecifications[j].id == $scope.product.specifications[0].special[i].specificationId){
+                            $scope.arraySpecifications.splice(j,1);
+                        }
+                    }
+                }
+            })
 
             $scope.currentImage = 1;
-            $scope.images = [
-                $scope.product.featureImage.thumbnail,
-                'images/3d-printing.png',
-                'images/project_generator.png',
-                'images/plasticity.png',
-                'images/project-1-image.jpg',
-                'images/project_relay_controller.png',
-                'images/project_controller_pg2.png',
-                'images/project_capacitor-bank.png',
-                'images/project_capacitor_compartment.png',
-                'images/ge-fuel-cell.png'
-            ];
             $scope.indexImages = 0;
             $scope.save = false;
+            $scope.isChange = false;
 
             $scope.$on('$stateChangeStart', function (event, next) {
-                if(!$scope.save){
+                if(!$scope.save && $scope.isChange){
                     var answer = confirm("Are you sure you want to leave this page without saving?");
-                    if (!answer) event.preventDefault();
+                    if (!answer) {
+                        event.preventDefault();
+                    }
                 }
             });
 
             $(window).bind('beforeunload', function () {
-                if($state.current.name == "service-marketplace-edit") {
+                if($state.current.name == "service-marketplace-edit" && $scope.isChange)
                     return "Are you sure you want to leave this page without saving?";
-                }
             });
+
+            $scope.change = function(){
+                $scope.isChange = true;
+            }
 
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -84,7 +89,8 @@ angular.module('dmc.service-marketplace')
                     $scope.indexImages = index;
                 },
                 deleteImage: function(index){
-                    $scope.images.splice(index, 1);
+                    $scope.isChange = true;
+                    $scope.product.images.splice(index, 1);
                     if ($scope.indexImages == index){
                         $scope.indexImages = 0;
                     }
@@ -114,43 +120,68 @@ angular.module('dmc.service-marketplace')
 
             //query specifications
             $scope.specificationsSearch = function(query) {
-                var results = query ? $scope.Specifications.filter( createFilterForSpecifications(query) ) : $scope.Specifications;
+                var results = query ? $scope.arraySpecifications.filter( createFilterForSpecifications(query) ) : $scope.arraySpecifications;
                 return results;
             };
 
             //Add specifications to product
             $scope.AddSpecifications = function(item, text){
-                console.info("AddSpecifications", this);
+                $scope.isChange = true;
                 if(!item)return;
-                for(var i in $scope.product.specifications[0].special){
-                    if($scope.product.specifications[0].special[i].specification == item){
-                        this.$$childHead.$mdAutocompleteCtrl.clear();
-                        return;
+                for(var i in $scope.arraySpecifications){
+                    if( $scope.arraySpecifications[i].id == item.id ){
+                        $scope.arraySpecifications.splice(i,1);
+                        break;
                     }
                 }
                 $scope.product.specifications[0].special.push({
-                    specification: item,
-                    data: ""
+                    specification: item.name,
+                    data: "",
+                    specificationId: item.id
                 });
+
                 this.$$childHead.$mdAutocompleteCtrl.clear();
+                $timeout(function() {
+                    console.info("e", $("#specification0"))
+                    $("#specification0").focus();
+                    apply();
+                })
             };
 
             //Create filter function
             function createFilterForSpecifications(query) {
                 var lowercaseQuery = angular.lowercase(query);
                 return function filterFn(state) {
-                    return (angular.lowercase(state).indexOf(lowercaseQuery) === 0);
+                    return (angular.lowercase(state.name).indexOf(lowercaseQuery) === 0);
                 };
             }
 
             //remove specifications
             $scope.deleteSpecifications = function(index){
+                $scope.arraySpecifications.push({
+                    id: $scope.product.specifications[0].special[index].specificationId,
+                    name: $scope.product.specifications[0].special[index].specification,
+                });
                 $scope.product.specifications[0].special.splice(index,1);
             };
+
+            //add bew sepecifications to system
+            $scope.addNewSpecifications = function(text){
+                this.$$childHead.$mdAutocompleteCtrl.clear();
+                serviceModel.add_array_specifications(text, 
+                    function(data){
+                        $scope.product.specifications[0].special.push({
+                        specification: data.name,
+                        data: "",
+                        specificationId: data.id
+                    });
+                });
+            }
 
             //add tag to product
             $scope.addTag = function(inputTag){
                 if(!inputTag)return;
+                $scope.isChange = true;
                 $scope.addTags.push(inputTag);
                 $scope.product.service_tags.push({name: inputTag});
                 this.inputTag = null;
@@ -158,12 +189,14 @@ angular.module('dmc.service-marketplace')
 
             //remove tag
             $scope.deleteTag = function(index, id){
+                $scope.isChange = true;
                 if(id || id === 0) $scope.removeTags.push(id);
                 $scope.product.service_tags.splice(index,1);
             };
 
             //remove athors
             $scope.deleteAthors = function(index, id){
+                $scope.isChange = true;
                 $scope.removeAuthors.push(id);
                 $scope.product.service_authors.splice(index, 1);
             };
@@ -180,7 +213,7 @@ angular.module('dmc.service-marketplace')
 
                 serviceModel.edit_service({
                         title: $scope.product.title,
-                        tags: $scope.product.tags,
+                        images: $scope.product.images,
                         description: $scope.product.description,
                         specification: $scope.product.specifications[0]
                     },
@@ -191,16 +224,11 @@ angular.module('dmc.service-marketplace')
                     });
             };
 
-            var updateCompareCount = function () {
-                var arr = $cookies.getObject('compareProducts');
-                return arr == null ? {services: [], components: []} : arr;
-            };
-            $scope.compareProducts = updateCompareCount();
-
-            $scope.$watch(function() { return $cookies.changedCompare; }, function(newValue) {
-                $scope.compareProducts = updateCompareCount();
-                apply();
-            });
+            $scope.cancelEdit = function(){
+                $scope.save = true;
+                $scope.isChangingPicture = false;
+                $state.go("service-marketplace",{serviceId: $scope.product.id})
+            }
         }
     ]
 );

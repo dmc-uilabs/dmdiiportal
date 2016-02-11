@@ -5,7 +5,6 @@ angular.module('dmc.product')
 .controller('componentEditController', ['componentData', 'serviceModel', '$state', '$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$timeout', '$cookies', 
     function (componentData, serviceModel, $state, $stateParams, $scope,   ajax,   dataFactory,   $mdDialog,  $timeout,   $cookies) {
 	
-	console.info('edit');
 	$scope.product = componentData;  //array product
 	$scope.not_found = false;  //product not fount
 	$scope.products_card = [];  //products card
@@ -15,26 +14,26 @@ angular.module('dmc.product')
 	$scope.addIncluded = [];
 	$scope.addTags =[];
 	$scope.removeTags = [];
-	$scope.Specifications = ['Height', 'Length', 'Weight'];
+	$scope.arraySpecifications = [];
+
+    serviceModel.get_array_specifications(function(data){
+        $scope.arraySpecifications = data;
+        for(var i in $scope.product.specifications[0].special){
+            for(var j in $scope.arraySpecifications){
+                if($scope.arraySpecifications[j].id == $scope.product.specifications[0].special[i].specificationId){
+                    $scope.arraySpecifications.splice(j,1);
+                }
+            }
+        }
+    })
 
 	$scope.currentImage = 1;
-	$scope.images = [
-		$scope.product.featureImage.thumbnail,
-		'images/3d-printing.png',
-		'images/project_generator.png',
-		'images/plasticity.png',
-		'images/project-1-image.jpg',
-		'images/project_relay_controller.png',
-		'images/project_controller_pg2.png',
-		'images/project_capacitor-bank.png',
-		'images/project_capacitor_compartment.png',
-		'images/ge-fuel-cell.png'
-	];
 	$scope.indexImages = 0;
     $scope.save = false;
+    $scope.isChange = false;
 
     $scope.$on('$stateChangeStart', function (event, next) {
-        if(!$scope.save){
+        if(!$scope.save && $scope.isChange){
             var answer = confirm("Are you sure you want to leave this page without saving?");
             if (!answer) {
                 event.preventDefault();
@@ -43,9 +42,17 @@ angular.module('dmc.product')
     });
 
     $(window).bind('beforeunload', function () {
-        if($state.current.name == "edit")
+        if($state.current.name == "edit" && $scope.isChange)
             return "Are you sure you want to leave this page without saving?";
     });
+
+    $scope.change = function(){
+        $scope.isChange = true;
+    }
+
+    var apply = function(){
+        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+    };
 
 
     // get favorites count ------------------
@@ -66,12 +73,11 @@ angular.module('dmc.product')
 	//functions for carousel
 	$scope.carouselFunctions = {
 		openImage : function(index){
-			console.info("this", this);
 			$scope.indexImages = index;
 
 		},
 		deleteImage: function(index){
-			$scope.images.splice(index, 1);
+			$scope.product.images.splice(index, 1);
 			if ($scope.indexImages == index){
 				$scope.indexImages = 0;
 			}
@@ -117,20 +123,19 @@ angular.module('dmc.product')
 
 	//query services
 	$scope.querySearch = function(query) {
-		console.info("querySearch");
 		var results = query ? $scope.allServices.filter( createFilterFor(query) ) : $scope.allServices;
 			return results;
 	}
 
 	//query specifications
 	$scope.specificationsSearch = function(query) {
-		console.info("specificationsSearch");
-		var results = query ? $scope.Specifications.filter( createFilterForSpecifications(query) ) : $scope.Specifications;
+		var results = query ? $scope.arraySpecifications.filter( createFilterForSpecifications(query) ) : $scope.arraySpecifications;
 			return results;
 	}
 
 	//Add services to included services
 	$scope.AddServices = function(item, text){
+        $scope.isChange = true;
 		if(!item)return;
 		$scope.addIncluded.push(item.id);
 		$scope.includedServices.push({service: item});
@@ -139,19 +144,24 @@ angular.module('dmc.product')
 
 	//Add specifications to product
 	$scope.AddSpecifications = function(item, text){
-		console.info("AddSpecifications", this);
-		if(!item)return;
-		for(var i in $scope.product.specifications[0].special){
-			if($scope.product.specifications[0].special[i].specification == item){
-				this.$$childHead.$mdAutocompleteCtrl.clear();
-				return;
-		 }
-		}
-		$scope.product.specifications[0].special.push({
-			specification: item,
-			data: ""
-		})
-		this.$$childHead.$mdAutocompleteCtrl.clear();
+        for(var i in $scope.arraySpecifications){
+            if( $scope.arraySpecifications[i].id == item.id ){
+                $scope.arraySpecifications.splice(i,1);
+                break;
+            }
+        }
+        $scope.product.specifications[0].special.push({
+            specification: item.name,
+            data: "",
+            specificationId: item.id
+        });
+
+        this.$$childHead.$mdAutocompleteCtrl.clear();
+        $timeout(function() {
+            console.info("e", $("#specification0"))
+            $("#specification0").focus();
+            apply();
+        })
 	}
 
 	//Create filter function for a query string
@@ -166,23 +176,41 @@ angular.module('dmc.product')
 	function createFilterForSpecifications(query) {
 		var lowercaseQuery = angular.lowercase(query);
 		return function filterFn(state) {
-			return (angular.lowercase(state).indexOf(lowercaseQuery) === 0);
+			return (angular.lowercase(state.name).indexOf(lowercaseQuery) === 0);
 		};
 	}
 
 	//Remove included services
 	$scope.deleteIncluded = function(index, id){
+        $scope.isChange = true;
 		$scope.removeIncluded.push(id);
 		$scope.includedServices.splice(index, 1);
 	}
 
 	//remove specifications
 	$scope.deleteSpecifications = function(index){
+		$scope.arraySpecifications.push({
+            id: $scope.product.specifications[0].special[index].specificationId,
+            name: $scope.product.specifications[0].special[index].specification,
+        });
 		$scope.product.specifications[0].special.splice(index,1);
 	}
+    //add bew sepecifications to system
+    $scope.addNewSpecifications = function(text){
+        this.$$childHead.$mdAutocompleteCtrl.clear();
+        serviceModel.add_array_specifications(text, 
+            function(data){
+                $scope.product.specifications[0].special.push({
+                specification: data.name,
+                data: "",
+                specificationId: data.id
+            });
+        });
+    }
 
 	//add tag to product
 	$scope.addTag = function(inputTag){
+        $scope.isChange = true;
 		if(!inputTag)return;
 		$scope.addTags.push(inputTag);
 		$scope.product.service_tags.push({name: inputTag});
@@ -191,6 +219,7 @@ angular.module('dmc.product')
 
 	//remove tag
 	$scope.deleteTag = function(index, id){
+        $scope.isChange = true;
 		if(id || id === 0){
 			$scope.removeTags.push(id);
 		}
@@ -210,7 +239,7 @@ angular.module('dmc.product')
 		
 		serviceModel.edit_component({
 			title: $scope.product.title,
-			tags: $scope.product.tags,
+			images: $scope.product.images,
 			description: $scope.product.description,
 			specification: $scope.product.specifications[0],
 		},
@@ -222,18 +251,11 @@ angular.module('dmc.product')
         });
 	}
 
-
-
-	var updateCompareCount = function () {
-	    var arr = $cookies.getObject('compareProducts');
-	    return arr == null ? {services: [], components: []} : arr;
-	};
-	$scope.compareProducts = updateCompareCount();
-
-	$scope.$watch(function() { return $cookies.changedCompare; }, function(newValue) {
-	    $scope.compareProducts = updateCompareCount();
-	    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-	});
+    $scope.cancelEdit = function(){
+        $scope.save = true;
+        $scope.isChangingPicture = false;
+        $state.go('component', {typeProduct: $scope.product.type+'s', productId: $scope.product.id});
+    }
 
 
 	$scope.treeMenuModel = {

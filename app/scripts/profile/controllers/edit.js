@@ -8,9 +8,6 @@ angular.module('dmc.profile')
         $scope.save = false;
         $scope.isChange = false;
 
-        console.info($rootScope);
-        console.info($state);
-
 
         $scope.$on('$stateChangeStart', function (event, next) {
             if(!$scope.save && $scope.isChange){

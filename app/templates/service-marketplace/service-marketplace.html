@@ -35,18 +35,18 @@
 				<div layout="row" layout-margin>
 					<!--product image-->
 					<div class="product-image" layout="column">
-						<img class="main-image" ng-if="images.length" ng-src="{{images[indexImages]}}">
-						<div class="no-image" ng-if="!images.length" layout layout-align="center center">
+						<img class="main-image" ng-if="product.images.length" ng-src="{{product.images[indexImages]}}">
+						<div class="no-image" ng-if="!product.images.length" layout layout-align="center center">
 							<h2>No Images</h2>
 						</div>
 						<div dmc-carousel 
 								functions="carouselFunctions" 
 								name-carousel="'carouselImages'" 
 								type-carousel="'images'" 
-								carouselSource="images" 
+								carouselSource="product.images" 
 								max-items="10" 
 								show-items="4" 
-								carousel-source="images" 
+								carousel-source="product.images" 
 								edit="false">
 						</div>
 					</div>
@@ -54,7 +54,7 @@
 						<!--product header-->
 						<div class="product-header">
 							<div layout="row">
-								<h2>{{product.title}} <span>By {{product.owner}}</span></h2>
+								<h2>{{product.title}} <span>By <a href="/company.php#/1/storefront?product=services" class="link-button">{{product.owner}}</a></span></h2>
 								<span flex></span>
 								<md-button aria-label="favorite" ng-click="addToFavorite()" class="md-icon-button header-icon">
                                     <ng-md-icon icon="favorite_outline" style="fill: grey" size="25" ng-show="!product.favorite"></ng-md-icon>
@@ -68,7 +68,7 @@
 								<ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>
 								<span flex></span>
 								<div ng-if="!adding_to_project" layout="row" layout-align="center end">
-									<md-button ui-sref="service-marketplace-edit({serviceId: product.id})" class="md-raised add">Edit Product</md-button>
+									<md-button ui-sref="service-marketplace-edit({serviceId: product.id})" class="md-raised add">Edit Service</md-button>
 									<md-button ng-click="toProject()" class="md-raised add">Add to Project</md-button>
 									<md-button  
 											ng-click="addToCompare()" 

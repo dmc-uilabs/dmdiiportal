@@ -35,7 +35,7 @@
     <!-- Top Header -->
     <div dmc-top-header active-page="'project'"></div>
 
-    <div class="container">
+    <div class="container add-project">
         <div class="content-panel" add-project-tabs=""></div>
     </div>
 

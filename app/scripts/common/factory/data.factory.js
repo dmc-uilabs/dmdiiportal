@@ -372,7 +372,8 @@ angular.module('dmc.data',[])
                     get : localhost + name + '/' + id,
                     update : localhost + name + '/' + id,
                     reviews : localhost + name +'/' + id + '/profile_reviews',
-                    addReviews : localhost + 'profile_reviews'
+                    addReviews : localhost + 'profile_reviews',
+                    history : localhost + name +'/' + id + '/company_history'
                 }
             },
             // ---------------------------
@@ -391,8 +392,12 @@ angular.module('dmc.data',[])
                     get_included : localhost + 'included-services',
                     remove_included : localhost + 'included-services/' + id,
                     add_included : localhost + 'included-services',
+                    get_tags : localhost + 'service_tags',
                     add_tags : localhost + 'service_tags',
-                    remove_tags : localhost + 'service_tags/' + id
+                    remove_tags : localhost + 'service_tags/' + id,
+                    edit_specifications: localhost + 'specifications/' + id,
+                    get_array_specifications: localhost + 'array_specifications',
+                    add_array_specifications: localhost + 'array_specifications'
                 }
             },
             // ---------------------------
@@ -419,7 +424,10 @@ angular.module('dmc.data',[])
                     get_interfeces : localhost + 'services_interface',
                     get_servers : localhost + 'services_servers',
                     add_servers : localhost + 'services_servers',
+                    get_array_specifications: localhost + 'array_specifications',
+                    add_array_specifications: localhost + 'array_specifications',
                     get_specifications: localhost + name + '/' + id + '/specifications',
+                    edit_specifications: localhost + 'specifications/' + id,
                     get_inputs_outputs: localhost + name + '/' + id + '/service_input_output',
                     get_statistics: localhost + name + '/' + id + '/services_statistic',
 

@@ -215,13 +215,18 @@ angular.module('dmc.product', [
         }
 
         this.edit_component = function(params, callback){
+            ajax.update(dataFactory.components($stateParams.typeProduct, params["specification"].id).edit_specifications,
+                params["specification"],
+                function(response){
+                }
+            )
             ajax.get(dataFactory.components($stateParams.typeProduct, $stateParams.productId).get,
                 {},
                 function(response){
                     console.info(response.data);
                     var component = response.data;
                     component['title'] = params['title'];
-                    component['tags'] = params['tags'];
+                    component['images'] = params['images'];
                     component['description'] = params['description'];
 
                     return ajax.update(dataFactory.components($stateParams.typeProduct, $stateParams.productId).update,
@@ -286,6 +291,37 @@ angular.module('dmc.product', [
                 }
             )
         };
+
+        this.get_array_specifications = function(callback){
+            return ajax.get(dataFactory.components($stateParams.typeProduct, $stateParams.productId).get_array_specifications,
+                {},
+                function(response){
+                    callback(response.data)
+                }
+            )
+        }
+
+        this.add_array_specifications = function(name, callback){
+            ajax.get(dataFactory.components($stateParams.typeProduct, $stateParams.productId).get_array_specifications,
+                {
+                    "_limit" : 1,
+                    "_order" : "DESC",
+                    "_sort" : "id"
+                },
+                function(response){
+                    var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
+                    ajax.create(dataFactory.services($stateParams.serviceId).add_array_specifications,
+                        {
+                            "id": lastId,
+                            "name": name
+                        },
+                        function(response){
+                            callback(response.data)
+                        }
+                    )
+                }
+            )
+        }
     }])
 .controller("ViewIncludedController", ['$scope', 'ajax', 'dataFactory', '$mdDialog', '$location', 'products', function ($scope, ajax, dataFactory, $mdDialog, $location, products) {
 	$scope.products = products;

@@ -109,7 +109,7 @@ angular.module('dmc.all-favorites')
                 apply();
             });
 
-            $scope.$on("RemoveFavorite", function(){
+            $scope.$on("UpdateFavorite", function(){
                 $scope.getFavorites();
             });
 

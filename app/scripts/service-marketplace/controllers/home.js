@@ -41,18 +41,6 @@ angular.module('dmc.service-marketplace')
             isFavorite.check([$scope.product]);
 
             $scope.currentImage = 1;
-            $scope.images = [
-                $scope.product.featureImage.thumbnail,
-                'images/3d-printing.png',
-                'images/project_generator.png',
-                'images/plasticity.png',
-                'images/project-1-image.jpg',
-                'images/project_relay_controller.png',
-                'images/project_controller_pg2.png',
-                'images/project_capacitor-bank.png',
-                'images/project_capacitor_compartment.png',
-                'images/ge-fuel-cell.png'
-            ];
             $scope.indexImages = 0;
             $scope.selectedTab = 0;
 
@@ -149,7 +137,7 @@ angular.module('dmc.service-marketplace')
             $scope.favoritesCount = 0;
             var getFavoriteCount = function(){
                 ajax.get(dataFactory.getFavoriteProducts(),{
-                    accountId : 1
+                    accountId : $scope.$root.userData.accountId
                 },function(response){
                     $scope.favoritesCount = response.data.length;
                     apply();
@@ -369,7 +357,7 @@ angular.module('dmc.service-marketplace')
                 if(!$scope.product.favorite){
                     // add to favorites
                     var requestData = {
-                        accountId : 1,
+                        accountId : $scope.$root.userData.accountId,
                         serviceId : $scope.product.id
                     };
                     ajax.create(dataFactory.addFavorite(), requestData, function(response){
