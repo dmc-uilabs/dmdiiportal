@@ -14,6 +14,7 @@ angular.module('dmc.product')
 	$scope.addIncluded = [];
 	$scope.addTags =[];
 	$scope.removeTags = [];
+    $scope.removeImages = [];
 	$scope.arraySpecifications = [];
 
     serviceModel.get_array_specifications(function(data){
@@ -77,7 +78,9 @@ angular.module('dmc.product')
 
 		},
 		deleteImage: function(index){
-			$scope.product.images.splice(index, 1);
+            $scope.isChange = true;
+			$scope.removeImages.push($scope.product.service_images[index].id);
+			$scope.product.service_images.splice(index, 1);
 			if ($scope.indexImages == index){
 				$scope.indexImages = 0;
 			}
@@ -234,14 +237,14 @@ angular.module('dmc.product')
 
 		serviceModel.remove_services_tags($scope.removeTags);
 		serviceModel.add_services_tags($scope.addTags);
-		serviceModel.remove_included_services($scope.removeIncluded)
-		serviceModel.add_included_services($scope.addIncluded)
+        serviceModel.remove_services_images($scope.removeImages);
+		serviceModel.remove_included_services($scope.removeIncluded);
+		serviceModel.add_included_services($scope.addIncluded);
 		
 		serviceModel.edit_component({
 			title: $scope.product.title,
-			images: $scope.product.images,
 			description: $scope.product.description,
-			specification: $scope.product.specifications[0],
+			specification: $scope.product.specifications[0]
 		},
 
         function(data){

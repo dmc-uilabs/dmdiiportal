@@ -52,7 +52,7 @@ angular.module('dmc.product', [
 
         this.get_component = function(type, id){
             return ajax.get(dataFactory.components(type, id).get, {
-            	"_embed": ["specifications","service_authors","service_tags"],
+            	"_embed": ["specifications","service_authors","service_tags","service_images"],
             },
                 function(response){
                 	var component = response.data;
@@ -226,7 +226,6 @@ angular.module('dmc.product', [
                     console.info(response.data);
                     var component = response.data;
                     component['title'] = params['title'];
-                    component['images'] = params['images'];
                     component['description'] = params['description'];
 
                     return ajax.update(dataFactory.components($stateParams.typeProduct, $stateParams.productId).update,
@@ -282,6 +281,14 @@ angular.module('dmc.product', [
                 )
             }
         };
+
+        this.remove_services_images = function(array){
+            for(var i in array){
+                ajax.delete(dataFactory.components($stateParams.typeProduct, array[i]).remove_images, {},
+                    function(response){}
+                )
+            }
+        }
         
         this.get_service_hystory = function(params, callback){
             return ajax.get(dataFactory.services($stateParams.productId).get_history,
