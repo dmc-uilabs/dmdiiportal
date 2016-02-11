@@ -92,7 +92,20 @@
       "storefront": false
     }
   },
-  "assign_users": [],
+  "assign_users": [
+    {
+      "id": 1,
+      "name": "John Smith"
+    },
+    {
+      "id": 2,
+      "name": "Stephen Rencour"
+    },
+    {
+      "id": 3,
+      "name": "Hussain Rizvi"
+    }
+  ],
   "companies": [
     {
       "id": 1,
@@ -6050,7 +6063,7 @@
       "dueDate": "25-09-2015 00:00:00",
       "priority": "Low",
       "projectId": 5,
-      "status": "Open"
+      "status": "Completed"
     },
     {
       "id": 19,
@@ -6064,7 +6077,7 @@
       "dueDate": "25-09-2015 00:00:00",
       "priority": "Low",
       "projectId": 5,
-      "status": "Open"
+      "status": "Completed"
     },
     {
       "id": 20,
@@ -6073,12 +6086,12 @@
         "id": 5,
         "title": "Low Heat Loss Transformer"
       },
-      "assignee": "Bridget Cohen",
+      "assignee": "John Smith",
       "reporter": "b.beckmann",
       "dueDate": "25-09-2015 00:00:00",
-      "priority": "Low",
+      "priority": "Medium",
       "projectId": 5,
-      "status": "Open"
+      "status": "Completed"
     },
     {
       "id": 21,

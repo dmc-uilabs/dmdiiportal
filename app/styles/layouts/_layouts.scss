@@ -300,3 +300,8 @@ a{
     text-decoration: underline;
   }
 }
+
+.md-select-menu-container,
+.md-datepicker-calendar-pane{
+  z-index: 150;
+}
