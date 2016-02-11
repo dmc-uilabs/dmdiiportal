@@ -481,14 +481,14 @@ angular.module('dmc.project', [
         '$stateParams',
         '$http',
         'DMCUserModel',
-        '$q',
+        '$rootScope',
         'toastModel',
         function (ajax,
                   dataFactory,
                   $stateParams,
                   $http,
                   DMCUserModel,
-                  $q,
+                  $rootScope,
                   toastModel) {
 
             this.get_service = function(id){
@@ -522,14 +522,13 @@ angular.module('dmc.project', [
                                     service["service_reviews"][i]['replyReviews'] = [];
                                 }
 
-                                var currentUser = DMCUserModel.getUserData().$$state.value;
                                 // get current Status
                                 ajax.get(dataFactory.getServiceStatus(service.id),{
                                         _limit : 1,
                                         _order : "DESC",
                                         _sort : "id",
                                         status : "running",
-                                        accountId : currentUser.accountId
+                                        accountId : $rootScope.userData.accountId
                                     },function(response){
                                         if(response.data.length > 0) service.currentStatus = response.data[0];
                                     }
@@ -577,7 +576,8 @@ angular.module('dmc.project', [
                     {
                         "title": params.title,
                         "description": params.description,
-                        "owner": "M.Dawson",
+                        "owner": $rootScope.userData.displayName,
+                        "accountId": $rootScope.userData.accountId,
                         "releaseDate": moment(new Date).format("MM/DD/YYYY"),
                         "serviceType": "analytical",
                         "specifications": "/services/3/specifications",
@@ -609,44 +609,33 @@ angular.module('dmc.project', [
             };
 
             this.add_service_reviews = function(params, callback){
-                ajax.get(dataFactory.services($stateParams.ServiceId).addReviews,
-                    {
-                        "_limit" : 1,
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                params["id"] = lastId;
+                params["productId"] = $stateParams.ServiceId;
+                params["productType"] = "service";
+                params["reply"] = false;
+                params["reviewId"] = 0;
+                params["status"] = true;
+                params["date"] = moment().format('MM/DD/YYYY');
+                params["userRatingReview"] = {
+                    "DMC Member": "none"
+                };
+                params["like"] = 0;
+                params["dislike"] = 0;
+
+                return ajax.create(dataFactory.services($stateParams.ServiceId).addReviews,
+                    params,
+                    function(response){
+                        toastModel.showToast("success", "Review added");
+                        if(callback) callback(response.data)
                     },
                     function(response){
-                        var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
-                        params["id"] = lastId;
-                        params["productId"] = $stateParams.ServiceId;
-                        params["productType"] = "service";
-                        params["reply"] = false;
-                        params["reviewId"] = 0;
-                        params["status"] = true;
-                        params["date"] = moment().format('MM/DD/YYYY');
-                        params["userRatingReview"] = {
-                            "DMC Member": "none"
-                        };
-                        params["like"] = 0;
-                        params["dislike"] = 0;
-
-                        return ajax.create(dataFactory.services($stateParams.ServiceId).addReviews,
-                            params,
-                            function(response){
-                                toastModel.showToast("success", "Review added");
-                                if(callback) callback(response.data)
-                            },
-                            function(response){
-                                toastModel.showToast("error", "Error." + response.statusText);
-                            }
-                        )
+                        toastModel.showToast("error", "Error." + response.statusText);
                     }
                 )
             };
 
             this.edit_service = function(params, callback){
-                ajax.get(dataFactory.services($stateParams.ServiceId).get,
-                    {},
+                ajax.get(dataFactory.services($stateParams.ServiceId).get, {},
                     function(response){
                         console.info(response.data);
                         var component = response.data;
@@ -776,8 +765,7 @@ angular.module('dmc.project', [
             };
 
             this.get_servers = function(callback){
-                var currentUser = DMCUserModel.getUserData().$$state.value;
-                return ajax.get(dataFactory.getAccountServersUrl(currentUser.accountId),
+                return ajax.get(dataFactory.getAccountServersUrl($rootScope.userData.accountId),
                     {},
                     function(response){
                         callback(response.data)
