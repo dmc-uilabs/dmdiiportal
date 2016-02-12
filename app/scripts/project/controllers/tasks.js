@@ -14,8 +14,8 @@ angular.module('dmc.project')
 
         if($scope.projectData && $scope.projectData.id && $scope.projectId) {
             $scope.tasks = [];
-            $scope.order = "DESC";
-            $scope.sort = "priority";
+            $scope.order = "ASC";
+            $scope.sort = "title";
 
             $scope.types = [
                 {

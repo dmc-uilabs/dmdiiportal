@@ -195,6 +195,7 @@ md-toast.md-error-toast-theme {
 }
 md-toast{
   position: fixed;
+  z-index: 150;
 }
 
 a.md-button.md-fab.dmc-fab, .md-button.md-fab.dmc-fab{
@@ -298,4 +299,9 @@ a{
   &:hover{
     text-decoration: underline;
   }
+}
+
+.md-select-menu-container,
+.md-datepicker-calendar-pane{
+  z-index: 150;
 }

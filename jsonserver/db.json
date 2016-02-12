@@ -92,7 +92,20 @@
       "storefront": false
     }
   },
-  "assign_users": [],
+  "assign_users": [
+    {
+      "id": 1,
+      "name": "John Smith"
+    },
+    {
+      "id": 2,
+      "name": "Stephen Rencour"
+    },
+    {
+      "id": 3,
+      "name": "Hussain Rizvi"
+    }
+  ],
   "companies": [
     {
       "id": 1,
@@ -904,7 +917,8 @@
       },
       "projectId": 2,
       "type": "service",
-      "from": "marketplace"
+      "from": "marketplace",
+      "averageRun": 15
     },
     {
       "id": 6,
@@ -1472,7 +1486,7 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "averageRun": 17.6,
+      "averageRun": 157.875,
       "interface": {
         "interFace": {
           "version": 1,
@@ -3341,6 +3355,264 @@
           "space": "USER"
         }
       }
+    },
+    {
+      "serviceId": 4,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "error",
+      "percentCompleted": 100,
+      "startDate": "2016-02-11",
+      "startTime": "21:56:01",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 22,
+      "stopDate": "2016-02-11",
+      "stopTime": "21:56:16"
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-12",
+      "startTime": "00:42:57",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 23,
+      "stopDate": "2016-02-12",
+      "stopTime": "00:47:39",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8657-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity1 Interface",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "5",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "7",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "4",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity1 Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-12",
+      "startTime": "01:01:20",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 24,
+      "stopDate": "2016-02-12",
+      "stopTime": "01:09:45",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8657-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity1 Interface",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "5",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "7",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "4",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity1 Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "success",
+      "percentCompleted": 100,
+      "startDate": "2016-02-12",
+      "startTime": "01:10:40",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 25,
+      "stopDate": "2016-02-12",
+      "stopTime": "01:17:08",
+      "interface": {
+        "interFace": {
+          "version": 1,
+          "modelId": "995f8657-d90a-1004-8438-64281c6cab63",
+          "interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
+          "type": "interface",
+          "name": "Velocity1 Interface",
+          "path": [
+            33,
+            34,
+            35
+          ]
+        },
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "5",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "7",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "4",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        },
+        "modelName": "Velocity1 Interface",
+        "modelDescription": "",
+        "server": {
+          "name": "localhost",
+          "port": "7795",
+          "user": "ceed",
+          "pw": "ceed",
+          "space": "USER"
+        }
+      }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": "running",
+      "percentCompleted": 0,
+      "startDate": "2016-02-12",
+      "startTime": "01:25:40",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 26
     }
   ],
   "services_history": [
@@ -6033,7 +6305,7 @@
       "dueDate": "25-09-2015 00:00:00",
       "priority": "Low",
       "projectId": 5,
-      "status": "Open"
+      "status": "Completed"
     },
     {
       "id": 19,
@@ -6047,7 +6319,7 @@
       "dueDate": "25-09-2015 00:00:00",
       "priority": "Low",
       "projectId": 5,
-      "status": "Open"
+      "status": "Completed"
     },
     {
       "id": 20,
@@ -6056,12 +6328,12 @@
         "id": 5,
         "title": "Low Heat Loss Transformer"
       },
-      "assignee": "Bridget Cohen",
+      "assignee": "John Smith",
       "reporter": "b.beckmann",
       "dueDate": "25-09-2015 00:00:00",
-      "priority": "Low",
+      "priority": "Medium",
       "projectId": 5,
-      "status": "Open"
+      "status": "Completed"
     },
     {
       "id": 21,
@@ -7452,71 +7724,59 @@
       "id": 10
     }
   ],
+  "follow_discussions": [
+    {
+      "accountId": 1,
+      "individual-discussionId": 1,
+      "id": 1
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 2,
+      "id": 2
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 3,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 4,
+      "id": 4
+    }
+  ],
   "individual-discussion-tags": [
     {
-      "id": 1,
-      "name": "Manufacturing",
-      "individual-discussionId": 1
-    },
-    {
-      "id": 2,
-      "name": "3D Printering",
-      "individual-discussionId": 1
-    },
-    {
-      "id": 3,
-      "name": "Science",
-      "individual-discussionId": 1
+      "name": "Tag 1",
+      "individual-discussionId": 2,
+      "id": 1
     }
   ],
   "individual-discussion": [
     {
-      "id": 1,
-      "title": "Aenean euismod bibendum laoreet. Cum soci?",
-      "comments": {
-        "link": "/individual-discussion/1/individual-discussion-comments",
-        "totalItems": 9
-      }
+      "message": "Message Discussion",
+      "title": "New Discussion",
+      "accountId": 1,
+      "id": 1
     },
     {
-      "id": 2,
-      "title": "Aenean euismod bibendum laoreet2.",
-      "comments": {
-        "link": "/individual-discussion/2/individual-discussion-comments",
-        "totalItems": 2
-      }
+      "message": "Test message",
+      "title": "Team Discussion",
+      "accountId": 1,
+      "id": 2
     },
     {
-      "id": 3,
-      "title": "Aenean euismod bibendum laoreet3.",
-      "comments": {
-        "link": "/individual-discussion/3/individual-discussion-comments",
-        "totalItems": 0
-      }
+      "message": "Message",
+      "title": "New Discusssion",
+      "accountId": 1,
+      "id": 3
     },
     {
-      "id": 4,
-      "title": "Aenean euismod bibendum laoreet4.",
-      "comments": {
-        "link": "/individual-discussion/4/individual-discussion-comments",
-        "totalItems": 0
-      }
-    },
-    {
-      "id": 5,
-      "title": "Aenean euismod bibendum laoreet5.",
-      "comments": {
-        "link": "/individual-discussion/5/individual-discussion-comments",
-        "totalItems": 0
-      }
-    },
-    {
-      "id": 6,
-      "title": "Aenean euismod bibendum laoreet6.",
-      "comments": {
-        "link": "/individual-discussion/6/individual-discussion-comments",
-        "totalItems": 0
-      }
+      "message": "Message Discussion 91",
+      "title": "Discussion 91",
+      "accountId": 1,
+      "id": 4
     }
   ],
   "individual-discussion-comments": [
@@ -7536,95 +7796,41 @@
     },
     {
       "id": 2,
-      "individual-discussionId": 1,
-      "full_name": "DMC Member",
+      "individual-discussionId": 2,
+      "full_name": "Thomas Smith",
       "accountId": 1,
       "avatar": "/images/carbone.png",
-      "text": "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?",
-      "created_at": "2015-01-12 07:28:00",
+      "text": "Comment",
+      "created_at": "2016-02-11 09:13:28",
+      "userRatingReview[DMC Member]": "like",
+      "like": 0,
+      "dislike": 0
+    },
+    {
+      "individual-discussionId": 4,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "text": "Message Discussion 91",
+      "created_at": "2016-02-12 04:20:14",
       "userRatingReview": {
         "DMC Member": "like"
       },
-      "like": 22,
-      "dislike": 11
+      "like": 0,
+      "dislike": 0,
+      "id": 3
     },
     {
-      "id": 3,
-      "individual-discussionId": 1,
-      "full_name": "DMC Member",
-      "accountId": 2,
-      "avatar": "/images/carbone.png",
-      "text": "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?",
-      "created_at": "2015-01-12 07:28:00",
-      "userRatingReview": {
-        "DMC Member": "dislike"
-      },
-      "like": 22,
-      "dislike": 11
-    },
-    {
-      "id": 4,
-      "individual-discussionId": 1,
-      "full_name": "DMC Member",
-      "accountId": 2,
-      "avatar": "/images/carbone.png",
-      "text": "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?",
-      "created_at": "2015-01-12 07:28:00",
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
-      "like": 22,
-      "dislike": 11
-    },
-    {
-      "id": 5,
-      "individual-discussionId": 2,
-      "full_name": "DMC Member",
-      "accountId": 2,
-      "avatar": "/images/carbone.png",
-      "text": "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?",
-      "created_at": "2015-01-12 07:28:00",
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
-      "like": 22,
-      "dislike": 11
-    },
-    {
-      "id": 6,
-      "individual-discussionId": 1,
-      "full_name": "DMC Member",
+      "individual-discussionId": 4,
+      "full_name": "Thomas Smith",
       "accountId": 1,
       "avatar": "/images/carbone.png",
-      "text": "asdf",
-      "created_at": "2016-01-20 11:30:15",
+      "text": "hi",
+      "created_at": "2016-02-12 04:21:12",
       "userRatingReview[DMC Member]": "like",
       "like": 0,
-      "dislike": 0
-    },
-    {
-      "id": 7,
-      "individual-discussionId": 1,
-      "full_name": "DMC Member",
-      "accountId": 1,
-      "avatar": "/images/carbone.png",
-      "text": "asd",
-      "created_at": "2016-01-20 12:53:36",
-      "userRatingReview[DMC Member]": "like",
-      "like": 0,
-      "dislike": 0
-    },
-    {
-      "id": 8,
-      "individual-discussionId": 1,
-      "full_name": "DMC Member",
-      "accountId": 1,
-      "avatar": "/images/carbone.png",
-      "text": "ddd",
-      "created_at": "2016-01-20 01:10:31",
-      "userRatingReview[DMC Member]": "like",
-      "like": 0,
-      "dislike": 0
+      "dislike": 0,
+      "id": 4
     }
   ],
   "account-notification-categories": [

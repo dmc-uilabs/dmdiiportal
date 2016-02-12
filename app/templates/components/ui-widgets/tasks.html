@@ -22,7 +22,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr md-auto-select ng-repeat="item in tasks" class="one-task">
+                <tr md-auto-select ng-repeat="item in tasks | orderBy: sort" class="one-task">
                     <td class="title" ng-show="columns.indexOf('title') > -1" ng-click="editTask($event,item)">
                         {{item.title}}
                     </td>

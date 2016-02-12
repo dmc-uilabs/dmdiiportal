@@ -46,7 +46,7 @@
 
                     </div>
                     <div layout="row" layout-padding layout-align="center center" class="company-search">
-                        <md-input-container>
+                        <md-input-container style="display:none">
                             <md-select ng-model="selectedProductType" ng-change="productTypeChanged(selectedProductType)" aria-label="Product Types">
                                 <md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>
                             </md-select>

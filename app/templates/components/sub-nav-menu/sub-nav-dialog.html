@@ -2,6 +2,7 @@
     <md-dialog-content>
       <md-button ng-repeat="p in pages"
                  ui-sref="{{p.state}}"
+                 ng-click="openPage()"
                  class="dmc-project-sub-nav-dialog-btn"
                  ng-class="{'selected' : p.id === currentPage}">
         <ng-md-icon icon="{{p.icon}}"

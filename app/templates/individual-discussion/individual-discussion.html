@@ -31,11 +31,11 @@
 							<div layout="row" layout-align="center center">
 								<p>Was this post helpful?</p>
 								<md-button aria-label="Like" md-no-ink class="md-button"  ng-click="Like(comment)">
-									<ng-md-icon icon="thumb_up" ng-style="(comment.userRatingReview[userlogin] === 'like')? {fill:'#65AF3F'}: {fill:'black'}" size="14"></ng-md-icon>
+									<ng-md-icon icon="thumb_up" ng-style="(comment.userRatingReview[userData.displayName] === 'like')? {fill:'#65AF3F'}: {fill:'black'}" size="14"></ng-md-icon>
 									{{(comment.like > 0)? comment.like: ''}}
 								</md-button>
 								<md-button aria-label="Dislike" md-no-ink class="md-button"  ng-click="DisLike(comment)">
-									<ng-md-icon icon="thumb_down" ng-style="(comment.userRatingReview[userlogin] === 'dislike')? {fill:'red'}: {fill:'black'}" size="14"></ng-md-icon>
+									<ng-md-icon icon="thumb_down" ng-style="(comment.userRatingReview[userData.displayName] === 'dislike')? {fill:'red'}: {fill:'black'}" size="14"></ng-md-icon>
 									{{(comment.dislike > 0)? comment.dislike: ''}}
 								</md-button>
 							</div>

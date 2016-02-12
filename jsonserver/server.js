@@ -36,8 +36,6 @@ server.use(jsonServer.rewriter({
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 
-
-
 server.get('/getChildren', function (req, res) {
 
     var data = (req.query ? req.query : null);
@@ -112,9 +110,53 @@ server.get('/runModel', function(req, res){
 });
 
 // Returns an Express router
+var port = 3000;
 var router = jsonServer.router('db.json');
+router.render = function (req, res) {
+    var path = req._parsedUrl.pathname;
+    var method = req.method;
+    switch(path){
+        case '/services':
+            if(method == "GET"){
+                buildGetServices(res,res.locals.data,req.query);
+            }else{
+                res.json(res.locals.data);
+            }
+            break;
+        default:
+            res.json(res.locals.data);
+            break;
+    }
+};
+
+function buildGetServices(res,data,query){
+    var ids = [];
+    for(var i in data) ids.push("serviceId="+data[i].id);
+    request({
+        url: "http://localhost:3000/service_runs?_order=ASC&_sort=status&"+ids.join('&'),
+        method: 'GET',
+        json : true
+    }, function(err, response, body) {
+        for(var i=0;i<data.length;i++){
+            data[i].currentStatus = null;
+            for(var j=0;j<body.length;j++){
+                if(body[j].serviceId == data[i].id){
+                    data[i].currentStatus = body[j];
+                    body.splice(j,1);
+                    break;
+                }
+            }
+            if(!data[i].currentStatus && query.currentStatus_ne == 'null'){
+                data.splice(i,1);
+                i--;
+            }
+        }
+        res.json(data);
+    });
+}
+
 server.use(router);
 
-server.listen(3000,function(){
-    console.log('Created JSON server and Listening on http://localhost:'+3000);
+server.listen(port,function(){
+    console.log('Created JSON server and Listening on http://localhost:'+port);
 });

@@ -79,8 +79,18 @@ angular.module('dmc.project')
                 // get current status
                 if($scope.service.currentStatus && $scope.service.currentStatus.status){
                     $scope.status = "running";
-                    //runModel();
-                    $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
+                    ajax.update(dataFactory.updateServiceStatus($scope.service.currentStatus.id),{
+                            startDate: moment(new Date()).format("YYYY-MM-DD"),
+                            startTime: moment(new Date()).format("HH:mm:ss")
+                        }, function(response){
+                            runModel();
+                            $scope.service.currentStatus.startDate = response.data.startDate;
+                            $scope.service.currentStatus.startTime = response.data.startTime;
+                            $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
+                        }, function(){
+                            toastModel.showToast("error", "Run Failed. Please check your inputs and try again");
+                        }
+                    );
                 }
             });
 

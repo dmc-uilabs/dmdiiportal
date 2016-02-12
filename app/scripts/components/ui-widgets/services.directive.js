@@ -25,21 +25,23 @@ angular.module('dmc.widgets.services',[
             controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
                 $scope.services = [];
                 $scope.total = 0;
-                $scope.sort = 'title';
+                $scope.sort = 'currentStatus.startDate';
                 $scope.order = 'ASC';
+                $scope.limit = 5;
 
                 // function for get all services from DB
                 $scope.getServices = function(){
                     ajax.get(dataFactory.getServices($scope.projectId),{
                             _sort : $scope.sort,
                             _order : $scope.order,
-                            _limit : 5
+                            currentStatus_ne : 'null'
                         }, function(response){
                             $scope.services = response.data;
                             $scope.total = $scope.services.length;
+                            if($scope.services.length > $scope.limit) $scope.services.splice($scope.limit,$scope.services.length);
                             for(var s in $scope.services){
                                 $scope.services[s].releaseDate = moment($scope.services[s].releaseDate,"DD/MM/YYYY").format("MM/DD/YYYY");
-                                $scope.services[s].currentStatus.startDate = moment($scope.services[s].currentStatus.startDate,"DD/MM/YYYY").format("MM/DD/YYYY");
+                                $scope.services[s].currentStatus.startDate = moment($scope.services[s].currentStatus.startDate).format("MM/DD/YYYY");
                             }
                             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                         },function(response){
@@ -48,10 +50,11 @@ angular.module('dmc.widgets.services',[
                     );
                 };
 
-                $scope.onOrderChange = function (order) {
-                    $scope.sort = (order[0] == '-' ? order.substring(1,order.length) : order);
-                    $scope.order = (order[0] == '-' ? 'DESC' : 'ASC');
-                    $scope.getServices();
+                $scope.onOrderChange = function(order) {
+                    $scope.sort = order;
+                    //$scope.sort = (order[0] == '-' ? order.substring(1,order.length) : order);
+                    //$scope.order = (order[0] == '-' ? 'DESC' : 'ASC');
+                    //$scope.getServices();
                 };
 
                 // get all services (first request)

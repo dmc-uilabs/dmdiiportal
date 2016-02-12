@@ -16,14 +16,14 @@
                     <tr>
                         <th ng-show="columns.indexOf('name') > -1" name="Name" order-by="title"></th>
                         <th ng-show="columns.indexOf('project') > -1" name="Project" order-by="project"></th>
-                        <th ng-show="columns.indexOf('start') > -1" name="Start" order-by="start"></th>
-                        <th ng-show="columns.indexOf('status') > -1" name="Status" order-by="status"></th>
+                        <th ng-show="columns.indexOf('start') > -1" name="Start" order-by="currentStatus.startDate"></th>
+                        <th ng-show="columns.indexOf('status') > -1" name="Status" order-by="currentStatus.status"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="item in services" ng-click="changeItem(item)">
+                    <tr ng-repeat="item in services | orderBy: sort" ng-click="changeItem(item)">
                         <td ng-show="columns.indexOf('name') > -1">
-                            <a href="/component.php#/services/{{item.id}}" class="link-button">
+                            <a ng-href="{{ projectId ? '/project.php#/'+projectId+'/services/'+item.id+'/run' : '/component.php#/services/'+item.id }}" class="link-button">
                                 <em>{{item.title}}</em>
                             </a>
                             <span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDate}}</span>
@@ -33,9 +33,10 @@
                         </td>
                         <td ng-show="columns.indexOf('start') > -1">{{item.currentStatus.startDate}}<span class="services-time-info">{{item.currentStatus.startTime}}</span></td>
                         <td ng-show="columns.indexOf('status') > -1">
-                            <a href="/project.php#/{{item.currentStatus.project.id}}/run-service/{{item.id}}" class="link-button">
-                                <md-progress-linear md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
-                                <span class="service-progress-info">1:30 of 2:00</span>
+                            <a href="/project.php#/{{item.currentStatus.project.id}}/services/{{item.id}}/run" class="link-button">
+                                <md-progress-linear ng-if="item.currentStatus.status == 'running'" md-mode="determinate" ng-init="item.currentStatus.percentCompleted = 55" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
+                                <span ng-if="item.currentStatus.status == 'running'" class="service-progress-info">1:30 of 2:00</span>
+                                <span ng-if="item.currentStatus.status != 'running'">{{item.currentStatus.status}}</span>
                             </a>
                         </td>
                     </tr>

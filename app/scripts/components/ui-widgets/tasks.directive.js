@@ -23,14 +23,15 @@ angular.module('dmc.widgets.tasks',[
                 $scope.tasks = [];
                 $scope.total = 0;
                 $scope.sort = 'dueDate';
-                $scope.order = 'DESC';
+                $scope.order = 'ASC';
 
                 // function for get all tasks from DB
                 $scope.getTasks = function(){
                     ajax.get(dataFactory.getTasks($scope.projectId),{
                             _sort : $scope.sort,
                             _order : $scope.order,
-                            _limit : 5
+                            _limit : 5,
+                            status_ne: "Completed"
                         }, function(response){
                             $scope.tasks = response.data;
                             $scope.total = $scope.tasks.length;
@@ -62,9 +63,10 @@ angular.module('dmc.widgets.tasks',[
                 };
 
                 $scope.onOrderChange = function (order) {
-                    $scope.sort = (order[0] == '-' ? order.substring(1,order.length) : order);
-                    $scope.order = (order[0] == '-' ? 'ASC' : 'DESC');
-                    $scope.getTasks();
+                    $scope.sort = order;
+                    //$scope.sort = (order[0] == '-' ? order.substring(1,order.length) : order);
+                    //$scope.order = (order[0] == '-' ? 'ASC' : 'DESC');
+                    //$scope.getTasks();
                 };
 
                 // get all tasks (first request)
@@ -107,16 +109,7 @@ angular.module('dmc.widgets.tasks',[
                     }).then(function (answer) {
 
                     }, function (update) {
-                        if(update) {
-                            for (var t in $scope.tasks) {
-                                if ($scope.tasks[t].id == update.id) {
-                                    $scope.tasks[t] = update;
-                                    convertDueDate($scope.tasks[t]);
-                                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                                    break;
-                                }
-                            }
-                        }
+                        $scope.getTasks();
                     });
                 };
             }
