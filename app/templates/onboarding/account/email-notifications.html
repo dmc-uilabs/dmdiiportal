@@ -1,0 +1,30 @@
+<div layout="column" class="account-step1">
+	<div layout="row" layout-align="space-between center">
+		<h2>Customize your web notifications</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.servers">
+			SKIP
+		</md-button>
+	</div>
+	<h3>Recive notifications for whant you care about the way you want</h3>
+	<div class="top-container" layout="row">
+	    <md-button class="md-raised dmc-button" ng-click="disableAll(3)">Deactivate All</md-button>
+	    <md-button class="md-raised dmc-button" ng-click="enableAll(3)">Select All</md-button>
+	</div>
+	<div layout="row" classs="body-container" layout-wrap>
+	    <div class="block-notification" flex="50" ng-if="category.title != 'General'" ng-repeat="category in notificationCategories">
+	        <h2>{{category.title}}</h2>
+	        <md-switch ng-model="account[3].data[item.id].selected" aria-label=""
+	                   ng-repeat="item in category['account-notification-category-items']">
+	            {{item.title}}
+	        </md-switch>
+	    </div>
+	</div>
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised" ng-click="scrollTop()" ui-sref="^.web">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised" ng-click="next(3)">
+			NEXT
+		</md-button>
+	</div>
+</div>

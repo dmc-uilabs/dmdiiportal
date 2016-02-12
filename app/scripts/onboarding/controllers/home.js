@@ -7,7 +7,7 @@ angular.module('dmc.onboarding')
 			    controller: "BasicInformationsController",
 			    templateUrl: 'templates/onboarding/basic-informations.html',
 			    parent: angular.element(document.body),
-			    clickOutsideToClose:true
+			    clickOutsideToClose: false
 		    })
 		    .then(function() {
 		      	$scope.showModalTermsConditions();
@@ -19,14 +19,16 @@ angular.module('dmc.onboarding')
 			    controller: "TermsConditionsController",
 			    templateUrl: 'templates/onboarding/terms-conditions.html',
 			    parent: angular.element(document.body),
-			    clickOutsideToClose:true
+			    clickOutsideToClose: false
 		    })
 		    .then(function(answer) {
-		      	
+		      	$scope.$parent.first = false
 		    }, function() {
 		    });
 		}
-		$scope.showModalBasicInformations();
+		if($scope.first){
+			$scope.showModalBasicInformations();
+		}
 }]);
 
 

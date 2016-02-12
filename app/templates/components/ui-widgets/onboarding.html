@@ -6,12 +6,12 @@
 <div class="content-panel-body onboarding-widget">
     <md-content layout>
     	<div layout="column" layout-align="start center" layout-fill>
-			<div class="section" flex="100" layout="row" layout-align="center center" layout-fill>
+			<div class="section" layout="row" layout-align="center center" layout-fill>
 				<div flex="10">
-					<img ng-src="images/community-icon.png">
+					<img ng-src="images/icon-profile-lg.svg">
 				</div>
 				<div layout="column" flex="85" class="text">
-					<h2><a ng-href="{{'profile.php#/' + userData.profileId}}">Fill out your profile</a></h2>
+					<h2><a ng-href="{{'onboarding.php#/profile'}}">Fill out your profile</a></h2>
 					<h3>Tell everyone about yourself and brag about your skills</h3>
 				</div>
 				<div flex="5">
@@ -19,14 +19,14 @@
 				</div>
 			</div>
 			
-			<md-divider flex="100"></md-divider>
+			<md-divider></md-divider>
 
-			<div class="section" flex="100" layout="row" layout-align="center center" layout-fill>
+			<div class="section" layout="row" layout-align="center center" layout-fill>
 				<div flex="10">
-					<img ng-src="images/community-icon.png">
+					<img ng-src="images/icon-settings-lg.svg">
 				</div>
 				<div layout="column" flex="85" class="text">
-					<h2><a ng-href="{{'account.php#/' + userData.accountId}}">Manage your account</a></h2>
+					<h2><a ng-href="{{'onboarding.php#/account'}}">Manage your account</a></h2>
 					<h3>Customize your account the way you want it</h3>
 				</div>
 				<div flex="5">
@@ -36,12 +36,12 @@
 			
 			<md-divider></md-divider>
 
-			<div ng-if="$root.userData.role == 1" class="section" flex="100" layout="row" layout-align="center center" layout-fill>
+			<div ng-if="$root.userData.role == 1" class="section" layout="row" layout-align="center center" layout-fill>
 				<div flex="10">
-					<img ng-src="images/community-icon.png">
+					<img ng-src="images/icon-company-lg.svg">
 				</div>
 				<div layout="column" flex="85" class="text">
-					<h2><a ng-href="{{'company-profile.php#/' + userData.companyId}}">Fill out the company profile</a></h2>
+					<h2><a ng-href="{{'onboarding.php#/company'}}">Fill out the company profile</a></h2>
 					<h3>Tell everyone about the company, its skills, and accomplishments</h3>
 				</div>
 				<div flex="5">
@@ -51,12 +51,12 @@
 
 			<md-divider></md-divider>
 
-			<div ng-if="$root.userData.role == 1" class="section" flex="100" layout="row" layout-align="center center" layout-fill>
+			<div ng-if="$root.userData.role == 1" class="section" layout="row" layout-align="center center" layout-fill>
 				<div flex="10">
-					<img ng-src="images/community-icon.png">
+					<img ng-src="images/icon-marketplace-lg.svg">
 				</div>
 				<div layout="column" flex="85" class="text">
-					<h2><a ng-href="{{'company.php#/' + userData.companyId + '/storefront?product=services'}}">Customize the company storefront</a></h2>
+					<h2><a ng-href="{{'onboarding.php#/storefront'}}">Customize the company storefront</a></h2>
 					<h3>Market creations with a beautiful storefront</h3>
 				</div>
 				<div flex="5">

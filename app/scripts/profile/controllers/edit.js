@@ -119,6 +119,16 @@ angular.module('dmc.profile')
             $scope.file = flow;
         };
 
+        $scope.getLocation = function () {
+            location.get(callback);
+        };
+
+        var callback = function (success, data) {
+            if (success) {
+                $scope.profile.location = data.city + ", " + data.region;
+            }
+        };
+
     });
 
 

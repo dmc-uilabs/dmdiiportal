@@ -94,7 +94,12 @@
 <script src="scripts/common/models/toast-model.js"></script>
 
 <script src="scripts/onboarding/onboarding.js"></script>
+<script src="scripts/onboarding/controllers/onboarding.js"></script>
 <script src="scripts/onboarding/controllers/home.js"></script>
+<script src="scripts/onboarding/controllers/profile.js"></script>
+<script src="scripts/onboarding/controllers/account.js"></script>
+<script src="scripts/onboarding/controllers/company.js"></script>
+<script src="scripts/onboarding/controllers/storefront.js"></script>
 <script src="scripts/onboarding/controllers/basic-informations.js"></script>
 <script src="scripts/onboarding/controllers/terms-conditions.js"></script>
 <!-- endbuild -->

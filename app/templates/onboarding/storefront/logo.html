@@ -1,0 +1,41 @@
+<div layout="column" class="storefront-step3">
+	<div layout="row" layout-align="space-between center">
+		<h2>Show us your brand</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.^.home">
+			SKIP
+		</md-button>
+	</div>
+	<h3>A logo will help users identify your brand</h3>
+	<div class="flow-box"
+         flow-init
+         flow-drag-enter="pictureDragEnter($flow)"
+         flow-drag-leave="pictureDragLeave($flow)"
+         flow-file-success="$file.msg = $message"
+         flow-file-added="addedNewFile($file, $event, $flow )"
+         layout="column">
+        <div layout class="alert" flow-drop flow-drop-enabled="true">
+          <div class="inner-box" layout="row" layout-align="center center" style="min-width: 100%;">
+            <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
+              <img flow-img="$flow.files[0]" />
+                <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
+                    <ng-md-icon icon="close" size="21"></ng-md-icon>
+                </md-button>
+            </div>
+            <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
+                Drag And Drop your picture here<br>
+                600 x 600 px (max 2 MB)
+                <br>or<br>
+                <strong>Click here</strong>
+            </div>
+          </div>
+        </div>
+    </div>
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised" ui-sref="^.description">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised" ng-click="finish(2)">
+			FINISH
+		</md-button>
+	</div>
+</div>

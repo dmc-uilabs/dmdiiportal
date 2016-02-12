@@ -1,0 +1,23 @@
+<div class="onboarding-section">
+	<div class="return">
+		<a ui-sref="^.home" class="link">Return to onboarding</a>
+	</div>
+	<md-content class="transparent-onboarding">
+		<div layout="row">
+			<div layout="column" flex="20" class="right-column">
+				<h2>Storefront Set Up</h2>
+				<md-list class="right-list">
+					<md-list-item layout="row" ng-repeat="item in storefront">
+						<md-icon ng-if="item.done" md-svg-src="images/icon-complete.svg" aria-label="done"></md-icon>
+						<div ng-if="!item.done" class="number" layout layout-align="center center"><span>{{$index+1}}</span></div>
+						<h3><a class="link" ui-sref="{{item.state}}">{{item.name}}</a></h3>
+					</md-list-item>
+				</md-list>
+			</div>
+
+			<div layout="column" flex="80" class="left-column">
+				<ui-view></ui-view>
+			</div>
+		</div>
+	</md-content>
+</div>
