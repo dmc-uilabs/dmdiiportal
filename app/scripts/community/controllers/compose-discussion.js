@@ -49,12 +49,11 @@ angular.module('dmc.community')
             $scope.save = function(message, subject){
                 ajax.create(
                     dataFactory.addDiscussion(), {
-                        "message": $scope.NewDiscussion.message,
                         "title": $scope.NewDiscussion.subject,
                         "accountId" : $rootScope.userData.accountId
                     },
                     function(response){
-                        if( followDiscussion(response.data.id) ) {
+                        if( followDiscussion(response.data.id) && createMessage(response.data.id,$scope.NewDiscussion.message)) {
                             if ($scope.NewDiscussion.tags.length > 0) {
                                 for (var i in $scope.NewDiscussion.tags) {
                                     ajax.create(
@@ -87,6 +86,27 @@ angular.module('dmc.community')
                 },function(response){
                     return response;
                 });
+            }
+
+            function createMessage(id,message){
+                return ajax.create(
+                    dataFactory.addCommentIndividualDiscussion(), {
+                        "individual-discussionId": id,
+                        "full_name": $rootScope.userData.displayName,
+                        "accountId": $rootScope.userData.accountId,
+                        "avatar": "/images/carbone.png",
+                        "text": message,
+                        "created_at": moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
+                        "userRatingReview": {
+                            "DMC Member": "like"
+                        },
+                        "like": 0,
+                        "dislike": 0
+                    },
+                    function(data){
+                        return data;
+                    }
+                );
             }
 
             function apply(){

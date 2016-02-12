@@ -194,41 +194,31 @@ angular.module('dmc.individual-discussion', [
 
                 //Submit Leave A Review form
                 $scope.Submit = function(){
-                    ajax.on(dataFactory.getLastDiscussionCommentId(), {
-                        "_limit" : 1,
-                        "_order" : "DESC",
-                        "_sort" : "id"
-                    }, function(data){
-                        var lastId = (data.length == 0 ? 1 : parseInt(data[0].id)+1);
-                        ajax.on(
-                            dataFactory.addCommentIndividualDiscussion(), {
-                                "id": lastId,
-                                "individual-discussionId": $stateParams.discussionId,
-                                "full_name": $scope.userData.displayName,
-                                "accountId": $scope.userData.accountId,
-                                "avatar": "/images/carbone.png",
-                                "text": $scope.newComment,
-                                "created_at": moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
-                                "userRatingReview": {
-                                    "DMC Member": "like"
-                                },
-                                "like": 0,
-                                "dislike": 0
+                    ajax.on(
+                        dataFactory.addCommentIndividualDiscussion(), {
+                            "individual-discussionId": $stateParams.discussionId,
+                            "full_name": $scope.userData.displayName,
+                            "accountId": $scope.userData.accountId,
+                            "avatar": "/images/carbone.png",
+                            "text": $scope.newComment,
+                            "created_at": moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
+                            "userRatingReview": {
+                                "DMC Member": "like"
                             },
-                            function(data){
-                                $scope.newComment = "";
-                                data.created_at = moment(data.created_at).format('MM/DD/YYYY, h:mm A');
-                                data.isOwner = true;
-                                $scope.discussion.comments.items.push(data);
-                                apply();
-                                $('.md-char-counter').text('0/1000');
-                            }, function(){
-                                toastModel.showToast("error", "Fail add comment");
-                            }, "POST"
-                        );
-                    }, function(){
-                        toastModel.showToast("error", "Unable get last id");
-                    },"GET");
+                            "like": 0,
+                            "dislike": 0
+                        },
+                        function(data){
+                            $scope.newComment = "";
+                            data.created_at = moment(data.created_at).format('MM/DD/YYYY, h:mm A');
+                            data.isOwner = true;
+                            $scope.discussion.comments.items.push(data);
+                            apply();
+                            $('.md-char-counter').text('0/1000');
+                        }, function(){
+                            toastModel.showToast("error", "Fail add comment");
+                        }, "POST"
+                    );
                 };
 
                 $scope.flagPost = function(index){

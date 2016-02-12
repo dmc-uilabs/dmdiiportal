@@ -7734,6 +7734,16 @@
       "accountId": 1,
       "individual-discussionId": 2,
       "id": 2
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 3,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 4,
+      "id": 4
     }
   ],
   "individual-discussion-tags": [
@@ -7755,6 +7765,18 @@
       "title": "Team Discussion",
       "accountId": 1,
       "id": 2
+    },
+    {
+      "message": "Message",
+      "title": "New Discusssion",
+      "accountId": 1,
+      "id": 3
+    },
+    {
+      "message": "Message Discussion 91",
+      "title": "Discussion 91",
+      "accountId": 1,
+      "id": 4
     }
   ],
   "individual-discussion-comments": [
@@ -7783,6 +7805,32 @@
       "userRatingReview[DMC Member]": "like",
       "like": 0,
       "dislike": 0
+    },
+    {
+      "individual-discussionId": 4,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "text": "Message Discussion 91",
+      "created_at": "2016-02-12 04:20:14",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 3
+    },
+    {
+      "individual-discussionId": 4,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "text": "hi",
+      "created_at": "2016-02-12 04:21:12",
+      "userRatingReview[DMC Member]": "like",
+      "like": 0,
+      "dislike": 0,
+      "id": 4
     }
   ],
   "account-notification-categories": [
