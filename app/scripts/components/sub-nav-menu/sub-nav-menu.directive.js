@@ -88,7 +88,7 @@ var SubNavPages = [
     },
     {
         id : 5,
-        title : 'Team',
+        title : 'Team Members',
         icon : 'people',
         state : 'project.team'
     },

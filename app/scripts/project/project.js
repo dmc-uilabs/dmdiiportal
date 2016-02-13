@@ -103,7 +103,7 @@ angular.module('dmc.project', [
             controller: 'TasksCtrl as projectCtrl',
             templateUrl: 'templates/project/pages/tasks.html'
         }).state('project.team', {
-            url: '/team',
+            url: '/team?text?type',
             controller: 'TeamCtrl as projectCtrl',
             templateUrl: 'templates/project/pages/team.html'
         }).state('project.discussions', {

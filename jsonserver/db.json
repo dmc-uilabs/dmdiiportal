@@ -442,6 +442,13 @@
       "id": 8
     }
   ],
+  "following_members": [
+    {
+      "profileId": 1,
+      "accountId": 1,
+      "id": 1
+    }
+  ],
   "following_companies": [
     {
       "accountId": 1,
@@ -707,7 +714,13 @@
       }
     }
   ],
-  "projets_members": [],
+  "projects_members": [
+    {
+      "profileId": 1,
+      "projectId": 1,
+      "id": 1
+    }
+  ],
   "components": [
     {
       "id": 1,

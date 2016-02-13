@@ -11,6 +11,71 @@
         </div>
     </md-toolbar>
 </div>
-<div class="container" >
-
+<div class="container container-view-all all-project-members"  layout-padding>
+    <div class="content-panel-body" layout-padding>
+        <md-content layout-padding>
+            <div layout="row" flex layout-align="start end" class="search-content">
+                <md-input-container class="filterBox">
+                    <md-select placeholder="People" ng-model="typeModel" ng-change="changedType(typeModel)">
+                        <md-option ng-repeat="item in types" value="{{item.tag}}">{{item.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <form ng-submit="submit(searchModel)" class="view-all-search-field global-search-form" flex>
+                    <div layout="column">
+                        <div layout="row">
+                            <div layout="column" flex>
+                                <md-input-container md-no-float>
+                                    <md-icon>
+                                        <ng-md-icon icon="search"></ng-md-icon>
+                                    </md-icon>
+                                    <input type="text" placeholder="Search Member" ng-model="searchModel">
+                                </md-input-container>
+                            </div>
+                            <div layout="column">
+                                <md-input-container>
+                                    <md-button type="submit" class="search-button">Search</md-button>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <md-progress-linear md-mode="indeterminate" ng-if="loading"></md-progress-linear>
+            <div layout="row" flex layout-align="space-between start" layout-wrap>
+                <div flex="45" class="one-member" ng-repeat="item in members track by $index">
+                    <div layout="row" flex="100" layout-align="start center">
+                        <div class="avatar">
+                            <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
+                        </div>
+                        <div class="info" flex>
+                            <div class="name" flex layout-align="start center">
+                                <h4>{{item.member.displayName}}<span>{{item.member.jobTitle}}</span></h4>
+                            </div>
+                            <div class="company-name" flex>
+                                {{item.member.company}}
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <md-button md-no-ink class="md-icon-button add"
+                                       ng-click="add(item.member)"
+                                       aria-label="Add">
+                                <md-tooltip md-direction="left">Add</md-tooltip>
+                                <ng-md-icon icon="group_add" size="25"></ng-md-icon>
+                            </md-button>
+                            <md-button class="md-raised" ng-click="follow(item.member)">{{item.member.isFollow ? 'Unfollow' : 'Follow'}}</md-button>
+                            <md-button md-no-ink class="md-icon-button delete"
+                                       ng-click="delete(item)"
+                                       aria-label="Delete">
+                                <md-tooltip md-direction="left">Delete</md-tooltip>
+                                <ng-md-icon icon="close" size="25"></ng-md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+                <div flex="100" ng-if="members.length == 0">
+                    Team members is empty
+                </div>
+            </div>
+        </md-content>
+    </div>
 </div>

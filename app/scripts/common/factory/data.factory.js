@@ -253,7 +253,19 @@ angular.module('dmc.data',[])
                 return localhost+'members';
             },
             createMembersToProject: function() {
-                return localhost+'projets_members';
+                return localhost+'projects_members';
+            },
+            followMember: function(id){
+                return localhost + 'following_members'+( id ? '/'+id : '');
+            },
+            getAccountFollowedMembers: function(id){
+                return localhost + 'accounts/'+id+'/following_members';
+            },
+            projectMembers: function(id){
+                return localhost + 'projects/'+id+'/projects_members';
+            },
+            deleteProjectMember: function(id){
+                return localhost + 'projects_members/'+id;
             },
             getCreateProject: function() {
                 return localhost+'projects';
@@ -403,7 +415,8 @@ angular.module('dmc.data',[])
                     update : localhost + name + '/' + id,
                     reviews : localhost + name +'/' + id + '/profile_reviews',
                     addReviews : localhost + 'profile_reviews',
-                    history : localhost + name +'/' + id + '/company_history'
+                    history : localhost + name +'/' + id + '/company_history',
+                    all : localhost + name
                 }
             },
             // ---------------------------

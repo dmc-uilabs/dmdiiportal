@@ -50,31 +50,28 @@ angular.module('dmc.add_members', [
     }
 })
 .service('projectModel', [
-    'ajax', 'dataFactory', '$stateParams', 'toastModel',
-    function (ajax, dataFactory, $stateParams, toastModel) {
-        this.add_members_to_project = function(array, callback){
-            ajax.get(dataFactory.createMembersToProject(), 
-                {
-                    "_limit" : 1,
-                    "_order" : "DESC",
-                    "_sort" : "id"
-                }, 
-                function(response){  
-                    var lastMemberId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1); 
-                    for(var i in array){
-                        ajax.create(dataFactory.createMembersToProject(),
-                            {
-                                "id": lastMemberId,
-                                "profileId": array[i].id,
-                                "projectId": $stateParams.projectId
-                            }
-                        );
-                        lastMemberId++;
-                    }
-                    callback();
+        'ajax',
+        'dataFactory',
+        '$stateParams',
+        'toastModel',
+        function (ajax,
+                  dataFactory,
+                  $stateParams,
+                  toastModel) {
+
+            this.add_members_to_project = function(array, callback){
+                for(var i in array){
+                    ajax.create(dataFactory.createMembersToProject(),
+                        {
+                            "profileId": array[i].id,
+                            "projectId": $stateParams.projectId
+                        }
+                    );
                 }
-            ) 
-        };            
-    }
-]);
+                callback();
+            };
+
+        }
+    ]
+);
   
