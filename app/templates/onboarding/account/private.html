@@ -1,0 +1,51 @@
+<div layout="column" class="account-step1">
+	<div layout="row" layout-align="space-between center">
+		<h2>Set your private privacy settings</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.web">
+			SKIP
+		</md-button>
+	</div>
+	<h3>This information is private and will only be seen by members you share it with</h3>
+	<div layout="row">
+		<md-checkbox ng-model="account[1].data.email.enable" class="md-primary">
+			Email
+		</md-checkbox>
+		<md-checkbox ng-model="account[1].data.phone.enable" class="md-primary">
+			Phone
+		</md-checkbox>
+		<md-checkbox ng-model="account[1].data.location.enable" class="md-primary">
+			Location
+		</md-checkbox>
+	</div>
+	<form name="privateForm" autocomplete="off" layout="row" layout-wrap>
+		<md-input-container class="md-icon-float" flex="50" ng-if="account[1].data.email.enable">
+			<label>Email</label>
+			<md-icon>
+				<ng-md-icon icon="email"></ng-md-icon>
+			</md-icon>
+			<input ng-model="account[1].data.email.value" required>
+		</md-input-container>
+		<md-input-container class="md-icon-float" flex="50" ng-if="account[1].data.phone.enable">
+			<label>Phone</label>
+			<md-icon>
+				<ng-md-icon icon="phone"></ng-md-icon>
+			</md-icon>
+			<input ng-model="account[1].data.phone.value" required>
+		</md-input-container>
+		<md-input-container class="md-icon-float" flex="50" ng-if="account[1].data.location.enable">
+			<label>location</label>
+			<md-icon>
+				<ng-md-icon icon="gps_fixed"></ng-md-icon>
+			</md-icon>
+			<input ng-model="account[1].data.location.value" required>
+		</md-input-container>
+	</form>
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised" ui-sref="^.public">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised" ng-disabled="!privateForm.$valid" ng-click="next(1)">
+			NEXT
+		</md-button>
+	</div>
+</div>

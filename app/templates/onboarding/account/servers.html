@@ -1,0 +1,41 @@
+<div layout="column" class="account-step1">
+	<div layout="row" layout-align="space-between center">
+		<h2>Connect your servers</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.^.home">
+			SKIP
+		</md-button>
+	</div>
+	<h3>Linking servers allows members to run services off of your server</h3>
+	<form name="serverForm" autocomplete="off">
+		<div layout="row" ng-repeat="newServer in servers">
+			<div flex="50">
+				<md-input-container>
+					<label>Server name</label>
+					<input ng-model="newServer.server" required>
+				</md-input-container>
+			</div>
+			<div flex="50" class="ip-container">
+				<md-input-container>
+					<label>Server Host/IP</label>
+					<input ng-model="newServer.ip" required>
+				</md-input-container>
+				<ng-md-icon ng-show="changeIP(newServer.ip)" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
+			</div>
+		</div>
+	</form>
+	<div layout="row">
+		<md-button class="md-raised dmc-button" ng-click="addServer()">
+			<ng-md-icon icon="add_circle_outline" fill="#333" size="21" aria-label="Add Server"></ng-md-icon>
+			Add Server
+		</md-button>
+	</div>
+
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised" ui-sref="^.email">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised" ng-disabled="!serverForm.$valid" ng-click="finish(4)">
+			FINISH
+		</md-button>
+	</div>
+</div>

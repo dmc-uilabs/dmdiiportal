@@ -1,0 +1,21 @@
+<div layout="column" class="storefront-step1">
+	<div layout="row" layout-align="space-between center">
+		<h2>Describe your storefront</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.logo">
+			SKIP
+		</md-button>
+	</div>
+	<h3>The storefront is where users interact with your components & servicest</h3>
+	<md-input-container>
+    	<label>Description</label>
+    	<textarea ng-model="storefront[1].data.description" md-maxlength="3000"></textarea>
+    </md-input-container>
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised" ui-sref="^.cover">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised" ng-click="next(1)">
+			NEXT
+		</md-button>
+	</div>
+</div>

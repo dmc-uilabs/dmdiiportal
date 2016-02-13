@@ -90,3 +90,109 @@
 		margin-top: 36px;
 	}
 }
+
+.onboarding-section{
+	padding: 8px;
+	.return{
+		margin: 8px 0 24px;
+	}
+	h3{
+		font-weight: normal;
+	}
+	ui-view{
+		background-color: #fff;
+		padding: 16px;
+	}
+	.transparent-onboarding{
+		background-color: transparent;
+	}
+	.padding-onboarding{
+		padding: 16px;
+	}
+	.right-column{
+		background-color: #fff;
+		padding: 16px;
+		md-list{
+			padding: 0;
+			md-list-item{
+				padding: 0;
+				md-icon{
+					margin: 0 16px 0 0;
+					height: 26px;
+				    width: 26px;
+				}
+				.number{
+					position: relative;
+					font-weight: 900;
+					font-size: 14px;
+					text-align: center;
+					border: 2px solid #64AD45;
+					border-radius: 50%;
+					color: #64AD45;
+					height: 26px;
+				    width: 26px;
+					margin: 0 16px 0 0;
+				    span{
+				    	margin-left: -2px;
+				    }
+				}
+				h2{
+					margin: 8px 0;
+				}
+				.link{
+					text-transform: none;
+				}
+			}
+		}
+	}
+	.left-column{
+		padding-left: 16px;
+		h3{
+			margin: 0 0 16px;
+		}
+		.ip-container{
+			position: relative;
+		}
+		.correct-ip{
+		    position: absolute;
+		    bottom: 25px;
+		    right: 0px;
+		    fill: #4CAF50;
+		}
+		.profile-step2{
+			.flow-box{
+				margin: 0;
+				width: 100%;
+			}
+		}
+		md-chips .md-chips{
+	      box-shadow: none;
+	      md-chip{
+	        border-radius: 0px;
+	        a{
+	          text-decoration: none;
+	          color: inherit;
+	          &:hover{
+	            text-decoration: underline;
+	          }
+	        }
+	      }
+	      .tags-chip{
+	        padding-right: 32px;
+	        .md-icon-button{
+	          position: absolute;
+	          right: 0;
+	          top: 0;
+	          min-height: 32px;
+	          height: 32px;
+	          line-height: 32px;
+	          min-width: 32px;
+	          width: 32px;
+	          margin: 0;
+	        }
+	      }
+	    }
+
+	}
+}
+

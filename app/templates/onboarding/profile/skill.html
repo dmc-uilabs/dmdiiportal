@@ -1,0 +1,40 @@
+<div layout="column" class="profile-step3">
+	<div layout="row" layout-align="space-between center">
+		<h2>Talk about your skills</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.^.home">
+			SKIP
+		</md-button>
+	</div>
+	<h3>We'll help you set up your profile</h3>
+	<div layout="column">
+	    <form ng-submit="addSkill(inputSkill)" class="add-skills-form" layout="row" layout-align="start center">
+	      	<md-input-container>
+		        <label>Enter skill</label>
+		        <input ng-model="inputSkill">
+	      	</md-input-container>
+	      	<md-button ng-disabled="!inputSkill" class="md-raised md-primary dmc-button">Add</md-button>
+	    </form>
+	    <div layout="row" class="tabs-content" layout-wrap>
+	      	<md-chips ng-repeat="skill in profile[2].data.skills track by $index">
+		        <md-chip class="tags-chip">
+			        {{skill}}
+			        <md-button aria-label="close" ng-click="deleteSkill($index)" class="md-icon-button">
+			            <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
+			        </md-button>
+		        </md-chip>
+	     	</md-chips>
+	    </div>
+	    <md-input-container>
+	    	<label>Skills Description</label>
+	    	<textarea ng-model="profile[2].data.skillsDescription" md-maxlength="3000"></textarea>
+	    </md-input-container>
+  	</div>
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised" ui-sref="^.image">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised" ng-disabled="!profile[2].data.skills.length || !profile[2].data.skillsDescription" ng-click="finish(2)">
+			FINISH
+		</md-button>
+	</div>
+</div>
