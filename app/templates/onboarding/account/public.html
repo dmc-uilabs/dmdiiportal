@@ -30,18 +30,18 @@
 			<md-icon>
 				<ng-md-icon icon="phone"></ng-md-icon>
 			</md-icon>
-			<input ng-model="account[0].data.phone.value" required>
+			<input phone-input ng-model="account[0].data.phone.value" required>
 		</md-input-container>
 		<md-input-container class="md-icon-float" flex="50" ng-if="account[0].data.location.enable">
 			<label>location</label>
-			<md-icon>
-				<ng-md-icon icon="gps_fixed"></ng-md-icon>
-			</md-icon>
+			<md-icon class="location-gps" ng-click="getLocation(0)">
+              	<ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
+            </md-icon>
 			<input ng-model="account[0].data.location.value" required>
 		</md-input-container>
 	</form>
 	<div layout="row" layout-align="end center">
-		<md-button class="dmc-button md-raised" ng-disabled="!publicForm.$valid" ng-click="next(0)">
+		<md-button class="dmc-button md-raised md-primary" ng-click="next(0)">
 			NEXT
 		</md-button>
 	</div>

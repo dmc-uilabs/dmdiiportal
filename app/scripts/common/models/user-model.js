@@ -19,4 +19,26 @@ angular.module('dmc.model.user', ['dmc.data'])
                 )
             }
         };
+
+        this.UpdateUserData = function(user) {
+
+            var config = {
+                url: dataFactory.getUserUrl(),
+                dataType: 'json',
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                data: JSON.stringify(user)
+            };
+
+            return $http(config).then(function(response) {
+                    var data = response.data ? response.data : response;
+                    // cache user data
+                    _user = data;
+                    return data;
+                }
+            );
+            
+        };
 }]);

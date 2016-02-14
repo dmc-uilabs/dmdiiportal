@@ -5,6 +5,7 @@ angular.module('dmc.onboarding')
 		if($state.current.name == "onboarding.company"){
 			$state.go($scope.company[0].state);
 		}
+        $scope.activePage = $state;
 
         $scope.isAddingContact = false;
         $scope.contacts = [];

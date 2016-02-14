@@ -16,6 +16,8 @@ angular.module('dmc.onboarding', [
     'dmc.location',
     'dmc.model.toast-model',
     'dmc.model.profile',
+    'dmc.model.user',
+    'dmc.phone-format',
     'flow'
 ])
     .config(function ($stateProvider, $urlRouterProvider) {

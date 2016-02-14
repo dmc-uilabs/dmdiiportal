@@ -275,7 +275,7 @@ angular.module('dmc.onboarding')
         $scope.profile = [
         	{
         		state: ".basic",
-        		name: "Basic Informations",
+        		name: "Basic Information",
         		done: false,
         		data: {
         			dispalyName: "",

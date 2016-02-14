@@ -10,7 +10,7 @@
 					<md-list-item layout="row" ng-repeat="item in company">
 						<md-icon ng-if="item.done" md-svg-src="images/icon-complete.svg" aria-label="done"></md-icon>
 						<div ng-if="!item.done" class="number" layout layout-align="center center"><span>{{$index+1}}</span></div>
-						<h3><a class="link" ui-sref="{{item.state}}">{{item.name}}</a></h3>
+						<h3 ng-class="{'active': (item.state == '.'+ activePage.current.name.split('.')[2])}"><a class="link" ui-sref="{{item.state}}">{{item.name}}</a></h3>
 					</md-list-item>
 				</md-list>
 			</div>

@@ -52,12 +52,18 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
             case 1:
             case 2:
             case 3:
+            case 4:
                 city = value;
                 break;
 
             default:
-                city = value.slice(0, 3);
-                number = value.slice(3);
+                if(value[0] == "1"){
+                    city = value.slice(1, 4);
+                    number = value.slice(4);
+                }else{
+                    city = value.slice(0, 3);
+                    number = value.slice(3);
+                }
         }
 
         if(number){
@@ -68,7 +74,11 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
                 number = number;
             }
 
-            return ( city +"-" + number).trim();
+            if(value[0] == "1"){
+                return ("1(" + city + ")" + number).trim();
+            }else{
+                return ("(" + city + ")" + number).trim();
+            }
         }
         else{
             return city;
