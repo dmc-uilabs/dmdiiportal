@@ -33,9 +33,10 @@
                   </md-tab>
                   <md-tab label="Services">
                       <md-content flex
-                                  ui-project-services
-                                  total-items="item.services.totalItems"
-                                  project-id="item.id"></md-content>
+                                  ui-widget-services
+                                  limit="3"
+                                  project-id="item.id"
+                                  widget-style="'my-projects'"></md-content>
                   </md-tab>
               </md-tabs>
           </md-content>
@@ -60,11 +61,13 @@
               <!-- Services -->
               <md-content flex="{{flexBox}}"
                           layout-padding
-                          ui-project-services
-                          total-items="item.services.totalItems"
+                          ui-widget-services
+                          limit="3"
                           project-id="item.id"
+                          widget-style="'my-projects'"
+                          progress-position="'bottom'"
                           widget-title="'Services'"
-                          progress-position="'bottom'"></md-content>
+                          start-at-offset="14"></md-content>
           </div>
       </div>
   </md-content>

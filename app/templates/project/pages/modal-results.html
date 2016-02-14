@@ -6,7 +6,7 @@
 				<ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
 			</md-button>
 		</div>
-		<h3>Results: {{history.status}}</h3>
+		<h3>Results: {{(history.status == 0 ? 'success' : 'error')}}</h3>
 		<div>
 			<md-button class="md-primary md-raised" ng-click="rerun()">
 				Rerun

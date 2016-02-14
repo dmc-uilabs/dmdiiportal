@@ -13,16 +13,57 @@ angular.module('dmc.widgets.interfaces',[
                 selectedInterface: '='
             },
             templateUrl: 'templates/components/ui-widgets/interfaces.tmpl.html',
-            controller: function($scope,ajax,dataFactory,toastModel){
+            controller: function($scope,ajax,domeModel,dataFactory,toastModel){
                 $scope.interfaces = [];
                 $scope.currentFolder = null;
                 $scope.isLoading = false;
                 $scope.track = [];
                 $scope.current = null;
 
+                var nameModel = null;
+
                 $scope.exitFolder = function(index){
                     $scope.getInterfaces($scope.track[index],index,true);
                 };
+
+                function callbackGetModel(response){
+                    if(response.status != "error") {
+                        $scope.selectedInterface(response.data.pkg, nameModel);
+                        apply();
+                    }else{
+                        toastModel.showToast('error', response.msg);
+                    }
+                }
+
+                function callbackGetChildren(response,index,back,item){
+                    if (response.data.status != "error") {
+                        if (response.data.pkg && response.data.pkg.children) {
+                            if(response.data.pkg.type == "model"){
+                                if(response.data.pkg.children) {
+                                    $scope.current = index;
+                                    nameModel = response.data.pkg.name;
+                                    $scope.getModel(response.data.pkg.children[0]);
+                                }
+                            }else {
+                                $scope.interfaces = response.data.pkg.children;
+                                if (back) {
+                                    $scope.track.splice(index + 1, $scope.track.length);
+                                } else if (item) {
+                                    $scope.track.push(item);
+                                }
+                                $scope.currentFolder = $scope.track.length - 1;
+                            }
+                        }
+                    } else {
+                        toastModel.showToast('error', response.data.msg);
+                    }
+                    $scope.isLoading = false;
+                    apply();
+                }
+
+                function errorCallback(){
+                    $scope.isLoading = false;
+                }
 
                 $scope.getInterfaces = function(item,index,back){
                     $scope.isLoading = true;
@@ -30,34 +71,9 @@ angular.module('dmc.widgets.interfaces',[
                     for (var key in item) {
                         if (key != 'interfaces') dataRequest[key] = item[key];
                     }
-                    dataRequest.url = $scope.serverIp;
+                    dataRequest.domeServer = $scope.serverIp;
                     $scope.current = null;
-                    ajax.get(dataFactory.getChildren(), dataRequest,
-                        function (response) {
-                            if (response.data.status != "error") {
-                                if (response.data.pkg && response.data.pkg.children) {
-                                    if(response.data.pkg.type == "model"){
-                                        if(response.data.pkg.children) {
-                                            $scope.current = index;
-                                            $scope.getModel(response.data.pkg.children[0]);
-                                        }
-                                    }else {
-                                        $scope.interfaces = response.data.pkg.children;
-                                        if (back) {
-                                            $scope.track.splice(index + 1, $scope.track.length);
-                                        } else if (item) {
-                                            $scope.track.push(item);
-                                        }
-                                        $scope.currentFolder = $scope.track.length - 1;
-                                    }
-                                }
-                                apply();
-                            } else {
-                                toastModel.showToast('error', response.data.msg);
-                            }
-                            $scope.isLoading = false;
-                        }
-                    );
+                    domeModel.getChildren(dataRequest,callbackGetChildren,errorCallback,item,index,back);
                 };
                 $scope.getInterfaces();
 
@@ -66,17 +82,8 @@ angular.module('dmc.widgets.interfaces',[
                     for(var key in item){
                         if(key != 'interfaces') dataRequest[key] = item[key];
                     }
-                    dataRequest.url = $scope.serverIp;
-                    ajax.get(dataFactory.getModel(), dataRequest,
-                        function(response){
-                            if(response.status != "error") {
-                                $scope.selectedInterface(response.data.pkg);
-                                apply();
-                            }else{
-                                toastModel.showToast('error', response.msg);
-                            }
-                        }
-                    );
+                    dataRequest.domeServer = $scope.serverIp;
+                    domeModel.getModel(dataRequest,callbackGetModel,errorCallback);
                 };
 
                 $scope.selectInterface = function(item,index,event){

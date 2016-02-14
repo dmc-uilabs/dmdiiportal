@@ -70,7 +70,7 @@
                   </md-content>
               </div>
           </div>
-        <div class="content-panel content-panel-dashboard" ui-widget-services columns="['name','project','start','status']" widget-style="'full'" widget-title="'SERVICES'" start-at-offset="14"></div>
+        <div class="content-panel content-panel-dashboard" ui-widget-services limit="5" columns="['name','project','start','status']" widget-style="'full'" widget-title="'SERVICES'" start-at-offset="14"></div>
         <div class="content-panel content-panel-dashboard" ui-widget-projects widget-title="'RECENT PROJECTS'" show-image="true"></div>
       </div>
 

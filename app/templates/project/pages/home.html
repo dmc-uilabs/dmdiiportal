@@ -23,7 +23,7 @@
             <md-button md-no-ink
                        ng-if="!isPreview"
                        ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
-                       class="link-button">
+                       class="link-button uppercase">
                 <ng-md-icon icon="share" size="18"></ng-md-icon>
                 Invite
             </md-button>
@@ -87,7 +87,14 @@
             <!-- Requirement Documents -->
             <div ng-if="isPreview" class="content-panel project-review" ui-widget-documents project-id="projectCtrl.currentProjectId" widget-title="'DOCUMENTS'"></div>
             <!-- Running Services -->
-            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-services view-all-href="'https://test.projectdmc.org/services/?group_id=7'" title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'" project-id="projectCtrl.currentProjectId" widget-title="'SERVICES'" columns="['name','status']" sort-by="'start'"></div>
+            <div ng-if="!isPreview" class="content-panel project-review"
+                 ui-widget-services
+                 view-all-href="'https://test.projectdmc.org/services/?group_id=7'"
+                 title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'"
+                 project-id="projectCtrl.currentProjectId"
+                 widget-title="'SERVICES'"
+                 limit="5"
+                 columns="['name','status']"></div>
             <!-- Components -->
             <!--<div ng-if="!isPreview" class="content-panel project-review" ui-widget-components project-id="projectCtrl.currentProjectId" widget-title="'COMPONENTS'" columns="['name']"></div>-->
         </div>

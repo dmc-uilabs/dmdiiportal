@@ -1,4 +1,4 @@
-<div class="title-widget" ng-hide="widgetTitle == null" layout="row" layout-align="start center">
+<div class="title-widget" ng-if="widgetTitle" layout="row" layout-align="start center">
     <h2>{{widgetTitle}}</h2>
     <span flex></span>
     <md-button href="/all.php#/services/{{projectId}}" class="view-all-link">View All ({{totalItems}})</md-button>
@@ -11,7 +11,7 @@
             <h3>
                 <a href="/component.php#/services/{{service.id}}" class="service-title link-button">{{service.title}}</a>
             </h3>
-            <a href="/project.php#/{{service.currentStatus.project.id}}/run-service/{{service.id}}" class="link-button">
+            <a href="/project.php#/{{projectId}}/run-service/{{service.id}}" class="link-button">
                 <md-progress-linear md-mode="determinate" value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
                 <span>Estimated - 1:30 of 2:00</span>
             </a>

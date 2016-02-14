@@ -11,6 +11,7 @@ angular.module('dmc.project')
         '$timeout',
         '$interval',
         '$rootScope',
+        'domeModel',
         '$state',
         function ($scope,
                   $stateParams,
@@ -23,6 +24,7 @@ angular.module('dmc.project')
                   $timeout,
                   $interval,
                   $rootScope,
+                  domeModel,
                   $state) {
 
             $scope.ServiceId = $stateParams.ServiceId;
@@ -30,20 +32,47 @@ angular.module('dmc.project')
             $scope.projectData = projectData;
             $scope.service = serviceData;
 
-            if($scope.service.interface && $scope.service.interface.inParams) {
-                for (var key in $scope.service.interface.inParams) {
-                    $scope.service.interface.inParams[key].defaultValue = $scope.service.interface.inParams[key].value;
+            console.log($scope.service);
+
+            $scope.$watch(function(){
+                return $scope.service.interfaceModel;
+            },function(){
+                if ($scope.service.interfaceModel && $scope.service.interfaceModel.inParams) {
+                    for (var key in $scope.service.interfaceModel.inParams) {
+                        $scope.service.interfaceModel.inParams[key].defaultValue = $scope.service.interfaceModel.inParams[key].value;
+                    }
+                    // get current status
+                    if($scope.service.currentStatus && $scope.service.currentStatus.status == 1){
+                        $scope.status = getStatus($scope.service.currentStatus.status);
+                        ajax.update(dataFactory.updateServiceStatus($scope.service.currentStatus.id),{
+                                startDate: moment(new Date()).format("YYYY-MM-DD"),
+                                startTime: moment(new Date()).format("HH:mm:ss")
+                            }, function(response){
+                                $scope.service.currentStatus.percentCompleted = 50;
+                                runModel();
+                                $scope.service.currentStatus.startDate = response.data.startDate;
+                                $scope.service.currentStatus.startTime = response.data.startTime;
+                                $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
+                            }, function(){
+                                toastModel.showToast("error", "Run Failed. Please check your inputs and try again");
+                            }
+                        );
+                    }
+                    if($scope.rerun) getServiceInterface();
+                    apply();
                 }
-            }
+            });
 
             function getServiceInterface(){
                 // get last status
                 ajax.get(dataFactory.getServiceRun($scope.rerun),{},
                     function(response){
+                        $scope.rerun = null;
                         if(response.data && response.data.id){
-                            $scope.service.interface = response.data.interface;
-                            for (var key in $scope.service.interface.inParams) {
-                                $scope.service.interface.inParams[key].defaultValue = $scope.service.interface.inParams[key].value;
+                            console.log(response.data);
+                            $scope.service.interfaceModel = response.data.interface;
+                            for (var key in $scope.service.interfaceModel.inParams) {
+                                $scope.service.interfaceModel.inParams[key].defaultValue = $scope.service.interfaceModel.inParams[key].value;
                             }
                             apply();
                         }else{
@@ -52,7 +81,7 @@ angular.module('dmc.project')
                     }
                 );
             }
-            if($scope.rerun) getServiceInterface();
+
 
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -72,39 +101,14 @@ angular.module('dmc.project')
             // get last status
             $scope.lastStatus = "none";
 
-            // watch current status
-            $scope.$watch(function(){
-                return $scope.service.currentStatus;
-            },function(newVal){
-                // get current status
-                if($scope.service.currentStatus && $scope.service.currentStatus.status){
-                    $scope.status = "running";
-                    ajax.update(dataFactory.updateServiceStatus($scope.service.currentStatus.id),{
-                            startDate: moment(new Date()).format("YYYY-MM-DD"),
-                            startTime: moment(new Date()).format("HH:mm:ss")
-                        }, function(response){
-                            runModel();
-                            $scope.service.currentStatus.startDate = response.data.startDate;
-                            $scope.service.currentStatus.startTime = response.data.startTime;
-                            $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
-                        }, function(){
-                            toastModel.showToast("error", "Run Failed. Please check your inputs and try again");
-                        }
-                    );
-                }
-            });
 
-            // watch last status
-            $scope.$watch(function(){
-                return $scope.service.lastStatus;
-            },function(newVal){
-                // get last run time and get lastStatus
-                if(newVal){
-                    $scope.lastRunTime = $scope.calcRunTime(newVal);
-                    $scope.lastStatus = $scope.service.lastStatus.status;
-                    apply();
-                }
-            });
+
+            // get last status
+            if($scope.service.lastStatus){
+                $scope.lastRunTime = $scope.calcRunTime($scope.service.lastStatus);
+                $scope.lastStatus = getStatus($scope.service.lastStatus.status);
+                apply();
+            }
 
             $scope.averageRun = ($scope.service.averageRun ? $scope.service.averageRun.toFixed(2) : 0);
 
@@ -114,7 +118,7 @@ angular.module('dmc.project')
                         serviceId : $scope.service.id,
                         accountId : $rootScope.userData.accountId,
                         runBy : $rootScope.userData.displayName,
-                        status : "running",
+                        status : 1,
                         percentCompleted: 0,
                         startDate: moment(new Date()).format("YYYY-MM-DD"),
                         startTime: moment(new Date()).format("HH:mm:ss"),
@@ -123,7 +127,7 @@ angular.module('dmc.project')
                             "title": $scope.projectData.title
                         }
                     }, function(response){
-                        $scope.status = response.data.status;
+                        $scope.status = getStatus(response.data.status);
                         $scope.service.currentStatus = response.data;
                         $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
                         apply();
@@ -134,20 +138,46 @@ angular.module('dmc.project')
                 );
             };
 
+            function getStatus(status){
+                switch(status){
+                    case 1:
+                        return "running";
+                        break;
+                    case 0:
+                        return "success";
+                        break;
+                    case -1:
+                        return "error";
+                        break;
+                    default:
+                        return status;
+                        break;
+                }
+            }
+
+            function runModelCallback(response){
+                console.log(response.data);
+                updateStatus((response.data.status == "error" ? -1 : 0),response.data.pkg);
+                $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
+            }
+            function runModelErrorCallback(response){
+                updateStatus(-1,$scope.service.interfaceModel);
+                $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
+            }
             // run Model
             function runModel(){
-                $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
-                ajax.get(dataFactory.runModel(),{
-                        interface : $scope.service.interface,
-                        url : $scope.service.serverIp
-                    }, function(response){
-                        updateStatus("success",response.data.pkg);
-                        $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
-                    },function(){
-                        updateStatus("error",$scope.service.interface);
-                        $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
-                    }
-                );
+                if($scope.service.interface && $scope.service.interface.domeServer) {
+                    $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
+                    domeModel.runModel({
+                        model: $scope.service.interfaceModel,
+                        interface: $scope.service.interface,
+                        domeServer: $scope.service.interface.domeServer
+                    }, runModelCallback, runModelErrorCallback);
+                }else{
+                    toastModel.showToast("error", "Dome server douse not found!");
+                    updateStatus(-1,$scope.service.interfaceModel);
+                    $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
+                }
             }
 
             // get random integer from min to max
@@ -158,7 +188,7 @@ angular.module('dmc.project')
             // update service status
             function updateStatus(status,interface_){
                 var countDelay = getRandomInt(50,300);
-                var upPercent = (100/countDelay);
+                var upPercent = (status == -1 ? 100 : (100/countDelay));
                 var interval = $interval(function() {
                     if($scope.service.currentStatus) {
                         $scope.service.currentStatus.percentCompleted += upPercent;
@@ -170,14 +200,17 @@ angular.module('dmc.project')
                                     percentCompleted: 100,
                                     stopDate: moment(new Date()).format("YYYY-MM-DD"),
                                     stopTime: moment(new Date()).format("HH:mm:ss"),
-                                    interface: interface_
+                                    interface: {
+                                        inParams : ( interface_ && interface_.inParams ? interface_.inParams : null ),
+                                        outParams : ( interface_ && interface_.outParams ? interface_.outParams : null )
+                                    }
                                 }, function (response) {
                                     $scope.service.lastStatus = $.extend(true,{},response.data);
                                     $scope.service.currentStatus = null;
                                     $scope.runTime = 0;
                                     $scope.status = "Not Running";
-                                    $scope.lastStatus = response.data.status;
-                                    toastModel.showToast("success", "Run Completed Successfully");
+                                    $scope.lastStatus = getStatus(response.data.status);
+                                    $scope.lastRunTime = $scope.calcRunTime($scope.service.lastStatus);
                                     if (response.data.status == "success") {
                                         toastModel.showToast("success", "Run Completed Successfully");
                                     } else if (response.data.status == "error") {
@@ -218,15 +251,15 @@ angular.module('dmc.project')
             }
 
             $scope.clear = function(){
-                for(var key in $scope.service.interface.inParams){
+                for(var key in $scope.service.interfaceModel.inParams){
                     $scope.service.interface.inParams[key].value = null;
                 }
                 apply();
             };
 
             $scope.default = function(){
-                for(var key in $scope.service.interface.inParams){
-                    $scope.service.interface.inParams[key].value = $scope.service.interface.inParams[key].defaultValue;
+                for(var key in $scope.service.interfaceModel.inParams){
+                    $scope.service.interfaceModel.inParams[key].value = $scope.service.interfaceModel.inParams[key].defaultValue;
                 }
                 apply();
             };

@@ -54,7 +54,7 @@
 			</div>
 			<md-content>
 				<md-list ui-sortable ng-model="inputs">
-					<md-list-item ng-repeat="item in service.interface.inParams" layout="row" layout-align="start end">
+					<md-list-item ng-repeat="item in service.interfaceModel.inParams" layout="row" layout-align="start end">
 						<div flex="50" class="left">
 							<md-input-container>
 							<label>{{item.name}}</label>
@@ -74,7 +74,7 @@
 				<div class="content">
 					<h2>Magnetic Permeability</h2>
                     <br>
-					<div layout="row" layout-align="space-between center" ng-repeat="item in service.interface.outParams">
+					<div layout="row" layout-align="space-between center" ng-repeat="item in service.interfaceModel.outParams">
 						<h3 flex>{{item.value}}</h3>
 						<h3>{{item.name}} ({{item.type}})</h3>
                         <br>

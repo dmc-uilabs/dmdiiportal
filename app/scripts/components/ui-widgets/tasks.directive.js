@@ -48,17 +48,16 @@ angular.module('dmc.widgets.tasks',[
                 var convertDueDate = function(task){
                     var oneDay = 86400000;
                     task.dueDateForEdit = task.dueDate;
-                    task.dueDate = moment(task.dueDate,"DD-MM-YYYY").format("MM/DD/YYYY");
                     var difference = Math.floor(new Date(task.dueDate) - new Date(moment(new Date()).format("MM/DD/YYYY")));
                     if(difference == 0) {
-                        task.dueDate = ['today','Today'];
+                        task.formatedDueDate = ['today','Today'];
                     } else if(difference == oneDay) {
-                        task.dueDate = ['tomorrow','Tomorrow'];
+                        task.formatedDueDate = ['tomorrow','Tomorrow'];
                     }else if(difference > oneDay){
-                        task.dueDate = ['date',task.dueDate];
+                        task.formatedDueDate = ['date',moment(new Date(task.dueDate)).format("MM/DD/YYYY")];
                     }else if(difference < 0){
                         var name_d = (difference == (-1*oneDay) ? 'day' : 'days');
-                        task.dueDate = ['after', 'Due ' + (-1 * Math.floor(difference / oneDay)) + ' ' + name_d + ' ago'];
+                        task.formatedDueDate = ['after', 'Due ' + (-1 * Math.floor(difference / oneDay)) + ' ' + name_d + ' ago'];
                     }
                 };
 
@@ -137,17 +136,16 @@ angular.module('dmc.widgets.tasks',[
                 var convertDueDate = function(task){
                     var oneDay = 86400000;
                     task.dueDateForEdit = task.dueDate;
-                    task.dueDate = moment(task.dueDate,"DD-MM-YYYY").format("MM/DD/YYYY");
                     var difference = Math.floor(new Date(task.dueDate) - new Date(moment(new Date()).format("MM/DD/YYYY")));
                     if(difference == 0) {
-                        task.dueDate = ['today','Today'];
+                        task.formatedDueDate = ['today','Today'];
                     } else if(difference == oneDay) {
-                        task.dueDate = ['tomorrow','Tomorrow'];
+                        task.formatedDueDate = ['tomorrow','Tomorrow'];
                     }else if(difference > oneDay){
-                        task.dueDate = ['date',task.dueDate];
+                        task.formatedDueDate = ['date',moment(new Date(task.dueDate)).format("MM/DD/YYYY")];
                     }else if(difference < 0){
                         var name_d = (difference == (-1*oneDay) ? 'day' : 'days');
-                        task.dueDate = ['after', 'Due ' + (-1 * Math.floor(difference / oneDay)) + ' ' + name_d + ' ago'];
+                        task.formatedDueDate = ['after', 'Due ' + (-1 * Math.floor(difference / oneDay)) + ' ' + name_d + ' ago'];
                     }
                 };
 
@@ -234,7 +232,7 @@ angular.module('dmc.widgets.tasks',[
                     "description": $scope.description,
                     "assignee": $scope.assignedTo,
                     "reporter": "Jack Graber",
-                    "dueDate": moment($scope.dueDate).format("DD-MM-YYYY HH:mm:ss"),
+                    "dueDate": Date.parse($scope.dueDate),
                     "priority": $scope.priorityModel,
                     "projectId": projectId,
                     "status" : "Open"
@@ -253,7 +251,7 @@ angular.module('dmc.widgets.tasks',[
 
     }).controller('EditTaskController',function($scope,$mdDialog,ajax,dataFactory,$compile,task,$http,toastModel){
         $scope.task = $.extend(true,{},task);
-        $scope.task.dueDateForEdit = new Date(moment($scope.task.dueDateForEdit,"DD-MM-YYYY").format("MM/DD/YYYY"));
+        $scope.task.dueDateForEdit = new Date(moment($scope.task.dueDateForEdit).format("MM/DD/YYYY"));
         $scope.priorities = ["Low", "Medium", "High", "Critical"];
 
         $scope.statuses = ["Open","Completed"];
@@ -278,7 +276,7 @@ angular.module('dmc.widgets.tasks',[
                     "title": $scope.task.description,
                     "description": $scope.description,
                     "assignee": $scope.task.assignee,
-                    "dueDate": moment($scope.task.dueDateForEdit).format("DD-MM-YYYY HH:mm:ss"),
+                    "dueDate": Date.parse($scope.task.dueDateForEdit),
                     "priority": $scope.task.priority,
                     "status": $scope.task.status
                 }, function(response){

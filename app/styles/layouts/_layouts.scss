@@ -255,6 +255,9 @@ a.link-button.md-button.md-default-theme{
       text-decoration: underline;
     }
   }
+  &.uppercase{
+    text-transform: uppercase;
+  }
 }
 
 .dmc-button{
@@ -280,6 +283,8 @@ a.link-button.md-button.md-default-theme{
     text-decoration: underline;
   }
 }
+
+
 md-dialog{
   max-height: 600px;
 }
@@ -305,3 +310,9 @@ a{
 .md-datepicker-calendar-pane{
   z-index: 150;
 }
+
+#atlwdg-trigger{
+  z-index: 9999;
+}
+
+

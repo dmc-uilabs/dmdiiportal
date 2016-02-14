@@ -27,9 +27,9 @@ angular.module('dmc.view-all')
                         _order: $scope.order
                     }, function (response) {
                         $scope.services = response.data;
-                        for(var i in $scope.services){
-                            $scope.services[i].releaseDate = moment($scope.services[i].releaseDate,"DD/MM/YYYY").format("MM/DD/YYYY");
-                        }
+                        //for(var i in $scope.services){
+                        //    $scope.services[i].releaseDate = moment($scope.services[i].releaseDate,"DD/MM/YYYY").format("MM/DD/YYYY");
+                        //}
                         apply();
                     }
                 );

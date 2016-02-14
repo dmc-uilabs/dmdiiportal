@@ -95,10 +95,6 @@ server.get('/getModel', function(req, res){
 server.get('/runModel', function(req, res){
     var interface = req.query.interface;
     interface = JSON.parse(interface);
-    //interface.interFace = JSON.parse(interface.interFace);
-    //interface.inParams = JSON.parse(interface.inParams);
-    //interface.outParams = JSON.parse(interface.outParams);
-    //interface.server = JSON.parse(interface.server);
     var url = (req.query.url ? req.query.url : 'http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7');
     request({
         url: url+'/runModel?queue=DOME_Model_Run_TestQueue&data='+JSON.stringify(interface),
@@ -112,48 +108,48 @@ server.get('/runModel', function(req, res){
 // Returns an Express router
 var port = 3000;
 var router = jsonServer.router('db.json');
-router.render = function (req, res) {
-    var path = req._parsedUrl.pathname;
-    var method = req.method;
-    switch(path){
-        case '/services':
-            if(method == "GET"){
-                buildGetServices(res,res.locals.data,req.query);
-            }else{
-                res.json(res.locals.data);
-            }
-            break;
-        default:
-            res.json(res.locals.data);
-            break;
-    }
-};
-
-function buildGetServices(res,data,query){
-    var ids = [];
-    for(var i in data) ids.push("serviceId="+data[i].id);
-    request({
-        url: "http://localhost:3000/service_runs?_order=ASC&_sort=status&"+ids.join('&'),
-        method: 'GET',
-        json : true
-    }, function(err, response, body) {
-        for(var i=0;i<data.length;i++){
-            data[i].currentStatus = null;
-            for(var j=0;j<body.length;j++){
-                if(body[j].serviceId == data[i].id){
-                    data[i].currentStatus = body[j];
-                    body.splice(j,1);
-                    break;
-                }
-            }
-            if(!data[i].currentStatus && query.currentStatus_ne == 'null'){
-                data.splice(i,1);
-                i--;
-            }
-        }
-        res.json(data);
-    });
-}
+//router.render = function (req, res) {
+//    var path = req._parsedUrl.pathname;
+//    var method = req.method;
+//    switch(path){
+//        case '/services':
+//            if(method == "GET"){
+//                buildGetServices(res,res.locals.data,req.query);
+//            }else{
+//                res.json(res.locals.data);
+//            }
+//            break;
+//        default:
+//            res.json(res.locals.data);
+//            break;
+//    }
+//};
+//
+//function buildGetServices(res,data,query){
+//    var ids = [];
+//    for(var i in data) ids.push("serviceId="+data[i].id);
+//    request({
+//        url: "http://localhost:3000/service_runs?_order=ASC&_sort=status&"+ids.join('&'),
+//        method: 'GET',
+//        json : true
+//    }, function(err, response, body) {
+//        for(var i=0;i<data.length;i++){
+//            data[i].currentStatus = null;
+//            for(var j=0;j<body.length;j++){
+//                if(body[j].serviceId == data[i].id){
+//                    data[i].currentStatus = body[j];
+//                    body.splice(j,1);
+//                    break;
+//                }
+//            }
+//            if(!data[i].currentStatus && query.currentStatus_ne == 'null'){
+//                data.splice(i,1);
+//                i--;
+//            }
+//        }
+//        res.json(data);
+//    });
+//}
 
 server.use(router);
 
