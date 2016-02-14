@@ -142,6 +142,7 @@
 
     <!-- build:js scripts/dashboard/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
+    <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/components/ui-widgets/tasks.directive.js"></script>
     <script src="scripts/components/ui-widgets/services.directive.js"></script>
     <script src="scripts/components/ui-widgets/projects.directive.js"></script>

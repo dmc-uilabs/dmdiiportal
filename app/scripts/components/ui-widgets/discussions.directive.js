@@ -5,7 +5,9 @@ angular.module('dmc.widgets.discussions',[
         'dmc.data',
         'dmc.model.discussion',
         'ngSanitize',
-        'dmc.socket'
+        'ngCookies',
+        'dmc.socket',
+        'dmc.model.previous-page'
     ]).
     directive('uiWidgetDiscussions', ['$parse', function ($parse) {
         return {
@@ -16,10 +18,8 @@ angular.module('dmc.widgets.discussions',[
                 projectId: "=",
                 widgetDataType: "="
             },
-            link: function (scope, iElement, iAttrs) {
-
-            },
-            controller: function($scope, $element, $attrs, $mdDialog, socketFactory, dataFactory, ajax, toastModel) {
+            controller: function($scope, $element, $attrs, $mdDialog, socketFactory, dataFactory, ajax, toastModel,previousPage) {
+                $scope.previousPage = previousPage;
                 $scope.discussions = [];
                 $scope.total = 0;
                 // function for get all discussions from DB
@@ -68,6 +68,7 @@ angular.module('dmc.widgets.discussions',[
                         if(update) $scope.getDiscussions();
                     });
                 };
+
             }
         };
     }]).
@@ -83,7 +84,8 @@ angular.module('dmc.widgets.discussions',[
                 widgetFormat: "=",
                 widgetDataType: "="
             },
-            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
+            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel,previousPage) {
+                $scope.previousPage = previousPage;
                 $scope.projectDiscussions = [];
                 $scope.sort = 'created_at';
                 $scope.order = 'DESC';
@@ -146,4 +148,4 @@ angular.module('dmc.widgets.discussions',[
                 }
             );
         };
-    });
+    })

@@ -10,6 +10,7 @@ angular.module('dmc.view-all', [
 	'dmc.configs.ngmaterial',
 	'dmc.common.header',
 	'dmc.common.footer',
+    'dmc.model.previous-page',
 	"dmc.ajax",
 	"dmc.data",
     'dmc.model.project',

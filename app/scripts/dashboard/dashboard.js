@@ -14,6 +14,7 @@ angular.module('dmc.dashboard', [
         'dmc.widgets.onboarding',
         'ngMdIcons',
         'ngtimeago',
+        'dmc.model.previous-page',
         'ui.router',
         'md.data.table',
         'dmc.common.header',

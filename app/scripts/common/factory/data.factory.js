@@ -670,4 +670,4 @@ angular.module('dmc.data',[])
             }
         };
     }
-);
+)

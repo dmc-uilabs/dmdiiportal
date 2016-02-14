@@ -26,6 +26,7 @@ angular.module('dmc.project', [
 		'md.data.table',
 		'ngCookies',
 		'dmc.common.header',
+        'dmc.model.previous-page',
 		'dmc.common.footer',
 		'dmc.model.project',
 		'ui.autocomplete',

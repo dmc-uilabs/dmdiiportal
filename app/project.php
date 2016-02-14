@@ -108,6 +108,7 @@
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/services.model.js"></script>
     <script src="scripts/common/models/dome-model.js"></script>
+    <script src="scripts/common/models/previous-page.js"></script>
 
     <script src="scripts/project/project.js"></script>
     <script src="scripts/project/controllers/id-locator.js"></script>

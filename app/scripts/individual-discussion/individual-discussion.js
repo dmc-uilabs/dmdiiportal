@@ -8,7 +8,9 @@ angular.module('dmc.individual-discussion', [
 	'dmc.data',
 	'dmc.common.header',
 	'dmc.common.footer',
-	'dmc.model.toast-model'
+	'dmc.model.toast-model',
+    'dmc.model.previous-page',
+    'ngCookies'
 ])
 	.config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
 		$stateProvider.state('individual-discussion', {
@@ -31,6 +33,8 @@ angular.module('dmc.individual-discussion', [
         '$mdToast',
         '$rootScope',
         'DMCUserModel',
+        '$cookies',
+        'previousPage',
         'toastModel',
         function ($scope,
                   $stateParams,
@@ -40,7 +44,12 @@ angular.module('dmc.individual-discussion', [
                   $mdToast,
                   $rootScope,
                   DMCUserModel,
+                  $cookies,
+                  previousPage,
                   toastModel) {
+
+            // comeback to the previous page
+            $scope.previousPage = previousPage.get();
 
             $scope.followFlag = null;
             $scope.userData = $rootScope.userData;

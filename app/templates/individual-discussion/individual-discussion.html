@@ -1,7 +1,7 @@
 <div class="individual-discussion">
 	<div layout="column" class="padding">
-		<div class="return" layout="row" layout-align="space-between center">
-			<a class="link" href="community.php">Return to Community</a>
+		<div class="return" layout="row" layout-align="space-between center" ng-if="previousPage">
+			<a class="link" ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
 		</div>
 		<div layout="row">
 			<div  flex="70">

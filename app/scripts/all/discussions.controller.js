@@ -7,6 +7,7 @@ angular.module('dmc.view-all')
         '$location',
         'ajax',
         'projectData',
+        'previousPage',
         'dataFactory',
         function (  $scope,
                     $stateParams,
@@ -14,7 +15,11 @@ angular.module('dmc.view-all')
                     $location,
                     ajax,
                     projectData,
+                    previousPage,
                     dataFactory) {
+
+            // comeback to the previous page
+            $scope.previousPage = previousPage.get();
 
             $("title").text("View All Discussions");
 

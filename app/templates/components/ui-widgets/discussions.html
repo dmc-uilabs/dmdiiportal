@@ -4,7 +4,10 @@
             <h2>{{widgetTitle}}</h2>
             <md-button ng-if="projectId > 0" href="" class="view-all-button" ng-click="newDiscussion($event)">Add New</md-button>
             <span flex></span>
-            <md-button ng-href="{{(projectId ? '/project.php#/'+projectId+'/discussions' : '/all.php#/discussions')}}" md-no-ink class="view-all-button view-all-link">View All ({{total}})</md-button>
+            <md-button ng-href="{{(projectId ? '/project.php#/'+projectId+'/discussions' : '/all.php#/discussions')}}"
+                       md-no-ink
+                       ng-click="previousPage.save($event)"
+                       class="view-all-button view-all-link">View All ({{total}})</md-button>
         </div>
     </md-toolbar>
 </div>
@@ -14,7 +17,7 @@
             <md-list>
                 <md-list-item ng-repeat="item in discussions" class="md-3-line">
                     <div class="md-list-item-text">
-                        <h3><a href="/individual-discussion.php#/1" class="link-button">{{item.text}}</a></h3>
+                        <h3><a href="/individual-discussion.php#/{{item.id}}" ng-click="previousPage.save($event)" class="link-button">{{item.text}}</a></h3>
                         <div class="info">
                             <span>{{item.full_name}} replied | {{item.created_at}}</span>
                         </div>
