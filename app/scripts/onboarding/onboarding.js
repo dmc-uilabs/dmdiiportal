@@ -57,11 +57,57 @@ angular.module('dmc.onboarding', [
                     templateUrl: 'templates/onboarding/account/servers.html'
                 })
 
-            .state('company', {
+            .state('onboarding.company', {
                 url: '/company',
-                templateUrl: 'templates/onboarding/company.html',
+                templateUrl: 'templates/onboarding/company/company.html',
                 controller: 'CompanyController'
             })
+                .state('onboarding.company.describe', {
+                    url: '/company',
+                    templateUrl: "templates/onboarding/company/describe.html"
+                })
+                .state('onboarding.company.image', {
+                    url: '/company-image',
+                    templateUrl: "templates/onboarding/company/image.html"
+                }) 
+                .state('onboarding.company.focus', {
+                    url: '/rd-focus',
+                    templateUrl: "templates/onboarding/company/focus.html"
+                })
+                .state('onboarding.company.accomplishments', {
+                    url: '/accomplishments',
+                    templateUrl: "templates/onboarding/company/accomplishments.html"
+                })
+                .state('onboarding.company.media', {
+                    url: '/media',
+                    templateUrl: "templates/onboarding/company/media.html"
+                })
+                .state('onboarding.company.tool', {
+                    url: '/skills-tools',
+                    templateUrl: "templates/onboarding/company/tool.html"
+                }) 
+                .state('onboarding.company.projects', {
+                    url: '/projects',
+                    templateUrl: "templates/onboarding/company/projects.html"
+                })
+                .state('onboarding.company.contact', {
+                    url: '/contact',
+                    templateUrl: "templates/onboarding/company/contact.html"
+                })
+                .state('onboarding.company.social', {
+                    url: '/social-media',
+                    templateUrl: "templates/onboarding/company/social.html"
+                }) 
+                .state('onboarding.company.key', {
+                    url: '/key-conatcts',
+                    templateUrl: "templates/onboarding/company/key.html"
+                }) 
+                .state('onboarding.company.membership', {
+                    url: '/membership',
+                    templateUrl: "templates/onboarding/company/membership.html"
+                })
+
+
             .state('onboarding.profile', {
                 url: '/profile',
                 templateUrl: 'templates/onboarding/profile/profile.html',

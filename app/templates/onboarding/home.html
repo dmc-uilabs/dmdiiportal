@@ -46,14 +46,14 @@
 					<img ng-src="images/icon-company-lg.svg">
 				</div>
 				<div layout="column" flex="65" class="text">
-					<h2><a ui-sref=".company">Fill out the company profile</a></h2>
+					<h2><a ui-sref="^.company">Fill out the company profile</a></h2>
 					<h3>Tell everyone about the company, its skills, and accomplishments</h3>
 				</div>
 				<md-button class="md-raised md-primary dmc-button" ng-if="userData.onboarding.company" flex="25">
 					Completed
 					<ng-md-icon icon="done" style="fill: #fff" size"14">
 				</md-button>
-				<md-button ui-sref=".company" class="md-raised dmc-button" ng-if="!userData.onboarding.company" flex="25">
+				<md-button ui-sref="^.company" class="md-raised dmc-button" ng-if="!userData.onboarding.company" flex="25">
 					Go To
 				</md-button>
 			</div>

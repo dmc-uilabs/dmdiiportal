@@ -1,0 +1,35 @@
+<div layout="column" class="account-step1">
+	<div layout="row" layout-align="space-between center">
+		<h2>Share your membership status</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.^.home">
+			SKIP
+		</md-button>
+	</div>
+	<h3>Share your membership status and reason for joining</h3>
+
+	<form name="focusForm" autocomplete="off" layout="row" layout-wrap>
+		<md-input-container flex="50">
+			<label>Category & Tier*</label>
+			<md-select ng-model="company[10].data.categoryTier">
+	            <md-option ng-repeat="item in categoriesTiers" value="{{item.id}}">{{item.title}}</md-option>
+	        </md-select>
+        </md-input-container>
+		<md-input-container flex="50">
+			<label>Date Joined DMDII*</label>
+			<input ng-model="company[10].data.dateJoined">
+		</md-input-container>
+		<md-input-container flex="100">
+			<label>Reason for Joining DMDII</label>
+			<textarea ng-model="company[10].data.RDFocus" md-maxlength="3000"></textarea>
+		</md-input-container>
+	</form>
+
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised" ui-sref="^.key">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised md-primary" ng-click="finish(10)">
+			FINISH
+		</md-button>
+	</div>
+</div>

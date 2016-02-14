@@ -159,11 +159,9 @@
 		    right: 0px;
 		    fill: #4CAF50;
 		}
-		.profile-step2{
-			.flow-box{
-				margin: 0;
-				width: 100%;
-			}
+		.flow-box{
+			margin: 0;
+			width: 100%;
 		}
 		md-chips .md-chips{
 	      box-shadow: none;
@@ -192,7 +190,39 @@
 	        }
 	      }
 	    }
-
+	    .boxForAddImage,
+		.boxForAddVideo,
+	    .boxForAddContact{
+		    border: 1px solid #ccc;
+		    @include borderRadius(3px);
+		    padding: 8px;
+		    margin-top: 13px;
+		    background-color: #f2f2f2;
+		    md-input-container{
+		      	padding-bottom: 0;
+		    }
+		    button{
+		      	margin: 13px 0 0 13px;
+		    }
+		}
+		.contact-item{
+	        border: 1px solid #ddd;
+	        @include borderRadius(3px);
+	        padding: 8px;
+	        margin-top: 13px;
+	        md-input-container{
+	          	padding-bottom: 5px;
+	        }
+	    }
+	    .video-item{
+		    border: 1px solid #ddd;
+		    @include borderRadius(3px);
+		    padding: 8px;
+		    margin-top: 13px;
+		    md-input-container{
+		        padding-bottom: 5px;
+		    }
+	    }
 	}
 }
 
