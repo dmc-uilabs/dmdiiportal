@@ -6,7 +6,7 @@
         <div class="return-block">
             <a href="/my-projects.php" >Return to My Projects</a>
         </div>
-        <h2 class="page-title">All tasks for the project "{{projectData.title}}"</h2>
+        <h2 class="page-title">All tasks for {{projectData.title}}</h2>
         <div class="content-panel">
             <div class="content-panel-body">
                 <md-content layout-padding>
@@ -42,7 +42,7 @@
                                 <thead md-order="sort" md-trigger="onOrderChange">
                                 <tr>
                                     <th name="Task" order-by="title" class="title"></th>
-                                    <th name="Assigned To" order-by="assignee"></th>
+                                    <th name="Project" order-by="project"></th>
                                     <th name="Due Date" order-by="dueDate"></th>
                                     <th name="Priority" order-by="priority"></th>
                                 </tr>
@@ -50,9 +50,11 @@
                                 <tbody>
                                 <tr ng-repeat="item in tasks">
                                     <td>{{item.title}}</td>
-                                    <td>{{item.assignee}}</td>
                                     <td>
-                                        <span ng-bind-html="item.dueDate[1]" class="label" ng-class="item.dueDate[0] == 'date' ? 'label--date' : (item.dueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.dueDate[0] == 'today' || item.dueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
+                                        <a class="link-button" href="/project.php#/{{item.project.id}}">{{item.project.title}}</a>
+                                    </td>
+                                    <td>
+                                        <span ng-bind-html="item.formatedDueDate[1]" class="label" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
                                     </td>
                                     <td>{{item.priority}}</td>
                                 </tr>
