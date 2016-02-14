@@ -311,8 +311,26 @@ a{
   z-index: 150;
 }
 
+// Feedback trigger
 #atlwdg-trigger{
-  z-index: 9999;
+  position: relative;
+  background: none;
+  padding: 0;
+  border: none;
+  left: 0;
+  top: 0;
+  font-weight: normal;
+  color: #999 !important;
+  display: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 14px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: none;
+  &:hover{
+    color: #eee !important;
+  }
 }
-
 
