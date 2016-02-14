@@ -1,0 +1,53 @@
+<div layout="column" class="account-step1">
+	<div layout="row" layout-align="space-between center">
+		<h2>Share how to contact the company</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.social">
+			SKIP
+		</md-button>
+	</div>
+	<h3>Allow users to contact and learn more about the company</h3>
+
+	<form name="describeForm" autocomplete="off" layout="row" layout-wrap>
+		<md-input-container flex="55">
+			<label>Address</label>
+			<input ng-model="company[7].data.address" required>
+		</md-input-container>
+		<md-input-container flex="15">
+			<label>City</label>
+			<input ng-model="company[7].data.city" required>
+		</md-input-container>
+
+		<md-input-container flex="15">
+	        <label>State</label>
+	        <md-select ng-model="company[7].data.state">
+	            <md-option ng-repeat="state in states" value="{{state.id}}">{{state.name}}</md-option>
+	        </md-select>
+	    </md-input-container>
+
+		<md-input-container flex="15">
+			<label>Zip Code</label>
+			<input ng-model="company[7].data['zip-code']" required>
+		</md-input-container>
+
+		<md-input-container flex="25">
+	        <label>Preferred Contact Method</label>
+	        <md-select ng-model="company[7].data.methodCommunication">
+	            <md-option ng-repeat="method in preferredMethods" value="{{method.id}}">{{method.name}}</md-option>
+	        </md-select>
+	    </md-input-container>
+
+		<md-input-container flex="50">
+			<label>Emaile</label>
+			<input ng-model="company[7].data.email" required>
+		</md-input-container>
+	</form>
+
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised" ui-sref="^.projects">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised md-primary" ng-click="next(7)">
+			NEXT
+		</md-button>
+	</div>
+</div>

@@ -1,0 +1,38 @@
+<div layout="column" class="account-step1">
+	<div layout="row" layout-align="space-between center">
+		<h2>Describe the company</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.image">
+			SKIP
+		</md-button>
+	</div>
+	<h3>Let members know who your company is and what you're about</h3>
+
+	<form name="describeForm" autocomplete="off" layout="row" layout-wrap>
+		<md-input-container flex="50">
+			<label>Company Name</label>
+			<input ng-model="company[0].data.name" required>
+		</md-input-container>
+		<md-input-container flex="50">
+			<label>Division</label>
+			<input ng-model="company[0].data.division" required>
+		</md-input-container>
+		<md-input-container flex="50">
+			<label>Industry</label>
+			<input ng-model="company[0].data.industry" required>
+		</md-input-container>
+		<md-input-container flex="50">
+			<label>NAICS Code</label>
+			<input ng-model="company[0].data.NAICSCode" required>
+		</md-input-container>
+		<md-input-container flex="100">
+			<label>Description of Organization</label>
+			<textarea ng-model="company[0].data.description" md-maxlength="3000" required></textarea>
+		</md-input-container>
+	</form>
+
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised md-primary" ng-click="next(0)">
+			NEXT
+		</md-button>
+	</div>
+</div>

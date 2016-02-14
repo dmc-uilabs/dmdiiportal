@@ -5,6 +5,7 @@ angular.module('dmc.onboarding')
 		if($state.current.name == "onboarding.profile"){
 			$state.go($scope.profile[0].state);
 		}
+        $scope.activePage = $state;
 
         $scope.getLocation = function () {
             location.get(callback);

@@ -1,7 +1,7 @@
 angular.module('dmc.onboarding')
 .controller('homeController', 
-	['$scope', '$rootScope', '$mdDialog',
-	function ($scope, $rootScope, $mdDialog) {
+	['$scope', '$rootScope', '$mdDialog', 'DMCUserModel',
+	function ($scope, $rootScope, $mdDialog, DMCUserModel) {
 		$scope.showModalBasicInformations = function(){
 			$mdDialog.show({
 			    controller: "BasicInformationsController",
@@ -22,13 +22,21 @@ angular.module('dmc.onboarding')
 			    clickOutsideToClose: false
 		    })
 		    .then(function(answer) {
-		      	$scope.$parent.first = false
+		      	$scope.$parent.first = false;
+		      	$rootScope.userData.termsConditions = true;
+		      	DMCUserModel.UpdateUserData($rootScope.userData);
 		    }, function() {
 		    });
 		}
-		if($scope.first){
-			$scope.showModalBasicInformations();
-		}
+		$scope.user = DMCUserModel.getUserData();
+        $scope.user.then(function(result) { 
+            console.log(result);
+            if(!result.termsConditions){
+				$scope.showModalBasicInformations();
+				}
+        });
+		console.info("u",$rootScope );
+		
 }]);
 
 

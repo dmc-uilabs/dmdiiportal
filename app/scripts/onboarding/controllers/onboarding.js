@@ -270,12 +270,12 @@ angular.module('dmc.onboarding')
         		done: false,
         		data: {}
         	}
-        ]
+        ];
 
         $scope.profile = [
         	{
         		state: ".basic",
-        		name: "Basic Informations",
+        		name: "Basic Information",
         		done: false,
         		data: {
         			dispalyName: "",
@@ -298,7 +298,7 @@ angular.module('dmc.onboarding')
         			skillsDescription: ""
         		}
         	}
-        ]
+        ];
 
         $scope.storefront = [
         	{
@@ -321,7 +321,111 @@ angular.module('dmc.onboarding')
         		done: false,
         		data: {}
         	}
+        ];
+
+        $scope.company = [
+        	{
+        		state: ".describe",
+        		name: "Company",
+        		done: false,
+        		data: {
+        			name: "",
+        			division: "",
+        			industry: "",
+        			NAICSCode: "",
+        			description: ""
+        		}
+        	},
+        	{
+        		state: ".image",
+        		name: "Company Image",
+        		done: false,
+        		data: {}
+        	},
+        	{
+        		state: ".focus",
+        		name: "R&D Focus",
+        		done: false,
+        		data: {
+        			RDFocus: ""
+        		}
+        	},
+        	{
+        		state: ".accomplishments",
+        		name: "Accomplishments",
+        		done: false,
+        		data: {
+        			customers: "",
+        			awardsReceived: ""
+        		}
+        	},
+        	{
+        		state: ".media",
+        		name: "Media",
+        		done: false,
+        		data: {}
+        	},
+        	{
+        		state: ".tool",
+        		name: "Skills & Tools",
+        		done: false,
+        		data: {
+        			technicalExpertise: "",
+        			toolsSoftwareEquipmentMachines: "",
+        			skills: []
+        		}
+        	},
+        	{
+        		state: ".projects",
+        		name: "Projects",
+        		done: false,
+        		data: {
+        			pastCollaborations: "",
+					pastProjects: "",
+        			collaborationInterests: "",
+        			upcomingProjectInterests: ""
+        		}
+        	},
+        	{
+        		state: ".contact",
+        		name: "Contact",
+        		done: false,
+        		data: {
+        			address: "",
+        			city: "",
+        			state: "",
+        			"zip-code": "",
+        			methodCommunication: "",
+        			email: ""
+        		}
+        	},
+        	{
+        		state: ".social",
+        		name: "Social Media",
+        		done: false,
+        		data: {
+        			twitter: "",
+        			linkedIn: "",
+        			website: ""
+        		}
+        	},
+        	{
+        		state: ".key",
+        		name: "Key Contacts",
+        		done: false,
+        		data: {}
+        	},
+        	{
+        		state: ".membership",
+        		name: "Membership",
+        		done: false,
+        		data: {
+        			categoryTier: "",
+        			dateJoined: "",
+        			reasonJoining: ""
+        		}
+        	}
         ]
 
-        $scope.first = true;
+        $scope.first = false;
     }])

@@ -5,6 +5,7 @@
     "profileId": 1,
     "companyId": 1,
     "role": 1,
+    "termsConditions": false,
     "notifications": {
       "total": 4,
       "items": [

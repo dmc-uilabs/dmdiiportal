@@ -1,10 +1,11 @@
 angular.module('dmc.onboarding')
 .controller('AccountController', 
-	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory',
-	function ($scope, $rootScope, $state, ajax, dataFactory) {
+	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory', 'location', 
+	function ($scope, $rootScope, $state, ajax, dataFactory, location) {
 		if($state.current.name == "onboarding.account"){
 			$state.go($scope.account[0].state);
 		}
+        $scope.activePage = $state;
 		$scope.servers = [
 			{
 				ip: "",
@@ -40,6 +41,18 @@ angular.module('dmc.onboarding')
 				value: ""
 			}
 		};
+
+        var indexLocation = 0;
+        $scope.getLocation = function (index) {
+            indexLocation = index
+            location.get(callback);
+        };
+
+        var callback = function (success, data) {
+            if (success) {
+                $scope.account[indexLocation].data.location.value = data.city + ", " + data.region;
+            }
+        };
 
 		$scope.getNotifications = function(){
             ajax.get(dataFactory.getAccountNotifications(),{

@@ -1,0 +1,136 @@
+<div layout="column" class="profile-step3">
+	<div layout="row" layout-align="space-between center">
+		<h2>Talk about company skills</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.projects">
+			SKIP
+		</md-button>
+	</div>
+	<h3>Show off your skills, tools, and technologies</h3>
+	<div layout="column">
+	    <form ng-submit="addSkill(inputSkill)" class="add-skills-form" layout="row" layout-align="start center">
+	      	<md-input-container>
+		        <label>Enter skill</label>
+		        <input ng-model="inputSkill">
+	      	</md-input-container>
+	      	<md-button ng-disabled="!inputSkill" class="md-raised md-primary dmc-button">Add</md-button>
+	    </form>
+	    <div layout="row" class="tabs-content" layout-wrap>
+	      	<md-chips ng-repeat="skill in company[5].data.skills track by $index">
+		        <md-chip class="tags-chip">
+			        {{skill}}
+			        <md-button aria-label="close" ng-click="deleteSkill($index)" class="md-icon-button">
+			            <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
+			        </md-button>
+		        </md-chip>
+	     	</md-chips>
+	    </div>
+	    <form name="toolsForm" autocomplete="off">
+		    <md-input-container>
+		    	<label>Technical Expertise</label>
+		    	<textarea ng-model="company[5].data.technicalExpertise" md-maxlength="3000" required></textarea>
+		    </md-input-container>
+		    <md-input-container>
+		    	<label>Tools, Software, Equipment, Machines</label>
+		    	<textarea ng-model="company[5].data.toolsSoftwareEquipmentMachines" md-maxlength="3000" required></textarea>
+		    </md-input-container>
+	    </form>
+  	</div>
+
+
+<div layout="row">
+    <div class="list-images" flex="100">
+        <div layout="row" layout-align="space-between center">
+            <h3>Images</h3>
+            <md-button class="md-raised md-primary dmc-button"
+                       ng-show="!isAddingImage"
+                       ng-click="addNewImage()"
+                       aria-label="Add Image">
+                Add New Image
+            </md-button>
+        </div>
+        <div layout="row"
+             class="boxForAddImage"
+             layout-align="start start"
+             ng-if="isAddingImage">
+            <form name="formAddImage" layout="column">
+                <div layout="row" flex>
+                    <md-input-container md-no-float flex="100">
+                        <input required
+                               name="title"
+                               ng-model="newImage.title"
+                               type="text"
+                               placeholder="Image Title">
+                    </md-input-container>
+                </div>
+                <div layout="row" flex>
+                    <div class="flow-box"
+                         flow-init
+                         flow-drag-enter="pictureDragEnter($flow)"
+                         flow-drag-leave="pictureDragLeave($flow)"
+                         flow-file-success="$file.msg = $message"
+                         flow-file-added="addedNewFile($file, $event, $flow )"
+                         layout="row" flex layout-align="start start">
+                        <div class="alert" flow-drop flow-drop-enabled="true" flex="40">
+                            <div class="inner-box" layout="row" layout-align="center center" flex>
+                                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
+                                    <img id="flowImage" flow-img="$flow.files[0]" />
+                                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
+                                        <ng-md-icon icon="close" size="21"></ng-md-icon>
+                                    </md-button>
+                                </div>
+                                <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
+                                    Drag And Drop your picture here<br>
+                                    600 x 600 px (max 2 MB)
+                                    <br>or<br>
+                                    <strong>Click here</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div layout="column" layout-align="start start" flex>
+                <md-button class="md-raised" type="button" ng-click="cancelAddImage()">
+                    Cancel
+                </md-button>
+                <md-button class="md-raised md-primary"
+                           ng-click="saveImage(newImage)"
+                           ng-disabled="!formAddImage.$valid || !newAddedImage">
+                    Save
+                </md-button>
+            </div>
+        </div>
+        <div layout="row"
+             layout-wrap
+             layout-align="start start"
+             flex ng-if="skillsImages.length > 0">
+            <div class="list-images-item" ng-repeat="image in skillsImages" ng-show="!image.hide">
+                <div class="img"><img ng-src="{{image.url}}"/></div>
+                <md-input-container md-no-float>
+                    <input ng-init="image.changedTitle = image.title"
+                           ng-model="image.changedTitle"
+                           ng-change="changedValue('image')"
+                           type="text"
+                           placeholder="Image Title">
+                </md-input-container>
+                <md-button md-no-ink
+                           class="md-icon-button"
+                           ng-click="deleteImage($index)"
+                           aria-label="Delete Image">
+                    <ng-md-icon icon="highlight_remove" size="32"></ng-md-icon>
+                </md-button>
+            </div>
+        </div>
+        <div layout="row" ng-if="skillsImages.length == 0 && !isAddingImage">No images</div>
+    </div>
+</div>
+
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised" ui-sref="^.media">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised md-primary" ng-click="next(5)">
+			NEXT
+		</md-button>
+	</div>
+</div>

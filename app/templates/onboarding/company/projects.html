@@ -1,0 +1,37 @@
+<div layout="column" class="account-step1">
+	<div layout="row" layout-align="space-between center">
+		<h2>Tell us about past & future projects</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.contact">
+			SKIP
+		</md-button>
+	</div>
+	<h3>Let us know your past and future projects</h3>
+
+	<form name="projectForm" autocomplete="off">
+		<md-input-container>
+			<label>Past Collaborations</label>
+			<textarea ng-model="company[6].data.pastCollaborations" md-maxlength="3000" required></textarea>
+		</md-input-container>
+		<md-input-container>
+			<label>Past DMDII Projects</label>
+			<textarea ng-model="company[6].data.pastProjects" md-maxlength="3000" required></textarea>
+		</md-input-container>
+		<md-input-container>
+			<label>Collaboration Interests</label>
+			<textarea ng-model="company[6].data.collaborationInterests" md-maxlength="3000" required></textarea>
+		</md-input-container>
+		<md-input-container>
+			<label>Upcoming DMDII Project Interests</label>
+			<textarea ng-model="company[6].data.upcomingProjectInterests" md-maxlength="3000" required></textarea>
+		</md-input-container>
+	</form>
+
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised" ui-sref="^.tool">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised md-primary" ng-click="next(6)">
+			NEXT
+		</md-button>
+	</div>
+</div>

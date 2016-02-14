@@ -5,6 +5,7 @@ angular.module('dmc.onboarding')
 		if($state.current.name == "onboarding.storefront"){
 			$state.go($scope.storefront[0].state);
 		}
+        $scope.activePage = $state;
 
         $scope.next = function(index){
         	$scope.storefront[index].done = true;

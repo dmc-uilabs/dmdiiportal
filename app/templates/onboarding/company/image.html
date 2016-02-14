@@ -1,11 +1,11 @@
 <div layout="column" class="storefront-step1">
 	<div layout="row" layout-align="space-between center">
-		<h2>Market your storefront with a cover photo</h2>
-		<md-button class="dmc-button md-raised" ui-sref="^.description">
+		<h2>Show us your company image</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.focus">
 			SKIP
 		</md-button>
 	</div>
-	<h3>A cover photo is an image to market your storefront</h3>
+	<h3>A company image will help users identify your brand</h3>
 	<div class="flow-box"
          flow-init
          flow-drag-enter="pictureDragEnter($flow)"
@@ -31,7 +31,10 @@
         </div>
     </div>
 	<div layout="row" layout-align="end center">
-		<md-button class="dmc-button md-raised md-primary" ng-click="next(0)">
+		<md-button class="dmc-button md-raised" ui-sref="^.describe">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised md-primary" ng-click="next(1)">
 			NEXT
 		</md-button>
 	</div>
