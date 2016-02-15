@@ -89,6 +89,7 @@
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
+    <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/home/home.js"></script>
     <!-- endbuild -->
 

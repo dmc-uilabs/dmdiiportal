@@ -93,6 +93,7 @@
     <script src="scripts/components/products-card/products-card.js"></script>
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
+    <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/components/carousel/carousel.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>

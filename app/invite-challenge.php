@@ -96,6 +96,7 @@
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/invite-challenge/invite-challenge.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
+    <script src="scripts/common/models/previous-page.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php
