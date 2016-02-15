@@ -1,10 +1,38 @@
-<div layout="row" layout-align="center center" layout-padding>
-  <div class="content-column" layout="column" ng-repeat="p in pages">
-    <a href="{{p.href}}" class="home-feature">
-      <img src="images/{{p.img}}" class="md-card-image" alt="{{p.name}}">
-       <h2>{{p.name}}</h2>
-       <p>{{p.text}}</p>
-       <md-button class="md-raised md-primary">View</md-button>
-    </a>
-  </div>
+<div ng-if="$root.isLogged" layout="row" layout-align="center center" layout-padding>
+  	<div class="content-column" layout="column" ng-repeat="p in pages">
+    	<a href="{{p.href}}" class="home-feature">
+      		<img ng-src="images/{{p.img}}" class="md-card-image" alt="{{p.name}}">
+       		<h2>{{p.name}}</h2>
+       		<p>{{p.text}}</p>
+       		<md-button class="md-raised md-primary">View</md-button>
+   		</a>
+  	</div>
+</div>
+<div ng-if="!$root.isLogged" layout="column">
+	<div layout="row" layout-align="center center" class="home-header">
+	  	<h2>DMC: Digital Manufacturing Commons</h2>
+	  	<md-button class="dmc-button md-raised md-primary" ng-href="onboarding.php">
+	  		JOIN DMC
+	  	</md-button>
+  	</div>
+  	<md-divider></md-divider>
+  	<div layout="row" layout-align="center center" layout-padding>
+	  	<div class="content-column" layout="column" ng-repeat="p in pages">
+		    <div class="home-feature" ng-if="p.show">
+		      	<a href="{{p.href}}"><img ng-src="images/{{p.img}}" class="md-card-image" alt="{{p.name}}"></a>
+		       	<h2><a href="{{p.href}}">{{p.name}}</a></h2>
+		       	<p>{{p.text}}</p>
+		       	<md-button class="md-raised md-primary" ng-click="more($index)">LEARN MORE</md-button>
+		    </div>
+		    <div class="home-more" ng-if="!p.show">
+		    	<div layout="row" layout-align="space-between center">
+		    		<h2>{{p.name}}</h2>
+			      	<md-button class="md-icon-button" ng-click="cancel($index)">
+			       		<ng-md-icon icon="close" style="fill: grey" size="25"></ng-md-icon>
+			       	</md-button>
+		       	</div>
+		       	<p>{{p.more}}</p>
+		    </div>
+	  	</div>
+	</div>
 </div>

@@ -30,3 +30,33 @@
     font-weight: 400;
   }
 }
+
+.home-more {
+  text-align: left;
+  margin: 13px 10px;
+  padding: 0 13px;
+  min-width: 233px;
+  max-width: 233px;
+  @include borderRadius(3px);
+  color:#333;
+  text-decoration: none;
+  background-color: #DDD;
+
+  h2 {
+    a{
+      font-size: 24px;
+      font-weight: 400;
+    }
+  }
+  p {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .md-button.md-icon-button{
+    margin: 0;
+  }
+}
+
+.home-header{
+  height: 100px;
+}

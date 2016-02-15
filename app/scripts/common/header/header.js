@@ -20,7 +20,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
     controller : function($scope){
         $scope.userData;
         $scope.userName = $window.apiUrl ? $window.givenName : 'DMC Member';
-        $scope.isLogged = $scope.userName == ''  ? false : true;
+        $scope.$root.isLogged = $scope.userName == ''  ? false : true;
         userModel.getUserData().then(
           function(response){
             var data = response.data ? response.data : response
@@ -144,11 +144,11 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
         }
 
         $scope.login = function(){
-          $scope.isLogged = true;
+          $scope.$root.isLogged = true;
         }
 
         $scope.logout = function(){
-          $scope.isLogged = false;
+          $scope.$root.isLogged = false;
         }
 
         $scope.closeMenu = function(){
