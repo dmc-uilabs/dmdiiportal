@@ -6,6 +6,9 @@ angular.module('dmc.model.project', ['dmc.data'])
     this.getModel = function(id) {
         return ajax.get(dataFactory.getProject(id),{},
             function(response){
+                if(response.data.dueDate){
+                  response.data.dueDate = moment(response.data.dueDate).format('MM/DD/YYYY')
+                }
                 return response.data;
             }
         );

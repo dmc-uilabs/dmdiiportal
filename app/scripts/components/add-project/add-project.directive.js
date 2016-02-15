@@ -35,7 +35,11 @@ angular.module('dmc.add_project.directive', [
                     newProject = $.extend(true, newProject, data);
                 }
                 $scope.createNewProject = function(data) {
-                    newProject.dueDate = moment(newProject.dueDate).format("YYYY-MM-DD hh:mm:ss");
+                    if(newProject.dueDate){
+                        newProject.dueDate = moment(newProject.dueDate).format("x");
+                    }else{
+                        newProject.dueDate = "";
+                    }
                     projectModel.add_project(newProject, data, function(data){
                         document.location.href = "project.php#/"+data+"/home";
                     })

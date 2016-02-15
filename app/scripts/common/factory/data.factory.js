@@ -252,8 +252,17 @@ angular.module('dmc.data',[])
             getMembersUrl: function() {
                 return localhost+'members';
             },
+            getMembersToProject: function() {
+                return localhost+'projects_members';
+            },
             createMembersToProject: function() {
                 return localhost+'projects_members';
+            },
+            updateMembersToProject: function(id) {
+                return localhost+'projects_members/'+id;
+            },
+            removeMembersToProject: function(id) {
+                return localhost+'projects_members/'+id;
             },
             followMember: function(id){
                 return localhost + 'following_members'+( id ? '/'+id : '');

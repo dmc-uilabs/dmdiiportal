@@ -603,6 +603,8 @@
     {
       "id": 2,
       "title": "Capacitor Bank for LDR Mining Co.",
+      "type": "public",
+      "dueDate": "",
       "projectManager": "PDM Co.",
       "featureImage": {
         "thumbnail": "/images/logo-ldr-mining.png",
@@ -626,6 +628,8 @@
     {
       "id": 4,
       "title": "Incoming Compartment for LDR Mining",
+      "type": "public",
+      "dueDate": "",
       "projectManager": "PDM Co.",
       "featureImage": {
         "thumbnail": "/images/project-incoming-compartment.png",
@@ -649,6 +653,8 @@
     {
       "id": 1,
       "title": "Control Compartment for LDR Mining",
+      "type": "public",
+      "dueDate": "",
       "projectManager": "PDM Co.",
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
@@ -671,6 +677,8 @@
     {
       "id": 3,
       "title": "Capacitor Design",
+      "type": "public",
+      "dueDate": "",
       "projectManager": "PDM. Co",
       "featureImage": {
         "thumbnail": "/images/project_capacitor_compartment.png",
@@ -694,6 +702,8 @@
     {
       "id": 5,
       "title": "Low Heat Loss Transformer",
+      "type": "public",
+      "dueDate": 1455544706321,
       "projectManager": "R.Palmer",
       "featureImage": {
         "thumbnail": "/images/project_ge_transformer.png",
@@ -719,7 +729,18 @@
     {
       "profileId": 1,
       "projectId": 1,
+      "accept": false,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
       "id": 1
+    },
+    {
+      "profileId": 1,
+      "projectId": 5,
+      "accept": false,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "id": 2
     }
   ],
   "components": [

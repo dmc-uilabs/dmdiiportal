@@ -34,6 +34,7 @@ angular.module('dmc.add_project', [
                             "id": lastId,
                             "title": params.title,
                             "type": params.type,
+                            "dueDate": params.dueDate,
                             "projectManager": "DMC member",
                             "featureImage": {
                                 "thumbnail": "/images/project_relay_controller.png",
@@ -69,7 +70,8 @@ angular.module('dmc.add_project', [
                                             {
                                                 "id": lastMemberId,
                                                 "profileId": array[i].id,
-                                                "projectId": lastId
+                                                "projectId": lastId,
+                                                "accept": false
                                             },
                                             function(response){
                                             }

@@ -64,7 +64,8 @@ angular.module('dmc.add_members', [
                     ajax.create(dataFactory.createMembersToProject(),
                         {
                             "profileId": array[i].id,
-                            "projectId": $stateParams.projectId
+                            "projectId": $stateParams.projectId,
+                            "accept": false
                         }
                     );
                 }

@@ -5,15 +5,15 @@
                 <h1 class="name-project">
                     <div sub-nav-menu-button current-page="1"></div>
                     {{projectCtrl.projectData.title}}
-                    <span class="small-text small-text--grey">Due in 20 days</span>
+                    <span ng-if="projectCtrl.projectData.dueDate" class="small-text small-text--grey">Due in {{projectCtrl.projectData.dueDate}}</span>
                 </h1>
-                <span ng-if="isPreview" class="project-manager">Submitted: {{projectCtrl.projectData.projectManager}} <ng-md-icon icon="mail" style="fill: #666" size="20"></ng-md-icon></span>
+                <span ng-if="isPreview" class="project-manager">Invited to {{projectCtrl.projectData.type}}: <a ng-href="/profile.php#/1">{{projectCtrl.projectData.projectManager}}</a> <ng-md-icon icon="mail" style="fill: #666" size="20"></ng-md-icon></span>
             </div>
             <!-- fill up the space between left and right area -->
             <span flex></span>
             <!-- buttons for preview -->
-            <md-button ng-if="isPreview" class="md-raised dmc-button" href="/"><ng-md-icon icon="close" size="18"></ng-md-icon> Decline Invitation</md-button>
-            <md-button ng-if="isPreview" class="md-raised dmc-button" href="/project.php#/submission/blank/{{projectCtrl.projectData.id}}"><ng-md-icon icon="done" size="18"></ng-md-icon> Accept Invitation</md-button>
+            <md-button ng-if="isPreview" ng-click="decline()" class="md-raised dmc-button" ><ng-md-icon icon="close" size="18"></ng-md-icon> Decline Invitation</md-button>
+            <md-button ng-if="isPreview" ng-click="accept()" class="md-raised md-primary dmc-button" ><ng-md-icon icon="done" size="18"></ng-md-icon> Accept Invitation</md-button>
 
             <!-- buttons for submission -->
             <md-button ng-if="isSubmission" class="md-raised dmc-button" href="/project.php#/submit/{{projectCtrl.projectData.id}}"><ng-md-icon icon="send" size="18"></ng-md-icon> Submit</md-button>
