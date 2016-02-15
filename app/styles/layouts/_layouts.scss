@@ -255,6 +255,9 @@ a.link-button.md-button.md-default-theme{
       text-decoration: underline;
     }
   }
+  &.uppercase{
+    text-transform: uppercase;
+  }
 }
 
 .dmc-button{
@@ -280,8 +283,12 @@ a.link-button.md-button.md-default-theme{
     text-decoration: underline;
   }
 }
+
+
 md-dialog{
   max-height: 600px;
+  height: 100%;
+  width: 100%;
 }
 md-dialog[md-theme="default"]{
   .md-actions{
@@ -296,6 +303,8 @@ md-dialog[md-theme="default"]{
 }
 
 a{
+  color: inherit;
+  text-decoration: none;
   &:hover{
     text-decoration: underline;
   }
@@ -305,3 +314,27 @@ a{
 .md-datepicker-calendar-pane{
   z-index: 150;
 }
+
+// Feedback trigger
+#atlwdg-trigger{
+  position: relative;
+  background: none;
+  padding: 0;
+  border: none;
+  left: 0;
+  top: 0;
+  font-weight: normal;
+  color: #999 !important;
+  display: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 14px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: none;
+  &:hover{
+    color: #eee !important;
+  }
+}
+

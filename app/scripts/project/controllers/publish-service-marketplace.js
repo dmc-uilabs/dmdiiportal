@@ -37,8 +37,8 @@ angular.module('dmc.project')
             $scope.publishService = {
                 name : $scope.serviceData.title,
                 description : $scope.serviceData.description,
-                inputs : $scope.serviceData.specifications[0].input,
-                outputs : $scope.serviceData.specifications[0].output,
+                inputs : $scope.serviceData.specifications && $scope.serviceData.specifications.length > 0 ? $scope.serviceData.specifications[0].input : 0,
+                outputs : $scope.serviceData.specifications && $scope.serviceData.specifications.length > 0 ? $scope.serviceData.specifications[0].output : 0,
                 specifications : [],
                 tags : $scope.serviceData.service_tags
             };

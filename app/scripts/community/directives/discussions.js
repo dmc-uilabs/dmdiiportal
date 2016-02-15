@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('dmc.community.discussions',[]).
+angular.module('dmc.community.discussions',[
+    'ngCookies'
+]).
     directive('communityDiscussions', ['$parse', function ($parse) {
         return {
             restrict: 'A',
@@ -9,7 +11,7 @@ angular.module('dmc.community.discussions',[]).
                 widgetTitle: "=",
                 widgetType: "="
             },
-            controller: ["$scope", "dataFactory", "ajax" ,"toastModel", function($scope, dataFactory, ajax, toastModel) {
+            controller: ["$scope", "dataFactory", "ajax" ,"toastModel", "$cookies","$location", function($scope, dataFactory, ajax, toastModel, $cookies, $location) {
                 $scope.limit = 3;
 
                 $scope.discussions = [];
@@ -31,6 +33,12 @@ angular.module('dmc.community.discussions',[]).
                 };
 
                 $scope.getDiscussions();
+
+                $scope.openDiscussion = function(e){
+                    e.preventDefault();
+                    $cookies.put('previousPage', $location.$$absUrl);
+                    window.location = location.origin+$(e.currentTarget).attr("href");
+                };
             }]
         };
     }]);

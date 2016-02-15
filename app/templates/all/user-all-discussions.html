@@ -1,7 +1,7 @@
 <div class="container container-view-all" layout-padding layout="row">
     <div layout="column" flex>
-        <div class="return-block">
-            <a href="/community.php" >Return to Community</a>
+        <div class="return-block" ng-if="previousPage">
+            <a ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
         </div>
         <div class="animate-switch-container" ng-switch on="typeModel">
             <h2 class="animate-switch page-title" ng-switch-when="following">View All Discussions you Follow</h2>

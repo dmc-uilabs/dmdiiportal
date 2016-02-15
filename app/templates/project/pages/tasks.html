@@ -56,7 +56,7 @@
                             <td>{{item.title}}</td>
                             <td>{{item.assignee}}</td>
                             <td>
-                                <span ng-bind-html="item.dueDate[1]" class="label" ng-class="item.dueDate[0] == 'date' ? 'label--date' : (item.dueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.dueDate[0] == 'today' || item.dueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
+                                <span ng-bind-html="item.formatedDueDate[1]" class="label" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
                             </td>
                             <td>{{item.priority}}</td>
                         </tr>

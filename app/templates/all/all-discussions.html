@@ -3,10 +3,10 @@
 </div>
 <div class="container container-view-all" layout-padding layout="row" ng-if="projectData.id">
     <div layout="column" flex>
-        <div class="return-block">
-            <a href="/my-projects.php" >Return to My Projects</a>
+        <div class="return-block" ng-if="previousPage">
+            <a ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
         </div>
-        <h2 class="page-title">All discussions for the project "{{projectData.title}}"</h2>
+        <h2 class="page-title">All discussions for {{projectData.title}}</h2>
         <div class="content-panel">
             <div class="content-panel-body">
                 <md-content layout-padding>

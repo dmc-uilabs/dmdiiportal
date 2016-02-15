@@ -70,7 +70,7 @@
                   </md-content>
               </div>
           </div>
-        <div class="content-panel content-panel-dashboard" ui-widget-services columns="['name','project','start','status']" widget-style="'full'" widget-title="'SERVICES'" start-at-offset="14"></div>
+        <div class="content-panel content-panel-dashboard" ui-widget-services limit="5" columns="['name','project','start','status']" widget-style="'full'" widget-title="'SERVICES'" start-at-offset="14"></div>
         <div class="content-panel content-panel-dashboard" ui-widget-projects widget-title="'RECENT PROJECTS'" show-image="true"></div>
       </div>
 
@@ -142,6 +142,7 @@
 
     <!-- build:js scripts/dashboard/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
+    <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/components/ui-widgets/tasks.directive.js"></script>
     <script src="scripts/components/ui-widgets/services.directive.js"></script>
     <script src="scripts/components/ui-widgets/projects.directive.js"></script>

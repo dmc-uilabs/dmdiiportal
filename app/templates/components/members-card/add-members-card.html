@@ -38,10 +38,10 @@
         <md-button class="md-raised md-primary" ng-if="cardSource.isInvite" aria-label="Added to Invitation" flex ng-click="addToInvitation()">
             Added to Invitation
         </md-button>
-        <md-button ng-if="!cardSource.isCompare" aria-label="Add to Compare" flex ng-click="addToCompare()">
+        <md-button ng-if="!cardSource.isCompare && compareMember" aria-label="Add to Compare" flex ng-click="addToCompare()">
             Add to Compare
         </md-button>
-        <md-button class="md-raised md-primary" ng-if="cardSource.isCompare" aria-label="Compare" flex ng-click="addToCompare()">
+        <md-button class="md-raised md-primary" ng-if="cardSource.isCompare && compareMember" aria-label="Compare" flex ng-click="addToCompare()">
             Compare
         </md-button>
     </div>

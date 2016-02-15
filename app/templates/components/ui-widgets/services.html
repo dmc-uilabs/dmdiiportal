@@ -1,4 +1,56 @@
-<div class="content-panel-header">
+<!-- My Project Services-->
+<div class="title-widget" ng-if="widgetTitle && widgetStyle == 'my-projects'" layout="row" layout-align="start center">
+    <h2>{{widgetTitle}}</h2>
+    <span flex></span>
+    <md-button href="/all.php#/services/{{projectId}}" class="view-all-link">View All ({{total}})</md-button>
+</div>
+<md-list ng-if="widgetStyle == 'my-projects'">
+    <md-list-item class="md-2-line service-list-item"
+                  ng-if="progressPosition == 'bottom'"
+                  ng-repeat="service in services track by $index">
+        <div class="md-list-item-text" layout="column">
+            <h3>
+                <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="service-title link-button">{{service.title}}</a>
+            </h3>
+            <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button">
+                <md-progress-linear ng-init="service.currentStatus.percentCompleted = 55"
+                                    ng-if="service.currentStatus.status == 1"
+                                    md-mode="determinate"
+                                    value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
+                <span ng-if="service.currentStatus.status == 1">Estimated - 1:30 of 2:00</span>
+                <span ng-if="service.currentStatus.status != 1">{{service.currentStatus.status == 0 ? 'success' : ( service.currentStatus.status == -1 ? 'error' : '')}}</span>
+            </a>
+        </div>
+        <md-divider ng-if="$index < services.length-1"></md-divider>
+    </md-list-item>
+
+    <md-list-item class="service-list-item"
+                  ng-if="progressPosition != 'bottom'"
+                  layout-align="start center"
+                  ng-repeat="service in services track by $index">
+        <div layout="column" flex="50" class="title">
+            <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button">{{service.title}}</a>
+        </div>
+        <div layout="column" layout-align="center center" flex="30" class="release-date">
+            {{service.currentStatus.startDate}}
+            <span class="services-time-info">{{service.currentStatus.startTime}}</span>
+        </div>
+        <div layout="column" flex="20" class="service-progress">
+            <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button">
+                <md-progress-linear ng-if="service.currentStatus.status == 1"
+                                md-mode="determinate"
+                                ng-init="service.currentStatus.percentCompleted = 55"
+                                value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
+                <span ng-if="service.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span>
+                <span ng-if="service.currentStatus.status != 1">{{service.currentStatus.status == 0 ? 'success' : ( service.currentStatus.status == -1 ? 'error' : '')}}</span>
+            </a>
+        </div>
+    </md-list-item>
+</md-list>
+
+<!-- Services -->
+
+<div class="content-panel-header" ng-if="widgetTitle && widgetStyle != 'my-projects'">
     <md-toolbar>
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
@@ -7,37 +59,72 @@
         </div>
     </md-toolbar>
 </div>
-<div class="content-panel-body">
+<div class="content-panel-body" ng-if="widgetStyle != 'my-projects'">
     <md-content class="md-padding">
         <div class="running-services-list">
             <md-data-table-container>
                 <table md-data-table>
                     <thead md-order="sort" md-trigger="onOrderChange" ng-if="services.length > 0">
                     <tr>
+                        <th ng-show="columns.indexOf('run') > -1" name="Run"></th>
                         <th ng-show="columns.indexOf('name') > -1" name="Name" order-by="title"></th>
-                        <th ng-show="columns.indexOf('project') > -1" name="Project" order-by="project"></th>
-                        <th ng-show="columns.indexOf('start') > -1" name="Start" order-by="currentStatus.startDate"></th>
+                        <th ng-show="columns.indexOf('component') > -1" name="Component" order-by="parent_component"></th>
+                        <th ng-show="columns.indexOf('project') > -1" name="Project" order-by="currentStatus.project.title"></th>
+                        <th ng-show="columns.indexOf('start') > -1" name="Start" order-by="currentStatus.date"></th>
                         <th ng-show="columns.indexOf('status') > -1" name="Status" order-by="currentStatus.status"></th>
+                        <th ng-show="columns.indexOf('dateAdded') > -1" name="Date Added" order-by="releaseDate"></th>
+                        <th ng-show="columns.indexOf('addedBy') > -1" name="Added By" order-by="owner"></th>
+                        <th ng-show="columns.indexOf('from') > -1" name="From" order-by="from"></th>
+                        <th ng-show="columns.indexOf('edit') > -1" name="Edit"></th>
+                        <th ng-show="columns.indexOf('remove') > -1" name="Remove"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in services | orderBy: sort" ng-click="changeItem(item)">
+                        <td ng-show="columns.indexOf('run') > -1">
+                            <md-button class="md-raised run" ng-href="{{'project.php#/' + projectId + '/services/' + item.id + '/run'}}">Run</md-button>
+                        </td>
                         <td ng-show="columns.indexOf('name') > -1">
-                            <a ng-href="{{ projectId ? '/project.php#/'+projectId+'/services/'+item.id+'/run' : '/component.php#/services/'+item.id }}" class="link-button">
+                            <a ng-href="{{'/project.php#/'+item.projectId+'/services/'+item.id+'/detail'}}" class="link-button">
                                 <em>{{item.title}}</em>
                             </a>
-                            <span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDate}}</span>
+                            <span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDateFormat}}</span>
+                        </td>
+                        <td ng-show="columns.indexOf('component') > -1">
+                            {{item.parent_component ? item.parent_component : 'None'}}
                         </td>
                         <td ng-show="columns.indexOf('project') > -1">
                             <a href="/project.php#/{{item.currentStatus.project.id}}/home" class="link-button">{{item.currentStatus.project.title}}</a>
                         </td>
-                        <td ng-show="columns.indexOf('start') > -1">{{item.currentStatus.startDate}}<span class="services-time-info">{{item.currentStatus.startTime}}</span></td>
+                        <td ng-show="columns.indexOf('start') > -1">
+                            {{item.currentStatus.startDate}}
+                            <span class="services-time-info">{{item.currentStatus.startTime}}</span>
+                        </td>
                         <td ng-show="columns.indexOf('status') > -1">
-                            <a href="/project.php#/{{item.currentStatus.project.id}}/services/{{item.id}}/run" class="link-button">
-                                <md-progress-linear ng-if="item.currentStatus.status == 'running'" md-mode="determinate" ng-init="item.currentStatus.percentCompleted = 55" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
-                                <span ng-if="item.currentStatus.status == 'running'" class="service-progress-info">1:30 of 2:00</span>
-                                <span ng-if="item.currentStatus.status != 'running'">{{item.currentStatus.status}}</span>
+                            <a href="/project.php#/{{item.currentStatus.project.id}}/services/{{item.id}}/run" class="link-button" ng-if="item.currentStatus.project.id">
+                                <md-progress-linear ng-if="item.currentStatus.status == 1" md-mode="determinate" ng-init="item.currentStatus.percentCompleted = 55" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
+                                <span ng-if="item.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span>
+                                <span ng-if="item.currentStatus.status != 1">{{item.currentStatus.status == 0 ? 'success' : ( item.currentStatus.status == -1 ? 'error' : '')}}</span>
                             </a>
+                        </td>
+                        <td ng-show="columns.indexOf('dateAdded') > -1">
+                            {{item.releaseDateFormat}}
+                        </td>
+                        <td ng-show="columns.indexOf('addedBy') > -1">
+                            <a class="link-button" href="/profile.php#/1">{{item.owner}}</a>
+                        </td>
+                        <td ng-show="columns.indexOf('from') > -1">
+                            {{item.from}}
+                        </td>
+                        <td ng-show="columns.indexOf('edit') > -1">
+                            <md-button aria-label="edit" ng-href="{{'project.php#/' + projectId  + '/services/' + item.id + '/edit'}}" class="edit">
+                                <ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
+                            </md-button>
+                        </td>
+                        <td ng-show="columns.indexOf('remove') > -1">
+                            <md-button aria-label="delete" ng-click="delete(item, $index)" class="delete">
+                                <ng-md-icon icon="delete" style="fill: grey;" size="25"></ng-md-icon>
+                            </md-button>
                         </td>
                     </tr>
                     <tr ng-if="services.length == 0">

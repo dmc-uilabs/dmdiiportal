@@ -21,45 +21,13 @@
 		</div>
 	</div>
 	<md-content ng-if="projectData.services.data.length">
-		<md-list>
-			<div class="header-list" layout="row" layout-align="space-around center">
-				<h2 class="row">Run</h2>
-				<h2 class="row-long">Name</h2>
-				<h2 class="row-long">Component</h2>
-				<h2 class="row">Status</h2>
-				<h2 class="row">Date Added</h2>
-				<h2 class="row">Added By</h2>
-				<h2 class="row">From</h2>
-				<h2 class="row-button">Edit</h2>
-				<h2 class="row-button">Remove</h2>
-			</div>
-			<md-list-item ng-repeat="item in projectData.services.data">
-				<md-divider></md-divider>
-				<div flex="100" layout="row" layout-align="start center">
-					<div class="row">
-						<md-button class="md-raised run" ng-href="{{'project.php#/' + projectData.id + '/services/' + item.id + '/run'}}">Run</md-button>
-					</div>
-					<a ng-href="{{'project.php#/' + projectData.id + '/services/' + item.id + '/detail'}}" class="row-long"><h2>{{item.title}}</h2></a>
-					<a ng-href="/" class="row-long"><h2>Component Example</h2></a>
-					<div class="row status" layout="column">
-						<md-progress-linear class="" md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
-						<span class="service-progress-info">1:30 of 2:00</span>
-					</div>
-					<h2 class="row">{{item.releaseDate}}</h2>
-					<a ng-href="/" class="row"><h2>{{item.owner}}</h2></a>
-					<h2 class="row">{{item.from}}</h2>
-					<div class="row-button">
-						<md-button aria-label="group_add" ng-href="{{'project.php#/' + projectData.id  + '/services/' + item.id + '/edit'}}" class="editDelete">
-							<ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
-						</md-button>
-					</div>
-					<div class="row-button">
-						<md-button aria-label="group_add" ng-click="delete(item, $index)" class="editDelete">
-							<ng-md-icon icon="delete" style="fill: grey;" size="25"></ng-md-icon>
-						</md-button>
-					</div>
-				</div>
-			</md-list-item>
-		</md-list>
+        <div class="content-panel content-panel-dashboard"
+             ui-widget-services
+             project-id="projectData.id"
+             limit="10"
+             sort-by="'title'"
+             columns="['run','name','component','status','dateAdded','addedBy','from','edit','remove']"
+             widget-style="'full'"
+             start-at-offset="14"></div>
 	</md-content>
 </div>

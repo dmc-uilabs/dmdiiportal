@@ -9,6 +9,7 @@ angular.module('dmc.my_projects', [
         'dmc.configs.ngmaterial',
         'ngMdIcons',
         'ui.router',
+        'dmc.model.previous-page',
         'md.data.table',
         'dmc.common.header',
         'dmc.common.footer'

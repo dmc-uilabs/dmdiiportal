@@ -478,7 +478,9 @@ angular.module('dmc.data',[])
                     get_specifications: localhost + name + '/' + id + '/specifications',
                     edit_specifications: localhost + 'specifications/' + id,
                     get_inputs_outputs: localhost + name + '/' + id + '/service_input_output',
-                    get_statistics: localhost + name + '/' + id + '/services_statistic'
+                    get_statistics: localhost + name + '/' + id + '/services_statistic',
+                    add_interface: localhost + 'dome-interfaces',
+                    get_interface: localhost + name + '/' + id + '/dome-interfaces'
                 }
             },
             // ---------------------------
@@ -668,4 +670,4 @@ angular.module('dmc.data',[])
             }
         };
     }
-);
+)

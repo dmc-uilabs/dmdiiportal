@@ -18,8 +18,8 @@ angular.module('dmc.widgets.projects',[
             controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
                 $scope.projects = [];
                 $scope.total = 0;
-                $scope.sort = 'id';
-                $scope.order = 'DESC';
+                $scope.sort = 'title';
+                $scope.order = 'ASC';
                 $scope.limit = ($scope.widgetShowAllBlocks == true ? 10 : 2);
 
                 $scope.flexBox = ($scope.widgetShowAllBlocks == true ? 28 : 60);

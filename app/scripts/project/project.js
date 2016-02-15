@@ -9,6 +9,7 @@ angular.module('dmc.project', [
 		'dmc.ajax',
 		'dmc.data',
 		'ngtimeago',
+        'dmc.model.dome',
 		'dmc.widgets.services',
 		'dmc.widgets.tasks',
 		'dmc.widgets.discussions',
@@ -25,6 +26,7 @@ angular.module('dmc.project', [
 		'md.data.table',
 		'ngCookies',
 		'dmc.common.header',
+        'dmc.model.previous-page',
 		'dmc.common.footer',
 		'dmc.model.project',
 		'ui.autocomplete',
@@ -482,6 +484,8 @@ angular.module('dmc.project', [
         '$http',
         'DMCUserModel',
         '$rootScope',
+        '$q',
+        'domeModel',
         'toastModel',
         function (ajax,
                   dataFactory,
@@ -489,75 +493,89 @@ angular.module('dmc.project', [
                   $http,
                   DMCUserModel,
                   $rootScope,
+                  $q,
+                  domeModel,
                   toastModel) {
-
             this.get_service = function(id){
-                return ajax.get(dataFactory.services(id).get, {
-                        "_embed": ["specifications","service_authors", "service_input_output", "service_tags", "services_statistic"]
+                var promises = {
+                    "service": $http.get(dataFactory.services(id).get),
+                    "specifications": $http.get(dataFactory.services(id).get_specifications),
+                    "service_authors": $http.get(dataFactory.services(id).get_authors),
+                    "service_input_output": $http.get(dataFactory.services(id).get_inputs_outputs),
+                    "service_tags": $http.get(dataFactory.services(id).get_tags),
+                    "services_statistic": $http.get(dataFactory.services(id).get_statistics),
+                    "service_reviews": $http.get(dataFactory.services(id).reviews),
+                    "service_images": $http.get(dataFactory.services(id).get_images),
+                    "interface": $http.get(dataFactory.services(id).get_interface),
+                    "currentStatus": $http({method : "GET", url : dataFactory.getServiceStatus(id), params : {
+                        _limit : 1,
+                        _order : "DESC",
+                        _sort : "id",
+                        status : 1,
+                        accountId : DMCUserModel.getUserData().accountId
+                    }}),
+                    "lastStatus": $http({method : "GET", url : dataFactory.getServiceStatus(id), params : {
+                        _limit : 1,
+                        _order : "DESC",
+                        _sort : "id",
+                        status_ne : 1
+                    }})
+                };
+
+                var extractData = function(response){
+                    return response.data ? response.data : response;
+                };
+
+                return $q.all(promises).then(function(responses){
+                        var service = extractData(responses.service);
+                        service.interface = (responses.interface.data && responses.interface.data.length > 0 ? responses.interface.data[0] : null);
+                        if(service.interface){
+                            domeModel.getModel(service.interface,function(response){
+                                service.interfaceModel = response.data.pkg;
+                            });
+                        }
+                        service.currentStatus = (responses.currentStatus.data && responses.currentStatus.data.length > 0 ? responses.currentStatus.data[0] : null);
+                        service.lastStatus = (responses.lastStatus.data && responses.lastStatus.data.length > 0 ? responses.lastStatus.data[0] : null);
+                        service.specifications = extractData(responses.specifications);
+                        service.service_authors = extractData(responses.service_authors);
+                        service.service_input_output = extractData(responses.service_input_output);
+                        service.service_tags = extractData(responses.service_tags);
+                        service.services_statistic = extractData(responses.services_statistic);
+                        service.service_reviews = extractData(responses.service_reviews);
+                        service.service_images = extractData(responses.service_images);
+                        service.rating = service.service_reviews.map(function(value, index){
+                            return value.rating;
+                        });
+                        service.number_of_comments = service.service_reviews.length;
+
+                        if(service.number_of_comments != 0) {
+                            service.precentage_stars = [0, 0, 0, 0, 0];
+                            service.average_rating = 0;
+                            for (var i in service.rating) {
+                                service.precentage_stars[service.rating[i] - 1] += 100 / service.number_of_comments;
+                                service.average_rating += service.rating[i];
+                            }
+                            service.average_rating = (service.average_rating / service.number_of_comments).toFixed(1);
+
+                            for (var i in service.precentage_stars) {
+                                service.precentage_stars[i] = Math.round(service.precentage_stars[i]);
+                            }
+                        }
+                        for(var i in service.service_reviews){
+                            service.service_reviews[i].replyReviews = [];
+                        }
+                        return service;
                     },
                     function(response){
-                        var service = response.data;
-                        return ajax.get(dataFactory.services(id).reviews, {},
-                            function(response){
-                                service["service_reviews"] = response.data;
-                                service.rating = service.service_reviews.map(function(value, index){
-                                    return value.rating;
-                                });
-                                service.number_of_comments = service.service_reviews.length;
-
-                                if(service.number_of_comments != 0) {
-                                    service.precentage_stars = [0, 0, 0, 0, 0];
-                                    service.average_rating = 0;
-                                    for (var i in service.rating) {
-                                        service.precentage_stars[service.rating[i] - 1] += 100 / service.number_of_comments;
-                                        service.average_rating += service.rating[i];
-                                    }
-                                    service.average_rating = (service.average_rating / service.number_of_comments).toFixed(1);
-
-                                    for (var i in service.precentage_stars) {
-                                        service.precentage_stars[i] = Math.round(service.precentage_stars[i]);
-                                    }
-                                }
-                                for(var i in service["service_reviews"]){
-                                    service["service_reviews"][i]['replyReviews'] = [];
-                                }
-
-                                // get current Status
-                                ajax.get(dataFactory.getServiceStatus(service.id),{
-                                        _limit : 1,
-                                        _order : "DESC",
-                                        _sort : "id",
-                                        status : "running",
-                                        accountId : $rootScope.userData.accountId
-                                    },function(response){
-                                        if(response.data.length > 0) service.currentStatus = response.data[0];
-                                    }
-                                );
-                                // get last status
-                                ajax.get(dataFactory.getServiceStatus(service.id),{
-                                        _limit : 1,
-                                        _order : "DESC",
-                                        _sort : "id",
-                                        status_ne : "running"
-                                    },function(response){
-                                        if(response.data.length > 0) service.lastStatus = response.data[0];
-                                    }
-                                );
-                                return service;
-                            },
-                            function(response){
-                                toastModel.showToast("error", "Error." + response.statusText);
-                            }
-                        )
+                        toastModel.showToast("error", "Error." + response.statusText);
                     }
-                )
+                );
             };
 
             this.get_project_services = function(projectId){
             	return ajax.get(dataFactory.services(projectId).get_for_project, {},
                     function(response){
                         return response.data;
-                        
                     }
                 )
             };
@@ -569,7 +587,6 @@ angular.module('dmc.project', [
                     }
                 )
             };
-//moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
 
             this.upload_services = function(params, callback){
                 ajax.create(dataFactory.services($stateParams.ServiceId).add,
@@ -692,28 +709,20 @@ angular.module('dmc.project', [
                 }
             };
 
+            this.save_service_interface = function(interFace) {
+                ajax.create(dataFactory.services().add_interface, interFace);
+            };
+
             this.add_services_tags = function(array, id){
-                ajax.get(dataFactory.services((id)? id : $stateParams.ServiceId).get_tags,
-                    {
-                        "_limit" : 1,
-                        "_order" : "DESC",
-                        "_sort" : "id"
-                    },
-                    function(response){
-                        var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
-                        for(var i in array){
-                            ajax.create(dataFactory.services((id)? id : $stateParams.ServiceId).add_tags,
-                                {
-                                    "id": lastId,
-                                    "serviceId": (id)? id : $stateParams.ServiceId,
-                                    "name": array[i]
-                                },
-                                function(response){}
-                            );
-                            lastId++;
-                        }
-                    }
-                )
+                for(var i in array){
+                    ajax.create(dataFactory.services((id)? id : $stateParams.ServiceId).add_tags,
+                        {
+                            "serviceId": (id)? id : $stateParams.ServiceId,
+                            "name": array[i]
+                        },
+                        function(response){}
+                    );
+                }
             };
 
             this.remove_services_tags = function(array){
