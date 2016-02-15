@@ -6,7 +6,8 @@ angular.module('dmc.widgets.tasks',[
         'dmc.socket',
         'dmc.model.task',
         'ui.autocomplete',
-        'ngSanitize'
+        'ngSanitize',
+        'dmc.model.previous-page'
     ]).
     directive('uiWidgetTasks', ['$parse', function ($parse) {
         return {
@@ -19,11 +20,13 @@ angular.module('dmc.widgets.tasks',[
             },
             link: function (scope, iElement, iAttrs) {
             },
-            controller: function($scope, $element, $attrs,$mdDialog, socketFactory, dataFactory, ajax, toastModel) {
+            controller: function($scope, $element, $attrs,$mdDialog, socketFactory, dataFactory, ajax, toastModel, previousPage) {
                 $scope.tasks = [];
                 $scope.total = 0;
                 $scope.sort = 'dueDate';
                 $scope.order = 'ASC';
+
+                $scope.previousPage = previousPage;
 
                 // function for get all tasks from DB
                 $scope.getTasks = function(){
@@ -123,7 +126,9 @@ angular.module('dmc.widgets.tasks',[
                 widgetTitle: "=",
                 totalItems: "="
             },
-            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel,$mdDialog) {
+            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel,$mdDialog, previousPage) {
+                $scope.previousPage = previousPage;
+
                 $scope.projectTasks = [];
                 $scope.sort = 'priority';
                 $scope.order = 'DESC';
