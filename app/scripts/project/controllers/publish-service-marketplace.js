@@ -103,21 +103,7 @@ angular.module('dmc.project')
             };
 
             $scope.changedInput = function(){
-                var disabled = false;
-                for(var item in $scope.publishService){
-                    if($.type($scope.publishService[item]) == "array"){
-                        if($scope.publishService[item].length == 0){
-                            disabled = true;
-                            break;
-                        }
-                    }else{
-                        if(!$scope.publishService[item]){
-                            disabled = true;
-                            break;
-                        }
-                    }
-                }
-                $scope.isDisabledFirstPage = disabled;
+                $scope.isDisabledFirstPage = ($scope.publishService.name && $scope.publishService.description ? false : true);
             };
             $scope.changedInput();
 
@@ -168,19 +154,13 @@ angular.module('dmc.project')
             };
 
             $scope.changedInput2 = function(){
-                var disabled = false;
-                for(var item in $scope.publishService2){
-                    if(item != "documents" && $scope.publishService2[item].length == 0){
-                        disabled = true;
-                        break;
-                    }
-                }
-                $scope.isDisabledSecondPage = disabled;
+                $scope.isDisabledSecondPage = ($scope.publishService2.authors.length > 0 ? false : true);
             };
             $scope.changedInput2();
 
             $scope.deleteAuthor = function(index){
                 $scope.publishService2.authors.splice(index,1);
+                $scope.changedInput2();
             };
 
             $scope.backPage = function(){
@@ -220,7 +200,7 @@ angular.module('dmc.project')
                     headers: {'Content-Type': undefined}
                 }).success(function (data) {
                     toastModel.showToast("success", "Publish service successfully created!");
-                    $state.go('project.publish-service-marketplace', $stateParams, {reload: true});
+                    window.location = location.origin+'/service-marketplace.php#/'+$scope.serviceData.id;
                 }).error(function (data) {
                     toastModel.showToast("error", data.statusText);
                 });

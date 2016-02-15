@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('dmc.community.discussions',[
-    'ngCookies'
+    'ngCookies',
+    'dmc.model.previous-page'
 ]).
     directive('communityDiscussions', ['$parse', function ($parse) {
         return {
@@ -11,9 +12,10 @@ angular.module('dmc.community.discussions',[
                 widgetTitle: "=",
                 widgetType: "="
             },
-            controller: ["$scope", "dataFactory", "ajax" ,"toastModel", "$cookies","$location", function($scope, dataFactory, ajax, toastModel, $cookies, $location) {
+            controller: ["$scope", "dataFactory", "ajax" ,"toastModel", "$cookies","$location","previousPage", function($scope, dataFactory, ajax, toastModel, $cookies, $location,previousPage) {
                 $scope.limit = 3;
 
+                $scope.previousPage = previousPage;
                 $scope.discussions = [];
                 $scope.totalDiscussions = 0;
 

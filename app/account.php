@@ -93,6 +93,7 @@
     <script src="scripts/common/models/file-model.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
+    <script src="scripts/common/models/previous-page.js"></script>
 
     <script src="scripts/account/account.js"></script>
     <script src="scripts/account/account-menu.directive.js"></script>

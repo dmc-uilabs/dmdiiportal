@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dmc.my_projects', [
+angular.module('dmc.all_projects', [
         'dmc.widgets.services',
         'dmc.widgets.tasks',
         'dmc.widgets.discussions',
@@ -21,7 +21,7 @@ angular.module('dmc.my_projects', [
     });
     $urlRouterProvider.otherwise('/');
 })
-.controller('DMCMyProjectsController', function ($scope,$element) {
+.controller('DMCAllProjectsController', function ($scope,$element) {
     $scope.sortList = [
         {
             id : 3, tag : "date", name : "Most recent"
@@ -63,22 +63,4 @@ angular.module('dmc.my_projects', [
             }
         }
     };
-});
-
-angular.module('dmc.create_project', [
-    'dmc.configs.ngmaterial',
-    'dmc.rfpInvite',
-    'ngMdIcons',
-    'ui.router',
-    'md.data.table',
-    'dmc.common.header',
-    'dmc.common.footer'
-]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
-    $stateProvider.state('create_project', {
-        url: '',
-        abstract: true
-    });
-    $urlRouterProvider.otherwise('/');
-}).controller('DMCCreateProjectController', function ($scope) {
-
 });

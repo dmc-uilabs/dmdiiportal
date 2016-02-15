@@ -88,6 +88,7 @@
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
+    <script src="scripts/common/models/previous-page.js"></script>
 
     <script src="scripts/contact-us/contact-us.js"></script>
     <script src="scripts/contact-us/contact-us.controller.js"></script>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>mdangular</title>
+    <title>My Projects</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -131,7 +131,8 @@
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
-    <script src="scripts/my_projects/my_projects.js"></script>
+    <script src="scripts/projects/my_projects.js"></script>
+    <script src="scripts/projects/create_project.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

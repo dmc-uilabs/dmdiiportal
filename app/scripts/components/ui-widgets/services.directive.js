@@ -3,7 +3,8 @@
 angular.module('dmc.widgets.services',[
         'dmc.ajax',
         'dmc.data',
-        'dmc.socket'
+        'dmc.socket',
+        'dmc.model.previous-page'
     ]).
     directive('uiWidgetServices', ['$parse', function ($parse) {
         return {
@@ -24,7 +25,9 @@ angular.module('dmc.widgets.services',[
             link: function (scope, iElement, iAttrs) {
 
             },
-            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
+            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, previousPage) {
+                $scope.previousPage = previousPage;
+
                 $scope.services = [];
                 $scope.total = 0;
                 $scope.sort = $scope.sortBy ? $scope.sortBy : '-currentStatus.status';

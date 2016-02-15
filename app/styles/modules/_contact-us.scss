@@ -22,8 +22,12 @@
     }
     .get-in-touch{
       padding: 0px 55px;
+      border-left: 1px solid #aaa;
       .contact-block{
         margin-bottom: 34px;
+        &:last-child{
+          margin-bottom: 0;
+        }
         ng-md-icon{
           fill: #444;
         }

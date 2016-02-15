@@ -241,8 +241,6 @@ angular.module('dmc.widgets.documents',[
 				$scope.indexfolder = [];
 				$scope.folderName = '';
 
-                console.log($scope.documentsType);
-                console.log($scope.typeId);
                 // function for get all requirement documents
                 $scope.serviceDocumentId = 0;
                 $scope.getDocuments = function() {
@@ -261,6 +259,10 @@ angular.module('dmc.widgets.documents',[
                             $scope.documents = response.data;
                             $scope.total = $scope.documents.length;
                             $scope.folder = $scope.documents;
+                            for(var i in $scope.folder){
+                                $scope.folder[i].modifedFormat = $scope.folder[i].modifed;
+                                $scope.folder[i].modifed = Date.parse($scope.folder[i].modifed);
+                            }
                             apply();
                         }
                     );

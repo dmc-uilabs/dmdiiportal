@@ -244,7 +244,7 @@ angular.module('dmc.data',[])
                 return localhost+'service/'+id+'/service-documents';
             },
             getProjectDocuments: function(id){
-                return localhost+'projects/'+id+'/documents';
+                return localhost+'projects/'+id+'/project-documents';
             },
             addServiceToProject: function(id){
                 return localhost+'services/'+id;

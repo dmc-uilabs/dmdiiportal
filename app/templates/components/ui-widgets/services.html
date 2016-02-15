@@ -2,7 +2,9 @@
 <div class="title-widget" ng-if="widgetTitle && widgetStyle == 'my-projects'" layout="row" layout-align="start center">
     <h2>{{widgetTitle}}</h2>
     <span flex></span>
-    <md-button href="/all.php#/services/{{projectId}}" class="view-all-link">View All ({{total}})</md-button>
+    <md-button href="/all.php#/services/{{projectId}}"
+               ng-click="previousPage.save($event)"
+               class="view-all-link">View All ({{total}})</md-button>
 </div>
 <md-list ng-if="widgetStyle == 'my-projects'">
     <md-list-item class="md-2-line service-list-item"
@@ -55,7 +57,10 @@
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
             <span flex></span>
-            <md-button ng-href="{{(projectId ? '/project.php#/'+projectId+'/services' : '/all.php#/services')}}" md-no-ink class="view-all-button view-all-link">View All ({{total}})</md-button>
+            <md-button ng-href="{{(projectId ? '/project.php#/'+projectId+'/services' : '/all.php#/services')}}"
+                       ng-click="previousPage.save($event)"
+                       md-no-ink
+                       class="view-all-button view-all-link">View All ({{total}})</md-button>
         </div>
     </md-toolbar>
 </div>
@@ -111,7 +116,7 @@
                             {{item.releaseDateFormat}}
                         </td>
                         <td ng-show="columns.indexOf('addedBy') > -1">
-                            <a class="link-button" href="/profile.php#/1">{{item.owner}}</a>
+                            <a class="link-button" href="/profile.php#/{{item.profileId}}">{{item.owner}}</a>
                         </td>
                         <td ng-show="columns.indexOf('from') > -1">
                             {{item.from}}

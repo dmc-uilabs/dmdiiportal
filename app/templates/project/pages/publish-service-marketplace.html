@@ -24,7 +24,7 @@
             <div layout="row" flex layout-align="start end" class="service-description">
                 <md-input-container class="md-block" flex>
                     <label>Service Description</label>
-                    <textarea required name="description" ng-model="publishService.description"></textarea>
+                    <textarea required name="description" ng-change="changedInput()" ng-model="publishService.description"></textarea>
                 </md-input-container>
             </div>
             <md-divider></md-divider>
