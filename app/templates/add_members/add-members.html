@@ -32,7 +32,6 @@
                                         <md-content layout="row" layout-wrap>
                                             <div flex="33" ng-if="!showFavoritesFlag" class="container-member-card" ng-repeat="item in foundMembers">
                                                 <dmc-add-members-card
-                                                        compare-member="compareMember"
                                                         invite-member="addToInvitation"
                                                         favorite-member="addToFavorite"
                                                         card-source="item"
@@ -41,7 +40,6 @@
                                             </div>
                                             <div flex="33" ng-if="showFavoritesFlag" class="container-member-card" ng-repeat="item in favorites">
                                                 <dmc-add-members-card
-                                                        compare-member="compareMember"
                                                         invite-member="addToInvitation"
                                                         favorite-member="addToFavorite"
                                                         card-source="item"
