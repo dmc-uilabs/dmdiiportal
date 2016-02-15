@@ -45,8 +45,11 @@
 			<md-button ng-click="cancel()">
 				Cancel
 			</md-button>
-			<md-button class="md-raised md-primary" ng-click="save(message, subject)" ng-disabled="!NewDiscussion.subject || !NewDiscussion.message">
+			<md-button ng-if="!linkToDiscussion" class="md-raised md-primary" ng-click="save(message, subject)" ng-disabled="!NewDiscussion.subject || !NewDiscussion.message">
 				Post
+			</md-button>
+			<md-button ng-if="linkToDiscussion" class="md-raised md-primary" ng-href="{{linkToDiscussion}}">
+				Go To Discussion
 			</md-button>
 		</div>
 	</div>

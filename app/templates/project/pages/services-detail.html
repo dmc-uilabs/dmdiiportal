@@ -34,7 +34,7 @@
 			<md-button class="md-raised" ng-click="follow()">
 				{{(followFlag) ? 'Unfollow' : 'Follow'}}
 			</md-button>
-			<md-button aria-label="reply" href="" class="md-icon-button reply header-icon">
+			<md-button aria-label="reply" ng-href="{{'project.php#/' + projectData.id + '/home'}}" href="" class="md-icon-button reply header-icon">
 				<ng-md-icon icon="reply" style="fill: grey;" size="25"></ng-md-icon>
 			</md-button>
 			<md-button aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/edit'}}" class="md-icon-button header-icon">
