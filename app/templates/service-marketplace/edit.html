@@ -43,7 +43,9 @@
 						<div class="no-image" ng-if="!product.service_images.length" layout layout-align="center center">
 							<h2>No Images</h2>
 						</div>
-						<md-button ng-click="loadImage()">
+						<md-button dmc-upload-image-modal 
+						images="product.service_images" 
+						cancel-function="updateImage">
 							<ng-md-icon icon="camera_alt" style="fill: #65AF3F;" size="25"></ng-md-icon>
 							Manage photos
 						</md-button>
@@ -122,7 +124,7 @@
 									</md-button>
 									<md-input-container>
 										<label>Specifications</label>
-										<input id="{{'sipecification'+$index}}" ng-focus="true" ng-model="item.specification"></input>
+										<input id="{{'sipecification'+$index}}" ng-model="item.specification"></input>
 									</md-input-container>
 									<md-input-container>
 										<label>Data</label>

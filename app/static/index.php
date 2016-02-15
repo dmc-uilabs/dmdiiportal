@@ -55,6 +55,8 @@ return call_user_func(function () {
 		echo add_to_project($_POST);
 	}else if(strpos($uri,'/remove_from_project') !== false){
 		echo remove_from_project($_POST);
+    }else if(strpos($uri,'/uploadServiceImage') !== false) {
+        echo upload_service_image($_POST, $_FILES);
 	}else if(strpos($uri,'/upload') !== false){
 		echo upload_document($_POST,$_FILES);
 	}else if(strpos($uri,'/create_discussion') !== false){
@@ -893,6 +895,24 @@ function upload_company_image($params,$file){
         }
     }else{
         return json_encode(array('error' => 'Data is wrong' ));
+    }
+}
+
+
+function upload_service_image($params,$file){
+    $id = $last_id;
+    $mainDir = dirname(__DIR__);
+    $fileFolder = '\\uploads\\services';
+    $name_file = basename($file['file']['name']);
+    $type = substr($name_file, strripos($name_file, '.'));
+    $name_file = date('YmdHisu') . $type;
+    $uploadFile = $mainDir . $fileFolder . '\\' . $name_file;
+    if (move_uploaded_file($file['file']['tmp_name'], $uploadFile)) {
+        $otherName = '/uploads/services/'.$name_file;
+        $file['name'] = $otherName;
+        return json_encode(array('result' => $otherName));
+    } else {
+        return json_encode(array('error' => 'Possible attacks via file download','$file' => $file));
     }
 }
 

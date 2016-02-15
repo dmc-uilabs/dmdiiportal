@@ -28,6 +28,9 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
                 case 'company-profile-skill' :
                     url = dataFactory.uploadCompanyProfileSkillImageUrl();
                     break;
+                case 'service' :
+                    url = dataFactory.uploadServiceImageUrl();
+                    break;
                 default:
                     break;
             }

@@ -20,6 +20,7 @@ angular.module('dmc.service-marketplace', [
 	'dmc.common.footer',
 	'dmc.component.carousel',
 	'dmc.model.toast-model',
+    'dmc.widgets.uploadModal',
    	'dmc.compare'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
@@ -261,6 +262,30 @@ angular.module('dmc.service-marketplace', [
                         function(response){}
                     )
                 }
+            };
+
+            this.add_services_images = function(array){
+                ajax.get(dataFactory.services($stateParams.serviceId).get_images,
+                    {
+                        "_limit" : 1,
+                        "_order" : "DESC",
+                        "_sort" : "id"
+                    },
+                    function(response){
+                        var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
+                        for(var i in array){
+                            ajax.create(dataFactory.services($stateParams.serviceId).add_images,
+                                {
+                                    "id": lastId,
+                                    "serviceId": $stateParams.serviceId,
+                                    "url": array[i]
+                                },
+                                function(response){}
+                            );
+                            lastId++;
+                        }
+                    }
+                )
             };
 
             this.remove_services_images = function(array){

@@ -86,6 +86,7 @@
 <script src="scripts/components/ui-widgets/documents.directive.js"></script>
 <script src="scripts/components/ui-widgets/review.directive.js"></script>
 <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
+<script src="scripts/components/ui-widgets/uploadModal.directive.js"></script>
 <script src="scripts/components/dropzone/dropzone.directive.js"></script>
 <script src="scripts/common/factory/ajax.factory.js"></script>
 <script src="scripts/common/factory/data.factory.js"></script>
@@ -97,6 +98,8 @@
 <script src="scripts/components/products-card/products-card.js"></script>
 <script src="scripts/common/models/toast-model.js"></script>
 <script src="scripts/common/models/user-model.js"></script>
+<script src="scripts/common/models/user-model.js"></script>
+<script src="scripts/common/models/file-upload.js"></script>
 <script src="scripts/components/members-card/members-card.js"></script>
 
 <script src="scripts/service-marketplace/service-marketplace.js"></script>

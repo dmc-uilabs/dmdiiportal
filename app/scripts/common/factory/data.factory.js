@@ -485,6 +485,10 @@ angular.module('dmc.data',[])
             },
             // ---------------------------
 
+            uploadServiceImageUrl: function(){
+                return baseServer+'/uploadServiceImage';
+            },
+
             getFavoriteProducts: function(){
                 return localhost+'favorite_products';
             },
