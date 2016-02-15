@@ -201,12 +201,44 @@ angular.module('dmc.project', [
         });
         $urlRouterProvider.otherwise('/1');
 })
-	.controller('DMCPreviewProjectController', ['$scope','$stateParams', 'projectData', function ($scope, $stateParams, projectData) {
+	.controller('DMCPreviewProjectController', ['$scope','$stateParams', 'projectData', 'ajax', 'dataFactory', '$timeout', 'toastModel', 
+		function ($scope, $stateParams, projectData, ajax, dataFactory, $timeout, toastModel) {
 		var projectCtrl = this;
 		projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
 		projectCtrl.projectData = projectData;
-
 		$scope.isPreview = true;
+		$scope.invitation = null;
+		ajax.get(dataFactory.getMembersToProject(), 
+            {
+                "projectId" : $stateParams.projectId,
+                "profileId" : $scope.$root.userData.profileId,
+            }, 
+            function(response){
+            	console.info(response);
+            	$scope.invitation = response.data[0];
+            }
+        );
+
+		$scope.accept = function(){
+        	$scope.invitation.accept = true;
+            ajax.update(dataFactory.updateMembersToProject($scope.invitation.id),
+               	$scope.invitation,
+                function(response){
+                	document.location.href = "project.php#/"+$stateParams.projectId+"/home";
+                }
+            );
+		}
+		$scope.decline = function(){
+            ajax.delete(dataFactory.removeMembersToProject($scope.invitation.id),
+               	{},
+                function(response){
+                	toastModel.showToast("success", "You have declined the invitation from " + $scope.invitation.from);
+                	$timeout(function() {
+	                	document.location.href = "/";
+	                },3000, false);
+                }
+            );
+		}
 	}])
 	.controller('DMCBlankSubmissionProjectController', ['$scope','$stateParams', 'projectData', function ($scope, $stateParams, projectData) {
 		var projectCtrl = this;
