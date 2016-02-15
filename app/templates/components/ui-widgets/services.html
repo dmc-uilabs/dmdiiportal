@@ -10,7 +10,7 @@
                   ng-repeat="service in services track by $index">
         <div class="md-list-item-text" layout="column">
             <h3>
-                <a href="/project.php#/{{projectId}}/services/{{service.id}}/detail" class="service-title link-button">{{service.title}}</a>
+                <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="service-title link-button">{{service.title}}</a>
             </h3>
             <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button">
                 <md-progress-linear ng-init="service.currentStatus.percentCompleted = 55"
@@ -29,7 +29,7 @@
                   layout-align="start center"
                   ng-repeat="service in services track by $index">
         <div layout="column" flex="50" class="title">
-            <a href="/project.php#/{{projectId}}/services/{{service.id}}/detail" class="link-button">{{service.title}}</a>
+            <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button">{{service.title}}</a>
         </div>
         <div layout="column" layout-align="center center" flex="30" class="release-date">
             {{service.releaseDateFormat}}

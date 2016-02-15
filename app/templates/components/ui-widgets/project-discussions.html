@@ -8,8 +8,8 @@
         <div class="md-list-item-text">
             <h4 ng-if="widgetFormat == 'my-projects'">{{discussion.created_at}}</h4>
             <h3><a href="/individual-discussion.php#/{{discussion.id}}" class="link-button" ng-click="previousPage.save($event)">{{discussion.text}}</a></h3>
-            <h4 ng-if="widgetFormat == 'my-projects'">{{discussion.full_name}} replied</h4>
-            <h4 ng-if="widgetFormat != 'my-projects'">{{discussion.full_name}} replied | {{discussion.created_at}}</h4>
+            <h4 ng-if="widgetFormat == 'my-projects'"><a href="/profile.php#/1">{{discussion.full_name}}</a> replied</h4>
+            <h4 ng-if="widgetFormat != 'my-projects'"><a href="/profile.php#/1">{{discussion.full_name}}</a> replied | {{discussion.created_at}}</h4>
         </div>
         <md-divider ng-if="$index < projectDiscussions.length-1"></md-divider>
     </md-list-item>

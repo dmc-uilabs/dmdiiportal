@@ -301,6 +301,8 @@ md-dialog[md-theme="default"]{
 }
 
 a{
+  color: inherit;
+  text-decoration: none;
   &:hover{
     text-decoration: underline;
   }

@@ -10,7 +10,7 @@ angular.module('dmc.project')
         $scope.projectData = projectCtrl.projectData;
         $scope.projectId = projectCtrl.currentProjectId;
         $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-        $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "tasks1";
+        $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "task";
 
         if($scope.projectData && $scope.projectData.id && $scope.projectId) {
             $scope.tasks = [];
@@ -19,11 +19,17 @@ angular.module('dmc.project')
 
             $scope.types = [
                 {
-                    tag: "tasks1",
-                    name: "Tasks 1"
+                    tag: "task",
+                    name: "Task"
                 }, {
-                    tag: "tasks2",
-                    name: "Tasks 2"
+                    tag: "project",
+                    name: "Project"
+                }, {
+                    tag: "assignedTo",
+                    name: "Assigned To"
+                }, {
+                    tag: "dueDate",
+                    name: "Due Date"
                 }
             ];
 
@@ -54,20 +60,19 @@ angular.module('dmc.project')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
-            var convertDueDate = function (task) {
+            var convertDueDate = function(task){
                 var oneDay = 86400000;
                 task.dueDateForEdit = task.dueDate;
-                task.dueDate = moment(task.dueDate, "DD-MM-YYYY").format("MM/DD/YYYY");
                 var difference = Math.floor(new Date(task.dueDate) - new Date(moment(new Date()).format("MM/DD/YYYY")));
-                if (difference == 0) {
-                    task.dueDate = ['today', 'Today'];
-                } else if (difference == oneDay) {
-                    task.dueDate = ['tomorrow', 'Tomorrow'];
-                } else if (difference > oneDay) {
-                    task.dueDate = ['date', task.dueDate];
-                } else if (difference < 0) {
-                    var name_d = (difference == (-1 * oneDay) ? 'day' : 'days');
-                    task.dueDate = ['after', 'Due ' + (-1 * Math.floor(difference / oneDay)) + ' ' + name_d + ' ago'];
+                if(difference == 0) {
+                    task.formatedDueDate = ['today','Today'];
+                } else if(difference == oneDay) {
+                    task.formatedDueDate = ['tomorrow','Tomorrow'];
+                }else if(difference > oneDay){
+                    task.formatedDueDate = ['date',moment(new Date(task.dueDate)).format("MM/DD/YYYY")];
+                }else if(difference < 0){
+                    var name_d = (difference == (-1*oneDay) ? 'day' : 'days');
+                    task.formatedDueDate = ['after', 'Due ' + (-1 * Math.floor(difference / oneDay)) + ' ' + name_d + ' ago'];
                 }
             };
 
