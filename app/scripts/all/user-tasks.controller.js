@@ -6,13 +6,18 @@ angular.module('dmc.view-all')
         '$state',
         '$location',
         'ajax',
+        'previousPage',
         'dataFactory',
         function (  $scope,
                     $stateParams,
                     $state,
                     $location,
                     ajax,
+                    previousPage,
                     dataFactory) {
+
+            // comeback to the previous page
+            $scope.previousPage = previousPage.get();
 
             $("title").text("All My Tasks");
 
