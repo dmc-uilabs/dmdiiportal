@@ -1245,9 +1245,15 @@
       },
       "averageRun": 24,
       "parent_component": null,
-      "projectId": 1,
-      "from": "project",
-      "id": 42
+      "projectId": 2,
+      "from": "marketplace",
+      "id": 42,
+      "currentStatus": {
+        "project": {
+          "id": 2,
+          "title": "Capacitor Bank for LDR Mining Co."
+        }
+      }
     },
     {
       "title": "Velocity1 Model",
@@ -1263,9 +1269,15 @@
       },
       "averageRun": 25,
       "parent_component": null,
-      "projectId": 1,
-      "from": "project",
-      "id": 43
+      "projectId": 2,
+      "from": "marketplace",
+      "id": 43,
+      "currentStatus": {
+        "project": {
+          "id": 2,
+          "title": "Capacitor Bank for LDR Mining Co."
+        }
+      }
     },
     {
       "title": "AppliedLoad",
@@ -1281,9 +1293,15 @@
       },
       "averageRun": 11.615384615384615,
       "parent_component": null,
-      "projectId": 1,
-      "from": "project",
-      "id": 44
+      "projectId": 2,
+      "from": "marketplace",
+      "id": 44,
+      "currentStatus": {
+        "project": {
+          "id": 2,
+          "title": "Capacitor Bank for LDR Mining Co."
+        }
+      }
     }
   ],
   "service_runs": [
