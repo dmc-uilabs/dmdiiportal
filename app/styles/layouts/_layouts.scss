@@ -287,6 +287,8 @@ a.link-button.md-button.md-default-theme{
 
 md-dialog{
   max-height: 600px;
+  height: 100%;
+  width: 100%;
 }
 md-dialog[md-theme="default"]{
   .md-actions{
