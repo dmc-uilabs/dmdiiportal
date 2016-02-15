@@ -114,7 +114,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/my-projects/index.js -->
+    <!-- build:js scripts/projects/all.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
