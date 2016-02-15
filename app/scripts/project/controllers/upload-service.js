@@ -99,7 +99,7 @@ angular.module('dmc.project')
 
             // delete tag
             $scope.deleteTag = function(index, id){
-                if(id || id === 0) $scope.removeTags.push(id);
+                if(id && id > 0) $scope.removeTags.push(id);
                 $scope.service_tags.splice(index,1);
             };
 

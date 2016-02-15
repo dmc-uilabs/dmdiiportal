@@ -55,8 +55,8 @@ angular.module('dmc.model.dome', ['dmc.data','dmc.ajax'])
             this.runModel = function(data,callback,errorCallback){
                 var requestData = {};
                 requestData.interface = {
-                    inParams : data.model.inParams,
-                    outParams : data.model.outParams,
+                    inParams : data.model ? data.model.inParams : null,
+                    outParams : data.model ? data.model.outParams : null,
                     interFace : data.interface
                 };
                 requestData.url = data.domeServer;

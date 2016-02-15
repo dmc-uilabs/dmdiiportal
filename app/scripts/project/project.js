@@ -745,6 +745,14 @@ angular.module('dmc.project', [
                 ajax.create(dataFactory.services().add_interface, interFace);
             };
 
+            this.get_interface = function(id,callback){
+                return ajax.get(dataFactory.services(id).get_interface, {},callback);
+            };
+
+            this.update_service_interface = function(id,data){
+                return ajax.update(dataFactory.services(id).update_interface, data);
+            };
+
             this.add_services_tags = function(array, id){
                 for(var i in array){
                     ajax.create(dataFactory.services((id)? id : $stateParams.ServiceId).add_tags,
@@ -801,9 +809,7 @@ angular.module('dmc.project', [
             	)
             };
 
-            this.get_interfaces = function(item,callback){
 
-            };
 
             this.get_servers = function(callback){
                 return ajax.get(dataFactory.getAccountServersUrl($rootScope.userData.accountId),

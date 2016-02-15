@@ -135,7 +135,7 @@
                         <md-chips ng-repeat="tag in service_tags track by $index">
                             <md-chip class="tags-chip">
                                 {{tag.name}}
-                                <md-button aria-label="close" ng-click="deleteTag($index)" class="md-icon-button">
+                                <md-button aria-label="close" ng-click="deleteTag($index,tag.id)" class="md-icon-button">
                                     <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
                                 </md-button>
                             </md-chip>

@@ -489,7 +489,8 @@ angular.module('dmc.data',[])
                     get_inputs_outputs: localhost + name + '/' + id + '/service_input_output',
                     get_statistics: localhost + name + '/' + id + '/services_statistic',
                     add_interface: localhost + 'dome-interfaces',
-                    get_interface: localhost + name + '/' + id + '/dome-interfaces'
+                    get_interface: localhost + name + '/' + id + '/dome-interfaces',
+                    update_interface:  localhost + 'dome-interfaces/'+id
                 }
             },
             // ---------------------------

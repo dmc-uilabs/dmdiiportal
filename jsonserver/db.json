@@ -834,6 +834,19 @@
       "serviceId": 44,
       "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
       "id": 3
+    },
+    {
+      "version": 1,
+      "modelId": "bd85f846-d8f4-1004-8f94-37c24b788523",
+      "interfaceId": "bd85f847-d8f4-1004-8f94-37c24b788523",
+      "type": "interface",
+      "name": "Upload a file interface",
+      "path": [
+        31
+      ],
+      "serviceId": 41,
+      "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 4
     }
   ],
   "services": [
@@ -1188,7 +1201,7 @@
     {
       "id": 41,
       "companyId": 2,
-      "title": "Evaluator 1 - heat loss, cost",
+      "title": "Upload File model",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "J.Cole",
       "profileId": 1,
@@ -1202,7 +1215,8 @@
       "projectId": 1,
       "type": "service",
       "from": "project",
-      "averageRun": 85.995
+      "averageRun": 11.5,
+      "parent": 0
     },
     {
       "id": 28,
@@ -1977,29 +1991,89 @@
       "serviceId": 41,
       "accountId": 1,
       "runBy": "Thomas Smith",
-      "status": 1,
-      "percentCompleted": 0,
-      "startDate": "2016-02-14",
-      "startTime": "14:25:34",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "20:34:18",
       "project": {
         "id": 1,
         "title": "Control Compartment for LDR Mining"
       },
-      "id": 16
+      "id": 16,
+      "stopDate": "2016-02-15",
+      "stopTime": "20:34:25",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
     },
     {
       "serviceId": 41,
       "accountId": 1,
       "runBy": "Thomas Smith",
-      "status": 1,
-      "percentCompleted": 0,
-      "startDate": "2016-02-14",
-      "startTime": "14:27:24",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "20:33:52",
       "project": {
         "id": 1,
         "title": "Control Compartment for LDR Mining"
       },
-      "id": 17
+      "id": 17,
+      "stopDate": "2016-02-15",
+      "stopTime": "20:34:09",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
     },
     {
       "serviceId": 41,
@@ -2194,6 +2268,574 @@
       "interface": {
         "inParams": null,
         "outParams": null
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": -1,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "20:06:09",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 27,
+      "stopDate": "2016-02-15",
+      "stopTime": "20:06:09",
+      "interface": {
+        "inParams": null,
+        "outParams": null
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": -1,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "20:06:16",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 28,
+      "stopDate": "2016-02-15",
+      "stopTime": "20:06:16",
+      "interface": {
+        "inParams": null,
+        "outParams": null
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "20:33:01",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 29,
+      "stopDate": "2016-02-15",
+      "stopTime": "20:33:09",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "20:37:50",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 30,
+      "stopDate": "2016-02-15",
+      "stopTime": "20:37:58",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "20:39:39",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 31,
+      "stopDate": "2016-02-15",
+      "stopTime": "20:40:31",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "20:59:04",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 32,
+      "stopDate": "2016-02-15",
+      "stopTime": "20:59:29",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "21:02:34",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 33,
+      "stopDate": "2016-02-15",
+      "stopTime": "21:02:49",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "21:02:14",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 34,
+      "stopDate": "2016-02-15",
+      "stopTime": "21:02:25",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "21:01:49",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 35,
+      "stopDate": "2016-02-15",
+      "stopTime": "21:02:05",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "21:01:22",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 36,
+      "stopDate": "2016-02-15",
+      "stopTime": "21:01:25",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "21:06:07",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 37,
+      "stopDate": "2016-02-15",
+      "stopTime": "21:06:17",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "21:04:36",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 38,
+      "stopDate": "2016-02-15",
+      "stopTime": "21:04:43",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "21:07:08",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 39,
+      "stopDate": "2016-02-15",
+      "stopTime": "21:07:20",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMCTemp",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-15",
+      "startTime": "21:06:40",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 40,
+      "stopDate": "2016-02-15",
+      "stopTime": "21:06:46",
+      "interface": {
+        "inParams": {
+          "inFile": {
+            "name": "inFile",
+            "type": "File",
+            "unit": "",
+            "value": "456",
+            "parameterid": "73185a12-d398-1004-8645-569b82669417"
+          },
+          "localPath": {
+            "name": "localPath",
+            "type": "String",
+            "unit": "",
+            "value": "D:/CMC",
+            "parameterid": "73185a14-d398-1004-8645-569b82669417"
+          }
+        },
+        "outParams": {
+          "outFilename": {
+            "name": "outFilename",
+            "type": "String",
+            "unit": "",
+            "value": "0",
+            "parameterid": "73185a16-d398-1004-8645-569b82669417",
+            "instancename": "outFilename"
+          }
+        }
       }
     }
   ],
@@ -2707,11 +3349,6 @@
   ],
   "service_tags": [
     {
-      "id": 1,
-      "serviceId": 47,
-      "name": "Default Interface"
-    },
-    {
       "id": 2,
       "serviceId": 1,
       "name": "tag2"
@@ -2765,6 +3402,11 @@
       "serviceId": 44,
       "name": "Tag 1",
       "id": 12
+    },
+    {
+      "serviceId": 41,
+      "name": "tag1",
+      "id": 14
     }
   ],
   "services_run_history": [
@@ -4554,106 +5196,6 @@
       "id": 270,
       "serviceId": 44,
       "url": "images/ge-fuel-cell.png"
-    },
-    {
-      "id": 271,
-      "serviceId": 45,
-      "url": "images/marketplace-card-image-1.jpg"
-    },
-    {
-      "id": 272,
-      "serviceId": 45,
-      "url": "images/3d-printing.png"
-    },
-    {
-      "id": 273,
-      "serviceId": 45,
-      "url": "images/project_generator.png"
-    },
-    {
-      "id": 274,
-      "serviceId": 45,
-      "url": "images/plasticity.png"
-    },
-    {
-      "id": 275,
-      "serviceId": 45,
-      "url": "images/project-1-image.jpg"
-    },
-    {
-      "id": 276,
-      "serviceId": 45,
-      "url": "images/project_relay_controller.png"
-    },
-    {
-      "id": 277,
-      "serviceId": 45,
-      "url": "images/project_controller_pg2.png"
-    },
-    {
-      "id": 278,
-      "serviceId": 45,
-      "url": "images/project_capacitor-bank.png"
-    },
-    {
-      "id": 279,
-      "serviceId": 45,
-      "url": "images/project_capacitor_compartment.png"
-    },
-    {
-      "id": 280,
-      "serviceId": 45,
-      "url": "images/ge-fuel-cell.png"
-    },
-    {
-      "id": 281,
-      "serviceId": 46,
-      "url": "images/marketplace-card-image-1.jpg"
-    },
-    {
-      "id": 282,
-      "serviceId": 46,
-      "url": "images/3d-printing.png"
-    },
-    {
-      "id": 283,
-      "serviceId": 46,
-      "url": "images/project_generator.png"
-    },
-    {
-      "id": 284,
-      "serviceId": 46,
-      "url": "images/plasticity.png"
-    },
-    {
-      "id": 285,
-      "serviceId": 46,
-      "url": "images/project-1-image.jpg"
-    },
-    {
-      "id": 286,
-      "serviceId": 46,
-      "url": "images/project_relay_controller.png"
-    },
-    {
-      "id": 287,
-      "serviceId": 46,
-      "url": "images/project_controller_pg2.png"
-    },
-    {
-      "id": 288,
-      "serviceId": 46,
-      "url": "images/project_capacitor-bank.png"
-    },
-    {
-      "id": 289,
-      "serviceId": 46,
-      "url": "images/project_capacitor_compartment.png"
-    },
-    {
-      "id": 290,
-      "serviceId": 46,
-      "url": "images/ge-fuel-cell.png"
     }
   ],
   "tasks": [
@@ -5713,15 +6255,6 @@
   ],
   "service-documents": [
     {
-      "id": 1,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
       "id": 2,
       "serviceId": 1,
       "file": true,
@@ -5762,28 +6295,6 @@
       "modifed": "11/11/2015, 12:00 PM"
     },
     {
-      "id": 6,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 0,
-      "title": "3 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 7,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 0,
-      "title": "4 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
       "id": 8,
       "serviceId": 1,
       "file": true,
@@ -5801,24 +6312,6 @@
       "title": "Example Folder 4",
       "owner": "Bob Smith",
       "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 10,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder 9",
-      "owner": "Bob Smith",
-      "size": "120MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 11,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder 10",
-      "owner": "Bob Smith",
-      "size": "13MB",
       "modifed": "11/11/2015, 12:00 PM"
     },
     {
@@ -5879,15 +6372,6 @@
   ],
   "project-documents": [
     {
-      "id": 1,
-      "projectId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
       "id": 2,
       "projectId": 1,
       "file": true,
@@ -5928,28 +6412,6 @@
       "modifed": "11/11/2015, 12:00 PM"
     },
     {
-      "id": 6,
-      "projectId": 1,
-      "file": true,
-      "service-documentId": 0,
-      "title": "3 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 7,
-      "projectId": 1,
-      "file": true,
-      "service-documentId": 0,
-      "title": "4 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
       "id": 8,
       "projectId": 1,
       "file": true,
@@ -5968,24 +6430,6 @@
       "owner": "Bob Smith",
       "size": "100MB",
       "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 10,
-      "projectId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder 9",
-      "owner": "Bob Smith",
-      "size": "120MB",
-      "modifed": "11/11/2015, 11:00 AM"
-    },
-    {
-      "id": 11,
-      "projectId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder 10",
-      "owner": "Bob Smith",
-      "size": "13MB",
-      "modifed": "11/11/2015, 11:15 AM"
     },
     {
       "id": 12,
