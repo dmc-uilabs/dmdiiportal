@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Projects</title>
+    <title>All Projects</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -28,18 +28,18 @@
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
 </head>
-<body ng-app="dmc.my_projects" ng-controller="DMCMyProjectsController" id="my-projects-page">
+<body ng-app="dmc.all_projects" ng-controller="DMCAllProjectsController" id="my-projects-page">
     <!--[if lt IE 10]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Top Header -->
-    <div dmc-top-header active-page="'project&my-projects'"></div>
+    <div dmc-top-header active-page="'project&all-projects'"></div>
 
     <div class="page-header" layout-padding>
       <md-toolbar>
         <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="space-between center">
-            <h1 flex="33">My Projects</h1>
+            <h1 flex="33">All Projects</h1>
             <md-button class="link-button add-project-button" md-no-ink
                        href="/add-project.php">Add Project</md-button>
             <!-- fill up the space between left and right area -->
@@ -63,11 +63,11 @@
       </md-toolbar>
     </div>
 
-    <div class="container my-projects-container" layout="row" layout-padding>
+    <div class="container all-projects-container" layout="row" layout-padding>
         <div class="content-panel"
-             id="myProjectsList"
+             id="allProjectsList"
              ui-widget-projects
-             widget-format="'my-projects'"
+             widget-format="'all-projects'"
              widget-title="null"
              widget-show-all-blocks="true"></div>
     </div>
@@ -131,7 +131,7 @@
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
-    <script src="scripts/projects/my_projects.js"></script>
+    <script src="scripts/projects/all_projects.js"></script>
     <script src="scripts/projects/create_project.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
