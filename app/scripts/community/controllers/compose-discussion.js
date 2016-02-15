@@ -25,6 +25,7 @@ angular.module('dmc.community')
                 message: ""
             };
 
+            $scope.linkToDiscussion = false;
 
             $scope.cancel = function(){
                 $scope.NewDiscussion = {
@@ -65,14 +66,16 @@ angular.module('dmc.community')
                                     );
                                     if (i == $scope.NewDiscussion.tags.length - 1) {
                                         toastModel.showToast("success", "Discussion created");
-                                        $window.location.href = '/individual-discussion.php#/' + response.data.id;
-                                        $mdDialog.hide();
+                                        $scope.linkToDiscussion = '/individual-discussion.php#/' + response.data.id;
+                                        // $window.location.href = '/individual-discussion.php#/' + response.data.id;
+                                        // $mdDialog.hide();
                                     }
                                 }
                             } else {
                                 toastModel.showToast("success", "Discussion created");
-                                $window.location.href = '/individual-discussion.php#/' + response.data.id;
-                                $mdDialog.hide();
+                                $scope.linkToDiscussion = '/individual-discussion.php#/' + response.data.id;
+                                // $window.location.href = '/individual-discussion.php#/' + response.data.id;
+                                // $mdDialog.hide();
                             }
                         }
                     }
