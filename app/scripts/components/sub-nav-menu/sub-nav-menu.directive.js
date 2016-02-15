@@ -81,14 +81,15 @@ var SubNavPages = [
         state : 'project.documents'
     },
     {
-        id : 4,
-        title : 'Tasks',
-        icon : 'list',
-        state : 'project.tasks'
+        id : 7,
+        title : 'Services',
+        icon : 'icon_service',
+        location : 'folder',
+        state : 'project.services'
     },
     {
         id : 5,
-        title : 'Team Members',
+        title : 'Team',
         icon : 'people',
         state : 'project.team'
     },
@@ -99,12 +100,11 @@ var SubNavPages = [
         state : 'project.discussions'
     },
     {
-        id : 7,
-        title : 'Services',
-        icon : 'icon_service',
-        location : 'folder',
-        state : 'project.services'
-    },
+        id : 4,
+        title : 'Tasks',
+        icon : 'list',
+        state : 'project.tasks'
+    }
     //{
     //    id : 8,
     //    title : 'Components',
