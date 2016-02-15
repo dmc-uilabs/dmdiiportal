@@ -278,8 +278,8 @@ angular.module('dmc.widgets.tasks',[
 
         $scope.updateTask = function(){
             ajax.update(dataFactory.updateTask($scope.task.id),{
-                    "title": $scope.task.description,
-                    "description": $scope.description,
+                    "title": $scope.task.title,
+                    "description": $scope.task.title,
                     "assignee": $scope.task.assignee,
                     "dueDate": Date.parse($scope.task.dueDateForEdit),
                     "priority": $scope.task.priority,

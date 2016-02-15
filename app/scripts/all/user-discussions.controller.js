@@ -22,7 +22,7 @@ angular.module('dmc.view-all')
             $("title").text("View All Discussions");
 
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-            $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "tasks1";
+            $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : null;
 
                 $scope.discussions = [];
                 $scope.order = "DESC";

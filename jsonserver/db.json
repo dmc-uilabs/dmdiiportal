@@ -4750,10 +4750,11 @@
       },
       "assignee": "Stephen Rencour",
       "reporter": "G.Flores",
-      "dueDate": 1450130400000,
+      "dueDate": 1455573600000,
       "priority": "Low",
       "projectId": 2,
-      "status": "Completed"
+      "status": "Completed",
+      "description": "Obtain spec from LDR Mining Co. regarding bank rating and protection requirements"
     },
     {
       "id": 8,

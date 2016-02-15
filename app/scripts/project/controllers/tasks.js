@@ -88,6 +88,23 @@ angular.module('dmc.project')
                 dataSearch.type = type;
                 $state.go('project.tasks', dataSearch, {reload: true});
             };
+
+            $scope.editTask = function(ev,task){
+                $mdDialog.show({
+                    controller: "EditTaskController",
+                    templateUrl: 'templates/components/dialogs/edit-task-tpl.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    locals : {
+                        task : task
+                    }
+                }).then(function (answer) {},
+                    function (update) {
+                        $scope.getTasks();
+                    }
+                );
+            };
         }
 
     });

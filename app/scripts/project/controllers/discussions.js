@@ -1,16 +1,18 @@
 angular.module('dmc.project')
 .controller('DiscussionsCtrl',
-    function ($rootScope, $scope, ajax, dataFactory, $state, $stateParams,$mdDialog, projectData) {
+    function ($rootScope, $scope, ajax, dataFactory, $state, $stateParams,$mdDialog, projectData, previousPage) {
         var projectCtrl = this;
         projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
         projectCtrl.projectData = projectData;
 
         $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
 
+        $scope.previousPage = previousPage;
+
         $scope.projectData = projectCtrl.projectData;
         $scope.projectId = projectCtrl.currentProjectId;
         $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-        $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "discussions1";
+        $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : null;
 
         if($scope.projectData && $scope.projectData.id && $scope.projectId) {
             $scope.discussions = [];
@@ -19,11 +21,14 @@ angular.module('dmc.project')
 
             $scope.types = [
                 {
-                    tag: "discussions1",
-                    name: "Discussions 1"
+                    tag: "following",
+                    name: "Follow"
                 }, {
-                    tag: "discussions2",
-                    name: "Discussions 2"
+                    tag: "follow-people",
+                    name: "Follow people"
+                },{
+                    tag: "popular",
+                    name: "Popular"
                 }
             ];
 

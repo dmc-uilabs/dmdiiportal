@@ -53,7 +53,9 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in discussions">
-                            <td>{{item.text}}</td>
+                            <td>
+                                <a href="/individual-discussion.php#/{{item.id}}" ng-click="previousPage.save($event)" class="link-button">{{item.text}}</a>
+                            </td>
                             <td>{{item.replies}} replies</td>
                             <td>
                                 {{item['created-by']}} at<br>
