@@ -26,7 +26,7 @@ angular.module('dmc.view-all')
             $scope.projectData = projectData;
             $scope.projectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : null;
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-            $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "tasks1";
+            $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : null;
 
             if($scope.projectData && $scope.projectData.id && $scope.projectId) {
                 $scope.discussions = [];
@@ -35,11 +35,14 @@ angular.module('dmc.view-all')
 
                 $scope.types = [
                     {
-                        tag: "discussions1",
-                        name: "Discussions 1"
+                        tag: "following",
+                        name: "Follow"
                     }, {
-                        tag: "discussions2",
-                        name: "Discussions 2"
+                        tag: "follow-people",
+                        name: "Follow people"
+                    },{
+                        tag: "popular",
+                        name: "Popular"
                     }
                 ];
 
