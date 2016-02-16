@@ -301,9 +301,6 @@ angular.module('dmc.product')
 	//sorting Reviews
 	$scope.SortingReviews = function(val){
         var params = {};
-        if ($scope.limit_reviews) {
-            params['_limit'] = 2;
-        }
 		$scope.selectSortingStar = 0;
 		switch(val){
 			case "date":
@@ -363,6 +360,8 @@ angular.module('dmc.product')
 				break
 		}
 
+        if ($scope.limit_reviews && !$scope.selectSortingStar) params['_limit'] = 2;
+
 		serviceModel.get_component_reviews(params, function(data){
         	$scope.product.component_reviews = data;
         	if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -376,7 +375,12 @@ angular.module('dmc.product')
 
 	//View All Review
 	$scope.ViewAllReview = function(){
-		$scope.limit_reviews = !$scope.limit_reviews;
+		if($scope.selectSortingStar){
+            $scope.limit_reviews = false;
+            $scope.selectSortingStar =0;
+        }else{
+            $scope.limit_reviews = !$scope.limit_reviews;
+        }
 		$scope.SortingReviews($scope.sortList[0].val);
 	};
 

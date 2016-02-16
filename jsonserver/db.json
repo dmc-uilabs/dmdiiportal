@@ -7438,11 +7438,13 @@
     },
     {
       "id": 5,
+      "hide": true,
       "account-notification-categoryId": 2,
       "title": "User requests to be a contact"
     },
     {
       "id": 6,
+      "hide": true,
       "account-notification-categoryId": 2,
       "title": "User accepts contact request"
     },
