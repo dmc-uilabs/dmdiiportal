@@ -245,16 +245,18 @@ angular.module('dmc.widgets.documents',[
                 $scope.serviceDocumentId = 0;
                 $scope.getDocuments = function() {
                     var url = null;
+                    var requestData = {
+                        _order : $scope.order,
+                        _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort)
+                    };
                     if($scope.documentsType == "service"){
                         url = dataFactory.getServiceDocuments($scope.typeId);
+                        requestData["service-documentId"] = $scope.serviceDocumentId;
                     }else if($scope.documentsType == "project"){
                         url = dataFactory.getProjectDocuments($scope.typeId);
+                        requestData["project-documentId"] = $scope.serviceDocumentId;
                     }
-                    ajax.get(url, {
-                            _order : $scope.order,
-                            _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
-                            "service-documentId": $scope.serviceDocumentId
-                        },
+                    ajax.get(url, requestData,
                         function (response) {
                             $scope.documents = response.data;
                             $scope.total = $scope.documents.length;

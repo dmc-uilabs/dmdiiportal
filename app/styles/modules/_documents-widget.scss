@@ -58,8 +58,11 @@
 }
 
 .documents-folder{
+  md-data-table-container{
+    margin-top: 8px;
+  }
   .header{
-    padding: 0px 13px 8px 13px;
+    padding: 0px 13px;
     .folder-title,
     .root{
       outline: none;
