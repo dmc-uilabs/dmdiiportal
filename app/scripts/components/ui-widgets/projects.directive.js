@@ -13,14 +13,15 @@ angular.module('dmc.widgets.projects',[
                 widgetTitle: "=",
                 widgetShowAllBlocks: "=",
                 showImage : "=",
-                widgetFormat: "="
+                widgetFormat: "=",
+                limit : "="
             },
             controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
                 $scope.projects = [];
                 $scope.total = 0;
                 $scope.sort = 'title';
                 $scope.order = 'ASC';
-                $scope.limit = ($scope.widgetShowAllBlocks == true ? 10 : 2);
+                var limit = ($scope.limit ? $scope.limit : ($scope.widgetShowAllBlocks == true ? 10 : 2));
 
                 $scope.flexBox = ($scope.widgetShowAllBlocks == true ? 28 : 60);
                 $scope.flexDetails = ($scope.widgetShowAllBlocks == true ? 20 : 40);
@@ -34,11 +35,11 @@ angular.module('dmc.widgets.projects',[
                     ajax.get(dataFactory.getProjects(),{
                         _sort : $scope.sort,
                         _order : $scope.order,
-                        _start : 0,
-                        _limit : $scope.limit
+                        _start : 0
                     },function(response){
+                        $scope.total = response.data.length;
                         $scope.projects = response.data;
-                        $scope.total = $scope.projects.length;
+                        if($scope.total > limit) $scope.projects.splice(limit,$scope.total);
                         apply();
                     },function(response){
                         toastModel.showToast("error", "Ajax faild: getProjects");

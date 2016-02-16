@@ -55,7 +55,6 @@ angular.module('dmc.sub-nav-menu',[
         $scope.cancel = function() {
             $mdDialog.cancel(false);
         };
-
         $scope.openPage = function(){
             $mdDialog.cancel(false);
         };

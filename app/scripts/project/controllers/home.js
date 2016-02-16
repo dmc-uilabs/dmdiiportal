@@ -14,4 +14,5 @@ function ($rootScope, $stateParams,$mdDialog, projectData, toastModel, $cookieSt
     }
 
     $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
+
 })

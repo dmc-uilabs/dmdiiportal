@@ -33,7 +33,7 @@ angular.module('dmc.project')
             ];
 
             $scope.getDiscussions = function () {
-                ajax.get(dataFactory.getAllDiscussions($scope.projectId), {
+                ajax.get(dataFactory.getDiscussions($scope.projectId), {
                         _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
                         _order: $scope.order,
                         text_like: $scope.searchModel,

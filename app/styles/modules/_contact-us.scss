@@ -25,6 +25,9 @@
       border-left: 1px solid #aaa;
       .contact-block{
         margin-bottom: 34px;
+        &-column{
+          width: 200px;
+        }
         &:last-child{
           margin-bottom: 0;
         }
