@@ -47,8 +47,8 @@ angular.module('dmc.product', [
             });
 		$urlRouterProvider.otherwise('/services/1');
 	})
-    .service('serviceModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel',
-                            function (ajax, dataFactory, $stateParams, toastModel) {
+    .service('serviceModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',
+                            function (ajax, dataFactory, $stateParams, toastModel, $rootScope) {
 
         this.get_component = function(type, id){
             return ajax.get(dataFactory.components(type, id).get, {
@@ -163,10 +163,44 @@ angular.module('dmc.product', [
             }
         }
 
+        var get_reply = function(review){
+            ajax.get(dataFactory.components($stateParams.typeProduct, review.id).getReply,
+                {
+                    '_order': "DESC",
+                    '_sort': "date"
+                },
+                function(response){
+                    for(var i in response.data){
+                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                        get_helpful(response.data[i]);
+                    }
+                    review['replyReviews'] = response.data;
+                }
+            )
+        }
+        var get_helpful = function(review){
+            ajax.get(dataFactory.components($stateParams.typeProduct, review.id).getHelpful,
+                {
+                    'reviewId': review.id,
+                    'accountId': $rootScope.userData.accountId
+                },
+                function(response){
+                    review['helpful'] = response.data[0];
+                }
+            )
+        }
+
         this.get_component_reviews = function(params, callback){
             return ajax.get(dataFactory.components($stateParams.typeProduct, $stateParams.productId).reviews,
                 params,
                 function(response){
+                    for(var i in response.data){
+                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                        get_helpful(response.data[i]);
+                        if(response.data[i].reply){
+                            get_reply(response.data[i]);
+                        }
+                    }
                     callback(response.data)
                 },
                 function(response){
@@ -188,9 +222,8 @@ angular.module('dmc.product', [
                     params["productId"] = $stateParams.productId;
                     params["productType"] = $stateParams.typeProduct;
                     params["reply"] = false;
-                    params["reviewId"] = 0;
                     params["status"] = true;
-                    params["date"] = moment().format('MM/DD/YYYY');
+                    params["date"] = moment().format('x');
                     params["userRatingReview"] = {
                         "DMC Member": "none"
                     };
@@ -213,6 +246,53 @@ angular.module('dmc.product', [
                 }
             )  
         }
+
+        this.update_component_reviews = function(id, params, callback){
+            ajax.get(dataFactory.components($stateParams.typeProduct, id).get_review,
+                {},
+                function(response){
+                    var review= response.data;
+                    if(params.reply){
+                        review.reply = params.reply;
+                    }else{
+                        review.like = params.like;
+                        review.dislike = params.dislike;
+                    }
+
+                    ajax.update(dataFactory.components($stateParams.typeProduct, id).update_review,
+                        review,
+                        function(response){
+                            if(params.reply){
+                                toastModel.showToast("success", "reply added");
+                            }
+                            if(callback) callback(response.data)
+                        }
+                    )
+                }
+            )
+        };
+
+        this.add_helful = function(helpful, reviewId, callback){
+            return ajax.create(dataFactory.components($stateParams.typeProduct, $stateParams.serviceId).addHelpful,
+                {
+                    accountId: $rootScope.userData.accountId,
+                    reviewId: reviewId,
+                    helpful: helpful
+                },
+                function(response){
+                    callback(response.data);
+                }
+            )
+                
+            
+        };
+
+        this.update_helful = function(id, helpful){
+            ajax.update(dataFactory.components($stateParams.typeProduct, id).updateHelpful,
+                helpful,
+                function(response){}
+            )
+        };
 
         this.edit_component = function(params, callback){
             ajax.update(dataFactory.components($stateParams.typeProduct, params["specification"].id).edit_specifications,

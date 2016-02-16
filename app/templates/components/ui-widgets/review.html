@@ -19,11 +19,11 @@
       <div layout="row" layout-align="center center">
         <p>Was this review helpful?</p>
         <md-button aria-label="Like" md-no-ink class="md-button"  ng-click="Like(review)">
-          <ng-md-icon icon="thumb_up" ng-style="(review.userRatingReview[userlogin] === 'like')? {fill:'#65AF3F'}: {fill:'black'}" size="14"></ng-md-icon>
+          <ng-md-icon icon="thumb_up" ng-style="(review.helpful && review.helpful.helpful === true)? {fill:'#65AF3F'}: {fill:'black'}" size="14"></ng-md-icon>
           {{(review.like > 0)? review.like: ''}}
         </md-button>
         <md-button aria-label="Dislike" md-no-ink class="md-button"  ng-click="DisLike(review)">
-          <ng-md-icon icon="thumb_down" ng-style="(review.userRatingReview[userlogin] === 'dislike')? {fill:'red'}: {fill:'black'}" size="14"></ng-md-icon>
+          <ng-md-icon icon="thumb_down" ng-style="(review.helpful && review.helpful.helpful === false)? {fill:'red'}: {fill:'black'}" size="14"></ng-md-icon>
           {{(review.dislike > 0)? review.dislike: ''}}
         </md-button>
       </div>
@@ -80,11 +80,11 @@
         <div layout="row" layout-align="center center">
           <p>Was this review helpful?</p>
           <md-button aria-label="Like" md-no-ink class="md-button"  ng-click="Like(reply)">
-            <ng-md-icon icon="thumb_up" ng-style="(reply.userRatingReview[userlogin] === 'like')? {fill:'#65AF3F'}: {fill:'black'}" size="14"></ng-md-icon>
+            <ng-md-icon icon="thumb_up" ng-style="(reply.helpful && reply.helpful.helpful === true)? {fill:'#65AF3F'}: {fill:'black'}" size="14"></ng-md-icon>
             {{(reply.like > 0)? reply.like: ''}}
           </md-button>
           <md-button aria-label="Dislike" md-no-ink class="md-button"  ng-click="DisLike(reply)">
-            <ng-md-icon icon="thumb_down" ng-style="(reply.userRatingReview[userlogin] === 'dislike')? {fill:'red'}: {fill:'black'}" size="14"></ng-md-icon>
+            <ng-md-icon icon="thumb_down" ng-style="(reply.helpful && reply.helpful.helpful === false)? {fill:'red'}: {fill:'black'}" size="14"></ng-md-icon>
             {{(reply.dislike > 0)? reply.dislike: ''}}
           </md-button>
         </div>

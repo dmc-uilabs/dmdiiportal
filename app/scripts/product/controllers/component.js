@@ -220,7 +220,9 @@ angular.module('dmc.product')
 	$scope.Submit= function(NewReview){
 		serviceModel.add_component_reviews(
 			{
-				name: "DMC Member",
+                name: $scope.$root.userData.displayName,
+                accountId: $scope.$root.userData.accountId,
+                reviewId: 0,
                 rating: $scope.submit_rating,
                 comment: NewReview.Comment
 			},
@@ -247,6 +249,53 @@ angular.module('dmc.product')
             }
         );
 	};
+
+    $scope.addReply = function(NewReview){
+        var review = this.review;
+        serviceModel.add_component_reviews(
+            {
+                name: $scope.$root.userData.displayName,
+                accountId: $scope.$root.userData.accountId,
+                reviewId: NewReview.id,
+                rating: 0,
+                comment: NewReview.Comment
+            },
+            function(data){
+                data.date = moment(data.date).format("MM/DD/YYYY hh:mm a");
+                if(review.replyReviews){
+                    review.replyReviews.unshift(data);
+                }else{
+                    review['replyReviews'] = [data];
+                }
+                serviceModel.update_component_reviews(NewReview.id,
+                	{
+                        'reply': true
+                    },
+                    function(data){
+                        apply();
+                    }
+                )
+            }
+        )
+    }
+
+        $scope.updateHelpful = function(item, create, helpful){
+            serviceModel.update_component_reviews(item.id,
+                {
+                    'like': item.like,
+                    'dislike': item.dislike
+                },
+                function(data){
+                }
+            );
+            if(create){
+                serviceModel.add_helful(helpful, item.id,function(data){
+                    item.helpful = data;
+                });
+            }else{
+                serviceModel.update_helful(item.helpful.id, item.helpful)
+            }
+        }
 
 	//sorting Reviews
 	$scope.SortingReviews = function(val){
