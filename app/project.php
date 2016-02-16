@@ -101,6 +101,8 @@
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
+    <script src="scripts/components/product-card/product-card.js"></script>
+    <script src="scripts/components/products-card/products-card.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
     <script src="scripts/common/models/task-model.js"></script>
     <script src="scripts/common/models/discussion-model.js"></script>

@@ -1,6 +1,6 @@
 angular.module('dmc.project')
-.controller('projectServicesDetailCtrl', ['serviceData', 'serviceModel', '$scope', '$stateParams', 'projectData', 'ajax', 'dataFactory', '$state', 
-	function (serviceData, serviceModel ,$scope, $stateParams, projectData, ajax, dataFactory, $state) {
+.controller('projectServicesDetailCtrl', ['serviceData', 'serviceModel', '$scope', '$stateParams', 'projectData', 'ajax', 'dataFactory', '$state', '$mdDialog',
+	function (serviceData, serviceModel ,$scope, $stateParams, projectData, ajax, dataFactory, $state, $mdDialog) {
 	
 	$scope.projectData = projectData;
 	$scope.service = serviceData;
@@ -91,6 +91,20 @@ angular.module('dmc.project')
             }
         );
     }
+
+    $scope.share = function(ev){
+        $mdDialog.show({
+            controller: "ShareProductCtrl",
+            templateUrl: "templates/components/product-card/share-product.html",
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            locals: {
+            }
+        }).then(function() {
+        }, function() {
+        });
+    };
 
     var apply = function(){
         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -356,8 +370,8 @@ angular.module('dmc.project')
             function(response){
                 var services = response.data;
                 services['projectId'] = 0;
-                services['currentStatus']['project']['id'] = 0;
-                services['currentStatus']['project']['title'] = "";
+                // services['currentStatus']['project']['id'] = 0;
+                // services['currentStatus']['project']['title'] = "";
 
                 ajax.update(dataFactory.services($scope.service.id).update, services,
                     function(response){

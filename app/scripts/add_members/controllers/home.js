@@ -1,7 +1,7 @@
 angular.module('dmc.add_members')
 .controller('AddMembersController', [
-	'$scope', 'DMCMemberModel', 'projectModel', '$stateParams', 'toastModel',
-	function ($scope, DMCMemberModel, projectModel, $stateParams, toastModel) {
+	'$scope', 'DMCMemberModel', 'projectModel', '$stateParams', 'toastModel', '$cookieStore',
+	function ($scope, DMCMemberModel, projectModel, $stateParams, toastModel, $cookieStore) {
     DMCMemberModel.getMembers().then(
         function(data){
              $scope.foundMembers = data;
@@ -113,8 +113,8 @@ angular.module('dmc.add_members')
 
     $scope.send = function(){
     	projectModel.add_members_to_project($scope.invitees, function(){
+            $cookieStore.put("toast", "Invitations Sent");
     		document.location.href = "project.php#/"+$stateParams.projectId+"/home";
-            toastModel.showToast("success", "Invitations Sent");
     	})
     }      
   }])

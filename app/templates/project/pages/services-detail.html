@@ -13,36 +13,44 @@
 	</md-toolbar>
 </div>
 <div class="project-details-services" layout="column">
-	<a class="link margin-bottom8" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
-		Return to Services
-	</a>
 	<div layout="row" layout-align="space-between start">
 		<div layout="column" class="header">
-			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By {{service.owner}}</span></h2>
-			<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/detail/run-history'}}" class="link margin-top8">
-				Run History
-			</a>
-			<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/publish'}}" ng-if="service.from == 'project'" class="link margin-top8">
-				Publish Service
-			</a>
+			<div class="margin-bottom8">
+				<a class="link" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+					Return to Services
+				</a>
+			</div>
+			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By <a ng-href="{{'profile.php#/'+service.profileId}}">{{service.owner}}</a></span></h2>
+			<div class="margin-top8">
+				<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/detail/run-history'}}" class="link">
+					Run History
+				</a>
+			</div>
 			<ui-widget-stars-static size="15" value="{{service.average_rating}}" text="({{service.average_rating}}) {{service.number_of_comments}} reviews"></ui-widget-stars-static>
 		</div>
-		<div class="buttons" layout layout-align="center center">
-			<md-button class="md-raised" ui-sref="project.run-services({ServiceId : service.id})">
-				Run
-			</md-button>
-			<md-button class="md-raised" ng-click="follow()">
-				{{(followFlag) ? 'Unfollow' : 'Follow'}}
-			</md-button>
-			<md-button aria-label="reply" ng-href="{{'project.php#/' + projectData.id + '/home'}}" href="" class="md-icon-button reply header-icon">
-				<ng-md-icon icon="reply" style="fill: grey;" size="25"></ng-md-icon>
-			</md-button>
-			<md-button aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/edit'}}" class="md-icon-button header-icon">
-				<ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
-			</md-button>
-			<md-button aria-label="delete" ng-click="delete()" class="md-icon-button header-icon">
-				<ng-md-icon icon="delete" style="fill: grey;" size="25"></ng-md-icon>
-			</md-button>
+		<div class="buttons" layout="column" >
+			<div layout="row" layout-align="end center">
+				<md-button ng-if="service.from == 'marketplace'" aria-label="reply" ng-click="share(ev)" class="md-icon-button reply header-icon">
+					<ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
+				</md-button>
+				<md-button aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/edit'}}" class="md-icon-button header-icon">
+					<ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
+				</md-button>
+				<md-button aria-label="delete" ng-click="delete()" class="md-icon-button header-icon">
+					<ng-md-icon icon="delete" style="fill: grey;" size="25"></ng-md-icon>
+				</md-button>
+			</div>
+			<div layout="row">
+				<md-button class="md-raised" ui-sref="project.run-services({ServiceId : service.id})">
+					Run
+				</md-button>
+				<md-button ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/publish'}}" ng-if="service.from == 'project'" class="md-raised dmc-button">
+					PUBLISH SERVICE
+				</md-button>
+				<md-button class="md-raised" ng-click="follow()">
+					{{(followFlag) ? 'Unfollow' : 'Follow'}}
+				</md-button>
+			</div>
 		</div>
 	</div>
 	<div class="description">

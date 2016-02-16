@@ -22,6 +22,7 @@ angular.module('dmc.project', [
 		'dmc.widgets.review',
 		'dmc.widgets.tabs',
         'dmc.widgets.interfaces',
+        'dmc.component.productcard',
 		'ui.router',
 		'md.data.table',
 		'ngCookies',
