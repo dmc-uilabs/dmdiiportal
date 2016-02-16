@@ -46,7 +46,7 @@
                         </div>
                         <div class="product-image"><img src="{{item.featureImage.thumbnail}}" alt="{{item.title}}"></div>
                         <h2><a href="/component.php#/{{item.type}}s/{{item.id}}">{{item.title}}</a></h2>
-                        <h3><a href="/profile.php#/1">{{item.owner}}</a></h3>
+                        <h3><a href="/company.php#/{{item.companyId}}">{{item.owner}}</a></h3>
                         <div class="star-rating">
                             <div class="star-rating__buttons">
                                 <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon></md-button>
@@ -143,7 +143,13 @@
                     <div layout="column" class="column"
                          ng-class="itemClass"
                          ng-show="currentProductType == 'all' || currentProductType == item.type"
-                         ng-repeat="item in products.arr">{{item.tags.join(', ')}}</div>
+                         ng-repeat="item in products.arr">
+                            <div>
+                                <a ng-href="{{ '/marketplace.php#/search?product=services&tag='+tag.name }}"
+                                    ng-repeat="tag in item.tags track by $index"
+                                    ng-click="searchByTag($event)">{{tag.name}} {{$index < item.tags.length-1 ? ', ' : ''}}</a>
+                            </div>
+                        </div>
                 </div>
                 <div class="btn-box left-btn" ng-hide="inLeftCount >= products.arr.length-4">
                     <md-button aria-label="Left" class="md-raised md-primary" ng-click="scrollLeft()">

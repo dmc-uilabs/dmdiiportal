@@ -139,7 +139,7 @@
 							<div layout="row" class="tabs-content" layout-wrap>
 								<md-chips ng-repeat="tag in product.service_tags track by $index">
 									<md-chip>
-										{{tag.name}}
+										<a ng-href="{{ '/marketplace.php#/search?product=services&tag='+tag.name }}">{{tag.name}}</a>
 									</md-chip>
 								</md-chips>
 							</div>

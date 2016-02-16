@@ -31,16 +31,18 @@ angular.module('dmc.project')
             $scope.rerun = (angular.isDefined($stateParams.rerun) ? $stateParams.rerun : null);
             $scope.projectData = projectData;
             $scope.service = serviceData;
-
-            console.log($scope.service);
+            $scope.orderInputs = 'position';
 
             $scope.$watch(function(){
                 return $scope.service.interfaceModel;
             },function(){
                 if ($scope.service.interfaceModel && $scope.service.interfaceModel.inParams) {
+                    $scope.service.interfaceModel.inputs = [];
                     for (var key in $scope.service.interfaceModel.inParams) {
                         $scope.service.interfaceModel.inParams[key].defaultValue = $scope.service.interfaceModel.inParams[key].value;
+                        $scope.service.interfaceModel.inputs.push($scope.service.interfaceModel.inParams[key]);
                     }
+                    updatePositionInputs();
                     // get current status
                     if($scope.service.currentStatus && $scope.service.currentStatus.status == 1){
                         $scope.status = getStatus($scope.service.currentStatus.status);
@@ -63,17 +65,42 @@ angular.module('dmc.project')
                 }
             });
 
+            function updatePositionInputs(){
+                if( $scope.service.position_inputs ) {
+                    var autoSetPosition = $scope.service.interfaceModel.inputs.length;
+                    for (var i = 0; i < $scope.service.interfaceModel.inputs.length; i++) {
+                        for (var j = 0; j < $scope.service.position_inputs.positions.length; j++) {
+                            if($scope.service.interfaceModel.inputs[i].name == $scope.service.position_inputs.positions[j].name){
+                                $scope.service.interfaceModel.inputs[i].position = $scope.service.position_inputs.positions[j].position;
+                                break;
+                            }
+                        }
+                        if(!$scope.service.interfaceModel.inputs[i].position){
+                            autoSetPosition++;
+                            $scope.service.interfaceModel.inputs[i].position = autoSetPosition;
+                        }
+                    }
+                    $scope.service.interfaceModel.inputs.sort(function(a, b){return a.position - b.position});
+                    apply();
+                }
+            }
+
             function getServiceInterface(){
                 // get last status
                 ajax.get(dataFactory.getServiceRun($scope.rerun),{},
                     function(response){
                         $scope.rerun = null;
                         if(response.data && response.data.id){
-                            console.log(response.data);
                             $scope.service.interfaceModel = response.data.interface;
+                            $scope.service.interfaceModel.inputs = [];
                             for (var key in $scope.service.interfaceModel.inParams) {
                                 $scope.service.interfaceModel.inParams[key].defaultValue = $scope.service.interfaceModel.inParams[key].value;
+                                $scope.service.interfaceModel.inputs.push($scope.service.interfaceModel.inParams[key]);
                             }
+                            updatePositionInputs();
+                            //for(var i in $scope.service.interfaceModel.inputs){
+                            //    $scope.service.interfaceModel.inputs[i].position = (i+1);
+                            //}
                             apply();
                         }else{
                             toastModel.showToast("error", "Rerun history item not found");
@@ -156,7 +183,6 @@ angular.module('dmc.project')
             }
 
             function runModelCallback(response){
-                console.log(response.data);
                 updateStatus((response.data.status == "error" ? -1 : 0),response.data.pkg);
                 $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
             }
@@ -250,11 +276,8 @@ angular.module('dmc.project')
                 )
             }
 
-            $scope.clear = function(){
-                for(var key in $scope.service.interfaceModel.inParams){
-                    $scope.service.interface.inParams[key].value = null;
-                }
-                apply();
+            $scope.reset = function(){
+                updatePositionInputs();
             };
 
             $scope.default = function(){
@@ -265,17 +288,31 @@ angular.module('dmc.project')
             };
 
             $scope.save = function(){
-                var test = false;
-                for(var i in $scope.inputs){
-                    if($scope.inputs[i].models != ''){
-                        test = true;
-                        break;
-                    }
+                var dataRequest = {
+                    "serviceId": $scope.service.id,
+                    "positions": []
+                };
+                for(var i=0; i < $scope.service.interfaceModel.inputs.length;i++){
+                    dataRequest.positions.push({
+                        name : $scope.service.interfaceModel.inputs[i].name,
+                        position : (i+1)
+                    });
                 }
-                if(test == true){
-                    toastModel.showToast("success", "The inputs have been saved");
+                if(!$scope.service.position_inputs) {
+                    ajax.create(dataFactory.services().add_position_inputs, dataRequest,
+                        function (response) {
+                            $scope.service.position_inputs = response.data;
+                            toastModel.showToast("success", "Order successfully saved");
+                        }
+                    );
                 }else{
-                    toastModel.showToast("error", "Save Failed. Please check your inputs and try again");
+                    ajax.update(dataFactory.services($scope.service.position_inputs.id).update_position_inputs, {
+                            positions : dataRequest.positions
+                        }, function (response) {
+                            $scope.service.position_inputs = response.data;
+                            toastModel.showToast("success", "Order successfully changed");
+                        }
+                    );
                 }
             }
         }

@@ -44,7 +44,7 @@
 					<md-button ng-click="default()" class="md-raised  dmc-button">
 						Default
 					</md-button>
-					<md-button ng-click="clear()" class="md-raised  dmc-button">
+					<md-button ng-click="reset()" class="md-raised  dmc-button">
 						Reset
 					</md-button>
 					<md-button ng-click="save()" class="md-raised md-primary  dmc-button">
@@ -53,8 +53,8 @@
 				</div>
 			</div>
 			<md-content>
-				<md-list ui-sortable ng-model="inputs">
-					<md-list-item ng-repeat="item in service.interfaceModel.inParams" layout="row" layout-align="start end">
+				<md-list ui-sortable ng-model="service.interfaceModel.inputs">
+					<md-list-item ng-repeat="item in service.interfaceModel.inputs" layout="row" layout-align="start end">
 						<div flex="50" class="left">
 							<md-input-container>
 							<label>{{item.name}}</label>

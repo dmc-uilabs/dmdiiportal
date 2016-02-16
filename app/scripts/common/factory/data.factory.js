@@ -416,6 +416,9 @@ angular.module('dmc.data',[])
             getMarketComponents : function(){
                  return localhost+'market/components';
             },
+            getServicesTags: function(){
+                return localhost + 'service_tags';
+            },
             /// profiles -----------------
             profiles : function(id) {
                 var name = 'profiles';
@@ -500,7 +503,10 @@ angular.module('dmc.data',[])
                     get_statistics: localhost + name + '/' + id + '/services_statistic',
                     add_interface: localhost + 'dome-interfaces',
                     get_interface: localhost + name + '/' + id + '/dome-interfaces',
-                    update_interface:  localhost + 'dome-interfaces/'+id
+                    update_interface:  localhost + 'dome-interfaces/'+id,
+                    get_position_inputs: localhost + name + '/' + id + '/input-positions',
+                    update_position_inputs: localhost + 'input-positions/' + id,
+                    add_position_inputs: localhost + 'input-positions'
                 }
             },
             // ---------------------------

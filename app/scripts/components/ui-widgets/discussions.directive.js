@@ -29,7 +29,7 @@ angular.module('dmc.widgets.discussions',[
                     ajax.get(dataFactory.getDiscussions($scope.projectId,$scope.widgetDataType),{
                             _start : 0,
                             _order : "DESC",
-                            _sort : "created_at"
+                            _sort : "id"
                         }, function(response){
                             $scope.total = response.data.length;
                             $scope.discussions = response.data;
@@ -125,7 +125,7 @@ angular.module('dmc.widgets.discussions',[
                 //});
             }
         };
-    }]).controller('CreateDiscussionController',function($scope,$mdDialog,projectId,ajax,dataFactory,toastModel){
+    }]).controller('CreateDiscussionController',function($scope,$mdDialog,projectId,ajax,dataFactory,toastModel,$rootScope){
         $scope.isCreation = false;
         $scope.message = {
             error : false
@@ -142,11 +142,11 @@ angular.module('dmc.widgets.discussions',[
                     "subject": $scope.subject,
                     "created_at": moment(new Date()).format('DD-MM-YYYY HH:mm:ss'),
                     "text": $scope.content,
-                    "full_name": $scope.userData.displayName,
+                    "full_name": $rootScope.userData.displayName,
                     "avatar": "/images/avatar-fpo.jpg",
                     "replies": 13,
                     "latest-post": {
-                        "created-by": $scope.userData.displayName,
+                        "created-by": $rootScope.userData.displayName,
                         "created-at": "12/05/15 11:00 PM"
                     }
                 }, function(response){

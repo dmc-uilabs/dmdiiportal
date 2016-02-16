@@ -58,7 +58,7 @@
                     <md-content class="md-padding">
                         <div layout="row" class="tabs-content" layout-wrap>
                             <md-chips ng-repeat="tag in product.tags track by $index">
-                                <md-chip >{{tag}}</md-chip>
+                                <md-chip><a href="/marketplace.php#/search?product=services&tag={{tag.name}}" ng-click="searchByTag($event)">{{tag.name}}</a></md-chip>
                             </md-chips>
                             <!-- <p ng-repeat="tag in product.tags track by $index" flex="15">{{tag}}</p> -->
                         </div>

@@ -232,13 +232,31 @@ angular.module('dmc.component.productcard', [
       }
     };
 })
-.controller('ShowProductCtrl', function ($scope, $mdDialog, getProduct, addToFavorite){
+.controller('ShowProductCtrl', function ($scope, ajax, dataFactory, $mdDialog, getProduct, addToFavorite){
         $scope.product = getProduct;
+
+        function apply(){
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        }
+
+        function getTags(){
+            ajax.get(dataFactory.services($scope.product.id).get_tags,{},function(response){
+                $scope.product.tags = response.data;
+                apply();
+            })
+        }
+        getTags();
+
+        $scope.searchByTag = function(e){
+            $scope.cancel();
+        };
+
         $scope.addToFavorite = addToFavorite;
         updateFavoriteInShowProductCtrl = function(data){
             $scope.product = data;
-            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            apply();
         };
+
         $scope.cancel = function(){
             updateFavoriteInShowProductCtrl = null;
             $mdDialog.cancel();

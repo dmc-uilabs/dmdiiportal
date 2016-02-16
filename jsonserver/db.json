@@ -597,6 +597,11 @@
       "accountId": 1,
       "serviceId": 5,
       "id": 15
+    },
+    {
+      "accountId": 1,
+      "serviceId": 4,
+      "id": 16
     }
   ],
   "projects": [
@@ -1329,7 +1334,7 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "averageRun": 25,
+      "averageRun": 16.666666666666668,
       "parent_component": null,
       "projectId": 2,
       "from": "marketplace",
@@ -2840,6 +2845,136 @@
           }
         }
       }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-16",
+      "startTime": "19:12:52",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 41,
+      "stopDate": "2016-02-16",
+      "stopTime": "19:13:04",
+      "interface": {
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "52",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "73",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "411",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-16",
+      "startTime": "19:13:27",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 42,
+      "stopDate": "2016-02-16",
+      "stopTime": "19:13:40",
+      "interface": {
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "52111",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "732",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "411",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        }
+      }
+    }
+  ],
+  "input-positions": [
+    {
+      "serviceId": 43,
+      "positions": [
+        {
+          "name": "a",
+          "position": 1
+        },
+        {
+          "name": "t",
+          "position": 2
+        },
+        {
+          "name": "vel_0",
+          "position": 3
+        }
+      ],
+      "id": 1
     }
   ],
   "services_history": [
@@ -5839,6 +5974,20 @@
         "created-by": "John Smith",
         "created-at": "12/05/15 11:00 PM"
       }
+    },
+    {
+      "projectId": 2,
+      "subject": "Subject Discussion",
+      "created_at": "16-02-2016 17:57:28",
+      "text": "Content Discussion",
+      "full_name": "Thomas Smith",
+      "avatar": "/images/avatar-fpo.jpg",
+      "replies": 13,
+      "latest-post": {
+        "created-by": "Thomas Smith",
+        "created-at": "12/05/15 11:00 PM"
+      },
+      "id": 21
     }
   ],
   "array_specifications": [
