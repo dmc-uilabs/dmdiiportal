@@ -640,6 +640,7 @@ angular.module('dmc.project', [
                         "serverIp" : params.serverIp,
                         "parent_component": params.parent,
                         "projectId": params.pojectId,
+                        "type" : "service",
                         "from": params.from
                     },
                     function(response){

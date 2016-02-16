@@ -37,13 +37,15 @@ angular.module('dmc.component.productcard', [
       },
       templateUrl: 'templates/components/product-card/product-card-tpl.html',
       controller: function($scope, $rootScope, $cookies,$timeout,ajax,dataFactory, $mdDialog){
-          if(!$scope.hideButtons) $scope.hideButtons = [];
+
           // get data from cookies
           var updateCompareCount = function () {
               var arr = $cookies.getObject('compareProducts');
               return arr == null ? {services: [], components: []} : arr;
           };
           $scope.compareProducts = updateCompareCount();
+
+          //$scope.hideButtons = [];
 
           $scope.projects = [];
           $scope.addingToProject = false;
@@ -67,7 +69,7 @@ angular.module('dmc.component.productcard', [
           $scope.addToFavorite = function(){
             if(!$scope.cardSource.favorite){
                 // add to favorites
-                var requestData = { "accountId": $scope.$root.userData.accountId, };
+                var requestData = { "accountId": $scope.$root.userData.accountId };
                 if($scope.cardSource.type == "service"){
                     requestData.serviceId = $scope.cardSource.id;
                 }else if($scope.cardSource.type == "component"){
@@ -215,20 +217,17 @@ angular.module('dmc.component.productcard', [
           };
 
           $scope.show = function(ev){
-            $mdDialog.show({
-              controller: "ShowProductCtrl",
-              templateUrl: "templates/components/product-card/show-product.html",
-              parent: angular.element(document.body),
-              targetEvent: ev,
-              clickOutsideToClose:true,
-              locals: {
-                addToFavorite : $scope.addToFavorite,
-                getProduct : $scope.cardSource
-              }
-            })
-            .then(function() {
-            }, function() {
-            });
+              $mdDialog.show({
+                  controller: "ShowProductCtrl",
+                  templateUrl: "templates/components/product-card/show-product.html",
+                  parent: angular.element(document.body),
+                  targetEvent: ev,
+                  clickOutsideToClose:true,
+                  locals: {
+                      addToFavorite : $scope.addToFavorite,
+                      getProduct : $scope.cardSource
+                  }
+              });
           }
       }
     };
@@ -333,43 +332,45 @@ angular.module('dmc.component.productcard', [
                 }
             }
         ]
-}).service('isFavorite', ['dataFactory','ajax', '$rootScope', function(dataFactory,ajax, $rootScope) {
-
+}).service('isFavorite', ['dataFactory','ajax', '$rootScope','DMCUserModel', function(dataFactory,ajax, $rootScope, DMCUserModel) {
     this.check = function(items) {
-        if (items && items.length > 0){
-            var services_id = [];
-            var components_id = [];
+        var userData = DMCUserModel.getUserData();
+        userData.then(function(){
+            if (items && items.length > 0){
+                var services_id = [];
+                var components_id = [];
 
-            for (var i in items) {
-                if (items[i].type == 'service') {
-                    services_id.push(items[i].id);
-                } else if (items[i].type == 'component') {
-                    components_id.push(items[i].id);
-                }
-            }
-
-            var check = function(data){
                 for (var i in items) {
-                    items[i].favorite = false;
-                    for (var j in data) {
-                        if ((data[j].serviceId && items[i].type == "service" && items[i].id == data[j].serviceId) ||
-                            (data[j].componentId && items[i].type == "component" && items[i].id == data[j].componentId)) {
-                            items[i].favorite = data[j];
-                            break;
-                        }
+                    if (items[i].type == 'service') {
+                        services_id.push(items[i].id);
+                    } else if (items[i].type == 'component') {
+                        components_id.push(items[i].id);
                     }
                 }
-            };
 
-            var callback = function (response) {
-                check(response.data);
-            };
+                var check = function(data){
+                    for (var i in items) {
+                        items[i].favorite = false;
+                        for (var j in data) {
+                            if ((data[j].serviceId && items[i].type == "service" && items[i].id == data[j].serviceId) ||
+                                (data[j].componentId && items[i].type == "component" && items[i].id == data[j].componentId)) {
+                                items[i].favorite = data[j];
+                                break;
+                            }
+                        }
+                    }
+                };
 
-            // services
-            if( services_id.length > 0 ) ajax.get(dataFactory.getFavorites(), { accountId: $rootScope.userData.accountId, serviceId: services_id }, callback );
-            // components
-            if( components_id.length > 0 ) ajax.get(dataFactory.getFavorites(), { accountId: $rootScope.userData.accountId, componentId: components_id }, callback );
-        }
+                var callback = function (response) {
+                    check(response.data);
+                };
+
+                // services
+                if( services_id.length > 0 ) ajax.get(dataFactory.getFavorites(), { accountId: userData.accountId, serviceId: services_id }, callback );
+                // components
+                if( components_id.length > 0 ) ajax.get(dataFactory.getFavorites(), { accountId: userData.accountId, componentId: components_id }, callback );
+            }
+        });
     };
 }])
 .controller('ShareProductCtrl', function ($scope, $mdDialog){
