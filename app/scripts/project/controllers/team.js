@@ -27,18 +27,23 @@ angular.module('dmc.project')
 
             $scope.loading = false;
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-            $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "people1";
+            $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "people";
             $scope.members = [];
             $scope.types = [
                 {
                     id : 1,
-                    name : "People 1",
-                    tag : "people1"
+                    name : "All",
+                    tag : "all"
                 },
                 {
                     id : 2,
-                    name : "People 2",
-                    tag : "people2"
+                    name : "People",
+                    tag : "people"
+                },
+                {
+                    id : 3,
+                    name : "Companies",
+                    tag : "companies"
                 }
             ];
 

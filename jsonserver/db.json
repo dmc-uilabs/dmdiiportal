@@ -6849,6 +6849,7 @@
       "id": 1,
       "displayName": "Thomas Smith",
       "company": "General Electric (GE) Global Research",
+      "companyId": 1,
       "jobTitle": "Engineering Manager",
       "location": "Berkeley, California",
       "image": "/uploads/profile/1/20151222084711000000.jpg",
