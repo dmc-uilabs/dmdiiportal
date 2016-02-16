@@ -116,7 +116,7 @@ angular.module('dmc.marketplace')
                 ajax.get(dataFactory.getMarketPopularServices(), responseDataForCarousel,
                     function(response){
                         $scope.carouselData.popular.arr = response.data;
-                        $scope.carouselData.popular.cout = response.data.length;
+                        $scope.carouselData.popular.count = response.data.length;
                         isFavorite.check($scope.carouselData.popular.arr);
                         apply();
                     }
@@ -129,7 +129,7 @@ angular.module('dmc.marketplace')
                 ajax.get(dataFactory.getMarketNewServices(), responseDataForCarousel,
                     function(response){
                         $scope.carouselData.new.arr = response.data;
-                        $scope.carouselData.new.cout = response.data.length;
+                        $scope.carouselData.new.count = response.data.length;
                         isFavorite.check($scope.carouselData.new.arr);
                         apply();
                     }

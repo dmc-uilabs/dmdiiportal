@@ -1308,6 +1308,7 @@
       "projectId": 2,
       "from": "marketplace",
       "id": 42,
+      "type": "service",
       "currentStatus": {
         "project": {
           "id": 2,
@@ -1333,6 +1334,7 @@
       "projectId": 2,
       "from": "marketplace",
       "id": 43,
+      "type": "service",
       "currentStatus": {
         "project": {
           "id": 2,
@@ -1358,6 +1360,7 @@
       "projectId": 2,
       "from": "marketplace",
       "id": 44,
+      "type": "service",
       "currentStatus": {
         "project": {
           "id": 2,
