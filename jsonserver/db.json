@@ -5551,116 +5551,28 @@
       "projectId": 1,
       "status": "Open",
       "id": 26
-    }
-  ],
-  "all-discussions": [
-    {
-      "id": 1,
-      "projectId": 1,
-      "text": "I just submitted the latest PLC code to the repository",
-      "replies": 8,
-      "created-by": "John Smith",
-      "created-at": "12/05/15 11:00 PM",
-      "latest-post": {
-        "created-by": "John Smith",
-        "created-at": "12/05/15 11:00 PM"
-      }
     },
     {
-      "id": 2,
-      "projectId": 1,
-      "text": "OK, I'll run the verification",
-      "replies": 3,
-      "created-by": "John Smith",
-      "created-at": "12/05/15 11:00 PM",
-      "latest-post": {
-        "created-by": "Peter Koudal",
-        "created-at": "13/05/15 5:00 PM"
-      }
-    },
-    {
-      "id": 3,
-      "projectId": 1,
-      "text": "I am certain we will need to be creative building this transformer.  COTS is not going to cut it.",
-      "replies": 11,
-      "created-by": "Peter Koudal",
-      "created-at": "12/05/15 11:00 PM",
-      "latest-post": {
-        "created-by": "John Smith",
-        "created-at": "12/05/15 11:00 PM"
-      }
-    },
-    {
-      "id": 4,
+      "title": "Create home page",
+      "description": "Create home page",
+      "assignee": "Stephen Rencour",
+      "reporter": "Jack Graber",
+      "dueDate": 1455746400000,
+      "priority": "Medium",
       "projectId": 2,
-      "text": "Hey Peter, I'm having a heck of a time finding a transformer with the heat loss requirements we have",
-      "replies": 13,
-      "created-by": "John Carbone",
-      "created-at": "12/05/15 11:00 PM",
-      "latest-post": {
-        "created-by": "John Smith",
-        "created-at": "12/05/15 11:00 PM"
-      }
+      "status": "Open",
+      "id": 27
     },
     {
-      "id": 5,
+      "title": "Create DB",
+      "description": "Create DB",
+      "assignee": "Stephen Rencour",
+      "reporter": "Jack Graber",
+      "dueDate": 1455573600000,
+      "priority": "Critical",
       "projectId": 2,
-      "text": "OK, I'll run the verification",
-      "replies": 1,
-      "created-by": "John Smith",
-      "created-at": "12/05/15 11:00 PM",
-      "latest-post": {
-        "created-by": "Peter Koudal",
-        "created-at": "13/05/15 5:00 PM"
-      }
-    },
-    {
-      "id": 6,
-      "projectId": 3,
-      "text": "I am certain we will need to be creative building this transformer.  COTS is not going to cut it.",
-      "replies": 25,
-      "created-by": "John Carbone",
-      "created-at": "12/05/15 11:00 PM",
-      "latest-post": {
-        "created-by": "John Smith",
-        "created-at": "12/05/15 11:00 PM"
-      }
-    },
-    {
-      "id": 7,
-      "projectId": 5,
-      "text": "I am certain we will need to be creative building this transformer.  COTS is not going to cut it.",
-      "replies": 8,
-      "created-by": "John Carbone",
-      "created-at": "12/05/15 11:00 PM",
-      "latest-post": {
-        "created-by": "John Smith",
-        "created-at": "12/05/15 11:00 PM"
-      }
-    },
-    {
-      "id": 8,
-      "projectId": 5,
-      "text": "OK, I'll run the verification",
-      "replies": 4,
-      "created-by": "John Carbone",
-      "created-at": "12/05/15 11:00 PM",
-      "latest-post": {
-        "created-by": "John Smith",
-        "created-at": "12/05/15 11:00 PM"
-      }
-    },
-    {
-      "id": 9,
-      "projectId": 5,
-      "text": "I am certain we will need to be creative building this transformer.  COTS is not going to cut it.",
-      "replies": 13,
-      "created-by": "John Carbone",
-      "created-at": "12/05/15 11:00 PM",
-      "latest-post": {
-        "created-by": "John Smith",
-        "created-at": "12/05/15 11:00 PM"
-      }
+      "status": "Open",
+      "id": 28
     }
   ],
   "discussions": [
@@ -5670,7 +5582,12 @@
       "full_name": "Denis Sobko",
       "created_at": "21-09-2015 09:21:30",
       "avatar": "/images/avatar-fpo.jpg",
-      "projectId": 1
+      "projectId": 1,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 2,
@@ -5678,7 +5595,12 @@
       "full_name": "Viktor Korovyanko",
       "created_at": "21-09-2015 10:21:30",
       "avatar": "/images/avatar-fpo.jpg",
-      "projectId": 1
+      "projectId": 1,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 3,
@@ -5686,7 +5608,12 @@
       "full_name": "John Carbone",
       "created_at": "21-09-2015 11:21:30",
       "avatar": "/images/carbone.png",
-      "projectId": 2
+      "projectId": 2,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 4,
@@ -5694,7 +5621,12 @@
       "full_name": "Peter Koudal",
       "created_at": "21-09-2015 11:21:30",
       "avatar": "/images/koudal.png",
-      "projectId": 2
+      "projectId": 2,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 5,
@@ -5702,7 +5634,12 @@
       "full_name": "John Carbone",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/carbone.png",
-      "projectId": 2
+      "projectId": 2,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 6,
@@ -5710,7 +5647,12 @@
       "full_name": "Peter Koudal",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/koudal.png",
-      "projectId": 2
+      "projectId": 2,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 7,
@@ -5718,7 +5660,12 @@
       "full_name": "Pat Mackenzie",
       "created_at": "23-09-2015 11:21:30",
       "avatar": "/images/mackenzie.png",
-      "projectId": 2
+      "projectId": 2,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 8,
@@ -5726,7 +5673,12 @@
       "full_name": "Denis Sobko",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
-      "projectId": 1
+      "projectId": 1,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 9,
@@ -5734,7 +5686,12 @@
       "full_name": "John Carbone",
       "created_at": "20-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
-      "projectId": 3
+      "projectId": 3,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 10,
@@ -5742,7 +5699,12 @@
       "full_name": "Pat Mackenzie",
       "created_at": "21-09-2015 11:21:30",
       "avatar": "/images/koudal.png",
-      "projectId": 3
+      "projectId": 3,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 11,
@@ -5750,7 +5712,12 @@
       "full_name": "John Carbone",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
-      "projectId": 3
+      "projectId": 3,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 12,
@@ -5758,7 +5725,12 @@
       "full_name": "Peter Koudal",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/koudal.png",
-      "projectId": 4
+      "projectId": 4,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 12,
@@ -5766,7 +5738,12 @@
       "full_name": "John Carbone",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/carbone.png",
-      "projectId": 4
+      "projectId": 4,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 14,
@@ -5774,7 +5751,12 @@
       "full_name": "Peter Koudal",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/koudal.png",
-      "projectId": 4
+      "projectId": 4,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 15,
@@ -5782,7 +5764,12 @@
       "full_name": "Pat Mackenzie",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/mackenzie.png",
-      "projectId": 4
+      "projectId": 4,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 16,
@@ -5790,7 +5777,12 @@
       "full_name": "Jack Graber",
       "created_at": "20-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
-      "projectId": 5
+      "projectId": 5,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 17,
@@ -5798,7 +5790,12 @@
       "full_name": "Peter Derose",
       "created_at": "21-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
-      "projectId": 5
+      "projectId": 5,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 18,
@@ -5806,7 +5803,12 @@
       "full_name": "Jack Good",
       "created_at": "22-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
-      "projectId": 5
+      "projectId": 5,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "id": 19,
@@ -5814,7 +5816,12 @@
       "full_name": "Pat Giani",
       "created_at": "23-09-2015 11:21:30",
       "avatar": "/images/avatar-fpo.jpg",
-      "projectId": 5
+      "projectId": 5,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     },
     {
       "projectId": 2,
@@ -5823,7 +5830,12 @@
       "text": "Discussion content",
       "full_name": "Jack Graber",
       "avatar": "/images/avatar-fpo.jpg",
-      "id": 20
+      "id": 20,
+      "replies": 13,
+      "latest-post": {
+        "created-by": "John Smith",
+        "created-at": "12/05/15 11:00 PM"
+      }
     }
   ],
   "array_specifications": [

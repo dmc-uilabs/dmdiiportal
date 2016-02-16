@@ -16,15 +16,15 @@ angular.module('dmc.widgets.tasks',[
             scope: {
                 columns: "=",
                 widgetTitle: "=",
-                projectId: "="
-            },
-            link: function (scope, iElement, iAttrs) {
+                projectId: "=",
+                limit: "="
             },
             controller: function($scope, $element, $attrs,$mdDialog, socketFactory, dataFactory, ajax, toastModel, previousPage) {
                 $scope.tasks = [];
                 $scope.total = 0;
                 $scope.sort = 'dueDate';
                 $scope.order = 'ASC';
+                var limit = $scope.limit ? $scope.limit : 5;
 
                 $scope.previousPage = previousPage;
 
@@ -33,11 +33,11 @@ angular.module('dmc.widgets.tasks',[
                     ajax.get(dataFactory.getTasks($scope.projectId),{
                             _sort : $scope.sort,
                             _order : $scope.order,
-                            _limit : 5,
                             status_ne: "Completed"
                         }, function(response){
+                            $scope.total = response.data.length;
                             $scope.tasks = response.data;
-                            $scope.total = $scope.tasks.length;
+                            if($scope.total > limit) $scope.tasks.splice(limit,$scope.total);
                             for(var index in $scope.tasks){
                                 convertDueDate($scope.tasks[index]);
                             }
@@ -124,7 +124,8 @@ angular.module('dmc.widgets.tasks',[
             scope:{
                 projectId: "=",
                 widgetTitle: "=",
-                totalItems: "="
+                totalItems: "=",
+                limit: "="
             },
             controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel,$mdDialog, previousPage) {
                 $scope.previousPage = previousPage;
@@ -133,6 +134,7 @@ angular.module('dmc.widgets.tasks',[
                 $scope.sort = 'priority';
                 $scope.order = 'DESC';
                 $scope.totalItems = 0;
+                var limit = $scope.limit ? $scope.limit : 3;
 
                 var apply = function(){
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -158,11 +160,11 @@ angular.module('dmc.widgets.tasks',[
                     ajax.get(dataFactory.getTasks($scope.projectId),{
                         _sort : $scope.sort,
                         _order : $scope.order,
-                        _limit : 3,
-                        _start : 0
+                        status_ne: "Completed"
                     },function(response){
+                        $scope.totalItems = response.data.length;
                         $scope.projectTasks = response.data;
-                        $scope.totalItems = $scope.projectTasks.length;
+                        if($scope.totalItems > limit) $scope.projectTasks.splice(limit,$scope.totalItems);
                         for(var t in $scope.projectTasks){
                             convertDueDate($scope.projectTasks[t]);
                         }

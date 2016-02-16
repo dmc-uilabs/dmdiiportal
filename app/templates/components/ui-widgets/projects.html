@@ -22,12 +22,14 @@
                   <md-tab label="Tasks">
                       <md-content flex
                                   ui-project-tasks
+                                  limit="4"
                                   total-items="item.tasks.totalItems"
                                   project-id="item.id"></md-content>
                   </md-tab>
                   <md-tab label="Discussions">
                       <md-content flex
                                   ui-project-discussions
+                                  limit="4"
                                   total-items="item.discussions.totalItems"
                                   project-id="item.id"></md-content>
                   </md-tab>
@@ -48,6 +50,7 @@
                           ui-project-tasks
                           total-items="item.tasks.totalItems"
                           project-id="item.id"
+                          limit="4"
                           widget-title="'Tasks'"></md-content>
               <!-- Discussions -->
               <md-content flex="{{flexBox}}"
@@ -57,12 +60,13 @@
                           widget-format="widgetFormat"
                           project-id="item.id"
                           widget-title="'Discussions'"
+                          limit="4"
                           with-avatar="false"></md-content>
               <!-- Services -->
               <md-content flex="{{flexBox}}"
                           layout-padding
                           ui-widget-services
-                          limit="3"
+                          limit="4"
                           project-id="item.id"
                           widget-style="'my-projects'"
                           progress-position="'bottom'"

@@ -10,4 +10,5 @@ function ($rootScope, $stateParams,$mdDialog, projectData) {
     }
 
     $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
+
 })

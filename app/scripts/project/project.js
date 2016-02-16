@@ -831,4 +831,8 @@ angular.module('dmc.project', [
 
     	    }
         ]
-    );
+).run(['$state', '$rootScope', function($state, $rootScope) {
+    $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+        $(window).scrollTop(0);
+    });
+}]);

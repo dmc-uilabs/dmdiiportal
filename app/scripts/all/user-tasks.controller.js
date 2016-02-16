@@ -49,7 +49,8 @@ angular.module('dmc.view-all')
                             _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
                             _order: $scope.order,
                             title_like: $scope.searchModel,
-                            _type: $scope.typeModel
+                            _type: $scope.typeModel,
+                            status_ne: "Completed"
                         }, function (response) {
                             $scope.tasks = response.data;
                             for (var index in $scope.tasks) {
