@@ -8,19 +8,25 @@
     <div layout="column" flex="50" class="get-in-touch">
         <!--<h4>Get in touch</h4>-->
         <!-- Address -->
-        <div layout="row" flex class="contact-block location" layout-align="start center">
-            <ng-md-icon icon="location_on" size="32"></ng-md-icon>
-            <span>1415 N Cherry Ave<br>Chicago, IL 60642</span>
+        <div layout="row" class="contact-block location" layout-align="start center">
+            <div layout="column" class="contact-block-column">
+                <div layout="row" layout-align="center start"><ng-md-icon icon="location_on" size="32"></ng-md-icon></div>
+                <div layout="row" layout-align="center start"><span>1415 N Cherry Ave<br>Chicago, IL 60642</span></div>
+            </div>
         </div>
         <!-- Phone -->
-        <div layout="row" flex class="contact-block phone" layout-align="start center">
-            <ng-md-icon icon="phone" size="32"></ng-md-icon>
-            <a href="tel:111-111-1111">111-111-1111</a>
+        <div layout="row" class="contact-block phone" layout-align="start center">
+            <div layout="column" class="contact-block-column">
+                <div layout="row" layout-align="center start"><ng-md-icon icon="phone" size="32"></ng-md-icon></div>
+                <div layout="row" layout-align="center start"><a href="tel:111-111-1111">111-111-1111</a></div>
+            </div>
         </div>
         <!-- Email -->
-        <div layout="row" flex class="contact-block email" layout-align="start center">
-            <ng-md-icon icon="email" size="32"></ng-md-icon>
-            <a href="mailto:test@dmc.org">test@dmc.org</a>
+        <div layout="row" class="contact-block email" layout-align="start center">
+            <div layout="column" class="contact-block-column">
+                <div layout="row" layout-align="center start"><ng-md-icon icon="email" size="32"></ng-md-icon></div>
+                <div layout="row" layout-align="center start"><a href="mailto:test@dmc.org">test@dmc.org</a></div>
+            </div>
         </div>
     </div>
 </div>
