@@ -7202,6 +7202,96 @@
       "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
     }
   ],
+  "profile_history": [
+    {
+      "type": "completed",
+      "link": "",
+      "period": "today",
+      "section": "public",
+      "user": "Timmy Thomas",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas completed The First Project",
+      "id": 1
+    },
+    {
+      "type": "completed",
+      "link": "",
+      "period": "week",
+      "section": "public",
+      "user": "Timmy Thomas",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas completed The First Project",
+      "id": 2
+    },
+    {
+      "type": "completed",
+      "link": "",
+      "period": "week",
+      "section": "public",
+      "user": "Timmy Thomas",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas completed The First Project",
+      "id": 3
+    },
+    {
+      "type": "completed",
+      "link": "",
+      "period": "all",
+      "section": "public",
+      "user": "Timmy Thomas",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas completed The First Project",
+      "id": 4
+    },
+    {
+      "type": "added",
+      "link": "",
+      "period": "today",
+      "section": "mutual",
+      "user": "Adam Marks",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "You added Adam Marks as a contact",
+      "id": 5
+    },
+    {
+      "type": "rated",
+      "link": "",
+      "period": "today",
+      "section": "mutual",
+      "user": "Adam Marks",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "You rated Adam Marks Product Name.View your review.",
+      "id": 6
+    },
+    {
+      "type": "worked",
+      "link": "",
+      "period": "today",
+      "section": "mutual",
+      "user": "Adam Marks",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "You worked with First Name on The First Project.",
+      "id": 7
+    },
+    {
+      "type": "worked",
+      "link": "",
+      "period": "week",
+      "section": "mutual",
+      "user": "Adam Marks",
+      "profileId": 1,
+      "date": "2016-02-02 12:10:31",
+      "title": "You worked with First Name on The First Project.",
+      "id": 8
+    }
+  ],
   "faq_categories": [
     {
       "id": 1,
@@ -7590,11 +7680,13 @@
     },
     {
       "id": 5,
+      "hide": true,
       "account-notification-categoryId": 2,
       "title": "User requests to be a contact"
     },
     {
       "id": 6,
+      "hide": true,
       "account-notification-categoryId": 2,
       "title": "User accepts contact request"
     },

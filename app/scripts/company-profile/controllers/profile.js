@@ -215,9 +215,6 @@ angular.module('dmc.company-profile')
         //sorting Reviews
         $scope.SortingReviews = function(val){
             var params = {};
-            if ($scope.limit_reviews) {
-                params['_limit'] = 2;
-            }
             $scope.selectSortingStar = 0;
             switch(val){
                 case "date":
@@ -276,6 +273,7 @@ angular.module('dmc.company-profile')
                     $scope.selectSortingStar = 5;
                     break
             }
+            if ($scope.limit_reviews && !$scope.selectSortingStar) params['_limit'] = 2;
 
             companyProfileModel.get_company_reviews(params, function(data){
                 $scope.company.company_reviews = data;
@@ -290,7 +288,12 @@ angular.module('dmc.company-profile')
 
         //View All Review
         $scope.ViewAllReview = function(){
-            $scope.limit_reviews = !$scope.limit_reviews;
+            if($scope.selectSortingStar){
+                $scope.limit_reviews = false;
+                $scope.selectSortingStar =0;
+            }else{
+                $scope.limit_reviews = !$scope.limit_reviews;
+            }
             $scope.SortingReviews($scope.sortList[0].val);
         };
 

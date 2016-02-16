@@ -1,11 +1,11 @@
 <div layout="column" class="account-step1">
 	<div layout="row" layout-align="space-between center">
-		<h2>Set your private privacy settings</h2>
+		<h2>Set Your “Private” Privacy Settings</h2>
 		<md-button class="dmc-button md-raised" ui-sref="^.web">
 			SKIP
 		</md-button>
 	</div>
-	<h3>This information is private and will only be seen by members you share it with</h3>
+	<h3>This information is <b>private</b> and can only be seen by members you share it with.</h3>
 	<div layout="row">
 		<md-checkbox ng-model="account[1].data.email.enable" class="md-primary">
 			Email
@@ -33,7 +33,7 @@
 			<input phone-input ng-model="account[1].data.phone.value" required>
 		</md-input-container>
 		<md-input-container class="md-icon-float" flex="50" ng-if="account[1].data.location.enable">
-			<label>location</label>
+			<label>Location</label>
 			<md-icon class="location-gps" ng-click="getLocation(1)">
               	<ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
             </md-icon>

@@ -146,12 +146,7 @@ angular.module('dmc.profile')
 
         //sorting Reviews
         $scope.SortingReviews = function (val) {
-            var sort;
-            var order;
             var params = {};
-            if ($scope.limit_reviews) {
-                params['_limit'] = 2;
-            }
 
 
             $scope.selectSortingStar = 0;
@@ -208,9 +203,9 @@ angular.module('dmc.profile')
                     $scope.selectSortingStar = 5;
                     break
             }
+            if ($scope.limit_reviews && !$scope.selectSortingStar) params['_limit'] = 2;
 
             profileModel.get_profile_reviews($stateParams.profileId, params, function(data){
-            	console.info(data);
             	$scope.profile.reviews = data;
             	if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             });
@@ -223,7 +218,12 @@ angular.module('dmc.profile')
 
         //View All Review
         $scope.ViewAllReview = function () {
-            $scope.limit_reviews = !$scope.limit_reviews;
+            if($scope.selectSortingStar){
+                $scope.limit_reviews = false;
+                $scope.selectSortingStar =0;
+            }else{
+                $scope.limit_reviews = !$scope.limit_reviews;
+            }
             $scope.SortingReviews($scope.sortList[0].val);
         };
 

@@ -427,7 +427,7 @@ angular.module('dmc.data',[])
                     update : localhost + name + '/' + id,
                     reviews : localhost + name +'/' + id + '/profile_reviews',
                     addReviews : localhost + 'profile_reviews',
-                    history : localhost + name +'/' + id + '/company_history',
+                    history : localhost + name +'/' + id + '/profile_history',
                     all : localhost + name
                 }
             },

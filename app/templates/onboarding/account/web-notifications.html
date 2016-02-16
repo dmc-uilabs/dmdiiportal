@@ -1,11 +1,11 @@
 <div layout="column" class="account-step1">
 	<div layout="row" layout-align="space-between center">
-		<h2>Customize your web notifications</h2>
+		<h2>Notifications on DMC</h2>
 		<md-button class="dmc-button md-raised" ui-sref="^.email">
 			SKIP
 		</md-button>
 	</div>
-	<h3>Recive notifications for whant you care about the way you want</h3>
+	<h3>Select the kinds of notifications you want to receive on the site.</h3>
 	<div class="top-container" layout="row">
 	    <md-button class="md-raised dmc-button" ng-click="disableAll(2)">Deactivate All</md-button>
 	    <md-button class="md-raised dmc-button" ng-click="enableAll(2)">Select All</md-button>
@@ -21,9 +21,9 @@
 		        </md-switch>
 		    </div>
 			<div class="block-notification">
-		        <h2>{{notificationCategories[3].title}}</h2>
-		        <md-switch ng-model="account[2].data[item.id].selected" aria-label=""
-		                   ng-repeat="item in notificationCategories[3]['account-notification-category-items']">
+		        <h2>{{notificationCategories[2].title}}</h2>
+		        <md-switch ng-model="account[2].data[item.id].selected" aria-label="" ng-if="!item.hide"
+		                   ng-repeat="item in notificationCategories[2]['account-notification-category-items']">
 		            {{item.title}}
 		        </md-switch>
 		    </div>
@@ -31,9 +31,9 @@
 
 		<div layout="column" classs="body-container" flex="50">
 			<div class="block-notification">
-		        <h2>{{notificationCategories[2].title}}</h2>
+		        <h2>{{notificationCategories[3].title}}</h2>
 		        <md-switch ng-model="account[2].data[item.id].selected" aria-label=""
-		                   ng-repeat="item in notificationCategories[2]['account-notification-category-items']">
+		                   ng-repeat="item in notificationCategories[3]['account-notification-category-items']">
 		            {{item.title}}
 		        </md-switch>
 		    </div>
