@@ -51,6 +51,7 @@ angular.module('dmc.compare',[
                         id : $scope.compareProducts.services
                     }, function (response) {
                         $scope.products.arr = $.merge($scope.products.arr, response.data);
+                        getTags($.map($scope.products.arr,function(x){ return x.id; }));
                         isFavorite.check($scope.products.arr);
                         $scope.products.count += response.data.length;
                         if (response.data.length > 0) $scope.switchProductType('service');
@@ -61,6 +62,27 @@ angular.module('dmc.compare',[
             }
         };
         $scope.getServices();
+
+        function getTags(ids){
+            ajax.get(dataFactory.getServicesTags(),{
+                serviceId : ids
+            },function(response){
+                for(var i in response.data){
+                    for(var j in $scope.products.arr){
+                        if(response.data[i].serviceId == $scope.products.arr[j].id){
+                            if(!$scope.products.arr[j].tags) $scope.products.arr[j].tags = [];
+                            $scope.products.arr[j].tags.push(response.data[i]);
+                            break;
+                        }
+                    }
+                };
+                apply();
+            })
+        }
+
+        $scope.searchByTag = function(e){
+            $scope.cancel();
+        };
 
         // get components
         $scope.getComponents = function(){

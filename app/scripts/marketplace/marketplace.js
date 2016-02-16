@@ -37,7 +37,7 @@ angular.module('dmc.marketplace', [
             }
         }
     }).state('marketplace_search', {
-        url: '/search?product?type?authors?ratings?favorites?dates?text',
+        url: '/search?product?type?authors?ratings?favorites?dates?text?tag',
         templateUrl: 'templates/marketplace/marketplace.html',
         controller: 'DMCMarketplaceController',
         resolve: {

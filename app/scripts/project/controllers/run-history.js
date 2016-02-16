@@ -47,16 +47,26 @@ angular.module('dmc.project')
         '$scope',
         '$state',
         '$mdDialog',
+        '$http',
         '$stateParams',
+        'dataFactory',
         'history',
         function (
             $scope,
             $state,
             $mdDialog,
+            $http,
             $stateParams,
+            dataFactory,
             history) {
 
             $scope.history = history;
+
+            $scope.history.interface.inputs = [];
+            for (var key in $scope.history.interface.inParams) {
+                $scope.history.interface.inParams[key].defaultValue = $scope.history.interface.inParams[key].value;
+                $scope.history.interface.inputs.push($scope.history.interface.inParams[key]);
+            }
 
             $scope.cancel = function(){
                 $mdDialog.cancel();
@@ -66,6 +76,39 @@ angular.module('dmc.project')
                 var dataSearch = $stateParams;
                 dataSearch.rerun = history.id;
                 $state.go('project.run-services', dataSearch);
+            };
+
+            $http.get(dataFactory.services($scope.history.serviceId).get_position_inputs).then(function(response){
+                console.log(response);
+                if(response.data && response.data.length > 0){
+                    $scope.history.position_inputs = response.data[0];
+                    updatePositionInputs();
+                }
+            });
+
+            function updatePositionInputs(){
+                if( $scope.history.position_inputs ) {
+                    var autoSetPosition = $scope.history.interface.inputs.length;
+                    for (var i = 0; i < $scope.history.interface.inputs.length; i++) {
+                        for (var j = 0; j < $scope.history.position_inputs.positions.length; j++) {
+                            if($scope.history.interface.inputs[i].name == $scope.history.position_inputs.positions[j].name){
+                                $scope.history.interface.inputs[i].position = $scope.history.position_inputs.positions[j].position;
+                                break;
+                            }
+                        }
+                        if(!$scope.history.interface.inputs[i].position){
+                            autoSetPosition++;
+                            $scope.history.interface.inputs[i].position = autoSetPosition;
+                        }
+                    }
+                    console.log($scope.history.interface);
+                    $scope.history.interface.inputs.sort(function(a, b){return a.position - b.position});
+                    apply();
+                }
+            }
+
+            var apply = function(){
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
         }
