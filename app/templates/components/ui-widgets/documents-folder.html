@@ -1,7 +1,7 @@
 <div class="documents-folder" layout="column" flex>
-	<div layout="row" class="header" layout-wrap layout-align="start center" flex="100">
+	<div layout="row" class="header" layout-wrap layout-align="start center" flex="100" ng-if="folder.length == 0 || indexfolder.length > 0">
 		<div class="root" layout="column"  ng-click="exitFolder(0,-1)">
-            <span>All Documents</span>
+            <span>{{ indexfolder.length == 0 && folder.length == 0 ? 'No Documents Included' : 'All Documents' }}</span>
         </div>
 		<div layout="column"
             class="folder-title"
@@ -15,9 +15,9 @@
 		</div>
 	</div>
 
-    <md-data-table-container layout="row" flex=100>
+    <md-data-table-container layout="row" flex=100 ng-hide="indexfolder.length == 0 && folder.length == 0">
         <table md-data-table>
-            <thead md-order="sort" md-trigger="onOrderChange" ng-if="folder.length > 0">
+            <thead md-order="sort" md-trigger="onOrderChange" ng-hide="indexfolder.length > 0 && folder.length == 0">
             <tr>
                 <th name="Name" order-by="title"></th>
                 <th name="Owner" order-by="owner"></th>
@@ -43,8 +43,8 @@
                 <td>{{item.size}}</td>
                 <td>{{item.modifedFormat}}</td>
             </tr>
-            <tr ng-if="folder.length == 0">
-                <td class="empty" colspan="4">Folder is Empty</td>
+            <tr ng-show="indexfolder.length > 0 && folder.length == 0">
+                <td class="empty" colspan="4">No Documents Included</td>
             </tr>
             </tbody>
         </table>
