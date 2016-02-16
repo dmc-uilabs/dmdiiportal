@@ -18,8 +18,8 @@ angular.module('dmc.add_project', [
     $urlRouterProvider.otherwise('/');
 })
 .service('projectModel', [
-    'ajax', 'dataFactory', '$stateParams', 'toastModel',
-    function (ajax, dataFactory, $stateParams, toastModel) {
+    'ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',
+    function (ajax, dataFactory, $stateParams, toastModel, $rootScope) {
         this.add_project = function(params, array, callback){
             ajax.get(dataFactory.getProjects(), 
                 {
@@ -71,6 +71,8 @@ angular.module('dmc.add_project', [
                                                 "id": lastMemberId,
                                                 "profileId": array[i].id,
                                                 "projectId": lastId,
+                                                "fromProfileId": $rootScope.userData.profileId,
+                                                "from": $rootScope.userData.displayName,
                                                 "accept": false
                                             },
                                             function(response){
@@ -78,9 +80,9 @@ angular.module('dmc.add_project', [
                                         );
                                         lastMemberId++;
                                     }
+                                    callback(lastId);
                                 }
                             ) 
-                            callback(lastId);
                         }
                     );
 

@@ -54,10 +54,12 @@ angular.module('dmc.add_members', [
         'dataFactory',
         '$stateParams',
         'toastModel',
+        '$rootScope',
         function (ajax,
                   dataFactory,
                   $stateParams,
-                  toastModel) {
+                  toastModel,
+                  $rootScope) {
 
             this.add_members_to_project = function(array, callback){
                 for(var i in array){
@@ -65,6 +67,8 @@ angular.module('dmc.add_members', [
                         {
                             "profileId": array[i].id,
                             "projectId": $stateParams.projectId,
+                            "fromProfileId": $rootScope.userData.profileId,
+                            "from": $rootScope.userData.displayName,
                             "accept": false
                         }
                     );
