@@ -255,7 +255,7 @@
 
 				<!--one Reviews-->
 				<div ng-repeat="review in product.service_reviews">
-					<ui-widget-review review="review" userlogin="UserLogin" typereview="'product_reviews'"></ui-widget-review>
+					<ui-widget-review review="review" helpful-function="updateHelpful" reply-function="addReply"></ui-widget-review>
 					<md-divider></md-divider>
 				</div>
 

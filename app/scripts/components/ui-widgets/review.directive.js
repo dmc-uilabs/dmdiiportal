@@ -13,8 +13,8 @@ angular.module('dmc.widgets.review',[
     replace: true,
     scope: {
       review: "=",
-      userlogin: "=",
-      typereview: "="
+      replyFunction: "=",
+      helpfulFunction: "="
     },
     controller: function($scope, ajax, dataFactory, $stateParams) {
       $scope.replyFlag = false;  //flag for visibility form Reply
@@ -52,51 +52,11 @@ angular.module('dmc.widgets.review',[
         $scope.flagReplyReviewFlag = false;
       };
 
+
       //Submit Leave A Review form
-      $scope.Submit= function(NewReview){
-        console.info("review", NewReview);
-        if($scope.typereview == "product_reviews"){
-          ajax.on(
-            dataFactory.addProductReview(),
-            {
-              productId: $stateParams.productId,
-              productType: $stateParams.typeProduct,
-              name: "DMC Member",
-              reviewId: $scope.review.id,
-              status: true,
-              rating: 0,
-              comment: NewReview.Comment
-            },
-            function(data){
-              $scope.review.replyReviews.push(data);
-              if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            },
-            function(){
-              alert("Ajax fail: getProductReview");
-            },
-            "POST"
-          );
-        }else if($scope.typereview == "profile_reviews"){
-          ajax.on(
-            dataFactory.addProfileReview(),
-            {
-              productId: $stateParams.profileId,
-              name: "DMC Member",
-              reviewId: $scope.review.id,
-              status: true,
-              rating: 0,
-              comment: NewReview.Comment
-            },
-            function(data){
-              $scope.review.replyReviews.push(data);
-              if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            },
-            function(){
-              alert("Ajax fail: getProductReview");
-            },
-            "POST"
-          );
-        }
+      $scope.Submit = function(NewReview){
+        NewReview.id = $scope.review.id;
+        $scope.replyFunction(NewReview);
 
         $scope.review.reply = true;
         $scope.showReply = true;
@@ -119,66 +79,44 @@ angular.module('dmc.widgets.review',[
 
       //Like review
       $scope.Like = function(item){
-        if(item.userRatingReview[$scope.userlogin] == "none"){
-          item.like++;
-          item.userRatingReview[$scope.userlogin] = 'like';
-        }else if(item.userRatingReview[$scope.userlogin] == 'like'){
-          item.like--;
-          item.userRatingReview[$scope.userlogin] = "none";
+        if(item.helpful){
+          if(item.helpful.helpful === true){
+            item.helpful.helpful = null;
+            item.like--;
+          }else if(item.helpful.helpful === false){
+            item.helpful.helpful = true;
+            item.like++;
+            item.dislike--;
+          }else{
+            item.helpful.helpful = true;
+            item.like++;
+          }
+          $scope.helpfulFunction(item);
         }else{
           item.like++;
-          item.userRatingReview[$scope.userlogin] = 'like';
-          item.dislike--;
+          $scope.helpfulFunction(item, true, true);
         }
-        ajax.on(
-          dataFactory.addLikeDislike(),
-          {
-            reviewId: item.id,
-            like: item.like,
-            dislike: item.dislike,
-            ratingReview: item.userRatingReview[$scope.userlogin],
-            userLogin: $scope.userlogin,
-            typeReview: $scope.typereview
-          },
-          function(data){
-          },
-          function(){
-            alert("Ajax fail: getProductReview");
-          },
-          "POST"
-        );
       };
 
       //DisLike review
       $scope.DisLike = function(item){
-        if(item.userRatingReview[$scope.userlogin] == "none"){
-          item.dislike++;
-          item.userRatingReview[$scope.userlogin] = 'dislike';
-        }else if(item.userRatingReview[$scope.userlogin] == 'dislike'){
-          item.dislike--;
-          item.userRatingReview[$scope.userlogin] = "none";
+        if(item.helpful){
+          if(item.helpful.helpful === true){
+            item.helpful.helpful = false;
+            item.dislike++;
+            item.like--;
+          }else if(item.helpful.helpful === false){
+            item.helpful.helpful = null;
+            item.dislike--;
+          }else{
+            item.helpful.helpful = false;
+            item.dislike++;
+          }
+          $scope.helpfulFunction(item);
         }else{
           item.dislike++;
-          item.userRatingReview[$scope.userlogin] = 'dislike';
-          item.like--;
+          $scope.helpfulFunction(item, true, false);
         }
-        ajax.on(
-          dataFactory.addLikeDislike(),
-          {
-            reviewId: item.id,
-            like: item.like,
-            dislike: item.dislike,
-            ratingReview: item.userRatingReview[$scope.userlogin],
-            userLogin: $scope.userlogin,
-            typeReview: $scope.typereview
-          },
-          function(data){
-          },
-          function(){
-            alert("Ajax fail: getProductReview");
-          },
-          "POST"
-        );
       };
 
     }
