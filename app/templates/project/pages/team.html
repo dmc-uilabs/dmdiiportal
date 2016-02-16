@@ -49,25 +49,25 @@
                         </div>
                         <div class="info" flex>
                             <div class="name" flex layout-align="start center">
-                                <h4>{{item.member.displayName}}<span>{{item.member.jobTitle}}</span></h4>
+                                <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a><span>{{item.member.jobTitle}}</span></h4>
                             </div>
                             <div class="company-name" flex>
-                                {{item.member.company}}
+                                <a href="/company.php#/{{item.member.companyId}}">{{item.member.company}}</a>
                             </div>
                         </div>
                         <div class="buttons">
-                            <md-button md-no-ink class="md-icon-button add"
-                                       ng-click="add(item.member)"
-                                       aria-label="Add">
-                                <md-tooltip md-direction="left">Add</md-tooltip>
-                                <ng-md-icon icon="group_add" size="25"></ng-md-icon>
-                            </md-button>
+                            <!--<md-button md-no-ink class="md-icon-button add"-->
+                                       <!--ng-click="add(item.member)"-->
+                                       <!--aria-label="Add">-->
+                                <!--<md-tooltip md-direction="left">Add</md-tooltip>-->
+                                <!--<ng-md-icon icon="group_add" size="25"></ng-md-icon>-->
+                            <!--</md-button>-->
                             <md-button class="md-raised" ng-click="follow(item.member)">{{item.member.isFollow ? 'Unfollow' : 'Follow'}}</md-button>
                             <md-button md-no-ink class="md-icon-button delete"
                                        ng-click="delete(item)"
                                        aria-label="Delete">
                                 <md-tooltip md-direction="left">Delete</md-tooltip>
-                                <ng-md-icon icon="close" size="25"></ng-md-icon>
+                                <ng-md-icon icon="delete" size="25"></ng-md-icon>
                             </md-button>
                         </div>
                     </div>
