@@ -1,10 +1,31 @@
 .onboarding-home{
 	padding: 8px;
-	.section{
-		padding: 16px 0;
-		&.first{
-			padding-top: 46px;
+	md-content{
+		background-color: transparent;
+	}
+	.section-header{
+		padding-top: 24px;
+		h2{
+			font-weight: normal;
+			font-size: 26px;
+			margin: 0;
 		}
+		h3{
+			margin: 24px 0;
+		}
+	}
+	.section-footer{
+		padding-top: 16px;
+		h2{
+			color: #64B045;
+		}
+	}
+	.background{
+		@include borderRadius(5px);
+		background-color: #fff;
+	}
+	.section{
+		padding: 20px 48px;
 		img{
 			height: auto;
 		}
@@ -33,7 +54,11 @@
 			}
 		}
 		.md-button.dmc-button{
-			text-transform: uppercase;
+			text-transform: none;
+			width: 125px;
+		}
+		.complete:hover{
+			background-color: rgba(0, 0 ,0, 0.2);
 		}
 	}
 }

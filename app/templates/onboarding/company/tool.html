@@ -1,18 +1,18 @@
 <div layout="column" class="profile-step3">
 	<div layout="row" layout-align="space-between center">
-		<h2>Talk about company skills</h2>
+		<h2>Your Company’s Skills</h2>
 		<md-button class="dmc-button md-raised" ui-sref="^.projects">
 			SKIP
 		</md-button>
 	</div>
-	<h3>Show off your skills, tools, and technologies</h3>
+	<h3>Show off your capabilities, tools and technologies.</h3>
 	<div layout="column">
 	    <form ng-submit="addSkill(inputSkill)" class="add-skills-form" layout="row" layout-align="start center">
 	      	<md-input-container>
 		        <label>Enter skill</label>
 		        <input ng-model="inputSkill">
 	      	</md-input-container>
-	      	<md-button ng-disabled="!inputSkill" class="md-raised md-primary dmc-button">Add</md-button>
+	      	<md-button ng-disabled="!inputSkill" class="md-raised dmc-button">Add</md-button>
 	    </form>
 	    <div layout="row" class="tabs-content" layout-wrap>
 	      	<md-chips ng-repeat="skill in company[5].data.skills track by $index">
@@ -41,7 +41,7 @@
     <div class="list-images" flex="100">
         <div layout="row" layout-align="space-between center">
             <h3>Images</h3>
-            <md-button class="md-raised md-primary dmc-button"
+            <md-button class="md-raised dmc-button"
                        ng-show="!isAddingImage"
                        ng-click="addNewImage()"
                        aria-label="Add Image">

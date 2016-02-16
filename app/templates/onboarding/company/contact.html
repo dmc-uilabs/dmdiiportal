@@ -1,11 +1,11 @@
 <div layout="column" class="account-step1">
 	<div layout="row" layout-align="space-between center">
-		<h2>Share how to contact the company</h2>
+		<h2>Share Contact Information</h2>
 		<md-button class="dmc-button md-raised" ui-sref="^.social">
 			SKIP
 		</md-button>
 	</div>
-	<h3>Allow users to contact and learn more about the company</h3>
+	<h3>Enable users to contact your company and learn more.</h3>
 
 	<form name="describeForm" autocomplete="off" layout="row" layout-wrap>
 		<md-input-container flex="55">
@@ -36,9 +36,13 @@
 	        </md-select>
 	    </md-input-container>
 
-		<md-input-container flex="50">
-			<label>Emaile</label>
+		<md-input-container flex="50" ng-if="company[7].data.methodCommunication == 1">
+			<label>Email</label>
 			<input ng-model="company[7].data.email" required>
+		</md-input-container>
+		<md-input-container flex="50" ng-if="company[7].data.methodCommunication == 2">
+			<label>Phone</label>
+			<input phone-input ng-model="company[7].data.phone" required>
 		</md-input-container>
 	</form>
 
