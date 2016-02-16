@@ -38,6 +38,7 @@ angular.module('dmc.product')
     // ---------------------------------------
 
     $scope.share = function(ev){
+    	console.info("dksgnj")
         $mdDialog.show({
             controller: "ShareProductCtrl",
             templateUrl: "templates/components/product-card/share-product.html",
