@@ -496,6 +496,7 @@ angular.module('dmc.data',[])
                     updateHelpful : localhost + 'product_reviews_helpful/' + id,
                     get_authors : localhost + name + '/' + id + '/service_authors',
                     remove_authors : localhost + 'service_authors/' + id,
+                    add_authors : localhost + 'service_authors',
                     get_tags : localhost + name + '/' + id + '/service_tags',
                     add_tags : localhost + 'service_tags',
                     remove_tags : localhost + 'service_tags/' + id,

@@ -749,6 +749,25 @@ paths:
           type: string
           description: ID of the service
           required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (id, title, etc.)
+          type: string
+          required: false
       responses:
         '200':
           description: return all tags for a service
@@ -916,6 +935,56 @@ paths:
       responses:
         '204':
           description: Ok
+  '/service_images':
+    post:
+      tags:
+        - service
+        - marketplace
+      description: Create a new service image
+      parameters:
+        - in: body
+          name: ServiceImage
+          description: Service image to be created
+          required: false
+          schema:
+            $ref: '#/definitions/ServiceImages'
+      responses:
+        '201':
+          description: New service image
+          schema:
+            $ref: '#/definitions/ServiceImages'
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get latest service tag
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (id, title, etc.)
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return latest service tag
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceTag'
   /components:
     post:
       tags:
@@ -1157,6 +1226,46 @@ paths:
           type: string
           description: ID of the profile
           required: true
+        - in: query
+          name: reviewId
+          description: Id review profile
+          required: true
+          type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (date, like, rating)
+          type: string
+          required: false
+        - name: rating
+          in: query
+          description: Sort by rating
+          type: integer
+          required: false
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+        - name: status
+          in: query
+          description: Sort by verified user
+          type: boolean
+          required: false
       responses:
         '200':
           description: send the reviews with profileID
@@ -1164,6 +1273,82 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ProfileReview'
+  '/profile_reviews':
+    post:
+      tags:
+        - profile
+      description: Added new review or reply profile
+      parameters:
+        - in: body
+          name: body
+          description: Review object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/ProfileReview'
+      responses:
+        '201':
+          description: return reviews profile
+          schema:
+            $ref: '#/definitions/ProfileReview'
+  '/profile_reviews_helpful':
+    get:
+      tags:
+        - profile
+      description: Get profile review helpful
+      parameters:
+        - in: query
+          name: reviewId
+          description: Id iprofile review
+          required: true
+          type: string
+        - in: query
+          name: accountId
+          description: Id account
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return profile review helpful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProfileReviewHelpful'
+    post:
+      tags:
+        - profile
+      description: Create profile review helpful
+      parameters:
+        - in: body
+          name: ProfileReviewHelpful
+          description: profile review helpful
+          required: false
+          schema:
+            $ref: '#/definitions/ProfileReviewHelpful'
+      responses:
+        '201':
+          description: New profile review helpful
+          schema:
+            $ref: '#/definitions/ProfileReviewHelpful'
+  '/profile_reviews_helpful/{helpfulID}':
+    patch:
+      tags:
+        - profile
+      description: Update profile review helpful
+      parameters:
+        - name: helpfulID
+          in: path
+          type: string
+          description: ID of the helpful
+          required: true
+        - name: helpful
+          in: body
+          schema:
+            $ref: '#/definitions/ProfileReviewHelpful'
+      responses:
+        200:
+          description: returns updated profile review helpful
+          schema:
+            $ref: '#/definitions/ProfileReviewHelpful'
   '/companies/{companyID}':
     get:
       tags:
@@ -1383,6 +1568,46 @@ paths:
           type: string
           description: ID of the company
           required: true
+        - in: query
+          name: reviewId
+          description: Id review company
+          required: true
+          type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (date, like, rating)
+          type: string
+          required: false
+        - name: rating
+          in: query
+          description: Sort by rating
+          type: integer
+          required: false
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+        - name: status
+          in: query
+          description: Sort by verified user
+          type: boolean
+          required: false
       responses:
         '200':
           description: send the reviews with companyID
@@ -1390,6 +1615,82 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CompanyReview'
+  '/company_reviews':
+    post:
+      tags:
+        - company
+      description: Added new review or reply company
+      parameters:
+        - in: body
+          name: body
+          description: Review object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/CompanyReview'
+      responses:
+        '201':
+          description: return reviews company
+          schema:
+            $ref: '#/definitions/CompanyReview'
+  '/company_reviews_helpful':
+    get:
+      tags:
+        - company
+      description: Get company review helpful
+      parameters:
+        - in: query
+          name: reviewId
+          description: Id company review
+          required: true
+          type: string
+        - in: query
+          name: accountId
+          description: Id account
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return company review helpful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CompanyReviewHelpful'
+    post:
+      tags:
+        - company
+      description: Create company review helpful
+      parameters:
+        - in: body
+          name: CompanyReviewHelpful
+          description: company review helpful
+          required: false
+          schema:
+            $ref: '#/definitions/CompanyReviewHelpful'
+      responses:
+        '201':
+          description: New company review helpful
+          schema:
+            $ref: '#/definitions/CompanyReviewHelpful'
+  '/company_reviews_helpful/{helpfulID}':
+    patch:
+      tags:
+        - company
+      description: Update company review helpful
+      parameters:
+        - name: helpfulID
+          in: path
+          type: string
+          description: ID of the helpful
+          required: true
+        - name: helpful
+          in: body
+          schema:
+            $ref: '#/definitions/CompanyReviewHelpful'
+      responses:
+        200:
+          description: returns updated company review helpful
+          schema:
+            $ref: '#/definitions/CompanyReviewHelpful'
   '/companies/{companyID}/company_services':
     get:
       tags:
@@ -2170,6 +2471,11 @@ paths:
           type: string
           description: Service id in marketplace
           required: true
+        - in: query
+          name: reviewId
+          description: Id review service
+          required: true
+          type: string
         - name: _limit
           in: query
           description: Limit items
@@ -2261,9 +2567,90 @@ paths:
         '201':
           description: return reviews service in marketplace
           schema:
+            $ref: '#/definitions/ProductReview'
+  '/product_reviews/{reviewId}':
+    patch:
+      tags:
+        - service
+        - marketplace
+      description: Update service review
+      parameters:
+        - name: reviewId
+          in: path
+          type: string
+          description: ID of the review
+          required: true
+        - name: review
+          in: body
+          schema:
+            $ref: '#/definitions/ProductReview'
+      responses:
+        200:
+          description: returns updated service review 
+          schema:
+            $ref: '#/definitions/ProductReview'
+  '/product_reviews_helpful':
+    get:
+      tags:
+        - service
+        - marketplace
+      description: Get service review helpful
+      parameters:
+        - in: query
+          name: reviewId
+          description: Id service review
+          required: true
+          type: string
+        - in: query
+          name: accountId
+          description: Id account
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return service review helpful
+          schema:
             type: array
             items:
-              $ref: '#/definitions/ProductReview'
+              $ref: '#/definitions/ProductReviewHelpful'
+    post:
+      tags:
+        - service
+        - marketplace
+      description: Create service review helpful
+      parameters:
+        - in: body
+          name: ServiceReviewHelpful
+          description: service review helpful
+          required: false
+          schema:
+            $ref: '#/definitions/ProductReviewHelpful'
+      responses:
+        '201':
+          description: New service review helpful
+          schema:
+            $ref: '#/definitions/ProductReviewHelpful'
+  '/product_reviews_helpful/{helpfulID}':
+    patch:
+      tags:
+        - service
+        - marketplace
+      description: Update service review helpful
+      parameters:
+        - name: helpfulID
+          in: path
+          type: string
+          description: ID of the helpful
+          required: true
+        - name: helpful
+          in: body
+          schema:
+            $ref: '#/definitions/ProfileReviewHelpful'
+      responses:
+        200:
+          description: returns updated service review helpful
+          schema:
+            $ref: '#/definitions/ProductReviewHelpful'
   '/service_authors/{autorhId}':
     delete:
       tags:
@@ -2278,7 +2665,24 @@ paths:
       responses:
         '200':
           description: OK
-  '/array_specifications/':
+  '/service_authors':
+    post:
+      tags:
+        - service
+        - marketplace
+      description: Add new service author
+      parameters:
+        - in: body
+          name: author
+          required: true
+          schema:
+            $ref: '#/definitions/ServiceAuthor'
+      responses:
+        '201':
+          description: return new service author
+          schema:
+            $ref: '#/definitions/ServiceAuthor'
+  '/array_specifications':
     get:
       tags:
         - service
@@ -2605,6 +3009,25 @@ paths:
           description: ID of individual discussions
           required: true
           type: string
+        - in: query
+          name: commentId
+          description: Id comment of individual discussions comments 
+          required: true
+          type: string
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter (id, title, etc.)
+          type: string
+          required: false
       responses:
         '200':
           description: return all all individual discussions comments
@@ -2684,6 +3107,68 @@ paths:
             type: array
             items:
               $ref: '#/definitions/IndividualDiscussionTag'
+  '/individual-discussion-comments-helpful':
+    get:
+      tags:
+        - discussion
+        - community
+      description: Get individual discussions comment helpful
+      parameters:
+        - in: query
+          name: commentId
+          description: Id individual discussions comment
+          required: true
+          type: string
+        - in: query
+          name: accountId
+          description: Id account
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return individual discussions comment helpful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IndividualDiscussionCommentHelpful'
+    post:
+      tags:
+        - discussion
+        - community
+      description: Create individual discussions comments helpful
+      parameters:
+        - in: body
+          name: IndividualDiscussionCommentHelpful
+          description: Individual comments helpful
+          required: false
+          schema:
+            $ref: '#/definitions/IndividualDiscussionTag'
+      responses:
+        '201':
+          description: New individual discussions comments helpful
+          schema:
+            $ref: '#/definitions/IndividualDiscussionTag'
+  '/individual-discussion-comments-helpful/{helpfulID}':
+    patch:
+      tags:
+        - discussion
+        - community
+      description: Update a individual discussions comment helpful
+      parameters:
+        - name: helpfulID
+          in: path
+          type: string
+          description: ID of the helpful
+          required: true
+        - name: helpful
+          in: body
+          schema:
+            $ref: '#/definitions/IndividualDiscussionCommentHelpful'
+      responses:
+        200:
+          description: returns updated individual discussions comment helpful
+          schema:
+            $ref: '#/definitions/IndividualDiscussionCommentHelpful'
   '/individual-discussion-tags':
     post:
       tags:
@@ -3007,10 +3492,23 @@ definitions:
         type: number
       output:
         type: number
+      special: 
+        type: array
+        items: 
+          $ref: '#/definitions/ServiceSpecialSpecifications'
       usageStats:
         $ref: '#/definitions/UsageStats'
       runStats:
         $ref: '#/definitions/RunStats'
+  ServiceSpecialSpecifications:
+    type: object
+    properties:
+      specification: 
+        type: string
+      data:
+        type: string
+      specificationId: 
+        type: string
   Component:
     type: object
     properties:
@@ -3204,14 +3702,25 @@ definitions:
         type: string
       rating:
         type: integer
-      userRatingReview:
-        type: object
       like:
         type: integer
       dislike:
         type: integer
       comment:
         type: string
+      accountId: 
+        type: string
+  ProfileReviewHelpful:
+    type: object
+    properties:
+      id:
+        type: string
+      reviewId:
+        type: string
+      accountId:
+        type: string
+      helpfull:
+        type: boolean
   ProductReview:
     type: object
     properties:
@@ -3237,14 +3746,25 @@ definitions:
         format: date
       rating:
         type: integer
-      userRatingReview:
-        type: object
       like:
         type: integer
       dislike:
         type: integer
       comment:
         type: string
+      accountId: 
+        type: string
+  ProductReviewHelpful:
+    type: object
+    properties:
+      id:
+        type: string
+      reviewId:
+        type: string
+      accountId:
+        type: string
+      helpfull:
+        type: boolean
   Company:
     type: object
     properties:
@@ -3339,14 +3859,25 @@ definitions:
         type: string
       rating:
         type: integer
-      userRatingReview:
-        type: object
       like:
         type: integer
       dislike:
         type: integer
       comment:
         type: string
+      accountId: 
+        type: string
+  CompanyReviewHelpful:
+    type: object
+    properties:
+      id:
+        type: string
+      reviewId:
+        type: string
+      accountId:
+        type: string
+      helpfull:
+        type: boolean
   CompanyImage:
     type: object
     properties:
@@ -3850,12 +4381,25 @@ definitions:
       created_at:
         type: string
         format: dateTime
-      userRatingReview:
-        type: object
+      reply: 
+        type: boolean
+      commentId: 
+        type: string
       like:
         type: number
       dislike:
         type: number
+  IndividualDiscussionCommentHelpful:
+    type: object
+    properties:
+      id:
+        type: string
+      commentId:
+        type: string
+      accountId:
+        type: string
+      helpfull:
+        type: boolean
   IndividualDiscussion:
     type: object
     properties:
@@ -3863,13 +4407,10 @@ definitions:
         type: string
       title:
         type: string
-      comments:
-        type: object
-        properties:
-          totalItems:
-            type: number
-          link:
-            type: string
+      message:
+        type: string
+      accountId:
+        type: string
   IndividualDiscussionTag:
     type: object
     properties:
