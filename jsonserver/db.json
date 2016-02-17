@@ -272,14 +272,12 @@
       "reply": false,
       "reviewId": 0,
       "status": true,
-      "date": "19/12/2015",
+      "date": 1450476000000,
       "rating": 1,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 22,
       "dislike": 11,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 2,
@@ -288,14 +286,12 @@
       "reply": false,
       "reviewId": 0,
       "status": false,
-      "date": "20/12/2015",
+      "date": 1450562400000,
       "rating": 2,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 9,
       "dislike": 1,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 3,
@@ -304,14 +300,12 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "11/12/2015",
+      "date": 1449784800000,
       "rating": 5,
-      "userRatingReview": {
-        "DMC Member": "dislike"
-      },
       "like": 21,
       "dislike": 2,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 4,
@@ -320,14 +314,12 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "21/12/2015",
+      "date": 1450648800000,
       "rating": 4,
-      "userRatingReview": {
-        "DMC Member": "like"
-      },
       "like": 6,
       "dislike": 0,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 7,
@@ -336,14 +328,72 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "21/11/2015",
+      "date": 1448056800000,
       "rating": 5,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 4,
       "dislike": 1,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
+    },
+    {
+      "name": "Thomas Smith",
+      "accountId": 1,
+      "reviewId": 0,
+      "rating": 5,
+      "comment": "test",
+      "id": 8,
+      "companyId": 1,
+      "reply": true,
+      "status": true,
+      "date": 1455664241792,
+      "like": 0,
+      "dislike": 0
+    },
+    {
+      "name": "Thomas Smith",
+      "accountId": 1,
+      "reviewId": 8,
+      "rating": 0,
+      "comment": "test reply",
+      "id": 9,
+      "companyId": 1,
+      "reply": false,
+      "status": true,
+      "date": 1455664534557,
+      "like": 1,
+      "dislike": 0
+    }
+  ],
+  "company_reviews_helpful": [
+    {
+      "id": 1,
+      "reviewId": 1,
+      "accountId": 1,
+      "helpful": true
+    },
+    {
+      "id": 2,
+      "reviewId": 2,
+      "accountId": 1,
+      "helpful": false
+    },
+    {
+      "accountId": 1,
+      "reviewId": 8,
+      "helpful": null,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "reviewId": 4,
+      "helpful": null,
+      "id": 4
+    },
+    {
+      "accountId": 1,
+      "reviewId": 9,
+      "helpful": true,
+      "id": 5
     }
   ],
   "company_history": [
@@ -7128,14 +7178,12 @@
       "reply": false,
       "reviewId": 0,
       "status": true,
-      "date": "19/12/2015",
+      "date": 1450476000000,
       "rating": 1,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 22,
       "dislike": 11,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 2,
@@ -7144,14 +7192,12 @@
       "reply": false,
       "reviewId": 0,
       "status": false,
-      "date": "20/12/2015",
+      "date": 1450562400000,
       "rating": 2,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 9,
       "dislike": 1,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 3,
@@ -7160,14 +7206,12 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "11/12/2015",
+      "date": 1449784800000,
       "rating": 5,
-      "userRatingReview": {
-        "DMC Member": "dislike"
-      },
       "like": 21,
       "dislike": 2,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 4,
@@ -7176,14 +7220,12 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "21/12/2015",
+      "date": 1450648800000,
       "rating": 4,
-      "userRatingReview": {
-        "DMC Member": "like"
-      },
       "like": 6,
-      "dislike": 0,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "dislike": 1,
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 7,
@@ -7192,14 +7234,52 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "21/11/2015",
+      "date": 1448056800000,
       "rating": 5,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 4,
       "dislike": 1,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
+    },
+    {
+      "name": "Thomas Smith",
+      "accountId": 1,
+      "reviewId": 0,
+      "rating": 3,
+      "comment": "test",
+      "id": 8,
+      "profileId": 1,
+      "reply": false,
+      "status": true,
+      "date": 1455662303752,
+      "like": 1,
+      "dislike": 0
+    }
+  ],
+  "profile_reviews_helpful": [
+    {
+      "id": 1,
+      "reviewId": 1,
+      "accountId": 1,
+      "helpful": true
+    },
+    {
+      "id": 2,
+      "reviewId": 2,
+      "accountId": 1,
+      "helpful": false
+    },
+    {
+      "accountId": 1,
+      "reviewId": 8,
+      "helpful": true,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "reviewId": 4,
+      "helpful": false,
+      "id": 4
     }
   ],
   "profile_history": [
@@ -7552,11 +7632,6 @@
       "name": "Tag 1",
       "individual-discussionId": 2,
       "id": 1
-    },
-    {
-      "name": "Tag1",
-      "individual-discussionId": 1,
-      "id": 2
     }
   ],
   "individual-discussion": [
@@ -7587,26 +7662,28 @@
   ],
   "individual-discussion-comments": [
     {
-      "text": "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?",
       "id": 1,
       "individual-discussionId": 1,
-      "full_name": "Thomas Smith",
+      "full_name": "DMC Member",
       "accountId": 1,
+      "reply": true,
+      "commentId": 0,
       "avatar": "/images/carbone.png",
-      "created_at": "2016-02-11 09:13:28",
-      "userRatingReview[DMC Member]": "like",
-      "like": 0,
-      "dislike": 0
+      "text": "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?ddd",
+      "created_at": 1421040480000,
+      "like": 22,
+      "dislike": 12
     },
     {
       "id": 2,
       "individual-discussionId": 2,
       "full_name": "Thomas Smith",
       "accountId": 1,
+      "reply": false,
+      "commentId": 0,
       "avatar": "/images/carbone.png",
       "text": "Comment",
-      "created_at": "2016-02-11 09:13:28",
-      "userRatingReview[DMC Member]": "like",
+      "created_at": 1455174808000,
       "like": 0,
       "dislike": 0
     },
@@ -7614,12 +7691,11 @@
       "individual-discussionId": 4,
       "full_name": "Thomas Smith",
       "accountId": 1,
+      "reply": false,
+      "commentId": 0,
       "avatar": "/images/carbone.png",
       "text": "Message Discussion 91",
-      "created_at": "2016-02-12 04:20:14",
-      "userRatingReview": {
-        "DMC Member": "like"
-      },
+      "created_at": 1455243614000,
       "like": 0,
       "dislike": 0,
       "id": 3
@@ -7628,41 +7704,149 @@
       "individual-discussionId": 4,
       "full_name": "Thomas Smith",
       "accountId": 1,
+      "reply": false,
+      "commentId": 0,
       "avatar": "/images/carbone.png",
       "text": "hi",
-      "created_at": "2016-02-12 04:21:12",
-      "userRatingReview[DMC Member]": "like",
+      "created_at": 1455243672000,
       "like": 0,
       "dislike": 0,
       "id": 4
     },
     {
       "individual-discussionId": 1,
-      "full_name": "DMC Member",
+      "full_name": "Thomas Smith",
       "accountId": 1,
+      "reply": true,
+      "commentId": 0,
       "avatar": "/images/carbone.png",
-      "text": "Message",
-      "created_at": "2016-02-17 02:50:06",
-      "userRatingReview": {
-        "DMC Member": "like"
-      },
-      "like": 0,
-      "dislike": 0,
+      "text": "sdfsfd",
+      "created_at": 1455665190000,
+      "like": 1,
+      "dislike": 1,
       "id": 5
     },
     {
       "individual-discussionId": 1,
-      "full_name": "DMC Member",
+      "full_name": "Thomas Smith",
       "accountId": 1,
+      "reply": true,
+      "commentId": 0,
       "avatar": "/images/carbone.png",
-      "text": 1,
-      "created_at": "2016-02-17 02:52:01",
-      "userRatingReview": {
-        "DMC Member": "like"
-      },
+      "text": "sdfsd",
+      "created_at": 1455665200000,
+      "like": 1,
+      "dislike": 1,
+      "id": 6
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "reply": false,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "szsfsdf",
+      "created_at": 1455667168567,
       "like": 0,
       "dislike": 0,
-      "id": 6
+      "id": 7
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 1,
+      "created_at": 1455702089422,
+      "like": 0,
+      "dislike": 0,
+      "id": 8
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 1,
+      "text": "ewer",
+      "created_at": 1455702155431,
+      "like": 0,
+      "dislike": 0,
+      "id": 9
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 1,
+      "text": "drterw",
+      "created_at": 1455702221795,
+      "like": 0,
+      "dislike": 0,
+      "id": 10
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 5,
+      "text": "wewq",
+      "created_at": 1455703287105,
+      "like": 0,
+      "dislike": 0,
+      "id": 11
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 6,
+      "text": "lkjol\n",
+      "created_at": 1455703350135,
+      "like": 0,
+      "dislike": 0,
+      "id": 12
+    }
+  ],
+  "individual-discussion-comments-helpful": [
+    {
+      "id": 1,
+      "commentId": 1,
+      "accountId": 1,
+      "helpful": false
+    },
+    {
+      "id": 2,
+      "commentId": 2,
+      "accountId": 1,
+      "helpful": false
+    },
+    {
+      "accountId": 1,
+      "commentId": 5,
+      "helpful": false,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "commentId": 6,
+      "helpful": false,
+      "id": 4
+    },
+    {
+      "accountId": 1,
+      "commentId": 10,
+      "helpful": null,
+      "id": 5
     }
   ],
   "account-notification-categories": [

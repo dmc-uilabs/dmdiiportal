@@ -361,7 +361,7 @@
 		<md-divider ></md-divider>
 
 		<div ng-repeat="review in company.company_reviews">
-			<ui-widget-review review="review" userlogin="UserLogin" typereview="'company_reviews'"></ui-widget-review>
+			<ui-widget-review review="review" helpful-function="updateHelpful" reply-function="addReply"></ui-widget-review>
 			<md-divider></md-divider>
 		</div>
 	</md-content>

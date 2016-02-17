@@ -45,8 +45,8 @@ angular.module('dmc.profile', [
             });
         $urlRouterProvider.otherwise('/1');
     })
-    .service('profileModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel',
-                            function (ajax, dataFactory, $stateParams, toastModel) {
+    .service('profileModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',
+                            function (ajax, dataFactory, $stateParams, toastModel, $rootScope) {
         this.get_profile = function(id){
             return ajax.get(dataFactory.profiles(id).get,
                 {
@@ -80,10 +80,44 @@ angular.module('dmc.profile', [
             )
         }
 
+        var get_reply = function(review){
+            ajax.get(dataFactory.profiles(review.id).getReply,
+                {
+                    '_order': "DESC",
+                    '_sort': "date"
+                },
+                function(response){
+                    for(var i in response.data){
+                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                        get_helpful(response.data[i]);
+                    }                        
+                    review['replyReviews'] = response.data;
+                }
+            )
+        }
+        var get_helpful = function(review){
+            ajax.get(dataFactory.profiles(review.id).getHelpful,
+                {
+                    'reviewId': review.id,
+                    'accountId': $rootScope.userData.accountId
+                },
+                function(response){
+                    review['helpful'] = response.data[0];
+                }
+            )
+        }
+
         this.get_profile_reviews = function(id, params, callback){
             return ajax.get(dataFactory.profiles(id).reviews,
                 params,
                 function(response){
+                    for(var i in response.data){
+                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                        get_helpful(response.data[i]);
+                        if(response.data[i].reply){
+                            get_reply(response.data[i]);
+                        }
+                    }
                     callback(response.data)
                 },
                 function(response){
@@ -104,12 +138,8 @@ angular.module('dmc.profile', [
                     params["id"] = lastId;
                     params["profileId"] = id;
                     params["reply"] = false;
-                    params["reviewId"] = 0;
                     params["status"] = true;
-                    params["date"] = moment().format('MM/DD/YYYY');
-                    params["userRatingReview"] = {
-                        "DMC Member": "none"
-                    };
+                    params["date"] = moment().format('x');
                     params["like"] = 0;
                     params["dislike"] = 0;
 
@@ -129,6 +159,53 @@ angular.module('dmc.profile', [
                 }
             )  
         }
+
+        this.update_profile_reviews = function(id, params, callback){
+            ajax.get(dataFactory.profiles(id).get_review,
+                {},
+                function(response){
+                    var review= response.data;
+                    if(params.reply){
+                        review.reply = params.reply;
+                    }else{
+                        review.like = params.like;
+                        review.dislike = params.dislike;
+                    }
+
+                    ajax.update(dataFactory.profiles(id).update_review,
+                        review,
+                        function(response){
+                            if(params.reply){
+                                toastModel.showToast("success", "reply added");
+                            }
+                            if(callback) callback(response.data)
+                        }
+                    )
+                }
+            )
+        };
+
+        this.add_helful = function(helpful, reviewId, callback){
+            return ajax.create(dataFactory.profiles($stateParams.profileId).addHelpful,
+                {
+                    accountId: $rootScope.userData.accountId,
+                    reviewId: reviewId,
+                    helpful: helpful
+                },
+                function(response){
+                    callback(response.data);
+                }
+            )
+                
+            
+        };
+
+        this.update_helful = function(id, helpful){
+            ajax.update(dataFactory.profiles(id).updateHelpful,
+                helpful,
+                function(response){}
+            )
+        };
 
         this.edit_profile = function(id, params, callback){
             ajax.get(dataFactory.profiles(id).get,

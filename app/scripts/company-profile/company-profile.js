@@ -67,8 +67,8 @@ angular.module('dmc.company-profile', [
 		$urlRouterProvider.otherwise('/1');
 
 	})
-    .service('companyProfileModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel',
-                            function (ajax, dataFactory, $stateParams, toastModel) {
+    .service('companyProfileModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',
+                            function (ajax, dataFactory, $stateParams, toastModel, $rootScope) {
         // get company skills
         this.getSkills = function(id, callback) {
             return ajax.on(dataFactory.getCompanySkills(id),{
@@ -190,10 +190,44 @@ angular.module('dmc.company-profile', [
             )
         }
 
+        var get_reply = function(review){
+            ajax.get(dataFactory.companyURL(review.id).getReply,
+                {
+                    '_order': "DESC",
+                    '_sort': "date"
+                },
+                function(response){
+                    for(var i in response.data){
+                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                        get_helpful(response.data[i]);
+                    }                        
+                    review['replyReviews'] = response.data;
+                }
+            )
+        }
+        var get_helpful = function(review){
+            ajax.get(dataFactory.companyURL(review.id).getHelpful,
+                {
+                    'reviewId': review.id,
+                    'accountId': $rootScope.userData.accountId
+                },
+                function(response){
+                    review['helpful'] = response.data[0];
+                }
+            )
+        }
+
         this.get_company_reviews = function(params, callback){
             return ajax.get(dataFactory.companyURL($stateParams.companyId).reviews,
                 params,
                 function(response){
+                    for(var i in response.data){
+                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                        get_helpful(response.data[i]);
+                        if(response.data[i].reply){
+                            get_reply(response.data[i]);
+                        }
+                    }
                     callback(response.data)
                 },
                 function(response){
@@ -214,12 +248,8 @@ angular.module('dmc.company-profile', [
                     params["id"] = lastId;
                     params["companyId"] = $stateParams.companyId;
                     params["reply"] = false;
-                    params["reviewId"] = 0;
                     params["status"] = true;
-                    params["date"] = moment().format('MM/DD/YYYY');
-                    params["userRatingReview"] = {
-                        "DMC Member": "none"
-                    };
+                    params["date"] = moment().format('x');
                     params["like"] = 0;
                     params["dislike"] = 0;
 
@@ -239,6 +269,53 @@ angular.module('dmc.company-profile', [
                 }
             )  
         }
+
+        this.update_company_reviews = function(id, params, callback){
+            ajax.get(dataFactory.companyURL(id).get_review,
+                {},
+                function(response){
+                    var review= response.data;
+                    if(params.reply){
+                        review.reply = params.reply;
+                    }else{
+                        review.like = params.like;
+                        review.dislike = params.dislike;
+                    }
+
+                    ajax.update(dataFactory.companyURL(id).update_review,
+                        review,
+                        function(response){
+                            if(params.reply){
+                                toastModel.showToast("success", "reply added");
+                            }
+                            if(callback) callback(response.data)
+                        }
+                    )
+                }
+            )
+        };
+
+        this.add_helful = function(helpful, reviewId, callback){
+            return ajax.create(dataFactory.companyURL($stateParams.companyId).addHelpful,
+                {
+                    accountId: $rootScope.userData.accountId,
+                    reviewId: reviewId,
+                    helpful: helpful
+                },
+                function(response){
+                    callback(response.data);
+                }
+            )
+                
+            
+        };
+
+        this.update_helful = function(id, helpful){
+            ajax.update(dataFactory.companyURL(id).updateHelpful,
+                helpful,
+                function(response){}
+            )
+        };
 
 
     }]);
