@@ -22,7 +22,6 @@
                 <span ng-if="service.currentStatus.status != 1">{{service.currentStatus.status == 0 ? 'success' : ( service.currentStatus.status == -1 ? 'error' : '')}}</span>
             </a>
         </div>
-        <md-divider ng-if="$index < services.length-1"></md-divider>
     </md-list-item>
 
     <md-list-item class="service-list-item"

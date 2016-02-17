@@ -1,6 +1,8 @@
 .my-projects-container{
   padding: 8px 24px 24px 24px;
-
+  .content-panel{
+    padding: 0;
+  }
   .rp-panel__tab-content md-content{
     padding-right: 16px;
     &:nth-child(1){

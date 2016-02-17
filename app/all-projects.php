@@ -63,8 +63,8 @@
       </md-toolbar>
     </div>
 
-    <div class="container my-projects-container" layout="row" layout-padding>
-        <div class="content-panel"
+    <div class="container my-projects-container" layout="row" layout-padding flex="100">
+        <div class="content-panel" layout="column" flex="100"
              id="myProjectsList"
              ui-widget-projects
              widget-format="'my-projects'"
