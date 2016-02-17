@@ -690,7 +690,11 @@ angular.module('dmc.data',[])
             },
             getNotificationsStatistic: function(){
                 return localhost+'notifications-statistic';
-            }
+            },
+            //
+            searchMarketplace: function (text) {
+				return localhost+'searchServices/'+text;
+			}
         };
     }
 )
