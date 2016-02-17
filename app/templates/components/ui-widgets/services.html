@@ -15,8 +15,7 @@
                 <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="service-title link-button">{{service.title}}</a>
             </h3>
             <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button">
-                <md-progress-linear ng-init="service.currentStatus.percentCompleted = 55"
-                                    ng-if="service.currentStatus.status == 1"
+                <md-progress-linear ng-if="service.currentStatus.status == 1"
                                     md-mode="determinate"
                                     value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
                 <span ng-if="service.currentStatus.status == 1">Estimated - 1:30 of 2:00</span>
@@ -41,7 +40,6 @@
             <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button">
                 <md-progress-linear ng-if="service.currentStatus.status == 1"
                                 md-mode="determinate"
-                                ng-init="service.currentStatus.percentCompleted = 55"
                                 value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
                 <span ng-if="service.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span>
                 <span ng-if="service.currentStatus.status != 1">{{service.currentStatus.status == 0 ? 'success' : ( service.currentStatus.status == -1 ? 'error' : '')}}</span>
@@ -107,7 +105,9 @@
                         </td>
                         <td ng-show="columns.indexOf('status') > -1">
                             <a href="/project.php#/{{item.currentStatus.project.id}}/services/{{item.id}}/run" class="link-button" ng-if="item.currentStatus.project.id">
-                                <md-progress-linear ng-if="item.currentStatus.status == 1" md-mode="determinate" ng-init="item.currentStatus.percentCompleted = 55" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
+                                <md-progress-linear ng-if="item.currentStatus.status == 1"
+                                                    md-mode="determinate"
+                                                    value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
                                 <span ng-if="item.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span>
                                 <span ng-if="item.currentStatus.status != 1">{{item.currentStatus.status == 0 ? 'success' : ( item.currentStatus.status == -1 ? 'error' : '')}}</span>
                             </a>

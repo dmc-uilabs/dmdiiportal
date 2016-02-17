@@ -36,7 +36,9 @@
                                     </td>
                                     <td class="">
                                         <a href="/project.php#/{{item.projectId}}/services/{{item.id}}/run" class="link-button">
-                                            <md-progress-linear ng-if="item.currentStatus.status == '1'" ng-init="item.currentStatus.percentCompleted = 50" md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
+                                            <md-progress-linear ng-if="item.currentStatus.status == '1'"
+                                                                md-mode="determinate"
+                                                                value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
                                             <span ng-if="item.currentStatus.status == '1'" class="service-progress-info">1:30 of 2:00</span>
                                             <span ng-if="item.currentStatus.status != '1'">{{ item.currentStatus.status == 0 ? 'success' : (item.currentStatus.status == -1 ? 'error' : '')}}</span>
                                         </a>

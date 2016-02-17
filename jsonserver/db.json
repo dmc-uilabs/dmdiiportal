@@ -1384,7 +1384,7 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "averageRun": 16.666666666666668,
+      "averageRun": 12.75,
       "parent_component": null,
       "projectId": 2,
       "from": "marketplace",
@@ -1410,7 +1410,7 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "averageRun": 11.615384615384615,
+      "averageRun": 17329.276,
       "parent_component": null,
       "projectId": 2,
       "from": "marketplace",
@@ -2244,8 +2244,8 @@
       "serviceId": 44,
       "accountId": 1,
       "runBy": "Thomas Smith",
-      "status": 1,
-      "percentCompleted": 0,
+      "status": 0,
+      "percentCompleted": 100,
       "startDate": "2016-02-14",
       "startTime": "15:16:55",
       "project": {
@@ -2278,8 +2278,8 @@
       "serviceId": 42,
       "accountId": 1,
       "runBy": "Thomas Smith",
-      "status": 1,
-      "percentCompleted": 0,
+      "status": 0,
+      "percentCompleted": 100,
       "startDate": "2016-02-14",
       "startTime": "18:27:56",
       "project": {
@@ -3005,6 +3005,256 @@
           }
         }
       }
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": -1,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:26:42",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 43,
+      "stopDate": "2016-02-17",
+      "stopTime": "15:26:42",
+      "interface": {
+        "inParams": null,
+        "outParams": null
+      }
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:26:46",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 44
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:33:44",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 45
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:37:27",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 46
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": -1,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:37:28",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 47,
+      "stopDate": "2016-02-17",
+      "stopTime": "15:37:29",
+      "interface": {
+        "inParams": null,
+        "outParams": null
+      }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:37:32",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 48
+    },
+    {
+      "serviceId": 42,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:37:42",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 49
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:37:43",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 50
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:45:51",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 51
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:45:58",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 52
+    },
+    {
+      "serviceId": 42,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:45:59",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 53
+    },
+    {
+      "serviceId": 42,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:51:37",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 54
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:51:41",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 55
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:51:42",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 56
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:54:11",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 57
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:54:15",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 58
+    },
+    {
+      "serviceId": 42,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 1,
+      "percentCompleted": 0,
+      "startDate": "2016-02-17",
+      "startTime": "15:57:21",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 59
     }
   ],
   "input-positions": [
