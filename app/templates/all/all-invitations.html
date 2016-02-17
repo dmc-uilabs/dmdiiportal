@@ -1,0 +1,21 @@
+
+<div class="container container-view-all" layout-padding layout="row">
+    <div layout="column" flex class="inivitation">
+    	<h2>Project Inivitations</h2>
+    	<div layout="row" layout-align="center center" class="box" ng-repeat="invitation in invitations">
+			<div class="images-box">
+				<img ng-src="{{invitation.profileImage}}">
+			</div>
+			<h4><a ng-href="{{'profile.php#/'+invitation.profileId}}">{{invitation.from}}</a> has invited you to join <a ng-href="{{'project.php#/preview/'+invitation.projectId}}">{{invitation.projectTitle}}.</a></h4>
+			<span flex></span>
+			<md-button class="md-raised dmc-button" ng-click="decline($index)">
+				Decline
+			</md-button>
+			<md-button class="md-raised md-primary dmc-button" ng-click="accept($index)">
+				Accept
+			</md-button>
+			<span flex></span>
+			<h4>{{invitation.date}}</h4>
+		</div>
+    </div>
+</div>

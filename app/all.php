@@ -101,6 +101,7 @@
     <script src="scripts/all/user-tasks.controller.js"></script>
     <script src="scripts/all/user-discussions.controller.js"></script>
     <script src="scripts/all/run-services.controller.js"></script>
+    <script src="scripts/all/invitations.controller.js"></script>
 
     <!-- endbuild -->
     <script type="text/javascript">

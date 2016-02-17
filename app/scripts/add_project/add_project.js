@@ -73,6 +73,7 @@ angular.module('dmc.add_project', [
                                                 "projectId": lastId,
                                                 "fromProfileId": $rootScope.userData.profileId,
                                                 "from": $rootScope.userData.displayName,
+                                                "date": moment(new Date).format('x'),
                                                 "accept": false
                                             },
                                             function(response){

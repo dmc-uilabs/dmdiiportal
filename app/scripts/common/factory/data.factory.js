@@ -258,6 +258,9 @@ angular.module('dmc.data',[])
             createMembersToProject: function() {
                 return localhost+'projects_members';
             },
+            getMembersToProjectById: function(id) {
+                return localhost+'projects_members/'+id;
+            },
             updateMembersToProject: function(id) {
                 return localhost+'projects_members/'+id;
             },

@@ -14,6 +14,7 @@ angular.module('dmc.view-all', [
 	"dmc.ajax",
 	"dmc.data",
     'dmc.model.project',
+    'dmc.model.user', 
 	'dmc.model.toast-model'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
     var resolve = {
@@ -54,6 +55,10 @@ angular.module('dmc.view-all', [
             url: '/discussions?text?type',
             controller: 'ViewAllUserDiscussionsController',
             templateUrl: 'templates/all/user-all-discussions.html'
+        }).state('invitations', {
+            url: '/invitations',
+            controller: 'ViewAllInvitationsController',
+            templateUrl: 'templates/all/all-invitations.html'
         });
 	$urlRouterProvider.otherwise('/services/1');
 });
