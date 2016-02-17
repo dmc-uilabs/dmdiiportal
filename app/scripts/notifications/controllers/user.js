@@ -9,7 +9,7 @@ angular.module('dmc.notifications')
 		$scope.notifications = notificationsStatistic;
 
 		$scope.notificationsData = [];
-		notificationsModel.get_notifications(
+		notificationsModel.get_notifications_user(
 			{
 				"period": "today"
 			},
@@ -22,7 +22,7 @@ angular.module('dmc.notifications')
 		$scope.reset = function() {
 			$scope.typeNotifications = "Today";
 			$scope.filterFlag = false;
-			notificationsModel.get_notifications(
+			notificationsModel.get_notifications_user(
 				{
 					"period": "today"
 				},
@@ -42,7 +42,7 @@ angular.module('dmc.notifications')
 			}else{
 				period = ["today","week","month"];
 			}
-			notificationsModel.get_notifications(
+			notificationsModel.get_notifications_user(
 				{
 					"period": period,
 					"type": type

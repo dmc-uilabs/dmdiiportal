@@ -8529,7 +8529,7 @@
       "selected": true
     }
   ],
-  "notifications": [
+  "notifications-user": [
     {
       "id": 1,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
@@ -8881,7 +8881,401 @@
       "linkTitle": "Check out your review."
     }
   ],
-  "notifications-statistic": [
+  "notifications-user-statistic": [
+    {
+      "id": 1,
+      "name": "Projects Created",
+      "type": "projects",
+      "today": 2,
+      "week": 5,
+      "month": 7
+    },
+    {
+      "id": 2,
+      "name": "Services Completed",
+      "type": "services",
+      "today": 2,
+      "week": 5,
+      "month": 7
+    },
+    {
+      "id": 3,
+      "name": "Assigned Tasks",
+      "type": "task",
+      "today": 2,
+      "week": 5,
+      "month": 7
+    },
+    {
+      "id": 4,
+      "name": "Added as Contact",
+      "type": "contact",
+      "today": 2,
+      "week": 5,
+      "month": 7
+    },
+    {
+      "id": 5,
+      "name": "Reviewed",
+      "type": "review",
+      "today": 2,
+      "week": 5,
+      "month": 7
+    }
+  ],
+  "notifications-pm": [
+    {
+      "id": 1,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "type": "projects",
+      "period": "today",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 2,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 3,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 4,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 5,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 6,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 7,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 8,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 9,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 10,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 11,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 12,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 13,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 14,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 15,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 16,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 17,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 18,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 19,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 20,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 21,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 22,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 23,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 24,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 25,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 26,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 27,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 28,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 29,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 30,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 31,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 32,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 33,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 34,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 35,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    }
+  ],
+  "notifications-pm-statistic": [
     {
       "id": 1,
       "name": "Projects Created",

@@ -455,6 +455,68 @@ paths:
             type: array
             items:
               $ref: '#/definitions/DiscussionThread'
+  '/projects_members':
+    get:
+      tags:
+        - project
+        - add member
+      description: Get members
+      parameters:
+        - in: query
+          name: projectId
+          description: project id
+          required: false
+          type: string
+        - in: query
+          name: profileId
+          description: profile id
+          required: false
+          type: string
+      responses:
+        '200':
+          description: return members
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProjectMember'
+    post:
+      tags:
+        - project
+        - add member
+      description: Create a new member
+      parameters:
+        - in: body
+          name: Member
+          description: Member to be created
+          required: false
+          schema:
+            $ref: '#/definitions/ProjectMember'
+      responses:
+        '201':
+          description: New member
+          schema:
+            $ref: '#/definitions/ProjectMember'
+  '/projects_members/{memberId}':
+    patch:
+      tags:
+        - project
+        - add member
+      description: Update member
+      parameters:
+        - in: path
+          name: memberId
+          type: string
+          description: member id
+          required: true
+        - in: body
+          name: Member
+          schema:
+            $ref: '#/definitions/ProjectMember'
+      responses:
+        '200':
+          description: Return updated member
+          schema:
+            $ref: '#/definitions/ProjectMember'
   /tasks/create:
     post:
       tags:
@@ -1288,6 +1350,41 @@ paths:
       responses:
         '201':
           description: return reviews profile
+          schema:
+            $ref: '#/definitions/ProfileReview'
+  '/profile_reviews/{reviewId}':
+    get:
+      tags:
+        - profile
+      description: Get profile review by id
+      parameters:
+        - name: reviewId
+          in: path
+          type: string
+          description: ID of the review
+          required: true
+      responses:
+        '200':
+          description: send the review by id
+          schema:
+            $ref: '#/definitions/ProfileReview'
+    patch:
+      tags:
+        - profile
+      description: Update profile review
+      parameters:
+        - name: reviewId
+          in: path
+          type: string
+          description: ID of the review
+          required: true
+        - name: Review
+          in: body
+          schema:
+            $ref: '#/definitions/ProfileReview'
+      responses:
+        200:
+          description: returns updated profile review
           schema:
             $ref: '#/definitions/ProfileReview'
   '/profile_reviews_helpful':
@@ -2897,7 +2994,7 @@ paths:
           description: Return new inputs positions
           schema:
             $ref: '#/definitions/ServiceInputsPositions'
-  '/notifications':
+  '/notifications-user':
     get:
       tags:
         - notification
@@ -2931,7 +3028,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/UserNotification'
-  '/notifications-statistic':
+  '/notifications-user-statistic':
     get:
       tags:
         - notification
@@ -2943,6 +3040,52 @@ paths:
             type: array
             items:
               $ref: '#/definitions/UserNotificationStat'
+  '/notifications-pm':
+    get:
+      tags:
+        - notification
+      description: Get all notifications for the pm
+      parameters:
+        - name: period
+          in: query
+          description: value filters result by period
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - today
+            - week
+            - month
+        - name: type
+          in: query
+          description: value filters result by type
+          type: string
+          required: false
+          enum:
+            - projects
+            - services
+            - task
+            - contact
+            - review
+      responses:
+        '200':
+          description: return all notifications
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PmNotification'
+  '/notifications-pm-statistic':
+    get:
+      tags:
+        - notification
+      description: Get all notification statistics for the pm
+      responses:
+        '200':
+          description: return all notification statistics
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PmNotificationStat'
   '/announcements':
     get:
       tags:
@@ -3265,6 +3408,21 @@ definitions:
         $ref: '#/definitions/Services'
       components:
         $ref: '#/definitions/Components'
+  ProjectMember:
+    type: object
+    properties:
+      id:
+        type: string
+      profileId:
+        type: string
+      projectId:
+        type: string
+      accept:
+        type: boolean
+      fromProfileId:
+        type: string
+      from:
+        type: string
   SimplifiedProject:
     type: object
     properties:
@@ -4260,6 +4418,57 @@ definitions:
       linkTitle:
         type: string
   UserNotificationStat:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+        enum:
+          - projects
+          - services
+          - task
+          - contact
+          - review
+      today:
+        type: number
+      week:
+        type: number
+      month:
+        type: number
+  PmNotification:
+    type: object
+    properties:
+      id:
+        type: string
+      image:
+        type: string
+      link:
+        type: string
+      period:
+        type: string
+        enum:
+          - today
+          - week
+          - month
+      type:
+        type: string
+        enum:
+          - projects
+          - services
+          - task
+          - contact
+          - review
+      date:
+        type: string
+        format: dateTime
+      title:
+        type: string
+      linkTitle:
+        type: string
+  PmNotificationStat:
     type: object
     properties:
       id:

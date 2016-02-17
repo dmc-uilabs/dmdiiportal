@@ -712,11 +712,17 @@ angular.module('dmc.data',[])
             updateUserAccountNotification: function(id){
                 return localhost+'account-notification-settings/'+id;
             },
-            getNotifications: function(){
-                return localhost+'notifications';
+            getNotificationsUser: function(){
+                return localhost+'notifications-user';
             },
-            getNotificationsStatistic: function(){
-                return localhost+'notifications-statistic';
+            getNotificationsStatisticUser: function(){
+                return localhost+'notifications-user-statistic';
+            },
+            getNotificationsPm: function(){
+                return localhost+'notifications-pm';
+            },
+            getNotificationsStatisticPm: function(){
+                return localhost+'notifications-pm-statistic';
             }
         };
     }
