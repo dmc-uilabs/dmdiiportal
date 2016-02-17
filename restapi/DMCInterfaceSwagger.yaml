@@ -490,7 +490,92 @@ paths:
           description: send the task with taskID
           schema:
             $ref: '#/definitions/Task'
-  /services:
+  '/dome-interfaces':
+    post:
+      tags:
+        - service
+      description: Post a new dome interface
+      parameters:
+        - in: body
+          name: body
+          description: Dome interface object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/PostUpdateDomeInterface'
+      responses:
+        '200':
+          description: Return dome inerface object with id
+          schema:
+            $ref: '#/definitions/GetDomeInterface'
+        '405':
+          description: Invalide input
+  '/dome-interfaces/{domeInterfaceId}':        
+    delete:
+      tags:
+        - service
+      description: Get service dome interface
+      parameters:
+        - in: path
+          name: domeInterfaceId
+          required: true
+          description: Dome interfaceId id
+          type: number
+      responses:
+        '200':
+          description: Ok
+    patch:
+      tags:
+        - service
+      description: Update dome interface
+      parameters:
+        - in: path
+          name: domeInterfaceId
+          required: true
+          description: Dome interfaceId id
+          type: number
+        - in: body
+          name: Dome interface
+          description: Dome interface object for updated in database
+          required: false
+          schema:
+            $ref: '#/definitions/PostUpdateDomeInterface'
+      responses:
+        '200':
+          description: Return updated dome inerface object
+          schema:
+            $ref: '#/definitions/GetDomeInterface'
+    get:
+      tags:
+        - service
+      description: Get dome interface
+      parameters:
+        - in: path
+          name: domeInterfaceId
+          required: true
+          description: Dome interfaceId id
+          type: number
+      responses:
+        '200':
+          description: Return dome inerface object
+          schema:
+            $ref: '#/definitions/GetDomeInterface'
+  '/services/{serviceId}/dome-interfaces':
+    get:
+      tags:
+        - service
+      description: Get service dome interface
+      parameters:
+        - in: path
+          name: serviceId
+          required: true
+          description: Service id
+          type: number
+      responses:
+        '200':
+          description: Return service dome inerface object
+          schema:
+            $ref: '#/definitions/GetDomeInterface'
+  '/services':
     post:
       tags:
         - service
@@ -949,11 +1034,38 @@ paths:
           description: send the discussion with discussionID
           schema:
             $ref: '#/definitions/Discussion'
+  '/profiles':
+    post:
+      tags:
+        - profile
+      description: Create a new user profile
+      parameters:
+        - in: body
+          name: Profile
+          description: Profile to be created
+          required: false
+          schema:
+            $ref: '#/definitions/Profile'
+      responses:
+        '201':
+          description: New user profile created
+          schema:
+            $ref: '#/definitions/Profile'
+    get:
+      tags:
+        - profile
+      description: Get all user profiles
+      responses:
+        '200':
+          description: send all user profiles
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Profile'
   '/profiles/{profileID}':
     get:
       tags:
         - profile
-      summary: Get information for a member profile
       description: Get profile based on profileID
       parameters:
         - name: profileID
@@ -994,6 +1106,45 @@ paths:
           description: returns updated profile
           schema:
             $ref: '#/definitions/Profile'
+    delete:
+      tags:
+        - profile
+      description: Delete a profile by id
+      parameters:
+        - in: path
+          name: profileID
+          description: ID of profile to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+  '/profiles/{profileID}/profile_history':
+    get:
+      tags:
+        - profile
+      description: Get the user activities history by profile ID
+      parameters:
+        - name: profileID
+          in: path
+          type: string
+          description: ID of the profile
+          required: true
+        - name: section
+          in: query
+          type: string
+          enum:
+            - mutual
+            - public
+          description: filter result by section
+          required: false
+      responses:
+        '200':
+          description: send user activities history
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProfileHistory'
   '/profiles/{profileID}/profile_reviews':
     get:
       tags:
@@ -2268,6 +2419,80 @@ paths:
                 type: integer
               serviceId:
                 type: integer
+  '/services/{serviceId}/input-positions':
+    get:
+      tags:
+        - service
+      description: Get service inputs positions
+      parameters:
+        - name: serviceId
+          in: path
+          description: service id
+          type: number
+          required: true
+      responses:
+        '200':
+          description: return service inputs positions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceInputsPositions'
+  '/input-positions/{positionInputId}':
+    patch:
+      tags:
+        - service
+      description: Update service inputs positions
+      parameters:
+        - name: positionInputId
+          in: path
+          description: inputs position id
+          type: number
+          required: true
+        - name: positions
+          in: body
+          description: Array of positions
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceInputPosition'
+      responses:
+        200:
+          description: returns updated input positions
+          schema:
+            $ref: '#/definitions/ServiceInputsPositions'
+    delete:
+      tags:
+        - service
+      description: Delete service inputs positions
+      parameters:
+        - name: positionInputId
+          in: path
+          description: inputs position id
+          type: number
+          required: true
+      responses:
+        '200':
+          description: OK
+  '/input-positions':
+    post:
+      tags:
+        - service
+      description: Add new inputs positions
+      parameters:
+        - name: Inputs positions
+          in: body
+          description: Inputs positions
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PostServiceInputPosition'
+      responses:
+        '201':
+          description: Return new inputs positions
+          schema:
+            $ref: '#/definitions/ServiceInputsPositions'
   '/notifications':
     get:
       tags:
@@ -2584,6 +2809,16 @@ definitions:
   CurrentStatus:
     type: object
     properties:
+      id:
+        type: string
+      status:
+        type: number
+      accountId:
+        type: string
+      runBy:
+        type: string
+      serviceId:
+        type: string
       percentCompleted:
         type: number
       startDate:
@@ -2592,18 +2827,66 @@ definitions:
       startTime:
         type: string
         format: time
+      stopDate:
+        type: string
+        format: date
+      stopTime:
+        type: string
+        format: time
       project:
         $ref: '#/definitions/SimplifiedProject'
+      interface:
+        $ref: '#/definitions/Interface'
+  Interface:
+    type: object
+    properties:
+      inParams:
+        type: object
+        properties:
+          inputName1:
+            $ref: '#/definitions/inputOutputParameter'
+          inputName2:
+            $ref: '#/definitions/inputOutputParameter'
+          inputName3:
+            $ref: '#/definitions/inputOutputParameter'
+          inputName4:
+            $ref: '#/definitions/inputOutputParameter'
+      outParams:
+        type: object
+        properties:
+          outputName1:
+            $ref: '#/definitions/inputOutputParameter'
+          outputName2:
+            $ref: '#/definitions/inputOutputParameter'
+  inputOutputParameter:
+    type: object
+    properties:
+      name:
+        type: string
+      type:
+        type: string
+      unit:
+        type: string
+      category:
+        type: string
+      value:
+        type: number
+      parameterid:
+        type: string
   Service:
     type: object
     properties:
       id:
+        type: string
+      companyId:
         type: string
       title:
         type: string
       description:
         type: string
       owner:
+        type: string
+      profileId:
         type: string
       releaseDate:
         type: string
@@ -2623,6 +2906,12 @@ definitions:
       projectId:
         type: string
       from:
+        type: string
+      type:
+        type: string
+      parent:
+        type: string
+      averageRun:
         type: string
   ServiceImages:
     type: object
@@ -2861,6 +3150,41 @@ definitions:
         type: array
         items:
           type: string
+  ProfileHistory:
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
+        type: string
+      title:
+        type: string
+      date:
+        type: string
+        format: dateTime
+      profileId:
+        type: string
+      user:
+        type: string
+      link:
+        type: string
+      section:
+        type: string
+        enum:
+          - public
+          - mutual
+      period:
+        type: string
+        enum:
+          - today
+          - week
+      type:
+          type: string
+          enum:
+            - completed
+            - rated
+            - added
+            - worked
   ProfileReview:
     type: object
     properties:
@@ -2950,7 +3274,7 @@ definitions:
         type: string
       toolsSoftwareEquipmentMachines:
         type: string
-      postCollaborations:
+      pastCollaborations:
         type: string
       collaborationInterests:
         type: string
@@ -3236,11 +3560,13 @@ definitions:
         type: string
       role:
         type: string
+      termsConditions: 
+        type: boolean
       notifications:
         type: object
         properties:
           total:
-            type: integer
+            type: number
           items:
             type: array
             items:
@@ -3249,7 +3575,7 @@ definitions:
         type: object
         properties:
           total:
-            type: integer
+            type: number
           items:
             type: array
             items:
@@ -3264,6 +3590,17 @@ definitions:
             type: array
             items:
               $ref: '#/definitions/MessagesListItem'
+      onboarding:
+        type: object
+        properties:
+          profile:
+            type: boolean
+          account:
+            type: boolean
+          company:
+            type: boolean
+          storefront:
+            type: boolean
   UserAccountPrivacy:
     type: object
     properties:
@@ -3577,3 +3914,74 @@ definitions:
         enum:
           - today
           - week
+  PostServiceInputPosition:
+    type: object
+    properties:
+      serviceId: 
+        type: string
+      positions:
+        type: array
+        items:
+          $ref: '#/definitions/ServiceInputPosition'
+  ServiceInputsPositions:
+    type: object
+    properties:
+      id:
+        type: string
+      serviceId: 
+        type: string
+      positions:
+        type: array
+        items:
+          $ref: '#/definitions/ServiceInputPosition'
+  ServiceInputPosition:
+    type: object
+    properties:
+      name:
+        type: string
+      position:
+        type: number
+  GetDomeInterface:
+    type: object
+    properties:
+      id:
+        type: string
+      version:
+        type: number
+      modelId:
+        type: string
+      interfaceId:
+        type: string
+      type:
+        type: string
+      name:
+        type: string
+      path:
+        type: array
+        items:
+          type: number
+      serviceId:
+        type: number
+      domeServer: 
+        type: string
+  PostUpdateDomeInterface:
+    type: object
+    properties:
+      version:
+        type: number
+      modelId:
+        type: string
+      interfaceId:
+        type: string
+      type:
+        type: string
+      name:
+        type: string
+      path:
+        type: array
+        items:
+          type: number
+      serviceId:
+        type: number
+      domeServer: 
+        type: string

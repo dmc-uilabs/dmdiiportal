@@ -5,15 +5,29 @@
 * Dashboard
 */
 angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 'md.data.table', 'dmc.common.header', 'dmc.common.footer', 'dmc.model.user'])
+.run(['$rootScope', function($rootScope){
+      $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+
+            if (error == 'User not created') {
+                event.preventDefault();
+                window.location = '/onboarding.php#/home';
+            }
+      });
+}])
 .config(function($stateProvider, $urlRouterProvider){
+  var resolver = { userData : ['DMCUserModel', function(DMCUserModel) {
+            return DMCUserModel.resolver();
+        }
+    ]};
   $stateProvider
     .state('home', {
      url: '/',
      templateUrl: 'templates/index/index.html',
+     resolve: resolver,
      controller: 'HomeCtr',
     });
   $urlRouterProvider.otherwise('/');
-}).controller('HomeCtr',['$scope', function($scope){
+}).controller('HomeCtr',['$scope', 'userData', function($scope, userData){
     $scope.pages = [
         {
             name : "My Dashboard",
@@ -21,7 +35,7 @@ angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 
             href : "dashboard.php",
             img : "home-dashboard-icon.png",
             show: true,
-            more : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+            more : "A quick overview of everything on the site related to you and your interests, from tasks and projects to discussions and services."
         },
         {
             name : "Marketplace",
@@ -29,15 +43,15 @@ angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 
             href : "marketplace.php",
             img : "home-market-icon.png",
             show: true,
-            more : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+            more : "Search for services and solutions for your projects, access company storefronts and market your own offerings on the site"
         },
         {
             name : "Community",
             text : "Find People",
             href : "community.php",
             img : "home-community-icon.png",
-            show: true,            
-            more : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+            show: true,
+            more : "View profiles of companies and members, ask questions and discuss things with other members, and manage your own personal or company profile."
         }
     ];
     $scope.more = function(index){

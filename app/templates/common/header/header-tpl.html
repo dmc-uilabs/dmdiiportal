@@ -8,7 +8,7 @@
 
     <span flex></span>
 
-    <div layout="row" class="info-button">
+    <div layout="row" class="info-button" ng-if="$root.isLogged">
       <!-- Service alerts -->
       <md-menu md-offset="0 64">
         <md-button class="md-button"
@@ -118,7 +118,7 @@
   </div>
 
   <!-- lower part of the header -->
-  <div class="bottom-header header-padding" layout="row" layout-align="space-between center">
+  <div class="bottom-header header-padding" layout="row" layout-align="space-between center" ng-if="$root.isLogged">
     <div class="navigation" layout="row" layout-align="center center">
       <md-button
           href="dashboard.php"
@@ -198,4 +198,5 @@
         <input type="text" placeholder="Search" ng-model="searchModel">
       </md-input-container>
     </form>
+  </div>
 </header>
