@@ -25,8 +25,8 @@ angular.module('dmc.view-all')
             $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "task";
 
                 $scope.tasks = [];
-                $scope.order = "DESC";
-                $scope.sort = "priority";
+                $scope.order = "ASC";
+                $scope.sort = "dueDate";
 
             $scope.types = [
                 {

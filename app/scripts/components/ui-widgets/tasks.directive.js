@@ -131,8 +131,8 @@ angular.module('dmc.widgets.tasks',[
                 $scope.previousPage = previousPage;
 
                 $scope.projectTasks = [];
-                $scope.sort = 'priority';
-                $scope.order = 'DESC';
+                $scope.sort = 'dueDate';
+                $scope.order = 'ASC';
                 $scope.totalItems = 0;
                 var limit = $scope.limit ? $scope.limit : 3;
 

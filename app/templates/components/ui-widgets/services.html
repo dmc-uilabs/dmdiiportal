@@ -12,18 +12,16 @@
                   ng-repeat="service in services track by $index">
         <div class="md-list-item-text" layout="column">
             <h3>
-                <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="service-title link-button">{{service.title}}</a>
+                <a href="/project.php#/{{projectId}}/services/{{service.id}}/detail" class="service-title link-button">{{service.title}}</a>
             </h3>
             <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button">
-                <md-progress-linear ng-init="service.currentStatus.percentCompleted = 55"
-                                    ng-if="service.currentStatus.status == 1"
+                <md-progress-linear ng-if="service.currentStatus.status == 1"
                                     md-mode="determinate"
                                     value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
                 <span ng-if="service.currentStatus.status == 1">Estimated - 1:30 of 2:00</span>
                 <span ng-if="service.currentStatus.status != 1">{{service.currentStatus.status == 0 ? 'success' : ( service.currentStatus.status == -1 ? 'error' : '')}}</span>
             </a>
         </div>
-        <md-divider ng-if="$index < services.length-1"></md-divider>
     </md-list-item>
 
     <md-list-item class="service-list-item"
@@ -31,7 +29,7 @@
                   layout-align="start center"
                   ng-repeat="service in services track by $index">
         <div layout="column" flex="50" class="title">
-            <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button">{{service.title}}</a>
+            <a href="/project.php#/{{projectId}}/services/{{service.id}}/detail" class="link-button">{{service.title}}</a>
         </div>
         <div layout="column" layout-align="center center" flex="30" class="release-date">
             {{service.currentStatus.startDate}}
@@ -41,7 +39,6 @@
             <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button">
                 <md-progress-linear ng-if="service.currentStatus.status == 1"
                                 md-mode="determinate"
-                                ng-init="service.currentStatus.percentCompleted = 55"
                                 value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
                 <span ng-if="service.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span>
                 <span ng-if="service.currentStatus.status != 1">{{service.currentStatus.status == 0 ? 'success' : ( service.currentStatus.status == -1 ? 'error' : '')}}</span>
@@ -107,7 +104,9 @@
                         </td>
                         <td ng-show="columns.indexOf('status') > -1">
                             <a href="/project.php#/{{item.currentStatus.project.id}}/services/{{item.id}}/run" class="link-button" ng-if="item.currentStatus.project.id">
-                                <md-progress-linear ng-if="item.currentStatus.status == 1" md-mode="determinate" ng-init="item.currentStatus.percentCompleted = 55" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
+                                <md-progress-linear ng-if="item.currentStatus.status == 1"
+                                                    md-mode="determinate"
+                                                    value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
                                 <span ng-if="item.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span>
                                 <span ng-if="item.currentStatus.status != 1">{{item.currentStatus.status == 0 ? 'success' : ( item.currentStatus.status == -1 ? 'error' : '')}}</span>
                             </a>
