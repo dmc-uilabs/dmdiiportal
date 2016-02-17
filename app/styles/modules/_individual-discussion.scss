@@ -54,6 +54,9 @@
 		.header{
 			padding: 0 16px;
 		}
+		.message{
+			padding: 16px;
+		}
 		.comment{
 			padding: 16px;
 			border-bottom: 1px solid #999;
@@ -72,6 +75,46 @@
 					font-weight: normal;
 					a{
 						text-decoration: none;
+						&:hover{
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+			.text{
+				padding: 16px 0;
+			}
+			.comment-footer{
+				p {
+					margin: 0;
+				}
+				.md-button{
+					margin: 0;
+					width: auto;
+					min-width: 20px;
+					height: 20px;
+					min-height: 20px;
+					line-height: 20px;
+					text-transform: none;
+				}
+			}
+		}
+		.reply{
+			padding-left: 36px;
+			.comment-header{
+				height: 65px;
+				img{
+					height: 100%;
+					width: auto;
+					margin-right: 16px;
+				}
+				h3{
+					font-weight: normal;
+					a{
+						text-decoration: none;
+						&:hover{
+							text-decoration: underline;
+						}
 					}
 				}
 			}
@@ -95,7 +138,8 @@
 		}
 
 		form[name=CommentForm]{
-			padding: 15px;
+			padding: 15px;;
+            background-color: #d0d0d0;
 		}
 	}
 	.right-column{

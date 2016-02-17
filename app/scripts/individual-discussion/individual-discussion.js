@@ -56,6 +56,8 @@ angular.module('dmc.individual-discussion', [
             $scope.NewComment = "";
             $scope.discussion = null;
             $scope.flagReviewFlag = false;
+            $scope.replyReviewFlag = false;
+            $scope.showReplyFlag = false;
 
             $scope.userData = DMCUserModel.getUserData();
             $scope.userData.then(function(result) {  // this is only run after $http completes
@@ -93,6 +95,36 @@ angular.module('dmc.individual-discussion', [
                     },"GET");
                 };
 
+                //load hrlpful
+                $scope.get_helpful = function(comment){
+                    ajax.get(dataFactory.getDiscussionCommentsHelpful(),
+                        {
+                            'commentId': comment.id,
+                            'accountId': $rootScope.userData.accountId
+                        },
+                        function(response){
+                            comment['helpful'] = response.data[0];
+                        }
+                    )
+                }
+
+                //load reply
+                $scope.get_reply = function(comment){
+                    ajax.get(dataFactory.getDiscussionsReply(comment.id),
+                        {
+                            '_order': "DESC",
+                            '_sort': "date"
+                        },
+                        function(response){
+                            for(var i in response.data){
+                                response.data[i].created_at = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                                $scope.get_helpful(response.data[i]);
+                            }                        
+                            comment['replyReviews'] = response.data;
+                        }
+                    )
+                }
+
                 // load comments
                 $scope.loadComments = function(){
                     ajax.on(dataFactory.getDiscussionComments($scope.discussion.id), {
@@ -104,6 +136,8 @@ angular.module('dmc.individual-discussion', [
                         for (var c in $scope.discussion.comments.items) {
                             $scope.discussion.comments.items[c].created_at = moment($scope.discussion.comments.items[c].created_at).format('MM/DD/YYYY, h:mm A');
                             if ($scope.userData.accountId == $scope.discussion.comments.items[c].accountId) $scope.discussion.comments.items[c].isOwner = true;
+                            $scope.get_helpful($scope.discussion.comments.items[c]);
+                            $scope.get_reply($scope.discussion.comments.items[c]);
                         }
                         apply();
                     }, function(){
@@ -145,63 +179,91 @@ angular.module('dmc.individual-discussion', [
 
                 //Like review
                 $scope.Like = function(item){
-                    if(item.userRatingReview[$scope.userData.displayName] == "none"){
-                        item.like++;
-                        item.userRatingReview[$scope.userData.displayName] = 'like';
-                    }else if(item.userRatingReview[$scope.userData.displayName] == 'like'){
-                        item.like--;
-                        item.userRatingReview[$scope.userData.displayName] = "none";
+                    if(item.helpful){
+                        if(item.helpful.helpful === true){
+                            item.helpful.helpful = null;
+                            item.like--;
+                        }else if(item.helpful.helpful === false){
+                            item.helpful.helpful = true;
+                            item.like++;
+                            item.dislike--;
+                        }else{
+                            item.helpful.helpful = true;
+                            item.like++;
+                        }
+                        ajax.update(dataFactory.updateDiscussionCommentsHelpful(item.helpful.id),
+                            item.helpful,
+                            function(response){}
+                        )
                     }else{
                         item.like++;
-                        item.userRatingReview[$scope.userData.displayName] = 'like';
-                        item.dislike--;
+                        ajax.create(dataFactory.addDiscussionCommentsHelpful(),
+                            {
+                                accountId: $rootScope.userData.accountId,
+                                commentId: item.id,
+                                helpful: true      
+                            },function(response){
+                                item.helpful = response.data;
+                            }
+                        )
                     }
-                    ajax.on(
-                        dataFactory.addDiscussionLikeDislike(),
-                        {
-                            commentId: item.id,
-                            like: item.like,
-                            dislike: item.dislike,
-                            ratingComment: item.userRatingReview[$scope.userData.displayName],
-                            userLogin: $scope.userData.displayName
-                        },
-                        function(data){
-                        },
-                        function(){
-                        },
-                        "POST"
-                    );
+                    ajax.get(dataFactory.saveChangedDiscussionComment(item.id),
+                        {},
+                        function(response){
+                            response.data.like = item.like;
+                            response.data.dislike = item.dislike;
+                            ajax.update(dataFactory.saveChangedDiscussionComment(item.id),
+                                response.data,
+                                function(response){}
+                            )
+                        }
+                    )
                 };
 
                 //DisLike review
                 $scope.DisLike = function(item){
-                    if(item.userRatingReview[$scope.userData.displayName] == "none"){
-                        item.dislike++;
-                        item.userRatingReview[$scope.userData.displayName] = 'dislike';
-                    }else if(item.userRatingReview[$scope.userData.displayName] == 'dislike'){
-                        item.dislike--;
-                        item.userRatingReview[$scope.userData.displayName] = "none";
+                    if(item.helpful){
+                        if(item.helpful.helpful === true){
+                            item.helpful.helpful = false;
+                            item.dislike++;
+                            item.like--;
+                        }else if(item.helpful.helpful === false){
+                            item.helpful.helpful = null;
+                            item.dislike--;
+                        }else{
+                            item.helpful.helpful = false;
+                            item.dislike++;
+                        }
+                        ajax.update(dataFactory.updateDiscussionCommentsHelpful(item.helpful.id),
+                            item.helpful,
+                            function(response){}
+                        )
                     }else{
                         item.dislike++;
-                        item.userRatingReview[$scope.userData.displayName] = 'dislike';
-                        item.like--;
+                        ajax.create(dataFactory.addDiscussionCommentsHelpful(),
+                            {
+                                accountId: $rootScope.userData.accountId,
+                                commentId: item.id,
+                                helpful: false      
+                            },function(response){
+                                item.helpful = response.data;
+                            }
+                        )
                     }
-                    ajax.on(
-                        dataFactory.addDiscussionLikeDislike(),
-                        {
-                            commentId: item.id,
-                            like: item.like,
-                            dislike: item.dislike,
-                            ratingComment: item.userRatingReview[$scope.userData.displayName],
-                            userLogin: $scope.userData.displayName
-                        },
-                        function(data){},
-                        function(){},
-                        "POST"
-                    );
+                    ajax.get(dataFactory.saveChangedDiscussionComment(item.id),
+                        {},
+                        function(response){
+                            response.data.like = item.like;
+                            response.data.dislike = item.dislike;
+                            ajax.update(dataFactory.saveChangedDiscussionComment(item.id),
+                                response.data,
+                                function(response){}
+                            )
+                        }
+                    )
                 };
 
-                //Submit Leave A Review form
+                //Submit comment
                 $scope.Submit = function(){
                     ajax.on(
                         dataFactory.addCommentIndividualDiscussion(), {
@@ -209,11 +271,10 @@ angular.module('dmc.individual-discussion', [
                             "full_name": $scope.userData.displayName,
                             "accountId": $scope.userData.accountId,
                             "avatar": "/images/carbone.png",
+                            "reply": false,
+                            "commentId": 0,
                             "text": $scope.newComment,
-                            "created_at": moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
-                            "userRatingReview": {
-                                "DMC Member": "like"
-                            },
+                            "created_at": moment(new Date).format("x"),
                             "like": 0,
                             "dislike": 0
                         },
@@ -230,16 +291,68 @@ angular.module('dmc.individual-discussion', [
                     );
                 };
 
-                $scope.flagPost = function(index){
+                //Submit reply comment
+                $scope.SubmitReply = function(NewComment, id, index){
+                    console.info("n", NewComment);
+                    ajax.create(dataFactory.addCommentIndividualDiscussion(), {
+                            "individual-discussionId": $stateParams.discussionId,
+                            "full_name": $scope.userData.displayName,
+                            "accountId": $scope.userData.accountId,
+                            "avatar": "/images/carbone.png",
+                            "reply": false,
+                            "commentId": id,
+                            "text": NewComment.Comment,
+                            "created_at": moment(new Date).format("x"),
+                            "like": 0,
+                            "dislike": 0
+                        },
+                        function(response){
+                            ajax.get(dataFactory.saveChangedDiscussionComment(id),
+                                {},
+                                function(response){
+                                    response.data.reply = true;
+                                    ajax.update(dataFactory.saveChangedDiscussionComment(id),
+                                        response.data,
+                                        function(response){}
+                                    )
+                                }
+                            )
+                            $scope.discussion.comments.items[index].reply = true;
+                            response.data.created_at = moment(response.data.created_at).format("MM/DD/YYYY hh:mm a");
+                            if($scope.discussion.comments.items[index].replyComments){
+                                $scope.discussion.comments.items[index].replyComments.unshift(response.data);
+                            }else{
+                                $scope.discussion.comments.items[index]['replyComments'] = [response.data];
+                            }
+                        }
+                    );
+                    $scope.flagReviewFlag = false;
+                    $scope.replyReviewFlag = false;
+                }
+
+                //Submit flagged comment
+                $scope.SubmitFlagged = function(NewComment, id, index){
+                    $scope.flagReviewFlag = false;
+                    $scope.replyReviewFlag = false;
+                };
+
+                $scope.flagged = function(index){
+                    $scope.replyReviewFlag = false;
                     $scope.flagReviewFlag = ( $scope.flagReviewFlag === index ? false : index );
                 };
 
-                $scope.Cancel = function(){
+                $scope.reply = function(index){
                     $scope.flagReviewFlag = false;
+                    $scope.replyReviewFlag = ( $scope.replyReviewFlag === index ? false : index );
                 };
 
-                $scope.SubmitReview = function(NewReview){
+                $scope.ShowReply = function(index){
+                    $scope.showReplyFlag = ( $scope.showReplyFlag === index ? false : index );
+                }
+
+                $scope.Cancel = function(){
                     $scope.flagReviewFlag = false;
+                    $scope.replyReviewFlag = false;
                 };
 
                 $scope.createDiscussion = function(ev){

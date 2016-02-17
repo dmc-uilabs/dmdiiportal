@@ -147,11 +147,10 @@ angular.module('dmc.individual-discussion')
                         "full_name": "DMC Member",
                         "accountId": $scope.accountId,
                         "avatar": "/images/carbone.png",
+                        "reply": false,
+                        "commentId": 0,
                         "text": $scope.newComment,
-                        "created_at": moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
-                        "userRatingReview": {
-                            "DMC Member": "like"
-                        },
+                        "created_at": moment(new Date).format("x"),
                         "like": 0,
                         "dislike": 0
                     },

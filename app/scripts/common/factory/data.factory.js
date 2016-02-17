@@ -367,8 +367,14 @@ angular.module('dmc.data',[])
                     delete : localhost+name+'/'+id,
                     create : localhost+name,
                     all : localhost+name,
-                    reviews : localhost + name +'/' + id + '/company_reviews',
+                    reviews : localhost + name +'/' + id + '/company_reviews?reviewId=0',
                     addReviews : localhost + 'company_reviews',
+                    get_review : localhost + 'company_reviews/' + id,
+                    update_review : localhost + 'company_reviews/' + id,
+                    getReply : localhost + 'company_reviews?reviewId=' + id,
+                    getHelpful : localhost + 'company_reviews_helpful',
+                    addHelpful : localhost + 'company_reviews_helpful',
+                    updateHelpful : localhost + 'company_reviews_helpful/' + id,
                     history : localhost + name +'/' + id + '/company_history'
                 }
             },
@@ -425,8 +431,14 @@ angular.module('dmc.data',[])
                 return {
                     get : localhost + name + '/' + id,
                     update : localhost + name + '/' + id,
-                    reviews : localhost + name +'/' + id + '/profile_reviews',
+                    reviews : localhost + name +'/' + id + '/profile_reviews?reviewId=0',
+                    get_review : localhost + 'profile_reviews/' + id,
                     addReviews : localhost + 'profile_reviews',
+                    update_review : localhost + 'profile_reviews/' + id,
+                    getReply : localhost + 'profile_reviews?reviewId=' + id,
+                    getHelpful : localhost + 'profile_reviews_helpful',
+                    addHelpful : localhost + 'profile_reviews_helpful',
+                    updateHelpful : localhost + 'profile_reviews_helpful/' + id,
                     history : localhost + name +'/' + id + '/profile_history',
                     all : localhost + name
                 }
@@ -572,8 +584,22 @@ angular.module('dmc.data',[])
                 return localhost+'individual-discussion-comments'+(id ? '/'+id : '');
             },
             getDiscussionComments : function(id){
-                return localhost+'individual-discussion/'+id+'/individual-discussion-comments';
+                return localhost+'individual-discussion/'+id+'/individual-discussion-comments?commentId=0';
             },
+            ///
+            getDiscussionsReply : function(id){
+                return localhost + 'individual-discussion-comments?commentId=' + id;
+            },
+            getDiscussionCommentsHelpful : function(){
+                return localhost + 'individual-discussion-comments-helpful';
+            },
+            addDiscussionCommentsHelpful : function(){
+                return localhost + 'individual-discussion-comments-helpful';
+            },
+            updateDiscussionCommentsHelpful : function(id){
+                return localhost + 'individual-discussion-comments-helpful/' + id;
+            },
+            ///
             getIndividualDiscussion: function(id){
                 return localhost+'individual-discussion'+(id ? '/'+id : '');
             },
