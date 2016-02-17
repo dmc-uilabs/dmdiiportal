@@ -1,5 +1,5 @@
 angular.module('dmc.onboarding')
-.controller('homeController', 
+.controller('homeController',
 	['$scope', '$rootScope', '$mdDialog', 'DMCUserModel',
 	function ($scope, $rootScope, $mdDialog, DMCUserModel) {
 		$scope.showModalBasicInformations = function(){
@@ -28,15 +28,12 @@ angular.module('dmc.onboarding')
 		    }, function() {
 		    });
 		}
-		$scope.user = DMCUserModel.getUserData();
-        $scope.user.then(function(result) { 
-            console.log(result);
-            if(!result.termsConditions){
+		$scope.user = DMCUserModel.getUserData().then(function(result){
+			if(!result.termsConditions){
 				$scope.showModalBasicInformations();
-				}
-        });
-		console.info("u",$rootScope );
-		
+			}
+		});
+
 }]);
 
 

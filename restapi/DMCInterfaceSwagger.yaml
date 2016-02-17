@@ -1034,11 +1034,38 @@ paths:
           description: send the discussion with discussionID
           schema:
             $ref: '#/definitions/Discussion'
+  '/profiles':
+    post:
+      tags:
+        - profile
+      description: Create a new user profile
+      parameters:
+        - in: body
+          name: Profile
+          description: Profile to be created
+          required: false
+          schema:
+            $ref: '#/definitions/Profile'
+      responses:
+        '201':
+          description: New user profile created
+          schema:
+            $ref: '#/definitions/Profile'
+    get:
+      tags:
+        - profile
+      description: Get all user profiles
+      responses:
+        '200':
+          description: send all user profiles
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Profile'
   '/profiles/{profileID}':
     get:
       tags:
         - profile
-      summary: Get information for a member profile
       description: Get profile based on profileID
       parameters:
         - name: profileID
@@ -1079,6 +1106,45 @@ paths:
           description: returns updated profile
           schema:
             $ref: '#/definitions/Profile'
+    delete:
+      tags:
+        - profile
+      description: Delete a profile by id
+      parameters:
+        - in: path
+          name: profileID
+          description: ID of profile to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+  '/profiles/{profileID}/profile_history':
+    get:
+      tags:
+        - profile
+      description: Get the user activities history by profile ID
+      parameters:
+        - name: profileID
+          in: path
+          type: string
+          description: ID of the profile
+          required: true
+        - name: section
+          in: query
+          type: string
+          enum:
+            - mutual
+            - public
+          description: filter result by section
+          required: false
+      responses:
+        '200':
+          description: send user activities history
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProfileHistory'
   '/profiles/{profileID}/profile_reviews':
     get:
       tags:
@@ -3084,6 +3150,41 @@ definitions:
         type: array
         items:
           type: string
+  ProfileHistory:
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
+        type: string
+      title:
+        type: string
+      date:
+        type: string
+        format: dateTime
+      profileId:
+        type: string
+      user:
+        type: string
+      link:
+        type: string
+      section:
+        type: string
+        enum:
+          - public
+          - mutual
+      period:
+        type: string
+        enum:
+          - today
+          - week
+      type:
+          type: string
+          enum:
+            - completed
+            - rated
+            - added
+            - worked
   ProfileReview:
     type: object
     properties:
