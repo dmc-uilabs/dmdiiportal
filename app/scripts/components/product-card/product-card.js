@@ -216,7 +216,9 @@ angular.module('dmc.component.productcard', [
               });
           };
 
+          var scrollPosition;
           $scope.show = function(ev){
+              scrollPosition = $(window).scrollTop();
               $mdDialog.show({
                   controller: "ShowProductCtrl",
                   templateUrl: "templates/components/product-card/show-product.html",
@@ -227,6 +229,10 @@ angular.module('dmc.component.productcard', [
                       addToFavorite : $scope.addToFavorite,
                       getProduct : $scope.cardSource
                   }
+              }).then(function() {
+                  $(window).scrollTop(scrollPosition);
+              }, function() {
+                  $(window).scrollTop(scrollPosition);
               });
           }
       }

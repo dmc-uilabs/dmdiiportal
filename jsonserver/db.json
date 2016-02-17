@@ -3246,8 +3246,8 @@
       "serviceId": 42,
       "accountId": 1,
       "runBy": "Thomas Smith",
-      "status": 1,
-      "percentCompleted": 0,
+      "status": 0,
+      "percentCompleted": 100,
       "startDate": "2016-02-17",
       "startTime": "15:57:21",
       "project": {
