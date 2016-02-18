@@ -31,7 +31,7 @@
 								<div>
 									<a href="" ng-click="reply($index)">Reply</a>
 									 | 
-									<a href="" ng-click="flagged($index)">Flagged</a>
+									<a href="" ng-click="flagged($index)">Flag{{(comment.flagged)?'ged':''}}</a>
 								</div>
 								<md-button md-no-ink class="md-button" ng-if="comment.reply" ng-click="ShowReply($index)">
 							        {{(showReplyFlag === $index )? 'Hide' : 'Show' }} Repl{{(comment.replyReviews.length > 1)?'ies':'y'}}

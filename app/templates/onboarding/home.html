@@ -4,7 +4,10 @@
 			<div class="section-header" layout="column" layout-align="start start" layout-fill>
 				<h2>Welcome to the Digital Manufacturing Commons</h2>
 				<h3>A collaboration community to drive advanced system engineering.</h3>
-
+			</div>
+			<div class="section-skip" layout="row" layout-align="end center" 
+				 ng-if="!$root.userData.onboarding.account || !$root.userData.onboarding.company || !$root.userData.onboarding.profile || !$root.userData.onboarding.storefront">
+				<a class="link" ng-href="/">skip setup</a>
 			</div>
 			<div layout="column" class="background">
 				<div class="section" layout="row" layout-align="center center" layout-fill>
@@ -100,7 +103,8 @@
 				</div>
 			
 			</div>
-			<div class="section-footer" layout="column" layout-align="center center">
+			<div class="section-footer" layout="column" layout-align="center center"
+				 ng-if="$root.userData.onboarding.account && $root.userData.onboarding.company && $root.userData.onboarding.profile && $root.userData.onboarding.storefront">
 				<h2>You have completed the setup.</h2>
 				<a class="link" ng-href="/">go to home</a>
 			</div>

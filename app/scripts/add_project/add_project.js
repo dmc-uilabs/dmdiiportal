@@ -65,6 +65,23 @@ angular.module('dmc.add_project', [
                                 function(response){  
                                     console.info(response);
                                     var lastMemberId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1); 
+
+                                    ajax.create(dataFactory.createMembersToProject(),
+                                        {
+                                            "id": lastMemberId,
+                                            "profileId": $rootScope.userData.profileId,
+                                            "projectId": lastId,
+                                            "fromProfileId": $rootScope.userData.profileId,
+                                            "from": $rootScope.userData.displayName,
+                                            "date": moment(new Date).format('x'),
+                                            "accept": true
+                                        },
+                                        function(response){
+                                        }
+                                    );
+                                    lastMemberId++;
+
+
                                     for(var i in array){
                                         ajax.create(dataFactory.createMembersToProject(),
                                             {

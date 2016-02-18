@@ -332,6 +332,7 @@ angular.module('dmc.individual-discussion', [
 
                 //Submit flagged comment
                 $scope.SubmitFlagged = function(NewComment, id, index){
+                    $scope.discussion.comments.items[index]['flagged'] = true;
                     $scope.flagReviewFlag = false;
                     $scope.replyReviewFlag = false;
                 };

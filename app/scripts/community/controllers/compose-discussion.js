@@ -25,8 +25,6 @@ angular.module('dmc.community')
                 message: ""
             };
 
-            $scope.linkToDiscussion = false;
-
             $scope.cancel = function(){
                 $scope.NewDiscussion = {
                     subject: "",
@@ -50,6 +48,7 @@ angular.module('dmc.community')
             $scope.save = function(message, subject){
                 ajax.create(
                     dataFactory.addDiscussion(), {
+                        "message": $scope.NewDiscussion.message,
                         "title": $scope.NewDiscussion.subject,
                         "accountId" : $rootScope.userData.accountId
                     },
@@ -66,16 +65,16 @@ angular.module('dmc.community')
                                     );
                                     if (i == $scope.NewDiscussion.tags.length - 1) {
                                         toastModel.showToast("success", "Discussion created");
-                                        $scope.linkToDiscussion = '/individual-discussion.php#/' + response.data.id;
-                                        // $window.location.href = '/individual-discussion.php#/' + response.data.id;
-                                        // $mdDialog.hide();
+                                        // $scope.linkToDiscussion = '/individual-discussion.php#/' + response.data.id;
+                                        $mdDialog.hide();
+                                        $window.location.href = '/individual-discussion.php#/' + response.data.id;
                                     }
                                 }
                             } else {
                                 toastModel.showToast("success", "Discussion created");
-                                $scope.linkToDiscussion = '/individual-discussion.php#/' + response.data.id;
-                                // $window.location.href = '/individual-discussion.php#/' + response.data.id;
-                                // $mdDialog.hide();
+                                // $scope.linkToDiscussion = '/individual-discussion.php#/' + response.data.id;
+                                $mdDialog.hide();
+                                $window.location.href = '/individual-discussion.php#/' + response.data.id;
                             }
                         }
                     }
