@@ -47,12 +47,12 @@ angular.module('dmc.profile')
         $scope.history = {
             leftColumn: {
                 title: "Public",
-                viewAllLink: "",
+                viewAllLink: "/all.php#/history/profile/"+$stateParams.profileId+"/public",
                 list: []
             },
             rightColumn: {
                 title: "Mutual",
-                viewAllLink: "",
+                viewAllLink: "/all.php#/history/profile/"+$stateParams.profileId+"/mutual",
                 list:[]
             }
         }

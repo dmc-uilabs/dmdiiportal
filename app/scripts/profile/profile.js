@@ -5,6 +5,7 @@ angular.module('dmc.profile', [
     'ngMdIcons',
     'ngtimeago',
     'ui.router',
+    'ngCookies',
     'md.data.table',
     'dmc.ajax',
     'dmc.data',
@@ -18,6 +19,7 @@ angular.module('dmc.profile', [
     'dmc.model.toast-model',
     'dmc.model.fileUpload',
     'dmc.model.profile',
+    'dmc.model.previous-page',
     'flow'
 ])
     .config(function ($stateProvider, $urlRouterProvider) {

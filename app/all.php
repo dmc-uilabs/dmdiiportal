@@ -102,6 +102,9 @@
     <script src="scripts/all/user-discussions.controller.js"></script>
     <script src="scripts/all/run-services.controller.js"></script>
     <script src="scripts/all/invitations.controller.js"></script>
+    <script src="scripts/all/announcements.controller.js"></script>
+    <script src="scripts/all/history-profile.controller.js"></script>
+    <script src="scripts/all/history-company.controller.js"></script>
 
     <!-- endbuild -->
     <script type="text/javascript">

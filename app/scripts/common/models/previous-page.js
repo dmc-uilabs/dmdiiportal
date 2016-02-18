@@ -28,6 +28,16 @@ angular.module('dmc.model.previous-page', [
                         title: "Back to the My Projects",
                         url: previousPage
                     };
+                } else if (previousPage.indexOf('company-profile.php') != -1) {
+                    return {
+                        title: "Back to the Company",
+                        url: previousPage
+                    };
+                } else if (previousPage.indexOf('profile.php') != -1) {
+                    return {
+                        title: "Back to the Profile",
+                        url: previousPage
+                    };
                 } else {
                     return {
                         title: "Back to the Dashboard",

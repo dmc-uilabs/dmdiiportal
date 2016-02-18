@@ -59,6 +59,7 @@
     }
   }
   .discussions-list,
+  .announcements-list,
   .tasks-list{
     margin-top: 21px;
     th{
@@ -72,6 +73,20 @@
     }
     .title-task{
       cursor: pointer;
+    }
+  }
+  .announcements-list{
+    h2{
+      margin: 0;
+    }
+  }
+  .history-list{
+    h2{
+      font-weight: normal;
+      font-size: 15px;
+    }
+    ng-md-icon{
+      margin-right: 16px;
     }
   }
   .services-list {

@@ -59,6 +59,18 @@ angular.module('dmc.view-all', [
             url: '/invitations',
             controller: 'ViewAllInvitationsController',
             templateUrl: 'templates/all/all-invitations.html'
+        }).state('announcements', {
+            url: '/announcements?text?type',
+            controller: 'ViewAllAnnouncementsController',
+            templateUrl: 'templates/all/all-announcements.html'
+        }).state('history-profile', {
+            url: '/history/profile/:profileId/:type',
+            controller: 'ViewAllHistoryProfileController',
+            templateUrl: 'templates/all/all-history.html'
+        }).state('history-company', {
+            url: '/history/company/:companyId/:type',
+            controller: 'ViewAllHistoryCompanyController',
+            templateUrl: 'templates/all/all-history.html'
         });
 	$urlRouterProvider.otherwise('/services/1');
 });

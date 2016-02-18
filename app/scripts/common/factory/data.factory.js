@@ -337,6 +337,9 @@ angular.module('dmc.data',[])
             getAnnouncements: function(){
                 return localhost+'announcements';
             },
+            getAnnouncementsComments: function(id){
+                return localhost+'announcements/'+id+'/announcement_comments';
+            },
             updateCompanyFeaturedPosition: function(id){
                 return localhost+'company_featured/'+id+'/position';
             },

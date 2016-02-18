@@ -1,6 +1,8 @@
 'use strict';
 
 angular.module('dmc.widgets.tabs',[
+    'ngCookies',
+    'dmc.model.previous-page'
 ])
 	.directive('uiWidgetTabsHistory', [function () {
 		return {
@@ -9,10 +11,13 @@ angular.module('dmc.widgets.tabs',[
 			//transclude: true,
 			scope: {
 				data: "="
-			}
+			},
+			controller: ["$scope", "previousPage", function($scope, previousPage){
+                $scope.previousPage = previousPage;
+            }]
 		};
 	}])
-	.directive('uiWidgetTabsStatistic', [ function () {
+	.directive('uiWidgetTabsStatistic', [function () {
 		return {
 			restrict: 'E',
 			templateUrl: 'templates/components/ui-widgets/tabs-statistic.html',
