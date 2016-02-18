@@ -128,18 +128,7 @@ angular.module('dmc.service-marketplace')
                     }
                 );
             }
-/*
-            ajax.get('http://localhost:3000/product_reviews',{},function(response){
-                for (var i in response.data){
-                    //response.data[i].date = moment(response.data[i].date).format('x');
-                    delete response.data[i]['profileId'];
-                    response.data[i]['accountId'] = 1;
-                    ajax.update('http://localhost:3000/product_reviews/'+response.data[i].id, 
-                       response.data[i],
-                       function(){} )
-                }
-            })
-*/
+            
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };

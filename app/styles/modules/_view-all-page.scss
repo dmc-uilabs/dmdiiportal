@@ -59,6 +59,7 @@
     }
   }
   .discussions-list,
+  .announcements-list,
   .tasks-list{
     margin-top: 21px;
     th{
@@ -72,6 +73,20 @@
     }
     .title-task{
       cursor: pointer;
+    }
+  }
+  .announcements-list{
+    h2{
+      margin: 0;
+    }
+  }
+  .history-list{
+    h2{
+      font-weight: normal;
+      font-size: 15px;
+    }
+    ng-md-icon{
+      margin-right: 16px;
     }
   }
   .services-list {
@@ -101,6 +116,26 @@
     .status{
       min-width: 120px;
       max-width: 150px;
+    }
+  }
+  .inivitation{
+    padding: 16px;
+    .box{
+      background-color: #fff;
+      border-bottom: 1px solid grey;
+      padding: 16px 32px;
+      &:last-child{
+        border-bottom: none;
+      }
+      .images-box{
+        width: 75px;
+        height: 75px;
+        margin: 18px;
+        img{
+          width: 100%;
+          height: auto;
+        }
+      }
     }
   }
 }

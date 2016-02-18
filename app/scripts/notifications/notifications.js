@@ -16,7 +16,7 @@ angular.module('dmc.notifications', [
 			controller: 'notificationsPmController',
 			resolve: {
 				notificationsStatistic: ['notificationsModel', function(notificationsModel){
-					return notificationsModel.get_notifications_statistic();
+					return notificationsModel.get_notifications_pm_statistic();
 				}]
 			}
 		})
@@ -26,7 +26,7 @@ angular.module('dmc.notifications', [
 			controller: 'notificationsUserController',
 			resolve: {
 				notificationsStatistic: ['notificationsModel', function(notificationsModel){
-					return notificationsModel.get_notifications_statistic();
+					return notificationsModel.get_notifications_user_statistic();
 				}]
 			}
 		});
@@ -34,8 +34,8 @@ angular.module('dmc.notifications', [
 	})
 	.service('notificationsModel', ['ajax', 'dataFactory', 'toastModel',
                             function (ajax, dataFactory, toastModel) {
-        this.get_notifications = function(params, callback){
-            return ajax.get(dataFactory.getNotifications(),
+        this.get_notifications_user = function(params, callback){
+            return ajax.get(dataFactory.getNotificationsUser(),
                 params,
                 function(response){
                     callback(response.data);
@@ -43,8 +43,25 @@ angular.module('dmc.notifications', [
             )
         };
 
-        this.get_notifications_statistic = function(callback, params){
-            return ajax.get(dataFactory.getNotificationsStatistic(),
+        this.get_notifications_user_statistic = function(callback, params){
+            return ajax.get(dataFactory.getNotificationsStatisticUser(),
+                {},
+                function(response){
+                    return response.data;
+                }
+            )
+        };
+        this.get_notifications_pm = function(params, callback){
+            return ajax.get(dataFactory.getNotificationsPm(),
+                params,
+                function(response){
+                    callback(response.data);
+                }
+            )
+        };
+
+        this.get_notifications_pm_statistic = function(callback, params){
+            return ajax.get(dataFactory.getNotificationsStatisticPm(),
                 {},
                 function(response){
                     return response.data;

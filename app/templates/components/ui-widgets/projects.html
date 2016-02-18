@@ -7,8 +7,8 @@
         </div>
     </md-toolbar>
 </div>
-<div class="content-panel-body" layout="column">
-  <md-content class="rp-panel md-padding" layout="row" ng-repeat="item in projects">
+<div class="content-panel-body" layout="column" flex="100">
+  <md-content class="rp-panel md-padding" flex="100" layout="row" ng-repeat="item in projects">
       <div layout="column" flex>
           <div class="rp-panel__title my-projects" layout="row">
               <h2>
@@ -17,7 +17,7 @@
               </h2>
           </div>
 
-          <md-content ng-if="!widgetShowAllBlocks">
+          <md-content ng-if="!widgetShowAllBlocks" flex="100">
               <md-tabs md-dynamic-height md-border-bottom>
                   <md-tab label="Tasks">
                       <md-content flex
@@ -43,7 +43,7 @@
               </md-tabs>
           </md-content>
 
-          <div class="rp-panel__tab-content widget-blocks" layout="row" layout-align="space-between start" ng-if="widgetShowAllBlocks">
+          <div class="rp-panel__tab-content widget-blocks" layout="row" flex="100" layout-align="space-between start" ng-if="widgetShowAllBlocks">
               <!-- Tasks -->
               <md-content flex="{{flexBox}}"
                           layout-padding

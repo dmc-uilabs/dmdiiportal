@@ -1,0 +1,40 @@
+<div class="container container-view-all" layout-padding layout="row">
+    <div layout="column" flex>
+        <div class="return-block" ng-if="previousPage">
+            <a ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
+        </div>
+        <h2 class="page-title">{{type}} History</h2>
+        <div class="content-panel">
+            <div class="content-panel-body">
+                <md-content layout-padding>
+                    <div class="history-list">
+                        <md-data-table-container>
+                            <table md-data-table>
+                                <thead md-order="sort" md-trigger="onOrderChange">
+                                <tr>
+                                    <th name="Action" order-by="type"></th>
+                                    <th name="Date" order-by="date"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in history">
+                                    <td>
+                                    	<div layout="row" layout-align="start center">
+                                    		<ng-md-icon icon="{{item.icon}}" style="fill: grey;" size="25"></ng-md-icon>
+											<a href=""><h2>{{item.title}}</h2></a>
+                                    	</div>
+                                    </td>
+                                    <td>{{item.date}}</td>
+                                </tr>
+                                <tr ng-if="history.length == 0">
+                                    <td class="empty" colspan="4">No history</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </md-data-table-container>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

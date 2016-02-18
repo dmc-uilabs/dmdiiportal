@@ -63,11 +63,11 @@
       </md-toolbar>
     </div>
 
-    <div class="container all-projects-container" layout="row" layout-padding>
-        <div class="content-panel"
-             id="allProjectsList"
+    <div class="container my-projects-container" layout="row" layout-padding flex="100">
+        <div class="content-panel" layout="column" flex="100"
+             id="myProjectsList"
              ui-widget-projects
-             widget-format="'all-projects'"
+             widget-format="'my-projects'"
              widget-title="null"
              widget-show-all-blocks="true"></div>
     </div>

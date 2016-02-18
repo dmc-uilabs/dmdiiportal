@@ -1,82 +1,112 @@
 <div class="onboarding-home">
 	<md-content layout layout-align="center center">
-		<div layout="column" flex="50" layout-align="start center" layout-fill>
-			<div class="section first" layout="column" layout-align="start center" layout-fill>
+		<div layout="column" flex="70" layout-fill>
+			<div class="section-header" layout="column" layout-align="start start" layout-fill>
 				<h2>Welcome to the Digital Manufacturing Commons</h2>
-				<h3>The DMC will enable systems engineering accross the entire manufacturing enterprise.<br>
-				You can <a ng-href="/">skip this section</a> and return to it later.</h3>
-
+				<h3>A collaboration community to drive advanced system engineering.</h3>
 			</div>
-			<div class="section" layout="row" layout-align="center center" layout-fill>
-				<div flex="10">
-					<img ng-src="images/icon-profile-lg.svg">
-				</div>
-				<div layout="column" flex="65" class="text">
-					<h2><a ui-sref="^.profile">Fill out your profile</a></h2>
-					<h3>Tell everyone about yourself and brag about your skills</h3>
-				</div>
-				<md-button class="md-raised md-primary dmc-button" ng-if="userData.onboarding.profile" flex="25">
-					Completed
-					<ng-md-icon icon="done" style="fill: #fff" size"14">
-				</md-button>
-				<md-button ui-sref="^.profile" class="md-raised dmc-button" ng-if="!userData.onboarding.profile" flex="25">
-					Go To
-				</md-button>
+			<div class="section-skip" layout="row" layout-align="end center" 
+				 ng-if="!$root.userData.onboarding.account || !$root.userData.onboarding.company || !$root.userData.onboarding.profile || !$root.userData.onboarding.storefront">
+				<a class="link" ng-href="/">skip setup</a>
 			</div>
+			<div layout="column" class="background">
+				<div class="section" layout="row" layout-align="center center" layout-fill>
+					<div class="image">
+						<img ng-src="images/icon-profile-lg.svg">
+					</div>
+					<div layout="column" flex class="text">
+						<h2><a ui-sref="^.profile">Create Your Profile</a></h2>
+						<h3>Let everyone know who you are and what you do.</h3>
+					</div>
+					<md-button class="md-raised dmc-button complete" 
+							   ng-if="userData.onboarding.profile" 
+							   ui-sref="^.profile"
+							   ng-mousemove="text='Edit'" 
+							   ng-mouseleave="text=false">
+						<md-icon ng-if="!text" md-svg-src="images/icon-complete.svg" aria-label="done"></md-icon>
+						{{(text)? text: 'Complete'}}
+					</md-button>
+					<md-button ui-sref="^.profile" class="md-raised dmc-button" ng-if="!userData.onboarding.profile">
+						Go To
+					</md-button>
+				</div>
 
-			<div class="section" layout="row" layout-align="center center" layout-fill>
-				<div flex="10">
-					<img ng-src="images/icon-settings-lg.svg">
+				<md-divider></md-divider>
+
+				<div class="section" layout="row" layout-align="center center" layout-fill>
+					<div class="image">
+						<img ng-src="images/icon-settings-lg.svg">
+					</div>
+					<div layout="column" flex class="text">
+						<h2><a ui-sref="^.account">Manage Your Account</a></h2>
+						<h3>Customize things the way you want them.</h3>
+					</div>
+					<md-button class="md-raised dmc-button complete" 
+							   ng-if="userData.onboarding.account" 
+							   ui-sref="^.account"
+							   ng-mousemove="text='Edit'"
+							   ng-mouseleave="text=false">
+						<md-icon ng-if="!text" md-svg-src="images/icon-complete.svg" aria-label="done"></md-icon>
+						{{(text)? text: 'Complete'}}
+					</md-button>
+					<md-button ui-sref="^.account" class="md-raised dmc-button" ng-if="!userData.onboarding.account">
+						Go To
+					</md-button>
 				</div>
-				<div layout="column" flex="65" class="text">
-					<h2><a ui-sref="^.account">Manage your account</a></h2>
-					<h3>Customize your account the way you want it</h3>
+
+				<md-divider></md-divider>
+
+
+				<div ng-if="$root.userData.role == 1" class="section" layout="row" layout-align="center center" layout-fill>
+					<div class="image">
+						<img ng-src="images/icon-company-lg.svg">
+					</div>
+					<div layout="column" flex class="text">
+						<h2><a ui-sref="^.company">Define the Company</a></h2>
+						<h3>Profile the business, its capabilities and accomplishments.</h3>
+					</div>
+					<md-button class="md-raised dmc-button complete" 
+							   ng-if="userData.onboarding.company" 
+							   ui-sref="^.company"
+							   ng-mousemove="text='Edit'" 
+							   ng-mouseleave="text=false">
+						<md-icon ng-if="!text" md-svg-src="images/icon-complete.svg" aria-label="done"></md-icon>
+						{{(text)? text: 'Complete'}}
+					</md-button>
+					<md-button ui-sref="^.company" class="md-raised dmc-button" ng-if="!userData.onboarding.company">
+						Go To
+					</md-button>
 				</div>
-				<md-button class="md-raised md-primary dmc-button" ng-if="userData.onboarding.account" flex="25">
-					Completed
-					<ng-md-icon icon="done" style="fill: #fff" size"14">
-				</md-button>
-				<md-button ui-sref="^.account" class="md-raised dmc-button" ng-if="!userData.onboarding.account" flex="25">
-					Go To
-				</md-button>
+
+				<md-divider></md-divider>
+
+
+				<div ng-if="$root.userData.role == 1" class="section" layout="row" layout-align="center center" layout-fill>
+					<div class="image">
+						<img ng-src="images/icon-marketplace-lg.svg">
+					</div>
+					<div layout="column" flex class="text">
+						<h2><a ui-sref="^.storefront">Build Your Storefront</a></h2>
+						<h3>Customize a space to promote and market your offerings.</h3>
+					</div>
+					<md-button class="md-raised dmc-button complete" 
+							   ng-if="userData.onboarding.storefront" 
+							   ui-sref="^.storefront"
+							   ng-mousemove="text='Edit'" 
+							   ng-mouseleave="text=false">
+						<md-icon ng-if="!text" md-svg-src="images/icon-complete.svg" aria-label="done"></md-icon>
+						{{(text)? text: 'Complete'}}
+					</md-button>
+					<md-button ui-sref="^.storefront" class="md-raised dmc-button" ng-if="!userData.onboarding.storefront">
+						Go To
+					</md-button>
+				</div>
+			
 			</div>
-
-			<div ng-if="$root.userData.role == 1" class="section" layout="row" layout-align="center center" layout-fill>
-				<div flex="10">
-					<img ng-src="images/icon-company-lg.svg">
-				</div>
-				<div layout="column" flex="65" class="text">
-					<h2><a ui-sref="^.company">Fill out the company profile</a></h2>
-					<h3>Tell everyone about the company, its skills, and accomplishments</h3>
-				</div>
-				<md-button class="md-raised md-primary dmc-button" ng-if="userData.onboarding.company" flex="25">
-					Completed
-					<ng-md-icon icon="done" style="fill: #fff" size"14">
-				</md-button>
-				<md-button ui-sref="^.company" class="md-raised dmc-button" ng-if="!userData.onboarding.company" flex="25">
-					Go To
-				</md-button>
-			</div>
-
-			<div ng-if="$root.userData.role == 1" class="section" layout="row" layout-align="center center" layout-fill>
-				<div flex="10">
-					<img ng-src="images/icon-marketplace-lg.svg">
-				</div>
-				<div layout="column" flex="65" class="text">
-					<h2><a ui-sref="^.storefront">Customize the company storefront</a></h2>
-					<h3>Market creations with a beautiful storefront</h3>
-				</div>
-				<md-button class="md-raised md-primary dmc-button" ng-if="userData.onboarding.storefront" flex="25">
-					Completed
-					<ng-md-icon icon="done" style="fill: #fff" size"14">
-				</md-button>
-				<md-button ui-sref="^.storefront" class="md-raised dmc-button" ng-if="!userData.onboarding.storefront" flex="25">
-					Go To
-				</md-button>
-			</div>
-
-			<div class="section">
-				<h2>You have completed the setup. <a ng-href="/">Continue to DMC Homepage</a></h2>
+			<div class="section-footer" layout="column" layout-align="center center"
+				 ng-if="$root.userData.onboarding.account && $root.userData.onboarding.company && $root.userData.onboarding.profile && $root.userData.onboarding.storefront">
+				<h2>You have completed the setup.</h2>
+				<a class="link" ng-href="/">go to home</a>
 			</div>
 		</div>
 	</md-content>

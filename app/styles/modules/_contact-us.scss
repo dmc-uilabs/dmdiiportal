@@ -21,8 +21,11 @@
       text-align: center;
     }
     .get-in-touch{
-      padding: 0px 55px;
+      padding: 0px 8px;
       border-left: 1px solid #aaa;
+      &:first-child{
+        border-left: 0;
+      }
       .contact-block{
         margin-bottom: 34px;
         &-column{
@@ -33,6 +36,7 @@
         }
         ng-md-icon{
           fill: #444;
+          margin-bottom: 8px;
         }
         a,span{
           margin-left: 13px;

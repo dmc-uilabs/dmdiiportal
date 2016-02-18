@@ -272,14 +272,12 @@
       "reply": false,
       "reviewId": 0,
       "status": true,
-      "date": "19/12/2015",
+      "date": 1450476000000,
       "rating": 1,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 22,
       "dislike": 11,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 2,
@@ -288,14 +286,12 @@
       "reply": false,
       "reviewId": 0,
       "status": false,
-      "date": "20/12/2015",
+      "date": 1450562400000,
       "rating": 2,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 9,
       "dislike": 1,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 3,
@@ -304,14 +300,12 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "11/12/2015",
+      "date": 1449784800000,
       "rating": 5,
-      "userRatingReview": {
-        "DMC Member": "dislike"
-      },
       "like": 21,
       "dislike": 2,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 4,
@@ -320,14 +314,12 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "21/12/2015",
+      "date": 1450648800000,
       "rating": 4,
-      "userRatingReview": {
-        "DMC Member": "like"
-      },
       "like": 6,
       "dislike": 0,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 7,
@@ -336,14 +328,72 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "21/11/2015",
+      "date": 1448056800000,
       "rating": 5,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 4,
       "dislike": 1,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
+    },
+    {
+      "name": "Thomas Smith",
+      "accountId": 1,
+      "reviewId": 0,
+      "rating": 5,
+      "comment": "test",
+      "id": 8,
+      "companyId": 1,
+      "reply": true,
+      "status": true,
+      "date": 1455664241792,
+      "like": 0,
+      "dislike": 0
+    },
+    {
+      "name": "Thomas Smith",
+      "accountId": 1,
+      "reviewId": 8,
+      "rating": 0,
+      "comment": "test reply",
+      "id": 9,
+      "companyId": 1,
+      "reply": false,
+      "status": true,
+      "date": 1455664534557,
+      "like": 1,
+      "dislike": 0
+    }
+  ],
+  "company_reviews_helpful": [
+    {
+      "id": 1,
+      "reviewId": 1,
+      "accountId": 1,
+      "helpful": true
+    },
+    {
+      "id": 2,
+      "reviewId": 2,
+      "accountId": 1,
+      "helpful": false
+    },
+    {
+      "accountId": 1,
+      "reviewId": 8,
+      "helpful": null,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "reviewId": 4,
+      "helpful": null,
+      "id": 4
+    },
+    {
+      "accountId": 1,
+      "reviewId": 9,
+      "helpful": true,
+      "id": 5
     }
   ],
   "company_history": [
@@ -737,15 +787,35 @@
       "accept": false,
       "fromProfileId": 1,
       "from": "Thomas Smith",
-      "id": 1
+      "id": 1,
+      "date": 1455740902151
     },
     {
       "profileId": 1,
-      "projectId": 5,
+      "projectId": 2,
       "accept": false,
       "fromProfileId": 1,
       "from": "Thomas Smith",
-      "id": 2
+      "id": 2,
+      "date": 1455740902151
+    },
+    {
+      "profileId": 1,
+      "projectId": 4,
+      "accept": false,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "id": 3,
+      "date": 1455740902151
+    },
+    {
+      "profileId": 1,
+      "projectId": 3,
+      "accept": false,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "id": 4,
+      "date": 1455740902151
     }
   ],
   "components": [
@@ -1334,7 +1404,7 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "averageRun": 16.666666666666668,
+      "averageRun": 12.75,
       "parent_component": null,
       "projectId": 2,
       "from": "marketplace",
@@ -1360,7 +1430,7 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "averageRun": 11.615384615384615,
+      "averageRun": 17329.276,
       "parent_component": null,
       "projectId": 2,
       "from": "marketplace",
@@ -2194,8 +2264,8 @@
       "serviceId": 44,
       "accountId": 1,
       "runBy": "Thomas Smith",
-      "status": 1,
-      "percentCompleted": 0,
+      "status": 0,
+      "percentCompleted": 100,
       "startDate": "2016-02-14",
       "startTime": "15:16:55",
       "project": {
@@ -2228,8 +2298,8 @@
       "serviceId": 42,
       "accountId": 1,
       "runBy": "Thomas Smith",
-      "status": 1,
-      "percentCompleted": 0,
+      "status": 0,
+      "percentCompleted": 100,
       "startDate": "2016-02-14",
       "startTime": "18:27:56",
       "project": {
@@ -2955,6 +3025,256 @@
           }
         }
       }
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": -1,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:26:42",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 43,
+      "stopDate": "2016-02-17",
+      "stopTime": "15:26:42",
+      "interface": {
+        "inParams": null,
+        "outParams": null
+      }
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:26:46",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 44
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:33:44",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 45
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:37:27",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 46
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": -1,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:37:28",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 47,
+      "stopDate": "2016-02-17",
+      "stopTime": "15:37:29",
+      "interface": {
+        "inParams": null,
+        "outParams": null
+      }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:37:32",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 48
+    },
+    {
+      "serviceId": 42,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:37:42",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 49
+    },
+    {
+      "serviceId": 41,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:37:43",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 50
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:45:51",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 51
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:45:58",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 52
+    },
+    {
+      "serviceId": 42,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:45:59",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 53
+    },
+    {
+      "serviceId": 42,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:51:37",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 54
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:51:41",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 55
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:51:42",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 56
+    },
+    {
+      "serviceId": 44,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:54:11",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 57
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:54:15",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 58
+    },
+    {
+      "serviceId": 42,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-17",
+      "startTime": "15:57:21",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 59
     }
   ],
   "input-positions": [
@@ -7128,14 +7448,12 @@
       "reply": false,
       "reviewId": 0,
       "status": true,
-      "date": "19/12/2015",
+      "date": 1450476000000,
       "rating": 1,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 22,
       "dislike": 11,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 2,
@@ -7144,14 +7462,12 @@
       "reply": false,
       "reviewId": 0,
       "status": false,
-      "date": "20/12/2015",
+      "date": 1450562400000,
       "rating": 2,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 9,
       "dislike": 1,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 3,
@@ -7160,14 +7476,12 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "11/12/2015",
+      "date": 1449784800000,
       "rating": 5,
-      "userRatingReview": {
-        "DMC Member": "dislike"
-      },
       "like": 21,
       "dislike": 2,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 4,
@@ -7176,14 +7490,12 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "21/12/2015",
+      "date": 1450648800000,
       "rating": 4,
-      "userRatingReview": {
-        "DMC Member": "like"
-      },
       "like": 6,
-      "dislike": 0,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "dislike": 1,
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
     },
     {
       "id": 7,
@@ -7192,14 +7504,52 @@
       "reviewId": 0,
       "name": "Jessica H. Wheaton",
       "status": true,
-      "date": "21/11/2015",
+      "date": 1448056800000,
       "rating": 5,
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
       "like": 4,
       "dislike": 1,
-      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio."
+      "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "accountId": 1
+    },
+    {
+      "name": "Thomas Smith",
+      "accountId": 1,
+      "reviewId": 0,
+      "rating": 3,
+      "comment": "test",
+      "id": 8,
+      "profileId": 1,
+      "reply": false,
+      "status": true,
+      "date": 1455662303752,
+      "like": 1,
+      "dislike": 0
+    }
+  ],
+  "profile_reviews_helpful": [
+    {
+      "id": 1,
+      "reviewId": 1,
+      "accountId": 1,
+      "helpful": true
+    },
+    {
+      "id": 2,
+      "reviewId": 2,
+      "accountId": 1,
+      "helpful": false
+    },
+    {
+      "accountId": 1,
+      "reviewId": 8,
+      "helpful": true,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "reviewId": 4,
+      "helpful": false,
+      "id": 4
     }
   ],
   "profile_history": [
@@ -7407,16 +7757,22 @@
   "announcements": [
     {
       "id": 1,
+      "title": "Aenean euismod bibendum laoreet. Cum soci?",
+      "accountId": 1,
       "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
       "created_at": "2016-02-11 15:18:12"
     },
     {
       "id": 2,
+      "title": "Aenean euismod bibendum laoreet. Cum soci?",
+      "accountId": 1,
       "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
       "created_at": "2016-01-06 15:18:12"
     },
     {
       "id": 3,
+      "title": "Aenean euismod bibendum laoreet. Cum soci?",
+      "accountId": 1,
       "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
       "created_at": "2016-03-08 15:18:12"
     }
@@ -7586,24 +7942,24 @@
       "individual-discussionId": 1,
       "full_name": "DMC Member",
       "accountId": 1,
+      "reply": true,
+      "commentId": 0,
       "avatar": "/images/carbone.png",
       "text": "Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?Aenean euismod bibendum laoreet. Cum soci?ddd",
-      "created_at": "2015-01-12 07:28:00",
-      "userRatingReview": {
-        "DMC Member": "none"
-      },
+      "created_at": 1421040480000,
       "like": 22,
-      "dislike": 11
+      "dislike": 12
     },
     {
       "id": 2,
       "individual-discussionId": 2,
       "full_name": "Thomas Smith",
       "accountId": 1,
+      "reply": false,
+      "commentId": 0,
       "avatar": "/images/carbone.png",
       "text": "Comment",
-      "created_at": "2016-02-11 09:13:28",
-      "userRatingReview[DMC Member]": "like",
+      "created_at": 1455174808000,
       "like": 0,
       "dislike": 0
     },
@@ -7611,12 +7967,11 @@
       "individual-discussionId": 4,
       "full_name": "Thomas Smith",
       "accountId": 1,
+      "reply": false,
+      "commentId": 0,
       "avatar": "/images/carbone.png",
       "text": "Message Discussion 91",
-      "created_at": "2016-02-12 04:20:14",
-      "userRatingReview": {
-        "DMC Member": "like"
-      },
+      "created_at": 1455243614000,
       "like": 0,
       "dislike": 0,
       "id": 3
@@ -7625,13 +7980,149 @@
       "individual-discussionId": 4,
       "full_name": "Thomas Smith",
       "accountId": 1,
+      "reply": false,
+      "commentId": 0,
       "avatar": "/images/carbone.png",
       "text": "hi",
-      "created_at": "2016-02-12 04:21:12",
-      "userRatingReview[DMC Member]": "like",
+      "created_at": 1455243672000,
       "like": 0,
       "dislike": 0,
       "id": 4
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "reply": true,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "sdfsfd",
+      "created_at": 1455665190000,
+      "like": 1,
+      "dislike": 1,
+      "id": 5
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "reply": true,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "sdfsd",
+      "created_at": 1455665200000,
+      "like": 1,
+      "dislike": 1,
+      "id": 6
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "reply": false,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "szsfsdf",
+      "created_at": 1455667168567,
+      "like": 0,
+      "dislike": 0,
+      "id": 7
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 1,
+      "created_at": 1455702089422,
+      "like": 0,
+      "dislike": 0,
+      "id": 8
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 1,
+      "text": "ewer",
+      "created_at": 1455702155431,
+      "like": 0,
+      "dislike": 0,
+      "id": 9
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 1,
+      "text": "drterw",
+      "created_at": 1455702221795,
+      "like": 0,
+      "dislike": 0,
+      "id": 10
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 5,
+      "text": "wewq",
+      "created_at": 1455703287105,
+      "like": 0,
+      "dislike": 0,
+      "id": 11
+    },
+    {
+      "individual-discussionId": 1,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 6,
+      "text": "lkjol\n",
+      "created_at": 1455703350135,
+      "like": 0,
+      "dislike": 0,
+      "id": 12
+    }
+  ],
+  "individual-discussion-comments-helpful": [
+    {
+      "id": 1,
+      "commentId": 1,
+      "accountId": 1,
+      "helpful": false
+    },
+    {
+      "id": 2,
+      "commentId": 2,
+      "accountId": 1,
+      "helpful": false
+    },
+    {
+      "accountId": 1,
+      "commentId": 5,
+      "helpful": false,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "commentId": 6,
+      "helpful": false,
+      "id": 4
+    },
+    {
+      "accountId": 1,
+      "commentId": 10,
+      "helpful": null,
+      "id": 5
     }
   ],
   "account-notification-categories": [
@@ -8064,7 +8555,7 @@
       "selected": true
     }
   ],
-  "notifications": [
+  "notifications-user": [
     {
       "id": 1,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
@@ -8416,7 +8907,401 @@
       "linkTitle": "Check out your review."
     }
   ],
-  "notifications-statistic": [
+  "notifications-user-statistic": [
+    {
+      "id": 1,
+      "name": "Projects Created",
+      "type": "projects",
+      "today": 2,
+      "week": 5,
+      "month": 7
+    },
+    {
+      "id": 2,
+      "name": "Services Completed",
+      "type": "services",
+      "today": 2,
+      "week": 5,
+      "month": 7
+    },
+    {
+      "id": 3,
+      "name": "Assigned Tasks",
+      "type": "task",
+      "today": 2,
+      "week": 5,
+      "month": 7
+    },
+    {
+      "id": 4,
+      "name": "Added as Contact",
+      "type": "contact",
+      "today": 2,
+      "week": 5,
+      "month": 7
+    },
+    {
+      "id": 5,
+      "name": "Reviewed",
+      "type": "review",
+      "today": 2,
+      "week": 5,
+      "month": 7
+    }
+  ],
+  "notifications-pm": [
+    {
+      "id": 1,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "type": "projects",
+      "period": "today",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 2,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 3,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 4,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 5,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 6,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 7,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "projects",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith created project",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 8,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 9,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 10,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 11,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 12,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 13,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 14,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "services",
+      "date": "2016-02-02 12:10:31",
+      "title": "Service 3 has finished running.",
+      "linkTitle": "View the results of Service 3."
+    },
+    {
+      "id": 15,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 16,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 17,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 18,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 19,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 20,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 21,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "task",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has assigned you task.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 22,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 23,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 24,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 25,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 26,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 27,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 28,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "contact",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has followed you.",
+      "linkTitle": "View John Smith's profile."
+    },
+    {
+      "id": 29,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 30,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "today",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 31,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 32,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 33,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "week",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 34,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    },
+    {
+      "id": 35,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "link": "",
+      "period": "month",
+      "type": "review",
+      "date": "2016-02-02 12:10:31",
+      "title": "John Smith has reviwed your performance for The Filler Project.",
+      "linkTitle": "Check out your review."
+    }
+  ],
+  "notifications-pm-statistic": [
     {
       "id": 1,
       "name": "Projects Created",

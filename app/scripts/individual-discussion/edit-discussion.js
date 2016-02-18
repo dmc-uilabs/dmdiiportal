@@ -59,7 +59,7 @@ angular.module('dmc.individual-discussion')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }, function(){
                 toastModel.showToast("error", "Unable to save changed a comment");
-            },"PUT");
+            },"PATCH");
         };
 
         // add discussion tag
@@ -97,7 +97,7 @@ angular.module('dmc.individual-discussion')
         $scope.loadTags = function(){
             ajax.on(dataFactory.getDiscussionTags($stateParams.discussionId), {
                 "_order" : "DESC",
-                "_sort" : "id",
+                "_sort" : "id"
             }, function(data){
                 $scope.discussion.tags = data;
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -108,11 +108,12 @@ angular.module('dmc.individual-discussion')
 
         // load comments
         $scope.loadComments = function(){
-            ajax.on(dataFactory.getDiscussionComments($scope.discussion.comments.link), {
+            ajax.on(dataFactory.getDiscussionComments($scope.discussion.id), {
                 "_order" : "DESC",
                 "_sort" : "created_at"
-            }, function(data){
-                $scope.discussion.comments.items = data.reverse();
+            }, function(response){
+                $scope.discussion.comments = {};
+                $scope.discussion.comments.items = response.reverse();
                 for (var c in $scope.discussion.comments.items) {
                     $scope.discussion.comments.items[c].created_at = moment($scope.discussion.comments.items[c].created_at).format('MM/DD/YYYY, h:mm A');
                     if ($scope.accountId == $scope.discussion.comments.items[c].accountId) $scope.discussion.comments.items[c].isOwner = true;
@@ -147,11 +148,10 @@ angular.module('dmc.individual-discussion')
                         "full_name": "DMC Member",
                         "accountId": $scope.accountId,
                         "avatar": "/images/carbone.png",
+                        "reply": false,
+                        "commentId": 0,
                         "text": $scope.newComment,
-                        "created_at": moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
-                        "userRatingReview": {
-                            "DMC Member": "like"
-                        },
+                        "created_at": moment(new Date).format("x"),
                         "like": 0,
                         "dislike": 0
                     },

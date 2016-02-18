@@ -182,9 +182,6 @@ angular.module('dmc.service-marketplace', [
                         params["reply"] = false;
                         params["status"] = true;
                         params["date"] = moment().format('x');
-                        params["userRatingReview"] = {
-                            "DMC Member": "none"
-                        };
                         params["like"] = 0;
                         params["dislike"] = 0;
 

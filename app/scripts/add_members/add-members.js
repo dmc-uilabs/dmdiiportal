@@ -69,6 +69,7 @@ angular.module('dmc.add_members', [
                             "projectId": $stateParams.projectId,
                             "fromProfileId": $rootScope.userData.profileId,
                             "from": $rootScope.userData.displayName,
+                            "date": moment(new Date).format('x'),
                             "accept": false
                         }
                     );

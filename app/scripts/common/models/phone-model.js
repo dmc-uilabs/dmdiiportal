@@ -45,8 +45,9 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
         if (value.match(/[^0-9]/)) {
             return tel;
         }
+        console.info("v",value)
 
-        var country, city, number;
+        var country, city, number, ext;
 
         switch (value.length) {
             case 1:
@@ -67,13 +68,14 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
         }
 
         if(number){
-            if(number.length>3){
+            if(number.length>7){
+                number = number.slice(0, 3) + '-' + number.slice(3,7) + ' ext ' + number.slice(7);
+            }else if(number.length>3){
                 number = number.slice(0, 3) + '-' + number.slice(3,7);
             }
             else{
                 number = number;
             }
-
             if(value[0] == "1"){
                 return ("1(" + city + ")" + number).trim();
             }else{

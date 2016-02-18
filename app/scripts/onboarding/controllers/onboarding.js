@@ -396,7 +396,8 @@ angular.module('dmc.onboarding')
         			state: "",
         			"zip-code": "",
         			methodCommunication: "",
-        			email: ""
+        			email: "",
+        			phone: ""
         		}
         	},
         	{

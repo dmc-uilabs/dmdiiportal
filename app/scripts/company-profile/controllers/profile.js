@@ -11,7 +11,6 @@ angular.module('dmc.company-profile')
         $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
         $scope.submit_rating = 0;  //
         $scope.limit_reviews = true;  //limit reviews
-        $scope.UserLogin = "DMC Member";  //Login user for reviews
         $scope.sortListModel = 0;  //model for drop down menu "sorting"
         $scope.showflag = false;
         $scope.followFlag = false;
@@ -54,12 +53,12 @@ angular.module('dmc.company-profile')
         $scope.history = {
             leftColumn: {
                 title: "Public",
-                viewAllLink: "",
+                viewAllLink: "/all.php#/history/company/"+$stateParams.companyId+"/public",
                 list: []
             },
             rightColumn: {
                 title: "Mutual",
-                viewAllLink: "",
+                viewAllLink: "/all.php#/history/company/"+$stateParams.companyId+"/mutual",
                 list:[]
             }
         }
@@ -173,7 +172,9 @@ angular.module('dmc.company-profile')
         $scope.Submit= function(NewReview){
             companyProfileModel.add_company_reviews(
                 {
-                    name: "DMC Member",
+                    name: $scope.$root.userData.displayName,
+                    accountId: $scope.$root.userData.accountId,
+                    reviewId: 0,
                     rating: $scope.submit_rating,
                     comment: NewReview.Comment
                 },
@@ -200,6 +201,53 @@ angular.module('dmc.company-profile')
                 }
             );
         };
+
+        $scope.addReply = function(NewReview){
+            var review = this.review;
+            companyProfileModel.add_company_reviews(
+                {
+                    name: $scope.$root.userData.displayName,
+                    accountId: $scope.$root.userData.accountId,
+                    reviewId: NewReview.id,
+                    rating: 0,
+                    comment: NewReview.Comment
+                },
+                function(data){
+                    data.date = moment(data.date).format("MM/DD/YYYY hh:mm a");
+                    if(review.replyReviews){
+                        review.replyReviews.unshift(data);
+                    }else{
+                        review['replyReviews'] = [data];
+                    }
+                    companyProfileModel.update_company_reviews(NewReview.id, 
+                        {
+                            'reply': true
+                        },
+                        function(data){
+                            apply();
+                        }
+                    )
+                }
+            )
+        }
+
+        $scope.updateHelpful = function(item, create, helpful){
+            companyProfileModel.update_company_reviews(item.id,
+                {
+                    'like': item.like,
+                    'dislike': item.dislike
+                },
+                function(data){
+                }
+            );
+            if(create){
+                companyProfileModel.add_helful(helpful, item.id,function(data){
+                    item.helpful = data;
+                });
+            }else{
+                companyProfileModel.update_helful(item.helpful.id, item.helpful)
+            }
+        }
 
         //selected dorp down menu "sorting"
         $scope.selectItemDropDown = function(value){
