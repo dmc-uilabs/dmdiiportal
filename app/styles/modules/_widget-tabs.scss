@@ -61,9 +61,11 @@
 		margin-top: 24px;
 	}
 	.rate{
-		height: 100%;
 		padding: 8px 35px 0;
 		position: relative;
+		.rate_box{
+			height: 110px;
+		}
 		h3{
 			font-size: 16px;
 			border: 1px solid #000;
@@ -80,7 +82,6 @@
 		.cell1{
 			border: 1px solid #000;
 			border-top: none;
-			height: 61px;
 			background-color: #65AF3F;
 			&:hover{
 				h4{
@@ -91,7 +92,6 @@
 		.cell2{
 			border: 1px solid #000;
 			border-top: none;
-			height: 25px;
 			background-color: yellow;
 			&:hover{
 				h4{
@@ -102,7 +102,6 @@
 		.cell3{
 			border: 1px solid #000;
 			border-top: none;
-			height: 25px;
 			background-color: red;
 			&:hover{
 				h4{
