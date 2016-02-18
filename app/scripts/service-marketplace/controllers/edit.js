@@ -34,6 +34,7 @@ angular.module('dmc.service-marketplace')
             $scope.addImages = [];
             $scope.addAuthors = [];
             $scope.arraySpecifications = [];
+            $scope.autocomplete = false;
 
             serviceModel.get_array_specifications(function(data){
                 $scope.arraySpecifications = data;
@@ -124,6 +125,7 @@ angular.module('dmc.service-marketplace')
 
             //query specifications
             $scope.specificationsSearch = function(query) {
+                $scope.autocomplete = this.$$childHead.$mdAutocompleteCtrl;
                 var results = query ? $scope.arraySpecifications.filter( createFilterForSpecifications(query) ) : $scope.arraySpecifications;
                 return results;
             };
@@ -145,11 +147,20 @@ angular.module('dmc.service-marketplace')
                 });
 
                 this.$$childHead.$mdAutocompleteCtrl.clear();
+                
                 $timeout(function() {
-                    console.info("e", $("#specification0"))
-                    $("#specification0").focus();
-                }, 3000, false)
+                    $("input[name='data']").focus();
+                })
             };
+            $timeout(function() {
+                $('#specificationsField').focusout(function(ev){
+                    if($scope.autocomplete){
+                        $scope.autocomplete.clear();
+                        $("body").focus();
+                        $scope.autocomplete = false;
+                    }
+                })
+            })
 
             //Create filter function
             function createFilterForSpecifications(query) {
