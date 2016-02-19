@@ -71,7 +71,7 @@ angular.module('dmc.community')
                                     }
                                 }
                             } else {
-                                toastModel.showToast("success", "Discussion created");
+                                //toastModel.showToast("success", "Discussion created");
                                 // $scope.linkToDiscussion = '/individual-discussion.php#/' + response.data.id;
                                 $mdDialog.hide();
                                 $window.location.href = '/individual-discussion.php#/' + response.data.id;

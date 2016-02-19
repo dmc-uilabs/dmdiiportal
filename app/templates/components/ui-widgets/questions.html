@@ -3,7 +3,7 @@
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
             <span flex></span>
-            <md-button href="/" md-no-ink class="view-all-button view-all-link">View All (11)</md-button>
+            <a href="/" class="link-button uppercase">View All ({{7}})</a>
         </div>
     </md-toolbar>
 </div>
@@ -21,7 +21,7 @@
                 </div>
                 <md-divider ></md-divider>
             </md-list-item>
-            <md-list-item class="md-1-line" ng-show="questions.length == 0">
+            <md-list-item ng-show="questions.length == 0">
                 <div class="md-list-item-text" layout="column">
                     <span>No questions</span>
                 </div>

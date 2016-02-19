@@ -10,43 +10,43 @@ angular.module('dmc.model.previous-page', [
             if(previousPage) {
                 if (previousPage.indexOf('dashboard.php') != -1) {
                     return {
-                        title: "Back to the Dashboard",
+                        title: "Back to Dashboard",
                         url: previousPage
                     };
                 } else if (previousPage.indexOf('community.php') != -1) {
                     return {
-                        title: "Back to the Community",
+                        title: "Back to Community",
                         url: previousPage
                     };
                 } else if (previousPage.indexOf('project.php') != -1) {
                     return {
-                        title: "Back to the Project",
+                        title: "Back to Project",
                         url: previousPage
                     };
                 } else if (previousPage.indexOf('my-projects.php') != -1) {
                     return {
-                        title: "Back to the My Projects",
+                        title: "Back to My Projects",
                         url: previousPage
                     };
                 } else if (previousPage.indexOf('company-profile.php') != -1) {
                     return {
-                        title: "Back to the Company",
+                        title: "Back to Company",
                         url: previousPage
                     };
                 } else if (previousPage.indexOf('profile.php') != -1) {
                     return {
-                        title: "Back to the Profile",
+                        title: "Back to Profile",
                         url: previousPage
                     };
                 } else {
                     return {
-                        title: "Back to the Dashboard",
+                        title: "Back to Dashboard",
                         url: location.origin+'/dashboard.php'
                     };
                 }
             }else{
                 return {
-                    title: "Back to the Dashboard",
+                    title: "Back to Dashboard",
                     url: location.origin+'/dashboard.php'
                 };
             }

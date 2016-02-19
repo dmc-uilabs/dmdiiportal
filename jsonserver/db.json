@@ -5,7 +5,7 @@
     "profileId": 1,
     "companyId": 1,
     "role": 1,
-    "termsConditions": false,
+    "termsConditions": true,
     "notifications": {
       "total": 4,
       "items": [
@@ -13,25 +13,29 @@
           "event": "new-contact",
           "created_at": "8:00 PM",
           "title": "John Smith added you as a contact",
-          "link": "/profile.php#/1"
+          "link": "/profile.php#/1",
+          "$$hashKey": "object:57"
         },
         {
           "event": "replied-discussion",
           "created_at": "6:00 AM",
           "title": "Bill Gates replied to your discussion",
-          "link": "/individual-discussion.php#/1"
+          "link": "/individual-discussion.php#/1",
+          "$$hashKey": "object:58"
         },
         {
           "event": "new-contact",
           "created_at": "6:25 PM",
           "title": "Bill Gates added you as a contact",
-          "link": "/profile.php#/2"
+          "link": "/profile.php#/2",
+          "$$hashKey": "object:59"
         },
         {
           "event": "replied-discussion",
           "created_at": "3:12 PM",
           "title": "John Smith replied to your discussion",
-          "link": "/individual-discussion.php#/1"
+          "link": "/individual-discussion.php#/1",
+          "$$hashKey": "object:60"
         }
       ]
     },
@@ -46,7 +50,8 @@
             "percentCompleted": "25",
             "startDate": "09/20/2015",
             "startTime": "11:15:33"
-          }
+          },
+          "$$hashKey": "object:38"
         },
         {
           "title": "Incoming Compartment For Ldr Mining",
@@ -56,7 +61,8 @@
             "percentCompleted": "55",
             "startDate": "09/22/2015",
             "startTime": "11:15:33"
-          }
+          },
+          "$$hashKey": "object:39"
         }
       ]
     },
@@ -68,21 +74,24 @@
           "image": "/images/carbone.png",
           "text": "How was your meeting with the Bill Gates?",
           "link": "/message.php#/1",
-          "created_at": "8:00 PM"
+          "created_at": "8:00 PM",
+          "$$hashKey": "object:86"
         },
         {
           "user_name": "John Smith",
           "image": "/images/carbone.png",
           "text": "How was your meeting with the Bill Gates?",
           "link": "/message.php#/1",
-          "created_at": "10:46 PM"
+          "created_at": "10:46 PM",
+          "$$hashKey": "object:87"
         },
         {
           "user_name": "John Smith",
           "image": "/images/carbone.png",
           "text": "How was your meeting with the Bill Gates?",
           "link": "/message.php#/1",
-          "created_at": "1:15 PM"
+          "created_at": "1:15 PM",
+          "$$hashKey": "object:88"
         }
       ]
     },
@@ -610,11 +619,6 @@
   "favorite_products": [
     {
       "accountId": 1,
-      "serviceId": 7,
-      "id": 4
-    },
-    {
-      "accountId": 1,
       "serviceId": 9,
       "id": 6
     },
@@ -647,11 +651,6 @@
       "accountId": 1,
       "serviceId": 5,
       "id": 15
-    },
-    {
-      "accountId": 1,
-      "serviceId": 4,
-      "id": 16
     }
   ],
   "projects": [
@@ -1002,25 +1001,6 @@
       "averageRun": 1
     },
     {
-      "id": 4,
-      "companyId": 1,
-      "title": "Power Factor Correction Analyzer",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-      "owner": "J.Sims",
-      "profileId": 1,
-      "releaseDate": "01/09/2015",
-      "serviceType": "solid",
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "projectId": 2,
-      "type": "service",
-      "from": "marketplace",
-      "averageRun": 15
-    },
-    {
       "id": 6,
       "companyId": 1,
       "title": "Capacitor Compartment Layout",
@@ -1028,24 +1008,6 @@
       "owner": "E.Fox",
       "profileId": 1,
       "releaseDate": "01/09/2015",
-      "serviceType": "solid",
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "projectId": 3,
-      "type": "service",
-      "from": "marketplace"
-    },
-    {
-      "id": 7,
-      "companyId": 1,
-      "title": "Should-cost estimator",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-      "owner": "G.Baker",
-      "profileId": 1,
-      "releaseDate": "01/08/2015",
       "serviceType": "solid",
       "specifications": "/services/3/specifications",
       "featureImage": {
@@ -1129,61 +1091,7 @@
       "from": "marketplace"
     },
     {
-      "id": 16,
-      "companyId": 1,
-      "title": "Cost Relation Model",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-      "owner": "R.McCoy",
-      "profileId": 1,
-      "releaseDate": "01/09/2015",
-      "serviceType": "solid",
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "projectId": 5,
-      "type": "service",
-      "from": "marketplace"
-    },
-    {
-      "id": 17,
-      "companyId": 1,
-      "title": "Heat Loss Relation Model",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-      "owner": "R.McCoy",
-      "profileId": 1,
-      "releaseDate": "08/25/2015",
-      "serviceType": "solid",
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "projectId": 5,
-      "type": "service",
-      "from": "marketplace"
-    },
-    {
       "id": 10,
-      "companyId": 2,
-      "title": "Cost vs. Heat Loss Trade-off Matrix",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-      "owner": "p.koudal",
-      "profileId": 1,
-      "releaseDate": "08/25/2015",
-      "serviceType": "solid",
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "projectId": 4,
-      "type": "service",
-      "from": "marketplace"
-    },
-    {
-      "id": 11,
       "companyId": 2,
       "title": "Cost vs. Heat Loss Trade-off Matrix",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
@@ -3419,28 +3327,6 @@
       "id": 11
     },
     {
-      "type": "unavailable_runs",
-      "link": "",
-      "period": "today",
-      "section": "project",
-      "user": "Timmy Thomas",
-      "date": "2016-02-02 12:10:31",
-      "title": "Timmy Thomas ran the service unsuccessfully.",
-      "serviceId": 16,
-      "id": 12
-    },
-    {
-      "type": "edited",
-      "link": "",
-      "period": "today",
-      "section": "marketplace",
-      "user": "Adam Marks",
-      "date": "2016-02-02 12:10:31",
-      "title": "Adam Marks edited the service description",
-      "serviceId": 16,
-      "id": 13
-    },
-    {
       "type": "edited",
       "link": "",
       "period": "today",
@@ -3549,17 +3435,6 @@
       "title": "Adam Marks edited the service description",
       "serviceId": 2,
       "id": 23
-    },
-    {
-      "type": "edited",
-      "link": "",
-      "period": "today",
-      "section": "marketplace",
-      "user": "Adam Marks",
-      "date": "2016-02-02 12:10:31",
-      "title": "Adam Marks edited the service description",
-      "serviceId": 16,
-      "id": 24
     }
   ],
   "services_statistic": [
@@ -3625,11 +3500,6 @@
       "serviceId": 8
     },
     {
-      "id": 5,
-      "includeTo": 1,
-      "serviceId": 4
-    },
-    {
       "id": 6,
       "includeTo": 1,
       "serviceId": 5
@@ -3638,11 +3508,6 @@
       "id": 7,
       "includeTo": 1,
       "serviceId": 6
-    },
-    {
-      "id": 8,
-      "includeTo": 1,
-      "serviceId": 7
     },
     {
       "id": 9,
@@ -4516,51 +4381,6 @@
       "url": "images/ge-fuel-cell.png"
     },
     {
-      "id": 41,
-      "serviceId": 4,
-      "url": "images/marketplace-card-image-1.jpg"
-    },
-    {
-      "id": 42,
-      "serviceId": 4,
-      "url": "images/3d-printing.png"
-    },
-    {
-      "id": 43,
-      "serviceId": 4,
-      "url": "images/project_generator.png"
-    },
-    {
-      "id": 44,
-      "serviceId": 4,
-      "url": "images/plasticity.png"
-    },
-    {
-      "id": 45,
-      "serviceId": 4,
-      "url": "images/project-1-image.jpg"
-    },
-    {
-      "id": 46,
-      "serviceId": 4,
-      "url": "images/project_relay_controller.png"
-    },
-    {
-      "id": 47,
-      "serviceId": 4,
-      "url": "images/project_controller_pg2.png"
-    },
-    {
-      "id": 48,
-      "serviceId": 4,
-      "url": "images/project_capacitor-bank.png"
-    },
-    {
-      "id": 49,
-      "serviceId": 4,
-      "url": "images/project_capacitor_compartment.png"
-    },
-    {
       "id": 51,
       "serviceId": 6,
       "url": "images/marketplace-card-image-1.jpg"
@@ -4574,11 +4394,6 @@
       "id": 54,
       "serviceId": 6,
       "url": "images/plasticity.png"
-    },
-    {
-      "id": 50,
-      "serviceId": 4,
-      "url": "images/ge-fuel-cell.png"
     },
     {
       "id": 55,
@@ -4603,56 +4418,6 @@
     {
       "id": 60,
       "serviceId": 6,
-      "url": "images/ge-fuel-cell.png"
-    },
-    {
-      "id": 61,
-      "serviceId": 7,
-      "url": "images/marketplace-card-image-1.jpg"
-    },
-    {
-      "id": 62,
-      "serviceId": 7,
-      "url": "images/3d-printing.png"
-    },
-    {
-      "id": 63,
-      "serviceId": 7,
-      "url": "images/project_generator.png"
-    },
-    {
-      "id": 65,
-      "serviceId": 7,
-      "url": "images/project-1-image.jpg"
-    },
-    {
-      "id": 64,
-      "serviceId": 7,
-      "url": "images/plasticity.png"
-    },
-    {
-      "id": 66,
-      "serviceId": 7,
-      "url": "images/project_relay_controller.png"
-    },
-    {
-      "id": 69,
-      "serviceId": 7,
-      "url": "images/project_capacitor_compartment.png"
-    },
-    {
-      "id": 67,
-      "serviceId": 7,
-      "url": "images/project_controller_pg2.png"
-    },
-    {
-      "id": 68,
-      "serviceId": 7,
-      "url": "images/project_capacitor-bank.png"
-    },
-    {
-      "id": 70,
-      "serviceId": 7,
       "url": "images/ge-fuel-cell.png"
     },
     {
@@ -4851,109 +4616,9 @@
       "url": "images/project_capacitor_compartment.png"
     },
     {
-      "id": 113,
-      "serviceId": 16,
-      "url": "images/project_generator.png"
-    },
-    {
       "id": 110,
       "serviceId": 15,
       "url": "images/ge-fuel-cell.png"
-    },
-    {
-      "id": 111,
-      "serviceId": 16,
-      "url": "images/marketplace-card-image-1.jpg"
-    },
-    {
-      "id": 112,
-      "serviceId": 16,
-      "url": "images/3d-printing.png"
-    },
-    {
-      "id": 115,
-      "serviceId": 16,
-      "url": "images/project-1-image.jpg"
-    },
-    {
-      "id": 116,
-      "serviceId": 16,
-      "url": "images/project_relay_controller.png"
-    },
-    {
-      "id": 119,
-      "serviceId": 16,
-      "url": "images/project_capacitor_compartment.png"
-    },
-    {
-      "id": 114,
-      "serviceId": 16,
-      "url": "images/plasticity.png"
-    },
-    {
-      "id": 117,
-      "serviceId": 16,
-      "url": "images/project_controller_pg2.png"
-    },
-    {
-      "id": 120,
-      "serviceId": 16,
-      "url": "images/ge-fuel-cell.png"
-    },
-    {
-      "id": 121,
-      "serviceId": 17,
-      "url": "images/marketplace-card-image-1.jpg"
-    },
-    {
-      "id": 122,
-      "serviceId": 17,
-      "url": "images/3d-printing.png"
-    },
-    {
-      "id": 123,
-      "serviceId": 17,
-      "url": "images/project_generator.png"
-    },
-    {
-      "id": 124,
-      "serviceId": 17,
-      "url": "images/plasticity.png"
-    },
-    {
-      "id": 118,
-      "serviceId": 16,
-      "url": "images/project_capacitor-bank.png"
-    },
-    {
-      "id": 125,
-      "serviceId": 17,
-      "url": "images/project-1-image.jpg"
-    },
-    {
-      "id": 127,
-      "serviceId": 17,
-      "url": "images/project_controller_pg2.png"
-    },
-    {
-      "id": 128,
-      "serviceId": 17,
-      "url": "images/project_capacitor-bank.png"
-    },
-    {
-      "id": 129,
-      "serviceId": 17,
-      "url": "images/project_capacitor_compartment.png"
-    },
-    {
-      "id": 130,
-      "serviceId": 17,
-      "url": "images/ge-fuel-cell.png"
-    },
-    {
-      "id": 126,
-      "serviceId": 17,
-      "url": "images/project_relay_controller.png"
     },
     {
       "id": 131,
@@ -5003,56 +4668,6 @@
     {
       "id": 140,
       "serviceId": 10,
-      "url": "images/ge-fuel-cell.png"
-    },
-    {
-      "id": 142,
-      "serviceId": 11,
-      "url": "images/3d-printing.png"
-    },
-    {
-      "id": 141,
-      "serviceId": 11,
-      "url": "images/marketplace-card-image-1.jpg"
-    },
-    {
-      "id": 144,
-      "serviceId": 11,
-      "url": "images/plasticity.png"
-    },
-    {
-      "id": 145,
-      "serviceId": 11,
-      "url": "images/project-1-image.jpg"
-    },
-    {
-      "id": 146,
-      "serviceId": 11,
-      "url": "images/project_relay_controller.png"
-    },
-    {
-      "id": 147,
-      "serviceId": 11,
-      "url": "images/project_controller_pg2.png"
-    },
-    {
-      "id": 148,
-      "serviceId": 11,
-      "url": "images/project_capacitor-bank.png"
-    },
-    {
-      "id": 143,
-      "serviceId": 11,
-      "url": "images/project_generator.png"
-    },
-    {
-      "id": 149,
-      "serviceId": 11,
-      "url": "images/project_capacitor_compartment.png"
-    },
-    {
-      "id": 150,
-      "serviceId": 11,
       "url": "images/ge-fuel-cell.png"
     },
     {
@@ -5794,9 +5409,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "W.Simpson",
       "dueDate": 1454623200000,
-      "priority": "Low",
+      "priority": 3,
       "projectId": 3,
-      "status": "Open"
+      "status": "Open",
+      "description": "Replace Air disconnect switch"
     },
     {
       "id": 11,
@@ -5808,9 +5424,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "G.Apple",
       "dueDate": 1455055200000,
-      "priority": "Low",
+      "priority": 1,
       "projectId": 3,
-      "status": "Open"
+      "status": "Open",
+      "description": "Spec fusing for capacitors"
     },
     {
       "id": 12,
@@ -5822,9 +5439,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "U.Leonard",
       "dueDate": 1455400800000,
-      "priority": "Low",
+      "priority": 2,
       "projectId": 3,
-      "status": "Open"
+      "status": "Open",
+      "description": "Design Inrush reactors"
     },
     {
       "id": 13,
@@ -5836,9 +5454,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "U.Leonard",
       "dueDate": 1455487200000,
-      "priority": "Low",
+      "priority": 3,
       "projectId": 4,
-      "status": "Open"
+      "status": "Open",
+      "description": "Define specifications for power transformer"
     },
     {
       "id": 14,
@@ -5850,9 +5469,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "R.Farmer",
       "dueDate": 1455832800000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 4,
-      "status": "Open"
+      "status": "Open",
+      "description": "communicate with LDR mining on cost targets"
     },
     {
       "id": 15,
@@ -5864,9 +5484,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "V.Watkins",
       "dueDate": 1455832800000,
-      "priority": "Low",
+      "priority": 3,
       "projectId": 4,
-      "status": "Open"
+      "status": "Open",
+      "description": "review local content requirements"
     },
     {
       "id": 16,
@@ -5878,9 +5499,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "V.Watkins",
       "dueDate": 1455919200000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 4,
-      "status": "Open"
+      "status": "Open",
+      "description": "review commercial transformer companies"
     },
     {
       "id": 17,
@@ -5892,9 +5514,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
       "dueDate": 1456005600000,
-      "priority": "Low",
+      "priority": 3,
       "projectId": 5,
-      "status": "Open"
+      "status": "Open",
+      "description": "Find permeability models for new mtl type"
     },
     {
       "id": 18,
@@ -5906,9 +5529,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
       "dueDate": 1456092000000,
-      "priority": "Low",
+      "priority": 3,
       "projectId": 5,
-      "status": "Open"
+      "status": "Open",
+      "description": "Determine Manufacturing requirements for new mtl"
     },
     {
       "id": 19,
@@ -5920,9 +5544,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
       "dueDate": 1456178400000,
-      "priority": "Low",
+      "priority": 2,
       "projectId": 5,
-      "status": "Open"
+      "status": "Open",
+      "description": "evaluate cost model for varying grain sizes"
     },
     {
       "id": 20,
@@ -5934,9 +5559,10 @@
       "assignee": "John Smith",
       "reporter": "b.beckmann",
       "dueDate": 1456869600000,
-      "priority": "Medium",
+      "priority": 4,
       "projectId": 5,
-      "status": "Open"
+      "status": "Open",
+      "description": "review patent literature"
     },
     {
       "id": 21,
@@ -5983,7 +5609,7 @@
       "assignee": "Thomas Smith",
       "reporter": "Jack Graber",
       "dueDate": 1459544400000,
-      "priority": "Medium",
+      "priority": 4,
       "projectId": 5,
       "id": 24,
       "status": "Open"
@@ -5994,7 +5620,7 @@
       "assignee": "John Smith",
       "reporter": "Jack Graber",
       "dueDate": 1455400800000,
-      "priority": "Medium",
+      "priority": 1,
       "projectId": 1,
       "status": "Open",
       "id": 25
@@ -6005,7 +5631,7 @@
       "assignee": "Hussain Rizvi",
       "reporter": "Jack Graber",
       "dueDate": 1455487200000,
-      "priority": "Critical",
+      "priority": 4,
       "projectId": 1,
       "status": "Open",
       "id": 26
@@ -6016,7 +5642,7 @@
       "assignee": "Stephen Rencour",
       "reporter": "Jack Graber",
       "dueDate": 1455746400000,
-      "priority": "Medium",
+      "priority": 3,
       "projectId": 2,
       "status": "Open",
       "id": 27
@@ -6027,7 +5653,7 @@
       "assignee": "Stephen Rencour",
       "reporter": "Jack Graber",
       "dueDate": 1455573600000,
-      "priority": "Critical",
+      "priority": 2,
       "projectId": 2,
       "status": "Open",
       "id": 28
@@ -6390,22 +6016,6 @@
       "special": []
     },
     {
-      "id": 5,
-      "serviceId": 4,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "input": 4,
-      "output": 7,
-      "usageStats": {
-        "added": 22,
-        "members": 14
-      },
-      "runStats": {
-        "success": 15,
-        "fail": 9
-      },
-      "special": []
-    },
-    {
       "id": 6,
       "serviceId": 5,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -6438,40 +6048,8 @@
       "special": []
     },
     {
-      "id": 12,
-      "serviceId": 11,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "input": 4,
-      "output": 7,
-      "usageStats": {
-        "added": 22,
-        "members": 14
-      },
-      "runStats": {
-        "success": 15,
-        "fail": 9
-      },
-      "special": []
-    },
-    {
       "id": 13,
       "serviceId": 12,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "input": 4,
-      "output": 7,
-      "usageStats": {
-        "added": 22,
-        "members": 14
-      },
-      "runStats": {
-        "success": 15,
-        "fail": 9
-      },
-      "special": []
-    },
-    {
-      "id": 8,
-      "serviceId": 7,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "input": 4,
       "output": 7,
@@ -6550,22 +6128,6 @@
       "special": []
     },
     {
-      "id": 17,
-      "serviceId": 16,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "input": 4,
-      "output": 7,
-      "usageStats": {
-        "added": 22,
-        "members": 14
-      },
-      "runStats": {
-        "success": 15,
-        "fail": 9
-      },
-      "special": []
-    },
-    {
       "id": 19,
       "serviceId": 18,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -6616,22 +6178,6 @@
     {
       "id": 20,
       "serviceId": 27,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "input": 4,
-      "output": 7,
-      "usageStats": {
-        "added": 22,
-        "members": 14
-      },
-      "runStats": {
-        "success": 15,
-        "fail": 9
-      },
-      "special": []
-    },
-    {
-      "id": 18,
-      "serviceId": 17,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "input": 4,
       "output": 7,
@@ -6737,338 +6283,8 @@
       "id": 3
     }
   ],
-  "service-documents": [
-    {
-      "id": 1,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 2,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 1,
-      "title": "1 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 3,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 1,
-      "title": "2 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 4,
-      "serviceId": 1,
-      "service-documentId": 1,
-      "title": "Example Folder 2",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 5,
-      "serviceId": 1,
-      "service-documentId": 4,
-      "title": "Example Folder 3",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 6,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 0,
-      "title": "3 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 7,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 0,
-      "title": "4 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 8,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 1,
-      "title": "5 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 9,
-      "serviceId": 1,
-      "service-documentId": 1,
-      "title": "Example Folder 4",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 10,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder 9",
-      "owner": "Bob Smith",
-      "size": "120MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 11,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder 10",
-      "owner": "Bob Smith",
-      "size": "13MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 12,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 10,
-      "title": "17 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 12,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 10,
-      "title": "35 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 13,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 10,
-      "title": "55 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 14,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 5,
-      "title": "111 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "34MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 15,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 5,
-      "title": "88 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "80MB",
-      "modifed": "11/26/2015, 6:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    }
-  ],
-  "project-documents": [
-    {
-      "id": 1,
-      "projectId": 1,
-      "project-documentId": 0,
-      "title": "Example Folder",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 2,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 1,
-      "title": "1 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 3,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 1,
-      "title": "2 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 4,
-      "projectId": 1,
-      "project-documentId": 1,
-      "title": "Example Folder 2",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 5,
-      "projectId": 1,
-      "project-documentId": 4,
-      "title": "Example Folder 3",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 6,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 0,
-      "title": "3 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 7,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 0,
-      "title": "4 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 8,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 1,
-      "title": "5 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 9,
-      "projectId": 1,
-      "project-documentId": 1,
-      "title": "Example Folder 4",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 10,
-      "projectId": 1,
-      "project-documentId": 0,
-      "title": "Example Folder 9",
-      "owner": "Bob Smith",
-      "size": "120MB",
-      "modifed": "11/11/2015, 11:00 AM"
-    },
-    {
-      "id": 11,
-      "projectId": 1,
-      "project-documentId": 0,
-      "title": "Example Folder 10",
-      "owner": "Bob Smith",
-      "size": "13MB",
-      "modifed": "11/11/2015, 11:15 AM"
-    },
-    {
-      "id": 12,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 10,
-      "title": "17 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 12,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 10,
-      "title": "35 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 13,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 10,
-      "title": "55 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 14,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 5,
-      "title": "111 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "34MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 15,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 5,
-      "title": "88 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "80MB",
-      "modifed": "11/26/2015, 6:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    }
-  ],
+  "service-documents": [],
+  "project-documents": [],
   "documents": [
     {
       "id": 1,
@@ -7901,6 +7117,11 @@
       "accountId": 1,
       "individual-discussionId": 4,
       "id": 4
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 5,
+      "id": 5
     }
   ],
   "individual-discussion-tags": [
@@ -7934,6 +7155,12 @@
       "title": "Discussion 91",
       "accountId": 1,
       "id": 4
+    },
+    {
+      "message": "Message",
+      "title": "Subject",
+      "accountId": 1,
+      "id": 5
     }
   ],
   "individual-discussion-comments": [
@@ -8091,6 +7318,20 @@
       "like": 0,
       "dislike": 0,
       "id": 12
+    },
+    {
+      "individual-discussionId": 5,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "text": "Message",
+      "created_at": "2016-02-19 03:45:02",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 13
     }
   ],
   "individual-discussion-comments-helpful": [

@@ -2,17 +2,18 @@
     <md-toolbar>
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
-            <md-button ng-if="projectId > 0" href="" class="view-all-button" ng-click="newDiscussion($event)">Add New</md-button>
+            <md-button ng-if="projectId > 0" class="add-button-square" ng-click="newDiscussion($event)">
+                <ng-md-icon icon="add" size="18"></ng-md-icon>
+            </md-button>
             <span flex></span>
-            <md-button ng-href="{{(projectId ? '/project.php#/'+projectId+'/discussions' : '/all.php#/discussions')}}"
-                       md-no-ink
+            <a ng-href="{{(projectId ? '/project.php#/'+projectId+'/discussions' : '/all.php#/discussions')}}"
                        ng-click="previousPage.save($event)"
-                       class="view-all-button view-all-link">View All ({{total}})</md-button>
+                       class="link-button uppercase">View All ({{total}})</a>
         </div>
     </md-toolbar>
 </div>
 <div class="content-panel-body">
-    <md-content class="view-project-padding">
+    <md-content>
         <div class="discussions-list">
             <md-list>
                 <md-list-item ng-repeat="item in discussions" class="md-3-line">

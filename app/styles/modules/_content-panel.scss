@@ -1,6 +1,6 @@
 .container-dashboard {
   .content-column {
-    padding-bottom: 13px;
+    padding: 0;
     .space {
       width: 2%;
       min-width: 2%;
@@ -8,14 +8,12 @@
   }
 }
 .content-panel-dashboard{
-  margin-bottom: 8px;
 }
 .content-panel {
   &:first-child {
     padding-top: 0;
   }
   &.project-review {
-    padding: 16px 24px;
     &:first-child {
       padding-top: 0;
     }
@@ -23,25 +21,19 @@
   .content-panel-header {
     md-toolbar {
       background: none;
-      min-height: 50px;
+      min-height: 0;
+      height: auto;
+      margin-bottom: 10px;
       .md-toolbar-tools {
-        height: 50px;
+        height: auto;
       }
     }
 
     h2 {
-        color: black;
-        font-size: 14px;
-        font-weight: normal;
-      }
-
-    a {
-      font-size: 11px;
-      color: map-get($colors, link_color);
+      color: #363636;
+      font-size: 18px;
+      font-weight: normal;
+      margin: 0;
     }
-
-  }
-  .content-panel-body {
-    background-color: #FFF;
   }
 }

@@ -60,7 +60,7 @@ angular.module('dmc.widgets.discussions',[
                         templateUrl: 'templates/components/dialogs/create-discussion-tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
-                        clickOutsideToClose: false,
+                        clickOutsideToClose: true,
                         locals : {
                             projectId : $scope.projectId
                         }

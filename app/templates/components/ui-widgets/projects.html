@@ -3,12 +3,13 @@
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
             <span flex></span>
-            <md-button href="/my-projects.php" md-no-ink class="view-all-button view-all-link">View All ({{total}})</md-button>
+            <a href="/my-projects.php"
+                       class="link-button uppercase">View All ({{total}})</a>
         </div>
     </md-toolbar>
 </div>
 <div class="content-panel-body" layout="column" flex="100">
-  <md-content class="rp-panel md-padding" flex="100" layout="row" ng-repeat="item in projects">
+  <md-content class="rp-panel" flex="100" layout="row" ng-repeat="item in projects">
       <div layout="column" flex>
           <div class="rp-panel__title my-projects" layout="row">
               <h2>

@@ -1,16 +1,14 @@
 .publish-service{
   &-title{
     text-transform: uppercase;
-    margin: 13px 0 0 0;
     font-size: 19px;
-    padding: 8px 24px;
   }
   &-marketplace {
-    padding: 8px 17px;
+    margin-top: 10px;
     .service{
       &-name{
         md-input-container{
-          padding-bottom: 0;
+          padding: 0 0 10px 0;
           min-width: 200px;
         }
       }
@@ -21,6 +19,7 @@
       }
       &-tags,
       &-specifications{
+        margin-top: 15px;
         .one-specification{
           margin: 5px 0;
         }
@@ -118,7 +117,7 @@
       }
     }
     md-divider{
-      margin: 21px 10px;
+      margin: 21px 0px;
     }
   }
 }

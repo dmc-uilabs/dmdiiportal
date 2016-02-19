@@ -1,5 +1,5 @@
-<div class="container container-search-faq" layout-padding layout="row">
-    <div layout="column" flex>
+<div class="container container-search-faq" layout="row">
+    <div layout="column" flex class="container-search-faq-inner">
         <div layout="row" layout-align="center center">
             <h3 class="title">Frequently Asked Questions</h3>
         </div>
@@ -16,10 +16,10 @@
     </div>
 </div>
 
-<div class="container container-faq" layout-padding layout="row" layout-align="center center" ng-if="categoryId == null">
-    <span layout-padding>Search returned no results</span>
+<div class="container container-faq margin-top-25" layout="row" layout-align="center center" ng-if="categoryId == null">
+    <span>Search returned no results</span>
 </div>
-<div class="container container-faq" layout-padding layout="row" ng-if="categoryId != null">
+<div class="container container-faq margin-top-25" layout="row" ng-if="categoryId != null">
     <div class="content-column left-content" layout="column" flex="20">
         <md-list>
             <md-list-item ng-class="{'selected' : item.id == selectedCategory.id}" ng-repeat="item in categories">
@@ -41,7 +41,7 @@
             </md-list-item>
         </md-list>
     </div>
-    <div class="content-column right-content" layout="column" flex>
+    <div class="content-column right-content margin-left25" layout="column" flex>
         <div class="content-panel">
             <div class="content-panel-body">
                 <md-content layout-padding ng-if="article">
@@ -86,7 +86,7 @@
             </div>
         </div>
     </div>
-    <div class="content-column right-content" layout="column" flex="20" ng-if="article">
+    <div class="content-column right-content margin-left25" layout="column" flex="20" ng-if="article">
         <div class="content-panel">
             <div class="content-panel-body">
                 <md-content layout-padding ng-if="article">

@@ -39,6 +39,7 @@ angular.module('dmc.widgets.tasks',[
                             $scope.tasks = response.data;
                             if($scope.total > limit) $scope.tasks.splice(limit,$scope.total);
                             for(var index in $scope.tasks){
+                                setPriority($scope.tasks[index]);
                                 convertDueDate($scope.tasks[index]);
                             }
                             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -46,6 +47,25 @@ angular.module('dmc.widgets.tasks',[
                             toastModel.showToast("error", "Ajax faild: getTasks");
                         }
                     );
+                };
+
+                var setPriority = function(task){
+                    switch(task.priority){
+                        case 1:
+                            task.priorityName = "Critical";
+                            break;
+                        case 2:
+                            task.priorityName = "High";
+                            break;
+                        case 3:
+                            task.priorityName = "Medium";
+                            break;
+                        case 4:
+                            task.priorityName = "Low";
+                            break;
+                        default:
+                            break;
+                    }
                 };
 
                 var convertDueDate = function(task){
@@ -140,6 +160,25 @@ angular.module('dmc.widgets.tasks',[
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
 
+                var setPriority = function(task){
+                    switch(task.priority){
+                        case 1:
+                            task.priorityName = "Critical";
+                            break;
+                        case 2:
+                            task.priorityName = "High";
+                            break;
+                        case 3:
+                            task.priorityName = "Medium";
+                            break;
+                        case 4:
+                            task.priorityName = "Low";
+                            break;
+                        default:
+                            break;
+                    }
+                };
+
                 var convertDueDate = function(task){
                     var oneDay = 86400000;
                     task.dueDateForEdit = task.dueDate;
@@ -166,6 +205,7 @@ angular.module('dmc.widgets.tasks',[
                         $scope.projectTasks = response.data;
                         if($scope.totalItems > limit) $scope.projectTasks.splice(limit,$scope.totalItems);
                         for(var t in $scope.projectTasks){
+                            setPriority($scope.projectTasks[t]);
                             convertDueDate($scope.projectTasks[t]);
                         }
                         apply();
@@ -210,7 +250,21 @@ angular.module('dmc.widgets.tasks',[
     }]).controller('CreateTaskController',function($scope,$mdDialog,ajax,dataFactory,projectId,$compile,toastModel){
         $scope.isCreation = false;
 
-        $scope.priorities = ["Low", "Medium", "High", "Critical"];
+        $scope.priorities = [
+            {
+                id : 4,
+                name : "Low"
+            }, {
+                id : 3,
+                name : "Medium"
+            }, {
+                id : 2,
+                name : "High"
+            }, {
+                id : 1,
+                name : "Critical"
+            }
+        ];
 
         $scope.message = {
             error : false
@@ -259,7 +313,21 @@ angular.module('dmc.widgets.tasks',[
     }).controller('EditTaskController',function($scope,$mdDialog,ajax,dataFactory,$compile,task,$http,toastModel){
         $scope.task = $.extend(true,{},task);
         $scope.task.dueDateForEdit = new Date(moment($scope.task.dueDateForEdit).format("MM/DD/YYYY"));
-        $scope.priorities = ["Low", "Medium", "High", "Critical"];
+        $scope.priorities = [
+            {
+                id : 4,
+                name : "Low"
+            }, {
+                id : 3,
+                name : "Medium"
+            }, {
+                id : 2,
+                name : "High"
+            }, {
+                id : 1,
+                name : "Critical"
+            }
+        ];
 
         $scope.statuses = ["Open","Completed"];
 

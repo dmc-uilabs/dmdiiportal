@@ -1,19 +1,19 @@
-<div class="page-header" layout-padding>
+<div class="page-header margin-bottom-35">
     <md-toolbar>
+        <h1 class="project-title">{{projectCtrl.projectData.title}}</h1>
         <div class="md-toolbar-tools">
-            <div layout="column">
-                <h1 class="name-project">
+            <div layout="column" flex="65" class="margin-right12-5">
+                <div layout="row" class="name-project" flex>
                     <div sub-nav-menu-button current-page="6"></div>
-                    {{projectCtrl.projectData.title}}
-                    <span class="small-text small-text--grey">Due in 20 days</span>
-                </h1>
+                </div>
+                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
             </div>
         </div>
     </md-toolbar>
 </div>
-<div class="container container-view-all all-project-discussions" layout-padding>
-    <div class="content-panel-body" layout-padding>
-        <md-content layout-padding>
+<div class="container container-view-all all-project-discussions">
+    <div class="content-panel-body">
+        <md-content>
             <div layout="row" flex layout-align="start end" class="search-content">
                 <md-input-container class="filterBox">
                     <md-select placeholder="Discussions" ng-model="typeModel" ng-change="changedType(typeModel)">

@@ -1,26 +1,25 @@
-<div class="page-header" layout-padding>
-	<md-toolbar>
-		<div class="md-toolbar-tools">
-			<div layout="column">
-				<h1 class="name-project">
-					<div sub-nav-menu-button current-page="7"></div>
-					{{projectData.title}}
-					<span class="small-text small-text--grey">Due in 20 days</span>
-				</h1>
-				<span ng-if="isPreview" class="project-manager">Submitted: {{projectData.projectManager}}</span>
-			</div>      
-		</div>
-	</md-toolbar>
+<div class="page-header margin-bottom-35">
+    <md-toolbar>
+        <h1 class="project-title">{{projectData.title}}</h1>
+        <div class="md-toolbar-tools">
+            <div layout="column" flex="65" class="margin-right12-5">
+                <div layout="row" class="name-project" flex>
+                    <div sub-nav-menu-button current-page="7"></div>
+                </div>
+                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
+            </div>
+        </div>
+    </md-toolbar>
 </div>
 <div class="project-services" layout="column">
-	<div layout="row" layout-align="space-between center">
-		<h2>Services</h2>
-		<div layout="row">
-			<a class="link" href="marketplace.php">Browse Services</a>
-			<a class="link margin-left16" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</a>
-		</div>
-	</div>
-	<md-content ng-if="projectData.services.data.length">
+    <div layout="row" layout-align="space-between center" class="project-services-top">
+        <h2>Services</h2>
+        <div layout="row">
+            <a class="link" href="marketplace.php">Browse Services</a>
+            <a class="link margin-left16" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</a>
+        </div>
+    </div>
+    <md-content ng-if="projectData.services.data.length">
         <div class="content-panel content-panel-dashboard"
              ui-widget-services
              project-id="projectData.id"
@@ -29,5 +28,5 @@
              columns="['run','name','component','status','dateAdded','addedBy','from','edit','remove']"
              widget-style="'full'"
              start-at-offset="14"></div>
-	</md-content>
+    </md-content>
 </div>

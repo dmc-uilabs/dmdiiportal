@@ -31,7 +31,7 @@
                 <md-input-container flex="45">
                     <label>Priority</label>
                     <md-select required ng-model="priorityModel">
-                        <md-option ng-repeat="p in priorities" value="{{p}}">{{p}}</md-option>
+                        <md-option ng-repeat="p in priorities" value="{{p.id}}">{{p.name}}</md-option>
                     </md-select>
                 </md-input-container>
             </div>

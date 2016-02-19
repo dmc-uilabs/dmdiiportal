@@ -2,12 +2,13 @@
     <md-toolbar>
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
-            <md-button ng-if="projectId > 0" href="" class="view-all-button" ng-click="newTask($event)">Add New</md-button>
+            <md-button ng-if="projectId > 0" class="add-button-square" ng-click="newTask($event)">
+                <ng-md-icon icon="add" size="18"></ng-md-icon>
+            </md-button>
             <span flex></span>
-            <md-button ng-href="{{(projectId ? '/project.php#/'+projectId+'/tasks' : '/all.php#/tasks')}}"
+            <a ng-href="{{(projectId ? '/project.php#/'+projectId+'/tasks' : '/all.php#/tasks')}}"
                        ng-click="previousPage.save($event)"
-                       md-no-ink
-                       class="view-all-button view-all-link">View All ({{total}})</md-button>
+                       class="link-button uppercase">View All ({{total}})</a>
         </div>
     </md-toolbar>
 </div>
@@ -36,10 +37,10 @@
                         <a href="/project.php#/{{item.project.id}}/home" class="link-button">{{item.project.title}}</a>
                     </td>
                     <td ng-show="columns.indexOf('priority') > -1">
-                        {{item.priority}}
+                        {{item.priorityName}}
                     </td>
                     <td class="dueDate" ng-show="columns.indexOf('dueDate') > -1">
-                        <span ng-bind-html="item.formatedDueDate[1]" class="label" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
+                        <span ng-bind-html="item.formatedDueDate[1]" class="label border-radius-2" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
                     </td>
                 </tr>
                 <tr ng-if="tasks.length == 0">

@@ -47,7 +47,7 @@ div[dmc-top-header]{
 
 
   .header-padding{
-    padding: 0 30px;
+
   }
   md-menu{
     margin: 0;
@@ -64,6 +64,17 @@ div[dmc-top-header]{
   .top-header {
     background-color: $topHeader;
     height: 55px;
+    width: 100%;
+    &-inner {
+      width: 100%;
+      .top-header-content {
+        position: relative;
+        max-width: 1280px;
+        padding: 0 40px;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
     .logo{
       min-width: 191px;
     }
@@ -115,6 +126,13 @@ div[dmc-top-header]{
   .bottom-header {
     height: 55px;
     background-color: $bottomHeader;
+    .bottom-header-content{
+      position: relative;
+      max-width: 1280px;
+      padding: 0 40px;
+      margin: 0 auto;
+      width: 100%;
+    }
     .navigation{
       .md-button{
         text-transform: initial;

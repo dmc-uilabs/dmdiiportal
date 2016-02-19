@@ -15,10 +15,11 @@ angular.module('dmc.my_projects', [
         'dmc.common.footer'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
-    $stateProvider.state('project', {
-        url: '',
-        abstract: true
-    });
+        $stateProvider.state('my-projects', {
+            url: '/',
+            templateUrl: 'templates/projects/my.html',
+            controller: 'DMCMyProjectsController'
+        });
     $urlRouterProvider.otherwise('/');
 })
 .controller('DMCMyProjectsController', function ($scope,$element) {

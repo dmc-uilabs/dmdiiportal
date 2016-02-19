@@ -151,6 +151,17 @@ angular.module('dmc.view-all')
                 }
             }
 
+            $scope.deleteService = function(item){
+                ajax.delete(dataFactory.deleteService(item.id),{},function(response){
+                    for(var i in $scope.services){
+                        if($scope.services[i].id == item.id){
+                            $scope.services.splice(i,1);
+                            break;
+                        }
+                    }
+                });
+            };
+
         }
     ]
 );

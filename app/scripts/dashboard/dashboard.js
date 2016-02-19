@@ -20,13 +20,12 @@ angular.module('dmc.dashboard', [
         'dmc.common.header',
         'dmc.common.footer'
 ])
-.config(function($stateProvider, $urlRouterProvider){
-  $stateProvider
-    .state('dashboard', {
-      url: '',
-      abstract: true
-    });
-  $urlRouterProvider.otherwise('/');
-}).controller("DashboardCtr",["$scope","mobileFactory",function($scope,mobileFactory){
-    $scope.isMobile = mobileFactory.any();
-}]);
+    .config(function($stateProvider, $urlRouterProvider){
+        $stateProvider
+            .state('dashboard', {
+                url: '/',
+                templateUrl: 'templates/dashboard/dashboard.html',
+                controller: 'DashboardController'
+            });
+        $urlRouterProvider.otherwise('/');
+})

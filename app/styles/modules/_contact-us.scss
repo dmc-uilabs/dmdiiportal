@@ -1,17 +1,33 @@
+.contact-us-body{
+  div[ui-view]{
+    padding: 0 0 40px 0;
+    max-width: none;
+  }
+}
 .contact-us{
   &-top{
     background-color: #d9d9d9;
     font-size: 18px;
     color: #333;
     padding: 25px 0;
-    h3{
-      font-size: 19px;
-      font-weight: 100;
-      margin: 0;
+    div {
+      margin: 0 auto;
+      max-width: 1280px;
+      position: relative;
+      width: 100%;
+      h3 {
+        margin: 0;
+        padding: 0 40px;
+        text-align: center;
+        font-size: 19px;
+        font-weight: 100;
+      }
     }
   }
   &-content{
-    padding-top: 21px;
+    max-width: 1280px;
+    margin: 20px auto 0 auto;
+    padding: 0 40px;
     h4{
       width: 100%;
       display: block;

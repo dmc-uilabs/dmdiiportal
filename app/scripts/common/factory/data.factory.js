@@ -198,6 +198,9 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            deleteService: function(id){
+              return localhost + 'services/'+id;
+            },
             followDiscussion: function(){
                 return localhost + 'follow_discussions';
             },

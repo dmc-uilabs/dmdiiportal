@@ -1,20 +1,20 @@
-<div class="page-header" layout-padding>
+<div class="page-header margin-bottom-35">
     <md-toolbar>
+        <h1 class="project-title">{{projectCtrl.projectData.title}}</h1>
         <div class="md-toolbar-tools">
-            <div layout="column">
-                <h1 class="name-project">
+            <div layout="column" flex="65" class="margin-right12-5">
+                <div layout="row" class="name-project" flex>
                     <div sub-nav-menu-button current-page="7"></div>
-                    {{projectCtrl.projectData.title}}
-                    <span class="small-text small-text--grey">Due in 20 days</span>
-                </h1>
+                </div>
+                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
             </div>
         </div>
     </md-toolbar>
 </div>
 <div class="publish-service-title">Publish Service</div>
-<div class="container publish-service-marketplace" layout-padding>
-    <div class="content-panel-body" layout-padding>
-        <md-content layout-padding ng-show="currentPage == 1">
+<div class="container publish-service-marketplace">
+    <div class="content-panel-body">
+        <md-content ng-show="currentPage == 1">
             <div layout="row" flex layout-align="start end" class="service-name">
                 <md-input-container flex="50">
                     <label>Service Name</label>

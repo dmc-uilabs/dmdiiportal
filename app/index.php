@@ -35,9 +35,8 @@
 
     <!-- Top Header -->
     <div dmc-top-header active-page="'index'"></div>
-    <div class="container index-container" layout="row" layout-align="center center" layout-padding>
-      <ui-view style="width: 100%"></ui-view>
-    </div>
+
+    <div ui-view></div>
 
     <!-- Footer -->
     <dmc-footer></dmc-footer>

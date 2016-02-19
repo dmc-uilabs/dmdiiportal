@@ -43,6 +43,7 @@ angular.module('dmc.project')
                     }, function (response) {
                         $scope.tasks = response.data;
                         for (var index in $scope.tasks) {
+                            setPriority($scope.tasks[index]);
                             convertDueDate($scope.tasks[index]);
                         }
                         apply();
@@ -60,6 +61,26 @@ angular.module('dmc.project')
             var apply = function () {
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
+
+            var setPriority = function(task){
+                switch(task.priority){
+                    case 1:
+                        task.priorityName = "Critical";
+                        break;
+                    case 2:
+                        task.priorityName = "High";
+                        break;
+                    case 3:
+                        task.priorityName = "Medium";
+                        break;
+                    case 4:
+                        task.priorityName = "Low";
+                        break;
+                    default:
+                        break;
+                }
+            };
+
 
             var convertDueDate = function(task){
                 var oneDay = 86400000;

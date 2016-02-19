@@ -1,10 +1,10 @@
 <div class="individual-discussion">
-	<div layout="column" class="padding">
-		<div class="return" layout="row" layout-align="space-between center" ng-if="previousPage">
+	<div layout="column">
+		<div class="return margin-bottom-20" layout="row" layout-align="space-between center" ng-if="previousPage">
 			<a class="link" ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
 		</div>
 		<div layout="row">
-			<div  flex="70">
+			<div  flex="70" class="margin-right12-5">
 				<div class="left-column" layout="column">
 					<div class="header" layout="row" layout-align="space-between center">
 						<h2>{{discussion.title}}</h2>
@@ -120,7 +120,7 @@
                     </form>
 				</div>
 			</div>
-			<div flex="30">
+			<div flex="30" class="margin-left12-5">
 				<div class="right-column" layout="column">
 					<div class="related" ng-if="version1">
 						<h2>Related Discussions</h2>

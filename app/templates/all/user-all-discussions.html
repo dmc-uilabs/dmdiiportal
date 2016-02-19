@@ -1,4 +1,4 @@
-<div class="container container-view-all" layout-padding layout="row">
+<div class="container container-view-all" layout="row">
     <div layout="column" flex>
         <div class="return-block" ng-if="previousPage">
             <a ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
@@ -11,7 +11,7 @@
         </div>
         <div class="content-panel">
             <div class="content-panel-body">
-                <md-content layout-padding>
+                <md-content>
                     <div layout="row" flex layout-align="start end" class="search-content">
                         <md-input-container class="filterBox">
                             <md-select placeholder="Discussions" ng-model="typeModel" ng-change="changedType(typeModel)">
