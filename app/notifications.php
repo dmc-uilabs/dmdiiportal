@@ -35,7 +35,7 @@
 
 <!-- Top Header -->
 <div dmc-top-header active-page="'index'"></div>
-<ui-view></ui-view>
+<div ui-view></div>
 <dmc-footer></dmc-footer>
 
 <!-- build:js scripts/vendor.js -->

@@ -1,13 +1,22 @@
+.faq-body{
+  div[ui-view]{
+    padding: 0 0 40px 0;
+    max-width: none;
+  }
+}
 .container.container-search-faq{
   cursor: default;
   background-color: #d9d9d9;
+  .container-search-faq-inner{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    padding-bottom: 20px;
+  }
   .title{
     font-size: 19px;
     font-weight: 100;
-    margin-top: 10px;
-  }
-  .search-block{
-    padding: 0 45px;
+    margin: 20px 0;
   }
   .faq-search-field{
     md-input-container {
@@ -35,6 +44,9 @@
 }
 
 .container-faq{
+  max-width: 1280px;
+  padding: 0 40px;
+  margin: 0 auto;
   .left-content{
     md-list {
       padding: 0;

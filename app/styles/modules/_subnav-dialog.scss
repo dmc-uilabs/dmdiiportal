@@ -40,19 +40,33 @@
 
 .nav-menu-button{
   display: block;
-  cursor: default;
-  .squares{
+  .button-sub-nav {
+    @include borderRadius(2px);
+    height: 30px;
+    padding: 0 12px;
+    background-color: #C7C7C7;
     cursor: pointer;
-    max-width: 36px;
+    width: auto;
+    margin-right: 15px;
+    &:hover{
+      background-color: #d7d7d7;
+    }
+  }
+  .name-page{
+    font-size: 24px;
+  }
+  .squares{
+    max-width: 28px;
     text-align: left;
     display: inline-block;
     line-height: 0;
     font-size: 0;
+    margin-top: 6px;
     div{
       display: inline-block;
-      background-color: #cdcdce;
-      width: 10px;
-      height: 10px;
+      background-color: #666666;
+      width: 7px;
+      height: 7px;
       margin: 1px;
     }
     .selected{
@@ -60,13 +74,9 @@
     }
   }
   .title{
-    cursor: pointer;
     display: inline-block;
     font-size: 13px;
     vertical-align: top;
-    margin-top: 5px;
+    text-transform: uppercase;
   }
-}
-.nav-menu-button:hover{
-  opacity: 0.8;
 }

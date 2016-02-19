@@ -24,9 +24,9 @@ angular.module('dmc.view-all')
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
             $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "task";
 
-                $scope.tasks = [];
-                $scope.order = "ASC";
-                $scope.sort = "dueDate";
+            $scope.tasks = [];
+            $scope.order = "ASC";
+            $scope.sort = "dueDate";
 
             $scope.types = [
                 {
@@ -44,33 +44,53 @@ angular.module('dmc.view-all')
                 }
             ];
 
-                $scope.getTasks = function () {
-                    ajax.get(dataFactory.getMyTasks(), {
-                            _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
-                            _order: $scope.order,
-                            title_like: $scope.searchModel,
-                            _type: $scope.typeModel,
-                            status_ne: "Completed"
-                        }, function (response) {
-                            $scope.tasks = response.data;
-                            for (var index in $scope.tasks) {
-                                convertDueDate($scope.tasks[index]);
-                            }
-                            apply();
+            $scope.getTasks = function () {
+                ajax.get(dataFactory.getMyTasks(), {
+                        _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
+                        _order: $scope.order,
+                        title_like: $scope.searchModel,
+                        _type: $scope.typeModel,
+                        status_ne: "Completed"
+                    }, function (response) {
+                        $scope.tasks = response.data;
+                        for (var index in $scope.tasks) {
+                            setPriority($scope.tasks[index]);
+                            convertDueDate($scope.tasks[index]);
                         }
-                    );
-                };
+                        apply();
+                    }
+                );
+            };
+            $scope.getTasks();
+
+            $scope.onOrderChange = function (order) {
+                $scope.sort = order;
+                $scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
                 $scope.getTasks();
+            };
 
-                $scope.onOrderChange = function (order) {
-                    $scope.sort = order;
-                    $scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
-                    $scope.getTasks();
-                };
+            var apply = function () {
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            };
 
-                var apply = function () {
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                };
+            var setPriority = function(task){
+                switch(task.priority){
+                    case 1:
+                        task.priorityName = "Critical";
+                        break;
+                    case 2:
+                        task.priorityName = "High";
+                        break;
+                    case 3:
+                        task.priorityName = "Medium";
+                        break;
+                    case 4:
+                        task.priorityName = "Low";
+                        break;
+                    default:
+                        break;
+                }
+            };
 
             var convertDueDate = function(task){
                 var oneDay = 86400000;
@@ -88,18 +108,18 @@ angular.module('dmc.view-all')
                 }
             };
 
-                $scope.submit = function (text) {
-                    $scope.searchModel = text;
-                    var dataSearch = $.extend(true, {}, $stateParams);
-                    dataSearch.text = $scope.searchModel;
-                    $state.go('tasks', dataSearch, {reload: true});
-                };
+            $scope.submit = function (text) {
+                $scope.searchModel = text;
+                var dataSearch = $.extend(true, {}, $stateParams);
+                dataSearch.text = $scope.searchModel;
+                $state.go('tasks', dataSearch, {reload: true});
+            };
 
-                $scope.changedType = function (type) {
-                    var dataSearch = $.extend(true, {}, $stateParams);
-                    dataSearch.type = type;
-                    $state.go('tasks', dataSearch, {reload: true});
-                };
+            $scope.changedType = function (type) {
+                var dataSearch = $.extend(true, {}, $stateParams);
+                dataSearch.type = type;
+                $state.go('tasks', dataSearch, {reload: true});
+            };
 
         }
     ]

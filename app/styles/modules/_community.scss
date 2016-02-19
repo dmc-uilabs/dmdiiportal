@@ -1,15 +1,5 @@
-.container.community-container{
-  padding: 0 17px;
-  .content-column{
-    padding: 8px;
-    padding-bottom: 16px;
-  }
-}
 .content-panel.project {
-  padding: 0;
-  margin-bottom: 8px;
   .md-toolbar-tools.widget-toolbar-title {
-    padding: 0 8px 8px 0;
     h2{
       text-transform: uppercase;
     }
@@ -119,9 +109,6 @@ a.following-btn{
 }
 
 .discussions-list{
-  md-list{
-    padding: 0 8px;
-  }
   md-list-item{
     border-top: 1px solid #ccc;
     padding: 0;

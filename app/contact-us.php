@@ -28,7 +28,7 @@
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app="dmc.contact-us">
+  <body ng-app="dmc.contact-us" class="contact-us-body">
     <!--[if lt IE 10]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -36,7 +36,7 @@
     <!-- Top Header -->
     <div dmc-top-header active-page="'contact-us'"></div>
 
-    <ui-view></ui-view>
+    <div ui-view></div>
 
     <!-- Footer -->
     <dmc-footer></dmc-footer>

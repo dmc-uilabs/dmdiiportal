@@ -1,16 +1,15 @@
-<div class="page-header" layout-padding>
-	<md-toolbar>
-		<div class="md-toolbar-tools">
-			<div layout="column">
-				<h1 class="name-project">
-					<div sub-nav-menu-button current-page="7"></div>
-					{{projectData.title}}
-					<span class="small-text small-text--grey">Due in 20 days</span>
-				</h1>
-				<span ng-if="isPreview" class="project-manager">Submitted: {{projectData.projectManager}}</span>
-			</div>      
-		</div>
-	</md-toolbar>
+<div class="page-header margin-bottom-35">
+    <md-toolbar>
+        <h1 class="project-title">{{projectData.title}}</h1>
+        <div class="md-toolbar-tools">
+            <div layout="column" flex="65" class="margin-right12-5">
+                <div layout="row" class="name-project" flex>
+                    <div sub-nav-menu-button current-page="7"></div>
+                </div>
+                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
+            </div>
+        </div>
+    </md-toolbar>
 </div>
 <div class="project-details-services" layout="column">
 	<div layout="row" layout-align="space-between start">
@@ -41,13 +40,15 @@
 				</md-button>
 			</div>
 			<div layout="row">
-				<md-button class="md-raised" ui-sref="project.run-services({ServiceId : service.id})">
+				<md-button class="md-raised dmc-button margin-left20" ui-sref="project.run-services({ServiceId : service.id})">
 					Run
 				</md-button>
-				<md-button ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/publish'}}" ng-if="service.from == 'project'" class="md-raised dmc-button">
+				<md-button ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/publish'}}"
+                           ng-if="service.from == 'project'"
+                           class="md-raised dmc-button margin-left20">
 					PUBLISH SERVICE
 				</md-button>
-				<md-button class="md-raised" ng-click="follow()">
+				<md-button class="md-raised dmc-button margin-left20" ng-click="follow()">
 					{{(followFlag) ? 'Unfollow' : 'Follow'}}
 				</md-button>
 			</div>

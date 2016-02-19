@@ -1,14 +1,15 @@
-    <div class="page-header" layout-padding>
-      <md-toolbar>
+<div class="page-header margin-bottom-35">
+    <md-toolbar>
+        <h1 class="project-title">{{projectCtrl.projectData.title}}</h1>
         <div class="md-toolbar-tools">
-          <div layout="column">
-            <h1 class="name-project">{{projectCtrl.projectData.title}}<span class="small-text small-text--grey">Due in 20 days</span></h1>
-            <h2>
-                <div sub-nav-menu-button menu-type="'rfp'" current-page="5"></div>
-            </h2>
-          </div>
+            <div layout="column" flex="65" class="margin-right12-5">
+                <div layout="row" class="name-project" flex>
+                    <div sub-nav-menu-button menu-type="'rfp'" current-page="5"></div>
+                </div>
+                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
+            </div>
         </div>
-      </md-toolbar>
-    </div>
-    <div class="container">
-    </div>
+    </md-toolbar>
+</div>
+<div class="container">
+</div>

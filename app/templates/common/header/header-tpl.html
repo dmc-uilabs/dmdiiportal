@@ -1,202 +1,212 @@
 <div class="space-header"></div>
 <header class='main-header' layout="column"  ng-click="closeMenu()">
-  <!-- upper part of header -->
-  <div class="top-header header-padding" layout="row" layout-align="center center">
-    <div class="logo">
-      <a href="index.php"><img ng-src="images/logo.png"></a>
-    </div>
-
-    <span flex></span>
-
-    <div layout="row" class="info-button" ng-if="$root.isLogged">
-      <!-- Service alerts -->
-      <md-menu md-offset="0 64">
-        <md-button class="md-button"
-             aria-label="Service alerts"
-             ng-click="closeMenu(); $mdOpenMenu($event)">
-            <div class="svg-icon" style="mask-image: url(images/icon_service.svg) center / contain no-repeat;
-             -webkit-mask: url(images/icon_service.svg) center / contain no-repeat;"></div>
-          <span class="count-message" ng-show="service_alert > 0">{{service_alert}}</span>
-        </md-button>
-        <md-menu-content class="header-menu-content service-status-list">
-            <div class="zone-top" layout="row" layout-align="space-between center">
-                <h3>Service Status</h3>
-                <md-button md-no-ink href="/all.php#/run-services" class="view-all-link">View All</md-button>
+<!-- upper part of header -->
+<div class="top-header header-padding" layout="row">
+    <div class="top-header-inner" layout="column">
+        <div class="top-header-content" layout="row" layout-align="center center">
+            <div class="logo">
+                <a href="index.php"><img ng-src="images/logo.png"></a>
             </div>
-          <md-menu-item ng-repeat="item in runningServicesList">
-              <a ng-href='/project.php#/{{item.projectId}}/run-service/{{item.serviceId}}'>
-                  <span class="title-service"><i>{{item.title}}</i></span>
-                  <md-progress-linear md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
+
+            <span flex></span>
+
+            <div layout="row" class="info-button" ng-if="$root.isLogged">
+                <!-- Service alerts -->
+                <md-menu md-offset="0 64">
+                    <md-button class="md-button"
+                               aria-label="Service alerts"
+                               ng-click="closeMenu(); $mdOpenMenu($event)">
+                        <div class="svg-icon" style="mask-image: url(images/icon_service.svg) center / contain no-repeat;
+             -webkit-mask: url(images/icon_service.svg) center / contain no-repeat;"></div>
+                        <span class="count-message" ng-show="service_alert > 0">{{service_alert}}</span>
+                    </md-button>
+                    <md-menu-content class="header-menu-content service-status-list">
+                        <div class="zone-top" layout="row" layout-align="space-between center">
+                            <h3>Service Status</h3>
+                            <md-button md-no-ink href="/all.php#/run-services" class="view-all-link">View All</md-button>
+                        </div>
+                        <md-menu-item ng-repeat="item in runningServicesList">
+                            <a ng-href='/project.php#/{{item.projectId}}/run-service/{{item.serviceId}}'>
+                                <span class="title-service"><i>{{item.title}}</i></span>
+                                <md-progress-linear md-mode="determinate" value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
                   <span class="time" layout-align="row" layout-align="space-between center">
                       <i>20:00 of 28:00</i>
                       <i>{{item.currentStatus.startDate}}</i>
                   </span>
-              </a>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
-      <!-- Notifications -->
-      <md-menu md-offset="0 64">
-        <md-button class="md-button"
-             aria-label="Notifications"
-             ng-click="closeMenu(); $mdOpenMenu($event)">
-          <ng-md-icon icon="notifications" size="25"></ng-md-icon>
-          <span class="count-message" ng-show="notification_alert > 0">{{notification_alert}}</span>
-        </md-button>
-        <md-menu-content class="header-menu-content notifications-list">
-            <div class="zone-top" layout="row" layout-align="space-between center">
-                <h3>Notifications</h3>
-                <md-button md-no-ink href="/" class="view-all-link">View All</md-button>
-            </div>
-          <md-menu-item ng-repeat="item in notificationsList">
-              <a ng-href='{{item.link}}'>
-                  <ng-md-icon icon="forum" size="32" ng-if="item.event == 'replied-discussion'"></ng-md-icon>
-                  <ng-md-icon icon="group" size="32" ng-if="item.event == 'new-contact'"></ng-md-icon>
+                            </a>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <!-- Notifications -->
+                <md-menu md-offset="0 64">
+                    <md-button class="md-button"
+                               aria-label="Notifications"
+                               ng-click="closeMenu(); $mdOpenMenu($event)">
+                        <ng-md-icon icon="notifications" size="25"></ng-md-icon>
+                        <span class="count-message" ng-show="notification_alert > 0">{{notification_alert}}</span>
+                    </md-button>
+                    <md-menu-content class="header-menu-content notifications-list">
+                        <div class="zone-top" layout="row" layout-align="space-between center">
+                            <h3>Notifications</h3>
+                            <md-button md-no-ink href="/" class="view-all-link">View All</md-button>
+                        </div>
+                        <md-menu-item ng-repeat="item in notificationsList">
+                            <a ng-href='{{item.link}}'>
+                                <ng-md-icon icon="forum" size="32" ng-if="item.event == 'replied-discussion'"></ng-md-icon>
+                                <ng-md-icon icon="group" size="32" ng-if="item.event == 'new-contact'"></ng-md-icon>
                   <span>
                       <i>{{item.title}}</i>
                       <i>{{item.created_at}}</i>
                   </span>
-              </a>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
-      <!-- Messages -->
-      <md-menu md-offset="0 64">
-        <md-button class="md-button"
-             aria-label="Messages"
-             ng-click="closeMenu(); $mdOpenMenu($event)">
-          <ng-md-icon icon="email" size="25"></ng-md-icon>
-          <span class="count-message" ng-show="message_alert > 0">{{message_alert}}</span>
-        </md-button>
-        <md-menu-content class="message-container header-menu-content messages-list">
-            <div class="zone-top" layout="row" layout-align="space-between center">
-                <h3>Messages</h3>
-                <md-button md-no-ink href="/" class="view-all-link">View All</md-button>
-            </div>
-            <md-menu-item ng-repeat="item in messagesList">
-                <a ng-href='{{item.link}}'>
-                    <img ng-src="{{item.image}}" alt="{{item.user_name}}"/>
+                            </a>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <!-- Messages -->
+                <md-menu md-offset="0 64">
+                    <md-button class="md-button"
+                               aria-label="Messages"
+                               ng-click="closeMenu(); $mdOpenMenu($event)">
+                        <ng-md-icon icon="email" size="25"></ng-md-icon>
+                        <span class="count-message" ng-show="message_alert > 0">{{message_alert}}</span>
+                    </md-button>
+                    <md-menu-content class="message-container header-menu-content messages-list">
+                        <div class="zone-top" layout="row" layout-align="space-between center">
+                            <h3>Messages</h3>
+                            <md-button md-no-ink href="/" class="view-all-link">View All</md-button>
+                        </div>
+                        <md-menu-item ng-repeat="item in messagesList">
+                            <a ng-href='{{item.link}}'>
+                                <img ng-src="{{item.image}}" alt="{{item.user_name}}"/>
                   <span>
                       <i class="user-name">{{item.user_name}}</i>
                       <i class="text">{{item.text}}</i>
                       <i>{{item.created_at}}</i>
                   </span>
-                </a>
-            </md-menu-item>
-        </md-menu-content>
-      </md-menu>
+                            </a>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+
+            <div layout="column">
+                <md-button ng-href='loginURL' class="login-button" ng-if="!$root.isLogged">Login</md-button>
+                <md-menu md-offset="0 64" ng-if="$root.isLogged">
+                    <md-button class="user-button"
+                               aria-label="Open Latest Services Menu"
+                               ng-click="closeMenu(); $mdOpenMenu($event)">
+                        <ng-md-icon icon="person" size="20"></ng-md-icon>
+                        Hi, {{userName}}
+                    </md-button>
+                    <md-menu-content class="header-menu-content">
+                        <md-menu-item>
+                            <md-button ng-href='/account.php#/{{userAccountId}}/basics'>My Account</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-href='/profile.php#/{{userProfileId}}'>My Profile</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button href="my-projects.php">My Projects</md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-if="version1">
+                            <md-button href="#">My Submissions</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click='logout()'>Logout</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div layout="column">
-      <md-button ng-href='loginURL' class="login-button" ng-if="!$root.isLogged">Login</md-button>
-      <md-menu md-offset="0 64" ng-if="$root.isLogged">
-        <md-button class="user-button"
-             aria-label="Open Latest Services Menu"
-             ng-click="closeMenu(); $mdOpenMenu($event)">
-          <ng-md-icon icon="person" size="20"></ng-md-icon>
-          Hi, {{userName}}
-        </md-button>
-        <md-menu-content class="header-menu-content">
-          <md-menu-item>
-            <md-button ng-href='/account.php#/{{userAccountId}}/basics'>My Account</md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button ng-href='/profile.php#/{{userProfileId}}'>My Profile</md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button href="my-projects.php">My Projects</md-button>
-          </md-menu-item>
-          <md-menu-item ng-if="version1">
-            <md-button href="#">My Submissions</md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button ng-click='logout()'>Logout</md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
+<!-- lower part of the header -->
+<div class="bottom-header header-padding" layout="row" ng-if="$root.isLogged">
+    <div layout="column" flex>
+        <div layout="row" class="bottom-header-content" flex layout-align="space-between center">
+            <div class="navigation" layout="column" layout-align="center center">
+                <div layout="row">
+                    <md-button
+                            href="dashboard.php"
+                            class="item"
+                            ng-class="{'active-page' : activePage.indexOf('dashboard') > -1}">
+                        Dashboard
+                    </md-button>
+
+                    <md-menu md-offset="0 57" class="item" ng-init="dropDownWidth = 136">
+                        <md-button
+                                aria-label="Open Latest Services Menu"
+                                ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"
+                                ng-class="{'active-page' : activePage.indexOf('marketplace') > -1}">
+                            Marketplace
+                            <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
+                        </md-button>
+                        <md-menu-content class="header-menu-content" ng-style="{width:dropDownWidth+'px'}">
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="marketplace.php">Home</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="/company.php#/{{userCompanyId}}/storefront?product=services">My Storefront</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="/favorites.php#/">Favorites</md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+
+                    <md-button
+                            href="community.php"
+                            class="item"
+                            ng-class="{'active-page' : activePage.indexOf('community') > -1}">
+                        Community
+                    </md-button>
+
+                    <md-menu class="item" md-offset="0 57">
+                        <md-button aria-label="Open Latest Services Menu"
+                                   ng-click="closeMenu(); $mdOpenMenu($event);"
+                                   ng-class="{'active-page' : activePage.indexOf('project') > -1}">
+                            Projects
+                            <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
+                        </md-button>
+                        <md-menu-content class="header-menu-content">
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="my-projects.php">My Projects</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="all-projects.php">All Projects</md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+
+                    <md-menu class="item" md-offset="0 57" ng-if="version1">
+                        <md-button
+                                ng-click="closeMenu(); $mdOpenMenu($event)"
+                                ng-class="{'active-page' : activePage.indexOf('challenge') > -1}">
+                            Challenge
+                            <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
+                        </md-button>
+                        <md-menu-content class="header-menu-content">
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);">Challenge1</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);">Challenge2</md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+            </div>
+
+            <form ng-submit="submitSearch(searchModel)" class="search" layout="column" layout-align="center center">
+                <md-input-container md-no-float>
+                    <md-icon>
+                        <ng-md-icon icon="search" size="21"></ng-md-icon>
+                    </md-icon>
+                    <input type="text" placeholder="Search" ng-model="searchModel">
+                </md-input-container>
+            </form>
+        </div>
     </div>
-  </div>
-
-  <!-- lower part of the header -->
-  <div class="bottom-header header-padding" layout="row" layout-align="space-between center" ng-if="$root.isLogged">
-    <div class="navigation" layout="row" layout-align="center center">
-      <md-button
-          href="dashboard.php"
-          class="item"
-          ng-class="{'active-page' : activePage.indexOf('dashboard') > -1}">
-        Dashboard
-      </md-button>
-
-      <md-menu md-offset="0 57" class="item" ng-init="dropDownWidth = 136">
-        <md-button
-            aria-label="Open Latest Services Menu"
-            ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"
-            ng-class="{'active-page' : activePage.indexOf('marketplace') > -1}">
-          Marketplace
-          <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
-        </md-button>
-        <md-menu-content class="header-menu-content" ng-style="{width:dropDownWidth+'px'}">
-          <md-menu-item>
-            <md-button ng-click="$mdCloseMenu($event);" href="marketplace.php">Home</md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button ng-click="$mdCloseMenu($event);" href="/company.php#/{{userCompanyId}}/storefront?product=services">My Storefront</md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button ng-click="$mdCloseMenu($event);" href="/favorites.php#/">Favorites</md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
-
-        <md-button
-                href="community.php"
-                class="item"
-                ng-class="{'active-page' : activePage.indexOf('community') > -1}">
-            Community
-        </md-button>
-
-      <md-menu class="item" md-offset="0 57">
-        <md-button aria-label="Open Latest Services Menu"
-            ng-click="closeMenu(); $mdOpenMenu($event);"
-            ng-class="{'active-page' : activePage.indexOf('project') > -1}">
-          Projects
-          <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
-        </md-button>
-        <md-menu-content class="header-menu-content">
-          <md-menu-item>
-            <md-button ng-click="$mdCloseMenu($event);" href="my-projects.php">My Projects</md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button ng-click="$mdCloseMenu($event);" href="all-projects.php">All Projects</md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
-
-      <md-menu class="item" md-offset="0 57" ng-if="version1">
-        <md-button
-            ng-click="closeMenu(); $mdOpenMenu($event)"
-            ng-class="{'active-page' : activePage.indexOf('challenge') > -1}">
-          Challenge
-          <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>
-        </md-button>
-        <md-menu-content class="header-menu-content">
-          <md-menu-item>
-            <md-button ng-click="$mdCloseMenu($event);">Challenge1</md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button ng-click="$mdCloseMenu($event);">Challenge2</md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
-    </div>
-
-    <form ng-submit="submitSearch(searchModel)" class="search" layout="row" layout-align="center center">
-      <md-input-container md-no-float>
-        <md-icon>
-            <ng-md-icon icon="search" size="21"></ng-md-icon>
-        </md-icon>
-        <input type="text" placeholder="Search" ng-model="searchModel">
-      </md-input-container>
-    </form>
-  </div>
+</div>
 </header>

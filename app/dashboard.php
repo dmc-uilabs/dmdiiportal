@@ -28,7 +28,7 @@
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app="dmc.dashboard" ng-controller="DashboardCtr">
+  <body ng-app="dmc.dashboard" ng-controller="DashboardController">
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -36,67 +36,7 @@
     <!-- Top Header -->
     <div dmc-top-header show-notification="true" active-page="'dashboard'"></div>
 
-    <div class="container container-dashboard" layout-padding layout="row">
-      <div class="content-column" layout="column" flex>
-        <div class="content-panel content-panel-dashboard" style="display:none" ng-if="isMobile == null">
-              <div class="content-panel-header">
-                  <md-toolbar>
-                      <div class="md-toolbar-tools widget-toolbar-title">
-                          <h2>MARKET PLACE STATS</h2>
-                          <span flex></span>
-                          <md-button href="/" md-no-ink class="view-all-button">View statistics</md-button>
-                      </div>
-                  </md-toolbar>
-              </div>
-              <div class="content-panel-body">
-                  <md-content class="md-padding">
-                      <md-tabs md-dynamic-height md-border-bottom>
-                          <md-tab label="Overview">
-                              <md-content class="md-padding">
-                                  <img ng-src="/images/top-products.jpg" alt=""/>
-                              </md-content>
-                          </md-tab>
-                          <md-tab label="Views">
-                              <md-content class="md-padding">
-                                  <img ng-src="/images/top-products.jpg" alt=""/>
-                              </md-content>
-                          </md-tab>
-                          <md-tab label="Added">
-                              <md-content class="md-padding">
-                                  <img ng-src="/images/top-products.jpg" alt=""/>
-                              </md-content>
-                          </md-tab>
-                      </md-tabs>
-                  </md-content>
-              </div>
-          </div>
-        <div class="content-panel content-panel-dashboard" ui-widget-services limit="5" columns="['name','project','start','status']" widget-style="'full'" widget-title="'SERVICES'" start-at-offset="14"></div>
-        <div class="content-panel content-panel-dashboard" ui-widget-projects widget-title="'RECENT PROJECTS'" show-image="true"></div>
-      </div>
-
-      <div class="content-column" layout="column" flex>
-        <div class="content-panel content-panel-dashboard" style="display:none" ng-if="isMobile == null">
-              <div class="content-panel-header">
-                  <md-toolbar>
-                      <div class="md-toolbar-tools widget-toolbar-title">
-                          <h2>MY CONNECTIONS</h2>
-                          <span flex></span>
-                          <md-button href="/" md-no-ink class="view-all-button">View connections</md-button>
-                      </div>
-                  </md-toolbar>
-              </div>
-              <div class="content-panel-body">
-                  <md-content class="md-padding">
-                      <img ng-src="/images/my-connections.jpg" alt=""/>
-                  </md-content>
-              </div>
-          </div>
-        <div class="content-panel content-panel-dashboard" ui-widget-tasks columns="['title','project','dueDate','priority']" widget-title="'MY TASKS'"></div>
-        <!-- Discussion -->
-        <div class="content-panel content-panel-dashboard" ui-widget-discussions widget-data-type="'following'" widget-title="'FOLLOWING'"></div>
-        <div class="content-panel content-panel-dashboard" ui-widget-onboarding widget-title="'ONBOARDING'"></div>
-      </div>
-    </div>
+    <div ui-view></div>
 
     <dmc-footer></dmc-footer>
 
@@ -158,7 +98,9 @@
     <script src="scripts/common/factory/mobile.factory.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
+
     <script src="scripts/dashboard/dashboard.js"></script>
+    <script src="scripts/dashboard/dashboard.controller.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

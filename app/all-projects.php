@@ -36,41 +36,7 @@
     <!-- Top Header -->
     <div dmc-top-header active-page="'project&all-projects'"></div>
 
-    <div class="page-header" layout-padding>
-      <md-toolbar>
-        <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="space-between center">
-            <h1 flex="33">All Projects</h1>
-            <md-button class="link-button add-project-button" md-no-ink
-                       href="/add-project.php">Add Project</md-button>
-            <!-- fill up the space between left and right area -->
-            <div laout="column" flex="33">
-                <div layout="row" layout-align="end center">
-                    <md-input-container>
-                        <label>Sort</label>
-                        <md-select ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
-                            <md-option ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Filter</label>
-                        <md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')" md-container-class="margin-dropdown">
-                            <md-option ng-repeat="filter in filterList track by $index" ng-value="$index">{{filter.name}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-            </div>
-        </div>
-      </md-toolbar>
-    </div>
-
-    <div class="container my-projects-container" layout="row" layout-padding flex="100">
-        <div class="content-panel" layout="column" flex="100"
-             id="myProjectsList"
-             ui-widget-projects
-             widget-format="'my-projects'"
-             widget-title="null"
-             widget-show-all-blocks="true"></div>
-    </div>
+    <div ui-view></div>
 
     <!-- Footer -->
     <dmc-footer></dmc-footer>

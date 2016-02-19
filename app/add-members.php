@@ -35,7 +35,7 @@
     <!-- Top Header -->
     <div dmc-top-header active-page="'add-members'"></div>
 
-    <ui-view></ui-view>
+    <div ui-view></div>
 
     <!-- Footer -->
     <dmc-footer></dmc-footer>

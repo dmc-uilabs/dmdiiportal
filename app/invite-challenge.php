@@ -35,7 +35,7 @@
     <!-- Top Header -->
     <div dmc-top-header active-page="'invite-challenge'"></div>
 
-    <div class="container">
+    <div class="container invite-challenge-container">
         <div class="content-panel" rfp-tabs=""></div>
     </div>
 

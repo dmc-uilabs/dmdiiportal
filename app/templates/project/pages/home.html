@@ -1,13 +1,14 @@
-<div class="page-header" layout-padding>
+<div class="page-header margin-bottom-35">
     <md-toolbar>
+        <h1 class="project-title">{{projectCtrl.projectData.title}}</h1>
         <div class="md-toolbar-tools">
-            <div layout="column">
-                <h1 class="name-project">
+            <div layout="column" flex="65" class="margin-right12-5">
+                <div layout="row" class="name-project" flex>
                     <div sub-nav-menu-button current-page="1"></div>
-                    {{projectCtrl.projectData.title}}
                     <span ng-if="projectCtrl.projectData.dueDate" class="small-text small-text--grey">Due in {{projectCtrl.projectData.dueDate}}</span>
-                </h1>
-                <span ng-if="isPreview" class="project-manager">Invited to {{projectCtrl.projectData.type}}: <a ng-href="/profile.php#/1">{{projectCtrl.projectData.projectManager}}</a> <ng-md-icon ng-if="version1" icon="mail" style="fill: #666" size="20"></ng-md-icon></span>
+
+                </div>
+                <span ng-if="isPreview" class="project-manager">Invited to {{projectCtrl.projectData.type}}: <a ng-href="/profile.php#/1">{{projectCtrl.projectData.projectManager}}</a> <ng-md-icon icon="mail" size="20"></ng-md-icon></span>
             </div>
             <!-- fill up the space between left and right area -->
             <span flex></span>
@@ -18,15 +19,13 @@
             <!-- buttons for submission -->
             <md-button ng-if="isSubmission" class="md-raised dmc-button" href="/project.php#/submit/{{projectCtrl.projectData.id}}"><ng-md-icon icon="send" size="18"></ng-md-icon> Submit</md-button>
 
-            <md-button ng-if="!isPreview" class="md-raised dmc-button"><ng-md-icon icon="mode_edit" size="18"></ng-md-icon> Edit</md-button>
+            <md-button ng-if="!isPreview" class="md-raised dmc-button gray-button"><ng-md-icon icon="mode_edit" size="18"></ng-md-icon> Edit</md-button>
 
-            <md-button md-no-ink
-                       ng-if="!isPreview"
-                       ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
-                       class="link-button uppercase">
-                <ng-md-icon icon="share" size="18"></ng-md-icon>
-                Invite
-            </md-button>
+            <a ng-if="!isPreview"
+               ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
+               class="link-button uppercase invite-button margin-left20">
+                <ng-md-icon icon="share" size="18"></ng-md-icon>Invite
+            </a>
             <!--<md-menu  ng-if="!isPreview"> -->
                 <!--<md-button class="md-raised dmc-button" ng-click="$mdOpenMenu($event) "><ng-md-icon icon="share" size="18"></ng-md-icon> Invite</md-button>-->
                 <!--<md-menu-content>-->
@@ -50,7 +49,7 @@
                         <h2>COVER LETTER</h2>
                     </md-toolbar>
                 </div>
-                <md-content class="view-project-padding">
+                <md-content>
                     <p>We seek a power transformer with improved heat losses relative to a standard iron core transformer. Cost and time to delivery are also critical. The attached documents give detailed specs and the attached Evaluator Service encompasses how we will value the trade-offs among heat loss, cost, and delivery time.</p>
                 </md-content>
             </div>
@@ -60,14 +59,14 @@
         <!-- Left Content Column -->
         <div class="content-column" layout="column" flex="65">
             <!-- Overview -->
-            <div class="content-panel project-review">
+            <div class="content-panel margin-right12-5">
                 <div class="content-panel-header">
                     <md-toolbar>
                         <h2>OVERVIEW</h2>
                     </md-toolbar>
                 </div>
                 <div class="content-panel-body">
-                    <md-content class="view-project-padding" layout="row" layout-padding>
+                    <md-content layout="row">
                         <div flex="25" style="display: none">
                             <img ng-src="{{projectCtrl.projectData.featureImage.thumbnail}}">
                         </div>
@@ -78,16 +77,24 @@
                 </div>
             </div>
             <!-- Discussion -->
-            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-discussions project-id="projectCtrl.currentProjectId" widget-title="'DISCUSSIONS'"></div>
+            <div ng-if="!isPreview" class="content-panel margin-right12-5 margin-top-25"
+                 ui-widget-discussions project-id="projectCtrl.currentProjectId"
+                 widget-title="'DISCUSSIONS'"></div>
             <!-- Tasks -->
-            <div ng-if="!isPreview" class="content-panel project-review" ui-widget-tasks project-id="projectCtrl.currentProjectId" columns="['title','assignee','dueDate','priority']" widget-title="'TASKS'"></div>
+            <div ng-if="!isPreview" class="content-panel margin-right12-5 margin-top-25"
+                 ui-widget-tasks project-id="projectCtrl.currentProjectId"
+                 columns="['title','assignee','dueDate','priority']"
+                 widget-title="'TASKS'"></div>
         </div>
         <!-- Right Content Column -->
         <div class="content-column" layout="column" flex>
             <!-- Requirement Documents -->
-            <div ng-if="isPreview" class="content-panel project-review" ui-widget-documents project-id="projectCtrl.currentProjectId" widget-title="'DOCUMENTS'"></div>
+            <div ng-if="isPreview" class="content-panel margin-left12-5"
+                 ui-widget-documents
+                 project-id="projectCtrl.currentProjectId"
+                 widget-title="'DOCUMENTS'"></div>
             <!-- Running Services -->
-            <div ng-if="!isPreview" class="content-panel project-review"
+            <div ng-if="!isPreview" class="content-panel margin-left12-5"
                  ui-widget-services
                  view-all-href="'https://test.projectdmc.org/services/?group_id=7'"
                  title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'"

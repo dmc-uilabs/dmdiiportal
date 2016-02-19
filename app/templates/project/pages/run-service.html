@@ -1,18 +1,17 @@
-<div class="page-header" layout-padding>
-	<md-toolbar>
-		<div class="md-toolbar-tools">
-			<div layout="column">
-				<h1 class="name-project">
-					<div sub-nav-menu-button current-page="7"></div>
-					{{projectData.title}}
-					<span class="small-text small-text--grey">Due in 20 days</span>
-				</h1>
-				<span ng-if="isPreview" class="project-manager">Submitted: {{projectData.projectManager}}</span>
-			</div>      
-		</div>
-	</md-toolbar>
+<div class="page-header margin-bottom-35">
+    <md-toolbar>
+        <h1 class="project-title">{{projectData.title}}</h1>
+        <div class="md-toolbar-tools">
+            <div layout="column" flex="65" class="margin-right12-5">
+                <div layout="row" class="name-project" flex>
+                    <div sub-nav-menu-button current-page="7"></div>
+                </div>
+                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
+            </div>
+        </div>
+    </md-toolbar>
 </div>
-<div class="project-run-services" ng-if="!runHistory" layout="column">
+<div class="project-run-services padding-10" ng-if="!runHistory" layout="column">
 	<h2><a ui-sref="project.services-detail({ServiceId: ServiceId})" >{{service.title}}</a></h2>
 	<div layout="row" layout-align="space-between center">
 		<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/run/run-history'}}" class="link margin-top8">
@@ -38,16 +37,16 @@
 	<h3>Average Run: {{averageRun}} s.</h3>
 	<div layout="row">
 		<div flex="50" class="inputs">
-			<div layout="row" layout-align="space-between center">
+			<div layout="row" class="margin-bottom-10" layout-align="space-between center">
 				<h2>Inputs</h2>
-				<div class="inputs-button">
-					<md-button ng-click="default()" class="md-raised  dmc-button">
+				<div class="inputs-button ">
+					<md-button ng-click="default()" class="md-raised  dmc-button margin-left20">
 						Default
 					</md-button>
-					<md-button ng-click="reset()" class="md-raised  dmc-button">
+					<md-button ng-click="reset()" class="md-raised  dmc-button margin-left20">
 						Reset
 					</md-button>
-					<md-button ng-click="save()" class="md-raised md-primary  dmc-button">
+					<md-button ng-click="save()" class="md-raised md-primary dmc-button margin-left20">
 						Save Order
 					</md-button>
 				</div>

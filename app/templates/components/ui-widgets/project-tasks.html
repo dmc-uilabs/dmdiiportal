@@ -1,16 +1,16 @@
 <div class="title-widget" ng-hide="widgetTitle == null" layout="row" layout-align="start center">
     <h2>{{widgetTitle}}</h2>
     <span flex></span>
-    <md-button ng-href="{{'/all.php#/tasks/'+projectId}}"
+    <a ng-href="{{'/all.php#/tasks/'+projectId}}"
                ng-click="previousPage.save($event)"
-               class="view-all-link">View All ({{totalItems}})</md-button>
+               class="link-button uppercase">View All ({{totalItems}})</a>
 </div>
 <md-list class="task-list">
     <md-list-item class="md-3-line" ng-repeat="task in projectTasks">
         <div class="md-list-item-text">
             <h3 ng-click="editTask($event,task)">{{task.title}}</h3>
             <h4>Assigned To: <a href="/profile.php#/1" class="link-button">{{task.assignee}}</a></h4>
-            <div class="label" ng-bind-html="task.formatedDueDate[1]" ng-class="task.formatedDueDate[0] == 'date' ? 'label--date' : (task.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (task.formatedDueDate[0] == 'today' || task.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></div>
+            <div class="label border-radius-2" ng-bind-html="task.formatedDueDate[1]" ng-class="task.formatedDueDate[0] == 'date' ? 'label--date' : (task.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (task.formatedDueDate[0] == 'today' || task.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></div>
         </div>
         <md-divider ng-if="$index < projectTasks.length-1"></md-divider>
     </md-list-item>

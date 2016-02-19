@@ -79,6 +79,16 @@
 
 .name-project{
   text-transform: uppercase;
+  position: relative;
+  h1{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    left: 96px+20px;
+    right: 12.5px;
+    cursor: default;
+  }
   img{
     margin-right: 13px;
     width: 31px;
@@ -153,8 +163,20 @@ md-input-container{
   }
 }
 
+.invite-challenge-container{
+  max-width: 1280px;
+  margin: 30px auto 40px auto;
+  .content-panel[rfp-tabs]{
+    padding: 0 40px;
+    .md-toolbar-tools{
+      padding: 0;
+    }
+  }
+}
+
 .widget-toolbar-title{
-  padding: 0 8px 8px 0;
+  padding: 0;
+  height: 0;
 }
 table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:nth-child(n+2):nth-last-child(n+2),
 table[md-data-table]:not([md-row-select])>tbody>tr>td:nth-child(n+2):nth-last-child(n+2), table[md-data-table]:not([md-row-select])>tfoot>tr>td:nth-child(n+2):nth-last-child(n+2),
@@ -246,7 +268,9 @@ a.link-button,
 a.link-button.md-button.md-default-theme{
   text-decoration: none;
   text-transform: initial;
-  color: #333;
+  color: #363636;
+  font-size: 13px;
+  cursor: pointer;
   &:hover{
     background: none;
     background-color: none;
@@ -260,16 +284,27 @@ a.link-button.md-button.md-default-theme{
   }
 }
 
+//button.md-button.md-default-theme,
 .dmc-button{
-  height: 36px;
+  height: 30px;
   min-height: 0;
+  line-height: 31px;
   text-transform: initial;
-  color: #333;
-  ng-md-icon{
-    fill: #333;
+  color: #363636;
+  margin: 0;
+  padding: 0 12px;
+  min-width: 0;
+  width: auto;
+  background-color: #c7c7c7;
+  @include boxShadow(0 0 0 rgba(0,0,0,0));
+  .margin-left20{
+    margin-left: 20px;
   }
   span{
     font-size: 14px;
+  }
+  ng-md-icon{
+    fill: #666666;
   }
 }
 
@@ -277,7 +312,7 @@ a.link-button.md-button.md-default-theme{
 .view-all-link.md-button.md-default-theme{
   background-color: none;
   font-size: 13px;
-  color: #333;
+  color: #363636;
   &:hover{
     background: none;
     text-decoration: underline;
@@ -298,7 +333,7 @@ md-dialog[md-theme="default"]{
       background-color: #eee;
       span{
         text-transform: none;
-        color: #333;
+        color: #363636;
       }
     }
   }
@@ -340,3 +375,34 @@ a{
   }
 }
 
+.margin-left20{  margin-left: 20px;  }
+.margin-left25{  margin-left: 25px;  }
+.margin-left12-5{  margin-left: 12.5px;  }
+.margin-right25{  margin-right: 25px;  }
+.margin-right12-5{  margin-right: 12.5px;  }
+.margin-right15{  margin-right: 15px;  }
+.margin-top-25{  margin-top: 25px;  }
+.margin-top-10{  margin-top: 10px;  }
+.margin-bottom-40{ margin-bottom: 40px; }
+.margin-bottom-35{ margin-bottom: 35px; }
+.margin-bottom-20{ margin-bottom: 20px; }
+.margin-bottom-10{ margin-bottom: 10px; }
+.top-10{ top: -10px; }
+
+.padding-10{
+  @include borderRadius(2px);
+  padding: 10px;
+}
+
+button,
+.md-button.md-raised,
+.md-button{
+  @include borderRadius(2px);
+  &.gray-button:not([disabled]){
+    @include boxShadow(0 0 0 rgba(0,0,0,0));
+    background-color: #C7C7C7;
+    &:hover{
+      background-color: #d7d7d7 !important;
+    }
+  }
+}

@@ -14,18 +14,11 @@
         height: 50px;
       }
     }
-
     h2 {
       font-weight: normal;
       color: black;
       font-size: 23px;
     }
-
-    a {
-      font-size: 11px;
-      color: map-get($colors, link_color);
-    }
-
   }
   .content-panel-body {
     background-color: #FFF;

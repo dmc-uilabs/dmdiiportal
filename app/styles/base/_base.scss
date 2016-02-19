@@ -3,6 +3,7 @@
 
 html {
   font-size: 100%;
+  background-color: $body_grey;
 }
 
 body {
@@ -10,6 +11,7 @@ body {
   font-family: $body_font_family;
   color: map-get($colors, primary);
   min-height: 100%;
+  background-color: $body_grey;
 }
 
 img {
@@ -17,15 +19,47 @@ img {
   height: auto;
 }
 
-ui-view{
+$padding: 40px;
+div[ui-view] {
   position: relative;
   display: block;
-  background-color: $body_grey;
   min-height: 100%;
+  max-width: (1280px)-($padding*2);
+  margin: 0 auto;
+  padding: 30px $padding $padding $padding;
 }
-//dmc-footer{
-//  position: absolute;
-//  left: 0;
-//  right: 0;
-//  bottom: -139px;
-//}
+
+.border-radius-2{
+  @include borderRadius(2px);
+}
+
+.add-button-square{
+  min-width: 0;
+  width: 18px;
+  min-height: 0;
+  height: 18px;
+  line-height: 10px;
+  background-color: #c7c7c7;
+  margin: 0 0 0 10px;
+  svg{
+    margin-left: -6px;
+  }
+}
+
+
+
+md-content{
+  padding: 10px;
+  @include borderRadius(2px);
+  md-content{
+    padding: 0;
+  }
+}
+
+md-list{
+  padding: 0;
+  md-list-item.md-no-proxy, md-list-item .md-no-style{
+    padding: 0;
+    min-height: 0;
+  }
+}

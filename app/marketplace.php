@@ -36,7 +36,7 @@
     <!-- Top Header -->
     <div dmc-top-header active-page="'marketplace&market'"></div>
 
-    <ui-view></ui-view>
+    <div ui-view></div>
 
     <!-- Footer -->
     <dmc-footer></dmc-footer>

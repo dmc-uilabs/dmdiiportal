@@ -1,5 +1,4 @@
 .individual-discussion{
-	padding: 8px;
     .edit-btn.md-icon-button,
     .delete-btn.md-icon-button{
       width: 21px;
@@ -36,7 +35,7 @@
       padding-bottom: 0;
     }
 	.return{
-		padding: 8px 0 24px;
+		padding: 0;
 	}
 	a{
 		color: inherit;
@@ -44,22 +43,18 @@
 	h2{
 		font-weight: normal;
 	}
-	.padding{
-		padding: 16px;
-	}
 	.left-column{
 		//border: 1px solid #999;
-		margin-right: 16px;
 		background-color: #fff;
 		.header{
-			padding: 0 16px;
+			padding: 0 10px;
 		}
 		.message{
-			padding: 16px;
+			padding: 10px;
 		}
 
 		.comment{
-			padding: 16px;
+			padding: 10px;
 			border-bottom: 1px solid #999;
             background-color: #d0d0d0;
             &.isOwner{
@@ -124,7 +119,7 @@
 				}
 			}
 			.text{
-				padding: 16px 0;
+				padding: 10px 0;
 			}
 			.comment-footer{
 				p {
@@ -143,12 +138,11 @@
 		}
 
 		form[name=CommentForm]{
-			padding: 15px;;
+			padding: 10px;;
             background-color: #d0d0d0;
 		}
 	}
 	.right-column{
-		margin-left: 16px;
 		.related{
 			background-color: #fff;
 			h2{

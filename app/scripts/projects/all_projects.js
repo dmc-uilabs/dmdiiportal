@@ -15,9 +15,10 @@ angular.module('dmc.all_projects', [
         'dmc.common.footer'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
-    $stateProvider.state('project', {
-        url: '',
-        abstract: true
+    $stateProvider.state('all-projects', {
+        url: '/',
+        templateUrl: 'templates/projects/all.html',
+        controller: 'DMCAllProjectsController'
     });
     $urlRouterProvider.otherwise('/');
 })

@@ -21,7 +21,7 @@
 						Favorites ({{favoritesCount}})
 					</md-button>
 					<md-button ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
-                               class="md-raised dmc-button"
+                               class="md-raised dmc-button margin-left20"
                                compare-button>
 						Compare ({{compareProducts.services.length+compareProducts.components.length}})
 					</md-button>
@@ -70,8 +70,8 @@
 								</md-input-container>
 								<span flex></span>
 								
-								<md-button ng-click="cancelEdit()" class="md-raised dmc-button">Cancel</md-button>
-								<md-button ng-click="saveEdit()" class="md-raised dmc-button md-primary">Save</md-button>
+								<md-button ng-click="cancelEdit()" class="md-raised dmc-button margin-left20">Cancel</md-button>
+								<md-button ng-click="saveEdit()" class="md-raised md-primary dmc-button margin-left20">Save</md-button>
 							</div>
 						</div>
 
@@ -89,8 +89,8 @@
 					<md-tab label="Specifications">
 						<md-content class="md-padding" ng-if="true">
 							<div class="tabs-content" layout="column">
-								<div layout="row">
-									<md-autocomplete 									
+								<div layout="row" layout-align="start end">
+									<md-autocomplete
 											flex
 											md-no-cache="true"
 											md-selected-item="selectedItem"
@@ -109,9 +109,13 @@
 											No matches found for "{{searchText}}".
 										</md-not-found>
 									</md-autocomplete>
-									<md-button class="dmc-button md-raised" ng-disabled="!searchText" ng-click="addNewSpecifications(searchText)">
-										Add
-									</md-button>
+                                    <md-input-container>
+    									<md-button class="md-raised margin-left20"
+                                                   ng-disabled="!searchText"
+                                                   ng-click="addNewSpecifications(searchText)">
+    										Add
+									    </md-button>
+                                    </md-input-container>
 								</div>
 								<p>Created: {{product.currentStatus.startDate}}</p>
 								<p>Added: {{product.specifications[0].usageStats.added}} times by {{product.specifications[0].usageStats.members}} members</p>
@@ -125,11 +129,11 @@
 									</md-button>
 									<md-input-container>
 										<label>Specifications</label>
-										<input id="{{'sipecification'+$index}}" ng-model="item.specification"></input>
+										<input id="{{'sipecification'+$index}}" ng-model="item.specification"/>
 									</md-input-container>
 									<md-input-container>
 										<label>Data</label>
-										<input name="data" ng-model="item.data"></input>
+										<input name="data" ng-model="item.data"/>
 									</md-input-container>
 								</div>
 							</div>

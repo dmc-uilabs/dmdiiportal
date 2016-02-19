@@ -18,10 +18,9 @@
   .page-title{
     text-transform: uppercase;
     font-weight: 100;
-    margin: 34px 0;
+    margin: 25px 0;
   }
   .search-content{
-    height: 62px;
   }
   .filterBox{
     padding-bottom: 0;
@@ -119,11 +118,10 @@
     }
   }
   .inivitation{
-    padding: 16px;
     .box{
       background-color: #fff;
       border-bottom: 1px solid grey;
-      padding: 16px 32px;
+      padding: 16px;
       &:last-child{
         border-bottom: none;
       }
