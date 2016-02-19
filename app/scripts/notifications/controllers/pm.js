@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dmc.notifications')
-	.controller('notificationsPmController', ['$scope', 'ajax', 'notificationsStatistic', 'notificationsModel', function ($scope, ajax, notificationsStatistic, notificationsModel) {
+	.controller('notificationsPmController', ['$scope', 'ajax', 'notificationsStatistic', 'notificationsModel', 'notficationsMessages', function ($scope, ajax, notificationsStatistic, notificationsModel, notficationsMessages) {
 		$scope.user = false;
 		$scope.filterFlag = false;
 		$scope.typeNotifications = "Today";
@@ -19,6 +19,10 @@ angular.module('dmc.notifications')
 			}
 		)
 
+		$scope.getItemDetails = function(item) {
+			return notficationsMessages.getLinkDetails(item);
+		};
+
 		$scope.reset = function() {
 			$scope.typeNotifications = "Today";
 			$scope.filterFlag = false;
@@ -33,7 +37,7 @@ angular.module('dmc.notifications')
 			)
 		}
 
-		$scope.filtered = function(time, type, name){
+		$scope.filtered = function(time, events, name){
 			var period = "";
 			if(time == "today"){
 				period = "today";
@@ -45,7 +49,7 @@ angular.module('dmc.notifications')
 			notificationsModel.get_notifications_pm(
 				{
 					"period": period,
-					"type": type
+					"event": events
 				},
 				function(data){
 					$scope.notificationsData = data;

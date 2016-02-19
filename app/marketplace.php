@@ -86,6 +86,7 @@
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/header/header.js"></script>
+    <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/components/tree-menu/tree-menu.js"></script>

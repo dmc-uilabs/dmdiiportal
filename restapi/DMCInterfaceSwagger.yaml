@@ -606,7 +606,7 @@ paths:
             $ref: '#/definitions/GetDomeInterface'
         '405':
           description: Invalide input
-  '/dome-interfaces/{domeInterfaceId}':        
+  '/dome-interfaces/{domeInterfaceId}':
     delete:
       tags:
         - service
@@ -2718,7 +2718,7 @@ paths:
             $ref: '#/definitions/ProductReview'
       responses:
         200:
-          description: returns updated service review 
+          description: returns updated service review
           schema:
             $ref: '#/definitions/ProductReview'
   '/product_reviews_helpful':
@@ -3033,7 +3033,7 @@ paths:
     get:
       tags:
         - notification
-      description: Get all notifications for the user
+      description: Get all notifications for user
       parameters:
         - name: period
           in: query
@@ -3045,17 +3045,11 @@ paths:
             - today
             - week
             - month
-        - name: type
+        - name: event
           in: query
-          description: value filters result by type
+          description: value filters result by notification event
           type: string
           required: false
-          enum:
-            - projects
-            - services
-            - task
-            - contact
-            - review
       responses:
         '200':
           description: return all notifications
@@ -3067,7 +3061,7 @@ paths:
     get:
       tags:
         - notification
-      description: Get all notification statistics for the user
+      description: Get all notification statistics for User
       responses:
         '200':
           description: return all notification statistics
@@ -3079,7 +3073,7 @@ paths:
     get:
       tags:
         - notification
-      description: Get all notifications for the pm
+      description: Get all notifications for Project Manager
       parameters:
         - name: period
           in: query
@@ -3091,36 +3085,30 @@ paths:
             - today
             - week
             - month
-        - name: type
+        - name: event
           in: query
-          description: value filters result by type
+          description: value filters result by notification event
           type: string
           required: false
-          enum:
-            - projects
-            - services
-            - task
-            - contact
-            - review
       responses:
         '200':
           description: return all notifications
           schema:
             type: array
             items:
-              $ref: '#/definitions/PmNotification'
+              $ref: '#/definitions/UserNotification'
   '/notifications-pm-statistic':
     get:
       tags:
         - notification
-      description: Get all notification statistics for the pm
+      description: Get all notification statistics for the Project Manager
       responses:
         '200':
           description: return all notification statistics
           schema:
             type: array
             items:
-              $ref: '#/definitions/PmNotificationStat'
+              $ref: '#/definitions/UserNotificationStat'
   '/announcements':
     get:
       tags:
@@ -3189,7 +3177,7 @@ paths:
           type: string
         - in: query
           name: commentId
-          description: Id comment of individual discussions comments 
+          description: Id comment of individual discussions comments
           required: true
           type: string
         - name: _order
@@ -3687,9 +3675,9 @@ definitions:
         type: number
       output:
         type: number
-      special: 
+      special:
         type: array
-        items: 
+        items:
           $ref: '#/definitions/ServiceSpecialSpecifications'
       usageStats:
         $ref: '#/definitions/UsageStats'
@@ -3698,11 +3686,11 @@ definitions:
   ServiceSpecialSpecifications:
     type: object
     properties:
-      specification: 
+      specification:
         type: string
       data:
         type: string
-      specificationId: 
+      specificationId:
         type: string
   Component:
     type: object
@@ -3903,7 +3891,7 @@ definitions:
         type: integer
       comment:
         type: string
-      accountId: 
+      accountId:
         type: string
   ProfileReviewHelpful:
     type: object
@@ -3947,7 +3935,7 @@ definitions:
         type: integer
       comment:
         type: string
-      accountId: 
+      accountId:
         type: string
   ProductReviewHelpful:
     type: object
@@ -4060,7 +4048,7 @@ definitions:
         type: integer
       comment:
         type: string
-      accountId: 
+      accountId:
         type: string
   CompanyReviewHelpful:
     type: object
@@ -4235,18 +4223,6 @@ definitions:
         type: string
       file:
         type: string
-  NotificationsListItem:
-    type: object
-    properties:
-      event:
-        type: string
-      created_at:
-        type: string
-        format: dateTime
-      title:
-        type: string
-      link:
-        type: string
   RunningServicesListItem:
     type: object
     properties:
@@ -4286,7 +4262,7 @@ definitions:
         type: string
       role:
         type: string
-      termsConditions: 
+      termsConditions:
         type: boolean
       notifications:
         type: object
@@ -4296,7 +4272,7 @@ definitions:
           items:
             type: array
             items:
-              $ref: '#/definitions/NotificationsListItem'
+              $ref: '#/definitions/UserNotification'
       runningServices:
         type: object
         properties:
@@ -4424,6 +4400,74 @@ definitions:
         type: string
       selected:
         type: boolean
+  UserNotificationProfileParams:
+    type: object
+    properties:
+      profileId:
+        type: string
+      displayName:
+        type: string
+  UserNotificationCompanyParams:
+    type: object
+    properties:
+      companyId:
+        type: string
+      companyName:
+        type: string
+      displayName:
+        type: string
+  UserNotificationDiscussionParams:
+    type: object
+    properties:
+      discussionId:
+        type: string
+      displayName:
+        type: string
+  UserNotificationServiceParams:
+    type: object
+    properties:
+      serviceId:
+        type: string
+      serviceTitle:
+        type: string
+      displayName:
+        type: string
+  UserNotificationMarketParams:
+    type: object
+    properties:
+      serviceId:
+        type: string
+      serviceTitle:
+        type: string
+      displayName:
+        type: string
+  UserNotificationProjectParams:
+    type: object
+    properties:
+      projectId:
+        type: string
+      projectTitle:
+        type: string
+      displayName:
+        type: string
+  UserNotificationCommunityParams:
+    type: object
+    properties:
+      eventId:
+        type: string
+      eventTitle:
+        type: string
+  UserNotificationTaskParams:
+    type: object
+    properties:
+      projectId:
+        type: string
+      projectTitle:
+        type: string
+      taskId:
+        type: string
+      displayName:
+        type: string
   UserNotification:
     type: object
     properties:
@@ -4431,8 +4475,6 @@ definitions:
         type: string
       image:
         type: string
-      link:
-        type: string
       period:
         type: string
         enum:
@@ -4442,18 +4484,66 @@ definitions:
       type:
         type: string
         enum:
-          - projects
-          - services
+          - profile
+          - discussion
+          - service
+          - company
+          - marketplace
+          - community
+          - project
           - task
-          - contact
-          - review
+      event:
+        type: string
+        enum:
+          - ACCEPT_INVITATION
+          - ANNOUNCEMENT_DMC
+          - ANNOUNCEMENT_SYSTEM
+          - EVENT_DMC
+          - FAVORITED_COMPONENT
+          - FAVORITED_SERVICE
+          - FOLLOW_COMPANY
+          - FOLLOW_DISCUSSION
+          - FOLLOW_USER
+          - JOIN_PUBLIC_PROJECT
+          - PROJECT_DUE
+          - NEW_DISCUSSION
+          - REJECT_INVITATION
+          - REPLY_DISCUSSION
+          - REPLY_REVIEW
+          - REVIEW_COMPANY
+          - REVIEW_COMPONENT
+          - REVIEW_SERVICE
+          - REVIEW_USER
+          - SERVICE_ERROR
+          - SERVICE_FINISH
+          - SERVICE_SHARED
+          - SERVICE_RUN
+          - SUBSCRIBE_SERVICE_TO_YOUR_PROJECT
+          - SUBSCRIBE_USER_TO_COMPANY
+          - SUBSCRIBE_YOUR_SERVICE_TO_PROJECT
+          - TASK_ASSIGN
+          - TASK_DUE
+          - TASK_UPDATE
+          - UPDATE_COMPANY_PROFILE
+          - UPDATE_COMPANY_STOREFRONT
+          - UPDATE_PROJECT
+          - UPDATE_SERVICE
+          - UPDATE_USER_PROFILE
+          - UNSUBSCRIBE_SERVICE_TO_YOUR_PROJECT
       date:
         type: string
         format: dateTime
-      title:
-        type: string
-      linkTitle:
-        type: string
+      linkParams:
+        type: object
+        enum:
+          - $ref: '#/definitions/UserNotificationProfileParams'
+          - $ref: '#/definitions/UserNotificationDiscussionParams'
+          - $ref: '#/definitions/UserNotificationServiceParams'
+          - $ref: '#/definitions/UserNotificationCompanyParams'
+          - $ref: '#/definitions/UserNotificationMarketParams'
+          - $ref: '#/definitions/UserNotificationProjectParams'
+          - $ref: '#/definitions/UserNotificationCommunityParams'
+          - $ref: '#/definitions/UserNotificationTaskParams'
   UserNotificationStat:
     type: object
     properties:
@@ -4461,65 +4551,10 @@ definitions:
         type: string
       name:
         type: string
-      type:
-        type: string
-        enum:
-          - projects
-          - services
-          - task
-          - contact
-          - review
-      today:
-        type: number
-      week:
-        type: number
-      month:
-        type: number
-  PmNotification:
-    type: object
-    properties:
-      id:
-        type: string
-      image:
-        type: string
-      link:
-        type: string
-      period:
-        type: string
-        enum:
-          - today
-          - week
-          - month
-      type:
-        type: string
-        enum:
-          - projects
-          - services
-          - task
-          - contact
-          - review
-      date:
-        type: string
-        format: dateTime
-      title:
-        type: string
-      linkTitle:
-        type: string
-  PmNotificationStat:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      type:
-        type: string
-        enum:
-          - projects
-          - services
-          - task
-          - contact
-          - review
+      events:
+        type: array
+        items:
+          type: string
       today:
         type: number
       week:
@@ -4627,9 +4662,9 @@ definitions:
       created_at:
         type: string
         format: dateTime
-      reply: 
+      reply:
         type: boolean
-      commentId: 
+      commentId:
         type: string
       like:
         type: number
@@ -4704,7 +4739,7 @@ definitions:
   PostServiceInputPosition:
     type: object
     properties:
-      serviceId: 
+      serviceId:
         type: string
       positions:
         type: array
@@ -4715,7 +4750,7 @@ definitions:
     properties:
       id:
         type: string
-      serviceId: 
+      serviceId:
         type: string
       positions:
         type: array
@@ -4749,7 +4784,7 @@ definitions:
           type: number
       serviceId:
         type: number
-      domeServer: 
+      domeServer:
         type: string
   PostUpdateDomeInterface:
     type: object
@@ -4770,5 +4805,5 @@ definitions:
           type: number
       serviceId:
         type: number
-      domeServer: 
+      domeServer:
         type: string
