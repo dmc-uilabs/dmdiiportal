@@ -5,7 +5,7 @@
     "profileId": 1,
     "companyId": 1,
     "role": 1,
-    "termsConditions": false,
+    "termsConditions": true,
     "notifications": {
       "total": 4,
       "items": [
@@ -88,8 +88,8 @@
     },
     "onboarding": {
       "profile": true,
-      "account": true,
-      "company": true,
+      "account": false,
+      "company": false,
       "storefront": false
     }
   },
@@ -8436,7 +8436,7 @@
       "companyId": 1,
       "jobTitle": "Engineering Manager",
       "location": "Berkeley, California",
-      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "image": "/uploads/profile/1/20160219092607000000.jpg",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
       "skills": [
         "skill1",

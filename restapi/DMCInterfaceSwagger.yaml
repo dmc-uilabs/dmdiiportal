@@ -506,7 +506,7 @@ paths:
       tags:
         - project
         - add member
-      description: Update member
+      description: Update member or accept inivitation
       parameters:
         - in: path
           name: memberId
@@ -538,6 +538,20 @@ paths:
           description: return members
           schema:
             $ref: '#/definitions/ProjectMember'
+    delete:
+      tags:
+        - project
+        - add member
+      description: decline member inivitation
+      parameters:
+        - in: path
+          name: memberId
+          type: string
+          description: member id
+          required: true
+      responses:
+        '200':
+          description: Ok
   /tasks/create:
     post:
       tags:

@@ -7,7 +7,7 @@
                     {{projectCtrl.projectData.title}}
                     <span ng-if="projectCtrl.projectData.dueDate" class="small-text small-text--grey">Due in {{projectCtrl.projectData.dueDate}}</span>
                 </h1>
-                <span ng-if="isPreview" class="project-manager">Invited to {{projectCtrl.projectData.type}}: <a ng-href="/profile.php#/1">{{projectCtrl.projectData.projectManager}}</a> <ng-md-icon icon="mail" style="fill: #666" size="20"></ng-md-icon></span>
+                <span ng-if="isPreview" class="project-manager">Invited to {{projectCtrl.projectData.type}}: <a ng-href="/profile.php#/1">{{projectCtrl.projectData.projectManager}}</a> <ng-md-icon ng-if="version1" icon="mail" style="fill: #666" size="20"></ng-md-icon></span>
             </div>
             <!-- fill up the space between left and right area -->
             <span flex></span>

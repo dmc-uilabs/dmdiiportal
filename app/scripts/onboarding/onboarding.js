@@ -15,6 +15,7 @@ angular.module('dmc.onboarding', [
     'dmc.common.footer',
     'dmc.location',
     'dmc.model.toast-model',
+    'dmc.model.fileUpload',
     'dmc.model.profile',
     'dmc.model.user',
     'dmc.phone-format',
@@ -26,7 +27,13 @@ angular.module('dmc.onboarding', [
                 url: '',
                 abstract: true,
                 template: "<ui-view></ui-view>",
-                controller: 'onboardingController'
+                controller: 'onboardingController',
+                resolve: {
+                    userData: ['DMCUserModel',
+                        function(DMCUserModel) {
+                            return DMCUserModel.getUserData();
+                        }]
+                }
             })
             .state('onboarding.home', {
                 url: '/home',
@@ -148,6 +155,34 @@ angular.module('dmc.onboarding', [
         $urlRouterProvider.otherwise('/home');
     })
     .service('onboardingModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel',
-                            function (ajax, dataFactory, $stateParams, toastModel) {
+         function (ajax, dataFactory, $stateParams, toastModel) {
+            this.get_profile = function(profileId, callback){ 
+                return ajax.get(
+                    dataFactory.profiles(profileId).get,
+                    {},
+                    function(response){
+                        callback(response.data);
+                    }
+                )
+            }
 
+            this.update_profile = function(profileId, params, callback){ 
+                ajax.get(
+                    dataFactory.profiles(profileId).get,
+                    {},
+                    function(response){
+                        var profile = response.data;
+                        for(var item in params){
+                           profile[item] = params[item];
+                        }
+                        ajax.update(
+                            dataFactory.profiles(profileId).update,
+                            profile,
+                            function(response){
+                                callback(response.data);
+                            }
+                        )
+                    }
+                )
+            }
     }])

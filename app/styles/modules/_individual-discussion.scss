@@ -57,6 +57,7 @@
 		.message{
 			padding: 16px;
 		}
+
 		.comment{
 			padding: 16px;
 			border-bottom: 1px solid #999;
@@ -64,6 +65,9 @@
             &.isOwner{
               background-color: #fff;
             }
+            &.first{
+				background-color: #fff;
+			}
 			.comment-header{
 				height: 65px;
 				img{
@@ -91,6 +95,7 @@
 				.md-button{
 					margin: 0;
 					width: auto;
+					font-size: 13px;
 					min-width: 20px;
 					height: 20px;
 					min-height: 20px;

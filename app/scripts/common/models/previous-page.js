@@ -35,7 +35,7 @@ angular.module('dmc.model.previous-page', [
                     };
                 } else if (previousPage.indexOf('profile.php') != -1) {
                     return {
-                        title: "Back to the Profile",
+                        title: "Back to Profile",
                         url: previousPage
                     };
                 } else {
