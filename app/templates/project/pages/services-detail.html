@@ -57,12 +57,12 @@
 	<div class="description">
 		{{service.description}}
 	</div>
-	<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom>
-		<md-tab label="STATISTICS">
+	<md-tabs md-selected="selectedTab" md-dynamic-height md-border-bottom>
+		<md-tab label="STATISTICS" ng-if="service.from == 'marketplace'">
 			<ui-widget-tabs-statistic data="service.services_statistic[0]" filter="getHistory"></ui-widget-tabs-statistic>
 		</md-tab>
 		
-		<md-tab label="HISTORY">
+		<md-tab label="HISTORY" ng-if="service.from == 'marketplace'">
 			<ui-widget-tabs-history data="history"></ui-widget-tabs-history>
 		</md-tab>
 

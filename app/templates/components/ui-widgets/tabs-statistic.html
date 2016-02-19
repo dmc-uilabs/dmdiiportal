@@ -5,14 +5,16 @@
 		<div flex="20">
 			<div class="rate">
 				<h3>Success Rate</h3>
-				<div class="cell1">
+				<div class="rate_box">
+				<div class="cell1" ng-style="{'height': data.success_rate.success+ '%'}">
 					<h4>{{data.success_rate.success}}% Success</h4>
 				</div>
-				<div class="cell2">
+				<div class="cell2" ng-style="{'height': data.success_rate.incomplete+ '%'}">
 					<h4>{{data.success_rate.incomplete}}% Incomplete</h4>
 				</div>
-				<div class="cell3">
+				<div class="cell3" ng-style="{'height': data.success_rate.failed+ '%'}">
 					<h4>{{data.success_rate.failed}}% Failed</h4>
+				</div>
 				</div>
 			</div>
 		</div>

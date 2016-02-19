@@ -10,6 +10,9 @@
 			<span flex></span>
 			<h3>{{item.date}}</h3>
 		</md-list-item>
+		<div ng-if="!data.leftColumn.list.length">
+			No history
+		</div>
 	</md-list>
 
 	<md-list flex class="history-list" ng-if="filters.block == 'Project'">
@@ -38,6 +41,9 @@
 			<span flex></span>
 			<h3>{{item.date}}</h3>
 		</md-list-item>
+		<div ng-if="!data.rightColumn.list.length">
+			No history
+		</div>
 	</md-list>
 
 	<md-list flex class="history-list" ng-if="filters.block == 'Marketplace'">

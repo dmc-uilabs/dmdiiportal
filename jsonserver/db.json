@@ -3442,8 +3442,8 @@
       "id": 1,
       "serviceId": 1,
       "success_rate": {
-        "success": 20,
-        "incomplete": 20,
+        "success": 50,
+        "incomplete": 30,
         "failed": 20
       },
       "successful_runs": {
@@ -3476,6 +3476,1020 @@
         "week": 11,
         "all": 22.2
       }
+    },
+    {
+      "serviceId": 7,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 3
+    },
+    {
+      "serviceId": 5,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 4
+    },
+    {
+      "serviceId": 3,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 5
+    },
+    {
+      "serviceId": 30,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 6
+    },
+    {
+      "serviceId": 4,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 7
+    },
+    {
+      "serviceId": 6,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 8
+    },
+    {
+      "serviceId": 8,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 9
+    },
+    {
+      "serviceId": 9,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 10
+    },
+    {
+      "serviceId": 12,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 11
+    },
+    {
+      "serviceId": 15,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 12
+    },
+    {
+      "serviceId": 16,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 13
+    },
+    {
+      "serviceId": 17,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 14
+    },
+    {
+      "serviceId": 10,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 15
+    },
+    {
+      "serviceId": 27,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 16
+    },
+    {
+      "serviceId": 11,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 17
+    },
+    {
+      "serviceId": 18,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 18
+    },
+    {
+      "serviceId": 2,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 19
+    },
+    {
+      "serviceId": 13,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 20
+    },
+    {
+      "serviceId": 41,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 21
+    },
+    {
+      "serviceId": 28,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 22
+    },
+    {
+      "serviceId": 14,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 23
+    },
+    {
+      "serviceId": 31,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 24
+    },
+    {
+      "serviceId": 42,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 25
+    },
+    {
+      "serviceId": 29,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 26
+    },
+    {
+      "serviceId": 44,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 27
+    },
+    {
+      "serviceId": 43,
+      "success_rate": {
+        "success": 50,
+        "incomplete": 30,
+        "failed": 20
+      },
+      "successful_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "incomplete_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unavailable_runs": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "runs_by_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "unique_users": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "average_time": {
+        "today": 0,
+        "week": 0,
+        "all": 0
+      },
+      "id": 28
     }
   ],
   "included-services": [
