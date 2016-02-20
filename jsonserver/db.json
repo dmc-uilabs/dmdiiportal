@@ -5,37 +5,49 @@
     "profileId": 1,
     "companyId": 1,
     "role": 1,
-    "termsConditions": true,
+    "termsConditions": false,
     "notifications": {
-      "total": 4,
+      "total": 3,
       "items": [
         {
-          "event": "new-contact",
-          "created_at": "8:00 PM",
-          "title": "John Smith added you as a contact",
-          "link": "/profile.php#/1",
-          "$$hashKey": "object:57"
+          "id": 24,
+          "image": "/uploads/profile/1/20151222084711000000.jpg",
+          "period": "today",
+          "type": "task",
+          "event": "TASK_ASSIGN",
+          "linkParams": {
+            "projectId": 5,
+            "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+            "taskId": 18,
+            "displayName": "Thomas"
+          },
+          "date": "2016-02-02 12:10:31"
         },
         {
-          "event": "replied-discussion",
-          "created_at": "6:00 AM",
-          "title": "Bill Gates replied to your discussion",
-          "link": "/individual-discussion.php#/1",
-          "$$hashKey": "object:58"
+          "id": 6,
+          "image": "/uploads/profile/1/20151222084711000000.jpg",
+          "period": "today",
+          "type": "company",
+          "event": "REPLY_REVIEW",
+          "linkParams": {
+            "companyId": 1,
+            "companyName": "GE",
+            "displayName": "Thomas"
+          },
+          "date": "2016-02-02 12:10:31"
         },
         {
-          "event": "new-contact",
-          "created_at": "6:25 PM",
-          "title": "Bill Gates added you as a contact",
-          "link": "/profile.php#/2",
-          "$$hashKey": "object:59"
-        },
-        {
-          "event": "replied-discussion",
-          "created_at": "3:12 PM",
-          "title": "John Smith replied to your discussion",
-          "link": "/individual-discussion.php#/1",
-          "$$hashKey": "object:60"
+          "id": 17,
+          "image": "/uploads/profile/1/20151222084711000000.jpg",
+          "period": "today",
+          "type": "marketplace",
+          "event": "FAVORITED_SERVICE",
+          "linkParams": {
+            "serviceId": 2,
+            "serviceTitle": "Fan failure mode analysis",
+            "displayName": "Thomas"
+          },
+          "date": "2016-02-02 12:10:31"
         }
       ]
     },
@@ -50,8 +62,7 @@
             "percentCompleted": "25",
             "startDate": "09/20/2015",
             "startTime": "11:15:33"
-          },
-          "$$hashKey": "object:38"
+          }
         },
         {
           "title": "Incoming Compartment For Ldr Mining",
@@ -61,8 +72,7 @@
             "percentCompleted": "55",
             "startDate": "09/22/2015",
             "startTime": "11:15:33"
-          },
-          "$$hashKey": "object:39"
+          }
         }
       ]
     },
@@ -74,24 +84,21 @@
           "image": "/images/carbone.png",
           "text": "How was your meeting with the Bill Gates?",
           "link": "/message.php#/1",
-          "created_at": "8:00 PM",
-          "$$hashKey": "object:86"
+          "created_at": "8:00 PM"
         },
         {
           "user_name": "John Smith",
           "image": "/images/carbone.png",
           "text": "How was your meeting with the Bill Gates?",
           "link": "/message.php#/1",
-          "created_at": "10:46 PM",
-          "$$hashKey": "object:87"
+          "created_at": "10:46 PM"
         },
         {
           "user_name": "John Smith",
           "image": "/images/carbone.png",
           "text": "How was your meeting with the Bill Gates?",
           "link": "/message.php#/1",
-          "created_at": "1:15 PM",
-          "$$hashKey": "object:88"
+          "created_at": "1:15 PM"
         }
       ]
     },
@@ -271,12 +278,6 @@
       "position": 4,
       "serviceId": 29,
       "id": 7
-    },
-    {
-      "companyId": 1,
-      "position": 5,
-      "serviceId": 14,
-      "id": 8
     }
   ],
   "company_reviews": [
@@ -625,6 +626,11 @@
   "favorite_products": [
     {
       "accountId": 1,
+      "serviceId": 7,
+      "id": 4
+    },
+    {
+      "accountId": 1,
       "serviceId": 9,
       "id": 6
     },
@@ -660,7 +666,7 @@
     },
     {
       "accountId": 1,
-      "serviceId": 30,
+      "serviceId": 4,
       "id": 16
     }
   ],
@@ -932,19 +938,6 @@
       "serviceId": 41,
       "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
       "id": 4
-    },
-    {
-      "version": 1,
-      "modelId": "aff647f9-d82f-1004-8e7b-5de38b2eeb0f",
-      "interfaceId": "aff647fa-d82f-1004-8e7b-5de38b2eeb0f",
-      "type": "interface",
-      "name": "Default Interface",
-      "path": [
-        30
-      ],
-      "serviceId": 45,
-      "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-      "id": 5
     }
   ],
   "services": [
@@ -966,7 +959,7 @@
       "type": "service",
       "from": "marketplace",
       "parent": 0,
-      "published": false,
+        "published": true,
       "averageRun": 0
     },
     {
@@ -986,7 +979,7 @@
       "projectId": 1,
       "type": "service",
       "from": "marketplace",
-      "published": true,
+        "published": true,
       "averageRun": 0
     },
     {
@@ -1005,7 +998,7 @@
       },
       "projectId": 2,
       "type": "service",
-      "published": false,
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1025,8 +1018,28 @@
       "projectId": 5,
       "type": "service",
       "from": "marketplace",
-      "published": true,
-      "averageRun": 1
+        "published": true,
+      "averageRun": 0.5
+    },
+    {
+      "id": 4,
+      "companyId": 1,
+      "title": "Power Factor Correction Analyzer",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "owner": "J.Sims",
+      "profileId": 1,
+      "releaseDate": "01/09/2015",
+      "serviceType": "solid",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "projectId": 2,
+      "type": "service",
+      "from": "marketplace",
+        "published": true,
+      "averageRun": 15
     },
     {
       "id": 6,
@@ -1044,7 +1057,26 @@
       },
       "projectId": 3,
       "type": "service",
-      "published": true,
+        "published": true,
+      "from": "marketplace"
+    },
+    {
+      "id": 7,
+      "companyId": 1,
+      "title": "Should-cost estimator",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "owner": "G.Baker",
+      "profileId": 1,
+      "releaseDate": "01/08/2015",
+      "serviceType": "solid",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "projectId": 3,
+      "type": "service",
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1063,7 +1095,7 @@
       },
       "projectId": 3,
       "type": "service",
-      "published": true,
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1082,7 +1114,7 @@
       },
       "projectId": 4,
       "type": "service",
-      "published": true,
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1101,7 +1133,7 @@
       },
       "projectId": 4,
       "type": "service",
-      "published": true,
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1120,7 +1152,45 @@
       },
       "projectId": 5,
       "type": "service",
-      "published": true,
+        "published": true,
+      "from": "marketplace"
+    },
+    {
+      "id": 16,
+      "companyId": 1,
+      "title": "Cost Relation Model",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "owner": "R.McCoy",
+      "profileId": 1,
+      "releaseDate": "01/09/2015",
+      "serviceType": "solid",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "projectId": 5,
+      "type": "service",
+        "published": true,
+      "from": "marketplace"
+    },
+    {
+      "id": 17,
+      "companyId": 1,
+      "title": "Heat Loss Relation Model",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "owner": "R.McCoy",
+      "profileId": 1,
+      "releaseDate": "08/25/2015",
+      "serviceType": "solid",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "projectId": 5,
+      "type": "service",
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1139,7 +1209,26 @@
       },
       "projectId": 4,
       "type": "service",
-      "published": true,
+        "published": true,
+      "from": "marketplace"
+    },
+    {
+      "id": 11,
+      "companyId": 2,
+      "title": "Cost vs. Heat Loss Trade-off Matrix",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "owner": "p.koudal",
+      "profileId": 1,
+      "releaseDate": "08/25/2015",
+      "serviceType": "solid",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "projectId": 4,
+      "type": "service",
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1158,7 +1247,7 @@
       },
       "projectId": 5,
       "type": "service",
-      "published": true,
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1177,7 +1266,7 @@
       },
       "projectId": 1,
       "type": "service",
-      "published": true,
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1196,8 +1285,8 @@
       },
       "projectId": 2,
       "type": "service",
-      "published": true,
       "from": "marketplace",
+        "published": true,
       "averageRun": 1
     },
     {
@@ -1216,7 +1305,7 @@
       },
       "projectId": 5,
       "type": "service",
-      "published": true,
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1237,7 +1326,7 @@
       "type": "service",
       "from": "project",
       "averageRun": 11.5,
-      "published": true,
+        "published": true,
       "parent": 0
     },
     {
@@ -1256,7 +1345,7 @@
       },
       "projectId": 4,
       "type": "service",
-      "published": true,
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1275,7 +1364,7 @@
       },
       "projectId": 4,
       "type": "service",
-      "published": true,
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1294,7 +1383,7 @@
       },
       "projectId": 5,
       "type": "service",
-      "published": true,
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1313,7 +1402,7 @@
       },
       "projectId": 3,
       "type": "service",
-      "published": true,
+        "published": true,
       "from": "marketplace"
     },
     {
@@ -1334,8 +1423,8 @@
       "projectId": 2,
       "from": "marketplace",
       "id": 42,
-      "published": true,
       "type": "service",
+        "published": true,
       "currentStatus": {
         "project": {
           "id": 2,
@@ -1361,8 +1450,8 @@
       "projectId": 2,
       "from": "marketplace",
       "id": 43,
-      "published": true,
       "type": "service",
+        "published": true,
       "currentStatus": {
         "project": {
           "id": 2,
@@ -1388,34 +1477,14 @@
       "projectId": 2,
       "from": "marketplace",
       "id": 44,
-      "published": true,
       "type": "service",
+        "published": true,
       "currentStatus": {
         "project": {
           "id": 2,
           "title": "Capacitor Bank for LDR Mining Co."
         }
       }
-    },
-    {
-      "title": "UxCompliance1",
-      "description": "UxCompliance Description1",
-      "owner": "Thomas Smith",
-      "accountId": 1,
-      "releaseDate": "02/20/2016",
-      "serviceType": "analytical",
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "averageRun": 0,
-      "parent_component": null,
-      "projectId": 1,
-      "type": "service",
-      "published": true,
-      "from": "project",
-      "id": 45
     }
   ],
   "service_runs": [
@@ -3249,6 +3318,26 @@
         "title": "Capacitor Bank for LDR Mining Co."
       },
       "id": 59
+    },
+    {
+      "serviceId": 30,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": -1,
+      "percentCompleted": 100,
+      "startDate": "2016-02-20",
+      "startTime": "12:34:17",
+      "project": {
+        "id": 5,
+        "title": "Low Heat Loss Transformer"
+      },
+      "id": 60,
+      "stopDate": "2016-02-20",
+      "stopTime": "12:34:17",
+      "interface": {
+        "inParams": null,
+        "outParams": null
+      }
     }
   ],
   "input-positions": [
@@ -3393,6 +3482,28 @@
       "id": 11
     },
     {
+      "type": "unavailable_runs",
+      "link": "",
+      "period": "today",
+      "section": "project",
+      "user": "Timmy Thomas",
+      "date": "2016-02-02 12:10:31",
+      "title": "Timmy Thomas ran the service unsuccessfully.",
+      "serviceId": 16,
+      "id": 12
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "today",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "serviceId": 16,
+      "id": 13
+    },
+    {
       "type": "edited",
       "link": "",
       "period": "today",
@@ -3501,6 +3612,17 @@
       "title": "Adam Marks edited the service description",
       "serviceId": 2,
       "id": 23
+    },
+    {
+      "type": "edited",
+      "link": "",
+      "period": "today",
+      "section": "marketplace",
+      "user": "Adam Marks",
+      "date": "2016-02-02 12:10:31",
+      "title": "Adam Marks edited the service description",
+      "serviceId": 16,
+      "id": 24
     }
   ],
   "services_statistic": [
@@ -3508,8 +3630,8 @@
       "id": 1,
       "serviceId": 1,
       "success_rate": {
-        "success": 50,
-        "incomplete": 30,
+        "success": 20,
+        "incomplete": 20,
         "failed": 20
       },
       "successful_runs": {
@@ -3542,825 +3664,6 @@
         "week": 11,
         "all": 22.2
       }
-    },
-    {
-      "serviceId": 5,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 4
-    },
-    {
-      "serviceId": 3,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 5
-    },
-    {
-      "serviceId": 30,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 6
-    },
-    {
-      "serviceId": 6,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 8
-    },
-    {
-      "serviceId": 8,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 9
-    },
-    {
-      "serviceId": 9,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 10
-    },
-    {
-      "serviceId": 12,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 11
-    },
-    {
-      "serviceId": 15,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 12
-    },
-    {
-      "serviceId": 10,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 15
-    },
-    {
-      "serviceId": 27,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 16
-    },
-    {
-      "serviceId": 18,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 18
-    },
-    {
-      "serviceId": 2,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 19
-    },
-    {
-      "serviceId": 13,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 20
-    },
-    {
-      "serviceId": 41,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 21
-    },
-    {
-      "serviceId": 28,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 22
-    },
-    {
-      "serviceId": 14,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 23
-    },
-    {
-      "serviceId": 31,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 24
-    },
-    {
-      "serviceId": 42,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 25
-    },
-    {
-      "serviceId": 29,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 26
-    },
-    {
-      "serviceId": 44,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 27
-    },
-    {
-      "serviceId": 43,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 28
     }
   ],
   "included-services": [
@@ -4385,6 +3688,11 @@
       "serviceId": 8
     },
     {
+      "id": 5,
+      "includeTo": 1,
+      "serviceId": 4
+    },
+    {
       "id": 6,
       "includeTo": 1,
       "serviceId": 5
@@ -4393,6 +3701,11 @@
       "id": 7,
       "includeTo": 1,
       "serviceId": 6
+    },
+    {
+      "id": 8,
+      "includeTo": 1,
+      "serviceId": 7
     },
     {
       "id": 9,
@@ -4495,14 +3808,6 @@
       "follow": false,
       "avatar": "/uploads/profile/1/20151222084711000000.jpg",
       "company": "General Electric (GE) Software"
-    },
-    {
-      "serviceId": 45,
-      "display_name": "Bill Gates",
-      "jobTitle": "Engineering Manager",
-      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
-      "company": "General Electric (GE) Software",
-      "id": 11
     }
   ],
   "service_input_output": [
@@ -4623,11 +3928,6 @@
       "serviceId": 41,
       "name": "tag1",
       "id": 14
-    },
-    {
-      "serviceId": 45,
-      "name": "fgh",
-      "id": 19
     }
   ],
   "services_run_history": [
@@ -5279,6 +4579,51 @@
       "url": "images/ge-fuel-cell.png"
     },
     {
+      "id": 41,
+      "serviceId": 4,
+      "url": "images/marketplace-card-image-1.jpg"
+    },
+    {
+      "id": 42,
+      "serviceId": 4,
+      "url": "images/3d-printing.png"
+    },
+    {
+      "id": 43,
+      "serviceId": 4,
+      "url": "images/project_generator.png"
+    },
+    {
+      "id": 44,
+      "serviceId": 4,
+      "url": "images/plasticity.png"
+    },
+    {
+      "id": 45,
+      "serviceId": 4,
+      "url": "images/project-1-image.jpg"
+    },
+    {
+      "id": 46,
+      "serviceId": 4,
+      "url": "images/project_relay_controller.png"
+    },
+    {
+      "id": 47,
+      "serviceId": 4,
+      "url": "images/project_controller_pg2.png"
+    },
+    {
+      "id": 48,
+      "serviceId": 4,
+      "url": "images/project_capacitor-bank.png"
+    },
+    {
+      "id": 49,
+      "serviceId": 4,
+      "url": "images/project_capacitor_compartment.png"
+    },
+    {
       "id": 51,
       "serviceId": 6,
       "url": "images/marketplace-card-image-1.jpg"
@@ -5292,6 +4637,11 @@
       "id": 54,
       "serviceId": 6,
       "url": "images/plasticity.png"
+    },
+    {
+      "id": 50,
+      "serviceId": 4,
+      "url": "images/ge-fuel-cell.png"
     },
     {
       "id": 55,
@@ -5316,6 +4666,56 @@
     {
       "id": 60,
       "serviceId": 6,
+      "url": "images/ge-fuel-cell.png"
+    },
+    {
+      "id": 61,
+      "serviceId": 7,
+      "url": "images/marketplace-card-image-1.jpg"
+    },
+    {
+      "id": 62,
+      "serviceId": 7,
+      "url": "images/3d-printing.png"
+    },
+    {
+      "id": 63,
+      "serviceId": 7,
+      "url": "images/project_generator.png"
+    },
+    {
+      "id": 65,
+      "serviceId": 7,
+      "url": "images/project-1-image.jpg"
+    },
+    {
+      "id": 64,
+      "serviceId": 7,
+      "url": "images/plasticity.png"
+    },
+    {
+      "id": 66,
+      "serviceId": 7,
+      "url": "images/project_relay_controller.png"
+    },
+    {
+      "id": 69,
+      "serviceId": 7,
+      "url": "images/project_capacitor_compartment.png"
+    },
+    {
+      "id": 67,
+      "serviceId": 7,
+      "url": "images/project_controller_pg2.png"
+    },
+    {
+      "id": 68,
+      "serviceId": 7,
+      "url": "images/project_capacitor-bank.png"
+    },
+    {
+      "id": 70,
+      "serviceId": 7,
       "url": "images/ge-fuel-cell.png"
     },
     {
@@ -5514,9 +4914,109 @@
       "url": "images/project_capacitor_compartment.png"
     },
     {
+      "id": 113,
+      "serviceId": 16,
+      "url": "images/project_generator.png"
+    },
+    {
       "id": 110,
       "serviceId": 15,
       "url": "images/ge-fuel-cell.png"
+    },
+    {
+      "id": 111,
+      "serviceId": 16,
+      "url": "images/marketplace-card-image-1.jpg"
+    },
+    {
+      "id": 112,
+      "serviceId": 16,
+      "url": "images/3d-printing.png"
+    },
+    {
+      "id": 115,
+      "serviceId": 16,
+      "url": "images/project-1-image.jpg"
+    },
+    {
+      "id": 116,
+      "serviceId": 16,
+      "url": "images/project_relay_controller.png"
+    },
+    {
+      "id": 119,
+      "serviceId": 16,
+      "url": "images/project_capacitor_compartment.png"
+    },
+    {
+      "id": 114,
+      "serviceId": 16,
+      "url": "images/plasticity.png"
+    },
+    {
+      "id": 117,
+      "serviceId": 16,
+      "url": "images/project_controller_pg2.png"
+    },
+    {
+      "id": 120,
+      "serviceId": 16,
+      "url": "images/ge-fuel-cell.png"
+    },
+    {
+      "id": 121,
+      "serviceId": 17,
+      "url": "images/marketplace-card-image-1.jpg"
+    },
+    {
+      "id": 122,
+      "serviceId": 17,
+      "url": "images/3d-printing.png"
+    },
+    {
+      "id": 123,
+      "serviceId": 17,
+      "url": "images/project_generator.png"
+    },
+    {
+      "id": 124,
+      "serviceId": 17,
+      "url": "images/plasticity.png"
+    },
+    {
+      "id": 118,
+      "serviceId": 16,
+      "url": "images/project_capacitor-bank.png"
+    },
+    {
+      "id": 125,
+      "serviceId": 17,
+      "url": "images/project-1-image.jpg"
+    },
+    {
+      "id": 127,
+      "serviceId": 17,
+      "url": "images/project_controller_pg2.png"
+    },
+    {
+      "id": 128,
+      "serviceId": 17,
+      "url": "images/project_capacitor-bank.png"
+    },
+    {
+      "id": 129,
+      "serviceId": 17,
+      "url": "images/project_capacitor_compartment.png"
+    },
+    {
+      "id": 130,
+      "serviceId": 17,
+      "url": "images/ge-fuel-cell.png"
+    },
+    {
+      "id": 126,
+      "serviceId": 17,
+      "url": "images/project_relay_controller.png"
     },
     {
       "id": 131,
@@ -5566,6 +5066,56 @@
     {
       "id": 140,
       "serviceId": 10,
+      "url": "images/ge-fuel-cell.png"
+    },
+    {
+      "id": 142,
+      "serviceId": 11,
+      "url": "images/3d-printing.png"
+    },
+    {
+      "id": 141,
+      "serviceId": 11,
+      "url": "images/marketplace-card-image-1.jpg"
+    },
+    {
+      "id": 144,
+      "serviceId": 11,
+      "url": "images/plasticity.png"
+    },
+    {
+      "id": 145,
+      "serviceId": 11,
+      "url": "images/project-1-image.jpg"
+    },
+    {
+      "id": 146,
+      "serviceId": 11,
+      "url": "images/project_relay_controller.png"
+    },
+    {
+      "id": 147,
+      "serviceId": 11,
+      "url": "images/project_controller_pg2.png"
+    },
+    {
+      "id": 148,
+      "serviceId": 11,
+      "url": "images/project_capacitor-bank.png"
+    },
+    {
+      "id": 143,
+      "serviceId": 11,
+      "url": "images/project_generator.png"
+    },
+    {
+      "id": 149,
+      "serviceId": 11,
+      "url": "images/project_capacitor_compartment.png"
+    },
+    {
+      "id": 150,
+      "serviceId": 11,
       "url": "images/ge-fuel-cell.png"
     },
     {
@@ -6304,10 +5854,10 @@
         "id": 3,
         "title": "Capacitor Design"
       },
-      "assignee": "Bridget Cohen",
+      "assignee": "Stephen Rencour",
       "reporter": "W.Simpson",
-      "dueDate": 1454623200000,
-      "priority": 3,
+      "dueDate": 1454562000000,
+      "priority": "Low",
       "projectId": 3,
       "status": "Open",
       "description": "Replace Air disconnect switch"
@@ -6322,10 +5872,9 @@
       "assignee": "Bridget Cohen",
       "reporter": "G.Apple",
       "dueDate": 1455055200000,
-      "priority": 1,
+      "priority": "Low",
       "projectId": 3,
-      "status": "Open",
-      "description": "Spec fusing for capacitors"
+      "status": "Open"
     },
     {
       "id": 12,
@@ -6337,10 +5886,9 @@
       "assignee": "Bridget Cohen",
       "reporter": "U.Leonard",
       "dueDate": 1455400800000,
-      "priority": 2,
+      "priority": "Low",
       "projectId": 3,
-      "status": "Open",
-      "description": "Design Inrush reactors"
+      "status": "Open"
     },
     {
       "id": 13,
@@ -6352,10 +5900,9 @@
       "assignee": "Bridget Cohen",
       "reporter": "U.Leonard",
       "dueDate": 1455487200000,
-      "priority": 3,
+      "priority": "Low",
       "projectId": 4,
-      "status": "Open",
-      "description": "Define specifications for power transformer"
+      "status": "Open"
     },
     {
       "id": 14,
@@ -6367,10 +5914,9 @@
       "assignee": "Bridget Cohen",
       "reporter": "R.Farmer",
       "dueDate": 1455832800000,
-      "priority": 4,
+      "priority": "Low",
       "projectId": 4,
-      "status": "Open",
-      "description": "communicate with LDR mining on cost targets"
+      "status": "Open"
     },
     {
       "id": 15,
@@ -6382,10 +5928,9 @@
       "assignee": "Bridget Cohen",
       "reporter": "V.Watkins",
       "dueDate": 1455832800000,
-      "priority": 3,
+      "priority": "Low",
       "projectId": 4,
-      "status": "Open",
-      "description": "review local content requirements"
+      "status": "Open"
     },
     {
       "id": 16,
@@ -6397,10 +5942,9 @@
       "assignee": "Bridget Cohen",
       "reporter": "V.Watkins",
       "dueDate": 1455919200000,
-      "priority": 4,
+      "priority": "Low",
       "projectId": 4,
-      "status": "Open",
-      "description": "review commercial transformer companies"
+      "status": "Open"
     },
     {
       "id": 17,
@@ -6412,10 +5956,9 @@
       "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
       "dueDate": 1456005600000,
-      "priority": 3,
+      "priority": "Low",
       "projectId": 5,
-      "status": "Open",
-      "description": "Find permeability models for new mtl type"
+      "status": "Open"
     },
     {
       "id": 18,
@@ -6427,10 +5970,9 @@
       "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
       "dueDate": 1456092000000,
-      "priority": 3,
+      "priority": "Low",
       "projectId": 5,
-      "status": "Open",
-      "description": "Determine Manufacturing requirements for new mtl"
+      "status": "Open"
     },
     {
       "id": 19,
@@ -6442,10 +5984,9 @@
       "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
       "dueDate": 1456178400000,
-      "priority": 2,
+      "priority": "Low",
       "projectId": 5,
-      "status": "Open",
-      "description": "evaluate cost model for varying grain sizes"
+      "status": "Open"
     },
     {
       "id": 20,
@@ -6457,10 +5998,9 @@
       "assignee": "John Smith",
       "reporter": "b.beckmann",
       "dueDate": 1456869600000,
-      "priority": 4,
+      "priority": "Medium",
       "projectId": 5,
-      "status": "Open",
-      "description": "review patent literature"
+      "status": "Open"
     },
     {
       "id": 21,
@@ -6507,7 +6047,7 @@
       "assignee": "Thomas Smith",
       "reporter": "Jack Graber",
       "dueDate": 1459544400000,
-      "priority": 4,
+      "priority": "Medium",
       "projectId": 5,
       "id": 24,
       "status": "Open"
@@ -6518,7 +6058,7 @@
       "assignee": "John Smith",
       "reporter": "Jack Graber",
       "dueDate": 1455400800000,
-      "priority": 1,
+      "priority": "Medium",
       "projectId": 1,
       "status": "Open",
       "id": 25
@@ -6529,7 +6069,7 @@
       "assignee": "Hussain Rizvi",
       "reporter": "Jack Graber",
       "dueDate": 1455487200000,
-      "priority": 4,
+      "priority": "Critical",
       "projectId": 1,
       "status": "Open",
       "id": 26
@@ -6537,10 +6077,10 @@
     {
       "title": "Create home page",
       "description": "Create home page",
-      "assignee": "Stephen Rencour",
+      "assignee": "John Smith",
       "reporter": "Jack Graber",
-      "dueDate": 1455746400000,
-      "priority": 3,
+      "dueDate": 1455685200000,
+      "priority": "Medium",
       "projectId": 2,
       "status": "Open",
       "id": 27
@@ -6551,7 +6091,7 @@
       "assignee": "Stephen Rencour",
       "reporter": "Jack Graber",
       "dueDate": 1455573600000,
-      "priority": 2,
+      "priority": "Critical",
       "projectId": 2,
       "status": "Open",
       "id": 28
@@ -6914,6 +6454,22 @@
       "special": []
     },
     {
+      "id": 5,
+      "serviceId": 4,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "input": 4,
+      "output": 7,
+      "usageStats": {
+        "added": 22,
+        "members": 14
+      },
+      "runStats": {
+        "success": 15,
+        "fail": 9
+      },
+      "special": []
+    },
+    {
       "id": 6,
       "serviceId": 5,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -6946,8 +6502,40 @@
       "special": []
     },
     {
+      "id": 12,
+      "serviceId": 11,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "input": 4,
+      "output": 7,
+      "usageStats": {
+        "added": 22,
+        "members": 14
+      },
+      "runStats": {
+        "success": 15,
+        "fail": 9
+      },
+      "special": []
+    },
+    {
       "id": 13,
       "serviceId": 12,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "input": 4,
+      "output": 7,
+      "usageStats": {
+        "added": 22,
+        "members": 14
+      },
+      "runStats": {
+        "success": 15,
+        "fail": 9
+      },
+      "special": []
+    },
+    {
+      "id": 8,
+      "serviceId": 7,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "input": 4,
       "output": 7,
@@ -7026,6 +6614,22 @@
       "special": []
     },
     {
+      "id": 17,
+      "serviceId": 16,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "input": 4,
+      "output": 7,
+      "usageStats": {
+        "added": 22,
+        "members": 14
+      },
+      "runStats": {
+        "success": 15,
+        "fail": 9
+      },
+      "special": []
+    },
+    {
       "id": 19,
       "serviceId": 18,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -7076,6 +6680,22 @@
     {
       "id": 20,
       "serviceId": 27,
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "input": 4,
+      "output": 7,
+      "usageStats": {
+        "added": 22,
+        "members": 14
+      },
+      "runStats": {
+        "success": 15,
+        "fail": 9
+      },
+      "special": []
+    },
+    {
+      "id": 18,
+      "serviceId": 17,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "input": 4,
       "output": 7,
@@ -7168,30 +6788,351 @@
         "fail": 9
       },
       "special": []
-    },
-    {
-      "serviceId": 45,
-      "input": 7,
-      "output": 9,
-      "usageStats": {
-        "added": 0,
-        "members": 0
-      },
-      "runStats": {
-        "success": 0,
-        "fail": 0
-      },
-      "special": [
-        {
-          "name": "Height",
-          "data": "2"
-        }
-      ],
-      "id": 26
     }
   ],
-  "service-documents": [],
-  "project-documents": [],
+  "publish-services": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    }
+  ],
+  "service-documents": [
+    {
+      "id": 1,
+      "serviceId": 1,
+      "service-documentId": 0,
+      "title": "Example Folder",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM"
+    },
+    {
+      "id": 2,
+      "serviceId": 1,
+      "file": true,
+      "service-documentId": 1,
+      "title": "1 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 3,
+      "serviceId": 1,
+      "file": true,
+      "service-documentId": 1,
+      "title": "2 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 4,
+      "serviceId": 1,
+      "service-documentId": 1,
+      "title": "Example Folder 2",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM"
+    },
+    {
+      "id": 5,
+      "serviceId": 1,
+      "service-documentId": 4,
+      "title": "Example Folder 3",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM"
+    },
+    {
+      "id": 6,
+      "serviceId": 1,
+      "file": true,
+      "service-documentId": 0,
+      "title": "3 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 7,
+      "serviceId": 1,
+      "file": true,
+      "service-documentId": 0,
+      "title": "4 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 8,
+      "serviceId": 1,
+      "file": true,
+      "service-documentId": 1,
+      "title": "5 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 9,
+      "serviceId": 1,
+      "service-documentId": 1,
+      "title": "Example Folder 4",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM"
+    },
+    {
+      "id": 10,
+      "serviceId": 1,
+      "service-documentId": 0,
+      "title": "Example Folder 9",
+      "owner": "Bob Smith",
+      "size": "120MB",
+      "modifed": "11/11/2015, 12:00 PM"
+    },
+    {
+      "id": 11,
+      "serviceId": 1,
+      "service-documentId": 0,
+      "title": "Example Folder 10",
+      "owner": "Bob Smith",
+      "size": "13MB",
+      "modifed": "11/11/2015, 12:00 PM"
+    },
+    {
+      "id": 12,
+      "serviceId": 1,
+      "file": true,
+      "service-documentId": 10,
+      "title": "17 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 12,
+      "serviceId": 1,
+      "file": true,
+      "service-documentId": 10,
+      "title": "35 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 13,
+      "serviceId": 1,
+      "file": true,
+      "service-documentId": 10,
+      "title": "55 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 14,
+      "serviceId": 1,
+      "file": true,
+      "service-documentId": 5,
+      "title": "111 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "34MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 15,
+      "serviceId": 1,
+      "file": true,
+      "service-documentId": 5,
+      "title": "88 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "80MB",
+      "modifed": "11/26/2015, 6:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    }
+  ],
+  "project-documents": [
+    {
+      "id": 1,
+      "projectId": 1,
+      "project-documentId": 0,
+      "title": "Example Folder",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM"
+    },
+    {
+      "id": 2,
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 1,
+      "title": "1 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 3,
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 1,
+      "title": "2 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 4,
+      "projectId": 1,
+      "project-documentId": 1,
+      "title": "Example Folder 2",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM"
+    },
+    {
+      "id": 5,
+      "projectId": 1,
+      "project-documentId": 4,
+      "title": "Example Folder 3",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM"
+    },
+    {
+      "id": 6,
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 0,
+      "title": "3 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 7,
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 0,
+      "title": "4 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 8,
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 1,
+      "title": "5 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 9,
+      "projectId": 1,
+      "project-documentId": 1,
+      "title": "Example Folder 4",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM"
+    },
+    {
+      "id": 10,
+      "projectId": 1,
+      "project-documentId": 0,
+      "title": "Example Folder 9",
+      "owner": "Bob Smith",
+      "size": "120MB",
+      "modifed": "11/11/2015, 11:00 AM"
+    },
+    {
+      "id": 11,
+      "projectId": 1,
+      "project-documentId": 0,
+      "title": "Example Folder 10",
+      "owner": "Bob Smith",
+      "size": "13MB",
+      "modifed": "11/11/2015, 11:15 AM"
+    },
+    {
+      "id": 12,
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 10,
+      "title": "17 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 12,
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 10,
+      "title": "35 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 13,
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 10,
+      "title": "55 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "100MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 14,
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 5,
+      "title": "111 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "34MB",
+      "modifed": "11/11/2015, 12:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    },
+    {
+      "id": 15,
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 5,
+      "title": "88 Low Heat Loss Transformer Specification PDM Co.pdf",
+      "owner": "Bob Smith",
+      "size": "80MB",
+      "modifed": "11/26/2015, 6:00 PM",
+      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    }
+  ],
   "documents": [
     {
       "id": 1,
@@ -7543,7 +7484,7 @@
       "displayName": "Thomas Smith",
       "company": "General Electric (GE) Global Research",
       "companyId": 1,
-      "jobTitle": "Engineering Manager",
+      "jobTitle": "",
       "location": "Berkeley, California",
       "image": "/uploads/profile/1/20151222084711000000.jpg",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
@@ -8024,21 +7965,6 @@
       "accountId": 1,
       "individual-discussionId": 4,
       "id": 4
-    },
-    {
-      "accountId": 1,
-      "individual-discussionId": 5,
-      "id": 5
-    },
-    {
-      "accountId": 1,
-      "individual-discussionId": 6,
-      "id": 6
-    },
-    {
-      "accountId": 1,
-      "individual-discussionId": 7,
-      "id": 7
     }
   ],
   "individual-discussion-tags": [
@@ -8046,16 +7972,6 @@
       "name": "Tag 1",
       "individual-discussionId": 2,
       "id": 1
-    },
-    {
-      "name": "dsfsdf",
-      "individual-discussionId": 6,
-      "id": 2
-    },
-    {
-      "name": "Tag1",
-      "individual-discussionId": 7,
-      "id": 3
     }
   ],
   "individual-discussion": [
@@ -8082,23 +7998,6 @@
       "title": "Discussion 91",
       "accountId": 1,
       "id": 4
-    },
-    {
-      "message": "Message",
-      "title": "Subject",
-      "accountId": 1,
-      "id": 5
-    },
-    {
-      "message": "asdf",
-      "title": "asdfasdf",
-      "accountId": 1,
-      "id": 6
-    },
-    {
-      "title": "Test Discussion title",
-      "accountId": 1,
-      "id": 7
     }
   ],
   "individual-discussion-comments": [
@@ -8256,60 +8155,6 @@
       "like": 0,
       "dislike": 0,
       "id": 12
-    },
-    {
-      "individual-discussionId": 5,
-      "full_name": "Thomas Smith",
-      "accountId": 1,
-      "avatar": "/images/carbone.png",
-      "text": "Message",
-      "created_at": "2016-02-19 03:45:02",
-      "userRatingReview": {
-        "DMC Member": "like"
-      },
-      "like": 0,
-      "dislike": 0,
-      "id": 13
-    },
-    {
-      "individual-discussionId": 6,
-      "full_name": "Thomas Smith",
-      "accountId": 1,
-      "avatar": "/images/carbone.png",
-      "text": "asdf",
-      "created_at": "2016-02-20 01:58:44",
-      "userRatingReview": {
-        "DMC Member": "like"
-      },
-      "like": 0,
-      "dislike": 0,
-      "id": 14
-    },
-    {
-      "individual-discussionId": 7,
-      "full_name": "Thomas Smith",
-      "accountId": 1,
-      "avatar": "/images/carbone.png",
-      "reply": false,
-      "commentId": 15,
-      "text": "ssss",
-      "created_at": 1455971123605,
-      "like": 0,
-      "dislike": 0,
-      "id": 16
-    },
-    {
-      "individual-discussionId": 7,
-      "full_name": "Thomas Smith",
-      "accountId": 1,
-      "avatar": "/images/carbone.png",
-      "reply": false,
-      "commentId": 0,
-      "text": "ssss",
-      "created_at": 1455971171416,
-      "like": 1,
-      "dislike": 0,
-      "id": 17
     }
   ],
   "individual-discussion-comments-helpful": [
@@ -8342,18 +8187,6 @@
       "commentId": 10,
       "helpful": null,
       "id": 5
-    },
-    {
-      "accountId": 1,
-      "commentId": 15,
-      "helpful": true,
-      "id": 6
-    },
-    {
-      "accountId": 1,
-      "commentId": 17,
-      "helpful": true,
-      "id": 7
     }
   ],
   "account-notification-categories": [
@@ -8503,14 +8336,14 @@
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 2,
-      "selected": true
+      "selected": false
     },
     {
       "id": 3,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 3,
-      "selected": true
+      "selected": false
     },
     {
       "id": 4,
@@ -8538,14 +8371,14 @@
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 7,
-      "selected": true
+      "selected": false
     },
     {
       "id": 8,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 8,
-      "selected": true
+      "selected": false
     },
     {
       "id": 9,
@@ -8573,7 +8406,7 @@
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 12,
-      "selected": true
+      "selected": false
     },
     {
       "id": 13,
@@ -8594,7 +8427,7 @@
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 15,
-      "selected": true
+      "selected": false
     },
     {
       "id": 16,
@@ -8727,7 +8560,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 13,
-      "selected": false
+      "selected": true
     },
     {
       "id": 35,
@@ -8790,391 +8623,717 @@
     {
       "id": 1,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "type": "projects",
       "period": "today",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "type": "profile",
+      "event": "FAVORITED_SERVICE",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 2,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "type": "profile",
+      "event": "REVIEW_USER",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 3,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "profile",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 4,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "profile",
+      "event": "SUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 5,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "company",
+      "event": "REVIEW_COMPANY",
+      "linkParams": {
+        "companyId": 1,
+        "companyName": "GE",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 6,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "company",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "companyId": 1,
+        "companyName": "GE",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 7,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "discussion",
+      "event": "NEW_DISCUSSION",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 8,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "type": "discussion",
+      "event": "REPLY_DISCUSSION",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 9,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "type": "discussion",
+      "event": "ANNOUNCEMENT_DMC",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 10,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "period": "today",
+      "type": "discussion",
+      "event": "ANNOUNCEMENT_SYSTEM",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 11,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "period": "today",
+      "type": "community",
+      "event": "EVENT_DMC",
+      "linkParams": {
+        "eventId": 1,
+        "eventTitle": "Event Title"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 12,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "period": "today",
+      "type": "service",
+      "event": "SERVICE_ERROR",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 13,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "period": "today",
+      "type": "service",
+      "event": "SERVICE_FINISH",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 14,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "period": "today",
+      "type": "service",
+      "event": "SUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 15,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "type": "service",
+      "event": "UNSUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 16,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "type": "service",
+      "event": "UPDATE_SERVICE",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 17,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "marketplace",
+      "event": "FAVORITED_SERVICE",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 18,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "marketplace",
+      "event": "SERVICE_SHARED",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 19,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "marketplace",
+      "event": "REVIEW_SERVICE",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 20,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "marketplace",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 21,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "project",
+      "event": "ACCEPT_INVITATION",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 22,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "type": "project",
+      "event": "UPDATE_PROJECT",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 23,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "type": "project",
+      "event": "SUBSCRIBE_YOUR_SERVICE_TO_PROJECT",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 24,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "task",
+      "event": "TASK_ASSIGN",
+      "linkParams": {
+        "projectId": 5,
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 25,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "task",
+      "event": "TASK_DUE",
+      "linkParams": {
+        "projectId": 5,
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 26,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "task",
+      "event": "TASK_UPDATE",
+      "linkParams": {
+        "projectId": 5,
+            "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+            "taskId": 18,
+            "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 27,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "period": "week",
+      "type": "profile",
+      "event": "FAVORITED_SERVICE",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 28,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "period": "week",
+      "type": "profile",
+      "event": "REVIEW_USER",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 29,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "today",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "period": "month",
+      "type": "profile",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 30,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "today",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "period": "week",
+      "type": "profile",
+      "event": "SUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 31,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "week",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "type": "company",
+      "event": "REVIEW_COMPANY",
+      "linkParams": {
+        "companyId": 1,
+        "companyName": "GE",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 32,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "period": "month",
+      "type": "company",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "companyId": 1,
+        "companyName": "GE",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 33,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "period": "month",
+      "type": "discussion",
+      "event": "NEW_DISCUSSION",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 34,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "period": "week",
+      "type": "discussion",
+      "event": "REPLY_DISCUSSION",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 35,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
+      "period": "week",
+      "type": "discussion",
+      "event": "ANNOUNCEMENT_DMC",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 36,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
       "period": "month",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "type": "discussion",
+      "event": "ANNOUNCEMENT_SYSTEM",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 37,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "month",
+      "type": "community",
+      "event": "EVENT_DMC",
+      "linkParams": {
+        "eventId": 1,
+        "eventTitle": "Event Title"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 38,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "service",
+      "event": "SERVICE_ERROR",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 39,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "service",
+      "event": "SERVICE_FINISH",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 40,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "service",
+      "event": "SUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 41,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "month",
+      "type": "service",
+      "event": "UNSUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 42,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "service",
+      "event": "UPDATE_SERVICE",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 43,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "month",
+      "type": "marketplace",
+      "event": "FAVORITED_SERVICE",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 44,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "marketplace",
+      "event": "SERVICE_SHARED",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 45,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "marketplace",
+      "event": "REVIEW_SERVICE",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 46,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "marketplace",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 47,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "project",
+      "event": "ACCEPT_INVITATION",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 48,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "month",
+      "type": "project",
+      "event": "UPDATE_PROJECT",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 49,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "month",
+      "type": "project",
+      "event": "SUBSCRIBE_YOUR_SERVICE_TO_PROJECT",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 50,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "task",
+      "event": "TASK_ASSIGN",
+      "linkParams": {
+        "projectId": 5,
+            "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+            "taskId": 18,
+            "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 51,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "task",
+      "event": "TASK_DUE",
+      "linkParams": {
+        "projectId": 5,
+            "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+            "taskId": 18,
+            "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 52,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "task",
+      "event": "TASK_UPDATE",
+      "linkParams": {
+        "projectId": 5,
+            "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+            "taskId": 18,
+            "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     }
   ],
   "notifications-user-statistic": [
     {
       "id": 1,
-      "name": "Projects Created",
-      "type": "projects",
+      "name": "Services Completed",
+      "events": [
+        "SERVICE_FINISH"
+      ],
       "today": 2,
       "week": 5,
       "month": 7
     },
     {
       "id": 2,
-      "name": "Services Completed",
-      "type": "services",
+      "name": "Assigned Tasks",
+      "events": [
+        "TASK_ASSIGN"
+      ],
       "today": 2,
       "week": 5,
       "month": 7
     },
     {
       "id": 3,
-      "name": "Assigned Tasks",
-      "type": "task",
-      "today": 2,
-      "week": 5,
-      "month": 7
-    },
-    {
-      "id": 4,
-      "name": "Added as Contact",
-      "type": "contact",
-      "today": 2,
-      "week": 5,
-      "month": 7
-    },
-    {
-      "id": 5,
       "name": "Reviewed",
-      "type": "review",
+      "events": [
+        "REVIEW_SERVICE",
+        "REVIEW_USER",
+        "REVIEW_COMPANY"
+      ],
       "today": 2,
       "week": 5,
       "month": 7
@@ -9184,391 +9343,717 @@
     {
       "id": 1,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "type": "projects",
       "period": "today",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "type": "profile",
+      "event": "FAVORITED_SERVICE",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 2,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "type": "profile",
+      "event": "REVIEW_USER",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 3,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "profile",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 4,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "profile",
+      "event": "SUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 5,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "company",
+      "event": "REVIEW_COMPANY",
+      "linkParams": {
+        "companyId": 1,
+        "companyName": "GE",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 6,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "company",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "companyId": 1,
+        "companyName": "GE",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 7,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "projects",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith created project",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "discussion",
+      "event": "NEW_DISCUSSION",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 8,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "type": "discussion",
+      "event": "REPLY_DISCUSSION",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 9,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "type": "discussion",
+      "event": "ANNOUNCEMENT_DMC",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 10,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "period": "today",
+      "type": "discussion",
+      "event": "ANNOUNCEMENT_SYSTEM",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 11,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "period": "today",
+      "type": "community",
+      "event": "EVENT_DMC",
+      "linkParams": {
+        "eventId": 1,
+        "eventTitle": "Event Title"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 12,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "period": "today",
+      "type": "service",
+      "event": "SERVICE_ERROR",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 13,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "period": "today",
+      "type": "service",
+      "event": "SERVICE_FINISH",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 14,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "services",
-      "date": "2016-02-02 12:10:31",
-      "title": "Service 3 has finished running.",
-      "linkTitle": "View the results of Service 3."
+      "period": "today",
+      "type": "service",
+      "event": "SUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 15,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "type": "service",
+      "event": "UNSUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 16,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "type": "service",
+      "event": "UPDATE_SERVICE",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 17,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "marketplace",
+      "event": "FAVORITED_SERVICE",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 18,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "marketplace",
+      "event": "SERVICE_SHARED",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 19,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "marketplace",
+      "event": "REVIEW_SERVICE",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 20,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "marketplace",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 21,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "task",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has assigned you task.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "project",
+      "event": "ACCEPT_INVITATION",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 22,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "type": "project",
+      "event": "UPDATE_PROJECT",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 23,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "today",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "type": "project",
+      "event": "SUBSCRIBE_YOUR_SERVICE_TO_PROJECT",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 24,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "task",
+      "event": "TASK_ASSIGN",
+      "linkParams": {
+        "projectId": 5,
+            "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+            "taskId": 18,
+            "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 25,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "task",
+      "event": "TASK_DUE",
+      "linkParams": {
+        "projectId": 5,
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 26,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "period": "today",
+      "type": "task",
+      "event": "TASK_UPDATE",
+      "linkParams": {
+        "projectId": 5,
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 27,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "period": "week",
+      "type": "profile",
+      "event": "FAVORITED_SERVICE",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 28,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "contact",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has followed you.",
-      "linkTitle": "View John Smith's profile."
+      "period": "week",
+      "type": "profile",
+      "event": "REVIEW_USER",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 29,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "today",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "period": "month",
+      "type": "profile",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 30,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "today",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "period": "week",
+      "type": "profile",
+      "event": "SUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "profileId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 31,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
       "period": "week",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "type": "company",
+      "event": "REVIEW_COMPANY",
+      "linkParams": {
+        "companyId": 1,
+        "companyName": "GE",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 32,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "period": "month",
+      "type": "company",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "companyId": 1,
+        "companyName": "GE",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 33,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "week",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "period": "month",
+      "type": "discussion",
+      "event": "NEW_DISCUSSION",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 34,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
-      "period": "month",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "period": "week",
+      "type": "discussion",
+      "event": "REPLY_DISCUSSION",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     },
     {
       "id": 35,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
-      "link": "",
+      "period": "week",
+      "type": "discussion",
+      "event": "ANNOUNCEMENT_DMC",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 36,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
       "period": "month",
-      "type": "review",
-      "date": "2016-02-02 12:10:31",
-      "title": "John Smith has reviwed your performance for The Filler Project.",
-      "linkTitle": "Check out your review."
+      "type": "discussion",
+      "event": "ANNOUNCEMENT_SYSTEM",
+      "linkParams": {
+        "discussionId": 1,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 37,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "month",
+      "type": "community",
+      "event": "EVENT_DMC",
+      "linkParams": {
+        "eventId": 1,
+        "eventTitle": "Event Title"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 38,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "service",
+      "event": "SERVICE_ERROR",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 39,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "service",
+      "event": "SERVICE_FINISH",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 40,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "service",
+      "event": "SUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 41,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "month",
+      "type": "service",
+      "event": "UNSUBSCRIBE_SERVICE_TO_YOUR_PROJECT",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 42,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "service",
+      "event": "UPDATE_SERVICE",
+      "linkParams": {
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 43,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "month",
+      "type": "marketplace",
+      "event": "FAVORITED_SERVICE",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 44,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "marketplace",
+      "event": "SERVICE_SHARED",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 45,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "marketplace",
+      "event": "REVIEW_SERVICE",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 46,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "marketplace",
+      "event": "REPLY_REVIEW",
+      "linkParams": {
+        "serviceId": 2,
+        "serviceTitle": "Fan failure mode analysis",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 47,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "project",
+      "event": "ACCEPT_INVITATION",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 48,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "month",
+      "type": "project",
+      "event": "UPDATE_PROJECT",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 49,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "month",
+      "type": "project",
+      "event": "SUBSCRIBE_YOUR_SERVICE_TO_PROJECT",
+      "linkParams": {
+        "projectId": 2,
+        "projectTitle": "Capacitor Bank",
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 50,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "task",
+      "event": "TASK_ASSIGN",
+      "linkParams": {
+        "projectId": 5,
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 51,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "task",
+      "event": "TASK_DUE",
+      "linkParams": {
+        "projectId": 5,
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
+    },
+    {
+      "id": 52,
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "period": "week",
+      "type": "task",
+      "event": "TASK_UPDATE",
+      "linkParams": {
+        "projectId": 5,
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
+      },
+      "date": "2016-02-02 12:10:31"
     }
   ],
   "notifications-pm-statistic": [
     {
       "id": 1,
-      "name": "Projects Created",
-      "type": "projects",
+      "name": "Services Completed",
+      "events": [
+        "SERVICE_FINISH"
+      ],
       "today": 2,
       "week": 5,
       "month": 7
     },
     {
       "id": 2,
-      "name": "Services Completed",
-      "type": "services",
+      "name": "Assigned Tasks",
+      "events": [
+        "TASK_ASSIGN"
+      ],
       "today": 2,
       "week": 5,
       "month": 7
     },
     {
       "id": 3,
-      "name": "Assigned Tasks",
-      "type": "task",
-      "today": 2,
-      "week": 5,
-      "month": 7
-    },
-    {
-      "id": 4,
-      "name": "Added as Contact",
-      "type": "contact",
-      "today": 2,
-      "week": 5,
-      "month": 7
-    },
-    {
-      "id": 5,
       "name": "Reviewed",
-      "type": "review",
+      "events": [
+        "REVIEW_SERVICE",
+        "REVIEW_USER",
+        "REVIEW_COMPANY"
+      ],
       "today": 2,
       "week": 5,
       "month": 7

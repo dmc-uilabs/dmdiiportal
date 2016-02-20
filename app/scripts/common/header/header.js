@@ -4,11 +4,11 @@
 *
 * Global Header
 */
-angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
+angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.notifications'])
 .config(function($animateProvider) {
     $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
 })
-.directive('dmcTopHeader', ['$window', 'DMCUserModel', '$mdMenu', '$rootScope', function($window, userModel, $mdMenu, $rootScope){
+.directive('dmcTopHeader', ['$window', 'DMCUserModel', '$mdMenu', '$rootScope', 'notficationsMessages', function($window, userModel, $mdMenu, $rootScope, notficationsMessages){
   return {
     restrict: 'A',
     scope: {
@@ -37,7 +37,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
 
           $scope.runningServicesList = $scope.userData.runningServices.items;
           $scope.messagesList = $scope.userData.messages.items;
-          $scope.notificationsList = $scope.userData.notifications.items;
+          $scope.notificationsList = getExtendedNotifications($scope.userData.notifications.items);
 
           $scope.service_alert = $scope.userData.runningServices.total;
 
@@ -59,6 +59,17 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user'])
 
         $scope.closeMenu = function(){
           $mdMenu.cancel();
+        }
+
+        var getExtendedNotifications = function(items) {
+          var extendItems = items.map(function(item){
+            return angular.extend(item, {
+              'title': notficationsMessages.getLinkDetails(item).title,
+              'link': notficationsMessages.getLinkDetails(item).link
+            })
+          })
+
+          return extendItems;
         }
 
     }

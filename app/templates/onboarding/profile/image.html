@@ -6,35 +6,40 @@
 		</md-button>
 	</div>
 	<h3>A profile image helps other users identify you.</h3>
-	<div class="flow-box"
-         flow-init
-         flow-drag-enter="pictureDragEnter($flow)"
-         flow-drag-leave="pictureDragLeave($flow)"
-         flow-file-success="$file.msg = $message"
-         flow-file-added="addedNewFile($file, $event, $flow )"
-         layout="column">
-        <div layout class="alert" flow-drop flow-drop-enabled="true">
-          <div class="inner-box" layout="row" layout-align="center center" style="min-width: 100%;">
-            <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-              <img flow-img="$flow.files[0]" />
-                <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
-                    <ng-md-icon icon="close" size="21"></ng-md-icon>
-                </md-button>
+    <div layout="row">
+        <div class="img-box" ng-if="profile[1].data.image">
+            <img ng-src="{{profile[1].data.image}}">
+        </div>
+    	<div class="flow-box"
+             flow-init
+             flow-drag-enter="pictureDragEnter($flow)"
+             flow-drag-leave="pictureDragLeave($flow)"
+             flow-file-success="$file.msg = $message"
+             flow-file-added="addedNewFile($file, $event, $flow )"
+             layout="column">
+            <div layout class="alert" flow-drop flow-drop-enabled="true">
+              <div class="inner-box" layout="row" layout-align="center center" style="min-width: 100%;">
+                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
+                  <img flow-img="$flow.files[0]" />
+                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
+                        <ng-md-icon icon="close" size="21"></ng-md-icon>
+                    </md-button>
+                </div>
+                <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
+                    Drag And Drop your picture here<br>
+                    600 x 600 px (max 2 MB)
+                    <br>or<br>
+                    <strong>Click here</strong>
+                </div>
+              </div>
             </div>
-            <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
-                Drag And Drop your picture here<br>
-                600 x 600 px (max 2 MB)
-                <br>or<br>
-                <strong>Click here</strong>
-            </div>
-          </div>
         </div>
     </div>
 	<div layout="row" layout-align="end center">
 		<md-button class="dmc-button md-raised" ui-sref="^.basic">
 			BACK
 		</md-button>
-		<md-button class="dmc-button md-raised md-primary" ng-click="next(1)">
+		<md-button class="dmc-button md-raised md-primary" ng-click="uploadFile($flow); next(1)">
 			NEXT
 		</md-button>
 	</div>

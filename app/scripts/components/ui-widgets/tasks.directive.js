@@ -17,7 +17,8 @@ angular.module('dmc.widgets.tasks',[
                 columns: "=",
                 widgetTitle: "=",
                 projectId: "=",
-                limit: "="
+                limit: "=",
+                showTaskModal: "="
             },
             controller: function($scope, $element, $attrs,$mdDialog, socketFactory, dataFactory, ajax, toastModel, previousPage) {
                 $scope.tasks = [];
@@ -42,12 +43,23 @@ angular.module('dmc.widgets.tasks',[
                                 setPriority($scope.tasks[index]);
                                 convertDueDate($scope.tasks[index]);
                             }
+                            if ($scope.showTaskModal) {
+                                var task = getTaskById($scope.showTaskModal);
+                                $scope.showTaskModal = false;
+                                if (task) {
+                                    $scope.editTask({}, task)
+                                }
+                            }
                             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                         },function(){
                             toastModel.showToast("error", "Ajax faild: getTasks");
                         }
                     );
                 };
+
+                var getTaskById = function(id) {
+                    return _.find($scope.tasks, function(o){ return o.id == id});
+                }
 
                 var setPriority = function(task){
                     switch(task.priority){

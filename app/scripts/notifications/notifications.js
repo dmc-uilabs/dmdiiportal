@@ -7,7 +7,8 @@ angular.module('dmc.notifications', [
 	'dmc.ajax',
 	'dmc.data',
 	'dmc.common.header',
-	'dmc.common.footer'
+	'dmc.common.footer',
+  'dmc.common.notifications'
 ])
 	.config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
 		$stateProvider.state('notifications-pm', {

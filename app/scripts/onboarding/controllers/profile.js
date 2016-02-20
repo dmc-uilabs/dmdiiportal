@@ -1,12 +1,39 @@
 angular.module('dmc.onboarding')
 .controller('ProfileController', 
-	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory', 'location', 
-	function ($scope, $rootScope, $state, ajax, dataFactory, location) {
+	['$scope', '$state', 'location', 'fileUpload',
+	function ($scope, $state, location, fileUpload) {
 		if($state.current.name == "onboarding.profile"){
 			$state.go($scope.profile[0].state);
 		}
         $scope.activePage = $state;
+        $scope.file = null;
 
+
+//upload file
+        $scope.prevPicture = null;
+        $scope.pictureDragEnter = function(flow){
+            $scope.prevPicture = flow.files[0];
+            flow.files = [];
+        };
+
+        $scope.pictureDragLeave = function(flow){
+            if(flow.files.length == 0 && $scope.prevPicture != null) {
+                flow.files = [$scope.prevPicture];
+                $scope.prevPicture = null;
+            }
+        };
+
+        $scope.addedNewFile = function(file,event,flow){
+            flow.files.shift();
+            $scope.file = flow;
+        };
+
+        $scope.removePicture = function(flow){
+            flow.files = [];
+            $scope.file = null;
+        };
+
+//get location
         $scope.getLocation = function () {
             location.get(callback);
         };
@@ -31,14 +58,36 @@ angular.module('dmc.onboarding')
         }
 
         $scope.next = function(index){
-        	$scope.profile[index].done = true;
-            $(window).scrollTop(0);
-        	$state.go('^' + $scope.profile[index+1].state);
+        	//$scope.profile[index].done = true;
+
+            if(index == 1 && $scope.file){
+                fileUpload.uploadFileToUrl(
+                    $scope.file.files[0].file,
+                    {id: $scope.userData.profileId}, 
+                    'profile', 
+                    function(data){
+                        $scope.file = null;
+                        $scope.profile[1].data.image = data.file.name;;
+                        $scope.saveProfile($scope.profile[index].data, function(){
+                            $(window).scrollTop(0);
+                            $state.go('^' + $scope.profile[index+1].state);
+                        });
+                    }
+                );
+            }else{
+                $scope.saveProfile($scope.profile[index].data, function(){
+                    $(window).scrollTop(0);
+                    $state.go('^' + $scope.profile[index+1].state);
+                });
+            }
         }
 
         $scope.finish = function(index){
-            $scope.profile[index].done = true;
-            $(window).scrollTop(0);
-            $state.go('^.^.home');
+            //$scope.profile[index].done = true;
+            $scope.saveProfile($scope.profile[index].data, function(){
+                $scope.saveFinish('profile');
+                $(window).scrollTop(0);
+                $state.go('^.^.home');
+            });
         }
 }]);

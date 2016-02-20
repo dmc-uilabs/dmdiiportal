@@ -1,6 +1,69 @@
 angular.module('dmc.onboarding')
-.controller('onboardingController', ['$scope', 
-    function($scope){
+.controller('onboardingController', ['$scope', 'onboardingModel', 'userData', 'DMCUserModel', '$rootScope',
+    function($scope, onboardingModel, userData, DMCUserModel, $rootScope){
+        $scope.profile = [
+        	{
+        		state: ".basic",
+        		name: "Basic Information",
+        		done: true,
+        		data: {
+        			displayName: "",
+        			jobTitle: "",
+        			location: ""
+        		}
+        	},
+        	{
+        		state: ".image",
+        		name: "Profile Image",
+        		done: true,
+        		data: {
+        			image: ""
+        		}
+        	},
+        	{
+        		state: ".skill",
+        		name: "Skills",
+        		done: true,
+        		data: {
+        			skills: [],
+        			description: ""
+        		}
+        	}
+        ];
+    	onboardingModel.get_profile(userData.profileId, function(data){
+    		$scope.profile[0].data.displayName = data.displayName;
+    		$scope.profile[0].data.jobTitle = data.jobTitle;
+    		$scope.profile[0].data.location = data.location;
+    		$scope.profile[1].data.image = data.image;
+    		$scope.profile[2].data.skills = data.skills;
+    		$scope.profile[2].data.description = data.description;
+    		for(var i in $scope.profile){
+	    		for(var item in $scope.profile[i].data){
+	    			if(!$scope.profile[i].data[item] || !$scope.profile[i].data[item].length){
+	    				$scope.profile[i].done = false
+	    			}
+	    		}
+	    	}
+    	});
+
+    	$scope.saveProfile = function(params, callback){
+    		onboardingModel.update_profile(userData.profileId, params, 
+    			function(data){
+    				for(var i in $scope.profile){
+    					$scope.profile[i].done = true;
+			    		for(var item in $scope.profile[i].data){
+			    			if(!$scope.profile[i].data[item] || !$scope.profile[i].data[item].length){
+			    				console.info($scope.profile[i].data[item]);
+			    				$scope.profile[i].done = false;
+			    			}
+			    		}
+			    	};
+			    	callback();
+    			}
+    		);
+    	}
+
+
         $scope.account = [
         	{
         		state: ".public",
@@ -272,34 +335,6 @@ angular.module('dmc.onboarding')
         	}
         ];
 
-        $scope.profile = [
-        	{
-        		state: ".basic",
-        		name: "Basic Information",
-        		done: false,
-        		data: {
-        			dispalyName: "",
-        			jobTitle: "",
-        			location: ""
-        		}
-        	},
-        	{
-        		state: ".image",
-        		name: "Profile Image",
-        		done: false,
-        		data: {}
-        	},
-        	{
-        		state: ".skill",
-        		name: "Skills",
-        		done: false,
-        		data: {
-        			skills: [],
-        			skillsDescription: ""
-        		}
-        	}
-        ];
-
         $scope.storefront = [
         	{
         		state: ".cover",
@@ -428,5 +463,19 @@ angular.module('dmc.onboarding')
         	}
         ]
 
-        $scope.first = false;
+        $scope.saveFinish = function(section){
+        	var allDone = true;
+        	for(var i in $scope[section]){
+        		console.info($scope[section][i]);
+        		if(!$scope[section][i].done){
+        			allDone = false;
+        			break;
+        		}
+        	}
+        	DMCUserModel.getUserData().then(function(result){
+        		console.info(result, allDone);
+		      	$rootScope.userData.onboarding[section] = allDone;
+		      	DMCUserModel.UpdateUserData($rootScope.userData);
+		});
+        }
     }])

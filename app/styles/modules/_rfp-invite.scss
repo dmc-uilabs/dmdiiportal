@@ -150,3 +150,14 @@
     }
   }
 }
+
+.type-select{
+  .md-select-value{
+    span{
+      margin-bottom: 12px;
+    }
+    span:last-child{
+      margin-bottom: 15px;
+    }
+  }
+}

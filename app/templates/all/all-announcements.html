@@ -1,7 +1,7 @@
 <div class="container container-view-all" layout="row">
     <div layout="column" flex>
         <div class="return-block" ng-if="previousPage">
-            <a ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
+            <a ng-href="/community.php#/home">Back to the Community</a>
         </div>
         <h2 class="page-title">DMC ANNOUNCEMENTS</h2>
         <div class="content-panel">
@@ -38,7 +38,7 @@
                             <table md-data-table>
                                 <thead md-order="sort" md-trigger="onOrderChange">
                                 <tr>
-                                    <th name="Announcements" order-by="title" class="title"></th>
+                                    <th name="Announcements" order-by="text" class="title"></th>
                                     <th name="Replies" order-by="replies"></th>
                                     <th name="Created by" order-by="createdBy"></th>
                                     <th name="Latest Post" order-by="latestPost"></th>
@@ -47,10 +47,7 @@
                                 <tbody>
                                 <tr ng-repeat="item in announcements">
                                     <td>
-                                    	<div layout="column">
-                                    		<h2>{{item.title}}</h2>
-                                    		<p>{{item.text}}</p>
-                                    	</div>
+                                		<p>{{item.text}}</p>
                                     </td>
                                     <td>{{item.replies}} replies</td>
                                     <td>

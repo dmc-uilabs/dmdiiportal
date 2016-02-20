@@ -9,18 +9,18 @@
 	<form name="basicForm" autocomplete="off" layout="row" layout-wrap>
 		<md-input-container flex="50">
 			<label>Display Name</label>
-			<input ng-model="profile[0].data.dispalyName" required>
+			<input ng-model="profile[0].data.displayName">
 		</md-input-container>
 		<md-input-container flex="50">
 			<label>Job Title</label>
-			<input ng-model="profile[0].data.jobTitle" required>
+			<input ng-model="profile[0].data.jobTitle">
 		</md-input-container>
 		<md-input-container class="md-icon-float" flex="50">
 			<label>Location</label>
 			<md-icon class="location-gps" ng-click="getLocation()">
               <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
             </md-icon>
-			<input ng-model="profile[0].data.location" required>
+			<input ng-model="profile[0].data.location">
 		</md-input-container>
 	</form>
 	<div layout="row" layout-align="end center">
