@@ -621,6 +621,13 @@
       "accountId": 1,
       "status": "offline",
       "id": 1
+    },
+    {
+      "ip": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "name": "Test Server",
+      "accountId": 1,
+      "status": "offline",
+      "id": 2
     }
   ],
   "favorite_products": [

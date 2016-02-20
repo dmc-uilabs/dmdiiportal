@@ -827,7 +827,7 @@ angular.module('dmc.project', [
             };
 
             this.add_servers = function(params,callback){
-            	return ajax.create(dataFactory.services($stateParams.ServiceId).add_servers,
+            	return ajax.create(dataFactory.serverURL().create,
                     params,
                     function(response){
                         callback(response.data)

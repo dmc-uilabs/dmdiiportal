@@ -70,26 +70,35 @@
   .content{
     background-color: #fff;
     padding: 10px;
+
+    .view-interface{
+      h2 {
+        margin: 8px 0;
+      }
+      h3{
+        margin: 8px;
+        font-size: 17px;
+      }
+      md-content{
+        height: 350px;
+      }
+      md-list-item{
+        height: 36px;
+        min-height: 36px;
+        padding: 0 8px;
+        &.selected{
+          background-color: #65AF3F;
+        }
+        .md-list-item-inner{
+          min-height: 36px;
+        }
+      }
+    }
+
     .page1{
       .preview{
         height: 100%;
         padding-left: 16px;
-        h2 {
-          margin: 8px;
-        }
-        md-content{
-          height: 350px;
-        }
-        md-list-item{
-          height: 36px;
-          min-height: 36px;
-          &.selected{
-            background-color: #65AF3F;
-          }
-          .md-list-item-inner{
-            min-height: 36px;
-          }
-        }
       }
       md-content{
         margin-bottom: 0px;
