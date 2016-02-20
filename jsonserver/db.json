@@ -3358,6 +3358,20 @@
         }
       ],
       "id": 1
+    },
+    {
+      "serviceId": 42,
+      "positions": [
+        {
+          "name": "CrackLength",
+          "position": 1
+        },
+        {
+          "name": "SpecimenWidth",
+          "position": 2
+        }
+      ],
+      "id": 2
     }
   ],
   "services_history": [

@@ -10,6 +10,7 @@
     font-size: 14px;
     text-transform: none;
   }
+
   md-list{
     font-size: 10px;
     h2{
@@ -276,6 +277,9 @@
               font-size: 14px;
             }
           }
+          .right {
+            cursor: ns-resize;
+          }
         }
       }
     }
@@ -283,9 +287,13 @@
   .outputs{
     padding-left: 8px;
     h2{
-      height: 48px;
-      line-height: 48px;
+      height: 40px;
+      line-height: 40px;
       font-weight: normal;
+      margin-right: 10px;
+    }
+    .output{
+      cursor: ns-resize;
     }
     md-content{
       font-size: 10px;

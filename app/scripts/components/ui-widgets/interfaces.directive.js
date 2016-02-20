@@ -46,6 +46,7 @@ angular.module('dmc.widgets.interfaces',[
                                 }
                             }else {
                                 $scope.interfaces = response.data.pkg.children;
+                                console.log(item);
                                 if (back) {
                                     $scope.track.splice(index + 1, $scope.track.length);
                                 } else if (item) {
@@ -73,7 +74,9 @@ angular.module('dmc.widgets.interfaces',[
                     }
                     dataRequest.domeServer = $scope.serverIp;
                     $scope.current = null;
-                    domeModel.getChildren(dataRequest,callbackGetChildren,errorCallback,item,index,back);
+                    domeModel.getChildren(dataRequest,function(response){
+                        callbackGetChildren(response,index,back,item);
+                    },errorCallback,item,index,back);
                 };
                 $scope.getInterfaces();
 

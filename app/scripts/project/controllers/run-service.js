@@ -32,6 +32,31 @@ angular.module('dmc.project')
             $scope.projectData = projectData;
             $scope.service = serviceData;
             $scope.orderInputs = 'position';
+            $scope.isChangedOrder = false;
+            $scope.isChangedValues = false;
+
+            $scope.sortableOptions = {
+                update: function(e, ui) {
+                    $scope.isChangedOrder = true;
+                },
+                axis: 'y'
+            };
+
+            $scope.sortableOutputOptions = {
+                update: function(e, ui) {
+                    $scope.isChangedOrder = true;
+                },
+                axis: 'y'
+            };
+
+            $scope.changedValue = function () {
+                $scope.isChangedValues = false;
+                for(var i in $scope.service.interfaceModel.inputs){
+                    if($scope.service.interfaceModel.inputs[i].defaultValue != $scope.service.interfaceModel.inputs[i].value){
+                        $scope.isChangedValues = true;
+                    }
+                }
+            };
 
             $scope.$watch(function(){
                 return $scope.service.interfaceModel;
@@ -98,9 +123,6 @@ angular.module('dmc.project')
                                 $scope.service.interfaceModel.inputs.push($scope.service.interfaceModel.inParams[key]);
                             }
                             updatePositionInputs();
-                            //for(var i in $scope.service.interfaceModel.inputs){
-                            //    $scope.service.interfaceModel.inputs[i].position = (i+1);
-                            //}
                             apply();
                         }else{
                             toastModel.showToast("error", "Rerun history item not found");
@@ -277,6 +299,7 @@ angular.module('dmc.project')
             }
 
             $scope.reset = function(){
+                $scope.isChangedOrder = false;
                 updatePositionInputs();
             };
 
@@ -309,6 +332,7 @@ angular.module('dmc.project')
                     ajax.update(dataFactory.services($scope.service.position_inputs.id).update_position_inputs, {
                             positions : dataRequest.positions
                         }, function (response) {
+                            $scope.isChangedOrder = false;
                             $scope.service.position_inputs = response.data;
                             toastModel.showToast("success", "Order successfully changed");
                         }
