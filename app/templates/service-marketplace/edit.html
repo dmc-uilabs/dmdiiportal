@@ -1,4 +1,7 @@
-<div class="container marketplace-box"  layout="row">
+<div class="container marketplace-box"  layout="row" ng-if="!product || !product.published">
+    Service not found
+</div>
+<div class="container marketplace-box"  layout="row" ng-if="product && product.published">
 	<!--Product-->
 	<div class="content-column" flex='100'>
 		<div ng-if="!not_found">

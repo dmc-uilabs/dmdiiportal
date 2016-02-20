@@ -37,9 +37,9 @@ angular.module('dmc.project')
             $scope.publishService = {
                 name : $scope.serviceData.title,
                 description : $scope.serviceData.description,
-                inputs : $scope.serviceData.specifications && $scope.serviceData.specifications.length > 0 ? $scope.serviceData.specifications[0].input : 0,
-                outputs : $scope.serviceData.specifications && $scope.serviceData.specifications.length > 0 ? $scope.serviceData.specifications[0].output : 0,
-                specifications : [],
+                inputs : $scope.serviceData.specifications ? $scope.serviceData.specifications.input : 0,
+                outputs : $scope.serviceData.specifications ? $scope.serviceData.specifications.output : 0,
+                specifications : $scope.serviceData.specifications ? $scope.serviceData.specifications.special : [],
                 tags : $scope.serviceData.service_tags
             };
 
@@ -84,7 +84,7 @@ angular.module('dmc.project')
                 $scope.changedInput();
             };
 
-            $scope.deleteSpecification = function(index){
+            $scope.deleteSpecification = function(index,id){
                 $scope.publishService.specifications.splice(index,1);
                 $scope.changedInput();
             };
@@ -97,7 +97,9 @@ angular.module('dmc.project')
                 $scope.changedInput();
             };
 
-            $scope.deleteTag = function(index){
+            var deletedTags = [];
+            $scope.deleteTag = function(index,id){
+                if(id && deletedTags.indexOf(id) == -1) deletedTags.push(id);
                 $scope.publishService.tags.splice(index,1);
                 $scope.changedInput();
             };
@@ -158,7 +160,9 @@ angular.module('dmc.project')
             };
             $scope.changedInput2();
 
-            $scope.deleteAuthor = function(index){
+            var deletedAuthors = [];
+            $scope.deleteAuthor = function(index,id){
+                if(id && deletedAuthors.indexOf(id) == -1) deletedAuthors.push(id);
                 $scope.publishService2.authors.splice(index,1);
                 $scope.changedInput2();
             };
@@ -167,44 +171,110 @@ angular.module('dmc.project')
                 $scope.currentPage--;
             };
 
+            var deletedDocuments = [];
             $scope.finish = function(){
-                var fd = new FormData();
-                fd.append('name', $scope.publishService.name);
-                fd.append('description', $scope.publishService.description);
-                fd.append('inputs', $scope.publishService.inputs);
-                fd.append('outputs', $scope.publishService.outputs);
-                // tags
-                for(var i in $scope.publishService.tags){
-                    for(var key in $scope.publishService.tags[i]){
-                        fd.append('tags['+i+']['+key+']', $scope.publishService.tags[i][key]);
-                    }
-                }
-                // specifications
-                for(var i in $scope.publishService.specifications){
-                    for(var key in $scope.publishService.specifications[i]) {
-                        fd.append('specifications[' + i + ']['+key+']', $scope.publishService.specifications[i][key]);
-                    }
-                }
                 // documents
-                for(var i in $scope.publishService2.documents){
-                    fd.append('file[' + i + ']', $scope.publishService2.documents[i].file);
-                }
-                // authors
-                for(var i in $scope.publishService2.authors) {
-                    for(var key in $scope.publishService2.authors[i]) {
-                        fd.append('author[' + i + ']['+key+']', $scope.publishService2.authors[i][key]);
+                //for(var i in $scope.publishService2.documents){
+                //    fd.append('file[' + i + ']', $scope.publishService2.documents[i].file);
+                //}
+                ajax.update(dataFactory.services($scope.serviceData.id).update,{
+                    title : $scope.publishService.name,
+                    description : $scope.publishService.description,
+                    published: true
+                },function(response){
+
+                    // specifications
+                    if(!$scope.serviceData.specifications){
+                        saveSpecifications();
+                    }else{
+                        updateSpecifications();
                     }
-                }
-                $http.post(dataFactory.createPublishService(), fd, {
-                    transformRequest: angular.identity,
-                    headers: {'Content-Type': undefined}
-                }).success(function (data) {
+
+                    // tags
+                    if($scope.publishService.tags && $scope.publishService.tags.length > 0) updateTags();
+                    if(deletedTags.length > 0) deleteTags();
+
+                    // authors
+                    if($scope.publishService2.authors && $scope.publishService2.authors.length > 0) updateAuthors();
+                    if(deletedAuthors.length > 0) deleteAuthors();
+
+                    // documents
+                    if($scope.publishService2.documents && $scope.publishService2.documents.length > 0) updateDocuments();
+                    if(deletedDocuments.length > 0) deleteDocuments();
                     toastModel.showToast("success", "Publish service successfully created!");
                     window.location = location.origin+'/service-marketplace.php#/'+$scope.serviceData.id;
-                }).error(function (data) {
-                    toastModel.showToast("error", data.statusText);
                 });
             };
+
+            function updateDocuments(){
+                console.log($scope.publishService2.documents);
+            }
+
+            function deleteDocuments(){
+                console.log(deletedDocuments);
+            }
+
+            function deleteAuthors(){
+                for(var i in deletedAuthors){
+                    ajax.delete(dataFactory.services(deletedAuthors[i]).remove_authors, {}, function () {});
+                }
+            }
+
+            function updateAuthors(){
+                for(var i in $scope.publishService2.authors){
+                    if(!$scope.publishService2.authors[i].serviceId){
+                        ajax.create(dataFactory.services().add_authors, {
+                            "serviceId": $scope.serviceData.id,
+                            "display_name": $scope.publishService2.authors[i].display_name,
+                            "jobTitle": $scope.publishService2.authors[i].jobTitle,
+                            "avatar": $scope.publishService2.authors[i].avatar,
+                            "company": $scope.publishService2.authors[i].company
+                        }, function () {});
+                    }
+                }
+            }
+
+            function deleteTags(){
+                for(var i in deletedTags){
+                    ajax.delete(dataFactory.services(deletedTags[i]).remove_tags, {}, function () {});
+                }
+            }
+
+            function updateTags(){
+                for(var i in $scope.publishService.tags){
+                    if(!$scope.publishService.tags[i].id) {
+                        ajax.create(dataFactory.services().add_tags,{
+                            serviceId : $scope.serviceData.id,
+                            name : $scope.publishService.tags[i].name
+                        },function(){});
+                    }
+                }
+            }
+
+            function saveSpecifications(){
+                ajax.create(dataFactory.services().add_specifications,{
+                    "serviceId": $scope.serviceData.id,
+                    "input": $scope.publishService.inputs,
+                    "output": $scope.publishService.outputs,
+                    "usageStats": {
+                        "added": 0,
+                        "members": 0
+                    },
+                    "runStats": {
+                        "success": 0,
+                        "fail": 0
+                    },
+                    "special": $scope.publishService.specifications
+                },function(response){});
+            }
+
+            function updateSpecifications(){
+                ajax.update(dataFactory.services($scope.serviceData.specifications.id).update_specifications,{
+                    "input": $scope.publishService.inputs,
+                    "output": $scope.publishService.outputs,
+                    "special": $scope.publishService.specifications
+                },function(response){});
+            }
 
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();

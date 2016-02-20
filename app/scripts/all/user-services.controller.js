@@ -23,6 +23,13 @@ angular.module('dmc.view-all')
 
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
+            if($scope.previousPage.tag == "company"){
+                $scope.previousPage = {
+                    tag : "dashboard",
+                    title: "Back to Dashboard",
+                    url: location.origin+'/dashboard.php'
+                }
+            }
 
             $("title").text("View All Services");
 
@@ -67,7 +74,10 @@ angular.module('dmc.view-all')
 
             var allServices = [];
             $scope.getServices = function(){
-                ajax.get(dataFactory.getServices(),{},
+                ajax.get(dataFactory.getServices(),{
+                        title_like: $scope.searchModel,
+                        _type: $scope.typeModel
+                    },
                     function(response){
                         $scope.total = response.data.length;
                         allServices = response.data;

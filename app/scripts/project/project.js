@@ -571,6 +571,7 @@ angular.module('dmc.project', [
                         service.currentStatus = (responses.currentStatus.data && responses.currentStatus.data.length > 0 ? responses.currentStatus.data[0] : null);
                         service.lastStatus = (responses.lastStatus.data && responses.lastStatus.data.length > 0 ? responses.lastStatus.data[0] : null);
                         service.specifications = extractData(responses.specifications);
+                        service.specifications = service.specifications.length > 0 ? service.specifications[0] : null;
                         service.service_authors = extractData(responses.service_authors);
                         service.service_input_output = extractData(responses.service_input_output);
                         service.position_inputs = (responses.position_inputs.data && responses.position_inputs.data.length > 0 ? responses.position_inputs.data[0] : null);
@@ -643,6 +644,7 @@ angular.module('dmc.project', [
                         "parent_component": params.parent,
                         "projectId": params.pojectId,
                         "type" : "service",
+                        "published" : false,
                         "from": params.from
                     },
                     function(response){

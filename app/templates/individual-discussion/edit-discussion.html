@@ -1,13 +1,14 @@
 <div class="individual-discussion">
 	<div layout="column">
-		<a class="return margin-bottom-20" href="community.php">Return to Community</a>
+        <div class="return margin-bottom-20" layout="row" layout-align="space-between center">
+            <a class="link" ng-href="/community.php#/home">BACK TO COMMUNITY</a>
+        </div>
 		<div layout="row">
 			<div  flex="70" class="margin-right12-5">
 				<div class="left-column" layout="column">
 					<div class="header" layout="row" layout-align="space-between center">
 						<h2>{{discussion.title}}</h2>
 					</div>
-					<md-divider></md-divider>
 					<div class="comment" ng-class="{'isOwner' : comment.isOwner}" ng-repeat="comment in discussion.comments.items track by $index" layout="column">
 						<div class="comment-header" layout="row" layout-align="start center">
 							<img ng-src="{{comment.avatar}}">

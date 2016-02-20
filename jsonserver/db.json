@@ -271,6 +271,12 @@
       "position": 4,
       "serviceId": 29,
       "id": 7
+    },
+    {
+      "companyId": 1,
+      "position": 5,
+      "serviceId": 14,
+      "id": 8
     }
   ],
   "company_reviews": [
@@ -651,6 +657,11 @@
       "accountId": 1,
       "serviceId": 5,
       "id": 15
+    },
+    {
+      "accountId": 1,
+      "serviceId": 30,
+      "id": 16
     }
   ],
   "projects": [
@@ -921,6 +932,19 @@
       "serviceId": 41,
       "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
       "id": 4
+    },
+    {
+      "version": 1,
+      "modelId": "aff647f9-d82f-1004-8e7b-5de38b2eeb0f",
+      "interfaceId": "aff647fa-d82f-1004-8e7b-5de38b2eeb0f",
+      "type": "interface",
+      "name": "Default Interface",
+      "path": [
+        30
+      ],
+      "serviceId": 45,
+      "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 5
     }
   ],
   "services": [
@@ -942,6 +966,7 @@
       "type": "service",
       "from": "marketplace",
       "parent": 0,
+      "published": false,
       "averageRun": 0
     },
     {
@@ -961,6 +986,7 @@
       "projectId": 1,
       "type": "service",
       "from": "marketplace",
+      "published": true,
       "averageRun": 0
     },
     {
@@ -979,6 +1005,7 @@
       },
       "projectId": 2,
       "type": "service",
+      "published": false,
       "from": "marketplace"
     },
     {
@@ -998,6 +1025,7 @@
       "projectId": 5,
       "type": "service",
       "from": "marketplace",
+      "published": true,
       "averageRun": 1
     },
     {
@@ -1016,6 +1044,7 @@
       },
       "projectId": 3,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1034,6 +1063,7 @@
       },
       "projectId": 3,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1052,6 +1082,7 @@
       },
       "projectId": 4,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1070,6 +1101,7 @@
       },
       "projectId": 4,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1088,6 +1120,7 @@
       },
       "projectId": 5,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1106,6 +1139,7 @@
       },
       "projectId": 4,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1124,6 +1158,7 @@
       },
       "projectId": 5,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1142,6 +1177,7 @@
       },
       "projectId": 1,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1160,6 +1196,7 @@
       },
       "projectId": 2,
       "type": "service",
+      "published": true,
       "from": "marketplace",
       "averageRun": 1
     },
@@ -1179,6 +1216,7 @@
       },
       "projectId": 5,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1199,6 +1237,7 @@
       "type": "service",
       "from": "project",
       "averageRun": 11.5,
+      "published": true,
       "parent": 0
     },
     {
@@ -1217,6 +1256,7 @@
       },
       "projectId": 4,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1235,6 +1275,7 @@
       },
       "projectId": 4,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1253,6 +1294,7 @@
       },
       "projectId": 5,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1271,6 +1313,7 @@
       },
       "projectId": 3,
       "type": "service",
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1291,6 +1334,7 @@
       "projectId": 2,
       "from": "marketplace",
       "id": 42,
+      "published": true,
       "type": "service",
       "currentStatus": {
         "project": {
@@ -1317,6 +1361,7 @@
       "projectId": 2,
       "from": "marketplace",
       "id": 43,
+      "published": true,
       "type": "service",
       "currentStatus": {
         "project": {
@@ -1343,6 +1388,7 @@
       "projectId": 2,
       "from": "marketplace",
       "id": 44,
+      "published": true,
       "type": "service",
       "currentStatus": {
         "project": {
@@ -1350,6 +1396,26 @@
           "title": "Capacitor Bank for LDR Mining Co."
         }
       }
+    },
+    {
+      "title": "UxCompliance1",
+      "description": "UxCompliance Description1",
+      "owner": "Thomas Smith",
+      "accountId": 1,
+      "releaseDate": "02/20/2016",
+      "serviceType": "analytical",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "averageRun": 0,
+      "parent_component": null,
+      "projectId": 1,
+      "type": "service",
+      "published": true,
+      "from": "project",
+      "id": 45
     }
   ],
   "service_runs": [
@@ -3478,45 +3544,6 @@
       }
     },
     {
-      "serviceId": 7,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 3
-    },
-    {
       "serviceId": 5,
       "success_rate": {
         "success": 50,
@@ -3632,45 +3659,6 @@
         "all": 0
       },
       "id": 6
-    },
-    {
-      "serviceId": 4,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 7
     },
     {
       "serviceId": 6,
@@ -3868,84 +3856,6 @@
       "id": 12
     },
     {
-      "serviceId": 16,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 13
-    },
-    {
-      "serviceId": 17,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 14
-    },
-    {
       "serviceId": 10,
       "success_rate": {
         "success": 50,
@@ -4022,45 +3932,6 @@
         "all": 0
       },
       "id": 16
-    },
-    {
-      "serviceId": 11,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 17
     },
     {
       "serviceId": 18,
@@ -4624,6 +4495,14 @@
       "follow": false,
       "avatar": "/uploads/profile/1/20151222084711000000.jpg",
       "company": "General Electric (GE) Software"
+    },
+    {
+      "serviceId": 45,
+      "display_name": "Bill Gates",
+      "jobTitle": "Engineering Manager",
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software",
+      "id": 11
     }
   ],
   "service_input_output": [
@@ -4744,6 +4623,11 @@
       "serviceId": 41,
       "name": "tag1",
       "id": 14
+    },
+    {
+      "serviceId": 45,
+      "name": "fgh",
+      "id": 19
     }
   ],
   "services_run_history": [
@@ -7284,17 +7168,26 @@
         "fail": 9
       },
       "special": []
-    }
-  ],
-  "publish-services": [
-    {
-      "id": 1
     },
     {
-      "id": 2
-    },
-    {
-      "id": 3
+      "serviceId": 45,
+      "input": 7,
+      "output": 9,
+      "usageStats": {
+        "added": 0,
+        "members": 0
+      },
+      "runStats": {
+        "success": 0,
+        "fail": 0
+      },
+      "special": [
+        {
+          "name": "Height",
+          "data": "2"
+        }
+      ],
+      "id": 26
     }
   ],
   "service-documents": [],
@@ -8136,6 +8029,16 @@
       "accountId": 1,
       "individual-discussionId": 5,
       "id": 5
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 6,
+      "id": 6
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 7,
+      "id": 7
     }
   ],
   "individual-discussion-tags": [
@@ -8143,6 +8046,16 @@
       "name": "Tag 1",
       "individual-discussionId": 2,
       "id": 1
+    },
+    {
+      "name": "dsfsdf",
+      "individual-discussionId": 6,
+      "id": 2
+    },
+    {
+      "name": "Tag1",
+      "individual-discussionId": 7,
+      "id": 3
     }
   ],
   "individual-discussion": [
@@ -8175,6 +8088,17 @@
       "title": "Subject",
       "accountId": 1,
       "id": 5
+    },
+    {
+      "message": "asdf",
+      "title": "asdfasdf",
+      "accountId": 1,
+      "id": 6
+    },
+    {
+      "title": "Test Discussion title",
+      "accountId": 1,
+      "id": 7
     }
   ],
   "individual-discussion-comments": [
@@ -8346,6 +8270,46 @@
       "like": 0,
       "dislike": 0,
       "id": 13
+    },
+    {
+      "individual-discussionId": 6,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "text": "asdf",
+      "created_at": "2016-02-20 01:58:44",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 14
+    },
+    {
+      "individual-discussionId": 7,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 15,
+      "text": "ssss",
+      "created_at": 1455971123605,
+      "like": 0,
+      "dislike": 0,
+      "id": 16
+    },
+    {
+      "individual-discussionId": 7,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 0,
+      "text": "ssss",
+      "created_at": 1455971171416,
+      "like": 1,
+      "dislike": 0,
+      "id": 17
     }
   ],
   "individual-discussion-comments-helpful": [
@@ -8378,6 +8342,18 @@
       "commentId": 10,
       "helpful": null,
       "id": 5
+    },
+    {
+      "accountId": 1,
+      "commentId": 15,
+      "helpful": true,
+      "id": 6
+    },
+    {
+      "accountId": 1,
+      "commentId": 17,
+      "helpful": true,
+      "id": 7
     }
   ],
   "account-notification-categories": [

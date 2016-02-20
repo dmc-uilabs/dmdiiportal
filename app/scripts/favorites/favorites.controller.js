@@ -9,6 +9,7 @@ angular.module('dmc.all-favorites')
         'ajax',
         'dataFactory',
         'isFavorite',
+        'DMCUserModel',
         '$cookies',
         function (  $scope,
                     $stateParams,
@@ -18,6 +19,7 @@ angular.module('dmc.all-favorites')
                     ajax,
                     dataFactory,
                     isFavorite,
+                    DMCUserModel,
                     $cookies) {
 
             $scope.treeMenuModel = menuFavorite.getMenu();
@@ -32,6 +34,8 @@ angular.module('dmc.all-favorites')
             $scope.currentStorefrontPage = 1;
             $scope.pageSize = 10;
             $scope.downloadData = false;
+            $scope.userData = DMCUserModel.getUserData();
+
 
             $scope.$watch(function() { return $cookies.currentStorefrontPage; }, function(newValue) {
                 if(parseInt(newValue) > 0 && $scope.currentStorefrontPage !== parseInt(newValue)) {
@@ -58,7 +62,6 @@ angular.module('dmc.all-favorites')
                         break;
                 }
                 var data = {
-                    _expand: types,
                     _limit: $scope.pageSize,
                     _start: ($scope.currentStorefrontPage-1)*$scope.pageSize
                 };
@@ -73,26 +76,51 @@ angular.module('dmc.all-favorites')
             };
 
             $scope.getFavorites = function(){
-                ajax.get(dataFactory.getFavoriteService(1), requestData(),
+                ajax.get(dataFactory.getFavoriteService($scope.userData.accountId), requestData(),
                     function(response){
-                        var data = [];
-                        for (var i in response.data){
-                            if(response.data[i].service){
-                                data.push(response.data[i].service);
-                            }else if(response.data[i].component){
-                                data.push(response.data[i].component);
+                        var servicesIds = [];
+                        var favoritesData = response.data;
+                        $.each(response.data,function(){
+                            if(this.serviceId) servicesIds.push(this.serviceId);
+                        });
+                        ajax.get(dataFactory.getServices(), {
+                                id : servicesIds,
+                                published : true
+                            },
+                            function(res){
+                                for(var i in favoritesData){
+                                    for(var j in res.data){
+                                        if(favoritesData[i].serviceId == res.data[j].id){
+                                            favoritesData[i].service = res.data[j];
+                                            break;
+                                        }
+                                    }
+                                }
+                                var data = [];
+                                for (var i in favoritesData){
+                                    if(favoritesData[i].service){
+                                        data.push(favoritesData[i].service);
+                                    }else if(favoritesData[i].component){
+                                        data.push(favoritesData[i].component);
+                                    }
+                                }
+                                $scope.allFavorites = {
+                                    arr : data,
+                                    count : data.length
+                                };
+                                isFavorite.check($scope.allFavorites.arr);
+                                apply();
                             }
-                        }
-                        $scope.allFavorites = {
-                            arr : data,
-                            count : data.length
-                        };
-                        isFavorite.check($scope.allFavorites.arr);
-                        apply();
+                        );
                     }
                 );
             };
-            $scope.getFavorites();
+
+            $scope.userData.then(function(data){
+                $scope.userData = data;
+                $scope.getFavorites();
+            });
+
 
             // get data from cookies
             var updateCompareCount = function () {

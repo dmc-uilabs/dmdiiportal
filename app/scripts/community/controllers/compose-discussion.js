@@ -48,7 +48,6 @@ angular.module('dmc.community')
             $scope.save = function(message, subject){
                 ajax.create(
                     dataFactory.addDiscussion(), {
-                        "message": $scope.NewDiscussion.message,
                         "title": $scope.NewDiscussion.subject,
                         "accountId" : $rootScope.userData.accountId
                     },
@@ -96,6 +95,7 @@ angular.module('dmc.community')
                         "individual-discussionId": id,
                         "full_name": $rootScope.userData.displayName,
                         "accountId": $rootScope.userData.accountId,
+                        "commentId" : 0,
                         "avatar": "/images/carbone.png",
                         "text": message,
                         "created_at": moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
