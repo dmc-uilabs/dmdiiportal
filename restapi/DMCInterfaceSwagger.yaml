@@ -4426,6 +4426,10 @@ definitions:
   UserNotificationServiceParams:
     type: object
     properties:
+      projectId:
+        type: string
+      projectTitle:
+        type: string
       serviceId:
         type: string
       serviceTitle:

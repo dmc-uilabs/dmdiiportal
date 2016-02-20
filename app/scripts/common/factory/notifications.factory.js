@@ -70,7 +70,7 @@ angular.module('dmc.common.notifications',[])
           }
 
           if (type == 'service') {
-            _link = '/component.php#/services/'+linkParams.serviceId;
+            _link = '/project.php#/'+ linkParams.projectId + '/services/' + linkParams.serviceId + '/detail'
             switch (action) {
               case 'SERVICE_ERROR':
                 _actionTitle = linkParams.serviceTitle + ' Failed to connect.';
@@ -79,10 +79,10 @@ angular.module('dmc.common.notifications',[])
                 _actionTitle = linkParams.serviceTitle + ' Completed.';
               break;
               case 'SUBSCRIBE_SERVICE_TO_YOUR_PROJECT':
-                _actionTitle = linkParams.serviceTitle + ' was added to a project.';
+                _actionTitle = linkParams.serviceTitle + ' was added to ' + linkParams.projectTitle + ' .';
               break;
               case 'UNSUBSCRIBE_SERVICE_TO_YOUR_PROJECT':
-                _actionTitle = linkParams.serviceTitle + ' was removed from a project.';
+                _actionTitle = linkParams.serviceTitle + ' was removed from ' + linkParams.projectTitle + ' .';
               break;
               case 'UPDATE_SERVICE':
                 _actionTitle = linkParams.serviceTitle + ' was updated.';
@@ -124,7 +124,7 @@ angular.module('dmc.common.notifications',[])
           }
 
           if (type == 'task') {
-            _link = '/project.php#/' + linkParams.projectId + '/home'
+            _link = '/project.php#/' + linkParams.projectId + '/home?showTask=' + linkParams.taskId;
             switch (action) {
               case 'TASK_ASSIGN':
                 _actionTitle = linkParams.displayName + ' assigned you a task.';
