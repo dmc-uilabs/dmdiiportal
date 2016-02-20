@@ -959,7 +959,7 @@
       "type": "service",
       "from": "marketplace",
       "parent": 0,
-        "published": true,
+      "published": true,
       "averageRun": 0
     },
     {
@@ -979,7 +979,7 @@
       "projectId": 1,
       "type": "service",
       "from": "marketplace",
-        "published": true,
+      "published": true,
       "averageRun": 0
     },
     {
@@ -998,7 +998,7 @@
       },
       "projectId": 2,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1018,7 +1018,7 @@
       "projectId": 5,
       "type": "service",
       "from": "marketplace",
-        "published": true,
+      "published": true,
       "averageRun": 0.5
     },
     {
@@ -1038,7 +1038,7 @@
       "projectId": 2,
       "type": "service",
       "from": "marketplace",
-        "published": true,
+      "published": true,
       "averageRun": 15
     },
     {
@@ -1057,7 +1057,7 @@
       },
       "projectId": 3,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1076,7 +1076,7 @@
       },
       "projectId": 3,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1095,7 +1095,7 @@
       },
       "projectId": 3,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1114,7 +1114,7 @@
       },
       "projectId": 4,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1133,7 +1133,7 @@
       },
       "projectId": 4,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1152,7 +1152,7 @@
       },
       "projectId": 5,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1171,7 +1171,7 @@
       },
       "projectId": 5,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1190,7 +1190,7 @@
       },
       "projectId": 5,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1209,7 +1209,7 @@
       },
       "projectId": 4,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1228,7 +1228,7 @@
       },
       "projectId": 4,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1247,7 +1247,7 @@
       },
       "projectId": 5,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1266,7 +1266,7 @@
       },
       "projectId": 1,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1286,7 +1286,7 @@
       "projectId": 2,
       "type": "service",
       "from": "marketplace",
-        "published": true,
+      "published": true,
       "averageRun": 1
     },
     {
@@ -1305,7 +1305,7 @@
       },
       "projectId": 5,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1326,7 +1326,7 @@
       "type": "service",
       "from": "project",
       "averageRun": 11.5,
-        "published": true,
+      "published": true,
       "parent": 0
     },
     {
@@ -1345,7 +1345,7 @@
       },
       "projectId": 4,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1364,7 +1364,7 @@
       },
       "projectId": 4,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1383,7 +1383,7 @@
       },
       "projectId": 5,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1402,7 +1402,7 @@
       },
       "projectId": 3,
       "type": "service",
-        "published": true,
+      "published": true,
       "from": "marketplace"
     },
     {
@@ -1424,7 +1424,7 @@
       "from": "marketplace",
       "id": 42,
       "type": "service",
-        "published": true,
+      "published": true,
       "currentStatus": {
         "project": {
           "id": 2,
@@ -1451,7 +1451,7 @@
       "from": "marketplace",
       "id": 43,
       "type": "service",
-        "published": true,
+      "published": true,
       "currentStatus": {
         "project": {
           "id": 2,
@@ -1478,7 +1478,7 @@
       "from": "marketplace",
       "id": 44,
       "type": "service",
-        "published": true,
+      "published": true,
       "currentStatus": {
         "project": {
           "id": 2,
@@ -8216,7 +8216,7 @@
       "id": 1,
       "hide": true,
       "account-notification-categoryId": 1,
-      "title": "User messages me"
+      "title": "A Member messages me"
     },
     {
       "id": 2,
@@ -8237,58 +8237,59 @@
       "id": 5,
       "hide": true,
       "account-notification-categoryId": 2,
-      "title": "User requests to be a contact"
+      "title": "A Member requests to be a contact"
     },
     {
       "id": 6,
       "hide": true,
       "account-notification-categoryId": 2,
-      "title": "User accepts contact request"
+      "title": "A Member accepts contact request"
     },
     {
       "id": 7,
       "account-notification-categoryId": 2,
-      "title": "User reviews you"
+      "title": "A Member reviews you"
     },
     {
       "id": 8,
       "account-notification-categoryId": 2,
-      "title": "User follows you"
+      "title": "A Member follows you"
     },
     {
       "id": 9,
       "account-notification-categoryId": 2,
-      "title": "User you follow publishes a new dicussion"
+      "title": "A Member you follow posts or replies to a discussion"
     },
     {
       "id": 10,
       "account-notification-categoryId": 2,
-      "title": "User comments on your Discussion"
+      "title": "A Member comments on your Discussion"
     },
     {
       "id": 11,
       "account-notification-categoryId": 3,
-      "title": "Your component/service is reviewed"
+      "title": "Your service is reviewed"
     },
     {
       "id": 12,
       "account-notification-categoryId": 3,
-      "title": "Your component/service is favorited"
+      "title": "Your service is favorited"
     },
     {
       "id": 13,
       "account-notification-categoryId": 3,
-      "title": "Component/service is shared with you"
+      "title": "Service is shared with you"
     },
     {
       "id": 14,
       "account-notification-categoryId": 4,
-      "title": "User invites you to a project"
+      "hide": true,
+      "title": "A Member invites you to a project"
     },
     {
       "id": 15,
       "account-notification-categoryId": 4,
-      "title": "User accepts your project invitation"
+      "title": "A Member accepts your project invitation"
     },
     {
       "id": 16,
@@ -8321,6 +8322,56 @@
       "hide": true,
       "account-notification-categoryId": 4,
       "title": "You receive a submission for your project"
+    },
+    {
+      "id": 22,
+      "account-notification-categoryId": 1,
+      "title": "A Member shares something with you"
+    },
+    {
+      "id": 23,
+      "account-notification-categoryId": 3,
+      "title": "Your Company is reviewed"
+    },
+    {
+      "id": 24,
+      "account-notification-categoryId": 4,
+      "title": "A Member declines project invitation"
+    },
+    {
+      "id": 25,
+      "account-notification-categoryId": 4,
+      "title": "Service is removed from a project"
+    },
+    {
+      "id": 26,
+      "account-notification-categoryId": 4,
+      "title": "Service is added to a project"
+    },
+    {
+      "id": 27,
+      "account-notification-categoryId": 4,
+      "title": "Service is updated"
+    },
+    {
+      "id": 28,
+      "account-notification-categoryId": 2,
+      "title": "A Member you follow joins a project"
+    },
+    {
+      "id": 29,
+      "account-notification-categoryId": 2,
+      "title": "A Member you follow adds a service to the marketplace"
+    },
+    {
+      "id": 30,
+      "account-notification-categoryId": 2,
+      "title": "A Member you follow reviews a service"
+    },
+    {
+      "id": 31,
+      "account-notification-categoryId": 2,
+      "title": "A company you follow adds a service to the marketplace"
     }
   ],
   "account-notification-settings": [
@@ -8472,6 +8523,146 @@
       "selected": false
     },
     {
+      "id": 43,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 22,
+      "selected": false
+    },
+    {
+      "id": 44,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 23,
+      "selected": false
+    },
+    {
+      "id": 45,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 24,
+      "selected": false
+    },
+    {
+      "id": 46,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 25,
+      "selected": false
+    },
+    {
+      "id": 47,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 26,
+      "selected": false
+    },
+    {
+      "id": 48,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 27,
+      "selected": false
+    },
+    {
+      "id": 49,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 28,
+      "selected": false
+    },
+    {
+      "id": 50,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 29,
+      "selected": false
+    },
+    {
+      "id": 51,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 30,
+      "selected": false
+    },
+    {
+      "id": 52,
+      "accountId": 1,
+      "section": "website",
+      "account-notification-category-itemId": 31,
+      "selected": false
+    },
+    {
+      "id": 53,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 22,
+      "selected": true
+    },
+    {
+      "id": 54,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 23,
+      "selected": true
+    },
+    {
+      "id": 55,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 24,
+      "selected": true
+    },
+    {
+      "id": 56,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 25,
+      "selected": true
+    },
+    {
+      "id": 57,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 26,
+      "selected": true
+    },
+    {
+      "id": 58,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 27,
+      "selected": true
+    },
+    {
+      "id": 59,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 28,
+      "selected": true
+    },
+    {
+      "id": 60,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 29,
+      "selected": true
+    },
+    {
+      "id": 61,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 30,
+      "selected": true
+    },
+    {
+      "id": 62,
+      "accountId": 1,
+      "section": "email",
+      "account-notification-category-itemId": 31,
+      "selected": true
+    },
+    {
       "id": 22,
       "accountId": 1,
       "section": "email",
@@ -8518,7 +8709,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 7,
-      "selected": false
+      "selected": true
     },
     {
       "id": 29,
@@ -8546,7 +8737,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 11,
-      "selected": false
+      "selected": true
     },
     {
       "id": 33,
@@ -8581,7 +8772,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 16,
-      "selected": false
+      "selected": true
     },
     {
       "id": 38,
@@ -8595,7 +8786,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 18,
-      "selected": false
+      "selected": true
     },
     {
       "id": 40,
@@ -8956,9 +9147,9 @@
       "event": "TASK_UPDATE",
       "linkParams": {
         "projectId": 5,
-            "projectTitle": "LOW HEAT LOSS TRANSFORMER",
-            "taskId": 18,
-            "displayName": "Thomas"
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
       },
       "date": "2016-02-02 12:10:31"
     },
@@ -9270,9 +9461,9 @@
       "event": "TASK_ASSIGN",
       "linkParams": {
         "projectId": 5,
-            "projectTitle": "LOW HEAT LOSS TRANSFORMER",
-            "taskId": 18,
-            "displayName": "Thomas"
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
       },
       "date": "2016-02-02 12:10:31"
     },
@@ -9284,9 +9475,9 @@
       "event": "TASK_DUE",
       "linkParams": {
         "projectId": 5,
-            "projectTitle": "LOW HEAT LOSS TRANSFORMER",
-            "taskId": 18,
-            "displayName": "Thomas"
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
       },
       "date": "2016-02-02 12:10:31"
     },
@@ -9298,9 +9489,9 @@
       "event": "TASK_UPDATE",
       "linkParams": {
         "projectId": 5,
-            "projectTitle": "LOW HEAT LOSS TRANSFORMER",
-            "taskId": 18,
-            "displayName": "Thomas"
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
       },
       "date": "2016-02-02 12:10:31"
     }
@@ -9648,9 +9839,9 @@
       "event": "TASK_ASSIGN",
       "linkParams": {
         "projectId": 5,
-            "projectTitle": "LOW HEAT LOSS TRANSFORMER",
-            "taskId": 18,
-            "displayName": "Thomas"
+        "projectTitle": "LOW HEAT LOSS TRANSFORMER",
+        "taskId": 18,
+        "displayName": "Thomas"
       },
       "date": "2016-02-02 12:10:31"
     },
