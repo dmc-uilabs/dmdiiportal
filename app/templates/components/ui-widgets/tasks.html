@@ -28,7 +28,7 @@
                 <tbody>
                 <tr md-auto-select ng-repeat="item in tasks | orderBy: sort" class="one-task">
                     <td class="title" ng-show="columns.indexOf('title') > -1" ng-click="editTask($event,item)">
-                        {{item.title}}
+                        <a class="link-button">{{item.title}}</a>
                     </td>
                     <td class="assignee" ng-show="columns.indexOf('assignee') > -1">
                         <a href="/profile.php#/1" class="link-button">{{item.assignee}}</a>

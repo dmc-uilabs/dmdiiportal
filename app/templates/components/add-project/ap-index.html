@@ -13,12 +13,12 @@
           <!--Tab -->
           <div layout="row" layout-align="space-between center">
             <md-tab label="1 ENTER PROJECT INFORMATION">
-              <md-content class="md-padding">
+              <md-content>
                 <ap-tab-one go-to-tab="goToNextTab" disable-enable-tab="disableEnable"></ap-tab-one>
               </md-content>
             </md-tab>
             <md-tab label="2 SELECT MEMBERS TO INVITE" ng-disabled="data.secondLocked">
-              <md-content class="md-padding">
+              <md-content>
                 <ap-tab-two go-to-tab="goToNextTab" invitees="invitees" disable-enable-tab="disableEnable" submit-project-details="createNewProject" ></ap-tab-two>
               </md-content>
             </md-tab>

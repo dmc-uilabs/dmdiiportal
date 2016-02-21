@@ -1,12 +1,16 @@
 <div class="page-header margin-bottom-35">
     <md-toolbar>
-        <h1 class="project-title">{{projectCtrl.projectData.title}}</h1>
+        <h1 class="project-title" layout="row" layout-align="start end">
+            <div class="title">{{projectCtrl.projectData.title}}</div>
+            <span ng-if="projectCtrl.projectData.dueDate" class="small-text due-date-project small-text--grey">
+                Due in {{projectCtrl.projectData.dueDate}}
+            </span>
+        </h1>
         <div class="md-toolbar-tools">
             <div layout="column" flex="65" class="margin-right12-5">
                 <div layout="row" class="name-project" flex>
                     <div sub-nav-menu-button current-page="4"></div>
                 </div>
-                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
             </div>
         </div>
     </md-toolbar>
@@ -53,7 +57,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in tasks">
-                            <td ng-click="editTask($event,item)" class="title-task">{{item.title}}</td>
+                            <td ng-click="editTask($event,item)" class="title-task"><a class="link-button">{{item.title}}</a></td>
                             <td>{{item.assignee}}</td>
                             <td>
                                 <span ng-bind-html="item.formatedDueDate[1]" class="label" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>

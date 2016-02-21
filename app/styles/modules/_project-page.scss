@@ -1,16 +1,24 @@
 .project-description{
   margin: 0;
+  font-size: 14px;
 }
 .project-title{
   background-color: none;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   margin: 0 0 20px 0;
   font-weight: 100;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   color: #363636;
+  .title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 70%;
+  }
+  .due-date-project{
+    margin-left: 15px;
+    margin-bottom: 3px;
+  }
 }
 
 .invite-button{

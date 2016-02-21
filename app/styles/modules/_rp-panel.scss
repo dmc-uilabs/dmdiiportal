@@ -1,11 +1,17 @@
 .rp-panel {
-  //border-top: 2px solid $body_grey;
+  border-top: 2px solid $body_grey;
+  .title-widget{
+    margin: 0 0 15px 0;
+  }
+  &:first-child{
+    border-top: none;
+  }
   h2{
     margin-bottom: 0;
   }
   &__title {
     &.my-projects {
-      padding: 8px 16px;
+      padding: 10px 0 15px 0;
     }
     h2 {
       font-size: 18px;
@@ -14,9 +20,11 @@
       a {
         text-decoration: none;
         color: #333;
+        font-size: 24px;
       }
       span{
         font-size: 12px;
+        margin-left: 15px;
         text-transform: uppercase;
         color: map-get($colors, text_grey);
       }

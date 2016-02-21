@@ -682,7 +682,7 @@
       "id": 2,
       "title": "Capacitor Bank for LDR Mining Co.",
       "type": "public",
-      "dueDate": "",
+      "dueDate": 1455544706321,
       "projectManager": "PDM Co.",
       "featureImage": {
         "thumbnail": "/images/logo-ldr-mining.png",
@@ -707,7 +707,7 @@
       "id": 4,
       "title": "Incoming Compartment for LDR Mining",
       "type": "public",
-      "dueDate": "",
+      "dueDate": 1455544706321,
       "projectManager": "PDM Co.",
       "featureImage": {
         "thumbnail": "/images/project-incoming-compartment.png",
@@ -732,7 +732,7 @@
       "id": 1,
       "title": "Control Compartment for LDR Mining",
       "type": "public",
-      "dueDate": "",
+      "dueDate": 1455544706321,
       "projectManager": "PDM Co.",
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
@@ -756,7 +756,7 @@
       "id": 3,
       "title": "Capacitor Design",
       "type": "public",
-      "dueDate": "",
+      "dueDate": 1455544706321,
       "projectManager": "PDM. Co",
       "featureImage": {
         "thumbnail": "/images/project_capacitor_compartment.png",
@@ -5878,8 +5878,8 @@
       },
       "assignee": "Stephen Rencour",
       "reporter": "W.Simpson",
-      "dueDate": 1454562000000,
-      "priority": "Low",
+      "dueDate": 1454536800000,
+      "priority": 2,
       "projectId": 3,
       "status": "Open",
       "description": "Replace Air disconnect switch"
@@ -5894,9 +5894,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "G.Apple",
       "dueDate": 1455055200000,
-      "priority": "Low",
+      "priority": 2,
       "projectId": 3,
-      "status": "Open"
+      "status": "Open",
+      "description": "Spec fusing for capacitors"
     },
     {
       "id": 12,
@@ -5908,9 +5909,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "U.Leonard",
       "dueDate": 1455400800000,
-      "priority": "Low",
+      "priority": 2,
       "projectId": 3,
-      "status": "Open"
+      "status": "Open",
+      "description": "Design Inrush reactors"
     },
     {
       "id": 13,
@@ -5922,9 +5924,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "U.Leonard",
       "dueDate": 1455487200000,
-      "priority": "Low",
+      "priority": 1,
       "projectId": 4,
-      "status": "Open"
+      "status": "Open",
+      "description": "Define specifications for power transformer"
     },
     {
       "id": 14,
@@ -5936,9 +5939,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "R.Farmer",
       "dueDate": 1455832800000,
-      "priority": "Low",
+      "priority": 2,
       "projectId": 4,
-      "status": "Open"
+      "status": "Open",
+      "description": "communicate with LDR mining on cost targets"
     },
     {
       "id": 15,
@@ -5950,9 +5954,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "V.Watkins",
       "dueDate": 1455832800000,
-      "priority": "Low",
+      "priority": 3,
       "projectId": 4,
-      "status": "Open"
+      "status": "Open",
+      "description": "review local content requirements"
     },
     {
       "id": 16,
@@ -5964,9 +5969,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "V.Watkins",
       "dueDate": 1455919200000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 4,
-      "status": "Open"
+      "status": "Open",
+      "description": "review commercial transformer companies"
     },
     {
       "id": 17,
@@ -5978,9 +5984,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
       "dueDate": 1456005600000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 5,
-      "status": "Open"
+      "status": "Open",
+      "description": "Find permeability models for new mtl type"
     },
     {
       "id": 18,
@@ -5992,9 +5999,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
       "dueDate": 1456092000000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 5,
-      "status": "Open"
+      "status": "Open",
+      "description": "Determine Manufacturing requirements for new mtl"
     },
     {
       "id": 19,
@@ -6006,9 +6014,10 @@
       "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
       "dueDate": 1456178400000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 5,
-      "status": "Open"
+      "status": "Open",
+      "description": "evaluate cost model for varying grain sizes"
     },
     {
       "id": 20,
@@ -6020,9 +6029,10 @@
       "assignee": "John Smith",
       "reporter": "b.beckmann",
       "dueDate": 1456869600000,
-      "priority": "Medium",
+      "priority": 4,
       "projectId": 5,
-      "status": "Open"
+      "status": "Open",
+      "description": "review patent literature"
     },
     {
       "id": 21,
@@ -6069,7 +6079,7 @@
       "assignee": "Thomas Smith",
       "reporter": "Jack Graber",
       "dueDate": 1459544400000,
-      "priority": "Medium",
+      "priority": 2,
       "projectId": 5,
       "id": 24,
       "status": "Open"
@@ -6080,7 +6090,7 @@
       "assignee": "John Smith",
       "reporter": "Jack Graber",
       "dueDate": 1455400800000,
-      "priority": "Medium",
+      "priority": 1,
       "projectId": 1,
       "status": "Open",
       "id": 25
@@ -6091,7 +6101,7 @@
       "assignee": "Hussain Rizvi",
       "reporter": "Jack Graber",
       "dueDate": 1455487200000,
-      "priority": "Critical",
+      "priority": 1,
       "projectId": 1,
       "status": "Open",
       "id": 26
@@ -6101,8 +6111,8 @@
       "description": "Create home page",
       "assignee": "John Smith",
       "reporter": "Jack Graber",
-      "dueDate": 1455685200000,
-      "priority": "Medium",
+      "dueDate": 1455660000000,
+      "priority": 3,
       "projectId": 2,
       "status": "Open",
       "id": 27
@@ -6113,7 +6123,7 @@
       "assignee": "Stephen Rencour",
       "reporter": "Jack Graber",
       "dueDate": 1455573600000,
-      "priority": "Critical",
+      "priority": 2,
       "projectId": 2,
       "status": "Open",
       "id": 28

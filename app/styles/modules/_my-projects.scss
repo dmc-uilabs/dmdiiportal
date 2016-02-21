@@ -3,17 +3,8 @@
     padding: 0;
   }
   .rp-panel__tab-content md-content{
-    padding-right: 16px;
-    &:nth-child(1){
-      padding-right: 25px;
-    }
-    &:nth-child(2){
-      padding-left: 25px;
-      padding-right: 25px;
-    }
-    &:nth-child(3){
-      padding-left: 25px;
-    }
+    padding: 0;
+    max-width: 30%;
   }
 }
 .md-toolbar-tools.my-projects-title{

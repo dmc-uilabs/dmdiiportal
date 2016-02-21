@@ -7,7 +7,13 @@ angular.module('dmc.model.project', ['dmc.data'])
         return ajax.get(dataFactory.getProject(id),{},
             function(response){
                 if(response.data.dueDate){
-                  response.data.dueDate = moment(response.data.dueDate).format('MM/DD/YYYY')
+                    var day = 86400000;
+                    response.data.dueDate = (new Date() - new Date(response.data.dueDate));
+                    if(response.data.dueDate <= day){
+                        response.data.dueDate = moment(new Date()).format("MM/DD/YYYY");
+                    }else{
+                        response.data.dueDate = Math.floor(response.data.dueDate / day)+" days";
+                    }
                 }
                 return response.data;
             }

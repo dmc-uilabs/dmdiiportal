@@ -123,13 +123,7 @@ md-input-container{
     vertical-align: top;
   }
 }*/
-.title-widget{
-  h2{
-    font-weight: 100;
-    padding: 0 0 0 0;
-    margin: 0;
-  }
-}
+
 
 .delete-project{
   position: absolute;
@@ -403,6 +397,32 @@ button,
     background-color: #C7C7C7;
     &:hover{
       background-color: #d7d7d7 !important;
+    }
+  }
+}
+
+div[ui-widget-services]{
+  a{
+    em{
+      font-size: 14px;
+    }
+  }
+}
+div[ui-widget-discussions]{
+  .md-list-item-text{
+    h3{
+      a{
+        font-size: 14px;
+      }
+    }
+  }
+}
+div[ui-widget-tasks]{
+  table{
+    td.title{
+      a{
+        font-size: 14px;
+      }
     }
   }
 }

@@ -1,12 +1,15 @@
 <div class="page-header margin-bottom-35">
     <md-toolbar>
-        <h1 class="project-title">{{projectCtrl.projectData.title}}</h1>
+        <h1 class="project-title" layout="row" layout-align="start end">
+            <div class="title">{{projectCtrl.projectData.title}}</div>
+            <span ng-if="projectCtrl.projectData.dueDate" class="small-text due-date-project small-text--grey">
+                Due in {{projectCtrl.projectData.dueDate}}
+            </span>
+        </h1>
         <div class="md-toolbar-tools">
             <div layout="column" flex="65" class="margin-right12-5">
                 <div layout="row" class="name-project" flex>
                     <div sub-nav-menu-button current-page="1"></div>
-                    <span ng-if="projectCtrl.projectData.dueDate" class="small-text small-text--grey">Due in {{projectCtrl.projectData.dueDate}}</span>
-
                 </div>
                 <span ng-if="isPreview" class="project-manager">Invited to {{projectCtrl.projectData.type}}: <a ng-href="/profile.php#/1">{{projectCtrl.projectData.projectManager}}</a> <ng-md-icon icon="mail" size="20"></ng-md-icon></span>
             </div>
