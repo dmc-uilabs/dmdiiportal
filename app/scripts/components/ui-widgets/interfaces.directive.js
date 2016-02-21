@@ -10,7 +10,8 @@ angular.module('dmc.widgets.interfaces',[
             restrict: 'A',
             scope: {
                 serverIp: '=',
-                selectedInterface: '='
+                selectedInterface: '=',
+                update: '='
             },
             templateUrl: 'templates/components/ui-widgets/interfaces.tmpl.html',
             controller: function($scope,ajax,domeModel,dataFactory,toastModel){
@@ -79,6 +80,10 @@ angular.module('dmc.widgets.interfaces',[
                     },errorCallback,item,index,back);
                 };
                 $scope.getInterfaces();
+
+                $scope.$watch("update",function(newVal,oldVal){
+                    if(newVal && newVal != oldVal) $scope.getInterfaces();
+                });
 
                 $scope.getModel = function(item){
                     var dataRequest = {};

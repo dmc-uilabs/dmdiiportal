@@ -97,6 +97,7 @@
                 <md-content dmc-interfaces
                             server-ip="selectedServerIp"
                             class="interface"
+                            update="updateDateTime"
                             selected-interface="getSelectedInterface"
                             ng-if="selectedServerIp"></md-content>
 
@@ -158,7 +159,7 @@
                 Cancel
             </md-button>
 
-            <md-button class="md-primary md-raised" ng-if="page1" ng-disabled="serverModel != 0" ng-click="next()">
+            <md-button class="md-primary md-raised" ng-if="page1" ng-disabled="!selectedInterface" ng-click="next()">
                 Next
             </md-button>
 

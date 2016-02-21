@@ -69,6 +69,8 @@ angular.module('dmc.project')
                     $scope.servers = $scope.servers.sort(function(a,b){return a.id - b.id});
                     if ($scope.servers.unshift(item)) this.serverModel = 0;
                     $scope.serverModel = 0;
+                    $scope.updateDateTime = new Date();
+                    apply();
                 }
             };
 

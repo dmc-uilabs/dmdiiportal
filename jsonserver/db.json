@@ -1437,7 +1437,8 @@
           "id": 2,
           "title": "Capacitor Bank for LDR Mining Co."
         }
-      }
+      },
+      "parent": 0
     },
     {
       "title": "Velocity1 Model",
