@@ -25,9 +25,9 @@ angular.module('dmc.view-all')
             $scope.previousPage = previousPage.get();
             if($scope.previousPage.tag == "company"){
                 $scope.previousPage = {
-                    tag : "dashboard",
-                    title: "Back to Dashboard",
-                    url: location.origin+'/dashboard.php'
+                    tag : "my-projects",
+                    title: "Back to My Projects",
+                    url: location.origin+'/my-projects.php'
                 }
             }
 

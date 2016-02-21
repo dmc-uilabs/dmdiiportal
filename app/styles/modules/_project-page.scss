@@ -75,3 +75,18 @@
     }
   }
 }
+
+.project-title-edit{
+  .project-title{
+    margin-bottom: 0;
+  }
+}
+.edit-project{
+  .content-panel-header{
+    md-toolbar{
+      .md-toolbar-tools{
+        padding: 0;
+      }
+    }
+  }
+}

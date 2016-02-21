@@ -426,3 +426,7 @@ div[ui-widget-tasks]{
     }
   }
 }
+
+md-input-container:not(.md-input-has-value) input:not(:focus){
+  color: #363636;
+}

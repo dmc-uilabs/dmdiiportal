@@ -12,6 +12,7 @@ angular.module('dmc.project', [
         'dmc.model.dome',
 		'dmc.widgets.services',
 		'dmc.widgets.tasks',
+        'dmc.add_project',
 		'dmc.widgets.discussions',
 		'dmc.widgets.documents',
 		'dmc.widgets.components',
@@ -23,6 +24,7 @@ angular.module('dmc.project', [
 		'dmc.widgets.tabs',
         'dmc.widgets.interfaces',
         'dmc.component.productcard',
+        'dmc.add_project.directive',
 		'ui.router',
 		'md.data.table',
 		'ngCookies',
@@ -97,6 +99,10 @@ angular.module('dmc.project', [
             url: '/workspace',
             controller: 'WorkspaceCtrl as projectCtrl',
             templateUrl: 'templates/project/pages/workspace.html'
+        }).state('project.edit', {
+            url: '/edit',
+            controller: 'EditProjectCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/edit.html'
         }).state('project.documents', {
             url: '/documents',
             controller: 'DocumentsCtrl as projectCtrl',

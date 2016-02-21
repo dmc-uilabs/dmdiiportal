@@ -18,6 +18,8 @@ angular.module('dmc.add_project.directive', [
                     {name: 'accessibility', color: "#777"},
                     {name: 'question_answer', color: "rgb(89, 226, 168)"}
                 ];
+
+                $scope.projectData = {};
                 $scope.fonts = [].concat(iconData);
                 // Create a set of sizes...
                 $scope.sizes = [
@@ -101,12 +103,22 @@ angular.module('dmc.add_project.directive', [
               goToTab : '=',
               disableEnableTab : '=',
               // user input is save on this object
-              //projectDetails: '='
+              projectDetails: '='
             },
             controller: function ($scope) {
+                if($scope.projectDetails){
+                    if($scope.projectDetails.dueDate){
+                        $scope.projectDetails.dueDate = new Date($scope.projectDetails.currentDueDate);
+                        apply();
+                    }
+                }
                 $scope.$watch('form.$valid', function(current, old){
                     $scope.disableEnableTab(2,current);
                 });
+
+                function apply() {
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
             }
         }
     })
@@ -118,7 +130,8 @@ angular.module('dmc.add_project.directive', [
                 disableEnableTab : '=',
                 invitees : '=',
                 submitProjectDetails: '=',
-                projectDetails: '='
+                projectDetails: '=',
+                isUpdate: '='
             },
             controller: function ($scope) {
                 DMCMemberModel.getMembers().then(
@@ -192,7 +205,7 @@ angular.module('dmc.add_project.directive', [
                 var prevMember;
 
                 $scope.searchMembers = function(){
-                    
+
                 };
 
 

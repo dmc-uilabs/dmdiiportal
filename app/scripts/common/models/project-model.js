@@ -8,6 +8,7 @@ angular.module('dmc.model.project', ['dmc.data'])
             function(response){
                 if(response.data.dueDate){
                     var day = 86400000;
+                    response.data.currentDueDate = response.data.dueDate;
                     response.data.dueDate = (new Date() - new Date(response.data.dueDate));
                     if(response.data.dueDate <= day){
                         response.data.dueDate = moment(new Date()).format("MM/DD/YYYY");
