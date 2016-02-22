@@ -90,8 +90,16 @@
       font-weight: normal;
       font-size: 15px;
     }
-    ng-md-icon{
-      margin-right: 16px;
+    tbody{
+      md-icon{
+        margin: 0 16px 0 0;
+        svg{
+          fill: #363636;
+        }
+      }
+      ng-md-icon{
+        margin-right: 16px;
+      }
     }
   }
   .services-list {

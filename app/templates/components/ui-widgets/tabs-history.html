@@ -5,7 +5,7 @@
 			<a class="link" ng-href="{{data.leftColumn.viewAllLink}}" ng-click="previousPage.save($event)">View all</a>
 		</div>
 		<md-list-item ng-repeat="item in data.leftColumn.list track by $index">
-			<ng-md-icon icon="{{item.icon}}" style="fill: grey;" size="25"></ng-md-icon>
+			<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.icon}}"></md-icon>
 			<a href=""><h2>{{item.title}}</h2></a>
 			<span flex></span>
 			<h3>{{item.date}}</h3>
@@ -21,7 +21,7 @@
 			<a class="link" ng-href="{{data.leftColumn.viewAllLink}}">View all</a>
 		</div>
 		<md-list-item ng-repeat="item in history | filter: filterBy">
-			<ng-md-icon icon="{{item.icon}}" style="fill: grey;" size="25"></ng-md-icon>
+			<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.icon}}"></md-icon>
 			<a href=""><h2>{{item.title}}</h2></a>
 			<span flex></span>
 			<h3>{{item.date}}</h3>
@@ -36,7 +36,7 @@
 			<a class="link margin-left16" ng-href="{{data.rightColumn.viewAllLink}}">View all</a>
 		</div>
 		<md-list-item ng-repeat="item in data.rightColumn.list track by $index">
-			<ng-md-icon icon="{{item.icon}}" style="fill: grey;" size="25"></ng-md-icon>
+			<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.icon}}"></md-icon>
 			<h2>{{item.title}}</h2>
 			<span flex></span>
 			<h3>{{item.date}}</h3>
@@ -52,7 +52,7 @@
 			<a class="link margin-left16" ng-href="{{data.leftColumn.viewAllLink}}" ng-click="previousPage.save($event)">View all</a>
 		</div>
 		<md-list-item ng-repeat="item in history | filter: filterBy">
-			<ng-md-icon icon="{{item.icon}}" style="fill: grey;" size="25"></ng-md-icon>
+			<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.icon}}"></md-icon>
 			<a href=""><h2>{{item.title}}</h2></a>
 			<span flex></span>
 			<h3>{{item.date}}</h3>

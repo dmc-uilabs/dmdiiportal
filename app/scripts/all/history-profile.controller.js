@@ -37,15 +37,29 @@ angular.module('dmc.view-all')
 	                function(response){
 	                    for(var i in response.data){
 		                    response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY h:mm A");
-		                    if(response.data[i].type == "completed"){
-		                        response.data[i].icon = "done_all";
-		                    }else if(response.data[i].type == "added"){
-		                        response.data[i].icon = "person";
-		                    }else if(response.data[i].type == "rated"){
-		                        response.data[i].icon = "edit";
-		                    }else if(response.data[i].type == "worked"){
-		                        response.data[i].icon = "supervisor_account";
-		                    };
+                            switch(response.data[i].type){
+                                case "completed":
+                                    response.data[i].icon = "images/ic_done_all_black_24px.svg";
+                                    break;
+                                case "added":
+                                    response.data[i].icon = "images/ic_group_add_black_24px.svg";
+                                    break;
+                                case "rated":
+                                    response.data[i].icon = "images/ic_star_black_24px.svg";
+                                    break;
+                                case "worked":
+                                    response.data[i].icon = "images/icon_project.svg";
+                                    break;  
+                                case "favorited":
+                                    response.data[i].icon = "images/ic_favorite_black_24px.svg";
+                                    break;   
+                                case "shared":
+                                    response.data[i].icon = "images/ic_done_all_black_24px.svg";
+                                    break;   
+                                case "discussion":
+                                    response.data[i].icon = "images/ic_forum_black_24px.svg";
+                                    break;                                  
+                            }
 		                }
 		                $scope.history = response.data;
 	                }

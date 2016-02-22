@@ -65,13 +65,40 @@ angular.module('dmc.service-marketplace')
                 function(data){
                     for(var i in data){
                         data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
-                        if(data[i].type == "successful_runs"){
-                            data[i].icon = "done_all";
-                        }else if(data[i].type == "unavailable_runs"){
-                            data[i].icon = "block";
-                        }else if(data[i].type == "incomplete_runs"){
-                            data[i].icon = "file_upload";
-                        };
+                        switch(data[i].type){
+                            case "completed":
+                            case "successful_runs":
+                                data[i].icon = "images/ic_done_all_black_24px.svg";
+                                break;
+                            case "added":
+                                data[i].icon = "images/ic_group_add_black_24px.svg";
+                                break;
+                            case "rated":
+                                data[i].icon = "images/ic_star_black_24px.svg";
+                                break;
+                            case "worked":
+                                data[i].icon = "images/icon_project.svg";
+                                break;  
+                            case "favorited":
+                                data[i].icon = "images/ic_favorite_black_24px.svg";
+                                break;   
+                            case "shared":
+                                data[i].icon = "images/ic_done_all_black_24px.svg";
+                                break;   
+                            case "discussion":
+                                data[i].icon = "images/ic_forum_black_24px.svg";
+                                break;     
+                            case "edited":
+                                data[i].icon = "images/ic_create_black_24px.svg";
+                                break;   
+                            case "unavailable_runs":
+                                data[i].icon = "images/ic_block_black_24px.svg";
+                                break;    
+                            case "incomplete_runs":
+                                data[i].icon = "images/ic_file_download_black_24px.svg";
+                                break;                                                                 
+                        }
+
                     }
                     $scope.history.leftColumn.list = data;
                 }
@@ -84,8 +111,38 @@ angular.module('dmc.service-marketplace')
                 function(data){
                     for(var i in data){
                         data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
-                        if(data[i].type == "edited"){
-                            data[i].icon = "edit";
+                        switch(data[i].type){
+                            case "completed":
+                            case "successful_runs":
+                                data[i].icon = "images/ic_done_all_black_24px.svg";
+                                break;
+                            case "added":
+                                data[i].icon = "images/ic_group_add_black_24px.svg";
+                                break;
+                            case "rated":
+                                data[i].icon = "images/ic_star_black_24px.svg";
+                                break;
+                            case "worked":
+                                data[i].icon = "images/icon_project.svg";
+                                break;  
+                            case "favorited":
+                                data[i].icon = "images/ic_favorite_black_24px.svg";
+                                break;   
+                            case "shared":
+                                data[i].icon = "images/ic_done_all_black_24px.svg";
+                                break;   
+                            case "discussion":
+                                data[i].icon = "images/ic_forum_black_24px.svg";
+                                break;     
+                            case "edited":
+                                data[i].icon = "images/ic_create_black_24px.svg";
+                                break;   
+                            case "unavailable_runs":
+                                data[i].icon = "images/ic_block_black_24px.svg";
+                                break;    
+                            case "incomplete_runs":
+                                data[i].icon = "images/ic_file_download_black_24px.svg";
+                                break;                                                                 
                         }
                     }
                     $scope.history.rightColumn.list = data;

@@ -20,7 +20,8 @@
                                 <tr ng-repeat="item in history">
                                     <td>
                                     	<div layout="row" layout-align="start center">
-                                    		<ng-md-icon icon="{{item.icon}}" style="fill: grey;" size="25"></ng-md-icon>
+                                            <md-icon md-svg-src="{{item.icon}}" aria-label="{{item.icon}}"></md-icon>
+                                    		<!-- <ng-md-icon icon="{{item.icon}}" style="fill: grey;" size="25"></ng-md-icon> -->
 											<a href=""><h2>{{item.title}}</h2></a>
                                     	</div>
                                     </td>

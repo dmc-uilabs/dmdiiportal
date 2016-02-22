@@ -12,7 +12,7 @@
                 <md-list class="md-2-line">
                     <md-list-item ng-repeat="person in people">
                         <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
-                        <h3 flex>{{ person.name }}</h3>
+                        <h3 flex><a class="link">{{ person.name }}</a></h3>
                         <md-button aria-label="Share" class="md-icon-button">
                             <ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
                         </md-button>

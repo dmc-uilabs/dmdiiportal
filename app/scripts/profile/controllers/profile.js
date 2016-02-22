@@ -66,9 +66,29 @@ angular.module('dmc.profile')
             function(data){
                 for(var i in data){
                     data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
-                    if(data[i].type == "completed"){
-                        data[i].icon = "done_all";
-                    };
+                    switch(data[i].type){
+                        case "completed":
+                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                            break;
+                        case "added":
+                            data[i].icon = "images/ic_group_add_black_24px.svg";
+                            break;
+                        case "rated":
+                            data[i].icon = "images/ic_star_black_24px.svg";
+                            break;
+                        case "worked":
+                            data[i].icon = "images/icon_project.svg";
+                            break;  
+                        case "favorited":
+                            data[i].icon = "images/ic_favorite_black_24px.svg";
+                            break;   
+                        case "shared":
+                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                            break;   
+                        case "discussion":
+                            data[i].icon = "images/ic_forum_black_24px.svg";
+                            break;                                  
+                    }
                 }
                 $scope.history.leftColumn.list = data;
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -84,13 +104,29 @@ angular.module('dmc.profile')
             function(data){
                 for(var i in data){
                     data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
-                    if(data[i].type == "added"){
-                        data[i].icon = "person";
-                    }else if(data[i].type == "rated"){
-                        data[i].icon = "edit";
-                    }else if(data[i].type == "worked"){
-                        data[i].icon = "supervisor_account";
-                    };
+                    switch(data[i].type){
+                        case "completed":
+                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                            break;
+                        case "added":
+                            data[i].icon = "images/ic_group_add_black_24px.svg";
+                            break;
+                        case "rated":
+                            data[i].icon = "images/ic_star_black_24px.svg";
+                            break;
+                        case "worked":
+                            data[i].icon = "images/icon_project.svg";
+                            break;  
+                        case "favorited":
+                            data[i].icon = "images/ic_favorite_black_24px.svg";
+                            break;   
+                        case "shared":
+                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                            break;   
+                        case "discussion":
+                            data[i].icon = "images/ic_forum_black_24px.svg";
+                            break;                                  
+                    }
                 }
                 $scope.history.rightColumn.list = data;
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();

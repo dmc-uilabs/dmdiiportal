@@ -22,9 +22,12 @@
 		md-list-item{
 			padding: 8px 0px;
 			min-height: 30px;
-			ng-md-icon{
-				padding-right: 16px; 
-			}
+			md-icon{
+		        margin: 0 16px 0 0;
+		        svg{
+		          	fill: #363636;
+		        }
+		    }
 			a{
 				color: inherit;
 				text-decoration: none;
