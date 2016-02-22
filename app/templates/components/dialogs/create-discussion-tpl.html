@@ -19,15 +19,15 @@
                 </div>
                 <md-input-container flex>
                     <label>Subject</label>
-                    <input name="subject" ng-model="subject" required>
+                    <input name="subject" ng-model="subject">
                 </md-input-container>
                 <md-input-container flex>
                     <label>Content</label>
-                    <textarea name="content" ng-model="content" columns="1" required></textarea>
+                    <textarea name="content" ng-model="content" columns="1"></textarea>
                 </md-input-container>
                 <div class="block" layout="row">
                     <span flex></span>
-                    <md-button class="md-raised md-primary" ng-disabled="isCreation || !form.$valid" ng-click="createDiscussion()">Create</md-button>
+                    <md-button class="md-raised md-primary" ng-disabled="isCreation || !content || !subject" ng-click="createDiscussion()">Create</md-button>
                 </div>
                 <div class="block" layout="row" ng-if="isCreation">
                     <md-progress-linear md-mode="indeterminate"></md-progress-linear>
