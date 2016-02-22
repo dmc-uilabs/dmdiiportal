@@ -7,6 +7,8 @@ angular.module('dmc.project')
         "dataFactory",
         "ajax",
         "projectModel",
+        "questionToastModel",
+        "toastModel",
         "projectData",
         function ($scope,
                   $rootScope,
@@ -15,6 +17,8 @@ angular.module('dmc.project')
                   dataFactory,
                   ajax,
                   projectModel,
+                  questionToastModel,
+                  toastModel,
                   projectData) {
             var projectCtrl = this;
             projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
@@ -111,6 +115,25 @@ angular.module('dmc.project')
                         break;
                 }
             };
+
+            $scope.deleteProject = function(ev){
+                questionToastModel.show({
+                    question : "Do you want to delete the project?",
+                    buttons: {
+                        ok: function(){
+                            deleteProject();
+                        },
+                        cancel: function(){}
+                    }
+                },ev);
+            };
+
+            function deleteProject(){
+                ajax.delete(dataFactory.deleteProject(projectCtrl.currentProjectId),{},function(){
+                    toastModel.showToast("success","Project successfully deleted");
+                    document.location.href = "my-projects.php";
+                });
+            }
 
         }
     ]

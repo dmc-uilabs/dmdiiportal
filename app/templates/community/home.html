@@ -4,8 +4,8 @@
             <div layout="row" layout-align="start end" flex>
                 <md-input-container class="filterBox">
                     <label>Filter</label>
-                    <md-select ng-model="peopleModel" ng-change="selectItemDropDown()">
-                        <md-option ng-repeat="p in peoples" value="{{p.id}}">{{p.name}}</md-option>
+                    <md-select ng-model="searchTypeModel" ng-change="selectItemDropDown(searchTypeModel)">
+                        <md-option ng-repeat="p in searchTypes" value="{{p.tag}}">{{p.name}}</md-option>
                     </md-select>
                 </md-input-container>
                 <form ng-submit="submit()" class="faq-search-field global-search-form" flex="50">

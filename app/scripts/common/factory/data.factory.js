@@ -282,6 +282,9 @@ angular.module('dmc.data',[])
             deleteProjectMember: function(id){
                 return localhost + 'projects_members/'+id;
             },
+            deleteProject: function(id){
+                return localhost+'projects/'+id;
+            },
             getCreateProject: function() {
                 return localhost+'projects';
             },
