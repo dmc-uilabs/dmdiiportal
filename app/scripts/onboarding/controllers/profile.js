@@ -58,8 +58,6 @@ angular.module('dmc.onboarding')
         }
 
         $scope.next = function(index){
-        	//$scope.profile[index].done = true;
-
             if(index == 1 && $scope.file){
                 fileUpload.uploadFileToUrl(
                     $scope.file.files[0].file,
@@ -67,7 +65,9 @@ angular.module('dmc.onboarding')
                     'profile', 
                     function(data){
                         $scope.file = null;
-                        $scope.profile[1].data.image = data.file.name;;
+                        if(data.file && data.file.name){
+                            $scope.profile[1].data.image = data.file.name;
+                        }
                         $scope.saveProfile($scope.profile[index].data, function(){
                             $(window).scrollTop(0);
                             $state.go('^' + $scope.profile[index+1].state);
@@ -83,7 +83,6 @@ angular.module('dmc.onboarding')
         }
 
         $scope.finish = function(index){
-            //$scope.profile[index].done = true;
             $scope.saveProfile($scope.profile[index].data, function(){
                 $scope.saveFinish('profile');
                 $(window).scrollTop(0);

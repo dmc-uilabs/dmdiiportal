@@ -98,8 +98,8 @@
     "onboarding": {
       "profile": true,
       "account": false,
-      "company": false,
-      "storefront": false
+      "company": true,
+      "storefront": true
     }
   },
   "assign_users": [

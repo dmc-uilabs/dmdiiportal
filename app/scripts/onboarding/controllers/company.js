@@ -1,18 +1,17 @@
 angular.module('dmc.onboarding')
 .controller('CompanyController', 
-	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory',
-	function ($scope, $rootScope, $state, ajax, dataFactory) {
+	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory', 'fileUpload',
+	function ($scope, $rootScope, $state, ajax, dataFactory, fileUpload) {
 		if($state.current.name == "onboarding.company"){
 			$state.go($scope.company[0].state);
 		}
         $scope.activePage = $state;
 
         $scope.isAddingContact = false;
-        $scope.contacts = [];
         $scope.isAddingVideo = false;
-        $scope.videos = [];
         $scope.isAddingImage = false;
-        $scope.images = [];
+            $scope.isAddingSkillsImage = false;
+        $scope.file = null;
 
 
         $scope.keyContactTypes = [
@@ -78,6 +77,13 @@ angular.module('dmc.onboarding')
             "WY|Wyoming"
         ];
 
+        $scope.categoriesTiers = [
+            {
+                id : 1,
+                title : "Tier 4 Academic / Nonprofit"
+            }
+        ];
+
         $scope.states = $.map($scope.states, function( n,index ) {
             var name = n.split('|');
             return {
@@ -97,19 +103,36 @@ angular.module('dmc.onboarding')
             }
         ];
 
+//skills
         //add skill to profile
         $scope.addSkill = function (inputSkill) {
-            if (!inputSkill)return;
-            $scope.company[5].data.skills.push(inputSkill);
-            this.inputSkill = null;
+            ajax.create(
+                dataFactory.addCompanySkill(),
+                {
+                    companyId : $scope.userData.companyId,
+                    name : inputSkill
+                },
+                function(response){
+                    $scope.company[5].data.skills.push(response.data);
+                    this.inputSkill = null;
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
+            );
         }
 
         //remove skill
         $scope.deleteSkill = function (index) {
-            $scope.isChange = true;
-            $scope.company[5].data.skills.splice(index, 1);
+            ajax.delete(
+                dataFactory.deleteCompanySkill($scope.company[5].data.skills[index].id),
+                {},
+                function(response){
+                    $scope.company[5].data.skills.splice(index, 1);
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
+            );
         }
 
+//contacts
         // open form for add contact
         $scope.addNewContact = function(){
             $scope.isAddingContact = true;
@@ -122,24 +145,57 @@ angular.module('dmc.onboarding')
 
         // save new contact
         $scope.saveContact = function(newContact){
-            $scope.contacts.unshift(newContact);
-            $scope.cancelAddContact();
+            newContact.companyId = $scope.userData.companyId;
+            ajax.create(
+                dataFactory.addCompanyContact(),
+                newContact,
+                function(response){
+                    $scope.company[9].data.keyContacts.unshift(response.data);
+                    $scope.cancelAddContact();
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
+            );
         };
 
         // delete contact
         $scope.deleteContact = function(index){
-           $scope.contacts.splice(index, 1);
-        };    
+            ajax.delete(
+                dataFactory.deleteCompanyContact($scope.company[9].data.keyContacts[index].id),
+                {},
+                function(response){
+                    $scope.company[9].data.keyContacts.splice(index,1);
+                    $scope.cancelAddContact();
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
+            );
+        };  
 
-        $scope.categoriesTiers = [
-            {
-                id : 1,
-                title : "Tier 4 Academic / Nonprofit"
+//upload file
+        $scope.prevPicture = null;
+        $scope.pictureDragEnter = function(flow){
+            $scope.prevPicture = flow.files[0];
+            flow.files = [];
+        };
+
+        $scope.pictureDragLeave = function(flow){
+            if(flow.files.length == 0 && $scope.prevPicture != null) {
+                flow.files = [$scope.prevPicture];
+                $scope.prevPicture = null;
             }
-        ];
+        };
 
+        $scope.addedNewFile = function(file,event,flow){
+            flow.files.shift();
+            $scope.file = flow;
+        };
 
-         // open form for add video
+        $scope.removePicture = function(flow){
+            flow.files = [];
+            $scope.file = null;
+        };
+
+//videos
+        // open form for add video
         $scope.addNewVideo = function(){
             $scope.isAddingVideo = true;
         };
@@ -151,16 +207,64 @@ angular.module('dmc.onboarding')
 
         // save new video
         $scope.saveVideo = function(newVideo){
-            $scope.videos.unshift(newVideo);
-            $scope.cancelAddVideo();
+            newVideo.companyId = $scope.userData.companyId;
+            ajax.create(
+                dataFactory.addCompanyVideo(),
+                newVideo,
+                function(response){               
+                    $scope.company[4].data.videos.unshift(response.data);
+                    $scope.cancelAddVideo();
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
+            );
         };
 
         // delete video
         $scope.deleteVideo = function(index){
-            $scope.videos.splice(index, 1);
+            ajax.delete(
+                dataFactory.deleteCompanyVideo($scope.company[4].data.videos[index].id),
+                {},
+                function(response){
+                    $scope.company[4].data.videos.splice(index, 1);
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
+            );
         };
 
-        
+//SkillsImage
+        $scope.addNewSkillsImage = function(){
+            $scope.isAddingSkillsImage = true;
+        };
+
+        $scope.cancelAddSkillsImage = function(){
+            $scope.isAddingSkillsImage = false;
+        };
+
+        $scope.saveSkillsImage = function(newImage){
+            /*fileUpload.uploadFileToUrl(
+                $scope.file.files[0].file,
+                {
+                    id : 1, 
+                    title : newImage.title
+                },
+                'company-profile',
+                callbackUploadPicture
+            );*/
+            $scope.cancelAddSkillsImage();
+        };
+
+        $scope.deleteSkillsImage = function(index){
+            ajax.delete(
+                dataFactory.deleteCompanySkillsImage($scope.company[5].data.skillsImages[index].id),
+                {},
+                function(response){
+                    $scope.company[5].data.skillsImages.splice(index, 1);
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
+            );
+        };
+
+//images        
         $scope.addNewImage = function(){
             $scope.isAddingImage = true;
         };
@@ -170,29 +274,30 @@ angular.module('dmc.onboarding')
         };
 
         $scope.saveImage = function(newImage){
-            if(newImage && $scope.newAddedImage){
-                fileUpload.uploadFileToUrl($scope.newAddedImage.file,{id : $scope.source.id, title : newImage.title},'company-profile',callbackUploadPicture);
-                $scope.cancelAddImage();
-            }
+            /*fileUpload.uploadFileToUrl(
+                $scope.file.files[0].file,
+                {
+                    id : 1, 
+                    title : newImage.title
+                },
+                'company-profile',
+                callbackUploadPicture
+            );*/
+            $scope.cancelAddImage();
         };
 
-        var callbackUploadPicture = function(data){
-            if(!data.error) {
-                $scope.source.images.unshift(data.result);
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                toastModel.showToast('success', 'Image successfully added');
-            }else{
-                toastModel.showToast('error', 'Unable add image');
-            }
+        $scope.deleteImage = function(index){
+            ajax.delete(
+                dataFactory.deleteCompanyImage($scope.company[4].data.images[index].id),
+                {},
+                function(response){
+                    $scope.company[4].data.images.splice(index, 1);
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
+            );
         };
 
-        $scope.deleteImage = function(img){
-            if(!$scope.changes.removedImages) $scope.changes.removedImages = [];
-            $scope.changes.removedImages.push(img.id);
-            img.hide = true;
-            $scope.changedValue('image');
-            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-        };
+
 
 
         $scope.scrollTop = function(){
@@ -200,15 +305,100 @@ angular.module('dmc.onboarding')
         }
 
         $scope.next = function(index){
-        	$scope.company[index].done = true;
-        	$(window).scrollTop(0);
-        	$state.go('^' + $scope.company[index+1].state);
+            switch(index){
+                case 1:
+                    if($scope.file){
+                        fileUpload.uploadFileToUrl(
+                            $scope.file.files[0].file,
+                            {id: $scope.userData.companyId},
+                            'company', 
+                            function(data){
+                                $scope.file = null;
+                                if(data.file && data.file.name){
+                                    $scope.company[1].data.featureImage.thumbnail = data.file.name;
+                                    $scope.company[1].data.featureImage.large = data.file.name;
+                                }
+                                $scope.saveCompany($scope.company[index].data, function(){
+                                    $(window).scrollTop(0);
+                                    $state.go('^' + $scope.company[index+1].state);
+                                });
+                            }
+                        );
+                    }else{
+                        $scope.saveCompany($scope.company[index].data, function(){
+                            $(window).scrollTop(0);
+                            $state.go('^' + $scope.company[index+1].state);
+                        });
+                    };
+                    break;
+                case 4:
+                    for(var i in $scope.company[4].data.images){
+                        delete $scope.company[4].data.images[i]['$$hashKey'];
+                        ajax.update(
+                            dataFactory.updateCompanyImage($scope.company[4].data.images[i].id),
+                            $scope.company[4].data.images[i],
+                            function(response){}
+                        );
+                    };
+                    for(var i in $scope.company[4].data.videos){
+                        delete $scope.company[4].data.videos[i]['$$hashKey'];
+                        ajax.update(
+                            dataFactory.updateCompanyVideo($scope.company[4].data.videos[i].id),
+                            $scope.company[4].data.videos[i],
+                            function(response){}
+                        );
+                    };
+                    $scope.saveCompany({}, function(){
+                        $(window).scrollTop(0);
+                        $state.go('^' + $scope.company[index+1].state);
+                    });
+                    break;
+                case 5:
+                    for(var i in $scope.company[5].data.skillsImages){
+                        delete $scope.company[5].data.skillsImages[i]['$$hashKey'];
+                        ajax.update(
+                            dataFactory.updateCompanySkillsImage($scope.company[5].data.skillsImages[i].id),
+                            $scope.company[5].data.skillsImages[i],
+                            function(response){}
+                        );
+                    };
+                    $scope.saveCompany(
+                        {
+                            technicalExpertise: $scope.company[5].data.technicalExpertise,
+                            toolsSoftwareEquipmentMachines: $scope.company[5].data.toolsSoftwareEquipmentMachines
+                        }, 
+                        function(){
+                        $(window).scrollTop(0);
+                        $state.go('^' + $scope.company[index+1].state);
+                    });
+                    break;
+                case 9:
+                    for(var i in $scope.company[9].data.keyContacts){
+                        delete $scope.company[9].data.keyContacts[i]['$$hashKey'];
+                        ajax.update(
+                            dataFactory.updateCompanyContact($scope.company[9].data.keyContacts[i].id),
+                            $scope.company[9].data.keyContacts[i],
+                            function(response){}
+                        );
+                    };
+                    $scope.saveCompany({}, function(){
+                        $(window).scrollTop(0);
+                        $state.go('^' + $scope.company[index+1].state);
+                    });
+                    break;
+                default:
+                    $scope.saveCompany($scope.company[index].data, function(){
+                        $(window).scrollTop(0);
+                        $state.go('^' + $scope.company[index+1].state);
+                    });
+            };            
         }
 
         $scope.finish = function(index){
-        	$scope.company[index].done = true;
-        	$(window).scrollTop(0);
-        	$state.go('^.^.home');
+            $scope.saveCompany($scope.company[index].data, function(){
+                $scope.saveFinish('company');
+                $(window).scrollTop(0);
+                $state.go('^.^.home');
+            });
         }
-
 }]);

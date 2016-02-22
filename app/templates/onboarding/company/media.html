@@ -65,7 +65,7 @@
                 </md-button>
                 <md-button class="md-raised md-primary"
                            ng-click="saveImage(newImage)"
-                           ng-disabled="!formAddImage.$valid || !newAddedImage">
+                           ng-disabled="!formAddImage.$valid || !file">
                     Save
                 </md-button>
             </div>
@@ -73,14 +73,12 @@
         <div layout="row"
              layout-wrap
              layout-align="start start"
-             flex ng-if="images.length > 0">
-            <div class="list-images-item" ng-repeat="image in source.images">
+             flex ng-if="company[4].data.images.length > 0">
+            <div class="list-images-item" ng-repeat="image in company[4].data.images">
                 <div class="img"><img ng-src="{{image.url}}"/></div>
                 <md-input-container md-no-float>
-                    <input ng-init="image.changedTitle = image.title"
-                           ng-model="image.changedTitle"
-                           ng-change="changedValue('image')"
-                           type="text"
+                    <input type="text"
+                           ng-model="image.title"
                            placeholder="Image Title">
                 </md-input-container>
                 <md-button md-no-ink class="md-icon-button"
@@ -90,7 +88,7 @@
                 </md-button>
             </div>
         </div>
-        <div layout="row" ng-if="images.length == 0 && !isAddingImage">No images</div>
+        <div layout="row" ng-if="company[4].data.images.length == 0 && !isAddingImage">No images</div>
     </div>
 </div>
 <div layout="row">
@@ -131,18 +129,14 @@
         <div layout="row"
              layout-align="start center"
              class="video-item"
-             ng-repeat="video in videos" flex>
+             ng-repeat="video in company[4].data.videos" flex>
             <md-input-container class="title-video right-space" flex>
                 <label>Title</label>
-                <input ng-init="video.changedTitle = video.title"
-                       ng-change="changedValue('video')"
-                       ng-model="video.changedTitle">
+                <input ng-model="video.title">
             </md-input-container>
             <md-input-container class="link-video left-space" flex>
                 <label>Link</label>
-                <input ng-init="video.changedLink = video.link"
-                       ng-change="changedValue('video')"
-                       ng-model="video.changedLink">
+                <input ng-model="video.link">
             </md-input-container>
             <md-button md-no-ink
                        ng-click="deleteVideo($index)"
@@ -151,7 +145,7 @@
                 <ng-md-icon icon="delete" size="32"></ng-md-icon>
             </md-button>
         </div>
-        <div layout="row" ng-if="videos.length == 0 && !isAddingVideo">No videos</div>
+        <div layout="row" ng-if="company[4].data.videos.length == 0 && !isAddingVideo">No videos</div>
     </div>
 </div>
 

@@ -6,41 +6,13 @@ angular.module('dmc.onboarding')
 			$state.go($scope.account[0].state);
 		}
         $scope.activePage = $state;
-		$scope.servers = [
-			{
-				ip: "",
-				name: ""
-			}
-		];
-
-		$scope.public = {
-			email: {
-				enable: true,
-				value: ""
-			},
-			phone: {
-				enable: true,
-				value: ""
-			},
-			location: {
-				enable: true,
-				value: ""
-			}
-		};
-		$scope.private = {
-			email: {
-				enable: true,
-				value: ""
-			},
-			phone: {
-				enable: true,
-				value: ""
-			},
-			location: {
-				enable: true,
-				value: ""
-			}
-		};
+		
+        $scope.newServer = { 
+            name: null, 
+            ip: null, 
+            status: "offline",
+            accountId: $scope.userData.accountId
+        };
 
         var indexLocation = 0;
         $scope.getLocation = function (index) {
@@ -87,24 +59,55 @@ angular.module('dmc.onboarding')
         };
 
         $scope.addServer = function(){
-        	$scope.servers.push({
-				ip: "",
-				name: ""
-			})
+            ajax.create(
+                dataFactory.serverURL().create, 
+                $scope.newServer,
+                function (response) {
+                    $scope.newServer = { 
+                        name: null, 
+                        ip: null, 
+                        status: "offline",
+                        accountId: $scope.userData.accountId
+                    };
+                    $scope.account[4].data.servers.unshift(response.data);
+                }
+            );
         }
+
+        // delete server
+        $scope.deleteServer = function(item, index){
+            ajax.delete(dataFactory.serverURL(item.id).delete, {},
+                function (response) {
+                    $scope.account[4].data.servers.splice(index, 1);
+                }
+            );
+        };
 
         $scope.scrollTop = function(){
         	$(window).scrollTop(0);
         }
 
         $scope.next = function(index){
-        	$scope.account[index].done = true;
-        	$(window).scrollTop(0);
-        	$state.go('^' + $scope.account[index+1].state);
+            var section;
+            if(index == 0 || index == 1){
+                section = "privacy";
+            }else{
+                section = "notifications";
+            }
+            $scope.saveAccount($scope.account[index].data, section, function(){
+                $(window).scrollTop(0);
+                $state.go('^' + $scope.account[index+1].state);
+            });
         }
 
         $scope.finish = function(index){
-        	$scope.account[index].done = true;
+            if($scope.account[index].data.servers.length){
+            	$scope.account[index].done = true;
+            }else{
+                $scope.account[index].done = false;
+
+            }
+            $scope.saveFinish('account');
         	$(window).scrollTop(0);
         	$state.go('^.^.home');
         }

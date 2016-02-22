@@ -1,6 +1,7 @@
 angular.module('dmc.onboarding')
 .controller('onboardingController', ['$scope', 'onboardingModel', 'userData', 'DMCUserModel', '$rootScope',
     function($scope, onboardingModel, userData, DMCUserModel, $rootScope){
+//profile
         $scope.profile = [
         	{
         		state: ".basic",
@@ -61,26 +62,28 @@ angular.module('dmc.onboarding')
 			    	callback();
     			}
     		);
-    	}
+    	};
 
-
+//account
         $scope.account = [
         	{
         		state: ".public",
         		name: "Public Information",
         		done: false,
         		data: {
-					email: {
-						enable: true,
-						value: ""
-					},
-					phone: {
-						enable: true,
-						value: ""
-					},
-					location: {
-						enable: true,
-						value: ""
+        			public:{
+						email: {
+							enable: true,
+							value: ""
+						},
+						phone: {
+							enable: true,
+							value: ""
+						},
+						location: {
+							enable: true,
+							value: ""
+						}
 					}
         		}
         	},
@@ -89,24 +92,26 @@ angular.module('dmc.onboarding')
         		name: "Private Information",
         		done: false,
         		data: {
-					email: {
-						enable: true,
-						value: ""
-					},
-					phone: {
-						enable: true,
-						value: ""
-					},
-					location: {
-						enable: true,
-						value: ""
+        			private:{
+						email: {
+							enable: true,
+							value: ""
+						},
+						phone: {
+							enable: true,
+							value: ""
+						},
+						location: {
+							enable: true,
+							value: ""
+						}
 					}
         		}
         	},
         	{
         		state: ".web",
         		name: "Web Notifications",
-        		done: false,
+        		done: true,
         		data: {
 					1: {
 						section: "website",
@@ -218,7 +223,7 @@ angular.module('dmc.onboarding')
         	{
         		state: ".email",
         		name: "Email Notifications",
-        		done: false,
+        		done: true,
         		data: {
 					1: {
 						section: "email",
@@ -331,33 +336,75 @@ angular.module('dmc.onboarding')
         		state: ".servers",
         		name: "Servers",
         		done: false,
-        		data: {}
-        	}
-        ];
-
-        $scope.storefront = [
-        	{
-        		state: ".cover",
-        		name: "Cover Image",
-        		done: false,
-        		data: {}
-        	},
-        	{
-        		state: ".description",
-        		name: "Description",
-        		done: false,
         		data: {
-        			description: ""
-        		},
-        	},
-        	{
-        		state: ".logo",
-        		name: "Logo",
-        		done: false,
-        		data: {}
+        			servers: []
+        		}
         	}
         ];
+    	onboardingModel.get_account(userData.accountId, function(data){
+    		$scope.account[0].data.public = data.privacy.public;
+    		$scope.account[1].data.private = data.privacy.private;
+			$scope.account[0].done = true
+    		for(var item in $scope.account[0].data.public){
+    			if($scope.account[0].data.public[item].enable && !$scope.account[0].data.public[item].value){
+    				$scope.account[0].done = false
+    			}
+    		};
+    		$scope.account[1].done = true
+    		for(var item in $scope.account[1].data.private){
+    			if($scope.account[1].data.private[item].enable && !$scope.account[1].data.private[item].value){
+    				$scope.account[1].done = false
+    			}
+    		}
+    	});
 
+    	onboardingModel.get_account_notfications(userData.accountId, function(data){
+    		$scope.account[2].done = true
+    		$scope.account[3].done = true
+    		for(var i in data){
+    			if(data[i].section == "website"){
+    				$scope.account[2].data[data[i]['account-notification-category-itemId']] = data[i];
+    			}else{
+    				$scope.account[3].data[data[i]['account-notification-category-itemId']] = data[i];
+    			}
+    		}
+    	});
+
+    	onboardingModel.get_servers(userData.accountId, function(data){
+    		$scope.account[4].done = true;
+    		$scope.account[4].data.servers = data;
+			if(!$scope.account[4].data.servers.length){
+				$scope.account[4].done = false;
+			}
+    	})
+
+    	$scope.saveAccount = function(params, section, callback){
+    		if(section == "privacy"){
+	    		onboardingModel.update_account(userData.profileId, params, 
+	    			function(data){
+						$scope.account[0].done = true
+			    		for(var item in $scope.account[0].data.public){
+			    			if($scope.account[0].data.public[item].enable && !$scope.account[0].data.public[item].value){
+			    				$scope.account[0].done = false
+			    			}
+			    		};
+			    		$scope.account[1].done = true
+			    		for(var item in $scope.account[1].data.private){
+			    			if($scope.account[1].data.private[item].enable && !$scope.account[1].data.private[item].value){
+			    				$scope.account[1].done = false
+			    			}
+			    		}
+				    	callback();
+	    			}
+	    		);
+	    	}else if(section == "notifications"){
+	    		for(var i in params){
+	    			onboardingModel.update_notfications(params[i].id, params[i].selected, callback);
+	    		}
+	    	}
+    	};
+
+//company
         $scope.company = [
         	{
         		state: ".describe",
@@ -375,7 +422,12 @@ angular.module('dmc.onboarding')
         		state: ".image",
         		name: "Company Image",
         		done: false,
-        		data: {}
+        		data: {
+        			featureImage: {
+				        thumbnail: "",
+				        large: ""
+			      	}
+        		}
         	},
         	{
         		state: ".focus",
@@ -398,7 +450,10 @@ angular.module('dmc.onboarding')
         		state: ".media",
         		name: "Media",
         		done: false,
-        		data: {}
+        		data: {
+        			images: [],
+        			videos: []
+        		}
         	},
         	{
         		state: ".tool",
@@ -407,7 +462,8 @@ angular.module('dmc.onboarding')
         		data: {
         			technicalExpertise: "",
         			toolsSoftwareEquipmentMachines: "",
-        			skills: []
+        			skills: [],
+        			skillsImages: []
         		}
         	},
         	{
@@ -429,7 +485,7 @@ angular.module('dmc.onboarding')
         			address: "",
         			city: "",
         			state: "",
-        			"zip-code": "",
+        			zipCode: "",
         			methodCommunication: "",
         			email: "",
         			phone: ""
@@ -449,7 +505,9 @@ angular.module('dmc.onboarding')
         		state: ".key",
         		name: "Key Contacts",
         		done: false,
-        		data: {}
+        		data: {
+        			keyContacts: []
+        		}
         	},
         	{
         		state: ".membership",
@@ -461,21 +519,242 @@ angular.module('dmc.onboarding')
         			reasonJoining: ""
         		}
         	}
-        ]
+        ];
+
+    	$scope.saveCompany = function(params, callback){
+    		onboardingModel.update_company(userData.companyId, params, 
+    			function(data){
+		        	for(var i in $scope.company){
+		    			$scope.company[i].done = true;
+		    			switch(i){
+		    				case '1':
+			    				if(!$scope.company[i].data.featureImage.thumbnail || !$scope.company[i].data.featureImage.large){
+									$scope.company[i].done = false
+			    				};
+			    				break;
+			    			case '4':
+			    			case '5':
+			    			case '9':
+				    			for(var item in $scope.company[i].data){
+					    			if(!$scope.company[i].data[item] || !$scope.company[i].data[item].length){
+					    				$scope.company[i].done = false
+					    			}
+					    		};
+			    				break;
+		    				case '7': 
+		    					for(var item in $scope.company[i].data){
+		    						if(!$scope.company[i].data[item] && item != 'phone' && item != 'email'){
+					    				$scope.company[i].done = false
+					    			}
+					    		};
+					    		break;
+					    	default:
+		    					for(var item in $scope.company[i].data){
+		    						if(!$scope.company[i].data[item]){
+					    				$scope.company[i].done = false
+					    			}
+					    		};
+		    			}
+			    	}
+			    	callback();
+    			}
+    		);
+    	};
+
+//storefront
+        $scope.storefront = [
+        	{
+        		state: ".cover",
+        		name: "Cover Image",
+        		done: true,
+        		data: {
+        			featureImage: {
+				        thumbnail: "",
+				        large: ""
+			      	}
+        		}
+        	},
+        	{
+        		state: ".description",
+        		name: "Description",
+        		done: true,
+        		data: {
+        			description: ""
+        		},
+        	},
+        	{
+        		state: ".logo",
+        		name: "Logo",
+        		done: true,
+        		data: {
+        			logoImage: ""
+        		}
+        	}
+        ];
+
+    	$scope.saveStorefront = function(params, callback){
+    		onboardingModel.update_company(userData.companyId, params, 
+    			function(data){
+    				for(var i in $scope.storefront){
+		    			$scope.storefront[i].done = true;
+			    		for(var item in $scope.storefront[i].data){
+			    			if(!$scope.storefront[i].data[item]){
+			    				$scope.storefront[i].done = false
+			    			}else if($scope.storefront[i].data.featureImage){
+			    				if(!$scope.storefront[i].data.featureImage.thumbnail || !$scope.storefront[i].data.featureImage.large){
+									$scope.storefront[i].done = false
+			    				}
+			    			}
+			    		}
+			    	}
+			    	callback();
+    			}
+    		);
+    	};
+
+		onboardingModel.getImages(userData.companyId, function(data){
+        	$scope.company[4].data.images = data;
+        	if($scope.company[4].data.images.length && $scope.company[4].data.videos.length){
+        		$scope.company[4].done = true;
+        	}else{
+        		$scope.company[4].done = false;
+        	}
+		});
+
+		onboardingModel.getVideos(userData.companyId, function(data){
+        	$scope.company[4].data.videos = data;
+        	if($scope.company[4].data.images.length && $scope.company[4].data.videos.length){
+        		$scope.company[4].done = true;
+        	}else{
+        		$scope.company[4].done = false;
+        	}
+		});
+
+		onboardingModel.getSkills(userData.companyId, function(data){
+        	$scope.company[5].data.skills = data;
+        	if($scope.company[5].data.skills.length){
+        		$scope.company[5].done = true;
+        	}
+		});
+
+		onboardingModel.getSkillsImages(userData.companyId, function(data){
+        	$scope.company[5].data.skillsImages = data;
+        	if(!$scope.company[5].data.skillsImages.length){
+        		$scope.company[5].done = false;
+        	}
+		});
+
+		onboardingModel.getKeyContacts(userData.companyId, function(data){
+        	$scope.company[9].data.keyContacts = data;
+        	if(!$scope.company[9].data.keyContacts.length){
+        		$scope.company[9].done = false;
+        	}
+		});
+
+        onboardingModel.get_company(userData.companyId, function(data){
+    		$scope.storefront[0].data.featureImage.thumbnail = data.featureImage.thumbnail;
+    		$scope.storefront[0].data.featureImage.large = data.featureImage.large;
+    		$scope.storefront[1].data.description = data.description;
+    		$scope.storefront[2].data.logoImage = data.logoImage;
+    		for(var i in $scope.storefront){
+    			$scope.storefront[i].done = true;
+	    		for(var item in $scope.storefront[i].data){
+	    			if(!$scope.storefront[i].data[item]){
+	    				$scope.storefront[i].done = false
+	    			}else if($scope.storefront[i].data.featureImage){
+	    				if(!$scope.storefront[i].data.featureImage.thumbnail || !$scope.storefront[i].data.featureImage.large){
+							$scope.storefront[i].done = false
+	    				}
+	    			}
+	    		}
+	    	}
+
+	    	$scope.company[0].data.name = data.name;
+	    	$scope.company[0].data.division = data.division;
+	    	$scope.company[0].data.industry = data.industry;
+        	$scope.company[0].data.NAICSCode = data.NAICSCode;
+        	$scope.company[0].data.description = data.description;
+
+        	$scope.company[1].data.featureImage.thumbnail = data.featureImage.thumbnail;
+    		$scope.company[1].data.featureImage.large = data.featureImage.large;
+    		
+    		$scope.company[2].data.RDFocus = data.RDFocus;
+
+        	$scope.company[3].data.customers = data.customers;
+        	$scope.company[3].data.awardsReceived = data.awardsReceived;
+
+        	$scope.company[5].data.technicalExpertise = data.technicalExpertise;
+        	$scope.company[5].data.toolsSoftwareEquipmentMachines = data.toolsSoftwareEquipmentMachines;
+
+        	$scope.company[6].data.pastCollaborations = data.pastCollaborations;
+			$scope.company[6].data.pastProjects = data.pastProjects;
+        	$scope.company[6].data.collaborationInterests = data.collaborationInterests;
+        	$scope.company[6].data.upcomingProjectInterests = data.upcomingProjectInterests;
+
+        	$scope.company[7].data.address = data.address;
+        	$scope.company[7].data.city = data.city;
+        	$scope.company[7].data.state = data.state;
+        	$scope.company[7].data.zipCode = data.zipCode;
+        	$scope.company[7].data.methodCommunication = data.methodCommunication;
+        	$scope.company[7].data.email = data.email;
+        	$scope.company[7].data.phone = data.phone;
+        			
+
+        	$scope.company[8].data.twitter = data.twitter;
+        	$scope.company[8].data.linkedIn = data.linkedIn;
+        	$scope.company[8].data.website = data.website;
+
+        	$scope.company[10].data.categoryTier = data.categoryTier;
+        	$scope.company[10].data.dateJoined = data.dateJoined;
+        	$scope.company[10].data.reasonJoining = data.reasonJoining;
+
+        	for(var i in $scope.company){
+    			$scope.company[i].done = true;
+    			switch(i){
+    				case '1':
+	    				if(!$scope.company[i].data.featureImage.thumbnail || !$scope.company[i].data.featureImage.large){
+							$scope.company[i].done = false
+	    				};
+	    				break;
+	    			case '4':
+	    			case '5':
+	    			case '9':
+		    			for(var item in $scope.company[i].data){
+			    			if(!$scope.company[i].data[item] || !$scope.company[i].data[item].length){
+			    				$scope.company[i].done = false
+			    			}
+			    		};
+	    				break;
+    				case '7': 
+    					for(var item in $scope.company[i].data){
+    						if(!$scope.company[i].data[item] && item != 'phone' && item != 'email'){
+			    				$scope.company[i].done = false
+			    			}
+			    		};
+			    		break;
+			    	default:
+    					for(var item in $scope.company[i].data){
+    						if(!$scope.company[i].data[item]){
+			    				$scope.company[i].done = false
+			    			}
+			    		};
+    			}
+	    	}
+    	});
+
+
 
         $scope.saveFinish = function(section){
         	var allDone = true;
         	for(var i in $scope[section]){
-        		console.info($scope[section][i]);
         		if(!$scope[section][i].done){
         			allDone = false;
         			break;
         		}
         	}
         	DMCUserModel.getUserData().then(function(result){
-        		console.info(result, allDone);
 		      	$rootScope.userData.onboarding[section] = allDone;
 		      	DMCUserModel.UpdateUserData($rootScope.userData);
-		});
+			});
         }
     }])

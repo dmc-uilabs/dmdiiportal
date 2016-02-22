@@ -7,37 +7,37 @@
 	</div>
 	<h3>This information is <b>private</b> and can only be seen by members you share it with.</h3>
 	<div layout="row">
-		<md-checkbox ng-model="account[1].data.email.enable" class="md-primary">
+		<md-checkbox ng-model="account[1].data.private.email.enable" class="md-primary">
 			Email
 		</md-checkbox>
-		<md-checkbox ng-model="account[1].data.phone.enable" class="md-primary">
+		<md-checkbox ng-model="account[1].data.private.phone.enable" class="md-primary">
 			Phone
 		</md-checkbox>
-		<md-checkbox ng-model="account[1].data.location.enable" class="md-primary">
+		<md-checkbox ng-model="account[1].data.private.location.enable" class="md-primary">
 			Location
 		</md-checkbox>
 	</div>
 	<form name="privateForm" autocomplete="off" layout="row" layout-wrap>
-		<md-input-container class="md-icon-float" flex="50" ng-if="account[1].data.email.enable">
+		<md-input-container class="md-icon-float" flex="50" ng-if="account[1].data.private.email.enable">
 			<label>Email</label>
 			<md-icon>
 				<ng-md-icon icon="email"></ng-md-icon>
 			</md-icon>
-			<input ng-model="account[1].data.email.value" required>
+			<input ng-model="account[1].data.private.email.value">
 		</md-input-container>
-		<md-input-container class="md-icon-float" flex="50" ng-if="account[1].data.phone.enable">
+		<md-input-container class="md-icon-float" flex="50" ng-if="account[1].data.private.phone.enable">
 			<label>Phone</label>
 			<md-icon>
 				<ng-md-icon icon="phone"></ng-md-icon>
 			</md-icon>
-			<input phone-input ng-model="account[1].data.phone.value" required>
+			<input phone-input ng-model="account[1].data.private.phone.value">
 		</md-input-container>
-		<md-input-container class="md-icon-float" flex="50" ng-if="account[1].data.location.enable">
+		<md-input-container class="md-icon-float" flex="50" ng-if="account[1].data.private.location.enable">
 			<label>Location</label>
 			<md-icon class="location-gps" ng-click="getLocation(1)">
               	<ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
             </md-icon>
-			<input ng-model="account[1].data.location.value" required>
+			<input ng-model="account[1].data.private.location.value">
 		</md-input-container>
 	</form>
 	<div layout="row" layout-align="end center">

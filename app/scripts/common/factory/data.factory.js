@@ -682,7 +682,13 @@ angular.module('dmc.data',[])
             updateCompanyImage: function(id){
                 return localhost+'company_images/'+id;
             },
+            deleteCompanyImage: function(id){
+                return localhost+'company_images/'+id;
+            },
             updateCompanySkillsImage: function(id){
+                return localhost+'company_skill_images/'+id;
+            },
+            deleteCompanySkillsImage: function(id){
                 return localhost+'company_skill_images/'+id;
             },
             updateCompanyVideo: function(id){

@@ -7,27 +7,78 @@
 	</div>
 	<h3>Adding a server allows you to include your services in projects and place them into the marketplace.</h3>
 	<form name="serverForm" autocomplete="off">
-		<div layout="row" ng-repeat="newServer in servers">
+		<div layout="row">
 			<div flex="50">
 				<md-input-container>
 					<label>Server name</label>
-					<input ng-model="newServer.server" required>
+					<input ng-model="newServer.name">
 				</md-input-container>
 			</div>
 			<div flex="50" class="ip-container">
 				<md-input-container>
 					<label>Server Host/IP</label>
-					<input ng-model="newServer.ip" required>
+					<input ng-model="newServer.ip">
 				</md-input-container>
 				<ng-md-icon ng-show="changeIP(newServer.ip)" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
 			</div>
 		</div>
 	</form>
 	<div layout="row">
-		<md-button class="md-raised dmc-button" ng-click="addServer()">
+		<md-button class="md-raised dmc-button" ng-disabled="!newServer.name || !newServer.ip" ng-click="addServer()">
 			<ng-md-icon icon="add_circle_outline" fill="#333" size="21" aria-label="Add Server"></ng-md-icon>
 			Add Server
 		</md-button>
+	</div>
+
+	<div layout="row" class="servers-container">
+		<md-data-table-container>
+            <table md-data-table class="servers-table">
+                <thead md-order="sort" md-trigger="onOrderChange">
+                <tr>
+                    <th name="Server Alias" ></th>
+                    <th name="Server URL" ></th>
+                    <th name="Status" ></th>
+                    <th class="delete-column" name="Remove"></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in account[4].data.servers" class="one-server">
+                        <td>
+                            <div ng-show="!item.isChanging">{{item.name}}</div>
+                            <md-input-container md-no-float ng-init="item.changedName = item.name" ng-show="item.isChanging">
+                                <input ng-model="item.changedName" class="nameEditInput" placeholder="Server Alias">
+                            </md-input-container>
+                        </td>
+                        <td>
+                            <div ng-show="!item.isChanging">{{item.ip}}</div>
+                            <md-input-container md-no-float ng-init="item.changedIp = item.ip" ng-show="item.isChanging">
+                                <input ng-model="item.changedIp" placeholder="Server Host/IP">
+                            </md-input-container>
+                        </td>
+                        <td class="status" ng-class="{'status-online' : item.status == 'online'}">
+                            <div ng-show="!item.isChanging">
+                                <ng-md-icon icon="lens" size="10" aria-label="Status"></ng-md-icon>
+                                {{item.status}}
+                            </div>
+                            <md-button class="md-raised md-primary save-server"
+                                       ng-if="item.isChanging"
+                                       ng-disabled="item.name == item.changedName && item.ip == item.changedIp"
+                                       ng-click="saveChanges(item)">
+                                Save
+                            </md-button>
+                        </td>
+                        <td width="50px">
+                            <md-button class="md-icon-button" aria-label="Delete" ng-click="deleteServer(item, $index)">
+                                <ng-md-icon icon="delete" size="21" style="fill:#666" aria-label="Delete Server"></ng-md-icon>
+                            </md-button>
+                        </td>
+                    </tr>
+                    <tr ng-if="servers.length == 0">
+                        <td colspan="5" class="empty">No servers</td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-data-table-container>
 	</div>
 
 	<div layout="row" layout-align="end center">

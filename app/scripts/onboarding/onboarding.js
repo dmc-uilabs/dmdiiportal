@@ -163,7 +163,7 @@ angular.module('dmc.onboarding', [
                     function(response){
                         callback(response.data);
                     }
-                )
+                );
             }
 
             this.update_profile = function(profileId, params, callback){ 
@@ -181,8 +181,156 @@ angular.module('dmc.onboarding', [
                             function(response){
                                 callback(response.data);
                             }
-                        )
+                        );
                     }
-                )
+                );
             }
+
+             // get company skills
+            this.getSkills = function(id, callback){
+                return ajax.get(
+                    dataFactory.getCompanySkills(id),
+                    {}, 
+                    function(response){
+                        callback(response.data);
+                    }
+                );
+            };
+
+            // get company images
+            this.getImages = function(id, callback){
+                return ajax.get(
+                    dataFactory.getCompanyImages(id),
+                    {}, 
+                    function(response){
+                        callback(response.data);
+                    }
+                );
+            };
+
+            // get company images
+            this.getSkillsImages = function(id, callback){
+                return ajax.get(
+                    dataFactory.getCompanySkillsImages(id),
+                    {},
+                    function(response){
+                        callback(response.data);
+                    }
+                );
+            };
+
+            // get company videos
+            this.getVideos = function(id, callback){
+                return ajax.get(
+                    dataFactory.getCompanyVideos(id),
+                    {},
+                    function(response){
+                        callback(response.data);
+                    }
+                );
+            };
+
+            // get company contacts
+            this.getKeyContacts = function(id, callback){
+                return ajax.get(
+                    dataFactory.getCompanyKeyContacts(id),
+                    {},
+                    function(response){
+                        callback(response.data);
+                    }
+                );
+            };
+
+
+            this.get_company = function(companyId, callback){ 
+                return ajax.get(
+                    dataFactory.companyURL(companyId).get,
+                    {},
+                    function(response){
+                        callback(response.data);
+                    }
+                );
+            }
+
+            this.update_company = function(companyId, params, callback){ 
+                ajax.get(
+                    dataFactory.companyURL(companyId).get,
+                    {},
+                    function(response){
+                        var company = response.data;
+                        for(var item in params){
+                           company[item] = params[item];
+                        }
+                        ajax.update(
+                            dataFactory.companyURL(companyId).update,
+                            company,
+                            function(response){
+                                callback(response.data);
+                            }
+                        );
+                    }
+                );
+            }
+
+
+            this.get_account = function(accountId, callback){ 
+                return ajax.get(
+                    dataFactory.getAccount(accountId),
+                    {},
+                    function(response){
+                        callback(response.data);
+                    }
+                );
+            }
+
+            this.get_account_notfications = function(accountId, callback){ 
+                return ajax.get(
+                    dataFactory.getUserAccountNotifications(accountId),
+                    {},
+                    function(response){
+                        callback(response.data);
+                    }
+                );
+            }
+
+            this.update_account = function(accountId, params, callback){
+                ajax.get(
+                    dataFactory.getAccount(accountId),
+                    {},
+                    function(response){
+                        var account = response.data;
+                        for(var item in params){
+                           account.privacy[item] = params[item];
+                        }
+                        ajax.update(
+                            dataFactory.updateAccount(accountId),
+                            account,
+                            function(response){
+                                callback(response.data);
+                            }
+                        );                        
+                    }
+                );
+            }
+
+            this.update_notfications = function(notificationId, selected, callback){ 
+                ajax.update(
+                    dataFactory.updateUserAccountNotification(notificationId),
+                    {
+                        "selected": selected
+                    },
+                    function(response){
+                        callback(response.data);
+                    }
+                );
+            }
+
+            this.get_servers = function(accountId, callback){
+                ajax.get(dataFactory.getAccountServersUrl(accountId), 
+                    {}, 
+                    function (response) {
+                        callback(response.data);
+                    }
+                );
+            };
     }])
