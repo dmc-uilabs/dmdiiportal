@@ -35,7 +35,7 @@ angular.module('dmc.model.previous-page', [
                 } else if (previousPage.indexOf('company-profile.php') != -1) {
                     return {
                         tag : "company",
-                        title: "Back to Company",
+                        title: "Back to Profile",
                         url: previousPage
                     };
                 } else if (previousPage.indexOf('profile.php') != -1) {
