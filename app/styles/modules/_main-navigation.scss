@@ -167,36 +167,33 @@ div[dmc-top-header]{
     }
 
     .search{
-      ng-md-icon {
-        margin-right: 16px;
-        svg {
-          vertical-align: middle;
-        }
-      }
       md-input-container{
         padding: 0;
-        width: 270px;
-        md-icon{
-          left: 40px;
-          top: 5px;
-          color: #B3B3B3;
-          ng-md-icon {
-            margin-right: -26px;
-            z-index: 2;
-            svg {
-              vertical-align: middle;
-            }
-          }
-        }
+        width: 240px;
         &:not(.md-input-invalid).md-input-focused md-icon{
           color: #fff;
         }
         input{
           background-color: #5E5E5E;
-          @include borderRadius(3px);
-          padding-left: 30px;
+          @include borderRadius(3px 0 0 3px);
+          padding-left: 8px;
           font-size: 15px;
           color: #fff;
+        }
+      }
+      .md-button{
+        @include borderRadius(0 3px 3px 0);
+        margin: 0;
+        height: 30px;
+        line-height: 30px;
+        max-height: 30px;
+        min-height: 30px;
+        font-size: 15px;
+        width: 30px;
+        min-width: 30px;
+        background-color: #64B045;
+        ng-md-icon{
+          fill: #fff;
         }
       }
     }

@@ -20,21 +20,30 @@
                                 <!--</md-select>-->
                             <!--</md-input-container>-->
                         <!--</div>-->
-                        <div layout="column" class="search-box" flex="70">
-                            <form ng-submit="searchMembers()" class="global-search-form">
-                                <md-input-container md-no-float>
-                                    <md-icon>
-                                        <ng-md-icon icon="search"></ng-md-icon>
-                                    </md-icon>
-                                    <input ng-model="searchNameMember" type="text" placeholder="Search Members">
-                                </md-input-container>
-                            </form>
-                        </div>
+                        <form ng-submit="searchMembers()" class="dmc-search global-search-form" flex="60">
+                            <div layout="column">
+                                <div layout="row">
+                                    <div layout="column" flex>
+                                        <md-input-container md-no-float>
+                                            <md-icon>
+                                                <ng-md-icon icon="search"></ng-md-icon>
+                                            </md-icon>
+                                            <input type="text" placeholder="Search Members" ng-model="searchModel">
+                                        </md-input-container>
+                                    </div>
+                                    <div layout="column">
+                                        <md-input-container>
+                                            <md-button type="submit" class="search-button">Search</md-button>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <span flex></span>
-                        <md-button class="md-raised" ng-click="showFavorites()" ng-disabled="favorites.length == 0 && !showFavoritesFlag">
+                        <md-button class="md-raised dmc-button" ng-click="showFavorites()" ng-disabled="favorites.length == 0 && !showFavoritesFlag">
                             {{(showFavoritesFlag == false) ? 'Favorites(' + favorites.length + ')' : 'All'}}     
                         </md-button>
-                        <md-button class="md-raised" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button>
+                        <md-button class="md-raised dmc-button margin-left12-5" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button>
                     </md-content>
                     <md-content class="md-padding top-content" layout="row">
                         <div class="content-column" layout="column" flex="100">

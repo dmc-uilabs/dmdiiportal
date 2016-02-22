@@ -210,13 +210,13 @@
                 </div>
             </div>
 
-            <form ng-submit="submitSearch(searchModel)" class="search" layout="column" layout-align="center center">
+            <form ng-submit="submitSearch(searchModel)" class="search" layout="row" layout-align="center center">
                 <md-input-container md-no-float>
-                    <md-icon>
-                        <ng-md-icon icon="search" size="21"></ng-md-icon>
-                    </md-icon>
                     <input type="text" placeholder="Search" ng-model="searchModel">
                 </md-input-container>
+                    <md-button class="md-raised" type="submit">
+                        <ng-md-icon icon="search" size="21"></ng-md-icon>
+                    </md-button>
             </form>
         </div>
     </div>
