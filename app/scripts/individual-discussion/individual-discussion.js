@@ -58,6 +58,7 @@ angular.module('dmc.individual-discussion', [
             $scope.flagReviewFlag = false;
             $scope.replyReviewFlag = false;
             $scope.showReplyFlag = false;
+            $scope.version1 = true;
 
             $scope.userData = DMCUserModel.getUserData();
             $scope.userData.then(function(result) {  // this is only run after $http completes
@@ -127,10 +128,11 @@ angular.module('dmc.individual-discussion', [
 
                 // load comments
                 $scope.loadComments = function(){
-                    ajax.on(dataFactory.getDiscussionComments($scope.discussion.id), {
+                    ajax.on(dataFactory.getDiscussionComments($stateParams.discussionId), {
                         "_order" : "DESC",
                         "_sort" : "created_at"
                     }, function(response){
+                        console.log(response);
                         $scope.discussion.comments = {};
                         $scope.discussion.comments.items = response.reverse();
                         for (var c in $scope.discussion.comments.items) {
@@ -146,16 +148,19 @@ angular.module('dmc.individual-discussion', [
                 };
 
                 //load realted Disscussion
-                ajax.on(
-                    dataFactory.getIndividualDiscussions(),{
-                        "_limit" : 5
-                    }, function(data){
-                        $scope.realtedDiscussions = data;
-                        apply();
-                    }, function(){
-                        toastModel.showToast("error", "Fail Load IndividualDiscussion");
-                    }
-                );
+                $scope.getRealtedDisscussion = function() {
+                    ajax.on(
+                        dataFactory.getIndividualDiscussions(), {
+                            "_limit": 5
+                        }, function (data) {
+                            $scope.realtedDiscussions = data;
+                            apply();
+                        }, function () {
+                            toastModel.showToast("error", "Fail Load realted Disscussion");
+                        }
+                    );
+                };
+                $scope.getRealtedDisscussion();
 
 
                 $scope.follow = function(){

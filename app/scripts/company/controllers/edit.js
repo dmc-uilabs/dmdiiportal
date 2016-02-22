@@ -259,7 +259,7 @@ angular.module('dmc.company')
                     _limit : 4,
                     _sort : "id",
                     _order : "DESC",
-                    _embed : "company_featured",
+                    published: true,
                     _start : ($scope.currentStorefrontPage-1)*$scope.pageSize
                 };
 
@@ -397,32 +397,56 @@ angular.module('dmc.company')
                 $scope.getFeatured = function () {
                     ajax.get(dataFactory.getCompanyFeatured($scope.companyId), {
                             "_order" : "DESC",
-                            "_sort" : "position",
-                            "_expand" : ["service","component"]
+                            "_sort" : "position"
                         },
                         function (response) {
-                            $scope.featuredItems = [];
-                            for(var index in response.data){
-                                if(response.data[index].position > lastPosition) lastPosition = response.data[index].position;
-                                var item_ = null;
-                                if(response.data[index].service){
-                                    item_ = response.data[index].service;
-                                    item_.type = "service";
-                                }else if(response.data[index].component){
-                                    item_ = response.data[index].component;
-                                    item_.type = "component";
+                            var servicesIds = [];
+                            var componentsIds = [];
+                            var featuredData = response.data;
+                            $.each(response.data,function(){
+                                if(this.serviceId){
+                                    servicesIds.push(this.serviceId);
+                                }else{
+                                    componentsIds.push(this.componentId);
                                 }
-                                if(item_) {
-                                    item_.featureId = response.data[index].id;
-                                    item_.inFeatured = true;
-                                    item_.position = response.data[index].position;
-                                    $scope.featuredItems.push(item_);
-                                }
-                            }
-                            $scope.featuredItems.sort(function(a,b){
-                                return a.position > b.position;
                             });
-                            apply();
+                            ajax.get(dataFactory.getServices(), {
+                                id : servicesIds,
+                                companyId : $scope.companyId,
+                                published: true
+                            },function(res){
+                                for(var i in featuredData){
+                                    for(var j in res.data) {
+                                        if (featuredData[i].serviceId == res.data[j].id) {
+                                            featuredData[i].service = res.data[j];
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                $scope.featuredItems = [];
+                                for(var index in featuredData){
+                                    if(featuredData[index].position > lastPosition) lastPosition = featuredData[index].position;
+                                    var item_ = null;
+                                    if(featuredData[index].service){
+                                        item_ = featuredData[index].service;
+                                        item_.type = "service";
+                                    }else if(featuredData[index].component){
+                                        item_ = featuredData[index].component;
+                                        item_.type = "component";
+                                    }
+                                    if(item_) {
+                                        item_.featureId = featuredData[index].id;
+                                        item_.inFeatured = true;
+                                        item_.position = featuredData[index].position;
+                                        $scope.featuredItems.push(item_);
+                                    }
+                                }
+                                $scope.featuredItems.sort(function(a,b){
+                                    return a.position > b.position;
+                                });
+                                apply();
+                            });
                         }
                     );
                 };

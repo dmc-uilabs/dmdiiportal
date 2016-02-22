@@ -1,12 +1,16 @@
 <div class="page-header margin-bottom-35">
     <md-toolbar>
-        <h1 class="project-title">{{projectData.title}}</h1>
+        <h1 class="project-title" layout="row" layout-align="start end">
+            <div class="title">{{projectData.title}}</div>
+            <span class="small-text due-date-project small-text--grey">
+                Due in 20 days
+            </span>
+        </h1>
         <div class="md-toolbar-tools">
             <div layout="column" flex="65" class="margin-right12-5">
                 <div layout="row" class="name-project" flex>
                     <div sub-nav-menu-button current-page="7"></div>
                 </div>
-                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
             </div>
         </div>
     </md-toolbar>
@@ -40,24 +44,24 @@
 			<div layout="row" class="margin-bottom-10" layout-align="space-between center">
 				<h2>Inputs</h2>
 				<div class="inputs-button ">
-					<md-button ng-click="default()" class="md-raised  dmc-button margin-left20">
+					<md-button ng-disabled="!isChangedValues" ng-click="default()" class="md-raised  dmc-button margin-left20">
 						Default
 					</md-button>
-					<md-button ng-click="reset()" class="md-raised  dmc-button margin-left20">
-						Reset
+					<md-button ng-disabled="!isChangedOrder" ng-click="reset()" class="md-raised  dmc-button margin-left20">
+						Reset Order
 					</md-button>
-					<md-button ng-click="save()" class="md-raised md-primary dmc-button margin-left20">
+					<md-button ng-disabled="!isChangedOrder" ng-click="save()" class="md-raised md-primary dmc-button margin-left20">
 						Save Order
 					</md-button>
 				</div>
 			</div>
 			<md-content>
-				<md-list ui-sortable ng-model="service.interfaceModel.inputs">
+				<md-list class="list-inputs" ui-sortable="sortableOptions" ng-model="service.interfaceModel.inputs">
 					<md-list-item ng-repeat="item in service.interfaceModel.inputs" layout="row" layout-align="start end">
 						<div flex="50" class="left">
 							<md-input-container>
 							<label>{{item.name}}</label>
-							<input maxlength="20" ng-model="item.value">
+							<input maxlength="20" ng-change="changedValue()" ng-model="item.value">
 							</md-input-container>
 						</div>
 						<div flex="50" class="right">
@@ -70,12 +74,16 @@
 		<div flex="50" class="outputs">
 			<h2>Outputs</h2>
 			<md-content>
-				<div class="content">
-					<h2>Magnetic Permeability</h2>
-                    <br>
-					<div layout="row" layout-align="space-between center" ng-repeat="item in service.interfaceModel.outParams">
+				<div class="content"
+                     ui-sortable="sortableOutputOptions"
+                     ng-model="service.interfaceModel.outParams">
+					<div layout="row"
+                         class="output"
+                         layout-align="space-between center"
+                         ng-repeat="item in service.interfaceModel.outParams">
+                        <h2>{{item.name}}</h2>
 						<h3 flex>{{item.value}}</h3>
-						<h3>{{item.name}} ({{item.type}})</h3>
+						<h3>{{item.unit}} ({{item.type}})</h3>
                         <br>
 					</div>
 				</div>

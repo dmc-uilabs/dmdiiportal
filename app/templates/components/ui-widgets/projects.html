@@ -14,7 +14,7 @@
           <div class="rp-panel__title my-projects" layout="row">
               <h2>
                   <a href="project.php#/{{item.id}}" class="link-button">{{item.title}}</a>
-                  <span>Due in 20 days</span>
+                  <span ng-if="item.dueDate">Due in {{item.dueDate}}</span>
               </h2>
           </div>
 
@@ -44,7 +44,11 @@
               </md-tabs>
           </md-content>
 
-          <div class="rp-panel__tab-content widget-blocks" layout="row" flex="100" layout-align="space-between start" ng-if="widgetShowAllBlocks">
+          <div class="rp-panel__tab-content widget-blocks"
+               layout="row"
+               flex="100"
+               layout-align="space-between start"
+               ng-if="widgetShowAllBlocks">
               <!-- Tasks -->
               <md-content flex="{{flexBox}}"
                           layout-padding

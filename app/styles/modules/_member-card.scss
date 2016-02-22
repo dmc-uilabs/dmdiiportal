@@ -17,6 +17,7 @@
   &__header{
     padding-bottom: 0;
     margin-bottom: 0;
+    height: 55px;
     .member-name{
       margin: 3px 0;
     }
@@ -49,5 +50,43 @@
   }
   .md-primary{
     color: #fff !important;
+  }
+}
+
+.member-card{
+  margin: 2px 2px;
+  .member-card__image{
+    img{
+      height: 80px;
+      width: auto;
+    }
+  }
+  .description{
+    max-height: 43px;
+    text-overflow: ellipsis;
+    height: 43px;
+    overflow: hidden;
+  }
+  .product-card__footer{
+    @include borderRadius(0 0px 2px 2px);
+  }
+  .product-card__footer .md-button{
+    min-height: 0;
+    height: 35px;
+    line-height: 35px;
+  }
+  .top-buttons{
+    padding: 16px 16px 0;
+    a{
+      cursor: pointer;
+    }
+    ng-md-icon{
+      fill: #333;
+    }
+    a:hover{
+      ng-md-icon{
+        fill: #777;
+      }
+    }
   }
 }

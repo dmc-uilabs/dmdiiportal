@@ -48,15 +48,27 @@
                     <md-menu-content class="header-menu-content notifications-list">
                         <div class="zone-top" layout="row" layout-align="space-between center">
                             <h3>Notifications</h3>
-                            <md-button md-no-ink href="/" class="view-all-link">View All</md-button>
+                            <md-button md-no-ink href="/notifications.php" class="view-all-link">View All</md-button>
                         </div>
-                        <md-menu-item ng-repeat="item in notificationsList">
+                        <md-menu-item ng-repeat="item in notificationsList track by $index">
                             <a ng-href='{{item.link}}'>
-                                <ng-md-icon icon="forum" size="32" ng-if="item.event == 'replied-discussion'"></ng-md-icon>
-                                <ng-md-icon icon="group" size="32" ng-if="item.event == 'new-contact'"></ng-md-icon>
+                                <!-- profile icon -->
+                                <ng-md-icon icon="group" size="32" ng-if="item.type == 'profile'"></ng-md-icon>
+                                <!-- discussion and community icon -->
+                                <ng-md-icon icon="forum" size="32" ng-if="item.type == 'discussion' || item.type == 'community'"></ng-md-icon>
+                                <!-- task icon -->
+                                <ng-md-icon icon="list" size="32" ng-if="item.type == 'task'"></ng-md-icon>
+                                <!-- project icon -->
+                                <ng-md-icon icon="notifications" size="32" ng-if="item.type == 'project'"></ng-md-icon>
+                                <!-- service and market icon -->
+                                <md-icon ng-if="item.type == 'service' || item.type == 'marketplace'" style="width:40px;height:28px; vertical-align: top;"
+         md-svg-src="images/icon_service.svg"  ></md-icon>
+         <!-- service and market icon -->
+         <md-icon ng-if="item.type == 'company'" style="width:40px;height:28px; vertical-align: top;"
+         md-svg-src="images/icon-company-lg.svg"  ></md-icon>
                   <span>
                       <i>{{item.title}}</i>
-                      <i>{{item.created_at}}</i>
+                      <i>{{item.date}}</i>
                   </span>
                             </a>
                         </md-menu-item>

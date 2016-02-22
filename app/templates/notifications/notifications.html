@@ -5,20 +5,20 @@
 	</div>
 <md-content class="md-padding">
 	<div layout="row" layout-align="space-between start">
-		<div flex="15" class="section" ng-repeat="item in notifications track by $index" >
+		<div flex="30" class="section" ng-repeat="item in notifications track by $index" >
 			<div class="cell1" layout layout-align="center center">
-				<h2 ng-click="filtered('month', item.type, item.name)">{{item.name}}</h2>
+				<h2 ng-click="filtered('month', item.events, item.name)">{{item.name}}</h2>
 			</div>
 			<div class="cell2" layout="row" layout-align="space-between center">
-				<h3 ng-click="filtered('today', item.type, item.name)">Today</h3>
+				<h3 ng-click="filtered('today', item.events, item.name)">Today</h3>
 				<h4>{{item.today}}</h4>
 			</div>
 			<div class="cell3" layout="row" layout-align="space-between center">
-				<h3 ng-click="filtered('week', item.type, item.name)">This Week</h3>
+				<h3 ng-click="filtered('week', item.events, item.name)">This Week</h3>
 				<h4>{{item.week}}</h4>
 			</div>
 			<div class="cell4" layout="row" layout-align="space-between center">
-				<h3 ng-click="filtered('month', item.type, item.name)">This Month</h3>
+				<h3 ng-click="filtered('month', item.events, item.name)">This Month</h3>
 				<h4>{{item.month}}</h4>
 			</div>
 		</div>
@@ -64,7 +64,7 @@
 					<div flex="10">
 						<img ng-src="{{item.image}}">
 					</div>
-					<h4 flex>{{item.title}} <a href="{{item.link}}">{{item.linkTitle}}</a></h4>
+					<h4 flex><a href="{{getItemDetails(item).link}}">{{getItemDetails(item).title}}</a></h4>
 					<h4>{{item.date}}</h4>
 				</div>
 			<md-divider ng-if="!$last"></md-divider>

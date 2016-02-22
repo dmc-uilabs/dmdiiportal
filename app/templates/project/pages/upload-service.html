@@ -1,12 +1,16 @@
 <div class="page-header margin-bottom-35">
     <md-toolbar>
-        <h1 class="project-title">{{projectData.title}}</h1>
+        <h1 class="project-title" layout="row" layout-align="start end">
+            <div class="title">{{projectData.title}}</div>
+            <span ng-if="projectData.dueDate" class="small-text due-date-project small-text--grey">
+                Due in {{projectData.dueDate}}
+            </span>
+        </h1>
         <div class="md-toolbar-tools">
             <div layout="column" flex="65" class="margin-right12-5">
                 <div layout="row" class="name-project" flex>
                     <div sub-nav-menu-button current-page="7"></div>
                 </div>
-                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
             </div>
         </div>
     </md-toolbar>
@@ -17,8 +21,8 @@
     </div>
     <div class="content padding-10">
         <h2 flex>All fields are required</h2>
-        <div layout="row" ng-if="page1" class="page1">
-            <div flex="40" layout="column">
+        <div layout="row" ng-show="page1" class="page1">
+            <div flex="50" layout="column">
                 <div layout="row" layout-align="start center" ng-if="!flagAddServer">
                     <md-input-container flex>
                         <label>Server</label>
@@ -27,13 +31,13 @@
                         </md-select>
                     </md-input-container>
                     <md-input-container>
-                        <md-button class="md-raised dmc-button add" ng-click="$parent.$parent.flagAddServer = true">
+                        <md-button class="md-raised dmc-button add margin-left20" ng-click="startAddServer()">
                             Add New Server
                         </md-button>
                     </md-input-container>
                 </div>
 
-                <div ng-if="flagAddServer" layout="row" layout-fill>
+                <div layout="row" ng-if="flagAddServer" layout-fill>
                     <form flex="100" novalidate name="addServer" ng-submit="saveServer(serverModel)">
                         <div  layout="row" layout-align="center center">
                             <md-input-container flex="35">
@@ -52,32 +56,27 @@
                                 </div>
                             </md-input-container>
                             <md-input-container>
-                                <md-button ng-click="cancelServer()" class="md-raised add-server dmc-button">
-                                    cancel
+                                <md-button ng-click="cancelServer()" class="md-raised add-server margin-left20">
+                                    Cancel
                                 </md-button>
                             </md-input-container>
                             <md-input-container>
-                                <md-button ng-disabled="addServer.$invalid" class="md-raised add-server dmc-button margin-left20">
-                                    save
+                                <md-button ng-disabled="addServer.$invalid" class="md-raised add-server">
+                                    Save
                                 </md-button>
                             </md-input-container>
                         </div>
                     </form>
                 </div>
 
-                <md-content dmc-interfaces
-                            server-ip="selectedServerIp"
-                            class="interface"
-                            selected-interface="getSelectedInterface"
-                            ng-if="selectedServerIp"></md-content>
-            </div>
-            <div flex="60" layout="column" class="preview" ng-if="selectedInterface != null">
-                <h2 flex>Preview Interface</h2>
-                <div layout="row">
+                <div class="view-interface" layout="row" ng-if="selectedInterface != null">
+                    <h2 flex ng-if="selectedInterface != null">Preview {{NewService.serviceName}}</h2>
+                </div>
+                <div class="view-interface" layout="row" ng-if="selectedInterface != null">
                     <div flex="50">
                         <md-content>
                             <md-list>
-                                <h2>Inputs</h2>
+                                <h3>Inputs</h3>
                                 <md-divider></md-divider>
                                 <md-list-item ng-repeat="item in selectedInterface.inParams track by $index">
                                     <span>{{item.name}}</span>
@@ -88,7 +87,7 @@
                     <div flex="50">
                         <md-content>
                             <md-list>
-                                <h2>Outputs</h2>
+                                <h3>Outputs</h3>
                                 <md-divider></md-divider>
                                 <md-list-item ng-repeat="item in selectedInterface.outParams track by $index">
                                     {{item.name}}
@@ -98,9 +97,18 @@
                     </div>
                 </div>
             </div>
+            <div flex="50" layout="column" class="preview">
+                <md-content dmc-interfaces
+                            server-ip="selectedServerIp"
+                            class="interface"
+                            update="updateDateTime"
+                            selected-interface="getSelectedInterface"
+                            ng-if="selectedServerIp"></md-content>
+
+            </div>
         </div>
 
-        <div layout="column" ng-if="!page1" class="page2">
+        <div layout="column" ng-show="!page1" class="page2">
 
             <md-content class="md-padding">
                 <div layout="row" layout-align="space-between center">
@@ -151,20 +159,20 @@
         </div>
 
         <div layout="row" layout-align="end center">
-            <md-button class="md-raised dmc-button margin-top-10" ng-if="page1" ui-sref="project.services">
+            <md-button class="md-raised" ng-if="page1" ui-sref="project.services">
                 Cancel
             </md-button>
 
-            <md-button class="md-primary md-raised dmc-button margin-left20 margin-top-10" ng-if="page1" ng-disabled="serverModel != 0" ng-click="next()">
+            <md-button class="md-primary md-raised" ng-if="page1" ng-disabled="!selectedInterface" ng-click="next()">
                 Next
             </md-button>
 
-            <md-button class="md-raised dmc-button margin-top-10" ng-if="!page1" ng-click="back()">
+            <md-button class="md-raised" ng-if="!page1" ng-click="back()">
                 Back
             </md-button>
             <!-- ng-disabled="!NewService.serviceName || !NewService.parentComponent || !NewService.serviceDescription || !tags.length" -->
             <!--<md-button class="md-primary md-raised" ng-disabled="!NewService.serviceName || (!NewService.parentComponent && NewService.parentComponent !== 0) || !NewService.serviceDescription || !service_tags.length" ng-if="!page1" ng-click="finish()">-->
-            <md-button class="md-primary md-raised dmc-button margin-left20 margin-top-10" ng-disabled="!NewService.serviceName || !NewService.serviceDescription || !service_tags.length" ng-if="!page1" ng-click="finish()">
+            <md-button class="md-primary md-raised " ng-disabled="!NewService.serviceName || !NewService.serviceDescription || !service_tags.length" ng-if="!page1" ng-click="finish()">
                 Finish
             </md-button>
         </div>

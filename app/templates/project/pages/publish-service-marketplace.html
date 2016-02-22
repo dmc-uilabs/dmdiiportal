@@ -1,12 +1,16 @@
 <div class="page-header margin-bottom-35">
     <md-toolbar>
-        <h1 class="project-title">{{projectCtrl.projectData.title}}</h1>
+        <h1 class="project-title" layout="row" layout-align="start end">
+            <div class="title">{{projectCtrl.projectData.title}}</div>
+            <span ng-if="projectCtrl.projectData.dueDate" class="small-text due-date-project small-text--grey">
+                Due in {{projectCtrl.projectData.dueDate}}
+            </span>
+        </h1>
         <div class="md-toolbar-tools">
             <div layout="column" flex="65" class="margin-right12-5">
                 <div layout="row" class="name-project" flex>
                     <div sub-nav-menu-button current-page="7"></div>
                 </div>
-                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
             </div>
         </div>
     </md-toolbar>
@@ -116,7 +120,7 @@
                 <div class="tag" ng-repeat="tag in publishService.tags track by $index">
                     <span>{{tag.name}}</span>
                     <md-button md-no-ink class="md-icon-button"
-                               ng-click="deleteTag($index)"
+                               ng-click="deleteTag($index,tag.id)"
                                aria-label="Delete Tag">
                         <ng-md-icon icon="clear" ng-style="{'fill' : '#444'}" size="15"></ng-md-icon>
                     </md-button>
@@ -124,7 +128,7 @@
             </div>
             <div layout="row" flex>
                 <span flex></span>
-                <md-button class="md-raised md-primary dmc-button next-page"
+                <md-button class="md-raised md-primary next-page"
                            ng-disabled="isDisabledFirstPage" ng-click="nextPage()">Next</md-button>
             </div>
         </md-content>
@@ -149,7 +153,7 @@
                                 No authors matching "{{newAuthor.searchText}}" were found.
                             </md-not-found>
                         </md-autocomplete>
-                        <md-button class="md-raised md-primary dmc-button add-specification"
+                        <md-button class="md-raised md-primary add-specification"
                                    ng-disabled="!newAuthor.selectedItem" type="submit">Add</md-button>
                     </form>
                 </div>
@@ -168,9 +172,8 @@
                                 {{item.company}}
                             </div>
                             <md-button md-no-ink class="md-icon-button delete-author"
-                                       ng-click="deleteAuthor($index)"
+                                       ng-click="deleteAuthor($index,item.id)"
                                        aria-label="Delete Author">
-                                <md-tooltip md-direction="left">Delete</md-tooltip>
                                 <ng-md-icon icon="clear" size="25"></ng-md-icon>
                             </md-button>
                         </div>
@@ -190,9 +193,9 @@
             </div>
             <div layout="row" flex>
                 <span flex></span>
-                <md-button class="md-raised dmc-button next-page"
+                <md-button class="md-raised next-page"
                            ng-click="backPage()">Back</md-button>
-                <md-button class="md-raised md-primary dmc-button next-page"
+                <md-button class="md-raised md-primary next-page"
                            ng-disabled="isDisabledSecondPage" ng-click="finish()">Finish Publishing</md-button>
             </div>
         </md-content>

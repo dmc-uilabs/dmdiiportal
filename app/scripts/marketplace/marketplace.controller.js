@@ -17,6 +17,7 @@ angular.module('dmc.marketplace')
         "socketFactory",
         "$location",
         "is_search",
+        "DMCUserModel",
         "isFavorite",
         function($state,
                  $stateParams,
@@ -28,6 +29,7 @@ angular.module('dmc.marketplace')
                  socketFactory,
                  $location,
                  is_search,
+                 DMCUserModel,
                  isFavorite){
             $scope.isSearch = is_search;
             var defaultPages = {
@@ -48,16 +50,21 @@ angular.module('dmc.marketplace')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
+            var userData = DMCUserModel.getUserData();
+            userData.then(function(){
+                getFavoriteCount();
+            });
+
             $scope.favoritesCount = 0;
-            var getFavoriteCount = function(){
+            function getFavoriteCount(){
                 ajax.get(dataFactory.getFavoriteProducts(),{
-                    accountId : ($rootScope.userData)? $rootScope.userData.accountId:1,
+                    accountId : userData.accountId
                 },function(response){
                     $scope.favoritesCount = response.data.length;
                     apply();
                 });
-            };
-            getFavoriteCount();
+            }
+
 
             $scope.$on("UpdateFavorite", function(){
                 getFavoriteCount();
@@ -107,6 +114,7 @@ angular.module('dmc.marketplace')
                 new : {arr : [], count : 0}
             };
             var responseDataForCarousel = {
+                published : true,
                 _limit : 10,
                 _sort : "id",
                 _order : "DESC"
@@ -190,6 +198,7 @@ angular.module('dmc.marketplace')
             // response data
             var responseData = function(){
                 var data = {
+                    published : true,
                     _limit : $scope.productCardPageSize,
                     _start : ($scope.productCardCurrentPage-1)*$scope.productCardPageSize,
                     title_like : $scope.searchModel
@@ -242,6 +251,7 @@ angular.module('dmc.marketplace')
             // get all services from follow companies
             $scope.getFollowCompaniesServices = function(companies){
                 ajax.get(dataFactory.getFollowCompanyServices(), {
+                        published : true,
                         companyId : companies,
                         _limit: 8
                     },

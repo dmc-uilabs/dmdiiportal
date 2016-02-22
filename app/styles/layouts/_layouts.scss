@@ -123,13 +123,7 @@ md-input-container{
     vertical-align: top;
   }
 }*/
-.title-widget{
-  h2{
-    font-weight: 100;
-    padding: 0 0 0 0;
-    margin: 0;
-  }
-}
+
 
 .delete-project{
   position: absolute;
@@ -188,6 +182,9 @@ table[md-data-table]:not([md-row-select])>tfoot>tr>td:first-child,
 table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child{
   padding: 10px;
   text-transform: capitalize;
+  &.text-normal{
+    text-transform: normal !important;
+  }
 }
 table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:nth-child(n+2):nth-last-child(n+2),
 table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child,
@@ -281,6 +278,15 @@ a.link-button.md-button.md-default-theme{
   }
   &.uppercase{
     text-transform: uppercase;
+  }
+  &.margin-left20{
+    margin-left: 20px;
+  }
+  ng-md-icon{
+    fill: #666666;
+    svg{
+      margin-bottom: -4px;
+    }
   }
 }
 
@@ -387,6 +393,9 @@ a{
 .margin-bottom-35{ margin-bottom: 35px; }
 .margin-bottom-20{ margin-bottom: 20px; }
 .margin-bottom-10{ margin-bottom: 10px; }
+.margin-bottom-17{
+  margin-bottom: 17px;
+}
 .top-10{ top: -10px; }
 
 .padding-10{
@@ -406,3 +415,34 @@ button,
     }
   }
 }
+
+div[ui-widget-services]{
+  a{
+    em{
+      font-size: 14px;
+    }
+  }
+}
+div[ui-widget-discussions]{
+  .md-list-item-text{
+    h3{
+      a{
+        font-size: 14px;
+      }
+    }
+  }
+}
+div[ui-widget-tasks]{
+  table{
+    td.title{
+      a{
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+md-input-container:not(.md-input-has-value) input:not(:focus){
+  color: #363636;
+}
+

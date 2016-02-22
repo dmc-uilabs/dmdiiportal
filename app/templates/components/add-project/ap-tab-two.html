@@ -26,7 +26,7 @@
                                     <md-icon>
                                         <ng-md-icon icon="search"></ng-md-icon>
                                     </md-icon>
-                                    <input ng-model="searchText" type="text" placeholder="Search Members">
+                                    <input ng-model="searchNameMember" type="text" placeholder="Search Members">
                                 </md-input-container>
                             </form>
                         </div>
@@ -76,6 +76,6 @@
     </div>
     <div layout="row" class="btn-next-block" layout-padding layout-align="end center">
         <md-button class="md-raised" ng-click="goToTab(1)">Back</md-button>
-        <md-button class="md-raised md-primary" ng-click="submitProjectDetails(invitees)">Create</md-button>
+        <md-button class="md-raised md-primary" ng-click="submitProjectDetails(invitees)">{{isUpdate ? 'Save' : 'Create' }}</md-button>
     </div>
 </div>

@@ -1,16 +1,26 @@
 <div>
-    <div layout="row" layout-align="center center">
+    <div layout="row" layout-align="center center" ng-if="!allButtons">
         <md-button aria-label="Favorite" ng-click="addToFavorite()" class="md-icon-button" flex>
             <ng-md-icon ng-if="!cardSource.favorite" icon="favorite_outline" style="fill: grey;" size="18"></ng-md-icon>
             <ng-md-icon ng-if="cardSource.favorite" icon="favorite" style="fill: #689F38;" size="18"></ng-md-icon>
         </md-button>
     </div>
+    <div layout="row" class="top-buttons" layout-align="space-between center" ng-if="allButtons">
+        <a class="add-group">
+            <ng-md-icon icon="group_add" aria-label="Profile Page" size="18"></ng-md-icon>
+        </a>
+        <a ng-click="followMember()"
+           class="follow-member link-button">{{ cardSource.follow ? 'Unfollow' : 'Follow'}}</a>
+        <a ng-href="{{'/profile.php#/'+cardSource.id}}">
+            <ng-md-icon icon="arrow_forward" title="Profile Page" aria-label="Profile Page" size="18"></ng-md-icon>
+        </a>
+    </div>
     <div class="member-card__image">
         <img ng-src="{{cardSource.image}}" alt="Name member">
     </div>
     <div class="member-card__header" layout="column" layout-padding layout-margin>
-        <h3 class="member-name"><a >{{cardSource.displayName}}</a></h3>
-        <span class="company-name"><a >{{cardSource.company}}</a></span>
+        <h3 class="member-name"><a href="/profile.php#/{{cardSource.id}}">{{cardSource.displayName}}</a></h3>
+        <span class="company-name"><a href="/company.php#/{{cardSource.companyId}}">{{cardSource.company}}</a></span>
     </div>
     <div class="member-card__content" layout="row" layout-padding flex>
         <div class="member-card__content__column" flex="28" layout="column">
@@ -32,17 +42,32 @@
         </div>
     </div>
     <div class="product-card__footer" layout="row">
-        <md-button ng-if="!cardSource.isInvite" aria-label="Add to Invitation" flex ng-click="addToInvitation()">
+        <md-button ng-if="!cardSource.isInvite && !allButtons"
+                   aria-label="Add to Invitation" flex
+                   ng-click="addToInvitation()">
             Add to Invitation
         </md-button>
-        <md-button class="md-raised md-primary" ng-if="cardSource.isInvite" aria-label="Added to Invitation" flex ng-click="addToInvitation()">
+        <md-button class="md-raised md-primary"
+                   ng-if="cardSource.isInvite && !allButtons"
+                   aria-label="Added to Invitation"
+                   flex ng-click="addToInvitation()">
             Added to Invitation
         </md-button>
-        <md-button ng-if="!cardSource.isCompare" aria-label="Add to Compare" flex ng-click="addToCompare()">
+        <md-button ng-if="!cardSource.isCompare && !allButtons"
+                   aria-label="Add to Compare" flex
+                   ng-click="addToCompare()">
             Add to Compare
         </md-button>
-        <md-button class="md-raised md-primary" ng-if="cardSource.isCompare" aria-label="Compare" flex ng-click="addToCompare()">
+        <md-button class="md-raised md-primary"
+                   ng-if="cardSource.isCompare && !allButtons"
+                   aria-label="Compare"
+                   flex ng-click="addToCompare()">
             Compare
+        </md-button>
+        <md-button ng-if="allButtons"
+                   aria-label="Add to Project"
+                   flex ng-click="cardSource.addToProject()">
+            Add to Project
         </md-button>
     </div>
 </div>

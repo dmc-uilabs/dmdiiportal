@@ -1,4 +1,7 @@
-<div class="container marketplace-box"  layout="row">
+<div class="container marketplace-box"  layout="row" ng-if="!product.published">
+    Service not found
+</div>
+<div class="container marketplace-box"  layout="row" ng-if="product.published">
 	<!--Tree menu-->
 	<div class="content-column" layout="column" flex='20'>
 		<md-button href="marketplace.php" md-no-ink>Return to Search</md-button>

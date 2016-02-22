@@ -1,7 +1,7 @@
 angular.module('dmc.project')
     .controller('projectEditServicesCtrl', [
-        '$scope', '$state', 'projectData', 'serviceModel', 'serviceData', '$rootScope',
-        function ($scope, $state, projectData, serviceModel, serviceData, $rootScope) {
+        '$scope', '$state','domeModel','DMCUserModel', 'projectData', 'serviceModel', 'serviceData', '$rootScope',
+        function ($scope, $state, domeModel, DMCUserModel, projectData, serviceModel, serviceData, $rootScope) {
 
             $scope.projectData = projectData;
             $scope.page1 = true;
@@ -12,33 +12,64 @@ angular.module('dmc.project')
             $scope.NewService = {
                 serviceName: serviceData.title,
                 parentComponent: 0,
-                serviceDescription: serviceData.description,
+                serviceDescription: serviceData.description
             };
 
             $scope.addTags=[];
             $scope.removeTags = [];
 
+            $scope.userData = DMCUserModel.getUserData();
+            $scope.userData.then(function(result){
+                $scope.userData = result;
+                serviceModel.get_servers(function(data){
+                    $scope.servers = data;
+                    checkServer();
+                    apply();
+                });
+
+                serviceModel.get_interface(serviceData.id,function(response){
+                    $scope.interface = response.data ? (response.data.length > 0 ? response.data[0] : null) : null;
+                    console.log($scope.interface);
+                    if($scope.interface) {
+                        $scope.selectedServerIp = $scope.interface.domeServer;
+                        checkServer();
+                        domeModel.getModel($scope.interface,function(response){
+                            console.log(response);
+                            $scope.selectedInterface = response.data && response.data.pkg ? response.data.pkg : null;
+                            $scope.NewService.serviceName = serviceData.title;
+                        });
+                    }
+                    apply();
+                });
+
+                serviceModel.get_all_service({}, function(data){
+                    $scope.allServices = data;
+                    $scope.allServices.unshift({id: 0, title: "None"});
+                });
+            });
+
+            function checkServer(){
+                if(!$scope.serverModel && $scope.interface && $scope.interface.domeServer){
+                    for(var i in $scope.servers){
+                        if($scope.servers[i].ip == $scope.interface.domeServer){
+                            $scope.serverModel = i;
+                            break;
+                        }
+                    }
+                    apply();
+                }
+            }
+
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
-            serviceModel.get_servers(function(data){
-                $scope.servers = data;
-                apply();
-            });
 
-            serviceModel.get_interface(serviceData.id,function(response){
-                $scope.interface = response.data ? (response.data.length > 0 ? response.data[0] : null) : null;
-                apply();
-            });
 
             $scope.service_tags = serviceData.service_tags;
             $scope.preview = [];
 
-            serviceModel.get_all_service({}, function(data){
-                $scope.allServices = data;
-                $scope.allServices.unshift({id: 0, title: "None"});
-            })
+
 
             $scope.selectedInterface = null;
             $scope.getSelectedInterface = function(item, name){
@@ -58,6 +89,8 @@ angular.module('dmc.project')
                     $scope.servers = $scope.servers.sort(function(a,b){return a.id - b.id});
                     if ($scope.servers.unshift(item)) this.serverModel = 0;
                     $scope.serverModel = 0;
+                    $scope.updateDateTime = new Date();
+                    apply();
                 }
             };
 

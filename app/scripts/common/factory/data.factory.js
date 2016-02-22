@@ -291,6 +291,9 @@ angular.module('dmc.data',[])
             getProject: function(id){
                 return localhost+'projects/'+id;
             },
+            updateProject: function(id){
+                return localhost+'projects/'+id;
+            },
             createDiscussion: function(id){
                 return localhost+'discussions/create';
             },
@@ -509,6 +512,7 @@ angular.module('dmc.data',[])
                     get_tags : localhost + name + '/' + id + '/service_tags',
                     add_tags : localhost + 'service_tags',
                     remove_tags : localhost + 'service_tags/' + id,
+                    update_tag : localhost + 'service_tags/' + id,
                     get_history : localhost + name + '/' + id + '/services_history',
                     get_run_history : localhost + name + '/' + id + '/service_runs',
                     get_interfaces : localhost + 'services_interface',
@@ -521,6 +525,8 @@ angular.module('dmc.data',[])
                     add_array_specifications: localhost + 'array_specifications',
                     get_specifications: localhost + name + '/' + id + '/specifications',
                     edit_specifications: localhost + 'specifications/' + id,
+                    add_specifications:  localhost + 'specifications',
+                    update_specifications:  localhost + 'specifications/'+id,
                     get_inputs_outputs: localhost + name + '/' + id + '/service_input_output',
                     get_statistics: localhost + name + '/' + id + '/services_statistic',
                     add_interface: localhost + 'dome-interfaces',

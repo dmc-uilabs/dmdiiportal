@@ -1,7 +1,8 @@
 .content-panel.project {
   .md-toolbar-tools.widget-toolbar-title {
     h2{
-      text-transform: uppercase;
+
+      text-transform: capitalize;
     }
   }
 }

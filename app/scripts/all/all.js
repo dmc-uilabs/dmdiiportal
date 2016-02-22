@@ -11,6 +11,7 @@ angular.module('dmc.view-all', [
 	'dmc.common.header',
 	'dmc.common.footer',
     'dmc.model.previous-page',
+    'dmc.widgets.tasks',
 	"dmc.ajax",
 	"dmc.data",
     'dmc.model.project',

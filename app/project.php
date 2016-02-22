@@ -110,13 +110,17 @@
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/services.model.js"></script>
     <script src="scripts/common/models/dome-model.js"></script>
+    <script src="scripts/common/models/member-model.js"></script>
+    <script src="scripts/components/compare/compare.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
+    <script src="scripts/components/add-project/add-project.directive.js"></script>
 
     <script src="scripts/project/project.js"></script>
     <script src="scripts/project/controllers/id-locator.js"></script>
     <script src="scripts/project/controllers/discussions.js"></script>
     <script src="scripts/project/controllers/documents.js"></script>
     <script src="scripts/project/controllers/home.js"></script>
+    <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/project/controllers/tasks.js"></script>
     <script src="scripts/project/controllers/team.js"></script>
     <script src="scripts/project/controllers/workspace.js"></script>
@@ -130,6 +134,8 @@
     <script src="scripts/project/controllers/edit-service.js"></script>
     <script src="scripts/project/controllers/run-service.js"></script>
     <script src="scripts/project/controllers/run-history.js"></script>
+    <script src="scripts/add_project/add_project.js"></script>
+    <script src="scripts/project/controllers/edit.js"></script>
     <script src="scripts/project/controllers/services-detail.js"></script>
     <script src="scripts/project/controllers/publish-service-marketplace.js"></script>
     <!-- endbuild -->

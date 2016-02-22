@@ -18,6 +18,8 @@ angular.module('dmc.add_project.directive', [
                     {name: 'accessibility', color: "#777"},
                     {name: 'question_answer', color: "rgb(89, 226, 168)"}
                 ];
+
+                $scope.projectData = {};
                 $scope.fonts = [].concat(iconData);
                 // Create a set of sizes...
                 $scope.sizes = [
@@ -101,12 +103,22 @@ angular.module('dmc.add_project.directive', [
               goToTab : '=',
               disableEnableTab : '=',
               // user input is save on this object
-              //projectDetails: '='
+              projectDetails: '='
             },
             controller: function ($scope) {
+                if($scope.projectDetails){
+                    if($scope.projectDetails.dueDate){
+                        $scope.projectDetails.dueDate = new Date($scope.projectDetails.currentDueDate);
+                        apply();
+                    }
+                }
                 $scope.$watch('form.$valid', function(current, old){
                     $scope.disableEnableTab(2,current);
                 });
+
+                function apply() {
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
             }
         }
     })
@@ -118,7 +130,8 @@ angular.module('dmc.add_project.directive', [
                 disableEnableTab : '=',
                 invitees : '=',
                 submitProjectDetails: '=',
-                projectDetails: '='
+                projectDetails: '=',
+                isUpdate: '='
             },
             controller: function ($scope) {
                 DMCMemberModel.getMembers().then(
@@ -192,7 +205,7 @@ angular.module('dmc.add_project.directive', [
                 var prevMember;
 
                 $scope.searchMembers = function(){
-                    
+
                 };
 
 
@@ -297,9 +310,42 @@ angular.module('dmc.add_project.directive', [
                 compareMember: '=',
                 cardSource: '=',
                 inviteMember: '=',
-                favoriteMember: '='
+                favoriteMember: '=',
+                addToProject: '=',
+                allButtons: '='
             },
-            controller: function ($scope) {
+            controller: function ($scope,DMCUserModel,ajax,dataFactory,$rootScope) {
+                $scope.userData = DMCUserModel.getUserData();
+                $scope.userData.then(function(res){
+                    $scope.userData = res;
+                });
+
+                var apply = function(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                };
+
+                $scope.followMember = function(){
+                    if($scope.userData) {
+                        if (!$scope.cardSource.follow) {
+                            ajax.create(dataFactory.followMember(), {
+                                accountId: $scope.userData.accountId,
+                                profileId: $scope.cardSource.id
+                            }, function (response) {
+                                $scope.cardSource.follow = response.data;
+                                if($rootScope.searchPageTotalFollow) $rootScope.searchPageTotalFollow.add();
+                                apply();
+                            });
+                        } else {
+                            ajax.delete(dataFactory.followMember($scope.cardSource.follow.id), {},
+                                function (response) {
+                                    $scope.cardSource.follow = null;
+                                    if($rootScope.searchPageTotalFollow) $rootScope.searchPageTotalFollow.delete();
+                                }
+                            );
+                        }
+                    }
+                };
+
                 $scope.addToInvitation = function(){
                     $scope.inviteMember($scope.cardSource);
                     $scope.cardSource.isInvite = ($scope.cardSource.isInvite ? false : true);
@@ -316,6 +362,51 @@ angular.module('dmc.add_project.directive', [
                     $scope.cardSource.favorite = ($scope.cardSource.favorite ? false : true);
                 };
 
+            }
+        }
+    }).directive('dmcCompanyCard', function () {
+        return {
+            restrict: 'A',
+            templateUrl: 'templates/components/add-project/company-card-tpl.html',
+            scope:{
+                compareCompany: '=',
+                cardSource: '=',
+                inviteCompany: '=',
+                favoriteCompany: '=',
+                addToProject: '='
+            },
+            controller: function ($scope,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+                $scope.userData = DMCUserModel.getUserData();
+                $scope.userData.then(function(res){
+                    $scope.userData = res;
+                });
+
+                $scope.followCompany = function(){
+                    if($scope.userData) {
+                        if (!$scope.cardSource.follow) {
+                            ajax.create(dataFactory.followCompany(), {
+                                accountId: $scope.userData.accountId,
+                                companyId: $scope.cardSource.id
+                            }, function (response) {
+                                $scope.cardSource.follow = response.data;
+                                if($rootScope.searchPageTotalFollow) $rootScope.searchPageTotalFollow.add();
+                                apply();
+                            });
+                        } else {
+                            ajax.delete(dataFactory.unfollowCompany($scope.cardSource.follow.id), {},
+                                function (response) {
+                                    $scope.cardSource.follow = null;
+                                    if($rootScope.searchPageTotalFollow) $rootScope.searchPageTotalFollow.delete();
+                                }
+                            );
+                        }
+                    }
+                };
+
+                var apply = function(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                };
             }
         }
     });

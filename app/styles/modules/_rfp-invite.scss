@@ -1,6 +1,15 @@
 .container.add-project{
   min-height: 0px;
-  padding: 8px;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 1280px;
+  .content-panel[add-project-tabs]{
+    padding: 30px 40px 40px 40px;
+    .md-toolbar-tools{
+      padding: 0;
+    }
+    .content-panel-body{}
+  }
 }
 .tabsdemoStaticTabs md-tab-content {
   padding: 25px;
@@ -40,6 +49,14 @@
 }
 
 .rfp-invitation{
+  md-tab-content {
+//    md-content  {
+//      padding: 0;
+//      md-content  {
+//        padding: 10;
+//      }
+//    }
+  }
   .rfp-two {
     .table-line{
       td{

@@ -83,6 +83,7 @@
     <!-- build:js scripts/all/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
+    <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
@@ -91,6 +92,8 @@
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
+    <script src="scripts/common/models/task-model.js"></script>
+    <script src="scripts/components/ui-widgets/tasks.directive.js"></script>
 
 
     <script src="scripts/all/all.js"></script>

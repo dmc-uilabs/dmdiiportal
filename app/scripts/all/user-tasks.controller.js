@@ -7,6 +7,7 @@ angular.module('dmc.view-all')
         '$location',
         'ajax',
         'previousPage',
+        '$mdDialog',
         'dataFactory',
         function (  $scope,
                     $stateParams,
@@ -14,6 +15,7 @@ angular.module('dmc.view-all')
                     $location,
                     ajax,
                     previousPage,
+                    $mdDialog,
                     dataFactory) {
 
             // comeback to the previous page
@@ -121,6 +123,22 @@ angular.module('dmc.view-all')
                 $state.go('tasks', dataSearch, {reload: true});
             };
 
+            $scope.editTask = function(ev,task){
+                $mdDialog.show({
+                    controller: "EditTaskController",
+                    templateUrl: 'templates/components/dialogs/edit-task-tpl.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    locals : {
+                        task : task
+                    }
+                }).then(function (answer) {},
+                    function (update) {
+                        $scope.getTasks();
+                    }
+                );
+            };
         }
     ]
 );

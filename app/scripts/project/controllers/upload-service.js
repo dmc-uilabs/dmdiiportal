@@ -28,6 +28,7 @@ angular.module('dmc.project')
 
             $scope.userData = DMCUserModel.getUserData();
             $scope.userData.then(function(result){
+                $scope.userData = result;
                 getServers();
             });
 
@@ -68,14 +69,22 @@ angular.module('dmc.project')
                     $scope.servers = $scope.servers.sort(function(a,b){return a.id - b.id});
                     if ($scope.servers.unshift(item)) this.serverModel = 0;
                     $scope.serverModel = 0;
+                    $scope.updateDateTime = new Date();
+                    apply();
                 }
+            };
+
+            $scope.startAddServer = function(){
+                $scope.flagAddServer = true;
             };
 
             // save new server
             $scope.saveServer = function(server){
                 serviceModel.add_servers({
                     ip: server.ip,
-                    name: server.name
+                    name: server.name,
+                    "accountId": $scope.userData.accountId,
+                    "status": "offline"
                 }, function(data){
                     $scope.servers.push(data);
                     $scope.flagAddServer = false;

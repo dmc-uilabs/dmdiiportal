@@ -40,6 +40,17 @@ angular.module('dmc.widgets.projects',[
                         $scope.total = response.data.length;
                         $scope.projects = response.data;
                         if($scope.total > limit) $scope.projects.splice(limit,$scope.total);
+                        for(var i in $scope.projects) {
+                            if ($scope.projects[i].dueDate) {
+                                var day = 86400000;
+                                $scope.projects[i].dueDate = (new Date() - new Date($scope.projects[i].dueDate));
+                                if ($scope.projects[i].dueDate <= day) {
+                                    $scope.projects[i].dueDate = moment(new Date()).format("MM/DD/YYYY");
+                                } else {
+                                    $scope.projects[i].dueDate = Math.floor($scope.projects[i].dueDate / day) + " days";
+                                }
+                            }
+                        }
                         apply();
                     },function(response){
                         toastModel.showToast("error", "Ajax faild: getProjects");

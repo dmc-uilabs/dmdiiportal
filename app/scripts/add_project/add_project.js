@@ -20,15 +20,55 @@ angular.module('dmc.add_project', [
 .service('projectModel', [
     'ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',
     function (ajax, dataFactory, $stateParams, toastModel, $rootScope) {
+
+        this.update_project = function(id,params, array, currentMembers, callback){
+            ajax.update(dataFactory.updateProject(id),{
+                title : params.title,
+                type : params.type,
+                dueDate : params.dueDate,
+                description : params.description
+            },function(response){
+                    for(var i in array){
+                        var isFound = false;
+                        for(var j in currentMembers){
+                            if(array[i].profileId == currentMembers[j].profileId){
+                                currentMembers.splice(j,1);
+                                isFound = true;
+                                break;
+                            }
+                        }
+                        if(!isFound){
+                            ajax.create(dataFactory.createMembersToProject(),
+                                {
+                                    "profileId": $rootScope.userData.profileId,
+                                    "projectId": id,
+                                    "fromProfileId": $rootScope.userData.profileId,
+                                    "from": $rootScope.userData.displayName,
+                                    "date": moment(new Date).format('x'),
+                                    "accept": true
+                                },
+                                function(response){}
+                            );
+                        }
+                    }
+                    if(currentMembers.length > 0) {
+                        for (var i in currentMembers) {
+                            ajax.delete(dataFactory.deleteProjectMember(currentMembers[i].id),{},function(){})
+                        }
+                    }
+                callback();
+            });
+        };
+
         this.add_project = function(params, array, callback){
-            ajax.get(dataFactory.getProjects(), 
+            ajax.get(dataFactory.getProjects(),
                 {
                     "_limit" : 1,
                     "_order" : "DESC",
                     "_sort" : "id"
-                }, 
-                function(response){  
-                    var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1); 
+                },
+                function(response){
+                    var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
                     ajax.create(dataFactory.getCreateProject(),
                         {
                             "id": lastId,
