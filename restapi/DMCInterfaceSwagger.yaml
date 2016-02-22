@@ -20,7 +20,7 @@ paths:
     get:
       tags:
         - account
-      description: Get currently logged in user details
+      description: Get currently logged in user details.  If user does not exist, create account.
       responses:
         '200':
           description: Sends the project with projectID
