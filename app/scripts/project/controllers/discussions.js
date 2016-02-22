@@ -21,11 +21,15 @@ angular.module('dmc.project')
 
             $scope.types = [
                 {
+                    tag: "all",
+                    name: "All"
+                },
+                {
                     tag: "following",
-                    name: "Follow"
+                    name: "Followed"
                 }, {
                     tag: "follow-people",
-                    name: "Follow people"
+                    name: "People I Follow"
                 },{
                     tag: "popular",
                     name: "Popular"
