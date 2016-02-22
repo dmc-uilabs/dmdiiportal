@@ -30,6 +30,11 @@
   }
 }
 
+
+.delete-project{
+//  margin: 5px 0;
+}
+
 .all-project-members{
   .one-member{
     background-color: #fff;
@@ -86,6 +91,10 @@
     md-toolbar{
       .md-toolbar-tools{
         padding: 0;
+        height: 31px;
+        button{
+          margin-right: -16px;
+        }
       }
     }
   }

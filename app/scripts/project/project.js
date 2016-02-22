@@ -24,6 +24,7 @@ angular.module('dmc.project', [
 		'dmc.widgets.tabs',
         'dmc.widgets.interfaces',
         'dmc.component.productcard',
+        'dmc.model.question-toast-model',
         'dmc.add_project.directive',
 		'ui.router',
 		'md.data.table',

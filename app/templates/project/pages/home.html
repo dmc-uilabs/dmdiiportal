@@ -22,7 +22,11 @@
             <!-- buttons for submission -->
             <md-button ng-if="isSubmission" class="md-raised dmc-button" href="/project.php#/submit/{{projectCtrl.projectData.id}}"><ng-md-icon icon="send" size="18"></ng-md-icon> Submit</md-button>
 
-            <md-button ng-if="!isPreview" class="md-raised dmc-button gray-button"><ng-md-icon icon="mode_edit" size="18"></ng-md-icon> Edit</md-button>
+            <a ng-if="!isPreview"
+               ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/edit'}}"
+               class="link-button uppercase invite-button margin-left20">
+                <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
+            </a>
 
             <a ng-if="!isPreview"
                ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"

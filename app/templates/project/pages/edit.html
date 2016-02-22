@@ -3,8 +3,10 @@
         <div class="content-panel">
             <div class="content-panel-header">
                 <md-toolbar>
-                    <div class="md-toolbar-tools">
+                    <div class="md-toolbar-tools edit-project-tools" layout="row" layout-align="start center">
                         <h2>EDIT PROJECT</h2>
+                        <span flex></span>
+                        <md-button class="md-raised md-warn dmc-button delete-project" ng-click="deleteProject($event)">Delete Project</md-button>
                     </div>
                 </md-toolbar>
             </div>
