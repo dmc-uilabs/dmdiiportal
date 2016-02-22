@@ -11,7 +11,6 @@ angular.module('dmc.widgets.onboarding',[
             },
             controller: ['$scope', '$rootScope',
 	            function($scope, $rootScope) {
-	            	console.info("ok", $rootScope.userData)
 	            	$rootScope.$watch(function(){
 	            		return $rootScope.userData
 	            	}, function(){

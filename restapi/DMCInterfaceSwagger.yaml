@@ -26,6 +26,24 @@ paths:
           description: Sends the project with projectID
           schema:
             $ref: '#/definitions/UserDetails'
+  /user-basic-information:
+    post:
+      tags:
+        - account
+        - onboarding
+      description: Set initial basic information for User after first login
+      parameters:
+        - in: body
+          name: UserBasicInformation
+          description: Basic information required after first login.
+          required: false
+          schema:
+            $ref: '#/definitions/UserBasicInformation'
+      responses:
+        '201':
+          description: updated user object
+          schema:
+            $ref: '#/definitions/UserBasicInformation'
   '/accounts/{accountID}':
     get:
       tags:
@@ -4248,6 +4266,17 @@ definitions:
       title:
         type: string
       link:
+        type: string
+  UserBasicInformation:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      company:
         type: string
   UserDetails:
     type: object
