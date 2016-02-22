@@ -32,6 +32,8 @@ angular.module('dmc.view-all')
                     url: location.origin+'/my-projects.php'
                 }
             }
+            $(".bottom-header .active-page").removeClass("active-page");
+            $(".projects-header-button").addClass("active-page");
 
             $("title").text("View All Services");
 

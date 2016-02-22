@@ -15,10 +15,10 @@
             <md-list>
                 <md-list-item class="md-2-line" ng-repeat="item in announcements">
                     <div class="md-list-item-text" layout="column">
-                        <p><a href="#" class="link-button">{{item.text}}</a></p>
+                        <p><a href="/individual-discussion.php#/{{item.id}}" class="link-button">{{item.title}}</a></p>
                         <div class="info">
-                            <span>{{item.created_at}}</span>
-                            <span>{{item.announcement_comments.length}} comments</span>
+                            <span>{{item.created_at_format}}</span>
+                            <span>{{item.replies}} comments</span>
                         </div>
                     </div>
                 </md-list-item>

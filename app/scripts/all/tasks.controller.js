@@ -22,6 +22,15 @@ angular.module('dmc.view-all')
 
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
+            if($scope.previousPage.tag == "company"){
+                $scope.previousPage = {
+                    tag : "my-projects",
+                    title: "Back to My Projects",
+                    url: location.origin+'/my-projects.php'
+                }
+            }
+            $(".bottom-header .active-page").removeClass("active-page");
+            $(".projects-header-button").addClass("active-page");
 
             $("title").text("View All Tasks");
 
