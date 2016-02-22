@@ -47,7 +47,6 @@
                                 <input required
                                        name="phoneNumber"
                                        phone-input
-                                       maxlength="12"
                                        ng-model="newContact.phoneNumber">
                             </md-input-container>
                             <md-input-container flex="50" class="left-space">
@@ -72,13 +71,11 @@
         <div layout="row"
              layout-align="start start"
              class="contact-item"
-             ng-repeat="item in contacts" flex>
+             ng-repeat="item in company[9].data.keyContacts" flex>
             <div layout="column" class="right-space" flex="20">
                 <md-input-container>
                     <label>Type</label>
-                    <md-select ng-init="item.changedType = item.type"
-                               ng-change="changedValue('contact')"
-                               ng-model="item.changedType">
+                    <md-select ng-model="item.type">
                         <md-option ng-repeat="c in keyContactTypes" value="{{c.id}}">{{c.name}}</md-option>
                     </md-select>
                 </md-input-container>
@@ -87,31 +84,22 @@
                 <div layout="row">
                     <md-input-container flex="50" class="right-space">
                         <label>Name</label>
-                        <input ng-init="item.changedName = item.name"
-                               ng-change="changedValue('contact')"
-                               ng-model="item.changedName">
+                        <input ng-model="item.name">
                     </md-input-container>
                     <md-input-container flex="50" class="left-space">
                         <label>Title</label>
-                        <input ng-init="item.changedTitle = item.title"
-                               ng-change="changedValue('contact')"
-                               ng-model="item.changedTitle">
+                        <input ng-model="item.title">
                     </md-input-container>
                 </div>
                 <div layout="row">
                     <md-input-container flex="50" class="right-space">
                         <label>Phone Number</label>
                         <input phone-input
-                               maxlength="12"
-                               ng-init="item.changedPhoneNumber = item.phoneNumber"
-                               ng-change="changedValue('contact')"
-                               ng-model="item.changedPhoneNumber">
+                               ng-model="item.phoneNumber">
                     </md-input-container>
                     <md-input-container flex="50" class="left-space">
                         <label>Email</label>
-                        <input ng-init="item.changedEmail = item.email"
-                               ng-change="changedValue('contact')"
-                               ng-model="item.changedEmail">
+                        <input ng-model="item.email">
                     </md-input-container>
                 </div>
             </div>
@@ -124,7 +112,7 @@
                 </md-button>
             </div>
         </div>
-        <div layout="row" ng-if="contacts.length == 0 && !isAddingContact">No contacts</div>
+        <div layout="row" ng-if="company[9].data.keyContacts.length == 0 && !isAddingContact">No contacts</div>
     </div>
 </div>
 

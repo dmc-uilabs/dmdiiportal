@@ -58,7 +58,6 @@ angular.module('dmc.individual-discussion', [
             $scope.flagReviewFlag = false;
             $scope.replyReviewFlag = false;
             $scope.showReplyFlag = false;
-            $scope.version1 = true;
 
             $scope.userData = DMCUserModel.getUserData();
             $scope.userData.then(function(result) {  // this is only run after $http completes

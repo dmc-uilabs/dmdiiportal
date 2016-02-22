@@ -10,11 +10,11 @@
 	<form name="describeForm" autocomplete="off" layout="row" layout-wrap>
 		<md-input-container flex="55">
 			<label>Address</label>
-			<input ng-model="company[7].data.address" required>
+			<input ng-model="company[7].data.address">
 		</md-input-container>
 		<md-input-container flex="15">
 			<label>City</label>
-			<input ng-model="company[7].data.city" required>
+			<input ng-model="company[7].data.city">
 		</md-input-container>
 
 		<md-input-container flex="15">
@@ -26,7 +26,7 @@
 
 		<md-input-container flex="15">
 			<label>Zip Code</label>
-			<input ng-model="company[7].data['zip-code']" required>
+			<input ng-model="company[7].data.zipCode">
 		</md-input-container>
 
 		<md-input-container flex="25">
@@ -38,11 +38,11 @@
 
 		<md-input-container flex="50" ng-if="company[7].data.methodCommunication == 1">
 			<label>Email</label>
-			<input ng-model="company[7].data.email" required>
+			<input ng-model="company[7].data.email">
 		</md-input-container>
 		<md-input-container flex="50" ng-if="company[7].data.methodCommunication == 2">
 			<label>Phone</label>
-			<input phone-input ng-model="company[7].data.phone" required>
+			<input phone-input ng-model="company[7].data.phone">
 		</md-input-container>
 	</form>
 

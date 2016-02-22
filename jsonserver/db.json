@@ -104,9 +104,9 @@
     },
     "onboarding": {
       "profile": true,
-      "account": true,
+      "account": false,
       "company": true,
-      "storefront": false
+      "storefront": true
     }
   },
   "assign_users": [
