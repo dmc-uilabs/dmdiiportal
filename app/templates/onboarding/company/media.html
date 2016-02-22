@@ -60,10 +60,10 @@
                 </div>
             </form>
             <div layout="column" layout-align="start start" flex>
-                <md-button class="md-raised" type="button" ng-click="cancelAddImage()">
+                <md-button class="md-raised dmc-button" type="button" ng-click="cancelAddImage()">
                     Cancel
                 </md-button>
-                <md-button class="md-raised md-primary"
+                <md-button class="md-raised md-primary dmc-button"
                            ng-click="saveImage(newImage)"
                            ng-disabled="!formAddImage.$valid || !file">
                     Save
@@ -115,10 +115,10 @@
                     </md-input-container>
                 </div>
                 <div layout="row" layout-align="end center">
-                    <md-button class="md-raised" type="button" ng-click="cancelAddVideo()">
+                    <md-button class="md-raised dmc-button" type="button" ng-click="cancelAddVideo()">
                         Cancel
                     </md-button>
-                    <md-button class="md-raised md-primary"
+                    <md-button class="md-raised md-primary dmc-button"
                                type="submit"
                                ng-disabled="!formAddVideo.$valid">
                         Save
@@ -150,7 +150,7 @@
 </div>
 
 	<div layout="row" layout-align="end center">
-		<md-button class="dmc-button md-raised" ui-sref="^.accomplishments">
+		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.accomplishments">
 			BACK
 		</md-button>
 		<md-button class="dmc-button md-raised md-primary" ng-click="next(4)">

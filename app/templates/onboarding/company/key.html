@@ -12,7 +12,7 @@
     <div class="list-contacts" flex="100">
         <div layout="row" class="title-list-contacts" layout-align="space-between center">
             <h3>Key Contacts</h3>
-            <md-button class="md-raised add-new-contact"
+            <md-button class="md-raised add-new-contact dmc-button"
                        ng-click="addNewContact()"
                        ng-show="!isAddingContact"
                        aria-label="Add Contact">
@@ -57,10 +57,10 @@
                     </div>
                 </div>
                 <div layout="row" layout-align="end center">
-                    <md-button class="md-raised" type="button" ng-click="cancelAddContact()">
+                    <md-button class="md-raised dmc-button" type="button" ng-click="cancelAddContact()">
                         Cancel
                     </md-button>
-                    <md-button class="md-raised md-primary"
+                    <md-button class="md-raised md-primary dmc-button"
                                type="submit"
                                ng-disabled="!formAddContact.$valid">
                         Save
@@ -117,7 +117,7 @@
 </div>
 
 	<div layout="row" layout-align="end center">
-		<md-button class="dmc-button md-raised" ui-sref="^.social">
+		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.social">
 			BACK
 		</md-button>
 		<md-button class="dmc-button md-raised md-primary" ng-click="next(9)">
