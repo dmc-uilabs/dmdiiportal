@@ -35,7 +35,7 @@
     <![endif]-->
 
     <!-- Top Header -->
-    <div dmc-top-header active-page="'marketplace'"></div>
+    <div dmc-top-header active-page="'marketplace&favorites'"></div>
 
     <div ui-view></div>
 

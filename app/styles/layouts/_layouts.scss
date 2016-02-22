@@ -416,30 +416,28 @@ button,
   }
 }
 
-div[ui-widget-services]{
+div[ui-widget-services] a em,
+div[ui-widget-discussions] .md-list-item-text h3 a,
+md-content[ui-widget-services] .md-list-item-text h3 a,
+md-content[ui-widget-services] .title a,
+md-content[ui-project-discussions] .md-list-item-text h3 a,
+md-content[ui-project-tasks] .md-list-item-text a,
+div[ui-widget-tasks] table td.title a{
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 0;
+}
+md-content[ui-project-tasks] .md-list-item-text h4{
+  font-size: 13px;
   a{
-    em{
-      font-size: 14px;
-    }
+    font-size: 13px;
   }
 }
-div[ui-widget-discussions]{
-  .md-list-item-text{
-    h3{
-      a{
-        font-size: 14px;
-      }
-    }
-  }
-}
-div[ui-widget-tasks]{
-  table{
-    td.title{
-      a{
-        font-size: 14px;
-      }
-    }
-  }
+
+a.link-button.font-size14{
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 0;
 }
 
 md-input-container:not(.md-input-has-value) input:not(:focus){

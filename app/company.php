@@ -35,7 +35,7 @@
     <![endif]-->
 
     <!-- Top Header -->
-    <div dmc-top-header active-page="'company'"></div>
+    <div dmc-top-header active-page="'marketplace&storefront'"></div>
 
     <div ui-view></div>
 
