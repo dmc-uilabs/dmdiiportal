@@ -35,6 +35,7 @@ angular.module('dmc.service-marketplace')
             $scope.addAuthors = [];
             $scope.arraySpecifications = [];
             $scope.autocomplete = false;
+            $scope.arrAddSpecifications = [];
 
             serviceModel.get_array_specifications(function(data){
                 $scope.arraySpecifications = data;
@@ -140,7 +141,7 @@ angular.module('dmc.service-marketplace')
                         break;
                     }
                 }
-                $scope.product.specifications[0].special.push({
+                $scope.arrAddSpecifications.push({
                     specification: item.name,
                     data: "",
                     specificationId: item.id
@@ -152,15 +153,26 @@ angular.module('dmc.service-marketplace')
                     $("input[name='data']").focus();
                 })
             };
+
             $timeout(function() {
-                $('#specificationsField').focusout(function(ev){
+                $('md-autocomplete').focusout(function(ev){
                     if($scope.autocomplete){
-                        $scope.autocomplete.clear();
-                        $("body").focus();
-                        $scope.autocomplete = false;
+                        $timeout(function() {
+                            $scope.autocomplete.scope.selectedItem = null;
+                            $scope.autocomplete.scope.searchText = null;
+                         },500)
                     }
                 })
-            })
+            });
+
+            $scope.pushSpecifications = function(index){
+                $scope.product.specifications[0].special.push($scope.arrAddSpecifications[index]);
+                $scope.arrAddSpecifications.splice(index,1);
+            };
+
+            $scope.cancelPushSpecifications = function(index){
+                $scope.arrAddSpecifications.splice(index,1);
+            }
 
             //Create filter function
             function createFilterForSpecifications(query) {
@@ -168,7 +180,7 @@ angular.module('dmc.service-marketplace')
                 return function filterFn(state) {
                     return (angular.lowercase(state.name).indexOf(lowercaseQuery) === 0);
                 };
-            }
+            };
 
             //remove specifications
             $scope.deleteSpecifications = function(index){
@@ -184,10 +196,13 @@ angular.module('dmc.service-marketplace')
                 this.$$childHead.$mdAutocompleteCtrl.clear();
                 serviceModel.add_array_specifications(text, 
                     function(data){
-                        $scope.product.specifications[0].special.push({
+                        $scope.arrAddSpecifications.push({
                         specification: data.name,
                         data: "",
                         specificationId: data.id
+                    });
+                    $timeout(function() {
+                        $("input[name='data']").focus();
                     });
                 });
             }
