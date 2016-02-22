@@ -51,7 +51,9 @@
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="item in discussions">
-                                    <td>{{item.text}}</td>
+                                    <td>
+                                        <a class="link-button" href="/individual-discussion.php#/{{item.id}}">{{item.text}}</a>
+                                    </td>
                                     <td>{{item.replies}} replies</td>
                                     <td>
                                         {{item['full_name']}} at<br>
