@@ -6,18 +6,24 @@ angular.module('dmc.community')
             '$stateParams', '$state', "$scope", "ajax", "$location","dataFactory","toastModel", "$mdDialog",
             function ($stateParams, $state, $scope, ajax, $location, dataFactory, toastModel, $mdDialog) {
 
-                $scope.peoples = [
+
+                $scope.searchTypes = [
                     {
                         id : 1,
-                        name : "People"
+                        name : "Members",
+                        tag : "members"
                     },{
                         id : 2,
-                        name : "Organizations"
+                        name : "Companies",
+                        tag : "companies"
                     },{
                         id : 3,
-                        name : "Discussions"
+                        name : "Discussions",
+                        tag : "discussions"
                     }
                 ];
+
+                $scope.searchTypeModel = null;
 
                 $scope.selectItemDropDown = function(){
                     var item = null;
@@ -55,6 +61,17 @@ angular.module('dmc.community')
                         }, function() {
                         });
                 }
+
+                $scope.selectItemDropDown = function(type){
+                    $scope.searchTypeModel = type;
+                };
+
+                $scope.submit = function(){
+                    var link = "search.php#/";
+                    link += ($scope.searchTypeModel ? $scope.searchTypeModel : "all");
+                    if($scope.searchModel) link += "?text="+decodeURIComponent($scope.searchModel);
+                    document.location.href = link;
+                };
             }
         ]
     );
