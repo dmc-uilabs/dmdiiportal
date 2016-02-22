@@ -22,12 +22,13 @@ angular.module('dmc.my_projects', [
         });
     $urlRouterProvider.otherwise('/');
 })
-.controller('DMCMyProjectsController', function ($scope,$element) {
+.controller('DMCMyProjectsController', function ($scope,$rootScope,$element) {
+        $scope.sortProjects = "id";
     $scope.sortList = [
         {
-            id : 3, tag : "date", name : "Most recent"
+            id : 3, tag : "id", name : "Most recent"
         },{
-            id : 2, tag : "name", name : "Name"
+            id : 2, tag : "title", name : "Name"
         },{
             id : 1, tag : "id", name : "ID Project"
         }
@@ -46,22 +47,29 @@ angular.module('dmc.my_projects', [
         }
     ];
 
-    $scope.sortModel = 0;
-    $scope.selectItemDropDown = function(type){
-        if(type == "filter"){
-            if($scope.filterModel != 0) {
+        $scope.sortModel = 0;
+        $scope.selectItemDropDown = function(type){
+            if(type == "filter"){
                 var item = $scope.filterList[$scope.filterModel];
-                $scope.filterList.splice($scope.filterModel, 1);
-                $scope.filterList = $scope.filterList.sort(function(a,b){return a.id - b.id});
-                if ($scope.filterList.unshift(item)) $scope.filterModel = 0;
-            }
-        }else{
-            if($scope.sortModel != 0) {
+                if($scope.filterModel != 0) {
+                    $scope.filterList.splice($scope.filterModel, 1);
+                    $scope.filterList = $scope.filterList.sort(function(a,b){return a.id - b.id});
+                    if ($scope.filterList.unshift(item)) $scope.filterModel = 0;
+                }
+                $rootScope.sortMAProjects(item.tag);
+            }else{
                 var item = $scope.sortList[$scope.sortModel];
-                $scope.sortList.splice($scope.sortModel, 1);
-                $scope.sortList = $scope.sortList.sort(function(a,b){return a.id - b.id});
-                if ($scope.sortList.unshift(item)) $scope.sortModel = 0;
+                if($scope.sortModel != 0) {
+                    $scope.sortList.splice($scope.sortModel, 1);
+                    $scope.sortList = $scope.sortList.sort(function(a,b){return a.id - b.id});
+                    if ($scope.sortList.unshift(item)) $scope.sortModel = 0;
+                }
+                $rootScope.sortMAProjects(item.tag);
             }
+        };
+
+        $scope.updateSort = function(){
+            var item = $scope.sortList[$scope.sortModel];
+            $rootScope.sortMAProjects(item.tag);
         }
-    };
 });
