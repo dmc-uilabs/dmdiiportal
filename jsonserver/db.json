@@ -511,8 +511,8 @@
   ],
   "following_members": [
     {
-      "profileId": 1,
       "accountId": 1,
+      "profileId": 1,
       "id": 1
     }
   ],
@@ -6848,54 +6848,8 @@
       "id": 3
     }
   ],
-  "service-documents": [
-    {
-      "id": 14,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 5,
-      "title": "111 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "34MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 15,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 5,
-      "title": "88 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "80MB",
-      "modifed": "11/26/2015, 6:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    }
-  ],
-  "project-documents": [
-    {
-      "id": 14,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 5,
-      "title": "111 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "34MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 15,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 5,
-      "title": "88 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "80MB",
-      "modifed": "11/26/2015, 6:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    }
-  ],
+  "service-documents": [],
+  "project-documents": [],
   "documents": [
     {
       "id": 1,
@@ -7728,6 +7682,11 @@
       "accountId": 1,
       "individual-discussionId": 4,
       "id": 4
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 5,
+      "id": 5
     }
   ],
   "individual-discussion-tags": [
@@ -7735,6 +7694,11 @@
       "name": "Tag 1",
       "individual-discussionId": 2,
       "id": 1
+    },
+    {
+      "name": "tag",
+      "individual-discussionId": 5,
+      "id": 2
     }
   ],
   "individual-discussion": [
@@ -7761,6 +7725,11 @@
       "title": "Discussion 91",
       "accountId": 1,
       "id": 4
+    },
+    {
+      "title": "New Discussion for test functionality",
+      "accountId": 1,
+      "id": 5
     }
   ],
   "individual-discussion-comments": [
@@ -7918,6 +7887,21 @@
       "like": 0,
       "dislike": 0,
       "id": 12
+    },
+    {
+      "individual-discussionId": 5,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "Message text",
+      "created_at": "2016-02-22 02:37:28",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 13
     }
   ],
   "individual-discussion-comments-helpful": [

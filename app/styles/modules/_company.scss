@@ -211,3 +211,49 @@
     }
   }
 }
+
+
+.company-card{
+  margin: 2px 2px;
+  border: 1px solid #ccc;
+  @include borderRadius(2px);
+  .industry{
+    font-weight: 100;
+    font-size: 12px;
+    margin: 0;
+  }
+  .member-card__image{
+    img{
+      height: 80px;
+      width: auto;
+    }
+  }
+  .top-buttons{
+    padding: 16px 16px 0;
+    a{
+      cursor: pointer;
+    }
+    ng-md-icon{
+      fill: #333;
+    }
+    a:hover{
+      ng-md-icon{
+        fill: #777;
+      }
+    }
+  }
+  .description{
+    max-height: 43px;
+    text-overflow: ellipsis;
+    height: 43px;
+    overflow: hidden;
+  }
+  .product-card__footer{
+    @include borderRadius(0 0px 2px 2px);
+  }
+  .product-card__footer .md-button{
+    min-height: 0;
+    height: 35px;
+    line-height: 35px;
+  }
+}

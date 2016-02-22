@@ -2,7 +2,7 @@
     <a ng-href="{{level.href}}" ng-class="{'selected' : level.opened}">
         <ng-md-icon ng-if="level.categories.length > 0 && level.opened" icon="arrow_drop_down"></ng-md-icon>
         <ng-md-icon ng-if="level.categories.length > 0 && !level.opened" icon="arrow_drop_up"></ng-md-icon>
-        {{level.title}} <span class="small-text">({{level.items}})</span>
+        {{level.title}} <span class="small-text" ng-if="level.items">({{level.items}})</span>
     </a>
     <ul dmc-menu ng-if="level.categories.length > 0" menu-source="level.categories"></ul>
 </li>

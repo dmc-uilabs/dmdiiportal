@@ -1,0 +1,138 @@
+<div class="container marketplace-box" layout="row" >
+    <div class="content-column" layout="column" flex='20'>
+        <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
+        <dmc-products-filter state-name="'marketplace_search'" ng-if="isSearch"></dmc-products-filter>
+    </div>
+    <!-- Left Content Column -->
+    <div class="search-content" layout="column" flex>
+        <md-content class="container-view-all" layout="row" layout-align="center center">
+            <div layout="column" flex="100">
+                <div layout="row" flex layout-align="start end" class="search-content">
+                    <md-input-container class="filterBox">
+                        <md-select placeholder="{{subTypes.placeholder}}" ng-model="subTypeModel" ng-change="subTypeChange(subTypeModel)">
+                            <md-option ng-repeat="item in subTypes.items" value="{{item.tag}}">{{item.name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <form ng-submit="submit(searchTextModel)" class="view-all-search-field global-search-form" flex>
+                        <div layout="column">
+                            <div layout="row">
+                                <div layout="column" flex>
+                                    <md-input-container md-no-float>
+                                        <md-icon>
+                                            <ng-md-icon icon="search"></ng-md-icon>
+                                        </md-icon>
+                                        <input type="text" placeholder="{{searchPlaceholder}}" ng-model="searchTextModel">
+                                    </md-input-container>
+                                </div>
+                                <div layout="column">
+                                    <md-input-container>
+                                        <md-button type="submit" class="search-button">Search</md-button>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <span flex="10"></span>
+                    <div class="margin-bottom-17">
+                        <a class="link-button margin-left20" href="">Following ({{totalFollowing}})</a>
+                        <a ng-if="type=='discussions'" class="link-button margin-left20" ng-click="createDiscussion()">Add New Discussion</a>
+                        <!--<a class="link-button margin-left20">-->
+                            <!--<ng-md-icon icon="account_circle" size="18"></ng-md-icon>-->
+                            <!--Contacts-->
+                        <!--</a>-->
+                    </div>
+                </div>
+                <div layout="row" flex class="title-result" layout-align="start center">
+                    <div class="title">
+                        {{totalResults}} Results
+                    </div>
+                    <span flex></span>
+                    <md-input-container>
+                        <label>Show</label>
+                        <md-select ng-model="totalItemsPerPage">
+                            <md-option ng-repeat="item in showArray track by $index" ng-value="item.val" >
+                                {{item.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Sort</label>
+                        <md-select ng-model="sortItems">
+                            <md-option ng-repeat="item in sortArray track by $index" ng-value="item.val" >
+                                {{item.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout="results" flex>
+                    <!-- Discussions -->
+                    <div class="results-discussions" flex ng-if="type == 'discussions'">
+                        <md-data-table-container flex>
+                            <table md-data-table>
+                                <thead md-order="sort" md-trigger="onOrderChange">
+                                <tr>
+                                    <th name="Discussion" order-by="text" class="title"></th>
+                                    <th name="Replies" order-by="replies"></th>
+                                    <th name="Created by" order-by="createdBy"></th>
+                                    <th name="Latest Post" order-by="latestPost"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in discussions">
+                                    <td class="text-normal"><a class="link-button" href="/individual-discussion.php#/{{item.id}}">{{item.text}}</a></td>
+                                    <td>{{item.replies}} replies</td>
+                                    <td class="nowrap">
+                                        {{item['full_name']}} at<br>
+                                        {{item['created_at']}}
+                                    </td>
+                                    <td class="nowrap">
+                                        {{item['latest-post']['created-by']}} updated<br>
+                                        {{item['latest-post']['created-at']}}
+                                    </td>
+                                </tr>
+                                <tr ng-if="discussions.length == 0">
+                                    <td class="empty" colspan="4">No discussions</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </md-data-table-container>
+                    </div>
+                    <div flex ng-if="type == 'all' || type == 'companies' || type == 'members'">
+                        <div layout="row" layout-wrap>
+                            <div dmc-company-card
+                                 flex="25"
+                                 ng-if="item.isCompany"
+                                 ng-repeat="item in arrayItems"
+                                 add-to-project="addCompanyToProject"
+                                 card-source="item">
+                            </div>
+                            <div dmc-member-card
+                                 flex="25"
+                                 ng-if="item.isMember"
+                                 ng-repeat="item in arrayItems"
+                                 add-to-project="addMemberToProject"
+                                 all-buttons="true"
+                                 card-source="item"
+                                 class="member-card">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div ng-if="pages.length > 0" class="pagination" layout="row" flex layout-align="center start">
+                    <div ng-class="{'active' : pageNumber == currentPage}"
+                         class="page-item"
+                         ng-if="visiblePages.indexOf(pageNumber) >= 0"
+                         ng-repeat="pageNumber in pages">
+                        <a href="{{getPageHref(pageNumber)}}" ng-click="openPage($event,pageNumber)">{{pageNumber}}</a>
+                    </div>
+                </div>
+            </div>
+        </md-content>
+
+        <!-- Favorit items -->
+        <div class="marketplace-storefronts">
+
+        </div>
+    </div>
+</div>
