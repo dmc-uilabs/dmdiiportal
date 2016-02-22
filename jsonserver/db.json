@@ -109,6 +109,12 @@
       "storefront": true
     }
   },
+  "user-basic-information": {
+    "firstName": "John",
+    "lastName": "Smith",
+    "email": "john@ge.com",
+    "company": "GE"
+  },
   "assign_users": [
     {
       "id": 1,

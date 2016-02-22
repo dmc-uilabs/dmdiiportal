@@ -90,10 +90,10 @@
                 </div>
             </form>
             <div layout="column" layout-align="start start" flex>
-                <md-button class="md-raised" type="button" ng-click="cancelAddSkillsImage()">
+                <md-button class="md-raised dmc-button" type="button" ng-click="cancelAddSkillsImage()">
                     Cancel
                 </md-button>
-                <md-button class="md-raised md-primary"
+                <md-button class="md-raised md-primary dmc-button"
                            ng-click="saveSkillsImage(newImage)"
                            ng-disabled="!formAddSkillsImage.$valid || !newAddedImage">
                     Save
@@ -124,7 +124,7 @@
 </div>
 
 	<div layout="row" layout-align="end center">
-		<md-button class="dmc-button md-raised" ui-sref="^.media">
+		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.media">
 			BACK
 		</md-button>
 		<md-button class="dmc-button md-raised md-primary" ng-click="next(5)">
