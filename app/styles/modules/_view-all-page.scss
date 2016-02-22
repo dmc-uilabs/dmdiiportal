@@ -66,12 +66,18 @@
     }
     td{
       text-transform: none !important;
+      &:first-child a{
+        font-size: 14px;
+      }
     }
     .title{
       width: 100%;
     }
     .title-task{
       cursor: pointer;
+      a.link-button {
+        font-size: 14px;
+      }
     }
   }
   .announcements-list{
