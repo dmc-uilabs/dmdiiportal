@@ -115,6 +115,8 @@
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/components/add-project/add-project.directive.js"></script>
+    <script src="scripts/components/members-card/members-card.js"></script>
+    <script src="scripts/components/ui-widgets/stars.directive.js"></script>
 
 
     <script src="scripts/project/project.js"></script>

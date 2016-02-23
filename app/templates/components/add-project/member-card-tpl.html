@@ -11,8 +11,8 @@
         </a>
         <a ng-click="followMember()"
            class="follow-member link-button">{{ cardSource.follow ? 'Unfollow' : 'Follow'}}</a>
-        <a ng-href="{{'/profile.php#/'+cardSource.id}}">
-            <ng-md-icon icon="arrow_forward" title="Profile Page" aria-label="Profile Page" size="18"></ng-md-icon>
+        <a >
+            <ng-md-icon icon="info_outline" aria-label="Profile Page" size="18"></ng-md-icon>
         </a>
     </div>
     <div class="member-card__image">
@@ -63,11 +63,11 @@
                    aria-label="Compare"
                    flex ng-click="addToCompare()">
             Compare
-        </md-button>
+        </md-button> -->
         <md-button ng-if="allButtons"
                    aria-label="Add to Project"
                    flex ng-click="cardSource.addToProject()">
             Add to Project
-        </md-button> -->
+        </md-button>
     </div>
 </div>
