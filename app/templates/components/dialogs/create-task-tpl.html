@@ -19,28 +19,28 @@
             </div>
             <md-input-container flex>
                 <label>Description</label>
-                <textarea ng-model="description" columns="1" required></textarea>
+                <textarea ng-model="description" columns="1"></textarea>
             </md-input-container>
             <div class="block" layout="row" layout-align="space-between end">
                 <md-input-container flex="45">
-                    <md-select placeholder="Assigned To" required ng-model="assignedTo">
+                    <md-select placeholder="Assigned To" ng-model="assignedTo">
                         <md-option ng-value="user.name" ng-repeat="user in users">{{user.name}}</md-option>
                     </md-select>
                 </md-input-container>
 
                 <md-input-container flex="45">
                     <label>Priority</label>
-                    <md-select required ng-model="priorityModel">
+                    <md-select ng-model="priorityModel">
                         <md-option ng-repeat="p in priorities" value="{{p.id}}">{{p.name}}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
             <div class="block" layout="row">
-                <md-datepicker  flex="50" class="dueDatePicker" ng-model="dueDate" md-placeholder="Due Date" required></md-datepicker>
+                <md-datepicker  flex="50" class="dueDatePicker" ng-model="dueDate" md-placeholder="Due Date"></md-datepicker>
             </div>
             <div class="block" layout="row">
                 <span flex></span>
-                <md-button class="md-raised md-primary" ng-click="createTask()" ng-disabled="!form.$valid">Create</md-button>
+                <md-button class="md-raised md-primary" ng-click="createTask()" ng-disabled="!dueDate || !priorityModel || !assignedTo || !description">Create</md-button>
             </div>
             <div class="block" layout="row" ng-if="isCreation">
                 <md-progress-linear md-mode="indeterminate"></md-progress-linear>
