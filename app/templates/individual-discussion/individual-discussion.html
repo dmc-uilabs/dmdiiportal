@@ -26,13 +26,16 @@
 						<div class="comment-footer" layout="row" layout-align="space-between center">
 							<div layout="row" layout-align="start center">
 								<div>
-									<a href="" ng-click="reply($index)">Reply</a>
-									 | 
-									<a href="" ng-click="flagged($index)">Flag{{(comment.flagged)?'ged':''}}</a>
+									<a href="" ng-if="!$first" ng-click="reply($index)">Reply</a>
+									{{(!$first)?' | ':''}}
+									<a href="" ng-click="flagged($index)">
+										Flag{{(comment.flagged)?'ged':''}}
+									</a>
+									{{(comment.reply && !$first)?' | ':''}}
+									<a href="" ng-if="comment.reply && !$first" ng-click="ShowReply($index)">
+										{{(showReplyFlag === $index )? 'Hide' : 'Show' }} Repl{{(comment.replyReviews.length > 1)?'ies':'y'}}
+									</a>
 								</div>
-								<md-button md-no-ink class="md-button" ng-if="comment.reply" ng-click="ShowReply($index)">
-							        {{(showReplyFlag === $index )? 'Hide' : 'Show' }} Repl{{(comment.replyReviews.length > 1)?'ies':'y'}}
-							    </md-button>
 						    </div>
 							<div layout="row" layout-align="center center">
 								<p>Was this post helpful?</p>
@@ -131,7 +134,7 @@
 						<h2 flex="100">Tags</h2>
 						<md-chips ng-repeat="tag in discussion.tags track by $index" ng-show="discussion.tags.length > 0">
 							<md-chip>
-								{{tag.name}}
+								<a ng-href="{{'search.php#/all?text='+tag.name}}">{{tag.name}}</a>
 							</md-chip>
 						</md-chips>
                         <div layout="row" flex="100" layout-align="start center" layout-padding ng-show="discussion.tags.length == 0">

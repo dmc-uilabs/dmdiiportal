@@ -34,7 +34,7 @@
 <![endif]-->
 
 <!-- Top Header -->
-<div dmc-top-header active-page="'index'"></div>
+<div dmc-top-header active-page="'community'"></div>
 <div ui-view></div>
 <dmc-footer></dmc-footer>
 
