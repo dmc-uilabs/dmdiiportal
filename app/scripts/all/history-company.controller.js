@@ -18,8 +18,17 @@ angular.module('dmc.view-all')
 
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
+            if($scope.previousPage.tag == "company"){
+                $scope.previousPage = {
+                    tag : "my-projects",
+                    title: "Back to My Projects",
+                    url: location.origin+'/my-projects.php'
+                }
+            }
+
 
             $("title").text("View All History");
+
 
             
             $scope.history = [];

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('dmc.model.user', ['dmc.data'])
-    .service('DMCUserModel', ['$http', 'dataFactory', '$q', '$window', '$rootScope', function($http, dataFactory, $q, $window, $rootScope) {
+angular.module('dmc.model.user', ['dmc.data', 'dmc.ajax'])
+    .service('DMCUserModel', ['$http', 'dataFactory', '$q', '$window', '$rootScope', 'ajax', function($http, dataFactory, $q, $window, $rootScope, ajax) {
 
         var _userName = $window.apiUrl ? $window.givenName : 'DMC User';
         $rootScope.isLogged = _userName == ''  ? false : true;
@@ -40,9 +40,13 @@ angular.module('dmc.model.user', ['dmc.data'])
             return deferred.promise;
         }
 
-        this.getUserData = function() {
+        this.getUserData = function(useCached) {
             // return user cached data
-            if ($rootScope.userData) {
+            if (useCached === undefined) {
+                useCached = true;
+            }
+
+            if ($rootScope.userData && useCached) {
                 return $q.when($rootScope.userData);
             } else {
                 return $http.get(dataFactory.getUserUrl()).then(
@@ -58,6 +62,10 @@ angular.module('dmc.model.user', ['dmc.data'])
                 )
             }
         };
+
+        this.onboardingBasicInformation = function(info, callback, errorCallback) {
+            ajax.create(dataFactory.getOnboardingBasicInfoUrl(), info, callback, errorCallback)
+        }
 
         this.UpdateUserData = function(user) {
 

@@ -14,12 +14,12 @@ angular.module('dmc.widgets.projects',[
                 widgetShowAllBlocks: "=",
                 showImage : "=",
                 widgetFormat: "=",
+                sortProjects: "=",
                 limit : "="
             },
-            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
+            controller: function($scope, $rootScope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
                 $scope.projects = [];
                 $scope.total = 0;
-                $scope.sort = 'id';
                 $scope.order = 'DESC';
                 var limit = ($scope.limit ? $scope.limit : ($scope.widgetShowAllBlocks == true ? 10 : 2));
 
@@ -33,7 +33,7 @@ angular.module('dmc.widgets.projects',[
                 // function for get all projects from DB
                 $scope.getProjects = function(){
                     ajax.get(dataFactory.getProjects(),{
-                        _sort : $scope.sort,
+                        _sort : $scope.sortProjects,
                         _order : $scope.order,
                         _start : 0
                     },function(response){
@@ -58,6 +58,37 @@ angular.module('dmc.widgets.projects',[
                 };
 
                 $scope.getProjects();
+
+                $rootScope.sortMAProjects = function(sortTag){
+                    console.log(sortTag);
+                    $scope.order = ($scope.order == "DESC" ? "ASC" : "DESC");
+                    switch(sortTag) {
+                        case "id":
+                            if ($scope.order == "ASC") {
+                                $scope.projects.sort(function (a, b) {
+                                    return a.id - b.id;
+                                });
+                            } else {
+                                $scope.projects.sort(function (a, b) {
+                                    return b.id - a.id;
+                                });
+                            }
+                            break;
+                        case "title":
+                            if ($scope.order == "ASC") {
+                                $scope.projects.sort(function (a, b) {
+                                    return a.title > b.title;
+                                });
+                            } else {
+                                $scope.projects.sort(function (a, b) {
+                                    return b.title > a.title;
+                                });
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                };
 
                 //socketFactory.on(socketFactory.updated().projects, function(item){
                 //    $scope.getProjects();

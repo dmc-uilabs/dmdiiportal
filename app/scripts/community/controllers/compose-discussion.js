@@ -49,7 +49,9 @@ angular.module('dmc.community')
                 ajax.create(
                     dataFactory.addDiscussion(), {
                         "title": $scope.NewDiscussion.subject,
-                        "accountId" : $rootScope.userData.accountId
+                        "accountId" : $rootScope.userData.accountId,
+                        "created_by" : $rootScope.userData.displayName,
+                        "created_at": Date.parse(new Date())
                     },
                     function(response){
                         if( followDiscussion(response.data.id) && createMessage(response.data.id,$scope.NewDiscussion.message)) {

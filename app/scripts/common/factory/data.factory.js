@@ -727,6 +727,9 @@ angular.module('dmc.data',[])
             getUserUrl: function(){
                 return localhost+'user';
             },
+            getOnboardingBasicInfoUrl: function() {
+                return localhost+'user-basic-information'
+            },
             getAccountNotifications: function(){
                 return localhost+'account-notification-categories';
             },

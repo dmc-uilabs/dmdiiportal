@@ -21,6 +21,8 @@ angular.module('dmc.view-all')
                     toastModel) {
 
         	$("title").text("View All Invitations");
+            $(".bottom-header .active-page").removeClass("active-page");
+            $(".projects-header-button").addClass("active-page");
 
         	$scope.userData = DMCUserModel.getUserData();
         	$scope.invitations = []

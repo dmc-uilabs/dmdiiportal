@@ -18,6 +18,15 @@ angular.module('dmc.view-all')
 
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
+            if($scope.previousPage.tag == "company"){
+                $scope.previousPage = {
+                    tag : "my-projects",
+                    title: "Back to My Projects",
+                    url: location.origin+'/my-projects.php'
+                }
+            }
+            $(".bottom-header .active-page").removeClass("active-page");
+            $(".community-header-button").addClass("active-page");
 
             $("title").text("View All Announcements");
 
@@ -27,7 +36,7 @@ angular.module('dmc.view-all')
             
             $scope.announcements = [];
             $scope.order = "DESC";
-            $scope.sort = "text";
+            $scope.sort = "title";
 
             $scope.types = [
                 {
@@ -69,28 +78,62 @@ angular.module('dmc.view-all')
             }
 
             $scope.getAnnouncements = function () {
-                ajax.get(dataFactory.getAnnouncements(), {
-                        _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
-                        _order: $scope.order,
-                        title_like: $scope.searchModel,
-                        _type: $scope.typeModel
-                    }, function (response) {
-                        $scope.announcements = response.data;
-                        for(var a in $scope.announcements){
-                        	getUser($scope.announcements[a]);
-                        	getComments($scope.announcements[a]);
-                            $scope.announcements[a].created_at = moment($scope.announcements[a].created_at).format("MM/DD/YYYY hh:mm A");
+                //ajax.get(dataFactory.getAnnouncements(), {
+                //        _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
+                //        _order: $scope.order,
+                //        title_like: $scope.searchModel,
+                //        _type: $scope.typeModel
+                //    }, function (response) {
+                //        $scope.announcements = response.data;
+                //        for(var a in $scope.announcements){
+                //        	getUser($scope.announcements[a]);
+                //        	getComments($scope.announcements[a]);
+                //            $scope.announcements[a].created_at = moment($scope.announcements[a].created_at).format("MM/DD/YYYY hh:mm A");
+                //        }
+                //        apply();
+                //    }
+                //);
+                ajax.get(dataFactory.getIndividualDiscussions(), {
+                    "_order" : "DESC",
+                    title_like: $scope.searchModel,
+                    "_sort" : "id"
+                }, function (response) {
+                    $scope.totalAnnouncements = response.data.length;
+                    $scope.announcements = response.data;
+                    var ids = $.map($scope.announcements,function(x){ return x.id; });
+                    ajax.get(dataFactory.addCommentIndividualDiscussion(),{
+                        "individual-discussionId" : ids,
+                        "_order" : "DESC",
+                        "_sort" : "id"
+                    },function(res){
+                        for(var i in $scope.announcements){
+                            $scope.announcements[i].created_at_format = moment(new Date($scope.announcements[i].created_at)).format("MM/DD/YYYY");
+                            $scope.announcements[i].replies = 0;
+                            for(var j in res.data){
+                                if($scope.announcements[i].id == res.data[j]["individual-discussionId"]){
+                                    $scope.announcements[i].replies++;
+                                    $scope.announcements[i].last = res.data[j];
+                                    $scope.announcements[i].last.created_at_format = moment(new Date($scope.announcements[i].last.created_at)).format("MM/DD/YYYY");
+                                    if($scope.announcements[i].last.isPosted == null){
+                                        $scope.announcements[i].last.isPosted = true;
+                                    }else if($scope.announcements[i].last.isPosted == true){
+                                        $scope.announcements[i].last.isPosted = false;
+                                    }
+                                }
+                            }
                         }
-                        apply();
-                    }
-                );
+                        $scope.announcements.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
+                        //$scope.discussions.splice($scope.limit,$scope.discussions.length);
+                    });
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                });
             };
             $scope.getAnnouncements();
 
             $scope.onOrderChange = function (order) {
-                $scope.sort = order;
-                $scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
-                $scope.getAnnouncements();
+                //$scope.sort = order;
+                //$scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
+                //$scope.getAnnouncements();
             };
 
             var apply = function () {

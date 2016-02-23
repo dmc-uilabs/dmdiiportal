@@ -141,7 +141,7 @@
                 <div layout="row">
                     <md-button
                             href="dashboard.php"
-                            class="item"
+                            class="item dashboard-header-button"
                             ng-class="{'active-page' : activePage.indexOf('dashboard') > -1}">
                         Dashboard
                     </md-button>
@@ -169,7 +169,7 @@
 
                     <md-button
                             href="community.php"
-                            class="item"
+                            class="item community-header-button"
                             ng-class="{'active-page' : activePage.indexOf('community') > -1}">
                         Community
                     </md-button>
@@ -177,6 +177,7 @@
                     <md-menu class="item" md-offset="0 57">
                         <md-button aria-label="Open Latest Services Menu"
                                    ng-click="closeMenu(); $mdOpenMenu($event);"
+                                   class="projects-header-button"
                                    ng-class="{'active-page' : activePage.indexOf('project') > -1}">
                             Projects
                             <ng-md-icon icon="arrow_drop_down" size="43"></ng-md-icon>

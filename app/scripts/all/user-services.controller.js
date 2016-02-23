@@ -30,7 +30,12 @@ angular.module('dmc.view-all')
                     url: location.origin+'/my-projects.php'
                 }
             }
-
+            $(".bottom-header .active-page").removeClass("active-page");
+            if($scope.previousPage.tag == "dashboard"){
+                $(".dashboard-header-button").addClass("active-page");
+            }else if($scope.previousPage.tag == "my-projects"){
+                $(".projects-header-button").addClass("active-page");
+            }
             $("title").text("View All Services");
 
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;

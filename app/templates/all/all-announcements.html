@@ -38,27 +38,27 @@
                             <table md-data-table>
                                 <thead md-order="sort" md-trigger="onOrderChange">
                                 <tr>
-                                    <th name="Announcements" order-by="text" class="title"></th>
+                                    <th name="Announcements" order-by="title" class="title"></th>
                                     <th name="Replies" order-by="replies"></th>
-                                    <th name="Created by" order-by="createdBy"></th>
-                                    <th name="Latest Post" order-by="latestPost"></th>
+                                    <th name="Created by" order-by="created_by"></th>
+                                    <th name="Latest Post" order-by="last.created_at"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="item in announcements">
+                                <tr ng-repeat="item in announcements | orderBy : sort">
                                     <td>
-                                		<p>{{item.text}}</p>
+                                		<p><a href="/individual-discussion.php#/{{item.id}}">{{item.title}}</a></p>
                                     </td>
                                     <td>{{item.replies}} replies</td>
                                     <td>
-                                        {{item['full_name']}} at<br>
-                                        {{item['created_at']}}
+                                        <a href="/profile.php#/{{item.accountId}}">{{item['created_by']}}</a> at<br>
+                                        {{item['created_at_format']}}
                                     </td>
-                                    <td ng-if="item['latest-post']">
-                                        {{item['latest-post']['created-by']}} updated<br>
-                                        {{item['latest-post']['created-at']}}
+                                    <td ng-if="item['last']">
+                                        <a href="/profile.php#/{{item.accountId}}">{{item['last']['full_name']}}</a> updated<br>
+                                        {{item['last']['created_at_format']}}
                                     </td>
-                                    <td ng-if="!item['latest-post']">
+                                    <td ng-if="!item['last']">
                                         No latest post
                                     </td>
                                 </tr>

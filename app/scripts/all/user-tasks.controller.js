@@ -22,6 +22,19 @@ angular.module('dmc.view-all')
             $scope.previousPage = previousPage.get();
 
             $("title").text("All My Tasks");
+            if($scope.previousPage.tag == "company"){
+                $scope.previousPage = {
+                    tag : "my-projects",
+                    title: "Back to My Projects",
+                    url: location.origin+'/my-projects.php'
+                }
+            }
+            $(".bottom-header .active-page").removeClass("active-page");
+            if($scope.previousPage.tag == "dashboard"){
+                $(".dashboard-header-button").addClass("active-page");
+            }else if($scope.previousPage.tag == "my-projects"){
+                $(".projects-header-button").addClass("active-page");
+            }
 
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
             $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "task";

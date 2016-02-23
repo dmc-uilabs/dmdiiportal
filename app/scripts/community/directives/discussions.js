@@ -20,16 +20,37 @@ angular.module('dmc.community.discussions',[
                 $scope.totalDiscussions = 0;
 
                 $scope.getDiscussions = function(){
-                        ajax.get(dataFactory.getDiscussions(null,$scope.widgetType), {
-                            _limit: $scope.limit,
-                            _sort: "created_at",
-                            _order: "DESC"
+                        ajax.get(dataFactory.getIndividualDiscussions(), {
+                            "_order" : "DESC",
+                            "_sort" : "id"
                         }, function (response) {
+                            $scope.totalDiscussions = response.data.length;
                             $scope.discussions = response.data;
-                            $scope.totalDiscussions = $scope.discussions.length;
-                            for (var index in $scope.discussions) {
-                                $scope.discussions[index].created_at = moment($scope.discussions[index].created_at, 'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
-                            }
+                            var ids = $.map($scope.discussions,function(x){ return x.id; });
+                            ajax.get(dataFactory.addCommentIndividualDiscussion(),{
+                                "individual-discussionId" : ids,
+                                "_order" : "DESC",
+                                "_sort" : "id"
+                            },function(res){
+                                for(var i in $scope.discussions){
+                                    $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format("MM/DD/YYYY");
+                                    $scope.discussions[i].replies = 0;
+                                    for(var j in res.data){
+                                        if($scope.discussions[i].id == res.data[j]["individual-discussionId"]){
+                                            $scope.discussions[i].replies++;
+                                            $scope.discussions[i].last = res.data[j];
+                                            $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format("MM/DD/YYYY");
+                                            if($scope.discussions[i].last.isPosted == null){
+                                                $scope.discussions[i].last.isPosted = true;
+                                            }else if($scope.discussions[i].last.isPosted == true){
+                                                $scope.discussions[i].last.isPosted = false;
+                                            }
+                                        }
+                                    }
+                                }
+                                $scope.discussions.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
+                                $scope.discussions.splice($scope.limit,$scope.discussions.length);
+                            });
                             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                         });
                 };
