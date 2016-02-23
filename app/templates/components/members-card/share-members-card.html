@@ -1,21 +1,16 @@
-<div class="company-card">
-    <div layout="row" class="top-buttons" layout-align="space-between center">
-        <a class="location" style="visibility: hidden">
-            <ng-md-icon icon="location_city" aria-label="Company Page" size="18"></ng-md-icon>
-        </a>
-        <a ng-if="userData.accountId != cardSource.accountId"
-           ng-click="followCompany()"
-           class="follow-company link-button">{{ cardSource.follow ? 'Unfollow' : 'Follow'}}</a>
-        <a ng-href="{{'/company.php#/'+cardSource.id}}">
-            <ng-md-icon icon="arrow_forward" title="Company Page" aria-label="Company Page" size="18"></ng-md-icon>
-        </a>
+<div>
+    <div layout="row" layout-align="center center">
+        <md-button aria-label="Favorite" ng-click="addToFavorite()" class="md-icon-button" flex>
+            <ng-md-icon ng-if="!cardSource.favorite" icon="favorite_outline" style="fill: grey;" size="18"></ng-md-icon>
+            <ng-md-icon ng-if="cardSource.favorite" icon="favorite" style="fill: #689F38;" size="18"></ng-md-icon>
+        </md-button>
     </div>
     <div class="member-card__image">
-        <img ng-src="{{cardSource.logoImage ? cardSource.logoImage : '/images/logo-rjc.png'}}" alt="{{cardSource.name}}">
+        <img style="width: 80px" ng-src="{{cardSource.image}}" alt="Name member">
     </div>
     <div class="member-card__header" layout="column" layout-padding layout-margin>
-        <h3 class="member-name"><a href="/company.php#/{{cardSource.id}}">{{cardSource.name}}</a></h3>
-        <h4 class="industry" ng-if="cardSource.industry">{{cardSource.industry}}</h4>
+        <h3 class="member-name"><a >{{cardSource.displayName}}</a></h3>
+        <span class="company-name"><a >{{cardSource.company}}</a></span>
     </div>
     <div class="member-card__content" layout="row" layout-padding flex>
         <div class="member-card__content__column" flex="28" layout="column">
@@ -37,10 +32,8 @@
         </div>
     </div>
     <div class="product-card__footer" layout="row">
-        <md-button ng-if="!cardSource.addToProject"
-                   aria-label="Add to Project"
-                   flex ng-click="addToProject()">
-            Add to Project
+        <md-button aria-label="Share" flex ng-click="share(cardSource.id)">
+            Share
         </md-button>
     </div>
 </div>

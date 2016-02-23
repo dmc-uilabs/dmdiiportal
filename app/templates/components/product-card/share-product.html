@@ -1,24 +1,40 @@
 <md-dialog flex="30" aria-label="View" class="shareProduct">
 	<md-dialog-content class="component">
 		<div layout="row" layout-align="space-between center">
-            <h4>Share the product</h4>
+            <h4>Share Service</h4>
             <span flex></span>
   		    <md-button class="md-icon-button" ng-click="cancel()">
                 <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
             </md-button>
         </div>
-		<md-content>
-            <div layout="row">
-                <md-list class="md-2-line">
-                    <md-list-item ng-repeat="person in people">
-                        <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
-                        <h3 flex><a class="link">{{ person.name }}</a></h3>
-                        <md-button aria-label="Share" class="md-icon-button">
-                            <ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
-                        </md-button>
-                    </md-list-item>
-                </md-list>
+		<md-content style="padding:0 0 8px">
+            <div layout="row" flex="100">
+                <md-autocomplete  flex="100"
+                        md-selected-item="users.selectedItem"
+                        md-search-text-change="users.searchTextChange(users.searchText)"
+                        md-search-text="users.searchText"
+                        md-selected-item-change="users.selectedItemChange(item)"
+                        md-items="item in users.querySearch(users.searchText)"
+                        md-item-text="item.display"
+                        md-min-length="0"
+                        placeholder="Member">
+                    <md-item-template>
+                        <span md-highlight-text="users.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No users matching "{{users.searchText}}" were found.
+                    </md-not-found>
+                </md-autocomplete>
             </div>
+            <div layout="row" ng-if="users.selectedItem">
+                <share-members-card share="shareService" card-source="users.selectedItem.profile"></share-members-card>
+            </div>
+            <!--<div layout="row" flex="100" class="margin-top-25">-->
+                <!--<span flex></span>-->
+                <!--<md-button class="md-raised md-primary dmc-button"-->
+                           <!--ng-disabled="!users.selectedItem"-->
+                           <!--ng-click="shareService()">Send</md-button>-->
+            <!--</div>-->
         </md-content>
   </md-dialog-content>
 </md-dialog>

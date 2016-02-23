@@ -63,14 +63,14 @@ angular.module('dmc.search')
 
             $scope.discussionsSubTypes = [
                 {
-                    tag: "following",
-                    name: "Follow"
+                    tag: "members",
+                    name: "Members"
                 }, {
-                    tag: "follow-people",
-                    name: "Follow people"
+                    tag: "companies",
+                    name: "Companies"
                 },{
-                    tag: "popular",
-                    name: "Popular"
+                    tag: "discussions",
+                    name: "Discussions"
                 }
             ];
             function setFirstInList(array,key,val) {
@@ -176,6 +176,43 @@ angular.module('dmc.search')
                         apply();
                     }
                 );
+
+                ajax.get(dataFactory.getIndividualDiscussions(), {
+                    "_order" : "DESC",
+                    title_like: $scope.searchTextModel,
+                    "_sort" : "id"
+                }, function (response) {
+                    $scope.totalResults = response.data.length;
+                    $scope.discussions = response.data;
+                    var ids = $.map($scope.discussions,function(x){ return x.id; });
+                    ajax.get(dataFactory.addCommentIndividualDiscussion(),{
+                        "individual-discussionId" : ids,
+                        "_order" : "DESC",
+                        "_sort" : "id"
+                    },function(res){
+                        for(var i in $scope.discussions){
+                            $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format("MM/DD/YYYY");
+                            $scope.discussions[i].replies = 0;
+                            for(var j in res.data){
+                                if($scope.discussions[i].id == res.data[j]["individual-discussionId"]){
+                                    $scope.discussions[i].replies++;
+                                    $scope.discussions[i].last = res.data[j];
+                                    $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format("MM/DD/YYYY");
+                                    if($scope.discussions[i].last.isPosted == null){
+                                        $scope.discussions[i].last.isPosted = true;
+                                    }else if($scope.discussions[i].last.isPosted == true){
+                                        $scope.discussions[i].last.isPosted = false;
+                                    }
+                                }
+                            }
+                        }
+                        var limit = ($scope.totalItemsPerPage == 'all' ? $scope.totalResults : $scope.totalItemsPerPage);
+                        if($scope.totalItemsPerPage > limit) {
+                            $scope.discussions = $scope.discussions.splice(($scope.currentPage - 1) * limit, $scope.currentPage * limit);
+                        }
+                    });
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                });
             };
             if($scope.type == 'discussions') $scope.getDiscussions();
 
@@ -378,7 +415,7 @@ angular.module('dmc.search')
 
             function getSubTypes(){
                 return {
-                    placeholder : "People",
+                    placeholder : "Filter",
                     items : $scope.discussionsSubTypes
                 };
             }

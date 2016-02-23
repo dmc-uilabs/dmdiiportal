@@ -79,15 +79,17 @@
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="item in discussions">
-                                    <td class="text-normal"><a class="link-button" href="/individual-discussion.php#/{{item.id}}">{{item.text}}</a></td>
-                                    <td>{{item.replies}} replies</td>
-                                    <td class="nowrap">
-                                        {{item['full_name']}} at<br>
-                                        {{item['created_at']}}
+                                    <td>
+                                        <a class="link-button font-size14 " href="/individual-discussion.php#/1">{{item.title}}</a>
                                     </td>
-                                    <td class="nowrap">
-                                        {{item['latest-post']['created-by']}} updated<br>
-                                        {{item['latest-post']['created-at']}}
+                                    <td>{{item.replies}} replies</td>
+                                    <td class="text-normal">
+                                        <a href="/account.php#/{{item.accountId}}">{{item['created_by']}}</a> at<br>
+                                        {{item['created_at_format']}}
+                                    </td>
+                                    <td class="text-normal">
+                                        <a href="/account.php#/{{item.last.accountId}}">{{item['last']['full_name']}}</a> updated<br>
+                                        {{item['last']['created_at_format']}}
                                     </td>
                                 </tr>
                                 <tr ng-if="discussions.length == 0">

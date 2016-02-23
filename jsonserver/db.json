@@ -681,6 +681,11 @@
       "accountId": 1,
       "serviceId": 4,
       "id": 16
+    },
+    {
+      "accountId": 1,
+      "serviceId": 44,
+      "id": 17
     }
   ],
   "projects": [
@@ -6828,6 +6833,32 @@
     },
     {
       "id": 3
+    }
+  ],
+  "shared-services": [
+    {
+      "accountId": 1,
+      "profileId": 1,
+      "serviceId": 44,
+      "id": 1
+    },
+    {
+      "accountId": 1,
+      "profileId": 1,
+      "serviceId": 44,
+      "id": 2
+    },
+    {
+      "accountId": 1,
+      "profileId": 1,
+      "serviceId": 44,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "profileId": 1,
+      "serviceId": 13,
+      "id": 4
     }
   ],
   "service-documents": [

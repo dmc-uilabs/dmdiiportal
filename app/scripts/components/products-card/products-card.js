@@ -32,6 +32,7 @@ angular.module('dmc.component.productscard', [
       controller: function($scope,$cookies){
           if(parseInt($scope.currentPage) <= 0) $scope.currentPage = 1;
           if(!$scope.hideButtons) $scope.hideButtons = [];
+          $scope.hideButtons.push('compare');
           $scope.itemsArray = [];
 
           $scope.sortArray = [{

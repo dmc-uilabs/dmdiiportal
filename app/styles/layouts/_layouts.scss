@@ -183,7 +183,7 @@ table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:f
   padding: 10px;
   text-transform: capitalize;
   &.text-normal{
-    text-transform: normal !important;
+    text-transform: none;
   }
 }
 table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:nth-child(n+2):nth-last-child(n+2),
@@ -446,3 +446,7 @@ md-input-container:not(.md-input-has-value) input:not(:focus){
   color: #363636;
 }
 
+.md-select-value *:first-child{
+  height: 15px;
+  white-space: normal;
+}
