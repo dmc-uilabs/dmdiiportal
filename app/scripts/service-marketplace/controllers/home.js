@@ -203,14 +203,19 @@ angular.module('dmc.service-marketplace')
             getFavoriteCount();
 
             $scope.share = function(ev){
-                $mdDialog.show({
-                    controller: "ShareProductCtrl",
-                    templateUrl: "templates/components/product-card/share-product.html",
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose:true
-                });
-            };
+              $mdDialog.show({
+                  controller: "ShareProductCtrl",
+                  templateUrl: "templates/components/product-card/share-product.html",
+                  parent: angular.element(document.body),
+                  targetEvent: ev,
+                  clickOutsideToClose:true,
+                  locals: {
+                      serviceId : $stateParams.serviceId
+                  }
+              }).then(function() {
+              }, function() {
+              });
+          };
 
             $scope.sortList = [
                 {

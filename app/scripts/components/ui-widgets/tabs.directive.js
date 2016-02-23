@@ -36,10 +36,24 @@ angular.module('dmc.widgets.tabs',[
 			scope: {
 				data: "="
 			},
-			controller: function($scope) {
+			controller: function($scope, $mdDialog) {
 				$scope.follow = function(item){
 					item.follow = !item.follow;
 				}
+				$scope.share = function(ev){
+		            $mdDialog.show({
+		                  controller: "ShareProductCtrl",
+		                  templateUrl: "templates/components/product-card/share-product.html",
+		                  parent: angular.element(document.body),
+		                  targetEvent: ev,
+		                  clickOutsideToClose:true,
+		                  locals: {
+		                      serviceId : $scope.data.serviceId
+		                  }
+		              }).then(function() {
+		              }, function() {
+		              });
+		          };
 			}
 		};
 	}]);
