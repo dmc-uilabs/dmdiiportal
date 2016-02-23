@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dependencies and Documentation</title>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="col-sm-12">
+    <h1>Table of Content</h1>
+    <ul>
+      <li>
+        <a href="#common-files">Common Files</a>
+      </li>
+      <li>
+        <a href="#common-widgets">Common Elements and Widgets</a>
+        <ul>
+          <li><a href="#header">Header</a></li>
+          <li><a href="#footer">Footer</a></li>
+          <li><a href="#tree-menu">Tree Menu</a></li>
+          <li><a href="#carousel">Carousel</a></li>
+          <li><a href="#product-cards">Product Cards</a></li>
+          <li><a href="#product-filters">Product Filters</a></li>
+          <li><a href="#tabs-history">Tabs - History, Statistics, Authors</a></li>
+          <li><a href="#compare-products">Compare Products</a></li>
+          <li><a href="#compare-members">Compare Members</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#review-stars">Review Stars</a></li>
+          <li><a href="#file-upload-service">File Upload Service</a></li>
+          <li><a href="#toast-modal">Toast Modal</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#pages">Pages</a>
+        <ul>
+          <li><a href="#page-home">Home</a></li>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#markeplace-home">Marketplace Home</a></li>
+          <li><a href="#markeplace-store">Marketplace Storefront</a></li>
+          <li><a href="#marketplace-service">Marketplace Service</a></li>
+          <li><a href="#my-account">My Account</a></li>
+          <li><a href="#my-profile">My Profile</a></li>
+          <li><a href="#company-profile">Company Profile</a></li>
+          <li><a href="#community-home">Community</a></li>
+          <li><a href="#add-members">Add Members</a></li>
+          <li><a href="#add-projects">Add Projects</a></li>
+          <li><a href="#all-projects">All Projects</a></li>
+          <li><a href="#project">Project</a></li>
+          <li><a href="#onboarding">Onboarding</a></li>
+          <li><a href="#favorites-page">Favorites</a></li>
+          <li><a href="#individual-discussion">Individual Discussion</a></li>
+          <li><a href="#notifications">Notifications</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-12">
+    <a href="/" id="common-files"></a>
+    <h1>Common Files</h1>
+    <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ajax Requests Functions</td>
+        <td>scripts/common/factory/ajax.factory.js</td>
+      </tr>
+      <tr>
+        <td>API Request URLs</td>
+        <td>scripts/common/factory/data.factory.js</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="col-sm-12">
+  <a href="/" id="common-widgets"></a>
+   <h1>Common Elements and Widgets</h1>
+   <!-- Header -->
+    <a href="/" id="header"></a>
+    <h2>Header</h2>
+    <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'dmcTopHeader' Directive</td>
+        <td>scripts/common/header/header.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/common/header/header-tpl.html</td>
+      </tr>
+      <tr>
+        <td>Notfications Links Factory</td>
+        <td>scripts/common/factory/notifications.factory.js</td>
+      </tr>
+      <tr>
+        <td>User Data and Login Service</td>
+        <td>scripts/common/models/user-model.js</td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- Footer -->
+    <a href="/" id="footer"></a>
+    <h2>Footer</h2>
+    <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'dmcFooter' Directive</td>
+        <td>scripts/common/footer/footer.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/common/footer/footer-tpl.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Tree Menu -->
+  <a href="/" id="tree-menu"></a>
+  <h2>Tree Menu</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'dmcTreeMenu' Directive</td>
+        <td>scripts/components/tree-menu/tree-menu.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/components/tree-menu/tree-menu-tpl.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+<!-- Carousel -->
+  <a href="/" id="carousel"></a>
+  <h2>Carousel</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'dmcCarousel' Directive</td>
+        <td>scripts/components/carousel/carousel.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/components/carousel/carousel-tpl.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/" id="product-cards"></a>
+  <h2>Product Cards</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'dmcProductsCard' Directive</td>
+        <td>scripts/components/products-card/products-card.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/components/products-card/products-card-tpl.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/" id="product-filters"></a>
+  <h2>Product Filters</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'dmcProductsFilter' Directive</td>
+        <td>scripts/components/tree-menu/products-filter.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/components/tree-menu/products-filter-tpl.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/" id="tabs-history"></a>
+  <h2>Tabs - History, Statistics, Authors</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+         <td>Directive</td>
+         <td>scripts/components/ui-widgets/tabs.directive.js</td>
+      </tr>
+      <tr>
+        <td>'uiWidgetTabsHistory' Template</td>
+        <td>templates/components/ui-widgets/tabs-history.html</td>
+      </tr>
+      <tr>
+        <td>'uiWidgetTabsStatistic' Directive</td>
+        <td>templates/components/ui-widgets/tabs-statistic.html</td>
+      </tr>
+      <tr>
+        <td>'uiWidgetTabsAuthor' Directive</td>
+        <td>templates/components/ui-widgets/tabs-author.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/" id="compare-products"></a>
+  <h2>Compare Products</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller - 'CompareController'</td>
+        <td>scripts/components/compare/compare.js</td>
+      </tr>
+      <tr>
+      <tr>
+        <td>Modal Directive - 'compareButton'</td>
+        <td>scripts/components/compare/compare.js</td>
+      </tr>
+      <tr>
+        <td>Modal Template</td>
+        <td>templates/components/compare/compare-tpl.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/" id="compare-members"></a>
+  <h2>Compare Members</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller - 'CompareMembersController'</td>
+        <td>scripts/components/compare/compare.js</td>
+      </tr>
+      <tr>
+      <tr>
+        <td>Modal Directive - 'compareMembersButton'</td>
+        <td>scripts/components/compare/compare.js</td>
+      </tr>
+      <tr>
+        <td>Modal template</td>
+        <td>templates/components/compare/compare-members-tpl.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/" id="reviews"></a>
+  <h2>Reviews</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'uiWidgetReview' Directive</td>
+        <td>scripts/components/ui-widgets/review.directive.js</td>
+      </tr>
+      <tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/components/ui-widgets/review.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/" id="review-stars"></a>
+  <h2>Review Stars</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'uiWidgetStarsActive', 'uiWidgetStarsStatic' Directive</td>
+        <td>scripts/components/ui-widgets/stars.directive.js</td>
+      </tr>
+      <tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/components/ui-widgets/stars.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/" id="file-upload-service"></a>
+  <h2>File Upload Service</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Service</td>
+        <td>scripts/common/models/file-upload.js</td>
+      </tr>
+      <tr>
+        <td>'fileModel' Directive</td>
+        <td>scripts/common/models/file-model.js</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/" id="toast-modal"></a>
+  <h2>Toast Modal</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Services</td>
+        <td>scripts/common/models/toast-model.js<br/>scripts/common/models/question-toast-model.js</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- End Comment Elements -->
+</div>
+
+<div class="col-sm-12">
+    <a href="/" id="pages"></a>
+    <h1>Pages</h1>
+    <a href="/" id="page-home"></a>
+    <h2>Home</h2>
+    <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/home/home.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/index/index.html</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+ <div class="col-sm-12">
+  <a href="/" id="dashboard"></a>
+    <h2>Dashboard</h2>
+    <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/dashboard/dashboard.controller.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/dashboard/dashboard.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Services</h4>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'uiWidgetServices' Directive</td>
+        <td>scripts/components/ui-widgets/services.directive.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/components/ui-widgets/services.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Recent Projects</h4>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'uiWidgetProjects' Directive</td>
+        <td>scripts/components/ui-widgets/projects.directive.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/components/ui-widgets/projects.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>My Tasks</h4>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'uiWidgetTasks' Directive</td>
+        <td>scripts/components/ui-widgets/tasks.directive.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/components/ui-widgets/tasks.html</td>
+      </tr>
+      <tr>
+        <td>Task Data Service</td>
+        <td>scripts/common/models/task-model.js</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Following</h4>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'uiWidgetDiscussions' Directive</td>
+        <td>scripts/components/ui-widgets/discussions.directive.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/components/ui-widgets/discussions.html</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Onboarding</h4>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>'uiWidgetOnboarding' Directive</td>
+        <td>scripts/components/ui-widgets/onboarding.directive.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/components/ui-widgets/onboarding.html</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="markeplace-home"></a>
+   <h2>Marketplace Home</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/marketplace/marketplace.controller.js</td>
+      </tr>
+      <tr>
+        <td>HTML Template</td>
+        <td>templates/marketplace/marketplace.html</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="markeplace-store"></a>
+   <h2>Marketplace Storefront</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Storefront Controller</td>
+        <td>scripts/company/controllers/storefront.js</td>
+      </tr>
+      <tr>
+        <td>Storefront Template</td>
+        <td>templates/company/storefront.html</td>
+      </tr>
+      <tr>
+        <td>Edit Storefront Controller</td>
+        <td>scripts/company/controllers/edit.js</td>
+      </tr>
+      <tr>
+        <td>Edit Storefront Template</td>
+        <td>templates/company/edit.html</td>
+      </tr>
+      <tr>
+        <td>Company Data Service</td>
+        <td>scripts/common/models/company-model.js</td>
+      </tr>
+      <tr>
+        <td>Account Data Service</td>
+        <td>scripts/common/models/account-model.js</td>
+      </tr>
+      <tr>
+        <td>Location Service</td>
+        <td>scripts/common/factory/location.factory.js</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="marketplace-service"></a>
+   <h2>Marketplace Service</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/service-marketplace/controllers/home.js</td>
+      </tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/service-marketplace/service-marketplace.html</td>
+      </tr>
+      <tr>
+        <td>Edit Controller</td>
+        <td>scripts/service-marketplace/controllers/edit.js</td>
+      </tr>
+      <tr>
+        <td>Edit Template</td>
+        <td>templates/service-marketplace/edit.html</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+ <a href="/" id="my-account"></a>
+   <h2>My Account</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/account/account.js</td>
+      </tr>
+      <tr>
+        <td>Account Data Service</td>
+        <td>scripts/common/models/account-model.js</td>
+      </tr>
+      <tr>
+        <td>Basic Information Controller</td>
+        <td>scripts/account/controllers/basics.js</td>
+      </tr>
+      <tr>
+        <td>Basic Information Template</td>
+        <td>templates/account/basics.html</td>
+      </tr>
+      <tr>
+        <td>Privacy Controller</td>
+        <td>scripts/account/controllers/privacy.js</td>
+      </tr>
+      <tr>
+        <td>Privacy Template</td>
+        <td>templates/account/privacy.html</td>
+      </tr>
+      <tr>
+        <td>Notifications Controller</td>
+        <td>scripts/account/controllers/notifications.js</td>
+      </tr>
+      <tr>
+        <td>Notifications Template</td>
+        <td>templates/account/notifications.html</td>
+      </tr>
+      <tr>
+        <td>Profile Controller</td>
+        <td>scripts/account/controllers/profile.js</td>
+      </tr>
+      <tr>
+        <td>Profile Template</td>
+        <td>templates/account/profile.html</td>
+      </tr>
+      <tr>
+        <td>Servers Controller</td>
+        <td>scripts/account/controllers/servers.js</td>
+      </tr>
+      <tr>
+        <td>Servers Template</td>
+        <td>templates/account/servers.html</td>
+      </tr>
+      <tr>
+        <td>Phone Format Filter</td>
+        <td>scripts/common/models/phone-model.js</td>
+      </tr>
+      <tr>
+        <td>Location Service</td>
+        <td>scripts/common/factory/location.factory.js</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="my-profile"></a>
+   <h2>My Profile</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/profile/controllers/profile.js</td>
+      </tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/profile/profile.html</td>
+      </tr>
+      <tr>
+        <td>Edit Controller</td>
+        <td>scripts/profile/controllers/edit.js</td>
+      </tr>
+      <tr>
+        <td>Edit Template</td>
+        <td>templates/profile/edit.html</td>
+      </tr>
+      <tr>
+        <td>Profile Data Service</td>
+        <td>scripts/profile/controllers/profile.js</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="company-profile"></a>
+   <h2>Company Profile</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/company-profile/controllers/profile.js</td>
+      </tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/company-profile/company-profile.html</td>
+      </tr>
+      <tr>
+        <td>Edit Controller</td>
+        <td>scripts/company-profile/controllers/edit.js</td>
+      </tr>
+      <tr>
+        <td>Edit Template</td>
+        <td>templates/company-profile/edit-company-profile.html</td>
+      </tr>
+      <tr>
+        <td>Overview Directive</td>
+        <td>scripts/company-profile/directives/overview.js</td>
+      </tr>
+      <tr>
+        <td>Overview Template</td>
+        <td>templates/company-profile/tabs/tab-overview.html</td>
+      </tr>
+      <tr>
+        <td>Skills Directive</td>
+        <td>scripts/company-profile/directives/skills.js</td>
+      </tr>
+      <tr>
+        <td>Skills Template</td>
+        <td>templates/company-profile/tabs/tab-skills.html</td>
+      </tr>
+      <tr>
+        <td>Projects Directive</td>
+        <td>scripts/company-profile/directives/projects.js</td>
+      </tr>
+      <tr>
+        <td>Projects Template</td>
+        <td>templates/company-profile/tabs/tab-projects.html</td>
+      </tr>
+      <tr>
+        <td>Membership Directive</td>
+        <td>scripts/company-profile/directives/membership.js</td>
+      </tr>
+      <tr>
+        <td>Membership Template</td>
+        <td>templates/company-profile/tabs/tab-membership.html</td>
+      </tr>
+      <tr>
+        <td>Contacts Directive</td>
+        <td>scripts/company-profile/directives/contact.js</td>
+      </tr>
+      <tr>
+        <td>Contacts Template</td>
+        <td>templates/company-profile/tabs/tab-contact.html</td>
+      </tr>
+      <tr>
+        <td>Profile Data Service</td>
+        <td>scripts/company-profile/company-profile.js</td>
+      </tr>
+      <tr>
+        <td>Members Card Directive 'dmcMembersCard'</td>
+        <td>scripts/components/members-card/members-card.js</td>
+      </tr>
+      <tr>
+        <td>Members Card Directive Template</td>
+        <td>templates/components/members-card/members-card.html</td>
+      </tr>
+      <tr>
+        <td>Zip code format filter</td>
+        <td>scripts/common/models/zipcode-model.js</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="my-projects"></a>
+   <h2>My Projects</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/projects/my_projects.js</td>
+      </tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/projects/my.html</td>
+      </tr>
+      <tr>
+        <td>Projects Directive</td>
+        <td>scripts/components/ui-widgets/projects.directive.js</td>
+      </tr>
+      <tr>
+        <td>Projects Directive Template</td>
+        <td>templates/components/ui-widgets/projects.html</td>
+      </tr>
+      <tr>
+        <td>Task Directive 'uiProjectTasks'</td>
+        <td>scripts/components/ui-widgets/tasks.directive.js</td>
+      </tr>
+      <tr>
+        <td>Task Directive Template</td>
+        <td>templates/components/ui-widgets/project-tasks.html</td>
+      </tr>
+      <tr>
+        <td>Service Directive 'uiWidgetServices'</td>
+        <td>scripts/components/ui-widgets/services.directive.js</td>
+      </tr>
+      <tr>
+        <td>Service Directive Template</td>
+        <td>templates/components/ui-widgets/services.html</td>
+      </tr>
+      <tr>
+        <td>Discussions Directive 'uiProjectDiscussions'</td>
+        <td>scripts/components/ui-widgets/discussions.directive.js</td>
+      </tr>
+      <tr>
+        <td>Discussions Directive Template</td>
+        <td>templates/components/ui-widgets/project-discussions.html</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="community-home"></a>
+   <h2>Community</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/community/controllers/home.js</td>
+      </tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/community/home.html</td>
+      </tr>
+      <tr>
+        <td>Compose Discussion Controller</td>
+        <td>scripts/community/controllers/compose-discussion.js</td>
+      </tr>
+      <tr>
+        <td>Discussion Directive 'communityDiscussions'</td>
+        <td>scripts/community/directives/discussions.js</td>
+      </tr>
+      <tr>
+        <td>Discussion Directive Template</td>
+        <td>templates/community/directives/discussions.html</td>
+      </tr>
+      <tr>
+        <td>DMC Announcements Directive 'dmcAnnouncements'</td>
+        <td>scripts/community/directives/dmc-announcements.js</td>
+      </tr>
+      <tr>
+        <td>DMC Announcements Directive Template</td>
+        <td>templates/community/directives/dmc-announcements.html</td>
+      </tr>
+      <tr>
+        <td>Events Directive 'dmcEvents'</td>
+        <td>scripts/community/directives/dmc-events.js</td>
+      </tr>
+      <tr>
+        <td>Events Directive Template</td>
+        <td>templates/community/directives/dmc-events.html</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="add-members"></a>
+   <h2>Add Members</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/add_members/controllers/home.js</td>
+      </tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/add_members/add-members.html</td>
+      </tr>
+      <tr>
+        <td>Selected Invitees Directive 'dmcSelectedInvitees'</td>
+        <td>scripts/add_members/add-members.js</td>
+      </tr>
+      <tr>
+        <td>Selected Invitees Template</td>
+        <td>templates/add_members/add-members.html</td>
+      </tr>
+      <tr>
+        <td>Add Members Card Directive 'dmcAddMembersCard'</td>
+        <td>scripts/components/members-card/members-card.js</td>
+      </tr>
+      <tr>
+        <td>Add Members Card Directive Template</td>
+        <td>templates/components/members-card/add-members-card.html</td>
+      </tr>
+      <tr>
+        <td>Drag and Drop File Upload Directive 'dropzone'</td>
+        <td>scripts/components/dropzone/dropzone.directive.js</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="add-projects"></a>
+   <h2>Add Project</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/add_project/add_project.js</td>
+      </tr>
+      <tr>
+        <td>'addProjectTabs' Directive</td>
+        <td>scripts/components/add-project/add-project.directive.js</td>
+      </tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/components/add-project/ap-index.html</td>
+      </tr>
+      <tr>
+        <td>Add Project Data Service</td>
+        <td>scripts/add_project/add_project.js</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="all-projects"></a>
+   <h2>All Projects</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/projects/all_projects.js</td>
+      </tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/projects/all.html</td>
+      </tr>
+      <tr>
+        <td>Add Project Data Service</td>
+        <td>scripts/add_project/add_project.js</td>
+      </tr>
+      <tr>
+        <td>'uiWidgetProjects' Directive</td>
+        <td>scripts/components/ui-widgets/projects.directive.js</td>
+      </tr>
+      <tr>
+        <td>'uiWidgetProjects' Directive Template</td>
+        <td>/templates/components/ui-widgets/projects.html</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="project"></a>
+   <h2>Project</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Module</td>
+        <td>scripts/project/project.js</td>
+      </tr>
+      <tr>
+        <td>Home Controller</td>
+        <td>scripts/project/controllers/home.js</td>
+      </tr>
+      <tr>
+        <td>Home Template</td>
+        <td>templates/project/pages/home.html</td>
+      </tr>
+      <tr>
+        <td>Workspace Controller</td>
+        <td>scripts/project/controllers/workspace.js</td>
+      </tr>
+      <tr>
+        <td>Workspace Template</td>
+        <td>templates/project/pages/workspace.html</td>
+      </tr>
+      <tr>
+        <td>Edit Controller</td>
+        <td>scripts/project/controllers/edit.js</td>
+      </tr>
+      <tr>
+        <td>Edit Template</td>
+        <td>templates/project/pages/edit.html</td>
+      </tr>
+      <tr>
+        <td>Document Controller</td>
+        <td>scripts/project/controllers/documents.js</td>
+      </tr>
+      <tr>
+        <td>Document Template</td>
+        <td>templates/project/pages/documents.html</td>
+      </tr>
+      <tr>
+        <td>Task Controller</td>
+        <td>scripts/project/controllers/tasks.js</td>
+      </tr>
+      <tr>
+        <td>Task Template</td>
+        <td>templates/project/pages/tasks.html</td>
+      </tr>
+      <tr>
+        <td>Team Controller</td>
+        <td>scripts/project/controllers/team.js</td>
+      </tr>
+      <tr>
+        <td>Team Template</td>
+        <td>templates/project/pages/team.html</td>
+      </tr>
+      <tr>
+        <td>Services Controller</td>
+        <td>scripts/project/controllers/services.js</td>
+      </tr>
+      <tr>
+        <td>Services Template</td>
+        <td>templates/project/pages/services.html</td>
+      </tr>
+      <tr>
+        <td>Run Services Controller</td>
+        <td>scripts/project/controllers/run-service.js</td>
+      </tr>
+      <tr>
+        <td>Run Services Template</td>
+        <td>templates/project/pages/run-service.html</td>
+      </tr>
+      <tr>
+        <td>Register Services Controller</td>
+        <td>scripts/project/controllers/upload-service.js</td>
+      </tr>
+      <tr>
+        <td>Register Services Template</td>
+        <td>templates/project/pages/upload-service.html</td>
+      </tr>
+      <tr>
+        <td>Edit Services Controller</td>
+        <td>scripts/project/controllers/edit-service.js</td>
+      </tr>
+      <tr>
+        <td>Edit Services Template</td>
+        <td>templates/project/pages/upload-service.html</td>
+      </tr>
+      <tr>
+        <td>Service Details Controller</td>
+        <td>scripts/project/controllers/services-detail.js</td>
+      </tr>
+      <tr>
+        <td>Service Details Template</td>
+        <td>templates/project/pages/services-detail.html</td>
+      </tr>
+      <tr>
+        <td>Run History Controller</td>
+        <td>scripts/project/controllers/run-history.js</td>
+      </tr>
+      <tr>
+        <td>Run History Template</td>
+        <td>templates/project/pages/run-history.html</td>
+      </tr>
+      <tr>
+        <td>Publish to Marketplace Controller</td>
+        <td>scripts/project/controllers/publish-service-marketplace.js</td>
+      </tr>
+      <tr>
+        <td>Publish to Marketplace Template</td>
+        <td>templates/project/pages/publish-service-marketplace.html</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="onboarding"></a>
+   <h2>Onboarding</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/onboarding/controllers/onboarding.js</td>
+      </tr>
+      <tr>
+        <td>Home Controller</td>
+        <td>scripts/onboarding/controllers/home.js</td>
+      </tr>
+      <tr>
+        <td>Home Template</td>
+        <td>templates/onboarding/home.html</td>
+      </tr>
+      <tr>
+        <td>Basic Information Modal Controller</td>
+        <td>scripts/onboarding/controllers/basic-informations.js</td>
+      </tr>
+      <tr>
+        <td>Basic Information Modal Template</td>
+        <td>templates/onboarding/basic-informations.html</td>
+      </tr>
+      <tr>
+        <td>Terms and Conditions Modal Controller</td>
+        <td>scripts/onboarding/controllers/terms-conditions.js</td>
+      </tr>
+      <tr>
+        <td>Terms and Conditions Modal Template</td>
+        <td>templates/onboarding/terms-conditions.html</td>
+      </tr>
+      <tr>
+        <td>Account Controller</td>
+        <td>scripts/onboarding/controllers/account.js</td>
+      </tr>
+      <tr>
+        <td>Account Templates</td>
+        <td>templates/onboarding/account/*.html</td>
+      </tr>
+      <tr>
+        <td>Company Controller</td>
+        <td>scripts/onboarding/controllers/company.js</td>
+      </tr>
+      <tr>
+        <td>Company Templates</td>
+        <td>templates/onboarding/company/*.html</td>
+      </tr>
+      <tr>
+        <td>Profile Controller</td>
+        <td>scripts/onboarding/controllers/profile.js</td>
+      </tr>
+      <tr>
+        <td>Profile Templates</td>
+        <td>templates/onboarding/profile/*.html</td>
+      </tr>
+      <tr>
+        <td>Storefront Controller</td>
+        <td>scripts/onboarding/controllers/storefront.js</td>
+      </tr>
+      <tr>
+        <td>Storefront Templates</td>
+        <td>templates/onboarding/storefront/*.html</td>
+      </tr>
+      <tr>
+        <td>Onboarding Data Service</td>
+        <td>scripts/onboarding/controllers/onboarding.js</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="favorites-page"></a>
+   <h2>Favorites</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/favorites/favorites.controller.js</td>
+      </tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/favorites/favorites.html</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="individual-discussion"></a>
+   <h2>Individual Discussion</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controller</td>
+        <td>scripts/individual-discussion/individual-discussion.js</td>
+      </tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/individual-discussion/individual-discussion.html</td>
+      </tr>
+      <tr>
+        <td>Edit Controller</td>
+        <td>scripts/individual-discussion/edit-discussion.js</td>
+      </tr>
+      <tr>
+        <td>Edit Template</td>
+        <td>templates/individual-discussion/edit-discussion.html</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+ <div class="col-sm-12">
+  <a href="/" id="notifications"></a>
+   <h2>Notifications</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>User Controller</td>
+        <td>scripts/notifications/controllers/user.js</td>
+      </tr>
+      <tr>
+        <td>PM Controller</td>
+        <td>scripts/notifications/controllers/pm.js</td>
+      </tr>
+      <tr>
+        <td>Template</td>
+        <td>templates/notifications/notifications.html</td>
+      </tr>
+      <tr>
+        <td>Notification Data Service</td>
+        <td>scripts/notifications/notifications.js</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>
