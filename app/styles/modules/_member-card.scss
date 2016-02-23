@@ -74,6 +74,10 @@
     min-height: 0;
     height: 35px;
     line-height: 35px;
+    &.add-to-project, &.page-href, &.back-to-add{
+      height: 47px;
+      line-height: 47px;
+    }
   }
   .top-buttons{
     padding: 16px 16px 0;

@@ -137,44 +137,7 @@ $lines-to-show-title: 2;
       background-color: #909090;
       @include borderRadius(3px);
     }
-    .adding-to-project{
-      width: 100%;
 
-      .close{
-        width: 36px;
-        min-width: 36px;
-        height: 36px;
-        min-height: 36px;
-        line-height: 36px;
-      }
-      .close:hover{
-        background-color: #777;
-      }
-      .add{
-        width: 36px;
-        min-width: 36px;
-        height: 36px;
-        min-height: 36px;
-        line-height: 36px;
-      }
-      ng-md-icon{
-        fill: #fff;
-      }
-      md-input-container{
-        padding: 0;
-      }
-      md-select,
-      md-select:not([disabled]):focus {
-        @include borderRadius(3px);
-        margin: 6px 0;
-        background-color: #fff;
-        md-select-value{
-          font-size: 13px;
-          padding: 3px 8px 6px 8px;
-          border: none;
-        }
-      }      
-    }
     .md-button {
       color: white;
     }
@@ -191,6 +154,45 @@ $lines-to-show-title: 2;
       .md-button {
         font-size: 11px;
       }
+    }
+  }
+}
+
+.adding-to-project{
+  width: 100%;
+
+  .close{
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    min-height: 36px;
+    line-height: 36px;
+  }
+  .close:hover{
+    background-color: #777;
+  }
+  .add{
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    min-height: 36px;
+    line-height: 36px;
+  }
+  ng-md-icon{
+    fill: #fff;
+  }
+  md-input-container{
+    padding: 0;
+  }
+  md-select,
+  md-select:not([disabled]):focus {
+    @include borderRadius(3px);
+    margin: 6px 0;
+    background-color: #fff;
+    md-select-value{
+      font-size: 13px;
+      padding: 3px 8px 6px 8px;
+      border: none;
     }
   }
 }

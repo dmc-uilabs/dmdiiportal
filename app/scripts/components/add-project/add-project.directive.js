@@ -319,6 +319,65 @@ angular.module('dmc.add_project.directive', [
                 $scope.userData.then(function(res){
                     $scope.userData = res;
                 });
+                $scope.addingToProject = false;
+
+                $scope.addToProject = function(){
+                    $scope.addingToProject = true;
+                };
+
+                $scope.projects = $rootScope.projects;
+
+                $scope.cancelAddToProject = function(){
+                    $scope.addingToProject = false;
+                };
+
+                $scope.inviteUserToProject = function(projectId){
+                    var project = null;
+                    for(var i in $scope.projects){
+                        if($scope.projects[i].id == projectId){
+                            project = $scope.projects[i];
+                            break;
+                        }
+                    }
+                    if(project){
+                        ajax.create(dataFactory.createMembersToProject(),
+                            {
+                                "profileId": $scope.cardSource.id,
+                                "projectId": projectId,
+                                "fromProfileId": $rootScope.userData.profileId,
+                                "from": $rootScope.userData.displayName,
+                                "date": Date.parse(new Date()),
+                                "accept": true
+                            }, function(response){
+                                $scope.cancelAddToProject();
+
+                                if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
+                                if(!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
+                                $scope.cardSource.currentStatus.project.id = projectId;
+                                $scope.cardSource.currentStatus.project.title = project.title;
+                                $scope.cardSource.projectId = projectId;
+                                $scope.cardSource.added = true;
+
+                                $scope.cardSource.lastProject = {
+                                    title: project.title,
+                                    href: '/project.php#/' + project.id + '/home'
+                                };
+                                $scope.addedTimeout = setTimeout(function () {
+                                    $scope.cardSource.added = false;
+                                    apply();
+                                }, 10000);
+                                apply();
+                            }
+                        );
+                    }else{
+                        toastModel.showToast("error", "Project not found");
+                    }
+                };
+
+                $scope.backToAdd = function(){
+                    $scope.cardSource.added = false;
+                    clearInterval($scope.addedTimeout);
+                };
 
                 var apply = function(){
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -341,7 +400,7 @@ angular.module('dmc.add_project.directive', [
                     }, function() {
                         $(window).scrollTop();
                     });
-                }
+                };
 
                 $scope.followMember = function(){
                     if($scope.userData) {
@@ -401,6 +460,18 @@ angular.module('dmc.add_project.directive', [
                     $scope.userData = res;
                 });
 
+                $scope.addingToProject = false;
+
+                $scope.addToProject = function(){
+                    $scope.addingToProject = true;
+                };
+
+                $scope.projects = $rootScope.projects;
+
+                $scope.cancelAddToProject = function(){
+                    $scope.addingToProject = false;
+                };
+
                 $scope.showCompany = function(id, ev){
                     console.info('index', id);
                     $(window).scrollTop();
@@ -418,7 +489,71 @@ angular.module('dmc.add_project.directive', [
                     }, function() {
                         $(window).scrollTop();
                     });
-                }
+                };
+
+                $scope.inviteUserToProject = function(projectId){
+                    var project = null;
+                    for(var i in $scope.projects){
+                        if($scope.projects[i].id == projectId){
+                            project = $scope.projects[i];
+                            break;
+                        }
+                    }
+                    if(project){
+                        ajax.get(dataFactory.getCompanyMembers($scope.cardSource.id),{},
+                            function(response){
+                                var ids = $.map(response.data,function(x){ return x.profileId; });
+                                var count = ids.length;
+                                function callbackAddUser(response){
+                                    if(i == count-1) {
+                                        $scope.cancelAddToProject();
+
+                                        if (!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
+                                        if (!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
+                                        $scope.cardSource.currentStatus.project.id = projectId;
+                                        $scope.cardSource.currentStatus.project.title = project.title;
+                                        $scope.cardSource.projectId = projectId;
+                                        $scope.cardSource.added = true;
+
+                                        $scope.cardSource.lastProject = {
+                                            title: project.title,
+                                            href: '/project.php#/' + project.id + '/home'
+                                        };
+                                        $scope.addedTimeout = setTimeout(function () {
+                                            $scope.cardSource.added = false;
+                                            apply();
+                                        }, 10000);
+                                        apply();
+                                    }
+                                }
+                                if(count > 0) {
+                                    for (var i in ids) {
+                                        ajax.create(dataFactory.createMembersToProject(),
+                                            {
+                                                "profileId": ids[i],
+                                                "projectId": projectId,
+                                                "fromProfileId": $rootScope.userData.profileId,
+                                                "from": $rootScope.userData.displayName,
+                                                "date": Date.parse(new Date()),
+                                                "accept": true
+                                            }, function(response){
+                                                callbackAddUser(response,i);
+                                            }
+                                        );
+                                    }
+                                }
+                            }
+                        );
+
+                    }else{
+                        toastModel.showToast("error", "Project not found");
+                    }
+                };
+
+                $scope.backToAdd = function(){
+                    $scope.cardSource.added = false;
+                    clearInterval($scope.addedTimeout);
+                };
 
                 $scope.followCompany = function(){
                     if($scope.userData) {

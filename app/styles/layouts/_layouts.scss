@@ -446,7 +446,17 @@ md-input-container:not(.md-input-has-value) input:not(:focus){
   color: #363636;
 }
 
-.md-select-value *:first-child{
+.adding-to-project .md-select-value *:first-child{
   height: 15px;
-  white-space: normal;
+  /* white-space: normal; */
+  overflow: hidden;
+  width: 100%;
+  position: absolute;
+  margin-top: 5px;
+}
+
+.adding-to-project .md-select-value .md-select-icon{
+  position: absolute;
+  right: 0;
+  top: 8px;
 }
