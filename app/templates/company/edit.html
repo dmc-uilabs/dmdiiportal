@@ -13,7 +13,7 @@
                             <ng-md-icon icon="mode_edit" size="18"></ng-md-icon>
                         </md-button>
                         <div ng-init="isChangingPicture = (companyData.featureImage.large ? false : true)"
-                             ng-show="isChangingPicture"
+                             ng-if="isChangingPicture"
                              ng-style="flowBoxStyle"
                              flex>
                             <div class="flow-box"
@@ -40,8 +40,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <md-button class="md-raised cancel-button dmc-button" ng-if="companyData.featureImage.large" ng-click="cancelChangePicture($flow)">Cancel</md-button>
-                                    <md-button class="md-raised md-primary dmc-button" ng-disabled="$flow.files.length == 0" ng-click="uploadFile($flow)">Save</md-button>
+                                    <md-button class="md-raised cancel-button" ng-if="companyData.featureImage.large" ng-click="cancelChangePicture($flow)">Cancel</md-button>
+                                    <md-button class="md-raised md-primary" ng-disabled="$flow.files.length == 0" ng-click="uploadFile($flow)">Save</md-button>
                                 </div>
                             </div>
                         </div>

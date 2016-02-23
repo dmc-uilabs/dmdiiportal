@@ -162,10 +162,10 @@
       "dateJoined": "2016-01-01",
       "reasonJoining": "Lorem Ipsum is simply dummy text",
       "featureImage": {
-        "thumbnail": "/uploads/company/picture/1/20160124094823000000.png",
-        "large": "/uploads/company/picture/1/20160124094823000000.png"
+        "thumbnail": "/uploads/company/picture/1/20160223073704000000.jpg",
+        "large": "/uploads/company/picture/1/20160223073704000000.jpg"
       },
-      "logoImage": "/uploads/company/logo/1/20160124090158000000.png"
+      "logoImage": "/uploads/company/logo/1/20160223073618000000.png"
     },
     {
       "id": 2,
@@ -964,12 +964,18 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "projectId": 1,
+      "projectId": 4,
       "type": "service",
       "from": "marketplace",
       "parent": 0,
       "published": true,
-      "averageRun": 0
+      "averageRun": 0,
+      "currentStatus": {
+        "project": {
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
+        }
+      }
     },
     {
       "id": 5,
@@ -985,11 +991,17 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "projectId": 1,
+      "projectId": 5,
       "type": "service",
       "from": "marketplace",
       "published": true,
-      "averageRun": 0
+      "averageRun": 0,
+      "currentStatus": {
+        "project": {
+          "id": 5,
+          "title": "Low Heat Loss Transformer"
+        }
+      }
     },
     {
       "id": 3,
@@ -1312,10 +1324,16 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "projectId": 5,
+      "projectId": 3,
       "type": "service",
       "published": true,
-      "from": "marketplace"
+      "from": "marketplace",
+      "currentStatus": {
+        "project": {
+          "id": 3,
+          "title": "Capacitor Design"
+        }
+      }
     },
     {
       "id": 41,
@@ -1457,15 +1475,15 @@
       },
       "averageRun": 12.75,
       "parent_component": null,
-      "projectId": 2,
+      "projectId": 4,
       "from": "marketplace",
       "id": 43,
       "type": "service",
       "published": true,
       "currentStatus": {
         "project": {
-          "id": 2,
-          "title": "Capacitor Bank for LDR Mining Co."
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
         }
       }
     },
@@ -1484,15 +1502,15 @@
       },
       "averageRun": 17329.276,
       "parent_component": null,
-      "projectId": 2,
+      "projectId": 4,
       "from": "marketplace",
       "id": 44,
       "type": "service",
       "published": true,
       "currentStatus": {
         "project": {
-          "id": 2,
-          "title": "Capacitor Bank for LDR Mining Co."
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
         }
       }
     }
@@ -6859,6 +6877,12 @@
       "profileId": 1,
       "serviceId": 13,
       "id": 4
+    },
+    {
+      "accountId": 1,
+      "profileId": 1,
+      "serviceId": 2,
+      "id": 5
     }
   ],
   "service-documents": [

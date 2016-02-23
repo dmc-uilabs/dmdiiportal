@@ -122,7 +122,9 @@ angular.module('dmc.component.productcard', [
                           projectId: projectId,
                           from: 'marketplace'
                       }, function (response) {
-                          $scope.cancelAddToProject($scope.cardSource);
+                          $scope.cancelAddToProject();
+                          if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
+                          if(!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
                           $scope.cardSource.currentStatus.project.id = projectId;
                           $scope.cardSource.currentStatus.project.title = project.title;
                           $scope.cardSource.projectId = projectId;

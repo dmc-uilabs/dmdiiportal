@@ -8,7 +8,7 @@ include __DIR__.'/individual-discussion.php';
 //require __DIR__ . '/vendor/autoload.php';
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT');
+header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH');
 date_default_timezone_set('America/New_York');
 
 return call_user_func(function () {
@@ -203,7 +203,7 @@ function remove_from_project($params){
 				$product['currentStatus']['project']['id'] = 0;
 				$product['currentStatus']['project']['title'] = null;
 				$product['projectId'] = 0;
-				$changed_item = json_decode(httpResponse(dbUrl().'/'.$params['type'].'/' . $params['id'], 'PUT', json_encode($product)), true);
+				$changed_item = json_decode(httpResponse(dbUrl().'/'.$params['type'].'/' . $params['id'], 'PATCH', json_encode($product)), true);
 				return json_encode(array('result' => $changed_item));
 			}else{
 				return json_encode(array('error' => 'Project not found' ));
@@ -267,7 +267,7 @@ function add_to_project($params){
 				$product['currentStatus']['project']['title'] = $project['title'];
 				$product['projectId'] = $project['id'];
 				$product['from'] = 'marketplace';
-				$changed_item = json_decode(httpResponse(dbUrl().'/'.$params['type'].'/' . $params['id'], 'PUT', json_encode($product)), true);
+				$changed_item = json_decode(httpResponse(dbUrl().'/'.$params['type'].'/' . $params['id'], 'PATCH', json_encode($product)), true);
 				if($params['type'] == 'services') {
 					$changed_item = addMore($changed_item);
 					$changed_item['type'] = 'service';
@@ -366,7 +366,7 @@ function edit_service($params){
 	$service['currentStatus']['percentCompleted'] = $params['percentCompleted'];
 	$data = json_encode($service);
 
-	$changed_item = json_decode(httpResponse(dbUrl().'/services/'.$params['id'], 'PUT', $data),true);
+	$changed_item = json_decode(httpResponse(dbUrl().'/services/'.$params['id'], 'PATCH', $data),true);
 	$changed_item = addMore($changed_item);
 	$changed_item['type'] = 'service';
 	return json_encode(array('result' => $changed_item ));
@@ -516,7 +516,7 @@ function edit_task($params){
 			'priority' => $priority
 		)
 	);
-	$changed_item = json_decode(httpResponse(dbUrl().'/tasks/'.$params['id'], 'PUT', $data),true);
+	$changed_item = json_decode(httpResponse(dbUrl().'/tasks/'.$params['id'], 'PATCH', $data),true);
 	return json_encode(array('result' => $changed_item ));
 }
 
@@ -686,7 +686,7 @@ function add_company_review($params){
 	$review = json_decode(httpResponse(dbUrl().'/company_reviews/'.$params['reviewId'], null, null),true);
 	$review['reply'] = true;
 	$data = json_encode($review);
-	json_decode(httpResponse(dbUrl().'/company_reviews/'.$params['reviewId'], 'PUT', $data),true);
+	json_decode(httpResponse(dbUrl().'/company_reviews/'.$params['reviewId'], 'PATCH', $data),true);
   }
 
   $data = json_encode(array(
@@ -776,7 +776,7 @@ function upload_company_logo($params,$file){
                     $otherName = '/uploads/company/logo/' . $id .'/'.$name_file;
                     $file['name'] = $otherName;
                     $company['logoImage'] = $otherName;
-                    $changed_item = json_decode(httpResponse(dbUrl().'/companies/'.$params['id'], 'PUT', json_encode($company)),true);
+                    $changed_item = json_decode(httpResponse(dbUrl().'/companies/'.$params['id'], 'PATCH', json_encode($company)),true);
                     return json_encode(array('result' => 'file saved', 'file' => $file));
                 } else {
                     return json_encode(array('error' => 'Possible attacks via file download','$file' => $file));
@@ -934,7 +934,7 @@ function upload_company_picture($params,$file){
 					$file['name'] = $otherName;
 					$company['featureImage']['thumbnail'] = $otherName;
 					$company['featureImage']['large'] = $otherName;
-					$changed_item = json_decode(httpResponse(dbUrl().'/companies/'.$params['id'], 'PUT', json_encode($company)),true);
+					$changed_item = json_decode(httpResponse(dbUrl().'/companies/'.$params['id'], 'PATCH', json_encode($company)),true);
 					return json_encode(array('result' => 'file saved', 'file' => $file));
 				} else {
 					return json_encode(array('error' => 'Possible attacks via file download','$file' => $file));
@@ -968,7 +968,7 @@ function upload_profile_picture($params,$file){
 					$file['name'] = $otherName;
 					$account['featureImage']['thumbnail'] = $otherName;
 					$account['featureImage']['large'] = $otherName;
-					$changed_item = json_decode(httpResponse(dbUrl().'/accounts/'.$params['id'], 'PUT', json_encode($account)),true);
+					$changed_item = json_decode(httpResponse(dbUrl().'/accounts/'.$params['id'], 'PATCH', json_encode($account)),true);
 					return json_encode(array('result' => 'file saved', 'file' => $file));
 				} else {
 					return json_encode(array('error' => 'Possible attacks via file download'));
@@ -1112,7 +1112,7 @@ function add_product_review($params){
 	$review = json_decode(httpResponse(dbUrl().'/product_reviews/'.$params['reviewId'], null, null),true);
 	$review['reply'] = true;
 	$data = json_encode($review);
-	json_decode(httpResponse(dbUrl().'/product_reviews/'.$params['reviewId'], 'PUT', $data),true);
+	json_decode(httpResponse(dbUrl().'/product_reviews/'.$params['reviewId'], 'PATCH', $data),true);
   }
 
   $data = json_encode(array(
@@ -1140,7 +1140,7 @@ function add_like_dislike($params){
 	$review['dislike'] = $params['dislike'];
 	$review['userRatingReview'][$params['userLogin']] = $params['ratingReview'];
 	$data = json_encode($review);
-	json_decode(httpResponse(dbUrl().'/'.$params['typeReview'].'/'.$params['reviewId'], 'PUT', $data),true);
+	json_decode(httpResponse(dbUrl().'/'.$params['typeReview'].'/'.$params['reviewId'], 'PATCH', $data),true);
 	return json_encode($data);
 }
 
@@ -1167,9 +1167,9 @@ function edit_product($params){
   $specification['input'] = $params['inputs'];
   $specification['output'] = $params['outputs'];
   $data_sp = json_encode($specification);
-  $changed_item = json_decode(httpResponse(dbUrl() . '/specifications/' . $params['specificationId'], 'PUT', $data_sp),true);
+  $changed_item = json_decode(httpResponse(dbUrl() . '/specifications/' . $params['specificationId'], 'PATCH', $data_sp),true);
 
-  $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], 'PUT', $data),true);
+  $changed_item = json_decode(httpResponse(dbUrl().'/'.$params['typeProduct'].'s/'.$params['productId'], 'PATCH', $data),true);
   return json_encode(array('result' => $changed_item ));
 }
 
@@ -1246,7 +1246,7 @@ function add_profile_review($params){
 	$review = json_decode(httpResponse(dbUrl().'/profile_reviews/'.$params['reviewId'], null, null),true);
 	$review['reply'] = true;
 	$data = json_encode($review);
-	json_decode(httpResponse(dbUrl().'/profile_reviews/'.$params['reviewId'], 'PUT', $data),true);
+	json_decode(httpResponse(dbUrl().'/profile_reviews/'.$params['reviewId'], 'PATCH', $data),true);
   }
 
   $data = json_encode(array(
@@ -1282,7 +1282,7 @@ function edit_profile($params){
 
   $data = json_encode($profile);
 
-  $changed_item = json_decode(httpResponse(dbUrl().'/profiles/'.$params['profileId'], 'PUT', $data),true);
+  $changed_item = json_decode(httpResponse(dbUrl().'/profiles/'.$params['profileId'], 'PATCH', $data),true);
   return json_encode(array('result' => $changed_item ));
 }
 
@@ -1305,7 +1305,7 @@ function upload_edit_profile_picture($params,$file){
 		  $otherName = '/uploads/profile/' . $id .'/'.$name_file;
 		  $file['name'] = $otherName;
 		  $profile['image'] = $otherName;
-		  $changed_item = json_decode(httpResponse(dbUrl().'/profiles/'.$params['id'], 'PUT', json_encode($profile)),true);
+		  $changed_item = json_decode(httpResponse(dbUrl().'/profiles/'.$params['id'], 'PATCH', json_encode($profile)),true);
 		  return json_encode(array('result' => 'file saved', 'file' => $file));
 		} else {
 		  return json_encode(array('error' => 'Possible attacks via file download'));
