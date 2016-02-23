@@ -166,11 +166,117 @@ angular.module('dmc.component.members-card', [
         $mdDialog.hide();
     }
 
-}]).controller('showCompany', ['ajax', 'companyProfileModel', 'dataFactory', '$scope', '$mdDialog', 'id', function(ajax, companyProfileModel, dataFactory, $scope, $mdDialog, id){
+}]).controller('showCompany', ['$http', '$q', 'dataFactory', '$scope', '$mdDialog', 'id', function($http, $q, dataFactory, $scope, $mdDialog, id){
         console.info('showCompany', id);
         $scope.company = [];
 
-        ajax.get(dataFactory.companyURL(id).get,{},function(response){
+        $scope.history = {
+            leftColumn: {
+                title: "Public",
+                viewAllLink: "/all.php#/history/company/"+id+"/public",
+                list: []
+            },
+            rightColumn: {
+                title: "Mutual",
+                viewAllLink: "/all.php#/history/company/"+id+"/mutual",
+                list:[]
+            }
+        }
+
+        var promises = {
+            "company": $http.get(dataFactory.companyURL(id).get),
+            "videos": $http.get(dataFactory.getCompanyVideos(id)),
+            "images": $http.get(dataFactory.getCompanyImages(id)),
+            "skillsImages": $http.get(dataFactory.getCompanySkillsImages(id)),
+            "skills": $http.get(dataFactory.getCompanySkills(id)),
+            "keyContacts": $http.get(dataFactory.getCompanyKeyContacts(id)),
+            "public_history": $http.get(dataFactory.companyURL(id).history,{params: {
+                "_limit": 3,
+                "section": "public"
+            }}),
+            "private_history": $http.get(dataFactory.companyURL(id).history,{params: {
+                "_limit": 3,
+                "section": "mutual"
+            }})
+        }
+
+        $q.all(promises).then(function(responses){
+            $scope.company = responses.company.data;
+            $scope.company["videos"] = responses.videos.data;
+            $scope.company["images"] = responses.images.data;
+            $scope.company["skillsImages"] = responses.skillsImages.data;
+            $scope.company["skills"] = responses.skills.data;
+            $scope.company["keyContacts"] = responses.keyContacts.data;
+
+            for(var i in $scope.company["keyContacts"]){
+                if($scope.company["keyContacts"][i].type == 1){
+                    $scope.company["keyContacts"][i].type = "LEGAL";
+                }else if($scope.company["keyContacts"][i].type == 2){
+                    $scope.company["keyContacts"][i].type = "LEGAL 2";
+                }
+            };
+
+            var data = responses.public_history.data;
+            for(var i in data){
+                data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                switch(data[i].type){
+                    case "completed":
+                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                        break;
+                    case "added":
+                        data[i].icon = "images/ic_group_add_black_24px.svg";
+                        break;
+                    case "rated":
+                        data[i].icon = "images/ic_star_black_24px.svg";
+                        break;
+                    case "worked":
+                        data[i].icon = "images/icon_project.svg";
+                        break;  
+                    case "favorited":
+                        data[i].icon = "images/ic_favorite_black_24px.svg";
+                        break;   
+                    case "shared":
+                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                        break;   
+                    case "discussion":
+                        data[i].icon = "images/ic_forum_black_24px.svg";
+                        break;                                  
+                }
+            }
+            $scope.history.leftColumn.list = data;
+
+            var data = responses.private_history.data;
+            for(var i in data){
+                data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                switch(data[i].type){
+                    case "completed":
+                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                        break;
+                    case "added":
+                        data[i].icon = "images/ic_group_add_black_24px.svg";
+                        break;
+                    case "rated":
+                        data[i].icon = "images/ic_star_black_24px.svg";
+                        break;
+                    case "worked":
+                        data[i].icon = "images/icon_project.svg";
+                        break;  
+                    case "favorited":
+                        data[i].icon = "images/ic_favorite_black_24px.svg";
+                        break;   
+                    case "shared":
+                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                        break;   
+                    case "discussion":
+                        data[i].icon = "images/ic_forum_black_24px.svg";
+                        break;                                  
+                }
+            }
+            $scope.history.rightColumn.list = data;
+        })
+
+
+        /*ajax.get(dataFactory.companyURL(id).get,{},function(response){
             var company = response.data;
             $scope.company = company;
         })
@@ -188,7 +294,7 @@ angular.module('dmc.component.members-card', [
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };
         companyProfileModel.getImages($scope.company.id, callbackImages);
-
+*/
         $scope.cancel = function(){
             $mdDialog.hide();
         }
