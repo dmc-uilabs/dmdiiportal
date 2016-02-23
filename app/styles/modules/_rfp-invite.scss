@@ -47,6 +47,24 @@
   padding: 0 15px 15px 15px;
   
 }
+.upload-documents{
+  .dz-progress{
+    display: none
+  }
+}
+.dueDatePicker{
+  input::-webkit-input-placeholder {
+    color: rgba(0,0,0,0.26);}
+  input{
+    font-size: 16px;
+  }
+  .md-datepicker-expand-triangle{
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid rgba(0, 0, 0, 0.2);
+    top: 60%;
+  }
+}
 
 .rfp-invitation{
   md-tab-content {
