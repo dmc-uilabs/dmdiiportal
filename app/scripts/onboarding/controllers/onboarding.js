@@ -524,6 +524,9 @@ angular.module('dmc.onboarding')
     	$scope.saveCompany = function(params, callback){
     		onboardingModel.update_company(userData.companyId, params, 
     			function(data){
+		    		$scope.company[i].done = true;
+
+    				/*
 		        	for(var i in $scope.company){
 		    			$scope.company[i].done = true;
 		    			switch(i){
@@ -556,6 +559,7 @@ angular.module('dmc.onboarding')
 					    		};
 		    			}
 			    	}
+			    	*/
 			    	callback();
     			}
     		);
@@ -705,7 +709,7 @@ angular.module('dmc.onboarding')
         	$scope.company[8].data.website = data.website;
 
         	$scope.company[10].data.categoryTier = data.categoryTier;
-        	$scope.company[10].data.dateJoined = data.dateJoined;
+        	$scope.company[10].data.dateJoined = moment(data.dateJoined).format('MM/DD/YYYY');
         	$scope.company[10].data.reasonJoining = data.reasonJoining;
 
         	for(var i in $scope.company){

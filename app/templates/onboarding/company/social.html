@@ -13,22 +13,22 @@
 			<md-icon>
 	            <ng-md-icon icon="twitter" size="32"></ng-md-icon>
 	        </md-icon>
-			<input ng-model="company[8].data.twitter">
+			<input ng-model="company[8].data.twitter" ng-pattern="/^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/">
 		</md-input-container>
 		<md-input-container flex="50" class="md-icon-float">
 			<label>LinkedIn</label>
 			<md-icon>
 	            <ng-md-icon icon="linkedin-box" size="32"></ng-md-icon>
 	        </md-icon>
-			<input ng-model="company[8].data.linkedIn">
+			<input ng-model="company[8].data.linkedIn" ng-pattern="/^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/">
 		</md-input-container>
 		<md-input-container flex="50">
 			<label>Website</label>
-			<input ng-model="company[8].data.website">
+			<input ng-model="company[8].data.website" ng-pattern="/^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/">
 		</md-input-container>
 	</form>
 
-	<div layout="row" layout-align="end center">
+	<div layout="row" layout-align="end center" class="onboarding-foter">
 		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.contact">
 			BACK
 		</md-button>
