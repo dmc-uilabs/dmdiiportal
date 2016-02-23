@@ -6,15 +6,15 @@
         <a ng-if="userData.accountId != cardSource.accountId"
            ng-click="followCompany()"
            class="follow-company link-button">{{ cardSource.follow ? 'Unfollow' : 'Follow'}}</a>
-        <a ng-href="{{'/company.php#/'+cardSource.id}}">
-            <ng-md-icon icon="arrow_forward" title="Company Page" aria-label="Company Page" size="18"></ng-md-icon>
+        <a ng-click="showCompany(cardSource.id, $event)">
+            <ng-md-icon icon="info_outline" title="Company Page" aria-label="Company Page" size="18"></ng-md-icon>
         </a>
     </div>
     <div class="member-card__image">
         <img ng-src="{{cardSource.logoImage ? cardSource.logoImage : '/images/logo-rjc.png'}}" alt="{{cardSource.name}}">
     </div>
     <div class="member-card__header" layout="column" layout-padding layout-margin>
-        <h3 class="member-name"><a href="/company.php#/{{cardSource.id}}">{{cardSource.name}}</a></h3>
+        <h3 class="member-name"><a href="/company-profile.php#/{{cardSource.id}}">{{cardSource.name}}</a></h3>
         <h4 class="industry" ng-if="cardSource.industry">{{cardSource.industry}}</h4>
     </div>
     <div class="member-card__content" layout="row" layout-padding flex>

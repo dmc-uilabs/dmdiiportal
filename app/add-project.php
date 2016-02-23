@@ -78,8 +78,7 @@
     <script src="/bower_components/angular-ui-sortable/sortable.min.js"></script>
     <script src="/bower_components/ng-autofocus/dist/ng-autofocus.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
-    <script src="scripts/components/members-card/members-card.js"></script>
-    <script src="scripts/components/ui-widgets/stars.directive.js"></script>
+
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -102,6 +101,9 @@
     <script src="scripts/common/models/member-model.js"></script>
     <script src="scripts/add_project/add_project.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
+    <script src="scripts/components/members-card/members-card.js"></script>
+    <script src="scripts/components/ui-widgets/stars.directive.js"></script>
+    <script src="scripts/common/models/file-upload.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

@@ -394,12 +394,31 @@ angular.module('dmc.add_project.directive', [
                 favoriteCompany: '=',
                 addToProject: '='
             },
-            controller: function ($scope,$rootScope,ajax,dataFactory,DMCUserModel) {
+            controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
 
                 $scope.userData = DMCUserModel.getUserData();
                 $scope.userData.then(function(res){
                     $scope.userData = res;
                 });
+
+                $scope.showCompany = function(id, ev){
+                    console.info('index', id);
+                    $(window).scrollTop();
+                    $mdDialog.show({
+                        controller: "showCompany",
+                        templateUrl: "templates/components/members-card/show-company.html",
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose:true,
+                        locals: {
+                            "id" : $scope.cardSource.id
+                        }
+                    }).then(function() {
+                        $(window).scrollTop();
+                    }, function() {
+                        $(window).scrollTop();
+                    });
+                }
 
                 $scope.followCompany = function(){
                     if($scope.userData) {

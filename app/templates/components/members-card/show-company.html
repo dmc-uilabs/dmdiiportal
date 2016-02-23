@@ -1,0 +1,44 @@
+<md-dialog aria-label="View" class="view-all-included">
+	<md-dialog-content class="component">
+		<div layout="row" layout-align="end center">
+            
+            <md-button md-no-ink href="" class="md-icon-button" ng-click="cancel()">
+                <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
+        </div>
+		<md-content class="product">
+            <div layout="row">
+                <!--product image-->
+                <div class="product-image-modal" flex="20">
+                    <img class="main-image" ng-src="{{company.logoImage}}">
+                </div>
+                <div flex>
+                    <!--product header-->
+                    <div class="product-header">
+                        <h2>{{company.name}} </h2>
+                    </div>
+
+                    <md-divider></md-divider>
+
+                    <!--product description-->
+                    <div class="product-description">
+                        {{company.description}}
+                    </div>
+                </div>
+            </div>
+            <!--product tabs-->
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Overview">
+                </md-tab>
+                <md-tab label="Skills">
+                </md-tab>
+                <md-tab label="Projects">
+                </md-tab>
+                <md-tab label="History">
+                </md-tab>
+                <md-tab label="Contact">
+                </md-tab>
+            </md-tabs>
+      </md-content>
+  </md-dialog-content>
+</md-dialog>
