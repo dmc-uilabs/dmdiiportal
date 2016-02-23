@@ -198,6 +198,9 @@ angular.module('dmc.data',[])
 
 
             // direct requests
+            shareService: function(){
+                return localhost + 'shared-services';
+            },
             deleteService: function(id){
               return localhost + 'services/'+id;
             },

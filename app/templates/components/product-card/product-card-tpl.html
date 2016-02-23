@@ -1,16 +1,16 @@
 <div class="product-card" layout="column">
     <input class="product-card-featureId" type="hidden" ng-model="cardSource.featureId" value="{{cardSource.featureId}}" ng-if="cardSource.featureId">
     <input class="product-card-position" type="hidden" ng-model="cardSource.position" value="{{cardSource.position}}" ng-if="cardSource.position">
-  <md-toolbar>
-    <div class="md-toolbar-tools" layout-align="end center">
-      <md-button md-no-ink ng-show="!hideButtons || hideButtons.indexOf('favorite') == -1"
-                 ng-click="addToFavorite()"
-                 aria-label="Favorite"
-                 class="md-icon-button" flex>
-        <ng-md-icon icon="{{ cardSource.favorite ? 'favorite' : 'favorite_outline'}}"
-                    ng-class="!cardSource.favorite ? 'not-favorite' : 'is-favorite'"
-                    size="25"></ng-md-icon>
-      </md-button>
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout-align="end center">
+            <md-button md-no-ink ng-show="!hideButtons || hideButtons.indexOf('favorite') == -1"
+                       ng-click="addToFavorite()"
+                       aria-label="Favorite"
+                       class="md-icon-button" flex>
+                <ng-md-icon icon="{{ cardSource.favorite ? 'favorite' : 'favorite_outline'}}"
+                            ng-class="!cardSource.favorite ? 'not-favorite' : 'is-favorite'"
+                            size="25"></ng-md-icon>
+            </md-button>
 
       <md-button md-no-ink
                  ng-show="!hideButtons || hideButtons.indexOf('share') == -1"
@@ -25,129 +25,129 @@
                  class="md-icon-button" flex="33">
         <ng-md-icon icon="info_outline" style="fill: grey;" size="25"></ng-md-icon>
       </md-button>
-    </div>
-  </md-toolbar>
-  <div class="product-card__image_small" ng-if="cardStyle == 'small'">
-    <img ng-src="{{cardSource.featureImage.thumbnail}}" alt="{{cardSource.title}}">
-  </div>
-  <div class="product-card__header" layout="column"
-       ng-class="cardStyle == 'small' ? 'title-without-spaces' : ''">
-    <a ng-href="{{'/service-marketplace.php#/'+cardSource.id}}"><h3>{{cardSource.title}}</h3></a>
-    <a ng-href="{{'/company.php#/'+cardSource.companyId+'/storefront?product=services'}}"><span class="user-name">{{cardSource.owner}}</span></a>
-  </div>
-  <div class="product-card__content" layout="row"  ng-if="cardStyle != 'included'">
-    <div class="product-card__content__column" flex="28" layout="column">
-      <div class="star-rating">
-        <div class="star-rating__buttons">
-          <md-button aria-label="Star" md-no-ink class="md-icon-button">
-            <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon>
-          </md-button>
-          <md-button aria-label="Star" md-no-ink class="md-icon-button">
-            <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon>
-          </md-button>
-          <md-button aria-label="Star" md-no-ink class="md-icon-button">
-            <ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon>
-          </md-button>
-          <md-button aria-label="Star" md-no-ink class="md-icon-button">
-            <ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon>
-          </md-button>
-          <md-button aria-label="Star" md-no-ink class="md-icon-button">
-            <ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon>
-          </md-button>
         </div>
-        <div class="star-rating__value">
-          <span class="small-text">(3.4)</span>
-        </div>
-      </div>
-      <div class="product-card__details">
-        <p class="description">{{cardSource.description}}</p>
-
-        <p>Added <strong>{{cardSource.specificationsData.usageStats.added}} times</strong> by <strong>{{cardSource.specificationsData.usageStats.members}}
-          members</strong></p>
-
-        <p><strong>{{cardSource.specificationsData.runStats.success}}/{{cardSource.specificationsData.runStats.success+cardSource.specificationsData.runStats.fail}}</strong>
-          successful runs</p>
-
-        <p>Release <strong>{{cardSource.releaseDate|timeago}}</strong> ({{cardSource.releaseDate}})</p>
-      </div>
-    </div>
-    <div class="product-card__content__column" flex ng-if="cardStyle != 'small'">
-      <div class="product-card__image">
+    </md-toolbar>
+    <div class="product-card__image_small" ng-if="cardStyle == 'small'">
         <img ng-src="{{cardSource.featureImage.thumbnail}}" alt="{{cardSource.title}}">
-      </div>
     </div>
-  </div>
-  <div class="product-card__footer" layout="row" ng-if="removeFeatured || addFeatured">
-      <div layout="row" class="remove-from-featured" flex layout-align="center center" ng-show="cardSource.inFeatured && removeFeatured">
-          <md-button aria-label="Remove from Featured" layout="column" flex ng-click="removeFromFeatured()">
-              Remove from Featured
-        </md-button>
-      </div>
-      <div layout="row" class="add-to-featured" flex layout-align="center center" ng-show="!cardSource.inFeatured && addFeatured">
-          <md-button aria-label="Add to Featured" layout="column" flex ng-click="addToFeatured()">
-              Add to Featured
-          </md-button>
-      </div>
-  </div>
-  <div class="product-card__footer" layout="row" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured">
-    <div class="adding-to-project" ng-show="addingToProject">
-        <div layout="row" layout-align="center center" class="inner-add-to-project">
-      <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">
-        <ng-md-icon icon="close" size="17"></ng-md-icon>
-      </md-button>
-      <div layout="column" class="select-block" flex>
-        <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()" style="width:100%">
-          <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
-        </md-select>
-      </div>
-      <md-button aria-label="Add"
-                 layout="column"
-                 ng-disabled="!projectModel"
-                 class="md-raised add"
-                 ng-click="saveToProject(projectModel)">Add
-      </md-button>
+    <div class="product-card__header" layout="column"
+         ng-class="cardStyle == 'small' ? 'title-without-spaces' : ''">
+        <a ng-href="{{'/service-marketplace.php#/'+cardSource.id}}"><h3>{{cardSource.title}}</h3></a>
+        <a ng-href="{{'/profile.php#/1'}}"><span class="user-name">{{cardSource.owner}}</span></a>
+    </div>
+    <div class="product-card__content" layout="row"  ng-if="cardStyle != 'included'">
+        <div class="product-card__content__column" flex="28" layout="column">
+            <div class="star-rating">
+                <div class="star-rating__buttons">
+                    <md-button aria-label="Star" md-no-ink class="md-icon-button">
+                        <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon>
+                    </md-button>
+                    <md-button aria-label="Star" md-no-ink class="md-icon-button">
+                        <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon>
+                    </md-button>
+                    <md-button aria-label="Star" md-no-ink class="md-icon-button">
+                        <ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon>
+                    </md-button>
+                    <md-button aria-label="Star" md-no-ink class="md-icon-button">
+                        <ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon>
+                    </md-button>
+                    <md-button aria-label="Star" md-no-ink class="md-icon-button">
+                        <ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon>
+                    </md-button>
+                </div>
+                <div class="star-rating__value">
+                    <span class="small-text">(3.4)</span>
+                </div>
             </div>
+            <div class="product-card__details">
+                <p class="description">{{cardSource.description}}</p>
+
+                <p>Added <strong>{{cardSource.specificationsData.usageStats.added}} times</strong> by <strong>{{cardSource.specificationsData.usageStats.members}}
+                    members</strong></p>
+
+                <p><strong>{{cardSource.specificationsData.runStats.success}}/{{cardSource.specificationsData.runStats.success+cardSource.specificationsData.runStats.fail}}</strong>
+                    successful runs</p>
+
+                <p>Release <strong>{{cardSource.releaseDate|timeago}}</strong> ({{cardSource.releaseDate}})</p>
+            </div>
+        </div>
+        <div class="product-card__content__column" flex ng-if="cardStyle != 'small'">
+            <div class="product-card__image">
+                <img ng-src="{{cardSource.featureImage.thumbnail}}" alt="{{cardSource.title}}">
+            </div>
+        </div>
     </div>
+    <div class="product-card__footer" layout="row" ng-if="removeFeatured || addFeatured">
+        <div layout="row" class="remove-from-featured" flex layout-align="center center" ng-show="cardSource.inFeatured && removeFeatured">
+            <md-button aria-label="Remove from Featured" layout="column" flex ng-click="removeFromFeatured()">
+                Remove from Featured
+            </md-button>
+        </div>
+        <div layout="row" class="add-to-featured" flex layout-align="center center" ng-show="!cardSource.inFeatured && addFeatured">
+            <md-button aria-label="Add to Featured" layout="column" flex ng-click="addToFeatured()">
+                Add to Featured
+            </md-button>
+        </div>
+    </div>
+    <div class="product-card__footer" layout="row" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured">
+        <div class="adding-to-project" ng-show="addingToProject">
+            <div layout="row" layout-align="center center" class="inner-add-to-project">
+                <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">
+                    <ng-md-icon icon="close" size="17"></ng-md-icon>
+                </md-button>
+                <div layout="column" class="select-block" flex>
+                    <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
+                        <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
+                    </md-select>
+                </div>
+                <md-button aria-label="Add"
+                           layout="column"
+                           ng-disabled="!projectModel"
+                           class="md-raised add"
+                           ng-click="saveToProject(projectModel)">Add
+                </md-button>
+            </div>
+        </div>
 
-    <md-button aria-label="Back to Add"
-               class="back-to-add"
-               ng-click="backToAdd()"
-               ng-show="addingToProject == false && cardSource.added">
-        <ng-md-icon icon="close" size="17"></ng-md-icon>
-    </md-button>
+        <md-button aria-label="Back to Add"
+                   class="back-to-add"
+                   ng-click="backToAdd()"
+                   ng-show="addingToProject == false && cardSource.added">
+            <ng-md-icon icon="close" size="17"></ng-md-icon>
+        </md-button>
 
-    <md-button aria-label="Project Link"
-               flex
-               class="page-href"
-               ng-show="addingToProject == false && cardSource.added"
-               href="{{cardSource.lastProject.href}}">
+        <md-button aria-label="Project Link"
+                   flex
+                   class="page-href"
+                   ng-show="addingToProject == false && cardSource.added"
+                   href="{{cardSource.lastProject.href}}">
         <span flex>
             Added to {{cardSource.lastProject.title}}
         </span>
-        <ng-md-icon icon="keyboard_arrow_right" style="fill: #fff" size="32"></ng-md-icon>
-    </md-button>
+            <ng-md-icon icon="keyboard_arrow_right" style="fill: #fff" size="32"></ng-md-icon>
+        </md-button>
 
-    <md-button aria-label="Add to Project"
-               flex
-               class="white-button"
-               ng-click="addToProject()"
-               ng-hide="addingToProject || cardSource.added">
-        Add to Project
-    </md-button>
+        <md-button aria-label="Add to Project"
+                   flex
+                   class="white-button"
+                   ng-click="addToProject()"
+                   ng-hide="addingToProject || cardSource.added">
+            Add to Project
+        </md-button>
 
-      <!-- buttons for compare -->
-    <md-button aria-label="Add to Compare"
-               flex
-               class="white-button"
-               ng-click="addToCompare()"
-               ng-disabled="(cardSource.type == 'service' && compareProducts.components.length > 0) || (cardSource.type == 'component' && compareProducts.services.length > 0)"
-               ng-show="!cardSource.added && addingToProject == false && (typeProduct == 'service' && compareProducts.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && compareProducts.components.indexOf(cardSource.id) == -1)">
-      Add to Compare
-    </md-button>
-    <md-button aria-label="Compare" flex ng-click="removeFromCompare()" class="remove"
-               ng-hide="cardSource.added || addingToProject == true || (typeProduct == 'service' && compareProducts.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && compareProducts.components.indexOf(cardSource.id) == -1)">
-      <ng-md-icon icon="close" size="17"></ng-md-icon>
-      Compare
-    </md-button>
-  </div>
+        <!-- buttons for compare -->
+        <md-button aria-label="Add to Compare"
+                   flex
+                   class="white-button"
+                   ng-click="addToCompare()"
+                   ng-disabled="(cardSource.type == 'service' && compareProducts.components.length > 0) || (cardSource.type == 'component' && compareProducts.services.length > 0)"
+                   ng-show="hideButtons.indexOf('compare') != -1 && !cardSource.added && addingToProject == false && (typeProduct == 'service' && compareProducts.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && compareProducts.components.indexOf(cardSource.id) == -1)">
+            Add to Compare
+        </md-button>
+        <md-button aria-label="Compare" flex ng-click="removeFromCompare()" class="remove"
+                   ng-hide="cardSource.added || addingToProject == true || (typeProduct == 'service' && compareProducts.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && compareProducts.components.indexOf(cardSource.id) == -1)">
+            <ng-md-icon icon="close" size="17"></ng-md-icon>
+            Compare
+        </md-button>
+    </div>
 </div>

@@ -144,12 +144,13 @@ angular.module('dmc.company')
                             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                         },function(data){
                             toastModel.showToast("error","Error. getFeaturesCompany() fail");
-                        },"PUT"
+                        },"PATCH"
                     );
                 };
 
                 $scope.changePicture = function(){
                     $scope.isChangingPicture = true;
+                    apply();
                 };
 
                 $scope.cancelChangePicture = function(flow){

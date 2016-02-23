@@ -167,3 +167,16 @@ angular.module('dmc.component.members-card', [
     }
 
 }])
+    .directive('shareMembersCard', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'templates/components/members-card/share-members-card.html',
+            scope:{
+                cardSource: '=',
+                favoriteMember: '=',
+                share: '='
+            },
+            controller: function ($scope) {
+            }
+        }
+    })

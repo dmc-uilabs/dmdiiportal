@@ -35,7 +35,7 @@
     <![endif]-->
 
     <!-- Top Header -->
-    <div dmc-top-header active-page="'search'"></div>
+    <div dmc-top-header active-page="'community'"></div>
 
     <div ui-view></div>
 
@@ -104,6 +104,8 @@
     <script src="scripts/components/compare/compare.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/add-project/add-project.directive.js"></script>
+    <script src="scripts/components/members-card/members-card.js"></script>
+    <script src="scripts/components/ui-widgets/stars.directive.js"></script>
 
     <script src="scripts/search/search.js"></script>
     <script src="scripts/search/search.controller.js"></script>

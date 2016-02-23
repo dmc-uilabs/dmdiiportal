@@ -10,7 +10,8 @@ var updateFavoriteInShowProductCtrl = null;
 angular.module('dmc.component.productcard', [
     'dmc.ajax',
     'dmc.data',
-    'ngCookies'
+    'ngCookies',
+    'dmc.component.members-card'
 ])
 .run(function($rootScope,ajax,dataFactory){
         // get all projects and save to $rootScope
@@ -121,7 +122,9 @@ angular.module('dmc.component.productcard', [
                           projectId: projectId,
                           from: 'marketplace'
                       }, function (response) {
-                          $scope.cancelAddToProject($scope.cardSource);
+                          $scope.cancelAddToProject();
+                          if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
+                          if(!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
                           $scope.cardSource.currentStatus.project.id = projectId;
                           $scope.cardSource.currentStatus.project.title = project.title;
                           $scope.cardSource.projectId = projectId;
@@ -210,6 +213,7 @@ angular.module('dmc.component.productcard', [
                   targetEvent: ev,
                   clickOutsideToClose:true,
                   locals: {
+                      serviceId : ($scope.cardSource.id ? $scope.cardSource.id : 1)
                   }
               }).then(function() {
               }, function() {
@@ -276,6 +280,7 @@ angular.module('dmc.component.productcard', [
                 targetEvent: ev,
                 clickOutsideToClose:true,
                 locals: {
+                    serviceId : ($scope.product.id ? $scope.product.id : 1)
                 }
             }).then(function() {
             }, function() {
@@ -397,50 +402,66 @@ angular.module('dmc.component.productcard', [
         });
     };
 }])
-.controller('ShareProductCtrl', function ($scope, $mdDialog){
-    $scope.people = [
-        { name: 'Janet Perkins', img: 'images/avatar-fpo.jpg', newMessage: true },
-        { name: 'Mary Johnson', img: 'images/mackenzie.png', newMessage: false },
-        { name: 'Peter Carlsson', img: 'images/carbone.png', newMessage: false }
-    ];
-    $scope.cancel = function(){
-        $mdDialog.cancel();
-    };
+.controller('ShareProductCtrl', function ($scope, $rootScope, $mdDialog,toastModel,ajax,dataFactory,serviceId){
+        $scope.share = {
+            user : null
+        };
+
+        $scope.users = {};
+
+        $scope.users.items = [];
+        $scope.users.querySearch   = querySearch;
+        $scope.users.selectedItemChange = selectedItemChange;
+        $scope.users.searchTextChange   = searchTextChange;
+        function querySearch (query) {
+            var results = query ? $scope.users.items.filter( createFilterFor(query) ) : $scope.users.items,
+                deferred;
+            return results;
+        }
+        function searchTextChange(text) {
+            //$log.info('Text changed to ' + text);
+        }
+        function selectedItemChange(item) {
+            //$log.info('Item changed to ' + JSON.stringify(item));
+        }
+
+        function getAllUser(){
+            ajax.get(dataFactory.profiles().all,{},function(response){
+                $scope.users.items = response.data.map( function (profile) {
+                    return {
+                        profile: profile,
+                        value: profile.displayName.toLowerCase(),
+                        display: profile.displayName
+                    };
+                });
+                apply();
+            });
+        }
+        getAllUser();
+
+        function createFilterFor(query) {
+            var lowercaseQuery = angular.lowercase(query);
+            return function filterFn(user) {
+                return (user.value.indexOf(lowercaseQuery) === 0);
+            };
+        }
+
+        function apply(){
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        }
+
+        $scope.shareService = function(id){
+            ajax.create(dataFactory.shareService(),{
+                accountId : $rootScope.userData.accountId,
+                profileId :  id,
+                serviceId : serviceId
+            },function(response){
+                toastModel.showToast("success","Service successfully shared");
+                $scope.cancel();
+            });
+        };
+
+        $scope.cancel = function(){
+            $mdDialog.cancel();
+        };
 })
-//.factory('Products', function (ajax,dataFactory) {
-//        var getServices = function(f,data){
-//            ajax.on(dataFactory.getUrlAllServices(),data,f,function(){
-//                console.error("Ajax fail! getServices()");
-//            });
-//        };
-//        var getComponents = function(f,data){
-//            ajax.on(dataFactory.getUrlAllComponents(),data,f,function(){
-//                console.error("Ajax fail! getComponents()");
-//            });
-//        };
-//
-//        var getAllProducts = function(f,data){
-//            ajax.on(dataFactory.getUrlAllProducts(),data,f,function(){
-//                console.error("Ajax fail! getAllProducts()");
-//            });
-//        };
-//
-//        return {
-//            get : function(f,type,data){
-//                switch(type){
-//                    case 'services':
-//                        getServices(f,data);
-//                        break;
-//                    case 'components':
-//                        getComponents(f,data);
-//                        break;
-//                    case 'all':
-//                        getAllProducts(f,data);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        };
-//    }
-//);
