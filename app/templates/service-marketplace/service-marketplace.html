@@ -81,7 +81,8 @@
 								<span flex></span>
 								<div ng-if="!adding_to_project" layout="row" layout-align="center end">
 									<md-button ui-sref="service-marketplace-edit({serviceId: product.id})" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
-									<md-button ng-click="toProject()" class="md-raised add dmc-button margin-left20">Add to Project</md-button>
+									<!-- <md-button ng-click="toProject()" class="md-raised add dmc-button margin-left20">Add to Project</md-button> -->
+									<md-button ng-href="{{'project.php#/'+product.projectId+'/home'}}" class="md-raised dmc-button margin-left20">To Project</md-button>
 									<md-button  
 											ng-click="addToCompare()" 
 											class="md-raised add dmc-button margin-left20"
@@ -271,7 +272,7 @@
 					<md-divider></md-divider>
 				</div>
 
-				<div class="similar_product">
+				<div class="similar_product" ng-if="version1">
 					<h2>Similar product</h2>
 					<div layout="row">
 						<div flex="25" ng-repeat="item in products_card">
