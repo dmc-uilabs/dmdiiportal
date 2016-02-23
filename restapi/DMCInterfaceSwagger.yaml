@@ -19,6 +19,7 @@ paths:
   /user:
     get:
       tags:
+        - GE
         - account
       description: Get currently logged in user details.  If user does not exist, create account.
       responses:
@@ -29,6 +30,7 @@ paths:
   /user-basic-information:
     post:
       tags:
+        - GE
         - account
         - onboarding
       description: Set initial basic information for User after first login
@@ -47,6 +49,7 @@ paths:
   '/accounts/{accountID}':
     get:
       tags:
+        - GE
         - account
       description: Get account information by account id
       parameters:
@@ -62,6 +65,7 @@ paths:
             $ref: '#/definitions/UserAccount'
     patch:
       tags:
+      - GE
       - account
       description: Update account information by account id
       parameters:
@@ -82,6 +86,7 @@ paths:
   '/accounts/{accountID}/account_servers':
     get:
       tags:
+        - GE
         - account
       description: Get servers by account id
       parameters:
@@ -100,6 +105,7 @@ paths:
   '/accounts/{accountID}/account-notification-settings':
     get:
       tags:
+        - GE
         - account
       description: Get account notification settings by accound id
       parameters:
@@ -118,6 +124,7 @@ paths:
   '/account-notification-settings/{notificationSettingID}':
     get:
       tags:
+        - GE
         - account
       description: Get account notification setting by id
       parameters:
@@ -133,7 +140,8 @@ paths:
             $ref: '#/definitions/AccountNotificationSetting'
     patch:
       tags:
-      - account
+        - GE
+        - account
       description: Update account notification by id
       parameters:
         - name: notificationSettingID
@@ -153,6 +161,7 @@ paths:
   '/account-notification-categories':
     get:
       tags:
+        - GE
         - account
       description: Get categories and labels for Account Notification tab
       responses:
@@ -165,6 +174,7 @@ paths:
   '/account_servers':
     post:
       tags:
+        - GE
         - account
       description: Create a new account server
       parameters:
@@ -182,6 +192,7 @@ paths:
   '/account_servers/{serverID}':
     get:
       tags:
+        - GE
         - account
       description: Get server by server id
       parameters:
@@ -197,7 +208,8 @@ paths:
             $ref: '#/definitions/UserAccountServer'
     patch:
       tags:
-      - account
+        - GE
+        - account
       description: Update server information by server id
       parameters:
         - name: serverID
@@ -216,6 +228,7 @@ paths:
             $ref: '#/definitions/UserAccountServer'
     delete:
       tags:
+        - GE
         - account
       description: Delete a server by id
       parameters:
@@ -230,6 +243,7 @@ paths:
   '/accounts/{accountID}/following_companies':
     get:
       tags:
+        - GE
         - account
       description: Get favorite storefronts
       parameters:
@@ -248,6 +262,7 @@ paths:
   '/accounts/{accountID}/favorite_products':
     get:
       tags:
+        - GE
         - account
       description: Get all favorite services
       parameters:
@@ -360,6 +375,7 @@ paths:
   /projects:
     get:
       tags:
+        - CA
         - project
       description: Get all user projects
       responses:
@@ -371,6 +387,7 @@ paths:
               $ref: '#/definitions/Project'
     post:
       tags:
+        - CA
         - project
       description: Post a new project to store in the database
       operationId: postProject
@@ -387,6 +404,7 @@ paths:
   '/projects/{projectID}':
     get:
       tags:
+        - CA
         - project
         - project.php
       summary: Get project information by project id
@@ -406,6 +424,7 @@ paths:
   '/projects/{projectID}/documents':
     get:
       tags:
+        - CA
         - project
         - document
       description: Get all documents in a project
@@ -425,6 +444,7 @@ paths:
   '/projects/{projectID}/following_discussions':
     get:
       tags:
+        - CA
         - project
         - discussion
       description: Get all project discussions being followed
@@ -444,6 +464,7 @@ paths:
   '/projects/{projectID}/all-discussions':
     get:
       tags:
+        - CA
         - project
         - discussion
       description: Get all project discussion threads
@@ -463,6 +484,7 @@ paths:
   '/all-discussions':
     get:
       tags:
+        - CA
         - project
         - discussion
       description: Get all user discussion threads
@@ -476,6 +498,7 @@ paths:
   '/projects_members':
     get:
       tags:
+        - CA
         - project
         - add member
       description: Get members
@@ -504,6 +527,7 @@ paths:
               $ref: '#/definitions/ProjectMember'
     post:
       tags:
+        - CA
         - project
         - add member
       description: Create a new member
@@ -522,6 +546,7 @@ paths:
   '/projects_members/{memberId}':
     patch:
       tags:
+        - CA
         - project
         - add member
       description: Update member or accept inivitation
@@ -542,6 +567,7 @@ paths:
             $ref: '#/definitions/ProjectMember'
     get:
       tags:
+        - CA
         - project
         - add member
       description: Get member by id
@@ -558,6 +584,7 @@ paths:
             $ref: '#/definitions/ProjectMember'
     delete:
       tags:
+        - CA
         - project
         - add member
       description: decline member inivitation
@@ -573,6 +600,7 @@ paths:
   /tasks/create:
     post:
       tags:
+        - CA
         - task
       summary: Post a new task
       description: Post a new task to store in the database
@@ -590,6 +618,7 @@ paths:
   '/tasks/{taskID}':
     get:
       tags:
+        - CA
         - task
       summary: Get task information by task id
       description: Get information about a task...
@@ -608,6 +637,7 @@ paths:
   '/dome-interfaces':
     post:
       tags:
+        - CA
         - service
       description: Post a new dome interface
       parameters:
@@ -627,6 +657,7 @@ paths:
   '/dome-interfaces/{domeInterfaceId}':
     delete:
       tags:
+        - CA
         - service
       description: Get service dome interface
       parameters:
@@ -640,6 +671,7 @@ paths:
           description: Ok
     patch:
       tags:
+        - CA
         - service
       description: Update dome interface
       parameters:
@@ -661,6 +693,7 @@ paths:
             $ref: '#/definitions/GetDomeInterface'
     get:
       tags:
+        - CA
         - service
       description: Get dome interface
       parameters:
@@ -677,6 +710,7 @@ paths:
   '/services/{serviceId}/dome-interfaces':
     get:
       tags:
+        - CA
         - service
       description: Get service dome interface
       parameters:
@@ -693,6 +727,7 @@ paths:
   '/services':
     post:
       tags:
+        - CA
         - service
       summary: Post a new service
       description: Post a new service to store in the database
@@ -709,6 +744,7 @@ paths:
           description: Invalide input
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: get all services
@@ -728,6 +764,7 @@ paths:
   '/services/{serviceID}':
     get:
       tags:
+        - CA
         - service
         - marketplace
       summary: Get information for a service
@@ -746,6 +783,7 @@ paths:
             $ref: '#/definitions/Service'
     patch:
       tags:
+        - CA
         - service
         - marketplace
       description: Update information for service by ID
@@ -767,6 +805,7 @@ paths:
   '/services/{serviceID}/service_history':
     get:
       tags:
+        - CA
         - service
         - history
         - marketplace
@@ -797,6 +836,7 @@ paths:
   '/services/{serviceID}/service-documents':
     get:
       tags:
+        - CA
         - service
         - document
         - marketplace
@@ -817,6 +857,7 @@ paths:
   '/services/{serviceID}/service_authors':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get all authors for a service
@@ -836,6 +877,7 @@ paths:
   '/services/{serviceID}/services_statistic':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get all statistics for a service
@@ -855,6 +897,7 @@ paths:
   '/services/{serviceID}/service_tags':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get all tags for a service
@@ -893,6 +936,7 @@ paths:
   '/service_tags':
     post:
       tags:
+        - CA
         - service
         - marketplace
       description: Create a new service tag
@@ -910,6 +954,7 @@ paths:
             $ref: '#/definitions/ServiceTag'
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get latest service tag
@@ -943,6 +988,7 @@ paths:
   '/service_tags/{serviceTagID}':
     delete:
       tags:
+        - CA
         - service
         - marketplace
       description: Delete a service tag
@@ -958,6 +1004,7 @@ paths:
   '/service/{serviceID}/specifications':
     post:
       tags:
+        - CA
         - service
         - specification
       operationId: postServiceSpecification
@@ -979,6 +1026,7 @@ paths:
   '/services/{serviceID}/specifications':
     get:
       tags:
+        - CA
         - service
         - specification
         - marketplace
@@ -996,6 +1044,7 @@ paths:
   '/specifications/{specificationId}':
     patch:
       tags:
+        - CA
         - service
         - specifications
         - marketplace
@@ -1019,6 +1068,7 @@ paths:
   '/services/{serviceID}/service_images':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: get images for service
@@ -1038,6 +1088,7 @@ paths:
   '/service_images/{imageId}':
     delete:
       tags:
+        - CA
         - service
         - marketplace
       description: remove image
@@ -1053,6 +1104,7 @@ paths:
   '/service_images':
     post:
       tags:
+        - CA
         - service
         - marketplace
       description: Create a new service image
@@ -1070,6 +1122,7 @@ paths:
             $ref: '#/definitions/ServiceImages'
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get latest service tag
@@ -1103,6 +1156,7 @@ paths:
   /components:
     post:
       tags:
+        - CA
         - component
       summary: Post a new component
       description: Post a new component to store in the database
@@ -1120,6 +1174,7 @@ paths:
   '/components/{componentID}':
     get:
       tags:
+        - CA
         - component
       summary: Get information for a component
       description: Get specification for a component based on componentID
@@ -1138,6 +1193,7 @@ paths:
   '/popular_discussions':
     get:
       tags:
+        - CA
         - discussion
       description: Get popular discussions
       responses:
@@ -1150,6 +1206,7 @@ paths:
   '/follow_people_discussions':
     get:
       tags:
+        - CA
         - discussion
       description: Get discussion of people being followed
       responses:
@@ -1162,6 +1219,7 @@ paths:
   '/following_discussions':
     get:
       tags:
+        - CA
         - discussion
         - dashboard.php
       description: Get discussion being followed
@@ -1175,6 +1233,7 @@ paths:
   '/discussions':
     get:
       tags:
+        - CA
         - discussion
       description: Get all user relalted discussion
       responses:
@@ -1187,6 +1246,7 @@ paths:
   /discussions/create:
     post:
       tags:
+        - CA
         - discussion
       summary: Post a new discussion
       description: Post a new discussion to store in the database
@@ -1204,6 +1264,7 @@ paths:
   '/discussions/{discussionID}':
     get:
       tags:
+        - CA
         - discussion
       description: Get discussion based on discussionID
       operationId: getDiscussionByDiscussionID
@@ -1221,6 +1282,7 @@ paths:
   '/profiles':
     post:
       tags:
+        - CA
         - profile
       description: Create a new user profile
       parameters:
@@ -1237,6 +1299,7 @@ paths:
             $ref: '#/definitions/Profile'
     get:
       tags:
+        - CA
         - profile
       description: Get all user profiles
       responses:
@@ -1249,6 +1312,7 @@ paths:
   '/profiles/{profileID}':
     get:
       tags:
+        - CA
         - profile
       description: Get profile based on profileID
       parameters:
@@ -1273,6 +1337,7 @@ paths:
             $ref: '#/definitions/Profile'
     patch:
       tags:
+        - CA
         - profile
       description: Update information for profile by ID
       parameters:
@@ -1292,6 +1357,7 @@ paths:
             $ref: '#/definitions/Profile'
     delete:
       tags:
+        - CA
         - profile
       description: Delete a profile by id
       parameters:
@@ -1306,6 +1372,7 @@ paths:
   '/profiles/{profileID}/profile_history':
     get:
       tags:
+        - CA
         - profile
       description: Get the user activities history by profile ID
       parameters:
@@ -1332,6 +1399,7 @@ paths:
   '/profiles/{profileID}/profile_reviews':
     get:
       tags:
+        - CA
         - profile
       summary: Get reviews for a member profile
       description: Get profile reviews based on profileID
@@ -1391,6 +1459,7 @@ paths:
   '/profile_reviews':
     post:
       tags:
+        - CA
         - profile
       description: Added new review or reply profile
       parameters:
@@ -1408,6 +1477,7 @@ paths:
   '/profile_reviews/{reviewId}':
     get:
       tags:
+        - CA
         - profile
       description: Get profile review by id
       parameters:
@@ -1423,6 +1493,7 @@ paths:
             $ref: '#/definitions/ProfileReview'
     patch:
       tags:
+        - CA
         - profile
       description: Update profile review
       parameters:
@@ -1443,6 +1514,7 @@ paths:
   '/profile_reviews_helpful':
     get:
       tags:
+        - CA
         - profile
       description: Get profile review helpful
       parameters:
@@ -1465,6 +1537,7 @@ paths:
               $ref: '#/definitions/ProfileReviewHelpful'
     post:
       tags:
+        - CA
         - profile
       description: Create profile review helpful
       parameters:
@@ -1482,6 +1555,7 @@ paths:
   '/profile_reviews_helpful/{helpfulID}':
     patch:
       tags:
+        - CA
         - profile
       description: Update profile review helpful
       parameters:
@@ -1502,6 +1576,7 @@ paths:
   '/companies/{companyID}':
     get:
       tags:
+        - CA
         - company
       summary: Get information for a company profile
       description: Get profile based on companyID
@@ -1518,6 +1593,7 @@ paths:
             $ref: '#/definitions/Company'
     patch:
       tags:
+        - CA
         - company
       description: Update information for company profile by ID
       parameters:
@@ -1538,6 +1614,7 @@ paths:
   '/companies/{companyID}/company_images':
     get:
       tags:
+        - CA
         - company
       summary: Get company profile images
       description: Get company profile images based on companyID
@@ -1557,6 +1634,7 @@ paths:
   '/companies/{companyID}/company_members':
     get:
       tags:
+        - CA
         - company
       description: Get company members based on companyID
       parameters:
@@ -1575,6 +1653,7 @@ paths:
   '/companies/{companyID}/company_history':
     get:
       tags:
+        - CA
         - company
       description: Get company history based on companyID
       parameters:
@@ -1593,7 +1672,8 @@ paths:
   '/company_images/{imageID}':
     patch:
       tags:
-      - company
+        - CA
+        - company
       description: Update company image by ID
       parameters:
         - name: imageID
@@ -1613,6 +1693,7 @@ paths:
   '/companies/{companyID}/company_videos':
     get:
       tags:
+        - CA
         - company
       summary: Get company profile videos
       description: Get company profile videos based on companyID
@@ -1632,6 +1713,7 @@ paths:
   '/companies/{companyID}/company_skills':
     get:
       tags:
+        - CA
         - company
       summary: Get company profile skill
       description: Get company profile skill based on companyID
@@ -1651,6 +1733,7 @@ paths:
   '/companies/{companyID}/company_key_contacts':
     get:
       tags:
+        - CA
         - company
       summary: Get company profile contacts
       description: Get company profile contacts based on companyID
@@ -1670,6 +1753,7 @@ paths:
   '/companies/{companyID}/company_skill_images':
     get:
       tags:
+        - CA
         - company
       summary: Get company profile skill images
       description: Get company profile skill images based on companyID
@@ -1689,7 +1773,8 @@ paths:
   '/company_skill_images/{imageID}':
     patch:
       tags:
-      - company
+        - CA
+        - company
       description: Update company skill image by ID
       parameters:
         - name: imageID
@@ -1709,6 +1794,7 @@ paths:
   '/companies/{companyID}/company_reviews':
     get:
       tags:
+        - CA
         - company
       summary: Get reviews for a company
       description: Get company reviews based on companyID
@@ -1768,6 +1854,7 @@ paths:
   '/company_reviews':
     post:
       tags:
+        - CA
         - company
       description: Added new review or reply company
       parameters:
@@ -1785,6 +1872,7 @@ paths:
   '/company_reviews_helpful':
     get:
       tags:
+        - CA
         - company
       description: Get company review helpful
       parameters:
@@ -1807,6 +1895,7 @@ paths:
               $ref: '#/definitions/CompanyReviewHelpful'
     post:
       tags:
+        - CA
         - company
       description: Create company review helpful
       parameters:
@@ -1824,6 +1913,7 @@ paths:
   '/company_reviews_helpful/{helpfulID}':
     patch:
       tags:
+        - CA
         - company
       description: Update company review helpful
       parameters:
@@ -1844,6 +1934,7 @@ paths:
   '/companies/{companyID}/company_services':
     get:
       tags:
+        - CA
         - company
         - service
       description: Get company services based on companyID
@@ -1933,6 +2024,7 @@ paths:
   '/companies/{companyID}/company_components':
     get:
       tags:
+        - CA
         - company
         - component
       description: Get company components based on companyID
@@ -2022,6 +2114,7 @@ paths:
   '/companies/{companyID}/company_featured':
     get:
       tags:
+        - CA
         - company
       summary: Get featured products for a company
       description: Get company featured products based on companyID
@@ -2077,6 +2170,7 @@ paths:
   '/companies/{companyID}/new':
     get:
       tags:
+        - CA
         - company
       description: Get new company services
       parameters:
@@ -2113,6 +2207,7 @@ paths:
   '/company_skills':
     post:
       tags:
+        - CA
         - company
       summary: Post a new company skill
       description: Post a new company skill
@@ -2131,6 +2226,7 @@ paths:
   '/company_skills/{skillID}':
     delete:
       tags:
+        - CA
         - company
       description: Delete a skill by id
       parameters:
@@ -2145,6 +2241,7 @@ paths:
   '/company_videos':
     post:
       tags:
+        - CA
         - company
       summary: Post a new company video
       description: Post a new company video
@@ -2163,6 +2260,7 @@ paths:
   '/company_videos/{videoID}':
     delete:
       tags:
+        - CA
         - company
       description: Delete a video by id
       parameters:
@@ -2176,7 +2274,8 @@ paths:
           description: OK
     patch:
       tags:
-      - company
+        - CA
+        - company
       description: Update company videos by ID
       parameters:
         - name: videoID
@@ -2196,6 +2295,7 @@ paths:
   '/company_key_contacts':
     post:
       tags:
+        - CA
         - company
       summary: Post a new company contact
       description: Post a new company contact
@@ -2214,6 +2314,7 @@ paths:
   '/company_key_contacts/{contactID}':
     delete:
       tags:
+        - CA
         - company
       description: Delete a contact by id
       parameters:
@@ -2227,7 +2328,8 @@ paths:
           description: OK
     patch:
       tags:
-      - company
+        - CA
+        - company
       description: Update company contact by ID
       parameters:
         - name: contactID
@@ -2247,6 +2349,7 @@ paths:
   '/company/follow':
     post:
       tags:
+        - CA
         - company
       description: Follow company
       parameters:
@@ -2275,6 +2378,7 @@ paths:
   '/company/unfollow/{followed_companiId}':
     delete:
       tags:
+        - CA
         - company
       description: Unfollow company
       parameters:
@@ -2289,6 +2393,7 @@ paths:
   '/company_featured/{company_featuredId}/position':
     patch:
       tags:
+        - CA
         - company
       description: Update featured position
       parameters:
@@ -2319,6 +2424,7 @@ paths:
   '/company_featured/add':
     post:
       tags:
+        - CA
         - company
       description: Added new featured company
       parameters:
@@ -2354,6 +2460,7 @@ paths:
   '/company_featured/{company_featuredId}':
     delete:
       tags:
+        - CA
         - company
       description: Delete featured company
       parameters:
@@ -2368,6 +2475,7 @@ paths:
   '/market/popular_services':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get popular services in marketplace
@@ -2406,6 +2514,7 @@ paths:
   '/market/new_services':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get latest services in marketplace
@@ -2444,6 +2553,7 @@ paths:
   '/market/services':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get all services in marketplace
@@ -2528,6 +2638,7 @@ paths:
   '/market/components':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get all components in marketplace
@@ -2612,6 +2723,7 @@ paths:
   '/product/{service_Id}/product_reviews':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get all reviews service in marketplace
@@ -2671,6 +2783,7 @@ paths:
   '/product_reviews':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get latest review service in marketplace
@@ -2703,6 +2816,7 @@ paths:
               $ref: '#/definitions/ProductReview'
     post:
       tags:
+        - CA
         - service
         - marketplace
       description: Added new review or reply service in marketplace
@@ -2721,6 +2835,7 @@ paths:
   '/product_reviews/{reviewId}':
     patch:
       tags:
+        - CA
         - service
         - marketplace
       description: Update service review
@@ -2742,6 +2857,7 @@ paths:
   '/product_reviews_helpful':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get service review helpful
@@ -2765,6 +2881,7 @@ paths:
               $ref: '#/definitions/ProductReviewHelpful'
     post:
       tags:
+        - CA
         - service
         - marketplace
       description: Create service review helpful
@@ -2783,6 +2900,7 @@ paths:
   '/product_reviews_helpful/{helpfulID}':
     patch:
       tags:
+        - CA
         - service
         - marketplace
       description: Update service review helpful
@@ -2804,6 +2922,7 @@ paths:
   '/service_authors/{autorhId}':
     delete:
       tags:
+        - CA
         - service
         - marketplace
       description: Remove  with service author
@@ -2818,6 +2937,7 @@ paths:
   '/service_authors':
     post:
       tags:
+        - CA
         - service
         - marketplace
       description: Add new service author
@@ -2835,6 +2955,7 @@ paths:
   '/array_specifications':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get array of specifications for services
@@ -2867,6 +2988,7 @@ paths:
               $ref: '#/definitions/ArraySpecifications'
     post:
       tags:
+        - CA
         - service
         - marketplace
       description: Add elements to array of specifications for services
@@ -2887,6 +3009,7 @@ paths:
   '/follow-company-services':
     get:
       tags:
+        - CA
         - service
         - marketplace
       description: Get all services from favorite storefronts
@@ -2932,6 +3055,7 @@ paths:
   '/favorite_products/{favorite_productId}':
     delete:
       tags:
+        - CA
         - service
         - account
       description: Delete service from favorites
@@ -2947,6 +3071,7 @@ paths:
   '/favorite_products':
     post:
       tags:
+        - CA
         - service
         - account
       description: Add service to favorites
@@ -2976,6 +3101,7 @@ paths:
   '/services/{serviceId}/input-positions':
     get:
       tags:
+        - CA
         - service
       description: Get service inputs positions
       parameters:
@@ -2994,6 +3120,7 @@ paths:
   '/input-positions/{positionInputId}':
     patch:
       tags:
+        - CA
         - service
       description: Update service inputs positions
       parameters:
@@ -3017,6 +3144,7 @@ paths:
             $ref: '#/definitions/ServiceInputsPositions'
     delete:
       tags:
+        - CA
         - service
       description: Delete service inputs positions
       parameters:
@@ -3031,6 +3159,7 @@ paths:
   '/input-positions':
     post:
       tags:
+        - CA
         - service
       description: Add new inputs positions
       parameters:
@@ -3050,6 +3179,7 @@ paths:
   '/notifications-user':
     get:
       tags:
+        - CA
         - notification
       description: Get all notifications for user
       parameters:
@@ -3078,6 +3208,7 @@ paths:
   '/notifications-user-statistic':
     get:
       tags:
+        - CA
         - notification
       description: Get all notification statistics for User
       responses:
@@ -3090,6 +3221,7 @@ paths:
   '/notifications-pm':
     get:
       tags:
+        - CA
         - notification
       description: Get all notifications for Project Manager
       parameters:
@@ -3118,6 +3250,7 @@ paths:
   '/notifications-pm-statistic':
     get:
       tags:
+        - CA
         - notification
       description: Get all notification statistics for the Project Manager
       responses:
@@ -3130,6 +3263,7 @@ paths:
   '/announcements':
     get:
       tags:
+        - CA
         - community
       description: Get all community announcements
       responses:
@@ -3142,6 +3276,7 @@ paths:
   '/events':
     get:
       tags:
+        - CA
         - community
       description: Get all community events
       responses:
@@ -3154,6 +3289,7 @@ paths:
   '/individual-discussion':
     get:
       tags:
+        - CA
         - discussion
         - community
       description: Get all community individual discussions
@@ -3166,6 +3302,7 @@ paths:
               $ref: '#/definitions/IndividualDiscussion'
     post:
       tags:
+        - CA
         - discussion
         - community
       description: Create a new individual discussions
@@ -3184,6 +3321,7 @@ paths:
   '/individual-discussion/{individualDiscussionID}/individual-discussion-comments':
     get:
       tags:
+        - CA
         - discussion
         - community
       description: Get all individual discussions comments
@@ -3222,6 +3360,7 @@ paths:
   '/individual-discussion-comments':
     post:
       tags:
+        - CA
         - discussion
         - community
       description: Create a new individual discussions comment
@@ -3240,6 +3379,7 @@ paths:
   '/individual-discussion-comments/{commentID}':
     delete:
       tags:
+        - CA
         - discussion
         - community
       description: Delete a individual discussions comment
@@ -3254,6 +3394,7 @@ paths:
           description: OK
     patch:
       tags:
+        - CA
         - discussion
         - community
       description: Update a individual discussions comment
@@ -3275,6 +3416,7 @@ paths:
   '/individual-discussion/{individualDiscussionID}/individual-discussion-tags':
     get:
       tags:
+        - CA
         - discussion
         - community
       description: Get all individual discussions tags
@@ -3294,6 +3436,7 @@ paths:
   '/individual-discussion-comments-helpful':
     get:
       tags:
+        - CA
         - discussion
         - community
       description: Get individual discussions comment helpful
@@ -3317,6 +3460,7 @@ paths:
               $ref: '#/definitions/IndividualDiscussionCommentHelpful'
     post:
       tags:
+        - CA
         - discussion
         - community
       description: Create individual discussions comments helpful
@@ -3335,6 +3479,7 @@ paths:
   '/individual-discussion-comments-helpful/{helpfulID}':
     patch:
       tags:
+        - CA
         - discussion
         - community
       description: Update a individual discussions comment helpful
@@ -3356,6 +3501,7 @@ paths:
   '/individual-discussion-tags':
     post:
       tags:
+        - CA
         - discussion
         - community
       description: Create a new individual discussions tag
@@ -3374,6 +3520,7 @@ paths:
   '/individual-discussion-tags/{disscusionTagID}':
     delete:
       tags:
+        - CA
         - discussion
         - community
       description: Delete a individual discussions tag
