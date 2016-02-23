@@ -460,3 +460,9 @@ md-input-container:not(.md-input-has-value) input:not(:focus){
   right: 0;
   top: 8px;
 }
+
+.md-dialog-container .component{
+  md-tabs.md-dynamic-height md-tabs-content-wrapper {
+    padding: 0 16px;
+  }
+}
