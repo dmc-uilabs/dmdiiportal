@@ -19,6 +19,7 @@ angular.module('dmc.search', [
     'dmc.model.project',
     'dmc.model.member',
     'dmc.community',
+    'dmc.widgets.tabs',
     'dmc.add_project.directive',
 	'dmc.model.toast-model'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){

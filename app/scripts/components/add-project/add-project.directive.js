@@ -314,7 +314,7 @@ angular.module('dmc.add_project.directive', [
                 addToProject: '=',
                 allButtons: '='
             },
-            controller: function ($scope,DMCUserModel,ajax,dataFactory,$rootScope) {
+            controller: function ($scope,$mdDialog,DMCUserModel,ajax,dataFactory,$rootScope) {
                 $scope.userData = DMCUserModel.getUserData();
                 $scope.userData.then(function(res){
                     $scope.userData = res;
@@ -323,6 +323,25 @@ angular.module('dmc.add_project.directive', [
                 var apply = function(){
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
+
+                $scope.showMembers = function(id, ev){
+                    console.info('index', id);
+                    $(window).scrollTop();
+                    $mdDialog.show({
+                        controller: "showMembers",
+                        templateUrl: "templates/components/members-card/show-members.html",
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose:true,
+                        locals: {
+                            "id" : id
+                        }
+                    }).then(function() {
+                        $(window).scrollTop();
+                    }, function() {
+                        $(window).scrollTop();
+                    });
+                }
 
                 $scope.followMember = function(){
                     if($scope.userData) {

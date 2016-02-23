@@ -158,6 +158,25 @@ angular.module('dmc.search')
             };
             //$scope.updateVisiblePages();
 
+            $scope.showMembers = function(id, ev){
+                console.info('index', id);
+                $(window).scrollTop();
+                $mdDialog.show({
+                    controller: "showMembers",
+                    templateUrl: "templates/components/members-card/show-members.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose:true,
+                    locals: {
+                        "id" : id
+                    }
+                }).then(function() {
+                    $(window).scrollTop();
+                }, function() {
+                    $(window).scrollTop();
+                });
+            }
+
             // Discussions Start ----------------------------------------------------
             $scope.discussions = [];
             $scope.order = "DESC";

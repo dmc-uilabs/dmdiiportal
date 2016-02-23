@@ -99,13 +99,15 @@
     <script src="scripts/components/tree-menu/tree-menu.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
     <script src="scripts/common/models/member-model.js"></script>
+    <script src="scripts/components/ui-widgets/stars.directive.js"></script>
+    <script src="scripts/components/ui-widgets/review.directive.js"></script>
+    <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/add-project/add-project.directive.js"></script>
     <script src="scripts/components/members-card/members-card.js"></script>
-    <script src="scripts/components/ui-widgets/stars.directive.js"></script>
 
     <script src="scripts/search/search.js"></script>
     <script src="scripts/search/search.controller.js"></script>

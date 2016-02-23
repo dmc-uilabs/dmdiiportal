@@ -11,7 +11,7 @@
         </a>
         <a ng-click="followMember()"
            class="follow-member link-button">{{ cardSource.follow ? 'Unfollow' : 'Follow'}}</a>
-        <a >
+        <a ng-click="showMembers(cardSource.id, $event)">
             <ng-md-icon icon="info_outline" aria-label="Profile Page" size="18"></ng-md-icon>
         </a>
     </div>
