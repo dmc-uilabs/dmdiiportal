@@ -559,7 +559,7 @@
             "value": "1234567895"
           },
           "location": {
-            "enable": false,
+            "enable": true,
             "value": "USA"
           }
         },
@@ -569,8 +569,8 @@
             "value": "denis.sobko@gmail.com"
           },
           "phone": {
-            "enable": false,
-            "value": "7896655664"
+            "enable": true,
+            "value": "1111111111"
           },
           "location": {
             "enable": true,

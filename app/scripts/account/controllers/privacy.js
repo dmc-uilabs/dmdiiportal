@@ -17,14 +17,17 @@ angular.module('dmc.account')
         }
         var currentContainer = null;
         var callback = function(success,data){
+            console.log(success);
+            console.log(data);
             if(success == true) {
-                $scope.information[currentContainer].location.dataLocation = data;
-                $scope.information[currentContainer].location.value = $scope.information[currentContainer].location.dataLocation.city + ", " + $scope.information[currentContainer].location.dataLocation.region;
+                $scope.userBasics.privacy[currentContainer].location.value = data.city+", "+data.region;
+                $scope.changedValue(currentContainer,'location',$scope.userBasics.privacy[currentContainer].location.value);
             }
         };
 
         $scope.getLocation = function(container){
             currentContainer = container;
+            console.log(currentContainer);
             location.get(callback);
         };
 
