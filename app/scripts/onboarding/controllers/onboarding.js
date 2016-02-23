@@ -524,7 +524,6 @@ angular.module('dmc.onboarding')
     	$scope.saveCompany = function(params, callback){
     		onboardingModel.update_company(userData.companyId, params, 
     			function(data){
-		    		$scope.company[i].done = true;
 
     				/*
 		        	for(var i in $scope.company){
@@ -599,6 +598,7 @@ angular.module('dmc.onboarding')
     	$scope.saveStorefront = function(params, callback){
     		onboardingModel.update_company(userData.companyId, params, 
     			function(data){
+    				/*
     				for(var i in $scope.storefront){
 		    			$scope.storefront[i].done = true;
 			    		for(var item in $scope.storefront[i].data){
@@ -611,6 +611,7 @@ angular.module('dmc.onboarding')
 			    			}
 			    		}
 			    	}
+			    	*/
 			    	callback();
     			}
     		);

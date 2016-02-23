@@ -9,6 +9,11 @@
 	<div layout="row"  layout-align="center center">
         <div class="img-box" ng-if="company[1].data.featureImage.thumbnail">
             <img ng-src="{{company[1].data.featureImage.thumbnail}}">
+            <md-button md-no-ink class="md-icon-button removed-images"
+                       ng-click="deleteCover()"
+                       aria-label="Delete Image">
+                <ng-md-icon icon="highlight_remove" size="32"></ng-md-icon>
+            </md-button>
         </div>
         <div class="flow-box"
              flow-init

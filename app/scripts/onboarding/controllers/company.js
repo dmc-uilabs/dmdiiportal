@@ -102,6 +102,11 @@ angular.module('dmc.onboarding')
                 name : "Phone"
             }
         ];
+        
+        $scope.deleteCover = function(){
+            $scope.company[1].data.featureImage.thumbnail = "";
+            $scope.company[1].data.featureImage.large = "";
+        }
 
 //skills
         //add skill to profile
@@ -305,6 +310,7 @@ angular.module('dmc.onboarding')
         }
 
         $scope.next = function(index){
+            $scope.company[index].done = true;
             switch(index){
                 case 1:
                     if($scope.file){
