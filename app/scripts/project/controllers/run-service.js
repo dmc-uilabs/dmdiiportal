@@ -34,6 +34,7 @@ angular.module('dmc.project')
             $scope.orderInputs = 'position';
             $scope.isChangedOrder = false;
             $scope.isChangedValues = false;
+            $scope.showOutputs = false;
 
             $scope.sortableOptions = {
                 update: function(e, ui) {
@@ -52,8 +53,9 @@ angular.module('dmc.project')
             $scope.changedValue = function () {
                 $scope.isChangedValues = false;
                 for(var i in $scope.service.interfaceModel.inputs){
-                    if($scope.service.interfaceModel.inputs[i].defaultValue != $scope.service.interfaceModel.inputs[i].value){
+                    if(new String($scope.service.interfaceModel.inputs[i].defaultValue).valueOf() != new String($scope.service.interfaceModel.inputs[i].value).valueOf()){
                         $scope.isChangedValues = true;
+                        break;
                     }
                 }
             };
@@ -116,12 +118,14 @@ angular.module('dmc.project')
                     function(response){
                         $scope.rerun = null;
                         if(response.data && response.data.id){
-                            $scope.service.interfaceModel = response.data.interface;
+                            //$scope.service.interfaceModel = response.data.interface;
                             $scope.service.interfaceModel.inputs = [];
                             for (var key in $scope.service.interfaceModel.inParams) {
                                 $scope.service.interfaceModel.inParams[key].defaultValue = $scope.service.interfaceModel.inParams[key].value;
+                                $scope.service.interfaceModel.inParams[key].value = response.data.interface.inParams[key].value;
                                 $scope.service.interfaceModel.inputs.push($scope.service.interfaceModel.inParams[key]);
                             }
+                            $scope.changedValue();
                             updatePositionInputs();
                             apply();
                         }else{
@@ -214,6 +218,7 @@ angular.module('dmc.project')
             }
             // run Model
             function runModel(){
+                $scope.showOutputs = false;
                 if($scope.service.interface && $scope.service.interface.domeServer) {
                     $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
                     domeModel.runModel({
@@ -259,9 +264,10 @@ angular.module('dmc.project')
                                     $scope.status = "Not Running";
                                     $scope.lastStatus = getStatus(response.data.status);
                                     $scope.lastRunTime = $scope.calcRunTime($scope.service.lastStatus);
-                                    if (response.data.status == "success") {
+                                    if (getStatus(response.data.status) == "success") {
                                         toastModel.showToast("success", "Run Completed Successfully");
-                                    } else if (response.data.status == "error") {
+                                        $scope.showOutputs = true;
+                                    } else if (getStatus(response.data.status) == "error") {
                                         toastModel.showToast("error", "Run Completed with Error");
                                     }
                                     updateAverageRun();

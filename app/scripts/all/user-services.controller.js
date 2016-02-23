@@ -84,8 +84,10 @@ angular.module('dmc.view-all')
                         _type: $scope.typeModel
                     },
                     function(response){
-                        $scope.total = response.data.length;
-                        allServices = response.data;
+                        allServices = [];
+                        for(var i in response.data){
+                            if(response.data[i].projectId > 0) allServices.push(response.data[i]);
+                        }
                         getLastStatuses($.map(response.data,function(x){ return x.id; }));
                     },function(response){
                         toastModel.showToast("error", "Ajax faild: getServices");
@@ -106,19 +108,27 @@ angular.module('dmc.view-all')
                 };
                 ajax.get(dataFactory.runService(),requestData,
                     function(response){
-                        for(var i in allServices){
+                        for(var i=0;i<allServices.length;i++){
                             for(var j=0;j<response.data.length;j++){
                                 if(allServices[i].id == response.data[j].serviceId){
-                                    allServices[i].currentStatus = response.data[j];
-                                    allServices[i].currentStatus.date = new Date(allServices[i].currentStatus.startDate+' '+allServices[i].currentStatus.startTime);
-                                    allServices[i].currentStatus.startDate = moment(allServices[i].currentStatus.startDate).format("MM/DD/YYYY");
-                                    allServices[i].currentStatus.startTime = moment(new Date(allServices[i].currentStatus.startDate+' '+allServices[i].currentStatus.startTime)).format("hh:mm:ss A");
-                                    runService(allServices[i]);
+                                    allServices[i].currentStatus = (allServices[i].currentStatus ? $.extend(true,allServices[i].currentStatus,response.data[j]) : response.data[j]);
+                                    if(allServices[i].currentStatus.project.id > 0) {
+                                        allServices[i].currentStatus.date = new Date(allServices[i].currentStatus.startDate + ' ' + allServices[i].currentStatus.startTime);
+                                        allServices[i].currentStatus.startDate = moment(allServices[i].currentStatus.startDate).format("MM/DD/YYYY");
+                                        allServices[i].currentStatus.startTime = moment(new Date(allServices[i].currentStatus.startDate + ' ' + allServices[i].currentStatus.startTime)).format("hh:mm:ss A");
+                                        runService(allServices[i]);
+                                    }else {
+                                        allServices[i].currentStatus = null;
+                                    }
                                     break;
                                 }
                             }
-                            if(!allServices[i].currentStatus) allServices[i].currentStatus = { status : -2 };
+                            if(!allServices[i].currentStatus){
+                                allServices.splice(i,1);
+                                i--;
+                            }
                         }
+                        $scope.total = allServices.length;
                         allServices.sort(function(a, b) { return b.currentStatus.status - a.currentStatus.status });
                         if($scope.limit) allServices.splice($scope.limit,allServices.length);
                         $scope.services = allServices;
@@ -167,7 +177,10 @@ angular.module('dmc.view-all')
             }
 
             $scope.deleteService = function(item){
-                ajax.delete(dataFactory.deleteService(item.id),{},function(response){
+                ajax.update(dataFactory.services(item.id).update,{
+                    currentStatus : {},
+                    projectId : null
+                },function(response){
                     for(var i in $scope.services){
                         if($scope.services[i].id == item.id){
                             $scope.services.splice(i,1);

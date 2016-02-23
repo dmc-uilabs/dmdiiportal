@@ -39,7 +39,6 @@ angular.module('dmc.widgets.services',[
                 $scope.getServices = function(){
                     ajax.get(dataFactory.getServices($scope.projectId),{},
                         function(response){
-                            $scope.total = response.data.length;
                             allServices = response.data;
                             getLastStatuses($.map(response.data,function(x){ return x.id; }));
                         },function(response){
@@ -63,20 +62,29 @@ angular.module('dmc.widgets.services',[
                     };
                     ajax.get(dataFactory.runService(),requestData,
                         function(response){
-                            for(var i in allServices){
+                            for(var i=0;i<allServices.length;i++){
                                 for(var j=0;j<response.data.length;j++){
                                     if(allServices[i].id == response.data[j].serviceId){
-                                        allServices[i].currentStatus = response.data[j];
-                                        allServices[i].currentStatus.date = new Date(allServices[i].currentStatus.startDate+' '+allServices[i].currentStatus.startTime);
-                                        allServices[i].currentStatus.startDate = moment(allServices[i].currentStatus.startDate).format("MM/DD/YYYY");
-                                        allServices[i].currentStatus.startTime = moment(new Date(allServices[i].currentStatus.startDate+' '+allServices[i].currentStatus.startTime)).format("hh:mm:ss A");
-                                        runService(allServices[i]);
+                                        allServices[i].currentStatus = (allServices[i].currentStatus ? $.extend(true,allServices[i].currentStatus,response.data[j]) : response.data[j]);
+                                        if(allServices[i].currentStatus.project.id > 0) {
+                                            allServices[i].currentStatus.date = new Date(allServices[i].currentStatus.startDate + ' ' + allServices[i].currentStatus.startTime);
+                                            allServices[i].currentStatus.startDate = moment(allServices[i].currentStatus.startDate).format("MM/DD/YYYY");
+                                            allServices[i].currentStatus.startTime = moment(new Date(allServices[i].currentStatus.startDate + ' ' + allServices[i].currentStatus.startTime)).format("hh:mm:ss A");
+                                            runService(allServices[i]);
+                                        }else {
+                                            allServices[i].currentStatus = null;
+                                        }
                                         break;
                                     }
                                 }
-                                if(!allServices[i].currentStatus) allServices[i].currentStatus = { status : -2 };
+                                if(!allServices[i].currentStatus){
+                                    allServices.splice(i,1);
+                                    i--;
+                                }
                             }
-                            allServices.sort(function(a, b) { return b.currentStatus.status - a.currentStatus.status }).splice($scope.limit,allServices.length);
+                            $scope.total = allServices.length;
+                            allServices.sort(function(a, b) { return b.currentStatus.status - a.currentStatus.status });
+                            if($scope.limit) allServices.splice($scope.limit,allServices.length);
                             $scope.services = allServices;
                             $.each($scope.services,function(){
                                 this.releaseDateFormat = this.releaseDate;

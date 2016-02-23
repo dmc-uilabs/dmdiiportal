@@ -89,7 +89,12 @@ angular.module('dmc.view-all')
                             for(var i in allServices){
                                 for(var j=0;j<response.data.length;j++){
                                     if(allServices[i].id == response.data[j].serviceId){
+                                        var project = null;
+                                        if(allServices[i].currentStatus && allServices[i].currentStatus.project){
+                                            project = allServices[i].currentStatus.project;
+                                        }
                                         allServices[i].currentStatus = response.data[j];
+                                        if(!allServices[i].currentStatus.project) allServices[i].currentStatus.project = project;
                                         allServices[i].currentStatus.date = new Date(allServices[i].currentStatus.startDate+' '+allServices[i].currentStatus.startTime);
                                         allServices[i].currentStatus.startDate = moment(allServices[i].currentStatus.startDate).format("MM/DD/YYYY");
                                         allServices[i].currentStatus.startTime = moment(new Date(allServices[i].currentStatus.startDate+' '+allServices[i].currentStatus.startTime)).format("hh:mm:ss A");
@@ -172,7 +177,10 @@ angular.module('dmc.view-all')
             }
 
             $scope.deleteService = function(item){
-                ajax.delete(dataFactory.deleteService(item.id),{},function(response){
+                ajax.update(dataFactory.services(item.id).update,{
+                    currentStatus : {},
+                    projectId : null
+                },function(response){
                     for(var i in $scope.services){
                         if($scope.services[i].id == item.id){
                             $scope.services.splice(i,1);

@@ -647,6 +647,12 @@ angular.module('dmc.project', [
                         },
                         "averageRun" : 0,
                         "interface" : params.interface,
+                        "currentStatus" : {
+                            "project" : {
+                                "id" : params.pojectId,
+                                "name" : params.pojectTitle
+                            }
+                        },
                         "serverIp" : params.serverIp,
                         "parent_component": params.parent,
                         "projectId": params.pojectId,
