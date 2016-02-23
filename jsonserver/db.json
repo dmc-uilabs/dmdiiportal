@@ -1378,14 +1378,14 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "projectId": 3,
+      "projectId": 4,
       "type": "service",
       "published": true,
       "from": "marketplace",
       "currentStatus": {
         "project": {
-          "id": 3,
-          "title": "Capacitor Design"
+          "id": 4,
+          "title": "Incoming Compartment for LDR Mining"
         }
       }
     },

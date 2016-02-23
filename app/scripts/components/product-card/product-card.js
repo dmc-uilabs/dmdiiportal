@@ -47,6 +47,9 @@ angular.module('dmc.component.productcard', [
           $scope.compareProducts = updateCompareCount();
 
           //$scope.hideButtons = [];
+          $scope.compareStyle = {
+              "font-size" : ($scope.hideButtons && $scope.hideButtons.indexOf("compare") ? "11px" : "13px")
+          };
 
           $scope.projects = [];
           $scope.addingToProject = false;
