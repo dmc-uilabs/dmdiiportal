@@ -28,16 +28,33 @@
 					<ui-widget-stars-static size="15" ng-click="goToReview()" value="{{company.average_rating}}" text="({{company.average_rating}})"></ui-widget-stars-static>
 					<a ng-href="company.php#/1/storefront/services">View Storefront</a>
 					<span flex></span>
-					<div layout="row">
-						<md-button ng-if="!company.isOwner" class="md-raised" ng-click="follow()">
+					<div layout="row" ng-show="!inviteToProject">
+						<md-button ng-if="!company.isOwner" class="md-raised dmc-button" ng-click="follow()">
 							{{(followFlag) ? 'Unfollow' : 'Follow'}}
 						</md-button>
 						<md-button ng-if="company.isOwner"
-	                     class="md-raised"
+	                     class="md-raised dmc-button"
 	                     ui-sref="company-profile-edit({companyId: company.id})">
-	              Edit Company
-	          </md-button>
+				            Edit Company
+				        </md-button>
+			            <md-button class="md-raised dmc-button margin-left12-5" ng-if="!invate" ng-click="btnInviteToProject()">
+			              	Invite to Project
+			            </md-button>
+			            <md-button class="md-raised dmc-button margin-left12-5" ng-if="invate" ng-click="btnRemoveOfProject()">
+			              	<ng-md-icon icon="close" size="17"></ng-md-icon>{{ toProject}}
+			            </md-button>
 					</div>
+					<div flex="50" layout="row"  layout-align="center center" class="invite" ng-show="inviteToProject">
+			            <md-button class="md-raised cancelProject dmc-button" ng-click="btnCanselToProject()">
+			              	<ng-md-icon icon="close" size="17"></ng-md-icon>
+			            </md-button>
+			            <md-select placeholder="Select Project" ng-model="projectModel" style="width:100%">
+			              	<md-option ng-repeat="p in projects" value="{{$index}}">{{p.title}}</md-option>
+			            </md-select>
+			            <md-button ng-disabled="!projectModel" class="md-raised addProject dmc-button" ng-click="btnAddToProject(projectModel)">
+			              	Add
+			            </md-button>
+			        </div>
 				</div>
 			</div>
 		</div>
@@ -122,7 +139,7 @@
 					<div layout="row" class="tabs-content" layout-wrap>
 						<md-chips ng-repeat="skill in company.skills track by $index">
 							<md-chip>
-								{{skill.name}}
+								<a ng-href="{{'search.php#/companies?text='+skill.name}}">{{skill.name}}</a>
 							</md-chip>
 						</md-chips>
 					</div>

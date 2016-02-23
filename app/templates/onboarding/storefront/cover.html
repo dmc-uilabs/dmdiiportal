@@ -9,6 +9,11 @@
     <div layout="row"  layout-align="center center">
         <div class="img-box" ng-if="storefront[0].data.featureImage.thumbnail">
             <img ng-src="{{storefront[0].data.featureImage.thumbnail}}">
+            <md-button md-no-ink class="md-icon-button removed-images"
+                       ng-click="deleteCover()"
+                       aria-label="Delete Image">
+                <ng-md-icon icon="highlight_remove" size="32"></ng-md-icon>
+            </md-button>
         </div>
     	<div class="flow-box"
              flow-init
@@ -35,7 +40,7 @@
             </div>
         </div>
     </div>
-	<div layout="row" layout-align="end center">
+	<div layout="row" layout-align="end center" class="onboarding-foter">
 		<md-button class="dmc-button md-raised md-primary" ng-click="next(0)">
 			NEXT
 		</md-button>

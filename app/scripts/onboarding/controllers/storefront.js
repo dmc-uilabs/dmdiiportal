@@ -33,8 +33,18 @@ angular.module('dmc.onboarding')
             $scope.file = null;
         };
 
+        $scope.deleteCover = function(){
+            $scope.storefront[0].data.featureImage.thumbnail = "";
+            $scope.storefront[0].data.featureImage.large = "";
+        }
+
+        $scope.deleteLogo = function(){
+            $scope.storefront[2].data.logoImage = "";
+        }
+
 
         $scope.next = function(index){
+            $scope.storefront[index].done = true;
             if(index == 0 && $scope.file){
                 fileUpload.uploadFileToUrl(
                     $scope.file.files[0].file,
@@ -61,6 +71,7 @@ angular.module('dmc.onboarding')
         }
 
         $scope.finish = function(index){
+            $scope.storefront[index].done = true;
             if($scope.file){
                 fileUpload.uploadFileToUrl(
                     $scope.file.files[0].file,

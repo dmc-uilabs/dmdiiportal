@@ -52,7 +52,7 @@
               <ng-md-icon icon="close" size="17"></ng-md-icon>
             </md-button>
             <md-select placeholder="Select Project" ng-model="projectModel" style="width:100%">
-              <md-option ng-repeat="p in projects">{{p.title}}</md-option>
+              <md-option ng-repeat="p in projects" value="{{$index}}">{{p.title}}</md-option>
             </md-select>
             <md-button ng-disabled="!projectModel" class="md-raised addProject" ng-click="btnAddToProject(projectModel)">
               Add
@@ -78,7 +78,7 @@
           <div layout="row" class="tabs-content" layout-wrap>
             <md-chips ng-repeat="skill in profile.skills track by $index">
               <md-chip>
-                {{skill}}
+                <a ng-href="{{'search.php#/members?text='+skill}}">{{skill}}</a>
               </md-chip>
             </md-chips>
           </div>

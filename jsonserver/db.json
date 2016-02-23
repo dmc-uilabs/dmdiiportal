@@ -421,7 +421,7 @@
   "company_history": [
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "today",
       "section": "public",
       "user": "Timmy Thomas",
@@ -433,7 +433,7 @@
     },
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "week",
       "section": "public",
       "user": "Timmy Thomas",
@@ -445,7 +445,7 @@
     },
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "week",
       "section": "public",
       "user": "Timmy Thomas",
@@ -457,7 +457,7 @@
     },
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "all",
       "section": "public",
       "user": "Timmy Thomas",
@@ -468,7 +468,7 @@
     },
     {
       "type": "added",
-      "link": "",
+      "link": "profile.php#/1",
       "period": "today",
       "section": "mutual",
       "user": "Adam Marks",
@@ -480,7 +480,7 @@
     },
     {
       "type": "rated",
-      "link": "",
+      "link": "component.php#/services/1",
       "period": "today",
       "section": "mutual",
       "user": "Adam Marks",
@@ -492,7 +492,7 @@
     },
     {
       "type": "worked",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "today",
       "section": "mutual",
       "user": "Adam Marks",
@@ -504,7 +504,7 @@
     },
     {
       "type": "worked",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "week",
       "section": "mutual",
       "user": "Adam Marks",
@@ -7679,7 +7679,7 @@
   "profile_history": [
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "today",
       "section": "public",
       "user": "Timmy Thomas",
@@ -7690,7 +7690,7 @@
     },
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "week",
       "section": "public",
       "user": "Timmy Thomas",
@@ -7701,7 +7701,7 @@
     },
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "week",
       "section": "public",
       "user": "Timmy Thomas",
@@ -7712,7 +7712,7 @@
     },
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "all",
       "section": "public",
       "user": "Timmy Thomas",
@@ -7723,7 +7723,7 @@
     },
     {
       "type": "added",
-      "link": "",
+      "link": "profile.php#/1",
       "period": "today",
       "section": "mutual",
       "user": "Adam Marks",
@@ -7734,7 +7734,7 @@
     },
     {
       "type": "rated",
-      "link": "",
+      "link": "component.php#/services/1",
       "period": "today",
       "section": "mutual",
       "user": "Adam Marks",
@@ -7745,7 +7745,7 @@
     },
     {
       "type": "worked",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "today",
       "section": "mutual",
       "user": "Adam Marks",
@@ -7756,7 +7756,7 @@
     },
     {
       "type": "worked",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "week",
       "section": "mutual",
       "user": "Adam Marks",
@@ -8242,10 +8242,9 @@
       "id": 12
     },
     {
-      "individual-discussionId": 5,
+      "individual-discussionId": 1,
       "full_name": "Thomas Smith",
       "accountId": 1,
-      "commentId": 0,
       "avatar": "/images/carbone.png",
       "text": "Message text",
       "created_at": 1456169225992,

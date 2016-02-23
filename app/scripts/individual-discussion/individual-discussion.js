@@ -117,7 +117,7 @@ angular.module('dmc.individual-discussion', [
                         },
                         function(response){
                             for(var i in response.data){
-                                response.data[i].created_at = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                                response.data[i].created_at = moment(response.data[i].created_at).format("MM/DD/YYYY hh:mm a");
                                 $scope.get_helpful(response.data[i]);
                             }                        
                             comment['replyReviews'] = response.data;
@@ -322,11 +322,12 @@ angular.module('dmc.individual-discussion', [
                                 }
                             )
                             $scope.discussion.comments.items[index].reply = true;
+                            $scope.showReplyFlag = index;
                             response.data.created_at = moment(response.data.created_at).format("MM/DD/YYYY hh:mm a");
-                            if($scope.discussion.comments.items[index].replyComments){
-                                $scope.discussion.comments.items[index].replyComments.unshift(response.data);
+                            if($scope.discussion.comments.items[index].replyReviews){
+                                $scope.discussion.comments.items[index].replyReviews.unshift(response.data);
                             }else{
-                                $scope.discussion.comments.items[index]['replyComments'] = [response.data];
+                                $scope.discussion.comments.items[index]['replyReviews'] = [response.data];
                             }
                         }
                     );

@@ -5,7 +5,7 @@
 		</md-button>
 		<a href="">Follow</a>
 		<md-button ng-href="{{'profile.php#/'+cardSource.id}}" aria-label="arrow_forward" class="md-icon-button">
-			<ng-md-icon icon="arrow_forward" style="fill: grey;" size="25"></ng-md-icon>
+			<ng-md-icon icon="info_outline" style="fill: grey;" size="25"></ng-md-icon>
 		</md-button>
 	</div>
 	<div layout layout-align="center center">
@@ -14,9 +14,9 @@
 		</div>
 	</div>
 	<div layout="column" class="info">
-		<h3>{{cardSource.display_name}}</h3>
+		<h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{cardSource.displayName}}</a></h3>
 		<h4>{{cardSource.jobTitle}}</h4>
-		<h4>{{cardSource.company}}</h4>
+		<h4><a ng-href="{{'company-profile.php#/'+cardSource.companyId}}">{{cardSource.company}}</a></h4>
 		<ui-widget-stars-static size="15" value="{{cardSource.rating}}" text="({{cardSource.rating}})"></ui-widget-stars-static>
 	</div>
 	
@@ -30,8 +30,8 @@
     </md-button>
 
       <!-- buttons for compare -->
-    <md-button href="" class="white-button" aria-label="Add to Compare" flex>
+    <!-- <md-button href="" class="white-button" aria-label="Add to Compare" flex>
       Add to Compare
-    </md-button>
+    </md-button> -->
   </div>
 </div>

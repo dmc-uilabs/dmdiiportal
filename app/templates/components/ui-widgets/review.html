@@ -1,7 +1,7 @@
 <div class="review-widget">
   <div class="md-toolbar-tools">
     <ui-widget-stars-static size="15" value="{{review.rating}}"></ui-widget-stars-static>
-    <h2>{{review.name}} <span>{{(review.status)? 'Verified': 'Unverified'}} User</span></h2>
+    <h2><a ng-href="{{'profile.php#/'+review.accountId}}">{{review.name}}</a> <span>{{(review.status)? 'Verified': 'Unverified'}} User</span></h2>
     <span flex></span>
     <span>{{review.date}}</span>
   </div>
@@ -10,7 +10,7 @@
     {{review.comment}}
     <div ng-if="typereview != 'reply_reviews'" layout="row" layout-align="center center" layout-fill class="review-widget-footer">
       <div layout="row">
-        <a href="" ng-click="Reply($index)">Reply</a>|<a href="" ng-click="FlagReview($index)">Flagged</a>
+        <a href="" ng-click="Reply($index)">Reply</a>|<a href="" ng-click="FlagReview($index)">Flag{{(review.flagged)?'ged':''}}</a>
       </div>
       <md-button md-no-ink class="md-button" ng-if="review.reply" ng-click="ShowReply()">
         {{(showReply == true )? 'Hide' : 'Show' }} Repl{{(review.replyReviews.length > 1)?'ies':'y'}}

@@ -30,6 +30,17 @@
         padding-right: 5px;
       }
     }
+    .search{
+      margin: 0 0 26px;
+      .md-button {
+        margin: 0;
+        color: #fff;
+        text-transform: uppercase;
+      }
+      md-input-container{
+        margin-right: 0;
+      }
+    }
     .md-button {
       margin: 0 8px;
       &.white-label {

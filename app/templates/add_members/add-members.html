@@ -8,16 +8,27 @@
                         <md-toolbar class="add-members-header">
                             <h2>Search for Members to Invite</h2>
                         </md-toolbar>
-                        <md-content class="add-members-active" layout="row" layout-padding layout-fill layout-align="center center">
-                            <form ng-submit="searchMembers()" layout="row" class="search-box" flex>
-                                <md-input-container md-no-float flex>
-                                    <md-icon>
-                                		<ng-md-icon icon="search"></ng-md-icon>
-                              		</md-icon>
-                                    <input ng-model="searchText" type="text" placeholder="Search">
-                                </md-input-container>
+                        <md-content layout="row" layout-padding layout-fill layout-align="center center">
+                            <form ng-submit="searchMembers()" class="dmc-search global-search-form" flex>
+                                <div layout="column">
+                                    <div layout="row">
+                                        <div layout="column" flex>
+                                            <md-input-container md-no-float>
+                                                <md-icon>
+                                                    <ng-md-icon icon="search"></ng-md-icon>
+                                                </md-icon>
+                                                <input type="text" placeholder="Search Members" ng-model="searchModel">
+                                            </md-input-container>
+                                        </div>
+                                        <div layout="column">
+                                            <md-input-container>
+                                                <md-button type="submit" class="search-button">Search</md-button>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
-                          <md-button class="md-raised" ng-click="showFavorites()" ng-disabled="favorites.length == 0 && !showFavoritesFlag">
+                          <md-button class="md-raised dmc-button" ng-click="showFavorites()" ng-disabled="favorites.length == 0 && !showFavoritesFlag">
                               {{(showFavoritesFlag == false) ? 'Favorites(' + favorites.length + ')' : 'All'}}     
                           </md-button>
                           <!--<md-button class="md-raised" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button>-->

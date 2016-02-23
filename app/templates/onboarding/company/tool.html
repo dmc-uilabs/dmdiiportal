@@ -23,6 +23,7 @@
 			        </md-button>
 		        </md-chip>
 	     	</md-chips>
+            <div layout="row" class="margin-bottom-10" ng-if="company[5].data.skills.length == 0">No skills</div>
 	    </div>
 	    <form name="toolsForm" autocomplete="off">
 		    <md-input-container>
@@ -55,8 +56,7 @@
             <form name="formAddSkillsImage" layout="column">
                 <div layout="row" flex>
                     <md-input-container md-no-float flex="100">
-                        <input required
-                               name="title"
+                        <input name="title"
                                ng-model="newImage.title"
                                type="text"
                                placeholder="Image Title">
@@ -95,7 +95,7 @@
                 </md-button>
                 <md-button class="md-raised md-primary dmc-button"
                            ng-click="saveSkillsImage(newImage)"
-                           ng-disabled="!formAddSkillsImage.$valid || !newAddedImage">
+                           ng-disabled="!file">
                     Save
                 </md-button>
             </div>
@@ -123,7 +123,7 @@
     </div>
 </div>
 
-	<div layout="row" layout-align="end center">
+	<div layout="row" layout-align="end center" class="onboarding-foter">
 		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.media">
 			BACK
 		</md-button>

@@ -25,8 +25,7 @@
             <form name="formAddImage" layout="column">
                 <div layout="row" flex>
                     <md-input-container md-no-float flex="100">
-                        <input required
-                               name="title"
+                        <input name="title"
                                ng-model="newImage.title"
                                type="text"
                                placeholder="Image Title">
@@ -65,7 +64,7 @@
                 </md-button>
                 <md-button class="md-raised md-primary dmc-button"
                            ng-click="saveImage(newImage)"
-                           ng-disabled="!formAddImage.$valid || !file">
+                           ng-disabled="!file">
                     Save
                 </md-button>
             </div>
@@ -107,11 +106,11 @@
                 <div layout="row" flex>
                     <md-input-container class="title-video right-space" flex>
                         <label>Title</label>
-                        <input required name="title" ng-model="newVideo.title">
+                        <input name="title" ng-model="newVideo.title">
                     </md-input-container>
                     <md-input-container class="link-video left-space" flex>
                         <label>Link</label>
-                        <input required name="link" ng-model="newVideo.link">
+                        <input required name="link" ng-model="newVideo.link" ng-pattern="/^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/">
                     </md-input-container>
                 </div>
                 <div layout="row" layout-align="end center">
@@ -136,7 +135,7 @@
             </md-input-container>
             <md-input-container class="link-video left-space" flex>
                 <label>Link</label>
-                <input ng-model="video.link">
+                <input ng-model="video.link" ng-pattern="/^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/">
             </md-input-container>
             <md-button md-no-ink
                        ng-click="deleteVideo($index)"
@@ -149,7 +148,7 @@
     </div>
 </div>
 
-	<div layout="row" layout-align="end center">
+	<div layout="row" layout-align="end center" class="onboarding-foter">
 		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.accomplishments">
 			BACK
 		</md-button>

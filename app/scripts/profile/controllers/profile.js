@@ -6,7 +6,7 @@ angular.module('dmc.profile')
         $scope.profile = profileData;  //profile
         $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
         $scope.submit_rating = 0;  //
-        $scope.limit_reviews = true;  //limit reviews
+        $scope.limit_reviews = false;  //limit reviews
         $scope.sortListModel = 0;  //model for drop down menu "sorting"
 
         $scope.showflag = false;
@@ -15,6 +15,8 @@ angular.module('dmc.profile')
         $scope.invate = false;
         $scope.toProject = "";
         $scope.selectSortingStar = 0;
+        $scope.projects = [];
+
 
         $scope.sortList = [
             {
@@ -132,6 +134,14 @@ angular.module('dmc.profile')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }
         );
+
+        ajax.get(
+            dataFactory.getProjects(),
+            {},
+            function(response){
+                $scope.projects = response.data;
+            }
+        )
 
 //review
         //Show Leave A Review form
@@ -341,11 +351,21 @@ angular.module('dmc.profile')
             $scope.inviteToProject = true;
         }
 
-        $scope.btnAddToProject = function (title) {
-            console.info("add", title)
-            $scope.toProject = title;
+        $scope.btnAddToProject = function (index) {
+            console.info("add", $scope.projects[index])
+            $scope.toProject = $scope.projects[index].title;
             $scope.invate = true;
             $scope.inviteToProject = false;
+            /*ajax.create(dataFactory.createMembersToProject(),
+                {
+                    "profileId": $stateParams.profileId,
+                    "projectId": $stateParams.projectId,
+                    "fromProfileId": $rootScope.userData.profileId,
+                    "from": $rootScope.userData.displayName,
+                    "date": moment(new Date).format('x'),
+                    "accept": false
+                }
+            );*/
         }
 
         $scope.btnCanselToProject = function () {

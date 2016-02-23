@@ -10,12 +10,20 @@ angular.module('dmc.add_project', [
     'dmc.widgets.documents',
     'dmc.common.header',
     'dmc.common.footer'
-]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
+]).config(function($stateProvider, $urlRouterProvider, $httpProvider, $mdDateLocaleProvider){
     $stateProvider.state('add_project', {
         url: '',
         abstract: true
     });
     $urlRouterProvider.otherwise('/');
+
+    $mdDateLocaleProvider.formatDate = function(date) {
+        if(date){
+            return moment(date).format('MM/DD/YYYY');
+        }else{
+            return "";
+        }
+    };
 })
 .service('projectModel', [
     'ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',

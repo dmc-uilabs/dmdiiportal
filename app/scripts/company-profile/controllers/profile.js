@@ -10,12 +10,16 @@ angular.module('dmc.company-profile')
 
         $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
         $scope.submit_rating = 0;  //
-        $scope.limit_reviews = true;  //limit reviews
+        $scope.limit_reviews = false;  //limit reviews
         $scope.sortListModel = 0;  //model for drop down menu "sorting"
         $scope.showflag = false;
         $scope.followFlag = false;
         $scope.selectSortingStar = 0;
         $scope.index = 0;
+        $scope.inviteToProject = false;
+        $scope.invate = false;
+        $scope.toProject = "";
+        $scope.projects = [];
 
         $scope.sortList = [
             {
@@ -192,6 +196,14 @@ angular.module('dmc.company-profile')
             }, 
             callbackMutualHistory
         );
+        
+        ajax.get(
+            dataFactory.getProjects(),
+            {},
+            function(response){
+                $scope.projects = response.data;
+            }
+        )
 
 //review
         //Show Leave A Review form
@@ -393,6 +405,37 @@ angular.module('dmc.company-profile')
 
         $scope.follow = function(){
             $scope.followFlag = !$scope.followFlag;
+        }
+        $scope.searchText = "";
+        $scope.btnInviteToProject = function () {
+            $scope.inviteToProject = true;
+        }
+
+        $scope.btnAddToProject = function (index) {
+            console.info("add", $scope.projects[index])
+            $scope.toProject = $scope.projects[index].title;
+            $scope.invate = true;
+            $scope.inviteToProject = false;
+            /*ajax.create(dataFactory.createMembersToProject(),
+                {
+                    "profileId": $stateParams.profileId,
+                    "projectId": $stateParams.projectId,
+                    "fromProfileId": $rootScope.userData.profileId,
+                    "from": $rootScope.userData.displayName,
+                    "date": moment(new Date).format('x'),
+                    "accept": false
+                }
+            );*/
+        }
+
+        $scope.btnCanselToProject = function () {
+            $scope.inviteToProject = false;
+        }
+
+        $scope.btnRemoveOfProject = function () {
+            $scope.toProject = "";
+            $scope.invate = false;
+            $scope.inviteToProject = false;
         }
 
         $scope.SortingReviews($scope.sortList[0].val);
