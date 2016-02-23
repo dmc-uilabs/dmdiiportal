@@ -72,6 +72,10 @@ angular.module('dmc.view-all', [
             url: '/history/company/:companyId/:type',
             controller: 'ViewAllHistoryCompanyController',
             templateUrl: 'templates/all/all-history.html'
+        }).state('history-service', {
+            url: '/history/service/:serviceId/:type',
+            controller: 'ViewAllHistoryServiceController',
+            templateUrl: 'templates/all/all-history.html'
         });
 	$urlRouterProvider.otherwise('/services/1');
 });

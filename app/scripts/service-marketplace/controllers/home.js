@@ -30,7 +30,7 @@ angular.module('dmc.service-marketplace')
             $scope.submit_rating = 0;  //
             $scope.not_found = false;  //product not fount
             $scope.products_card = [];  //products card
-            $scope.limit_reviews = true;  //limit reviews
+            $scope.limit_reviews = false;  //limit reviews
             $scope.allServices = [];
             $scope.UserLogin = "DMC Member";
             $scope.adding_to_project = false;
@@ -47,12 +47,12 @@ angular.module('dmc.service-marketplace')
             $scope.history = {
                 leftColumn: {
                     title: "Your Projects",
-                    viewAllLink: "",
+                    viewAllLink: "/all.php#/history/service/"+$stateParams.serviceId+"/project",
                     list: []
                 },
                 rightColumn: {
                     title: "Marketplace",
-                    viewAllLink: "",
+                    viewAllLink: "/all.php#/history/service/"+$stateParams.serviceId+"/marketplace",
                     list:[]
                 }
             }
@@ -216,7 +216,7 @@ angular.module('dmc.service-marketplace')
                 {
                     id: 0,
                     val: "date",
-                    name: "Most recent"
+                    name: "Most Recent"
                 },
                 {
                     id: 1,

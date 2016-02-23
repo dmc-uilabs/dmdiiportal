@@ -1,0 +1,46 @@
+<md-dialog aria-label="View" class="view-all-included">
+	<md-dialog-content class="component">
+		<div layout="row" layout-align="end center">
+            
+            <md-button md-no-ink href="" class="md-icon-button" ng-click="cancel()">
+                <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
+        </div>
+		<md-content class="product">
+            <div layout="row">
+                <!--product image-->
+                <div class="product-image-modal" flex="20">
+                    <img class="main-image" ng-src="{{profile.image}}">
+                </div>
+                <div flex>
+                    <!--product header-->
+                    <div class="product-header">
+                        <h2>{{profile.displayName}} </h2>
+                    </div>
+
+                    <md-divider></md-divider>
+
+                    <!--product description-->
+                    <div class="product-description">
+                        {{profile.description}}
+                    </div>
+                </div>
+            </div>
+            <!--product tabs-->
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="History">
+                    <ui-widget-tabs-history data="history"></ui-widget-tabs-statistic>
+                </md-tab>
+                <md-tab label="skills">
+                    <md-content class="md-padding">
+                        <div layout="row" class="tabs-content" layout-wrap>
+                            <md-chips ng-repeat="skill in profile.skills track by $index">
+                                <md-chip>{{skill}}</md-chip>
+                            </md-chips>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+      </md-content>
+  </md-dialog-content>
+</md-dialog>

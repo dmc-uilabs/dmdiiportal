@@ -4,7 +4,7 @@
 			<ng-md-icon ng-if="version1" icon="group_add" style="fill: grey;" size="25"></ng-md-icon>
 		</md-button>
 		<a href="">Follow</a>
-		<md-button ng-href="{{'profile.php#/'+cardSource.id}}" aria-label="arrow_forward" class="md-icon-button">
+		<md-button ng-click="showMembers(cardSource.id)" aria-label="arrow_forward" class="md-icon-button">
 			<ng-md-icon icon="info_outline" style="fill: grey;" size="25"></ng-md-icon>
 		</md-button>
 	</div>

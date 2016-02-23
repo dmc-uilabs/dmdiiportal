@@ -44,6 +44,12 @@ angular.module('dmc.model.previous-page', [
                         title: "Back to Profile",
                         url: previousPage
                     };
+                } else if (previousPage.indexOf('service-marketplace.php') != -1) {
+                    return {
+                        tag : "service-marketplace",
+                        title: "Back to Service",
+                        url: previousPage
+                    };
                 } else {
                     return {
                         tag : "dashboard",

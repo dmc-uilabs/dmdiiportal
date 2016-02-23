@@ -108,6 +108,7 @@
     <script src="scripts/all/announcements.controller.js"></script>
     <script src="scripts/all/history-profile.controller.js"></script>
     <script src="scripts/all/history-company.controller.js"></script>
+    <script src="scripts/all/history-service.controller.js"></script>
 
     <!-- endbuild -->
     <script type="text/javascript">
