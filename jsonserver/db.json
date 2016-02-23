@@ -415,7 +415,7 @@
   "company_history": [
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "today",
       "section": "public",
       "user": "Timmy Thomas",
@@ -427,7 +427,7 @@
     },
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "week",
       "section": "public",
       "user": "Timmy Thomas",
@@ -439,7 +439,7 @@
     },
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "week",
       "section": "public",
       "user": "Timmy Thomas",
@@ -451,7 +451,7 @@
     },
     {
       "type": "completed",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "all",
       "section": "public",
       "user": "Timmy Thomas",
@@ -462,7 +462,7 @@
     },
     {
       "type": "added",
-      "link": "",
+      "link": "profile.php#/1",
       "period": "today",
       "section": "mutual",
       "user": "Adam Marks",
@@ -474,7 +474,7 @@
     },
     {
       "type": "rated",
-      "link": "",
+      "link": "component.php#/services/1",
       "period": "today",
       "section": "mutual",
       "user": "Adam Marks",
@@ -486,7 +486,7 @@
     },
     {
       "type": "worked",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "today",
       "section": "mutual",
       "user": "Adam Marks",
@@ -498,7 +498,7 @@
     },
     {
       "type": "worked",
-      "link": "",
+      "link": "project.php#/1/home",
       "period": "week",
       "section": "mutual",
       "user": "Adam Marks",
