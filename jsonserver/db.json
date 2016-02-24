@@ -8948,10 +8948,13 @@
       "id": 1,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
       "period": "today",
-      "type": "profile",
-      "event": "FAVORITED_SERVICE",
+      "type": "marketplace",
+      "event": "FAVORITED_YOUR_SERVICE",
       "linkParams": {
-        "profileId": 1,
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
         "displayName": "Thomas"
       },
       "date": "2016-02-02 12:10:31"
@@ -9290,10 +9293,13 @@
       "id": 27,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
       "period": "week",
-      "type": "profile",
-      "event": "FAVORITED_SERVICE",
+      "type": "marketplace",
+      "event": "FAVORITED_YOUR_SERVICE",
       "linkParams": {
-        "profileId": 1,
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
         "displayName": "Thomas"
       },
       "date": "2016-02-02 12:10:31"
@@ -9668,10 +9674,13 @@
       "id": 1,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
       "period": "today",
-      "type": "profile",
-      "event": "FAVORITED_SERVICE",
+      "type": "marketplace",
+      "event": "FAVORITED_YOUR_SERVICE",
       "linkParams": {
-        "profileId": 1,
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
         "displayName": "Thomas"
       },
       "date": "2016-02-02 12:10:31"
@@ -10010,10 +10019,13 @@
       "id": 27,
       "image": "/uploads/profile/1/20151222084711000000.jpg",
       "period": "week",
-      "type": "profile",
-      "event": "FAVORITED_SERVICE",
+      "type": "marketplace",
+      "event": "FAVORITED_YOUR_SERVICE",
       "linkParams": {
-        "profileId": 1,
+        "projectId": "4",
+        "projectTitle": "INCOMING COMPARTMENT FOR LDR MINING",
+        "serviceId": 1,
+        "serviceTitle": "Qout-of-balance Testing",
         "displayName": "Thomas"
       },
       "date": "2016-02-02 12:10:31"

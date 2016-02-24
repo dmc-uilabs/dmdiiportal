@@ -9,6 +9,11 @@
     <div layout="row">
         <div class="img-box" ng-if="profile[1].data.image">
             <img ng-src="{{profile[1].data.image}}">
+            <md-button md-no-ink class="md-fab md-mini removed-images"
+                       ng-click="deleteImage()"
+                       aria-label="Delete Image">
+                <ng-md-icon icon="delete" size="18"></ng-md-icon>
+            </md-button>
         </div>
     	<div class="flow-box"
              flow-init
@@ -22,7 +27,7 @@
                 <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
                   <img flow-img="$flow.files[0]" />
                     <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
-                        <ng-md-icon icon="close" size="21"></ng-md-icon>
+                        <ng-md-icon icon="delete" size="21"></ng-md-icon>
                     </md-button>
                 </div>
                 <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
@@ -35,7 +40,7 @@
             </div>
         </div>
     </div>
-	<div layout="row" layout-align="end center">
+	<div layout="row" layout-align="end center" class="onboarding-foter">
 		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.basic">
 			BACK
 		</md-button>

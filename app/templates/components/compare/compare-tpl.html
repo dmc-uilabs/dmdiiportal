@@ -45,8 +45,12 @@
                             </md-button>
                         </div>
                         <div class="product-image"><img src="{{item.featureImage.thumbnail}}" alt="{{item.title}}"></div>
-                        <h2><a href="/component.php#/{{item.type}}s/{{item.id}}">{{item.title}}</a></h2>
-                        <h3><a href="/company.php#/{{item.companyId}}">{{item.owner}}</a></h3>
+                        <!-- <div class="product-card__header" layout="column"
+                            > -->
+        
+                            <h2><a ng-href="{{'/component.php#/'+item.type+'s/'+item.id}}">{{item.title}}</a></h2>
+                            <h3><a ng-href="{{'/company.php#/'+item.companyId+'/storefront?product=services'}}">{{item.owner}}</a></h3>
+                        <!-- </div> -->
                         <div class="star-rating">
                             <div class="star-rating__buttons">
                                 <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon></md-button>

@@ -15,9 +15,6 @@ angular.module('dmc.common.notifications',[])
           if (type == 'profile') {
             _link = '/profile.php#/'+linkParams.profileId;
             switch (action) {
-              case 'FAVORITED_SERVICE':
-                _actionTitle = linkParams.displayName + ' has favorited your service.';
-              break;
               case 'REVIEW_USER':
                 _actionTitle = linkParams.displayName + ' gave you a review.';
               break;
@@ -93,6 +90,9 @@ angular.module('dmc.common.notifications',[])
           if (type == 'marketplace') {
             _link = '/service-marketplace.php#/'+linkParams.serviceId;
             switch (action) {
+              case 'FAVORITED_YOUR_SERVICE':
+                _actionTitle = linkParams.displayName + ' has favorited your service.';
+              break;
               case 'FAVORITED_SERVICE':
                 _actionTitle = linkParams.serviceTitle + ' was favorited by '+ linkParams.displayName;
               break;

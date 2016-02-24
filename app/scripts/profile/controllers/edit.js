@@ -61,15 +61,14 @@ angular.module('dmc.profile')
                     description: $scope.profile.description
                 },
                 function(data){
-                    console.info(data);
+                    $scope.save = true;
+                    $scope.isChangingPicture = false;
+                    $state.go("profile",{profileId: $scope.profile.id})
                 }
             );
             if ($scope.file != '') {
                 fileUpload.uploadFileToUrl($scope.file.files[0].file, {id: $scope.profile.id}, 'profile', callbackUploadPicture);
             }
-            $scope.save = true;
-            $scope.isChangingPicture = false;
-            $state.go("profile",{profileId: $scope.profile.id})
         }
 
         $scope.cancelEdit = function(){

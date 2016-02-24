@@ -50,6 +50,7 @@ angular.module('dmc.onboarding')
     	$scope.saveProfile = function(params, callback){
     		onboardingModel.update_profile(userData.profileId, params, 
     			function(data){
+    				/*
     				for(var i in $scope.profile){
     					$scope.profile[i].done = true;
 			    		for(var item in $scope.profile[i].data){
@@ -59,6 +60,7 @@ angular.module('dmc.onboarding')
 			    			}
 			    		}
 			    	};
+			    	*/
 			    	callback();
     			}
     		);
@@ -382,6 +384,7 @@ angular.module('dmc.onboarding')
     		if(section == "privacy"){
 	    		onboardingModel.update_account(userData.profileId, params, 
 	    			function(data){
+	    				/*
 						$scope.account[0].done = true
 			    		for(var item in $scope.account[0].data.public){
 			    			if($scope.account[0].data.public[item].enable && !$scope.account[0].data.public[item].value){
@@ -394,6 +397,7 @@ angular.module('dmc.onboarding')
 			    				$scope.account[1].done = false
 			    			}
 			    		}
+			    		*/
 				    	callback();
 	    			}
 	    		);

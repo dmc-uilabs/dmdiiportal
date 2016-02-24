@@ -35,6 +35,7 @@ angular.module('dmc.service-marketplace')
             $scope.UserLogin = "DMC Member";
             $scope.adding_to_project = false;
             $scope.selectSortingStar = 0;
+            $scope.invate = false;
 
 
             // check if service is favorite for current user
@@ -498,6 +499,27 @@ angular.module('dmc.service-marketplace')
                 $scope.adding_to_project = false;
             };
 
+            $scope.btnRemoveOfProject = function(){
+                ajax.update(dataFactory.addServiceToProject($scope.product.id), {
+                    currentStatus: {
+                        project: {
+                            id: 0,
+                            title: ""
+                        }
+                    },
+                    projectId: 0
+                }, function (response) {
+                    $scope.product.projectId = 0;
+                    $scope.product.currentStatus.project.id = 0;
+                    $scope.product.currentStatus.project.title = "";
+                    $scope.invate = false;
+                    $scope.adding_to_project = false;
+                }, function (response) {
+                    toastModel.showToast("error", "Failed Add To Project");
+                }
+            );
+            }
+
             $scope.btnAddToProject = function(id){
                 var project = null;
                 for(var i in $scope.projects){
@@ -506,6 +528,7 @@ angular.module('dmc.service-marketplace')
                         break;
                     }
                 }
+
                 if(project) {
                     ajax.update(dataFactory.addServiceToProject($scope.product.id), {
                             currentStatus: {
@@ -517,6 +540,10 @@ angular.module('dmc.service-marketplace')
                             projectId: id,
                             from: 'marketplace'
                         }, function (response) {
+                            $scope.product.projectId = id;
+                            $scope.product.currentStatus.project.id = id;
+                            $scope.product.currentStatus.project.title = project.title;
+                            $scope.invate = true;
                             $scope.adding_to_project = false;
                             toastModel.showToast("success", "Product added to " + response.data.currentStatus.project.title);
                         }, function (response) {

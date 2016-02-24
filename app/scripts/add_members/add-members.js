@@ -12,6 +12,7 @@ angular.module('dmc.add_members', [
   'dmc.common.header',
   'dmc.common.footer',
   'dmc.model.member',
+  'dmc.model.user'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
     $stateProvider.state('product', {
@@ -51,11 +52,13 @@ angular.module('dmc.add_members', [
 })
 .service('projectModel', [
         'ajax',
+        'DMCUserModel',
         'dataFactory',
         '$stateParams',
         'toastModel',
         '$rootScope',
         function (ajax,
+                  DMCUserModel,
                   dataFactory,
                   $stateParams,
                   toastModel,
@@ -71,10 +74,24 @@ angular.module('dmc.add_members', [
                             "from": $rootScope.userData.displayName,
                             "date": moment(new Date).format('x'),
                             "accept": false
+                        },
+                        function(response){
+                            $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
+                            $rootScope.userData.messages.items.unshift({
+                                "user_name": $rootScope.userData.displayName,
+                                "image": "/uploads/profile/1/20151222084711000000.jpg",
+                                "text": "Invited you to a project",
+                                "link": "/project.php#/preview/" + $stateParams.projectId,
+                                "created_at": moment().format("hh:mm A")
+                            });
+                            DMCUserModel.UpdateUserData($rootScope.userData);
+                            if(i == array.length-1){
+                              callback();
+                            }
                         }
                     );
                 }
-                callback();
+                //callback();
             };
 
         }

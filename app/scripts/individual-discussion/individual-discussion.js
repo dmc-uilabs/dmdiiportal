@@ -51,6 +51,11 @@ angular.module('dmc.individual-discussion', [
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
 
+            if($scope.previousPage.tag == "project"){
+                $(".bottom-header .active-page").removeClass("active-page");
+                $(".projects-header-button").addClass("active-page");
+            }
+
             $scope.followFlag = null;
             $scope.userData = $rootScope.userData;
             $scope.NewComment = "";

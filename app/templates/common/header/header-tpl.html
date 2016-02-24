@@ -87,7 +87,7 @@
                             <h3>Messages</h3>
                             <md-button md-no-ink href="/" class="view-all-link">View All</md-button>
                         </div>
-                        <md-menu-item ng-repeat="item in messagesList">
+                        <md-menu-item ng-repeat="item in messagesList track by $index">
                             <a ng-href='{{item.link}}'>
                                 <img ng-src="{{item.image}}" alt="{{item.user_name}}"/>
                   <span>
