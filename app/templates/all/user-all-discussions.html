@@ -52,7 +52,7 @@
                                 <tbody>
                                 <tr ng-repeat="item in discussions">
                                     <td>
-                                        <a class="link-button font-size14" href="/individual-discussion.php#/1">{{item.title}}</a>
+                                        <a class="link-button font-size14" ng-href="{{'individual-discussion.php#/'+item.id}}">{{item.title}}</a>
                                     </td>
                                     <td>{{item.replies}} replies</td>
                                     <td>
