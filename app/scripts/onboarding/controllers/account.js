@@ -16,13 +16,16 @@ angular.module('dmc.onboarding')
 
         var indexLocation = 0;
         $scope.getLocation = function (index) {
+            console.info('location', index);
             indexLocation = index
             location.get(callback);
         };
 
         var callback = function (success, data) {
+            console.info('callback', success, data);
+            var section = (indexLocation==0)? 'public': 'private';
             if (success) {
-                $scope.account[indexLocation].data.location.value = data.city + ", " + data.region;
+                $scope.account[indexLocation].data[section].location.value = data.city + ", " + data.region;
             }
         };
 
@@ -88,6 +91,7 @@ angular.module('dmc.onboarding')
         }
 
         $scope.next = function(index){
+            $scope.account[index].done = true;
             var section;
             if(index == 0 || index == 1){
                 section = "privacy";
@@ -101,12 +105,7 @@ angular.module('dmc.onboarding')
         }
 
         $scope.finish = function(index){
-            if($scope.account[index].data.servers.length){
-            	$scope.account[index].done = true;
-            }else{
-                $scope.account[index].done = false;
-
-            }
+            $scope.account[index].done = true;
             $scope.saveFinish('account');
         	$(window).scrollTop(0);
         	$state.go('^.^.home');

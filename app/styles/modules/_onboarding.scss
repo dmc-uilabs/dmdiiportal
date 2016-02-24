@@ -301,22 +301,14 @@
 	          width: 150px;
 	        }
 	      }
-	      button{
+	      .md-button{
 	        position: absolute;
-	        right: 0px;
+	        right: 3px;
 	        margin: 0;
 	        top: 3px;
+          background-color: #CD3F3F;
 	        ng-md-icon {
-	          fill: #555;
-	          background-color: rgba(255, 255, 255, 0.8);
-	          @include borderRadius(50%);
-	          height: 32px;
-	        }
-	        &:hover{
-	          ng-md-icon {
-	            fill: #C32E2E;
-	            background-color: rgba(255, 255, 255, 1);
-	          }
+	          fill: #fff;
 	        }
 	      }
 	    }
@@ -368,21 +360,25 @@
       position: relative;
       .removed-images{
           position: absolute;
-          right: 0px;
+          right: 3px;
           margin: 0;
-          top: 0px;
+          top: 3px;
+          background-color: #CD3F3F;
           ng-md-icon {
-            fill: #555;
-            background-color: rgba(255, 255, 255, 0.8);
-            @include borderRadius(50%);
-            height: 32px;
+            fill: #fff;
           }
-          &:hover{
-            ng-md-icon {
-              fill: #C32E2E;
-              background-color: rgba(255, 255, 255, 1);
-            }
-          }
+        //   ng-md-icon {
+        //     fill: #555;
+        //     background-color: rgba(255, 255, 255, 0.8);
+        //     @include borderRadius(50%);
+        //     height: 32px;
+        //   }
+        //   &:hover{
+        //     ng-md-icon {
+        //       fill: #C32E2E;
+        //       background-color: rgba(255, 255, 255, 1);
+        //     }
+        //   }
         }
     }
   }

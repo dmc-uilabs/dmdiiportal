@@ -57,7 +57,12 @@ angular.module('dmc.onboarding')
             $scope.profile[2].data.skills.splice(index, 1);
         }
 
+        $scope.deleteImage = function(){
+            $scope.profile[1].data.image = "";
+        }
+
         $scope.next = function(index){
+            $scope.storefront[index].done = true;
             if(index == 1 && $scope.file){
                 fileUpload.uploadFileToUrl(
                     $scope.file.files[0].file,

@@ -9,10 +9,10 @@
     <div layout="row"  layout-align="center center">
         <div class="img-box" ng-if="storefront[2].data.logoImage">
             <img ng-src="{{storefront[2].data.logoImage}}">
-            <md-button md-no-ink class="md-icon-button removed-images"
+            <md-button md-no-ink class="md-fab md-mini removed-images"
                        ng-click="deleteLogo()"
                        aria-label="Delete Image">
-                <ng-md-icon icon="highlight_remove" size="32"></ng-md-icon>
+                <ng-md-icon icon="delete" size="18"></ng-md-icon>
             </md-button>
         </div>
     	<div class="flow-box"
@@ -27,7 +27,7 @@
                 <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
                   <img flow-img="$flow.files[0]" />
                     <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
-                        <ng-md-icon icon="close" size="21"></ng-md-icon>
+                        <ng-md-icon icon="delete" size="18"></ng-md-icon>
                     </md-button>
                 </div>
                 <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
