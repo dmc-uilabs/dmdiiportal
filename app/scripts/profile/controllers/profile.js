@@ -1,7 +1,7 @@
 angular.module('dmc.profile')
     .controller('profileController', 
-    	['profileData', 'profileModel', '$stateParams', '$scope', '$location', '$anchorScroll', 'ajax', 'dataFactory',
-    	function (profileData, profileModel, $stateParams, $scope, $location, $anchorScroll, ajax, dataFactory) {
+    	['profileData', 'profileModel', '$stateParams', '$scope', '$location', '$anchorScroll', 'ajax', 'dataFactory', '$state',
+    	function (profileData, profileModel, $stateParams, $scope, $location, $anchorScroll, ajax, dataFactory, $state) {
 		
         $scope.profile = profileData;  //profile
         $scope.LeaveFlag = false;  //flag for visibility form Leave A Review

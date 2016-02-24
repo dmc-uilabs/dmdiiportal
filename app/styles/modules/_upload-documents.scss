@@ -19,6 +19,9 @@
     @include borderRadius(15px);
     z-index: 11;
   }
+  .dz-preview .dz-error-message{
+    top: 150px;
+  }
 }
 .upload-documents{
   md-list-item{
