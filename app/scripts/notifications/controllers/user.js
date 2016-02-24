@@ -14,6 +14,9 @@ angular.module('dmc.notifications')
 				"period": "today"
 			},
 			function(data){
+				for(var i in data){
+					data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A")
+				}
 				$scope.notificationsData = data;
 				if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 			}
@@ -31,6 +34,9 @@ angular.module('dmc.notifications')
 					"period": "today"
 				},
 				function(data){
+					for(var i in data){
+						data[i].date = moment().format("MM/DD/YYYY hh:mm A")
+					}
 					$scope.notificationsData = data;
 					if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 				}
@@ -52,6 +58,9 @@ angular.module('dmc.notifications')
 					"event": events
 				},
 				function(data){
+					for(var i in data){
+						data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A")
+					}
 					$scope.notificationsData = data;
 					if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 				}
