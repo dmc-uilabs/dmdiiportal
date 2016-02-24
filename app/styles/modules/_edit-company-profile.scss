@@ -3,6 +3,10 @@
     line-height: 36px;
     min-height: 0;
     height: 36px;
+    width: 36px;
+    svg{
+      margin-top: 3px;
+    }
     span {
       text-decoration: none;
     }
@@ -240,15 +244,12 @@
         margin: 0;
         top: 3px;
         ng-md-icon {
-          fill: #555;
-          background-color: rgba(255, 255, 255, 0.8);
+          fill: #fff;
           @include borderRadius(50%);
           height: 32px;
         }
         &:hover{
           ng-md-icon {
-            fill: #C32E2E;
-            background-color: rgba(255, 255, 255, 1);
           }
         }
       }

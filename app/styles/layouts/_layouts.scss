@@ -408,6 +408,9 @@ button,
 .md-button.md-raised,
 .md-button{
   @include borderRadius(2px);
+  &.md-icon-button{
+    @include borderRadius(50%);
+  }
   &.gray-button:not([disabled]){
     @include boxShadow(0 0 0 rgba(0,0,0,0));
     background-color: #C7C7C7;

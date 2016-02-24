@@ -45,7 +45,7 @@
 							ng-if="product.service_images.length" 
 							ng-click="carouselFunctions.deleteImage(indexImages)" 
 							aria-label="delete">
-							<ng-md-icon icon="close" style="fill: #fff" size="25"></ng-md-icon>
+							<ng-md-icon icon="delete" style="fill: #fff" size="25"></ng-md-icon>
 						</md-button>
 						<img class="main-image" ng-if="product.service_images.length" ng-src="{{product.service_images[indexImages].url}}">
 						<div class="no-image" ng-if="!product.service_images.length" layout layout-align="center center">
