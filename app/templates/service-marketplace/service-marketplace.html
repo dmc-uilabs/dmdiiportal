@@ -81,8 +81,14 @@
 								<span flex></span>
 								<div ng-if="!adding_to_project" layout="row" layout-align="center end">
 									<md-button ui-sref="service-marketplace-edit({serviceId: product.id})" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
-									<!-- <md-button ng-click="toProject()" class="md-raised add dmc-button margin-left20">Add to Project</md-button> -->
-									<md-button ng-href="{{'project.php#/'+product.projectId+'/home'}}" class="md-raised dmc-button margin-left20">To Project</md-button>
+									<md-button ng-click="toProject()" ng-if="!invate" class="md-raised add dmc-button margin-left20">Add to Project</md-button>
+									
+						            <md-button class="md-raised dmc-button cancelProject margin-left20" ng-if="invate" ng-click="btnRemoveOfProject()">
+						              	<ng-md-icon icon="close" size="17"></ng-md-icon>
+						            </md-button>
+						            <md-button class="md-raised dmc-button margin-left20" ng-if="invate" ng-href="{{'project.php#/'+product.currentStatus.project.id+'/home'}}">
+						              	{{ product.currentStatus.project.title}}
+						            </md-button>
 									<md-button  
 											ng-click="addToCompare()" 
 											class="md-raised add dmc-button margin-left20"
