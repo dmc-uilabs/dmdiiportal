@@ -16,6 +16,7 @@ angular.module('dmc.profile')
         $scope.toProject = "";
         $scope.selectSortingStar = 0;
         $scope.projects = [];
+        $scope.toProjectId = null;
 
 
         $scope.sortList = [
@@ -354,18 +355,19 @@ angular.module('dmc.profile')
         $scope.btnAddToProject = function (index) {
             console.info("add", $scope.projects[index])
             $scope.toProject = $scope.projects[index].title;
+            $scope.toProjectId = $scope.projects[index].id;
             $scope.invate = true;
             $scope.inviteToProject = false;
-            /*ajax.create(dataFactory.createMembersToProject(),
+            ajax.create(dataFactory.createMembersToProject(),
                 {
                     "profileId": $stateParams.profileId,
-                    "projectId": $stateParams.projectId,
-                    "fromProfileId": $rootScope.userData.profileId,
-                    "from": $rootScope.userData.displayName,
+                    "projectId": $scope.toProjectId,
+                    "fromProfileId": $scope.$root.userData.profileId,
+                    "from": $scope.$root.userData.displayName,
                     "date": moment(new Date).format('x'),
                     "accept": false
                 }
-            );*/
+            );
         }
 
         $scope.btnCanselToProject = function () {

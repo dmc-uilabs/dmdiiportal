@@ -36,10 +36,10 @@
 				<md-button ng-if="service.from == 'marketplace'" aria-label="reply" ng-click="share(ev)" class="md-icon-button reply header-icon">
 					<ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
 				</md-button>
-				<md-button aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/edit'}}" class="md-icon-button header-icon">
+				<md-button aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/edit'}}" class="md-icon-button header-icon margin-left20">
 					<ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
 				</md-button>
-				<md-button aria-label="delete" ng-click="delete()" class="md-icon-button header-icon">
+				<md-button aria-label="delete" ng-click="delete()" class="md-icon-button header-icon margin-left20">
 					<ng-md-icon icon="delete" style="fill: grey;" size="25"></ng-md-icon>
 				</md-button>
 			</div>
@@ -48,9 +48,8 @@
 					Run
 				</md-button>
 				<md-button ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/publish'}}"
-                           ng-if="service.from == 'project'"
                            class="md-raised dmc-button margin-left20">
-					PUBLISH SERVICE
+					Publish Service
 				</md-button>
 				<md-button class="md-raised dmc-button margin-left20 follow" ng-click="follow()">
 					{{(followFlag) ? 'Unfollow' : 'Follow'}}
