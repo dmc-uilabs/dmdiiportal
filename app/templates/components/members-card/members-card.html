@@ -25,9 +25,39 @@
 	</div>
 	<div class="footer" layout="row" >
     
-    <md-button href="" class="white-button" aria-label="Add to Project" flex>
+    <md-button ng-click="addToProject()" ng-hide="addingToProject  || cardSource.added" class="white-button" aria-label="Add to Project" flex>
         Add to Project
     </md-button>
+
+    <md-button aria-label="Project Link"
+               flex
+               class="page-href"
+               ng-style="compareStyle"
+               ng-show="addingToProject == false && cardSource.added"
+               href="{{cardSource.lastProject.href}}">
+	    <span flex>
+	        Added to {{cardSource.lastProject.title}}
+	    </span>
+    </md-button>
+
+    <div class="adding-to-project" ng-show="addingToProject">
+        <div layout="row" layout-align="center center" class="inner-add-to-project">
+            <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">
+                <ng-md-icon icon="close" size="17"></ng-md-icon>
+            </md-button>
+            <div layout="column" class="select-block" flex>
+                <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
+                    <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
+                </md-select>
+            </div>
+            <md-button aria-label="Add"
+                       layout="column"
+                       ng-disabled="!projectModel"
+                       class="md-raised add"
+                       ng-click="saveToProject(projectModel)">Add
+            </md-button>
+        </div>
+    </div>
 
       <!-- buttons for compare -->
     <!-- <md-button href="" class="white-button" aria-label="Add to Compare" flex>

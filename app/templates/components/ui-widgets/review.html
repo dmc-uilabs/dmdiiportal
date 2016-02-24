@@ -69,7 +69,7 @@
   <div ng-if="showReply" class="show-reply" ng-repeat="reply in review.replyReviews">
     <md-divider></md-divider>
     <div class="md-toolbar-tools">
-      <h2>{{reply.name}} <span>{{(reply.status)? 'Verified': 'Unverified'}} User</span></h2>
+      <h2><a ng-href="{{'profile.php#/'+review.accountId}}">{{reply.name}}</a> <span>{{(reply.status)? 'Verified': 'Unverified'}} User</span></h2>
       <span flex></span>
       <span>{{reply.date}}</span>
     </div>
