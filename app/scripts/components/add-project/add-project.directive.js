@@ -349,6 +349,17 @@ angular.module('dmc.add_project.directive', [
                                 "date": Date.parse(new Date()),
                                 "accept": true
                             }, function(response){
+
+                                $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
+                                $rootScope.userData.messages.items.unshift({
+                                    "user_name": $rootScope.userData.displayName,
+                                    "image": "/uploads/profile/1/20151222084711000000.jpg",
+                                    "text": "Invited you to a project",
+                                    "link": "/project.php#/preview/" + projectId,
+                                    "created_at": moment().format("hh:mm A")
+                                });
+                                
+
                                 $scope.cancelAddToProject();
 
                                 if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
@@ -537,6 +548,15 @@ angular.module('dmc.add_project.directive', [
                                                 "date": Date.parse(new Date()),
                                                 "accept": true
                                             }, function(response){
+
+                                                rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
+                                                $rootScope.userData.messages.items.unshift({
+                                                    "user_name": $rootScope.userData.displayName,
+                                                    "image": "/uploads/profile/1/20151222084711000000.jpg",
+                                                    "text": "Invited you to a project",
+                                                    "link": "/project.php#/preview/" + projectId,
+                                                    "created_at": moment().format("hh:mm A")
+                                                });
                                                 callbackAddUser(response,i);
                                             }
                                         );

@@ -55,7 +55,18 @@ angular.module('dmc.add_project', [
                                     "date": moment(new Date).format('x'),
                                     "accept": true
                                 },
-                                function(response){}
+                                function(response){
+
+                                    $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
+                                    $rootScope.userData.messages.items.unshift({
+                                        "user_name": $rootScope.userData.displayName,
+                                        "image": "/uploads/profile/1/20151222084711000000.jpg",
+                                        "text": "Invited you to a project",
+                                        "link": "/project.php#/preview/" + id,
+                                        "created_at": moment().format("hh:mm A")
+                                    });
+                                    DMCUserModel.UpdateUserData($rootScope.userData);
+                                }
                             );
                         }
                     }
@@ -125,6 +136,16 @@ angular.module('dmc.add_project', [
                                             "accept": true
                                         },
                                         function(response){
+
+                                            $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
+                                            $rootScope.userData.messages.items.unshift({
+                                                "user_name": $rootScope.userData.displayName,
+                                                "image": "/uploads/profile/1/20151222084711000000.jpg",
+                                                "text": "Invited you to a project",
+                                                "link": "/project.php#/preview/" + lastId,
+                                                "created_at": moment().format("hh:mm A")
+                                            });
+                                            DMCUserModel.UpdateUserData($rootScope.userData);
                                         }
                                     );
                                     lastMemberId++;
@@ -142,6 +163,16 @@ angular.module('dmc.add_project', [
                                                 "accept": false
                                             },
                                             function(response){
+
+                                                $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
+                                                $rootScope.userData.messages.items.unshift({
+                                                    "user_name": $rootScope.userData.displayName,
+                                                    "image": "/uploads/profile/1/20151222084711000000.jpg",
+                                                    "text": "Invited you to a project",
+                                                    "link": "/project.php#/preview/" + lastId,
+                                                    "created_at": moment().format("hh:mm A")
+                                                });
+                                                DMCUserModel.UpdateUserData($rootScope.userData);
                                             }
                                         );
                                         lastMemberId++;

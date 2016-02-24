@@ -366,6 +366,18 @@ angular.module('dmc.profile')
                     "from": $scope.$root.userData.displayName,
                     "date": moment(new Date).format('x'),
                     "accept": false
+                },
+                function(response){
+
+                    $scope.$root.userData.messages.items.splice($scope.$root.userData.messages.items.length-1, 1);
+                    $scope.$root.userData.messages.items.unshift({
+                        "user_name": $scope.$root.userData.displayName,
+                        "image": "/uploads/profile/1/20151222084711000000.jpg",
+                        "text": "Invited you to a project",
+                        "link": "/project.php#/preview/" + $stateParams.projectId,
+                        "created_at": moment().format("hh:mm A")
+                    });
+                    DMCUserModel.UpdateUserData($scope.$root.userData);
                 }
             );
         }
