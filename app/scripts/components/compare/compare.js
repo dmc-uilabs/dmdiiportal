@@ -192,7 +192,7 @@ angular.module('dmc.compare',[
 
         $scope.backToAdd = function(item){
             item.added = false;
-            clearTimeout($scope.addedTimeout);
+            //clearTimeout($scope.addedTimeout);
             apply();
         };
 
