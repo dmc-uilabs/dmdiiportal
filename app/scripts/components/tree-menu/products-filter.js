@@ -161,10 +161,26 @@ angular.module('dmc.component.products-filter', [
                     }
                 }
 
-                if(checkedAuthors.length > 0) filterData.authors = checkedAuthors;
-                if(checkedRatings.length > 0) filterData.ratings = checkedRatings;
-                if(checkedFavorites.length > 0) filterData.favorites = checkedFavorites;
-                if(checkedDates.length > 0) filterData.dates = checkedDates;
+                if(checkedAuthors.length > 0){
+                    filterData.authors = checkedAuthors;
+                }else{
+                    delete filterData.authors;
+                }
+                if(checkedRatings.length > 0){
+                    filterData.ratings = checkedRatings;
+                }else{
+                    delete filterData.ratings;
+                }
+                if(checkedFavorites.length > 0){
+                    filterData.favorites = checkedFavorites;
+                }else{
+                    delete filterData.favorites;
+                }
+                if(checkedDates.length > 0){
+                    filterData.dates = checkedDates;
+                }else{
+                    delete filterData.dates;
+                }
                 //$location.path('/'+filterData.companyId+'/'+searchPage).search(filterData);
                 $state.go($scope.stateName, filterData, {reload: true});
             };

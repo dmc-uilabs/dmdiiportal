@@ -265,14 +265,14 @@ angular.module('dmc.component.productcard', [
         };
 
         $scope.addToFavorite = addToFavorite;
-        updateFavoriteInShowProductCtrl = function(data){
+            updateFavoriteInShowProductCtrl = function(data){
             $scope.product = data;
             apply();
         };
 
         $scope.cancel = function(){
             updateFavoriteInShowProductCtrl = null;
-            $mdDialog.cancel();
+            $mdDialog.hide();
         };
 
         $scope.share = function(ev){

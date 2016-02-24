@@ -2,7 +2,7 @@
 	<md-dialog-content class="component">
 		<div layout="row" layout-align="end center">
             
-            <md-button md-no-ink href="" class="md-icon-button" ng-click="cancel()">
+            <md-button md-no-ink class="md-icon-button" ng-click="cancel()">
                 <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
             </md-button>
         </div>
@@ -15,7 +15,7 @@
                 <div flex>
                     <!--product header-->
                     <div class="product-header">
-                        <h2>{{profile.displayName}} </h2>
+                        <h2><a href="/profile.php#/{{profile.id}}">{{profile.displayName}}</a></h2>
                     </div>
 
                     <md-divider></md-divider>

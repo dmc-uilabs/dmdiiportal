@@ -13,7 +13,7 @@
                        class="md-icon-button" flex>
                 <ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
             </md-button>
-            <md-button md-no-ink href="" class="md-icon-button" ng-click="cancel()">
+            <md-button md-no-ink class="md-icon-button" ng-click="cancel()">
                 <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
             </md-button>
         </div>
@@ -26,7 +26,10 @@
                 <div flex>
                     <!--product header-->
                     <div class="product-header">
-                        <h2>{{product.title}} <span>By {{product.owner}}</span></h2>
+                        <h2>
+                            <a ng-href="{{'/service-marketplace.php#/'+product.id}}">{{product.title}}</a>
+                            <span>By <a ng-href="{{'/company.php#/'+(product.companyId ? product.companyId : 1)}}">{{product.owner}}</a></span>
+                        </h2>
                         <ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>
                     </div>
 
