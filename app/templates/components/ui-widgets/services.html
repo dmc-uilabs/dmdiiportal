@@ -2,7 +2,7 @@
 <div class="title-widget" ng-if="widgetTitle && widgetStyle == 'my-projects'" layout="row" layout-align="start center">
     <h2>{{widgetTitle}}</h2>
     <span flex></span>
-    <a href="/all.php#/services/{{projectId}}"
+    <a href="{{'/project.php#/'+projectId+'/services'}}"
                ng-click="previousPage.save($event)"
                class="link-button uppercase">View All ({{total}})</a>
 </div>
