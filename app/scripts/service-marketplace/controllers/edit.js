@@ -27,15 +27,19 @@ angular.module('dmc.service-marketplace')
             $scope.not_found = false;  //product not fount
             $scope.products_card = [];  //products card
             $scope.allServices = [];
+
             $scope.removeTags =[];
             $scope.addTags =[];
             $scope.removeAuthors = [];
             $scope.removeImages = [];
             $scope.addImages = [];
             $scope.addAuthors = [];
+            $scope.arrAddSpecifications = [];
             $scope.arraySpecifications = [];
             $scope.autocomplete = false;
-            $scope.arrAddSpecifications = [];
+
+            $scope.changes = {};
+            $scope.changesSpecifications = $scope.product.specifications[0].special.length;
 
             serviceModel.get_array_specifications(function(data){
                 $scope.arraySpecifications = data;
@@ -68,7 +72,45 @@ angular.module('dmc.service-marketplace')
             });
 
             $scope.change = function(){
-                $scope.isChange = true;
+                $scope.isChange = false;
+                for(var key in $scope.changes){
+                    if($scope.changes[key] != $scope.product[key]){
+                        console.info(key);
+                        $scope.isChange = true;
+                        return;
+                    }
+                }
+
+
+                if($scope.removeTags.length){
+                    $scope.isChange = true;
+                    return;
+                }
+                if($scope.addTags.length){
+                    $scope.isChange = true;
+                    return;
+                }
+                if($scope.removeAuthors.length){
+                    $scope.isChange = true;
+                    return;
+                }
+                if($scope.removeImages.length){
+                    $scope.isChange = true;
+                    return;
+                }
+                if($scope.addImages.length){
+                    $scope.isChange = true;
+                    return;
+                }
+                if($scope.addAuthors.length){
+                    $scope.isChange = true;
+                    return;
+                }
+                if($scope.product.specifications[0].special.length != $scope.changesSpecifications){
+                        console.info($scope.product.specifications[0].special.length, $scope.changesSpecifications);
+                    $scope.isChange = true;
+                    return;
+                }
             }
 
             var apply = function(){
@@ -133,7 +175,6 @@ angular.module('dmc.service-marketplace')
 
             //Add specifications to product
             $scope.AddSpecifications = function(item, text){
-                $scope.isChange = true;
                 if(!item)return;
                 for(var i in $scope.arraySpecifications){
                     if( $scope.arraySpecifications[i].id == item.id ){
@@ -166,6 +207,7 @@ angular.module('dmc.service-marketplace')
             });
 
             $scope.pushSpecifications = function(index){
+                $scope.isChange = true;
                 $scope.product.specifications[0].special.push($scope.arrAddSpecifications[index]);
                 $scope.arrAddSpecifications.splice(index,1);
             };
@@ -189,6 +231,7 @@ angular.module('dmc.service-marketplace')
                     name: $scope.product.specifications[0].special[index].specification,
                 });
                 $scope.product.specifications[0].special.splice(index,1);
+                $scope.change();
             };
 
             //add bew sepecifications to system
@@ -259,6 +302,7 @@ angular.module('dmc.service-marketplace')
                     $scope.removeImages.push(removedImages[i]);
                 }
                 $scope.addImages = newImages;
+                $scope.change();
             }
 
             $scope.cancelEdit = function(){

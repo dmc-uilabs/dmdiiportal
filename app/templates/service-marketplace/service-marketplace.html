@@ -79,32 +79,32 @@
 							<div layout="row">
 								<ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>
 								<span flex></span>
-								<div ng-if="!adding_to_project" layout="row" layout-align="center end">
-									<md-button ui-sref="service-marketplace-edit({serviceId: product.id})" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
+								<div ng-if="!adding_to_project" layout="row" layout-align="center center">
+									<md-button ui-sref="service-marketplace-edit({serviceId: product.id})" ng-if="!invate" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
 									<md-button ng-click="toProject()" ng-if="!invate" class="md-raised add dmc-button margin-left20">Add to Project</md-button>
 									
 						            <md-button class="md-raised dmc-button cancelProject margin-left20" ng-if="invate" ng-click="btnRemoveOfProject()">
 						              	<ng-md-icon icon="close" size="17"></ng-md-icon>
 						            </md-button>
-						            <md-button class="md-raised dmc-button margin-left20" ng-if="invate" ng-href="{{'project.php#/'+product.currentStatus.project.id+'/home'}}">
+						            <a ng-if="invate" class="margin-left8" ng-href="{{'project.php#/'+product.currentStatus.project.id+'/home'}}">
 						              	{{ product.currentStatus.project.title}}
-						            </md-button>
+						            </a>
 									<md-button  
 											ng-click="addToCompare()" 
 											class="md-raised add dmc-button margin-left20"
-											ng-if="(product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)">
+											ng-if="((product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)) && !invate">
 										Add to Compare
 									</md-button>
 									<md-button 
 											ng-click="removeFromCompare()"
 											class="md-raised add dmc-button margin-left20"
-											ng-if="!(product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)">
+											ng-if="(!(product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)) && !invate">
 										<ng-md-icon icon="close" size="17"></ng-md-icon>
 										Compare
 									</md-button>
 								</div>
 
-						        <div flex="50" ng-if="adding_to_project" layout="row" layout-align="center center" class="add-to-project">
+						        <div flex="50" ng-if="adding_to_project && !invate" layout="row" layout-align="center center" class="add-to-project">
 						            <md-button class="md-raised cancelProject" ng-click="btnCanselToProject()">
 						              	<ng-md-icon icon="close" size="17"></ng-md-icon>
 						            </md-button>
