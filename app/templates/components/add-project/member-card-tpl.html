@@ -16,7 +16,7 @@
         </a>
     </div>
     <div class="member-card__image">
-        <img ng-src="{{cardSource.image}}" alt="Name member">
+        <img ng-src="{{cardSource.image ? cardSource.image : 'images/icon-profile-lg.svg'}}" alt="Name member">
     </div>
     <div class="member-card__header" layout="column" layout-padding layout-margin>
         <h3 class="member-name"><a href="/profile.php#/{{cardSource.id}}">{{cardSource.displayName}}</a></h3>

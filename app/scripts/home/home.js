@@ -24,7 +24,7 @@ angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 
      url: '/',
      templateUrl: 'templates/index/index.html',
      resolve: resolver,
-     controller: 'HomeCtr',
+     controller: 'HomeCtr'
     });
   $urlRouterProvider.otherwise('/');
 }).controller('HomeCtr',['$scope', 'userData', function($scope, userData){

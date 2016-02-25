@@ -17,8 +17,6 @@ angular.module('dmc.account')
         }
         var currentContainer = null;
         var callback = function(success,data){
-            console.log(success);
-            console.log(data);
             if(success == true) {
                 $scope.userBasics.privacy[currentContainer].location.value = data.city+", "+data.region;
                 $scope.changedValue(currentContainer,'location',$scope.userBasics.privacy[currentContainer].location.value);
@@ -27,7 +25,6 @@ angular.module('dmc.account')
 
         $scope.getLocation = function(container){
             currentContainer = container;
-            console.log(currentContainer);
             location.get(callback);
         };
 
@@ -66,6 +63,7 @@ angular.module('dmc.account')
             if(!$scope.changedValues.changedValue) $scope.changedValues.changedValue = {};
             if(!$scope.changedValues.changedValue[block]) $scope.changedValues.changedValue[block] = {};
             $scope.changedValues.changedValue[block][name] = value;
+            apply();
         };
 
         $scope.cancelChanges = function(){
@@ -137,7 +135,9 @@ angular.module('dmc.account')
                 }
             }
         };
-        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
-            $scope.$apply();
+        function apply(){
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
+                $scope.$apply();
+            }
         }
 }]);

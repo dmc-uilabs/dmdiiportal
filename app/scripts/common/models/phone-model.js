@@ -11,7 +11,7 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
 
             // This runs when we update the text field
             ngModelCtrl.$parsers.push(function(viewValue) {
-                return viewValue.replace(/[^0-9]/g, '').slice(0,10);
+                return viewValue.replace(/[^0-9]/g, '').slice(0,20);
             });
 
             // This runs when the model gets updated on the scope directly and keeps our view in sync
@@ -45,7 +45,7 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
         if (value.match(/[^0-9]/)) {
             return tel;
         }
-        console.info("v",value)
+        //console.info("v",value)
 
         var country, city, number, ext;
 
@@ -81,8 +81,7 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
             }else{
                 return ("(" + city + ")" + number).trim();
             }
-        }
-        else{
+        } else{
             return city;
         }
 

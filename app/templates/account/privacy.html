@@ -34,8 +34,7 @@
                                     <input ng-if="key == 'phone'"
                                            ng-model="userBasics.privacy.public[key].value"
                                            ng-change="changedValue('public',key,userBasics.privacy.public[key].value)"
-                                           phone-input
-                                           maxlength="13">
+                                           phone-input>
                                     <input ng-if="key != 'phone'"
                                            ng-model="userBasics.privacy.public[key].value"
                                            ng-change="changedValue('public',key,userBasics.privacy.public[key].value)">
@@ -61,8 +60,7 @@
                                     <input ng-if="key == 'phone'"
                                            ng-model="userBasics.privacy.private[key].value"
                                            ng-change="changedValue('private',key,userBasics.privacy.private[key].value)"
-                                           phone-input
-                                           maxlength="13">
+                                           phone-input>
                                     <input ng-if="key != 'phone'"
                                            ng-model="userBasics.privacy.private[key].value"
                                            ng-change="changedValue('private',key,userBasics.privacy.private[key].value)">
