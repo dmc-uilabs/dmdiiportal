@@ -39,11 +39,20 @@ angular.module('dmc.account')
         $scope.getNotifications = function(){
             ajax.get(dataFactory.getAccountNotifications(),{
                     _sort : "position",
-                    _order : "ASC",
-                    _embed : "account-notification-category-items"
+                    _order : "ASC"
                 }, function(response){
                     $scope.notificationCategories = response.data;
-                    $scope.getUserNotifications();
+                    ajax.get(dataFactory.getAccountNotificationCategoryItems(),{},function(res){
+                        for(var i in res.data){
+                            for(var j in $scope.notificationCategories){
+                                if(res.data[i]["account-notification-categoryId"] == $scope.notificationCategories[j].id) {
+                                    if (!$scope.notificationCategories[j]["account-notification-category-items"]) $scope.notificationCategories[j]["account-notification-category-items"] = [];
+                                    $scope.notificationCategories[j]["account-notification-category-items"].push(res.data[i]);
+                                }
+                            }
+                        }
+                        $scope.getUserNotifications();
+                    });
                 }
             );
         };

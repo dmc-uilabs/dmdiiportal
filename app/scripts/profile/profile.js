@@ -47,39 +47,44 @@ angular.module('dmc.profile', [
             });
         $urlRouterProvider.otherwise('/1');
     })
-    .service('profileModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',
-                            function (ajax, dataFactory, $stateParams, toastModel, $rootScope) {
+    .service('profileModel', ['ajax', '$q','$http','dataFactory', '$stateParams', 'toastModel', '$rootScope',
+                            function (ajax,$q,$http, dataFactory, $stateParams, toastModel, $rootScope) {
         this.get_profile = function(id){
-            return ajax.get(dataFactory.profiles(id).get,
-                {
-                    _embed: ["profile_reviews"]
-                },
-                function(response){
-                    var profile = response.data;
-                    profile.rating = profile.profile_reviews.map(function(value, index){
-                        return value.rating;
-                    });
-                    profile.number_of_comments = profile.profile_reviews.length;
-                    
-                    if(profile.number_of_comments != 0) {
-                        profile.precentage_stars = [0, 0, 0, 0, 0];
-                        profile.average_rating = 0;
-                        for (var i in profile.rating) {
-                            profile.precentage_stars[profile.rating[i] - 1] += 100 / profile.number_of_comments;
-                            profile.average_rating += profile.rating[i];
-                        }
-                        profile.average_rating = (profile.average_rating / profile.number_of_comments).toFixed(1);
+            var promises = {
+                "profile": $http.get(dataFactory.profiles(id).get),
+                "profile_reviews": $http.get(dataFactory.profiles(id).reviews)
+            };
 
-                        for (var i in profile.precentage_stars) {
-                            profile.precentage_stars[i] = Math.round(profile.precentage_stars[i]);
-                        }
+            var extractData = function(response){
+                return response.data ? response.data : response;
+            };
+
+            return $q.all(promises).then(function(responses) {
+                var profile = extractData(responses.profile);
+                profile.profile_reviews = extractData(responses.profile_reviews);
+                profile.rating = profile.profile_reviews.map(function(value, index){
+                    return value.rating;
+                });
+                profile.number_of_comments = profile.profile_reviews.length;
+
+                if(profile.number_of_comments != 0) {
+                    profile.precentage_stars = [0, 0, 0, 0, 0];
+                    profile.average_rating = 0;
+                    for (var i in profile.rating) {
+                        profile.precentage_stars[profile.rating[i] - 1] += 100 / profile.number_of_comments;
+                        profile.average_rating += profile.rating[i];
                     }
-                    return profile;
-                },
-                function(response){
-                    toastModel.showToast("error", "Error." + response.statusText);
+                    profile.average_rating = (profile.average_rating / profile.number_of_comments).toFixed(1);
+
+                    for (var i in profile.precentage_stars) {
+                        profile.precentage_stars[i] = Math.round(profile.precentage_stars[i]);
+                    }
                 }
-            )
+                return profile;
+            },function(response){
+                toastModel.showToast("error", "Error." + response.statusText);
+            });
+
         }
 
         var get_reply = function(review){

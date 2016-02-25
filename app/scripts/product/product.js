@@ -47,50 +47,55 @@ angular.module('dmc.product', [
             });
 		$urlRouterProvider.otherwise('/services/1');
 	})
-    .service('serviceModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',
-                            function (ajax, dataFactory, $stateParams, toastModel, $rootScope) {
+    .service('serviceModel', ['ajax','$q','$http', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',
+                            function (ajax,$q,$http, dataFactory, $stateParams, toastModel, $rootScope) {
 
         this.get_component = function(type, id){
-            return ajax.get(dataFactory.components(type, id).get, {
-            	"_embed": ["specifications","service_authors","service_tags","service_images"],
-            },
-                function(response){
-                	var component = response.data;
-                	return ajax.get(dataFactory.components(type, id).reviews, {},
-                		function(response){
-                			component["component_reviews"] = response.data;
-                			component.rating = component.component_reviews.map(function(value, index){
-		                        return value.rating;
-		                    });
-		                    component.number_of_comments = component.component_reviews.length;
-		                    
-		                    if(component.number_of_comments != 0) {
-		                        component.precentage_stars = [0, 0, 0, 0, 0];
-		                        component.average_rating = 0;
-		                        for (var i in component.rating) {
-		                            component.precentage_stars[component.rating[i] - 1] += 100 / component.number_of_comments;
-		                            component.average_rating += component.rating[i];
-		                        }
-		                        component.average_rating = (component.average_rating / component.number_of_comments).toFixed(1);
+            var promises = {
+                "component": $http.get(dataFactory.components(type, id).get),
+                "component_reviews": $http.get(dataFactory.components(type, id).reviews),
+                "specifications": $http.get(dataFactory.services(id).get_specifications),
+                "service_authors": $http.get(dataFactory.services(id).get_authors),
+                "service_tags": $http.get(dataFactory.services(id).get_tags),
+                "service_images": $http.get(dataFactory.services(id).get_images)
+            };
 
-		                        for (var i in component.precentage_stars) {
-		                            component.precentage_stars[i] = Math.round(component.precentage_stars[i]);
-		                        }
-		                    }
-		                    for(var i in component["component_reviews"]){
-		                    	component["component_reviews"][i]['replyReviews'] = [];
-		                    }
-		                    return component;
-                		},
-		                function(response){
-		                    toastModel.showToast("error", "Error." + response.statusText);
-		                }
-                	)
-                },
-                function(response){
-                    toastModel.showToast("error", "Error." + response.statusText);
+            var extractData = function(response){
+                return response.data ? response.data : response;
+            };
+
+            return $q.all(promises).then(function(responses) {
+                var component = extractData(responses.component);
+                component.specifications = extractData(responses.specifications);
+                component.service_authors = extractData(responses.service_authors);
+                component.service_tags = extractData(responses.service_tags);
+                component.service_images = extractData(responses.service_images);
+                component.component_reviews = extractData(responses.component_reviews);
+                component.rating = component.component_reviews.map(function(value, index){
+                    return value.rating;
+                });
+                component.number_of_comments = component.component_reviews.length;
+
+                if(component.number_of_comments != 0) {
+                    component.precentage_stars = [0, 0, 0, 0, 0];
+                    component.average_rating = 0;
+                    for (var i in component.rating) {
+                        component.precentage_stars[component.rating[i] - 1] += 100 / component.number_of_comments;
+                        component.average_rating += component.rating[i];
+                    }
+                    component.average_rating = (component.average_rating / component.number_of_comments).toFixed(1);
+
+                    for (var i in component.precentage_stars) {
+                        component.precentage_stars[i] = Math.round(component.precentage_stars[i]);
+                    }
                 }
-            )
+                for(var i in component.component_reviews){
+                    component.component_reviews[i].replyReviews = [];
+                }
+                return component;
+            },function(response){
+                toastModel.showToast("error", "Error." + response.statusText);
+            });
         }
 
         this.get_all_component = function(params, callback){
@@ -105,13 +110,27 @@ angular.module('dmc.product', [
         }
 
         this.get_included_services = function(callback){
+
             return ajax.get(dataFactory.components($stateParams.typeProduct, $stateParams.productId).get_included,
                 {
-                    "includeTo": $stateParams.productId,
-                    "_expand": "service"
+                    "includeTo": $stateParams.productId
                 },
                 function(response){
-                    callback(response.data);
+                    var data = response.data;
+                    var ids = $.map(data,function(x){ return x.serviceId; });
+                    ajax.get(dataFactory.services().all,{
+                        id : ids
+                    },function(res){
+                        for(var i in data){
+                            for(var j in res.data){
+                                if(data[i].serviceId == res.data[j].id){
+                                    data[i].service = res.data[j];
+                                    break;
+                                }
+                            }
+                        }
+                        callback(data);
+                    });
                 },
                 function(response){
                     toastModel.showToast("error", "Error." + response.statusText);

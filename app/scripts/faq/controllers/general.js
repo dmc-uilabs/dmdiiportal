@@ -34,10 +34,16 @@ angular.module('dmc.faq')
         $scope.getFAQCategories = function(){
             var requestData = {};
             if($scope.searchModel) requestData.title_like = $scope.searchModel;
-            if(!$scope.showAllCategories)  requestData._limit = $scope.limitCategories;
             ajax.get(dataFactory.getFAQCategories(), requestData,
                 function(response){
                     $scope.categories = response.data;
+                    for(var c in $scope.categories) {
+                        if($scope.categories[c].id == $scope.categoryId) {
+                            $scope.selectedCategory = $scope.categories[c];
+                            break;
+                        }
+                    }
+                    if(!$scope.showAllCategories)  $scope.categories.splice($scope.limitCategories,$scope.categories.length);
                     $scope.getFAQSubcategories();
                     apply();
                 }
@@ -47,16 +53,26 @@ angular.module('dmc.faq')
         // get all subcategories with articles for opened category
         $scope.getFAQSubcategories = function(){
             ajax.get(dataFactory.getFAQSubcategories(), {
-                    faq_categoryId : $scope.categoryId,
-                    _embed : "faq_articles"
+                    faq_categoryId : $scope.categoryId
                 }, function (response) {
-                    for(var c in $scope.categories) {
-                        if($scope.categories[c].id == $scope.categoryId) {
-                            $scope.selectedCategory = $scope.categories[c];
-                            break;
-                        }
+                    if($scope.selectedCategory) {
+                        $scope.selectedCategory.faq_subcategories = response.data;
+                        var ids = $.map($scope.selectedCategory.faq_subcategories, function (x) {
+                            return x.id;
+                        });
+                        ajax.get(dataFactory.getRelatedArticles(), {
+                            faq_subcategoryId: ids
+                        }, function (res) {
+                            for (var i in $scope.selectedCategory.faq_subcategories) {
+                                for (var j in res.data) {
+                                    if (res.data[j].faq_subcategoryId == $scope.selectedCategory.faq_subcategories[i].id) {
+                                        if (!$scope.selectedCategory.faq_subcategories[i].faq_articles) $scope.selectedCategory.faq_subcategories[i].faq_articles = [];
+                                        $scope.selectedCategory.faq_subcategories[i].faq_articles.push(res.data[j]);
+                                    }
+                                }
+                            }
+                        });
                     }
-                    $scope.selectedCategory.faq_subcategories = response.data;
                     apply();
                 }
             );

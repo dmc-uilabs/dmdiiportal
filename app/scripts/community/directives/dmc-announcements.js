@@ -13,18 +13,6 @@ angular.module('dmc.community.dmc-announcements',[]).
                 $scope.totalAnnouncements = 0;
 
                 $scope.getAnnouncements = function(){
-                    //ajax.get(dataFactory.getIndividualDiscussions(),{
-                    //    _limit : 5,
-                    //    _start : 0
-                    //},function(response){
-                    //    $scope.announcements = response.data;
-                    //    $scope.totalAnnouncements = $scope.announcements.length;
-                    //    for(var a in $scope.announcements){
-                    //        $scope.announcements[a].created_at = moment($scope.announcements[a].created_at).format("MM/DD/YYYY");
-                    //    }
-                    //    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    //});
-
                     ajax.get(dataFactory.getIndividualDiscussions(), {
                         "_order" : "DESC",
                         "_sort" : "id"
@@ -54,7 +42,6 @@ angular.module('dmc.community.dmc-announcements',[]).
                                 }
                             }
                             $scope.announcements.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
-                            //$scope.discussions.splice($scope.limit,$scope.discussions.length);
                         });
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     });

@@ -110,7 +110,7 @@ angular.module('dmc.service-marketplace', [
                     return service;
 
                   },
-                  function(reponse){
+                  function(response){
                      toastModel.showToast("error", "Error." + response.statusText);
                   }
                 );

@@ -64,11 +64,12 @@ angular.module('dmc.company-profile', [
         }).state('company-profile-edit.contact', {
             url: '/contact'
         });
+
 		$urlRouterProvider.otherwise('/1');
 
 	})
-    .service('companyProfileModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',
-                            function (ajax, dataFactory, $stateParams, toastModel, $rootScope) {
+    .service('companyProfileModel', ['ajax','$q','$http', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',
+                            function (ajax,$q,$http, dataFactory, $stateParams, toastModel, $rootScope) {
         // get company skills
         this.getSkills = function(id, callback) {
             return ajax.on(dataFactory.getCompanySkills(id),{
@@ -152,43 +153,46 @@ angular.module('dmc.company-profile', [
         };
 
         this.get_company = function(id){
-            return ajax.get(
-                dataFactory.companyURL(id).get, 
-                {
-                    "_embed": "company_members"
-                },
-                function(response){
-                    var company = response.data;
-                    return ajax.get(dataFactory.companyURL(id).reviews, {},
-                        function(response){
-                            company["company_reviews"] = response.data;
-                            company.rating = company.company_reviews.map(function(value, index){
-                                return value.rating;
-                            });
-                            company.number_of_comments = company.company_reviews.length;
-                            
-                            if(company.number_of_comments != 0) {
-                                company.precentage_stars = [0, 0, 0, 0, 0];
-                                company.average_rating = 0;
-                                for (var i in company.rating) {
-                                    company.precentage_stars[company.rating[i] - 1] += 100 / company.number_of_comments;
-                                    company.average_rating += company.rating[i];
-                                }
-                                company.average_rating = (company.average_rating / company.number_of_comments).toFixed(1);
+            var promises = {
+                "company": $http.get(dataFactory.companyURL(id).get),
+                "company_members": $http.get(dataFactory.getCompanyMembers(id)),
+                "company_reviews": $http.get(dataFactory.companyURL(id).reviews)
+            };
 
-                                for (var i in company.precentage_stars) {
-                                    company.precentage_stars[i] = Math.round(company.precentage_stars[i]);
-                                }
-                            }
-                            for(var i in company["company_reviews"]){
-                                company["company_reviews"][i]['replyReviews'] = [];
-                            }
-                            return company;
-                        }
-                    )
+            var extractData = function(response){
+                return response.data ? response.data : response;
+            };
+
+            return $q.all(promises).then(function(responses) {
+                var company = extractData(responses.company);
+                company.company_members = extractData(responses.company_members);
+                company.company_reviews = extractData(responses.company_reviews);
+                company.rating = company.company_reviews.map(function(value, index){
+                    return value.rating;
+                });
+                company.number_of_comments = company.company_reviews.length;
+
+                if(company.number_of_comments != 0) {
+                    company.precentage_stars = [0, 0, 0, 0, 0];
+                    company.average_rating = 0;
+                    for (var i in company.rating) {
+                        company.precentage_stars[company.rating[i] - 1] += 100 / company.number_of_comments;
+                        company.average_rating += company.rating[i];
+                    }
+                    company.average_rating = (company.average_rating / company.number_of_comments).toFixed(1);
+
+                    for (var i in company.precentage_stars) {
+                        company.precentage_stars[i] = Math.round(company.precentage_stars[i]);
+                    }
                 }
-            )
-        }
+                for(var i in company.company_reviews){
+                    company.company_reviews[i].replyReviews = [];
+                }
+                return company;
+            }, function(response){
+                toastModel.showToast("error", "Error." + response.statusText);
+            });
+        };
 
         var get_reply = function(review){
             ajax.get(dataFactory.companyURL(review.id).getReply,
