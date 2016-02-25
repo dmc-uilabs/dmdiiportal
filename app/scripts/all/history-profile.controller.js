@@ -18,13 +18,10 @@ angular.module('dmc.view-all')
 
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
-            if($scope.previousPage.tag == "company"){
-                $scope.previousPage = {
-                    tag : "my-projects",
-                    title: "Back to My Projects",
-                    url: location.origin+'/my-projects.php'
-                }
-            }
+            ajax.get(dataFactory.profiles($stateParams.profileId).get,{},function(response){
+                    $scope.previousPage.title = "Back to The " + response.data.displayName + "'s Profile";
+                    apply();
+            })
 
 
             $("title").text("View All History");
