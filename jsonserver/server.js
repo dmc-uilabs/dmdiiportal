@@ -17,6 +17,7 @@ server.use(jsonServer.rewriter({
     '/follow_people_discussions' : '/discussions',
     '/popular_discussions' : '/discussions',
     '/projects/:id/following_discussions' : '/projects/:id/discussions',
+    '/projects/create' : '/projects',
     '/discussions/create' : '/discussions',
     '/tasks/create' : '/tasks',
     '/members' : '/profiles?_embed=profile_reviews',
