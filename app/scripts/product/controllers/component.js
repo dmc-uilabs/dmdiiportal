@@ -2,8 +2,8 @@
 
 angular.module('dmc.product')
 
-.controller('componentController', ['componentData', 'serviceModel', '$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$mdToast', 'toastModel','$timeout', '$cookies', 'isFavorite',
-    function (componentData, serviceModel, $stateParams,   $scope,   ajax,   dataFactory,   $mdDialog,   $mdToast,   toastModel,  $timeout,   $cookies, isFavorite) {
+.controller('componentController', ['componentData', 'serviceModel', '$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$mdToast', 'toastModel','$timeout', '$cookies', 'isFavorite', '$state',
+    function (componentData, serviceModel, $stateParams,   $scope,   ajax,   dataFactory,   $mdDialog,   $mdToast,   toastModel,  $timeout,   $cookies, isFavorite, $state) {
 
 	$scope.product = componentData  //array product
 	$scope.LeaveFlag = false;  //flag for visibility form Leave A Review
@@ -11,11 +11,11 @@ angular.module('dmc.product')
 	$scope.not_found = false;  //product not fount
 	$scope.products_card = [];  //products card
 	$scope.includedServices = [];
-	$scope.limit_reviews = true;  //limit reviews
+	$scope.limit_reviews = false;  //limit reviews
 	$scope.allServices = [];
-	$scope.UserLogin = "DMC Member";
 	$scope.adding_to_project = false;
 	$scope.selectSortingStar = 0;
+    $scope.invate = false;
 
 	isFavorite.check([$scope.product]);
 
@@ -46,6 +46,7 @@ angular.module('dmc.product')
             targetEvent: ev,
             clickOutsideToClose:true,
             locals: {
+            	serviceId : $stateParams.productId
             }
         }).then(function() {
         }, function() {
@@ -74,15 +75,42 @@ angular.module('dmc.product')
         function(data){
             for(var i in data){
                 data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
-                if(data[i].type == "successful_runs"){
-                    data[i].icon = "done_all";
-                }else if(data[i].type == "unavailable_runs"){
-                    data[i].icon = "block";
-                }else if(data[i].type == "incomplete_runs"){
-                    data[i].icon = "file_upload";
-                };
+                switch(data[i].type){
+                    case "completed":
+                    case "successful_runs":
+                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                        break;
+                    case "added":
+                        data[i].icon = "images/ic_group_add_black_24px.svg";
+                        break;
+                    case "rated":
+                        data[i].icon = "images/ic_star_black_24px.svg";
+                        break;
+                    case "worked":
+                        data[i].icon = "images/icon_project.svg";
+                        break;  
+                    case "favorited":
+                        data[i].icon = "images/ic_favorite_black_24px.svg";
+                        break;   
+                    case "shared":
+                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                        break;   
+                    case "discussion":
+                        data[i].icon = "images/ic_forum_black_24px.svg";
+                        break;     
+                    case "edited":
+                        data[i].icon = "images/ic_create_black_24px.svg";
+                        break;   
+                    case "unavailable_runs":
+                        data[i].icon = "images/ic_block_black_24px.svg";
+                        break;    
+                    case "incomplete_runs":
+                        data[i].icon = "images/ic_file_download_black_24px.svg";
+                        break;                                                                 
+                }
+
             }
-            $scope.history.rightColumn.list = data;
+            $scope.history.leftColumn.list = data;
         }
     );
     serviceModel.get_service_hystory(
@@ -93,11 +121,41 @@ angular.module('dmc.product')
         function(data){
             for(var i in data){
                 data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
-                if(data[i].type == "edited"){
-                    data[i].icon = "edit";
+                switch(data[i].type){
+                    case "completed":
+                    case "successful_runs":
+                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                        break;
+                    case "added":
+                        data[i].icon = "images/ic_group_add_black_24px.svg";
+                        break;
+                    case "rated":
+                        data[i].icon = "images/ic_star_black_24px.svg";
+                        break;
+                    case "worked":
+                        data[i].icon = "images/icon_project.svg";
+                        break;  
+                    case "favorited":
+                        data[i].icon = "images/ic_favorite_black_24px.svg";
+                        break;   
+                    case "shared":
+                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                        break;   
+                    case "discussion":
+                        data[i].icon = "images/ic_forum_black_24px.svg";
+                        break;     
+                    case "edited":
+                        data[i].icon = "images/ic_create_black_24px.svg";
+                        break;   
+                    case "unavailable_runs":
+                        data[i].icon = "images/ic_block_black_24px.svg";
+                        break;    
+                    case "incomplete_runs":
+                        data[i].icon = "images/ic_file_download_black_24px.svg";
+                        break;                                                                 
                 }
             }
-            $scope.history.leftColumn.list = data;
+            $scope.history.rightColumn.list = data;
         }
     );
 
@@ -109,7 +167,7 @@ angular.module('dmc.product')
 		{
 			id: 0,
 			val: "date",
-			name: "Most recent"
+			name: "Most Recent"
 		},
 		{
 			id: 1,
@@ -164,7 +222,7 @@ angular.module('dmc.product')
 			if($scope.indexImages > index){
 				$scope.indexImages--;
 			}
-			if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+			apply();
 		},
 		selected: function(index){
 			return index == $scope.indexImages;
@@ -246,7 +304,7 @@ angular.module('dmc.product')
                 }
                     
                 $scope.SortingReviews('date');
-            	if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            	apply();
             }
         );
 	};
@@ -278,25 +336,25 @@ angular.module('dmc.product')
                 )
             }
         )
-    }
+    };
 
-        $scope.updateHelpful = function(item, create, helpful){
-            serviceModel.update_component_reviews(item.id,
-                {
-                    'like': item.like,
-                    'dislike': item.dislike
-                },
-                function(data){
-                }
-            );
-            if(create){
-                serviceModel.add_helful(helpful, item.id,function(data){
-                    item.helpful = data;
-                });
-            }else{
-                serviceModel.update_helful(item.helpful.id, item.helpful)
+    $scope.updateHelpful = function(item, create, helpful){
+        serviceModel.update_component_reviews(item.id,
+            {
+                'like': item.like,
+                'dislike': item.dislike
+            },
+            function(data){
             }
+        );
+        if(create){
+            serviceModel.add_helful(helpful, item.id,function(data){
+                item.helpful = data;
+            });
+        }else{
+            serviceModel.update_helful(item.helpful.id, item.helpful)
         }
+    };
 
 	//sorting Reviews
 	$scope.SortingReviews = function(val){
@@ -384,7 +442,6 @@ angular.module('dmc.product')
 		$scope.SortingReviews($scope.sortList[0].val);
 	};
 
-
 	//View All Included
 	$scope.ViewIncluded = function(ev){
 		$(window).scrollTop(0);
@@ -401,12 +458,12 @@ angular.module('dmc.product')
 		.then(function() {
 		}, function() {
 		});
-	}
+	};
 
 	//Search products
 	$scope.submitSearch = function(text){
 		window.location.href = '/marketplace.php#/search/' + $stateParams.typeProduct +'s?text=' + text;
-	}
+	};
 
 //
 
@@ -437,21 +494,65 @@ angular.module('dmc.product')
 
 	$scope.btnCanselToProject = function(){
 		$scope.adding_to_project = false;
-	}
+	};
 
-	$scope.btnAddToProject = function(id){
-		ajax.on(dataFactory.getUrlAddToProject($scope.product.id),{
-			id : $scope.product.id,
-			projectId : id,
-			type : $scope.product.type
-		},function(data){
-			$scope.adding_to_project = false;
-			console.info("data", data);
-			toastModel.showToast("success", "Product added to "+data.result.currentStatus.project.title);
-		},function(){
-			toastModel.showToast("error", "Failed Add To Project");
-		}, 'POST');
-	}
+    $scope.btnRemoveOfProject = function(){
+        ajax.update(dataFactory.addServiceToProject($scope.product.id), {
+	            currentStatus: {
+	                project: {
+	                    id: 0,
+	                    title: ""
+	                }
+	            },
+	            projectId: 0
+	        }, function (response) {
+	            $scope.product.projectId = 0;
+	            $scope.product.currentStatus.project.id = 0;
+	            $scope.product.currentStatus.project.title = "";
+	            $scope.invate = false;
+	            $scope.adding_to_project = false;
+	        }, function (response) {
+	            toastModel.showToast("error", "Failed Add To Project");
+	        }
+	    );
+    };
+
+    $scope.btnAddToProject = function(id){
+        var project = null;
+        for(var i in $scope.projects){
+            if($scope.projects[i].id == id){
+                project = $scope.projects[i];
+                break;
+            }
+        }
+
+        if(project) {
+            ajax.update(dataFactory.addServiceToProject($scope.product.id), {
+                    currentStatus: {
+                        project: {
+                            id: id,
+                            title: project.title
+                        }
+                    },
+                    projectId: id,
+                    from: 'marketplace'
+                }, function (response) {
+                    $scope.product.projectId = id;
+                    $scope.product.currentStatus.project.id = id;
+                    $scope.product.currentStatus.project.title = project.title;
+                    $scope.invate = true;
+                    $scope.adding_to_project = false;
+                    setTimeout(function () {
+                        $scope.invate = false;
+                        apply();
+                    }, 10000);
+                    toastModel.showToast("success", "Product added to " + response.data.currentStatus.project.title);
+                }, function (response) {
+                    toastModel.showToast("error", "Failed Add To Project");
+                }
+            );
+        }
+    };
 
 	var updateCompareCount = function () {
 	    var arr = $cookies.getObject('compareProducts');
@@ -501,77 +602,87 @@ angular.module('dmc.product')
 
     $scope.SortingReviews($scope.sortList[0].val);
 
-	$scope.treeMenuModel = {
-			title: 'BROWSE BY',
-			data: [
-					{
-							'id': 1,
-							'title': 'All',
-							'tag' : 'all',
-							'items': 0,
-							'opened' : $scope.currentPage == 'all' ? true : false,
-							'onClick' : function(){
-									$location.url('/all');
-							},
-							'categories': []
-					},
-					{
-							'id': 2,
-							'title': 'Components',
-							'tag' : 'components',
-							'items': 0,
-							'opened' : $scope.currentPage == 'components' ? true : false,
-							'onClick' : function(){
-									$location.url('/components');
-							},
-							'categories': []
-					},
-					{
-							'id': 3,
-							'title': 'Services',
-							'tag' : 'services',
-							'items': 0,
-							'opened' : $scope.currentPage == 'services' ? true : false,
-							'onClick' : function(){
-									$location.url('/services');
-							},
-							'categories': [
-									{
-											'id': 31,
-											'title': 'Analytical Services',
-											'tag' : 'analytical',
-											'items': 0,
-											'opened' : $scope.currentPageType == 'analytical' ? true : false,
-											'onClick' : function(){
-													$location.url('/services?type=analytical');
-											},
-											'categories': []
-									},
-									{
-											'id': 32,
-											'title': 'Solid Services',
-											'tag' : 'solid',
-											'items': 0,
-											'opened' : $scope.currentPageType == 'solid' ? true : false,
-											'onClick' : function(){
-													$location.url('/services?type=solid');
-											},
-											'categories': []
-									},
-									{
-											'id': 33,
-											'title': 'Data Services',
-											'tag' : 'data',
-											'items': 0,
-											'opened' : $scope.currentPageType == 'data' ? true : false,
-											'onClick' : function(){
-													$location.url('/services?type=data');
-											},
-											'categories': []
-									}
-							]
-					}
-			]
-	};
+	
+    var getMenu = function(){
+        var dataSearch = $.extend(true,{},$stateParams);
+
+        var getUrl = function(product,type){
+            
+            //#/home?product=services&type=analytical
+            console.info('ds','marketplace.php/#/home?product=' + $stateParams.typeProduct + ((type) ? '&type='+type : ''));
+            return 'marketplace.php#/home?product=' + $stateParams.typeProduct + ((type) ? '&type='+type : '');
+        };
+
+        var isOpened = function(product,type){
+            if ($stateParams.typeProduct === product) {
+                return (!type || $stateParams.typeProduct === type ? true : false);
+            }else{
+                return false;
+            }
+        };
+
+        return {
+            title: 'BROWSE BY',
+            data: [
+                //{
+                //    'id': 1,
+                //    'title': 'All',
+                //    'tag' : 'all',
+                //    'items': 45,
+                //    'opened' : isOpened('all'),
+                //    'href' : getUrl('all'),
+                //    'categories': []
+                //},
+                //{
+                //    'id': 2,
+                //    'title': 'Components',
+                //    'tag' : 'components',
+                //    'items': 13,
+                //    'opened' : isOpened('components'),
+                //    'href' : getUrl('components'),
+                //    'categories': []
+                //},
+                {
+                    'id': 3,
+                    'title': 'Services',
+                    'tag' : 'services',
+                    'items': 32,
+                    'opened' : isOpened('services'),
+                    'href' : getUrl('services'),
+                    'categories': [
+                        {
+                            'id': 31,
+                            'title': 'Analytical Services',
+                            'tag' : 'analytical',
+                            'items': 15,
+                            'opened' : isOpened('services','analytical'),
+                            'href' : getUrl('services','analytical'),
+                            'categories': []
+                        },
+                        {
+                            'id': 32,
+                            'title': 'Solid Services',
+                            'tag' : 'solid',
+                            'items': 15,
+                            'opened' : isOpened('services','solid'),
+                            'href' : getUrl('services','solid'),
+                            'categories': []
+                        },
+                        {
+                            'id': 33,
+                            'title': 'Data Services',
+                            'tag' : 'data',
+                            'items': 2,
+                            'opened' : isOpened('services','data'),
+                            'href' : getUrl('services','data'),
+                            'categories': []
+                        }
+                    ]
+                }
+            ]
+        };
+    };
+
+    $scope.treeMenuModel = getMenu();
 
 }]);

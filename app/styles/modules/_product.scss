@@ -91,6 +91,12 @@
       }
     }
   }
+  .product-page-carousel{
+    .ng-carousel .image-item {
+      width: 77px;
+      height: 77px;
+    }
+  }
   .product-image-modal{
     width:auto;
     padding-right: 16px 
