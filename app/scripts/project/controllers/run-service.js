@@ -34,7 +34,6 @@ angular.module('dmc.project')
             $scope.orderInputs = 'position';
             $scope.isChangedOrder = false;
             $scope.isChangedValues = false;
-            $scope.showOutputs = false;
 
             $scope.sortableOptions = {
                 update: function(e, ui) {
@@ -68,6 +67,9 @@ angular.module('dmc.project')
                     for (var key in $scope.service.interfaceModel.inParams) {
                         $scope.service.interfaceModel.inParams[key].defaultValue = $scope.service.interfaceModel.inParams[key].value;
                         $scope.service.interfaceModel.inputs.push($scope.service.interfaceModel.inParams[key]);
+                    }
+                    for (var key in $scope.service.interfaceModel.outParams) {
+                        $scope.service.interfaceModel.outParams[key].value = null;
                     }
                     updatePositionInputs();
                     // get current status
@@ -124,6 +126,9 @@ angular.module('dmc.project')
                                 $scope.service.interfaceModel.inParams[key].defaultValue = $scope.service.interfaceModel.inParams[key].value;
                                 $scope.service.interfaceModel.inParams[key].value = response.data.interface.inParams[key].value;
                                 $scope.service.interfaceModel.inputs.push($scope.service.interfaceModel.inParams[key]);
+                            }
+                            for (var key in $scope.service.interfaceModel.outParams) {
+                                $scope.service.interfaceModel.outParams[key].value = null;
                             }
                             $scope.changedValue();
                             updatePositionInputs();
@@ -218,7 +223,9 @@ angular.module('dmc.project')
             }
             // run Model
             function runModel(){
-                $scope.showOutputs = false;
+                for (var key in $scope.service.interfaceModel.outParams) {
+                    $scope.service.interfaceModel.outParams[key].value = null;
+                }
                 if($scope.service.interface && $scope.service.interface.domeServer) {
                     $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
                     domeModel.runModel({
@@ -266,7 +273,9 @@ angular.module('dmc.project')
                                     $scope.lastRunTime = $scope.calcRunTime($scope.service.lastStatus);
                                     if (getStatus(response.data.status) == "success") {
                                         toastModel.showToast("success", "Run Completed Successfully");
-                                        $scope.showOutputs = true;
+                                        for (var key in $scope.service.interfaceModel.outParams) {
+                                            $scope.service.interfaceModel.outParams[key].value = interface_.outParams[key].value;
+                                        }
                                     } else if (getStatus(response.data.status) == "error") {
                                         toastModel.showToast("error", "Run Completed with Error");
                                     }
@@ -313,6 +322,7 @@ angular.module('dmc.project')
                 for(var key in $scope.service.interfaceModel.inParams){
                     $scope.service.interfaceModel.inParams[key].value = $scope.service.interfaceModel.inParams[key].defaultValue;
                 }
+                $scope.isChangedValues = false;
                 apply();
             };
 

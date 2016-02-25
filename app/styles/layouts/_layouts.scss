@@ -469,3 +469,10 @@ md-input-container:not(.md-input-has-value) input:not(:focus){
     padding: 0 16px;
   }
 }
+
+.md-button.md-warn.md-fab:not([disabled]){
+  background-color: #CD3F3F;
+  ng-md-icon{
+    fill: #fff;
+  }
+}

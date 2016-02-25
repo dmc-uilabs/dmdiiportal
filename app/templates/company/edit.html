@@ -9,11 +9,17 @@
                 <md-content class="company-content">
                     <div layout="row" layout-align="end center" ng-style="companyPicture" class="company-image">
                        <!--<img ng-src="images/company-logo.jpg" alt=""/>-->
-                        <md-button class="md-fab md-mini company-buttons company-edit-picture" ng-click="changePicture()" ng-show="!isChangingPicture">
-                            <ng-md-icon icon="mode_edit" size="18"></ng-md-icon>
-                        </md-button>
-                        <div ng-init="isChangingPicture = (companyData.featureImage.large ? false : true)"
-                             ng-if="isChangingPicture"
+                        <div layout="column" ng-show="!isChangingPicture" style="right: 15px; top: 15px;  position: absolute;">
+                            <div layout="row">
+                                <md-button class="md-fab md-mini company-buttons company-edit-picture" ng-click="changePicture()">
+                                    <ng-md-icon icon="mode_edit" size="18"></ng-md-icon>
+                                </md-button>
+                                <md-button ng-click="removeMainPicture($event)" class="md-fab md-mini md-warn remove-picture" aria-label="Remove Picture">
+                                    <ng-md-icon icon="delete" size="18"></ng-md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <div ng-if="isChangingPicture"
                              ng-style="flowBoxStyle"
                              flex>
                             <div class="flow-box"

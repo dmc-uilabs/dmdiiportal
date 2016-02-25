@@ -264,6 +264,8 @@
     margin: 0;
     font-weight: normal;
   }
+
+  .outputs,
   .inputs{
     padding-right: 8px;
     h2{
@@ -288,6 +290,7 @@
           }
           .right {
             cursor: ns-resize;
+            font-size: 13px;
           }
         }
       }
@@ -305,7 +308,6 @@
       cursor: ns-resize;
     }
     md-content{
-      font-size: 10px;
       height: 350px;
       border: 1px solid #b6b6b6;
       h2{

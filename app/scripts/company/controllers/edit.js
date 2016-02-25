@@ -16,6 +16,7 @@ angular.module('dmc.company')
         'dataFactory',
         '$mdToast',
         'fileUpload',
+        'questionToastModel',
         'toastModel',
         '$timeout', function ($stateParams,
                               $state,
@@ -28,6 +29,7 @@ angular.module('dmc.company')
                               dataFactory,
                               $mdToast,
                               fileUpload,
+                              questionToastModel,
                               toastModel,
                               $timeout) {
 
@@ -39,6 +41,20 @@ angular.module('dmc.company')
 
             if($scope.companyData && $scope.companyData.id){
                 $scope.owner = $scope.companyData.account;
+
+
+                $scope.removeMainPicture = function(ev){
+                    questionToastModel.show({
+                        question : "Do you want to delete the picture?",
+                        buttons: {
+                            ok: function(){
+                                deletePicture();
+                            },
+                            cancel: function(){}
+                        }
+                    },ev);
+                };
+
 
 
                 // auto focus for First Name input
@@ -97,7 +113,7 @@ angular.module('dmc.company')
                     $scope.flowLogo = null;
                 };
 
-                $scope.isChangingPicture = false;
+                $scope.isChangingPicture = (!$scope.companyData.featureImage.large ? true : false);
                 $scope.currentPicture = null;
                 var callbackUploadPicture = function(data){
                     if(!data.error) {
@@ -205,9 +221,7 @@ angular.module('dmc.company')
                 $scope.featuredItems = [];
                 $scope.storefrontItems = {arr : [],count : 0};
 
-                var apply = function(){
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                };
+
 
                 // callback for services
                 var callbackCompanyServices = function(response){
@@ -517,4 +531,28 @@ angular.module('dmc.company')
                     $(this).css("cursor","move");
                 });
             }
+
+            function deletePicture(){
+                ajax.update(dataFactory.deleteCompanyLogo($scope.companyData.id),{
+                    "featureImage": {
+                        "thumbnail": null,
+                        "large": null
+                    }
+                },function(response){
+                    $scope.companyData.featureImage = {
+                        "thumbnail": null,
+                        "large": null
+                    };
+                    $scope.companyPicture = {
+                        'background-image' : null
+                    };
+                    $scope.isChangingPicture = true;
+                    $scope.flowBoxStyle = null;
+                    apply();
+                });
+            }
+
+            function apply(){
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            };
 }]);

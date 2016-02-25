@@ -162,8 +162,8 @@
       "dateJoined": "2016-01-01",
       "reasonJoining": "Lorem Ipsum is simply dummy text",
       "featureImage": {
-        "thumbnail": "/uploads/company/picture/1/20160223073704000000.jpg",
-        "large": "/uploads/company/picture/1/20160223073704000000.jpg"
+        "thumbnail": "/uploads/company/picture/1/20160225022504000000.jpg",
+        "large": "/uploads/company/picture/1/20160225022504000000.jpg"
       },
       "logoImage": "/uploads/company/logo/1/20160223073618000000.png"
     },
@@ -1596,7 +1596,7 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "averageRun": 15,
+      "averageRun": 13.75,
       "currentStatus": {
         "project": {
           "id": 1,
@@ -3651,6 +3651,226 @@
             "unit": "second",
             "category": "time",
             "value": "577",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "7",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "4",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 45,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-25",
+      "startTime": "09:51:01",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 65,
+      "stopDate": "2016-02-25",
+      "stopTime": "09:51:11",
+      "interface": {
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "5",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "7",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "4",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 45,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-25",
+      "startTime": "09:51:14",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 66,
+      "stopDate": "2016-02-25",
+      "stopTime": "09:51:22",
+      "interface": {
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "5",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "7",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "4",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 45,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-25",
+      "startTime": "09:51:48",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 67,
+      "stopDate": "2016-02-25",
+      "stopTime": "09:52:13",
+      "interface": {
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "5",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "7",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "4",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 45,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "2016-02-25",
+      "startTime": "09:54:17",
+      "project": {
+        "id": 1,
+        "title": "Control Compartment for LDR Mining"
+      },
+      "id": 68,
+      "stopDate": "2016-02-25",
+      "stopTime": "09:54:24",
+      "interface": {
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "5",
             "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
           },
           "a": {

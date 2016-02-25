@@ -21,6 +21,7 @@ angular.module('dmc.company', [
     'dmc.component.productscard',
     'dmc.component.productcard',
     'dmc.component.carousel',
+    'dmc.model.question-toast-model',
     'dmc.compare',
     'dmc.model.fileModel',
     'dmc.model.fileUpload',

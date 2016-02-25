@@ -74,22 +74,36 @@
 		<div flex="50" class="outputs">
 			<h2>Outputs</h2>
 			<md-content>
-				<div class="content"
-                     ui-sortable="sortableOutputOptions"
-                     ng-model="service.interfaceModel.outParams">
-					<div layout="row"
-                         ng-show="showOutputs"
-                         class="output"
-                         layout-align="space-between center"
-                         ng-repeat="item in service.interfaceModel.outParams">
-                        <div layout="column">
-                            <h2 layout="row">{{item.name}}</h2>
-                            <div layout="row">
-						        <h3 flex><span>{{item.value}}</span> {{item.unit}} ({{item.type}})</h3>
-                            </div>
+                <md-list class="list-inputs" ui-sortable="sortableOutputOptions" ng-model="service.interfaceModel.outParams">
+                    <md-list-item ng-repeat="item in service.interfaceModel.outParams" layout="row" layout-align="start end">
+                        <div flex="50" class="left">
+                            <md-input-container style="padding-bottom: 0">
+                                <label style="color: #757575;">{{item.name}}</label>
+                                <input maxlength="20" style="color: #333;" ng-disabled="true" ng-model="item.value">
+                            </md-input-container>
                         </div>
-					</div>
-				</div>
+                        <div flex="50" class="right">
+                            &nbsp;{{item.unit}} ({{item.type}})
+                        </div>
+                    </md-list-item>
+                </md-list>
+
+				<!--<div class="content"-->
+                     <!--ui-sortable="sortableOutputOptions"-->
+                     <!--ng-model="service.interfaceModel.outParams">-->
+					<!--<div layout="row"-->
+                         <!--ng-show="showOutputs"-->
+                         <!--class="output"-->
+                         <!--layout-align="space-between center"-->
+                         <!--ng-repeat="item in service.interfaceModel.outParams">-->
+                        <!--<div layout="column">-->
+                            <!--<h2 layout="row">{{item.name}}</h2>-->
+                            <!--<div layout="row">-->
+						        <!--<h3 flex><span>{{item.value}}</span> {{item.unit}} ({{item.type}})</h3>-->
+                            <!--</div>-->
+                        <!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
 			</md-content>
 		</div>
 		
