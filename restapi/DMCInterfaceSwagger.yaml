@@ -385,6 +385,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Project'
+  /projects/create:
     post:
       tags:
         - CA
