@@ -28,7 +28,7 @@ angular.module('dmc.model.user', ['dmc.data', 'dmc.ajax'])
             if (this.isLoggedIn()) {
                 this.getUserData().then(function(response){
                 var data = response.data ? response.data : response;
-                    if (!data.accountId) {
+                    if (!data.termsConditions) {
                         deferred.reject('User not created');
                     } else {
                         deferred.resolve();
