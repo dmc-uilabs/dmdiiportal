@@ -58,7 +58,9 @@
                                                     invite-member="addToInvitation"
                                                     favorite-member="addToFavorite"
                                                     card-source="item"
-                                                    class="member-card">
+                                                    class="member-card"
+                                                    add-to-project="compareMember"
+                                                    all-buttons="[]">
                                             </div>
                                         </div>
                                         <div flex="33" ng-if="showFavoritesFlag" class="container-member-card" ng-repeat="item in favorites">
@@ -67,6 +69,8 @@
                                                     invite-member="addToInvitation"
                                                     favorite-member="addToFavorite"
                                                     card-source="item"
+                                                    all-buttons="[]"
+                                                    add-to-project="compareMember"
                                                     class="member-card">
                                             </div>
                                         </div>

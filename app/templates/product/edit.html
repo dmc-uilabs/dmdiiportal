@@ -72,7 +72,10 @@
 							<div layout="row">
 								<md-input-container>
 									<label>Title</label>
-									<input id="editTitleProduct" ng-change="change()" ng-model="product.title">
+									<input id="editTitleProduct" 
+									       ng-change="change()" 
+									       ng-init="changes.title = product.title"
+									       ng-model="product.title">
 								</md-input-container>
 								<span flex></span>
 								
@@ -85,7 +88,11 @@
 						<div>
 							<md-input-container>
 								<label>Description</label>
-								<textarea ng-model="product.description" ng-change="change()" columns="1" md-maxlength="1000"></textarea>
+								<textarea ng-model="product.description" 
+								          ng-change="change()" 
+								          ng-init="changes.description = product.description"
+								          columns="1" 
+								          md-maxlength="1000"></textarea>
 							</md-input-container>
 						</div>
 					</div>
@@ -127,7 +134,7 @@
 								
 								<div layout="row" ng-repeat="item in product.specifications[0].special track by $index">
 									<md-button aria-label="close" ng-click="deleteSpecifications($index)" class="md-raised deleteSpecifications">
-										<ng-md-icon icon="close" style="fill: 'grey'" size="25"></ng-md-icon>
+										<ng-md-icon icon="close" style="fill: 'grey'" size="12"></ng-md-icon>
 									</md-button>
 									<md-input-container>
 										<label>Specifications</label>
@@ -137,6 +144,23 @@
 										<label>Data</label>
 										<input ng-model="item.data"></input>
 									</md-input-container>
+								</div>
+								<div layout="row" ng-repeat="item in arrAddSpecifications track by $index" layout-align="start center">
+									
+									<md-input-container>
+										<label>Specifications</label>
+										<input id="{{'sipecification'+$index}}" ng-model="item.specification"/>
+									</md-input-container>
+									<md-input-container>
+										<label>Data</label>
+										<input name="data" ng-model="item.data"/>
+									</md-input-container>
+									<md-button aria-label="close" ng-click="cancelPushSpecifications($index)" class="md-raised dmc-button">
+										Cancel
+									</md-button>
+									<md-button aria-label="close" ng-click="pushSpecifications($index)" class="md-raised dmc-button">
+										Add
+									</md-button>
 								</div>
 							</div>
 						</md-content>

@@ -18,7 +18,7 @@
                 <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
                   <img flow-img="$flow.files[0]" />
                     <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
-                        <ng-md-icon icon="close" size="21"></ng-md-icon>
+                        <ng-md-icon icon="delete" size="21"></ng-md-icon>
                     </md-button>
                 </div>
                 <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
@@ -46,11 +46,16 @@
           <div layout="row">
             <md-input-container flex="50">
               <label>Display Name</label>
-              <input id="editDisplayNameProfile" ng-change="change()" ng-model="profile.displayName">
+              <input id="editDisplayNameProfile" 
+                     ng-change="change()"
+                     ng-init="changes.displayName = profile.displayName"
+                     ng-model="profile.displayName">
             </md-input-container>
             <md-input-container flex="50">
               <label>Job Title</label>
-              <input ng-model="profile.jobTitle" ng-change="change()">
+              <input ng-model="profile.jobTitle" 
+                     ng-change="change()"
+                     ng-init="changes.jobTitle = profile.jobTitle">
             </md-input-container>
           </div>
           <md-input-container>
@@ -63,7 +68,10 @@
             <md-icon class="location-gps" ng-click="getLocation()">
               <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
             </md-icon>
-            <input ng-model="profile.location" ng-change="change()" type="text">
+            <input ng-model="profile.location"
+                   ng-init="changes.location = profile.location" 
+                   ng-change="change()" 
+                   type="text">
           </md-input-container>
           
         </div>
@@ -76,10 +84,14 @@
 
     <md-divider></md-divider>
 
-    <div ng-if="editFlag" class="profile-description">
+    <div class="profile-description">
       <md-input-container>
         <label>Description</label>
-        <textarea ng-model="profile.description" columns="1" maxlength="3000" md-maxlength="3000"></textarea>
+        <textarea ng-model="profile.description" 
+                  columns="1"
+                  ng-change="change()"
+                  ng-init="changes.description = profile.description" 
+                  md-maxlength="3000"></textarea>
       </md-input-container>
     </div>
 

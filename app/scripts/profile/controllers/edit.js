@@ -7,6 +7,8 @@ angular.module('dmc.profile')
         $scope.file = '';  //file picture
         $scope.save = false;
         $scope.isChange = false;
+        $scope.changes = {};
+        $scope.changesSkills = $scope.profile.skills.length;
 
 
         $scope.$on('$stateChangeStart', function (event, next) {
@@ -24,7 +26,22 @@ angular.module('dmc.profile')
         });
 
         $scope.change = function(){
-            $scope.isChange = true;
+            console.info('c', $scope.changes)
+            $scope.isChange = false;
+            for(var key in $scope.changes){
+                if($scope.changes[key] != $scope.profile[key]){
+                    $scope.isChange = true;
+                    return;
+                }
+            }
+            if($scope.file){
+                $scope.isChange = true;
+                return;
+            };
+            if($scope.profile.skills.length != $scope.changesSkills){
+                $scope.isChange = true;
+                return;
+            }
         }
 
         //Edit profile
@@ -116,6 +133,7 @@ angular.module('dmc.profile')
         $scope.addedNewFile = function (file, event, flow) {
             flow.files.shift();
             $scope.file = flow;
+            $scope.isChange = true;
         };
 
         $scope.getLocation = function () {
@@ -124,6 +142,7 @@ angular.module('dmc.profile')
 
         var callback = function (success, data) {
             if (success) {
+                $scope.isChange = true;
                 $scope.profile.location = data.city + ", " + data.region;
             }
         };

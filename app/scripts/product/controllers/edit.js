@@ -10,12 +10,20 @@ angular.module('dmc.product')
 	$scope.products_card = [];  //products card
 	$scope.allServices = [];
 	$scope.includedServices = [];
+
+	$scope.removeAuthors = [];
+	$scope.addAuthors = [];
 	$scope.removeIncluded = [];
 	$scope.addIncluded = [];
 	$scope.addTags =[];
 	$scope.removeTags = [];
     $scope.removeImages = [];
-	$scope.arraySpecifications = [];
+    $scope.arrAddSpecifications = [];
+    $scope.arraySpecifications = [];
+    $scope.autocomplete = false;
+
+    $scope.changes = {};
+    $scope.changesSpecifications = $scope.product.specifications[0].special.length;
 
     serviceModel.get_array_specifications(function(data){
         $scope.arraySpecifications = data;
@@ -48,7 +56,52 @@ angular.module('dmc.product')
     });
 
     $scope.change = function(){
-        $scope.isChange = true;
+        $scope.isChange = false;
+        for(var key in $scope.changes){
+            if($scope.changes[key] != $scope.product[key]){
+                $scope.isChange = true;
+                return;
+            }
+        }
+
+
+        if($scope.removeTags.length){
+            $scope.isChange = true;
+            return;
+        }
+        if($scope.addTags.length){
+            $scope.isChange = true;
+            return;
+        }
+        if($scope.addAuthors.length){
+            $scope.isChange = true;
+            return;
+        }
+        if($scope.removeAuthors.length){
+            $scope.isChange = true;
+            return;
+        }
+        if($scope.addIncluded.length){
+            $scope.isChange = true;
+            return;
+        }
+        if($scope.removeIncluded.length){
+            $scope.isChange = true;
+            return;
+        }
+        if($scope.removeImages.length){
+            $scope.isChange = true;
+            return;
+        }
+        if($scope.addImages.length){
+            $scope.isChange = true;
+            return;
+        }
+        if($scope.product.specifications[0].special.length != $scope.changesSpecifications){
+                console.info($scope.product.specifications[0].special.length, $scope.changesSpecifications);
+            $scope.isChange = true;
+            return;
+        }
     }
 
     var apply = function(){
@@ -132,6 +185,7 @@ angular.module('dmc.product')
 
 	//query specifications
 	$scope.specificationsSearch = function(query) {
+        $scope.autocomplete = this.$$childHead.$mdAutocompleteCtrl;
 		var results = query ? $scope.arraySpecifications.filter( createFilterForSpecifications(query) ) : $scope.arraySpecifications;
 			return results;
 	}
@@ -153,19 +207,39 @@ angular.module('dmc.product')
                 break;
             }
         }
-        $scope.product.specifications[0].special.push({
+        $scope.arrAddSpecifications.push({
             specification: item.name,
             data: "",
             specificationId: item.id
         });
 
         this.$$childHead.$mdAutocompleteCtrl.clear();
+        
         $timeout(function() {
-            console.info("e", $("#specification0"))
-            $("#specification0").focus();
-            apply();
+            $("input[name='data']").focus();
         })
 	}
+
+	$timeout(function() {
+        $('md-autocomplete').focusout(function(ev){
+            if($scope.autocomplete){
+                $timeout(function() {
+                    $scope.autocomplete.scope.selectedItem = null;
+                    $scope.autocomplete.scope.searchText = null;
+                 },500)
+            }
+        })
+    });
+
+    $scope.pushSpecifications = function(index){
+        $scope.isChange = true;
+        $scope.product.specifications[0].special.push($scope.arrAddSpecifications[index]);
+        $scope.arrAddSpecifications.splice(index,1);
+    };
+
+    $scope.cancelPushSpecifications = function(index){
+        $scope.arrAddSpecifications.splice(index,1);
+    }
 
 	//Create filter function for a query string
 	function createFilterFor(query) {
@@ -197,6 +271,7 @@ angular.module('dmc.product')
             name: $scope.product.specifications[0].special[index].specification,
         });
 		$scope.product.specifications[0].special.splice(index,1);
+		$scope.change();
 	}
     //add bew sepecifications to system
     $scope.addNewSpecifications = function(text){
@@ -260,78 +335,86 @@ angular.module('dmc.product')
         $state.go('component', {typeProduct: $scope.product.type+'s', productId: $scope.product.id});
     }
 
+    var getMenu = function(){
+        var dataSearch = $.extend(true,{},$stateParams);
 
-	$scope.treeMenuModel = {
-			title: 'BROWSE BY',
-			data: [
-					{
-							'id': 1,
-							'title': 'All',
-							'tag' : 'all',
-							'items': 0,
-							'opened' : $scope.currentPage == 'all' ? true : false,
-							'onClick' : function(){
-									$location.url('/all');
-							},
-							'categories': []
-					},
-					{
-							'id': 2,
-							'title': 'Components',
-							'tag' : 'components',
-							'items': 0,
-							'opened' : $scope.currentPage == 'components' ? true : false,
-							'onClick' : function(){
-									$location.url('/components');
-							},
-							'categories': []
-					},
-					{
-							'id': 3,
-							'title': 'Services',
-							'tag' : 'services',
-							'items': 0,
-							'opened' : $scope.currentPage == 'services' ? true : false,
-							'onClick' : function(){
-									$location.url('/services');
-							},
-							'categories': [
-									{
-											'id': 31,
-											'title': 'Analytical Services',
-											'tag' : 'analytical',
-											'items': 0,
-											'opened' : $scope.currentPageType == 'analytical' ? true : false,
-											'onClick' : function(){
-													$location.url('/services?type=analytical');
-											},
-											'categories': []
-									},
-									{
-											'id': 32,
-											'title': 'Solid Services',
-											'tag' : 'solid',
-											'items': 0,
-											'opened' : $scope.currentPageType == 'solid' ? true : false,
-											'onClick' : function(){
-													$location.url('/services?type=solid');
-											},
-											'categories': []
-									},
-									{
-											'id': 33,
-											'title': 'Data Services',
-											'tag' : 'data',
-											'items': 0,
-											'opened' : $scope.currentPageType == 'data' ? true : false,
-											'onClick' : function(){
-													$location.url('/services?type=data');
-											},
-											'categories': []
-									}
-							]
-					}
-			]
-	};
+        var getUrl = function(product,type){
+            
+            //#/home?product=services&type=analytical
+            console.info('ds','marketplace.php/#/home?product=' + $stateParams.typeProduct + ((type) ? '&type='+type : ''));
+            return 'marketplace.php#/home?product=' + $stateParams.typeProduct + ((type) ? '&type='+type : '');
+        };
+
+        var isOpened = function(product,type){
+            if ($stateParams.typeProduct === product) {
+                return (!type || $stateParams.typeProduct === type ? true : false);
+            }else{
+                return false;
+            }
+        };
+
+        return {
+            title: 'BROWSE BY',
+            data: [
+                //{
+                //    'id': 1,
+                //    'title': 'All',
+                //    'tag' : 'all',
+                //    'items': 45,
+                //    'opened' : isOpened('all'),
+                //    'href' : getUrl('all'),
+                //    'categories': []
+                //},
+                //{
+                //    'id': 2,
+                //    'title': 'Components',
+                //    'tag' : 'components',
+                //    'items': 13,
+                //    'opened' : isOpened('components'),
+                //    'href' : getUrl('components'),
+                //    'categories': []
+                //},
+                {
+                    'id': 3,
+                    'title': 'Services',
+                    'tag' : 'services',
+                    'items': 32,
+                    'opened' : isOpened('services'),
+                    'href' : getUrl('services'),
+                    'categories': [
+                        {
+                            'id': 31,
+                            'title': 'Analytical Services',
+                            'tag' : 'analytical',
+                            'items': 15,
+                            'opened' : isOpened('services','analytical'),
+                            'href' : getUrl('services','analytical'),
+                            'categories': []
+                        },
+                        {
+                            'id': 32,
+                            'title': 'Solid Services',
+                            'tag' : 'solid',
+                            'items': 15,
+                            'opened' : isOpened('services','solid'),
+                            'href' : getUrl('services','solid'),
+                            'categories': []
+                        },
+                        {
+                            'id': 33,
+                            'title': 'Data Services',
+                            'tag' : 'data',
+                            'items': 2,
+                            'opened' : isOpened('services','data'),
+                            'href' : getUrl('services','data'),
+                            'categories': []
+                        }
+                    ]
+                }
+            ]
+        };
+    };
+
+    $scope.treeMenuModel = getMenu();
 
 }])
