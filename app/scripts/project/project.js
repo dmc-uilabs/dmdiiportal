@@ -817,7 +817,7 @@ angular.module('dmc.project', [
             			var history = response.data;
             			for(var i in history){
                             history[i].runTime = calcRunTime(history[i]);
-                    		history[i].date = moment(new Date(history[i].startDate+' '+history[i].startTime)).format("MM/DD/YYYY h:mm A");
+                    		history[i].date = moment(new Date(history[i].startDate+' '+history[i].startTime)).format("MM/DD/YYYY hh:mm A");
                     	}
                     	if(callback){
                     		callback(history);

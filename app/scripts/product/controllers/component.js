@@ -75,7 +75,7 @@ angular.module('dmc.product')
                 },
                 function(data){
                     for(var i in data){
-                        data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                        data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                         switch(data[i].type){
                             case "completed":
                             case "successful_runs":
@@ -121,7 +121,7 @@ angular.module('dmc.product')
                 },
                 function(data){
                     for(var i in data){
-                        data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                        data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                         switch(data[i].type){
                             case "completed":
                             case "successful_runs":
@@ -321,7 +321,7 @@ angular.module('dmc.product')
                         comment: NewReview.Comment
                     },
                     function(data){
-                        data.date = moment(data.date).format("MM/DD/YYYY hh:mm a");
+                        data.date = moment(data.date).format("MM/DD/YYYY hh:mm A");
                         if(review.replyReviews){
                             review.replyReviews.unshift(data);
                         }else{

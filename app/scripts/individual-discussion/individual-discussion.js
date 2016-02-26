@@ -118,7 +118,7 @@ angular.module('dmc.individual-discussion', [
                         },
                         function(response){
                             for(var i in response.data){
-                                response.data[i].created_at = moment(response.data[i].created_at).format("MM/DD/YYYY hh:mm a");
+                                response.data[i].created_at = moment(response.data[i].created_at).format("MM/DD/YYYY hh:mm A");
                                 $scope.get_helpful(response.data[i]);
                             }                        
                             comment['replyReviews'] = response.data;
@@ -135,7 +135,7 @@ angular.module('dmc.individual-discussion', [
                         $scope.discussion.comments = {};
                         $scope.discussion.comments.items = response.data.reverse();
                         for (var c in $scope.discussion.comments.items) {
-                            $scope.discussion.comments.items[c].created_at = moment($scope.discussion.comments.items[c].created_at).format('MM/DD/YYYY, h:mm A');
+                            $scope.discussion.comments.items[c].created_at = moment($scope.discussion.comments.items[c].created_at).format('MM/DD/YYYY hh:mm A');
                             if ($scope.userData.accountId == $scope.discussion.comments.items[c].accountId) $scope.discussion.comments.items[c].isOwner = true;
                             $scope.get_helpful($scope.discussion.comments.items[c]);
                             $scope.get_reply($scope.discussion.comments.items[c]);
@@ -280,7 +280,7 @@ angular.module('dmc.individual-discussion', [
                         },
                         function(response){
                             $scope.newComment = "";
-                            response.data.created_at = moment(response.data.created_at).format('MM/DD/YYYY, h:mm A');
+                            response.data.created_at = moment(response.data.created_at).format('MM/DD/YYYY hh:mm A');
                             response.data.isOwner = true;
                             $scope.discussion.comments.items.push(response.data);
                             $('.md-char-counter').text('0/1000');
@@ -317,7 +317,7 @@ angular.module('dmc.individual-discussion', [
                             )
                             $scope.discussion.comments.items[index].reply = true;
                             $scope.showReplyFlag = index;
-                            response.data.created_at = moment(response.data.created_at).format("MM/DD/YYYY hh:mm a");
+                            response.data.created_at = moment(response.data.created_at).format("MM/DD/YYYY hh:mm A");
                             if($scope.discussion.comments.items[index].replyReviews){
                                 $scope.discussion.comments.items[index].replyReviews.unshift(response.data);
                             }else{

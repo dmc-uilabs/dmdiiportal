@@ -11,7 +11,7 @@ angular.module('dmc.company-profile').
             }, controller: function($scope, $element, $attrs, dataFactory, ajax) {
                 $element.addClass("tab-membership");
 
-                $scope.source.dateJoined = moment($scope.source.dateJoined).format("MM/YYYY");
+                //$scope.source.dateJoined = moment($scope.source.dateJoined).format("MM/DD/YYYY");
 
                 $scope.categoriesTiers = [
                     {

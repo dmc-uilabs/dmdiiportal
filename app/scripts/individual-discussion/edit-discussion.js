@@ -103,7 +103,7 @@ angular.module('dmc.individual-discussion')
                 $scope.discussion.comments = {};
                 $scope.discussion.comments.items = response.data.reverse();
                 for (var c in $scope.discussion.comments.items) {
-                    $scope.discussion.comments.items[c].created_at = moment($scope.discussion.comments.items[c].created_at).format('MM/DD/YYYY, h:mm A');
+                    $scope.discussion.comments.items[c].created_at = moment($scope.discussion.comments.items[c].created_at).format('MM/DD/YYYY, hh:mm A');
                     if ($scope.accountId == $scope.discussion.comments.items[c].accountId) $scope.discussion.comments.items[c].isOwner = true;
                 }
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -139,7 +139,7 @@ angular.module('dmc.individual-discussion')
                     function(response){
                         var data = response.data ? response.data : response;
                         $scope.newComment = null;
-                        data.created_at = moment(data.created_at).format('MM/DD/YYYY, h:mm A');
+                        data.created_at = moment(data.created_at).format('MM/DD/YYYY hh:mm A');
                         data.isOwner = true;
                         $scope.discussion.comments.items.push(data);
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();

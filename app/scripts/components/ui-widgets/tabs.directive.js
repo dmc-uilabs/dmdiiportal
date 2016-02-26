@@ -13,6 +13,7 @@ angular.module('dmc.widgets.tabs',[
 				data: "="
 			},
 			controller: ["$scope", "previousPage", function($scope, previousPage){
+                console.log($scope.data);
                 $scope.previousPage = previousPage;
             }]
 		};

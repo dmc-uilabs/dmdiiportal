@@ -83,10 +83,10 @@
                     <tbody>
                     <tr ng-repeat="item in services | orderBy: sort" ng-click="changeItem(item)">
                         <td ng-show="columns.indexOf('run') > -1">
-                            <md-button class="md-raised run" ng-href="{{'project.php#/' + projectId + '/services/' + item.id + '/run'}}">Run</md-button>
+                            <md-button class="md-raised run" ng-href="{{'project.php#/' + item.projectId + '/services/' + item.id + '/run'}}">Run</md-button>
                         </td>
                         <td ng-show="columns.indexOf('name') > -1">
-                            <a ng-href="{{'/project.php#/'+item.projectId+'/services/'+item.id+'/detail'}}" class="link-button">
+                            <a ng-href="{{'/project.php#/'+item.currentStatus.project.id+'/services/'+item.id+'/detail'}}" class="link-button">
                                 <em>{{item.title}}</em>
                             </a>
                             <span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDateFormat}}</span>

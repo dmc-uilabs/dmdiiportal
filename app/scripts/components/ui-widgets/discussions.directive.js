@@ -34,9 +34,9 @@ angular.module('dmc.widgets.discussions',[
                             $scope.total = response.data.length;
                             $scope.discussions = response.data;
                             if($scope.total > limit) $scope.discussions.splice(limit,$scope.total);
-                            for(var index in $scope.discussions){
-                                $scope.discussions[index].created_at = moment($scope.discussions[index].created_at,'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
-                            }
+                            //for(var index in $scope.discussions){
+                            //    $scope.discussions[index].created_at = moment($scope.discussions[index].created_at,'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
+                            //}
                             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                         },function(){
                             toastModel.showToast("error", "Ajax faild: getDiscussions");
@@ -105,9 +105,9 @@ angular.module('dmc.widgets.discussions',[
                             $scope.totalItems = response.data.length;
                             $scope.projectDiscussions = response.data;
                             if($scope.totalItems > limit) $scope.projectDiscussions.splice(limit,$scope.totalItems);
-                            for(var index in $scope.projectDiscussions){
-                                $scope.projectDiscussions[index].created_at = moment($scope.projectDiscussions[index].created_at,'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
-                            }
+                            //for(var index in $scope.projectDiscussions){
+                            //    $scope.projectDiscussions[index].created_at = moment($scope.projectDiscussions[index].created_at,'DD-MM-YYYY HH:mm:ss').format("MM/DD/YY hh:mm A");
+                            //}
                             apply();
                         },function(){
                             toastModel.showToast("error", "Ajax faild: getProjectDiscussions");
@@ -140,14 +140,14 @@ angular.module('dmc.widgets.discussions',[
             ajax.create(dataFactory.createDiscussion(),{
                     "projectId": projectId,
                     "subject": $scope.subject,
-                    "created_at": moment(new Date()).format('DD-MM-YYYY HH:mm:ss'),
+                    "created_at": moment(new Date()).format('MM/DD/YYYY hh:mm A'),
                     "text": $scope.content,
                     "full_name": $rootScope.userData.displayName,
                     "avatar": "/images/avatar-fpo.jpg",
                     "replies": 13,
                     "latest-post": {
                         "created-by": $rootScope.userData.displayName,
-                        "created-at": "12/05/15 11:00 PM"
+                        "created-at": moment(new Date()).format("MM/DD/YYYY hh:mm A")
                     }
                 }, function(response){
                     $scope.isCreation = false;

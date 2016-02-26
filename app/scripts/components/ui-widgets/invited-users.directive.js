@@ -22,19 +22,19 @@ angular.module('dmc.widgets.invited-users',[
                     name : "Wade Goodwin",
                     avatar : "/images/logo-wyiv.png",
                     company : "WYIV Co.",
-                    date : moment(new Date("23 Sep 2015 10:12")).format("MM/DD/YY")
+                    date : moment(new Date("23 Sep 2015 10:12")).format("MM/DD/YYYY")
                 },{
                     id : 2,
                     name : "Belinda Cole",
                     avatar : "/images/logo-rjc.png",
                     company : "RCJ Co.",
-                    date : moment(new Date("23 Sep 2015 10:12")).format("MM/DD/YY")
+                    date : moment(new Date("23 Sep 2015 10:12")).format("MM/DD/YYYY")
                 },{
                     id : 3,
                     name : "Andrew Bailey",
                     avatar : "/images/logo-sam.png",
                     company : "SAM",
-                    date : moment(new Date("23 Sep 2015 10:12")).format("MM/DD/YY")
+                    date : moment(new Date("23 Sep 2015 10:12")).format("MM/DD/YYYY")
                 }];
 
             }

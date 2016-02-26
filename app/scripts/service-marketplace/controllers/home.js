@@ -67,7 +67,7 @@ angular.module('dmc.service-marketplace')
                 },
                 function(data){
                     for(var i in data){
-                        data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                        data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                         switch(data[i].type){
                             case "completed":
                             case "successful_runs":
@@ -113,7 +113,7 @@ angular.module('dmc.service-marketplace')
                 },
                 function(data){
                     for(var i in data){
-                        data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                        data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                         switch(data[i].type){
                             case "completed":
                             case "successful_runs":
@@ -173,7 +173,7 @@ angular.module('dmc.service-marketplace')
                     params,
                     function(data){
                         for(var i in data){
-                            data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                            data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                             if(data[i].type == "successful_runs"){
                                 data[i].icon = "done_all";
                             }else if(data[i].type == "unavailable_runs"){
@@ -349,7 +349,7 @@ angular.module('dmc.service-marketplace')
                         comment: NewReview.Comment
                     },
                     function(data){
-                        data.date = moment(data.date).format("MM/DD/YYYY hh:mm a");
+                        data.date = moment(data.date).format("MM/DD/YYYY hh:mm A");
                         if(review.replyReviews){
                             review.replyReviews.unshift(data);
                         }else{

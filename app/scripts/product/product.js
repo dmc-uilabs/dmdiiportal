@@ -190,7 +190,7 @@ angular.module('dmc.product', [
                 },
                 function(response){
                     for(var i in response.data){
-                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
                         get_helpful(response.data[i]);
                     }
                     review['replyReviews'] = response.data;
@@ -214,7 +214,7 @@ angular.module('dmc.product', [
                 params,
                 function(response){
                     for(var i in response.data){
-                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
                         get_helpful(response.data[i]);
                         if(response.data[i].reply){
                             get_reply(response.data[i]);
