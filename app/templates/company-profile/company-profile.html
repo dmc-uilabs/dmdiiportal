@@ -2,7 +2,7 @@
 	<md-content class="company-profile-padding">
 		<div layout="row">
 			<div flex="20">
-				<img class="company-profile-image" ng-src="{{company.featureImage.large}}">
+				<img class="company-profile-image" ng-src="{{company.logoImage}}">
 			</div>
 			<div flex="80" layout="column" class="company-profile-header">
 				<div layout="row" layout-align="center center">
@@ -26,7 +26,7 @@
 					<span flex></span>
 				<div layout="row" layout-align="center center">
 					<ui-widget-stars-static size="15" ng-click="goToReview()" value="{{company.average_rating}}" text="({{company.average_rating}})"></ui-widget-stars-static>
-					<a ng-href="company.php#/1/storefront/services">View Storefront</a>
+					<a ng-href="company.php#/{{company.id}}/storefront?product=services">View Storefront</a>
 					<span flex></span>
 					<div layout="row" ng-show="!inviteToProject">
 						<md-button ng-if="!company.isOwner" class="md-raised dmc-button" ng-click="follow()">

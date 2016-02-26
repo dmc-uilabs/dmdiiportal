@@ -86,7 +86,7 @@
 						            <md-button class="md-raised dmc-button cancelProject margin-left20" ng-if="invate" ng-click="btnRemoveOfProject()">
 						              	<ng-md-icon icon="close" size="17"></ng-md-icon>
 						            </md-button>
-						            <a ng-if="invate" class="margin-left8" ng-href="{{'project.php#/'+product.currentStatus.project.id+'/home'}}">
+						            <a ng-if="invate" class="link-to-project" ng-href="{{'project.php#/'+product.currentStatus.project.id+'/home'}}">
 						              	{{ product.currentStatus.project.title}}
 						            </a>
 									<md-button  
@@ -104,11 +104,11 @@
 									</md-button>
 								</div>
 
-						        <div flex="50" ng-if="adding_to_project && !invate" layout="row" layout-align="center center" class="add-to-project">
+						        <div ng-if="adding_to_project && !invate" layout="row" layout-align="center center" class="add-to-project">
 						            <md-button class="md-raised cancelProject" ng-click="btnCanselToProject()">
 						              	<ng-md-icon icon="close" size="17"></ng-md-icon>
 						            </md-button>
-						            <md-select placeholder="Select Project" ng-model="projectModel" style="width:100%">
+						            <md-select placeholder="Select Project" ng-model="projectModel">
 						              	<md-option ng-repeat="p in projects" value="{{p.id}}">{{p.title}}</md-option>
 						            </md-select>
 						            <md-button ng-disabled="!projectModel" class="md-raised addProject" ng-click="btnAddToProject(projectModel)">

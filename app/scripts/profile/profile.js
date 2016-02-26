@@ -18,6 +18,7 @@ angular.module('dmc.profile', [
     'dmc.location',
     'dmc.model.toast-model',
     'dmc.model.fileUpload',
+    'dmc.model.question-toast-model',
     'dmc.model.profile',
     'dmc.model.previous-page',
     'flow'

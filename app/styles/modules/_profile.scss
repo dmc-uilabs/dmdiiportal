@@ -6,6 +6,14 @@
   .flow-box{
     margin: 0;
   }
+  .image-profile-box{
+    position: relative;
+    .remove-picture{
+      top: 3px;
+      right: 3px;
+      position: absolute;
+    }
+  }
   .profile-header {
 
     padding-left: 16px;
@@ -57,9 +65,14 @@
       margin-top: 0;
       height: 47px;
     }
+    .link-to-project{
+      margin-left: 8px;
+      width: 326px;
+    }
     .invite{
       md-select{
         margin: 0;
+        width: 270px;
       }
       .md-button{
         margin-top: 0;
