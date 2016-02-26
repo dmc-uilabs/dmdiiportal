@@ -563,7 +563,7 @@ angular.module('dmc.data',[])
             },
             getDiscussions : function(projectId,dataTypeWidget){
                 if(!projectId && !dataTypeWidget) {
-                    return localhost + 'discussions';
+                    return localhost + 'individual-discussions';
                 }else{
                     if(projectId){
                         if(dataTypeWidget){
@@ -571,10 +571,10 @@ angular.module('dmc.data',[])
                                 case 'following':
                                     return localhost + 'projects/' + projectId + '/following_discussions';
                                 default:
-                                    return localhost + 'projects/' + projectId + '/discussions';
+                                    return localhost + 'projects/' + projectId + '/individual-discussions';
                             }
                         }else{
-                            return localhost + 'projects/'+projectId+'/discussions';
+                            return localhost + 'projects/'+projectId+'/individual-discussion';
                         }
                     }else if(dataTypeWidget){
                         switch(dataTypeWidget){
@@ -585,7 +585,7 @@ angular.module('dmc.data',[])
                             case 'follow-people':
                                 return localhost + 'follow_people_discussions';
                             default:
-                                return localhost + 'discussions';
+                                return localhost + 'individual-discussion';
                         }
                     }
                 }

@@ -26,6 +26,41 @@ angular.module('dmc.widgets.discussions',[
                 var limit = $scope.limit ? $scope.limit : 4;
                 // function for get all discussions from DB
                 $scope.getDiscussions = function(){
+                    ajax.get(dataFactory.getDiscussions($scope.projectId,$scope.widgetDataType), {
+                        "_order" : "DESC",
+                        "_sort" : "id"
+                    }, function (response) {
+                        $scope.totalDiscussions = response.data.length;
+                        $scope.discussions = response.data;
+                        var ids = $.map($scope.discussions,function(x){ return x.id; });
+                        ajax.get(dataFactory.addCommentIndividualDiscussion(),{
+                            "individual-discussionId" : ids,
+                            "_order" : "DESC",
+                            "_sort" : "id"
+                        },function(res){
+                            for(var i in $scope.discussions){
+                                $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format("MM/DD/YYYY hh:mm A");
+                                $scope.discussions[i].replies = 0;
+                                for(var j in res.data){
+                                    if($scope.discussions[i].id == res.data[j]["individual-discussionId"]){
+                                        $scope.discussions[i].replies++;
+                                        $scope.discussions[i].last = res.data[j];
+                                        $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format("MM/DD/YYYY hh:mm A");
+                                        if($scope.discussions[i].last.isPosted == null){
+                                            $scope.discussions[i].last.isPosted = true;
+                                        }else if($scope.discussions[i].last.isPosted == true){
+                                            $scope.discussions[i].last.isPosted = false;
+                                        }
+                                    }
+                                }
+                            }
+                            $scope.discussions.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
+                            //$scope.discussions.splice($scope.limit,$scope.discussions.length);
+                        });
+                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    });
+
+/*
                     ajax.get(dataFactory.getDiscussions($scope.projectId,$scope.widgetDataType),{
                             _start : 0,
                             _order : "DESC",
@@ -41,7 +76,7 @@ angular.module('dmc.widgets.discussions',[
                         },function(){
                             toastModel.showToast("error", "Ajax faild: getDiscussions");
                         }
-                    );
+                    );*/
                 };
 
                 // get all discussions (first request)
@@ -97,6 +132,43 @@ angular.module('dmc.widgets.discussions',[
                 $scope.totalItems = 0;
 
                 $scope.getProjectDiscussions = function(){
+                    ajax.get(dataFactory.getDiscussions($scope.projectId,$scope.widgetDataType), {
+                        "_order" : "DESC",
+                        "_sort" : "id"
+                    }, function (response) {
+                        $scope.totalItems = response.data.length;
+                        $scope.projectDiscussions = response.data;
+                        var ids = $.map($scope.projectDiscussions,function(x){ return x.id; });
+                        ajax.get(dataFactory.addCommentIndividualDiscussion(),{
+                            "individual-discussionId" : ids,
+                            "_order" : "DESC",
+                            "_sort" : "id"
+                        },function(res){
+                            for(var i in $scope.projectDiscussions){
+                                $scope.projectDiscussions[i].created_at_format = moment(new Date($scope.projectDiscussions[i].created_at)).format("MM/DD/YYYY hh:mm A");
+                                $scope.projectDiscussions[i].replies = 0;
+                                for(var j in res.data){
+                                    if($scope.projectDiscussions[i].id == res.data[j]["individual-discussionId"]){
+                                        $scope.projectDiscussions[i].replies++;
+                                        $scope.projectDiscussions[i].last = res.data[j];
+                                        $scope.projectDiscussions[i].last.created_at_format = moment(new Date($scope.projectDiscussions[i].last.created_at)).format("MM/DD/YYYY hh:mm A");
+                                        if($scope.projectDiscussions[i].last.isPosted == null){
+                                            $scope.projectDiscussions[i].last.isPosted = true;
+                                        }else if($scope.projectDiscussions[i].last.isPosted == true){
+                                            $scope.projectDiscussions[i].last.isPosted = false;
+                                        }
+                                    }
+                                }
+                            }
+                            //$scope.discussions.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
+                            //$scope.discussions.splice($scope.limit,$scope.discussions.length);
+                        });
+                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    });
+                };
+
+/*
+                $scope.getProjectDiscussions = function(){
                     ajax.get(dataFactory.getDiscussions($scope.projectId,$scope.widgetDataType),{
                             _start : 0,
                             _order : $scope.order,
@@ -114,7 +186,7 @@ angular.module('dmc.widgets.discussions',[
                         }
                     );
                 };
-
+*/
                 $scope.getProjectDiscussions();
 
                 function apply(){
@@ -137,6 +209,26 @@ angular.module('dmc.widgets.discussions',[
         $scope.createDiscussion = function(){
             $scope.isCreation = true;
             $scope.message.error = false;
+            ajax.create(
+                dataFactory.addDiscussion(), {
+                    "message": $scope.subject,
+                    "title": $scope.content,
+                    "accountId" : $rootScope.userData.accountId,
+                    "projectId" : projectId,
+                    "created_by" : $rootScope.userData.displayName,
+                    "created_at": moment().format('x')
+                },function(response){
+                    $scope.isCreation = false;
+                    $mdDialog.cancel(true);
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                },function(response){
+                    $scope.message.error = true;
+                    toastModel.showToast("error", "Ajax faild: createDiscussion");
+                    $scope.isCreation = false;
+                }
+            );
+
+/*
             ajax.create(dataFactory.createDiscussion(),{
                     "projectId": projectId,
                     "subject": $scope.subject,
@@ -159,5 +251,6 @@ angular.module('dmc.widgets.discussions',[
                     $scope.isCreation = false;
                 }
             );
+*/
         };
     })
