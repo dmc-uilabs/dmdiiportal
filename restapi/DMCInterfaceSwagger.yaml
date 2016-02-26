@@ -400,8 +400,10 @@ paths:
           schema:
             $ref: '#/definitions/Project'
       responses:
-        '405':
-          description: Invalide input
+        '201':
+          description: New project
+          schema:
+            $ref: '#/definitions/Project'
   '/projects/{projectID}':
     get:
       tags:
@@ -1231,6 +1233,60 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Discussion'
+  '/follow_discussions':
+    patch:
+      tags:
+        - discussion
+      description: Update follow discussion
+      parameters:
+        - in: body
+          name: body
+          description: Follow Discussion object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/FollowingIndividualDiscussion'
+      responses:
+        200:
+          description: Returns updated Follow Discussion
+          schema:
+            $ref: '#/definitions/FollowingIndividualDiscussion'
+  '/follow_discussions/{followID}':
+    delete:
+      tags:
+        - discussion
+      description: remove follow discussion (Unfollow discussion)
+      parameters:
+        - in: path
+          name: followID
+          description: Follow Discussion ID
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+  '/accounts/{accountID}/follow_discussions':
+    get:
+      tags:
+        - discussion
+      description: Get follow discussion
+      parameters:
+        - in: path
+          name: accountID
+          description: account ID
+          required: true
+          type: string
+        - in: query
+          name: individual-discussionId
+          description: discussion Id
+          required: true
+          type: string
+      responses:
+        200:
+          description: Returns Follow Discussion
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/FollowingIndividualDiscussion'
   '/discussions':
     get:
       tags:
@@ -1322,15 +1378,6 @@ paths:
           type: string
           description: ID of the profile
           required: true
-        - name: _embed
-          in: query
-          description: Add profile reviews associed with the profile
-          type: array
-          items:
-            type: string
-          collectionFormat: multi
-          enum:
-            - profile_reviews
       responses:
         '200':
           description: send the profile with profileID
@@ -1389,6 +1436,11 @@ paths:
             - mutual
             - public
           description: filter result by section
+          required: false
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
           required: false
       responses:
         '200':
@@ -3059,6 +3111,7 @@ paths:
         - CA
         - service
         - account
+        - marketplace
       description: Delete service from favorites
       parameters:
         - name: favorite_productId
@@ -3075,6 +3128,7 @@ paths:
         - CA
         - service
         - account
+        - marketplace
       description: Add service to favorites
       parameters:
         - name: accountId
@@ -3981,6 +4035,8 @@ definitions:
         type: string
       company:
         type: string
+      companyId:
+        type: string
       jobTitle:
         type: string
       phone:
@@ -4871,6 +4927,10 @@ definitions:
         type: string
       message:
         type: string
+      created_by:
+        type: string
+      created_at:
+        type: string
       accountId:
         type: string
   IndividualDiscussionTag:
@@ -4879,6 +4939,15 @@ definitions:
       id:
         type: string
       name:
+        type: string
+      individual-discussionId:
+        type: string
+  FollowingIndividualDiscussion:
+    type: object
+    properties:
+      id:
+        type: string
+      accountId:
         type: string
       individual-discussionId:
         type: string
