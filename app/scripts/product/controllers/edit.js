@@ -116,13 +116,11 @@ angular.module('dmc.product')
             // get favorites count ------------------
             $scope.favoritesCount = 0;
             var getFavoriteCount = function(){
-                ajax.on(dataFactory.getFavoriteProducts(),{
+                ajax.get(dataFactory.getFavoriteProducts(),{
                     accountId : userData.accountId
-                },function(data){
-                    $scope.favoritesCount = data.length;
+                },function(response){
+                    $scope.favoritesCount = response.data.length;
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                },function(){
-                    alert("Error getFavoriteCount");
                 });
             };
             // ---------------------------------------

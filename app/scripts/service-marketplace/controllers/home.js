@@ -12,6 +12,7 @@ angular.module('dmc.service-marketplace')
         '$cookies',
         'toastModel',
         'isFavorite',
+        'DMCUserModel',
         '$location',
         function (serviceData,
                   serviceModel,
@@ -23,6 +24,7 @@ angular.module('dmc.service-marketplace')
                   $cookies,
                   toastModel,
                   isFavorite,
+                  DMCUserModel,
                   $location) {
 
             $scope.product = serviceData;  //array product
@@ -191,6 +193,11 @@ angular.module('dmc.service-marketplace')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
+            var userData = DMCUserModel.getUserData();
+            userData.then(function(){
+                getFavoriteCount();
+            });
+
             // get favorites count ------------------
             $scope.favoritesCount = 0;
             var getFavoriteCount = function(){
@@ -201,7 +208,6 @@ angular.module('dmc.service-marketplace')
                     apply();
                 });
             };
-            getFavoriteCount();
 
             $scope.share = function(ev){
               $mdDialog.show({

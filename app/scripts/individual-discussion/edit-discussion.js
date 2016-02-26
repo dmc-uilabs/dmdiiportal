@@ -10,7 +10,7 @@ angular.module('dmc.individual-discussion')
 
         // delete comment
         $scope.deleteComment = function(comment){
-            ajax.on(dataFactory.deleteDiscussionComment(comment.id), {
+            ajax.delete(dataFactory.deleteDiscussionComment(comment.id), {
             }, function(data){
                 for(var index in $scope.discussion.comments.items){
                     if(parseInt($scope.discussion.comments.items[index].id) == parseInt(comment.id)){
@@ -19,9 +19,7 @@ angular.module('dmc.individual-discussion')
                     }
                 }
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            }, function(){
-                toastModel.showToast("error", "Unable delete tags");
-            },"DELETE");
+            });
         };
 
         // edit comment
@@ -36,7 +34,7 @@ angular.module('dmc.individual-discussion')
 
         // delete discussion tag
         $scope.deleteTag = function(tag){
-            ajax.on(dataFactory.deleteDiscussionTag(tag.id), {
+            ajax.delete(dataFactory.deleteDiscussionTag(tag.id), {
             }, function(data){
                 for(var index in $scope.discussion.tags){
                     if(parseInt($scope.discussion.tags[index].id) == parseInt(tag.id)){
@@ -45,21 +43,17 @@ angular.module('dmc.individual-discussion')
                     }
                 }
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            }, function(){
-                toastModel.showToast("error", "Unable delete tags");
-            },"DELETE");
+            });
         };
 
         // save changed comment
         $scope.saveChangedComment = function(comment){
-            ajax.on(dataFactory.saveChangedDiscussionComment(comment.id), {
+            ajax.update(dataFactory.saveChangedDiscussionComment(comment.id), {
                 text: comment.text
             }, function(data){
                 $scope.cancelChangeComment(comment);
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            }, function(){
-                toastModel.showToast("error", "Unable to save changed a comment");
-            },"PATCH");
+            });
         };
 
         // add discussion tag
@@ -78,63 +72,50 @@ angular.module('dmc.individual-discussion')
         };
 
         //load Discussion
-        ajax.on(
-            dataFactory.getIndividualDiscussion($stateParams.discussionId), {},
-            function(data){
-                $scope.discussion = data;
+        ajax.get(dataFactory.getIndividualDiscussion($stateParams.discussionId), {},
+            function(response){
+                $scope.discussion = response.data;
                 if($scope.discussion) {
                     $scope.loadTags();
                     $scope.loadComments();
                 }
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            },
-            function(){
-                toastModel.showToast("error", "Fail Load IndividualDiscussion");
             }
         );
 
         // load tags
         $scope.loadTags = function(){
-            ajax.on(dataFactory.getDiscussionTags($stateParams.discussionId), {
+            ajax.get(dataFactory.getDiscussionTags($stateParams.discussionId), {
                 "_order" : "DESC",
                 "_sort" : "id"
-            }, function(data){
-                $scope.discussion.tags = data;
+            }, function(response){
+                $scope.discussion.tags = response.data;
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            }, function(){
-                toastModel.showToast("error", "Unable get tags");
-            },"GET");
+            });
         };
 
         // load comments
         $scope.loadComments = function(){
-            ajax.on(dataFactory.getDiscussionComments($scope.discussion.id), {
+            ajax.get(dataFactory.getDiscussionComments($scope.discussion.id), {
                 "_order" : "DESC",
                 "_sort" : "created_at"
             }, function(response){
                 $scope.discussion.comments = {};
-                $scope.discussion.comments.items = response.reverse();
+                $scope.discussion.comments.items = response.data.reverse();
                 for (var c in $scope.discussion.comments.items) {
                     $scope.discussion.comments.items[c].created_at = moment($scope.discussion.comments.items[c].created_at).format('MM/DD/YYYY, h:mm A');
                     if ($scope.accountId == $scope.discussion.comments.items[c].accountId) $scope.discussion.comments.items[c].isOwner = true;
                 }
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            }, function(){
-                toastModel.showToast("error", "Unable get comments");
-            },"GET");
+            });
         };
 
         //load realted Disscussion
-        ajax.on(
-            dataFactory.getIndividualDiscussions(),{
+        ajax.get(dataFactory.getIndividualDiscussions(),{
                 "_limit" : 5
-            },
-            function(data){
-                $scope.realtedDiscussions = data;
+            }, function(response){
+                $scope.realtedDiscussions = response.data;
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            },
-            function(){
-                toastModel.showToast("error", "Fail Load IndividualDiscussion");
             }
         );
 

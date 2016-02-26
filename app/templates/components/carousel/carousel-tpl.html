@@ -18,7 +18,7 @@
              ng-repeat="item in arrayItems.slice($index*showItems, $index*showItems+showItems) track by $index">
             
             <md-button 
-              class="md-icon-button md-warn md-raised delete" 
+              class="md-fab md-mini md-warn md-raised delete"
               ng-if="edit" 
               ng-click="functions.deleteImage($index + $parent.$parent.$parent.$index*showItems)" 
               aria-label="delete">

@@ -3,7 +3,6 @@
 angular.module('dmc.company-profile')
     .controller('CompanyProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location, companyData, companyProfileModel) {
 
-        console.info(companyData);
         $scope.company = companyData;
         $scope.company.dateJoined = moment( $scope.company.dateJoined,"YYYY-DD-MM").format("MM/DD/YYYY");
         $scope.company.categoryTier = "Tier 4 Academic / Nonprofit";

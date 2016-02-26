@@ -15,30 +15,16 @@ angular.module('dmc.model.task', ['dmc.data'])
       var projectId = task.projectId;
       var deffered = $q.defer();
 
-        if ($window.apiUrl) {
-          ajax.create(
+        ajax.create(
             dataFactory.getUrlCreateTask(task.projectId),
             task,
             function(data){
-              deffered.resolve(data)
+                deffered.resolve(data)
             },
             function(){
-              deffered.reject();
+                deffered.reject();
             }
-          );
-        } else {
-          ajax.on(
-            dataFactory.getUrlCreateTask(task.projectId),
-            task,
-            function(data){
-              deffered.resolve(data)
-            },
-            function(){
-              deffered.reject();
-            },
-            "POST"
-          );
-        }
+        );
 
         return deffered.promise;
 

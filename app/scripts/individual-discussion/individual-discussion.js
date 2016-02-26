@@ -72,32 +72,28 @@ angular.module('dmc.individual-discussion', [
 
             function init(){
                 //load Discussion
-                ajax.on(
+                ajax.get(
                     dataFactory.getIndividualDiscussion($stateParams.discussionId), {},
-                    function(data){
-                        $scope.discussion = data;
+                    function(response){
+                        $scope.discussion = response.data;
                         if($scope.discussion) {
                             $scope.loadTags();
                             $scope.loadComments();
                             isFollowed();
                         }
                         apply();
-                    }, function(){
-                        toastModel.showToast("error", "Fail Load IndividualDiscussion");
                     }
                 );
 
                 // load tags
                 $scope.loadTags = function(){
-                    ajax.on(dataFactory.getDiscussionTags($stateParams.discussionId), {
+                    ajax.get(dataFactory.getDiscussionTags($stateParams.discussionId), {
                         "_order" : "DESC",
                         "_sort" : "id"
-                    }, function(data){
-                        $scope.discussion.tags = data;
+                    }, function(response){
+                        $scope.discussion.tags = response.data;
                         apply();
-                    }, function(){
-                        toastModel.showToast("error", "Unable get tags");
-                    },"GET");
+                    });
                 };
 
                 //load hrlpful
@@ -132,13 +128,12 @@ angular.module('dmc.individual-discussion', [
 
                 // load comments
                 $scope.loadComments = function(){
-                    ajax.on(dataFactory.getDiscussionComments($stateParams.discussionId), {
+                    ajax.get(dataFactory.getDiscussionComments($stateParams.discussionId), {
                         "_order" : "DESC",
                         "_sort" : "created_at"
                     }, function(response){
-                        console.log(response);
                         $scope.discussion.comments = {};
-                        $scope.discussion.comments.items = response.reverse();
+                        $scope.discussion.comments.items = response.data.reverse();
                         for (var c in $scope.discussion.comments.items) {
                             $scope.discussion.comments.items[c].created_at = moment($scope.discussion.comments.items[c].created_at).format('MM/DD/YYYY, h:mm A');
                             if ($scope.userData.accountId == $scope.discussion.comments.items[c].accountId) $scope.discussion.comments.items[c].isOwner = true;
@@ -146,21 +141,17 @@ angular.module('dmc.individual-discussion', [
                             $scope.get_reply($scope.discussion.comments.items[c]);
                         }
                         apply();
-                    }, function(){
-                        toastModel.showToast("error", "Unable get comments");
-                    }, "GET");
+                    });
                 };
 
                 //load realted Disscussion
                 $scope.getRealtedDisscussion = function() {
-                    ajax.on(
+                    ajax.get(
                         dataFactory.getIndividualDiscussions(), {
                             "_limit": 5
-                        }, function (data) {
-                            $scope.realtedDiscussions = data;
+                        }, function (response) {
+                            $scope.realtedDiscussions = response.data;
                             apply();
-                        }, function () {
-                            toastModel.showToast("error", "Fail Load realted Disscussion");
                         }
                     );
                 };
@@ -274,7 +265,7 @@ angular.module('dmc.individual-discussion', [
 
                 //Submit comment
                 $scope.Submit = function(){
-                    ajax.on(
+                    ajax.create(
                         dataFactory.addCommentIndividualDiscussion(), {
                             "individual-discussionId": $stateParams.discussionId,
                             "full_name": $scope.userData.displayName,
@@ -287,16 +278,14 @@ angular.module('dmc.individual-discussion', [
                             "like": 0,
                             "dislike": 0
                         },
-                        function(data){
+                        function(response){
                             $scope.newComment = "";
-                            data.created_at = moment(data.created_at).format('MM/DD/YYYY, h:mm A');
-                            data.isOwner = true;
-                            $scope.discussion.comments.items.push(data);
-                            apply();
+                            response.data.created_at = moment(response.data.created_at).format('MM/DD/YYYY, h:mm A');
+                            response.data.isOwner = true;
+                            $scope.discussion.comments.items.push(response.data);
                             $('.md-char-counter').text('0/1000');
-                        }, function(){
-                            toastModel.showToast("error", "Fail add comment");
-                        }, "POST"
+                            apply();
+                        }
                     );
                 };
 

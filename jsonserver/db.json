@@ -8508,6 +8508,19 @@
       "like": 0,
       "dislike": 0,
       "id": 14
+    },
+    {
+      "individual-discussionId": 2,
+      "full_name": "DMC Member",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 0,
+      "text": 1,
+      "created_at": 1456489875975,
+      "like": 0,
+      "dislike": 0,
+      "id": 15
     }
   ],
   "individual-discussion-comments-helpful": [

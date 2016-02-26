@@ -72,56 +72,56 @@ angular.module('dmc.company-profile', [
                             function (ajax,$q,$http, dataFactory, $stateParams, toastModel, $rootScope) {
         // get company skills
         this.getSkills = function(id, callback) {
-            return ajax.on(dataFactory.getCompanySkills(id),{
+            return ajax.get(dataFactory.getCompanySkills(id),{
                     "_order" : "DESC",
                     "_sort" : "id"
-                }, callback,function(){
-                    toastModel.showToast("error", "Error. The problem on the server (get skills).");
-                },"GET"
+                }, function(response){
+                    callback(response.data);
+                }
             );
         };
 
         // get company images
         this.getImages = function(id, callback){
-            return ajax.on(dataFactory.getCompanyImages(id),{
+            return ajax.get(dataFactory.getCompanyImages(id),{
                     "_order" : "DESC",
                     "_sort" : "id"
-                }, callback,function(){
-                    toastModel.showToast("error", "Error. The problem on the server (get images).");
-                },"GET"
+                }, function(response){
+                    callback(response.data);
+                }
             );
         };
 
         // get company images
         this.getSkillsImages = function(id, callback){
-            return ajax.on(dataFactory.getCompanySkillsImages(id),{
+            return ajax.get(dataFactory.getCompanySkillsImages(id),{
                     "_order" : "DESC",
                     "_sort" : "id"
-                }, callback,function(){
-                    toastModel.showToast("error", "Error. The problem on the server (get images).");
-                },"GET"
+                }, function(response){
+                    callback(response.data);
+                }
             );
         };
 
         // get company videos
         this.getVideos = function(id, callback){
-            return ajax.on(dataFactory.getCompanyVideos(id),{
+            return ajax.get(dataFactory.getCompanyVideos(id),{
                     "_order" : "DESC",
                     "_sort" : "id"
-                }, callback,function(){
-                    toastModel.showToast("error", "Error. The problem on the server (get videos).");
-                },"GET"
+                }, function(response){
+                    callback(response.data);
+                }
             );
         };
 
         // get company contacts
         this.getKeyContacts = function(id, callback){
-            return ajax.on(dataFactory.getCompanyKeyContacts(id),{
+            return ajax.get(dataFactory.getCompanyKeyContacts(id),{
                     "_order" : "DESC",
                     "_sort" : "id"
-                }, callback,function(){
-                    toastModel.showToast("error", "Error. The problem on the server (get Key Contacts).");
-                },"GET"
+                }, function(response){
+                    callback(response.data);
+                }
             );
         };
 

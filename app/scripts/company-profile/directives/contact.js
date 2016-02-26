@@ -14,15 +14,13 @@ angular.module('dmc.company-profile').
 
                 // get company contacts
                 $scope.getContacts = function(){
-                    ajax.on(dataFactory.getCompanyKeyContacts($scope.source.id),{
+                    ajax.get(dataFactory.getCompanyKeyContacts($scope.source.id),{
                             "_order" : "DESC",
                             "_sort" : "id"
-                        },
-                        function(data){
-                            $scope.source.contacts = data;
-                        },function(){
-                            toastModel.showToast("error", "Error. The problem on the server.");
-                        },"GET"
+                        }, function(response){
+                            $scope.source.contacts = response.data;
+                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                        }
                     );
                 };
                 $scope.getContacts();

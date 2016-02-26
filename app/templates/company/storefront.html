@@ -16,7 +16,10 @@
                             <div><img ng-src="{{companyData.logoImage}}" alt=""/></div>
                         </div>
                         <div layout="column" flex="70">
-                            <h2 class="md-title" layout="row" layout-align="start center">{{companyData.name}}<md-button class="company-buttons link-button" ng-href="/company-profile.php#/{{companyData.id}}">Profile</md-button></h2>
+                            <h2 class="md-title" layout="row" layout-align="start center">
+                                {{companyData.name}}
+                                <a style="margin-left: 15px;" class="company-buttons link-button uppercase" ng-href="/company-profile.php#/{{companyData.id}}">Profile</a>
+                            </h2>
                             <p>
                                 <div ng-bind-html="(companyData.shortDescription == null || isReadMore ? companyData.description : companyData.shortDescription)"></div>
                                 <a class="read-more"
@@ -129,6 +132,7 @@
                              ng-repeat="item in storefrontItems.arr">
                             <dmc-product-card card-style="'small'" ng-show="item.id"
                                               type-product="item.type"
+                                              hide-buttons="['compare']"
                                               card-source="item">
                             </dmc-product-card>
                         </div>
@@ -143,6 +147,7 @@
                                 update-page-size="updatePageSize"
                                 current-page="currentStorefrontPage"
                                 total-size="storefrontItems.count"
+                                hide-buttons="['compare']"
                                 class="content-panel-marketplace"
                                 layout-margin>
                         </dmc-products-card>
