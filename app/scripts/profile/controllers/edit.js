@@ -1,5 +1,5 @@
 angular.module('dmc.profile')
-    .controller('profileEditController', function ($rootScope, profileModel, profileData, $state, $stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel, $timeout, $q, location) {
+    .controller('profileEditController', function ($rootScope, profileModel, profileData, $state, $stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel, $timeout, $q, location, questionToastModel) {
 
         $scope.profile = profileData;  //profile
         $scope.isChangingPicture = false;  //change profile photo
@@ -24,6 +24,10 @@ angular.module('dmc.profile')
             if($state.current.name == "edit" && $scope.isChange)
                 return "Are you sure you want to leave this page without saving?";
         });
+
+        function apply(){
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        };
 
         $scope.change = function(){
             console.info('c', $scope.changes)
@@ -93,6 +97,20 @@ angular.module('dmc.profile')
             $scope.isChangingPicture = false;
             $state.go("profile",{profileId: $scope.profile.id})
         }
+
+        $scope.removeMainPicture = function(ev){
+            questionToastModel.show({
+                question : "Do you want to delete the picture?",
+                buttons: {
+                    ok: function(){
+                        $scope.isChange = true;
+                        $scope.profile.image = "";
+                        apply();
+                    },
+                    cancel: function(){}
+                }
+            },ev)
+        };
 
 //upload profile photo
         //button "Change photo"

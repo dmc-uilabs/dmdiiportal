@@ -6,6 +6,14 @@
   .flow-box{
     margin: 0;
   }
+  .image-profile-box{
+    position: relative;
+    .remove-picture{
+      top: 3px;
+      right: 3px;
+      position: absolute;
+    }
+  }
   .profile-header {
 
     padding-left: 16px;

@@ -2,9 +2,14 @@
   <md-content class="profile-padding">
     <div layout="row">
       <div flex="15">
-        <img class="profile-image" ng-show="!isChangingPicture" ng-src="{{profile.image}}">
+        <div class="image-profile-box">
+          <img ng-show="profile.image" ng-init="changes.image = profile.image" class="profile-image" ng-show="!isChangingPicture" ng-src="{{profile.image}}">
+          <md-button ng-show="profile.image" ng-click="removeMainPicture($event)" class="md-fab md-mini md-warn remove-picture" aria-label="Remove Picture">
+              <ng-md-icon icon="delete" size="18"></ng-md-icon>
+          </md-button>
+          </div>
         
-        <div layout="column" ng-show="isChangingPicture">
+        <div layout="column" ng-show="isChangingPicture || !profile.image">
           <div class="flow-box"
              flow-init
              flow-drag-enter="pictureDragEnter($flow)"
@@ -34,7 +39,7 @@
           </div>
         </div>
 
-        <md-button flex="100" ng-show="!isChangingPicture" class="md-raised" ng-click="changePicture()">
+        <md-button flex="100" ng-show="!isChangingPicture && profile.image" class="md-raised" ng-click="changePicture()">
           <ng-md-icon icon="camera_alt" style="fill: grey;" size="25"></ng-md-icon>
           Change Photo
         </md-button>
