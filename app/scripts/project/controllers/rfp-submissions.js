@@ -11,7 +11,7 @@ angular.module('dmc.project')
         $scope.submissions = [{
             id : 1,
             title : "SAM",
-            date : moment(new Date("15 Sep 2015 15:12:48")).format("MM/DD/YY HH:mm:ss A"),
+            date : moment(new Date("15 Sep 2015 15:12:48")).format("MM/DD/YYYY hh:mm A"),
             success : 97,
             inputs : 2,
             select : false,
@@ -19,7 +19,7 @@ angular.module('dmc.project')
         },{
             id : 2,
             title : "WYIV Co.",
-            date : moment(new Date("11 Sep 2015 10:16:11")).format("MM/DD/YY HH:mm:ss A"),
+            date : moment(new Date("11 Sep 2015 10:16:11")).format("MM/DD/YYYY hh:mm A"),
             success : 91,
             inputs : 2,
             select : false,
@@ -27,7 +27,7 @@ angular.module('dmc.project')
         },{
             id : 3,
             title : "RCJ Co.",
-            date : moment(new Date("12 Sep 2015 06:55:33")).format("MM/DD/YY HH:mm:ss A"),
+            date : moment(new Date("12 Sep 2015 06:55:33")).format("MM/DD/YYYY hh:mm A"),
             success : 90,
             inputs : 1,
             select : false,

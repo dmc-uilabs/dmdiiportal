@@ -23,18 +23,15 @@ angular.module('dmc.widgets.documents',[
 
 				// function for get all requirement documents
 				$scope.getDocuments = function(){
-					ajax.on(dataFactory.getUrlAllDocuments($scope.projectId),{
-						projectId : $scope.projectId,
+					ajax.get(dataFactory.getProjectDocuments($scope.projectId),{
 						sort : $scope.sort,
 						order : $scope.order,
 						limit : 5,
 						offset : 0
-					},function(data){
-						$scope.documents = data.result;
-						$scope.total = data.count;
+					},function(response){
+						$scope.documents = response.data;
+						$scope.total = response.data.length;
 						if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-					},function(){
-						alert("Ajax faild: getDocuments");
 					});
 				};
 
@@ -56,18 +53,15 @@ angular.module('dmc.widgets.documents',[
 
 				// function for get all requirement documents
 				$scope.getDocuments = function(){
-					ajax.on(dataFactory.getUrlAllDocuments($scope.projectId),{
-						projectId : 5,
+					ajax.get(dataFactory.getProjectDocuments($scope.projectId),{
 						sort : $scope.sort,
 						order : $scope.order,
 						limit : 5,
 						offset : 0
-					},function(data){
-						$scope.documents = data.result;
-						$scope.total = data.count;
+					},function(response){
+                        $scope.documents = response.data;
+                        $scope.total = response.data.length;
 						if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-					},function(){
-						alert("Ajax faild: getDocuments");
 					});
 				};
 

@@ -35,6 +35,9 @@ angular.module('dmc.project')
             $scope.isChangedOrder = false;
             $scope.isChangedValues = false;
 
+
+            console.log($scope.service);
+
             $scope.sortableOptions = {
                 update: function(e, ui) {
                     $scope.isChangedOrder = true;
@@ -71,13 +74,14 @@ angular.module('dmc.project')
                     for (var key in $scope.service.interfaceModel.outParams) {
                         $scope.service.interfaceModel.outParams[key].value = null;
                     }
+                }
                     updatePositionInputs();
                     // get current status
                     if($scope.service.currentStatus && $scope.service.currentStatus.status == 1){
                         $scope.status = getStatus($scope.service.currentStatus.status);
                         ajax.update(dataFactory.updateServiceStatus($scope.service.currentStatus.id),{
-                                startDate: moment(new Date()).format("YYYY-MM-DD"),
-                                startTime: moment(new Date()).format("HH:mm:ss")
+                                startDate: moment(new Date()).format("MM/DD/YYYY"),
+                                startTime: moment(new Date()).format("hh:mm:ss A")
                             }, function(response){
                                 $scope.service.currentStatus.percentCompleted = 50;
                                 runModel();
@@ -91,7 +95,7 @@ angular.module('dmc.project')
                     }
                     if($scope.rerun) getServiceInterface();
                     apply();
-                }
+
             });
 
             function updatePositionInputs(){
@@ -148,6 +152,8 @@ angular.module('dmc.project')
             // get run Time
             $scope.runTime = 0;
             $scope.calcRunTime = function(status){
+                console.log(new Date(status.stopDate+' '+status.stopTime));
+                console.log(new Date(status.startDate+' '+status.startTime));
                 var runTime = (status.stopTime ? new Date(status.stopDate+' '+status.stopTime) - new Date(status.startDate+' '+status.startTime) : new Date() - new Date(status.startDate+' '+status.startTime));
                 return (runTime/1000).toFixed(2);
             };
@@ -178,8 +184,8 @@ angular.module('dmc.project')
                         runBy : $rootScope.userData.displayName,
                         status : 1,
                         percentCompleted: 0,
-                        startDate: moment(new Date()).format("YYYY-MM-DD"),
-                        startTime: moment(new Date()).format("HH:mm:ss"),
+                        startDate: moment(new Date()).format("MM/DD/YYYY"),
+                        startTime: moment(new Date()).format("hh:mm:ss A"),
                         project: {
                             "id": $scope.projectData.id,
                             "title": $scope.projectData.title
@@ -223,8 +229,10 @@ angular.module('dmc.project')
             }
             // run Model
             function runModel(){
-                for (var key in $scope.service.interfaceModel.outParams) {
-                    $scope.service.interfaceModel.outParams[key].value = null;
+                if($scope.service.interfaceModel && $scope.service.interfaceModel.outParams) {
+                    for (var key in $scope.service.interfaceModel.outParams) {
+                        $scope.service.interfaceModel.outParams[key].value = null;
+                    }
                 }
                 if($scope.service.interface && $scope.service.interface.domeServer) {
                     $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
@@ -258,8 +266,8 @@ angular.module('dmc.project')
                             ajax.update(dataFactory.updateServiceStatus($scope.service.currentStatus.id), {
                                     status: status,
                                     percentCompleted: 100,
-                                    stopDate: moment(new Date()).format("YYYY-MM-DD"),
-                                    stopTime: moment(new Date()).format("HH:mm:ss"),
+                                    stopDate: moment(new Date()).format("MM/DD/YYYY"),
+                                    stopTime: moment(new Date()).format("hh:mm:ss A"),
                                     interface: {
                                         inParams : ( interface_ && interface_.inParams ? interface_.inParams : null ),
                                         outParams : ( interface_ && interface_.outParams ? interface_.outParams : null )

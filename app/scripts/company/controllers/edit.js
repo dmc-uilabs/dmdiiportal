@@ -153,14 +153,12 @@ angular.module('dmc.company')
                 };
 
                 $scope.deleteLogo = function(){
-                    ajax.on(dataFactory.deleteCompanyLogo($scope.companyId), {
+                    ajax.update(dataFactory.deleteCompanyLogo($scope.companyId), {
                             logoImage : null
-                        }, function(data){
+                        }, function(response){
                             $scope.companyData.logoImage = null;
                             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                        },function(data){
-                            toastModel.showToast("error","Error. getFeaturesCompany() fail");
-                        },"PATCH"
+                        }
                     );
                 };
 

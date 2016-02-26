@@ -27,7 +27,7 @@ angular.module('dmc.project')
         },
         function(data){
             for(var i in data){
-                data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                 switch(data[i].type){
                     case "completed":
                     case "successful_runs":
@@ -72,7 +72,7 @@ angular.module('dmc.project')
         },
         function(data){
             for(var i in data){
-                data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                 switch(data[i].type){
                     case "completed":
                     case "successful_runs":
@@ -132,7 +132,7 @@ angular.module('dmc.project')
             params,
             function(data){
                 for(var i in data){
-                    data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                    data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                     if(data[i].type == "successful_runs"){
                         data[i].icon = "done_all";
                     }else if(data[i].type == "unavailable_runs"){

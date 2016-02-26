@@ -100,7 +100,7 @@ angular.module('dmc.community')
                         "commentId" : 0,
                         "avatar": "/images/carbone.png",
                         "text": message,
-                        "created_at": moment(new Date).format("YYYY-MM-DD hh:mm:ss"),
+                        "created_at": moment(new Date).format("MM/DD/YYYY hh:mm A"),
                         "userRatingReview": {
                             "DMC Member": "like"
                         },

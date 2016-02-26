@@ -23,7 +23,7 @@ function messageDialogController($scope, $mdDialog, currentUser, owner, ajax, da
                 senderDelete : false,
                 recipientDelete : false,
                 text : text,
-                created_at : moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
+                created_at : moment(new Date()).format("MM/DD/YYYY hh:mm A")
             }, function (data) {
                 if (!data.error) {
                     toastModel.showToast("success", "Your message successfully sent!");

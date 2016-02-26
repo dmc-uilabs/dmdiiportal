@@ -471,8 +471,12 @@ md-input-container:not(.md-input-has-value) input:not(:focus){
 }
 
 .md-button.md-warn.md-fab:not([disabled]){
-  background-color: #CD3F3F;
+  //background-color: #CD3F3F;
+  @include borderRadius(50%);
   ng-md-icon{
     fill: #fff;
+  }
+  &:hover{
+    background-color: rgb(255, 6, 0);
   }
 }

@@ -119,11 +119,9 @@ angular.module('dmc.account')
 
             $scope.actionYes = function () {
                 $scope.accountData.deactivated = ($scope.deactivated ? false : true);
-                ajax.on(dataFactory.deactivateAccount($scope.accountData.id), {
+                ajax.update(dataFactory.deactivateAccount($scope.accountData.id), {
                         deactivated: $scope.accountData.deactivated
-                    },
-                    function (data) {
-                        if (!data.error) {
+                    }, function (response) {
                             if (!$scope.deactivated) {
                                 toastModel.showToast('success', "Account successfully deactivated");
                                 $scope.activatedText = "Activate My Account";
@@ -133,12 +131,7 @@ angular.module('dmc.account')
                                 $scope.activatedText = "Deactivate My Account";
                                 $scope.deactivated = false;
                             }
-                        } else {
-                            toastModel.showToast("error", data.error);
-                        }
-                    }, function (data) {
-                        toastModel.showToast("error", "Error. The problem on the server.");
-                    }, "PUT"
+                    }
                 );
             };
 

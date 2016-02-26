@@ -3,9 +3,8 @@
 angular.module('dmc.company-profile')
     .controller('CompanyProfileController', function ($stateParams, $scope, ajax, dataFactory, $mdDialog, fileUpload, $location, $anchorScroll, $mdToast, toastModel,$timeout,$q, location, companyData, companyProfileModel) {
 
-        console.info(companyData);
         $scope.company = companyData;
-        $scope.company.dateJoined = moment( $scope.company.dateJoined,"YYYY-DD-MM").format("MM/DD/YYYY");
+        //$scope.company.dateJoined = moment( $scope.company.dateJoined,"YYYY-DD-MM").format("MM/DD/YYYY");
         $scope.company.categoryTier = "Tier 4 Academic / Nonprofit";
 
         $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
@@ -261,7 +260,7 @@ angular.module('dmc.company-profile')
                     comment: NewReview.Comment
                 },
                 function(data){
-                    data.date = moment(data.date).format("MM/DD/YYYY hh:mm a");
+                    data.date = moment(data.date).format("MM/DD/YYYY hh:mm A");
                     if(review.replyReviews){
                         review.replyReviews.unshift(data);
                     }else{

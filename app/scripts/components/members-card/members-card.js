@@ -153,7 +153,7 @@ angular.module('dmc.component.members-card', [
         function(response){
             var data = response.data;
             for(var i in data){
-                data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                 switch(data[i].type){
                     case "completed":
                         data[i].icon = "images/ic_done_all_black_24px.svg";
@@ -192,7 +192,7 @@ angular.module('dmc.component.members-card', [
         function(response){
             var data = response.data;
             for(var i in data){
-                data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                 switch(data[i].type){
                     case "completed":
                         data[i].icon = "images/ic_done_all_black_24px.svg";
@@ -282,7 +282,7 @@ angular.module('dmc.component.members-card', [
 
         var data = responses.public_history.data;
         for(var i in data){
-            data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+            data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
             switch(data[i].type){
                 case "completed":
                     data[i].icon = "images/ic_done_all_black_24px.svg";
@@ -311,7 +311,7 @@ angular.module('dmc.component.members-card', [
 
         var data = responses.private_history.data;
         for(var i in data){
-            data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+            data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
             switch(data[i].type){
                 case "completed":
                     data[i].icon = "images/ic_done_all_black_24px.svg";

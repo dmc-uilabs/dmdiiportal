@@ -65,12 +65,8 @@
       position: absolute;
       right: -5px;
       top: 9px;
-      background-color: #CD3F3F;
       ng-md-icon{
         fill:#fff;
-      }
-      &:not([disabled]):hover{
-        background-color: #cd2f30;
       }
     }
     .flow-box.flow-box-logo{

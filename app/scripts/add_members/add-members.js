@@ -72,7 +72,7 @@ angular.module('dmc.add_members', [
                             "projectId": $stateParams.projectId,
                             "fromProfileId": $rootScope.userData.profileId,
                             "from": $rootScope.userData.displayName,
-                            "date": moment(new Date).format('x'),
+                            "date": moment(new Date()).format('x'),
                             "accept": false
                         },
                         function(response){
@@ -82,7 +82,7 @@ angular.module('dmc.add_members', [
                                 "image": "/uploads/profile/1/20151222084711000000.jpg",
                                 "text": "Invited you to a project",
                                 "link": "/project.php#/preview/" + $stateParams.projectId,
-                                "created_at": moment().format("hh:mm A")
+                                "created_at": moment(new Date()).format("hh:mm A")
                             });
                             DMCUserModel.UpdateUserData($rootScope.userData);
                             if(i == array.length-1){

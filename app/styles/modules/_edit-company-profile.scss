@@ -3,7 +3,8 @@
     line-height: 36px;
     min-height: 0;
     height: 36px;
-    width: 36px;
+    min-width: 36px;
+    width: auto;
     svg{
       margin-top: 3px;
     }

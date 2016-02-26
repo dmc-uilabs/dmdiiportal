@@ -68,7 +68,7 @@ angular.module('dmc.profile')
             }, 
             function(data){
                 for(var i in data){
-                    data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                    data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                     switch(data[i].type){
                         case "completed":
                             data[i].icon = "images/ic_done_all_black_24px.svg";
@@ -106,7 +106,7 @@ angular.module('dmc.profile')
             }, 
             function(data){
                 for(var i in data){
-                    data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                    data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
                     switch(data[i].type){
                         case "completed":
                             data[i].icon = "images/ic_done_all_black_24px.svg";
@@ -200,7 +200,7 @@ angular.module('dmc.profile')
                     comment: NewReview.Comment
                 },
                 function(data){
-                    data.date = moment(data.date).format("MM/DD/YYYY hh:mm a");
+                    data.date = moment(data.date).format("MM/DD/YYYY hh:mm A");
                     if(review.replyReviews){
                         review.replyReviews.unshift(data);
                     }else{

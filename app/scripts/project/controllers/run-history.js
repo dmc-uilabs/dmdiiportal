@@ -62,10 +62,13 @@ angular.module('dmc.project')
 
             $scope.history = history;
 
-            $scope.history.interface.inputs = [];
-            for (var key in $scope.history.interface.inParams) {
-                $scope.history.interface.inParams[key].defaultValue = $scope.history.interface.inParams[key].value;
-                $scope.history.interface.inputs.push($scope.history.interface.inParams[key]);
+
+            if($scope.history.interface) $scope.history.interface.inputs = [];
+            if($scope.history.interface && $scope.history.interface.inParams) {
+                for (var key in $scope.history.interface.inParams) {
+                    $scope.history.interface.inParams[key].defaultValue = $scope.history.interface.inParams[key].value;
+                    $scope.history.interface.inputs.push($scope.history.interface.inParams[key]);
+                }
             }
 
             $scope.cancel = function(){

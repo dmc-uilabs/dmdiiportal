@@ -140,16 +140,14 @@ angular.module('dmc.rfpInvite', [
                 $scope.sort = 'status';
                 $scope.order = 'DESC';
                 $scope.getServices = function(){
-                    ajax.on(dataFactory.getUrlAllServices(null),{
+                    ajax.get(dataFactory.services().all,{
                         sort : 0,
                         order : 0,
                         limit : 5,
                         offset : 20
-                    },function(data){
-                        $scope.services = data.result;
+                    },function(response){
+                        $scope.services = response.data;
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    },function(){
-                        alert("Ajax faild: getServices");
                     });
                 };
                 $scope.getServices();

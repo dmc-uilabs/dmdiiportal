@@ -72,56 +72,56 @@ angular.module('dmc.company-profile', [
                             function (ajax,$q,$http, dataFactory, $stateParams, toastModel, $rootScope) {
         // get company skills
         this.getSkills = function(id, callback) {
-            return ajax.on(dataFactory.getCompanySkills(id),{
+            return ajax.get(dataFactory.getCompanySkills(id),{
                     "_order" : "DESC",
                     "_sort" : "id"
-                }, callback,function(){
-                    toastModel.showToast("error", "Error. The problem on the server (get skills).");
-                },"GET"
+                }, function(response){
+                    callback(response.data);
+                }
             );
         };
 
         // get company images
         this.getImages = function(id, callback){
-            return ajax.on(dataFactory.getCompanyImages(id),{
+            return ajax.get(dataFactory.getCompanyImages(id),{
                     "_order" : "DESC",
                     "_sort" : "id"
-                }, callback,function(){
-                    toastModel.showToast("error", "Error. The problem on the server (get images).");
-                },"GET"
+                }, function(response){
+                    callback(response.data);
+                }
             );
         };
 
         // get company images
         this.getSkillsImages = function(id, callback){
-            return ajax.on(dataFactory.getCompanySkillsImages(id),{
+            return ajax.get(dataFactory.getCompanySkillsImages(id),{
                     "_order" : "DESC",
                     "_sort" : "id"
-                }, callback,function(){
-                    toastModel.showToast("error", "Error. The problem on the server (get images).");
-                },"GET"
+                }, function(response){
+                    callback(response.data);
+                }
             );
         };
 
         // get company videos
         this.getVideos = function(id, callback){
-            return ajax.on(dataFactory.getCompanyVideos(id),{
+            return ajax.get(dataFactory.getCompanyVideos(id),{
                     "_order" : "DESC",
                     "_sort" : "id"
-                }, callback,function(){
-                    toastModel.showToast("error", "Error. The problem on the server (get videos).");
-                },"GET"
+                }, function(response){
+                    callback(response.data);
+                }
             );
         };
 
         // get company contacts
         this.getKeyContacts = function(id, callback){
-            return ajax.on(dataFactory.getCompanyKeyContacts(id),{
+            return ajax.get(dataFactory.getCompanyKeyContacts(id),{
                     "_order" : "DESC",
                     "_sort" : "id"
-                }, callback,function(){
-                    toastModel.showToast("error", "Error. The problem on the server (get Key Contacts).");
-                },"GET"
+                }, function(response){
+                    callback(response.data);
+                }
             );
         };
 
@@ -202,7 +202,7 @@ angular.module('dmc.company-profile', [
                 },
                 function(response){
                     for(var i in response.data){
-                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
                         get_helpful(response.data[i]);
                     }                        
                     review['replyReviews'] = response.data;
@@ -226,7 +226,7 @@ angular.module('dmc.company-profile', [
                 params,
                 function(response){
                     for(var i in response.data){
-                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm a");
+                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
                         get_helpful(response.data[i]);
                         if(response.data[i].reply){
                             get_reply(response.data[i]);

@@ -5,7 +5,7 @@ angular.module('dmc.project')
         $scope.projectData = projectData;
         $scope.projectData.services.data = serviceData;
         for(var item in $scope.projectData.services.data){
-            $scope.projectData.services.data[item].releaseDate = moment($scope.projectData.services.data[item].releaseDate,"DD/MM/YYYY").format("MM/DD/YYYY");
+            $scope.projectData.services.data[item].releaseDate = moment($scope.projectData.services.data[item].releaseDate).format("MM/DD/YYYY");
         }
 
         var apply = function(){

@@ -66,10 +66,10 @@ angular.module('dmc.widgets.services',[
                                 for(var j=0;j<response.data.length;j++){
                                     if(allServices[i].id == response.data[j].serviceId){
                                         allServices[i].currentStatus = (allServices[i].currentStatus ? $.extend(true,allServices[i].currentStatus,response.data[j]) : response.data[j]);
-                                        if(allServices[i].currentStatus.project.id > 0) {
+                                        if(allServices[i].projectId && allServices[i].currentStatus.project.id > 0) {
                                             allServices[i].currentStatus.date = new Date(allServices[i].currentStatus.startDate + ' ' + allServices[i].currentStatus.startTime);
                                             allServices[i].currentStatus.startDate = moment(allServices[i].currentStatus.startDate).format("MM/DD/YYYY");
-                                            allServices[i].currentStatus.startTime = moment(new Date(allServices[i].currentStatus.startDate + ' ' + allServices[i].currentStatus.startTime)).format("hh:mm:ss A");
+                                            allServices[i].currentStatus.startTime = moment(new Date(allServices[i].currentStatus.startDate + ' ' + allServices[i].currentStatus.startTime)).format("hh:mm A");
                                             runService(allServices[i]);
                                         }else {
                                             allServices[i].currentStatus = null;
@@ -77,7 +77,7 @@ angular.module('dmc.widgets.services',[
                                         break;
                                     }
                                 }
-                                if(!allServices[i].currentStatus){
+                                if(!allServices[i].currentStatus || !allServices[i].currentStatus.project){
                                     allServices.splice(i,1);
                                     i--;
                                 }
