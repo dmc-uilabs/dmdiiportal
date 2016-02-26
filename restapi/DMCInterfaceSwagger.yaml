@@ -271,107 +271,20 @@ paths:
           type: string
           description: ID of the account
           required: true
-        - name: _expand
-          in: query
-          type: array
-          description: Get all favorite services and/or components
-          items:
-            type: string
-          collectionFormat: multi
-          required: true
-          enum:
-            - service
-            - component
-        - name: _limit
-          in: query
-          description: Limit items
-          type: integer
-          required: false
-        - name: _order
-          in: query
-          description: Order by ASC or DESC
-          type: string
-          collectionFormat: multi
-          required: false
-          enum:
-            - ASC
-            - DESC
-        - name: _start
-          in: query
-          description: Offset
-          type: integer
-          required: false
-        - name: _sort
-          in: query
-          description: Sort by some parameter (id, title, etc.)
-          type: string
-          required: false
-        - name: _title
-          in: query
-          description: Search by service/component title
-          type: string
-          required: false
-        - name: _type
-          in: query
-          description: Filter by service/component type
-          type: string
-          required: false
-          collectionFormat: multi
-          enum:
-            - analytical
-            - solid
-            - data
-        - name: _authors
-          in: query
-          description: Filter by author
-          type: array
-          items:
-            type: integer
-          required: false
-        - name: _ratings
-          in: query
-          description: Filter by rating
-          type: array
-          items:
-            type: string
-          required: false
-        - name: _favorites
-          in: query
-          description: Filter by favorite items
-          type: string
-          required: false
-        - name: _dates
-          in: query
-          description: Filter by date (7d - 7 days old, 1m - 1 month old, 1y - 1 year old)
-          type: array
-          items:
-            type: string
-          required: false
-          collectionFormat: multi
-          enum:
-            - 7d
-            - 1m
-            - 1y
       responses:
         '200':
-          description: Return favorite services/companies. One response object has service and serviceId or component and componentId.
+          description: Return favorite services
           schema:
             type: array
             items:
               type: object
               properties:
                 id:
-                  type: integer
+                  type: string
                 accountId:
-                  type: integer
+                  type: string
                 serviceId:
-                  type: integer
-                componentId:
-                  type: integer
-                service:
-                  $ref: '#/definitions/Service'
-                component:
-                  $ref: '#/definitions/Component'
+                  type: string
   /projects:
     get:
       tags:
@@ -739,6 +652,77 @@ paths:
           description: Return service dome inerface object
           schema:
             $ref: '#/definitions/GetDomeInterface'
+  '/service_runs':
+    post:
+      tags:
+        - service
+      summary: Post a new run service
+      description: Post a new run service
+      parameters:
+        - in: body
+          name: body
+          description: Service run object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/PostServiceRun'
+      responses:
+        '200':
+          description: Return run service object with id  
+          schema:
+            $ref: '#/definitions/GetServiceRun'
+  '/service_runs/{id}':
+    get:
+      tags:
+        - service
+      summary: Get a run service
+      description: Get a run service
+      parameters:
+        - name: id
+          in: path
+          type: string
+          description: ID of the run service
+          required: true
+      responses:
+        '200':
+          description: Return run service object with id  
+          schema:
+            $ref: '#/definitions/GetServiceRun'
+    patch:
+      tags:
+        - service
+      summary: Update run service
+      description: Update run service
+      parameters:
+        - name: id
+          in: path
+          type: string
+          description: ID of the run service
+          required: true
+        - name: body
+          in: body
+          description: Data for update run service
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateServiceRun'
+      responses:
+        '200':
+          description: Return updated run service object
+          schema:
+            $ref: '#/definitions/GetServiceRun'
+    delete:
+      tags:
+        - service
+      summary: Delete run service
+      description: Delete run service
+      parameters:
+        - name: id
+          in: path
+          type: string
+          description: ID of the run service
+          required: true
+      responses:
+        '204':
+          description: OK
   '/services':
     post:
       tags:
@@ -848,6 +832,25 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ServiceHistory'
+  '/projects/{projectID}/project-documents':
+    get:
+      tags:
+        - project
+        - document
+      description: Get all documents in a project
+      parameters:
+        - name: projectID
+          in: path
+          type: string
+          description: ID of the project
+          required: true
+      responses:
+        '200':
+          description: return all project documents
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProjectDocument'
   '/services/{serviceID}/service-documents':
     get:
       tags:
@@ -2205,33 +2208,14 @@ paths:
           collectionFormat: multi
           enum:
             - position
-        - name: _expand
-          in: query
-          description: Select all featured services and/or components
-          type: array
-          items:
-            type: string
-          collectionFormat: multi
-          enum:
-            - service
-            - component
           required: true
       responses:
         '200':
           description: send an object with featured products based on companyID
           schema:
-            type: object
-            properties:
-              totalCount:
-                type: integer
-              services:
-                type: array
-                items:
-                  $ref: '#/definitions/ServiceFeatured'
-              components:
-                type: array
-                items:
-                  $ref: '#/definitions/ComponentFeatured'
+            type: array
+            items:
+              $ref: '#/definitions/ServiceFeatured'
   '/companies/{companyID}/new':
     get:
       tags:
@@ -3600,7 +3584,308 @@ paths:
       responses:
         '200':
           description: OK
+  '/faq_articles':
+    get:
+      tags:
+        - FAQ
+      description: Return all FAQ articles
+      parameters:
+        - in: query
+          name: title_like
+          description: Search by title
+          required: false
+          type: string
+        - in: query
+          name: faq_subcategoryId
+          description: Search by subcategory id
+          required: false
+          type: array
+          items:
+            type: string
+        - in: query
+          name: id_ne
+          description: Select all except id_ne.
+          required: false
+          type: array
+          items:
+            type: string
+      responses:
+        '201':
+          description: Return all FAQ articles from database
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/FaqArticle'
+  '/faq_articles/{id}':
+    get:
+      tags:
+        - FAQ
+      description: Get FAQ article by id
+      parameters:
+        - in: path
+          name: id
+          description: FAQ article id
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Return one FAQ article from database
+          schema:
+            $ref: '#/definitions/FaqArticle'
+  '/faq_subcategories':
+    get:
+      tags:
+        - FAQ
+      description: Return all FAQ subcategories
+      parameters:
+        - in: query
+          name: title_like
+          description: Search by title
+          required: false
+          type: string
+        - in: query
+          name: faq_categoryId
+          description: Search by FAQ category
+          required: false
+          type: array
+          items:
+            type: string
+      responses:
+        '201':
+          description: Return all FAQ subcategories from database
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/FaqSubcategory'
+  '/faq_subcategories/{id}':
+    get:
+      tags:
+        - FAQ
+      description: Get FAQ subcategory id
+      parameters:
+        - in: path
+          name: id
+          description: FAQ subcategory id
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Return one FAQ subcategory from database
+          schema:
+            $ref: '#/definitions/FaqSubcategory'
+  '/faq_categories':
+    get:
+      tags:
+        - FAQ
+      description: Return all FAQ categories
+      parameters:
+        - in: query
+          name: title_like
+          description: Search by title
+          required: false
+          type: string
+      responses:
+        '201':
+          description: Return all FAQ categories from database
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/FaqCategory'
+  '/faq_categories/{id}':
+    get:
+      tags:
+        - FAQ
+      description: Get FAQ category id
+      parameters:
+        - in: path
+          name: id
+          description: FAQ category id
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Return one FAQ category from database
+          schema:
+            $ref: '#/definitions/FaqCategory'
+  '/shared-services':
+    post:
+      tags:
+        - service
+      description: Add new shared service
+      parameters:
+        - in: body
+          name: body
+          description: Data for add shared service
+          required: true
+          schema:
+            $ref: '#/definitions/PostSharedService'
+      responses:
+        '201':
+          description: Return shared service
+          schema:
+            $ref: '#/definitions/SharedService'
+  '/shared-services/{id}':
+    get:
+      tags:
+        - service
+      description: Get shared service
+      parameters:
+        - in: path
+          name: id
+          description: Shared service id
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Return shared service
+          schema:
+            $ref: '#/definitions/SharedService'
+  '/accounts/{accountId}/following_members':            
+    get:
+      tags:
+        - account
+      description: Get all following members for account
+      parameters:
+        - in: path
+          name: accountId
+          description: account id
+          type: string
+          required: true
+      responses:
+        '201':
+          description: Return followed members
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/FollowingMemeber'
+  '/profiles/{profileId}/following_members':            
+    get:
+      tags:
+        - profile
+      description: Get all following members for profile
+      parameters:
+        - in: path
+          name: profileId
+          description: profile id
+          type: string
+          required: true
+      responses:
+        '201':
+          description: Return followed members
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/FollowingMemeber'
+  '/following_members':
+    post:
+      tags:
+        - account
+      description: Add new followed member
+      parameters:
+        - in: body
+          name: body
+          description: Data for add new followed member
+          required: true
+          schema:
+            $ref: '#/definitions/PostFollowingMemeber'
+      responses:
+        '201':
+          description: Return followed member
+          schema:
+            $ref: '#/definitions/FollowingMemeber'
+    get:
+      tags:
+        - account
+      description: Get all followed member
+      parameters:
+        - in: query
+          name: accountId
+          description: Get by account id
+          required: false
+          type: string
+        - in: query
+          name: id
+          description: Get by id
+          required: false
+          type: string
+        - in: query
+          name: profileId
+          description: Get by profile id
+          required: false
+          type: string
+      responses:
+        '201':
+          description: Return followed items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/FollowingMemeber'
+  '/following_members/{id}':
+    get:
+      tags:
+        - account
+      description: Get followed member
+      parameters:
+        - in: path
+          name: id
+          description: Followed member id
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Return followed member
+          schema:
+            $ref: '#/definitions/FollowingMemeber'
+    delete:
+      tags:
+        - account
+      description: Delete followed member
+      parameters:
+        - in: path
+          name: id
+          description: Followed member id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok
 definitions:
+  PostFollowingMemeber:
+    type: object
+    properties:
+      id:
+        type: string
+      accountId:
+        type: string
+      profileId:
+        type: string
+  FollowingMemeber:
+    type: object
+    properties:
+      accountId:
+        type: string
+      profileId:
+        type: string
+  PostSharedService:
+    type: object
+    properties:
+      accountId:
+        type: string
+      profileId:
+        type: string
+      serviceId:
+        type: string
+  SharedService:
+    type: object
+    properties:
+      id:
+        type: string
+      accountId:
+        type: string
+      profileId:
+        type: string
+      serviceId:
+        type: string
   FeatureImage:
     type: object
     properties:
@@ -3811,6 +4096,8 @@ definitions:
         type: string
       parent:
         type: string
+      published:
+        type: boolean
       averageRun:
         type: string
   ServiceImages:
@@ -3952,53 +4239,6 @@ definitions:
         type: string
       type:
         type: string
-  ComponentFeatured:
-    type: object
-    properties:
-      id:
-        type: string
-      companyId:
-        type: string
-      position:
-        type: integer
-      serviceId:
-        type: string
-      component:
-        type: object
-        properties:
-          id:
-            type: string
-          title:
-            type: string
-          description:
-            type: string
-          owner:
-            type: string
-          releaseDate:
-            type: string
-            format: date-time
-          tags:
-            type: array
-            items:
-              type: string
-          featureImage:
-            $ref: '#/definitions/FeatureImage'
-          services:
-            type: array
-            items:
-              $ref: '#/definitions/Service'
-          projectId:
-            type: string
-          type:
-            type: string
-          favorite:
-            type: boolean
-          featureId:
-            type: string
-          position:
-            type: integer
-          inFeatured:
-            type: boolean
   Discussion:
     type: object
     properties:
@@ -4436,6 +4676,26 @@ definitions:
       serviceId:
         type: string
       name:
+        type: string
+  ProjectDocument:
+    type: object
+    properties:
+      id:
+        type: string
+      projectId:
+        type: string
+      project-documentId:
+        type: string
+      owner:
+        type: string
+      title:
+        type: string
+      modifed:
+        type: string
+        format: dateTime
+      size:
+        type: string
+      file:
         type: string
   ServiceDocument:
     type: object
@@ -5068,4 +5328,102 @@ definitions:
       serviceId:
         type: number
       domeServer:
+        type: string
+  PostServiceRun:
+    type: object
+    properties:
+      serviceId:
+        type: string
+      accountId:
+        type: string
+      runBy:
+        type: string
+      status:
+        type: number
+      percentComplete:
+        type: number
+      startDate:
+        type: string
+      startTime:
+        type: string
+      project:
+        $ref: '#/definitions/SimplifiedProject'
+  GetServiceRun:
+    type: object
+    properties:
+      serviceId:
+        type: string
+      accountId:
+        type: string
+      runBy:
+        type: string
+      status:
+        type: number
+      percentCompleted:
+        type: number
+      startDate:
+        type: string
+      startTime:
+        type: string
+      project:
+        $ref: '#/definitions/SimplifiedProject'
+      id:
+        type: string
+      stopDate:
+        type: string
+      stopTime:
+        type: string
+      interface:
+        $ref: '#/definitions/Interface'
+  UpdateServiceRun:
+    type: object
+    properties:
+      serviceId:
+        type: string
+      accountId:
+        type: string
+      runBy:
+        type: string
+      status:
+        type: number
+      percentCompleted:
+        type: number
+      startDate:
+        type: string
+      startTime:
+        type: string
+      project:
+        $ref: '#/definitions/SimplifiedProject'
+      stopDate:
+        type: string
+      stopTime:
+        type: string
+      interface:
+        $ref: '#/definitions/Interface'
+  FaqArticle:
+    type: object
+    properties:
+      id:
+        type: string
+      faq_subcategoryId:
+        type: string
+      title:
+        type: string
+      text:
+        type: string
+  FaqSubcategory:
+    type: object
+    properties:
+      id:
+        type: string
+      faq_categoryId:
+        type: string
+      title:
+        type: string
+  FaqCategory:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
         type: string
