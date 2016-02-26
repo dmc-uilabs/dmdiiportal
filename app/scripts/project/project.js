@@ -229,7 +229,7 @@ angular.module('dmc.project', [
 
 		$scope.accept = function(){
         	$scope.invitation.accept = true;
-            ajax.update(dataFactory.updateMembersToProject($scope.invitation.id),
+            ajax.update(dataFactory.acceptProject($stateParams.projectId, $scope.invitation.id),
                	$scope.invitation,
                 function(response){
                 	document.location.href = "project.php#/"+$stateParams.projectId+"/home";
@@ -237,12 +237,12 @@ angular.module('dmc.project', [
             );
 		}
 		$scope.decline = function(){
-            ajax.delete(dataFactory.removeMembersToProject($scope.invitation.id),
+            ajax.delete(dataFactory.declineProject($stateParams.projectId, $scope.invitation.id),
                	{},
                 function(response){
                 	toastModel.showToast("success", "You have declined the invitation from " + $scope.invitation.from);
                 	$timeout(function() {
-	                	document.location.href = "/";
+	                	document.location.href = "dashboard.php#/";
 	                },3000, false);
                 }
             );

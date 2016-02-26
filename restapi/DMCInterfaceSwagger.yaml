@@ -547,27 +547,6 @@ paths:
           schema:
             $ref: '#/definitions/ProjectMember'
   '/projects_members/{memberId}':
-    patch:
-      tags:
-        - CA
-        - project
-        - add member
-      description: Update member or accept inivitation
-      parameters:
-        - in: path
-          name: memberId
-          type: string
-          description: member id
-          required: true
-        - in: body
-          name: Member
-          schema:
-            $ref: '#/definitions/ProjectMember'
-      responses:
-        '200':
-          description: Return updated member
-          schema:
-            $ref: '#/definitions/ProjectMember'
     get:
       tags:
         - CA
@@ -585,17 +564,50 @@ paths:
           description: return members
           schema:
             $ref: '#/definitions/ProjectMember'
+  '/projects/{projectId}/accept/{memberId}':
+    patch:
+      tags:
+        - CA
+        - project
+        - add member
+      description: Accept member inivitation
+      parameters:
+        - in: path
+          name: memberId
+          type: string
+          description: Project member id
+          required: true
+        - in: path
+          name: projectId
+          type: string
+          description: Project id
+          required: true
+        - in: body
+          name: Member
+          schema:
+            $ref: '#/definitions/ProjectMember'
+      responses:
+        '200':
+          description: Return updated member
+          schema:
+            $ref: '#/definitions/ProjectMember'
+  '/projects/{projectId}/reject/{memberId}':
     delete:
       tags:
         - CA
         - project
         - add member
-      description: decline member inivitation
+      description: Decline member inivitation
       parameters:
         - in: path
           name: memberId
           type: string
           description: member id
+          required: true
+        - in: path
+          name: projectId
+          type: string
+          description: Project id
           required: true
       responses:
         '200':

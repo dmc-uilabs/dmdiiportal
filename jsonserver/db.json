@@ -80,24 +80,24 @@
       "total": 3,
       "items": [
         {
-          "user_name": "John Smith",
-          "image": "/images/carbone.png",
-          "text": "How was your meeting with the Bill Gates?",
-          "link": "/message.php#/1",
+          "user_name": "Thomas Smith",
+          "image": "/uploads/profile/1/20151222084711000000.jpg",
+          "text": "Invited you to a project",
+          "link": "/project.php#/preview/1",
           "created_at": "8:00 PM"
         },
         {
-          "user_name": "John Smith",
-          "image": "/images/carbone.png",
-          "text": "How was your meeting with the Bill Gates?",
-          "link": "/message.php#/1",
+          "user_name": "Thomas Smith",
+          "image": "/uploads/profile/1/20151222084711000000.jpg",
+          "text": "Invited you to a project",
+          "link": "/project.php#/preview/3",
           "created_at": "10:46 PM"
         },
         {
-          "user_name": "John Smith",
-          "image": "/images/carbone.png",
-          "text": "How was your meeting with the Bill Gates?",
-          "link": "/message.php#/1",
+          "user_name": "Thomas Smith",
+          "image": "/uploads/profile/1/20151222084711000000.jpg",
+          "text": "Invited you to a project",
+          "link": "/project.php#/preview/4",
           "created_at": "1:15 PM"
         }
       ]
@@ -842,48 +842,12 @@
   "projects_members": [
     {
       "profileId": 1,
-      "projectId": 2,
-      "accept": false,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "id": 2,
-      "date": 1455740902151
-    },
-    {
-      "profileId": 1,
-      "projectId": 4,
-      "accept": false,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "id": 3,
-      "date": 1455740902151
-    },
-    {
-      "profileId": 1,
-      "projectId": 3,
-      "accept": false,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "id": 4,
-      "date": 1455740902151
-    },
-    {
-      "profileId": 1,
-      "projectId": 4,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1456241847000,
-      "accept": true,
-      "id": 5
-    },
-    {
-      "profileId": 1,
-      "projectId": 4,
+      "projectId": 1,
       "fromProfileId": 1,
       "from": "Thomas Smith",
       "date": 1456241879000,
-      "accept": true,
-      "id": 6
+      "accept": false,
+      "id": 1
     },
     {
       "profileId": 1,
@@ -891,8 +855,8 @@
       "fromProfileId": 1,
       "from": "Thomas Smith",
       "date": 1456242012000,
-      "accept": true,
-      "id": 8
+      "accept": false,
+      "id": 2
     },
     {
       "profileId": 1,
@@ -900,26 +864,8 @@
       "fromProfileId": 1,
       "from": "Thomas Smith",
       "date": 1456242258000,
-      "accept": true,
-      "id": 9
-    },
-    {
-      "profileId": 1,
-      "projectId": 5,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1456242310000,
-      "accept": true,
-      "id": 11
-    },
-    {
-      "profileId": 1,
-      "projectId": 1,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1456247100000,
-      "accept": true,
-      "id": 12
+      "accept": false,
+      "id": 3
     }
   ],
   "components": [
