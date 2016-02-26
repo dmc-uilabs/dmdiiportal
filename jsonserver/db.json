@@ -6584,6 +6584,7 @@
       "message": "Message Discussion",
       "title": "New Discussion",
       "accountId": 1,
+      "projectId": 5,
       "created_by": "Thomas Smith",
       "created_at": 1455667168567,
       "id": 1
@@ -6592,6 +6593,7 @@
       "message": "Test message",
       "title": "Team Discussion",
       "accountId": 1,
+      "projectId": 5,
       "created_by": "Thomas Smith",
       "created_at": 1455667168567,
       "id": 2
@@ -6600,6 +6602,7 @@
       "message": "Message",
       "title": "New Discusssion",
       "accountId": 1,
+      "projectId": 5,
       "created_by": "Thomas Smith",
       "created_at": 1455667168567,
       "id": 3
@@ -6608,6 +6611,7 @@
       "message": "Message Discussion 91",
       "title": "Discussion 91",
       "accountId": 1,
+      "projectId": 5,
       "created_by": "Thomas Smith",
       "created_at": 1455667168567,
       "id": 4
@@ -6615,6 +6619,7 @@
     {
       "title": "New Discussion for test functionality",
       "accountId": 1,
+      "projectId": 5,
       "created_by": "Thomas Smith",
       "created_at": 1455667168567,
       "id": 5
