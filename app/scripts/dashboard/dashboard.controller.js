@@ -8,11 +8,20 @@ angular.module('dmc.dashboard')
     .controller("DashboardController",[
         "$scope",
         "mobileFactory",
+        "$cookieStore",
+        "toastModel",
         function(
             $scope,
-            mobileFactory) {
+            mobileFactory,
+            $cookieStore,
+            toastModel) {
 
             $scope.isMobile = mobileFactory.any();
+
+            if($cookieStore.get("toast")){
+			    toastModel.showToast("success", $cookieStore.get("toast"));
+			    $cookieStore.remove("toast");
+		    }
 
         }
     ]

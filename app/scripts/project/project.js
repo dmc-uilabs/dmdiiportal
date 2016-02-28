@@ -209,8 +209,8 @@ angular.module('dmc.project', [
         });
         $urlRouterProvider.otherwise('/1');
 })
-	.controller('DMCPreviewProjectController', ['$scope','$stateParams', 'projectData', 'ajax', 'dataFactory', '$timeout', 'toastModel', 
-		function ($scope, $stateParams, projectData, ajax, dataFactory, $timeout, toastModel) {
+	.controller('DMCPreviewProjectController', ['$scope','$stateParams', 'projectData', 'ajax', 'dataFactory', '$timeout', 'toastModel', '$cookieStore', 
+		function ($scope, $stateParams, projectData, ajax, dataFactory, $timeout, toastModel, $cookieStore) {
 		var projectCtrl = this;
 		projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
 		projectCtrl.projectData = projectData;
@@ -232,6 +232,11 @@ angular.module('dmc.project', [
             ajax.update(dataFactory.acceptProject($stateParams.projectId, $scope.invitation.id),
                	$scope.invitation,
                 function(response){
+                	projectData.type
+                	if (projectData.type){
+						projectData.type = projectData.type[0].toUpperCase() + projectData.type.slice(1);
+                	}
+                	toastModel.showToast("success", "Invited to "+projectData.type+" Project by " + $scope.invitation.from);
                 	document.location.href = "project.php#/"+$stateParams.projectId+"/home";
                 }
             );
@@ -240,10 +245,9 @@ angular.module('dmc.project', [
             ajax.delete(dataFactory.declineProject($stateParams.projectId, $scope.invitation.id),
                	{},
                 function(response){
-                	toastModel.showToast("success", "You have declined the invitation from " + $scope.invitation.from);
-                	$timeout(function() {
-	                	document.location.href = "dashboard.php#/";
-	                },3000, false);
+                	//toastModel.showToast("success", "You have declined the invitation from " + $scope.invitation.from);
+                	$cookieStore.put("toast", "You have declined the invitation from " + $scope.invitation.from);
+                	document.location.href = "dashboard.php#/";
                 }
             );
 		}

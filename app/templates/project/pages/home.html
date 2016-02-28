@@ -8,10 +8,13 @@
         </h1>
         <div class="md-toolbar-tools">
             <div layout="column" flex="65" class="margin-right12-5">
-                <div layout="row" class="name-project" flex>
+                <div layout="row" ng-if="!isPreview" class="name-project" flex>
                     <div sub-nav-menu-button current-page="1"></div>
                 </div>
-                <span ng-if="isPreview" class="project-manager">Invited to {{projectCtrl.projectData.type}}: <a ng-href="/profile.php#/1">{{projectCtrl.projectData.projectManager}}</a> <ng-md-icon icon="mail" size="20"></ng-md-icon></span>
+                <div ng-if="isPreview" class="preview-header">
+                    HOME
+                </div>
+                <span ng-if="isPreview" class="project-manager">Invited to {{projectCtrl.projectData.type}}: <a ng-href="/profile.php#/1">{{projectCtrl.projectData.projectManager}}</a> <ng-md-icon ng-if="version1" icon="mail" size="20"></ng-md-icon></span>
             </div>
             <!-- fill up the space between left and right area -->
             <span flex></span>
@@ -48,7 +51,7 @@
     </md-toolbar>
 </div>
 <div class="container project-page-container" >
-    <div ng-if="isPreview" layout="row" class="margin-bottom-20">
+   <!--  <div ng-if="isPreview" layout="row" class="margin-bottom-20">
         <div class="content-column" layout="column" flex>
             <div class="content-panel">
                 <div class="content-panel-header">
@@ -61,7 +64,7 @@
                 </md-content>
             </div>
         </div>
-    </div>
+    </div> -->
     <div layout="row" >
         <!-- Left Content Column -->
         <div class="content-column" layout="column" flex="65">
