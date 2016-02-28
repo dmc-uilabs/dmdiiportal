@@ -595,6 +595,10 @@ angular.module('dmc.project', [
                         });
                         service.number_of_comments = service.service_reviews.length;
 
+                        for(var i in service.service_reviews){
+                    		service.service_reviews[i].date = moment(service.service_reviews[i].date).format("MM/DD/YYYY hh:mm A")
+                    	}
+
                         if(service.number_of_comments != 0) {
                             service.precentage_stars = [0, 0, 0, 0, 0];
                             service.average_rating = 0;
@@ -674,7 +678,7 @@ angular.module('dmc.project', [
             this.get_service_reviews = function(params, callback){
                 return ajax.get(dataFactory.services($stateParams.ServiceId).reviews,
                     params,
-                    function(response){
+                    function(response){                    	
                         callback(response.data)
                     }
                 )

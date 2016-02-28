@@ -20,16 +20,22 @@ angular.module('dmc.model.previous-page', [
                         title: "Back to Community",
                         url: previousPage
                     };
-                } else if (previousPage.indexOf('project.php') != -1) {
+                } else if (previousPage.indexOf('all-projects.php') != -1) {
                     return {
-                        tag : "project",
-                        title: "Back to Project",
+                        tag : "all-projects",
+                        title: "Back to All Projects",
                         url: previousPage
                     };
                 } else if (previousPage.indexOf('my-projects.php') != -1) {
                     return {
                         tag : "my-projects",
                         title: "Back to My Projects",
+                        url: previousPage
+                    };
+                } else if (previousPage.indexOf('project.php') != -1) {
+                    return {
+                        tag : "project",
+                        title: "Back to Project",
                         url: previousPage
                     };
                 } else if (previousPage.indexOf('company-profile.php') != -1) {
