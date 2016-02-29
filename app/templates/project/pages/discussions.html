@@ -59,16 +59,16 @@
                         <tbody>
                         <tr ng-repeat="item in discussions">
                             <td>
-                                <a href="/individual-discussion.php#/1" ng-click="previousPage.save($event)" class="link-button">{{item.text}}</a>
+                                <a ng-href="/individual-discussion.php#/{{item.id}}" ng-click="previousPage.save($event)" class="link-button">{{item.title}}</a>
                             </td>
                             <td>{{item.replies}} replies</td>
                             <td>
-                                {{item['full_name']}} at<br>
-                                {{item['created_at']}}
+                                {{item['created_by']}} at<br>
+                                {{item['created_at_format']}}
                             </td>
                             <td>
-                                {{item['latest-post']['created-by']}} updated<br>
-                                {{item['latest-post']['created-at']}}
+                                {{item['last']['full_name']}} updated<br>
+                                {{item['last']['created_at_format']}}
                             </td>
                         </tr>
                         <tr ng-if="discussions.length == 0">

@@ -37,7 +37,40 @@ angular.module('dmc.project')
             ];
 
             $scope.getDiscussions = function () {
-                ajax.get(dataFactory.getDiscussions($scope.projectId), {
+                ajax.get(dataFactory.getDiscussions($scope.projectId,$scope.widgetDataType), {
+                    "_order" : "DESC",
+                    "_sort" : "id"
+                }, function (response) {
+                    $scope.totalDiscussions = response.data.length;
+                    $scope.discussions = response.data;
+                    var ids = $.map($scope.discussions,function(x){ return x.id; });
+                    ajax.get(dataFactory.addCommentIndividualDiscussion(),{
+                        "individual-discussionId" : ids,
+                        "_order" : "DESC",
+                        "_sort" : "id"
+                    },function(res){
+                        for(var i in $scope.discussions){
+                            $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format("MM/DD/YYYY hh:mm A");
+                            $scope.discussions[i].replies = 0;
+                            for(var j in res.data){
+                                if($scope.discussions[i].id == res.data[j]["individual-discussionId"]){
+                                    $scope.discussions[i].replies++;
+                                    $scope.discussions[i].last = res.data[j];
+                                    $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format("MM/DD/YYYY hh:mm A");
+                                    if($scope.discussions[i].last.isPosted == null){
+                                        $scope.discussions[i].last.isPosted = true;
+                                    }else if($scope.discussions[i].last.isPosted == true){
+                                        $scope.discussions[i].last.isPosted = false;
+                                    }
+                                }
+                            }
+                        }
+                        //$scope.discussions.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
+                        //$scope.discussions.splice($scope.limit,$scope.discussions.length);
+                    });
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                });
+                /*ajax.get(dataFactory.getDiscussions($scope.projectId), {
                         _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
                         _order: $scope.order,
                         text_like: $scope.searchModel,
@@ -46,7 +79,7 @@ angular.module('dmc.project')
                         $scope.discussions = response.data;
                         apply();
                     }
-                );
+                );*/
             };
             $scope.getDiscussions();
 
