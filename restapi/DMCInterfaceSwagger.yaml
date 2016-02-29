@@ -801,7 +801,7 @@ paths:
           description: returns updated service
           schema:
             $ref: '#/definitions/Service'
-  '/services/{serviceID}/service_history':
+  '/services/{serviceID}/services_history':
     get:
       tags:
         - CA
