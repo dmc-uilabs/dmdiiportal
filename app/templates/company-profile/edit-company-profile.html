@@ -7,7 +7,13 @@
         <div layout="row">
             <div layout="column" class="logo-column" ng-show="!changingLogo">
                 <div class="profile-logo">
-                    <img ng-src="{{company.logoImage}}" class="logo" alt="{{company.name}}" />
+                    <img ng-src="{{company.logoImage ? company.logoImage : 'images/icon-company-lg.svg'}}" class="logo" alt="{{company.name}}" />
+                    <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
+                               ng-if="company.logoImage"
+                               ng-click="deleteLogo()"
+                               aria-label="Delete Image">
+                        <ng-md-icon icon="delete" size="18"></ng-md-icon>
+                    </md-button>
                 </div>
                 <md-button style="width: auto;" flex class="md-raised change-logo" ng-click="changeLogo()">Change Logo</md-button>
             </div>

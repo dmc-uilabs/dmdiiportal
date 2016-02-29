@@ -49,9 +49,6 @@ angular.module('dmc.view-all')
                         tag: "task",
                         name: "Task"
                     }, {
-                        tag: "project",
-                        name: "Project"
-                    }, {
                         tag: "assignedTo",
                         name: "Assigned To"
                     }, {

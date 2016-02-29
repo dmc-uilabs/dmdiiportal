@@ -9,7 +9,7 @@
     <div layout="row">
         <div class="img-box" ng-if="profile[1].data.image">
             <img ng-src="{{profile[1].data.image}}">
-            <md-button md-no-ink class="md-fab md-mini removed-images"
+            <md-button md-no-ink class="md-fab md-mini md-warn md-raised removed-images"
                        ng-click="deleteImage()"
                        aria-label="Delete Image">
                 <ng-md-icon icon="delete" size="18"></ng-md-icon>
