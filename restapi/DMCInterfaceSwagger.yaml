@@ -114,6 +114,25 @@ paths:
           type: string
           description: ID of the account
           required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: Sends account notification settings by account id
@@ -164,6 +183,26 @@ paths:
         - GE
         - account
       description: Get categories and labels for Account Notification tab
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: send an array of notification categories
@@ -252,6 +291,25 @@ paths:
           type: string
           description: ID of the account
           required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return favorite storefronts
@@ -271,6 +329,25 @@ paths:
           type: string
           description: ID of the account
           required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: Return favorite services
@@ -291,6 +368,26 @@ paths:
         - CA
         - project
       description: Get all user projects
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return array of projects
@@ -370,13 +467,32 @@ paths:
           type: string
           description: ID of the project
           required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return all project discussions being followed
           schema:
             type: array
             items:
-              $ref: '#/definitions/IndividualDiscussion'
+              $ref: '#/definitions/Discussion'
   '/projects/{projectID}/all-discussions':
     get:
       tags:
@@ -390,13 +506,32 @@ paths:
           type: string
           description: ID of the project
           required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return project discussion threads
           schema:
             type: array
             items:
-              $ref: '#/definitions/IndividualDiscussion'
+              $ref: '#/definitions/DiscussionThread'
   '/all-discussions':
     get:
       tags:
@@ -404,13 +539,33 @@ paths:
         - project
         - discussion
       description: Get all user discussion threads
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return user discussion threads
           schema:
             type: array
             items:
-              $ref: '#/definitions/IndividualDiscussion'
+              $ref: '#/definitions/DiscussionThread'
   '/projects_members':
     get:
       tags:
@@ -434,6 +589,25 @@ paths:
           description: accepted inivation
           required: false
           type: boolean
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return members
@@ -575,6 +749,25 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/PostUpdateDomeInterface'
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: Return dome inerface object with id
@@ -647,6 +840,25 @@ paths:
           required: true
           description: Service id
           type: number
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: Return service dome inerface object
@@ -665,6 +877,25 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/PostServiceRun'
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: Return run service object with id  
@@ -753,6 +984,20 @@ paths:
           description: Limit items
           type: integer
           required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: send all services
@@ -801,7 +1046,7 @@ paths:
           description: returns updated service
           schema:
             $ref: '#/definitions/Service'
-  '/services/{serviceID}/services_history':
+  '/services/{serviceID}/service_history':
     get:
       tags:
         - CA
@@ -844,6 +1089,25 @@ paths:
           type: string
           description: ID of the project
           required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return all project documents
@@ -865,6 +1129,25 @@ paths:
           type: string
           description: ID of the service
           required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return all service documents
@@ -1214,26 +1497,66 @@ paths:
         - CA
         - discussion
       description: Get popular discussions
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return popular discussions
           schema:
             type: array
             items:
-              $ref: '#/definitions/IndividualDiscussion'
+              $ref: '#/definitions/Discussion'
   '/follow_people_discussions':
     get:
       tags:
         - CA
         - discussion
       description: Get discussion of people being followed
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return discussions of people being
           schema:
             type: array
             items:
-              $ref: '#/definitions/IndividualDiscussion'
+              $ref: '#/definitions/Discussion'
   '/following_discussions':
     get:
       tags:
@@ -1247,7 +1570,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/IndividualDiscussion'
+              $ref: '#/definitions/Discussion'
   '/follow_discussions':
     patch:
       tags:
@@ -1295,6 +1618,25 @@ paths:
           description: discussion Id
           required: true
           type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         200:
           description: Returns Follow Discussion
@@ -1302,6 +1644,19 @@ paths:
             type: array
             items:
               $ref: '#/definitions/FollowingIndividualDiscussion'
+  '/discussions':
+    get:
+      tags:
+        - CA
+        - discussion
+      description: Get all user relalted discussion
+      responses:
+        '200':
+          description: return all user relalted discussion
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Discussion'
   /discussions/create:
     post:
       tags:
@@ -1316,10 +1671,28 @@ paths:
           description: Discussion object to be added to the database
           required: false
           schema:
-            $ref: '#/definitions/IndividualDiscussion'
+            $ref: '#/definitions/Discussion'
       responses:
         '405':
           description: Invalide input
+  '/discussions/{discussionID}':
+    get:
+      tags:
+        - CA
+        - discussion
+      description: Get discussion based on discussionID
+      operationId: getDiscussionByDiscussionID
+      parameters:
+        - name: discussionID
+          in: path
+          type: string
+          description: ID of the discussion
+          required: true
+      responses:
+        '200':
+          description: send the discussion with discussionID
+          schema:
+            $ref: '#/definitions/Discussion'
   '/profiles':
     post:
       tags:
@@ -1343,6 +1716,26 @@ paths:
         - CA
         - profile
       description: Get all user profiles
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: send all user profiles
@@ -3218,6 +3611,25 @@ paths:
           description: value filters result by notification event
           type: string
           required: false
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return all notifications
@@ -3231,6 +3643,26 @@ paths:
         - CA
         - notification
       description: Get all notification statistics for User
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return all notification statistics
@@ -3260,6 +3692,25 @@ paths:
           description: value filters result by notification event
           type: string
           required: false
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return all notifications
@@ -3273,6 +3724,26 @@ paths:
         - CA
         - notification
       description: Get all notification statistics for the Project Manager
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return all notification statistics
@@ -3286,6 +3757,26 @@ paths:
         - CA
         - community
       description: Get all community announcements
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return all community announcements
@@ -3299,6 +3790,26 @@ paths:
         - CA
         - community
       description: Get all community events
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return all community events
@@ -3313,6 +3824,26 @@ paths:
         - discussion
         - community
       description: Get all community individual discussions
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return all community individual discussions
@@ -3446,6 +3977,25 @@ paths:
           description: ID of individual discussions
           required: true
           type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return all all individual discussions tags
@@ -3471,6 +4021,25 @@ paths:
           description: Id account
           required: true
           type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '200':
           description: return individual discussions comment helpful
@@ -3578,6 +4147,25 @@ paths:
           type: array
           items:
             type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '201':
           description: Return all FAQ articles from database
@@ -3619,6 +4207,25 @@ paths:
           type: array
           items:
             type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '201':
           description: Return all FAQ subcategories from database
@@ -3653,6 +4260,25 @@ paths:
           description: Search by title
           required: false
           type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '201':
           description: Return all FAQ categories from database
@@ -3720,6 +4346,25 @@ paths:
           description: account id
           type: string
           required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '201':
           description: Return followed members
@@ -3738,6 +4383,25 @@ paths:
           description: profile id
           type: string
           required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '201':
           description: Return followed members
@@ -3782,6 +4446,25 @@ paths:
           description: Get by profile id
           required: false
           type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
       responses:
         '201':
           description: Return followed items
@@ -4208,6 +4891,45 @@ definitions:
         type: string
       type:
         type: string
+  Discussion:
+    type: object
+    properties:
+      id:
+        type: string
+      text:
+        type: string
+      full_name:
+        type: string
+      create_at:
+        type: string
+        format: date-time
+      avatar:
+        type: string
+      projectID:
+        type: string
+  DiscussionThread:
+    type: object
+    properties:
+      id:
+        type: string
+      projectId:
+        type: string
+      text:
+        type: string
+      replies:
+        type: number
+      created-by:
+        type: string
+      create-at:
+        type: string
+        format: date-time
+      latest-post:
+        type: object
+        properties:
+          created-by:
+            type: string
+          create-at:
+            type: string
   Profile:
     type: object
     properties:
