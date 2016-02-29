@@ -9,7 +9,7 @@
     <div layout="row"  layout-align="center center">
         <div class="img-box" ng-if="storefront[0].data.featureImage.thumbnail">
             <img ng-src="{{storefront[0].data.featureImage.thumbnail}}">
-            <md-button md-no-ink class="md-fab md-mini removed-images"
+            <md-button md-no-ink class="md-fab md-mini md-warn md-raised removed-images"
                        ng-click="deleteCover()"
                        aria-label="Delete Image">
                 <ng-md-icon icon="delete" size="18"></ng-md-icon>
@@ -26,7 +26,7 @@
               <div class="inner-box" layout="row" layout-align="center center" style="min-width: 100%;">
                 <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
                   <img flow-img="$flow.files[0]" />
-                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
+                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini md-warn md-raised remove-picture" aria-label="Remove picture">
                         <ng-md-icon icon="delete" size="18"></ng-md-icon>
                     </md-button>
                 </div>

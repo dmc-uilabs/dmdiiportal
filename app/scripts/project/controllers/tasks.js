@@ -22,9 +22,6 @@ angular.module('dmc.project')
                     tag: "task",
                     name: "Task"
                 }, {
-                    tag: "project",
-                    name: "Project"
-                }, {
                     tag: "assignedTo",
                     name: "Assigned To"
                 }, {

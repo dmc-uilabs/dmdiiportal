@@ -5,7 +5,7 @@
     "profileId": 1,
     "companyId": 1,
     "role": 1,
-    "termsConditions": false,
+    "termsConditions": true,
     "notifications": {
       "total": 3,
       "items": [
@@ -21,7 +21,9 @@
             "taskId": 18,
             "displayName": "Thomas"
           },
-          "date": "02/02/2016 11:10 AM"
+          "date": "02/02/2016 11:10 AM",
+          "title": "Thomas assigned you a task.",
+          "link": "/project.php#/5/home?showTask=18"
         },
         {
           "id": 6,
@@ -34,7 +36,9 @@
             "companyName": "GE",
             "displayName": "Thomas"
           },
-          "date": "02/02/2016 11:10 AM"
+          "date": "02/02/2016 11:10 AM",
+          "title": "Thomas replied to your review of GE.",
+          "link": "/company-profile.php#/1"
         },
         {
           "id": 17,
@@ -47,7 +51,9 @@
             "serviceTitle": "Fan failure mode analysis",
             "displayName": "Thomas"
           },
-          "date": "02/02/2016 11:10 AM"
+          "date": "02/02/2016 11:10 AM",
+          "title": "Fan failure mode analysis was favorited by Thomas",
+          "link": "/service-marketplace.php#/2"
         }
       ]
     },
@@ -62,7 +68,8 @@
             "percentCompleted": "25",
             "startDate": "09/20/2015",
             "startTime": "11:15 AM"
-          }
+          },
+          "$$hashKey": "object:38"
         },
         {
           "title": "Incoming Compartment For Ldr Mining",
@@ -72,7 +79,8 @@
             "percentCompleted": "55",
             "startDate": "09/22/2015",
             "startTime": "11:15 AM"
-          }
+          },
+          "$$hashKey": "object:39"
         }
       ]
     },
@@ -110,10 +118,10 @@
     }
   },
   "user-basic-information": {
-    "firstName": "John",
-    "lastName": "Smith",
-    "email": "john@ge.com",
-    "company": "GE"
+    "firstName": "q",
+    "lastName": "q",
+    "email": "q",
+    "company": "q"
   },
   "assign_users": [
     {
@@ -165,7 +173,7 @@
         "thumbnail": "/uploads/company/picture/1/20160225022504000000.jpg",
         "large": "/uploads/company/picture/1/20160225022504000000.jpg"
       },
-      "logoImage": "/uploads/company/logo/1/20160223073618000000.png"
+      "logoImage": "/uploads/company/logo/1/20160229053718000000.png"
     },
     {
       "id": 2,

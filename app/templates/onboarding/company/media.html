@@ -43,7 +43,7 @@
                             <div class="inner-box" layout="row" layout-align="center center" flex>
                                 <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
                                     <img id="flowImage" flow-img="$flow.files[0]" />
-                                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
+                                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini md-warn md-raised remove-picture" aria-label="Remove picture">
                                         <ng-md-icon icon="delete" size="18"></ng-md-icon>
                                     </md-button>
                                 </div>
@@ -80,7 +80,7 @@
                            ng-model="image.title"
                            placeholder="Image Title">
                 </md-input-container>
-                <md-button class="md-fab md-mini"
+                <md-button class="md-fab md-mini md-warn md-raised"
                            ng-click="deleteImage($index)"
                            aria-label="Delete Image">
                     <ng-md-icon icon="delete" size="18"></ng-md-icon>

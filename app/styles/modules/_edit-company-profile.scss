@@ -1,4 +1,9 @@
 .edit-company-profile {
+  .remove-logo{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
   .md-button.md-default-theme{
     line-height: 36px;
     min-height: 0;
@@ -22,8 +27,17 @@
   }
 
   .profile-logo{
+    position: relative;
     img{
       width: 150px;
+    }
+    .remove-logo{
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      svg{
+        margin-top: -3px;
+      }
     }
   }
   .inputs-top{

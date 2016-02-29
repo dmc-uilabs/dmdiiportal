@@ -9,7 +9,7 @@
 	<div layout="row"  layout-align="center center">
         <div class="img-box" ng-if="company[1].data.featureImage.thumbnail">
             <img ng-src="{{company[1].data.featureImage.thumbnail}}">
-            <md-button md-no-ink class="md-fab md-mini removed-images"
+            <md-button md-no-ink class="md-fab md-mini md-warn md-raised removed-images"
                        ng-click="deleteCover()"
                        aria-label="Delete Image">
                 <ng-md-icon icon="delete" size="18"></ng-md-icon>
