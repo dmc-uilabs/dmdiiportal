@@ -54,7 +54,7 @@ angular.module('dmc.widgets.discussions',[
                                     }
                                 }
                             }
-                            $scope.discussions.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
+                            //$scope.discussions.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
                             //$scope.discussions.splice($scope.limit,$scope.discussions.length);
                         });
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();

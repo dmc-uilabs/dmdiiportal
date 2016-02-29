@@ -8,8 +8,8 @@
 <md-list class="discussion-list">
     <md-list-item class="md-2-line" ng-repeat="discussion in projectDiscussions">
         <div class="md-list-item-text">
-            <h4 ng-if="widgetFormat == 'my-projects'">{{discussion.created_at}}</h4>
-            <h3><a href="/individual-discussion.php#/1" class="link-button" ng-click="previousPage.save($event)">{{discussion.title}}</a></h3>
+            <h4 ng-if="widgetFormat == 'my-projects'">{{discussion.created_at_format}}</h4>
+            <h3><a ng-href="/individual-discussion.php#/{{discussion.id}}" class="link-button" ng-click="previousPage.save($event)">{{discussion.title}}</a></h3>
             <h4 ng-if="widgetFormat == 'my-projects'"><a href="/profile.php#/1">{{discussion.created_by}}</a> replied</h4>
             <h4 ng-if="widgetFormat != 'my-projects'"><a href="/profile.php#/1">{{discussion.created_by}}</a> replied | {{discussion.created_at}}</h4>
         </div>

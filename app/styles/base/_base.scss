@@ -63,3 +63,7 @@ md-list{
     min-height: 0;
   }
 }
+
+.md-open-menu-container.md-active {
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
