@@ -236,6 +236,10 @@ angular.module('dmc.profile')
             }
         }
 
+        $scope.addFlagged = function(NewReview){
+            profileModel.add_flagged(NewReview.id);
+        }
+
         //selected dorp down menu "sorting"
         $scope.selectItemDropDown = function (value) {
             if (value != 0) {

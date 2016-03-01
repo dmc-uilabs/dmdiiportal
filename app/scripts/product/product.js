@@ -180,7 +180,7 @@ angular.module('dmc.product', [
                     }
                 )
             }
-        }
+        };
 
         var get_reply = function(review){
             ajax.get(dataFactory.components($stateParams.typeProduct, review.id).getReply,
@@ -196,7 +196,8 @@ angular.module('dmc.product', [
                     review['replyReviews'] = response.data;
                 }
             )
-        }
+        };
+
         var get_helpful = function(review){
             ajax.get(dataFactory.components($stateParams.typeProduct, review.id).getHelpful,
                 {
@@ -207,7 +208,33 @@ angular.module('dmc.product', [
                     review['helpful'] = response.data[0];
                 }
             )
-        }
+        };
+
+        var get_flagged = function(review){
+            ajax.get(dataFactory.components($stateParams.typeProduct, review.id).getFlagged,
+                {
+                    'reviewId': review.id,
+                    'accountId': $rootScope.userData.accountId
+                },
+                function(response){
+                    if (response.data.length) {
+                        review['flagged'] = true;
+                    }else{
+                        review['flagged'] = false;
+                    };
+                }
+            )
+        };
+
+        this.add_flagged = function(reviewId){
+            ajax.create(dataFactory.components($stateParams.typeProduct).addFlagged,
+                {
+                    'reviewId': reviewId,
+                    'accountId': $rootScope.userData.accountId
+                },
+                function(response){}
+            )
+        };
 
         this.get_component_reviews = function(params, callback){
             return ajax.get(dataFactory.components($stateParams.typeProduct, $stateParams.productId).reviews,
@@ -216,6 +243,7 @@ angular.module('dmc.product', [
                     for(var i in response.data){
                         response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
                         get_helpful(response.data[i]);
+                        get_flagged(response.data[i]);
                         if(response.data[i].reply){
                             get_reply(response.data[i]);
                         }
@@ -226,7 +254,7 @@ angular.module('dmc.product', [
                     toastModel.showToast("error", "Error." + response.statusText);
                 }
             )
-        }
+        };
 
         this.add_component_reviews = function(params, callback){
             ajax.get(dataFactory.components($stateParams.typeProduct, $stateParams.productId).addReviews, 

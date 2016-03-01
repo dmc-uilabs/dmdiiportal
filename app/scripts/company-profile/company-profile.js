@@ -217,7 +217,34 @@ angular.module('dmc.company-profile', [
                     review['replyReviews'] = response.data;
                 }
             )
-        }
+        };
+
+        var get_flagged = function(review){
+            ajax.get(dataFactory.companyURL(review.id).getFlagged,
+                {
+                    'reviewId': review.id,
+                    'accountId': $rootScope.userData.accountId
+                },
+                function(response){
+                    if (response.data.length) {
+                        review['flagged'] = true;
+                    }else{
+                        review['flagged'] = false;
+                    };
+                }
+            )
+        };
+
+        this.add_flagged = function(reviewId){
+            ajax.create(dataFactory.companyURL().addFlagged,
+                {
+                    'reviewId': reviewId,
+                    'accountId': $rootScope.userData.accountId
+                },
+                function(response){}
+            )
+        };
+
         var get_helpful = function(review){
             ajax.get(dataFactory.companyURL(review.id).getHelpful,
                 {
@@ -228,7 +255,7 @@ angular.module('dmc.company-profile', [
                     review['helpful'] = response.data[0];
                 }
             )
-        }
+        };
 
         this.get_company_reviews = function(params, callback){
             return ajax.get(dataFactory.companyURL($stateParams.companyId).reviews,
@@ -237,6 +264,7 @@ angular.module('dmc.company-profile', [
                     for(var i in response.data){
                         response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
                         get_helpful(response.data[i]);
+                        get_flagged(response.data[i]);
                         if(response.data[i].reply){
                             get_reply(response.data[i]);
                         }

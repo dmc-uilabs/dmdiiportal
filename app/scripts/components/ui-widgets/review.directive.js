@@ -14,6 +14,7 @@ angular.module('dmc.widgets.review',[
     scope: {
       review: "=",
       replyFunction: "=",
+      flaggedFunction: "=",
       helpfulFunction: "="
     },
     controller: function($scope, ajax, dataFactory, $stateParams) {
@@ -67,7 +68,9 @@ angular.module('dmc.widgets.review',[
 
       //Submit Flag Review form
       $scope.SubmitReview = function(NewReview){
-
+        NewReview.id = $scope.review.id;
+        $scope.flaggedFunction(NewReview);
+        
         $scope.review['flagged'] = true;
         $scope.flagReplyReviewFlag = false;
         $scope.flagReviewFlag = false;
