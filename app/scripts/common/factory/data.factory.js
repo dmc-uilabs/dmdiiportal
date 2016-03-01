@@ -399,6 +399,8 @@ angular.module('dmc.data',[])
                     getHelpful : localhost + 'company_reviews_helpful',
                     addHelpful : localhost + 'company_reviews_helpful',
                     updateHelpful : localhost + 'company_reviews_helpful/' + id,
+                    getFlagged : localhost + 'company_reviews_flagged',
+                    addFlagged : localhost + 'company_reviews_flagged',
                     history : localhost + name +'/' + id + '/company_history'
                 }
             },
@@ -463,6 +465,8 @@ angular.module('dmc.data',[])
                     getHelpful : localhost + 'profile_reviews_helpful',
                     addHelpful : localhost + 'profile_reviews_helpful',
                     updateHelpful : localhost + 'profile_reviews_helpful/' + id,
+                    getFlagged : localhost + 'profile_reviews_flagged',
+                    addFlagged : localhost + 'profile_reviews_flagged',
                     history : localhost + name +'/' + id + '/profile_history',
                     all : localhost + name
                 }
@@ -485,6 +489,8 @@ angular.module('dmc.data',[])
                     getHelpful : localhost + 'product_reviews_helpful',
                     addHelpful : localhost + 'product_reviews_helpful',
                     updateHelpful : localhost + 'product_reviews_helpful/' + id,
+                    getFlagged : localhost + 'product_reviews_flagged',
+                    addFlagged : localhost + 'product_reviews_flagged',
                     get_included : localhost + 'included-services',
                     remove_included : localhost + 'included-services/' + id,
                     add_included : localhost + 'included-services',
@@ -518,6 +524,8 @@ angular.module('dmc.data',[])
                     getHelpful : localhost + 'product_reviews_helpful',
                     addHelpful : localhost + 'product_reviews_helpful',
                     updateHelpful : localhost + 'product_reviews_helpful/' + id,
+                    getFlagged : localhost + 'product_reviews_flagged',
+                    addFlagged : localhost + 'product_reviews_flagged',
                     get_authors : localhost + name + '/' + id + '/service_authors',
                     remove_authors : localhost + 'service_authors/' + id,
                     add_authors : localhost + 'service_authors',
@@ -626,6 +634,12 @@ angular.module('dmc.data',[])
             },
             updateDiscussionCommentsHelpful : function(id){
                 return localhost + 'individual-discussion-comments-helpful/' + id;
+            },
+            getDiscussionCommentsFlagged : function(){
+                return localhost + 'individual-discussion-comments-flagged';
+            },
+            addDiscussionCommentsFlagged : function(){
+                return localhost + 'individual-discussion-comments-flagged';
             },
             ///
             getIndividualDiscussion: function(id){

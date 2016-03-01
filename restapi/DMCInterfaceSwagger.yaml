@@ -492,7 +492,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Discussion'
+              $ref: '#/definitions/IndividualDiscussion'
   '/projects/{projectID}/all-discussions':
     get:
       tags:
@@ -531,7 +531,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/DiscussionThread'
+              $ref: '#/definitions/IndividualDiscussion'
   '/all-discussions':
     get:
       tags:
@@ -565,7 +565,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/DiscussionThread'
+              $ref: '#/definitions/IndividualDiscussion'
   '/projects_members':
     get:
       tags:
@@ -1523,7 +1523,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Discussion'
+              $ref: '#/definitions/IndividualDiscussion'
   '/follow_people_discussions':
     get:
       tags:
@@ -1556,7 +1556,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Discussion'
+              $ref: '#/definitions/IndividualDiscussion'
   '/following_discussions':
     get:
       tags:
@@ -1570,7 +1570,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Discussion'
+              $ref: '#/definitions/IndividualDiscussion'
   '/follow_discussions':
     patch:
       tags:
@@ -1644,19 +1644,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/FollowingIndividualDiscussion'
-  '/discussions':
-    get:
-      tags:
-        - CA
-        - discussion
-      description: Get all user relalted discussion
-      responses:
-        '200':
-          description: return all user relalted discussion
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Discussion'
   /discussions/create:
     post:
       tags:
@@ -1671,28 +1658,10 @@ paths:
           description: Discussion object to be added to the database
           required: false
           schema:
-            $ref: '#/definitions/Discussion'
+            $ref: '#/definitions/IndividualDiscussion'
       responses:
         '405':
           description: Invalide input
-  '/discussions/{discussionID}':
-    get:
-      tags:
-        - CA
-        - discussion
-      description: Get discussion based on discussionID
-      operationId: getDiscussionByDiscussionID
-      parameters:
-        - name: discussionID
-          in: path
-          type: string
-          description: ID of the discussion
-          required: true
-      responses:
-        '200':
-          description: send the discussion with discussionID
-          schema:
-            $ref: '#/definitions/Discussion'
   '/profiles':
     post:
       tags:
@@ -1982,6 +1951,47 @@ paths:
           description: New profile review helpful
           schema:
             $ref: '#/definitions/ProfileReviewHelpful'
+  '/profile_reviews_flagged':
+    get:
+      tags:
+        - CA
+        - profile
+      description: Get profile review flagged
+      parameters:
+        - in: query
+          name: reviewId
+          description: Id iprofile review
+          required: true
+          type: string
+        - in: query
+          name: accountId
+          description: Id account
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return profile review flagged
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProfileReviewFlagged'
+    post:
+      tags:
+        - CA
+        - profile
+      description: Create profile review flagged
+      parameters:
+        - in: body
+          name: ProfileReviewFlagged
+          description: profile review flagged
+          required: false
+          schema:
+            $ref: '#/definitions/ProfileReviewFlagged'
+      responses:
+        '201':
+          description: New profile review flagged
+          schema:
+            $ref: '#/definitions/ProfileReviewFlagged'
   '/profile_reviews_helpful/{helpfulID}':
     patch:
       tags:
@@ -2361,6 +2371,47 @@ paths:
           description: returns updated company review helpful
           schema:
             $ref: '#/definitions/CompanyReviewHelpful'
+  '/company_reviews_flagged':
+    get:
+      tags:
+        - CA
+        - company
+      description: Get company review flagged
+      parameters:
+        - in: query
+          name: reviewId
+          description: Id company review
+          required: true
+          type: string
+        - in: query
+          name: accountId
+          description: Id account
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return company review flagged
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CompanyReviewFlagged'
+    post:
+      tags:
+        - CA
+        - company
+      description: Create company review flagged
+      parameters:
+        - in: body
+          name: CompanyReviewFlagged
+          description: company review flagged
+          required: false
+          schema:
+            $ref: '#/definitions/CompanyReviewFlagged'
+      responses:
+        '201':
+          description: New company review helpful
+          schema:
+            $ref: '#/definitions/CompanyReviewFlagged'
   '/companies/{companyID}/company_services':
     get:
       tags:
@@ -3330,6 +3381,49 @@ paths:
           description: returns updated service review helpful
           schema:
             $ref: '#/definitions/ProductReviewHelpful'
+  '/product_reviews_flagged':
+    get:
+      tags:
+        - CA
+        - service
+        - marketplace
+      description: Get service review flagged
+      parameters:
+        - in: query
+          name: reviewId
+          description: Id service review
+          required: true
+          type: string
+        - in: query
+          name: accountId
+          description: Id account
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return service review flagged
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductReviewFlagged'
+    post:
+      tags:
+        - CA
+        - service
+        - marketplace
+      description: Create service review flagged
+      parameters:
+        - in: body
+          name: ServiceReviewHelpful
+          description: service review flagged
+          required: false
+          schema:
+            $ref: '#/definitions/ProductReviewFlagged'
+      responses:
+        '201':
+          description: New service review flagged
+          schema:
+            $ref: '#/definitions/ProductReviewFlagged'
   '/service_authors/{autorhId}':
     delete:
       tags:
@@ -4059,12 +4153,12 @@ paths:
           description: Individual comments helpful
           required: false
           schema:
-            $ref: '#/definitions/IndividualDiscussionTag'
+            $ref: '#/definitions/IndividualDiscussionCommentHelpful'
       responses:
         '201':
           description: New individual discussions comments helpful
           schema:
-            $ref: '#/definitions/IndividualDiscussionTag'
+            $ref: '#/definitions/IndividualDiscussionCommentHelpful'
   '/individual-discussion-comments-helpful/{helpfulID}':
     patch:
       tags:
@@ -4087,6 +4181,49 @@ paths:
           description: returns updated individual discussions comment helpful
           schema:
             $ref: '#/definitions/IndividualDiscussionCommentHelpful'
+  '/individual-discussion-comments-flagged':
+    get:
+      tags:
+        - CA
+        - discussion
+        - community
+      description: Get individual discussions comment flagged
+      parameters:
+        - in: query
+          name: commentId
+          description: Id individual discussions comment
+          required: true
+          type: string
+        - in: query
+          name: accountId
+          description: Id account
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return individual discussions comment flagged
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IndividualDiscussionCommentFlagged'
+    post:
+      tags:
+        - CA
+        - discussion
+        - community
+      description: Create individual discussions comments flagged
+      parameters:
+        - in: body
+          name: IndividualDiscussionCommentFlagged
+          description: Individual comments flagged
+          required: false
+          schema:
+            $ref: '#/definitions/IndividualDiscussionCommentFlagged'
+      responses:
+        '201':
+          description: New individual discussions comments flagged
+          schema:
+            $ref: '#/definitions/IndividualDiscussionCommentFlagged'
   '/individual-discussion-tags':
     post:
       tags:
@@ -4339,6 +4476,7 @@ paths:
     get:
       tags:
         - account
+        - company
       description: Get all following members for account
       parameters:
         - in: path
@@ -4413,6 +4551,7 @@ paths:
     post:
       tags:
         - account
+        - company
       description: Add new followed member
       parameters:
         - in: body
@@ -4429,6 +4568,7 @@ paths:
     get:
       tags:
         - account
+        - company
       description: Get all followed member
       parameters:
         - in: query
@@ -4491,6 +4631,7 @@ paths:
     delete:
       tags:
         - account
+        - company
       description: Delete followed member
       parameters:
         - in: path
@@ -4891,45 +5032,6 @@ definitions:
         type: string
       type:
         type: string
-  Discussion:
-    type: object
-    properties:
-      id:
-        type: string
-      text:
-        type: string
-      full_name:
-        type: string
-      create_at:
-        type: string
-        format: date-time
-      avatar:
-        type: string
-      projectID:
-        type: string
-  DiscussionThread:
-    type: object
-    properties:
-      id:
-        type: string
-      projectId:
-        type: string
-      text:
-        type: string
-      replies:
-        type: number
-      created-by:
-        type: string
-      create-at:
-        type: string
-        format: date-time
-      latest-post:
-        type: object
-        properties:
-          created-by:
-            type: string
-          create-at:
-            type: string
   Profile:
     type: object
     properties:
@@ -5030,6 +5132,15 @@ definitions:
         type: string
       helpfull:
         type: boolean
+  ProfileReviewFlagged:
+    type: object
+    properties:
+      id:
+        type: string
+      reviewId:
+        type: string
+      accountId:
+        type: string
   ProductReview:
     type: object
     properties:
@@ -5074,6 +5185,15 @@ definitions:
         type: string
       helpfull:
         type: boolean
+  ProductReviewFlagged:
+    type: object
+    properties:
+      id:
+        type: string
+      reviewId:
+        type: string
+      accountId:
+        type: string
   Company:
     type: object
     properties:
@@ -5187,6 +5307,15 @@ definitions:
         type: string
       helpfull:
         type: boolean
+  CompanyReviewFlagged:
+    type: object
+    properties:
+      id:
+        type: string
+      reviewId:
+        type: string
+      accountId:
+        type: string
   CompanyImage:
     type: object
     properties:
@@ -5842,6 +5971,15 @@ definitions:
         type: string
       helpfull:
         type: boolean
+  IndividualDiscussionCommentFlagged:
+    type: object
+    properties:
+      id:
+        type: string
+      commentId:
+        type: string
+      accountId:
+        type: string
   IndividualDiscussion:
     type: object
     properties:
@@ -5856,6 +5994,8 @@ definitions:
       created_at:
         type: string
       accountId:
+        type: string
+      projectId:
         type: string
   IndividualDiscussionTag:
     type: object

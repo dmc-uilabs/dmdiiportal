@@ -385,6 +385,10 @@ angular.module('dmc.service-marketplace')
                 }
             }
 
+            $scope.addFlagged = function(NewReview){
+                serviceModel.add_flagged(NewReview.id);
+            }
+
             //sorting Reviews
             $scope.SortingReviews = function(val){
                 var params = {};

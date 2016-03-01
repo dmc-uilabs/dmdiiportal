@@ -126,6 +126,22 @@ angular.module('dmc.individual-discussion', [
                     )
                 }
 
+                $scope.get_flagged = function(comment){
+                    ajax.get(dataFactory.getDiscussionCommentsFlagged(),
+                        {
+                            'commentId': comment.id,
+                            'accountId': $rootScope.userData.accountId
+                        },
+                        function(response){
+                            if (response.data.length) {
+                                comment['flagged'] = true;
+                            }else{
+                                comment['flagged'] = false;
+                            };
+                        }
+                    )
+                };
+
                 // load comments
                 $scope.loadComments = function(){
                     ajax.get(dataFactory.getDiscussionComments($stateParams.discussionId), {
@@ -139,6 +155,7 @@ angular.module('dmc.individual-discussion', [
                             if ($scope.userData.accountId == $scope.discussion.comments.items[c].accountId) $scope.discussion.comments.items[c].isOwner = true;
                             $scope.get_helpful($scope.discussion.comments.items[c]);
                             $scope.get_reply($scope.discussion.comments.items[c]);
+                            $scope.get_flagged($scope.discussion.comments.items[c]);
                         }
                         apply();
                     });
@@ -331,6 +348,14 @@ angular.module('dmc.individual-discussion', [
 
                 //Submit flagged comment
                 $scope.SubmitFlagged = function(NewComment, id, index){
+                    ajax.create(dataFactory.addDiscussionCommentsFlagged(),
+                        {
+                            'commentId': id,
+                            'accountId': $rootScope.userData.accountId
+                        },
+                        function(response){}
+                    );
+
                     $scope.discussion.comments.items[index]['flagged'] = true;
                     $scope.flagReviewFlag = false;
                     $scope.replyReviewFlag = false;

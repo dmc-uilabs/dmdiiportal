@@ -451,6 +451,13 @@
       "id": 5
     }
   ],
+  "company_reviews_flagged": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "reviewId": 8
+    }
+  ],
   "company_history": [
     {
       "type": "completed",
@@ -6961,6 +6968,13 @@
       "id": 9
     }
   ],
+  "product_reviews_flagged": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "reviewId": 13
+    }
+  ],
   "profiles": [
     {
       "id": 1,
@@ -7097,6 +7111,13 @@
       "reviewId": 4,
       "helpful": false,
       "id": 4
+    }
+  ],
+  "profile_reviews_flagged": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "reviewId": 8
     }
   ],
   "profile_history": [
@@ -7740,6 +7761,13 @@
       "commentId": 10,
       "helpful": null,
       "id": 5
+    }
+  ],
+  "individual-discussion-comments-flagged": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "commentId": 5
     }
   ],
   "account-notification-categories": [

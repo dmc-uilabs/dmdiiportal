@@ -11,7 +11,7 @@ angular.module('dmc.component.members-card', [
 			cardSource: '=',
 		},
 		templateUrl: 'templates/components/members-card/members-card.html',
-		controller: ['$scope', '$mdDialog', 'ajax', 'dataFactory', function($scope, $mdDialog, ajax, dataFactory){
+		controller: ['$scope', '$mdDialog', 'ajax', 'dataFactory', 'DMCUserModel', function($scope, $mdDialog, ajax, dataFactory, DMCUserModel){
             $scope.projects = [];
             $scope.addingToProject = false;
             ajax.get(
@@ -20,6 +20,10 @@ angular.module('dmc.component.members-card', [
                     $scope.projects = response.data;
                 }
             );
+
+            var apply = function(){
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            };
 
             $scope.addToProject = function(){
                 $scope.addingToProject = true;
@@ -58,9 +62,6 @@ angular.module('dmc.component.members-card', [
                                 "created_at": moment().format("hh:mm A")
                             });
                             DMCUserModel.UpdateUserData($scope.$root.userData);
-                            if(i == array.length-1){
-                              callback();
-                            }
                             $scope.cancelAddToProject();
                             $scope.cardSource.added = true;
 
@@ -68,6 +69,10 @@ angular.module('dmc.component.members-card', [
                                 title: project.title,
                                 href: '/project.php#/' + project.id + '/home'
                             };
+                            setTimeout(function () {
+                                $scope.cardSource.added = false;
+                                apply();
+                            }, 10000);
                             
                             var apply = function(){
                                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -93,7 +98,27 @@ angular.module('dmc.component.members-card', [
                   }, function() {
                       $(window).scrollTop();
                   });
-            }
+            };
+
+            $scope.followMember = function(){
+                if($scope.$root.userData) {
+                    if (!$scope.cardSource.follow) {
+                        ajax.create(dataFactory.followMember(), {
+                            accountId: $scope.$root.userData.accountId,
+                            profileId: $scope.cardSource.id
+                        }, function (response) {
+                            $scope.cardSource.follow = response.data;
+                            apply();
+                        });
+                    } else {
+                        ajax.delete(dataFactory.followMember($scope.cardSource.follow.id), {},
+                            function (response) {
+                                $scope.cardSource.follow = null;
+                            }
+                        );
+                    }
+                }
+            };
 		}]
 	}
 })

@@ -86,7 +86,7 @@ angular.module('dmc.profile', [
                 toastModel.showToast("error", "Error." + response.statusText);
             });
 
-        }
+        };
 
         var get_reply = function(review){
             ajax.get(dataFactory.profiles(review.id).getReply,
@@ -102,7 +102,8 @@ angular.module('dmc.profile', [
                     review['replyReviews'] = response.data;
                 }
             )
-        }
+        };
+
         var get_helpful = function(review){
             ajax.get(dataFactory.profiles(review.id).getHelpful,
                 {
@@ -113,7 +114,33 @@ angular.module('dmc.profile', [
                     review['helpful'] = response.data[0];
                 }
             )
-        }
+        };
+
+        var get_flagged = function(review){
+            ajax.get(dataFactory.profiles(review.id).getFlagged,
+                {
+                    'reviewId': review.id,
+                    'accountId': $rootScope.userData.accountId
+                },
+                function(response){
+                    if (response.data.length) {
+                        review['flagged'] = true;
+                    }else{
+                        review['flagged'] = false;
+                    };
+                }
+            )
+        };
+
+        this.add_flagged = function(reviewId){
+            ajax.create(dataFactory.profiles().addFlagged,
+                {
+                    'reviewId': reviewId,
+                    'accountId': $rootScope.userData.accountId
+                },
+                function(response){}
+            )
+        };
 
         this.get_profile_reviews = function(id, params, callback){
             return ajax.get(dataFactory.profiles(id).reviews,
@@ -122,6 +149,7 @@ angular.module('dmc.profile', [
                     for(var i in response.data){
                         response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
                         get_helpful(response.data[i]);
+                        get_flagged(response.data[i]);
                         if(response.data[i].reply){
                             get_reply(response.data[i]);
                         }
@@ -135,6 +163,7 @@ angular.module('dmc.profile', [
         }
 
         this.add_profile_reviews = function(id, params, callback){
+            console.info('add', dataFactory.profiles(id).addReviews, params)
             ajax.get(dataFactory.profiles(id).addReviews, 
                 {
                     "_limit" : 1,

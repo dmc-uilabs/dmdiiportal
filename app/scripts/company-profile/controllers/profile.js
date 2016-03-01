@@ -216,7 +216,7 @@ angular.module('dmc.company-profile')
         };
 
         //Submit Leave A Review form
-        $scope.Submit= function(NewReview){
+        $scope.Submit = function(NewReview){
             companyProfileModel.add_company_reviews(
                 {
                     name: $scope.$root.userData.displayName,
@@ -276,6 +276,10 @@ angular.module('dmc.company-profile')
                     )
                 }
             )
+        };
+
+        $scope.addFlagged = function(NewReview){
+            companyProfileModel.add_flagged(NewReview.id);
         }
 
         $scope.updateHelpful = function(item, create, helpful){
@@ -294,7 +298,7 @@ angular.module('dmc.company-profile')
             }else{
                 companyProfileModel.update_helful(item.helpful.id, item.helpful)
             }
-        }
+        };
 
         //selected dorp down menu "sorting"
         $scope.selectItemDropDown = function(value){

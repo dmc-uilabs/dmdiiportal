@@ -191,7 +191,7 @@ angular.module('dmc.profile')
 
         $scope.addReply = function(NewReview){
             var review = this.review;
-            profileModel.add_profile_reviews(
+            profileModel.add_profile_reviews($stateParams.profileId,
                 {
                     name: $scope.$root.userData.displayName,
                     accountId: $scope.$root.userData.accountId,
@@ -234,6 +234,10 @@ angular.module('dmc.profile')
             }else{
                 profileModel.update_helful(item.helpful.id, item.helpful)
             }
+        }
+
+        $scope.addFlagged = function(NewReview){
+            profileModel.add_flagged(NewReview.id);
         }
 
         //selected dorp down menu "sorting"

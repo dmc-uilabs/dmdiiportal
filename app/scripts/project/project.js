@@ -212,6 +212,9 @@ angular.module('dmc.project', [
 	.controller('DMCPreviewProjectController', ['$scope','$stateParams', 'projectData', 'ajax', 'dataFactory', '$timeout', 'toastModel', '$cookieStore', 
 		function ($scope, $stateParams, projectData, ajax, dataFactory, $timeout, toastModel, $cookieStore) {
 		var projectCtrl = this;
+    	if (projectData.type){
+			projectData.type = projectData.type[0].toUpperCase() + projectData.type.slice(1);
+    	}
 		projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
 		projectCtrl.projectData = projectData;
 		$scope.isPreview = true;
@@ -232,10 +235,6 @@ angular.module('dmc.project', [
             ajax.update(dataFactory.acceptProject($stateParams.projectId, $scope.invitation.id),
                	$scope.invitation,
                 function(response){
-                	projectData.type
-                	if (projectData.type){
-						projectData.type = projectData.type[0].toUpperCase() + projectData.type.slice(1);
-                	}
                 	toastModel.showToast("success", "Invited to "+projectData.type+" Project by " + $scope.invitation.from);
                 	document.location.href = "project.php#/"+$stateParams.projectId+"/home";
                 }
