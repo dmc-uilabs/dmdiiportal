@@ -9,6 +9,9 @@ var server = jsonServer.create();
 server.use(jsonServer.defaults());
 // Add this before server.use(router)
 server.use(jsonServer.rewriter({
+    '/searchProjects' : '/projects',
+    '/searchServices' : '/services',
+    '/searchComponents' : '/components',
     '/company_services': '/services',
     '/company_components': '/components',
     '/companies/:id/company_services' : '/companies/:id/services',
@@ -111,22 +114,42 @@ server.get('/runModel', function(req, res){
 // Returns an Express router
 var port = 3000;
 var router = jsonServer.router('db.json');
-//router.render = function (req, res) {
-//    var path = req._parsedUrl.pathname;
-//    var method = req.method;
-//    switch(path){
-//        case '/services':
-//            if(method == "GET"){
-//                buildGetServices(res,res.locals.data,req.query);
-//            }else{
-//                res.json(res.locals.data);
-//            }
-//            break;
-//        default:
-//            res.json(res.locals.data);
-//            break;
-//    }
-//};
+router.render = function (req, res) {
+    var path = req._parsedUrl.pathname;
+    var method = req.method;
+    var query = req.query;
+    var host = "http://"+req.headers.host;
+    switch(path){
+        case '/search':
+            if(method == "GET"){
+                var isGetServices = false;
+                var isGetProjects = false;
+                var isGetComponents = false;
+                var data = {};
+                request({ url: host+"/services", method: 'GET', json : true, data : query }, function(err, response, body) {
+                    data.services = body;
+                    isGetServices = true;
+                    if( isGetServices && isGetProjects && isGetComponents ) res.json(data);
+                });
+                request({ url: host+"/projects", method: 'GET', json : true, data : query }, function(err, response, body) {
+                    data.projects = body;
+                    isGetProjects = true;
+                    if( isGetServices && isGetProjects && isGetComponents ) res.json(data);
+                });
+                request({ url: host+"/components", method: 'GET', json : true, data : query }, function(err, response, body) {
+                    data.components = body;
+                    isGetComponents = true;
+                    if( isGetServices && isGetProjects && isGetComponents) res.json(data);
+                });
+            }else{
+                res.json(res.locals.data);
+            }
+            break;
+        default:
+            res.json(res.locals.data);
+            break;
+    }
+};
 //
 //function buildGetServices(res,data,query){
 //    var ids = [];
