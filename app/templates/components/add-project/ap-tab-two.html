@@ -53,26 +53,20 @@
                                 <div class="content-panel-body">
                                     <md-content layout="row" layout-wrap>
                                         <div flex="33" ng-if="!showFavoritesFlag" class="container-member-card" ng-repeat="item in foundMembers">
-                                            <div dmc-member-card
-                                                    compare-member="compareMember"
+                                            <dmc-add-members-card
                                                     invite-member="addToInvitation"
                                                     favorite-member="addToFavorite"
                                                     card-source="item"
-                                                    class="member-card"
-                                                    add-to-project="compareMember"
-                                                    all-buttons="[]">
-                                            </div>
+                                                    class="member-card">
+                                            </dmc-add-members-card>
                                         </div>
                                         <div flex="33" ng-if="showFavoritesFlag" class="container-member-card" ng-repeat="item in favorites">
-                                            <div dmc-member-card
-                                                    compare-member="compareMember"
+                                            <dmc-add-members-card
                                                     invite-member="addToInvitation"
                                                     favorite-member="addToFavorite"
                                                     card-source="item"
-                                                    all-buttons="[]"
-                                                    add-to-project="compareMember"
                                                     class="member-card">
-                                            </div>
+                                            </dmc-add-members-card>
                                         </div>
                                       </md-content>
                                 </div>

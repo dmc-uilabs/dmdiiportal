@@ -8,6 +8,7 @@ angular.module('dmc.add_project', [
     'ui.router',
     'md.data.table',
     'dmc.widgets.documents',
+    'dmc.component.members-card',
     'dmc.common.header',
     'dmc.common.footer'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider, $mdDateLocaleProvider){

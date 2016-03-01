@@ -135,6 +135,7 @@ angular.module('dmc.profile', [
         }
 
         this.add_profile_reviews = function(id, params, callback){
+            console.info('add', dataFactory.profiles(id).addReviews, params)
             ajax.get(dataFactory.profiles(id).addReviews, 
                 {
                     "_limit" : 1,

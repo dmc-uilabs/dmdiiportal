@@ -35,7 +35,9 @@
                     <md-content class="md-padding">
                         <div layout="row" class="tabs-content" layout-wrap>
                             <md-chips ng-repeat="skill in profile.skills track by $index">
-                                <md-chip>{{skill}}</md-chip>
+                                <md-chip>
+                                    <a ng-href="{{'search.php#/members?text='+skill}}">{{skill}}</a>
+                                </md-chip>
                             </md-chips>
                         </div>
                     </md-content>

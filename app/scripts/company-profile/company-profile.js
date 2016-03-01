@@ -133,7 +133,16 @@ angular.module('dmc.company-profile', [
                     for(var i in response.data){
                         ajax.get(dataFactory.profiles(id).get,{},
                             function(response){
-                                members.push(response.data ? response.data : response);
+                                var member = response.data;
+                                ajax.get(dataFactory.getAccountFollowedMembers(member.id),{},
+                                    function(response){
+                                        member['follow'] = null;
+                                        if(response.data.length){
+                                            member['follow'] = response.data[0];
+                                        }
+                                        members.push(member);
+                                    }
+                                )
                             }
                         )
                     }
