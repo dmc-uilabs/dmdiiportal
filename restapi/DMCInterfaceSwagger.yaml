@@ -4642,6 +4642,128 @@ paths:
       responses:
         '200':
           description: Ok
+  '/search':
+    get:
+      tags:
+        - search
+        - service
+        - project
+      description: Search services and projects
+      parameters:
+        - in: query
+          name: title_like
+          description: Search by title
+          required: false
+          type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+      responses:
+        '201':
+          description: Return object with services array and project array
+          schema:
+            type: object
+            properties:
+              services:
+                type: array
+                items:
+                  $ref: '#/definitions/Service'
+              projects:
+                type: array
+                items:
+                  $ref: '#/definitions/Project'
+  '/searchProjects':
+    get:
+      tags:
+        - search
+        - project
+      description: Search projects
+      parameters:
+        - in: query
+          name: title_like
+          description: Search by title
+          required: false
+          type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+      responses:
+        '201':
+          description: Return array of projects
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Project'
+  '/searchServices':
+    get:
+      tags:
+        - search
+        - service
+      description: Search services
+      parameters:
+        - in: query
+          name: title_like
+          description: Search by title
+          required: false
+          type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+      responses:
+        '201':
+          description: Return array of services
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Service'
 definitions:
   PostFollowingMemeber:
     type: object
