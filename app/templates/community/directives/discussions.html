@@ -17,7 +17,7 @@
                     <div class="md-list-item-text">
                         <h3><a class="link-button font-size14" href="/individual-discussion.php#/{{item.id}}" ng-click="previousPage.save($event)" class="link-button">{{item.title}}</a></h3>
                         <div class="info">
-                            <span><a href="/accounts.php#/{{item.last.accountId}}">{{item.last.full_name}}</a> {{item.last.isPosted ? 'posted' : 'replied'}} | {{item.last.created_at_format}}</span>
+                            <span><a href="/accounts.php#/{{item.last.accountId}}">{{item.last.full_name}}</a> {{item.isPosted ? 'posted' : 'replied'}} | {{item.last.created_at_format}}</span>
                         </div>
                     </div>
                 </md-list-item>

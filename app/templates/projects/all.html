@@ -13,7 +13,7 @@
                             <md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container>
+                    <md-input-container style="display: none">
                         <label>Filter</label>
                         <md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')" md-container-class="margin-dropdown">
                             <md-option ng-click="selectItemDropDown('filter')" ng-repeat="filter in filterList track by $index" ng-value="$index">{{filter.name}}</md-option>

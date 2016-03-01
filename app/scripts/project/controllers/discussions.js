@@ -47,7 +47,8 @@ angular.module('dmc.project')
                     ajax.get(dataFactory.addCommentIndividualDiscussion(),{
                         "individual-discussionId" : ids,
                         "_order" : "DESC",
-                        "_sort" : "id"
+                        "_sort" : "id",
+                        "commentId": 0
                     },function(res){
                         for(var i in $scope.discussions){
                             $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format("MM/DD/YYYY hh:mm A");
@@ -57,13 +58,14 @@ angular.module('dmc.project')
                                     $scope.discussions[i].replies++;
                                     $scope.discussions[i].last = res.data[j];
                                     $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format("MM/DD/YYYY hh:mm A");
-                                    if($scope.discussions[i].last.isPosted == null){
-                                        $scope.discussions[i].last.isPosted = true;
-                                    }else if($scope.discussions[i].last.isPosted == true){
-                                        $scope.discussions[i].last.isPosted = false;
+                                    if($scope.discussions[i].isPosted == null){
+                                        $scope.discussions[i].isPosted = true;
+                                    }else if($scope.discussions[i].isPosted == true){
+                                        $scope.discussions[i].isPosted = false;
                                     }
                                 }
                             }
+                            if($scope.discussions[i].isPosted == null) $scope.discussions[i].isPosted = true;
                         }
                         //$scope.discussions.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
                         //$scope.discussions.splice($scope.limit,$scope.discussions.length);

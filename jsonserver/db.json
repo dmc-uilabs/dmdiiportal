@@ -7474,6 +7474,11 @@
       "accountId": 1,
       "individual-discussionId": 5,
       "id": 5
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 6,
+      "id": 6
     }
   ],
   "individual-discussion-tags": [
@@ -7486,6 +7491,11 @@
       "name": "tag",
       "individual-discussionId": 5,
       "id": 2
+    },
+    {
+      "name": "Tag1",
+      "individual-discussionId": 6,
+      "id": 3
     }
   ],
   "individual-discussion": [
@@ -7526,12 +7536,12 @@
       "id": 4
     },
     {
-      "title": "New Discussion for test functionality",
+      "title": "Test discussion",
+      "projectId": 0,
       "accountId": 1,
-      "projectId": 5,
       "created_by": "Thomas Smith",
-      "created_at": 1455667168567,
-      "id": 5
+      "created_at": 1456854066000,
+      "id": 6
     }
   ],
   "individual-discussion-comments": [
@@ -7729,6 +7739,21 @@
       "like": 0,
       "dislike": 0,
       "id": 15
+    },
+    {
+      "individual-discussionId": 6,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "Test message",
+      "created_at": "03/01/2016 07:41 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 16
     }
   ],
   "individual-discussion-comments-helpful": [

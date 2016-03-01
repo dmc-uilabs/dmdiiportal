@@ -11,6 +11,7 @@ angular.module('dmc.community.dmc-announcements',[]).
             controller: ["$scope", "dataFactory", "ajax" ,"toastModel", function($scope, dataFactory, ajax, toastModel) {
                 $scope.announcements = [];
                 $scope.totalAnnouncements = 0;
+                var limit = 5;
 
                 $scope.getAnnouncements = function(){
                     ajax.get(dataFactory.getIndividualDiscussions(), {
@@ -23,7 +24,8 @@ angular.module('dmc.community.dmc-announcements',[]).
                         ajax.get(dataFactory.addCommentIndividualDiscussion(),{
                             "individual-discussionId" : ids,
                             "_order" : "DESC",
-                            "_sort" : "id"
+                            "_sort" : "id",
+                            "commentId": 0
                         },function(res){
                             for(var i in $scope.announcements){
                                 $scope.announcements[i].created_at_format = moment(new Date($scope.announcements[i].created_at)).format("MM/DD/YYYY");
@@ -33,15 +35,17 @@ angular.module('dmc.community.dmc-announcements',[]).
                                         $scope.announcements[i].replies++;
                                         $scope.announcements[i].last = res.data[j];
                                         $scope.announcements[i].last.created_at_format = moment(new Date($scope.announcements[i].last.created_at)).format("MM/DD/YYYY");
-                                        if($scope.announcements[i].last.isPosted == null){
-                                            $scope.announcements[i].last.isPosted = true;
-                                        }else if($scope.announcements[i].last.isPosted == true){
-                                            $scope.announcements[i].last.isPosted = false;
+                                        if($scope.announcements[i].isPosted == null){
+                                            $scope.announcements[i].isPosted = true;
+                                        }else if($scope.announcements[i].isPosted == true){
+                                            $scope.announcements[i].isPosted = false;
                                         }
                                     }
                                 }
+                                if($scope.announcements[i].isPosted == null) $scope.announcements[i].isPosted = true;
                             }
                             $scope.announcements.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
+                            if(limit < $scope.announcements.length) $scope.announcements.splice(limit,$scope.announcements.length);
                         });
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     });
