@@ -1382,7 +1382,8 @@
           "id": 4,
           "title": "Incoming Compartment for LDR Mining"
         }
-      }
+      },
+      "averageRun": 0
     },
     {
       "id": 41,
@@ -1494,7 +1495,7 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "averageRun": 24,
+      "averageRun": 31,
       "parent_component": null,
       "projectId": 2,
       "from": "marketplace",
@@ -1522,7 +1523,7 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "averageRun": 12.75,
+      "averageRun": 29,
       "parent_component": null,
       "projectId": 4,
       "from": "marketplace",
@@ -1873,6 +1874,148 @@
             "instancename": "AppliedLoad"
           }
         }
+      }
+    },
+    {
+      "serviceId": 42,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "02/29/2016",
+      "startTime": "12:49:25 PM",
+      "project": {
+        "id": 2,
+        "title": "Capacitor Bank for LDR Mining Co."
+      },
+      "id": 7,
+      "stopDate": "02/29/2016",
+      "stopTime": "12:49:56 PM",
+      "interface": {
+        "inParams": {
+          "SpecimenWidth": {
+            "name": "SpecimenWidth",
+            "type": "Real",
+            "unit": "meter",
+            "category": "length",
+            "value": "3",
+            "parameterid": "d9f30f3a-d800-1004-8f53-704dbfababa8"
+          },
+          "CrackLength": {
+            "name": "CrackLength",
+            "type": "Real",
+            "unit": "meter",
+            "category": "length",
+            "value": "1",
+            "parameterid": "d9f30f37-d800-1004-8f53-704dbfababa8"
+          }
+        },
+        "outParams": {
+          "Alpha": {
+            "name": "Alpha",
+            "type": "Real",
+            "unit": "no unit",
+            "category": "no unit",
+            "value": 0.3333333333333333,
+            "parameterid": "d9f30f3d-d800-1004-8f53-704dbfababa8",
+            "instancename": "Alpha"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 43,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": 0,
+      "percentCompleted": 100,
+      "startDate": "02/29/2016",
+      "startTime": "12:50:23 PM",
+      "project": {
+        "id": 4,
+        "title": "Incoming Compartment for LDR Mining"
+      },
+      "id": 8,
+      "stopDate": "02/29/2016",
+      "stopTime": "12:50:52 PM",
+      "interface": {
+        "inParams": {
+          "t": {
+            "name": "t",
+            "type": "Real",
+            "unit": "second",
+            "category": "time",
+            "value": "5",
+            "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "a": {
+            "name": "a",
+            "type": "Real",
+            "unit": "meter per second square",
+            "category": "acceleration",
+            "value": "7",
+            "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+          },
+          "vel_0": {
+            "name": "vel_0",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": "4",
+            "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+          }
+        },
+        "outParams": {
+          "v": {
+            "name": "v",
+            "type": "Real",
+            "unit": "centimeter per second",
+            "category": "velocity",
+            "value": 3504,
+            "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+            "instancename": "v"
+          }
+        }
+      }
+    },
+    {
+      "serviceId": 13,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": -1,
+      "percentCompleted": 100,
+      "startDate": "02/29/2016",
+      "startTime": "12:51:29 PM",
+      "project": {
+        "id": 4,
+        "title": "Incoming Compartment for LDR Mining"
+      },
+      "id": 9,
+      "stopDate": "02/29/2016",
+      "stopTime": "12:51:29 PM",
+      "interface": {
+        "inParams": null,
+        "outParams": null
+      }
+    },
+    {
+      "serviceId": 5,
+      "accountId": 1,
+      "runBy": "Thomas Smith",
+      "status": -1,
+      "percentCompleted": 100,
+      "startDate": "02/29/2016",
+      "startTime": "12:52:13 PM",
+      "project": {
+        "id": 5,
+        "title": "Low Heat Loss Transformer"
+      },
+      "id": 10,
+      "stopDate": "02/29/2016",
+      "stopTime": "12:52:13 PM",
+      "interface": {
+        "inParams": null,
+        "outParams": null
       }
     }
   ],
