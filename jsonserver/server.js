@@ -124,23 +124,23 @@ router.render = function (req, res) {
             if(method == "GET"){
                 var isGetServices = false;
                 var isGetProjects = false;
-                var isGetComponents = false;
+                //var isGetComponents = false;
                 var data = {};
                 request({ url: host+"/services", method: 'GET', json : true, data : query }, function(err, response, body) {
                     data.services = body;
                     isGetServices = true;
-                    if( isGetServices && isGetProjects && isGetComponents ) res.json(data);
+                    if( isGetServices && isGetProjects ) res.json(data);
                 });
                 request({ url: host+"/projects", method: 'GET', json : true, data : query }, function(err, response, body) {
                     data.projects = body;
                     isGetProjects = true;
-                    if( isGetServices && isGetProjects && isGetComponents ) res.json(data);
+                    if( isGetServices && isGetProjects ) res.json(data);
                 });
-                request({ url: host+"/components", method: 'GET', json : true, data : query }, function(err, response, body) {
-                    data.components = body;
-                    isGetComponents = true;
-                    if( isGetServices && isGetProjects && isGetComponents) res.json(data);
-                });
+                //request({ url: host+"/components", method: 'GET', json : true, data : query }, function(err, response, body) {
+                //    data.components = body;
+                //    isGetComponents = true;
+                //    if( isGetServices && isGetProjects && isGetComponents) res.json(data);
+                //});
             }else{
                 res.json(res.locals.data);
             }
