@@ -45,7 +45,7 @@
 			<md-button ng-click="cancel()">
 				Cancel
 			</md-button>
-			<md-button class="md-raised md-primary" ng-click="save(message, subject)" ng-disabled="!NewDiscussion.subject || !NewDiscussion.message">
+			<md-button class="md-raised md-primary" ng-click="save(NewDiscussion.message, NewDiscussion.subject)" ng-disabled="!NewDiscussion.subject || !NewDiscussion.message">
 				Post
 			</md-button>
 		</div>

@@ -1,4 +1,4 @@
-angular.module('dmc.community')
+angular.module('dmc.compose-discussion',[])
     .controller("ComposeDiscussionController", [
         '$scope',
         'ajax',
@@ -8,6 +8,8 @@ angular.module('dmc.community')
         '$location',
         '$mdDialog',
         "$mdToast",
+        "previousPage",
+        "project_id",
         "toastModel",
         function ($scope,
                   ajax,
@@ -17,6 +19,8 @@ angular.module('dmc.community')
                   $location,
                   $mdDialog,
                   $mdToast,
+                  previousPage,
+                  project_id,
                   toastModel) {
 
             $scope.NewDiscussion = {
@@ -45,18 +49,19 @@ angular.module('dmc.community')
                 $scope.NewDiscussion.tags.splice(index,1);
             };
 
+            $scope.projectId = (project_id ? project_id : null);
+
             $scope.save = function(message, subject){
                 ajax.create(
                     dataFactory.addDiscussion(), {
-                        "title": $scope.NewDiscussion.subject,
-                        "message": message,
-                        "projectId" : 0,
+                        "title": subject,
+                        "projectId" : $scope.projectId,
                         "accountId" : $rootScope.userData.accountId,
                         "created_by" : $rootScope.userData.displayName,
                         "created_at": Date.parse(new Date())
                     },
                     function(response){
-                        if( followDiscussion(response.data.id) && createMessage(response.data.id,$scope.NewDiscussion.message)) {
+                        if( followDiscussion(response.data.id) && createMessage(response.data.id,message)) {
                             if ($scope.NewDiscussion.tags.length > 0) {
                                 for (var i in $scope.NewDiscussion.tags) {
                                     ajax.create(
@@ -67,15 +72,15 @@ angular.module('dmc.community')
                                         }
                                     );
                                     if (i == $scope.NewDiscussion.tags.length - 1) {
+                                        if($scope.projectId) previousPage.set(location.origin + '/project.php#/' + $scope.projectId + '/discussions');
                                         toastModel.showToast("success", "Discussion created");
-                                        // $scope.linkToDiscussion = '/individual-discussion.php#/' + response.data.id;
                                         $mdDialog.hide();
                                         $window.location.href = '/individual-discussion.php#/' + response.data.id;
                                     }
                                 }
                             } else {
-                                //toastModel.showToast("success", "Discussion created");
-                                // $scope.linkToDiscussion = '/individual-discussion.php#/' + response.data.id;
+                                if($scope.projectId) previousPage.set(location.origin + '/project.php#/' + $scope.projectId + '/discussions');
+                                toastModel.showToast("success", "Discussion created");
                                 $mdDialog.hide();
                                 $window.location.href = '/individual-discussion.php#/' + response.data.id;
                             }

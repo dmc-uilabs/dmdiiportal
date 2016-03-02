@@ -22,6 +22,7 @@ angular.module('dmc.project', [
 		'dmc.widgets.stars',
 		'dmc.widgets.review',
 		'dmc.widgets.tabs',
+        'dmc.compose-discussion',
         'dmc.widgets.interfaces',
         'dmc.component.productcard',
         'dmc.model.question-toast-model',
@@ -95,7 +96,8 @@ angular.module('dmc.project', [
         }).state('project.home', {
             url: '/home',
             controller: 'HomeCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/home.html'
+            templateUrl: 'templates/project/pages/home.html',
+            resolve: resolve
         }).state('project.workspace', {
             url: '/workspace',
             controller: 'WorkspaceCtrl as projectCtrl',
@@ -103,7 +105,8 @@ angular.module('dmc.project', [
         }).state('project.edit', {
             url: '/edit',
             controller: 'EditProjectCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/edit.html'
+            templateUrl: 'templates/project/pages/edit.html',
+            resolve: resolve
         }).state('project.documents', {
             url: '/documents',
             controller: 'DocumentsCtrl as projectCtrl',

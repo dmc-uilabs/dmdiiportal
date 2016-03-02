@@ -733,7 +733,7 @@
       "id": 2,
       "title": "Capacitor Bank for LDR Mining Co.",
       "type": "public",
-      "dueDate": 1455544706321,
+      "dueDate": 1454450400000,
       "projectManager": "PDM Co.",
       "featureImage": {
         "thumbnail": "/images/logo-ldr-mining.png",
@@ -7479,6 +7479,26 @@
       "accountId": 1,
       "individual-discussionId": 6,
       "id": 6
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 7,
+      "id": 7
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 9,
+      "id": 8
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 8,
+      "id": 9
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 9,
+      "id": 10
     }
   ],
   "individual-discussion-tags": [
@@ -7496,6 +7516,16 @@
       "name": "Tag1",
       "individual-discussionId": 6,
       "id": 3
+    },
+    {
+      "name": "test tag",
+      "individual-discussionId": 7,
+      "id": 4
+    },
+    {
+      "name": "tag1",
+      "individual-discussionId": 8,
+      "id": 5
     }
   ],
   "individual-discussion": [
@@ -7542,6 +7572,22 @@
       "created_by": "Thomas Smith",
       "created_at": 1456854066000,
       "id": 6
+    },
+    {
+      "title": "Test discussion created from project",
+      "projectId": 2,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1456917111000,
+      "id": 8
+    },
+    {
+      "title": "Created from project home page",
+      "projectId": 2,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1456917278000,
+      "id": 9
     }
   ],
   "individual-discussion-comments": [
@@ -7754,6 +7800,49 @@
       "like": 0,
       "dislike": 0,
       "id": 16
+    },
+    {
+      "individual-discussionId": 8,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "Message of discussion",
+      "created_at": "03/02/2016 01:11 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 17
+    },
+    {
+      "individual-discussionId": 9,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "test message",
+      "created_at": "03/02/2016 01:14 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 18
+    },
+    {
+      "individual-discussionId": 9,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 0,
+      "text": "Hi",
+      "created_at": 1456918115999,
+      "like": 0,
+      "dislike": 0,
+      "id": 19
     }
   ],
   "individual-discussion-comments-helpful": [

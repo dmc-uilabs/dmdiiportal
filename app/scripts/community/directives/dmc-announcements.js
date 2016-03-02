@@ -42,6 +42,7 @@ angular.module('dmc.community.dmc-announcements',[]).
                                         }
                                     }
                                 }
+                                if($scope.announcements[i].replies > 0) $scope.announcements[i].replies--;
                                 if($scope.announcements[i].isPosted == null) $scope.announcements[i].isPosted = true;
                             }
                             $scope.announcements.sort(function(a,b){ return b.last.created_at - a.last.created_at; });

@@ -12,6 +12,7 @@ angular.module('dmc.community', [
     'dmc.common.footer',
     "dmc.ajax",
     "dmc.data",
+    'dmc.compose-discussion',
     'ngtimeago',
     'dmc.community.discussions',
     'dmc.community.dmc-events',

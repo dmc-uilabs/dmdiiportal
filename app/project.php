@@ -117,7 +117,7 @@
     <script src="scripts/components/add-project/add-project.directive.js"></script>
     <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/components/ui-widgets/stars.directive.js"></script>
-
+    <script src="scripts/community/controllers/compose-discussion.js"></script>
 
     <script src="scripts/project/project.js"></script>
     <script src="scripts/project/controllers/id-locator.js"></script>
@@ -142,6 +142,7 @@
     <script src="scripts/project/controllers/edit.js"></script>
     <script src="scripts/project/controllers/services-detail.js"></script>
     <script src="scripts/project/controllers/publish-service-marketplace.js"></script>
+
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

@@ -65,6 +65,7 @@ angular.module('dmc.project')
                                     }
                                 }
                             }
+                            if($scope.discussions[i].replies > 0) $scope.discussions[i].replies--;
                             if($scope.discussions[i].isPosted == null) $scope.discussions[i].isPosted = true;
                         }
                         //$scope.discussions.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
@@ -72,16 +73,6 @@ angular.module('dmc.project')
                     });
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 });
-                /*ajax.get(dataFactory.getDiscussions($scope.projectId), {
-                        _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
-                        _order: $scope.order,
-                        text_like: $scope.searchModel,
-                        _type: $scope.typeModel
-                    }, function (response) {
-                        $scope.discussions = response.data;
-                        apply();
-                    }
-                );*/
             };
             $scope.getDiscussions();
 
@@ -106,6 +97,20 @@ angular.module('dmc.project')
                 var dataSearch = $.extend(true, {}, $stateParams);
                 dataSearch.type = type;
                 $state.go('project.discussions', dataSearch, {reload: true});
+            };
+
+            $scope.newDiscussion = function(ev){
+                $(window).scrollTop(0);
+                $mdDialog.show({
+                    controller: "ComposeDiscussionController",
+                    templateUrl: "templates/individual-discussion/compose-discussion.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    locals: {
+                         project_id: projectCtrl.currentProjectId
+                    },
+                    clickOutsideToClose:true
+                }).then(function() {}, function() {});
             };
         }
     })

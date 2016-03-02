@@ -78,21 +78,6 @@ angular.module('dmc.view-all')
             }
 
             $scope.getAnnouncements = function () {
-                //ajax.get(dataFactory.getAnnouncements(), {
-                //        _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
-                //        _order: $scope.order,
-                //        title_like: $scope.searchModel,
-                //        _type: $scope.typeModel
-                //    }, function (response) {
-                //        $scope.announcements = response.data;
-                //        for(var a in $scope.announcements){
-                //        	getUser($scope.announcements[a]);
-                //        	getComments($scope.announcements[a]);
-                //            $scope.announcements[a].created_at = moment($scope.announcements[a].created_at).format("MM/DD/YYYY hh:mm A");
-                //        }
-                //        apply();
-                //    }
-                //);
                 ajax.get(dataFactory.getIndividualDiscussions(), {
                     "_order" : "DESC",
                     title_like: $scope.searchModel,
@@ -104,7 +89,8 @@ angular.module('dmc.view-all')
                     ajax.get(dataFactory.addCommentIndividualDiscussion(),{
                         "individual-discussionId" : ids,
                         "_order" : "DESC",
-                        "_sort" : "id"
+                        "_sort" : "id",
+                        "commentId": 0
                     },function(res){
                         for(var i in $scope.announcements){
                             $scope.announcements[i].created_at_format = moment(new Date($scope.announcements[i].created_at)).format("MM/DD/YYYY");
@@ -121,6 +107,7 @@ angular.module('dmc.view-all')
                                     }
                                 }
                             }
+                            if($scope.announcements[i].replies > 0) $scope.announcements[i].replies--;
                         }
                         $scope.announcements.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
                         //$scope.discussions.splice($scope.limit,$scope.discussions.length);

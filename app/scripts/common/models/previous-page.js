@@ -77,4 +77,8 @@ angular.module('dmc.model.previous-page', [
             $cookies.put('previousPage', $location.$$absUrl);
             window.location = location.origin+$(e.currentTarget).attr("href");
         };
+
+        this.set = function(url){
+            $cookies.put('previousPage', url);
+        }
 }]);

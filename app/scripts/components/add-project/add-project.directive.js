@@ -103,7 +103,8 @@ angular.module('dmc.add_project.directive', [
               goToTab : '=',
               disableEnableTab : '=',
               // user input is save on this object
-              projectDetails: '='
+              projectDetails: '=',
+              isUpdate: '='
             },
             controller: function ($scope) {
                 if($scope.projectDetails){
@@ -115,6 +116,31 @@ angular.module('dmc.add_project.directive', [
                 $scope.$watch('form.$valid', function(current, old){
                     $scope.disableEnableTab(2,current);
                 });
+
+                $scope.cancelEdit = function(){
+                    document.location.href = "project.php#/"+$scope.projectDetails.id+"/home";
+                };
+
+                $scope.isChanges = false;
+                var changedValues = {};
+                $scope.changed = function(name){
+                    if($scope.projectDetails[name] != $scope.projectDetails[name+"_old"]){
+                        changedValues[name] = $scope.projectDetails[name];
+                    }else if($scope.projectDetails[name] == $scope.projectDetails[name+"_old"] && changedValues[name]){
+                        delete changedValues[name];
+                    }
+                    $scope.isChanges = Object.keys(changedValues).length == 0 ? false : true;
+                };
+
+                //$scope.cancelChanges = function(){
+                //    if($scope.isUpdate && $scope.isChanges) {
+                //        for (var key in changedValues) {
+                //            if ($scope.projectDetails[key]) $scope.projectDetails[key] = $scope.projectDetails[key + "_old"];
+                //        }
+                //        $scope.isChanges = false;
+                //        changedValues = {};
+                //    }
+                //};
 
                 function apply() {
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();

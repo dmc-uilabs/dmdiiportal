@@ -72,6 +72,7 @@ angular.module('dmc.view-all')
                     //);
                     ajax.get(dataFactory.getIndividualDiscussions(), {
                         "_order" : "DESC",
+                        "projectId" : $scope.projectId,
                         title_like: $scope.searchModel,
                         "_sort" : "id"
                     }, function (response) {
@@ -99,6 +100,7 @@ angular.module('dmc.view-all')
                                         }
                                     }
                                 }
+                                if($scope.discussions[i].replies > 0) $scope.discussions[i].replies--;
                                 if($scope.discussions[i].isPosted == null) $scope.discussions[i].isPosted = true;
                             }
                             $scope.discussions.sort(function(a,b){ return b.last.created_at - a.last.created_at; });

@@ -8,8 +8,11 @@
         </h1>
         <div class="md-toolbar-tools">
             <div layout="column" flex="65" class="margin-right12-5">
-                <div layout="row" class="name-project" flex>
+                <div layout="row" layout-align="start center" class="name-project" flex>
                     <div sub-nav-menu-button current-page="6"></div>
+                    <md-button class="add-button-square" ng-click="newDiscussion($event)">
+                        <ng-md-icon icon="add" size="18"></ng-md-icon>
+                    </md-button>
                 </div>
                 <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
             </div>

@@ -50,6 +50,13 @@ angular.module('dmc.individual-discussion', [
 
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
+            if($scope.previousPage.tag == "dashboard"){
+                $scope.previousPage = {
+                    tag : "community",
+                    title: "Back to Community",
+                    url: location.origin+'/community.php'
+                }
+            }
 
             if($scope.previousPage.tag == "project" || $scope.previousPage.tag == "my-projects" || $scope.previousPage.tag == "all-projects"){
                 $(".bottom-header .active-page").removeClass("active-page");
