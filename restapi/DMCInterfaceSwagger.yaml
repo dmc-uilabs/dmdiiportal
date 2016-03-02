@@ -4855,6 +4855,9 @@ definitions:
         type: string
       description:
         type: string
+      dueDate:
+        type: number
+        format: milliseconds
       tasks:
         $ref: '#/definitions/Tasks'
       discussions:
@@ -4879,7 +4882,8 @@ definitions:
       from:
         type: string
       date:
-        type: string
+        type: number
+        format: milliseconds
   SimplifiedProject:
     type: object
     properties:
@@ -4889,6 +4893,7 @@ definitions:
         type: string
   Task:
     type: object
+    description: "Priority: 1 - Critical, 2 - High, 3 - Medium, 4 - Low"
     properties:
       id:
         type: string
@@ -4901,11 +4906,15 @@ definitions:
       reporter:
         type: string
       dueDate:
-        type: string
-        format: date-time
+        type: number
+        format: milliseconds
       priority:
-        type: string
-        format: date-time
+        type: number
+        enum:
+            - 1
+            - 2
+            - 3
+            - 4
   CurrentStatus:
     type: object
     properties:
@@ -5232,7 +5241,8 @@ definitions:
       status:
         type: boolean
       date:
-        type: string
+        type: number
+        format: milliseconds
       rating:
         type: integer
       like:
@@ -5284,8 +5294,8 @@ definitions:
       status:
         type: boolean
       date:
-        type: string
-        format: date
+        type: number
+        format: milliseconds
       rating:
         type: integer
       like:
@@ -5407,7 +5417,8 @@ definitions:
       status:
         type: boolean
       date:
-        type: string
+        type: number
+        format: milliseconds
       rating:
         type: integer
       like:
@@ -6072,8 +6083,8 @@ definitions:
       text:
         type: string
       created_at:
-        type: string
-        format: dateTime
+        type: number
+        format: milliseconds
       reply:
         type: boolean
       commentId:
@@ -6081,6 +6092,8 @@ definitions:
       like:
         type: number
       dislike:
+        type: number
+      projectId:
         type: number
   IndividualDiscussionCommentHelpful:
     type: object
@@ -6114,7 +6127,8 @@ definitions:
       created_by:
         type: string
       created_at:
-        type: string
+        type: number
+        format: milliseconds
       accountId:
         type: string
       projectId:

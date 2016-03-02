@@ -5449,7 +5449,7 @@
       "assignee": "Bridget Cohen",
       "reporter": "J.Knight",
       "dueDate": 1445720400000,
-      "priority": "High",
+      "priority": 3,
       "projectId": 1,
       "status": "Completed"
     },
@@ -5463,7 +5463,7 @@
       "assignee": "Bridget Cohen",
       "reporter": "B.Hines",
       "dueDate": 1445810400000,
-      "priority": "Medium",
+      "priority": 2,
       "projectId": 1,
       "status": "Completed"
     },
@@ -5477,7 +5477,7 @@
       "assignee": "Denis Sobko",
       "reporter": "B.Franks",
       "dueDate": 1447797600000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 1,
       "status": "Completed"
     },
@@ -5491,7 +5491,7 @@
       "assignee": "Denis Sobko",
       "reporter": "R.Scott",
       "dueDate": 1449957600000,
-      "priority": "Medium",
+      "priority": 3,
       "projectId": 1,
       "status": "Completed"
     },
@@ -5505,7 +5505,7 @@
       "assignee": "Bridget Cohen",
       "reporter": "E.Henderson",
       "dueDate": 1449957600000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 2,
       "status": "Completed"
     },
@@ -5519,7 +5519,7 @@
       "assignee": "Hussain Rizvi",
       "reporter": "E.Parson",
       "dueDate": 1450044000000,
-      "priority": "Critical",
+      "priority": 1,
       "projectId": 2,
       "status": "Completed"
     },
@@ -5533,7 +5533,7 @@
       "assignee": "Stephen Rencour",
       "reporter": "G.Flores",
       "dueDate": 1455573600000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 2,
       "status": "Completed",
       "description": "Obtain spec from LDR Mining Co. regarding bank rating and protection requirements"
@@ -5548,7 +5548,7 @@
       "assignee": "Bridget Cohen",
       "reporter": "S.Synder",
       "dueDate": 1450303200000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 2,
       "status": "Completed"
     },
@@ -5562,7 +5562,7 @@
       "assignee": "Bridget Cohen",
       "reporter": "R.Jefferson",
       "dueDate": 1454364000000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 3,
       "status": "Completed"
     },
@@ -5741,7 +5741,7 @@
       "assignee": "Bridget Cohen",
       "reporter": "b.beckmann",
       "dueDate": 1451685600000,
-      "priority": "Low",
+      "priority": 4,
       "projectId": 5,
       "status": "Completed"
     },
@@ -5755,7 +5755,7 @@
       "assignee": "Denis Sobko",
       "reporter": "Jack Graber",
       "dueDate": 1452808800000,
-      "priority": "Critical",
+      "priority": 1,
       "projectId": 5,
       "status": "Completed"
     },
@@ -5765,7 +5765,7 @@
       "assignee": "Stephen Rencour",
       "reporter": "Jack Graber",
       "dueDate": 1451599200000,
-      "priority": "High",
+      "priority": 3,
       "projectId": 5,
       "id": 23,
       "status": "Completed"

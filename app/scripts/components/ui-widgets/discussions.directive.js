@@ -143,7 +143,7 @@ angular.module('dmc.widgets.discussions',[
                                         }
                                     }
                                 }
-                                if($scope.discussions[i].replies > 0) $scope.discussions[i].replies--;
+                                if($scope.projectDiscussions[i].replies > 0) $scope.projectDiscussions[i].replies--;
                                 if($scope.projectDiscussions[i].isPosted == null) $scope.projectDiscussions[i].isPosted = true;
                             }
                             //$scope.discussions.sort(function(a,b){ return b.last.created_at - a.last.created_at; });
