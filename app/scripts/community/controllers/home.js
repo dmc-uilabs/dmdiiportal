@@ -52,9 +52,9 @@ angular.module('dmc.community')
                             templateUrl: "templates/individual-discussion/compose-discussion.html",
                             parent: angular.element(document.body),
                             targetEvent: ev,
-                            // locals: {
-                            //     products: $scope.allServices
-                            // },
+                            locals: {
+                                 project_id: null
+                            },
                             clickOutsideToClose:true
                         })
                         .then(function() {

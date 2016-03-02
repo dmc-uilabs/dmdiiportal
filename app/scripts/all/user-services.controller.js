@@ -23,11 +23,11 @@ angular.module('dmc.view-all')
 
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
-            if($scope.previousPage.tag == "company"){
+            if($scope.previousPage.tag != "community"){
                 $scope.previousPage = {
-                    tag : "my-projects",
-                    title: "Back to My Projects",
-                    url: location.origin+'/my-projects.php'
+                    tag : "dashboard",
+                    title: "Back to Dashboard",
+                    url: location.origin+'/dashboard.php'
                 }
             }
             $(".bottom-header .active-page").removeClass("active-page");

@@ -8,8 +8,11 @@
         </h1>
         <div class="md-toolbar-tools">
             <div layout="column" flex="65" class="margin-right12-5">
-                <div layout="row" class="name-project" flex>
+                <div layout="row" class="name-project" flex layout-align="start center">
                     <div sub-nav-menu-button current-page="4"></div>
+                    <md-button class="add-button-square" ng-click="newTask($event)">
+                        <ng-md-icon icon="add" size="18"></ng-md-icon>
+                    </md-button>
                 </div>
             </div>
         </div>

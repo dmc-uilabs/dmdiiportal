@@ -18,11 +18,13 @@ angular.module('dmc.view-all')
                     previousPage,
                     dataFactory) {
 
+            $scope.prevPage = previousPage;
+
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
 
             $("title").text("View All Discussions");
-            if($scope.previousPage.tag == "company"){
+            if($scope.previousPage.tag != "my-projects"){
                 $scope.previousPage = {
                     tag : "my-projects",
                     title: "Back to My Projects",
@@ -112,9 +114,9 @@ angular.module('dmc.view-all')
                 $scope.getDiscussions();
 
                 $scope.onOrderChange = function (order) {
-                    $scope.sort = order;
-                    $scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
-                    $scope.getDiscussions();
+                    //$scope.sort = order;
+                    //$scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
+                    //$scope.getDiscussions();
                 };
 
                 var apply = function () {

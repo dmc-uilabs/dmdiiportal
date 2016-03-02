@@ -41,16 +41,16 @@
                             <table md-data-table>
                                 <thead md-order="sort" md-trigger="onOrderChange">
                                 <tr>
-                                    <th name="Discussion" order-by="text" class="title"></th>
+                                    <th name="Discussion" order-by="title" class="title"></th>
                                     <th name="Replies" order-by="replies"></th>
-                                    <th name="Created by" order-by="createdBy"></th>
-                                    <th name="Latest Post" order-by="latestPost"></th>
+                                    <th name="Created by" order-by="created_by"></th>
+                                    <th name="Latest Post" order-by="last.created_at"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="item in discussions">
+                                <tr ng-repeat="item in discussions | orderBy : sort">
                                     <td>
-                                        <a class="link-button font-size14" ng-href="{{'individual-discussion.php#/'+item.title}}">{{item.title}}</a>
+                                        <a class="link-button font-size14" href="/individual-discussion.php#/{{item.id}}" ng-click="prevPage.save($event)">{{item.title}}</a>
                                     </td>
                                     <td>{{item.replies}} replies</td>
                                     <td>

@@ -5824,6 +5824,28 @@
       "projectId": 2,
       "status": "Open",
       "id": 28
+    },
+    {
+      "title": "Create task from project tasks page",
+      "description": "Create task from project tasks page",
+      "assignee": "Stephen Rencour",
+      "reporter": "Jack Graber",
+      "dueDate": 1457647200000,
+      "priority": 2,
+      "projectId": 1,
+      "status": "Open",
+      "id": 29
+    },
+    {
+      "title": "Test task",
+      "description": "Test task",
+      "assignee": "Stephen Rencour",
+      "reporter": "Jack Graber",
+      "dueDate": 1456869600000,
+      "priority": 1,
+      "projectId": 1,
+      "status": "Open",
+      "id": 30
     }
   ],
   "array_specifications": [
@@ -7499,6 +7521,51 @@
       "accountId": 1,
       "individual-discussionId": 9,
       "id": 10
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 10,
+      "id": 11
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 11,
+      "id": 12
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 12,
+      "id": 13
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 13,
+      "id": 14
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 14,
+      "id": 15
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 24,
+      "id": 16
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 15,
+      "id": 17
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 16,
+      "id": 18
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 17,
+      "id": 19
     }
   ],
   "individual-discussion-tags": [
@@ -7526,6 +7593,26 @@
       "name": "tag1",
       "individual-discussionId": 8,
       "id": 5
+    },
+    {
+      "name": "Tag",
+      "individual-discussionId": 10,
+      "id": 6
+    },
+    {
+      "name": "tag 1",
+      "individual-discussionId": 17,
+      "id": 7
+    },
+    {
+      "name": "tag 2",
+      "individual-discussionId": 17,
+      "id": 8
+    },
+    {
+      "name": "tag 3",
+      "individual-discussionId": 17,
+      "id": 9
     }
   ],
   "individual-discussion": [
@@ -7588,6 +7675,70 @@
       "created_by": "Thomas Smith",
       "created_at": 1456917278000,
       "id": 9
+    },
+    {
+      "title": "Test discussion",
+      "projectId": 1,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1456939283000,
+      "id": 10
+    },
+    {
+      "title": "Created from community page",
+      "projectId": null,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1456939338000,
+      "id": 11
+    },
+    {
+      "title": "New discussion for test",
+      "projectId": null,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1456939466000,
+      "id": 12
+    },
+    {
+      "title": "Test Discussion",
+      "projectId": 1,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1456940572000,
+      "id": 13
+    },
+    {
+      "title": "First Discussion",
+      "projectId": null,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1456941425000,
+      "id": 14
+    },
+    {
+      "title": "Second Discussion",
+      "projectId": null,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1456941481000,
+      "id": 15
+    },
+    {
+      "title": "Created from project home",
+      "projectId": 1,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1456941528000,
+      "id": 16
+    },
+    {
+      "title": "Created from discussions project page",
+      "projectId": 1,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1456941590000,
+      "id": 17
     }
   ],
   "individual-discussion-comments": [
@@ -7843,6 +7994,126 @@
       "like": 0,
       "dislike": 0,
       "id": 19
+    },
+    {
+      "individual-discussionId": 10,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "Message",
+      "created_at": "03/02/2016 07:21 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 20
+    },
+    {
+      "individual-discussionId": 11,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "Message",
+      "created_at": "03/02/2016 07:22 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 21
+    },
+    {
+      "individual-discussionId": 12,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "message discussion",
+      "created_at": "03/02/2016 07:24 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 22
+    },
+    {
+      "individual-discussionId": 13,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "message",
+      "created_at": "03/02/2016 07:42 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 23
+    },
+    {
+      "individual-discussionId": 14,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "Message for first discussion",
+      "created_at": "03/02/2016 07:57 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 24
+    },
+    {
+      "individual-discussionId": 15,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "Message",
+      "created_at": "03/02/2016 07:58 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 25
+    },
+    {
+      "individual-discussionId": 16,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "Message text",
+      "created_at": "03/02/2016 07:58 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 26
+    },
+    {
+      "individual-discussionId": 17,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "text",
+      "created_at": "03/02/2016 07:59 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 27
     }
   ],
   "individual-discussion-comments-helpful": [

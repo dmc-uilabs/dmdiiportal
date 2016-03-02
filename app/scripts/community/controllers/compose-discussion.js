@@ -10,6 +10,7 @@ angular.module('dmc.compose-discussion',[])
         "$mdToast",
         "previousPage",
         "project_id",
+        "$timeout",
         "toastModel",
         function ($scope,
                   ajax,
@@ -21,13 +22,18 @@ angular.module('dmc.compose-discussion',[])
                   $mdToast,
                   previousPage,
                   project_id,
+                  $timeout,
                   toastModel) {
 
+            $timeout(function(){
+                $("#subject-compose-discussion").focus();
+            },800);
             $scope.NewDiscussion = {
                 subject: "",
                 tags: [],
                 message: ""
             };
+
 
             $scope.cancel = function(){
                 $scope.NewDiscussion = {
@@ -61,45 +67,46 @@ angular.module('dmc.compose-discussion',[])
                         "created_at": Date.parse(new Date())
                     },
                     function(response){
-                        if( followDiscussion(response.data.id) && createMessage(response.data.id,message)) {
-                            if ($scope.NewDiscussion.tags.length > 0) {
-                                for (var i in $scope.NewDiscussion.tags) {
-                                    ajax.create(
-                                        dataFactory.addDiscussionTag(), {
-                                            "name": $scope.NewDiscussion.tags[i],
-                                            "individual-discussionId": response.data.id
-                                        }, function (data) {
-                                        }
-                                    );
-                                    if (i == $scope.NewDiscussion.tags.length - 1) {
-                                        if($scope.projectId) previousPage.set(location.origin + '/project.php#/' + $scope.projectId + '/discussions');
-                                        toastModel.showToast("success", "Discussion created");
-                                        $mdDialog.hide();
-                                        $window.location.href = '/individual-discussion.php#/' + response.data.id;
-                                    }
-                                }
-                            } else {
-                                if($scope.projectId) previousPage.set(location.origin + '/project.php#/' + $scope.projectId + '/discussions');
-                                toastModel.showToast("success", "Discussion created");
-                                $mdDialog.hide();
-                                $window.location.href = '/individual-discussion.php#/' + response.data.id;
-                            }
-                        }
+                        createMessage(response.data.id,message);
                     }
                 );
             };
 
+            function redirect(id){
+                if($scope.projectId){
+                    previousPage.set(location.origin + '/project.php#'+$location.$$path);
+                }else{
+                    previousPage.set(location.origin + '/community.php');
+                }
+                toastModel.showToast("success", "Discussion created");
+                $mdDialog.hide();
+                $window.location.href = '/individual-discussion.php#/' + id;
+            }
+
             function followDiscussion(id){
-                return ajax.create(dataFactory.followDiscussion(),{
+                ajax.create(dataFactory.followDiscussion(),{
                     "accountId" : $rootScope.userData.accountId,
                     "individual-discussionId": id
                 },function(response){
-                    return response;
+                    if ($scope.NewDiscussion.tags.length > 0) {
+                        for (var i in $scope.NewDiscussion.tags) {
+                            ajax.create(
+                                dataFactory.addDiscussionTag(), {
+                                    "name": $scope.NewDiscussion.tags[i],
+                                    "individual-discussionId": id
+                                }, function (data) {
+                                }
+                            );
+                            if (i == $scope.NewDiscussion.tags.length - 1) redirect(id);
+                        }
+                    } else {
+                        redirect(id);
+                    }
                 });
             }
 
             function createMessage(id,message){
-                return ajax.create(
+                ajax.create(
                     dataFactory.addCommentIndividualDiscussion(), {
                         "individual-discussionId": id,
                         "full_name": $rootScope.userData.displayName,
@@ -114,8 +121,8 @@ angular.module('dmc.compose-discussion',[])
                         "like": 0,
                         "dislike": 0
                     },
-                    function(data){
-                        return data;
+                    function(response){
+                        followDiscussion(id);
                     }
                 );
             }

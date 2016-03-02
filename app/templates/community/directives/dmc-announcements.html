@@ -15,7 +15,7 @@
             <md-list>
                 <md-list-item class="md-2-line" ng-repeat="item in announcements">
                     <div class="md-list-item-text" layout="column">
-                        <p><a class="link-button font-size14" href="/individual-discussion.php#/{{item.id}}" class="link-button">{{item.title}}</a></p>
+                        <p><a class="link-button font-size14" href="/individual-discussion.php#/{{item.id}}" ng-click="previousPage.save($event)" class="link-button">{{item.title}}</a></p>
                         <div class="info">
                             <span>{{item.created_at_format}}</span>
                             <span>{{item.replies}} comments</span>

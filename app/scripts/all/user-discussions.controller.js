@@ -16,13 +16,15 @@ angular.module('dmc.view-all')
                     previousPage,
                     dataFactory) {
 
+            $scope.prevPage = previousPage;
+
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
-            if($scope.previousPage.tag == "company"){
+            if($scope.previousPage.tag != "community"){
                 $scope.previousPage = {
-                    tag : "my-projects",
-                    title: "Back to My Projects",
-                    url: location.origin+'/my-projects.php'
+                    tag : "dashboard",
+                    title: "Back to Dashboard",
+                    url: location.origin+'/dashboard.php'
                 }
             }
             $(".bottom-header .active-page").removeClass("active-page");
@@ -112,9 +114,9 @@ angular.module('dmc.view-all')
                 $scope.getDiscussions();
 
                 $scope.onOrderChange = function (order) {
-                    $scope.sort = order;
-                    $scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
-                    $scope.getDiscussions();
+                    //$scope.sort = order;
+                    //$scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
+                    //$scope.getDiscussions();
                 };
 
                 var apply = function () {

@@ -16,13 +16,15 @@ angular.module('dmc.view-all')
                     previousPage,
                     dataFactory) {
 
+            $scope.prevPage = previousPage;
+
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
-            if($scope.previousPage.tag == "company"){
+            if($scope.previousPage.tag != "community"){
                 $scope.previousPage = {
-                    tag : "my-projects",
-                    title: "Back to My Projects",
-                    url: location.origin+'/my-projects.php'
+                    tag : "community",
+                    title: "Back to Community",
+                    url: previousPage
                 }
             }
             $(".bottom-header .active-page").removeClass("active-page");

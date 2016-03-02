@@ -1,6 +1,6 @@
 <div class="container container-view-all" layout="row">
     <div layout="column" flex>
-        <div class="return-block" ng-if="previousPage">
+        <div class="return-block">
             <a ng-href="/community.php#/home">Back to the Community</a>
         </div>
         <h2 class="page-title">DMC ANNOUNCEMENTS</h2>
@@ -47,7 +47,7 @@
                                 <tbody>
                                 <tr ng-repeat="item in announcements | orderBy : sort">
                                     <td>
-                                		<p><a href="/individual-discussion.php#/{{item.id}}">{{item.title}}</a></p>
+                                		<p><a href="/individual-discussion.php#/{{item.id}}" ng-click="prevPage.save($event)">{{item.title}}</a></p>
                                     </td>
                                     <td>{{item.replies}} replies</td>
                                     <td>

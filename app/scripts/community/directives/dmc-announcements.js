@@ -8,7 +8,8 @@ angular.module('dmc.community.dmc-announcements',[]).
             scope: {
                 widgetTitle: "="
             },
-            controller: ["$scope", "dataFactory", "ajax" ,"toastModel", function($scope, dataFactory, ajax, toastModel) {
+            controller: ["$scope", "dataFactory", "ajax" ,"toastModel","previousPage", function($scope, dataFactory, ajax, toastModel,previousPage) {
+                $scope.previousPage = previousPage;
                 $scope.announcements = [];
                 $scope.totalAnnouncements = 0;
                 var limit = 5;
