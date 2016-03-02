@@ -25,7 +25,7 @@ angular.module('dmc.all_projects', [
 .controller('DMCAllProjectsController', function ($scope,$rootScope,$element) {
     $scope.sortList = [
         {
-            id : 3, tag : "id", name : "Most recent"
+            id : 3, tag : "most_recent", name : "Most recent"
         },{
             id : 2, tag : "title", name : "Name"
         },{

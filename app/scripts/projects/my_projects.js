@@ -1,51 +1,51 @@
 'use strict';
 
 angular.module('dmc.my_projects', [
-        'dmc.widgets.services',
-        'dmc.widgets.tasks',
-        'dmc.widgets.discussions',
-        'dmc.widgets.projects',
-        'ngtimeago',
-        'dmc.configs.ngmaterial',
-        'ngMdIcons',
-        'ui.router',
-        'dmc.model.previous-page',
-        'md.data.table',
-        'dmc.common.header',
-        'dmc.common.footer'
+    'dmc.widgets.services',
+    'dmc.widgets.tasks',
+    'dmc.widgets.discussions',
+    'dmc.widgets.projects',
+    'ngtimeago',
+    'dmc.configs.ngmaterial',
+    'ngMdIcons',
+    'ui.router',
+    'dmc.model.previous-page',
+    'md.data.table',
+    'dmc.common.header',
+    'dmc.common.footer'
 ])
-.config(function($stateProvider, $urlRouterProvider, $httpProvider){
+    .config(function($stateProvider, $urlRouterProvider, $httpProvider){
         $stateProvider.state('my-projects', {
             url: '/',
             templateUrl: 'templates/projects/my.html',
             controller: 'DMCMyProjectsController'
         });
-    $urlRouterProvider.otherwise('/');
-})
-.controller('DMCMyProjectsController', function ($scope,$rootScope,$element) {
+        $urlRouterProvider.otherwise('/');
+    })
+    .controller('DMCMyProjectsController', function ($scope,$rootScope,$element) {
         $scope.sortProjects = "id";
-    $scope.sortList = [
-        {
-            id : 3, tag : "id", name : "Most recent"
-        },{
-            id : 2, tag : "title", name : "Name"
-        },{
-            id : 1, tag : "id", name : "ID Project"
-        }
-    ];
-    $scope.filterList = [
-        {
-            id : 1, tag : "id1", name : "ID Project1"
-        },{
-            id : 2, tag : "id2", name : "ID Project2"
-        },{
-            id : 3, tag : "id3", name : "ID Project3"
-        },{
-            id : 4, tag : "id4", name : "ID Project4"
-        },{
-            id : 5, tag : "id5", name : "ID Project5"
-        }
-    ];
+        $scope.sortList = [
+            {
+                id : 3, tag : "most_recent", name : "Most recent"
+            },{
+                id : 2, tag : "title", name : "Name"
+            },{
+                id : 1, tag : "id", name : "ID Project"
+            }
+        ];
+        $scope.filterList = [
+            {
+                id : 1, tag : "id1", name : "ID Project1"
+            },{
+                id : 2, tag : "id2", name : "ID Project2"
+            },{
+                id : 3, tag : "id3", name : "ID Project3"
+            },{
+                id : 4, tag : "id4", name : "ID Project4"
+            },{
+                id : 5, tag : "id5", name : "ID Project5"
+            }
+        ];
 
         $scope.sortModel = 0;
         $scope.selectItemDropDown = function(type){
@@ -72,4 +72,4 @@ angular.module('dmc.my_projects', [
             var item = $scope.sortList[$scope.sortModel];
             $rootScope.sortMAProjects(item.tag);
         }
-});
+    });

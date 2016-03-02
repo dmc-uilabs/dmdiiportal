@@ -20,7 +20,7 @@ angular.module('dmc.widgets.projects',[
             controller: function($scope, $rootScope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
                 $scope.projects = [];
                 $scope.total = 0;
-                $scope.order = 'DESC';
+                $scope.order = 'ASC';
                 var limit = ($scope.limit ? $scope.limit : ($scope.widgetShowAllBlocks == true ? 10 : 2));
 
                 $scope.flexBox = ($scope.widgetShowAllBlocks == true ? 28 : 60);
@@ -60,30 +60,21 @@ angular.module('dmc.widgets.projects',[
                 $scope.getProjects();
 
                 $rootScope.sortMAProjects = function(sortTag){
-                    console.log(sortTag);
-                    $scope.order = ($scope.order == "DESC" ? "ASC" : "DESC");
                     switch(sortTag) {
                         case "id":
-                            if ($scope.order == "ASC") {
-                                $scope.projects.sort(function (a, b) {
-                                    return a.id - b.id;
-                                });
-                            } else {
-                                $scope.projects.sort(function (a, b) {
-                                    return b.id - a.id;
-                                });
-                            }
+                            $scope.projects.sort(function (a, b) {
+                                return a.id - b.id;
+                            });
                             break;
                         case "title":
-                            if ($scope.order == "ASC") {
-                                $scope.projects.sort(function (a, b) {
-                                    return a.title > b.title;
-                                });
-                            } else {
-                                $scope.projects.sort(function (a, b) {
-                                    return b.title > a.title;
-                                });
-                            }
+                            $scope.projects.sort(function (a, b) {
+                                return a.title > b.title;
+                            });
+                            break;
+                        case "most_recent":
+                            $scope.projects.sort(function (a, b) {
+                                return b.id - a.id;
+                            });
                             break;
                         default:
                             break;
