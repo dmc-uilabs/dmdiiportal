@@ -55,7 +55,7 @@
                                         {{item['created_at_format']}}
                                     </td>
                                     <td ng-if="item['last']">
-                                        <a href="/profile.php#/{{item.accountId}}">{{item['last']['full_name']}}</a> updated<br>
+                                        <a href="/profile.php#/{{item.accountId}}">{{item['last']['full_name']}}</a> {{ item.isPosted ? 'posted' : 'replied' }}<br>
                                         {{item['last']['created_at_format']}}
                                     </td>
                                     <td ng-if="!item['last']">

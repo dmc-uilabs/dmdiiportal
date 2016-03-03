@@ -102,10 +102,10 @@ angular.module('dmc.view-all')
                                     $scope.announcements[i].replies++;
                                     $scope.announcements[i].last = res.data[j];
                                     $scope.announcements[i].last.created_at_format = moment(new Date($scope.announcements[i].last.created_at)).format("MM/DD/YYYY");
-                                    if($scope.announcements[i].last.isPosted == null){
-                                        $scope.announcements[i].last.isPosted = true;
-                                    }else if($scope.announcements[i].last.isPosted == true){
-                                        $scope.announcements[i].last.isPosted = false;
+                                    if($scope.announcements[i].isPosted == null){
+                                        $scope.announcements[i].isPosted = true;
+                                    }else if($scope.announcements[i].isPosted == true){
+                                        $scope.announcements[i].isPosted = false;
                                     }
                                 }
                             }

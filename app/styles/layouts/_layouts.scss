@@ -288,6 +288,13 @@ a.link-button.md-button.md-default-theme{
       margin-bottom: -4px;
     }
   }
+  &.favorites-link{
+    ng-md-icon{
+      svg{
+        margin-bottom: 2px;
+      }
+    }
+  }
 }
 
 //button.md-button.md-default-theme,

@@ -70,7 +70,7 @@
                                 {{item['created_at_format']}}
                             </td>
                             <td>
-                                {{item['last']['full_name']}} updated<br>
+                                {{item['last']['full_name']}} {{ item.isPosted ? 'posted' : 'replied' }}<br>
                                 {{item['last']['created_at_format']}}
                             </td>
                         </tr>
