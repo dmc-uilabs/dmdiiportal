@@ -9,7 +9,7 @@ angular.module('dmc.company-profile')
 
         $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
         $scope.submit_rating = 0;  //
-        $scope.limit_reviews = false;  //limit reviews
+        $scope.limit_reviews = true;  //limit reviews
         $scope.sortListModel = 0;  //model for drop down menu "sorting"
         $scope.showflag = false;
         $scope.followFlag = false;
@@ -387,11 +387,9 @@ angular.module('dmc.company-profile')
 
         //View All Review
         $scope.ViewAllReview = function(){
+            $scope.limit_reviews = false;
             if($scope.selectSortingStar){
-                $scope.limit_reviews = false;
                 $scope.selectSortingStar =0;
-            }else{
-                $scope.limit_reviews = !$scope.limit_reviews;
             }
             $scope.SortingReviews($scope.sortList[0].val);
         };

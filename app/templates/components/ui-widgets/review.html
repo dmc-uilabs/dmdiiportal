@@ -10,7 +10,10 @@
     {{review.comment}}
     <div ng-if="typereview != 'reply_reviews'" layout="row" layout-align="center center" layout-fill class="review-widget-footer">
       <div layout="row">
-        <a href="" ng-click="Reply($index)">Reply</a>|<a href="" ng-click="FlagReview($index)">Flag{{(review.flagged)?'ged':''}}</a>
+        <a href="" ng-click="Reply($index)">Reply</a>
+        |
+        <a href="" ng-if="review.flagged">Flagged</a>
+        <a href="" ng-if="!review.flagged" ng-click="FlagReview($index)">Flag</a>
       </div>
       <md-button md-no-ink class="md-button" ng-if="review.reply" ng-click="ShowReply()">
         {{(showReply == true )? 'Hide' : 'Show' }} Repl{{(review.replyReviews.length > 1)?'ies':'y'}}

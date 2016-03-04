@@ -32,7 +32,7 @@ angular.module('dmc.service-marketplace')
             $scope.submit_rating = 0;  //
             $scope.not_found = false;  //product not fount
             $scope.products_card = [];  //products card
-            $scope.limit_reviews = false;  //limit reviews
+            $scope.limit_reviews = true;  //limit reviews
             $scope.allServices = [];
             $scope.UserLogin = "DMC Member";
             $scope.adding_to_project = false;
@@ -48,12 +48,12 @@ angular.module('dmc.service-marketplace')
             $scope.selectedTab = 0;
 
             $scope.history = {
-                leftColumn: {
+                rightColumn: {
                     title: "Your Projects",
                     viewAllLink: "/all.php#/history/service/"+$stateParams.serviceId+"/project",
                     list: []
                 },
-                rightColumn: {
+                leftColumn: {
                     title: "Marketplace",
                     viewAllLink: "/all.php#/history/service/"+$stateParams.serviceId+"/marketplace",
                     list:[]
@@ -63,7 +63,7 @@ angular.module('dmc.service-marketplace')
             serviceModel.get_service_hystory(
                 {
                     "period": "today",
-                    "section": "project"
+                    "section": "marketplace" 
                 },
                 function(data){
                     for(var i in data){
@@ -109,7 +109,7 @@ angular.module('dmc.service-marketplace')
             serviceModel.get_service_hystory(
                 {
                     "period": "today",
-                    "section": "marketplace"
+                    "section": "project"
                 },
                 function(data){
                     for(var i in data){
@@ -337,7 +337,7 @@ angular.module('dmc.service-marketplace')
                     }
                 );
             };
-
+////
             $scope.addReply = function(NewReview){
                 var review = this.review;
                 serviceModel.add_service_reviews(
@@ -455,6 +455,27 @@ angular.module('dmc.service-marketplace')
                 
                 serviceModel.get_service_reviews(params, function(data){
                     $scope.product.service_reviews = data;
+                    if($scope.limit_reviews === false){
+
+                        $scope.product.rating = $scope.product.service_reviews.map(function(value, index){
+                            return value.rating;
+                        });
+                        $scope.product.number_of_comments = $scope.product.service_reviews.length;
+
+                        $scope.product.precentage_stars = [0, 0, 0, 0, 0];
+                        $scope.product.average_rating = 0;
+                        if($scope.product.number_of_comments != 0) {
+                            for (var i in $scope.product.rating) {
+                                $scope.product.precentage_stars[$scope.product.rating[i] - 1] += 100 / $scope.product.number_of_comments;
+                                $scope.product.average_rating += $scope.product.rating[i];
+                            }
+                            $scope.product.average_rating = ($scope.product.average_rating / $scope.product.number_of_comments).toFixed(1);
+
+                            for (var i in $scope.product.precentage_stars) {
+                                $scope.product.precentage_stars[i] = Math.round($scope.product.precentage_stars[i]);
+                            }
+                        }
+                    }
                     apply();
                 });
             };
@@ -466,14 +487,15 @@ angular.module('dmc.service-marketplace')
 
             //View All Review
             $scope.ViewAllReview = function(){
+                $scope.limit_reviews = false;
                 if($scope.selectSortingStar){
-                    $scope.limit_reviews = false;
                     $scope.selectSortingStar =0;
-                }else{
-                    $scope.limit_reviews = !$scope.limit_reviews;
                 }
                 $scope.SortingReviews($scope.sortList[0].val);
             };
+///
+            $scope.$watchCollection('names', function(newNames, oldNames) {
+            });
 
             //Search products
             $scope.submitSearch = function(text){
