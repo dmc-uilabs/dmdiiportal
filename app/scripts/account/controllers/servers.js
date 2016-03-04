@@ -202,4 +202,31 @@ angular.module('dmc.account')
                     }
                 );
             };
+
+            function isExistChangedItem(){
+                for(var i in $scope.servers){
+                    if($scope.servers[i].isChanging &&
+                        ($scope.servers[i].name != $scope.servers[i].changedName ||
+                        $scope.servers[i].ip != $scope.servers[i].changedIp)) return true;
+                }
+                return false;
+            }
+
+            $scope.$on('$locationChangeStart', function (event, next, current) {
+                var isChangedItem = isExistChangedItem();
+                if ((isChangedItem || ($scope.newServer.ip && $scope.newServer.ip.length > 0) || ($scope.newServer.name && $scope.newServer.name.length > 0)) && current.match("\/servers")) {
+                    var answer = confirm("Are you sure you want to leave this page without saving?");
+                    if (!answer){
+                        event.preventDefault();
+                    }
+                }
+            });
+
+            $(window).unbind('beforeunload');
+            $(window).bind('beforeunload', function(){
+                var isChangedItem = isExistChangedItem();
+                if((isChangedItem || ($scope.newServer.ip && $scope.newServer.ip.length > 0) || ($scope.newServer.name && $scope.newServer.name.length > 0))) {
+                    return "Are you sure you want to leave this page without saving?";
+                }
+            });
 }]);

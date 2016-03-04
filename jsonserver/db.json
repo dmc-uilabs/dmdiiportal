@@ -308,12 +308,6 @@
     },
     {
       "companyId": 1,
-      "position": 3,
-      "serviceId": 27,
-      "id": 6
-    },
-    {
-      "companyId": 1,
       "position": 4,
       "serviceId": 29,
       "id": 7
@@ -686,11 +680,6 @@
       "accountId": 1,
       "serviceId": 9,
       "id": 6
-    },
-    {
-      "accountId": 1,
-      "serviceId": 27,
-      "id": 7
     },
     {
       "accountId": 1,
@@ -1344,27 +1333,6 @@
       "type": "service",
       "published": true,
       "from": "marketplace"
-    },
-    {
-      "id": 27,
-      "companyId": 1,
-      "title": "HDD/CDD Tracker",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-      "owner": "A.Salazaar",
-      "profileId": 1,
-      "releaseDate": "01/09/2015",
-      "serviceType": "data",
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "projectId": null,
-      "type": "service",
-      "from": "marketplace",
-      "published": true,
-      "averageRun": 1,
-      "currentStatus": {}
     },
     {
       "id": 13,
@@ -2871,45 +2839,6 @@
         "all": 0
       },
       "id": 15
-    },
-    {
-      "serviceId": 27,
-      "success_rate": {
-        "success": 50,
-        "incomplete": 30,
-        "failed": 20
-      },
-      "successful_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "incomplete_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unavailable_runs": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "runs_by_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "unique_users": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "average_time": {
-        "today": 0,
-        "week": 0,
-        "all": 0
-      },
-      "id": 16
     },
     {
       "serviceId": 11,
@@ -4933,58 +4862,8 @@
       "url": "images/project_capacitor-bank.png"
     },
     {
-      "id": 171,
-      "serviceId": 27,
-      "url": "images/marketplace-card-image-1.jpg"
-    },
-    {
-      "id": 172,
-      "serviceId": 27,
-      "url": "images/3d-printing.png"
-    },
-    {
-      "id": 174,
-      "serviceId": 27,
-      "url": "images/plasticity.png"
-    },
-    {
       "id": 170,
       "serviceId": 2,
-      "url": "images/ge-fuel-cell.png"
-    },
-    {
-      "id": 176,
-      "serviceId": 27,
-      "url": "images/project_relay_controller.png"
-    },
-    {
-      "id": 177,
-      "serviceId": 27,
-      "url": "images/project_controller_pg2.png"
-    },
-    {
-      "id": 173,
-      "serviceId": 27,
-      "url": "images/project_generator.png"
-    },
-    {
-      "id": 175,
-      "serviceId": 27,
-      "url": "images/project-1-image.jpg"
-    },
-    {
-      "id": 178,
-      "serviceId": 27,
-      "url": "images/project_capacitor-bank.png"
-    },
-    {
-      "id": 179,
-      "serviceId": 27,
-      "url": "images/project_capacitor_compartment.png"
-    },
-    {
-      "id": 180,
-      "serviceId": 27,
       "url": "images/ge-fuel-cell.png"
     },
     {
@@ -6152,22 +6031,6 @@
       "special": []
     },
     {
-      "id": 20,
-      "serviceId": 27,
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "input": 4,
-      "output": 7,
-      "usageStats": {
-        "added": 22,
-        "members": 14
-      },
-      "runStats": {
-        "success": 15,
-        "fail": 9
-      },
-      "special": []
-    },
-    {
       "id": 18,
       "serviceId": 17,
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -6315,46 +6178,6 @@
   ],
   "service-documents": [
     {
-      "id": 1,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 2,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 1,
-      "title": "1 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 3,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 1,
-      "title": "2 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 4,
-      "serviceId": 1,
-      "service-documentId": 1,
-      "title": "Example Folder 2",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
       "id": 5,
       "serviceId": 1,
       "service-documentId": 4,
@@ -6362,99 +6185,6 @@
       "owner": "Bob Smith",
       "size": "100MB",
       "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 6,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 0,
-      "title": "3 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 7,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 0,
-      "title": "4 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 8,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 1,
-      "title": "5 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 9,
-      "serviceId": 1,
-      "service-documentId": 1,
-      "title": "Example Folder 4",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 10,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder 9",
-      "owner": "Bob Smith",
-      "size": "120MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 11,
-      "serviceId": 1,
-      "service-documentId": 0,
-      "title": "Example Folder 10",
-      "owner": "Bob Smith",
-      "size": "13MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 12,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 10,
-      "title": "17 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 12,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 10,
-      "title": "35 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 13,
-      "serviceId": 1,
-      "file": true,
-      "service-documentId": 10,
-      "title": "55 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
     },
     {
       "id": 14,
@@ -6481,46 +6211,6 @@
   ],
   "project-documents": [
     {
-      "id": 1,
-      "projectId": 1,
-      "project-documentId": 0,
-      "title": "Example Folder",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 2,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 1,
-      "title": "1 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 3,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 1,
-      "title": "2 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 4,
-      "projectId": 1,
-      "project-documentId": 1,
-      "title": "Example Folder 2",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
       "id": 5,
       "projectId": 1,
       "project-documentId": 4,
@@ -6528,99 +6218,6 @@
       "owner": "Bob Smith",
       "size": "100MB",
       "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 6,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 0,
-      "title": "3 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 7,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 0,
-      "title": "4 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 8,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 1,
-      "title": "5 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 9,
-      "projectId": 1,
-      "project-documentId": 1,
-      "title": "Example Folder 4",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM"
-    },
-    {
-      "id": 10,
-      "projectId": 1,
-      "project-documentId": 0,
-      "title": "Example Folder 9",
-      "owner": "Bob Smith",
-      "size": "120MB",
-      "modifed": "11/11/2015, 11:00 AM"
-    },
-    {
-      "id": 11,
-      "projectId": 1,
-      "project-documentId": 0,
-      "title": "Example Folder 10",
-      "owner": "Bob Smith",
-      "size": "13MB",
-      "modifed": "11/11/2015, 11:15 AM"
-    },
-    {
-      "id": 12,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 10,
-      "title": "17 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 12,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 10,
-      "title": "35 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-    },
-    {
-      "id": 13,
-      "projectId": 1,
-      "file": true,
-      "project-documentId": 10,
-      "title": "55 Low Heat Loss Transformer Specification PDM Co.pdf",
-      "owner": "Bob Smith",
-      "size": "100MB",
-      "modifed": "11/11/2015, 12:00 PM",
-      "link": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
     },
     {
       "id": 14,
@@ -7653,14 +7250,6 @@
       "id": 4
     },
     {
-      "title": "Test discussion",
-      "projectId": 0,
-      "accountId": 1,
-      "created_by": "Thomas Smith",
-      "created_at": 1456854066000,
-      "id": 6
-    },
-    {
       "title": "Test discussion created from project",
       "projectId": 2,
       "accountId": 1,
@@ -7685,44 +7274,12 @@
       "id": 10
     },
     {
-      "title": "Created from community page",
-      "projectId": null,
-      "accountId": 1,
-      "created_by": "Thomas Smith",
-      "created_at": 1456939338000,
-      "id": 11
-    },
-    {
-      "title": "New discussion for test",
-      "projectId": null,
-      "accountId": 1,
-      "created_by": "Thomas Smith",
-      "created_at": 1456939466000,
-      "id": 12
-    },
-    {
       "title": "Test Discussion",
       "projectId": 1,
       "accountId": 1,
       "created_by": "Thomas Smith",
       "created_at": 1456940572000,
       "id": 13
-    },
-    {
-      "title": "First Discussion",
-      "projectId": null,
-      "accountId": 1,
-      "created_by": "Thomas Smith",
-      "created_at": 1456941425000,
-      "id": 14
-    },
-    {
-      "title": "Second Discussion",
-      "projectId": null,
-      "accountId": 1,
-      "created_by": "Thomas Smith",
-      "created_at": 1456941481000,
-      "id": 15
     },
     {
       "title": "Created from project home",

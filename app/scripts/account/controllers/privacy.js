@@ -93,6 +93,7 @@ angular.module('dmc.account')
             }
         });
 
+        $(window).unbind('beforeunload');
         $(window).bind('beforeunload', function(){
             if($scope.changedValues) {
                 return "Are you sure you want to leave this page without saving?";

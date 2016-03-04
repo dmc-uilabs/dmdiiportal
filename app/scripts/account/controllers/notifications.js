@@ -135,6 +135,23 @@ angular.module('dmc.account')
             }
         };
 
+        $scope.$on('$locationChangeStart', function (event, next, current) {
+            if ($scope.changedItems.length > 0 && current.match("\/notifications")) {
+                var answer = confirm("Are you sure you want to leave this page without saving?");
+                if (!answer){
+                    event.preventDefault();
+                }
+            }
+        });
+
+        $(window).unbind('beforeunload');
+        $(window).bind('beforeunload', function(){
+            if($scope.changedItems.length > 0) {
+                return "Are you sure you want to leave this page without saving?";
+            }
+        });
+
+
         var apply = function(){
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         };

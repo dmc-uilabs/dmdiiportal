@@ -11,10 +11,14 @@ angular.module('dmc.project')
             $scope.allServices = null;
             $scope.NewService = {
                 serviceName: serviceData.title,
+                serviceName_old: serviceData.title,
                 parentComponent: 0,
-                serviceDescription: serviceData.description
+                parentComponent_old: 0,
+                serviceDescription: serviceData.description,
+                serviceDescription_old: serviceData.description
             };
 
+            $scope.selectedInterface = null;
             $scope.addTags=[];
             $scope.removeTags = [];
 
@@ -29,12 +33,10 @@ angular.module('dmc.project')
 
                 serviceModel.get_interface(serviceData.id,function(response){
                     $scope.interface = response.data ? (response.data.length > 0 ? response.data[0] : null) : null;
-                    console.log($scope.interface);
                     if($scope.interface) {
                         $scope.selectedServerIp = $scope.interface.domeServer;
                         checkServer();
                         domeModel.getModel($scope.interface,function(response){
-                            console.log(response);
                             $scope.selectedInterface = response.data && response.data.pkg ? response.data.pkg : null;
                             $scope.NewService.serviceName = serviceData.title;
                         });
@@ -70,14 +72,28 @@ angular.module('dmc.project')
             $scope.preview = [];
 
 
+            var isInterfaceChanged = false;
+            var changedValues = {};
+            var isChangedPage = false;
 
-            $scope.selectedInterface = null;
             $scope.getSelectedInterface = function(item, name){
+                var prevId = ($scope.selectedInterface && $scope.selectedInterface.interFace && $scope.selectedInterface.interFace.interfaceId ? $scope.selectedInterface.interFace.interfaceId : null);
                 $scope.selectedInterface = item;
+                var newId = (item.interFace && item.interFace.interfaceId ? item.interFace.interfaceId : null);
+                isInterfaceChanged = prevId == newId ? false : true;
                 $scope.NewService.serviceName = name;
                 apply();
             };
 
+            $scope.changeValue = function(name){
+                if($scope.NewService[name] != $scope.NewService[name+"_old"]){
+                    changedValues[name] = $scope.NewService[name];
+                }else if($scope.NewService[name] == $scope.NewService[name+"_old"] && changedValues[name]){
+                    delete changedValues[name];
+                }
+                isChangedPage = Object.keys(changedValues).length > 0 ? true : false;
+                console.log(isChangedPage);
+            }
 
             // select server
             $scope.selectedServerIp = null;
@@ -98,7 +114,9 @@ angular.module('dmc.project')
 
                 serviceModel.add_servers({
                     ip: server.ip,
-                    name: server.name
+                    name: server.name,
+                    accountId: $scope.userData.accountId,
+                    status: "offline"
                 }, function(data){
                     $scope.servers.push(data);
                     $scope.flagAddServer = false;
@@ -115,17 +133,32 @@ angular.module('dmc.project')
                 $scope.preview = item;
             };
 
+            $scope.startAddServer = function(){
+                $scope.flagAddServer = true;
+            };
+
             //add tag to product
             $scope.addTag = function(inputTag){
                 if(!inputTag)return;
                 $scope.addTags.push(inputTag);
                 $scope.service_tags.push({name: inputTag});
                 this.inputTag = null;
+                console.log($scope.addTags);
             };
 
             //remove tag
-            $scope.deleteTag = function(index, id){
-                if(id && id > 0) $scope.removeTags.push(id);
+            $scope.deleteTag = function(index, tag){
+                if(tag.id && tag.id > 0){
+                    $scope.removeTags.push(tag.id);
+                }else{
+                    for(var i in $scope.addTags) {
+                        if($scope.addTags[i] == tag.name) {
+                            $scope.addTags.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                console.log($scope.addTags);
                 $scope.service_tags.splice(index,1);
             };
 
@@ -143,7 +176,6 @@ angular.module('dmc.project')
                     description: $scope.NewService.serviceDescription,
                     parent: $scope.NewService.parentComponent
                 },function(data){
-                    console.log($scope.removeTags);
                     serviceModel.remove_services_tags($scope.removeTags);
                     serviceModel.add_services_tags($scope.addTags);
 
@@ -160,4 +192,23 @@ angular.module('dmc.project')
                     $state.go('project.services-detail', {ServiceId: data.id});
                 });
             };
+
+            $scope.$on('$locationChangeStart', function (event, next, current) {
+                console.log(current);
+                var answer = confirm("Are you sure you want to leave this page without saving?");
+                if ((isInterfaceChanged || isChangedPage || $scope.addTags.length > 0 || $scope.removeTags.length > 0) && current.match("\/edit")) {
+                    var answer = confirm("Are you sure you want to leave this page without saving?");
+                    if (!answer){
+                        event.preventDefault();
+                    }
+                }
+            });
+
+            $(window).unbind('beforeunload');
+            $(window).bind('beforeunload', function(){
+                if(isInterfaceChanged || isChangedPage || $scope.addTags.length > 0 || $scope.removeTags.length > 0) {
+                    return "Are you sure you want to leave this page without saving?";
+                }
+            });
+
         }])

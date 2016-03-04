@@ -142,6 +142,22 @@ angular.module('dmc.add_project.directive', [
                 //    }
                 //};
 
+                $scope.$on('$locationChangeStart', function (event, next, current) {
+                    if ($scope.isUpdate && $scope.isChanges && current.match("\/edit")) {
+                        var answer = confirm("Are you sure you want to leave this page without saving?");
+                        if (!answer){
+                            event.preventDefault();
+                        }
+                    }
+                });
+
+                $(window).unbind('beforeunload');
+                $(window).bind('beforeunload', function(){
+                    if($scope.isUpdate && $scope.isChanges) {
+                        return "Are you sure you want to leave this page without saving?";
+                    }
+                });
+
                 function apply() {
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }

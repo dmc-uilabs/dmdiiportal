@@ -83,8 +83,8 @@ angular.module('dmc.project')
                 serviceModel.add_servers({
                     ip: server.ip,
                     name: server.name,
-                    "accountId": $scope.userData.accountId,
-                    "status": "offline"
+                    accountId: $scope.userData.accountId,
+                    status: "offline"
                 }, function(data){
                     $scope.servers.push(data);
                     $scope.flagAddServer = false;
@@ -107,8 +107,8 @@ angular.module('dmc.project')
             };
 
             // delete tag
-            $scope.deleteTag = function(index, id){
-                if(id && id > 0) $scope.removeTags.push(id);
+            $scope.deleteTag = function(index, tag){
+                if(tag.id && tag.id > 0) $scope.removeTags.push(tag.id);
                 $scope.service_tags.splice(index,1);
             };
 

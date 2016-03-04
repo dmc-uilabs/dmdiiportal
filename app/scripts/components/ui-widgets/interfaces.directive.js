@@ -37,7 +37,7 @@ angular.module('dmc.widgets.interfaces',[
                 }
 
                 function callbackGetChildren(response,index,back,item){
-                    if (response.data.status != "error") {
+                    if (response && response.data && response.data.status != "error") {
                         if (response.data.pkg && response.data.pkg.children) {
                             if(response.data.pkg.type == "model"){
                                 if(response.data.pkg.children) {
@@ -47,7 +47,6 @@ angular.module('dmc.widgets.interfaces',[
                                 }
                             }else {
                                 $scope.interfaces = response.data.pkg.children;
-                                console.log(item);
                                 if (back) {
                                     $scope.track.splice(index + 1, $scope.track.length);
                                 } else if (item) {
@@ -57,7 +56,12 @@ angular.module('dmc.widgets.interfaces',[
                             }
                         }
                     } else {
-                        toastModel.showToast('error', response.data.msg);
+                        $scope.interfaces = [];
+                        if(!response || !response.data) {
+                            toastModel.showToast('error', "Unknown server");
+                        }else{
+                            toastModel.showToast('error', response.data.msg);
+                        }
                     }
                     $scope.isLoading = false;
                     apply();
