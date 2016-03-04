@@ -11,7 +11,7 @@ angular.module('dmc.product')
             $scope.not_found = false;  //product not fount
             $scope.products_card = [];  //products card
             $scope.includedServices = [];
-            $scope.limit_reviews = false;  //limit reviews
+            $scope.limit_reviews = true;  //limit reviews
             $scope.allServices = [];
             $scope.adding_to_project = false;
             $scope.selectSortingStar = 0;
@@ -438,11 +438,9 @@ angular.module('dmc.product')
 
             //View All Review
             $scope.ViewAllReview = function(){
+                $scope.limit_reviews = false;
                 if($scope.selectSortingStar){
-                    $scope.limit_reviews = false;
                     $scope.selectSortingStar =0;
-                }else{
-                    $scope.limit_reviews = !$scope.limit_reviews;
                 }
                 $scope.SortingReviews($scope.sortList[0].val);
             };
