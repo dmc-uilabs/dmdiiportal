@@ -34,7 +34,7 @@
                     </form>
                     <span flex="10"></span>
                     <div class="margin-bottom-17">
-                        <a class="link-button margin-left20" href="">Following ({{totalFollowing}})</a>
+                        <!--<a class="link-button margin-left20" href="">Following ({{totalFollowing}})</a>-->
                         <a ng-if="type=='discussions'" class="link-button margin-left20" ng-click="createDiscussion()">Add New Discussion</a>
                         <!--<a class="link-button margin-left20">-->
                             <!--<ng-md-icon icon="account_circle" size="18"></ng-md-icon>-->
@@ -88,7 +88,7 @@
                                         {{item['created_at_format']}}
                                     </td>
                                     <td class="text-normal">
-                                        <a href="/account.php#/{{item.last.accountId}}">{{item['last']['full_name']}}</a> updated<br>
+                                        <a href="/account.php#/{{item.last.accountId}}">{{item['last']['full_name']}}</a> {{ item.isPosted ? 'posted' : 'replied' }}<br>
                                         {{item['last']['created_at_format']}}
                                     </td>
                                 </tr>

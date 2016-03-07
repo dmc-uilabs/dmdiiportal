@@ -183,23 +183,12 @@ angular.module('dmc.search')
             $scope.sort = "text";
 
             $scope.getDiscussions = function () {
-                ajax.get(dataFactory.getDiscussions(), {
-                        _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
-                        _order: $scope.order,
-                        text_like: $scope.searchTextModel,
-                        _type: $scope.subTypeModel
-                    }, function (response) {
-                        $scope.totalResults = response.data.length;
-                        var limit = ($scope.totalItemsPerPage == 'all' ? $scope.totalResults : $scope.totalItemsPerPage);
-                        $scope.discussions = response.data.splice(($scope.currentPage-1)*limit, $scope.currentPage*limit);
-                        apply();
-                    }
-                );
 
                 ajax.get(dataFactory.getIndividualDiscussions(), {
-                    "_order" : "DESC",
+                    "_order" : $scope.order,
+                    "projectId" : $scope.projectId,
                     title_like: $scope.searchTextModel,
-                    "_sort" : "id"
+                    "_sort" : $scope.sort
                 }, function (response) {
                     $scope.totalResults = response.data.length;
                     $scope.discussions = response.data;
@@ -207,7 +196,8 @@ angular.module('dmc.search')
                     ajax.get(dataFactory.addCommentIndividualDiscussion(),{
                         "individual-discussionId" : ids,
                         "_order" : "DESC",
-                        "_sort" : "id"
+                        "_sort" : "id",
+                        "commentId": 0
                     },function(res){
                         for(var i in $scope.discussions){
                             $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format("MM/DD/YYYY");
@@ -217,13 +207,15 @@ angular.module('dmc.search')
                                     $scope.discussions[i].replies++;
                                     $scope.discussions[i].last = res.data[j];
                                     $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format("MM/DD/YYYY");
-                                    if($scope.discussions[i].last.isPosted == null){
-                                        $scope.discussions[i].last.isPosted = true;
-                                    }else if($scope.discussions[i].last.isPosted == true){
-                                        $scope.discussions[i].last.isPosted = false;
+                                    if($scope.discussions[i].isPosted == null){
+                                        $scope.discussions[i].isPosted = true;
+                                    }else if($scope.discussions[i].isPosted == true){
+                                        $scope.discussions[i].isPosted = false;
                                     }
                                 }
                             }
+                            if($scope.discussions[i].replies > 0) $scope.discussions[i].replies--;
+                            if($scope.discussions[i].isPosted == null) $scope.discussions[i].isPosted = true;
                         }
                         var limit = ($scope.totalItemsPerPage == 'all' ? $scope.totalResults : $scope.totalItemsPerPage);
                         if($scope.totalItemsPerPage > limit) {
@@ -233,7 +225,6 @@ angular.module('dmc.search')
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 });
             };
-            if($scope.type == 'discussions') $scope.getDiscussions();
 
             $scope.onOrderChange = function (order) {
                 $scope.sort = order;
@@ -251,11 +242,12 @@ angular.module('dmc.search')
                         _sort: "id",
                         _order: $scope.order,
                         name_like: $scope.searchTextModel,
-                        _type: $scope.subTypeModel
+                        _type: $scope.subTypeModel,
+                        accountId_ne: $scope.userData.accountId
                     }, function (response) {
                         $scope.totalFollowing = 0;
-                        $scope.totalResults = response.data.length;
                         $scope.arrayItems = response.data;
+                        $scope.totalResults = response.data.length;
                         for(var i in $scope.arrayItems) {
                             $scope.arrayItems[i].isCompany = true;
                         }
@@ -295,7 +287,6 @@ angular.module('dmc.search')
                     }
                 );
             };
-            if($scope.type == 'companies' || $scope.type == 'all') $scope.getCompanies();
             // Companies End --------------------------------------------------------
 
             // Members Start ------------------------------------------------------
@@ -318,8 +309,14 @@ angular.module('dmc.search')
                     }
                 );
             };
-            if($scope.type == 'members') $scope.getMembers();
             // Members End --------------------------------------------------------
+
+            $scope.userData.then(function(data){
+                $scope.userData = data;
+                if($scope.type == 'discussions') $scope.getDiscussions();
+                if($scope.type == 'companies' || $scope.type == 'all') $scope.getCompanies();
+                if($scope.type == 'members') $scope.getMembers();
+            });
 
             $scope.addCompanyToProject = function(){
 
@@ -354,8 +351,8 @@ angular.module('dmc.search')
 
             function isFollowMember(ids){
                 if(ids.length > 0) {
-                    $scope.userData.then(function(res){
-                        ajax.get(dataFactory.getAccountFollowedMembers(res.accountId), {
+
+                        ajax.get(dataFactory.getAccountFollowedMembers($scope.userData.accountId), {
                             profileId: ids
                         }, function (response) {
                             for(var i in $scope.arrayItems){
@@ -371,14 +368,14 @@ angular.module('dmc.search')
                             }
                             apply();
                         });
-                    });
+
                 }
             }
 
             function isFollowCompany(ids){
                 if(ids.length > 0) {
-                    $scope.userData.then(function(res){
-                        ajax.get(dataFactory.getFollowCompanies(res.accountId), {
+
+                        ajax.get(dataFactory.getFollowCompanies($scope.userData.accountId), {
                             companyId: ids
                         }, function (response) {
                             for(var i in $scope.arrayItems){
@@ -394,7 +391,6 @@ angular.module('dmc.search')
                             }
                             apply();
                         });
-                    });
                 }
             }
 

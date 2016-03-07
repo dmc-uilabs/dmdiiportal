@@ -62,16 +62,6 @@ angular.module('dmc.view-all')
                 ];
 
                 $scope.getDiscussions = function () {
-                    //ajax.get(dataFactory.getDiscussions($scope.projectId), {
-                    //        _sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
-                    //        _order: $scope.order,
-                    //        text_like: $scope.searchModel,
-                    //        _type: $scope.typeModel
-                    //    }, function (response) {
-                    //        $scope.discussions = response.data;
-                    //        apply();
-                    //    }
-                    //);
                     ajax.get(dataFactory.getIndividualDiscussions(), {
                         "_order" : "DESC",
                         "projectId" : $scope.projectId,
