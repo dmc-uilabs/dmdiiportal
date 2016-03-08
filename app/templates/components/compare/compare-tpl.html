@@ -14,8 +14,8 @@
                            ng-class="{'md-raised md-primary' : currentProductType == 'component'}"
                            ng-click="switchProductType('component')">Components ({{compareProducts.components.length}})</md-button>
                 <span flex></span>
-                <md-button class="" ng-click="cancel()">
-                    Close
+                <md-button aria-label="Close" class="md-icon-button" ng-click="cancel()">
+                    <ng-md-icon icon="close" style="fill: grey;" size="32"></ng-md-icon>
                 </md-button>
             </div>
         </md-toolbar>
@@ -41,7 +41,7 @@
                                             size="23"></ng-md-icon>
                             </md-button>
                             <md-button aria-label="Remove" class="md-icon-button" ng-click="removeFromCompare(item.id,item.type)" flex>
-                                <ng-md-icon icon="close" style="fill: grey;" size="23"></ng-md-icon>
+                                <ng-md-icon icon="delete" style="fill: grey;" size="23"></ng-md-icon>
                             </md-button>
                         </div>
                         <div class="product-image"><img src="{{item.featureImage.thumbnail}}" alt="{{item.title}}"></div>
@@ -149,9 +149,9 @@
                          ng-show="currentProductType == 'all' || currentProductType == item.type"
                          ng-repeat="item in products.arr">
                             <div>
-                                <a ng-href="{{ '/marketplace.php#/search?product=services&tag='+tag.name }}"
+                                <a class="tag" ng-href="{{ '/marketplace.php#/search?product=services&tag='+tag.name }}"
                                     ng-repeat="tag in item.tags track by $index"
-                                    ng-click="searchByTag($event)">{{tag.name}} {{$index < item.tags.length-1 ? ', ' : ''}}</a>
+                                    ng-click="searchByTag($event)">{{tag.name}}</a>
                             </div>
                         </div>
                 </div>

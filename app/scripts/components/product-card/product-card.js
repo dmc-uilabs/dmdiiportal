@@ -405,12 +405,17 @@ angular.module('dmc.component.productcard', [
         });
     };
 }])
-.controller('ShareProductCtrl', function ($scope, $rootScope, $mdDialog,toastModel,ajax,dataFactory,serviceId){
+.controller('ShareProductCtrl', function ($scope, $rootScope, $mdDialog,toastModel,ajax,dataFactory,serviceId,DMCUserModel ){
         $scope.share = {
             user : null
         };
 
         $scope.users = {};
+
+        $scope.userData = DMCUserModel.getUserData();
+        $scope.userData.then(function(res){
+            $scope.userData = res;
+        });
 
         $scope.users.items = [];
         $scope.users.querySearch   = querySearch;
@@ -425,7 +430,7 @@ angular.module('dmc.component.productcard', [
             //$log.info('Text changed to ' + text);
         }
         function selectedItemChange(item) {
-            //$log.info('Item changed to ' + JSON.stringify(item));
+
         }
 
         function getAllUser(){

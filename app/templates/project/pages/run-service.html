@@ -1,7 +1,9 @@
 <div class="page-header margin-bottom-35">
     <md-toolbar>
         <h1 class="project-title" layout="row" layout-align="start end">
-            <div class="title">{{projectData.title}}</div>
+            <div class="title">
+                <a href="/project.php#/{{projectData.id}}/home">{{projectData.title}}</a>
+            </div>
             <span class="small-text due-date-project small-text--grey">
                 Due in 20 days
             </span>

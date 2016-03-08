@@ -1,7 +1,9 @@
 <div class="page-header margin-bottom-35">
     <md-toolbar>
         <h1 class="project-title" layout="row" layout-align="start end">
-            <div class="title">{{projectCtrl.projectData.title}}</div>
+            <div class="title">
+                <a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a>
+            </div>
             <span ng-if="projectCtrl.projectData.dueDate" class="small-text due-date-project small-text--grey">
                 Due in {{projectCtrl.projectData.dueDate}}
             </span>

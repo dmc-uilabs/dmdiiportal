@@ -96,25 +96,23 @@
                         <div layout="row">
                             <md-input-container flex="50" class="right-space">
                                 <label>Name</label>
-                                <input required name="name" ng-model="newContact.name">
+                                <input name="name" ng-model="newContact.name">
                             </md-input-container>
                             <md-input-container flex="50" class="left-space">
                                 <label>Title</label>
-                                <input required name="title" ng-model="newContact.title">
+                                <input name="title" ng-model="newContact.title">
                             </md-input-container>
                         </div>
                         <div layout="row">
                             <md-input-container flex="50" class="right-space">
                                 <label>Phone Number</label>
-                                <input required
-                                       name="phoneNumber"
+                                <input name="phoneNumber"
                                        phone-input
-                                       maxlength="12"
                                        ng-model="newContact.phoneNumber">
                             </md-input-container>
                             <md-input-container flex="50" class="left-space">
                                 <label>Email</label>
-                                <input required type="email" name="email" ng-model="newContact.email">
+                                <input type="email" name="email" ng-model="newContact.email">
                             </md-input-container>
                         </div>
                     </div>
@@ -125,7 +123,7 @@
                     </md-button>
                     <md-button class="md-raised md-primary"
                                type="submit"
-                               ng-disabled="!formAddContact.$valid">
+                               ng-disabled="(!newContact.type || !newContact.phoneNumber) && (!newContact.type || formAddContact.email.$invalid)">
                         Save
                     </md-button>
                 </div>

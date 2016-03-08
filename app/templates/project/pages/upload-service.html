@@ -1,7 +1,9 @@
 <div class="page-header margin-bottom-35">
     <md-toolbar>
         <h1 class="project-title" layout="row" layout-align="start end">
-            <div class="title">{{projectData.title}}</div>
+            <div class="title">
+                <a href="/project.php#/{{projectData.id}}/home">{{projectData.title}}</a>
+            </div>
             <span ng-if="projectData.dueDate" class="small-text due-date-project small-text--grey">
                 Due in {{projectData.dueDate}}
             </span>
@@ -50,6 +52,7 @@
                             <md-input-container  flex="35">
                                 <label>Server Host/IP</label>
                                 <input ng-model="newServerModel.ip" name="serverIp" required>
+                                <ng-md-icon ng-show="newServerModel.ip" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
                                 <div ng-messages="addServer.serverIp.$error">
                                     <!-- <div ng-pattern='/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/' ng-message="pattern">x.x.x.x (x = 0-255)</div> -->
                                     <div ng-message="required">Server Host/IP is required.</div>

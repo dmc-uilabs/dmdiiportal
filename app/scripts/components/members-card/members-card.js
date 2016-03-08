@@ -377,7 +377,45 @@ angular.module('dmc.component.members-card', [
             favoriteMember: '=',
             share: '='
         },
-        controller: function ($scope) {
+        controller: function ($scope,ajax,dataFactory,DMCUserModel,$rootScope) {
+            $scope.userData = DMCUserModel.getUserData();
+            $scope.userData.then(function(res){
+                $scope.userData = res;
+                isFavorite();
+            });
+
+            var apply = function(){
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            };
+
+            function isFavorite(){
+                ajax.get(dataFactory.getAccountFollowedMembers($scope.userData.accountId), {
+                    profileId: $scope.cardSource.id
+                }, function (response) {
+                    $scope.cardSource.favorite = (response.data.length > 0 ? response.data[0] : null);
+                    apply();
+                });
+            }
+
+            $scope.addToFavorite = function(){
+                if($scope.userData) {
+                    if (!$scope.cardSource.favorite) {
+                        ajax.create(dataFactory.followMember(), {
+                            accountId: $scope.userData.accountId,
+                            profileId: $scope.cardSource.id
+                        }, function (response) {
+                            $scope.cardSource.favorite = response.data;
+                            apply();
+                        });
+                    } else {
+                        ajax.delete(dataFactory.followMember($scope.cardSource.favorite.id), {},
+                            function (response) {
+                                $scope.cardSource.favorite = null;
+                            }
+                        );
+                    }
+                }
+            };
         }
     }
 });

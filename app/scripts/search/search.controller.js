@@ -456,7 +456,7 @@ angular.module('dmc.search')
                     data: [
                         {
                             'id': 1,
-                            'title': 'All',
+                            'title': 'Members & Companies',
                             'tag' : 'all',
                             'opened' : isOpened('all'),
                             'href' : getUrl('all'),

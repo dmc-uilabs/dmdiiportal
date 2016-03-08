@@ -281,7 +281,7 @@ angular.module('dmc.company-profile')
             // function for update contact
             var updateContact = function(contact,updatedData){
                 ajax.update(dataFactory.updateCompanyContact(contact.id), updatedData,
-                    function (data) {
+                    function (response) {
                         var data = response.data ? response.data : response;
                         for (var i in $scope.company.contacts) {
                             if ($scope.company.contacts[i].id == contact.id) {

@@ -119,30 +119,16 @@ angular.module('dmc.company-profile').
 
                 // save new contact
                 $scope.saveContact = function(newContact){
-                    ajax.get(dataFactory.getLastCompanyContactId(),{
-                            "_order" : "DESC",
-                            "_limit" : 1,
-                            "_sort" : "id"
-                        },
+                    newContact.companyId = $scope.source.id;
+                    ajax.create(dataFactory.addCompanyContact(),newContact,
                         function(response){
                             var data = response.data ? response.data : response;
-                            var lastId = (data.length == 0 ? 1 : data[0].id+1);
-
-                            newContact.id = lastId;
-                            newContact.companyId = $scope.source.id;
-                            ajax.create(dataFactory.addCompanyContact(),newContact,
-                                function(response){
-                                    var data = response.data ? response.data : response;
-                                    if(!$scope.source.contacts) $scope.source.contacts = [];
-                                    $scope.source.contacts.unshift(data);
-                                    $scope.cancelAddContact();
-                                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                                },function(){
-                                    toastModel.showToast("error", "Error. The problem on the server (add contact).");
-                                }
-                            );
+                            if(!$scope.source.contacts) $scope.source.contacts = [];
+                            $scope.source.contacts.unshift(data);
+                            $scope.cancelAddContact();
+                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                         },function(){
-                            toastModel.showToast("error", "Error. The problem on the server (get last contact id).");
+                            toastModel.showToast("error", "Error. The problem on the server (add contact).");
                         }
                     );
                 };

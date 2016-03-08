@@ -6,8 +6,8 @@
         <img ng-src="{{cardSource.avatar}}" alt="Name member">
     </div>
     <div class="member-card__header" layout="column" layout-padding layout-margin>
-        <h3 class="member-name"><a href="#">{{cardSource.name}}</a></h3>
-        <span class="company-name"><a href="#">{{cardSource.company}}</a></span>
+        <h3 class="member-name"><a ng-href="{{'profile.php#/'+cardSource.id}}">{{cardSource.name}}</a></h3>
+        <span class="company-name"><a ng-href="{{'company-profile.php#/'+cardSource.companyId}}">{{cardSource.company}}</a></span>
     </div>
     <div class="member-card__content" layout="row" layout-padding flex>
         <div class="member-card__content__column" flex="28" layout="column">

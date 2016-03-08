@@ -1,0 +1,11 @@
+.create-task{
+  .dueDate{
+    position: relative;
+    .dueDate-label{
+      position: absolute;
+      top: 0;
+      color: rgba(0,0,0,0.54);
+      margin-left: 2px;
+    }
+  }
+}

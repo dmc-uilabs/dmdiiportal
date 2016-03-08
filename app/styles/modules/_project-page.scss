@@ -104,3 +104,14 @@
     }
   }
 }
+
+.correct-ip{
+  position: absolute;
+  bottom: 26px;
+  margin-left: -43px;
+  fill: #4CAF50;
+  right: -5px;
+  input{
+    padding-right: 28px;
+  }
+}

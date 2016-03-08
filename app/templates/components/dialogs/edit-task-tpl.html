@@ -24,7 +24,8 @@
             <div class="block" layout="row" layout-align="space-between end">
 
                 <md-input-container flex="45">
-                    <md-select placeholder="Assigned To" required ng-model="task.assignee">
+                    <label>Assigned To</label>
+                    <md-select required ng-model="task.assignee">
                         <md-option ng-value="user.name" ng-repeat="user in users">{{user.name}}</md-option>
                     </md-select>
                 </md-input-container>
@@ -36,7 +37,8 @@
                     </md-select>
                 </md-input-container>
             </div>
-            <div class="block" layout="row" layout-align="space-between start">
+            <div class="block dueDate" layout="row" layout-align="space-between start">
+                <label class="dueDate-label" ng-show="task.dueDateForEdit">Due Date</label>
                 <md-datepicker  flex="45" class="dueDatePicker" ng-model="task.dueDateForEdit" md-placeholder="Due Date" required></md-datepicker>
                 <md-input-container flex="45">
                     <label>Status</label>
