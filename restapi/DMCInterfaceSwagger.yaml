@@ -26,6 +26,21 @@ paths:
           description: Sends the project with projectID
           schema:
             $ref: '#/definitions/UserDetails'
+    patch:
+      tags:
+      - account
+      - onboarding
+      description: Update currently logged in user details
+      parameters:
+        - name: UserDetails
+          in: body
+          schema:
+            $ref: '#/definitions/UserDetails'
+      responses:
+        200:
+          description: returns updated User Details
+          schema:
+            $ref: '#/definitions/UserDetails'
   /user-basic-information:
     post:
       tags:
