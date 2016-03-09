@@ -82,7 +82,7 @@ var SubNavPages = [
     {
         id : 7,
         title : 'Services',
-        icon : 'icon_service',
+        icon : 'icon_service-white',
         location : 'folder',
         state : 'project.services'
     },
