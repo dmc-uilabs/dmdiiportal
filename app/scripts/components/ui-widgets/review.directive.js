@@ -26,14 +26,14 @@ angular.module('dmc.widgets.review',[
       $scope.Reply = function(){
         $scope.replyFlag = !$scope.replyFlag;
         $scope.flagReviewFlag = false;
-      }
+      };
 
       //Show Flag Review form
       $scope.FlagReview = function(index){
         $scope.flagReviewFlag = !$scope.flagReviewFlag;
         $scope.replyFlag = false;
         $scope.flagReplyReviewFlag = false;
-      }
+      };
 
       //Show Flag Review form
       $scope.ReplyFlagReview = function(index){
@@ -44,7 +44,7 @@ angular.module('dmc.widgets.review',[
         }
         $scope.flagReviewFlag = false;
         $scope.replyFlag = false;
-      }
+      };
 
       //cancel Review form
       $scope.Cancel = function(){
@@ -75,11 +75,11 @@ angular.module('dmc.widgets.review',[
         $scope.flagReplyReviewFlag = false;
         $scope.flagReviewFlag = false;
         $scope.replyFlag = false;
-      }
+      };
 
       $scope.ShowReply = function(){
         $scope.showReply = !$scope.showReply;
-      }
+      };
 
       //Like review
       $scope.Like = function(item){

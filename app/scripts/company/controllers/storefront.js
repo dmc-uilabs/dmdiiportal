@@ -37,7 +37,7 @@ angular.module('dmc.company')
             $scope.selectedProductType = $stateParams.product;
             $scope.isSearch = ($location.$$path.indexOf('search') != -1 ? true : false);
             $scope.searchModel = $stateParams.text;
-            $scope.productSubType = (angular.isDefined($stateParams.type) ? $stateParams.type : 'analytical');
+            $scope.productSubType = (angular.isDefined($stateParams.type) ? $stateParams.type : null);
             // -----------------------------------------------
             $scope.currentStorefrontPage = 1;
             $scope.pageSize = 10;
@@ -236,10 +236,10 @@ angular.module('dmc.company')
                 }else{
                     delete responseData.title_like;
                 }
-                if($scope.isSearch && $scope.productSubType){
+                if($scope.isSearch){
                     responseData.serviceType = $scope.productSubType;
                 }else{
-                    delete responseData.serviceType;
+                    responseData.serviceType = null;
                 }
                 responseData._limit = (search ? $scope.pageSize : 4);
                 if(responseData._limit == 0) delete responseData._limit;

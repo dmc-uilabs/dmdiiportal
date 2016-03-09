@@ -46,5 +46,5 @@ angular.module('dmc.marketplace', [
             }
         }
     });
-    $urlRouterProvider.otherwise('/home?product=services&type=analytical');
+    $urlRouterProvider.otherwise('/home?product=services');
 });

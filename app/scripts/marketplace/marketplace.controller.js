@@ -43,7 +43,7 @@ angular.module('dmc.marketplace')
             };
             $scope.currentProduct = angular.isDefined($stateParams.product) && defaultPages[$stateParams.product] ? $stateParams.product : 'services';
             $scope.currentProductType = (angular.isDefined($stateParams.type) ? $stateParams.type : null);
-            if($scope.currentProduct == 'services' && $scope.currentProductType == null) $scope.currentProductType = 'analytical';
+            //if($scope.currentProduct == 'services' && $scope.currentProductType == null) $scope.currentProductType = 'analytical';
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
 
             var apply = function(){
@@ -295,15 +295,11 @@ angular.module('dmc.marketplace')
 
 
             var getMenu = function(){
-                var dataSearch = $.extend(true,{},$stateParams);
 
                 var getUrl = function(product,type){
+                    var dataSearch = $.extend(true,{},$stateParams);
                     if(product) dataSearch.product = product;
-                    if(type){
-                        dataSearch.type = type;
-                    }else{
-                        delete dataSearch.type;
-                    }
+                    dataSearch.type = type;
                     return 'marketplace.php'+$state.href('marketplace_search',dataSearch);
                 };
 
@@ -342,7 +338,7 @@ angular.module('dmc.marketplace')
                             'tag' : 'services',
                             'items': 32,
                             'opened' : isOpened('services'),
-                            'href' : getUrl('services'),
+                            'href' : getUrl('services',null),
                             'categories': [
                                 {
                                     'id': 31,

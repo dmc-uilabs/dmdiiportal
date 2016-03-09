@@ -59,16 +59,12 @@ angular.module('dmc.model.company', [
             };
 
             this.getMenu = function(){
-                var dataSearch = $.extend(true,{},$stateParams);
                 var searchPage = ($location.$$path.indexOf("/edit") != -1 ? "edit" : "search");
 
                 var getUrl = function(product,type){
+                    var dataSearch = $.extend(true,{},$stateParams);
                     if(product) dataSearch.product = product;
-                    if(type){
-                        dataSearch.type = type;
-                    }else{
-                        delete dataSearch.type;
-                    }
+                    dataSearch.type = type;
                     return 'company.php'+$state.href('company.search',dataSearch);
                 };
 
