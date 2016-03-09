@@ -53,15 +53,6 @@ angular.module('dmc.component.members-card', [
                             "accept": false
                         },
                         function (response) {
-                            $scope.$root.userData.messages.items.splice($scope.$root.userData.messages.items.length-1, 1);
-                            $scope.$root.userData.messages.items.unshift({
-                                "user_name": $scope.$root.userData.displayName,
-                                "image": "/uploads/profile/1/20151222084711000000.jpg",
-                                "text": "Invited you to a project",
-                                "link": "/project.php#/preview/" + project.id,
-                                "created_at": moment().format("hh:mm A")
-                            });
-                            DMCUserModel.UpdateUserData($scope.$root.userData);
                             $scope.cancelAddToProject();
                             $scope.cardSource.added = true;
 
@@ -73,7 +64,7 @@ angular.module('dmc.component.members-card', [
                                 $scope.cardSource.added = false;
                                 apply();
                             }, 10000);
-                            
+
                             var apply = function(){
                                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                             };
@@ -155,7 +146,7 @@ angular.module('dmc.component.members-card', [
 .controller('showMembers', ['ajax', 'dataFactory', '$scope', '$mdDialog', 'id', function(ajax, dataFactory, $scope, $mdDialog, id){
     console.info('showMembers', id);
     $scope.profile = [];
-    
+
     $scope.history = {
         leftColumn: {
             title: "Public",
@@ -170,11 +161,11 @@ angular.module('dmc.component.members-card', [
     }
 
     // get profile history
-    ajax.get(dataFactory.profiles(id).history, 
+    ajax.get(dataFactory.profiles(id).history,
         {
             "_limit": 3,
             "section": "public"
-        }, 
+        },
         function(response){
             var data = response.data;
             for(var i in data){
@@ -191,16 +182,16 @@ angular.module('dmc.component.members-card', [
                         break;
                     case "worked":
                         data[i].icon = "images/icon_project.svg";
-                        break;  
+                        break;
                     case "favorited":
                         data[i].icon = "images/ic_favorite_black_24px.svg";
-                        break;   
+                        break;
                     case "shared":
                         data[i].icon = "images/ic_done_all_black_24px.svg";
-                        break;   
+                        break;
                     case "discussion":
                         data[i].icon = "images/ic_forum_black_24px.svg";
-                        break;                                  
+                        break;
                 }
             }
             $scope.history.leftColumn.list = data;
@@ -209,11 +200,11 @@ angular.module('dmc.component.members-card', [
     );
 
     // get Profile history
-    ajax.get(dataFactory.profiles(id).history, 
+    ajax.get(dataFactory.profiles(id).history,
         {
             "_limit": 3,
             "section": "mutual"
-        }, 
+        },
         function(response){
             var data = response.data;
             for(var i in data){
@@ -230,16 +221,16 @@ angular.module('dmc.component.members-card', [
                         break;
                     case "worked":
                         data[i].icon = "images/icon_project.svg";
-                        break;  
+                        break;
                     case "favorited":
                         data[i].icon = "images/ic_favorite_black_24px.svg";
-                        break;   
+                        break;
                     case "shared":
                         data[i].icon = "images/ic_done_all_black_24px.svg";
-                        break;   
+                        break;
                     case "discussion":
                         data[i].icon = "images/ic_forum_black_24px.svg";
-                        break;                                  
+                        break;
                 }
             }
             $scope.history.rightColumn.list = data;
@@ -320,16 +311,16 @@ angular.module('dmc.component.members-card', [
                     break;
                 case "worked":
                     data[i].icon = "images/icon_project.svg";
-                    break;  
+                    break;
                 case "favorited":
                     data[i].icon = "images/ic_favorite_black_24px.svg";
-                    break;   
+                    break;
                 case "shared":
                     data[i].icon = "images/ic_done_all_black_24px.svg";
-                    break;   
+                    break;
                 case "discussion":
                     data[i].icon = "images/ic_forum_black_24px.svg";
-                    break;                                  
+                    break;
             }
         }
         $scope.history.leftColumn.list = data;
@@ -349,16 +340,16 @@ angular.module('dmc.component.members-card', [
                     break;
                 case "worked":
                     data[i].icon = "images/icon_project.svg";
-                    break;  
+                    break;
                 case "favorited":
                     data[i].icon = "images/ic_favorite_black_24px.svg";
-                    break;   
+                    break;
                 case "shared":
                     data[i].icon = "images/ic_done_all_black_24px.svg";
-                    break;   
+                    break;
                 case "discussion":
                     data[i].icon = "images/ic_forum_black_24px.svg";
-                    break;                                  
+                    break;
             }
         }
         $scope.history.rightColumn.list = data;

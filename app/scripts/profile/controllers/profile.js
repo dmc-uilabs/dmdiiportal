@@ -1,8 +1,8 @@
 angular.module('dmc.profile')
-    .controller('profileController', 
+    .controller('profileController',
     	['profileData', 'profileModel', '$stateParams', '$scope', '$location', '$anchorScroll', 'ajax', 'dataFactory', '$state',
     	function (profileData, profileModel, $stateParams, $scope, $location, $anchorScroll, ajax, dataFactory, $state) {
-		
+
         $scope.profile = profileData;  //profile
         $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
         $scope.submit_rating = 0;  //
@@ -61,11 +61,11 @@ angular.module('dmc.profile')
         }
 
         // get profile history
-        profileModel.getProfileHistory( 
+        profileModel.getProfileHistory(
             {
                 "_limit": 3,
                 "section": "public"
-            }, 
+            },
             function(data){
                 for(var i in data){
                     data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
@@ -81,16 +81,16 @@ angular.module('dmc.profile')
                             break;
                         case "worked":
                             data[i].icon = "images/icon_project.svg";
-                            break;  
+                            break;
                         case "favorited":
                             data[i].icon = "images/ic_favorite_black_24px.svg";
-                            break;   
+                            break;
                         case "shared":
                             data[i].icon = "images/ic_done_all_black_24px.svg";
-                            break;   
+                            break;
                         case "discussion":
                             data[i].icon = "images/ic_forum_black_24px.svg";
-                            break;                                  
+                            break;
                     }
                 }
                 $scope.history.leftColumn.list = data;
@@ -99,11 +99,11 @@ angular.module('dmc.profile')
         );
 
         // get Profile history
-        profileModel.getProfileHistory( 
+        profileModel.getProfileHistory(
             {
                 "_limit": 3,
                 "section": "mutual"
-            }, 
+            },
             function(data){
                 for(var i in data){
                     data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
@@ -119,16 +119,16 @@ angular.module('dmc.profile')
                             break;
                         case "worked":
                             data[i].icon = "images/icon_project.svg";
-                            break;  
+                            break;
                         case "favorited":
                             data[i].icon = "images/ic_favorite_black_24px.svg";
-                            break;   
+                            break;
                         case "shared":
                             data[i].icon = "images/ic_done_all_black_24px.svg";
-                            break;   
+                            break;
                         case "discussion":
                             data[i].icon = "images/ic_forum_black_24px.svg";
-                            break;                                  
+                            break;
                     }
                 }
                 $scope.history.rightColumn.list = data;
@@ -170,7 +170,7 @@ angular.module('dmc.profile')
 		            $scope.profile.rating.push($scope.submit_rating);
 		            $scope.submit_rating = 0;
 		            $scope.LeaveFlag = !$scope.LeaveFlag;
-		            
+
                     $scope.profile.precentage_stars = [0, 0, 0, 0, 0];
                     $scope.profile.average_rating = 0;
                     for (var i in $scope.profile.rating) {
@@ -206,7 +206,7 @@ angular.module('dmc.profile')
                     }else{
                         review['replyReviews'] = [data];
                     }
-                    profileModel.update_profile_reviews(NewReview.id, 
+                    profileModel.update_profile_reviews(NewReview.id,
                         {
                             'reply': true
                         },
@@ -370,16 +370,6 @@ angular.module('dmc.profile')
                     "accept": false
                 },
                 function(response){
-
-                    $scope.$root.userData.messages.items.splice($scope.$root.userData.messages.items.length-1, 1);
-                    $scope.$root.userData.messages.items.unshift({
-                        "user_name": $scope.$root.userData.displayName,
-                        "image": "/uploads/profile/1/20151222084711000000.jpg",
-                        "text": "Invited you to a project",
-                        "link": "/project.php#/preview/" + $stateParams.projectId,
-                        "created_at": moment().format("hh:mm A")
-                    });
-                    DMCUserModel.UpdateUserData($scope.$root.userData);
                 }
             );
         }

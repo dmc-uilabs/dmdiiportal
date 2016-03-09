@@ -76,15 +76,6 @@ angular.module('dmc.add_members', [
                             "accept": false
                         },
                         function(response){
-                            $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
-                            $rootScope.userData.messages.items.unshift({
-                                "user_name": $rootScope.userData.displayName,
-                                "image": "/uploads/profile/1/20151222084711000000.jpg",
-                                "text": "Invited you to a project",
-                                "link": "/project.php#/preview/" + $stateParams.projectId,
-                                "created_at": moment(new Date()).format("hh:mm A")
-                            });
-                            DMCUserModel.UpdateUserData($rootScope.userData);
                             if(i == array.length-1){
                               callback();
                             }
@@ -97,4 +88,3 @@ angular.module('dmc.add_members', [
         }
     ]
 );
-  
