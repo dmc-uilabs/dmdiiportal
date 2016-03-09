@@ -219,7 +219,9 @@ angular.module('dmc.component.productcard', [
                       serviceId : ($scope.cardSource.id ? $scope.cardSource.id : 1)
                   }
               }).then(function() {
+                  $(window).unbind('beforeunload');
               }, function() {
+                  $(window).unbind('beforeunload');
               });
           };
 
