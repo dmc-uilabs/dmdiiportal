@@ -225,7 +225,7 @@ angular.module('dmc.project', [
 		ajax.get(dataFactory.getMembersToProject(), 
             {
                 "projectId" : $stateParams.projectId,
-                "profileId" : $scope.$root.userData.profileId,
+                "profileId" : $scope.$root.userData.profileId
             }, 
             function(response){
             	console.info(response);

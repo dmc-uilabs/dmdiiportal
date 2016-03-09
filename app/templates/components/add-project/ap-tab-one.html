@@ -1,61 +1,84 @@
 <div class="container">
-  <!-- Left Content Column -->
-  <div layout="row" layout-margin layout-fill layout-padding>
-  <div class="content-column" layout="column" flex>
-    <div class="content-panel">
-      <div class="content-panel-header">
-        <md-toolbar>
-          <div class="md-toolbar-tools">
-            <h2>PROJECT DETAILS</h2>
-          </div>
-        </md-toolbar>
-      </div>
-      <div class="content-panel-body">
-        <md-content class="md-padding">
-          <form name="form">
-          <md-input-container flex>
-            <label>Project Title</label>
-            <input ng-model="projectDetails.title"
-                   ng-change="changed('title')"
-                   ng-init="projectDetails.title_old = projectDetails.title" required>
-          </md-input-container>
-          <div layout="row" layout-align="start end">
-            <md-input-container>
-              <md-datepicker class="dueDatePicker"
-                             ng-change="changed('dueDate')"
-                             ng-init="projectDetails.dueDate_old = projectDetails.dueDate"
-                             ng-model="projectDetails.dueDate"
-                             md-placeholder="Due Date"></md-datepicker>
-            </md-input-container>
-            <md-input-container flex="30" class="margin-left16">
-              <label>Type</label>
-              <md-select ng-model="projectDetails.type"
-                         ng-change="changed('type')"
-                         ng-init="projectDetails.type_old = projectDetails.type"
-                         class="type-select" aria-label="Types" required>
-                <md-option value="public">Public</md-option>
-                <md-option value="private">Private</md-option>
-              </md-select>
-            </md-input-container>
-          </div>
-          <md-input-container flex>
-            <label>Overview</label>
-              <textarea name="overview"
-                        class="overviewTextArea"
-                        ng-change="changed('description')"
-                        ng-init="projectDetails.description_old = projectDetails.description"
-                        ng-model="projectDetails.description" columns="1" required></textarea>
-          </md-input-container>
-          </form>
-        </md-content>
-      </div>
+    <!-- Left Content Column -->
+    <div layout="row" layout-margin layout-fill layout-padding>
+        <div class="content-column" layout="column" flex>
+            <div class="content-panel">
+                <div class="content-panel-header">
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <h2>PROJECT DETAILS</h2>
+                        </div>
+                    </md-toolbar>
+                </div>
+                <div class="content-panel-body">
+                    <md-content class="md-padding">
+                        <form name="form">
+                            <md-input-container flex>
+                                <label>Project Title</label>
+                                <input ng-model="projectDetails.title"
+                                       ng-change="changed('title')"
+                                       ng-init="projectDetails.title_old = projectDetails.title" required>
+                            </md-input-container>
+                            <div layout="row" layout-align="start end">
+                                <md-input-container>
+                                    <md-datepicker class="dueDatePicker"
+                                                   ng-change="changed('dueDate')"
+                                                   ng-init="projectDetails.dueDate_old = projectDetails.dueDate"
+                                                   ng-model="projectDetails.dueDate"
+                                                   md-placeholder="Due Date"></md-datepicker>
+                                </md-input-container>
+                                <md-input-container flex="30" class="margin-left16">
+                                    <label>Type</label>
+                                    <md-select ng-model="projectDetails.type"
+                                               ng-change="changed('type')"
+                                               ng-init="projectDetails.type_old = projectDetails.type"
+                                               class="type-select" aria-label="Types" required>
+                                        <md-option value="public">Public</md-option>
+                                        <md-option value="private">Private</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <md-input-container flex>
+                                <label>Overview</label>
+                                <textarea name="overview"
+                                          class="overviewTextArea"
+                                          ng-change="changed('description')"
+                                          ng-init="projectDetails.description_old = projectDetails.description"
+                                          ng-model="projectDetails.description" columns="1" required></textarea>
+                            </md-input-container>
+                        </form>
+                    </md-content>
+                    <md-content class="md-padding">
+                        <div layout="column">
+                            <form ng-submit="addTag(newTag)" class="add-tags-form" layout="row" layout-align="start center">
+                                <md-input-container>
+                                    <label>Enter Tag</label>
+                                    <input ng-model="newTag">
+                                </md-input-container>
+                                <md-button ng-disabled="!newTag" class="md-raised md-primary">Add</md-button>
+                            </form>
+                            <div layout="row" class="project-tags-list" layout-wrap>
+                                <div class="tag" ng-repeat="tag in projectDetails.tags track by $index" ng-if="!tag.deleted">
+                                    <div>
+                                        <span>{{tag.name}}</span>
+                                        <md-button md-no-ink class="md-icon-button"
+                                                   ng-click="deleteTag($index,tag)"
+                                                   aria-label="Delete Tag">
+                                            <ng-md-icon icon="clear" ng-style="{'fill' : '#444'}" size="15"></ng-md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+        <!-- Right Content Column -->
+        <div class="content-column upload-documents" layout="column" flex>
+            <div class="content-panel" ui-widget-upload-documents auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
+        </div>
     </div>
-  </div>
-  <!-- Right Content Column -->
-    <div class="content-column upload-documents" layout="column" flex>
-        <div class="content-panel" ui-widget-upload-documents auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
-    </div>
-  </div>
     <div layout="row" class="btn-next-block" layout-padding layout-align="end center">
         <!-- Cancel edit project -->
         <md-button class="md-raised"

@@ -38,6 +38,7 @@ angular.module('dmc.project')
                         checkServer();
                         domeModel.getModel($scope.interface,function(response){
                             $scope.selectedInterface = response.data && response.data.pkg ? response.data.pkg : null;
+                            //console.log($scope.selectedInterface);
                             $scope.NewService.serviceName = serviceData.title;
                         });
                     }
@@ -92,8 +93,8 @@ angular.module('dmc.project')
                     delete changedValues[name];
                 }
                 isChangedPage = Object.keys(changedValues).length > 0 ? true : false;
-                console.log(isChangedPage);
-            }
+                //console.log(isChangedPage);
+            };
 
             // select server
             $scope.selectedServerIp = null;
@@ -143,7 +144,7 @@ angular.module('dmc.project')
                 $scope.addTags.push(inputTag);
                 $scope.service_tags.push({name: inputTag});
                 this.inputTag = null;
-                console.log($scope.addTags);
+                //console.log($scope.addTags);
             };
 
             //remove tag
@@ -158,7 +159,7 @@ angular.module('dmc.project')
                         }
                     }
                 }
-                console.log($scope.addTags);
+                //console.log($scope.addTags);
                 $scope.service_tags.splice(index,1);
             };
 
@@ -194,7 +195,7 @@ angular.module('dmc.project')
             };
 
             $scope.$on('$locationChangeStart', function (event, next, current) {
-                console.log(current);
+                //console.log(current);
                 var answer = confirm("Are you sure you want to leave this page without saving?");
                 if ((isInterfaceChanged || isChangedPage || $scope.addTags.length > 0 || $scope.removeTags.length > 0) && current.match("\/edit")) {
                     var answer = confirm("Are you sure you want to leave this page without saving?");

@@ -25,6 +25,7 @@ angular.module('dmc.project')
             projectCtrl.projectData = projectData;
 
             $scope.projectData = projectData;
+            console.log($scope.projectData);
 
             $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
 

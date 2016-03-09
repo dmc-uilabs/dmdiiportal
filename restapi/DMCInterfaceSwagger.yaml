@@ -347,6 +347,55 @@ paths:
                   type: string
                 serviceId:
                   type: string
+  '/projects_tags':
+    post:
+      tags:
+        - project
+      description: Add new project tag
+      parameters:
+        - in: body
+          name: body
+          description: Project tag object to be added to the database
+          required: false
+          schema:
+            $ref: '#/definitions/PostProjectTag'
+      responses:
+        '200':
+          description: return added project tag
+          schema:
+            $ref: '#/definitions/GetProjectTag'
+  '/projects_tags/{id}':
+    delete:
+      tags:
+        - project
+      description: Delete project tag
+      parameters:
+        - name: id
+          in: path
+          type: string
+          description: ID of the project tag
+          required: true
+      responses:
+        '200':
+          description: Ok
+  '/projects/{projectID}/projects_tags':
+    get:
+      tags:
+        - project
+      description: Get all project tags
+      parameters:
+        - name: projectID
+          in: path
+          type: string
+          description: ID of the project
+          required: true
+      responses:
+        '200':
+          description: return array of project tags
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GetProjectTag'
   /projects:
     get:
       tags:
@@ -6201,4 +6250,20 @@ definitions:
       id:
         type: string
       title:
+        type: string
+  PostProjectTag:
+    type: object
+    properties:
+      projectId:
+        type: string
+      name:
+        type: string
+  GetProjectTag:
+    type: object
+    properties:
+      id:
+        type: string
+      projectId:
+        type: string
+      name:
         type: string

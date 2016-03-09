@@ -11,6 +11,7 @@ angular.module('dmc.widgets.interfaces',[
             scope: {
                 serverIp: '=',
                 selectedInterface: '=',
+                currentInterface: '=',
                 update: '='
             },
             templateUrl: 'templates/components/ui-widgets/interfaces.tmpl.html',
@@ -20,6 +21,83 @@ angular.module('dmc.widgets.interfaces',[
                 $scope.isLoading = false;
                 $scope.track = [];
                 $scope.current = null;
+                var first = false;
+                var needFindInterface = false;
+
+                // search current interface in dome server (for edit service) //////////////////////////////////////////
+                $scope.$watch("currentInterface",function(newVal,oldVal){
+                    if(!first && newVal && newVal.interFace && newVal.interFace.path){
+                        if($.type(newVal.interFace.path) == "array"){
+                            first = true;
+                            if($scope.interfaces && $scope.interfaces.length > 0){
+                                findFolder();
+                            }else{
+                                needFindInterface = true;
+                            }
+                        }
+                    }
+                });
+
+                function findFolder(){
+                    for(var i in $scope.interfaces){
+                        if($scope.interfaces[i].path && $scope.interfaces[i].path.length > 0){
+                            var isThis = true;
+                            for(var j in $scope.interfaces[i].path){
+                                if($scope.interfaces[i].path[j] != $scope.currentInterface.interFace.path[j]){
+                                    isThis = false;
+                                    break;
+                                }
+                            }
+                            if(isThis){
+                                if($scope.interfaces[i].type == 'folder' || ($scope.interfaces[i].type == 'model' && $scope.interfaces[i].modelId == $scope.currentInterface.interFace.modelId)) {
+                                    getNextInterface($scope.interfaces[i], i, false);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                function getNextInterface(item,index,back){
+                    var dataRequest = {};
+                    for (var key in item) {
+                        if (key != 'interfaces') dataRequest[key] = item[key];
+                    }
+                    dataRequest.domeServer = $scope.serverIp;
+                    domeModel.getChildren(dataRequest,function(response){
+                        if (response && response.data && response.data.status != "error") {
+                            if (response.data.pkg && response.data.pkg.children) {
+                                if(response.data.pkg.type == "model"){
+                                    if(response.data.pkg.children) {
+                                        $scope.current = index;
+                                        nameModel = response.data.pkg.name;
+                                        $scope.getModel(response.data.pkg.children[0]);
+                                    }
+                                }else {
+                                    $scope.interfaces = response.data.pkg.children;
+                                    findFolder();
+                                    if (back) {
+                                        $scope.track.splice(index + 1, $scope.track.length);
+                                    } else if (item) {
+                                        $scope.track.push(item);
+                                    }
+                                    $scope.currentFolder = $scope.track.length - 1;
+                                }
+                            }
+                        } else {
+                            $scope.interfaces = [];
+                            if(!response || !response.data) {
+                                toastModel.showToast('error', "Unknown server");
+                            }else{
+                                toastModel.showToast('error', response.data.msg);
+                            }
+                        }
+                        apply();
+                    },function(){
+
+                    },item,index,back);
+                }
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 var nameModel = null;
 
@@ -29,6 +107,7 @@ angular.module('dmc.widgets.interfaces',[
 
                 function callbackGetModel(response){
                     if(response.status != "error") {
+                        if(!$scope.currentInterface) first = true;
                         $scope.selectedInterface(response.data.pkg, nameModel);
                         apply();
                     }else{
@@ -47,6 +126,10 @@ angular.module('dmc.widgets.interfaces',[
                                 }
                             }else {
                                 $scope.interfaces = response.data.pkg.children;
+                                if(needFindInterface){
+                                    findFolder();
+                                    needFindInterface = false;
+                                }
                                 if (back) {
                                     $scope.track.splice(index + 1, $scope.track.length);
                                 } else if (item) {

@@ -91,22 +91,22 @@
           "user_name": "Thomas Smith",
           "image": "/uploads/profile/1/20151222084711000000.jpg",
           "text": "Invited you to a project",
-          "link": "/project.php#/preview/1",
-          "created_at": "8:00 PM"
+          "link": "/project.php#/preview/6",
+          "created_at": "04:12 PM"
         },
         {
           "user_name": "Thomas Smith",
           "image": "/uploads/profile/1/20151222084711000000.jpg",
           "text": "Invited you to a project",
-          "link": "/project.php#/preview/3",
-          "created_at": "10:46 PM"
+          "link": "/project.php#/preview/6",
+          "created_at": "04:11 PM"
         },
         {
           "user_name": "Thomas Smith",
           "image": "/uploads/profile/1/20151222084711000000.jpg",
           "text": "Invited you to a project",
-          "link": "/project.php#/preview/4",
-          "created_at": "1:15 PM"
+          "link": "/project.php#/preview/6",
+          "created_at": "04:11 PM"
         }
       ]
     },
@@ -841,6 +841,46 @@
         "totalItems": 0,
         "link": "/projects/5/services"
       }
+    },
+    {
+      "title": "Test project",
+      "type": "private",
+      "dueDate": 1457647200000,
+      "projectManager": "DMC member",
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": "Description",
+      "id": 6,
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/6/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/6/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/6/services"
+      },
+      "tags": {
+        "totalItems": 0,
+        "link": "/projects/6/projects_tags"
+      }
+    }
+  ],
+  "projects_tags": [
+    {
+      "projectId": 6,
+      "name": 123,
+      "id": 1
+    },
+    {
+      "projectId": 6,
+      "name": 158,
+      "id": 2
     }
   ],
   "projects_members": [
@@ -870,6 +910,15 @@
       "date": 1456242258000,
       "accept": false,
       "id": 3
+    },
+    {
+      "profileId": 1,
+      "projectId": 6,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1457532729366,
+      "accept": true,
+      "id": 11
     }
   ],
   "components": [
@@ -991,6 +1040,19 @@
       "serviceId": 45,
       "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
       "id": 5
+    },
+    {
+      "version": 1,
+      "modelId": "12bb9d5e-d8ec-1004-8394-4597bfb6a5f0",
+      "interfaceId": "12bb9d5f-d8ec-1004-8394-4597bfb6a5f0",
+      "type": "interface",
+      "name": "Default Interface",
+      "path": [
+        32
+      ],
+      "serviceId": 46,
+      "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 6
     }
   ],
   "services": [
@@ -1564,6 +1626,32 @@
       "published": false,
       "from": "project",
       "id": 45
+    },
+    {
+      "title": "Vectors",
+      "description": "Vectors Description",
+      "owner": "Thomas Smith",
+      "accountId": 1,
+      "releaseDate": "03/08/2016",
+      "serviceType": "analytical",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "averageRun": 0,
+      "currentStatus": {
+        "project": {
+          "id": 1,
+          "name": "Control Compartment for LDR Mining"
+        }
+      },
+      "parent_component": null,
+      "projectId": 1,
+      "type": "service",
+      "published": false,
+      "from": "project",
+      "id": 46
     }
   ],
   "service_runs": [
@@ -3576,6 +3664,11 @@
       "serviceId": 45,
       "name": "Velocity",
       "id": 15
+    },
+    {
+      "serviceId": 46,
+      "name": "tag 1",
+      "id": 16
     }
   ],
   "services_run_history": [

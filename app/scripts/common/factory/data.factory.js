@@ -306,6 +306,15 @@ angular.module('dmc.data',[])
             updateProject: function(id){
                 return localhost+'projects/'+id;
             },
+            addProjectTag: function(){
+                return localhost+'projects_tags';
+            },
+            deleteProjectTag: function(id){
+                return localhost+'projects_tags/'+id;
+            },
+            getProjectTags: function(id){
+                return localhost+'projects/'+id+'/projects_tags/';
+            },
             createDiscussion: function(id){
                 return localhost+'discussions/create';
             },

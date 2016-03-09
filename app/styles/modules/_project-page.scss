@@ -115,3 +115,21 @@
     padding-right: 28px;
   }
 }
+
+.project-tags-list{
+  .tag{
+    background-color: #eee;
+    color: #363636;
+    @include borderRadius(2px);
+    margin: 0 8px 8px 0;
+    font-size: 16px;
+    padding-left: 10px;
+    .md-button.md-icon-button{
+      min-height: 0;
+      width: 25px;
+      height: 32px;
+      line-height: 32px;
+      min-width: 0;
+    }
+  }
+}

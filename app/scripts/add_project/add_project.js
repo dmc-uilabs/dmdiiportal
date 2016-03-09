@@ -26,17 +26,18 @@ angular.module('dmc.add_project', [
         }
     };
 })
-.service('projectModel', [
-    'ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope',
-    function (ajax, dataFactory, $stateParams, toastModel, $rootScope) {
+    .service('projectModel', [
+        'ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope','DMCUserModel',
+        function (ajax, dataFactory, $stateParams, toastModel, $rootScope, DMCUserModel ) {
 
-        this.update_project = function(id,params, array, currentMembers, callback){
-            ajax.update(dataFactory.updateProject(id),{
-                title : params.title,
-                type : params.type,
-                dueDate : params.dueDate,
-                description : params.description
-            },function(response){
+            this.update_project = function(id,params, array, currentMembers, callback){
+                if(params.tags && params.tags.length > 0) saveTags(params.tags,id);
+                ajax.update(dataFactory.updateProject(id),{
+                    title : params.title,
+                    type : params.type,
+                    dueDate : params.dueDate,
+                    description : params.description
+                },function(response){
                     for(var i in array){
                         var isFound = false;
                         for(var j in currentMembers){
@@ -76,121 +77,114 @@ angular.module('dmc.add_project', [
                             ajax.delete(dataFactory.deleteProjectMember(currentMembers[i].id),{},function(){})
                         }
                     }
-                callback();
-            });
-        };
+                    callback();
+                });
+            };
 
-        this.add_project = function(params, array, callback){
-            ajax.get(dataFactory.getProjects(),
-                {
-                    "_limit" : 1,
-                    "_order" : "DESC",
-                    "_sort" : "id"
-                },
-                function(response){
-                    var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
-                    ajax.create(dataFactory.getCreateProject(),
-                        {
-                            "id": lastId,
-                            "title": params.title,
-                            "type": params.type,
-                            "dueDate": params.dueDate,
-                            "projectManager": "DMC member",
-                            "featureImage": {
-                                "thumbnail": "/images/project_relay_controller.png",
-                                "large": "/images/project_relay_controller.png"
-                            },
-                            "description": params.description,
+            this.add_project = function(params, array, callback){
+
+                ajax.create(dataFactory.getCreateProject(),
+                    {
+                        "title": params.title,
+                        "type": params.type,
+                        "dueDate": params.dueDate,
+                        "projectManager": "DMC member",
+                        "featureImage": {
+                            "thumbnail": "/images/project_relay_controller.png",
+                            "large": "/images/project_relay_controller.png"
+                        },
+                        "description": params.description
+                    },
+                    function(response){
+
+                        // save link in created project
+                        ajax.update(dataFactory.updateProject(response.data.id),{
                             "tasks": {
                                 "totalItems": 0,
-                                "link": "/projects/"+lastId+"/tasks"
+                                "link": "/projects/"+response.data.id+"/tasks"
                             },
                             "discussions": {
                                 "totalItems": 0,
-                                "link": "/projects/"+lastId+"/discussions"
+                                "link": "/projects/"+response.data.id+"/discussions"
                             },
                             "services": {
                                 "totalItems": 0,
-                                "link": "/projects/"+lastId+"/services"
+                                "link": "/projects/"+response.data.id+"/services"
+                            },
+                            "tags": {
+                                "totalItems": 0,
+                                "link": "/projects/"+response.data.id+"/projects_tags"
                             }
+                        },function(response){});
 
-                        },
-                        function(response){
-                            ajax.get(dataFactory.createMembersToProject(), 
+
+                        if(params.tags && params.tags.length > 0) saveTags(params.tags,response.data.id);
+
+                        ajax.create(dataFactory.createMembersToProject(),
+                            {
+                                "profileId": $rootScope.userData.profileId,
+                                "projectId": response.data.id,
+                                "fromProfileId": $rootScope.userData.profileId,
+                                "from": $rootScope.userData.displayName,
+                                "date": moment(new Date).format('x'),
+                                "accept": true
+                            },
+                            function(response){
+
+                                $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
+                                $rootScope.userData.messages.items.unshift({
+                                    "user_name": $rootScope.userData.displayName,
+                                    "image": "/uploads/profile/1/20151222084711000000.jpg",
+                                    "text": "Invited you to a project",
+                                    "link": "/project.php#/preview/" + response.data.id,
+                                    "created_at": moment().format("hh:mm A")
+                                });
+                                DMCUserModel.UpdateUserData($rootScope.userData);
+                            }
+                        );
+
+
+                        for(var i in array){
+                            ajax.create(dataFactory.createMembersToProject(),
                                 {
-                                    "_limit" : 1,
-                                    "_order" : "DESC",
-                                    "_sort" : "id"
-                                }, 
-                                function(response){  
-                                    console.info(response);
-                                    var lastMemberId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1); 
+                                    "profileId": array[i].id,
+                                    "projectId": response.data.id,
+                                    "fromProfileId": $rootScope.userData.profileId,
+                                    "from": $rootScope.userData.displayName,
+                                    "date": moment(new Date).format('x'),
+                                    "accept": false
+                                },
+                                function(response){
 
-                                    ajax.create(dataFactory.createMembersToProject(),
-                                        {
-                                            "id": lastMemberId,
-                                            "profileId": $rootScope.userData.profileId,
-                                            "projectId": lastId,
-                                            "fromProfileId": $rootScope.userData.profileId,
-                                            "from": $rootScope.userData.displayName,
-                                            "date": moment(new Date).format('x'),
-                                            "accept": true
-                                        },
-                                        function(response){
-
-                                            $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
-                                            $rootScope.userData.messages.items.unshift({
-                                                "user_name": $rootScope.userData.displayName,
-                                                "image": "/uploads/profile/1/20151222084711000000.jpg",
-                                                "text": "Invited you to a project",
-                                                "link": "/project.php#/preview/" + lastId,
-                                                "created_at": moment().format("hh:mm A")
-                                            });
-                                            DMCUserModel.UpdateUserData($rootScope.userData);
-                                        }
-                                    );
-                                    lastMemberId++;
-
-
-                                    for(var i in array){
-                                        ajax.create(dataFactory.createMembersToProject(),
-                                            {
-                                                "id": lastMemberId,
-                                                "profileId": array[i].id,
-                                                "projectId": lastId,
-                                                "fromProfileId": $rootScope.userData.profileId,
-                                                "from": $rootScope.userData.displayName,
-                                                "date": moment(new Date).format('x'),
-                                                "accept": false
-                                            },
-                                            function(response){
-
-                                                $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
-                                                $rootScope.userData.messages.items.unshift({
-                                                    "user_name": $rootScope.userData.displayName,
-                                                    "image": "/uploads/profile/1/20151222084711000000.jpg",
-                                                    "text": "Invited you to a project",
-                                                    "link": "/project.php#/preview/" + lastId,
-                                                    "created_at": moment().format("hh:mm A")
-                                                });
-                                                DMCUserModel.UpdateUserData($rootScope.userData);
-                                            }
-                                        );
-                                        lastMemberId++;
-                                    }
-                                    callback(lastId);
+                                    $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
+                                    $rootScope.userData.messages.items.unshift({
+                                        "user_name": $rootScope.userData.displayName,
+                                        "image": "/uploads/profile/1/20151222084711000000.jpg",
+                                        "text": "Invited you to a project",
+                                        "link": "/project.php#/preview/" + response.data.id,
+                                        "created_at": moment().format("hh:mm A")
+                                    });
+                                    DMCUserModel.UpdateUserData($rootScope.userData);
                                 }
-                            ) 
+                            );
                         }
-                    );
+                        callback(response.data.id);
+                    }
+                );
+            };
 
-                },
-                function(response){
-                    toastModel.showToast("error", "Error." + response.statusText);
+            function saveTags(tags,id){
+                for(var i in tags){
+                    if(tags[i].id && tags[i].id > 0 && tags[i].deleted == true){
+                        ajax.delete(dataFactory.deleteProjectTag(tags[i].id),{
+                        },function(response){});
+                    }else if(!tags[i].id || tags[i].id <= 0){
+                        ajax.create(dataFactory.addProjectTag(),{
+                            projectId : id,
+                            name : tags[i].name
+                        },function(response){});
+                    }
                 }
-            ) 
-        };
-
-            
-    }
-]);
+            }
+        }
+    ]);

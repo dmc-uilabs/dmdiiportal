@@ -19,12 +19,15 @@ angular.module('dmc.add_project.directive', [
                     {name: 'question_answer', color: "rgb(89, 226, 168)"}
                 ];
 
-                $scope.projectData = {};
+                $scope.projectData = {
+                    tags : []
+                };
                 $scope.fonts = [].concat(iconData);
                 // Create a set of sizes...
                 $scope.sizes = [
                     {size: "md-18", padding: 0}
                 ];
+
 
                 $scope.data = {
                     secondLocked : true,
@@ -35,7 +38,8 @@ angular.module('dmc.add_project.directive', [
                 var newProject = {}
                 var setProjectDetails = function(data) {
                     newProject = $.extend(true, newProject, data);
-                }
+                };
+
                 $scope.createNewProject = function(data) {
                     if(newProject.dueDate){
                         newProject.dueDate = moment(newProject.dueDate).format("x");
@@ -44,8 +48,9 @@ angular.module('dmc.add_project.directive', [
                     }
                     projectModel.add_project(newProject, data, function(data){
                         document.location.href = "project.php#/"+data+"/home";
-                    })
-                }
+                    });
+                };
+
                 $scope.goToNextTab = function(number, obj){
                     $(window).scrollTop(0);
                     if (obj) {
@@ -143,7 +148,7 @@ angular.module('dmc.add_project.directive', [
                 //};
 
                 $scope.$on('$locationChangeStart', function (event, next, current) {
-                    if ($scope.isUpdate && $scope.isChanges && current.match("\/edit")) {
+                    if ($scope.isChanges && current.match("\/edit")) {
                         var answer = confirm("Are you sure you want to leave this page without saving?");
                         if (!answer){
                             event.preventDefault();
@@ -153,10 +158,25 @@ angular.module('dmc.add_project.directive', [
 
                 $(window).unbind('beforeunload');
                 $(window).bind('beforeunload', function(){
-                    if($scope.isUpdate && $scope.isChanges) {
+                    if($scope.isChanges) {
                         return "Are you sure you want to leave this page without saving?";
                     }
                 });
+
+                $scope.addTag = function(newTag){
+                    $scope.projectDetails.tags.push({
+                        name : newTag
+                    });
+                    $scope.newTag = null;
+                };
+
+                $scope.deleteTag = function(index,tag){
+                    if(tag.id > 0){
+                        tag.deleted = true;
+                    }else{
+                        $scope.projectDetails.tags.splice(index,1);
+                    }
+                };
 
                 function apply() {
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
