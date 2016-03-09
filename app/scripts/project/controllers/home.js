@@ -4,6 +4,7 @@ function ($rootScope, $scope, $stateParams,$mdDialog, projectData, toastModel, $
     var projectCtrl = this;
     projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
     projectCtrl.projectData = projectData;
+
     if($cookieStore.get("toast")){
 	    toastModel.showToast("success", $cookieStore.get("toast"));
 	    $cookieStore.remove("toast");

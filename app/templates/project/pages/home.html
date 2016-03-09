@@ -29,14 +29,14 @@
 
             <a ng-if="!isPreview"
                ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/edit'}}"
-               class="link-button uppercase invite-button margin-left20">
+               class="link-button uppercase edit-button margin-left20">
                 <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
             </a>
 
             <a ng-if="!isPreview"
                ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
                class="link-button uppercase invite-button margin-left20">
-                <ng-md-icon icon="share" size="18"></ng-md-icon>Invite
+                <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
             </a>
             <!--<md-menu  ng-if="!isPreview"> -->
                 <!--<md-button class="md-raised dmc-button" ng-click="$mdOpenMenu($event) "><ng-md-icon icon="share" size="18"></ng-md-icon> Invite</md-button>-->
@@ -105,8 +105,13 @@
                  ui-widget-documents
                  project-id="projectCtrl.currentProjectId"
                  widget-title="'DOCUMENTS'"></div>
-            <!-- Running Services -->
+            <!-- Project tags -->
             <div ng-if="!isPreview" class="content-panel margin-left12-5"
+                 ui-widget-project-tags
+                 tags="projectCtrl.projectData.tags"
+                 widget-title="'TAGS'"></div>
+            <!-- Running Services -->
+            <div ng-if="!isPreview" class="content-panel margin-left12-5 margin-top-25"
                  ui-widget-services
                  view-all-href="'https://test.projectdmc.org/services/?group_id=7'"
                  title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'"

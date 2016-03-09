@@ -38,6 +38,7 @@ angular.module('dmc.project', [
 		'ui.sortable',
 		'dmc.model.toast-model',
 		'dmc.model.services',
+        'dmc.widgets.project-tags',
 		'dmc.sub-nav-menu'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){

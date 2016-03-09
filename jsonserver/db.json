@@ -91,22 +91,22 @@
           "user_name": "Thomas Smith",
           "image": "/uploads/profile/1/20151222084711000000.jpg",
           "text": "Invited you to a project",
+          "link": "/project.php#/preview/1",
+          "created_at": "01:18 AM"
+        },
+        {
+          "user_name": "Thomas Smith",
+          "image": "/uploads/profile/1/20151222084711000000.jpg",
+          "text": "Invited you to a project",
+          "link": "/project.php#/preview/1",
+          "created_at": "01:06 AM"
+        },
+        {
+          "user_name": "Thomas Smith",
+          "image": "/uploads/profile/1/20151222084711000000.jpg",
+          "text": "Invited you to a project",
           "link": "/project.php#/preview/6",
           "created_at": "04:12 PM"
-        },
-        {
-          "user_name": "Thomas Smith",
-          "image": "/uploads/profile/1/20151222084711000000.jpg",
-          "text": "Invited you to a project",
-          "link": "/project.php#/preview/6",
-          "created_at": "04:11 PM"
-        },
-        {
-          "user_name": "Thomas Smith",
-          "image": "/uploads/profile/1/20151222084711000000.jpg",
-          "text": "Invited you to a project",
-          "link": "/project.php#/preview/6",
-          "created_at": "04:11 PM"
         }
       ]
     },
@@ -891,18 +891,19 @@
       "projectId": 6,
       "name": 158,
       "id": 2
+    },
+    {
+      "projectId": 1,
+      "name": 12345,
+      "id": 3
+    },
+    {
+      "projectId": 1,
+      "name": "Test tag",
+      "id": 4
     }
   ],
   "projects_members": [
-    {
-      "profileId": 1,
-      "projectId": 1,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1456241879000,
-      "accept": false,
-      "id": 1
-    },
     {
       "profileId": 1,
       "projectId": 3,
@@ -929,6 +930,15 @@
       "date": 1457532729366,
       "accept": true,
       "id": 11
+    },
+    {
+      "profileId": 1,
+      "projectId": 1,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1457565533771,
+      "accept": true,
+      "id": 13
     }
   ],
   "components": [
