@@ -213,6 +213,7 @@ angular.module('dmc.company-profile', [
                     for(var i in response.data){
                         response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
                         get_helpful(response.data[i]);
+                        get_flagged(response.data[i]);
                     }                        
                     review['replyReviews'] = response.data;
                 }
