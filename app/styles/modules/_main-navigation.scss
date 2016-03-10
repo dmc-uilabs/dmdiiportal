@@ -27,7 +27,7 @@ div[dmc-top-header]{
 }
 
 .message-container{
-  md-menu-item{ 
+  md-menu-item{
     height: auto;
     a{
       line-height: 1.5;
@@ -54,11 +54,10 @@ div[dmc-top-header]{
     padding: 0;
   }
 
-  .svg-icon{
-    width: 37px;
-    height: 37px;
-    background: white;
-    margin-left: 10px;
+  .header-service-icon {
+    .st0 {
+      fill: white;
+    }
   }
 
   .top-header {
