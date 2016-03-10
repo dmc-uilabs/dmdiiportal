@@ -178,6 +178,10 @@ angular.module('dmc.add_project.directive', [
                     }
                 };
 
+                $(".dueDatePicker").on("focus","input",function(){
+                    $(".dueDatePicker button").click();
+                });
+
                 function apply() {
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }

@@ -30,7 +30,7 @@ angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 
 }).controller('HomeCtr',['$scope', 'userData', function($scope, userData){
     $scope.pages = [
         {
-            name : "My Dashboard",
+            name : "Dashboard",
             text : "Design Solutions",
             href : "dashboard.php",
             img : "home-dashboard-icon.png",

@@ -4,9 +4,13 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
     return {
         require: 'ngModel',
         link: function($scope, $element, $attrs, ngModelCtrl) {
+            var target, position; // Capture initial position
+
             var listener = function() {
                 var value = $element.val().replace(/[^0-9]/g, '');
-                $element.val($filter('tel')(value, false));
+                //$element.val($filter('tel')(value, false));
+                target.value = $filter('tel')(value, false)
+                target.selectionEnd = position;    // Set the cursor back to the initial position.
             };
 
             // This runs when we update the text field
@@ -21,6 +25,9 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
 
             $element.bind('change', listener);
             $element.bind('keydown', function(event) {
+                target = event.target;
+                position = target.selectionStart;
+
                 var key = event.keyCode;
                 // If the keys include the CTRL, SHIFT, ALT, or META keys, or the arrow keys, do nothing.
                 // This lets us support copy and paste too
@@ -28,11 +35,13 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
                     return;
                 }
                 $browser.defer(listener); // Have to do this or changes don't get picked up properly
+
             });
 
             $element.bind('paste cut', function() {
                 $browser.defer(listener);
             });
+
         }
 
     };

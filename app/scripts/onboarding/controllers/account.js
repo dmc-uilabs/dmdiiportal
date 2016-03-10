@@ -44,12 +44,16 @@ angular.module('dmc.onboarding')
                                 }
                             }
                         }
-                        $scope.getUserNotifications();
+                        //$scope.getUserNotifications();
                     });
                 }
             );
         };
         $scope.getNotifications();
+
+        $scope.clickOnTitle = function(item){
+            item.selected = !item.selected;
+        }
 
         $scope.disableAll = function(index){
         	for(var i in $scope.account[index].data){

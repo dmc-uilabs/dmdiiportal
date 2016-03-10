@@ -1,3 +1,20 @@
+.block-notification{
+  .notification-item{
+    .title-switch{
+      cursor: pointer;
+      outline: none;
+    }
+    md-switch{
+      margin: 5px;
+      &.md-checked .md-thumb{
+        background-color: rgb(100, 173, 69);
+      }
+      &.md-checked .md-bar{
+        background-color: rgb(100,220,69);
+      }
+    }
+  }
+}
 .onboarding-home{
   md-content{
     background-color: transparent;
@@ -122,7 +139,7 @@
     margin-bottom: 20px;
   }
   h2{
-    margin-top: 0;
+    margin-bottom: 3px;
   }
   h3{
     font-weight: normal;

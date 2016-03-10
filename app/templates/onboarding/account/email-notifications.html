@@ -15,27 +15,36 @@
 		<div layout="column" classs="body-container" flex="50">
 			<div class="block-notification">
 		        <h2>{{notificationCategories[1].title}}</h2>
-		        <md-switch ng-model="account[3].data[item.id].selected" aria-label=""
-		                   ng-repeat="item in notificationCategories[1]['account-notification-category-items']">
-		            {{item.title}}
-		        </md-switch>
+                <div ng-repeat="item in notificationCategories[1]['account-notification-category-items']"
+                     ng-if="!item.hide" class="notification-item"
+                     layout="row" layout-align="start center">
+    		        <md-switch ng-model="account[3].data[item.id].selected" aria-label=""></md-switch>
+                    <span class="title-switch" ng-click="clickOnTitle(account[3].data[item.id])">{{item.title}}</span>
+                    <span flex></span>
+                </div>
 		    </div>
 			<div class="block-notification">
 		        <h2>{{notificationCategories[2].title}}</h2>
-		        <md-switch ng-model="account[3].data[item.id].selected" aria-label="" ng-if="!item.hide"
-		                   ng-repeat="item in notificationCategories[2]['account-notification-category-items']">
-		            {{item.title}} 
-		        </md-switch>
+                <div ng-repeat="item in notificationCategories[2]['account-notification-category-items']"
+                     ng-if="!item.hide" class="notification-item"
+                     layout="row" layout-align="start center">
+		            <md-switch ng-model="account[3].data[item.id].selected" aria-label=""></md-switch>
+                    <span class="title-switch" ng-click="clickOnTitle(account[3].data[item.id])">{{item.title}}</span>
+                    <span flex></span>
+                </div>
 		    </div>
 		</div>
 
 		<div layout="column" classs="body-container" flex="50">
 			<div class="block-notification">
 		        <h2>{{notificationCategories[3].title}}</h2>
-		        <md-switch ng-model="account[3].data[item.id].selected" aria-label=""
-		                   ng-repeat="item in notificationCategories[3]['account-notification-category-items']">
-		            {{item.title}}
-		        </md-switch>
+                <div ng-repeat="item in notificationCategories[3]['account-notification-category-items']"
+                     ng-if="!item.hide" class="notification-item"
+                     layout="row" layout-align="start center">
+    		        <md-switch ng-model="account[3].data[item.id].selected" aria-label=""></md-switch>
+                    <span class="title-switch" ng-click="clickOnTitle(account[3].data[item.id])">{{item.title}}</span>
+                    <span flex></span>
+                <div>
 		    </div>
 		</div>
 	</div>
