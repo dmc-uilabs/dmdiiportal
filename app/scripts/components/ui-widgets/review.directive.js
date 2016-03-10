@@ -77,6 +77,17 @@ angular.module('dmc.widgets.review',[
         $scope.replyFlag = false;
       };
 
+      //Submit Flag Reply form
+      $scope.SubmitReply = function(NewReview, id, index){
+        NewReview.id = id;
+        $scope.flaggedFunction(NewReview);
+        
+        $scope.review.replyReviews[index]['flagged'] = true;
+        $scope.flagReplyReviewFlag = false;
+        $scope.flagReviewFlag = false;
+        $scope.replyFlag = false;
+      };
+
       $scope.ShowReply = function(){
         $scope.showReply = !$scope.showReply;
       };
