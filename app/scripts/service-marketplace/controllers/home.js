@@ -297,10 +297,12 @@ angular.module('dmc.service-marketplace')
             //Show Leave A Review form
             $scope.LeaveAReview = function(){
                 $scope.LeaveFlag = !$scope.LeaveFlag;
+                $scope.submit_rating = 0;
             };
 
             //cancel Review form
             $scope.Cancel = function(){
+                $scope.submit_rating = 0;
                 $scope.LeaveFlag = false;
             };
 
@@ -312,7 +314,7 @@ angular.module('dmc.service-marketplace')
                         accountId: $scope.$root.userData.accountId,
                         reviewId: 0,
                         rating: $scope.submit_rating,
-                        comment: NewReview.Comment
+                        comment: NewReview && NewReview.Comment ? NewReview.Comment : null
                     },
                     function(data){
                         $scope.product.number_of_comments++;

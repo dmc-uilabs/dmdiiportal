@@ -544,13 +544,11 @@ angular.module('dmc.company')
                             $scope.storefrontItems.arr[i].featureId = $scope.featuredItems[j].featureId;
                             $scope.storefrontItems.arr[i].position = $scope.featuredItems[j].position;
                             $scope.storefrontItems.arr[i].inFeatured = true;
-                            console.log($scope.storefrontItems.arr[i]);
                             break;
                         }
                     }
                 }
                 apply();
-                console.log($scope.featuredItems);
             }
 
             function deletePicture(){
