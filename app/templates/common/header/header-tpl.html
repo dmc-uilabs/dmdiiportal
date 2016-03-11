@@ -16,7 +16,7 @@
                     <md-button class="md-button"
                                aria-label="Service alerts"
                                ng-click="closeMenu(); $mdOpenMenu($event)">
-                        <md-icon style="width:37px;height:37px;"
+                        <md-icon class="header-service-icon" style="width:37px;height:37px;"
                                          md-svg-src="images/icon_service-white.svg"  ></md-icon>
                         <span class="count-message" ng-show="service_alert > 0">{{service_alert}}</span>
                     </md-button>
@@ -61,8 +61,7 @@
                                 <!-- project icon -->
                                 <ng-md-icon icon="notifications" size="32" ng-if="item.type == 'project'"></ng-md-icon>
                                 <!-- service and market icon -->
-                                <md-icon ng-if="item.type == 'service' || item.type == 'marketplace'" style="width:40px;height:28px; vertical-align: top;"
-                                         md-svg-src="images/icon_service.svg"  ></md-icon>
+                                <md-icon ng-if="item.type == 'service' || item.type == 'marketplace'" style="width:40px;height:28px; vertical-align: top;" md-svg-src="images/icon_service.svg"  ></md-icon>
                                 <!-- service and market icon -->
                                 <md-icon ng-if="item.type == 'company'" style="width:40px;height:28px; vertical-align: top;"
                                          md-svg-src="images/icon-company-lg.svg"  ></md-icon>
