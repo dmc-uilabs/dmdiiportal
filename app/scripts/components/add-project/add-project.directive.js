@@ -46,6 +46,7 @@ angular.module('dmc.add_project.directive', [
                     }else{
                         newProject.dueDate = "";
                     }
+                    $(window).unbind('beforeunload');
                     projectModel.add_project(newProject, data, function(data){
                         document.location.href = "project.php#/"+data+"/home";
                     });
@@ -177,6 +178,17 @@ angular.module('dmc.add_project.directive', [
                         $scope.projectDetails.tags.splice(index,1);
                     }
                 };
+
+                $scope.$watch(function(){
+                    return $(".md-datepicker-calendar-pane.md-pane-open").size();
+                },function(newVal,oldVal){
+                    if(newVal == null || newVal == 0){
+                        $scope.projectDetails.dueDateFocused = false;
+                    }else{
+                        $scope.projectDetails.dueDateFocused = true;
+                    }
+                    apply();
+                });
 
                 $(".dueDatePicker").on("focus","input",function(){
                     $(".dueDatePicker button").click();

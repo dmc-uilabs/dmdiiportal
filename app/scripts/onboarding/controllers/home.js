@@ -28,6 +28,7 @@ angular.module('dmc.onboarding')
 		    })
 		    .then(function(answer) {
 		      	$scope.$parent.first = false;
+                    $rootScope.userData.companyId = $scope.userBasicInformation.company;
 		      	$rootScope.userData.termsConditions = true;
 		      	DMCUserModel.UpdateUserData($rootScope.userData);
 		    }, function() {

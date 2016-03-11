@@ -35,6 +35,7 @@ angular.module('dmc.add_project', [
                 ajax.update(dataFactory.updateProject(id),{
                     title : params.title,
                     type : params.type,
+                    approvalOption : params.approvalOption,
                     dueDate : params.dueDate,
                     description : params.description
                 },function(response){
@@ -79,6 +80,7 @@ angular.module('dmc.add_project', [
                         "type": params.type,
                         "dueDate": params.dueDate,
                         "projectManager": "DMC member",
+                        "approvalOption": params.approvalOption,
                         "featureImage": {
                             "thumbnail": "/images/project_relay_controller.png",
                             "large": "/images/project_relay_controller.png"

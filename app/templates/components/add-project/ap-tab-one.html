@@ -1,7 +1,7 @@
 <div class="container">
     <!-- Left Content Column -->
     <div layout="row" layout-margin layout-fill layout-padding>
-        <div class="content-column" layout="column" flex>
+        <div class="content-column" layout="column" flex="50">
             <div class="content-panel">
                 <div class="content-panel-header">
                     <md-toolbar>
@@ -20,14 +20,15 @@
                                        ng-init="projectDetails.title_old = projectDetails.title" required>
                             </md-input-container>
                             <div layout="row" layout-align="start end">
-                                <md-input-container>
+                                <md-input-container flex="30">
+                                    <span class="dueDate-label" ng-show="projectDetails.dueDate || projectDetails.dueDateFocused">Due Date</span>
                                     <md-datepicker class="dueDatePicker"
                                                    ng-change="changed('dueDate')"
                                                    ng-init="projectDetails.dueDate_old = projectDetails.dueDate"
                                                    ng-model="projectDetails.dueDate"
                                                    md-placeholder="Due Date"></md-datepicker>
                                 </md-input-container>
-                                <md-input-container flex="30" class="margin-left16">
+                                <md-input-container flex="20" class="margin-left16">
                                     <label>Type</label>
                                     <md-select ng-model="projectDetails.type"
                                                ng-change="changed('type')"
@@ -35,6 +36,16 @@
                                                class="type-select" aria-label="Types" required>
                                         <md-option value="public">Public</md-option>
                                         <md-option value="private">Private</md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <md-input-container flex="40" class="margin-left16" ng-if="projectDetails.type == 'public'">
+                                    <label>Approval Options</label>
+                                    <md-select ng-model="projectDetails.approvalOption"
+                                               ng-change="changed('approvalOption')"
+                                               ng-init="projectDetails.approvalOption = !projectDetails.approvalOption ? 'all' : projectDetails.approvalOption; projectDetails.approvalOption_old = projectDetails.approvalOption"
+                                               class="type-select" aria-label="Approval Options" required>
+                                        <md-option value="all">All members can join</md-option>
+                                        <md-option value="admin">Members require approval by admin</md-option>
                                     </md-select>
                                 </md-input-container>
                             </div>
@@ -75,7 +86,7 @@
             </div>
         </div>
         <!-- Right Content Column -->
-        <div class="content-column upload-documents" layout="column" flex>
+        <div class="content-column upload-documents" layout="column" flex="45">
             <div class="content-panel" ui-widget-upload-documents auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
         </div>
     </div>

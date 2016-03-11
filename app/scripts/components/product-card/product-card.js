@@ -438,8 +438,8 @@ angular.module('dmc.component.productcard', [
         }
 
         $(window).unbind('beforeunload');
-        $(window).bind('beforeunload', function(){
-            return "Are you sure you want to leave this page?";
+        $(window).bind('beforeunload', function(val){
+            return "";
         });
 
         function getAllUser(){

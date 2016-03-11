@@ -35,7 +35,15 @@
   margin-left: 0;
 }
 .rfp-invitation md-datepicker {
-  margin-top: 18px; }
+  margin-top: 18px;
+  margin-left: -14px;
+  .md-datepicker-input-container {
+    margin-right: 45px;
+    input {
+      width: 100%;
+    }
+  }
+}
 .rfp-invitation .md-datepicker-button {
   height: 36px;
   width: 36px;

@@ -177,6 +177,16 @@
 				}
 			}
 		}
+        .image{
+          margin-right: 10px;
+          .one-image {
+            text-align: center;
+            img {
+              height: 100px;
+              width: auto;
+            }
+          }
+        }
 		h2{
 			font-weight: normal;	
 		}

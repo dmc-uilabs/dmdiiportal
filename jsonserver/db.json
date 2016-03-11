@@ -118,10 +118,10 @@
     }
   },
   "user-basic-information": {
-    "firstName": "q",
-    "lastName": "q",
-    "email": "q",
-    "company": "q"
+    "firstName": "company",
+    "lastName": "sdf",
+    "email": "sdf",
+    "company": 2
   },
   "assign_users": [
     {
@@ -292,11 +292,22 @@
     {
       "type": 1,
       "name": "",
-      "phoneNumber": 1234567890,
+      "phoneNumber": 131098762541,
       "title": "",
-      "email": "email@gmail.com",
+      "email": "",
       "id": 2,
       "companyId": 1
+    },
+    {
+      "type": 2,
+      "phoneNumber": "",
+      "companyId": 1,
+      "id": 3
+    },
+    {
+      "type": 2,
+      "companyId": 1,
+      "id": 4
     }
   ],
   "company_featured": [
@@ -411,6 +422,20 @@
       "date": 1455664534557,
       "like": 1,
       "dislike": 0
+    },
+    {
+      "name": "Thomas Smith",
+      "accountId": 1,
+      "reviewId": 0,
+      "rating": 4,
+      "comment": null,
+      "id": 10,
+      "companyId": 1,
+      "reply": false,
+      "status": true,
+      "date": 1457694559185,
+      "like": 0,
+      "dislike": 0
     }
   ],
   "company_reviews_helpful": [
@@ -460,6 +485,11 @@
       "reviewId": 8,
       "accountId": 1,
       "id": 3
+    },
+    {
+      "reviewId": 9,
+      "accountId": 1,
+      "id": 4
     }
   ],
   "company_history": [
@@ -879,6 +909,91 @@
         "totalItems": 0,
         "link": "/projects/6/projects_tags"
       }
+    },
+    {
+      "title": "ыфва",
+      "type": "private",
+      "dueDate": 1456783200000,
+      "projectManager": "DMC member",
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": "ыва",
+      "id": 7,
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/7/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/7/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/7/services"
+      },
+      "tags": {
+        "totalItems": 0,
+        "link": "/projects/7/projects_tags"
+      }
+    },
+    {
+      "title": "Project",
+      "type": "private",
+      "dueDate": 1456783200000,
+      "projectManager": "DMC member",
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": 1,
+      "id": 8,
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/8/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/8/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/8/services"
+      },
+      "tags": {
+        "totalItems": 0,
+        "link": "/projects/8/projects_tags"
+      }
+    },
+    {
+      "title": "Test project",
+      "type": "public",
+      "dueDate": 1456783200000,
+      "projectManager": "DMC member",
+      "approvalOption": "admin",
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": 123,
+      "id": 9,
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/9/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/9/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/9/services"
+      },
+      "tags": {
+        "totalItems": 0,
+        "link": "/projects/9/projects_tags"
+      }
     }
   ],
   "projects_tags": [
@@ -939,6 +1054,24 @@
       "date": 1457565533771,
       "accept": true,
       "id": 13
+    },
+    {
+      "profileId": 1,
+      "projectId": 7,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1457697137181,
+      "accept": true,
+      "id": 14
+    },
+    {
+      "profileId": 1,
+      "projectId": 9,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1457701978988,
+      "accept": true,
+      "id": 15
     }
   ],
   "components": [

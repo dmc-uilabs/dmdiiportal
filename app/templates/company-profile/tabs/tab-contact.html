@@ -123,7 +123,7 @@
                     </md-button>
                     <md-button class="md-raised md-primary"
                                type="submit"
-                               ng-disabled="(!newContact.type || !newContact.phoneNumber) && (!newContact.type || formAddContact.email.$invalid)">
+                               ng-disabled="!formAddContact.$valid">
                         Save
                     </md-button>
                 </div>
@@ -162,7 +162,6 @@
                     <md-input-container flex="50" class="right-space">
                         <label>Phone Number</label>
                         <input phone-input
-                               maxlength="12"
                                ng-init="item.changedPhoneNumber = item.phoneNumber"
                                ng-change="changedValue('contact')"
                                ng-model="item.changedPhoneNumber">
