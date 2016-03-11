@@ -148,11 +148,13 @@ angular.module('dmc.profile')
         //Show Leave A Review form
         $scope.LeaveAReview = function () {
             $scope.LeaveFlag = !$scope.LeaveFlag;
+            $scope.submit_rating = 0;
         };
 
         //cancel Review form
         $scope.Cancel = function () {
             $scope.LeaveFlag = false;
+            $scope.submit_rating = 0;
         };
 
         //Submit Leave A Review form
@@ -163,7 +165,7 @@ angular.module('dmc.profile')
                     accountId: $scope.$root.userData.accountId,
                     reviewId: 0,
                     rating: $scope.submit_rating,
-                    comment: NewReview.Comment
+                    comment: NewReview && NewReview.Comment ? NewReview.Comment : null
 				},
 				function(data){
 	            	$scope.profile.number_of_comments++;
