@@ -257,6 +257,7 @@ angular.module('dmc.company')
                             arr : $.merge($scope.storefrontItems.arr, data),
                             count : $scope.storefrontItems.arr.length
                         };
+                        checkAdded();
                         apply();
                     }else{
                         isFirstCallback = false;
@@ -264,7 +265,10 @@ angular.module('dmc.company')
                             arr : data,
                             count : data.length
                         };
-                        if($scope.selectedProductType != 'all') apply();
+                        if($scope.selectedProductType != 'all'){
+                            checkAdded();
+                            apply();
+                        }
                     }
                 };
 
@@ -455,6 +459,7 @@ angular.module('dmc.company')
                                         $scope.featuredItems.push(item_);
                                     }
                                 }
+                                checkAdded();
                                 $scope.featuredItems.sort(function(a,b){
                                     return a.position > b.position;
                                 });
@@ -464,6 +469,8 @@ angular.module('dmc.company')
                     );
                 };
                 $scope.getFeatured();
+
+
 
                 // add to featured
                 $scope.addFeatured = function(item){
@@ -530,6 +537,22 @@ angular.module('dmc.company')
                 });
             }
 
+            function checkAdded(){
+                for (var i = 0; i < $scope.storefrontItems.arr.length; i++) {
+                    for (var j in $scope.featuredItems) {
+                        if ($scope.storefrontItems.arr[i].id == $scope.featuredItems[j].id) {
+                            $scope.storefrontItems.arr[i].featureId = $scope.featuredItems[j].featureId;
+                            $scope.storefrontItems.arr[i].position = $scope.featuredItems[j].position;
+                            $scope.storefrontItems.arr[i].inFeatured = true;
+                            console.log($scope.storefrontItems.arr[i]);
+                            break;
+                        }
+                    }
+                }
+                apply();
+                console.log($scope.featuredItems);
+            }
+
             function deletePicture(){
                 ajax.update(dataFactory.deleteCompanyLogo($scope.companyData.id),{
                     "featureImage": {
@@ -553,4 +576,4 @@ angular.module('dmc.company')
             function apply(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
-}]);
+        }]);

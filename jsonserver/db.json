@@ -313,15 +313,21 @@
   "company_featured": [
     {
       "companyId": 1,
-      "position": 2,
-      "serviceId": 30,
-      "id": 5
+      "position": 9,
+      "serviceId": 15,
+      "id": 1
     },
     {
       "companyId": 1,
-      "position": 4,
-      "serviceId": 29,
-      "id": 7
+      "position": 10,
+      "serviceId": 9,
+      "id": 2
+    },
+    {
+      "companyId": 1,
+      "position": 11,
+      "serviceId": 16,
+      "id": 3
     }
   ],
   "company_reviews": [
