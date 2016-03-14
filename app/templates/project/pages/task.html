@@ -1,0 +1,113 @@
+<div class="page-header">
+    <md-toolbar>
+        <h1 class="project-title" layout="row" layout-align="start end">
+            <div class="title">
+                <a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a>
+            </div>
+            <span ng-if="projectCtrl.projectData.dueDate" class="small-text due-date-project small-text--grey">
+                Due in {{projectCtrl.projectData.dueDate}}
+            </span>
+        </h1>
+    </md-toolbar>
+</div>
+<div class="margin-bottom-35" layout="row" layout-align="start center">
+    <a href="/project.php#/{{projectCtrl.projectData.id}}/home">Back to Project</a>
+    <span flex></span>
+
+    <!-- Edit and Delete buttons-->
+    <md-button ng-click="editTask()" class="md-icon-button" ng-show="!isEditing">
+        <ng-md-icon icon="edit" size="18"></ng-md-icon>
+    </md-button>
+    <md-button ng-click="deleteTask($event)" class="md-icon-button" ng-show="!isEditing">
+        <ng-md-icon icon="delete" size="18"></ng-md-icon>
+    </md-button>
+
+    <!-- Save and Cancel buttons -->
+    <md-button ng-click="cancelEditTask()" class="md-raised dmc-button cancel-edit-task" ng-show="isEditing">
+        Cancel
+    </md-button>
+    <md-button ng-click="saveChanges()" class="md-raised dmc-button md-primary" ng-show="isEditing">
+        Save
+    </md-button>
+</div>
+
+<div class="container project-task-container" ng-if="task">
+    <div layout="row" >
+        <!-- Left Content Column -->
+        <div class="content-column" layout="column" flex="70">
+            <!-- Overview -->
+            <div class="content-panel margin-right12-5">
+                <div class="content-panel-header">
+                    <md-toolbar>
+                        <h2>Task</h2>
+                    </md-toolbar>
+                </div>
+                <div class="content-panel-body">
+                    <md-content layout="row">
+                        <div flex layout="column">
+                            <div class="title-task-block" flex layout="row" layout-align="start center" ng-show="!isEditing">
+                                <p flex ng-bind-html="task.title"></p>
+                                <md-button class="md-raised dmc-button" ng-click="setStatus()">{{task.status == "Open" ? "Mark As Complete" : "Mark As Open"}}</md-button>
+                            </div>
+                            <div class="additional-details" flex layout="row" ng-show="!isEditing">
+                                <p ng-show="task.additionalDetails && task.additionalDetails.length > 0" ng-bind-html="task.additionalDetails"></p>
+                                <p ng-show="!task.additionalDetails || task.additionalDetails.length == 0">Additional details is empty</p>
+                            </div>
+                            <md-input-container class="md-block" ng-show="isEditing" flex="100">
+                                <label>Description</label>
+                                <textarea ng-model="task.title"></textarea>
+                            </md-input-container>
+                            <md-input-container class="md-block" ng-show="isEditing" flex="100">
+                                <label>Additional Details</label>
+                                <textarea ng-model="task.additionalDetails"></textarea>
+                            </md-input-container>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+        <!-- Right Content Column -->
+        <div class="content-column" layout="column" flex>
+            <div class="content-panel margin-left12-5">
+                <div class="content-panel-header">
+                    <md-toolbar>
+                        <h2>Details</h2>
+                    </md-toolbar>
+                </div>
+                <div class="content-panel-body">
+                    <md-content layout="row" class="task-details-container">
+                        <ul ng-show="!isEditing">
+                            <li>Due in: <span ng-bind-html="task.formatedDueDate[1]" class="label border-radius-2" ng-class="task.formatedDueDate[0] == 'date' ? 'label--date' : (task.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (task.formatedDueDate[0] == 'today' || task.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span></li>
+                            <li>Priority: {{task.priorityName}}</li>
+                            <li>Assigned To: {{task.assignee}}</li>
+                            <li>Created By: {{task.reporter}}</li>
+                        </ul>
+                        <div layout="column" ng-show="isEditing" class="edit-details-block" flex="80">
+                            <div layout="row" flex="80" ng-init="setDatePickerFocus()">
+                                <span class="dueDate-label" ng-show="task.dueDateForEdit">Due Date</span>
+                                <md-datepicker  flex class="dueDatePicker" ng-model="task.dueDateForEdit" md-placeholder="Due Date">
+                                </md-datepicker>
+                            </div>
+                            <div layout="row" flex="80">
+                                <md-input-container flex>
+                                    <label>Priority</label>
+                                    <md-select ng-model="task.priority">
+                                        <md-option ng-repeat="p in priorities" value="{{p.id}}">{{p.name}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div layout="row" flex="80">
+                                <md-input-container flex>
+                                    <label>Assigned To</label>
+                                    <md-select ng-model="task.assignee">
+                                        <md-option ng-value="user.name" ng-repeat="user in users">{{user.name}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

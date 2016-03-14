@@ -340,6 +340,12 @@ angular.module('dmc.data',[])
                     return localhost+'tasks';
                 }
             },
+            getTask: function(id){
+                return localhost+'tasks/'+id;
+            },
+            deleteTask: function(id){
+                return localhost+'tasks/'+id;
+            },
             followCompany : function(){
                 return localhost+'company/follow';
             },

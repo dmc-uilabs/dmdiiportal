@@ -81,3 +81,55 @@
     text-decoration: underline;
   }
 }
+
+.project-task-container{
+  md-input-container{
+    padding-bottom: 15px;
+  }
+  .title-task-block{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    p{
+      font-weight: 100;
+      font-size: 15px;
+      margin: 0;
+    }
+  }
+  .additional-details{
+    margin-top: 15px;
+    font-size: 15px;
+  }
+  .task-details-container{
+    ul{
+      list-style: none;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      li{
+        padding: 0 0 16px;
+        font-size: 15px;
+        color: #363636;
+        &:last-child{
+          padding-bottom: 0;
+        }
+      }
+    }
+    .dueDate-label{
+      margin-left: 15px;
+      margin-top: 10px;
+    }
+    .edit-details-block{
+      margin-top: 10px;
+    }
+    md-datepicker{
+      margin-left: -18px;
+      button{
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.cancel-edit-task{
+  margin-right: 10px !important;
+}

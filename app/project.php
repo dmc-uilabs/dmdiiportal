@@ -108,6 +108,7 @@
     <script src="scripts/common/models/task-model.js"></script>
     <script src="scripts/common/models/discussion-model.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
+    <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/services.model.js"></script>
     <script src="scripts/common/models/dome-model.js"></script>
@@ -127,6 +128,7 @@
     <script src="scripts/project/controllers/home.js"></script>
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/project/controllers/tasks.js"></script>
+    <script src="scripts/project/controllers/task.js"></script>
     <script src="scripts/project/controllers/team.js"></script>
     <script src="scripts/project/controllers/workspace.js"></script>
     <script src="scripts/project/controllers/rfp-home.js"></script>

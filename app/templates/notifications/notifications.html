@@ -1,7 +1,10 @@
 <div class="notifications" layout="column">
 	<div layout="row" layout-align="space-between center">
-		<h2>My Notifications <a href="/account.php#/1/notifications"><md-icon style="width:20px;height:20px;"
-                                                                              md-svg-src="images/icon_project.svg"  ></md-icon></a></h2>
+		<h2>My Notifications
+            <a href="/account.php#/{{userData.accountId}}/notifications">
+                <ng-md-icon icon="settings" size="18"></ng-md-icon>
+            </a>
+        </h2>
 		<md-button ng-if="filterFlag" class="md-raised dmc-button" ng-click="reset()">View All</md-button>
 	</div>
 <md-content class="md-padding">
@@ -63,7 +66,9 @@
 			<md-list-item ng-repeat="item in notificationsData | filter: filterBy">
 				<div flex="100" layout="row" layout-align="center center" >
 					<div flex="10">
-						<img ng-src="{{item.image}}">
+						<!--<img ng-src="{{item.image}}">-->
+                        <md-icon style="width:45px;height:45px;"
+                                 md-svg-src="images/icon_project.svg"></md-icon>
 					</div>
 					<h4 flex><a href="{{getItemDetails(item).link}}">{{getItemDetails(item).title}}</a></h4>
 					<h4>{{item.date}}</h4>

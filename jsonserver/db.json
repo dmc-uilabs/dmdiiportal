@@ -5591,26 +5591,12 @@
         "id": 1,
         "title": "Control Compartment for LDR Mining"
       },
-      "assignee": "Bridget Cohen",
+      "assignee": "Stephen Rencour",
       "reporter": "J.Knight",
-      "dueDate": 1445720400000,
+      "dueDate": 1457906400000,
       "priority": 3,
       "projectId": 1,
-      "status": "Completed"
-    },
-    {
-      "id": 2,
-      "title": "program PLC",
-      "project": {
-        "id": 1,
-        "title": "Control Compartment for LDR Mining"
-      },
-      "assignee": "Bridget Cohen",
-      "reporter": "B.Hines",
-      "dueDate": 1445810400000,
-      "priority": 2,
-      "projectId": 1,
-      "status": "Completed"
+      "status": "Open"
     },
     {
       "id": 3,

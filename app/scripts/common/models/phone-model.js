@@ -5,13 +5,45 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
         require: 'ngModel',
         link: function($scope, $element, $attrs, ngModelCtrl) {
             var target, position; // Capture initial position
+            var prevVal;
+            var chars = '()- ext';
 
             var listener = function() {
                 var value = $element.val().replace(/[^0-9]/g, '');
-                //$element.val($filter('tel')(value, false));
-                target.value = $filter('tel')(value, false)
-                target.selectionEnd = position;    // Set the cursor back to the initial position.
+                var old_ = $element.val();
+                var up = false;
+                if(value.length > prevVal.length){
+                    position++;
+                    up = true;
+                }else{
+                    position--;
+                }
+                target.value = $filter('tel')(value, false);
+                if(up){
+                    if(getCountZ(target.value) - getCountZ(old_) > 0){
+                        position+=getCountZ(target.value) - getCountZ(old_);
+                    }else if(chars.indexOf(target.value[position-1])!=-1){
+                        for(var i=position-1;i<target.value.length;i++){
+                            if(chars.indexOf(target.value[i]) != -1){
+                                position++;
+                            }else{
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                target.selectionEnd = position;
             };
+
+            function getCountZ(value,p){
+                var count = 0;
+                var p_ = (p<14 ? p : value.length);
+                for(var i=0;i<p_;i++){
+                    if(chars.indexOf(value[i]) != -1) count++;
+                }
+                return count;
+            }
 
             // This runs when we update the text field
             ngModelCtrl.$parsers.push(function(viewValue) {
@@ -24,13 +56,18 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
             };
 
             $element.bind('change', listener);
-            $element.bind('keydown', function(event) {
+            $element.bind('keydown', function(event){
+                prevVal = event.target.value.replace(/[^0-9]/g, '');
                 target = event.target;
                 position = target.selectionStart;
 
                 var key = event.keyCode;
-                // If the keys include the CTRL, SHIFT, ALT, or META keys, or the arrow keys, do nothing.
-                // This lets us support copy and paste too
+
+                if(key == 36){
+                    position = 0;
+                }else if(key == 35){
+                    position = event.target.value.length+1;
+                }
                 if (key == 91 || (15 < key && key < 19) || (37 <= key && key <= 40)){
                     return;
                 }
