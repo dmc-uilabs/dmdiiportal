@@ -109,23 +109,28 @@
       }
       .inputs-container {
         .block-notification{
+          .title-switch{
+            cursor: pointer;
+            outline: none;
+          }
           h2{
             color: #666;
             font-size: 17px;
             font-weight: 100;
           }
           md-switch{
+            margin: 5px;
             .md-label{
               span{
                 font-size: 15px;
               }
             }
-          }
-          md-switch.md-checked .md-thumb {
-            background-color: #61AE3E;
-          }
-          md-switch.md-checked .md-bar {
-            background-color: #5FDE38;
+            &.md-checked .md-thumb {
+              background-color: #61AE3E;
+            }
+            &.md-checked .md-bar {
+              background-color: #5FDE38;
+            }
           }
         }
         .top-container {

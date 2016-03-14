@@ -25,12 +25,18 @@
                                     <div layout="row" classs="body-container" layout-wrap>
                                         <div class="block-notification" flex="50" ng-repeat="category in notification.data">
                                             <h2>{{category.title}}</h2>
-                                            <md-switch ng-init="item.user_item.changedSelected = item.user_item.selected" ng-model="item.user_item.changedSelected" aria-label=""
-                                                       ng-change="changedNotification(item.user_item)"
-                                                       ng-repeat="item in category['account-notification-category-items']"
-                                                       ng-if="!item.hide">
-                                                {{item.title}}
-                                            </md-switch>
+                                            <div layout="row" flex="100"
+                                                 layout-align="start center"
+                                                 ng-repeat="item in category['account-notification-category-items']"
+                                                 ng-init="item.user_item.changedSelected = item.user_item.selected"
+                                                 ng-if="!item.hide">
+                                                <md-switch ng-model="item.user_item.changedSelected"
+                                                           aria-label=""
+                                                           ng-change="changedNotification(item.user_item)">
+                                                </md-switch>
+                                                <span class="title-switch" ng-click="item.user_item.changedSelected=!item.user_item.changedSelected">{{item.title}}</span>
+                                                <span flex></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </md-content>

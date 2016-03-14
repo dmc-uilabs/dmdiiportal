@@ -37,7 +37,9 @@ angular.module('dmc.project')
             }
 
             $scope.getTask = function(){
-                ajax.get(dataFactory.getTask($scope.taskId),{},function(response){
+                ajax.get(dataFactory.getTask($scope.taskId),{
+                    projectId : $scope.projectId
+                },function(response){
                     $scope.task = response.data && response.data.id ? response.data : null;
                     setPriority($scope.task);
                     convertDueDate($scope.task);

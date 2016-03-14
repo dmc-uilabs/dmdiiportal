@@ -123,7 +123,7 @@ angular.module('dmc.onboarding', [
                 controller: 'ProfileController'
             })
                 .state('onboarding.profile.basic', {
-                    url: '/basic-informations',
+                    url: '/basic-information',
                     templateUrl: "templates/onboarding/profile/basic.html"
                 })
                 .state('onboarding.profile.image', {

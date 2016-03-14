@@ -372,9 +372,14 @@
       }
     }
     .img-box{
-    	width: 170px;
-    	margin-right: 16px;
+      //width: 170px;
+      //margin-right: 16px;
+      margin-bottom: 10px;
       position: relative;
+      overflow: hidden;
+      height: 200px;
+      background-position: center;
+      background-size: cover;
       .removed-images{
           position: absolute;
           right: 3px;
@@ -384,18 +389,6 @@
           ng-md-icon {
             fill: #fff;
           }
-        //   ng-md-icon {
-        //     fill: #555;
-        //     background-color: rgba(255, 255, 255, 0.8);
-        //     @include borderRadius(50%);
-        //     height: 32px;
-        //   }
-        //   &:hover{
-        //     ng-md-icon {
-        //       fill: #C32E2E;
-        //       background-color: rgba(255, 255, 255, 1);
-        //     }
-        //   }
         }
     }
   }

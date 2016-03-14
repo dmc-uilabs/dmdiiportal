@@ -149,19 +149,15 @@ angular.module('dmc.add_project.directive', [
                 //};
 
                 $scope.$on('$locationChangeStart', function (event, next, current) {
-                    if ($scope.isChanges && current.match("\/edit")) {
-                        var answer = confirm("Are you sure you want to leave this page without saving?");
-                        if (!answer){
-                            event.preventDefault();
-                        }
+                    var answer = confirm("Are you sure you want to leave this page?");
+                    if (!answer){
+                        event.preventDefault();
                     }
                 });
 
                 $(window).unbind('beforeunload');
                 $(window).bind('beforeunload', function(){
-                    if($scope.isChanges) {
-                        return "Are you sure you want to leave this page without saving?";
-                    }
+                    return "";
                 });
 
                 $scope.addTag = function(newTag){

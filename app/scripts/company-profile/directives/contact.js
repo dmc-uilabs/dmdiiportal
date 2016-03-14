@@ -119,18 +119,20 @@ angular.module('dmc.company-profile').
 
                 // save new contact
                 $scope.saveContact = function(newContact){
-                    newContact.companyId = $scope.source.id;
-                    ajax.create(dataFactory.addCompanyContact(),newContact,
-                        function(response){
-                            var data = response.data ? response.data : response;
-                            if(!$scope.source.contacts) $scope.source.contacts = [];
-                            $scope.source.contacts.unshift(data);
-                            $scope.cancelAddContact();
-                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                        },function(){
-                            toastModel.showToast("error", "Error. The problem on the server (add contact).");
-                        }
-                    );
+                    if((newContact.phoneNumber || newContact.email) && newContact.type) {
+                        newContact.companyId = $scope.source.id;
+                        ajax.create(dataFactory.addCompanyContact(), newContact,
+                            function (response) {
+                                var data = response.data ? response.data : response;
+                                if (!$scope.source.contacts) $scope.source.contacts = [];
+                                $scope.source.contacts.unshift(data);
+                                $scope.cancelAddContact();
+                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                            }, function () {
+                                toastModel.showToast("error", "Error. The problem on the server (add contact).");
+                            }
+                        );
+                    }
                 };
 
                 // delete contact

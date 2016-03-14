@@ -123,7 +123,7 @@
                     </md-button>
                     <md-button class="md-raised md-primary"
                                type="submit"
-                               ng-disabled="!formAddContact.$valid">
+                               ng-disabled="!formAddContact.$valid || (!newContact.phoneNumber && !newContact.email)">
                         Save
                     </md-button>
                 </div>

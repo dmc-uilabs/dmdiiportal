@@ -753,6 +753,43 @@ paths:
       responses:
         '405':
           description: Invalide input
+  '/tasks':
+    get:
+      tags:
+        - task
+      summary: Get tasks
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+        - name: title_like
+          in: query
+          description: Select by title name
+          type: string
+          required: false
+      responses:
+        '200':
+          description: send the task with taskID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Task'
   '/tasks/{taskID}':
     get:
       tags:
@@ -766,11 +803,29 @@ paths:
           type: string
           description: ID of the task
           required: true
+        - name: projectId
+          in: query
+          type: string
+          description: id of project
+          required: false
       responses:
         '200':
           description: send the task with taskID
           schema:
             $ref: '#/definitions/Task'
+    delete:
+      tags:
+        - task
+      description: Delete task
+      parameters:
+        - name: taskID
+          in: path
+          type: string
+          description: ID of the task
+          required: true
+      responses:
+        '200':
+          description: Ok
   '/dome-interfaces':
     post:
       tags:
@@ -4819,6 +4874,8 @@ definitions:
       dueDate:
         type: number
         format: milliseconds
+      additionalDetails: 
+        type: string
       priority:
         type: number
         enum:

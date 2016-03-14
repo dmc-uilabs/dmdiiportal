@@ -15,10 +15,10 @@
     <span flex></span>
 
     <!-- Edit and Delete buttons-->
-    <md-button ng-click="editTask()" class="md-icon-button" ng-show="!isEditing">
+    <md-button ng-click="editTask()" class="md-icon-button" ng-show="!isEditing && task">
         <ng-md-icon icon="edit" size="18"></ng-md-icon>
     </md-button>
-    <md-button ng-click="deleteTask($event)" class="md-icon-button" ng-show="!isEditing">
+    <md-button ng-click="deleteTask($event)" class="md-icon-button" ng-show="!isEditing && task">
         <ng-md-icon icon="delete" size="18"></ng-md-icon>
     </md-button>
 
@@ -31,6 +31,9 @@
     </md-button>
 </div>
 
+<div class="container project-task-container" ng-if="!task">
+    Task does not exist
+</div>
 <div class="container project-task-container" ng-if="task">
     <div layout="row" >
         <!-- Left Content Column -->

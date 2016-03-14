@@ -256,22 +256,32 @@ angular.module('dmc.company-profile')
                     // save changed contacts
                     if($scope.company.contacts && $.type($scope.company.contacts) == 'array' && $scope.company.contacts.length > 0){
                         for(var index in $scope.company.contacts){
-                            if(!$scope.company.contacts[index].hide) {
-                                if ($scope.company.contacts[index].type != $scope.company.contacts[index].changedType ||
-                                    $scope.company.contacts[index].name != $scope.company.contacts[index].changedName ||
-                                    $scope.company.contacts[index].title != $scope.company.contacts[index].changedTitle ||
-                                    $scope.company.contacts[index].phoneNumber != $scope.company.contacts[index].changedPhoneNumber ||
-                                    $scope.company.contacts[index].email != $scope.company.contacts[index].changedEmail) {
+                            var c = $scope.company.contacts[index];
+                            if(!c.hide) {
+                                if (c.type != c.changedType ||
+                                    c.name != c.changedName ||
+                                    c.title != c.changedTitle ||
+                                    c.phoneNumber != c.changedPhoneNumber ||
+                                    c.email != c.changedEmail) {
                                     var updatedData = {};
-                                    if ($scope.company.contacts[index].type != $scope.company.contacts[index].changedType) updatedData.type = $scope.company.contacts[index].changedType;
-                                    if ($scope.company.contacts[index].name != $scope.company.contacts[index].changedName) updatedData.name = $scope.company.contacts[index].changedName;
-                                    if ($scope.company.contacts[index].title != $scope.company.contacts[index].changedTitle) updatedData.title = $scope.company.contacts[index].changedTitle;
-                                    if ($scope.company.contacts[index].phoneNumber != $scope.company.contacts[index].changedPhoneNumber) updatedData.phoneNumber = $scope.company.contacts[index].changedPhoneNumber;
-                                    if ($scope.company.contacts[index].email != $scope.company.contacts[index].changedEmail) updatedData.email = $scope.company.contacts[index].changedEmail;
-                                    updateContact($scope.company.contacts[index],updatedData);
+                                    if (c.type != c.changedType) updatedData.type = c.changedType;
+                                    if (c.name != c.changedName) updatedData.name = c.changedName;
+                                    if (c.title != c.changedTitle) updatedData.title = c.changedTitle;
+                                    if (c.phoneNumber != c.changedPhoneNumber) updatedData.phoneNumber = c.changedPhoneNumber;
+                                    if (c.email != c.changedEmail) updatedData.email = c.changedEmail;
+                                    if(c.changedType != null && ((c.changedEmail != null && c.changedEmail.length > 0) || (c.changedPhoneNumber != null && c.changedPhoneNumber.length > 0))){
+                                        updateContact(c,updatedData);
+                                    }else{
+                                        c.changedType = c.type;
+                                        c.changedName = c.name;
+                                        c.changedTitle = c.title;
+                                        c.changedPhoneNumber = c.phoneNumber;
+                                        c.changedEmail = c.email;
+                                        updateDataChangedStatus();
+                                    }
                                 }
                             }else{
-                                deleteContact($scope.company.contacts[index]);
+                                deleteContact(c);
                             }
                         }
                     }
