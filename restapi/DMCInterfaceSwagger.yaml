@@ -387,20 +387,38 @@ paths:
           description: return added project tag
           schema:
             $ref: '#/definitions/GetProjectTag'
-  '/projects_tags/{id}':
+  '/projects_tags/{projectTagid}':
     delete:
       tags:
         - project
-      description: Delete project tag
+      description: Delete Project Tag
       parameters:
-        - name: id
+        - name: projectTagid
           in: path
           type: string
-          description: ID of the project tag
+          description: ID of the Project Tag
           required: true
       responses:
         '200':
           description: Ok
+  '/projects/{projectID}/projects_members':
+    get:
+      tags:
+        - project
+      description: Get all project members
+      parameters:
+        - name: projectID
+          in: path
+          type: string
+          description: ID of the project
+          required: true
+      responses:
+        '200':
+          description: return array of project members
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProjectMember'
   '/projects/{projectID}/projects_tags':
     get:
       tags:
@@ -695,7 +713,7 @@ paths:
           type: string
       responses:
         '200':
-          description: return members
+          description: return member
           schema:
             $ref: '#/definitions/ProjectMember'
   '/projects/{projectId}/accept/{memberId}':
@@ -4920,7 +4938,7 @@ definitions:
         type: integer
       link:
         type: string
-        description: it contains /project/{projectID}/services, URL that returns JSON data of all services in a project.
+        description: it contains /projects/{projectID}/services, URL that returns JSON data of all services in a project.
   Components:
     type: object
     properties:
@@ -4928,7 +4946,7 @@ definitions:
         type: integer
       link:
         type: string
-        description: it contains /project/{projectID}/components, URL that returns JSON data of all components of the project.
+        description: it contains /projects/{projectID}/components, URL that returns JSON data of all components of the project.
   Project:
     type: object
     properties:
@@ -4959,18 +4977,25 @@ definitions:
     type: object
     properties:
       id:
+        description: Unique id for the Project Member object.
         type: string
       profileId:
+        description: Profile id of the invited member.
         type: string
       projectId:
+        description: Project id of relevant project.
         type: string
       accept:
+        description: true or false based on whether the invited member has accepted the invitation.
         type: boolean
       fromProfileId:
+        description: Profile id of the member that sent out the invitation.
         type: string
       from:
+        description: Name of the member that sent out the invitation.
         type: string
       date:
+        description: Date when the invitation was sent out.
         type: number
         format: milliseconds
   SimplifiedProject:
