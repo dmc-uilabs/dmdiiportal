@@ -2058,6 +2058,19 @@ paths:
           description: returns updated profile review helpful
           schema:
             $ref: '#/definitions/ProfileReviewHelpful'
+  '/companies':
+    get:
+      tags:
+        - onboarding
+        - company
+      description: Get all Companies
+      responses:
+        '200':
+          description: Send all Companies
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Company'
   '/companies/{companyID}':
     get:
       tags:
@@ -4874,7 +4887,7 @@ definitions:
       dueDate:
         type: number
         format: milliseconds
-      additionalDetails: 
+      additionalDetails:
         type: string
       priority:
         type: number
