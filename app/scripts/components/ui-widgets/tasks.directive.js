@@ -259,7 +259,7 @@ angular.module('dmc.widgets.tasks',[
                 };
             }
         };
-    }]).controller('CreateTaskController',function($scope,$mdDialog,ajax,dataFactory,projectId,$compile,toastModel){
+    }]).controller('CreateTaskController',function($scope,$mdDialog,ajax,dataFactory,projectId,$compile,toastModel,$rootScope){
         $scope.isCreation = false;
 
         $scope.priorities = [
@@ -300,11 +300,20 @@ angular.module('dmc.widgets.tasks',[
         $scope.createTask = function(){
             $scope.isCreation = true;
             $scope.message.error = false;
+            var assignee = null;
+            for(var i in $scope.users){
+                if($scope.users[i].id == $scope.assignedTo){
+                    assignee = $scope.users[i].name;
+                    break;
+                }
+            }
             ajax.create(dataFactory.createTask(),{
                     "title": $scope.description,
                     "description": $scope.description,
-                    "assignee": $scope.assignedTo,
-                    "reporter": "Jack Graber",
+                    "assignee": assignee,
+                    "assigneeId": $scope.assignedTo,
+                    "reporter": $rootScope.userData.displayName,
+                    "reporterId": $rootScope.userData.accountId,
                     "dueDate": Date.parse($scope.dueDate),
                     "priority": $scope.priorityModel,
                     "projectId": projectId,
@@ -358,11 +367,20 @@ angular.module('dmc.widgets.tasks',[
         };
         $scope.loadUsers();
 
+
         $scope.updateTask = function(){
+            var assignee = null;
+            for(var i in $scope.users){
+                if($scope.users[i].id == $scope.task.assigneeId){
+                    assignee = $scope.users[i].name;
+                    break;
+                }
+            }
             ajax.update(dataFactory.updateTask($scope.task.id),{
                     "title": $scope.task.title,
                     "description": $scope.task.title,
-                    "assignee": $scope.task.assignee,
+                    "assignee": assignee,
+                    "assigneeId": $scope.task.assigneeId,
                     "dueDate": Date.parse($scope.task.dueDateForEdit),
                     "priority": $scope.task.priority,
                     "status": $scope.task.status

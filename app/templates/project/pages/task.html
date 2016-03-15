@@ -15,10 +15,10 @@
     <span flex></span>
 
     <!-- Edit and Delete buttons-->
-    <md-button ng-click="editTask()" class="md-icon-button" ng-show="!isEditing && task">
+    <md-button ng-click="editTask()" class="md-icon-button task-edit-btn" ng-show="!isEditing && task">
         <ng-md-icon icon="edit" size="18"></ng-md-icon>
     </md-button>
-    <md-button ng-click="deleteTask($event)" class="md-icon-button" ng-show="!isEditing && task">
+    <md-button ng-click="deleteTask($event)" class="md-icon-button task-delete-btn" ng-show="!isEditing && task">
         <ng-md-icon icon="delete" size="18"></ng-md-icon>
     </md-button>
 
@@ -50,7 +50,7 @@
                         <div flex layout="column">
                             <div class="title-task-block" flex layout="row" layout-align="start center" ng-show="!isEditing">
                                 <p flex ng-bind-html="task.title"></p>
-                                <md-button class="md-raised dmc-button" ng-click="setStatus()">{{task.status == "Open" ? "Mark As Complete" : "Mark As Open"}}</md-button>
+                                <md-button class="md-raised dmc-button" ng-click="setStatus()">{{task.status == "Open" ? "Mark As Complete" : "Reopen"}}</md-button>
                             </div>
                             <div class="additional-details" flex layout="row" ng-show="!isEditing">
                                 <p ng-show="task.additionalDetails && task.additionalDetails.length > 0" ng-bind-html="task.additionalDetails"></p>
@@ -62,7 +62,7 @@
                             </md-input-container>
                             <md-input-container class="md-block" ng-show="isEditing" flex="100">
                                 <label>Additional Details</label>
-                                <textarea ng-model="task.additionalDetails"></textarea>
+                                <textarea ng-model="task.additionalDetails" md-maxlength="1000"></textarea>
                             </md-input-container>
                         </div>
                     </md-content>
@@ -80,15 +80,17 @@
                 <div class="content-panel-body">
                     <md-content layout="row" class="task-details-container">
                         <ul ng-show="!isEditing">
-                            <li>Due in: <span ng-bind-html="task.formatedDueDate[1]" class="label border-radius-2" ng-class="task.formatedDueDate[0] == 'date' ? 'label--date' : (task.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (task.formatedDueDate[0] == 'today' || task.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span></li>
+                            <li>Due Date: <span ng-bind-html="task.formatedDueDate[1]" class="label border-radius-2" ng-class="task.formatedDueDate[0] == 'date' ? 'label--date' : (task.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (task.formatedDueDate[0] == 'today' || task.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span></li>
                             <li>Priority: {{task.priorityName}}</li>
-                            <li>Assigned To: {{task.assignee}}</li>
-                            <li>Created By: {{task.reporter}}</li>
+                            <li>Assigned To: <a href="/profile.php#/{{task.assigneeId}}">{{task.assignee}}</a></li>
+                            <li>Created By: <a href="/profile.php#/{{task.reporterId}}">{{task.reporter}}</a></li>
                         </ul>
                         <div layout="column" ng-show="isEditing" class="edit-details-block" flex="80">
-                            <div layout="row" flex="80" ng-init="setDatePickerFocus()">
+                            <div layout="row" flex="80">
                                 <span class="dueDate-label" ng-show="task.dueDateForEdit">Due Date</span>
-                                <md-datepicker  flex class="dueDatePicker" ng-model="task.dueDateForEdit" md-placeholder="Due Date">
+                                <md-datepicker flex class="dueDatePicker"
+                                               ng-model="task.dueDateForEdit" md-placeholder="Due Date"
+                                               ng-init="setDatePickerFocus()">
                                 </md-datepicker>
                             </div>
                             <div layout="row" flex="80">
@@ -102,8 +104,8 @@
                             <div layout="row" flex="80">
                                 <md-input-container flex>
                                     <label>Assigned To</label>
-                                    <md-select ng-model="task.assignee">
-                                        <md-option ng-value="user.name" ng-repeat="user in users">{{user.name}}</md-option>
+                                    <md-select ng-model="task.assigneeId">
+                                        <md-option ng-value="user.id" ng-repeat="user in users">{{user.name}}</md-option>
                                     </md-select>
                                 </md-input-container>
                             </div>

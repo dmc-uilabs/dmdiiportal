@@ -25,7 +25,7 @@
                 <md-input-container flex="45">
                     <label>Assigned To</label>
                     <md-select ng-model="assignedTo">
-                        <md-option ng-value="user.name" ng-repeat="user in users">{{user.name}}</md-option>
+                        <md-option ng-value="user.id" ng-repeat="user in users">{{user.name}}</md-option>
                     </md-select>
                 </md-input-container>
 
@@ -38,7 +38,8 @@
             </div>
             <div class="block dueDate" layout="row">
                 <span class="dueDate-label" ng-show="dueDate">Due Date</span>
-                <md-datepicker  flex="50" class="dueDatePicker" ng-model="dueDate" md-placeholder="Due Date">
+                <md-datepicker  flex="50" class="dueDatePicker createDueDatePicker"
+                                ng-model="dueDate" md-placeholder="Due Date">
                 </md-datepicker>
             </div>
             <div class="block" layout="row">

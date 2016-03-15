@@ -82,6 +82,17 @@
   }
 }
 
+.md-button.md-icon-button {
+  &.task-edit-btn,
+  &.task-delete-btn {
+    min-width: 20px;
+    min-height: 20px;
+    width: 38px;
+    height: 38px;
+    margin: 0;
+  }
+}
+
 .project-task-container{
   md-input-container{
     padding-bottom: 15px;

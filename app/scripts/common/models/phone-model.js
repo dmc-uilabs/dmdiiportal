@@ -20,8 +20,8 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
                 }
                 target.value = $filter('tel')(value, false);
                 if(up){
-                    if(getCountZ(target.value) - getCountZ(old_) > 0){
-                        position+=getCountZ(target.value) - getCountZ(old_);
+                    if(getCountZ(target.value,position) - getCountZ(old_,position) > 0){
+                        position+=getCountZ(target.value,position) - getCountZ(old_,position);
                     }else if(chars.indexOf(target.value[position-1])!=-1){
                         for(var i=position-1;i<target.value.length;i++){
                             if(chars.indexOf(target.value[i]) != -1){
@@ -39,7 +39,7 @@ angular.module('dmc.phone-format',[]).directive('phoneInput', function($filter, 
             function getCountZ(value,p){
                 var count = 0;
                 var p_ = (p<14 ? p : value.length);
-                for(var i=0;i<p_;i++){
+                for(var i=0;i<=p_;i++){
                     if(chars.indexOf(value[i]) != -1) count++;
                 }
                 return count;

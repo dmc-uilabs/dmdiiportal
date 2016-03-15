@@ -4869,7 +4869,11 @@ definitions:
         $ref: '#/definitions/SimplifiedProject'
       assignee:
         type: string
+      assigneeId:
+        type: string
       reporter:
+        type: string
+      reporterId:
         type: string
       dueDate:
         type: number

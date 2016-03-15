@@ -80,11 +80,22 @@ angular.module('dmc.project')
             };
 
             $scope.saveChanges = function(){
+                var assignee = null;
+                for(var i in $scope.users){
+                    if($scope.users[i].id == $scope.task.assigneeId){
+                        assignee = $scope.users[i].name;
+                        break;
+                    }
+                }
+                if($scope.task.additionalDetails && $scope.task.additionalDetails.length > 1000){
+                    $scope.task.additionalDetails = $scope.task.additionalDetails.substring(0,1000);
+                }
                 var data = {
                     title : $scope.task.title,
                     dueDate : Date.parse($scope.task.dueDateForEdit),
                     additionalDetails : $scope.task.additionalDetails,
-                    assignee : $scope.task.assignee,
+                    assignee : assignee,
+                    assigneeId : $scope.task.assigneeId,
                     priority : $scope.task.priority
                 };
                 ajax.update(dataFactory.updateTask($scope.task.id),data, function(response){
@@ -111,6 +122,7 @@ angular.module('dmc.project')
             });
 
             $scope.setDatePickerFocus = function(){
+                $( ".dueDatePicker input").unbind( "focus" );
                 $(".dueDatePicker").on("focus","input",function(){
                     $(".dueDatePicker button").click();
                 });
