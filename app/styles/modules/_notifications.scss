@@ -81,6 +81,9 @@
 			background-color: #fff;
 			padding: 0;
 			md-list-item{
+              .logo-event{
+                margin-right: 13px;
+              }
 				div{
 					height: 100%;
 				}
@@ -88,6 +91,15 @@
 				//margin: 16px;
 				height: 65px;
 				line-height: 65px;
+              md-icon{
+                width: 40px;
+                height: 40px;
+              }
+              ng-md-icon{
+                svg {
+                  vertical-align: middle;
+                }
+              }
 			}
 		}
 		.all{

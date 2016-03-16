@@ -65,10 +65,33 @@
 		<md-list>
 			<md-list-item ng-repeat="item in notificationsData | filter: filterBy">
 				<div flex="100" layout="row" layout-align="center center" >
-					<div flex="10">
+					<div class="logo-event" ng-switch on="item.event">
 						<!--<img ng-src="{{item.image}}">-->
-                        <md-icon style="width:45px;height:45px;"
-                                 md-svg-src="images/icon_project.svg"></md-icon>
+                        <ng-md-icon ng-switch-when="FAVORITED_YOUR_SERVICE" icon="favorite" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="FAVORITED_SERVICE" icon="favorite" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="REVIEW_USER" icon="star" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="REPLY_REVIEW" icon="star" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="REVIEW_COMPANY" icon="star" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="REVIEW_SERVICE" icon="star" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="NEW_DISCUSSION" icon="forum" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="REPLY_DISCUSSION" icon="forum" size="40"></ng-md-icon>
+                        <md-icon ng-switch-when="SERVICE_ERROR" md-svg-src="images/icon_service.svg"></md-icon>
+                        <md-icon ng-switch-when="SERVICE_FINISH" md-svg-src="images/icon_service.svg"></md-icon>
+                        <md-icon ng-switch-when="UPDATE_SERVICE" md-svg-src="images/icon_service.svg"></md-icon>
+                        <ng-md-icon ng-switch-when="TASK_ASSIGN" icon="list" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="TASK_DUE" icon="list" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="TASK_UPDATE" icon="list" size="40"></ng-md-icon>
+                        <md-icon ng-switch-when="UPDATE_PROJECT" md-svg-src="images/icon_project.svg"></md-icon>
+                        <ng-md-icon ng-switch-when="SERVICE_SHARED" icon="share" size="40"></ng-md-icon>
+                        <md-icon ng-switch-when="ACCEPT_INVITATION" md-svg-src="images/icon_project.svg"></md-icon>
+                        <md-icon ng-switch-when="SUBSCRIBE_YOUR_SERVICE_TO_PROJECT" md-svg-src="images/icon_service.svg"></md-icon>
+                        <md-icon ng-switch-when="UNSUBSCRIBE_SERVICE_TO_YOUR_PROJECT" md-svg-src="images/icon_project.svg"></md-icon>
+                        <md-icon ng-switch-when="SUBSCRIBE_SERVICE_TO_YOUR_PROJECT" md-svg-src="images/icon_project.svg"></md-icon>
+                        <ng-md-icon ng-switch-when="ANNOUNCEMENT_DMC" icon="forum" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="ANNOUNCEMENT_SYSTEM" icon="forum" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="EVENT_DMC" icon="forum" size="40"></ng-md-icon>
+
+                        <md-icon ng-switch-default md-svg-src="images/icon_project.svg"></md-icon>
 					</div>
 					<h4 flex><a href="{{getItemDetails(item).link}}">{{getItemDetails(item).title}}</a></h4>
 					<h4>{{item.date}}</h4>
