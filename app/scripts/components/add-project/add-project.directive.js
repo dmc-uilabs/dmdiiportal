@@ -50,6 +50,10 @@ angular.module('dmc.add_project.directive', [
                     }
                 }
             });
+            $(window).unbind('beforeunload');
+            $(window).bind('beforeunload', function(){
+                return "";
+            });
 
             $scope.createNewProject = function(data) {
                 $scope.goSaveProject = true;

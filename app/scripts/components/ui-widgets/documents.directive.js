@@ -85,7 +85,7 @@ angular.module('dmc.widgets.documents',[
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
                 $scope.documentDropZone;
 				$scope.autoProcessQueue = ($scope.autoUpload != null ? $scope.autoUpload : true);
-				$scope.documents = $scope.source ? $scope.source : [];
+				if(!$scope.source) $scope.source = [];
                 var requestData = {
                     _sort : 'name',
                     _order : 'DESC'
@@ -94,14 +94,14 @@ angular.module('dmc.widgets.documents',[
 				if($scope.projectId){
 					ajax.get(dataFactory.getProjectDocuments($scope.projectId), requestData,
                         function(response){
-						    $scope.documents = response.data;
+						    $scope.source = response.data;
                             apply();
 					    }
                     );
 				}else if($scope.serviceId){
                     ajax.get(dataFactory.getServiceDocuments($scope.serviceId), requestData,
                         function(response){
-                            $scope.documents = response.data;
+                            $scope.source = response.data;
                             apply();
                         }
                     );
@@ -111,9 +111,9 @@ angular.module('dmc.widgets.documents',[
 					if(item.file._removeLink){
 						item.file._removeLink.click();
 					}else{
-						for(var i in $scope.documents) {
-							if ($scope.documents[i].id == item.id) {
-								$scope.documents.splice(i, 1);
+						for(var i in $scope.source) {
+							if ($scope.source[i].id == item.id) {
+								$scope.source.splice(i, 1);
 								break;
 							}
 						}
@@ -164,9 +164,9 @@ angular.module('dmc.widgets.documents',[
 								if($scope.autoProcessQueue == false) {
 									var file_ = file;
 									var title = file_.name.substring(0,file_.name.lastIndexOf('.'));
-									file_.id = $scope.documents.length + 1;
+									file_.id = $scope.source.length + 1;
 									file_.title = title;
-									$scope.documents.push({
+									$scope.source.push({
 										id : file_.id,
 										title : title,
 										file : file_,
@@ -177,9 +177,9 @@ angular.module('dmc.widgets.documents',[
 								}
 							});
 							this.on('removedfile', function (file) {
-								for(var i in $scope.documents) {
-									if ($scope.documents[i].id == file.id) {
-										$scope.documents.splice(i, 1);
+								for(var i in $scope.source) {
+									if ($scope.source[i].id == file.id) {
+										$scope.source.splice(i, 1);
 										break;
 									}
 								}
@@ -199,7 +199,7 @@ angular.module('dmc.widgets.documents',[
 								var title = file_.name.substring(0,file_.name.lastIndexOf('.'));
 								file_.id = data.result.id;
 								file_.title = title;
-								$scope.documents.push({
+								$scope.source.push({
 									id: data.result.id,
 									title: title,
 									projectId: data.result.projectId,

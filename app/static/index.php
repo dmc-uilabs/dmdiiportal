@@ -8,7 +8,7 @@ include __DIR__.'/individual-discussion.php';
 //require __DIR__ . '/vendor/autoload.php';
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH');
+header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE');
 date_default_timezone_set('America/New_York');
 
 return call_user_func(function () {
@@ -900,7 +900,6 @@ function upload_company_image($params,$file){
 
 
 function upload_service_image($params,$file){
-    $id = $last_id;
     $mainDir = dirname(__DIR__);
     $fileFolder = '\\uploads\\services';
     $name_file = basename($file['file']['name']);
@@ -985,7 +984,8 @@ function upload_profile_picture($params,$file){
 }
 
 function upload_document($params,$file){
-	$last = json_decode(httpResponse(dbUrl().'/documents?_sort=id&_order=DESC&_limit=1', null, null),true);
+    $owner = json_decode(httpResponse(dbUrl().'/user', null, null),true);
+	$last = json_decode(httpResponse(dbUrl().'/project-documents?_sort=id&_order=DESC&_limit=1', null, null),true);
 	if(count($last) > 0){
 		$id = $last[0]['id']+1;
 	}else{
@@ -998,13 +998,28 @@ function upload_document($params,$file){
 		$name_file = basename($file['file']['name']);
 		$uploadFile = $mainDir . $fileFolder . '\\' . $name_file;
 		if (move_uploaded_file($file['file']['tmp_name'], $uploadFile)) {
+            if($file['file']['size'] > 1024) {
+                $size = $file['file']['size']/1024;
+                if($size > 1024) {
+                    $size = round($size/1024) . " MB";
+                }else{
+                    $size = round($size) . " KB";
+                }
+            }else{
+                $size = round($file['file']['size']) . " B";
+            }
 			$data = json_encode(array(
-				'id' => $id,
-				'title' => $params['title'] ? $params['title'] : $file['file']['title'],
-				'projectId' => $params['projectId'],
-				'file' => '/uploads/' . $id . '/' . $name_file
+                'projectId' => $params['projectId'],
+                'file' => true,
+                'project-documentId' => 0,
+                'title' => $params['title'] ? $params['title'] : $file['file']['title'],
+                'owner' => $owner['displayName'],
+                'ownerId' => $owner['accountId'],
+                'size' => $size,
+                'modifed' => date("m/d/Y H:i A"),
+                'link' => '/uploads/' . $id . '/' . $name_file
 			));
-			$add_document = json_decode(httpResponse(dbUrl().'/documents', 'POST', $data),true);
+			$add_document = json_decode(httpResponse(dbUrl().'/project-documents', 'POST', $data),true);
 			return json_encode(array('result' => $add_document ,'file' => $file));
 		} else {
 			return json_encode(array('error' => 'Possible attacks via file download' ));

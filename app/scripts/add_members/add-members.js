@@ -55,34 +55,56 @@ angular.module('dmc.add_members', [
         'DMCUserModel',
         'dataFactory',
         '$stateParams',
+        '$http',
+        '$q',
         'toastModel',
         '$rootScope',
         function (ajax,
                   DMCUserModel,
                   dataFactory,
                   $stateParams,
+                  $http,
+                  $q,
                   toastModel,
                   $rootScope) {
 
-            this.add_members_to_project = function(array, callback){
+            this.add_members_to_project = function(array,currentMembers, callback){
+
+                var promises = {};
+
                 for(var i in array){
-                    ajax.create(dataFactory.createMembersToProject(),
-                        {
-                            "profileId": array[i].id,
-                            "projectId": $stateParams.projectId,
-                            "fromProfileId": $rootScope.userData.profileId,
-                            "from": $rootScope.userData.displayName,
-                            "date": moment(new Date()).format('x'),
-                            "accept": false
-                        },
-                        function(response){
-                            if(i == array.length-1){
-                              callback();
-                            }
+                    var isFound = false;
+                    for(var j in currentMembers){
+                        if(array[i].profileId == currentMembers[j].profileId){
+                            currentMembers.splice(j,1);
+                            isFound = true;
+                            break;
                         }
-                    );
+                    }
+                    if(!isFound){
+                        promises["addMember"+i] = $http.post(dataFactory.createMembersToProject(), {
+                                "profileId": array[i].id,
+                                "projectId": $stateParams.projectId,
+                                "fromProfileId": $rootScope.userData.profileId,
+                                "from": $rootScope.userData.displayName,
+                                "date": moment(new Date).format('x'),
+                                "accept": false
+                            }
+                        );
+                    }
                 }
-                //callback();
+                if(currentMembers.length > 0) {
+                    for (var i in currentMembers) {
+                        promises["deleteMember"+i] = $http.delete(dataFactory.deleteProjectMember(currentMembers[i].id));
+                    }
+                }
+
+                $q.all(promises).then(function(){
+                        callback();
+                    }, function(res){
+                        toastModel.showToast("error", "Error." + res.statusText);
+                    }
+                );
             };
 
         }

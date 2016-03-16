@@ -112,6 +112,10 @@ angular.module('dmc.project', [
             url: '/documents',
             controller: 'DocumentsCtrl as projectCtrl',
             templateUrl: 'templates/project/pages/documents.html'
+        }).state('project.documents-upload', {
+            url: '/documents/upload',
+            controller: 'DocumentsUploadCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/documents-upload.html'
         }).state('project.tasks', {
             url: '/tasks?text?type',
             controller: 'TasksCtrl as projectCtrl',

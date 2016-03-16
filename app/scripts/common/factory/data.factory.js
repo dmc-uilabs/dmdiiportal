@@ -99,6 +99,9 @@ angular.module('dmc.data',[])
             getDocumentUpload: function(id){
                 return baseServer+'/upload'+appendId(id);
             },
+            documentUpload: function(){
+                return baseServer+'/upload';
+            },
             getUrlCreateTask: function(id){
                 var url = baseServer+'/create_task'+appendId(id);
                 if (window.apiUrl) {
@@ -252,11 +255,14 @@ angular.module('dmc.data',[])
             getProjectDocuments: function(id){
                 return localhost+'projects/'+id+'/project-documents';
             },
+            addProjectDocument: function(){
+                return localhost+'project-documents';
+            },
             addServiceToProject: function(id){
                 return localhost+'services/'+id;
             },
             getMembersUrl: function(id) {
-                return localhost+'members?id_ne='+id;
+                return localhost+'members';
             },
             getMembersToProject: function() {
                 return localhost+'projects_members';

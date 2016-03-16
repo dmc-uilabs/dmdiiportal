@@ -1333,15 +1333,6 @@
     },
     {
       "profileId": 2,
-      "projectId": 1,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458086797596,
-      "accept": false,
-      "id": 14
-    },
-    {
-      "profileId": 2,
       "projectId": 12,
       "fromProfileId": 1,
       "from": "Thomas Smith",
@@ -1375,6 +1366,15 @@
       "date": 1458088283619,
       "accept": false,
       "id": 22
+    },
+    {
+      "profileId": 2,
+      "projectId": 1,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1458147459444,
+      "accept": false,
+      "id": 23
     }
   ],
   "components": [

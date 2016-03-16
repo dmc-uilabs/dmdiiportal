@@ -5753,6 +5753,8 @@ definitions:
         type: string
       owner:
         type: string
+      ownerId:
+        type: string
       file:
         type: string
   ServiceAuthor:
@@ -5822,6 +5824,8 @@ definitions:
         type: string
       owner:
         type: string
+      ownerId:
+        type: string
       title:
         type: string
       modifed:
@@ -5841,6 +5845,8 @@ definitions:
       service-documentId:
         type: string
       owner:
+        type: string
+      ownerId:
         type: string
       title:
         type: string

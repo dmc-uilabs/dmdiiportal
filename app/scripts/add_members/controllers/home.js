@@ -5,24 +5,44 @@ angular.module('dmc.add_members')
         'projectModel',
         '$stateParams',
         'toastModel',
+        'ajax',
+        'dataFactory',
         '$cookieStore',
         function ($scope,
                   DMCMemberModel,
                   projectModel,
                   $stateParams,
                   toastModel,
+                  ajax,
+                  dataFactory,
                   $cookieStore) {
             DMCMemberModel.getMembers().then(
                 function(data){
                     $scope.foundMembers = data;
+                    isInvite();
                 },
                 function(data){}
             );
+
+
 
             $scope.compare = [];
             $scope.invitees = [];
             $scope.favorites = [];
             $scope.showFavoritesFlag = false;
+
+            function isInvite(){
+                for(var i in $scope.foundMembers){
+                    var found = false;
+                    for(var j in $scope.invitees){
+                        if(($scope.invitees[j].profileId && $scope.foundMembers[i].id == $scope.invitees[j].profileId) || (!$scope.invitees[j].profileId && $scope.foundMembers[i].id == $scope.invitees[j].id)){
+                            found = true;
+                            break;
+                        }
+                    }
+                    $scope.foundMembers[i].isInvite = found;
+                }
+            }
 
             $scope.selectedTab = 0;
 
@@ -39,17 +59,34 @@ angular.module('dmc.add_members')
             });
 
             $scope.$watchCollection('invitees',function(newArray,oldArray){
-                for(var i in $scope.foundMembers){
-                    var found = false;
-                    for(var j in newArray){
-                        if($scope.foundMembers[i].id == newArray[j].id){
-                            found = true;
-                            break;
-                        }
-                    }
-                    $scope.foundMembers[i].isInvite = found;
-                }
+                isInvite();
             });
+
+            var currentMembers = [];
+            $scope.getMembers = function () {
+                ajax.get(dataFactory.projectMembers($stateParams.projectId), {}, function (response) {
+                    var profileIds = $.map(response.data, function (x) {
+                        return x.profileId;
+                    });
+                    currentMembers = $.map(response.data, function (x) {
+                        return {
+                            id : x.id,
+                            profileId : x.profileId
+                        };
+                    });
+                    $scope.invitees = response.data;
+                    if(profileIds.length > 0) {
+                        ajax.get(dataFactory.profiles().all, {
+                            id: profileIds
+                        }, function (res) {
+                            $scope.invitees = res.data;
+                            apply();
+                        });
+                    }
+                });
+            };
+
+            $scope.getMembers();
 
             $scope.$watchCollection('compare',function(newArray,oldArray){
                 for(var i in $scope.foundMembers){
@@ -87,8 +124,12 @@ angular.module('dmc.add_members')
                     }
                 }
                 if(!found) $scope.compare.push(item);
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                apply();
             };
+
+            function apply(){
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            }
 
 
             $scope.searchMembers = function(){
@@ -113,7 +154,7 @@ angular.module('dmc.add_members')
                     }
                 }
                 if(!found) $scope.invitees.push(item);
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                apply();
             };
 
             $scope.addToFavorite = function(item){
@@ -126,7 +167,7 @@ angular.module('dmc.add_members')
                     }
                 }
                 if(!found) $scope.favorites.push(item);
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                apply();
             };
 
             $scope.showFavorites = function(){
@@ -134,7 +175,7 @@ angular.module('dmc.add_members')
             };
 
             $scope.send = function(){
-                projectModel.add_members_to_project($scope.invitees, function(){
+                projectModel.add_members_to_project($scope.invitees,currentMembers, function(){
                     $cookieStore.put("toast", "Invitations Sent");
                     $(window).unbind('beforeunload');
                     $scope.$on('$locationChangeStart', function (event, next, current) {});
