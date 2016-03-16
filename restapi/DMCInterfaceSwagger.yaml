@@ -20,6 +20,8 @@ paths:
     get:
       tags:
         - account
+        - live
+        - has tests
       description: Get currently logged in user details.  If user does not exist, create account.
       responses:
         '200':
@@ -30,6 +32,8 @@ paths:
       tags:
       - account
       - onboarding
+      - live
+      - has tests
       description: Update currently logged in user details
       parameters:
         - name: UserDetails
@@ -46,6 +50,8 @@ paths:
       tags:
         - account
         - onboarding
+        - live
+        - has tests
       description: Set initial basic information for User after first login
       parameters:
         - in: body
@@ -63,6 +69,8 @@ paths:
     get:
       tags:
         - account
+        - live
+        - has tests
       description: Get account information by account id
       parameters:
         - name: accountID
@@ -77,7 +85,9 @@ paths:
             $ref: '#/definitions/UserAccount'
     patch:
       tags:
-      - account
+        - account
+        - live
+        - has tests
       description: Update account information by account id
       parameters:
         - name: accountID
@@ -98,6 +108,7 @@ paths:
     get:
       tags:
         - account
+        - not implemented
       description: Get servers by account id
       parameters:
         - name: accountID
@@ -116,6 +127,7 @@ paths:
     get:
       tags:
         - account
+        - not implemented
       description: Get account notification settings by accound id
       parameters:
         - name: accountID
@@ -153,6 +165,7 @@ paths:
     get:
       tags:
         - account
+        - not implemented
       description: Get account notification setting by id
       parameters:
         - name: notificationSettingID
@@ -168,6 +181,7 @@ paths:
     patch:
       tags:
         - account
+        - not implemented
       description: Update account notification by id
       parameters:
         - name: notificationSettingID
@@ -188,6 +202,7 @@ paths:
     get:
       tags:
         - account
+        - not implemented
       description: Get categories and labels for Account Notification tab
       parameters:
         - name: _limit
@@ -220,6 +235,7 @@ paths:
     post:
       tags:
         - account
+        - not implemented
       description: Create a new account server
       parameters:
         - in: body
@@ -237,6 +253,7 @@ paths:
     get:
       tags:
         - account
+        - not implemented
       description: Get server by server id
       parameters:
         - name: serverID
@@ -252,6 +269,7 @@ paths:
     patch:
       tags:
         - account
+        - not implemented
       description: Update server information by server id
       parameters:
         - name: serverID
@@ -271,6 +289,7 @@ paths:
     delete:
       tags:
         - account
+        - not implemented
       description: Delete a server by id
       parameters:
         - in: path
@@ -285,6 +304,7 @@ paths:
     get:
       tags:
         - account
+        - not implemented
       description: Get favorite storefronts
       parameters:
         - name: accountID
@@ -322,6 +342,7 @@ paths:
     get:
       tags:
         - account
+        - not implemented
       description: Get all favorite services
       parameters:
         - name: accountID
@@ -366,6 +387,7 @@ paths:
     post:
       tags:
         - project
+        - not implemented
       description: Add new project tag
       parameters:
         - in: body
@@ -379,24 +401,45 @@ paths:
           description: return added project tag
           schema:
             $ref: '#/definitions/GetProjectTag'
-  '/projects_tags/{id}':
+  '/projects_tags/{projectTagid}':
     delete:
       tags:
         - project
-      description: Delete project tag
+        - not implemented
+      description: Delete Project Tag
       parameters:
-        - name: id
+        - name: projectTagid
           in: path
           type: string
-          description: ID of the project tag
+          description: ID of the Project Tag
           required: true
       responses:
         '200':
           description: Ok
+  '/projects/{projectID}/projects_members':
+    get:
+      tags:
+        - project
+        - not implemented
+      description: Get all project members
+      parameters:
+        - name: projectID
+          in: path
+          type: string
+          description: ID of the project
+          required: true
+      responses:
+        '200':
+          description: return array of project members
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProjectMember'
   '/projects/{projectID}/projects_tags':
     get:
       tags:
         - project
+        - not implemented
       description: Get all project tags
       parameters:
         - name: projectID
@@ -415,6 +458,8 @@ paths:
     get:
       tags:
         - project
+        - live
+        - has tests
       description: Get all user projects
       parameters:
         - name: _limit
@@ -447,6 +492,8 @@ paths:
     post:
       tags:
         - project
+        - live
+        - has tests
       description: Post a new project to store in the database
       operationId: postProject
       parameters:
@@ -466,6 +513,8 @@ paths:
       tags:
         - project
         - project.php
+        - live
+        - has tests
       summary: Get project information by project id
       description: Get information about a project...
       operationId: findProjectByID
@@ -485,6 +534,7 @@ paths:
       tags:
         - project
         - document
+        - not implemented
       description: Get all documents in a project
       parameters:
         - name: projectID
@@ -504,6 +554,7 @@ paths:
       tags:
         - project
         - discussion
+        - not implemented
       description: Get all project discussions being followed
       parameters:
         - name: projectID
@@ -542,6 +593,7 @@ paths:
       tags:
         - project
         - discussion
+        - not implemented
       description: Get all project discussion threads
       parameters:
         - name: projectID
@@ -580,6 +632,7 @@ paths:
       tags:
         - project
         - discussion
+        - not implemented
       description: Get all user discussion threads
       parameters:
         - name: _limit
@@ -613,6 +666,7 @@ paths:
       tags:
         - project
         - add member
+        - not implemented
       description: Get members
       parameters:
         - in: query
@@ -660,6 +714,7 @@ paths:
       tags:
         - project
         - add member
+        - not implemented
       description: Create a new member
       parameters:
         - in: body
@@ -678,6 +733,7 @@ paths:
       tags:
         - project
         - add member
+        - not implemented
       description: Get member by id
       parameters:
         - in: path
@@ -687,7 +743,7 @@ paths:
           type: string
       responses:
         '200':
-          description: return members
+          description: return member
           schema:
             $ref: '#/definitions/ProjectMember'
   '/projects/{projectId}/accept/{memberId}':
@@ -695,6 +751,7 @@ paths:
       tags:
         - project
         - add member
+        - not implemented
       description: Accept member inivitation
       parameters:
         - in: path
@@ -721,6 +778,7 @@ paths:
       tags:
         - project
         - add member
+        - not implemented
       description: Decline member inivitation
       parameters:
         - in: path
@@ -740,6 +798,8 @@ paths:
     post:
       tags:
         - task
+        - live
+        - has tests
       summary: Post a new task
       description: Post a new task to store in the database
       operationId: postTask
@@ -757,6 +817,8 @@ paths:
     get:
       tags:
         - task
+        - live
+        - has tests
       summary: Get tasks
       parameters:
         - name: _limit
@@ -794,6 +856,8 @@ paths:
     get:
       tags:
         - task
+        - live
+        - has tests
       summary: Get task information by task id
       description: Get information about a task...
       operationId: findTaskByID
@@ -816,6 +880,7 @@ paths:
     delete:
       tags:
         - task
+        - not implemented
       description: Delete task
       parameters:
         - name: taskID
@@ -830,6 +895,7 @@ paths:
     post:
       tags:
         - service
+        - not implemented
       description: Post a new dome interface
       parameters:
         - in: body
@@ -868,6 +934,7 @@ paths:
     delete:
       tags:
         - service
+        - not implemented
       description: Get service dome interface
       parameters:
         - in: path
@@ -881,6 +948,7 @@ paths:
     patch:
       tags:
         - service
+        - not implemented
       description: Update dome interface
       parameters:
         - in: path
@@ -902,6 +970,7 @@ paths:
     get:
       tags:
         - service
+        - not implemented
       description: Get dome interface
       parameters:
         - in: path
@@ -918,6 +987,7 @@ paths:
     get:
       tags:
         - service
+        - not implemented
       description: Get service dome interface
       parameters:
         - in: path
@@ -953,6 +1023,7 @@ paths:
     post:
       tags:
         - service
+        - not implemented
       summary: Post a new run service
       description: Post a new run service
       parameters:
@@ -990,6 +1061,7 @@ paths:
     get:
       tags:
         - service
+        - not implemented
       summary: Get a run service
       description: Get a run service
       parameters:
@@ -1006,6 +1078,7 @@ paths:
     patch:
       tags:
         - service
+        - not implemented
       summary: Update run service
       description: Update run service
       parameters:
@@ -1028,6 +1101,7 @@ paths:
     delete:
       tags:
         - service
+        - not implemented
       summary: Delete run service
       description: Delete run service
       parameters:
@@ -1043,6 +1117,7 @@ paths:
     post:
       tags:
         - service
+        - not implemented
       summary: Post a new service
       description: Post a new service to store in the database
       operationId: postService
@@ -1060,6 +1135,8 @@ paths:
       tags:
         - service
         - marketplace
+        - live
+        - has tests
       description: get all services
       parameters:
         - name: _limit
@@ -1093,6 +1170,8 @@ paths:
       tags:
         - service
         - marketplace
+        - live
+        - has tests
       summary: Get information for a service
       description: Get information about a service...
       operationId: findServiceByID
@@ -1111,6 +1190,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Update information for service by ID
       parameters:
         - name: serviceID
@@ -1133,6 +1213,7 @@ paths:
         - service
         - history
         - marketplace
+        - not implemented
       description: Get service history by service id
       parameters:
         - name: serviceID
@@ -1162,6 +1243,7 @@ paths:
       tags:
         - project
         - document
+        - not implemented
       description: Get all documents in a project
       parameters:
         - name: projectID
@@ -1201,6 +1283,7 @@ paths:
         - service
         - document
         - marketplace
+        - not implemented
       description: Get all documents in a service
       parameters:
         - name: serviceID
@@ -1239,6 +1322,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get all authors for a service
       parameters:
         - name: serviceID
@@ -1258,6 +1342,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get all statistics for a service
       parameters:
         - name: serviceID
@@ -1277,6 +1362,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get all tags for a service
       parameters:
         - name: serviceID
@@ -1315,6 +1401,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Create a new service tag
       parameters:
         - in: body
@@ -1332,6 +1419,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get latest service tag
       parameters:
         - name: _limit
@@ -1365,6 +1453,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Delete a service tag
       parameters:
         - in: path
@@ -1380,6 +1469,7 @@ paths:
       tags:
         - service
         - specification
+        - not implemented
       operationId: postServiceSpecification
       parameters:
         - name: serviceID
@@ -1402,6 +1492,7 @@ paths:
         - service
         - specification
         - marketplace
+        - live
       parameters:
         - name: serviceID
           in: path
@@ -1419,6 +1510,7 @@ paths:
         - service
         - specifications
         - marketplace
+        - not implemented
       parameters:
         - name: specificationId
           in: path
@@ -1441,6 +1533,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: get images for service
       parameters:
         - name: serviceID
@@ -1460,6 +1553,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: remove image
       parameters:
         - name: imageId
@@ -1475,6 +1569,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Create a new service image
       parameters:
         - in: body
@@ -1492,6 +1587,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get latest service tag
       parameters:
         - name: _limit
@@ -1524,6 +1620,7 @@ paths:
     post:
       tags:
         - component
+        - not implemented
       summary: Post a new component
       description: Post a new component to store in the database
       operationId: postComponent
@@ -1541,6 +1638,8 @@ paths:
     get:
       tags:
         - component
+        - live
+        - has tests
       summary: Get information for a component
       description: Get specification for a component based on componentID
       operationId: getComponentByServiceID
@@ -1559,6 +1658,7 @@ paths:
     get:
       tags:
         - discussion
+        - not implemented
       description: Get popular discussions
       parameters:
         - name: _limit
@@ -1591,6 +1691,7 @@ paths:
     get:
       tags:
         - discussion
+        - not implemented
       description: Get discussion of people being followed
       parameters:
         - name: _limit
@@ -1624,6 +1725,7 @@ paths:
       tags:
         - discussion
         - dashboard.php
+        - not implemented
       description: Get discussion being followed
       responses:
         '200':
@@ -1636,6 +1738,7 @@ paths:
     patch:
       tags:
         - discussion
+        - not implemented
       description: Update follow discussion
       parameters:
         - in: body
@@ -1653,6 +1756,7 @@ paths:
     delete:
       tags:
         - discussion
+        - not implemented
       description: remove follow discussion (Unfollow discussion)
       parameters:
         - in: path
@@ -1667,6 +1771,7 @@ paths:
     get:
       tags:
         - discussion
+        - not implemented
       description: Get follow discussion
       parameters:
         - in: path
@@ -1709,6 +1814,8 @@ paths:
     post:
       tags:
         - discussion
+        - live
+        - has tests
       summary: Post a new discussion
       description: Post a new discussion to store in the database
       operationId: postDiscussion
@@ -1726,6 +1833,8 @@ paths:
     post:
       tags:
         - profile
+        - live
+        - has tests
       description: Create a new user profile
       parameters:
         - in: body
@@ -1742,6 +1851,7 @@ paths:
     get:
       tags:
         - profile
+        - not implemented
       description: Get all user profiles
       parameters:
         - name: _limit
@@ -1774,6 +1884,8 @@ paths:
     get:
       tags:
         - profile
+        - live
+        - has tests
       description: Get profile based on profileID
       parameters:
         - name: profileID
@@ -1789,6 +1901,8 @@ paths:
     patch:
       tags:
         - profile
+        - live
+        - has tests
       description: Update information for profile by ID
       parameters:
         - name: profileID
@@ -1808,6 +1922,8 @@ paths:
     delete:
       tags:
         - profile
+        - live
+        - has tests
       description: Delete a profile by id
       parameters:
         - in: path
@@ -1822,6 +1938,7 @@ paths:
     get:
       tags:
         - profile
+        - not implemented
       description: Get the user activities history by profile ID
       parameters:
         - name: profileID
@@ -1853,6 +1970,7 @@ paths:
     get:
       tags:
         - profile
+        - not implemented
       summary: Get reviews for a member profile
       description: Get profile reviews based on profileID
       parameters:
@@ -1912,6 +2030,7 @@ paths:
     post:
       tags:
         - profile
+        - not implemented
       description: Added new review or reply profile
       parameters:
         - in: body
@@ -1929,6 +2048,7 @@ paths:
     get:
       tags:
         - profile
+        - not implemented
       description: Get profile review by id
       parameters:
         - name: reviewId
@@ -1944,6 +2064,7 @@ paths:
     patch:
       tags:
         - profile
+        - not implemented
       description: Update profile review
       parameters:
         - name: reviewId
@@ -1964,6 +2085,7 @@ paths:
     get:
       tags:
         - profile
+        - not implemented
       description: Get profile review helpful
       parameters:
         - in: query
@@ -1986,6 +2108,7 @@ paths:
     post:
       tags:
         - profile
+        - not implemented
       description: Create profile review helpful
       parameters:
         - in: body
@@ -2003,6 +2126,7 @@ paths:
     get:
       tags:
         - profile
+        - not implemented
       description: Get profile review flagged
       parameters:
         - in: query
@@ -2025,6 +2149,7 @@ paths:
     post:
       tags:
         - profile
+        - not implemented
       description: Create profile review flagged
       parameters:
         - in: body
@@ -2042,6 +2167,7 @@ paths:
     patch:
       tags:
         - profile
+        - not implemented
       description: Update profile review helpful
       parameters:
         - name: helpfulID
@@ -2063,6 +2189,8 @@ paths:
       tags:
         - onboarding
         - company
+        - live
+        - has tests
       description: Get all Companies
       responses:
         '200':
@@ -2075,6 +2203,8 @@ paths:
     get:
       tags:
         - company
+        - live
+        - has tests
       summary: Get information for a company profile
       description: Get profile based on companyID
       parameters:
@@ -2091,6 +2221,7 @@ paths:
     patch:
       tags:
         - company
+        - not implemented
       description: Update information for company profile by ID
       parameters:
         - name: companyID
@@ -2111,6 +2242,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       summary: Get company profile images
       description: Get company profile images based on companyID
       parameters:
@@ -2130,6 +2262,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       description: Get company members based on companyID
       parameters:
         - name: companyID
@@ -2148,6 +2281,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       description: Get company history based on companyID
       parameters:
         - name: companyID
@@ -2166,6 +2300,7 @@ paths:
     patch:
       tags:
         - company
+        - not implemented
       description: Update company image by ID
       parameters:
         - name: imageID
@@ -2186,6 +2321,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       summary: Get company profile videos
       description: Get company profile videos based on companyID
       parameters:
@@ -2205,6 +2341,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       summary: Get company profile skill
       description: Get company profile skill based on companyID
       parameters:
@@ -2224,6 +2361,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       summary: Get company profile contacts
       description: Get company profile contacts based on companyID
       parameters:
@@ -2243,6 +2381,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       summary: Get company profile skill images
       description: Get company profile skill images based on companyID
       parameters:
@@ -2262,6 +2401,7 @@ paths:
     patch:
       tags:
         - company
+        - not implemented
       description: Update company skill image by ID
       parameters:
         - name: imageID
@@ -2282,6 +2422,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       summary: Get reviews for a company
       description: Get company reviews based on companyID
       parameters:
@@ -2341,6 +2482,7 @@ paths:
     post:
       tags:
         - company
+        - not implemented
       description: Added new review or reply company
       parameters:
         - in: body
@@ -2358,6 +2500,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       description: Get company review helpful
       parameters:
         - in: query
@@ -2380,6 +2523,7 @@ paths:
     post:
       tags:
         - company
+        - not implemented
       description: Create company review helpful
       parameters:
         - in: body
@@ -2397,6 +2541,7 @@ paths:
     patch:
       tags:
         - company
+        - not implemented
       description: Update company review helpful
       parameters:
         - name: helpfulID
@@ -2417,6 +2562,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       description: Get company review flagged
       parameters:
         - in: query
@@ -2439,6 +2585,7 @@ paths:
     post:
       tags:
         - company
+        - not implemented
       description: Create company review flagged
       parameters:
         - in: body
@@ -2457,6 +2604,7 @@ paths:
       tags:
         - company
         - service
+        - not implemented
       description: Get company services based on companyID
       parameters:
         - name: companyID
@@ -2546,6 +2694,7 @@ paths:
       tags:
         - company
         - component
+        - not implemented
       description: Get company components based on companyID
       parameters:
         - name: companyID
@@ -2634,6 +2783,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       summary: Get featured products for a company
       description: Get company featured products based on companyID
       parameters:
@@ -2670,6 +2820,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       description: Get new company services
       parameters:
         - name: companyID
@@ -2706,6 +2857,7 @@ paths:
     post:
       tags:
         - company
+        - not implemented
       summary: Post a new company skill
       description: Post a new company skill
       parameters:
@@ -2724,6 +2876,7 @@ paths:
     delete:
       tags:
         - company
+        - not implemented
       description: Delete a skill by id
       parameters:
         - in: path
@@ -2738,6 +2891,7 @@ paths:
     post:
       tags:
         - company
+        - not implemented
       summary: Post a new company video
       description: Post a new company video
       parameters:
@@ -2756,6 +2910,7 @@ paths:
     delete:
       tags:
         - company
+        - not implemented
       description: Delete a video by id
       parameters:
         - in: path
@@ -2769,6 +2924,7 @@ paths:
     patch:
       tags:
         - company
+        - not implemented
       description: Update company videos by ID
       parameters:
         - name: videoID
@@ -2789,6 +2945,7 @@ paths:
     post:
       tags:
         - company
+        - not implemented
       summary: Post a new company contact
       description: Post a new company contact
       parameters:
@@ -2807,6 +2964,7 @@ paths:
     delete:
       tags:
         - company
+        - not implemented
       description: Delete a contact by id
       parameters:
         - in: path
@@ -2820,6 +2978,7 @@ paths:
     patch:
       tags:
         - company
+        - not implemented
       description: Update company contact by ID
       parameters:
         - name: contactID
@@ -2840,6 +2999,7 @@ paths:
     post:
       tags:
         - company
+        - not implemented
       description: Follow company
       parameters:
         - name: accountId
@@ -2868,6 +3028,7 @@ paths:
     delete:
       tags:
         - company
+        - not implemented
       description: Unfollow company
       parameters:
         - in: path
@@ -2882,6 +3043,7 @@ paths:
     patch:
       tags:
         - company
+        - not implemented
       description: Update featured position
       parameters:
         - in: path
@@ -2912,6 +3074,7 @@ paths:
     post:
       tags:
         - company
+        - not implemented
       description: Added new featured company
       parameters:
         - in: query
@@ -2947,6 +3110,7 @@ paths:
     delete:
       tags:
         - company
+        - not implemented
       description: Delete featured company
       parameters:
         - in: path
@@ -2962,6 +3126,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get popular services in marketplace
       parameters:
         - name: _limit
@@ -3000,6 +3165,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get latest services in marketplace
       parameters:
         - name: _limit
@@ -3038,6 +3204,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get all services in marketplace
       parameters:
         - name: _limit
@@ -3122,6 +3289,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get all components in marketplace
       parameters:
         - name: _limit
@@ -3206,6 +3374,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get all reviews service in marketplace
       parameters:
         - in: path
@@ -3265,6 +3434,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get latest review service in marketplace
       parameters:
         - name: _limit
@@ -3297,6 +3467,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Added new review or reply service in marketplace
       parameters:
         - in: body
@@ -3315,6 +3486,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Update service review
       parameters:
         - name: reviewId
@@ -3336,6 +3508,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get service review helpful
       parameters:
         - in: query
@@ -3359,6 +3532,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Create service review helpful
       parameters:
         - in: body
@@ -3377,6 +3551,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Update service review helpful
       parameters:
         - name: helpfulID
@@ -3398,6 +3573,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get service review flagged
       parameters:
         - in: query
@@ -3421,6 +3597,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Create service review flagged
       parameters:
         - in: body
@@ -3439,6 +3616,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Remove  with service author
       parameters:
         - in: path
@@ -3453,6 +3631,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Add new service author
       parameters:
         - in: body
@@ -3470,6 +3649,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get array of specifications for services
       parameters:
         - name: _limit
@@ -3502,6 +3682,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Add elements to array of specifications for services
       parameters:
         - in: body
@@ -3522,6 +3703,7 @@ paths:
       tags:
         - service
         - marketplace
+        - not implemented
       description: Get all services from favorite storefronts
       parameters:
         - name: companyId
@@ -3568,6 +3750,7 @@ paths:
         - service
         - account
         - marketplace
+        - not implemented
       description: Delete service from favorites
       parameters:
         - name: favorite_productId
@@ -3584,6 +3767,7 @@ paths:
         - service
         - account
         - marketplace
+        - not implemented
       description: Add service to favorites
       parameters:
         - name: accountId
@@ -3612,6 +3796,7 @@ paths:
     get:
       tags:
         - service
+        - not implemented
       description: Get service inputs positions
       parameters:
         - name: serviceId
@@ -3630,6 +3815,7 @@ paths:
     patch:
       tags:
         - service
+        - not implemented
       description: Update service inputs positions
       parameters:
         - name: positionInputId
@@ -3653,6 +3839,7 @@ paths:
     delete:
       tags:
         - service
+        - not implemented
       description: Delete service inputs positions
       parameters:
         - name: positionInputId
@@ -3667,6 +3854,7 @@ paths:
     post:
       tags:
         - service
+        - not implemented
       description: Add new inputs positions
       parameters:
         - name: Inputs positions
@@ -3686,6 +3874,7 @@ paths:
     get:
       tags:
         - notification
+        - not implemented
       description: Get all notifications for user
       parameters:
         - name: period
@@ -3733,6 +3922,7 @@ paths:
     get:
       tags:
         - notification
+        - not implemented
       description: Get all notification statistics for User
       parameters:
         - name: _limit
@@ -3765,6 +3955,7 @@ paths:
     get:
       tags:
         - notification
+        - not implemented
       description: Get all notifications for Project Manager
       parameters:
         - name: period
@@ -3812,6 +4003,7 @@ paths:
     get:
       tags:
         - notification
+        - not implemented
       description: Get all notification statistics for the Project Manager
       parameters:
         - name: _limit
@@ -3844,6 +4036,7 @@ paths:
     get:
       tags:
         - community
+        - not implemented
       description: Get all community announcements
       parameters:
         - name: _limit
@@ -3876,6 +4069,7 @@ paths:
     get:
       tags:
         - community
+        - not implemented
       description: Get all community events
       parameters:
         - name: _limit
@@ -3909,6 +4103,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Get all community individual discussions
       parameters:
         - name: _limit
@@ -3941,6 +4136,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Create a new individual discussions
       parameters:
         - in: body
@@ -3959,6 +4155,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Get all individual discussions comments
       parameters:
         - in: path
@@ -3997,6 +4194,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Create a new individual discussions comment
       parameters:
         - in: body
@@ -4015,6 +4213,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Delete a individual discussions comment
       parameters:
         - in: path
@@ -4029,6 +4228,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Update a individual discussions comment
       parameters:
         - name: commentID
@@ -4050,6 +4250,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Get all individual discussions tags
       parameters:
         - in: path
@@ -4088,6 +4289,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Get individual discussions comment helpful
       parameters:
         - in: query
@@ -4130,6 +4332,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Create individual discussions comments helpful
       parameters:
         - in: body
@@ -4148,6 +4351,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Update a individual discussions comment helpful
       parameters:
         - name: helpfulID
@@ -4169,6 +4373,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Get individual discussions comment flagged
       parameters:
         - in: query
@@ -4192,6 +4397,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Create individual discussions comments flagged
       parameters:
         - in: body
@@ -4210,6 +4416,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Create a new individual discussions tag
       parameters:
         - in: body
@@ -4228,6 +4435,7 @@ paths:
       tags:
         - discussion
         - community
+        - not implemented
       description: Delete a individual discussions tag
       parameters:
         - in: path
@@ -4242,6 +4450,7 @@ paths:
     get:
       tags:
         - FAQ
+        - not implemented
       description: Return all FAQ articles
       parameters:
         - in: query
@@ -4293,6 +4502,7 @@ paths:
     get:
       tags:
         - FAQ
+        - not implemented
       description: Get FAQ article by id
       parameters:
         - in: path
@@ -4309,6 +4519,7 @@ paths:
     get:
       tags:
         - FAQ
+        - not implemented
       description: Return all FAQ subcategories
       parameters:
         - in: query
@@ -4353,6 +4564,7 @@ paths:
     get:
       tags:
         - FAQ
+        - not implemented
       description: Get FAQ subcategory id
       parameters:
         - in: path
@@ -4369,6 +4581,7 @@ paths:
     get:
       tags:
         - FAQ
+        - not implemented
       description: Return all FAQ categories
       parameters:
         - in: query
@@ -4406,6 +4619,7 @@ paths:
     get:
       tags:
         - FAQ
+        - not implemented
       description: Get FAQ category id
       parameters:
         - in: path
@@ -4422,6 +4636,7 @@ paths:
     post:
       tags:
         - service
+        - not implemented
       description: Add new shared service
       parameters:
         - in: body
@@ -4439,6 +4654,7 @@ paths:
     get:
       tags:
         - service
+        - not implemented
       description: Get shared service
       parameters:
         - in: path
@@ -4456,6 +4672,7 @@ paths:
       tags:
         - account
         - company
+        - not implemented
       description: Get all following members for account
       parameters:
         - in: path
@@ -4493,6 +4710,7 @@ paths:
     get:
       tags:
         - profile
+        - not implemented
       description: Get all following members for profile
       parameters:
         - in: path
@@ -4531,6 +4749,7 @@ paths:
       tags:
         - account
         - company
+        - not implemented
       description: Add new followed member
       parameters:
         - in: body
@@ -4548,6 +4767,7 @@ paths:
       tags:
         - account
         - company
+        - not implemented
       description: Get all followed member
       parameters:
         - in: query
@@ -4595,6 +4815,7 @@ paths:
     get:
       tags:
         - account
+        - not implemented
       description: Get followed member
       parameters:
         - in: path
@@ -4611,6 +4832,7 @@ paths:
       tags:
         - account
         - company
+        - not implemented
       description: Delete followed member
       parameters:
         - in: path
@@ -4627,6 +4849,8 @@ paths:
         - search
         - service
         - project
+        - live
+        - has tests
       description: Search services and projects
       parameters:
         - in: query
@@ -4672,6 +4896,8 @@ paths:
       tags:
         - search
         - project
+        - live
+        - has tests
       description: Search projects
       parameters:
         - in: query
@@ -4710,6 +4936,8 @@ paths:
       tags:
         - search
         - service
+        - live
+        - has tests
       description: Search services
       parameters:
         - in: query
@@ -4810,7 +5038,7 @@ definitions:
         type: integer
       link:
         type: string
-        description: it contains /project/{projectID}/services, URL that returns JSON data of all services in a project.
+        description: it contains /projects/{projectID}/services, URL that returns JSON data of all services in a project.
   Components:
     type: object
     properties:
@@ -4818,7 +5046,7 @@ definitions:
         type: integer
       link:
         type: string
-        description: it contains /project/{projectID}/components, URL that returns JSON data of all components of the project.
+        description: it contains /projects/{projectID}/components, URL that returns JSON data of all components of the project.
   Project:
     type: object
     properties:
@@ -4849,18 +5077,25 @@ definitions:
     type: object
     properties:
       id:
+        description: Unique id for the Project Member object.
         type: string
       profileId:
+        description: Profile id of the invited member.
         type: string
       projectId:
+        description: Project id of relevant project.
         type: string
       accept:
+        description: true or false based on whether the invited member has accepted the invitation.
         type: boolean
       fromProfileId:
+        description: Profile id of the member that sent out the invitation.
         type: string
       from:
+        description: Name of the member that sent out the invitation.
         type: string
       date:
+        description: Date when the invitation was sent out.
         type: number
         format: milliseconds
   SimplifiedProject:
