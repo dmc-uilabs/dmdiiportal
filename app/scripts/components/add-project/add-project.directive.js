@@ -1,116 +1,130 @@
 'use strict';
 angular.module('dmc.add_project.directive', [
-        'ngMaterial',
-        'dmc.ajax',
-        'dmc.data',
-        'dmc.model.project',
-        'dmc.model.member',
-        'ngMdIcons',
-        'dmc.widgets.documents',
-        'dmc.compare'
-    ]).directive('addProjectTabs', ['$parse', function ($parsel) {
-        return {
-            restrict: 'A',
-            templateUrl: 'templates/components/add-project/ap-index.html',
-            controller: ['$scope', 'projectModel', function ($scope, projectModel) {
-                // Specify a list of font-icons with ligatures and color overrides
-                var iconData = [
-                    {name: 'accessibility', color: "#777"},
-                    {name: 'question_answer', color: "rgb(89, 226, 168)"}
-                ];
+    'ngMaterial',
+    'dmc.ajax',
+    'dmc.data',
+    'dmc.model.project',
+    'dmc.model.member',
+    'ngMdIcons',
+    'dmc.widgets.documents',
+    'dmc.compare'
+]).directive('addProjectTabs', ['$parse', function ($parsel) {
+    return {
+        restrict: 'A',
+        templateUrl: 'templates/components/add-project/ap-index.html',
+        controller: ['$scope', 'projectModel', function ($scope, projectModel) {
+            // Specify a list of font-icons with ligatures and color overrides
+            var iconData = [
+                {name: 'accessibility', color: "#777"},
+                {name: 'question_answer', color: "rgb(89, 226, 168)"}
+            ];
 
-                $scope.projectData = {
-                    tags : []
-                };
-                $scope.fonts = [].concat(iconData);
-                // Create a set of sizes...
-                $scope.sizes = [
-                    {size: "md-18", padding: 0}
-                ];
+            $scope.projectData = {
+                tags : []
+            };
+            $scope.fonts = [].concat(iconData);
+            // Create a set of sizes...
+            $scope.sizes = [
+                {size: "md-18", padding: 0}
+            ];
 
 
-                $scope.data = {
-                    secondLocked : true,
-                    thirdLocked : true,
-                    fourthLocked : true
-                };
-                $scope.selectedIndex = 0;
-                var newProject = {}
-                var setProjectDetails = function(data) {
-                    newProject = $.extend(true, newProject, data);
-                };
+            $scope.data = {
+                secondLocked : true,
+                thirdLocked : true,
+                fourthLocked : true
+            };
+            $scope.selectedIndex = 0;
+            var newProject = {}
+            var setProjectDetails = function(data) {
+                newProject = $.extend(true, newProject, data);
+            };
 
-                $scope.createNewProject = function(data) {
-                    if(newProject.dueDate){
-                        newProject.dueDate = moment(newProject.dueDate).format("x");
-                    }else{
-                        newProject.dueDate = "";
+            $scope.goSaveProject = false;
+
+            $scope.$on('$locationChangeStart', function (event, next, current) {
+                if(!$scope.goSaveProject) {
+                    var answer = confirm("Are you sure you want to leave this page?");
+                    if (!answer) {
+                        event.preventDefault();
                     }
-                    $(window).unbind('beforeunload');
-                    projectModel.add_project(newProject, data, function(data){
-                        document.location.href = "project.php#/"+data+"/home";
-                    });
-                };
+                }
+            });
 
-                $scope.goToNextTab = function(number, obj){
-                    $(window).scrollTop(0);
-                    if (obj) {
-                        setProjectDetails(obj);
-                    }
-                    $scope.selectedIndex = number-1;
-                    if(number == 2){
-                        $scope.data.thirdLocked = false;
-                    }else if(number == 3){
-                        $scope.data.fourthLocked = false;
-                    }
-                };
+            $scope.createNewProject = function(data) {
+                $scope.goSaveProject = true;
 
-                $scope.disableEnable = function(number,val){
-                    var v = (val ? false : true);
-                    switch(number){
-                        case 2 :
-                            $scope.data.secondLocked = v;
-                            break;
-                        case 3 :
-                            $scope.data.thirdLocked = v;
-                            break;
-                        case 4 :
-                            $scope.data.fourthLocked = v;
-                            break;
-                    }
-                };
+                if(newProject.dueDate){
+                    newProject.dueDate = moment(newProject.dueDate).format("x");
+                }else{
+                    newProject.dueDate = "";
+                }
 
-                $("md-tabs").on("click","md-tab-item",function(){
-                    $scope.enableNext($(this).index()+2);
+                $(window).unbind('beforeunload');
+                projectModel.add_project(newProject, data, function(data){
+                    document.location.href = "project.php#/"+data+"/home";
                 });
+            };
 
-                $scope.enableNext = function(number){
-                    switch(number){
-                        case 3 :
-                            $scope.data.thirdLocked = false;
-                            break;
-                        case 4 :
-                            $scope.data.fourthLocked = false;
-                            break;
-                    }
-                };
+            $scope.goToNextTab = function(number, obj){
+                $(window).scrollTop(0);
+                if (obj) {
+                    setProjectDetails(obj);
+                }
+                $scope.selectedIndex = number-1;
+                if(number == 2){
+                    $scope.data.thirdLocked = false;
+                }else if(number == 3){
+                    $scope.data.fourthLocked = false;
+                }
+            };
 
-                // Invitees
-                $scope.subject = "Pat has invited you to join the project.";
-                $scope.message = "We seek a power transformer with improved heat losses relative to a standard iron core transformer. Cost and time to delivery are also critical. The attached documents give detailed specs and the attached Evaluator Service encompasses how we will value the trade-offs among heat loss, cost, and delivery time.";
-                $scope.invitees = [];
-            }]
-        };
-    }])
+            $scope.disableEnable = function(number,val){
+                var v = (val ? false : true);
+                switch(number){
+                    case 2 :
+                        $scope.data.secondLocked = v;
+                        break;
+                    case 3 :
+                        $scope.data.thirdLocked = v;
+                        break;
+                    case 4 :
+                        $scope.data.fourthLocked = v;
+                        break;
+                }
+            };
+
+            $("md-tabs").on("click","md-tab-item",function(){
+                $scope.enableNext($(this).index()+2);
+            });
+
+            $scope.enableNext = function(number){
+                switch(number){
+                    case 3 :
+                        $scope.data.thirdLocked = false;
+                        break;
+                    case 4 :
+                        $scope.data.fourthLocked = false;
+                        break;
+                }
+            };
+
+            // Invitees
+            $scope.subject = "Pat has invited you to join the project.";
+            $scope.message = "We seek a power transformer with improved heat losses relative to a standard iron core transformer. Cost and time to delivery are also critical. The attached documents give detailed specs and the attached Evaluator Service encompasses how we will value the trade-offs among heat loss, cost, and delivery time.";
+            $scope.invitees = [];
+        }]
+    };
+}])
     .directive('apTabOne', function () {
         return {
             templateUrl: 'templates/components/add-project/ap-tab-one.html',
             scope : {
-              goToTab : '=',
-              disableEnableTab : '=',
-              // user input is save on this object
-              projectDetails: '=',
-              isUpdate: '='
+                goToTab : '=',
+                disableEnableTab : '=',
+                // user input is save on this object
+                projectDetails: '=',
+                isUpdate: '='
             },
             controller: function ($scope) {
                 if($scope.projectDetails){
@@ -147,18 +161,6 @@ angular.module('dmc.add_project.directive', [
                 //        changedValues = {};
                 //    }
                 //};
-
-                $scope.$on('$locationChangeStart', function (event, next, current) {
-                    var answer = confirm("Are you sure you want to leave this page?");
-                    if (!answer){
-                        event.preventDefault();
-                    }
-                });
-
-                $(window).unbind('beforeunload');
-                $(window).bind('beforeunload', function(){
-                    return "";
-                });
 
                 $scope.addTag = function(newTag){
                     $scope.projectDetails.tags.push({
@@ -210,7 +212,8 @@ angular.module('dmc.add_project.directive', [
             controller: function ($scope) {
                 DMCMemberModel.getMembers().then(
                     function(data){
-                         $scope.foundMembers = data;
+                        $scope.foundMembers = data;
+                        isInvite();
                     },
                     function(data){
 
@@ -225,17 +228,21 @@ angular.module('dmc.add_project.directive', [
                 $scope.showFavoritesFlag = false;
 
                 $scope.$watchCollection('invitees',function(newArray,oldArray){
+                    isInvite();
+                });
+
+                function isInvite(){
                     for(var i in $scope.foundMembers){
                         var found = false;
-                        for(var j in newArray){
-                            if($scope.foundMembers[i].id == newArray[j].id){
+                        for(var j in $scope.invitees){
+                            if(($scope.invitees[j].profileId && $scope.foundMembers[i].id == $scope.invitees[j].profileId) || (!$scope.invitees[j].profileId && $scope.foundMembers[i].id == $scope.invitees[j].id)){
                                 found = true;
                                 break;
                             }
                         }
                         $scope.foundMembers[i].isInvite = found;
                     }
-                });
+                }
 
                 $scope.$watchCollection('compare',function(newArray,oldArray){
                     for(var i in $scope.foundMembers){
@@ -432,7 +439,7 @@ angular.module('dmc.add_project.directive', [
                                     "link": "/project.php#/preview/" + projectId,
                                     "created_at": moment().format("hh:mm A")
                                 });
-                                
+
 
                                 $scope.cancelAddToProject();
 
@@ -469,7 +476,6 @@ angular.module('dmc.add_project.directive', [
                 };
 
                 $scope.showMembers = function(id, ev){
-                    console.info('index', id);
                     $(window).scrollTop();
                     $mdDialog.show({
                         controller: "showMembers",
@@ -558,7 +564,6 @@ angular.module('dmc.add_project.directive', [
                 };
 
                 $scope.showCompany = function(id, ev){
-                    console.info('index', id);
                     $(window).scrollTop();
                     $mdDialog.show({
                         controller: "showCompany",

@@ -2,7 +2,7 @@
     <md-toolbar>
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
-            <md-button ng-if="projectId > 0" class="add-button-square" ng-click="newTask($event)">
+            <md-button ng-if="projectId > 0" class="add-button-square" ng-click="newTask($event)" aria-label="Add Task">
                 <ng-md-icon icon="add" size="18"></ng-md-icon>
             </md-button>
             <span flex></span>

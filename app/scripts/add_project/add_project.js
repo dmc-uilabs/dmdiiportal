@@ -27,11 +27,25 @@ angular.module('dmc.add_project', [
     };
 })
     .service('projectModel', [
-        'ajax', 'dataFactory', '$stateParams', 'toastModel', '$rootScope','DMCUserModel',
-        function (ajax, dataFactory, $stateParams, toastModel, $rootScope, DMCUserModel ) {
+        'ajax', 'dataFactory', '$stateParams', '$http', '$q', 'toastModel', '$rootScope','DMCUserModel',
+        function (ajax, dataFactory, $stateParams, $http, $q, toastModel, $rootScope, DMCUserModel ) {
+
+            function addTagsToPromises(promises,tags,id){
+                if(tags) {
+                    for (var i in tags) {
+                        if (tags[i].id && tags[i].id > 0 && tags[i].deleted == true) {
+                            promises["deleteTag" + i] = $http.delete(dataFactory.deleteProjectTag(tags[i].id));
+                        } else if (!tags[i].id || tags[i].id <= 0) {
+                            promises["addTag" + i] = $http.post(dataFactory.addProjectTag(), {
+                                projectId: id,
+                                name: tags[i].name
+                            });
+                        }
+                    }
+                }
+            }
 
             this.update_project = function(id,params, array, currentMembers, callback){
-                if(params.tags && params.tags.length > 0) saveTags(params.tags,id);
                 ajax.update(dataFactory.updateProject(id),{
                     title : params.title,
                     type : params.type,
@@ -39,6 +53,11 @@ angular.module('dmc.add_project', [
                     dueDate : params.dueDate,
                     description : params.description
                 },function(response){
+                    var promises = {};
+
+                    // add tags to request
+                    addTagsToPromises(promises,params.tags,id);
+
                     for(var i in array){
                         var isFound = false;
                         for(var j in currentMembers){
@@ -49,25 +68,30 @@ angular.module('dmc.add_project', [
                             }
                         }
                         if(!isFound){
-                            ajax.create(dataFactory.createMembersToProject(),
-                                {
-                                    "profileId": $rootScope.userData.profileId,
+                            promises["addMember"+i] = $http.post(dataFactory.createMembersToProject(), {
+                                    "profileId": array[i].id,
                                     "projectId": id,
                                     "fromProfileId": $rootScope.userData.profileId,
                                     "from": $rootScope.userData.displayName,
                                     "date": moment(new Date).format('x'),
-                                    "accept": true
-                                },
-                                function(response){
+                                    "accept": false
                                 }
                             );
                         }
                     }
                     if(currentMembers.length > 0) {
                         for (var i in currentMembers) {
-                            ajax.delete(dataFactory.deleteProjectMember(currentMembers[i].id),{},function(){})
+                            promises["deleteMember"+i] = $http.delete(dataFactory.deleteProjectMember(currentMembers[i].id));
                         }
                     }
+
+                    $q.all(promises).then(function(){
+                            callback();
+                        }, function(res){
+                            toastModel.showToast("error", "Error." + res.statusText);
+                        }
+                    );
+
                     callback();
                 });
             };
@@ -89,46 +113,39 @@ angular.module('dmc.add_project', [
                     },
                     function(response){
 
-                        // save link in created project
-                        ajax.update(dataFactory.updateProject(response.data.id),{
-                            "tasks": {
-                                "totalItems": 0,
-                                "link": "/projects/"+response.data.id+"/tasks"
-                            },
-                            "discussions": {
-                                "totalItems": 0,
-                                "link": "/projects/"+response.data.id+"/discussions"
-                            },
-                            "services": {
-                                "totalItems": 0,
-                                "link": "/projects/"+response.data.id+"/services"
-                            },
-                            "tags": {
-                                "totalItems": 0,
-                                "link": "/projects/"+response.data.id+"/projects_tags"
-                            }
-                        },function(response){});
+                        var promises = {
+                            "update": $http.patch(dataFactory.updateProject(response.data.id),{
+                                "tasks": {
+                                    "totalItems": 0,
+                                    "link": "/projects/"+response.data.id+"/tasks"
+                                },
+                                "discussions": {
+                                    "totalItems": 0,
+                                    "link": "/projects/"+response.data.id+"/discussions"
+                                },
+                                "services": {
+                                    "totalItems": 0,
+                                    "link": "/projects/"+response.data.id+"/services"
+                                },
+                                "tags": {
+                                    "totalItems": 0,
+                                    "link": "/projects/"+response.data.id+"/projects_tags"
+                                }
+                            }),
+                            "addCurrentMemberToTheProject" : $http.post(dataFactory.createMembersToProject(),
+                                {
+                                    "profileId": $rootScope.userData.profileId,
+                                    "projectId": response.data.id,
+                                    "fromProfileId": $rootScope.userData.profileId,
+                                    "from": $rootScope.userData.displayName,
+                                    "date": moment(new Date).format('x'),
+                                    "accept": true
+                                })
+                        };
 
-
-                        if(params.tags && params.tags.length > 0) saveTags(params.tags,response.data.id);
-
-                        ajax.create(dataFactory.createMembersToProject(),
-                            {
-                                "profileId": $rootScope.userData.profileId,
-                                "projectId": response.data.id,
-                                "fromProfileId": $rootScope.userData.profileId,
-                                "from": $rootScope.userData.displayName,
-                                "date": moment(new Date).format('x'),
-                                "accept": true
-                            },
-                            function(response){
-
-                            }
-                        );
-
-
+                        // add members to request
                         for(var i in array){
-                            ajax.create(dataFactory.createMembersToProject(),
+                            promises["addMember"+i] = $http.post(dataFactory.createMembersToProject(),
                                 {
                                     "profileId": array[i].id,
                                     "projectId": response.data.id,
@@ -136,28 +153,22 @@ angular.module('dmc.add_project', [
                                     "from": $rootScope.userData.displayName,
                                     "date": moment(new Date).format('x'),
                                     "accept": false
-                                },
-                                function(response){
-                                }
-                            );
+                                });
                         }
-                        callback(response.data.id);
+
+                        // add tags to request
+                        addTagsToPromises(promises,params.tags,response.data.id);
+
+                        $q.all(promises).then(function(){
+                                callback(response.data.id);
+                            }, function(res){
+                                toastModel.showToast("error", "Error." + res.statusText);
+                            }
+                        );
+
                     }
                 );
             };
 
-            function saveTags(tags,id){
-                for(var i in tags){
-                    if(tags[i].id && tags[i].id > 0 && tags[i].deleted == true){
-                        ajax.delete(dataFactory.deleteProjectTag(tags[i].id),{
-                        },function(response){});
-                    }else if(!tags[i].id || tags[i].id <= 0){
-                        ajax.create(dataFactory.addProjectTag(),{
-                            projectId : id,
-                            name : tags[i].name
-                        },function(response){});
-                    }
-                }
-            }
         }
     ]);

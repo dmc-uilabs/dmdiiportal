@@ -25,7 +25,6 @@ angular.module('dmc.project')
             projectCtrl.projectData = projectData;
 
             $scope.projectData = projectData;
-            console.log($scope.projectData);
 
             $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
 
@@ -60,7 +59,6 @@ angular.module('dmc.project')
                             id: profileIds
                         }, function (res) {
                             $scope.invitees = res.data;
-                            //isFollowed($scope.members);
                             apply();
                         });
                     }
@@ -74,12 +72,32 @@ angular.module('dmc.project')
                 newProject = $.extend(true, newProject, data);
             };
 
+            $scope.goSaveProject = false;
+
+            $scope.$on('$locationChangeStart', function (event, next, current) {
+                if(!$scope.goSaveProject) {
+                    var answer = confirm("Are you sure you want to leave this page?");
+                    if (!answer) {
+                        event.preventDefault();
+                    }
+                }
+            });
+
+            $(window).unbind('beforeunload');
+            $(window).bind('beforeunload', function(){
+                return "";
+            });
+
             $scope.updateProject = function(data) {
+                $scope.goSaveProject = true;
+                $(window).unbind('beforeunload');
+
                 if(newProject.dueDate){
                     newProject.dueDate = Date.parse(newProject.dueDate);
                 }else{
                     newProject.dueDate = Date.parse(new Date());
                 }
+
                 projectModel.update_project(projectCtrl.currentProjectId,newProject, data, currentMembers, function(data){
                     document.location.href = "project.php#/"+projectCtrl.currentProjectId+"/home";
                 });

@@ -15,11 +15,13 @@
     <span flex></span>
 
     <!-- Edit and Delete buttons-->
-    <md-button ng-click="editTask()" class="md-icon-button task-edit-btn" ng-show="!isEditing && task">
+    <md-button ng-click="editTask()" class="md-raised dmc-button task-edit-btn" ng-show="!isEditing && task">
         <ng-md-icon icon="edit" size="18"></ng-md-icon>
+        Edit
     </md-button>
-    <md-button ng-click="deleteTask($event)" class="md-icon-button task-delete-btn" ng-show="!isEditing && task">
+    <md-button ng-click="deleteTask($event)" class="md-raised dmc-button task-delete-btn" ng-show="!isEditing && task">
         <ng-md-icon icon="delete" size="18"></ng-md-icon>
+        Delete
     </md-button>
 
     <!-- Save and Cancel buttons -->
@@ -56,11 +58,11 @@
                                 <p ng-show="task.additionalDetails && task.additionalDetails.length > 0" ng-bind-html="task.additionalDetails"></p>
                                 <p ng-show="!task.additionalDetails || task.additionalDetails.length == 0">Additional details is empty</p>
                             </div>
-                            <md-input-container class="md-block" ng-show="isEditing" flex="100">
+                            <md-input-container class="md-block" ng-if="isEditing" flex="100">
                                 <label>Description</label>
                                 <textarea ng-model="task.title"></textarea>
                             </md-input-container>
-                            <md-input-container class="md-block" ng-show="isEditing" flex="100">
+                            <md-input-container class="md-block" ng-if="isEditing" flex="100">
                                 <label>Additional Details</label>
                                 <textarea ng-model="task.additionalDetails" md-maxlength="1000"></textarea>
                             </md-input-container>

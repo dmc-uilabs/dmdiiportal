@@ -13,7 +13,7 @@
                 <md-list-item class="md-1-line" ng-repeat="item in invitees">
                     <img ng-src="{{item.image}}" class="md-avatar" />
                     <div class="md-list-item-text" layout="column" flex>
-                        <h3><strong><a href="#">{{item.displayName}}</a></strong></h3>
+                        <h3><strong><a href="/profile.php#/{{item.id}}">{{item.displayName}}</a></strong></h3>
                     </div>
                     <md-button 
                         aria-label="Remove Invite" 

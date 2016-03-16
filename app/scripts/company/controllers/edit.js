@@ -44,15 +44,16 @@ angular.module('dmc.company')
 
 
                 $scope.removeMainPicture = function(ev){
-                    questionToastModel.show({
-                        question : "Do you want to delete the picture?",
-                        buttons: {
-                            ok: function(){
-                                deletePicture();
-                            },
-                            cancel: function(){}
-                        }
-                    },ev);
+                    deletePicture();
+                    //questionToastModel.show({
+                    //    question : "Do you want to delete the picture?",
+                    //    buttons: {
+                    //        ok: function(){
+                    //            deletePicture();
+                    //        },
+                    //        cancel: function(){}
+                    //    }
+                    //},ev);
                 };
 
 

@@ -23,7 +23,7 @@ server.use(jsonServer.rewriter({
     '/projects/create' : '/projects',
     '/discussions/create' : '/individual-discussion',
     '/tasks/create' : '/tasks',
-    '/members' : '/profiles?_embed=profile_reviews',
+    '/members' : '/profiles',
     '/my-tasks' : '/tasks',
     '/my-services' : '/services',
     '/follow-company-services' : '/services',

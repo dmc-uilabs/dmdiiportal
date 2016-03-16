@@ -170,10 +170,10 @@
       "dateJoined": "01/01/2016",
       "reasonJoining": "Lorem Ipsum is simply dummy text",
       "featureImage": {
-        "thumbnail": "/uploads/company/picture/1/20160314064334000000.jpg",
-        "large": "/uploads/company/picture/1/20160314064334000000.jpg"
+        "thumbnail": "/uploads/company/picture/1/20160315182723000000.jpg",
+        "large": "/uploads/company/picture/1/20160315182723000000.jpg"
       },
-      "logoImage": "/uploads/company/logo/1/20160229053718000000.png"
+      "logoImage": "/uploads/company/logo/1/20160315182711000000.png"
     },
     {
       "id": 2,
@@ -617,6 +617,11 @@
       "accountId": 1,
       "profileId": 1,
       "id": 1
+    },
+    {
+      "profileId": 2,
+      "accountId": 1,
+      "id": 2
     }
   ],
   "following_companies": [
@@ -835,7 +840,7 @@
       "id": 1,
       "title": "Control Compartment for LDR Mining",
       "type": "public",
-      "dueDate": 1455573600000,
+      "dueDate": 1458081477000,
       "projectManager": "PDM Co.",
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
@@ -853,7 +858,8 @@
       "services": {
         "totalItems": 5,
         "link": "/projects/1/services"
-      }
+      },
+      "approvalOption": "all"
     },
     {
       "id": 3,
@@ -1017,6 +1023,133 @@
         "totalItems": 0,
         "link": "/projects/9/projects_tags"
       }
+    },
+    {
+      "title": "Project for test functionality",
+      "type": "private",
+      "dueDate": 1457560800000,
+      "projectManager": "DMC member",
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": "Some text",
+      "id": 10,
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/10/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/10/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/10/services"
+      },
+      "tags": {
+        "totalItems": 0,
+        "link": "/projects/10/projects_tags"
+      }
+    },
+    {
+      "title": "Project for test functionality 2",
+      "type": "private",
+      "dueDate": 1457474400000,
+      "projectManager": "DMC member",
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": "text",
+      "id": 11,
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/11/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/11/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/11/services"
+      },
+      "tags": {
+        "totalItems": 0,
+        "link": "/projects/11/projects_tags"
+      }
+    },
+    {
+      "title": "Project for test functionality 3",
+      "type": "public",
+      "dueDate": 1458165600000,
+      "projectManager": "DMC member",
+      "approvalOption": "admin",
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": "Overview",
+      "id": 12
+    },
+    {
+      "title": "Project for test functionality 4345",
+      "type": "public",
+      "dueDate": 1458856800000,
+      "projectManager": "DMC member",
+      "approvalOption": "all",
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": "Overview3444",
+      "id": 13,
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/13/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/13/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/13/services"
+      },
+      "tags": {
+        "totalItems": 0,
+        "link": "/projects/13/projects_tags"
+      }
+    },
+    {
+      "title": "Project for test functionality 5",
+      "type": "public",
+      "dueDate": 1458856800000,
+      "projectManager": "DMC member",
+      "approvalOption": "admin",
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": "Text Overview",
+      "id": 14,
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/14/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/14/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/14/services"
+      },
+      "tags": {
+        "totalItems": 0,
+        "link": "/projects/14/projects_tags"
+      }
     }
   ],
   "projects_tags": [
@@ -1039,71 +1172,209 @@
       "projectId": 1,
       "name": "Test tag",
       "id": 4
+    },
+    {
+      "projectId": 10,
+      "name": "tag 1",
+      "id": 5
+    },
+    {
+      "projectId": 12,
+      "name": "Tag 4",
+      "id": 6
+    },
+    {
+      "projectId": 12,
+      "name": "Tag 5",
+      "id": 7
+    },
+    {
+      "projectId": 12,
+      "name": "Tag 1",
+      "id": 8
+    },
+    {
+      "projectId": 12,
+      "name": "Tag 2",
+      "id": 9
+    },
+    {
+      "projectId": 12,
+      "name": "Tag 3",
+      "id": 10
+    },
+    {
+      "projectId": 13,
+      "name": "Tag 1",
+      "id": 11
+    },
+    {
+      "projectId": 13,
+      "name": "Tag 6",
+      "id": 17
+    },
+    {
+      "projectId": 13,
+      "name": "Tag 7",
+      "id": 18
+    },
+    {
+      "projectId": 13,
+      "name": "Tag 8",
+      "id": 19
+    },
+    {
+      "projectId": 13,
+      "name": "Tag 11",
+      "id": 21
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 4",
+      "id": 22
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 1",
+      "id": 23
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 3",
+      "id": 24
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 5",
+      "id": 25
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 2",
+      "id": 26
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 7",
+      "id": 27
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 8",
+      "id": 28
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 9",
+      "id": 29
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 10",
+      "id": 30
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 11",
+      "id": 31
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 6",
+      "id": 32
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 12",
+      "id": 33
+    },
+    {
+      "projectId": 14,
+      "name": "Tag 13",
+      "id": 34
     }
   ],
   "projects_members": [
     {
       "profileId": 1,
-      "projectId": 3,
+      "projectId": 10,
       "fromProfileId": 1,
       "from": "Thomas Smith",
-      "date": 1456242012000,
-      "accept": false,
-      "id": 2
-    },
-    {
-      "profileId": 1,
-      "projectId": 4,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1456242258000,
+      "date": 1458084556172,
       "accept": false,
       "id": 3
     },
     {
-      "profileId": 1,
-      "projectId": 6,
+      "profileId": 2,
+      "projectId": 10,
       "fromProfileId": 1,
       "from": "Thomas Smith",
-      "date": 1457532729366,
-      "accept": true,
-      "id": 11
+      "date": 1458084556173,
+      "accept": false,
+      "id": 4
     },
     {
       "profileId": 1,
-      "projectId": 1,
+      "projectId": 11,
       "fromProfileId": 1,
       "from": "Thomas Smith",
-      "date": 1457565533771,
-      "accept": true,
+      "date": 1458085416779,
+      "accept": false,
+      "id": 12
+    },
+    {
+      "profileId": 2,
+      "projectId": 11,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1458085416782,
+      "accept": false,
       "id": 13
     },
     {
-      "profileId": 1,
-      "projectId": 7,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1457697137181,
-      "accept": true,
-      "id": 14
-    },
-    {
-      "profileId": 1,
-      "projectId": 9,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1457701978988,
-      "accept": true,
-      "id": 15
-    },
-    {
-      "profileId": 1,
+      "profileId": 2,
       "projectId": 1,
       "fromProfileId": 1,
       "from": "Thomas Smith",
-      "date": 1457951163974,
+      "date": 1458086797596,
+      "accept": false,
+      "id": 14
+    },
+    {
+      "profileId": 2,
+      "projectId": 12,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1458087434965,
       "accept": false,
       "id": 16
+    },
+    {
+      "profileId": 2,
+      "projectId": 13,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1458088152444,
+      "accept": false,
+      "id": 18
+    },
+    {
+      "profileId": 1,
+      "projectId": 14,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1458088283618,
+      "accept": false,
+      "id": 21
+    },
+    {
+      "profileId": 2,
+      "projectId": 14,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1458088283619,
+      "accept": false,
+      "id": 22
     }
   ],
   "components": [
@@ -7012,6 +7283,30 @@
     {
       "id": 1,
       "displayName": "Thomas Smith",
+      "company": "General Electric (GE) Global Research",
+      "companyId": 1,
+      "jobTitle": "Engineering Manager",
+      "location": "Berkeley, California",
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "skills": [
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "skill6",
+        "skill7",
+        "skill8",
+        "skill9",
+        "skill10",
+        "skill11",
+        "skill12"
+      ]
+    },
+    {
+      "id": 2,
+      "displayName": "Timmy Thomas",
       "company": "General Electric (GE) Global Research",
       "companyId": 1,
       "jobTitle": "Engineering Manager",

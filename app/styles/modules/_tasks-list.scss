@@ -82,20 +82,31 @@
   }
 }
 
-.md-button.md-icon-button {
+.md-button.md-raised.dmc-button {
   &.task-edit-btn,
   &.task-delete-btn {
     min-width: 20px;
     min-height: 20px;
-    width: 38px;
-    height: 38px;
-    margin: 0;
+    width: auto;
+    color: #363636;
+    font-size: 13px;
+    margin: 0 0 0 15px;
+    ng-md-icon{
+      fill: #363636;
+    }
+  }
+  &.task-delete-btn{
+    background-color: #F44B2F;
+    color: #fff;
+    ng-md-icon{
+      fill: #fff;
+    }
   }
 }
 
 .project-task-container{
   md-input-container{
-    padding-bottom: 15px;
+
   }
   .title-task-block{
     border-bottom: 1px solid #ccc;
