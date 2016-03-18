@@ -113,13 +113,13 @@
     padding-bottom: 15px;
     p{
       font-weight: 100;
-      font-size: 15px;
+      font-size: 24px;
       margin: 0;
     }
   }
   .additional-details{
     margin-top: 15px;
-    font-size: 15px;
+    font-size: 12px;
   }
   .task-details-container{
     ul{
@@ -131,6 +131,11 @@
         padding: 0 0 16px;
         font-size: 15px;
         color: #363636;
+        span{
+          font-size: 15px;
+          font-weight: 100;
+          text-transform: none;
+        }
         &:last-child{
           padding-bottom: 0;
         }

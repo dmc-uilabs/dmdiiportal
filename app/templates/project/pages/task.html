@@ -52,7 +52,7 @@
                         <div flex layout="column">
                             <div class="title-task-block" flex layout="row" layout-align="start center" ng-show="!isEditing">
                                 <p flex ng-bind-html="task.title"></p>
-                                <md-button class="md-raised dmc-button" ng-click="setStatus()">{{task.status == "Open" ? "Mark As Complete" : "Reopen"}}</md-button>
+                                <md-button class="md-raised dmc-button" ng-click="setStatus()">{{task.status == "InProgress" ? "Mark As Complete" : (task.status == "Open" ? "Start Progress" : "Reopen")}}</md-button>
                             </div>
                             <div class="additional-details" flex layout="row" ng-show="!isEditing">
                                 <p ng-show="task.additionalDetails && task.additionalDetails.length > 0" ng-bind-html="task.additionalDetails"></p>
@@ -82,6 +82,7 @@
                 <div class="content-panel-body">
                     <md-content layout="row" class="task-details-container">
                         <ul ng-show="!isEditing">
+                            <li>Status: {{task.status == "InProgress" ? "In Progress" : (task.status == "Open" ? "To Do" : "Completed")}}</li>
                             <li>Due Date: <span ng-bind-html="task.formatedDueDate[1]" class="label border-radius-2" ng-class="task.formatedDueDate[0] == 'date' ? 'label--date' : (task.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (task.formatedDueDate[0] == 'today' || task.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span></li>
                             <li>Priority: {{task.priorityName}}</li>
                             <li>Assigned To: <a href="/profile.php#/{{task.assigneeId}}">{{task.assignee}}</a></li>

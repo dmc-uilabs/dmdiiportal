@@ -833,6 +833,27 @@ paths:
             items:
               $ref: '#/definitions/Task'
   '/tasks/{taskID}':
+    patch:
+      tags:
+        - task
+      description: Update task
+      parameters:
+        - name: taskID
+          in: path
+          type: string
+          description: ID of the task
+          required: true
+        - in: body
+          name: body
+          description: Task body
+          required: false
+          schema:
+            $ref: '#/definitions/Task'
+      responses:
+        '200':
+          description: return updated task
+          schema:
+            $ref: '#/definitions/Task'
     get:
       tags:
         - task
@@ -5316,6 +5337,12 @@ definitions:
         format: milliseconds
       additionalDetails:
         type: string
+      status:
+        type: string
+        enum:
+          - Open
+          - InProgress
+          - Completed
       priority:
         type: number
         enum:

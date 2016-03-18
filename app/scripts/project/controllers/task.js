@@ -57,8 +57,22 @@ angular.module('dmc.project')
             };
 
             $scope.setStatus = function(){
+                var newStatus = null;
+                switch($scope.task.status){
+                    case "Completed":
+                        newStatus = "InProgress";
+                        break;
+                    case "Open":
+                        newStatus = "InProgress";
+                        break;
+                    case "InProgress":
+                        newStatus = "Completed";
+                        break;
+                    default:
+                        break;
+                }
                 ajax.update(dataFactory.updateTask($scope.task.id),{
-                    status : $scope.task.status == "Completed" ? "Open" : "Completed"
+                    status : newStatus
                 }, function(response){
                     $scope.task.status = response.data.status;
                     apply();
