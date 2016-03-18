@@ -791,6 +791,10 @@ paths:
           schema:
             $ref: '#/definitions/Task'
       responses:
+        '200':
+          description: return created task
+          schema:
+            $ref: '#/definitions/Task'
         '405':
           description: Invalide input
   '/tasks':
