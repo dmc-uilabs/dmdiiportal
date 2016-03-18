@@ -6,6 +6,32 @@
     padding: 0;
     max-width: 30%;
   }
+  .tags,
+  .overview{
+    h3{
+      margin: 0 0 8px 0;
+      font-size: 16px;
+    }
+    p{
+      padding: 0;
+      font-size: 15px;
+      margin: 0;
+    }
+  }
+  .tags{
+    margin-left: 25px;
+    max-width: 35%;
+  }
+  .accept,
+  .decline,
+  .join,
+  .request-to-join{
+    margin-left: 10px;
+    margin-right: 5px;
+    ng-md-icon{
+      margin-right: 8px;
+    }
+  }
 }
 .md-toolbar-tools.my-projects-title{
   padding: 0;

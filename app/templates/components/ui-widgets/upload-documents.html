@@ -5,8 +5,8 @@
         </div>
     </md-toolbar>
 </div>
-<div class="content-panel-body" layout="row" layout-align="space-between start">
-    <md-content class="md-padding" flex="47">
+<div class="content-panel-body" layout="row" layout-align="space-between start" layout-wrap>
+    <md-content class="md-padding" flex>
         <form style="z-index: 8" class="dropzone dropzone-sm dz-clickable" id="documentDropZone" dropzone="dropzoneConfig">
             <div class="dz-default dz-message">
                 <div>
@@ -17,9 +17,9 @@
             </div>
         </form>
     </md-content>
-    <md-content class="md-padding upload-documents" ng-if="documents.length > 0" flex="47">
+    <md-content class="md-padding upload-documents" ng-if="source.length > 0" flex="{{widgetType == 'row' ? 100 : 50}}">
         <md-list>
-            <md-list-item ng-repeat="item in documents">
+            <md-list-item ng-repeat="item in source" ng-show="!item.deleted">
                 <p ng-show="!item.editing && !item.delete">{{item.title}}</p>
                 <md-button class="md-icon-button edit" ng-show="!item.editing && !item.delete" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="21"></ng-md-icon></md-button>
                 <md-input-container ng-show="item.editing" flex>

@@ -35,13 +35,14 @@ angular.module('dmc.project')
             };
 
             $scope.invitees = [];
+            $scope.documents = [];
+            var currentMembers = [];
 
             function apply() {
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }
 
-            var currentMembers = [];
-
+            // get project members
             $scope.getMembers = function () {
                 ajax.get(dataFactory.projectMembers(projectCtrl.currentProjectId), {}, function (response) {
                     var profileIds = $.map(response.data, function (x) {
@@ -64,8 +65,18 @@ angular.module('dmc.project')
                     }
                 });
             };
-
             $scope.getMembers();
+
+            // get project documents
+            $scope.getDocuments = function(){
+                ajax.get(dataFactory.getProjectDocuments(projectCtrl.currentProjectId),{
+                    "project-documentId" : 0
+                },function(response){
+                    $scope.documents = response.data;
+                    apply();
+                });
+            };
+            $scope.getDocuments();
 
             var newProject = {};
             var setProjectDetails = function(data) {
@@ -97,7 +108,7 @@ angular.module('dmc.project')
                 }else{
                     newProject.dueDate = Date.parse(new Date());
                 }
-
+                newProject.documents = $scope.documents;
                 projectModel.update_project(projectCtrl.currentProjectId,newProject, data, currentMembers, function(data){
                     document.location.href = "project.php#/"+projectCtrl.currentProjectId+"/home";
                 });

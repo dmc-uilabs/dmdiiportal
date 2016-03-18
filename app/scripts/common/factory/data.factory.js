@@ -250,13 +250,19 @@ angular.module('dmc.data',[])
                 return localhost+'follow-company-services';
             },
             getServiceDocuments: function(id){
-                return localhost+'service/'+id+'/service-documents';
+                return localhost+'service/'+id+'/service_documents';
             },
             getProjectDocuments: function(id){
-                return localhost+'projects/'+id+'/project-documents';
+                return localhost+'projects/'+id+'/project_documents';
             },
             addProjectDocument: function(){
-                return localhost+'project-documents';
+                return localhost+'project_documents';
+            },
+            updateProjectDocument: function(id){
+                return localhost+'project_documents/'+id;
+            },
+            deleteProjectDocument: function(id){
+                return localhost+'project_documents/'+id;
             },
             addServiceToProject: function(id){
                 return localhost+'services/'+id;
@@ -284,6 +290,21 @@ angular.module('dmc.data',[])
             },
             removeMembersToProject: function(id) {
                 return localhost+'projects_members/'+id;
+            },
+            addProjectJoinRequest: function(){
+                return localhost+'projects_join_requests';
+            },
+            getProjectJoinRequests: function(id){
+                return localhost+'projects/'+id+'/projects_join_requests';
+            },
+            getProjectsJoinRequests: function(){
+                return localhost+'projects_join_requests';
+            },
+            removeProjectJoinRequest: function(id){
+                return localhost+'projects_join_requests/'+id;
+            },
+            getProjectJoinRequest: function(id){
+                return localhost+'projects_join_requests/'+id;
             },
             followMember: function(id){
                 return localhost + 'following_members'+( id ? '/'+id : '');
@@ -313,6 +334,9 @@ angular.module('dmc.data',[])
                 return localhost+'projects/'+id;
             },
             addProjectTag: function(){
+                return localhost+'projects_tags';
+            },
+            getProjectsTags: function(){
                 return localhost+'projects_tags';
             },
             deleteProjectTag: function(id){

@@ -78,6 +78,7 @@ angular.module('dmc.widgets.documents',[
                 source : "=",
 				widgetTitle: "=",
 				projectId: "=",
+                widgetType: "=",
 				autoUpload: "=",
                 serviceId: "=",
 				product: "="
@@ -110,14 +111,13 @@ angular.module('dmc.widgets.documents',[
 				$scope.removeFile = function(item){
 					if(item.file._removeLink){
 						item.file._removeLink.click();
-					}else{
-						for(var i in $scope.source) {
-							if ($scope.source[i].id == item.id) {
-								$scope.source.splice(i, 1);
-								break;
-							}
-						}
 					}
+                    for(var i in $scope.source) {
+                        if ($scope.source[i].id == item.id) {
+                            $scope.source[i].deleted = true;
+                            break;
+                        }
+                    }
 				};
 
 				$scope.confirmDeleteFile = function(item){

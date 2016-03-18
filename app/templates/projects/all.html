@@ -1,9 +1,33 @@
 <div class="page-header">
     <md-toolbar>
-        <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="space-between center">
-            <h1 flex="33">All Projects</h1>
-            <md-button class="link-button add-project-button" md-no-ink
-                       href="/add-project.php">Add Project</md-button>
+        <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="start end">
+            <md-input-container class="filterBox">
+                <label>Filter</label>
+                <md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')">
+                    <md-option ng-click="updateFilter()" ng-repeat="f in filterList track by $index" ng-value="$index">{{f.name}}</md-option>
+                </md-select>
+            </md-input-container>
+            <div class="search" flex>
+                <form ng-submit="submit(searchText)" class="dmc-search global-search-form">
+                    <div layout="column">
+                        <div layout="row">
+                            <div layout="column" flex>
+                                <md-input-container md-no-float>
+                                    <md-icon>
+                                        <ng-md-icon icon="search"></ng-md-icon>
+                                    </md-icon>
+                                    <input type="text" placeholder="Search Projects" ng-model="searchText">
+                                </md-input-container>
+                            </div>
+                            <div layout="column">
+                                <md-input-container>
+                                    <md-button type="submit" class="search-button">Search</md-button>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <!-- fill up the space between left and right area -->
             <div laout="column" flex="33">
                 <div layout="row" layout-align="end center">
@@ -11,12 +35,6 @@
                         <label>Sort</label>
                         <md-select ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
                             <md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container style="display: none">
-                        <label>Filter</label>
-                        <md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')" md-container-class="margin-dropdown">
-                            <md-option ng-click="selectItemDropDown('filter')" ng-repeat="filter in filterList track by $index" ng-value="$index">{{filter.name}}</md-option>
                         </md-select>
                     </md-input-container>
                 </div>
@@ -29,7 +47,8 @@
     <div class="content-panel" layout="column" flex="100"
          id="myProjectsList"
          ui-widget-projects
-         widget-format="'my-projects'"
+         search-text="searchText"
+         widget-format="'all-projects'"
          widget-title="null"
          sort-projects="sortProjects"
          widget-show-all-blocks="true"></div>

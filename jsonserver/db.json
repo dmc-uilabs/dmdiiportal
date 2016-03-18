@@ -792,6 +792,7 @@
       "type": "public",
       "dueDate": 1454450400000,
       "projectManager": "PDM Co.",
+      "projectManagerId": 2,
       "featureImage": {
         "thumbnail": "/images/logo-ldr-mining.png",
         "large": "/images/logo-ldr-mining.png"
@@ -809,7 +810,8 @@
       "services": {
         "totalItems": 5,
         "link": "/projects/2/services"
-      }
+      },
+      "approvalOption": "all"
     },
     {
       "id": 4,
@@ -817,6 +819,7 @@
       "type": "public",
       "dueDate": 1455544706321,
       "projectManager": "PDM Co.",
+      "projectManagerId": 2,
       "featureImage": {
         "thumbnail": "/images/project-incoming-compartment.png",
         "large": "/images/project-incoming-compartment.png"
@@ -834,7 +837,8 @@
       "services": {
         "totalItems": 5,
         "link": "/projects/4/services"
-      }
+      },
+        "approvalOption": "all"
     },
     {
       "id": 1,
@@ -842,6 +846,7 @@
       "type": "public",
       "dueDate": 1458081477000,
       "projectManager": "PDM Co.",
+      "projectManagerId": 2,
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
         "large": "/images/project_relay_controller.png"
@@ -859,7 +864,7 @@
         "totalItems": 5,
         "link": "/projects/1/services"
       },
-      "approvalOption": "all"
+      "approvalOption": "admin"
     },
     {
       "id": 3,
@@ -867,6 +872,7 @@
       "type": "public",
       "dueDate": 1455544706321,
       "projectManager": "PDM. Co",
+      "projectManagerId": 2,
       "featureImage": {
         "thumbnail": "/images/project_capacitor_compartment.png",
         "large": "/images/project_capacitor_compartment.png"
@@ -884,7 +890,8 @@
       "services": {
         "totalItems": 0,
         "link": "/projects/3/services"
-      }
+      },
+      "approvalOption": "all"
     },
     {
       "id": 5,
@@ -892,6 +899,7 @@
       "type": "public",
       "dueDate": 1455544706321,
       "projectManager": "R.Palmer",
+      "projectManagerId": 1,
       "featureImage": {
         "thumbnail": "/images/project_ge_transformer.png",
         "large": "/images/project_ge_transformer.png"
@@ -909,13 +917,15 @@
       "services": {
         "totalItems": 0,
         "link": "/projects/5/services"
-      }
+      },
+        "approvalOption": "all"
     },
     {
       "title": "Test project",
       "type": "private",
       "dueDate": 1457647200000,
       "projectManager": "DMC member",
+      "projectManagerId": 1,
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
         "large": "/images/project_relay_controller.png"
@@ -937,41 +947,15 @@
       "tags": {
         "totalItems": 0,
         "link": "/projects/6/projects_tags"
-      }
-    },
-    {
-      "title": "ыфва",
-      "type": "private",
-      "dueDate": 1456783200000,
-      "projectManager": "DMC member",
-      "featureImage": {
-        "thumbnail": "/images/project_relay_controller.png",
-        "large": "/images/project_relay_controller.png"
       },
-      "description": "ыва",
-      "id": 7,
-      "tasks": {
-        "totalItems": 0,
-        "link": "/projects/7/tasks"
-      },
-      "discussions": {
-        "totalItems": 0,
-        "link": "/projects/7/discussions"
-      },
-      "services": {
-        "totalItems": 0,
-        "link": "/projects/7/services"
-      },
-      "tags": {
-        "totalItems": 0,
-        "link": "/projects/7/projects_tags"
-      }
+        "approvalOption": "all"
     },
     {
       "title": "Project",
       "type": "private",
       "dueDate": 1456783200000,
       "projectManager": "DMC member",
+      "projectManagerId": 1,
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
         "large": "/images/project_relay_controller.png"
@@ -1000,6 +984,7 @@
       "type": "public",
       "dueDate": 1456783200000,
       "projectManager": "DMC member",
+      "projectManagerId": 1,
       "approvalOption": "admin",
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
@@ -1029,6 +1014,7 @@
       "type": "private",
       "dueDate": 1457560800000,
       "projectManager": "DMC member",
+      "projectManagerId": 1,
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
         "large": "/images/project_relay_controller.png"
@@ -1057,6 +1043,7 @@
       "type": "private",
       "dueDate": 1457474400000,
       "projectManager": "DMC member",
+      "projectManagerId": 1,
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
         "large": "/images/project_relay_controller.png"
@@ -1085,6 +1072,7 @@
       "type": "public",
       "dueDate": 1458165600000,
       "projectManager": "DMC member",
+      "projectManagerId": 1,
       "approvalOption": "admin",
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
@@ -1098,6 +1086,7 @@
       "type": "public",
       "dueDate": 1458856800000,
       "projectManager": "DMC member",
+      "projectManagerId": 1,
       "approvalOption": "all",
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
@@ -1127,6 +1116,7 @@
       "type": "public",
       "dueDate": 1458856800000,
       "projectManager": "DMC member",
+      "projectManagerId": 1,
       "approvalOption": "admin",
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
@@ -1150,8 +1140,38 @@
         "totalItems": 0,
         "link": "/projects/14/projects_tags"
       }
+    },
+    {
+      "title": "Test project with documents",
+      "type": "private",
+      "dueDate": 1458252000000,
+      "projectManager": "DMC member",
+      "projectManagerId": 1,
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": "Overview",
+      "id": 15,
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/15/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/15/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/15/services"
+      },
+      "tags": {
+        "totalItems": 0,
+        "link": "/projects/15/projects_tags"
+      }
     }
   ],
+  "projects_join_requests": [],
   "projects_tags": [
     {
       "projectId": 6,
@@ -1292,89 +1312,67 @@
       "projectId": 14,
       "name": "Tag 13",
       "id": 34
+    },
+    {
+      "projectId": 15,
+      "name": "tag 1",
+      "id": 35
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 1",
+      "id": 36
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 2",
+      "id": 37
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 7",
+      "id": 38
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 3",
+      "id": 39
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 9",
+      "id": 40
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 4",
+      "id": 41
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 8",
+      "id": 42
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 5",
+      "id": 43
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 6",
+      "id": 44
     }
   ],
   "projects_members": [
     {
       "profileId": 1,
-      "projectId": 10,
-      "fromProfileId": 1,
+      "projectId": 2,
+      "fromProfileId": 2,
       "from": "Thomas Smith",
-      "date": 1458084556172,
+      "date": 1458245164499,
       "accept": false,
-      "id": 3
-    },
-    {
-      "profileId": 2,
-      "projectId": 10,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458084556173,
-      "accept": false,
-      "id": 4
-    },
-    {
-      "profileId": 1,
-      "projectId": 11,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458085416779,
-      "accept": false,
-      "id": 12
-    },
-    {
-      "profileId": 2,
-      "projectId": 11,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458085416782,
-      "accept": false,
-      "id": 13
-    },
-    {
-      "profileId": 2,
-      "projectId": 12,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458087434965,
-      "accept": false,
-      "id": 16
-    },
-    {
-      "profileId": 2,
-      "projectId": 13,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458088152444,
-      "accept": false,
-      "id": 18
-    },
-    {
-      "profileId": 1,
-      "projectId": 14,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458088283618,
-      "accept": false,
-      "id": 21
-    },
-    {
-      "profileId": 2,
-      "projectId": 14,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458088283619,
-      "accept": false,
-      "id": 22
-    },
-    {
-      "profileId": 2,
-      "projectId": 1,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458147459444,
-      "accept": false,
-      "id": 23
+      "id": 1
     }
   ],
   "components": [
@@ -6815,8 +6813,93 @@
       "id": 7
     }
   ],
-  "service-documents": [],
-  "project-documents": [],
+  "service_documents": [],
+  "project_documents": [
+    {
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 0,
+      "title": "654776434_31e44151_47",
+      "owner": "Thomas Smith",
+      "ownerId": 1,
+      "size": "221 KB",
+      "modifed": "03/17/2016 11:30 AM",
+      "link": "/uploads/4/654776434_31e44151_47.jpg",
+      "id": 4
+    },
+    {
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 0,
+      "title": "dimastechproject-13",
+      "owner": "Thomas Smith",
+      "ownerId": 1,
+      "size": "604 KB",
+      "modifed": "03/17/2016 11:30 AM",
+      "link": "/uploads/5/dimastechproject-13.jpg",
+      "id": 5
+    },
+    {
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 0,
+      "title": "wallpaper-1059063",
+      "owner": "Thomas Smith",
+      "ownerId": 1,
+      "size": "1 MB",
+      "modifed": "03/17/2016 11:30 AM",
+      "link": "/uploads/6/wallpaper-1059063.jpg",
+      "id": 6
+    },
+    {
+      "projectId": 15,
+      "file": true,
+      "project-documentId": 0,
+      "title": "654776434_31e44151_47",
+      "owner": "Thomas Smith",
+      "ownerId": 1,
+      "size": "221 KB",
+      "modifed": "03/17/2016 11:36 AM",
+      "link": "/uploads/7/654776434_31e44151_47.jpg",
+      "id": 7
+    },
+    {
+      "projectId": 15,
+      "file": true,
+      "project-documentId": 0,
+      "title": "dimastechproject-13",
+      "owner": "Thomas Smith",
+      "ownerId": 1,
+      "size": "604 KB",
+      "modifed": "03/17/2016 11:36 AM",
+      "link": "/uploads/8/dimastechproject-13.jpg",
+      "id": 8
+    },
+    {
+      "projectId": 15,
+      "file": true,
+      "project-documentId": 0,
+      "title": "wallpaper-1059063",
+      "owner": "Thomas Smith",
+      "ownerId": 1,
+      "size": "1 MB",
+      "modifed": "03/17/2016 11:36 AM",
+      "link": "/uploads/9/wallpaper-1059063.jpg",
+      "id": 9
+    },
+    {
+      "projectId": 1,
+      "file": true,
+      "project-documentId": 0,
+      "title": "654776434_31e44151_47",
+      "owner": "Thomas Smith",
+      "ownerId": 1,
+      "size": "221 KB",
+      "modifed": "03/17/2016 11:49 AM",
+      "link": "/uploads/10/654776434_31e44151_47.jpg",
+      "id": 10
+    }
+  ],
   "documents": [
     {
       "id": 1,

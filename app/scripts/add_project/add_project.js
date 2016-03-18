@@ -45,6 +45,34 @@ angular.module('dmc.add_project', [
                 }
             }
 
+            function addDocumentsToPromises(promises,documents,id){
+                console.log(documents);
+                for(var i in documents){
+                    if(documents[i].id && documents[i].projectId == id){
+                        if(!documents[i].deleted) {
+                            if(!documents[i].oldTitle || (documents[i].oldTitle && documents[i].title != documents[i].oldTitle)) {
+                                promises["updatedDocument" + i] = $http.patch(dataFactory.updateProjectDocument(documents[i].id), {
+                                    title: documents[i].title
+                                });
+                            }
+                        }else{
+                            promises["deletedDocument" + i] = $http.delete(dataFactory.deleteProjectDocument(documents[i].id));
+                        }
+                    }else{
+                        var fd = new FormData();
+                        fd.append('file', documents[i].file);
+                        fd.append('projectId', id);
+                        fd.append('title', documents[i].title);
+                        fd.append('type', documents[i].type);
+
+                        promises["newDocument"+i] = $http.post(dataFactory.documentUpload(), fd, {
+                            transformRequest: angular.identity,
+                            headers: {'Content-Type': undefined}
+                        });
+                    }
+                }
+            }
+
             this.update_project = function(id,params, array, currentMembers, callback){
                 ajax.update(dataFactory.updateProject(id),{
                     title : params.title,
@@ -57,6 +85,9 @@ angular.module('dmc.add_project', [
 
                     // add tags to request
                     addTagsToPromises(promises,params.tags,id);
+
+                    // add documents to request
+                    addDocumentsToPromises(promises,params.documents,id);
 
                     for(var i in array){
                         var isFound = false;
@@ -103,7 +134,8 @@ angular.module('dmc.add_project', [
                         "title": params.title,
                         "type": params.type,
                         "dueDate": params.dueDate,
-                        "projectManager": "DMC member",
+                        "projectManager": $rootScope.userData.displayName,
+                        "projectManagerId" : $rootScope.userData.profileId,
                         "approvalOption": params.approvalOption,
                         "featureImage": {
                             "thumbnail": "/images/project_relay_controller.png",
@@ -158,6 +190,9 @@ angular.module('dmc.add_project', [
 
                         // add tags to request
                         addTagsToPromises(promises,params.tags,response.data.id);
+
+                        // add documents to request
+                        addDocumentsToPromises(promises,params.documents,response.data.id);
 
                         $q.all(promises).then(function(){
                                 callback(response.data.id);

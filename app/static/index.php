@@ -985,7 +985,7 @@ function upload_profile_picture($params,$file){
 
 function upload_document($params,$file){
     $owner = json_decode(httpResponse(dbUrl().'/user', null, null),true);
-	$last = json_decode(httpResponse(dbUrl().'/project-documents?_sort=id&_order=DESC&_limit=1', null, null),true);
+	$last = json_decode(httpResponse(dbUrl().'/project_documents?_sort=id&_order=DESC&_limit=1', null, null),true);
 	if(count($last) > 0){
 		$id = $last[0]['id']+1;
 	}else{
@@ -1019,7 +1019,7 @@ function upload_document($params,$file){
                 'modifed' => date("m/d/Y H:i A"),
                 'link' => '/uploads/' . $id . '/' . $name_file
 			));
-			$add_document = json_decode(httpResponse(dbUrl().'/project-documents', 'POST', $data),true);
+			$add_document = json_decode(httpResponse(dbUrl().'/project_documents', 'POST', $data),true);
 			return json_encode(array('result' => $add_document ,'file' => $file));
 		} else {
 			return json_encode(array('error' => 'Possible attacks via file download' ));

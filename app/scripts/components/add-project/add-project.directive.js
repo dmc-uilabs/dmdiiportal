@@ -65,6 +65,7 @@ angular.module('dmc.add_project.directive', [
                 }
 
                 $(window).unbind('beforeunload');
+                newProject.documents = $scope.documents;
                 projectModel.add_project(newProject, data, function(data){
                     document.location.href = "project.php#/"+data+"/home";
                 });
@@ -113,6 +114,9 @@ angular.module('dmc.add_project.directive', [
                 }
             };
 
+            // Documents
+            $scope.documents = [];
+
             // Invitees
             $scope.subject = "Pat has invited you to join the project.";
             $scope.message = "We seek a power transformer with improved heat losses relative to a standard iron core transformer. Cost and time to delivery are also critical. The attached documents give detailed specs and the attached Evaluator Service encompasses how we will value the trade-offs among heat loss, cost, and delivery time.";
@@ -126,6 +130,7 @@ angular.module('dmc.add_project.directive', [
             scope : {
                 goToTab : '=',
                 disableEnableTab : '=',
+                documents: '=',
                 // user input is save on this object
                 projectDetails: '=',
                 isUpdate: '='

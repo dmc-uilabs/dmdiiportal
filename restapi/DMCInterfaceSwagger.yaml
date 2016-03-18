@@ -529,26 +529,6 @@ paths:
           description: Sends the project with projectID
           schema:
             $ref: '#/definitions/Project'
-  '/projects/{projectID}/documents':
-    get:
-      tags:
-        - project
-        - document
-        - not implemented
-      description: Get all documents in a project
-      parameters:
-        - name: projectID
-          in: path
-          type: string
-          description: ID of the project
-          required: true
-      responses:
-        '200':
-          description: return all project documents
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/ProjectDocument'
   '/projects/{projectID}/following_discussions':
     get:
       tags:
@@ -1238,7 +1218,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ServiceHistory'
-  '/projects/{projectID}/project-documents':
+  '/projects/{projectID}/project_documents':
     get:
       tags:
         - project
@@ -1250,6 +1230,11 @@ paths:
           in: path
           type: string
           description: ID of the project
+          required: true
+        - name: project-documentId
+          in: query
+          type: string
+          description: Parent document Id (default 0)
           required: true
         - name: _limit
           in: query
@@ -1277,7 +1262,44 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ProjectDocument'
-  '/services/{serviceID}/service-documents':
+  '/project_documents/{id}':
+    patch:
+      tags:
+        - project
+        - document
+      description: Update document
+      parameters:
+        - name: id
+          in: path
+          type: string
+          description: ID document
+          required: true
+        - in: body
+          name: body
+          description: body of project document
+          required: true
+          schema:
+            $ref: '#/definitions/DocumentBody'
+      responses:
+        '200':
+          description: return updated document
+          schema:
+            $ref: '#/definitions/ProjectDocument'
+    delete:
+      tags:
+        - project
+        - document
+      description: Delete project document by id
+      parameters:
+        - name: id
+          in: path
+          type: string
+          description: ID document
+          required: true
+      responses:
+        '200':
+          description: Ok
+  '/services/{serviceID}/service_documents':
     get:
       tags:
         - service
@@ -1291,6 +1313,10 @@ paths:
           type: string
           description: ID of the service
           required: true
+        - name: service-documentId
+          in: query
+          type: string
+          description: Parent document Id (default 0)
         - name: _limit
           in: query
           description: Limit items
@@ -1317,6 +1343,157 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ServiceDocument'
+  '/service_documents/{id}':
+    patch:
+      tags:
+        - service
+        - marketplace
+        - document
+      description: Update document
+      parameters:
+        - name: id
+          in: path
+          type: string
+          description: ID document
+          required: true
+        - in: body
+          name: body
+          description: body of service document
+          required: true
+          schema:
+            $ref: '#/definitions/DocumentBody'
+      responses:
+        '200':
+          description: return updated document
+          schema:
+            $ref: '#/definitions/ServiceDocument'
+    delete:
+      tags:
+        - service
+        - document
+        - marketplace
+      description: Delete service document by id
+      parameters:
+        - name: id
+          in: path
+          type: string
+          description: ID document
+          required: true
+      responses:
+        '200':
+          description: Ok
+  '/projects_join_requests':
+    get:
+      tags:
+        - project
+        - profile
+      description: Return all join requests of projects
+      parameters:
+        - in: query
+          name: projectId
+          description: Project id
+          required: false
+          type: array
+          items:
+            type: string
+        - in: query
+          name: profileId
+          description: Profile Id
+          required: false
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: Return all join requests of projects
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GetProjectJoinRequest'     
+    post:
+      tags:
+        - project
+        - profile
+      description: Add new join requests of project
+      parameters:
+        - in: body
+          name: body
+          description: body of service document
+          required: true
+          schema:
+            $ref: '#/definitions/PostProjectJoinRequest'
+      responses:
+        '200':
+          description: return created request
+          schema:
+            $ref: '#/definitions/GetProjectJoinRequest'
+  '/projects/{projectId}/projects_join_requests':        
+    get:
+      tags:
+        - project
+        - profile
+      description: Return all join requests of project
+      parameters:
+        - in: path
+          name: projectId
+          description: Project id
+          required: true
+          type: string
+        - in: query
+          name: profileId
+          description: Profile Id
+          required: false
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: Return all join requests of project
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GetProjectJoinRequest'
+  '/profiles/{profileId}/projects_join_requests':        
+    get:
+      tags:
+        - project
+        - profile
+      description: Return all project join requests of user
+      parameters:
+        - in: path
+          name: profileId
+          description: Profile id
+          required: true
+          type: string
+        - in: query
+          name: projectId
+          description: Project Id
+          required: false
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: Return all project join requests of user
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GetProjectJoinRequest'
+  '/projects_join_requests/{id}':
+    delete:
+      tags:
+        - project
+        - profile
+      description: delete join request
+      parameters:
+        - in: path
+          name: id
+          description: request id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok  
   '/services/{serviceID}/service_authors':
     get:
       tags:
@@ -5056,6 +5233,8 @@ definitions:
         type: string
       projectManager:
         type: string
+      projectManagerId:
+        type: string
       featureImage:
         $ref: '#/definitions/FeatureImage'
       images:
@@ -5073,6 +5252,8 @@ definitions:
         $ref: '#/definitions/Services'
       components:
         $ref: '#/definitions/Components'
+      approvalOption:
+        type: string
   ProjectMember:
     type: object
     properties:
@@ -6596,4 +6777,25 @@ definitions:
       projectId:
         type: string
       name:
+        type: string
+  DocumentBody:
+    type: object
+    properties:
+      title:
+        type: string
+  PostProjectJoinRequest:
+    type: object
+    properties:
+      projectId:
+        type: string
+      profileId:
+        type: string
+  GetProjectJoinRequest:
+    type: object
+    properties:
+      id:
+        type: string
+      projectId:
+        type: string
+      profileId:
         type: string
