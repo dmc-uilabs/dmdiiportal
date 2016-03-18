@@ -2050,6 +2050,13 @@ paths:
           description: Sort by some parameter
           type: string
           required: false
+        - name: id
+          in: query
+          description: Select by profile id
+          type: array
+          items:
+            type: string
+          required: false
       responses:
         '200':
           description: send all user profiles

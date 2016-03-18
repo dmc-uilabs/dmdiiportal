@@ -50,20 +50,20 @@ angular.module('dmc.component.productscard', [
 
           $scope.showArray = [
               {
-                  id : 1, val:10, name: '10 items'
+                  id : 1, val:12, name: '12 items'
               },
               {
-                  id : 2, val:25, name: '25 items'
+                  id : 2, val:24, name: '24 items'
               },
               {
-                  id : 3, val:50, name: '50 items'
+                  id : 3, val:48, name: '48 items'
               },
               {
-                  id : 4, val:100, name: '100 items'
-              },
-              {
-                  id : 5, val:$scope.totalSize, name: 'All items'
+                  id : 4, val:96, name: '96 items'
               }
+              //,{
+              //    id : 5, val:$scope.totalSize, name: 'All items'
+              //}
           ];
 
           $scope.sizeModule = 0;

@@ -85,12 +85,12 @@ angular.module('dmc.marketplace')
 
             // This code use for products-card -------------------------------------------------
             $scope.downloadData = false;        // on/off progress line in products-card
-            $scope.productCardPageSize = 10;    // visible items in products-card
+            $scope.productCardPageSize = $cookies.get('productCardPageSize') ? $cookies.get('productCardPageSize') : 12;    // visible items in products-card
             $scope.productCardCurrentPage = 1;  // current page in products-card
             // catch updated changedPage variable form $cookies
             // variable changed in products-card when user change page number (pagination)
             $scope.$watch(function() { return $cookies.changedPage; }, function(newValue) {
-                if(parseInt(newValue) > 0 && $scope.productCardCurrentPage !== parseInt(newValue)) {
+                if(newValue && $scope.productCardCurrentPage !== newValue) {
                     $scope.productCardCurrentPage = newValue; // save new page number
                     $scope.getData();
                 }
@@ -98,6 +98,7 @@ angular.module('dmc.marketplace')
             // if productCardPageSize changed
             $scope.$watch('productCardPageSize', function(newValue, oldValue) {
                 if (newValue !== oldValue){ // if get another value
+                    $cookies.put('productCardPageSize',newValue);
                     $scope.getData();
                     apply();
                 }
@@ -160,20 +161,12 @@ angular.module('dmc.marketplace')
             $scope.marketplaceItems = {arr : [], count : 0};
 
             // insert response data to array of marketplace items
-            var isFirstCallback = true;
             var insertData = function(data){
-                if(!isFirstCallback){
-                    $scope.marketplaceItems = { arr : $.merge($scope.marketplaceItems.arr, data) };
-                    checkFavorites();
-                }else{
-                    isFirstCallback = false;
-                    $scope.marketplaceItems = { arr : data };
-                    if($scope.currentProduct != 'all') checkFavorites();
-                }
+                $scope.marketplaceItems = { arr : data, count: data.length };
+                checkFavorites();
             };
 
             var checkFavorites = function(){
-                $scope.marketplaceItems.count = $scope.marketplaceItems.arr.length;
                 isFavorite.check($scope.marketplaceItems.arr);
                 loadingData(false);
                 apply();
@@ -199,7 +192,7 @@ angular.module('dmc.marketplace')
             var responseData = function(){
                 var data = {
                     published : true,
-                    _limit : $scope.productCardPageSize,
+                    //_limit : $scope.productCardPageSize,
                     _start : ($scope.productCardCurrentPage-1)*$scope.productCardPageSize,
                     title_like : $scope.searchModel
                 };
@@ -215,24 +208,23 @@ angular.module('dmc.marketplace')
 
             // get all services and components
             $scope.getServicesAndComponents = function(){
-                isFirstCallback = true;
-                loadingData(true);
-                ajax.get(dataFactory.getMarketServices(), responseData(), callbackServices);
-                ajax.get(dataFactory.getMarketComponents(), responseData(), callbackComponents);
+                //isFirstCallback = true;
+                //loadingData(true);
+                //ajax.get(dataFactory.getMarketServices(), responseData(), callbackServices);
+                //ajax.get(dataFactory.getMarketComponents(), responseData(), callbackComponents);
             };
 
             // get all services --------------------------------------------------
             $scope.getServices = function(){
-                isFirstCallback = true;
                 loadingData(true);
                 ajax.get(dataFactory.getMarketServices(), responseData(), callbackServices);
             };
 
             // get all components --------------------------------------------------
             $scope.getComponents = function(){
-                isFirstCallback = true;
-                loadingData(true);
-                ajax.get(dataFactory.getMarketComponents(), responseData(),callbackComponents);
+                //isFirstCallback = true;
+                //loadingData(true);
+                //ajax.get(dataFactory.getMarketComponents(), responseData(),callbackComponents);
             };
 
             // get all follow companies
@@ -268,9 +260,18 @@ angular.module('dmc.marketplace')
 
             $scope.getData = function(){
                 if($location.$$path.indexOf('search') > -1) {
-                    if ($scope.currentProduct === 'all') $scope.getServicesAndComponents();
-                    if ($scope.currentProduct === 'components') $scope.getComponents();
-                    if ($scope.currentProduct === 'services') $scope.getServices();
+                    switch($scope.currentProduct){
+                        case 'all':
+                            $scope.getServicesAndComponents();
+                            break;
+                        case 'components':
+                            $scope.getComponents();
+                            break;
+                        case 'services':
+                            $scope.getServices();
+                            break;
+                        default:
+                    }
                 }else{
                     $scope.getFollowCompanies();
                 }

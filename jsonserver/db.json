@@ -838,7 +838,7 @@
         "totalItems": 5,
         "link": "/projects/4/services"
       },
-        "approvalOption": "all"
+      "approvalOption": "all"
     },
     {
       "id": 1,
@@ -918,7 +918,7 @@
         "totalItems": 0,
         "link": "/projects/5/services"
       },
-        "approvalOption": "all"
+      "approvalOption": "all"
     },
     {
       "title": "Test project",
@@ -948,7 +948,7 @@
         "totalItems": 0,
         "link": "/projects/6/projects_tags"
       },
-        "approvalOption": "all"
+      "approvalOption": "all"
     },
     {
       "title": "Project",
@@ -1007,167 +1007,6 @@
       "tags": {
         "totalItems": 0,
         "link": "/projects/9/projects_tags"
-      }
-    },
-    {
-      "title": "Project for test functionality",
-      "type": "private",
-      "dueDate": 1457560800000,
-      "projectManager": "DMC member",
-      "projectManagerId": 1,
-      "featureImage": {
-        "thumbnail": "/images/project_relay_controller.png",
-        "large": "/images/project_relay_controller.png"
-      },
-      "description": "Some text",
-      "id": 10,
-      "tasks": {
-        "totalItems": 0,
-        "link": "/projects/10/tasks"
-      },
-      "discussions": {
-        "totalItems": 0,
-        "link": "/projects/10/discussions"
-      },
-      "services": {
-        "totalItems": 0,
-        "link": "/projects/10/services"
-      },
-      "tags": {
-        "totalItems": 0,
-        "link": "/projects/10/projects_tags"
-      }
-    },
-    {
-      "title": "Project for test functionality 2",
-      "type": "private",
-      "dueDate": 1457474400000,
-      "projectManager": "DMC member",
-      "projectManagerId": 1,
-      "featureImage": {
-        "thumbnail": "/images/project_relay_controller.png",
-        "large": "/images/project_relay_controller.png"
-      },
-      "description": "text",
-      "id": 11,
-      "tasks": {
-        "totalItems": 0,
-        "link": "/projects/11/tasks"
-      },
-      "discussions": {
-        "totalItems": 0,
-        "link": "/projects/11/discussions"
-      },
-      "services": {
-        "totalItems": 0,
-        "link": "/projects/11/services"
-      },
-      "tags": {
-        "totalItems": 0,
-        "link": "/projects/11/projects_tags"
-      }
-    },
-    {
-      "title": "Project for test functionality 3",
-      "type": "public",
-      "dueDate": 1458165600000,
-      "projectManager": "DMC member",
-      "projectManagerId": 1,
-      "approvalOption": "admin",
-      "featureImage": {
-        "thumbnail": "/images/project_relay_controller.png",
-        "large": "/images/project_relay_controller.png"
-      },
-      "description": "Overview",
-      "id": 12
-    },
-    {
-      "title": "Project for test functionality 4345",
-      "type": "public",
-      "dueDate": 1458856800000,
-      "projectManager": "DMC member",
-      "projectManagerId": 1,
-      "approvalOption": "all",
-      "featureImage": {
-        "thumbnail": "/images/project_relay_controller.png",
-        "large": "/images/project_relay_controller.png"
-      },
-      "description": "Overview3444",
-      "id": 13,
-      "tasks": {
-        "totalItems": 0,
-        "link": "/projects/13/tasks"
-      },
-      "discussions": {
-        "totalItems": 0,
-        "link": "/projects/13/discussions"
-      },
-      "services": {
-        "totalItems": 0,
-        "link": "/projects/13/services"
-      },
-      "tags": {
-        "totalItems": 0,
-        "link": "/projects/13/projects_tags"
-      }
-    },
-    {
-      "title": "Project for test functionality 5",
-      "type": "public",
-      "dueDate": 1458856800000,
-      "projectManager": "DMC member",
-      "projectManagerId": 1,
-      "approvalOption": "admin",
-      "featureImage": {
-        "thumbnail": "/images/project_relay_controller.png",
-        "large": "/images/project_relay_controller.png"
-      },
-      "description": "Text Overview",
-      "id": 14,
-      "tasks": {
-        "totalItems": 0,
-        "link": "/projects/14/tasks"
-      },
-      "discussions": {
-        "totalItems": 0,
-        "link": "/projects/14/discussions"
-      },
-      "services": {
-        "totalItems": 0,
-        "link": "/projects/14/services"
-      },
-      "tags": {
-        "totalItems": 0,
-        "link": "/projects/14/projects_tags"
-      }
-    },
-    {
-      "title": "Test project with documents",
-      "type": "private",
-      "dueDate": 1458252000000,
-      "projectManager": "DMC member",
-      "projectManagerId": 1,
-      "featureImage": {
-        "thumbnail": "/images/project_relay_controller.png",
-        "large": "/images/project_relay_controller.png"
-      },
-      "description": "Overview",
-      "id": 15,
-      "tasks": {
-        "totalItems": 0,
-        "link": "/projects/15/tasks"
-      },
-      "discussions": {
-        "totalItems": 0,
-        "link": "/projects/15/discussions"
-      },
-      "services": {
-        "totalItems": 0,
-        "link": "/projects/15/services"
-      },
-      "tags": {
-        "totalItems": 0,
-        "link": "/projects/15/projects_tags"
       }
     }
   ],
@@ -1362,6 +1201,11 @@
       "projectId": 2,
       "name": "Tag 6",
       "id": 44
+    },
+    {
+      "projectId": 18,
+      "name": "Tag 1",
+      "id": 45
     }
   ],
   "projects_members": [
@@ -1373,6 +1217,51 @@
       "date": 1458245164499,
       "accept": false,
       "id": 1
+    },
+    {
+      "profileId": 1,
+      "projectId": 16,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1458294213442,
+      "accept": true,
+      "id": 2
+    },
+    {
+      "profileId": 1,
+      "projectId": 17,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1458295335319,
+      "accept": true,
+      "id": 3
+    },
+    {
+      "profileId": 2,
+      "projectId": 17,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1458295335319,
+      "accept": false,
+      "id": 4
+    },
+    {
+      "profileId": 1,
+      "projectId": 18,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1458295505214,
+      "accept": true,
+      "id": 5
+    },
+    {
+      "profileId": 2,
+      "projectId": 18,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1458295505214,
+      "accept": false,
+      "id": 6
     }
   ],
   "components": [
@@ -1507,6 +1396,19 @@
       "serviceId": 46,
       "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
       "id": 6
+    },
+    {
+      "version": 1,
+      "modelId": "aff647da-d82f-1004-8e7b-5de38b2eeb0f",
+      "interfaceId": "aff647db-d82f-1004-8e7b-5de38b2eeb0f",
+      "type": "interface",
+      "name": "Default Interface",
+      "path": [
+        30
+      ],
+      "serviceId": 47,
+      "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 7
     }
   ],
   "services": [
@@ -2106,6 +2008,32 @@
       "published": false,
       "from": "project",
       "id": 46
+    },
+    {
+      "title": "Alpha",
+      "description": "Description",
+      "owner": "Thomas Smith",
+      "accountId": 1,
+      "releaseDate": "03/18/2016",
+      "serviceType": "analytical",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "averageRun": 0,
+      "currentStatus": {
+        "project": {
+          "id": 1,
+          "name": "Control Compartment for LDR Mining"
+        }
+      },
+      "parent_component": null,
+      "projectId": 1,
+      "type": "service",
+      "published": false,
+      "from": "project",
+      "id": 47
     }
   ],
   "service_runs": [
@@ -4123,6 +4051,11 @@
       "serviceId": 46,
       "name": "tag 1",
       "id": 16
+    },
+    {
+      "serviceId": 47,
+      "name": "Tag1",
+      "id": 17
     }
   ],
   "services_run_history": [

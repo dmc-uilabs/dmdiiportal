@@ -22,7 +22,7 @@ angular.module('dmc.widgets.projects',[
                 $scope.projects = [];
                 $scope.total = 0;
                 $scope.order = 'ASC';
-                var limit = ($scope.limit ? $scope.limit : ($scope.widgetShowAllBlocks == true ? 10 : 2));
+                var limit = ($scope.limit ? $scope.limit : ($scope.widgetShowAllBlocks == true ? null : 2));
 
                 $scope.flexBox = ($scope.widgetShowAllBlocks == true ? 28 : 60);
                 $scope.flexDetails = ($scope.widgetShowAllBlocks == true ? 20 : 40);
@@ -122,7 +122,7 @@ angular.module('dmc.widgets.projects',[
                             isRemove = false;
                         }
                         $scope.total = $scope.projects.length;
-                        if($scope.total > limit) $scope.projects.splice(limit,$scope.total);
+                        if(limit && $scope.total > limit) $scope.projects.splice(limit,$scope.total);
                         apply();
                     });
                 }

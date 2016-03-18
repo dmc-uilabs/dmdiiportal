@@ -32,7 +32,7 @@ angular.module('dmc.widgets.services',[
                 $scope.total = 0;
                 $scope.sort = $scope.sortBy ? $scope.sortBy : '-currentStatus.status';
                 $scope.order = 'DESC';
-                if(!$scope.limit) $scope.limit = 5;
+                //if(!$scope.limit) $scope.limit = 5;
                 // function for get all services from DB
 
                 var allServices = [];

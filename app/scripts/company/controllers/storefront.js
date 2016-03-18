@@ -40,7 +40,7 @@ angular.module('dmc.company')
             $scope.productSubType = (angular.isDefined($stateParams.type) ? $stateParams.type : null);
             // -----------------------------------------------
             $scope.currentStorefrontPage = 1;
-            $scope.pageSize = 10;
+            $scope.pageSize = $cookies.get('productCardPageSize') ? $cookies.get('productCardPageSize') : 12;
             $scope.downloadData = false;
             $scope.page = $state.current.name.split('.')[1];
 
@@ -171,26 +171,13 @@ angular.module('dmc.company')
             };
 
             // insert response data to array of storefront items
-            var isFirstCallback = true;
             var insertData = function(data){
-                if($scope.selectedProductType == 'all' && !isFirstCallback){
-                    $scope.storefrontItems = {
-                        arr : $.merge($scope.storefrontItems.arr, data),
-                        count : $scope.storefrontItems.arr.length
-                    };
-                    isFavorite.check($scope.storefrontItems.arr);
-                    apply();
-                }else{
-                    isFirstCallback = false;
-                    $scope.storefrontItems = {
-                        arr : data,
-                        count : data.length
-                    };
-                    if($scope.selectedProductType != 'all'){
-                        isFavorite.check($scope.storefrontItems.arr);
-                        apply();
-                    }
-                }
+                $scope.storefrontItems = {
+                    arr : data,
+                    count : $scope.storefrontItems.arr.length
+                };
+                isFavorite.check($scope.storefrontItems.arr);
+                apply();
             };
 
             // callback for services
@@ -211,21 +198,17 @@ angular.module('dmc.company')
 
             // get all services and components
             $scope.getServicesAndComponents = function(){
-                isFirstCallback = true;
-                ajax.get(dataFactory.getCompanyServices($scope.companyId), responseData, callbackCompanyServices);
-                ajax.get(dataFactory.getCompanyComponents($scope.companyId), responseData, callbackCompanyComponents);
+
             };
 
             // get all services --------------------------------------------------
             $scope.getServices = function(){
-                isFirstCallback = true;
                 ajax.get(dataFactory.getCompanyServices($scope.companyId), responseData, callbackCompanyServices);
             };
 
             // get all components --------------------------------------------------
             $scope.getComponents = function(){
-                isFirstCallback = true;
-                ajax.get(dataFactory.getCompanyComponents($scope.companyId), responseData,callbackCompanyComponents);
+
             };
 
             // update products
@@ -241,8 +224,11 @@ angular.module('dmc.company')
                 }else{
                     responseData.serviceType = null;
                 }
-                responseData._limit = (search ? $scope.pageSize : 4);
-                if(responseData._limit == 0) delete responseData._limit;
+                if(!search){
+                    responseData._limit = 4;
+                }else{
+                    delete responseData._limit;
+                }
                 responseData._start = ($scope.currentStorefrontPage - 1) * $scope.pageSize;
                 if(angular.isDefined($stateParams.authors)) responseData._authors = $stateParams.authors;
                 if(angular.isDefined($stateParams.ratings)) responseData._ratings = $stateParams.ratings;
@@ -276,6 +262,7 @@ angular.module('dmc.company')
 
             // Change count products per page
             $scope.updatePageSize = function (val) {
+                $cookies.put('productCardPageSize',val);
                 $scope.pageSize = val;
                 $scope.update(true);
             };
