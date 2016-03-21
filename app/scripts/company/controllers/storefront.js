@@ -44,6 +44,10 @@ angular.module('dmc.company')
             $scope.downloadData = false;
             $scope.page = $state.current.name.split('.')[1];
 
+            var totalCountItems = {
+                all : 0, services : { total : 0, analytical : 0, solid : 0, data : 0 }, components : 0
+            };
+
             $scope.productTypes = [
                 //{
                 //    id: 1,
@@ -166,17 +170,43 @@ angular.module('dmc.company')
 
             var responseData = {
                 published : true,
-                _limit : $scope.pageSize,
+                //_limit : $scope.pageSize,
                 _start : ($scope.currentStorefrontPage-1)*$scope.pageSize
             };
 
             // insert response data to array of storefront items
             var insertData = function(data){
+                totalCountItems = {
+                    all : 0, services : { total : 0, analytical : 0, solid : 0, data : 0 }, components : 0
+                };
+                for(var i in data){
+                    totalCountItems.services.total++;
+                    totalCountItems.all++;
+                    if (data[i].serviceType == "analytical") {
+                        totalCountItems.services.analytical++;
+                    }else if(data[i].serviceType == "solid"){
+                        totalCountItems.services.solid++;
+                    }else if(data[i].serviceType == "data"){
+                        totalCountItems.services.data++;
+                    }
+                }
+                if(!$scope.isSearch && data.length > 0) data = data.splice(0,4);
+                if($scope.isSearch && $scope.selectedProductType == 'services' && $scope.productSubType){
+                    for (var i=0;i<data.length;i++) {
+                        if (data[i].serviceType != $scope.productSubType) {
+                            data.splice(i,1);
+                            i--;
+                        }
+                    }
+                }
+
                 $scope.storefrontItems = {
                     arr : data,
-                    count : $scope.storefrontItems.arr.length
+                    count : data.length
                 };
+
                 isFavorite.check($scope.storefrontItems.arr);
+                $scope.treeMenuModel = CompanyModel.getMenu(totalCountItems);
                 apply();
             };
 
@@ -218,16 +248,6 @@ angular.module('dmc.company')
                     responseData.title_like = $scope.searchModel;
                 }else{
                     delete responseData.title_like;
-                }
-                if($scope.isSearch){
-                    responseData.serviceType = $scope.productSubType;
-                }else{
-                    responseData.serviceType = null;
-                }
-                if(!search){
-                    responseData._limit = 4;
-                }else{
-                    delete responseData._limit;
                 }
                 responseData._start = ($scope.currentStorefrontPage - 1) * $scope.pageSize;
                 if(angular.isDefined($stateParams.authors)) responseData._authors = $stateParams.authors;
@@ -354,6 +374,6 @@ angular.module('dmc.company')
             };
             // ------------------------------------------
 
-            $scope.treeMenuModel = CompanyModel.getMenu();
+            $scope.treeMenuModel = CompanyModel.getMenu(totalCountItems);
         }
 }]);

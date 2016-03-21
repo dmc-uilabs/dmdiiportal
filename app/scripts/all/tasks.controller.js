@@ -54,6 +54,9 @@ angular.module('dmc.view-all')
                     }, {
                         tag: "dueDate",
                         name: "Due Date"
+                    }, {
+                        tag: "status",
+                        name: "Status"
                     }
                 ];
 

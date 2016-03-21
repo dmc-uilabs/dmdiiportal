@@ -22,7 +22,7 @@ angular.module('dmc.all-favorites')
                     DMCUserModel,
                     $cookies) {
 
-            $scope.treeMenuModel = menuFavorite.getMenu();
+
             $scope.selectedProduct = angular.isDefined($stateParams.product) ? $stateParams.product : 'services';
             $scope.selectedProductType = angular.isDefined($stateParams.type) ? $stateParams.type : null;
             if($scope.selectedProduct == 'services' && !$scope.selectedProductType){
@@ -36,6 +36,10 @@ angular.module('dmc.all-favorites')
             $scope.downloadData = false;
             $scope.userData = DMCUserModel.getUserData();
 
+            var totalCountItems = {
+                all : 0, services : { total : 0, analytical : 0, solid : 0, data : 0 }, components : 0
+            };
+            $scope.treeMenuModel = menuFavorite.getMenu(totalCountItems);
 
             $scope.$watch(function() { return $cookies.currentStorefrontPage; }, function(newValue) {
                 if(parseInt(newValue) > 0 && $scope.currentStorefrontPage !== parseInt(newValue)) {
@@ -62,11 +66,10 @@ angular.module('dmc.all-favorites')
                         break;
                 }
                 var data = {
-                    _limit: $scope.pageSize,
                     _start: ($scope.currentStorefrontPage-1)*$scope.pageSize
                 };
-                if($scope.pageSize == 0) delete data._limit;
-                if($scope.selectedProduct == "services" && $scope.selectedProductType) data._type = $scope.selectedProductType;
+                //if($scope.pageSize == 0) delete data._limit;
+                //if($scope.selectedProduct == "services" && $scope.selectedProductType) data._type = $scope.selectedProductType;
                 if($scope.searchModel) data._title = $scope.searchModel;
                 if(angular.isDefined($stateParams.authors)) data._authors = $stateParams.authors;
                 if(angular.isDefined($stateParams.ratings)) data._ratings = $stateParams.ratings;
@@ -102,6 +105,30 @@ angular.module('dmc.all-favorites')
                                         data.push(favoritesData[i].service);
                                     }else if(favoritesData[i].component){
                                         data.push(favoritesData[i].component);
+                                    }
+                                }
+
+                                totalCountItems = {
+                                    all : 0, services : { total : 0, analytical : 0, solid : 0, data : 0 }, components : 0
+                                };
+                                for(var i in data){
+                                    totalCountItems.services.total++;
+                                    totalCountItems.all++;
+                                    if (data[i].serviceType == "analytical") {
+                                        totalCountItems.services.analytical++;
+                                    }else if(data[i].serviceType == "solid"){
+                                        totalCountItems.services.solid++;
+                                    }else if(data[i].serviceType == "data"){
+                                        totalCountItems.services.data++;
+                                    }
+                                }
+                                $scope.treeMenuModel = menuFavorite.getMenu(totalCountItems);
+                                if($scope.selectedProduct == "services" && $scope.selectedProductType) {
+                                    for (var i = 0; i < data.length; i++) {
+                                        if (data[i].serviceType != $scope.selectedProductType) {
+                                            data.splice(i, 1);
+                                            i--;
+                                        }
                                     }
                                 }
                                 $scope.allFavorites = {
@@ -180,7 +207,7 @@ angular.module('dmc.all-favorites')
     ]
 )
     .service('menuFavorite', ['$location','$stateParams','$state',function ($location,$stateParams,$state) {
-        this.getMenu = function(){
+        this.getMenu = function(totalCountItems){
             var dataSearch = $.extend(true,{},$stateParams);
             var searchPage = ($location.$$path.indexOf("/home") != -1 ? "home" : "search");
 
@@ -227,7 +254,7 @@ angular.module('dmc.all-favorites')
                         'id': 3,
                         'title': 'Services',
                         'tag' : 'services',
-                        'items': 32,
+                        'items': totalCountItems.services.total,
                         'opened' : isOpened('services'),
                         'href' : getUrl('services'),
                         'categories': [
@@ -235,7 +262,7 @@ angular.module('dmc.all-favorites')
                                 'id': 31,
                                 'title': 'Analytical Services',
                                 'tag' : 'analytical',
-                                'items': 15,
+                                'items': totalCountItems.services.analytical,
                                 'opened' : isOpened('services','analytical'),
                                 'href' : getUrl('services','analytical'),
                                 'categories': []
@@ -244,7 +271,7 @@ angular.module('dmc.all-favorites')
                                 'id': 32,
                                 'title': 'Solid Services',
                                 'tag' : 'solid',
-                                'items': 15,
+                                'items': totalCountItems.services.solid,
                                 'opened' : isOpened('services','solid'),
                                 'href' : getUrl('services','solid'),
                                 'categories': []
@@ -253,7 +280,7 @@ angular.module('dmc.all-favorites')
                                 'id': 33,
                                 'title': 'Data Services',
                                 'tag' : 'data',
-                                'items': 2,
+                                'items': totalCountItems.services.data,
                                 'opened' : isOpened('services','data'),
                                 'href' : getUrl('services','data'),
                                 'categories': []

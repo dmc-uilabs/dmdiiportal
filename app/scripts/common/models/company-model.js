@@ -58,7 +58,7 @@ angular.module('dmc.model.company', [
                 );
             };
 
-            this.getMenu = function(){
+            this.getMenu = function(totalCountItems){
                 var searchPage = ($location.$$path.indexOf("/edit") != -1 ? "edit" : "search");
 
                 var getUrl = function(product,type){
@@ -101,7 +101,7 @@ angular.module('dmc.model.company', [
                             'id': 3,
                             'title': 'Services',
                             'tag' : 'services',
-                            'items': 32,
+                            'items': totalCountItems.services.total,
                             'opened' : isOpened('services'),
                             'href' : getUrl('services'),
                             'categories': [
@@ -109,7 +109,7 @@ angular.module('dmc.model.company', [
                                     'id': 31,
                                     'title': 'Analytical Services',
                                     'tag' : 'analytical',
-                                    'items': 15,
+                                    'items': totalCountItems.services.analytical,
                                     'opened' : isOpened('services','analytical'),
                                     'href' : getUrl('services','analytical'),
                                     'categories': []
@@ -118,7 +118,7 @@ angular.module('dmc.model.company', [
                                     'id': 32,
                                     'title': 'Solid Services',
                                     'tag' : 'solid',
-                                    'items': 15,
+                                    'items': totalCountItems.services.solid,
                                     'opened' : isOpened('services','solid'),
                                     'href' : getUrl('services','solid'),
                                     'categories': []
@@ -127,7 +127,7 @@ angular.module('dmc.model.company', [
                                     'id': 33,
                                     'title': 'Data Services',
                                     'tag' : 'data',
-                                    'items': 2,
+                                    'items': totalCountItems.services.data,
                                     'opened' : isOpened('services','data'),
                                     'href' : getUrl('services','data'),
                                     'categories': []

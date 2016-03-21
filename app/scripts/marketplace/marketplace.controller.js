@@ -159,10 +159,40 @@ angular.module('dmc.marketplace')
 
 
             $scope.marketplaceItems = {arr : [], count : 0};
-
+            var totalCountItems = {
+                all : 0, services : { total : 0, analytical : 0, solid : 0, data : 0 }, components : 0
+            };
             // insert response data to array of marketplace items
             var insertData = function(data){
-                $scope.marketplaceItems = { arr : data, count: data.length };
+                totalCountItems = {
+                    all : 0, services : { total : 0, analytical : 0, solid : 0, data : 0 }, components : 0
+                };
+                for(var i in data){
+                    totalCountItems.services.total++;
+                    totalCountItems.all++;
+                    if (data[i].serviceType == "analytical") {
+                        totalCountItems.services.analytical++;
+                    }else if(data[i].serviceType == "solid"){
+                        totalCountItems.services.solid++;
+                    }else if(data[i].serviceType == "data"){
+                        totalCountItems.services.data++;
+                    }
+                }
+                //if($scope.productCardPageSize == 0) delete data._limit;
+                if($scope.currentProduct == 'services'){
+                    if($scope.currentProductType) {
+                        for (var i=0;i<data.length;i++) {
+                            if (data[i].serviceType != $scope.currentProductType) {
+                                data.splice(i,1);
+                                i--;
+                            }
+                        }
+                    }
+                }
+                if($location.$$path.indexOf('search') != -1) {
+                    $scope.marketplaceItems = {arr: data, count: data.length};
+                }
+                $scope.treeMenuModel = getMenu();
                 checkFavorites();
             };
 
@@ -196,8 +226,6 @@ angular.module('dmc.marketplace')
                     _start : ($scope.productCardCurrentPage-1)*$scope.productCardPageSize,
                     title_like : $scope.searchModel
                 };
-                if($scope.productCardPageSize == 0) delete data._limit;
-                if($scope.currentProduct == 'services') data.serviceType = $scope.currentProductType;
                 if(angular.isDefined($stateParams.authors)) data._authors = $stateParams.authors;
                 if(angular.isDefined($stateParams.ratings)) data._ratings = $stateParams.ratings;
                 if(angular.isDefined($stateParams.favorites)) data._favorites = $stateParams.favorites;
@@ -262,10 +290,10 @@ angular.module('dmc.marketplace')
                 if($location.$$path.indexOf('search') > -1) {
                     switch($scope.currentProduct){
                         case 'all':
-                            $scope.getServicesAndComponents();
+                            //$scope.getServicesAndComponents();
                             break;
                         case 'components':
-                            $scope.getComponents();
+                            //$scope.getComponents();
                             break;
                         case 'services':
                             $scope.getServices();
@@ -274,6 +302,7 @@ angular.module('dmc.marketplace')
                     }
                 }else{
                     $scope.getFollowCompanies();
+                    $scope.getServices();
                 }
             };
             $scope.getData();
@@ -337,7 +366,7 @@ angular.module('dmc.marketplace')
                             'id': 3,
                             'title': 'Services',
                             'tag' : 'services',
-                            'items': 32,
+                            'items': totalCountItems.services.total,
                             'opened' : isOpened('services'),
                             'href' : getUrl('services',null),
                             'categories': [
@@ -345,7 +374,7 @@ angular.module('dmc.marketplace')
                                     'id': 31,
                                     'title': 'Analytical Services',
                                     'tag' : 'analytical',
-                                    'items': 15,
+                                    'items': totalCountItems.services.analytical,
                                     'opened' : isOpened('services','analytical'),
                                     'href' : getUrl('services','analytical'),
                                     'categories': []
@@ -354,7 +383,7 @@ angular.module('dmc.marketplace')
                                     'id': 32,
                                     'title': 'Solid Services',
                                     'tag' : 'solid',
-                                    'items': 15,
+                                    'items': totalCountItems.services.solid,
                                     'opened' : isOpened('services','solid'),
                                     'href' : getUrl('services','solid'),
                                     'categories': []
@@ -363,7 +392,7 @@ angular.module('dmc.marketplace')
                                     'id': 33,
                                     'title': 'Data Services',
                                     'tag' : 'data',
-                                    'items': 2,
+                                    'items': totalCountItems.services.data,
                                     'opened' : isOpened('services','data'),
                                     'href' : getUrl('services','data'),
                                     'categories': []
