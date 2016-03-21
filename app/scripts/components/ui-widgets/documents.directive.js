@@ -183,6 +183,7 @@ angular.module('dmc.widgets.documents',[
 										break;
 									}
 								}
+                                apply();
 							});
 						}
 					},

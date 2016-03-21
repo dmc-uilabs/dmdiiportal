@@ -87,6 +87,9 @@ dir-pagination-controls{
       a:hover{
         background-color: #ddd;
       }
+      &.disabled{
+        display: none;
+      }
     }
     li:last-child,li:first-child{
       line-height: 31px;

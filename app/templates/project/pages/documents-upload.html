@@ -12,9 +12,6 @@
             <div layout="column" flex="65" class="margin-right12-5">
                 <div layout="row" class="name-project" flex layout-align="start center">
                     <div sub-nav-menu-button current-page="3"></div>
-                    <!--<md-button class="add-button-square" ng-click="comeBack($event)" aria-label="Add Document">-->
-                        <!--<ng-md-icon icon="keyboard_return" size="18"></ng-md-icon>-->
-                    <!--</md-button>-->
                 </div>
                 <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
             </div>
@@ -26,6 +23,9 @@
         <md-content>
             <div class="content-panel" source="documents" ui-widget-upload-documents auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
             <div layout="row" layout-align="end center" layout-margin flex>
+                <md-button class="md-raised dmc-button margin-right15" ng-click="comeBack($event)">
+                    Cancel
+                </md-button>
                 <md-button class="md-raised dmc-button md-primary"
                            ng-click="uploadDocuments()"
                            ng-disabled="documents.length == 0">Upload</md-button>

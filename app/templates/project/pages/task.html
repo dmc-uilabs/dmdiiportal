@@ -52,7 +52,7 @@
                         <div flex layout="column">
                             <div class="title-task-block" flex layout="row" layout-align="start center" ng-show="!isEditing">
                                 <p flex ng-bind-html="task.title"></p>
-                                <md-button class="md-raised dmc-button" ng-click="setStatus()">{{task.status == "InProgress" ? "Mark As Complete" : (task.status == "Open" ? "Start Progress" : "Reopen")}}</md-button>
+                                <md-button class="md-raised dmc-button" ng-click="setStatus()">{{task.status == "InProgress" ? "Mark As Completed" : (task.status == "Open" ? "Start Progress" : "Reopen")}}</md-button>
                             </div>
                             <div class="additional-details" flex layout="row" ng-show="!isEditing">
                                 <p ng-show="task.additionalDetails && task.additionalDetails.length > 0" ng-bind-html="task.additionalDetails"></p>

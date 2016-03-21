@@ -373,16 +373,16 @@ a{
   border: none;
   left: 0;
   top: 0;
-  font-weight: normal;
   color: #999 !important;
   display: inherit;
   white-space: nowrap;
   text-decoration: none;
   font-family: inherit;
-  font-size: 14px;
   -webkit-box-shadow: none;
   box-shadow: none;
   border-radius: none;
+  font-size: 13px;
+  font-weight: 500;
   &:hover{
     color: #eee !important;
   }
@@ -487,3 +487,4 @@ md-input-container:not(.md-input-has-value) input:not(:focus){
     background-color: rgb(255, 6, 0);
   }
 }
+

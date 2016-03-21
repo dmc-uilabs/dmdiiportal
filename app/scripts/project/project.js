@@ -1,47 +1,47 @@
 'use strict';
 
 angular.module('dmc.project', [
-		'dmc.configs.ngmaterial',
-		'ngMdIcons',
-		'ngMaterial',
-		'ngMessages',
-		'ngMask',
-		'dmc.ajax',
-		'dmc.data',
-		'ngtimeago',
-        'dmc.model.dome',
-		'dmc.widgets.services',
-		'dmc.widgets.tasks',
-        'dmc.add_project',
-		'dmc.widgets.discussions',
-		'dmc.widgets.documents',
-		'dmc.widgets.components',
-		'dmc.widgets.questions',
-		'dmc.widgets.submissions',
-		'dmc.widgets.invited-users',
-		'dmc.widgets.stars',
-		'dmc.widgets.review',
-		'dmc.widgets.tabs',
-        'dmc.compose-discussion',
-        'dmc.widgets.interfaces',
-        'dmc.component.productcard',
-        'dmc.model.question-toast-model',
-        'dmc.add_project.directive',
-		'ui.router',
-		'md.data.table',
-		'ngCookies',
-		'dmc.common.header',
-        'dmc.model.previous-page',
-		'dmc.common.footer',
-		'dmc.model.project',
-		'ui.autocomplete',
-		'ui.sortable',
-		'dmc.model.toast-model',
-		'dmc.model.services',
-        'dmc.widgets.project-tags',
-		'dmc.sub-nav-menu'
+    'dmc.configs.ngmaterial',
+    'ngMdIcons',
+    'ngMaterial',
+    'ngMessages',
+    'ngMask',
+    'dmc.ajax',
+    'dmc.data',
+    'ngtimeago',
+    'dmc.model.dome',
+    'dmc.widgets.services',
+    'dmc.widgets.tasks',
+    'dmc.add_project',
+    'dmc.widgets.discussions',
+    'dmc.widgets.documents',
+    'dmc.widgets.components',
+    'dmc.widgets.questions',
+    'dmc.widgets.submissions',
+    'dmc.widgets.invited-users',
+    'dmc.widgets.stars',
+    'dmc.widgets.review',
+    'dmc.widgets.tabs',
+    'dmc.compose-discussion',
+    'dmc.widgets.interfaces',
+    'dmc.component.productcard',
+    'dmc.model.question-toast-model',
+    'dmc.add_project.directive',
+    'ui.router',
+    'md.data.table',
+    'ngCookies',
+    'dmc.common.header',
+    'dmc.model.previous-page',
+    'dmc.common.footer',
+    'dmc.model.project',
+    'ui.autocomplete',
+    'ui.sortable',
+    'dmc.model.toast-model',
+    'dmc.model.services',
+    'dmc.widgets.project-tags',
+    'dmc.sub-nav-menu'
 ])
-.config(function($stateProvider, $urlRouterProvider, $httpProvider){
+    .config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
         var resolve = {
             projectData: ['DMCProjectModel', '$stateParams',
@@ -154,384 +154,390 @@ angular.module('dmc.project', [
             templateUrl: 'templates/project/rfp/people-invited.html'
         })
 
-        .state('project.services', {
-            url: '/services',
-            controller: 'projectServicesCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/services.html',
-            resolve: {
-            	serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
-	                return serviceModel.get_project_services($stateParams.projectId);
-	            }]
-            }
-        }).state('project.upload-services', {
-            url: '/upload-service',
-            controller: 'projectUploadServicesCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/upload-service.html'
-            
-        }).state('project.edit-services', {
-            url: '/services/:ServiceId/edit',
-            controller: 'projectEditServicesCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/upload-service.html',
-            resolve:{
-	            serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
-	                return serviceModel.get_service($stateParams.ServiceId);
-	            }]
-            }
-        }).state('project.run-services', {
-            url: '/services/:ServiceId/run?rerun',
-            controller: 'projectRunServicesCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/run-service.html',
-            resolve: {
-	            serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
-	                return serviceModel.get_service($stateParams.ServiceId);
-	            }]
-	        }
-        }).state('project.services-detail', {
-            url: '/services/:ServiceId/detail',
-            controller: 'projectServicesDetailCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/services-detail.html',
-            resolve: {
-	            serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
-	                return serviceModel.get_service($stateParams.ServiceId);
-	            }]
-	        }
-        }).state('project.services-run-history', {
-            url: '/services/:ServiceId/:from/run-history',
-            controller: 'projectServicesRunHistoryDetailCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/run-history.html',
-            resolve: {
-	            runHistory: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
-	                return serviceModel.get_service_run_history($stateParams.ServiceId);
-	            }],
-	            serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
-	                return serviceModel.get_service($stateParams.ServiceId);
-	            }]
-	        }
-        })
+            .state('project.services', {
+                url: '/services',
+                controller: 'projectServicesCtrl as projectCtrl',
+                templateUrl: 'templates/project/pages/services.html',
+                resolve: {
+                    serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
+                        return serviceModel.get_project_services($stateParams.projectId);
+                    }]
+                }
+            }).state('project.upload-services', {
+                url: '/upload-service',
+                controller: 'projectUploadServicesCtrl as projectCtrl',
+                templateUrl: 'templates/project/pages/upload-service.html'
 
-        .state('project.publish-service-marketplace', {
-            url: '/services/:ServiceId/publish',
-            controller: 'PublishServiceMarketplaceCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/publish-service-marketplace.html',
-            resolve: {
-                serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
-                    return serviceModel.get_service($stateParams.ServiceId);
-                }]
+            }).state('project.edit-services', {
+                url: '/services/:ServiceId/edit',
+                controller: 'projectEditServicesCtrl as projectCtrl',
+                templateUrl: 'templates/project/pages/upload-service.html',
+                resolve:{
+                    serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
+                        return serviceModel.get_service($stateParams.ServiceId);
+                    }]
+                }
+            }).state('project.run-services', {
+                url: '/services/:ServiceId/run?rerun',
+                controller: 'projectRunServicesCtrl as projectCtrl',
+                templateUrl: 'templates/project/pages/run-service.html',
+                resolve: {
+                    serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
+                        return serviceModel.get_service($stateParams.ServiceId);
+                    }]
+                }
+            }).state('project.services-detail', {
+                url: '/services/:ServiceId/detail',
+                controller: 'projectServicesDetailCtrl as projectCtrl',
+                templateUrl: 'templates/project/pages/services-detail.html',
+                resolve: {
+                    serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
+                        return serviceModel.get_service($stateParams.ServiceId);
+                    }]
+                }
+            }).state('project.services-run-history', {
+                url: '/services/:ServiceId/:from/run-history',
+                controller: 'projectServicesRunHistoryDetailCtrl as projectCtrl',
+                templateUrl: 'templates/project/pages/run-history.html',
+                resolve: {
+                    runHistory: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
+                        return serviceModel.get_service_run_history($stateParams.ServiceId);
+                    }],
+                    serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
+                        return serviceModel.get_service($stateParams.ServiceId);
+                    }]
+                }
+            })
+
+            .state('project.publish-service-marketplace', {
+                url: '/services/:ServiceId/publish',
+                controller: 'PublishServiceMarketplaceCtrl as projectCtrl',
+                templateUrl: 'templates/project/pages/publish-service-marketplace.html',
+                resolve: {
+                    serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
+                        return serviceModel.get_service($stateParams.ServiceId);
+                    }]
+                }
+            });
+        $urlRouterProvider.otherwise('/1');
+    })
+    .controller('DMCPreviewProjectController', ['$scope','$stateParams', 'DMCUserModel', 'projectData', 'ajax', 'dataFactory', '$timeout', 'toastModel', '$cookieStore',
+        function ($scope, $stateParams, DMCUserModel, projectData, ajax, dataFactory, $timeout, toastModel, $cookieStore) {
+            var projectCtrl = this;
+            if (projectData.type){
+                projectData.type = projectData.type[0].toUpperCase() + projectData.type.slice(1);
+            }
+            projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
+            projectCtrl.projectData = projectData;
+            $scope.isPreview = true;
+            $scope.invitation = null;
+            $scope.userData = DMCUserModel.getUserData();
+            $scope.userData.then(function(res){
+                $scope.userData = res;
+                getInvitation();
+            });
+            function getInvitation(){
+                ajax.get(dataFactory.getMembersToProject(),
+                    {
+                        "projectId" : $stateParams.projectId,
+                        "profileId" : $scope.userData.profileId,
+                        "accept" : false
+                    },
+                    function(response){
+                        if(response.data && response.data.length > 0) $scope.invitation = response.data[0];
+                        console.log($scope.invitation);
+                    }
+                );
+            }
+
+            $scope.accept = function(){
+                ajax.update(dataFactory.acceptProject($stateParams.projectId, $scope.invitation.id), {accept : true},
+                    function(response){
+                        toastModel.showToast("success", "Invited to "+projectData.type+" Project by " + $scope.invitation.from);
+                        document.location.href = "project.php#/"+$stateParams.projectId+"/home";
+                    }
+                );
+            };
+
+            $scope.decline = function(){
+                ajax.delete(dataFactory.declineProject($stateParams.projectId, $scope.invitation.id), {},
+                    function(response){
+                        //toastModel.showToast("success", "You have declined the invitation from " + $scope.invitation.from);
+                        $cookieStore.put("toast", "You have declined the invitation from " + $scope.invitation.from);
+                        document.location.href = "dashboard.php#/";
+                    }
+                );
+            };
+        }])
+    .controller('DMCBlankSubmissionProjectController', ['$scope','$stateParams', 'projectData', function ($scope, $stateParams, projectData) {
+        var projectCtrl = this;
+        projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
+        projectCtrl.projectData = projectData;
+
+        $scope.isSubmission = true;
+        $scope.isBlankSubmission = true;
+    }])
+    .controller('DMCSubmissionProjectController', ['$scope','$stateParams', 'projectData', function ($scope, $stateParams, projectData) {
+        var projectCtrl = this;
+        projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
+        projectCtrl.projectData = projectData;
+
+        $scope.isSubmission = true;
+    }])
+    .directive('submissionInputsOutputs', function () {
+        return {
+            restrict: 'A',
+            templateUrl: 'templates/project/inputs-outputs-tpl.html',
+            scope : {
+                submissionName: '=',
+                totalInputs: '=',
+                submissionLetter: '='
+            },
+            controller: function ($scope) {
+                $scope.inputs = new Array($scope.totalInputs);
+            }
+        }
+    })
+    .controller('DMCRfpBlankHomeProjectController', ['$scope','$stateParams', 'projectData','ajax','dataFactory','$compile', function ($scope, $stateParams, projectData,ajax,dataFactory,$compile) {
+        var projectCtrl = this;
+        projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
+        projectCtrl.projectData = projectData;
+    }])
+    .controller('DMCRfpHomeProjectController', ['$scope','$stateParams', 'projectData','ajax','dataFactory','$compile', function ($scope, $stateParams, projectData,ajax,dataFactory,$compile) {
+        var projectCtrl = this;
+        projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
+        projectCtrl.projectData = projectData;
+    }])
+    .controller('DMCSubmittedProjectController', ['$cookies','$scope','$stateParams','projectData', function ($cookies,$scope, $stateParams,projectData) {
+        var projectCtrl = this;
+        projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
+        projectCtrl.projectData = projectData;
+
+        $scope.submittedItems = $cookies.getObject('submittedItems');
+        $scope.inputs = ($scope.submittedItems && $scope.submittedItems.service ? new Array($scope.submittedItems.service.specificationsData.input) : []);
+        $scope.outputs = ($scope.submittedItems && $scope.submittedItems.service ? new Array($scope.submittedItems.service.specificationsData.output) : []);
+    }])
+    .controller('DMCSubmitProjectController', ['$location','$cookies','$scope','$stateParams', 'projectData','ajax','dataFactory','$compile', function ($location,$cookies,$scope, $stateParams, projectData,ajax,dataFactory,$compile) {
+        var projectCtrl = this;
+        projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
+        projectCtrl.projectData = projectData;
+        $scope.services = [];
+        var sort = 'status';
+        var order = 'DESC';
+        $scope.latter = 'We propose to develop and deliver a low heat loss Transformer based on our novel material. It will meet all of the environmental and Compliance requirements in your specification. The attached document summarizes Performance relative to an iron core transformer. Please let us know how you would like to proceed.';
+        $scope.submitProject = function(){
+            var selectedService = null;
+            for(var i in $scope.services) {
+                if($scope.services[i].select){
+                    selectedService = $scope.services[i];
+                    break;
+                }
+            }
+            if(selectedService && $scope.latter.trim().length > 0) {
+                var submittedItems = {
+                    service : selectedService,
+                    latter : $scope.latter
+                };
+                $cookies.putObject('submittedItems', submittedItems);
+                $location.url('/submitted/'+projectCtrl.currentProjectId);
+            }
+        };
+        var getServices = function() {
+            $scope.services = [
+                {
+                    "id": 1,
+                    "title": 'Run #1',
+                    "releaseDate": "01-04-2015",
+                    "currentStatus": {
+                        "percentCompleted": "33"
+                    },
+                    "specificationsData": {
+                        "serviceId": 25,
+                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
+                        "input": 2,
+                        "output": 1,
+                        "usageStats": {
+                            "added": 130,
+                            "members": 20
+                        },
+                        "runStats": {
+                            "success": 108,
+                            "fail": 12
+                        }
+                    }
+                },
+                {
+                    "id": 2,
+                    "title": 'Run #2',
+                    "releaseDate": "10-04-2015",
+                    "currentStatus": {
+                        "percentCompleted": "66"
+                    },
+                    "specificationsData": {
+                        "serviceId": 25,
+                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
+                        "input": 2,
+                        "output": 1,
+                        "usageStats": {
+                            "added": 130,
+                            "members": 20
+                        },
+                        "runStats": {
+                            "success": 108,
+                            "fail": 12
+                        }
+                    }
+                },
+                {
+                    "id": 3,
+                    "title": 'Run #3',
+                    "releaseDate": "12-04-2015",
+                    "currentStatus": {
+                        "percentCompleted": "78"
+                    },
+                    "specificationsData": {
+                        "serviceId": 25,
+                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
+                        "input": 2,
+                        "output": 1,
+                        "usageStats": {
+                            "added": 130,
+                            "members": 20
+                        },
+                        "runStats": {
+                            "success": 108,
+                            "fail": 12
+                        }
+                    }
+                },
+                {
+                    "id": 4,
+                    "title": 'Run #4',
+                    "releaseDate": "06-05-2015",
+                    "currentStatus": {
+                        "percentCompleted": "77"
+                    },
+                    "specificationsData": {
+                        "serviceId": 25,
+                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
+                        "input": 2,
+                        "output": 1,
+                        "usageStats": {
+                            "added": 130,
+                            "members": 20
+                        },
+                        "runStats": {
+                            "success": 108,
+                            "fail": 12
+                        }
+                    }
+                },
+                {
+                    "id": 5,
+                    "title": 'Run #5',
+                    "releaseDate": "08-05-2015",
+                    "currentStatus": {
+                        "percentCompleted": "65"
+                    },
+                    "specificationsData": {
+                        "serviceId": 25,
+                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
+                        "input": 2,
+                        "output": 1,
+                        "usageStats": {
+                            "added": 130,
+                            "members": 20
+                        },
+                        "runStats": {
+                            "success": 108,
+                            "fail": 12
+                        }
+                    }
+                },
+                {
+                    "id": 6,
+                    "title": 'Run #6',
+                    "releaseDate": "10-05-2015",
+                    "currentStatus": {
+                        "percentCompleted": "43"
+                    },
+                    "specificationsData": {
+                        "serviceId": 25,
+                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
+                        "input": 2,
+                        "output": 1,
+                        "usageStats": {
+                            "added": 130,
+                            "members": 20
+                        },
+                        "runStats": {
+                            "success": 108,
+                            "fail": 12
+                        }
+                    }
+                }
+            ]
+        };
+        getServices();
+
+        $(".submitServices").on("click",".table-line",function(ev){
+            var tr = $(this);
+            var item = null;
+            var id = parseInt($(this).find(".idItem").val());
+            for(var i in $scope.services){
+                if($scope.services[i].id == id){
+                    $scope.services[i].select = true;
+                    item = $scope.services[i];
+                    break;
+                }
+            }
+            for(var i in $scope.services){
+                if($scope.services[i].select && $scope.services[i].id !== item.id) $scope.services[i].select = false;
+            }
+            tr.parents(".tableServices").find(".opened").removeClass('opened');
+            $("#inputs-outputs").remove();
+            $scope.isSelect = false;
+            if(item.select) {
+                $scope.isSelect = true;
+                tr.addClass('opened');
+                $($compile('<tr id="inputs-outputs" inputs-outputs total-outputs="'+item.specificationsData.output+'" total-inputs="'+item.specificationsData.input+'" service-name="\'' + item.title + '\'"></tr>')($scope)).insertAfter(tr);
             }
         });
-        $urlRouterProvider.otherwise('/1');
-})
-	.controller('DMCPreviewProjectController', ['$scope','$stateParams', 'projectData', 'ajax', 'dataFactory', '$timeout', 'toastModel', '$cookieStore', 
-		function ($scope, $stateParams, projectData, ajax, dataFactory, $timeout, toastModel, $cookieStore) {
-		var projectCtrl = this;
-    	if (projectData.type){
-			projectData.type = projectData.type[0].toUpperCase() + projectData.type.slice(1);
-    	}
-		projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
-		projectCtrl.projectData = projectData;
-		$scope.isPreview = true;
-		$scope.invitation = null;
-		ajax.get(dataFactory.getMembersToProject(), 
-            {
-                "projectId" : $stateParams.projectId,
-                "profileId" : $scope.$root.userData.profileId
-            }, 
-            function(response){
-            	console.info(response);
-            	$scope.invitation = response.data[0];
+
+        $scope.isSelect = false;
+        $scope.selectModel = function(ev,item,select){
+            for(var i in $scope.services){
+                if($scope.services[i].select && $scope.services[i].id !== item.id) $scope.services[i].select = false;
             }
-        );
+            $(ev.target).parents(".tableServices").find(".opened").removeClass('opened');
+            $("#inputs-outputs").remove();
+            $scope.isSelect = false;
+            if(!select) {
+                $scope.isSelect = true;
+                var tr = $(ev.target).parents(".table-line");
+                tr.addClass('opened');
+                $($compile('<tr id="inputs-outputs" inputs-outputs total-outputs="'+item.specificationsData.output+'" total-inputs="'+item.specificationsData.input+'" service-name="\'' + item.title + '\'"></tr>')($scope)).insertAfter(tr);
+            }
+        };
+        $scope.onOrderChange = function(){
 
-		$scope.accept = function(){
-        	$scope.invitation.accept = true;
-            ajax.update(dataFactory.acceptProject($stateParams.projectId, $scope.invitation.id),
-               	$scope.invitation,
-                function(response){
-                	toastModel.showToast("success", "Invited to "+projectData.type+" Project by " + $scope.invitation.from);
-                	document.location.href = "project.php#/"+$stateParams.projectId+"/home";
-                }
-            );
-		}
-		$scope.decline = function(){
-            ajax.delete(dataFactory.declineProject($stateParams.projectId, $scope.invitation.id),
-               	{},
-                function(response){
-                	//toastModel.showToast("success", "You have declined the invitation from " + $scope.invitation.from);
-                	$cookieStore.put("toast", "You have declined the invitation from " + $scope.invitation.from);
-                	document.location.href = "dashboard.php#/";
-                }
-            );
-		}
-	}])
-	.controller('DMCBlankSubmissionProjectController', ['$scope','$stateParams', 'projectData', function ($scope, $stateParams, projectData) {
-		var projectCtrl = this;
-		projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
-		projectCtrl.projectData = projectData;
-
-		$scope.isSubmission = true;
-		$scope.isBlankSubmission = true;
-	}])
-	.controller('DMCSubmissionProjectController', ['$scope','$stateParams', 'projectData', function ($scope, $stateParams, projectData) {
-		var projectCtrl = this;
-		projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
-		projectCtrl.projectData = projectData;
-
-		$scope.isSubmission = true;
-	}])
-	.directive('submissionInputsOutputs', function () {
-		return {
-			restrict: 'A',
-			templateUrl: 'templates/project/inputs-outputs-tpl.html',
-			scope : {
-				submissionName: '=',
-				totalInputs: '=',
-				submissionLetter: '='
-			},
-			controller: function ($scope) {
-				$scope.inputs = new Array($scope.totalInputs);
-			}
-		}
-	})
-	.controller('DMCRfpBlankHomeProjectController', ['$scope','$stateParams', 'projectData','ajax','dataFactory','$compile', function ($scope, $stateParams, projectData,ajax,dataFactory,$compile) {
-		var projectCtrl = this;
-		projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
-		projectCtrl.projectData = projectData;
-	}])
-	.controller('DMCRfpHomeProjectController', ['$scope','$stateParams', 'projectData','ajax','dataFactory','$compile', function ($scope, $stateParams, projectData,ajax,dataFactory,$compile) {
-		var projectCtrl = this;
-		projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
-		projectCtrl.projectData = projectData;
-	}])
-	.controller('DMCSubmittedProjectController', ['$cookies','$scope','$stateParams','projectData', function ($cookies,$scope, $stateParams,projectData) {
-		var projectCtrl = this;
-		projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
-		projectCtrl.projectData = projectData;
-
-		$scope.submittedItems = $cookies.getObject('submittedItems');
-		$scope.inputs = ($scope.submittedItems && $scope.submittedItems.service ? new Array($scope.submittedItems.service.specificationsData.input) : []);
-		$scope.outputs = ($scope.submittedItems && $scope.submittedItems.service ? new Array($scope.submittedItems.service.specificationsData.output) : []);
-	}])
-	.controller('DMCSubmitProjectController', ['$location','$cookies','$scope','$stateParams', 'projectData','ajax','dataFactory','$compile', function ($location,$cookies,$scope, $stateParams, projectData,ajax,dataFactory,$compile) {
-		var projectCtrl = this;
-		projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
-		projectCtrl.projectData = projectData;
-		$scope.services = [];
-		var sort = 'status';
-		var order = 'DESC';
-		$scope.latter = 'We propose to develop and deliver a low heat loss Transformer based on our novel material. It will meet all of the environmental and Compliance requirements in your specification. The attached document summarizes Performance relative to an iron core transformer. Please let us know how you would like to proceed.';
-		$scope.submitProject = function(){
-			var selectedService = null;
-			for(var i in $scope.services) {
-				if($scope.services[i].select){
-					selectedService = $scope.services[i];
-					break;
-				}
-			}
-			if(selectedService && $scope.latter.trim().length > 0) {
-				var submittedItems = {
-					service : selectedService,
-					latter : $scope.latter
-				};
-				$cookies.putObject('submittedItems', submittedItems);
-				$location.url('/submitted/'+projectCtrl.currentProjectId);
-			}
-		};
-		var getServices = function() {
-			$scope.services = [
-				{
-					"id": 1,
-					"title": 'Run #1',
-					"releaseDate": "01-04-2015",
-					"currentStatus": {
-					  "percentCompleted": "33"
-					},
-					"specificationsData": {
-						"serviceId": 25,
-						"description": "Estimates Mu for materials with simple structures and known saturation polarization",
-						"input": 2,
-						"output": 1,
-						"usageStats": {
-						  "added": 130,
-						  "members": 20
-						},
-						"runStats": {
-						  "success": 108,
-						  "fail": 12
-						}
-					  }
-				},
-				{
-					"id": 2,
-					"title": 'Run #2',
-					"releaseDate": "10-04-2015",
-					"currentStatus": {
-					  "percentCompleted": "66"
-					},
-					"specificationsData": {
-						"serviceId": 25,
-						"description": "Estimates Mu for materials with simple structures and known saturation polarization",
-						"input": 2,
-						"output": 1,
-						"usageStats": {
-						  "added": 130,
-						  "members": 20
-						},
-						"runStats": {
-						  "success": 108,
-						  "fail": 12
-						}
-					  }
-				},
-				{
-					"id": 3,
-					"title": 'Run #3',
-					"releaseDate": "12-04-2015",
-					"currentStatus": {
-					  "percentCompleted": "78"
-					},
-					"specificationsData": {
-						"serviceId": 25,
-						"description": "Estimates Mu for materials with simple structures and known saturation polarization",
-						"input": 2,
-						"output": 1,
-						"usageStats": {
-						  "added": 130,
-						  "members": 20
-						},
-						"runStats": {
-						  "success": 108,
-						  "fail": 12
-						}
-					  }
-				},
-				{
-					"id": 4,
-					"title": 'Run #4',
-					"releaseDate": "06-05-2015",
-					"currentStatus": {
-					  "percentCompleted": "77"
-					},
-					"specificationsData": {
-						"serviceId": 25,
-						"description": "Estimates Mu for materials with simple structures and known saturation polarization",
-						"input": 2,
-						"output": 1,
-						"usageStats": {
-						  "added": 130,
-						  "members": 20
-						},
-						"runStats": {
-						  "success": 108,
-						  "fail": 12
-						}
-					  }
-				},
-				{
-					"id": 5,
-					"title": 'Run #5',
-					"releaseDate": "08-05-2015",
-					"currentStatus": {
-					  "percentCompleted": "65"
-					},
-					"specificationsData": {
-						"serviceId": 25,
-						"description": "Estimates Mu for materials with simple structures and known saturation polarization",
-						"input": 2,
-						"output": 1,
-						"usageStats": {
-						  "added": 130,
-						  "members": 20
-						},
-						"runStats": {
-						  "success": 108,
-						  "fail": 12
-						}
-					  }
-				},
-				{
-					"id": 6,
-					"title": 'Run #6',
-					"releaseDate": "10-05-2015",
-					"currentStatus": {
-					  "percentCompleted": "43"
-					},
-					"specificationsData": {
-						"serviceId": 25,
-						"description": "Estimates Mu for materials with simple structures and known saturation polarization",
-						"input": 2,
-						"output": 1,
-						"usageStats": {
-						  "added": 130,
-						  "members": 20
-						},
-						"runStats": {
-						  "success": 108,
-						  "fail": 12
-						}
-					  }
-				}
-			]
-		};
-		getServices();
-
-		$(".submitServices").on("click",".table-line",function(ev){
-			var tr = $(this);
-			var item = null;
-			var id = parseInt($(this).find(".idItem").val());
-			for(var i in $scope.services){
-				if($scope.services[i].id == id){
-					$scope.services[i].select = true;
-					item = $scope.services[i];
-					break;
-				}
-			}
-			for(var i in $scope.services){
-				if($scope.services[i].select && $scope.services[i].id !== item.id) $scope.services[i].select = false;
-			}
-			tr.parents(".tableServices").find(".opened").removeClass('opened');
-			$("#inputs-outputs").remove();
-			$scope.isSelect = false;
-			if(item.select) {
-				$scope.isSelect = true;
-				tr.addClass('opened');
-				$($compile('<tr id="inputs-outputs" inputs-outputs total-outputs="'+item.specificationsData.output+'" total-inputs="'+item.specificationsData.input+'" service-name="\'' + item.title + '\'"></tr>')($scope)).insertAfter(tr);
-			}
-		});
-
-		$scope.isSelect = false;
-		$scope.selectModel = function(ev,item,select){
-			for(var i in $scope.services){
-				if($scope.services[i].select && $scope.services[i].id !== item.id) $scope.services[i].select = false;
-			}
-			$(ev.target).parents(".tableServices").find(".opened").removeClass('opened');
-			$("#inputs-outputs").remove();
-			$scope.isSelect = false;
-			if(!select) {
-				$scope.isSelect = true;
-				var tr = $(ev.target).parents(".table-line");
-				tr.addClass('opened');
-				$($compile('<tr id="inputs-outputs" inputs-outputs total-outputs="'+item.specificationsData.output+'" total-inputs="'+item.specificationsData.input+'" service-name="\'' + item.title + '\'"></tr>')($scope)).insertAfter(tr);
-			}
-		};
-		$scope.onOrderChange = function(){
-
-		};
-	}])
-	.directive('inputsOutputs', function () {
-		return {
-			restrict: 'A',
-			templateUrl: 'templates/components/rfp-invite/inputs-outputs-tpl.html',
-			scope : {
-				serviceName: '=',
-				totalInputs: '=',
-				totalOutputs: '='
-			},
-			controller: function ($scope) {
-				$scope.inputs = new Array($scope.totalInputs);
-				$scope.outputs = new Array($scope.totalOutputs);
-			}
-		}
-	})
+        };
+    }])
+    .directive('inputsOutputs', function () {
+        return {
+            restrict: 'A',
+            templateUrl: 'templates/components/rfp-invite/inputs-outputs-tpl.html',
+            scope : {
+                serviceName: '=',
+                totalInputs: '=',
+                totalOutputs: '='
+            },
+            controller: function ($scope) {
+                $scope.inputs = new Array($scope.totalInputs);
+                $scope.outputs = new Array($scope.totalOutputs);
+            }
+        }
+    })
     .service('serviceModel', [
         'ajax',
         'dataFactory',
@@ -607,8 +613,8 @@ angular.module('dmc.project', [
                         service.number_of_comments = service.service_reviews.length;
 
                         for(var i in service.service_reviews){
-                    		service.service_reviews[i].date = moment(service.service_reviews[i].date).format("MM/DD/YYYY hh:mm A")
-                    	}
+                            service.service_reviews[i].date = moment(service.service_reviews[i].date).format("MM/DD/YYYY hh:mm A")
+                        }
 
                         if(service.number_of_comments != 0) {
                             service.precentage_stars = [0, 0, 0, 0, 0];
@@ -635,7 +641,7 @@ angular.module('dmc.project', [
             };
 
             this.get_project_services = function(projectId){
-            	return ajax.get(dataFactory.services(projectId).get_for_project, {},
+                return ajax.get(dataFactory.services(projectId).get_for_project, {},
                     function(response){
                         return response.data;
                     }
@@ -689,7 +695,7 @@ angular.module('dmc.project', [
             this.get_service_reviews = function(params, callback){
                 return ajax.get(dataFactory.services($stateParams.ServiceId).reviews,
                     params,
-                    function(response){                    	
+                    function(response){
                         callback(response.data)
                     }
                 )
@@ -826,25 +832,25 @@ angular.module('dmc.project', [
             };
 
             this.get_service_run_history = function(id, params, callback){
-            	return ajax.get(dataFactory.services(id).get_run_history,
-            		(params)? params : {
-            			_sort: 'id',
-                    	_order: "DESC",
+                return ajax.get(dataFactory.services(id).get_run_history,
+                    (params)? params : {
+                        _sort: 'id',
+                        _order: "DESC",
                         status_ne : 'running'
-            		},
-            		function(response){
-            			var history = response.data;
-            			for(var i in history){
+                    },
+                    function(response){
+                        var history = response.data;
+                        for(var i in history){
                             history[i].runTime = calcRunTime(history[i]);
-                    		history[i].date = moment(new Date(history[i].startDate+' '+history[i].startTime)).format("MM/DD/YYYY hh:mm A");
-                    	}
-                    	if(callback){
-                    		callback(history);
-                    	}else{
-	                    	return history;
-                    	}
-            		}
-            	)
+                            history[i].date = moment(new Date(history[i].startDate+' '+history[i].startTime)).format("MM/DD/YYYY hh:mm A");
+                        }
+                        if(callback){
+                            callback(history);
+                        }else{
+                            return history;
+                        }
+                    }
+                )
             };
 
 
@@ -859,7 +865,7 @@ angular.module('dmc.project', [
             };
 
             this.add_servers = function(params,callback){
-            	return ajax.create(dataFactory.serverURL().create,
+                return ajax.create(dataFactory.serverURL().create,
                     params,
                     function(response){
                         callback(response.data)
@@ -867,10 +873,10 @@ angular.module('dmc.project', [
                 )
             };
 
-    	    }
-        ]
+        }
+    ]
 ).run(['$state', '$rootScope', function($state, $rootScope) {
-    $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
-        $(window).scrollTop(0);
-    });
-}]);
+        $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+            $(window).scrollTop(0);
+        });
+    }]);

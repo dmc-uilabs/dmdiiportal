@@ -1262,6 +1262,15 @@
       "date": 1458295505214,
       "accept": false,
       "id": 6
+    },
+    {
+      "profileId": 1,
+      "projectId": 1,
+      "fromProfileId": 2,
+      "from": "Timmy Thomas",
+      "date": 1458295505214,
+      "accept": false,
+      "id": 7
     }
   ],
   "components": [
@@ -5809,7 +5818,7 @@
       "reporter": "J.Knight",
       "assigneeId": 2,
       "reporterId": 1,
-      "dueDate": 1457560800000,
+      "dueDate": 1459198800000,
       "priority": 3,
       "projectId": 1,
       "status": "InProgress",

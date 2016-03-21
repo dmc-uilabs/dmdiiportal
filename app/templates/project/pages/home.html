@@ -1,28 +1,38 @@
 <div class="page-header margin-bottom-35">
     <md-toolbar>
         <h1 class="project-title" layout="row" layout-align="start end">
-            <div class="title">
+            <div class="title" layout="column">
                 <a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a>
             </div>
-            <span ng-if="projectCtrl.projectData.dueDate" class="small-text due-date-project small-text--grey">
+            <span ng-if="projectCtrl.projectData.dueDate"
+                  ng-show="!isPreview || (isPreview && invitation)"
+                  class="small-text due-date-project small-text--grey">
                 Due in {{projectCtrl.projectData.dueDate}}
             </span>
+            <span flex></span>
+            <!-- buttons for preview -->
+            <md-button ng-if="isPreview && invitation"
+                       ng-click="decline()"
+                       class="md-raised dmc-button margin-right15" >
+                <ng-md-icon icon="close" size="18"></ng-md-icon>
+                Decline Invitation
+            </md-button>
+            <md-button ng-if="isPreview && invitation"
+                       ng-click="accept()"
+                       class="md-raised md-primary dmc-button" >
+                <ng-md-icon icon="done" style="fill: #fff;" size="18"></ng-md-icon>
+                Accept Invitation
+            </md-button>
         </h1>
-        <div class="md-toolbar-tools">
+        <div class="md-toolbar-tools" ng-if="!isPreview || (isPreview && invitation)">
             <div layout="column" flex="65" class="margin-right12-5">
                 <div layout="row" ng-if="!isPreview" class="name-project" flex>
                     <div sub-nav-menu-button current-page="1"></div>
-                </div>
-                <div ng-if="isPreview" class="preview-header">
-                    HOME
                 </div>
                 <span ng-if="isPreview" class="project-manager">Invited to {{projectCtrl.projectData.type}} Project by <a ng-href="/profile.php#/{{invitation.fromProfileId}}">{{invitation.from}}</a> <ng-md-icon ng-if="version1" icon="mail" size="20"></ng-md-icon></span>
             </div>
             <!-- fill up the space between left and right area -->
             <span flex></span>
-            <!-- buttons for preview -->
-            <md-button ng-if="isPreview" ng-click="decline()" class="md-raised dmc-button" ><ng-md-icon icon="close" size="18"></ng-md-icon> Decline Invitation</md-button>
-            <md-button ng-if="isPreview" ng-click="accept()" class="md-raised md-primary dmc-button" ><ng-md-icon icon="done" size="18"></ng-md-icon> Accept Invitation</md-button>
 
             <!-- buttons for submission -->
             <md-button ng-if="isSubmission" class="md-raised dmc-button" href="/project.php#/submit/{{projectCtrl.projectData.id}}"><ng-md-icon icon="send" size="18"></ng-md-icon> Submit</md-button>
@@ -52,21 +62,8 @@
         </div>
     </md-toolbar>
 </div>
-<div class="container project-page-container" >
-   <!--  <div ng-if="isPreview" layout="row" class="margin-bottom-20">
-        <div class="content-column" layout="column" flex>
-            <div class="content-panel">
-                <div class="content-panel-header">
-                    <md-toolbar>
-                        <h2>COVER LETTER</h2>
-                    </md-toolbar>
-                </div>
-                <md-content>
-                    <p>We seek a power transformer with improved heat losses relative to a standard iron core transformer. Cost and time to delivery are also critical. The attached documents give detailed specs and the attached Evaluator Service encompasses how we will value the trade-offs among heat loss, cost, and delivery time.</p>
-                </md-content>
-            </div>
-        </div>
-    </div> -->
+<div ng-if="isPreview && !invitation">No invitations for current project</div>
+<div class="container project-page-container" ng-if="!isPreview || (isPreview && invitation)">
     <div layout="row" >
         <!-- Left Content Column -->
         <div class="content-column" layout="column" flex="65">
@@ -88,6 +85,11 @@
                     </md-content>
                 </div>
             </div>
+            <!-- Requirement Documents -->
+            <div ng-if="isPreview" class="content-panel margin-top-25 margin-right12-5"
+                 ui-widget-documents
+                 project-id="projectCtrl.currentProjectId"
+                 widget-title="'DOCUMENTS'"></div>
             <!-- Discussion -->
             <div ng-if="!isPreview" class="content-panel margin-right12-5 margin-top-25"
                  ui-widget-discussions project-id="projectCtrl.currentProjectId"
@@ -100,13 +102,8 @@
         </div>
         <!-- Right Content Column -->
         <div class="content-column" layout="column" flex>
-            <!-- Requirement Documents -->
-            <div ng-if="isPreview" class="content-panel margin-left12-5"
-                 ui-widget-documents
-                 project-id="projectCtrl.currentProjectId"
-                 widget-title="'DOCUMENTS'"></div>
             <!-- Project tags -->
-            <div ng-if="!isPreview" class="content-panel margin-left12-5"
+            <div class="content-panel margin-left12-5"
                  ui-widget-project-tags
                  tags="projectCtrl.projectData.tags"
                  widget-title="'TAGS'"></div>
