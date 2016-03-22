@@ -1,6 +1,6 @@
 <div class="page-header margin-bottom-35">
     <md-toolbar>
-        <h1 class="project-title" layout="row" layout-align="start end">
+        <h1 class="project-title" ng-class="{'preview-page' : isPreview}" layout="row" layout-align="start end">
             <div class="title" layout="column">
                 <a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a>
             </div>

@@ -20,6 +20,7 @@ angular.module('dmc.profile', [
     'dmc.model.fileUpload',
     'dmc.model.question-toast-model',
     'dmc.model.profile',
+    'dmc.phone-format',
     'dmc.model.previous-page',
     'flow'
 ])
@@ -31,7 +32,6 @@ angular.module('dmc.profile', [
                 controller: 'profileController',
                 resolve: {
                     profileData: ['profileModel', '$stateParams', function (profileModel, $stateParams) {
-                        console.info("model");
                         return profileModel.get_profile($stateParams.profileId);
                     }]
                 }
@@ -48,11 +48,11 @@ angular.module('dmc.profile', [
             });
         $urlRouterProvider.otherwise('/1');
     })
-    .service('profileModel', ['ajax', '$q','$http','dataFactory', '$stateParams', 'toastModel', '$rootScope',
-                            function (ajax,$q,$http, dataFactory, $stateParams, toastModel, $rootScope) {
+    .service('profileModel', ['ajax', '$q','$http','dataFactory', '$stateParams', 'toastModel', '$rootScope','DMCUserModel',
+                            function (ajax,$q,$http, dataFactory, $stateParams, toastModel, $rootScope, DMCUserModel) {
         this.get_profile = function(id){
             var promises = {
-                "profile": $http.get(dataFactory.profiles(id).get),
+                "profile" : $http.get(dataFactory.profiles(id).get),
                 "profile_reviews": $http.get(dataFactory.profiles(id).reviews)
             };
 
@@ -62,6 +62,18 @@ angular.module('dmc.profile', [
 
             return $q.all(promises).then(function(responses) {
                 var profile = extractData(responses.profile);
+                DMCUserModel.getUserData().then(function(res){
+                    ajax.get(dataFactory.getAccount(res.accountId),{},function(data){
+                        profile.account = extractData(data);
+                        profile.isPublicContacts = false;
+                        for(var key in profile.account.privacy.public){
+                            if(profile.account.privacy.public[key].enable == true){
+                                profile.isPublicContacts = true;
+                                break;
+                            }
+                        }
+                    });
+                });
                 profile.profile_reviews = extractData(responses.profile_reviews);
                 profile.rating = profile.profile_reviews.map(function(value, index){
                     return value.rating;

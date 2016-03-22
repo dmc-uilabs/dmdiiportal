@@ -130,6 +130,20 @@ angular.module('dmc.widgets.services',[
                     }
                 }
 
+                $scope.deleteService = function(item){
+                    ajax.update(dataFactory.services(item.id).update,{
+                        currentStatus : {},
+                        projectId : null
+                    },function(response){
+                        for(var i in $scope.services){
+                            if($scope.services[i].id == item.id){
+                                $scope.services.splice(i,1);
+                                break;
+                            }
+                        }
+                    });
+                };
+
                 // Socket listeners -------------------------------------------------
 
                 // get updated service

@@ -156,6 +156,32 @@
     }
   }
   .tabs-content{
+    &.contact{
+      padding: 8px 0;
+      cursor: default;
+      md-input-container{
+        padding-bottom: 0;
+        border-bottom: none;
+        .md-input[disabled]{
+          background-image: none;
+        }
+        input {
+          padding: 0;
+          color: #333;
+        }
+      }
+      md-icon{
+        margin-right: 15px;
+      }
+      label{
+        color: #363636;
+      }
+      .title{
+        font-size: 16px;
+        margin-top: 5px;
+        color: #363636;
+      }
+    }
     p,
     .add-specification{
       margin: 3px 0;

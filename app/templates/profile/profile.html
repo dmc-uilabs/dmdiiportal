@@ -87,6 +87,25 @@
           </div>
         </md-content>
       </md-tab>
+        <md-tab label="Contact" ng-if="profile.isPublicContacts">
+            <md-content class="md-padding">
+                <div layout="row" class="tabs-content contact" ng-repeat="(key,item) in profile.account.privacy.public" ng-if="item.enable">
+                    <md-icon>
+                        <ng-md-icon icon="{{ privacyInfo[key].icon }}" size="26"></ng-md-icon>
+                    </md-icon>
+                    <div layout="column" flex>
+                        <div><label>{{ privacyInfo[key].title }}</label></div>
+                        <md-input-container ng-if="key == 'phone'">
+                            <input ng-disabled="true" ng-model="item.value" phone-input/>
+                        </md-input-container>
+                        <div class="title" ng-if="key != 'phone'">
+                            <a ng-if="key == 'email'" href="mailto:{{item.value}}">{{ item.value }}</a>
+                            <span ng-if="key == 'location'">{{ item.value }}</span>
+                        </div>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
     </md-tabs>
 
     <md-divider></md-divider>

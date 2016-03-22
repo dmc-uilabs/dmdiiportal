@@ -96,6 +96,7 @@
 <script src="scripts/common/models/toast-model.js"></script>
 <script src="scripts/common/models/previous-page.js"></script>
 <script src="scripts/common/models/question-toast-model.js"></script>
+<script src="scripts/common/models/phone-model.js"></script>
 
 <script src="scripts/profile/profile.js"></script>
 <script src="scripts/profile/controllers/profile.js"></script>
