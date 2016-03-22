@@ -1443,7 +1443,7 @@ paths:
       parameters:
         - in: body
           name: body
-          description: body of service document
+          description: body of join request
           required: true
           schema:
             $ref: '#/definitions/PostProjectJoinRequest'
@@ -1518,7 +1518,119 @@ paths:
           type: string
       responses:
         '200':
-          description: Ok  
+          description: Ok
+  '/companies_join_requests':
+      get:
+        tags:
+          - company
+          - profile
+        description: Return all join requests of companies
+        parameters:
+          - in: query
+            name: companyId
+            description: Company id
+            required: false
+            type: array
+            items:
+              type: string
+          - in: query
+            name: profileId
+            description: Profile Id
+            required: false
+            type: array
+            items:
+              type: string
+        responses:
+          '200':
+            description: Return all join requests of companies
+            schema:
+              type: array
+              items:
+                $ref: '#/definitions/GetCompanyJoinRequest'
+      post:
+        tags:
+          - company
+          - profile
+        description: Add new join requests of company
+        parameters:
+          - in: body
+            name: body
+            description: body of join request
+            required: true
+            schema:
+              $ref: '#/definitions/PostCompanyJoinRequest'
+        responses:
+          '200':
+            description: return created request
+            schema:
+              $ref: '#/definitions/GetCompanyJoinRequest'
+  '/companies/{companyId}/companies_join_requests':
+      get:
+        tags:
+          - company
+          - profile
+        description: Return all join requests of company
+        parameters:
+          - in: path
+            name: companyId
+            description: Company id
+            required: true
+            type: string
+          - in: query
+            name: profileId
+            description: Profile Id
+            required: false
+            type: array
+            items:
+              type: string
+        responses:
+          '200':
+            description: Return all join requests of company
+            schema:
+              type: array
+              items:
+                $ref: '#/definitions/GetCompanyJoinRequest'
+  '/profiles/{profileId}/companies_join_requests':
+      get:
+        tags:
+          - company
+          - profile
+        description: Return all company join requests of user
+        parameters:
+          - in: path
+            name: profileId
+            description: Profile id
+            required: true
+            type: string
+          - in: query
+            name: compnayId
+            description: Compnay Id
+            required: false
+            type: array
+            items:
+              type: string
+        responses:
+          '200':
+            description: Return all compnay join requests of user
+            schema:
+              type: array
+              items:
+                $ref: '#/definitions/GetCompanyJoinRequest'
+  '/companies_join_requests/{id}':
+      delete:
+        tags:
+          - company
+          - profile
+        description: delete join request
+        parameters:
+          - in: path
+            name: id
+            description: request id
+            required: true
+            type: string
+        responses:
+          '200':
+            description: Ok
   '/services/{serviceID}/service_authors':
     get:
       tags:
@@ -6837,3 +6949,19 @@ definitions:
         type: string
       profileId:
         type: string
+  PostCompanyJoinRequest:
+      type: object
+      properties:
+        companyId:
+          type: string
+        profileId:
+          type: string
+  GetCompanyJoinRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        companyId:
+          type: string
+        profileId:
+          type: string

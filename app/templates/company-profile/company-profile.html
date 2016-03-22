@@ -29,6 +29,12 @@
             <a ng-href="company.php#/{{company.id}}/storefront?product=services">View Storefront</a>
             <span flex></span>
             <div layout="row" ng-show="!inviteToProject">
+                <md-button class="md-raised dmc-button margin-right12-5"
+                           ng-disabled="company.joinRequest"
+                           ng-if="!$root.userData.companyId && !invate"
+                           ng-click="join()">
+                    {{ !company.joinRequest ? 'Request to Join' : 'Pending Approval' }}
+                </md-button>
                 <md-button ng-if="!company.isOwner" class="md-raised dmc-button" ng-click="follow()">
                     {{(followFlag) ? 'Unfollow' : 'Follow'}}
                 </md-button>

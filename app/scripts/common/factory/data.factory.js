@@ -294,17 +294,14 @@ angular.module('dmc.data',[])
             addProjectJoinRequest: function(){
                 return localhost+'projects_join_requests';
             },
-            getProjectJoinRequests: function(id){
-                return localhost+'projects/'+id+'/projects_join_requests';
-            },
             getProjectsJoinRequests: function(){
                 return localhost+'projects_join_requests';
             },
-            removeProjectJoinRequest: function(id){
-                return localhost+'projects_join_requests/'+id;
+            addCompanyJoinRequest: function(){
+                return localhost+'companies_join_requests';
             },
-            getProjectJoinRequest: function(id){
-                return localhost+'projects_join_requests/'+id;
+            getProfileCompanyJoinRequest: function(id){
+                return localhost+'profiles/'+id+'/companies_join_requests';
             },
             followMember: function(id){
                 return localhost + 'following_members'+( id ? '/'+id : '');

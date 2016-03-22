@@ -3,9 +3,8 @@
     "displayName": "Thomas Smith",
     "accountId": 1,
     "profileId": 1,
-    "companyId": 1,
     "role": 1,
-    "termsConditions": true,
+    "termsConditions": false,
     "notifications": {
       "total": 3,
       "items": [
@@ -1011,6 +1010,7 @@
     }
   ],
   "projects_join_requests": [],
+  "companies_join_requests": [],
   "projects_tags": [
     {
       "projectId": 6,

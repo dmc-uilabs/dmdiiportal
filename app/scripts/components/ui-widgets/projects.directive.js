@@ -206,7 +206,6 @@ angular.module('dmc.widgets.projects',[
                 };
 
                 $scope.decline = function(item){
-                    console.log(item.isMember);
                     ajax.delete(dataFactory.removeMembersToProject(item.isMember.id), {},function(response){
                         delete item.isMember;
                         apply();
