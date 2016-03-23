@@ -7,9 +7,7 @@
 		<div ng-if="!not_found">
 			<!-- Search toolbar -->
 			<md-content class="marketplace-search" layout="row" layout-align="center center">
-				<a class="link margin-right16" ng-href="marketplace.php#/home">
-					BACK TO MARKETPLACE HOME
-				</a>
+				<a class="link margin-right16" ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
 				<form ng-submit="submitSearch(searchModel)" class="dmc-search global-search-form" flex>
 				    <div layout="column">
 				        <div layout="row">
@@ -170,25 +168,28 @@
 					</md-tab>
 
 					<md-tab label="Inputs & outputs">
-						<div layout="row" class="preview" layout-align="space-between center">
+                        <div ng-if="!product.interfaceModel" layout-padding layout-margin>
+                            Inputs & Outputs does not exist
+                        </div>
+						<div layout="row" class="preview" layout-align="space-between center" ng-if="product.interfaceModel">
 							<div flex="45">
 								<h2>Inputs</h2>
 								<md-divider></md-divider>
-								<md-content>
+								<md-content layout-margin>
 									<md-list>
-										<md-list-item ng-repeat="item in product.service_input_output[0].inputs track by $index">
-											{{item}}
+										<md-list-item ng-repeat="(key,item) in product.interfaceModel.inParams track by $index">
+											{{item.name}}
 										</md-list-item>
 									</md-list>
 								</md-content>
 							</div>
-							<div flex="45" style="margin-left: -1px">
+							<div flex="45">
 								<h2>Outputs</h2>
 								<md-divider></md-divider>
-								<md-content>
+								<md-content layout-margin>
 									<md-list>
-										<md-list-item ng-repeat="item in product.service_input_output[0].outputs track by $index">
-											{{item}}
+										<md-list-item ng-repeat="(key,item) in product.interfaceModel.outParams track by $index">
+											{{item.name}}
 										</md-list-item>
 									</md-list>
 								</md-content>
@@ -261,7 +262,7 @@
 						<ui-widget-stars-active size="20" select-star="stars(star)"></ui-widget-stars-active>
 						<md-input-container flex>
 							<label>Comment</label>
-							<textarea ng-model="NewReview.Comment" columns="1" md-maxlength="150"></textarea>
+							<textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea>
 						</md-input-container>
 						<div layout layout-align="end end">
 							<md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>

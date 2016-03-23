@@ -37,8 +37,9 @@ angular.module('dmc.component.productcard', [
         hideButtons: '='
       },
       templateUrl: 'templates/components/product-card/product-card-tpl.html',
-      controller: function($scope, $rootScope, $cookies,$timeout,ajax,dataFactory, $mdDialog){
+      controller: function($scope, $rootScope, $cookies,$timeout,ajax,dataFactory, $mdDialog, previousPage){
 
+          $scope.previousPage = previousPage;
           // get data from cookies
           var updateCompareCount = function () {
               var arr = $cookies.getObject('compareProducts');

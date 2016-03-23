@@ -56,6 +56,16 @@ angular.module('dmc.model.previous-page', [
                         title: "Back to Service",
                         url: previousPage
                     };
+
+                }else if (previousPage.indexOf('marketplace.php') != -1) {
+                    var subPage = previousPage.indexOf('marketplace.php#/search') != -1 ? "search" : "home";
+                    return {
+                        tag : "marketplace",
+                        subPage : subPage,
+                        title: subPage == "search" ? "RETURN TO MARKETPLACE SEARCH" : "BACK TO MARKETPLACE HOME",
+                        url: previousPage
+                    };
+
                 } else {
                     return {
                         tag : "dashboard",

@@ -2068,7 +2068,7 @@
       "parent_component": null,
       "projectId": 1,
       "type": "service",
-      "published": false,
+      "published": true,
       "from": "project",
       "id": 45
     },
@@ -4084,6 +4084,14 @@
       "follow": false,
       "avatar": "/uploads/profile/1/20151222084711000000.jpg",
       "company": "General Electric (GE) Software"
+    },
+    {
+      "serviceId": 45,
+      "display_name": "John Thomas",
+      "jobTitle": "Engineering Manager",
+      "avatar": "/uploads/profile/1/20151222084711000000.jpg",
+      "company": "General Electric (GE) Software",
+      "id": 9
     }
   ],
   "service_input_output": [
@@ -5997,7 +6005,7 @@
       "reporter": "J.Knight",
       "assigneeId": 2,
       "reporterId": 1,
-      "dueDate": 1458770400000,
+      "dueDate": 1459371600000,
       "priority": 3,
       "projectId": 1,
       "status": "InProgress",
@@ -6913,6 +6921,21 @@
         "fail": 9
       },
       "special": []
+    },
+    {
+      "serviceId": 45,
+      "input": 0,
+      "output": 0,
+      "usageStats": {
+        "added": 0,
+        "members": 0
+      },
+      "runStats": {
+        "success": 0,
+        "fail": 0
+      },
+      "special": [],
+      "id": 26
     }
   ],
   "publish-services": [

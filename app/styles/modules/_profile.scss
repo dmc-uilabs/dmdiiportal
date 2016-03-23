@@ -171,7 +171,16 @@
         }
       }
       md-icon{
-        margin-right: 15px;
+        margin: 0 15px 0 0;
+        &.email{
+          margin-bottom: 2px;
+        }
+        &.phone{
+          margin-bottom: 4px;
+        }
+        &.location{
+          margin-bottom: 5px;
+        }
       }
       label{
         color: #363636;

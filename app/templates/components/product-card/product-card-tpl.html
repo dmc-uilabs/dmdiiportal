@@ -32,7 +32,7 @@
     </div>
     <div class="product-card__header" layout="column"
          ng-class="cardStyle == 'small' ? 'title-without-spaces' : ''">
-        <a ng-href="{{'/service-marketplace.php#/'+cardSource.id}}"><h3>{{cardSource.title}}</h3></a>
+        <a ng-href="{{'/service-marketplace.php#/'+cardSource.id}}" ng-click="previousPage.save($event)"><h3>{{cardSource.title}}</h3></a>
         <a ng-href="{{'/company.php#/'+(cardSource.companyId ? cardSource.companyId : 1)+'/storefront?product=services'}}"><span class="user-name">{{cardSource.owner}}</span></a>
     </div>
     <div class="product-card__content" layout="row"  ng-if="cardStyle != 'included'">

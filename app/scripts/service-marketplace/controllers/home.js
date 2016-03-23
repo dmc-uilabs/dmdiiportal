@@ -13,6 +13,7 @@ angular.module('dmc.service-marketplace')
         'toastModel',
         'isFavorite',
         'DMCUserModel',
+        'previousPage',
         '$location',
         function (serviceData,
                   serviceModel,
@@ -25,6 +26,7 @@ angular.module('dmc.service-marketplace')
                   toastModel,
                   isFavorite,
                   DMCUserModel,
+                  previousPage,
                   $location) {
 
             $scope.product = serviceData;  //array product
@@ -39,6 +41,15 @@ angular.module('dmc.service-marketplace')
             $scope.selectSortingStar = 0;
             $scope.invate = false;
 
+            $scope.previousPage = previousPage.get();
+            if($scope.previousPage.tag != "marketplace"){
+                $scope.previousPage = {
+                    tag : "marketplace",
+                    subPage : "home",
+                    title: "BACK TO MARKETPLACE HOME",
+                    url: "/marketplace.php#/home"
+                };
+            }
 
             // check if service is favorite for current user
             isFavorite.check([$scope.product]);
@@ -501,7 +512,7 @@ angular.module('dmc.service-marketplace')
 
             //Search products
             $scope.submitSearch = function(text){
-                window.location.href = '/marketplace.php#/search/' + $stateParams.typeProduct +'s?text=' + text;
+                window.location.href = '/marketplace.php#/search?product=services&text=' + text;
             };
 
 

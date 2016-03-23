@@ -1,27 +1,28 @@
 'use strict';
 
 angular.module('dmc.service-marketplace', [
-	'dmc.configs.ngmaterial',
-	'ngMdIcons',
-	'ngtimeago',
-	'ui.router',
-	'md.data.table',
-	'dmc.ajax',
-	'dmc.data',
-	'dmc.socket',
-	'dmc.widgets.stars',
-	'dmc.widgets.documents',
-	'dmc.widgets.review',
-	'dmc.widgets.tabs',
-	'dmc.component.treemenu',
-	'dmc.component.productcard',
-	'dmc.component.members-card',
-	'dmc.common.header',
-	'dmc.common.footer',
-	'dmc.component.carousel',
-	'dmc.model.toast-model',
+    'dmc.configs.ngmaterial',
+    'ngMdIcons',
+    'ngtimeago',
+    'ui.router',
+    'md.data.table',
+    'dmc.ajax',
+    'dmc.data',
+    'dmc.socket',
+    'dmc.widgets.stars',
+    'dmc.widgets.documents',
+    'dmc.widgets.review',
+    'dmc.widgets.tabs',
+    'dmc.component.treemenu',
+    'dmc.component.productcard',
+    'dmc.component.members-card',
+    'dmc.common.header',
+    'dmc.common.footer',
+    'dmc.component.carousel',
+    'dmc.model.dome',
+    'dmc.model.toast-model',
     'dmc.widgets.uploadModal',
-   	'dmc.compare'
+    'dmc.compare'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
         var resolve = {
@@ -43,7 +44,7 @@ angular.module('dmc.service-marketplace', [
                 resolve: resolve
             });
         $urlRouterProvider.otherwise('/1');
-	})
+    })
 
     .service('serviceModel', [
         'ajax',
@@ -52,6 +53,7 @@ angular.module('dmc.service-marketplace', [
         'toastModel',
         '$q',
         '$http',
+        'domeModel',
         '$rootScope',
         function (ajax,
                   dataFactory,
@@ -59,60 +61,70 @@ angular.module('dmc.service-marketplace', [
                   toastModel,
                   $q,
                   $http,
+                  domeModel,
                   $rootScope) {
             this.get_service = function(id){
                 var promises = {
-                  "service": $http.get(dataFactory.services(id).get),
-                  "specifications": $http.get(dataFactory.services(id).get_specifications),
-                  "service_authors": $http.get(dataFactory.services(id).get_authors),
-                  "service_input_output": $http.get(dataFactory.services(id).get_inputs_outputs),
-                  "service_tags": $http.get(dataFactory.services(id).get_tags),
-                  "services_statistic": $http.get(dataFactory.services(id).get_statistics),
-                  "service_reviews": $http.get(dataFactory.services(id).reviews),
-                  "service_images": $http.get(dataFactory.services(id).get_images)
-                  }
+                    "service": $http.get(dataFactory.services(id).get),
+                    "specifications": $http.get(dataFactory.services(id).get_specifications),
+                    "service_authors": $http.get(dataFactory.services(id).get_authors),
+                    "service_input_output": $http.get(dataFactory.services(id).get_inputs_outputs),
+                    "service_tags": $http.get(dataFactory.services(id).get_tags),
+                    "services_statistic": $http.get(dataFactory.services(id).get_statistics),
+                    "service_reviews": $http.get(dataFactory.services(id).reviews),
+                    "service_images": $http.get(dataFactory.services(id).get_images),
+                    "interface": $http.get(dataFactory.services(id).get_interface)
+                };
 
-                  var extractData = function(response){
+                var extractData = function(response){
                     return response.data ? response.data : response;
-                  }
+                };
 
-                  return $q.all(promises).then(function(responses){
-                    var service = extractData(responses.service);
-                    service.specifications = extractData(responses.specifications);
-                    service.service_authors = extractData(responses.service_authors);
-                    service.service_input_output = extractData(responses.service_input_output);
-                    service.service_tags = extractData(responses.service_tags);
-                    service.services_statistic = extractData(responses.services_statistic);
-                    service.service_reviews = extractData(responses.service_reviews);
-                    service.service_images = extractData(responses.service_images);
-
-                    service.rating = service.service_reviews.map(function(value, index){
-                        return value.rating;
-                    });
-                    service.number_of_comments = service.service_reviews.length;
-
-                    service.precentage_stars = [0, 0, 0, 0, 0];
-                    service.average_rating = 0;
-                    if(service.number_of_comments != 0) {
-                        for (var i in service.rating) {
-                            service.precentage_stars[service.rating[i] - 1] += 100 / service.number_of_comments;
-                            service.average_rating += service.rating[i];
+                return $q.all(promises).then(function(responses){
+                        var service = extractData(responses.service);
+                        console.log(service);
+                        service.interface = (responses.interface.data && responses.interface.data.length > 0 ? responses.interface.data[0] : null);
+                        if(service.interface){
+                            domeModel.getModel(service.interface,function(response){
+                                service.interfaceModel = response.data.pkg;
+                                console.log(service.interfaceModel);
+                            });
                         }
-                        service.average_rating = (service.average_rating / service.number_of_comments).toFixed(1);
+                        service.specifications = extractData(responses.specifications);
+                        service.service_authors = extractData(responses.service_authors);
+                        service.service_input_output = extractData(responses.service_input_output);
+                        service.service_tags = extractData(responses.service_tags);
+                        service.services_statistic = extractData(responses.services_statistic);
+                        service.service_reviews = extractData(responses.service_reviews);
+                        service.service_images = extractData(responses.service_images);
 
-                        for (var i in service.precentage_stars) {
-                            service.precentage_stars[i] = Math.round(service.precentage_stars[i]);
+                        service.rating = service.service_reviews.map(function(value, index){
+                            return value.rating;
+                        });
+                        service.number_of_comments = service.service_reviews.length;
+
+                        service.precentage_stars = [0, 0, 0, 0, 0];
+                        service.average_rating = 0;
+                        if(service.number_of_comments != 0) {
+                            for (var i in service.rating) {
+                                service.precentage_stars[service.rating[i] - 1] += 100 / service.number_of_comments;
+                                service.average_rating += service.rating[i];
+                            }
+                            service.average_rating = (service.average_rating / service.number_of_comments).toFixed(1);
+
+                            for (var i in service.precentage_stars) {
+                                service.precentage_stars[i] = Math.round(service.precentage_stars[i]);
+                            }
                         }
-                    }
-                    for(var i in service["service_reviews"]){
-                        service["service_reviews"][i]['replyReviews'] = [];
-                    }
-                    return service;
+                        for(var i in service["service_reviews"]){
+                            service["service_reviews"][i]['replyReviews'] = [];
+                        }
+                        return service;
 
-                  },
-                  function(response){
-                     toastModel.showToast("error", "Error." + response.statusText);
-                  }
+                    },
+                    function(response){
+                        toastModel.showToast("error", "Error." + response.statusText);
+                    }
                 );
             };
 
@@ -135,12 +147,12 @@ angular.module('dmc.service-marketplace', [
                             response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
                             get_helpful(response.data[i]);
                             get_flagged(response.data[i]);
-                        }                        
+                        }
                         review['replyReviews'] = response.data;
                     }
                 )
             };
-            
+
             var get_helpful = function(review){
                 ajax.get(dataFactory.services(review.id).getHelpful,
                     {
@@ -264,8 +276,8 @@ angular.module('dmc.service-marketplace', [
                         callback(response.data);
                     }
                 )
-                    
-                
+
+
             };
 
             this.update_helful = function(id, helpful){
@@ -443,6 +455,6 @@ angular.module('dmc.service-marketplace', [
                 )
             }
 
-    	    }
-        ]
-    );
+        }
+    ]
+);

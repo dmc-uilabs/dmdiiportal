@@ -113,6 +113,9 @@
 }
 .basic-informations{
   padding: 36px;
+  pre{
+    white-space: pre-line;
+  }
   h3{
     font-weight: normal;
     margin: 4px 0;
@@ -130,7 +133,7 @@
     padding-left: 16px;
   }
   .button-aria{
-    margin-top: 36px;
+    margin-bottom: 10px;
   }
 }
 
