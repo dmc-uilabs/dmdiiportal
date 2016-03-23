@@ -818,7 +818,10 @@ angular.module('dmc.data',[])
             },
             getNotificationsStatisticPm: function(){
                 return localhost+'notifications-pm-statistic';
-            }
+            },
+            searchMarketplace: function (text) {
+				return localhost+'searchServices/'+text;
+			}
         };
     }
 )

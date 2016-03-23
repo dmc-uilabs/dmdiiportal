@@ -150,7 +150,16 @@ angular.module('dmc.marketplace')
             $scope.submit = function(text){
                 var dataSearch = $.extend(true,{},$stateParams);
                 dataSearch.text = text;
-                $state.go('marketplace_search', dataSearch, {reload: true});
+                //$state.go('marketplace_search', dataSearch, {reload: true});
+                ajax.get(dataFactory.searchMarketplace(text), responseDataForCarousel,
+                    function (response) {
+						//window.alert (response.data);
+                        $scope.carouselData.new.arr = response.data;
+                        $scope.carouselData.new.count = response.data.length;
+                        isFavorite.check($scope.carouselData.new.arr);
+                        apply();
+					}
+                );
             };
 
             var loadingData = function(start){ // progress line
