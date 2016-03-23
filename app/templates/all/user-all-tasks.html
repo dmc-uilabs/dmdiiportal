@@ -3,7 +3,12 @@
         <div class="return-block" ng-if="previousPage">
             <a ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
         </div>
-        <h2 class="page-title">All My Tasks</h2>
+        <h2 class="page-title" layout="row" layout-align="start center">
+            <span>All My Tasks</span>
+            <md-button class="add-button-square" ng-click="newTask($event)">
+                <ng-md-icon icon="add" size="18"></ng-md-icon>
+            </md-button>
+        </h2>
         <div class="content-panel">
             <div class="content-panel-body">
                 <md-content>
@@ -40,6 +45,7 @@
                                 <tr>
                                     <th name="Task" order-by="title" class="title"></th>
                                     <th name="Project" order-by="project.title"></th>
+                                    <th name="Status" order-by="status"></th>
                                     <th name="Due Date" order-by="dueDate"></th>
                                     <th name="Priority" order-by="priority"></th>
                                 </tr>
@@ -50,6 +56,7 @@
                                     <td>
                                         <a class="link-button" href="/project.php#/{{item.project.id}}">{{item.project.title}}</a>
                                     </td>
+                                    <td>{{item.status == "InProgress" ? "In Progress" : (item.status == "Open" ? "To Do" : "Completed")}}</td>
                                     <td>
                                         <span ng-bind-html="item.formatedDueDate[1]" class="label" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
                                     </td>

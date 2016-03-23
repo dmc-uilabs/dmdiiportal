@@ -542,6 +542,7 @@ angular.module('dmc.project', [
         'ajax',
         'dataFactory',
         '$stateParams',
+        '$state',
         '$http',
         'DMCUserModel',
         '$rootScope',
@@ -551,6 +552,7 @@ angular.module('dmc.project', [
         function (ajax,
                   dataFactory,
                   $stateParams,
+                  $state,
                   $http,
                   DMCUserModel,
                   $rootScope,
@@ -656,7 +658,7 @@ angular.module('dmc.project', [
                 )
             };
 
-            this.upload_services = function(params, callback){
+            this.upload_services = function(params, tags, service_interface){
                 ajax.create(dataFactory.services($stateParams.ServiceId).add,
                     {
                         "title": params.title,
@@ -686,7 +688,25 @@ angular.module('dmc.project', [
                         "from": params.from
                     },
                     function(response){
-                        callback(response.data);
+                        var id = response.data.id;
+                        var promises = {};
+                        if(tags && tags.length > 0) {
+                            for (var i in tags) {
+                                promises["tag"+i] = $http.post(dataFactory.services(id).add_tags, {
+                                    "serviceId": id, "name": tags[i]
+                                });
+                            }
+                        }
+                        service_interface.serviceId = id;
+                        promises["service_interface"] = $http.post(dataFactory.services().add_interface, service_interface);
+                        $q.all(promises).then(
+                            function(responses){
+                                $state.go('project.services-detail', {ServiceId: id});
+                            },
+                            function(response){
+                                toastModel.showToast("error", "Error." + response.statusText);
+                            }
+                        );
                     }
                 );
             };
@@ -727,24 +747,55 @@ angular.module('dmc.project', [
                 )
             };
 
-            this.edit_service = function(params, callback){
+            this.edit_service = function(params, removedTags, newTags, service_interface,interfaceId){
                 ajax.get(dataFactory.services($stateParams.ServiceId).get, {},
                     function(response){
-                        console.info(response.data);
-                        var component = response.data;
-                        component['title'] = params['title'];
-                        component['parent'] = params['parent'];
-                        component['description'] = params['description'];
+                        if(response.data && response.data.id) {
+                            var component = response.data;
+                            component['title'] = params['title'];
+                            component['parent'] = params['parent'];
+                            component['description'] = params['description'];
 
-                        return ajax.update(dataFactory.services($stateParams.ServiceId).update,
-                            component,
-                            function(response){
-                                callback(response.data)
-                            },
-                            function(response){
-                                toastModel.showToast("error", "Error." + response.statusText);
-                            }
-                        )
+                            return ajax.update(dataFactory.services($stateParams.ServiceId).update,
+                                component,
+                                function () {
+                                    var id = $stateParams.ServiceId;
+                                    var promises = {};
+                                    // add new tags
+                                    if(newTags && newTags.length > 0) {
+                                        for (var i in newTags) {
+                                            promises["tag"+i] = $http.post(dataFactory.services(id).add_tags, {
+                                                "serviceId": id, "name": newTags[i]
+                                            });
+                                        }
+                                    }
+                                    // delete all removed tags
+                                    if(removedTags && removedTags.length > 0) {
+                                        for (var i in removedTags) {
+                                            promises["removedTag"+i] = $http.post(dataFactory.services(removedTags[i]).remove_tags)
+                                        }
+                                    }
+
+                                    if(!interfaceId) {
+                                        service_interface.serviceId = id;
+                                        promises["add_service_interface"] = $http.post(dataFactory.services().add_interface, service_interface);
+                                    }else{
+                                        promises["update_service_interface"] = $http.patch(dataFactory.services(interfaceId).update_interface, service_interface);
+                                    }
+                                    $q.all(promises).then(
+                                        function(responses){
+                                            $state.go('project.services-detail', {ServiceId: id});
+                                        },
+                                        function(response){
+                                            toastModel.showToast("error", "Error." + response.statusText);
+                                        }
+                                    );
+                                },
+                                function (response) {
+                                    toastModel.showToast("error", "Error." + response.statusText);
+                                }
+                            )
+                        }
                     }
                 )
             };

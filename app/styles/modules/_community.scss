@@ -18,6 +18,11 @@ a.following-btn{
     font-size: 14px;
   }
 }
+.add-discussion-btn{
+  ng-md-icon{
+    vertical-align: middle;
+  }
+}
 .dmc-announcements-content-panel {
   .announcements-list {
     md-list {

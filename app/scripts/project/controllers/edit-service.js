@@ -17,6 +17,7 @@ angular.module('dmc.project')
                 serviceDescription: serviceData.description,
                 serviceDescription_old: serviceData.description
             };
+            $scope.documents = [];
 
             $scope.selectedInterface = null;
             $scope.addTags=[];
@@ -172,26 +173,18 @@ angular.module('dmc.project')
             };
 
             $scope.finish = function(){
+                var interfaceId = !$scope.interface ? null : $scope.interface.id;
+                if(!$scope.interface) {
+                    $scope.selectedInterface.interFace.domeServer = $scope.selectedServerIp;
+                }else{
+                    $scope.selectedInterface.interFace = ($scope.selectedInterface.interFace ? $scope.selectedInterface.interFace : $scope.interface);
+                    if($scope.selectedServerIp) $scope.selectedInterface.interFace.domeServer = $scope.selectedServerIp;
+                }
                 serviceModel.edit_service({
                     title: $scope.NewService.serviceName,
                     description: $scope.NewService.serviceDescription,
                     parent: $scope.NewService.parentComponent
-                },function(data){
-                    serviceModel.remove_services_tags($scope.removeTags);
-                    serviceModel.add_services_tags($scope.addTags);
-
-                    if(!$scope.interface) {
-                        $scope.selectedInterface.interFace.serviceId = data.id;
-                        $scope.selectedInterface.interFace.domeServer = $scope.selectedServerIp;
-                        serviceModel.save_service_interface($scope.selectedInterface.interFace);
-                    }else{
-                        $scope.selectedInterface.interFace = ($scope.selectedInterface.interFace ? $scope.selectedInterface.interFace : $scope.interface);
-                        if($scope.selectedServerIp) $scope.selectedInterface.interFace.domeServer = $scope.selectedServerIp;
-                        serviceModel.update_service_interface($scope.interface.id, $scope.selectedInterface.interFace);
-                    }
-
-                    $state.go('project.services-detail', {ServiceId: data.id});
-                });
+                },$scope.removeTags,$scope.addTags,$scope.selectedInterface.interFace, interfaceId);
             };
 
             $scope.$on('$locationChangeStart', function (event, next, current) {

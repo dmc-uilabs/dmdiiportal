@@ -25,9 +25,9 @@ angular.module('dmc.all_projects', [
     .controller('DMCAllProjectsController', function ($scope,$rootScope,$element,$stateParams,$state) {
 
         $scope.searchText = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-        $scope.filterModel = 0;
+        $scope.filterModel = null;
         $scope.sortModel = 0;
-
+        $scope.sortProjects = "most_recent";
 
         $scope.submit = function(text){
             var dataSearch = $.extend(true, {}, $stateParams);
@@ -41,15 +41,11 @@ angular.module('dmc.all_projects', [
                 id : 3, tag : "most_recent", name : "Most recent"
             },{
                 id : 2, tag : "title", name : "Name"
-            },{
-                id : 1, tag : "id", name : "ID Project"
             }
         ];
         $scope.filterList = [
             {
-                id : 1, tag : "filter1", name : "Filter 1"
-            },{
-                id : 2, tag : "filter1", name : "Filter 2"
+                id : 1, tag : "from_compnay", name : "From My Company"
             }
         ];
 

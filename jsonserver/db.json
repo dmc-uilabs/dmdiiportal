@@ -3,6 +3,7 @@
     "displayName": "Thomas Smith",
     "accountId": 1,
     "profileId": 1,
+    "companyId": 1,
     "role": 1,
     "termsConditions": false,
     "notifications": {
@@ -816,7 +817,7 @@
       "id": 4,
       "title": "Incoming Compartment for LDR Mining",
       "type": "public",
-      "dueDate": 1455544706321,
+      "dueDate": 1455544706000,
       "projectManager": "PDM Co.",
       "projectManagerId": 2,
       "featureImage": {
@@ -837,7 +838,7 @@
         "totalItems": 5,
         "link": "/projects/4/services"
       },
-      "approvalOption": "all"
+      "approvalOption": "admin"
     },
     {
       "id": 1,
@@ -1433,6 +1434,45 @@
       "serviceId": 48,
       "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
       "id": 8
+    },
+    {
+      "version": 1,
+      "modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
+      "interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
+      "type": "interface",
+      "name": "Default Interface",
+      "path": [
+        30
+      ],
+      "serviceId": 13,
+      "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 9
+    },
+    {
+      "version": 1,
+      "modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
+      "interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
+      "type": "interface",
+      "name": "Default Interface",
+      "path": [
+        30
+      ],
+      "serviceId": 49,
+      "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 10
+    },
+    {
+      "version": 1,
+      "modelId": "aff647de-d82f-1004-8e7b-5de38b2eeb0f",
+      "interfaceId": "aff647df-d82f-1004-8e7b-5de38b2eeb0f",
+      "type": "interface",
+      "name": "Default Interface",
+      "path": [
+        30
+      ],
+      "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "serviceId": 50,
+      "id": 11
     }
   ],
   "services": [
@@ -1791,7 +1831,7 @@
     {
       "id": 13,
       "companyId": 2,
-      "title": "Evaluator Model",
+      "title": "AppliedLoad",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
       "owner": "PDM.Co",
       "profileId": 1,
@@ -1812,7 +1852,8 @@
           "title": "Capacitor Design"
         }
       },
-      "averageRun": 0
+      "averageRun": 0,
+      "parent": 0
     },
     {
       "id": 41,
@@ -2103,6 +2144,59 @@
       "published": false,
       "from": "project",
       "id": 48
+    },
+    {
+      "title": "AppliedLoad",
+      "description": "Description",
+      "owner": "Thomas Smith",
+      "accountId": 1,
+      "releaseDate": "03/23/2016",
+      "serviceType": "analytical",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "averageRun": 0,
+      "currentStatus": {
+        "project": {
+          "id": 1,
+          "name": "Control Compartment for LDR Mining"
+        }
+      },
+      "parent_component": null,
+      "projectId": 1,
+      "type": "service",
+      "published": false,
+      "from": "project",
+      "id": 49
+    },
+    {
+      "title": "BetaFactor",
+      "description": "Description1",
+      "owner": "Thomas Smith",
+      "accountId": 1,
+      "releaseDate": "03/23/2016",
+      "serviceType": "analytical",
+      "specifications": "/services/3/specifications",
+      "featureImage": {
+        "thumbnail": "images/marketplace-card-image-1.jpg",
+        "large": "images/marketplace-card-image-1.jpg"
+      },
+      "averageRun": 0,
+      "currentStatus": {
+        "project": {
+          "id": 1,
+          "name": "Control Compartment for LDR Mining"
+        }
+      },
+      "parent_component": null,
+      "projectId": 1,
+      "type": "service",
+      "published": false,
+      "from": "project",
+      "id": 50,
+      "parent": 0
     }
   ],
   "service_runs": [
@@ -4130,6 +4224,26 @@
       "serviceId": 48,
       "name": "tag1",
       "id": 18
+    },
+    {
+      "serviceId": 13,
+      "name": "tag",
+      "id": 19
+    },
+    {
+      "serviceId": 50,
+      "name": "Test tag",
+      "id": 20
+    },
+    {
+      "serviceId": 50,
+      "name": "My test tag",
+      "id": 21
+    },
+    {
+      "serviceId": 50,
+      "name": "Next tag",
+      "id": 22
     }
   ],
   "services_run_history": [
@@ -5883,7 +5997,7 @@
       "reporter": "J.Knight",
       "assigneeId": 2,
       "reporterId": 1,
-      "dueDate": 1459198800000,
+      "dueDate": 1458770400000,
       "priority": 3,
       "projectId": 1,
       "status": "InProgress",
@@ -6363,6 +6477,42 @@
       "projectId": 1,
       "status": "Open",
       "id": 33
+    },
+    {
+      "title": "Test task",
+      "description": "Test task",
+      "assignee": "Stephen Rencour",
+      "assigneeId": 2,
+      "reporter": "Thomas Smith",
+      "reporterId": 1,
+      "dueDate": 1458079200000,
+      "priority": 3,
+      "status": "Open",
+      "id": 34
+    },
+    {
+      "title": "New task",
+      "description": "New task",
+      "assignee": "Stephen Rencour",
+      "assigneeId": 2,
+      "reporter": "Thomas Smith",
+      "reporterId": 1,
+      "dueDate": 1459285200000,
+      "priority": 2,
+      "status": "Open",
+      "id": 35
+    },
+    {
+      "title": "My new task",
+      "description": "My new task",
+      "assignee": "Hussain Rizvi",
+      "assigneeId": 3,
+      "reporter": "Thomas Smith",
+      "reporterId": 1,
+      "dueDate": 1458684000000,
+      "priority": 1,
+      "status": "Open",
+      "id": 36
     }
   ],
   "array_specifications": [

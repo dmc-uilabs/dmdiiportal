@@ -43,6 +43,10 @@
   }
   .add-project-button{
     font-size: 15px !important;
+    ng-md-icon{
+      fill: #363636;
+      vertical-align: text-bottom;
+    }
   }
 }
 .margin-dropdown{

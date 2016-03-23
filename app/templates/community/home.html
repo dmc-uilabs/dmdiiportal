@@ -1,7 +1,7 @@
 <div class="page-header">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <div layout="row" layout-align="start end" flex>
+            <div layout="row" layout-align="start center" flex>
                 <md-input-container class="filterBox">
                     <label>Filter</label>
                     <md-select ng-model="searchTypeModel" ng-change="selectItemDropDown(searchTypeModel)">
@@ -30,14 +30,18 @@
                     </form>
                 </div>
                 <span flex></span>
-                <md-input-container layout="row" layout-wrap layout-align="start center" class="top-10">
-                    <a class="add-discussion-btn link-button uppercase" ng-click="createDiscussion()">Add New Discussion</a>
-                    <!--<a class="following-btn link-button uppercase margin-left20">Following (15)</a>-->
-                    <md-button md-no-ink class="contacts-btn link-button" href="" style="display:none">
-                        <ng-md-icon icon="account_circle" style="fill: #333" size="18"></ng-md-icon>
-                        Contacts
-                    </md-button>
-                </md-input-container>
+                <a class="add-discussion-btn link-button" ng-click="createDiscussion()">
+                    <ng-md-icon icon="add" size="22"></ng-md-icon>
+                    Add New Discussion
+                </a>
+                <!--<md-input-container layout="row" layout-wrap layout-align="start center" class="top-10">-->
+                    <!---->
+                    <!--&lt;!&ndash;<a class="following-btn link-button uppercase margin-left20">Following (15)</a>&ndash;&gt;-->
+                    <!--<md-button md-no-ink class="contacts-btn link-button" href="" style="display:none">-->
+                        <!--<ng-md-icon icon="account_circle" style="fill: #333" size="18"></ng-md-icon>-->
+                        <!--Contacts-->
+                    <!--</md-button>-->
+                <!--</md-input-container>-->
             </div>
         </div>
     </md-toolbar>

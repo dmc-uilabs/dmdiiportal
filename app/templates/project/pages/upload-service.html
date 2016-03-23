@@ -165,7 +165,12 @@
             <md-divider></md-divider>
 
             <md-content class="md-padding">
-                <div ui-widget-upload-documents class="content-panel" product="true" auto-upload="false" widget-title="'UPLOAD DOCUMENTS'"></div>
+                <div ui-widget-upload-documents
+                     class="content-panel"
+                     product="true"
+                     source="documents"
+                     auto-upload="false"
+                     widget-title="'UPLOAD DOCUMENTS'"></div>
             </md-content>
         </div>
 
@@ -183,7 +188,7 @@
             </md-button>
             <!-- ng-disabled="!NewService.serviceName || !NewService.parentComponent || !NewService.serviceDescription || !tags.length" -->
             <!--<md-button class="md-primary md-raised" ng-disabled="!NewService.serviceName || (!NewService.parentComponent && NewService.parentComponent !== 0) || !NewService.serviceDescription || !service_tags.length" ng-if="!page1" ng-click="finish()">-->
-            <md-button class="md-primary md-raised " ng-disabled="!NewService.serviceName || !NewService.serviceDescription || !service_tags.length" ng-if="!page1" ng-click="finish()">
+            <md-button class="md-primary md-raised " ng-disabled="!NewService.serviceName || !NewService.serviceDescription" ng-if="!page1" ng-click="finish()">
                 Finish
             </md-button>
         </div>

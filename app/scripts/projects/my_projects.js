@@ -23,14 +23,12 @@ angular.module('dmc.my_projects', [
         $urlRouterProvider.otherwise('/');
     })
     .controller('DMCMyProjectsController', function ($scope,$rootScope,$element) {
-        $scope.sortProjects = "id";
+        $scope.sortProjects = "most_recent";
         $scope.sortList = [
             {
                 id : 3, tag : "most_recent", name : "Most recent"
             },{
                 id : 2, tag : "title", name : "Name"
-            },{
-                id : 1, tag : "id", name : "ID Project"
             }
         ];
         $scope.filterList = [

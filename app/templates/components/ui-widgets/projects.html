@@ -28,11 +28,11 @@
                          class="md-raised dmc-button request-to-join"><ng-md-icon icon="group_add" size="22" ng-if="!item.joinRequest"></ng-md-icon>{{item.joinRequest ? 'Pending Approval' : 'Request to Join'}}
               </md-button>
               <md-button ng-if="widgetShowAllBlocks && widgetFormat == 'all-projects' &&
-                                item.isMember && !item.isMember.accept && item.approvalOption == 'all'"
+                                item.isMember && !item.isMember.accept"
                          ng-click="accept(item)"
                          class="md-raised md-primary dmc-button accept">Accept</md-button>
               <md-button ng-if="widgetShowAllBlocks && widgetFormat == 'all-projects' &&
-                                item.isMember && !item.isMember.accept && item.approvalOption == 'all'"
+                                item.isMember && !item.isMember.accept"
                          ng-click="decline(item)"
                          class="md-raised md-warn dmc-button decline">Decline</md-button>
           </div>
@@ -67,7 +67,7 @@
           <div class="rp-panel__tab-content widget-blocks"
                layout="row"
                layout-align="space-between start"
-               ng-if="widgetShowAllBlocks && widgetFormat != 'all-projects'">
+               ng-if="widgetShowAllBlocks && (widgetFormat != 'all-projects' || (widgetFormat == 'all-projects' && item.isMember && item.isMember.accept ))">
               <!-- Tasks -->
               <md-content flex="{{flexBox}}"
                           layout-padding
@@ -102,12 +102,12 @@
           <div class="rp-panel__tab-content widget-blocks"
                layout="row"
                layout-align="space-between start"
-               ng-if="widgetShowAllBlocks && widgetFormat == 'all-projects'">
+               ng-if="widgetShowAllBlocks && widgetFormat == 'all-projects' && (!item.isMember || (item.isMember && !item.isMember.accept))">
               <div class="overview" flex layout="column">
                   <h3>Overview</h3>
                   <p>{{item.description}}</p>
               </div>
-              <div class="tags" layout="column" ng-if="item.tags.length > 0">
+              <div class="tags" flex="30" layout="column" ng-if="item.tags.length > 0">
                   <h3>Tags</h3>
                   <div layout="row" class="project-tags-list" layout-wrap>
                       <div class="tag without-delete" ng-repeat="tag in item.tags track by $index">

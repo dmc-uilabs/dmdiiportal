@@ -11,7 +11,7 @@
             <h4 ng-if="widgetFormat == 'my-projects'">{{discussion.created_at_format}}</h4>
             <h3><a ng-href="/individual-discussion.php#/{{discussion.id}}" class="link-button" ng-click="previousPage.save($event)">{{discussion.title}}</a></h3>
             <h4 ng-if="widgetFormat == 'my-projects'"><a href="/profile.php#/1">{{discussion.created_by}}</a> {{ discussion.isPosted ? 'posted' : 'replied' }}</h4>
-            <h4 ng-if="widgetFormat != 'my-projects'"><a href="/profile.php#/1">{{discussion.created_by}}</a> {{ discussion.isPosted ? 'posted' : 'replied' }} | {{discussion.created_at}}</h4>
+            <h4 ng-if="widgetFormat != 'my-projects'"><a href="/profile.php#/1">{{discussion.created_by}}</a> {{ discussion.isPosted ? 'posted' : 'replied' }} | {{discussion.last.created_at_format}}</h4>
         </div>
         <md-divider ng-if="$index < projectDiscussions.length-1"></md-divider>
     </md-list-item>

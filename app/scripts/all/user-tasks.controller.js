@@ -56,6 +56,9 @@ angular.module('dmc.view-all')
                 }, {
                     tag: "dueDate",
                     name: "Due Date"
+                }, {
+                    tag: "status",
+                    name: "Status"
                 }
             ];
 
@@ -127,13 +130,13 @@ angular.module('dmc.view-all')
                 $scope.searchModel = text;
                 var dataSearch = $.extend(true, {}, $stateParams);
                 dataSearch.text = $scope.searchModel;
-                $state.go('tasks', dataSearch, {reload: true});
+                $state.go('user-tasks', dataSearch, {reload: true});
             };
 
             $scope.changedType = function (type) {
                 var dataSearch = $.extend(true, {}, $stateParams);
                 dataSearch.type = type;
-                $state.go('tasks', dataSearch, {reload: true});
+                $state.go('user-tasks', dataSearch, {reload: true});
             };
 
             $scope.editTask = function(ev,task){
@@ -151,6 +154,23 @@ angular.module('dmc.view-all')
                         $scope.getTasks();
                     }
                 );
+            };
+
+            $scope.newTask = function(ev){
+                $mdDialog.show({
+                    controller: "CreateTaskController",
+                    templateUrl: 'templates/components/dialogs/create-task-tpl.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    locals : {
+                        projectId : null
+                    }
+                }).then(function (answer) {
+
+                }, function (update) {
+                    if(update) $scope.getTasks();
+                });
             };
         }
     ]

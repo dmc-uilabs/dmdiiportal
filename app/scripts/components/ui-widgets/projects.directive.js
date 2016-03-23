@@ -97,9 +97,13 @@ angular.module('dmc.widgets.projects',[
                         var isRemove = false;
                         var array = $scope.projects;
                         for(var i=0;i<$scope.projects.length;i++){
-                            for(var j in response.data){
-                                if($scope.projects[i].id == response.data[j].projectId || $scope.projects[i].projectManagerId == response.data[j].profileId){
-                                    $scope.projects[i].isMember = response.data[j];
+                            if($scope.projects[i].projectManagerId == $rootScope.userData.profileId){
+                                $scope.projects[i].isMember = {accept : true};
+                            }else {
+                                for (var j in response.data) {
+                                    if ($scope.projects[i].id == response.data[j].projectId) {
+                                        $scope.projects[i].isMember = response.data[j];
+                                    }
                                 }
                             }
                             // remove project from $scope.projects if project type dose not public,
@@ -123,6 +127,7 @@ angular.module('dmc.widgets.projects',[
                         }
                         $scope.total = $scope.projects.length;
                         if(limit && $scope.total > limit) $scope.projects.splice(limit,$scope.total);
+                        $rootScope.sortMAProjects($scope.sortProjects);
                         apply();
                     });
                 }
@@ -163,6 +168,7 @@ angular.module('dmc.widgets.projects',[
                         default:
                             break;
                     }
+                    apply();
                 };
 
                 $rootScope.filterMAProjects = function(filterTag){
@@ -180,7 +186,8 @@ angular.module('dmc.widgets.projects',[
                                 "accept": true
                         },function(response){
                             item.isMember = response.data;
-                            toastModel.showToast("success", "You successfully joined to the project");
+                            toastModel.showToast("success", "You are successfully become a member of the project");
+                            document.location.href = "project.php#/"+item.id+"/home";
                             apply();
                         });
                     }else if(item.approvalOption == 'admin'){

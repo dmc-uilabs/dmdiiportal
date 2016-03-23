@@ -136,6 +136,14 @@
           font-weight: 100;
           text-transform: none;
           padding: 0;
+          color: #363636;
+          &.label--tomorrow,
+          &.label--warn{
+            padding: 5px;
+          }
+          &.label--warn{
+            color: #fff;
+          }
         }
         &:last-child{
           padding-bottom: 0;

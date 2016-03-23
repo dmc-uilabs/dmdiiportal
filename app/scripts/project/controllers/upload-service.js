@@ -22,6 +22,7 @@ angular.module('dmc.project')
                 parentComponent: null,
                 serviceDescription: null
             };
+            $scope.documents = [];
 
             $scope.addTags = [];
             $scope.removeTags = [];
@@ -124,6 +125,7 @@ angular.module('dmc.project')
 
             // upload service
             $scope.finish = function(){
+                $scope.selectedInterface.interFace.domeServer = $scope.selectedServerIp;
                 serviceModel.upload_services({
                     title: $scope.NewService.serviceName,
                     description: $scope.NewService.serviceDescription,
@@ -131,15 +133,7 @@ angular.module('dmc.project')
                     pojectId: projectData.id,
                     pojectTitle: projectData.title,
                     parent: $scope.NewService.parentComponent
-                },function(data){
-                    serviceModel.add_services_tags($scope.addTags, data.id);
-
-                    $scope.selectedInterface.interFace.serviceId = data.id;
-                    $scope.selectedInterface.interFace.domeServer = $scope.selectedServerIp;
-                    serviceModel.save_service_interface($scope.selectedInterface.interFace);
-
-                    $state.go('project.services-detail', {ServiceId: data.id});
-                });
+                },$scope.addTags,$scope.selectedInterface.interFace);
             }
 
         }
