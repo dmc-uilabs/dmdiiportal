@@ -39,9 +39,12 @@ angular.module('dmc.service-marketplace')
             $scope.arrAddSpecifications = [];
             $scope.arraySpecifications = [];
             $scope.autocomplete = false;
+            $scope.documents = [];
+
+            if(!$scope.product) return false;
 
             $scope.changes = {};
-            $scope.changesSpecifications = $scope.product.specifications[0].special.length;
+            $scope.changesSpecifications = $scope.product && $scope.product.specifications && $scope.product.specifications.length > 0 ? $scope.product.specifications[0].special.length : 0;
 
             serviceModel.get_array_specifications(function(data){
                 $scope.arraySpecifications = data;

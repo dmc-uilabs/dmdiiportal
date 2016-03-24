@@ -28,8 +28,19 @@ angular.module('dmc.company')
                                $mdDialog ) {
 
         $scope.companyData  = companyData ;
+
+            function getCompanyJoinRequest(){
+                ajax.get(dataFactory.getProfileCompanyJoinRequest($scope.currentUser.profileId), {},function(response){
+                    $scope.companyData.joinRequest = response.data && response.data.length > 0 ? response.data[0] : null;
+                    apply();
+                });
+            }
+
         if($scope.companyData && $scope.companyData.id) {
-            $scope.currentUser = DMCUserModel.getUserData();
+            $scope.currentUser = DMCUserModel.getUserData().then(function(res){
+                $scope.currentUser = res;
+                getCompanyJoinRequest();
+            });
             $scope.currentUser = ($scope.currentUser.$$state && $scope.currentUser.$$state.value ? $scope.currentUser.$$state.value : null);
             $scope.owner = $scope.companyData.account;
             // ------------------------------ get state params
@@ -46,6 +57,19 @@ angular.module('dmc.company')
 
             var totalCountItems = {
                 all : 0, services : { total : 0, analytical : 0, solid : 0, data : 0 }, components : 0
+            };
+
+
+
+            $scope.join = function(){
+                ajax.create(dataFactory.addCompanyJoinRequest(), {
+                    "profileId": $scope.currentUser.profileId,
+                    "companyId": $scope.companyId
+                },function(response){
+                    $scope.companyData.joinRequest = response.data;
+                    toastModel.showToast("success", "Request to join successfully sent");
+                    apply();
+                });
             };
 
             $scope.productTypes = [

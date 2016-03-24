@@ -1043,131 +1043,6 @@
       "id": 4
     },
     {
-      "projectId": 10,
-      "name": "tag 1",
-      "id": 5
-    },
-    {
-      "projectId": 12,
-      "name": "Tag 4",
-      "id": 6
-    },
-    {
-      "projectId": 12,
-      "name": "Tag 5",
-      "id": 7
-    },
-    {
-      "projectId": 12,
-      "name": "Tag 1",
-      "id": 8
-    },
-    {
-      "projectId": 12,
-      "name": "Tag 2",
-      "id": 9
-    },
-    {
-      "projectId": 12,
-      "name": "Tag 3",
-      "id": 10
-    },
-    {
-      "projectId": 13,
-      "name": "Tag 1",
-      "id": 11
-    },
-    {
-      "projectId": 13,
-      "name": "Tag 6",
-      "id": 17
-    },
-    {
-      "projectId": 13,
-      "name": "Tag 7",
-      "id": 18
-    },
-    {
-      "projectId": 13,
-      "name": "Tag 8",
-      "id": 19
-    },
-    {
-      "projectId": 13,
-      "name": "Tag 11",
-      "id": 21
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 4",
-      "id": 22
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 1",
-      "id": 23
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 3",
-      "id": 24
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 5",
-      "id": 25
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 2",
-      "id": 26
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 7",
-      "id": 27
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 8",
-      "id": 28
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 9",
-      "id": 29
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 10",
-      "id": 30
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 11",
-      "id": 31
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 6",
-      "id": 32
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 12",
-      "id": 33
-    },
-    {
-      "projectId": 14,
-      "name": "Tag 13",
-      "id": 34
-    },
-    {
-      "projectId": 15,
-      "name": "tag 1",
-      "id": 35
-    },
-    {
       "projectId": 2,
       "name": "Tag 1",
       "id": 36
@@ -1211,11 +1086,6 @@
       "projectId": 2,
       "name": "Tag 6",
       "id": 44
-    },
-    {
-      "projectId": 18,
-      "name": "Tag 1",
-      "id": 45
     }
   ],
   "projects_members": [
@@ -1227,51 +1097,6 @@
       "date": 1458245164499,
       "accept": false,
       "id": 1
-    },
-    {
-      "profileId": 1,
-      "projectId": 16,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458294213442,
-      "accept": true,
-      "id": 2
-    },
-    {
-      "profileId": 1,
-      "projectId": 17,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458295335319,
-      "accept": true,
-      "id": 3
-    },
-    {
-      "profileId": 2,
-      "projectId": 17,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458295335319,
-      "accept": false,
-      "id": 4
-    },
-    {
-      "profileId": 1,
-      "projectId": 18,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458295505214,
-      "accept": true,
-      "id": 5
-    },
-    {
-      "profileId": 2,
-      "projectId": 18,
-      "fromProfileId": 1,
-      "from": "Thomas Smith",
-      "date": 1458295505214,
-      "accept": false,
-      "id": 6
     },
     {
       "profileId": 1,
@@ -2106,27 +1931,6 @@
       "published": false,
       "from": "project",
       "id": 46
-    },
-    {
-      "title": "Alpha",
-      "description": "Description",
-      "owner": "Thomas Smith",
-      "accountId": 1,
-      "releaseDate": "03/18/2016",
-      "serviceType": "analytical",
-      "specifications": "/services/3/specifications",
-      "featureImage": {
-        "thumbnail": "images/marketplace-card-image-1.jpg",
-        "large": "images/marketplace-card-image-1.jpg"
-      },
-      "averageRun": 0,
-      "currentStatus": {},
-      "parent_component": null,
-      "projectId": null,
-      "type": "service",
-      "published": false,
-      "from": "project",
-      "id": 47
     },
     {
       "title": "vProjectile1 test",
@@ -7039,42 +6843,6 @@
       "modifed": "03/17/2016 11:30 AM",
       "link": "/uploads/6/wallpaper-1059063.jpg",
       "id": 6
-    },
-    {
-      "projectId": 15,
-      "file": true,
-      "project-documentId": 0,
-      "title": "654776434_31e44151_47",
-      "owner": "Thomas Smith",
-      "ownerId": 1,
-      "size": "221 KB",
-      "modifed": "03/17/2016 11:36 AM",
-      "link": "/uploads/7/654776434_31e44151_47.jpg",
-      "id": 7
-    },
-    {
-      "projectId": 15,
-      "file": true,
-      "project-documentId": 0,
-      "title": "dimastechproject-13",
-      "owner": "Thomas Smith",
-      "ownerId": 1,
-      "size": "604 KB",
-      "modifed": "03/17/2016 11:36 AM",
-      "link": "/uploads/8/dimastechproject-13.jpg",
-      "id": 8
-    },
-    {
-      "projectId": 15,
-      "file": true,
-      "project-documentId": 0,
-      "title": "wallpaper-1059063",
-      "owner": "Thomas Smith",
-      "ownerId": 1,
-      "size": "1 MB",
-      "modifed": "03/17/2016 11:36 AM",
-      "link": "/uploads/9/wallpaper-1059063.jpg",
-      "id": 9
     },
     {
       "projectId": 1,

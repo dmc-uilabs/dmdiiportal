@@ -40,6 +40,7 @@ angular.module('dmc.service-marketplace')
             $scope.adding_to_project = false;
             $scope.selectSortingStar = 0;
             $scope.invate = false;
+            $scope.documents = [];
 
             $scope.previousPage = previousPage.get();
             if($scope.previousPage.tag != "marketplace"){

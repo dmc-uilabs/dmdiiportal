@@ -30,10 +30,17 @@
 
                         <span flex></span>
 
+                        <md-button ng-if="currentUser.profileId && !companyData.isOwner"
+                                   ng-click="join()"
+                                   ng-disabled="companyData.joinRequest"
+                                   class="md-raised dmc-button margin-right15">
+                            {{ !companyData.joinRequest ? 'Request to Join' : 'Pending Approval' }}
+                        </md-button>
                         <md-button ng-if="!companyData.isOwner"
-                                   class="company-buttons"
-                                   ng-click="followCompany()">{{(companyData.follow ? 'Unfollow' : 'Follow')}}</md-button>
-
+                                   class="md-raised dmc-button"
+                                   ng-click="followCompany()">
+                            {{(companyData.follow ? 'Unfollow' : 'Follow')}}
+                        </md-button>
                         <!--<md-button ng-if="!companyData.isOwner"-->
                                    <!--class="md-icon-button message-button"-->
                                    <!--ng-click="openMessageDialog($event)"-->

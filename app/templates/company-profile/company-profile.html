@@ -31,7 +31,7 @@
             <div layout="row" ng-show="!inviteToProject">
                 <md-button class="md-raised dmc-button margin-right12-5"
                            ng-disabled="company.joinRequest"
-                           ng-if="!$root.userData.companyId && !invate"
+                           ng-if="$root.userData.companyId != company.id && !invate"
                            ng-click="join()">
                     {{ !company.joinRequest ? 'Request to Join' : 'Pending Approval' }}
                 </md-button>
