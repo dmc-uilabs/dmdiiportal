@@ -20,6 +20,7 @@ angular.module('dmc.all-favorites', [
 	'dmc.compare',
 	'dmc.model.toast-model',
 	'dmc.component.products-filter',
+  'dmc.model.previous-page',
 	'dmc.model.services',
 	'flow',
 	'ng-autofocus'
