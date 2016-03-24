@@ -684,6 +684,7 @@
     {
       "id": 2,
       "firstName": "Bill",
+      "companyId": 2,
       "lastName": "Gates",
       "displayName": "Bill",
       "email": "email2@gmail.com",
@@ -793,6 +794,7 @@
       "dueDate": 1454450400000,
       "projectManager": "PDM Co.",
       "projectManagerId": 2,
+      "companyId": 2,
       "featureImage": {
         "thumbnail": "/images/logo-ldr-mining.png",
         "large": "/images/logo-ldr-mining.png"
@@ -816,10 +818,11 @@
     {
       "id": 4,
       "title": "Incoming Compartment for LDR Mining",
-      "type": "public",
+      "type": "private",
       "dueDate": 1455544706000,
       "projectManager": "PDM Co.",
       "projectManagerId": 2,
+      "companyId": 1,
       "featureImage": {
         "thumbnail": "/images/project-incoming-compartment.png",
         "large": "/images/project-incoming-compartment.png"
@@ -847,6 +850,7 @@
       "dueDate": 1458081477000,
       "projectManager": "PDM Co.",
       "projectManagerId": 2,
+      "companyId": 2,
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
         "large": "/images/project_relay_controller.png"
@@ -873,6 +877,7 @@
       "dueDate": 1455544706321,
       "projectManager": "PDM. Co",
       "projectManagerId": 2,
+      "companyId": 2,
       "featureImage": {
         "thumbnail": "/images/project_capacitor_compartment.png",
         "large": "/images/project_capacitor_compartment.png"
@@ -900,6 +905,7 @@
       "dueDate": 1455544706321,
       "projectManager": "R.Palmer",
       "projectManagerId": 1,
+      "companyId": 1,
       "featureImage": {
         "thumbnail": "/images/project_ge_transformer.png",
         "large": "/images/project_ge_transformer.png"
@@ -926,6 +932,7 @@
       "dueDate": 1457647200000,
       "projectManager": "DMC member",
       "projectManagerId": 1,
+      "companyId": 1,
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
         "large": "/images/project_relay_controller.png"
@@ -956,6 +963,7 @@
       "dueDate": 1456783200000,
       "projectManager": "DMC member",
       "projectManagerId": 1,
+      "companyId": 1,
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",
         "large": "/images/project_relay_controller.png"
@@ -985,6 +993,7 @@
       "dueDate": 1456783200000,
       "projectManager": "DMC member",
       "projectManagerId": 1,
+      "companyId": 1,
       "approvalOption": "admin",
       "featureImage": {
         "thumbnail": "/images/project_relay_controller.png",

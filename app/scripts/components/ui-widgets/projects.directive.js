@@ -18,10 +18,12 @@ angular.module('dmc.widgets.projects',[
                 sortProjects: "=",
                 limit : "="
             },
-            controller: function($scope, $rootScope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel) {
+            controller: function($scope, $rootScope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, DMCUserModel) {
                 $scope.projects = [];
                 $scope.total = 0;
                 $scope.order = 'ASC';
+                $scope.filterTag = null;
+                $scope.userCompany = null;
                 var limit = ($scope.limit ? $scope.limit : ($scope.widgetShowAllBlocks == true ? null : 2));
 
                 $scope.flexBox = ($scope.widgetShowAllBlocks == true ? 28 : 60);
@@ -40,6 +42,7 @@ angular.module('dmc.widgets.projects',[
                         title_like: $scope.searchText,
                         _start : 0
                     };
+                    if($scope.filterTag == "from_company") requestData.companyId = $rootScope.userData.companyId;
                     ajax.get(dataFactory.getProjects(),requestData,function(response){
                         $scope.projects = response.data;
                         var ids = [];
@@ -47,8 +50,10 @@ angular.module('dmc.widgets.projects',[
 
                             if($scope.widgetFormat == 'all-projects'){
                                 if($scope.projects[i].type != "public" && $scope.projects[i].projectManagerId != $rootScope.userData.accountId){
-                                    $scope.projects.splice(i,1);
-                                    continue;
+                                    if($scope.projects[i].companyId != $rootScope.userData.companyId) {
+                                        $scope.projects.splice(i, 1);
+                                        continue;
+                                    }
                                 }
                             }
 
@@ -71,6 +76,18 @@ angular.module('dmc.widgets.projects',[
                         apply();
                     },function(response){
                         toastModel.showToast("error", "Ajax faild: getProjects");
+                    });
+                };
+
+                DMCUserModel.getUserData().then(function(res){
+                    $scope.getProjects();
+                    if(res && res.companyId > 0) getUserCompany(res.companyId);
+                });
+
+                function getUserCompany(companyId){
+                    ajax.get(dataFactory.companyURL(companyId).get, {},function(response){
+                        $scope.userCompany = response.data;
+                        apply();
                     });
                 };
 
@@ -114,14 +131,14 @@ angular.module('dmc.widgets.projects',[
                                     !$scope.projects[i].isMember) {
                                     isRemove = true;
                                 }
-                            }else{
-                                if($scope.projects[i].projectManagerId != $rootScope.userData.profileId && (!$scope.projects[i].isMember || ($scope.projects[i].isMember && !$scope.projects[i].isMember.accept))){
-                                    isRemove = true;
-                                }
+                            }else if($scope.projects[i].projectManagerId != $rootScope.userData.profileId && (!$scope.projects[i].isMember || ($scope.projects[i].isMember && !$scope.projects[i].isMember.accept))){
+                                isRemove = true;
                             }
-                            if(isRemove){
-                                $scope.projects.splice(i,1);
-                                i--;
+                            if($scope.projects[i].companyId != $rootScope.userData.companyId) {
+                                if (isRemove) {
+                                    $scope.projects.splice(i, 1);
+                                    i--;
+                                }
                             }
                             isRemove = false;
                         }
@@ -146,7 +163,6 @@ angular.module('dmc.widgets.projects',[
                     });
                 }
 
-                $scope.getProjects();
 
                 $rootScope.sortMAProjects = function(sortTag){
                     switch(sortTag) {
@@ -172,7 +188,9 @@ angular.module('dmc.widgets.projects',[
                 };
 
                 $rootScope.filterMAProjects = function(filterTag){
-
+                    $scope.filterTag = filterTag;
+                    console.log(filterTag);
+                    $scope.getProjects();
                 };
 
                 $scope.join = function(item){

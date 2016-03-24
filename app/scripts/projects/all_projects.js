@@ -45,7 +45,10 @@ angular.module('dmc.all_projects', [
         ];
         $scope.filterList = [
             {
-                id : 1, tag : "from_compnay", name : "From My Company"
+                id : 1, tag : "from_all_companies", name : "From All Companies"
+            },
+            {
+                id : 2, tag : "from_company", name : "From My Company"
             }
         ];
 

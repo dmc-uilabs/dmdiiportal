@@ -136,6 +136,7 @@ angular.module('dmc.add_project', [
                         "dueDate": params.dueDate,
                         "projectManager": $rootScope.userData.displayName,
                         "projectManagerId" : $rootScope.userData.profileId,
+                        "companyId" : $rootScope.userData.companyId,
                         "approvalOption": params.approvalOption,
                         "featureImage": {
                             "thumbnail": "/images/project_relay_controller.png",
