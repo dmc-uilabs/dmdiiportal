@@ -141,7 +141,7 @@ angular.module('dmc.component.productcard', [
                           $scope.addedTimeout = setTimeout(function () {
                               $scope.cardSource.added = false;
                               apply();
-                          }, 10000);
+                          }, 20000);
                           apply();
                       }
                   );

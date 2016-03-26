@@ -1,11 +1,13 @@
 .compare-widget{
   .tag{
     @include borderRadius(2px);
-    margin: 0 8px 8px 0;
+    margin: 0 5px 5px 0;
     padding: 8px 12px 7px 12px;
     background-color: rgb(224,224,224);
     color: rgb(66,66,66);
     font-size: 16px;
+    display: inline-block;
+    position: relative;
   }
   .adding-to-project{
     width: 100%;
@@ -122,26 +124,33 @@
         .column{
           padding: 13px;
           background-color: #fff;
-          max-width: 200px;
-          min-width: 200px;
+          max-width: 300px;
+          min-width: 300px;
           margin: 0 2px;
           vertical-align: top;
+          width: 33%;
           border-bottom: 1px solid #efeced;
+          .select-block{
+            width: calc(100% - 102px);
+          }
         }
+        $width100: calc(100% - 125px);
+        $width50: calc(100% - (3 * 216.5px) + (268.5px / 2));
+        $width33: calc(100% - 3 * 216.5px);
         .width-100{
-          max-width: 300px;
-          min-width: none;
-          width: 100%;
+          width: $width100;
+          min-width: $width100;
+          max-width: $width100;
         }
         .width-50{
-          max-width: 300px;
-          min-width: none;
-          width: 50%;
+          width: $width50;
+          min-width: $width50;
+          max-width: $width50;
         }
         .width-33{
-          max-width: 300px;
-          min-width: none;
-          width: 33%;
+          width: $width33;
+          min-width: $width33;
+          max-width: $width33;
         }
         .title{
           max-width: 120px;
@@ -265,17 +274,16 @@
     min-width: 45px;
     height: 120px;
     margin: 0;
-    opacity: 0.34;
     @include borderRadius(0);
   }
   button:hover{
-    opacity: 1;
+    opacity: 0.8;
   }
 }
 .right-btn{
-  right: 4px;
+  right: calc(50% - 535px);
   text-align: right;
 }
 .left-btn{
-  left: 150px;
+  left: calc(50% - 535px);
 }

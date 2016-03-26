@@ -55,7 +55,18 @@ angular.module('dmc.service-marketplace')
                         }
                     }
                 }
-            })
+            });
+
+            $scope.serviceTypes = [{
+                tag : "analytical",
+                name : "Analytical"
+            }, {
+                tag: "data",
+                name : "Data"
+            },{
+                tag : "solid",
+                name : "Solid"
+            }];
 
             $scope.currentImage = 1;
             $scope.indexImages = 0;
@@ -131,7 +142,7 @@ angular.module('dmc.service-marketplace')
             $scope.favoritesCount = 0;
             var getFavoriteCount = function(){
                 ajax.get(dataFactory.getFavoriteProducts(),{
-                    accountId : 1
+                    accountId : $scope.$root.userData.accountId
                 },function(response){
                     $scope.favoritesCount = response.data.length;
                     apply();
@@ -167,6 +178,17 @@ angular.module('dmc.service-marketplace')
             };
 
 //edit
+
+            var updateCompareCount = function () {
+                var arr = $cookies.getObject('compareProducts');
+                return arr == null ? {services: [], components: []} : arr;
+            };
+            $scope.compareProducts = updateCompareCount();
+
+            $scope.$watch(function() { return $cookies.changedCompare; }, function(newValue) {
+                $scope.compareProducts = updateCompareCount();
+            });
+
             //Edit product
             $scope.editPage = function () {
                 // auto focus for edit product's title
@@ -297,6 +319,7 @@ angular.module('dmc.service-marketplace')
                 serviceModel.edit_service({
                         title: $scope.product.title,
                         description: $scope.product.description,
+                        serviceType: $scope.product.serviceType,
                         specification: $scope.product.specifications[0]
                     },
                     function(data){

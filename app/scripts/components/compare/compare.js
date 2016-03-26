@@ -31,10 +31,8 @@ angular.module('dmc.compare',[
                 return 'width-100';
             }else if(count == 2){
                 return 'width-50';
-            }else if(count == 3){
-                return 'width-33';
             }else{
-                return '';
+                return 'width-33';
             }
         };
 
@@ -110,10 +108,11 @@ angular.module('dmc.compare',[
             $scope.inLeftCount++;
             $(".compare-list-products .row").each(function(){
                 $(this).find(".column:nth-child("+($scope.inLeftCount+1)+")").animate({
-                    opacity:0.34
-                },100);
+                    opacity:0
+                },300);
+                var width = 268.5;
                 $(this).find(".column:nth-child(2)").animate({
-                    marginLeft: -1*(($scope.inLeftCount*200)+(2*$scope.inLeftCount)+(2*($scope.inLeftCount-1)))
+                    marginLeft: -1*(($scope.inLeftCount*width)+(2*$scope.inLeftCount)+(2*($scope.inLeftCount-1)))
                 },300);
             });
         };
@@ -122,9 +121,10 @@ angular.module('dmc.compare',[
             $(".compare-list-products .row").each(function(){
                 $(this).find(".column:nth-child("+($scope.inLeftCount+2)+")").animate({
                     opacity:1
-                },100);
+                },300);
+                var width = 268.5;
                 $(this).find(".column:nth-child(2)").animate({
-                    marginLeft: -1*(($scope.inLeftCount*200)+(2*$scope.inLeftCount)+(2*($scope.inLeftCount-1)))
+                    marginLeft: -1*(($scope.inLeftCount*width)+(2*$scope.inLeftCount)+(2*($scope.inLeftCount-1)))
                 },300);
             });
         };
@@ -216,6 +216,8 @@ angular.module('dmc.compare',[
                         from: 'marketplace'
                     }, function (response) {
                         $scope.cancelAddToProject(item);
+                        if(!item.currentStatus) item.currentStatus = {};
+                        if(!item.currentStatus.project) item.currentStatus.project = {};
                         item.currentStatus.project.id = projectId;
                         item.currentStatus.project.title = project.title;
                         item.projectId = projectId;
@@ -228,7 +230,7 @@ angular.module('dmc.compare',[
                         $scope.addedTimeout = setTimeout(function () {
                             item.added = false;
                             apply();
-                        }, 10000);
+                        }, 20000);
                         apply();
                     }
                 );

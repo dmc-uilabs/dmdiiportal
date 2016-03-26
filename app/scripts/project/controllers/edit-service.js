@@ -12,6 +12,8 @@ angular.module('dmc.project')
             $scope.NewService = {
                 serviceName: serviceData.title,
                 serviceName_old: serviceData.title,
+                serviceType: serviceData.serviceType,
+                serviceType_old: serviceData.serviceType,
                 parentComponent: 0,
                 parentComponent_old: 0,
                 serviceDescription: serviceData.description,
@@ -22,6 +24,17 @@ angular.module('dmc.project')
             $scope.selectedInterface = null;
             $scope.addTags=[];
             $scope.removeTags = [];
+
+            $scope.serviceTypes = [{
+                tag : "analytical",
+                name : "Analytical"
+            }, {
+                tag: "data",
+                name : "Data"
+            },{
+                tag : "solid",
+                name : "Solid"
+            }];
 
             $scope.userData = DMCUserModel.getUserData();
             $scope.userData.then(function(result){
@@ -183,6 +196,7 @@ angular.module('dmc.project')
                 serviceModel.edit_service({
                     title: $scope.NewService.serviceName,
                     description: $scope.NewService.serviceDescription,
+                    serviceType: $scope.NewService.serviceType,
                     parent: $scope.NewService.parentComponent
                 },$scope.removeTags,$scope.addTags,$scope.selectedInterface.interFace, interfaceId);
             };

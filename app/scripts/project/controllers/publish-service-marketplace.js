@@ -33,10 +33,22 @@ angular.module('dmc.project')
             $scope.isDisabledFirstPage = true;
             $scope.isDisabledSecondPage = true;
 
+            $scope.serviceTypes = [{
+                tag : "analytical",
+                name : "Analytical"
+            }, {
+                tag: "data",
+                name : "Data"
+            },{
+                tag : "solid",
+                name : "Solid"
+            }];
+
             // First Page
             $scope.publishService = {
                 name : $scope.serviceData.title,
                 description : $scope.serviceData.description,
+                serviceType : $scope.serviceData.serviceType,
                 inputs : $scope.serviceData.specifications ? $scope.serviceData.specifications.input : 0,
                 outputs : $scope.serviceData.specifications ? $scope.serviceData.specifications.output : 0,
                 specifications : $scope.serviceData.specifications ? $scope.serviceData.specifications.special : [],
@@ -105,7 +117,7 @@ angular.module('dmc.project')
             };
 
             $scope.changedInput = function(){
-                $scope.isDisabledFirstPage = ($scope.publishService.name && $scope.publishService.description ? false : true);
+                $scope.isDisabledFirstPage = ($scope.publishService.name && $scope.publishService.description && $scope.publishService.serviceType ? false : true);
             };
             $scope.changedInput();
 
@@ -180,6 +192,7 @@ angular.module('dmc.project')
                 ajax.update(dataFactory.services($scope.serviceData.id).update,{
                     title : $scope.publishService.name,
                     description : $scope.publishService.description,
+                    serviceType : $scope.publishService.serviceType,
                     published: true
                 },function(response){
 

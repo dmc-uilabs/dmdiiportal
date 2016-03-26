@@ -67,7 +67,7 @@
 						<!--product header-->
 						<div class="product-header">
 							<div layout="row">
-								<md-input-container>
+								<md-input-container class="titleInput">
 									<label>Title</label>
 									<input id="editTitleProduct" 
 									       ng-init="changes.title = product.title" 
@@ -77,11 +77,21 @@
 								<span flex></span>
 								
 								<md-button ng-click="cancelEdit()" class="md-raised dmc-button margin-left20">Cancel</md-button>
-								<md-button ng-click="saveEdit()" class="md-raised md-primary dmc-button margin-left20">Save</md-button>
+								<md-button ng-click="saveEdit()"
+                                           ng-disabled="!product.title || !product.description || !product.serviceType"
+                                           class="md-raised md-primary dmc-button margin-left20">Save</md-button>
 							</div>
 						</div>
 
 						<!--product description-->
+                        <div class="product-header">
+                            <md-input-container class="serviceType">
+                                <label>Service Type</label>
+                                <md-select ng-model="product.serviceType" required>
+                                    <md-option ng-repeat="type in serviceTypes track by $index" value="{{type.tag}}">{{type.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
 						<div>
 							<md-input-container>
 								<label>Description</label>

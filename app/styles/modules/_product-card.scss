@@ -149,6 +149,9 @@ $lines-to-show-title: 2;
       ng-md-icon{
         fill: #fff;
       }
+      &:not([disabled]):hover{
+        background-color: #65AF3F;
+      }
     }
     &--small {
       .md-button {

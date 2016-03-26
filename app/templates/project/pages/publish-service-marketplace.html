@@ -26,6 +26,12 @@
                     <label>Service Name</label>
                     <input required name="name" ng-change="changedInput()" ng-model="publishService.name">
                 </md-input-container>
+                <md-input-container class="serviceType margin-left20" flex="30">
+                    <label>Service Type</label>
+                    <md-select ng-model="publishService.serviceType" ng-change="changedInput()">
+                        <md-option ng-repeat="type in serviceTypes track by $index" value="{{type.tag}}">{{type.name}}</md-option>
+                    </md-select>
+                </md-input-container>
             </div>
             <div layout="row" flex layout-align="start end" class="service-description">
                 <md-input-container class="md-block" flex>

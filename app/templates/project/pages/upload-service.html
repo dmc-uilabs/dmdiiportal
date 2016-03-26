@@ -115,12 +115,18 @@
         <div layout="column" ng-show="!page1" class="page2">
 
             <md-content class="md-padding">
-                <div layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center">
                     <md-input-container flex="40">
                         <label>Service Name</label>
                         <input ng-model="NewService.serviceName"
                                ng-init="NewService.serviceName_old = NewService.serviceName"
                                ng-change="changeValue('serviceName')">
+                    </md-input-container>
+                    <md-input-container class="serviceType margin-left20" flex="30">
+                        <label>Service Type</label>
+                        <md-select ng-model="NewService.serviceType" ng-change="changedInput()">
+                            <md-option ng-repeat="type in serviceTypes track by $index" value="{{type.tag}}">{{type.name}}</md-option>
+                        </md-select>
                     </md-input-container>
                     <!--<md-input-container flex="40">-->
                         <!--<label>Parent Component</label>-->
@@ -188,7 +194,7 @@
             </md-button>
             <!-- ng-disabled="!NewService.serviceName || !NewService.parentComponent || !NewService.serviceDescription || !tags.length" -->
             <!--<md-button class="md-primary md-raised" ng-disabled="!NewService.serviceName || (!NewService.parentComponent && NewService.parentComponent !== 0) || !NewService.serviceDescription || !service_tags.length" ng-if="!page1" ng-click="finish()">-->
-            <md-button class="md-primary md-raised " ng-disabled="!NewService.serviceName || !NewService.serviceDescription" ng-if="!page1" ng-click="finish()">
+            <md-button class="md-primary md-raised " ng-disabled="!NewService.serviceName || !NewService.serviceDescription || !NewService.serviceType" ng-if="!page1" ng-click="finish()">
                 Finish
             </md-button>
         </div>

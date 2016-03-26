@@ -20,12 +20,24 @@ angular.module('dmc.project')
             $scope.NewService = {
                 serviceName: null,
                 parentComponent: null,
-                serviceDescription: null
+                serviceDescription: null,
+                serviceType: null
             };
             $scope.documents = [];
 
             $scope.addTags = [];
             $scope.removeTags = [];
+
+            $scope.serviceTypes = [{
+                tag : "analytical",
+                name : "Analytical"
+            }, {
+                tag: "data",
+                name : "Data"
+            },{
+                tag : "solid",
+                name : "Solid"
+            }];
 
             $scope.userData = DMCUserModel.getUserData();
             $scope.userData.then(function(result){
@@ -129,6 +141,7 @@ angular.module('dmc.project')
                 serviceModel.upload_services({
                     title: $scope.NewService.serviceName,
                     description: $scope.NewService.serviceDescription,
+                    serviceType: $scope.NewService.serviceType,
                     from: 'project',
                     pojectId: projectData.id,
                     pojectTitle: projectData.title,

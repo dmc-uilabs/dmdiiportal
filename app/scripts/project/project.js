@@ -666,7 +666,7 @@ angular.module('dmc.project', [
                         "owner": $rootScope.userData.displayName,
                         "accountId": $rootScope.userData.accountId,
                         "releaseDate": moment(new Date).format("MM/DD/YYYY"),
-                        "serviceType": "analytical",
+                        "serviceType": params.serviceType,
                         "specifications": "/services/3/specifications",
                         "featureImage": {
                             "thumbnail": "images/marketplace-card-image-1.jpg",
@@ -755,6 +755,7 @@ angular.module('dmc.project', [
                             component['title'] = params['title'];
                             component['parent'] = params['parent'];
                             component['description'] = params['description'];
+                            component['serviceType'] = params['serviceType'];
 
                             return ajax.update(dataFactory.services($stateParams.ServiceId).update,
                                 component,

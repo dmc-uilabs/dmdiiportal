@@ -2,6 +2,16 @@
   padding: 16px 0;
   .product-header {
     margin-bottom: 15px;
+    md-input-container {
+      &.serviceType,
+      &.titleInput {
+        max-width: 489px;
+        width: 100%;
+      }
+      &.serviceType{
+        max-width: 289px;
+      }
+    }
     h2 {
       font-size: 21px;
       margin: auto 0;
