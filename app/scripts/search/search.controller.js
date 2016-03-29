@@ -39,6 +39,10 @@ angular.module('dmc.search')
                 return '/search.php'+$state.href('search',dataSearch);
             };
 
+            var totalCountItems = {
+                members: 0 , companies : 0, discussions : 0
+            };
+
             $scope.sortArray = [{
                 val : 'popular', name: 'Most Popular'
             }];
@@ -190,39 +194,45 @@ angular.module('dmc.search')
                     title_like: $scope.searchTextModel,
                     "_sort" : $scope.sort
                 }, function (response) {
-                    $scope.totalResults = response.data.length;
-                    $scope.discussions = response.data;
-                    var ids = $.map($scope.discussions,function(x){ return x.id; });
-                    ajax.get(dataFactory.addCommentIndividualDiscussion(),{
-                        "individual-discussionId" : ids,
-                        "_order" : "DESC",
-                        "_sort" : "id",
-                        "commentId": 0
-                    },function(res){
-                        for(var i in $scope.discussions){
-                            $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format("MM/DD/YYYY");
-                            $scope.discussions[i].replies = 0;
-                            for(var j in res.data){
-                                if($scope.discussions[i].id == res.data[j]["individual-discussionId"]){
-                                    $scope.discussions[i].replies++;
-                                    $scope.discussions[i].last = res.data[j];
-                                    $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format("MM/DD/YYYY");
-                                    if($scope.discussions[i].isPosted == null){
-                                        $scope.discussions[i].isPosted = true;
-                                    }else if($scope.discussions[i].isPosted == true){
-                                        $scope.discussions[i].isPosted = false;
+                    totalCountItems.discussions = response.data.length;
+                    $scope.treeMenuModel = getMenu();
+                    if($scope.type == 'discussions') {
+                        $scope.totalResults = response.data.length;
+                        $scope.discussions = response.data;
+                        var ids = $.map($scope.discussions, function (x) {
+                            return x.id;
+                        });
+                        ajax.get(dataFactory.addCommentIndividualDiscussion(), {
+                            "individual-discussionId": ids,
+                            "_order": "DESC",
+                            "_sort": "id",
+                            "commentId": 0
+                        }, function (res) {
+                            for (var i in $scope.discussions) {
+                                $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format("MM/DD/YYYY");
+                                $scope.discussions[i].replies = 0;
+                                for (var j in res.data) {
+                                    if ($scope.discussions[i].id == res.data[j]["individual-discussionId"]) {
+                                        $scope.discussions[i].replies++;
+                                        $scope.discussions[i].last = res.data[j];
+                                        $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format("MM/DD/YYYY");
+                                        if ($scope.discussions[i].isPosted == null) {
+                                            $scope.discussions[i].isPosted = true;
+                                        } else if ($scope.discussions[i].isPosted == true) {
+                                            $scope.discussions[i].isPosted = false;
+                                        }
                                     }
                                 }
+                                if ($scope.discussions[i].replies > 0) $scope.discussions[i].replies--;
+                                if ($scope.discussions[i].isPosted == null) $scope.discussions[i].isPosted = true;
                             }
-                            if($scope.discussions[i].replies > 0) $scope.discussions[i].replies--;
-                            if($scope.discussions[i].isPosted == null) $scope.discussions[i].isPosted = true;
-                        }
-                        var limit = ($scope.totalItemsPerPage == 'all' ? $scope.totalResults : $scope.totalItemsPerPage);
-                        if($scope.totalItemsPerPage > limit) {
-                            $scope.discussions = $scope.discussions.splice(($scope.currentPage - 1) * limit, $scope.currentPage * limit);
-                        }
-                    });
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                            var limit = ($scope.totalItemsPerPage == 'all' ? $scope.totalResults : $scope.totalItemsPerPage);
+                            if ($scope.totalItemsPerPage > limit) {
+                                $scope.discussions = $scope.discussions.splice(($scope.currentPage - 1) * limit, $scope.currentPage * limit);
+                            }
+                        });
+                    }
+                    apply();
                 });
             };
 
@@ -245,13 +255,19 @@ angular.module('dmc.search')
                         _type: $scope.subTypeModel,
                         accountId_ne: $scope.userData.accountId
                     }, function (response) {
-                        $scope.totalFollowing = 0;
-                        $scope.arrayItems = response.data;
-                        $scope.totalResults = response.data.length;
-                        for(var i in $scope.arrayItems) {
-                            $scope.arrayItems[i].isCompany = true;
+                        totalCountItems.companies = response.data.length;
+                        $scope.treeMenuModel = getMenu();
+                        if($scope.type == 'companies' || $scope.type == 'all') {
+                            $scope.totalFollowing = 0;
+                            $scope.arrayItems = response.data;
+                            $scope.totalResults = response.data.length;
+                            for (var i in $scope.arrayItems) {
+                                $scope.arrayItems[i].isCompany = true;
+                            }
+                            isFollowCompany($.map($scope.arrayItems, function (x) {
+                                return x.id;
+                            }));
                         }
-                        isFollowCompany($.map($scope.arrayItems,function(x){ return x.id;}));
                         if($scope.type == 'all'){
                             ajax.get(dataFactory.profiles().all, {
                                     _sort: "id",
@@ -297,14 +313,20 @@ angular.module('dmc.search')
                         displayName_like: $scope.searchTextModel,
                         _type: $scope.subTypeModel
                     }, function (response) {
-                        $scope.totalFollowing = 0;
-                        $scope.totalResults = response.data.length;
-                        var limit = ($scope.totalItemsPerPage == 'all' ? $scope.totalResults : $scope.totalItemsPerPage);
-                        $scope.arrayItems = $scope.totalResults > $scope.totalItemsPerPage ? response.data.splice(($scope.currentPage-1)*limit, $scope.currentPage*limit) : response.data;
-                        for(var i in $scope.arrayItems) {
-                            $scope.arrayItems[i].isMember = true;
+                        totalCountItems.members = response.data.length;
+                        $scope.treeMenuModel = getMenu();
+                        if($scope.type == 'members') {
+                            $scope.totalFollowing = 0;
+                            $scope.totalResults = response.data.length;
+                            var limit = ($scope.totalItemsPerPage == 'all' ? $scope.totalResults : $scope.totalItemsPerPage);
+                            $scope.arrayItems = $scope.totalResults > $scope.totalItemsPerPage ? response.data.splice(($scope.currentPage - 1) * limit, $scope.currentPage * limit) : response.data;
+                            for (var i in $scope.arrayItems) {
+                                $scope.arrayItems[i].isMember = true;
+                            }
+                            isFollowMember($.map($scope.arrayItems, function (x) {
+                                return x.id;
+                            }));
                         }
-                        isFollowMember($.map($scope.arrayItems,function(x){ return x.id;}));
                         apply();
                     }
                 );
@@ -313,9 +335,9 @@ angular.module('dmc.search')
 
             $scope.userData.then(function(data){
                 $scope.userData = data;
-                if($scope.type == 'discussions') $scope.getDiscussions();
-                if($scope.type == 'companies' || $scope.type == 'all') $scope.getCompanies();
-                if($scope.type == 'members') $scope.getMembers();
+                $scope.getDiscussions();
+                $scope.getCompanies();
+                $scope.getMembers();
             });
 
             $scope.addCompanyToProject = function(){
@@ -458,6 +480,7 @@ angular.module('dmc.search')
                             'id': 1,
                             'title': 'Members & Companies',
                             'tag' : 'all',
+                            'items' : totalCountItems.members+totalCountItems.companies,
                             'opened' : isOpened('all'),
                             'href' : getUrl('all'),
                             'categories': []
@@ -466,6 +489,7 @@ angular.module('dmc.search')
                             'id': 2,
                             'title': 'Members',
                             'tag' : 'members',
+                            'items' : totalCountItems.members,
                             'opened' : isOpened('members'),
                             'href' : getUrl('members'),
                             'categories': []
@@ -474,6 +498,7 @@ angular.module('dmc.search')
                             'id': 3,
                             'title': 'Companies',
                             'tag' : 'companies',
+                            'items' : totalCountItems.companies,
                             'opened' : isOpened('companies'),
                             'href' : getUrl('companies')
                         },
@@ -481,6 +506,7 @@ angular.module('dmc.search')
                             'id': 4,
                             'title': 'Discussions',
                             'tag' : 'discussions',
+                            'items' : totalCountItems.discussions,
                             'opened' : isOpened('discussions'),
                             'href' : getUrl('discussions')
                         }

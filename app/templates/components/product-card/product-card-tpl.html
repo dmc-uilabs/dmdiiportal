@@ -68,7 +68,7 @@
                 <p><strong>{{cardSource.specificationsData.runStats.success}}/{{cardSource.specificationsData.runStats.success+cardSource.specificationsData.runStats.fail}}</strong>
                     successful runs</p>
 
-                <p>Release <strong>{{cardSource.releaseDate|timeago}}</strong> ({{cardSource.releaseDate}})</p>
+                <p class="release">Release <strong>{{cardSource.releaseDate|timeago}}</strong> ({{cardSource.releaseDate}})</p>
             </div>
         </div>
         <div class="product-card__content__column" flex ng-if="cardStyle != 'small'">

@@ -594,7 +594,7 @@ angular.module('dmc.service-marketplace')
                             setTimeout(function () {
                                 $scope.invate = false;
                                 apply();
-                            }, 10000);
+                            }, 20000);
                             toastModel.showToast("success", "Product added to " + response.data.currentStatus.project.title);
                         }, function (response) {
                             toastModel.showToast("error", "Failed Add To Project");

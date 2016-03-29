@@ -14,8 +14,8 @@
           <div class="company-name" ng-if="item.companyId == userCompany.id">A Project From <a href="/company-profile.php#/{{userCompany.id}}">{{userCompany.name}}</a></div>
           <div class="rp-panel__title my-projects" layout="row">
               <h2>
-                  <a ng-if="item.isMember && item.isMember.accept" href="project.php#/{{item.id}}" class="link-button">{{item.title}}</a>
-                  <a ng-if="!item.isMember || (item.isMember && !item.isMember.accept)">{{item.title}}</a>
+                  <a ng-if="item.isMember" href="project.php#/{{ item.isMember.accept ? item.id : 'preview/'+item.id }}" class="link-button">{{item.title}}</a>
+                  <a ng-if="!item.isMember">{{item.title}}</a>
                   <span ng-if="item.dueDate">Due in {{item.dueDate}}</span>
               </h2>
               <span flex></span>

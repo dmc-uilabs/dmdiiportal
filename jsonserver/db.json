@@ -1337,7 +1337,7 @@
         "thumbnail": "images/marketplace-card-image-1.jpg",
         "large": "images/marketplace-card-image-1.jpg"
       },
-      "projectId": 3,
+      "projectId": 2,
       "type": "service",
       "from": "marketplace",
       "parent": 0,
@@ -1345,8 +1345,8 @@
       "averageRun": 0,
       "currentStatus": {
         "project": {
-          "id": 3,
-          "title": "Capacitor Design"
+          "id": 2,
+          "title": "Capacitor Bank for LDR Mining Co."
         }
       }
     },

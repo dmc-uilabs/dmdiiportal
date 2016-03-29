@@ -19,8 +19,14 @@ a.following-btn{
   }
 }
 .add-discussion-btn{
+  background-color: #C7C7C7;
+  border:none;
+  font-size: 14px;
+  @include borderRadius(2px);
+  outline: none;
+  height: 32px;
   ng-md-icon{
-    vertical-align: middle;
+    vertical-align: text-top;
   }
 }
 .dmc-announcements-content-panel {

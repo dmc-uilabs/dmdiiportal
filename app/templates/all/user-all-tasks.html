@@ -52,7 +52,7 @@
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="item in tasks | orderBy : sort">
-                                    <td><a ng-click="editTask($event,item)" class="link-button font-size14">{{item.title}}</a></td>
+                                    <td><a class="link-button font-size14" href="/project.php#/{{item.projectId}}/task/{{item.id}}">{{item.title}}</a></td>
                                     <td>
                                         <a class="link-button" href="/project.php#/{{item.project.id}}">{{item.project.title}}</a>
                                     </td>
