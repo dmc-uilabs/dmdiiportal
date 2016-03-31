@@ -9,6 +9,8 @@ var server = jsonServer.create();
 server.use(jsonServer.defaults());
 // Add this before server.use(router)
 server.use(jsonServer.rewriter({
+    '/mark-read-notifications': '/user',
+    '/clear-notification/:id': '/user',
     '/searchProjects' : '/projects',
     '/searchServices' : '/services',
     '/searchComponents' : '/components',

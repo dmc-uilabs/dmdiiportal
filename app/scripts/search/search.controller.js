@@ -367,7 +367,7 @@ angular.module('dmc.search')
                     clickOutsideToClose:true,
                     locals: {
                         project_id: null
-                    },
+                    }
                 })
                     .then(function() {
                     }, function() {

@@ -218,10 +218,44 @@ div[dmc-top-header]{
       margin-right: 8px;
       display: inline-block;
     }
+    .view-all-link{
+      text-transform: uppercase;
+    }
     md-menu-item{
       max-height: none;
       height: auto;
+      position: relative;
       border-bottom: 1px solid #ccc;
+      &.not-read{
+        background-color: #E5E5E5;
+      }
+      .service-and-market-icon{
+        width:40px;
+        height:28px;
+        vertical-align: top;
+      }
+      &.all-link{
+        min-height: 0px;
+        cursor: pointer;
+        a{
+          text-align: center;
+          margin: 5px 10px;
+          width: 100%;
+        }
+      }
+      .clear-notification{
+        position: absolute;
+        right: 0px;
+        top: 5px;
+        width: 18px;
+        height: 18px;
+        min-height: 0;
+        line-height: 0;
+        padding: 0;
+        ng-md-icon{
+          fill: #333;
+        }
+      }
       &:hover{
         background-color: #f2f2f2;
       }
@@ -234,7 +268,7 @@ div[dmc-top-header]{
       a {
         text-decoration: none;
         color: #333;
-        padding: 6px 16px;
+        padding:6px 33px 6px 16px;
         span{
           display: inline-block;
         }

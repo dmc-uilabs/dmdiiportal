@@ -23,7 +23,9 @@
           },
           "date": "02/02/2016 11:10 AM",
           "title": "Thomas assigned you a task.",
-          "link": "/project.php#/5/home?showTask=18"
+          "link": "/project.php#/5/home?showTask=18",
+          "read": false,
+          "cleared": false
         },
         {
           "id": 6,
@@ -38,7 +40,9 @@
           },
           "date": "02/02/2016 11:10 AM",
           "title": "Thomas replied to your review of GE.",
-          "link": "/company-profile.php#/1"
+          "link": "/company-profile.php#/1",
+          "read": true,
+          "cleared": false
         },
         {
           "id": 17,
@@ -53,7 +57,9 @@
           },
           "date": "02/02/2016 11:10 AM",
           "title": "Fan failure mode analysis was favorited by Thomas",
-          "link": "/service-marketplace.php#/2"
+          "link": "/service-marketplace.php#/2",
+          "read": false,
+          "cleared": false
         }
       ]
     },

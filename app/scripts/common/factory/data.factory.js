@@ -821,7 +821,13 @@ angular.module('dmc.data',[])
             },
             searchMarketplace: function (text) {
 				return localhost+'searchServices/'+text;
-			}
+			},
+            markReadNotifications: function(){
+                return localhost+'mark-read-notifications';
+            },
+            clearNotification: function(id){
+                return localhost+'clear-notification/'+id;
+            }
         };
     }
 )
