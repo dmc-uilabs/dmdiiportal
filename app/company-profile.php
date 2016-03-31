@@ -104,6 +104,7 @@
 <script src="scripts/common/models/company-model.js"></script>
 <script src="scripts/common/models/account-model.js"></script>
 <script src="scripts/common/models/phone-model.js"></script>
+<script src="scripts/common/models/question-toast-model.js"></script>
 <script src="scripts/common/models/user-model.js"></script>
 <script src="scripts/common/models/zipcode-model.js"></script>
 <!-- endbuild -->

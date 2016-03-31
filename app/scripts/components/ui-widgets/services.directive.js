@@ -4,6 +4,7 @@ angular.module('dmc.widgets.services',[
         'dmc.ajax',
         'dmc.data',
         'dmc.socket',
+        'dmc.model.question-toast-model',
         'dmc.model.previous-page'
     ]).
     directive('uiWidgetServices', ['$parse', function ($parse) {
@@ -25,7 +26,7 @@ angular.module('dmc.widgets.services',[
             link: function (scope, iElement, iAttrs) {
 
             },
-            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, previousPage, $interval) {
+            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, previousPage, $interval,questionToastModel) {
                 $scope.previousPage = previousPage;
 
                 $scope.services = [];
@@ -130,18 +131,28 @@ angular.module('dmc.widgets.services',[
                     }
                 }
 
-                $scope.deleteService = function(item){
-                    ajax.update(dataFactory.services(item.id).update,{
-                        currentStatus : {},
-                        projectId : null
-                    },function(response){
-                        for(var i in $scope.services){
-                            if($scope.services[i].id == item.id){
-                                $scope.services.splice(i,1);
-                                break;
-                            }
+                $scope.deleteService = function(event,item){
+                    questionToastModel.show({
+                        question: "Are you sure you want to remove this service?",
+                        buttons: {
+                            ok: function(){
+                                ajax.update(dataFactory.services(item.id).update,{
+                                    currentStatus : {},
+                                    projectId : null
+                                },function(response){
+                                    for(var i in $scope.services){
+                                        if($scope.services[i].id == item.id){
+                                            $scope.services.splice(i,1);
+                                            break;
+                                        }
+                                    }
+                                    toastModel.showToast("success", "Service successfully removed!");
+                                });
+                            },
+                            cancel: function(){}
                         }
-                    });
+                    }, event);
+
                 };
 
                 // Socket listeners -------------------------------------------------

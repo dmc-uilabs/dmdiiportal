@@ -79,7 +79,7 @@
     </div>
     <div class="product-card__footer" layout="row" ng-if="removeFeatured || addFeatured">
         <div layout="row" class="remove-from-featured" flex layout-align="center center" ng-show="cardSource.inFeatured && removeFeatured">
-            <md-button aria-label="Remove from Featured" layout="column" flex ng-click="removeFromFeatured()">
+            <md-button aria-label="Remove from Featured" layout="column" flex ng-click="removeFromFeatured($event)">
                 Remove from Featured
             </md-button>
         </div>

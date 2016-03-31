@@ -124,6 +124,10 @@ angular.module('dmc.project', [
             url: '/task/:taskId',
             controller: 'TaskCtrl as projectCtrl',
             templateUrl: 'templates/project/pages/task.html'
+        }).state('project.add-task', {
+            url: '/add-task',
+            controller: 'AddTaskCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/add-task.html'
         }).state('project.team', {
             url: '/team?text?type',
             controller: 'TeamCtrl as projectCtrl',

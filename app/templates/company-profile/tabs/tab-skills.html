@@ -17,7 +17,7 @@
         {{skill.name}}
         <md-button md-no-ink
                    class="md-icon-button"
-                   ng-click="deleteSkill(skill)"
+                   ng-click="deleteSkill(skill,$event)"
                    aria-label="Delete Skill">
             <ng-md-icon icon="close" size="21"></ng-md-icon>
         </md-button>
@@ -117,7 +117,7 @@
                 </md-input-container>
                 <md-button md-no-ink
                            class="md-fab md-mini md-warn md-raised delete-image"
-                           ng-click="deleteImage(image)"
+                           ng-click="deleteImage(image,$event)"
                            aria-label="Delete Image">
                     <ng-md-icon icon="delete" size="21"></ng-md-icon>
                 </md-button>

@@ -24,7 +24,7 @@
                                     <ng-md-icon icon="edit" size="14"></ng-md-icon>
                                 </md-button>
                                 <md-button md-no-ink
-                                           ng-click="deleteComment(comment)"
+                                           ng-click="deleteComment(comment,$event)"
                                            class="delete-btn md-icon-button"
                                            ng-if="comment.isOwner"
                                            aria-label="Delete">
@@ -90,7 +90,7 @@
 							<md-chip class="tag-chip">
 								{{tag.name}}
                                 <md-button md-no-ink
-                                           ng-click="deleteTag(tag)"
+                                           ng-click="deleteTag(tag,$event)"
                                            class="delete-tag-btn md-icon-button"
                                            aria-label="Delete">
                                     <ng-md-icon icon="close" size="14"></ng-md-icon>

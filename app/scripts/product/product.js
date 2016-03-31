@@ -11,6 +11,7 @@ angular.module('dmc.product', [
 	'dmc.socket',
 	'dmc.widgets.stars',
 	'dmc.widgets.documents',
+    'dmc.model.question-toast-model',
 	'dmc.widgets.review',
 	'dmc.widgets.tabs',
 	'dmc.component.treemenu',

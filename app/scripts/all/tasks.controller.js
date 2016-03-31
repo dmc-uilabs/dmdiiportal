@@ -39,6 +39,10 @@ angular.module('dmc.view-all')
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
             $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "task";
 
+            $scope.newTask = function(ev){
+                location.href = "/project.php#/"+$scope.projectId+"/add-task";
+            };
+
             if($scope.projectData && $scope.projectData.id && $scope.projectId) {
                 $scope.tasks = [];
                 $scope.order = "ASC";

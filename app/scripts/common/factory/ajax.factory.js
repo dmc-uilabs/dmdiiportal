@@ -5,9 +5,13 @@ angular.module('dmc.ajax',[
 ])
     .factory('ajax', [
         "$http",
+        "dataFactory",
+        "$rootScope",
         "toastModel",
         function (
             $http,
+            dataFactory,
+            $rootScope,
             toastModel) {
 
             var errorCallback = function(response){
@@ -58,6 +62,17 @@ angular.module('dmc.ajax',[
                 },
                 create: function(urlAddress,dataObject,successFunction,errorFunction){
                     return request(urlAddress,dataObject,successFunction,errorFunction,"POST");
+                },
+                loadProjects: function(){
+                    this.get(
+                        dataFactory.getProjects(), {
+                            _order: "DESC",
+                            _sort: "id"
+                        },
+                        function(response){
+                            $rootScope.projects = response.data;
+                        }
+                    );
                 }
             };
         }

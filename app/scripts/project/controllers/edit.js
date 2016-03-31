@@ -87,10 +87,18 @@ angular.module('dmc.project')
 
             $scope.$on('$locationChangeStart', function (event, next, current) {
                 if(!$scope.goSaveProject) {
-                    var answer = confirm("Are you sure you want to leave this page?");
-                    if (!answer) {
-                        event.preventDefault();
-                    }
+                    event.preventDefault();
+                    questionToastModel.show({
+                        question: "Are you sure you want to leave this page?",
+                        buttons: {
+                            ok: function(){
+                                $(window).unbind('beforeunload');
+                                $scope.goSaveProject = true;
+                                window.location = next;
+                            },
+                            cancel: function(){}
+                        }
+                    }, event);
                 }
             });
 

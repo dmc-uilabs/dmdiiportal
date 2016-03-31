@@ -13,15 +13,10 @@ angular.module('dmc.component.productcard', [
     'ngCookies',
     'dmc.component.members-card'
 ])
-.run(function($rootScope,ajax,dataFactory){
+.run(function(ajax){
         // get all projects and save to $rootScope
         // need for add service to project
-        ajax.get(
-            dataFactory.getProjects(), {},
-            function(response){
-                $rootScope.projects = response.data;
-            }
-        );
+        ajax.loadProjects();
 })
 .directive('dmcProductCard', function(){
      return {
@@ -95,8 +90,8 @@ angular.module('dmc.component.productcard', [
               $scope.addFeatured($scope.cardSource);
           };
 
-          $scope.removeFromFeatured = function(){
-              $scope.removeFeatured($scope.cardSource);
+          $scope.removeFromFeatured = function(ev){
+              $scope.removeFeatured($scope.cardSource,ev);
           };
 
           $scope.addedTimout = null;

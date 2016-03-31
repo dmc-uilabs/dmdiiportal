@@ -12,6 +12,7 @@ angular.module('dmc.company-profile', [
     'dmc.data',
     'dmc.socket',
     'dmc.widgets.stars',
+    'dmc.model.question-toast-model',
     'dmc.widgets.review',
     'dmc.widgets.tabs',
     'dmc.component.members-card',

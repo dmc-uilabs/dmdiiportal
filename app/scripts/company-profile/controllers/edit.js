@@ -9,14 +9,17 @@ angular.module('dmc.company-profile')
         "companyData",
         "$location",
         "toastModel",
-        "fileUpload", function ($stateParams,
-                                $scope,
-                                ajax,
-                                dataFactory,
-                                companyData,
-                                $location,
-                                toastModel,
-                                fileUpload) {
+        "questionToastModel",
+        "fileUpload",
+        function ($stateParams,
+                  $scope,
+                  ajax,
+                  dataFactory,
+                  companyData,
+                  $location,
+                  toastModel,
+                  questionToastModel,
+                  fileUpload) {
 
             $scope.company = companyData;
 
@@ -63,13 +66,21 @@ angular.module('dmc.company-profile')
                 }
             };
 
-            $scope.deleteLogo = function(){
-                ajax.update(dataFactory.updateCompanyProfile($scope.company.id),{
-                    logoImage: null
-                },function(response){
-                    $scope.company.logoImage = null;
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                });
+            $scope.deleteLogo = function(ev){
+                questionToastModel.show({
+                    question : "Do you want to delete the logo?",
+                    buttons: {
+                        ok: function(){
+                            ajax.update(dataFactory.updateCompanyProfile($scope.company.id),{
+                                logoImage: null
+                            },function(response){
+                                $scope.company.logoImage = null;
+                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                            });
+                        },
+                        cancel: function(){}
+                    }
+                },ev);
             };
 
             var callbackUploadPicture = function(data){

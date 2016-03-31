@@ -100,7 +100,7 @@
                            placeholder="Image Title">
                 </md-input-container>
                 <md-button md-no-ink class="md-fab md-mini md-warn md-raised delete-image"
-                           ng-click="deleteImage(image)"
+                           ng-click="deleteImage(image,$event)"
                            aria-label="Delete Image">
                     <ng-md-icon icon="delete" size="21"></ng-md-icon>
                 </md-button>
@@ -161,7 +161,7 @@
                        ng-model="video.changedLink">
             </md-input-container>
             <md-button md-no-ink
-                       ng-click="deleteVideo(video)"
+                       ng-click="deleteVideo(video,$event)"
                        class="md-icon-button delete-video"
                        aria-label="Delete Video">
                 <ng-md-icon icon="delete" size="32"></ng-md-icon>

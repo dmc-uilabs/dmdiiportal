@@ -115,7 +115,7 @@
               <md-chips ng-repeat="skill in profile.skills track by $index">
                 <md-chip class="skills-chip">
                   {{skill}}
-                  <md-button aria-label="close" ng-click="deleteSkill($index)" class="md-icon-button">
+                  <md-button aria-label="close" ng-click="deleteSkill($index,$event)" class="md-icon-button">
                     <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
                   </md-button>
                 </md-chip>

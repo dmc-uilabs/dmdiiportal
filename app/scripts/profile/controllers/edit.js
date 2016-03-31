@@ -27,7 +27,7 @@ angular.module('dmc.profile')
 
         function apply(){
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-        };
+        }
 
         $scope.change = function(){
             console.info('c', $scope.changes)
@@ -46,7 +46,7 @@ angular.module('dmc.profile')
                 $scope.isChange = true;
                 return;
             }
-        }
+        };
 
         //Edit profile
         $scope.editPage = function () {
@@ -55,7 +55,7 @@ angular.module('dmc.profile')
             $timeout(function () {
                 $("#editDisplayNameProfile").focus();
             });
-        }
+        };
 
         //add skill to profile
         $scope.addSkill = function (inputSkill) {
@@ -63,13 +63,21 @@ angular.module('dmc.profile')
             $scope.isChange = true;
             $scope.profile.skills.push(inputSkill);
             this.inputSkill = null;
-        }
+        };
 
         //remove skill
-        $scope.deleteSkill = function (index) {
-            $scope.isChange = true;
-            $scope.profile.skills.splice(index, 1);
-        }
+        $scope.deleteSkill = function (index,ev) {
+            questionToastModel.show({
+                question : "Do you want to delete the skill?",
+                buttons: {
+                    ok: function(){
+                        $scope.isChange = true;
+                        $scope.profile.skills.splice(index, 1);
+                    },
+                    cancel: function(){}
+                }
+            },ev);
+        };
 
         //save edit profile
         $scope.saveEdit = function () {
@@ -90,13 +98,13 @@ angular.module('dmc.profile')
             if ($scope.file != '') {
                 fileUpload.uploadFileToUrl($scope.file.files[0].file, {id: $scope.profile.id}, 'profile', callbackUploadPicture);
             }
-        }
+        };
 
         $scope.cancelEdit = function(){
             $scope.save = true;
             $scope.isChangingPicture = false;
             $state.go("profile",{profileId: $scope.profile.id})
-        }
+        };
 
         $scope.removeMainPicture = function(ev){
             questionToastModel.show({
@@ -109,7 +117,7 @@ angular.module('dmc.profile')
                     },
                     cancel: function(){}
                 }
-            },ev)
+            },ev);
         };
 
 //upload profile photo

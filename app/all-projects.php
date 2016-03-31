@@ -99,6 +99,7 @@
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/projects/all_projects.js"></script>
+    <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/projects/create_project.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">

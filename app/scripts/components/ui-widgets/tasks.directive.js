@@ -114,20 +114,23 @@ angular.module('dmc.widgets.tasks',[
                 //});
 
                 $scope.newTask = function(ev){
-                    $mdDialog.show({
-                        controller: "CreateTaskController",
-                        templateUrl: 'templates/components/dialogs/create-task-tpl.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
-                        clickOutsideToClose: true,
-                        locals : {
-                            projectId : $scope.projectId
-                        }
-                    }).then(function (answer) {
-
-                    }, function (update) {
-                        if(update) $scope.getTasks();
-                    });
+                    if($scope.projectId > 0) {
+                        location.href = "/project.php#/" + $scope.projectId + "/add-task";
+                    }
+                    //$mdDialog.show({
+                    //    controller: "CreateTaskController",
+                    //    templateUrl: 'templates/components/dialogs/create-task-tpl.html',
+                    //    parent: angular.element(document.body),
+                    //    targetEvent: ev,
+                    //    clickOutsideToClose: true,
+                    //    locals : {
+                    //        projectId : $scope.projectId
+                    //    }
+                    //}).then(function (answer) {
+                    //
+                    //}, function (update) {
+                    //    if(update) $scope.getTasks();
+                    //});
                 };
 
                 $scope.editTask = function(ev,task){

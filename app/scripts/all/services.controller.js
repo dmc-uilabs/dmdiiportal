@@ -10,6 +10,7 @@ angular.module('dmc.view-all')
         'projectData',
         'previousPage',
         '$interval',
+        'questionToastModel',
         'dataFactory',
         function (  $scope,
                     $stateParams,
@@ -20,6 +21,7 @@ angular.module('dmc.view-all')
                     projectData,
                     previousPage,
                     $interval,
+                    questionToastModel,
                     dataFactory) {
 
 
@@ -176,19 +178,30 @@ angular.module('dmc.view-all')
                 }
             }
 
-            $scope.deleteService = function(item){
-                ajax.update(dataFactory.services(item.id).update,{
-                    currentStatus : {},
-                    projectId : null
-                },function(response){
-                    for(var i in $scope.services){
-                        if($scope.services[i].id == item.id){
-                            $scope.services.splice(i,1);
-                            break;
-                        }
+            $scope.deleteService = function(event,item){
+                questionToastModel.show({
+                    question: "Are you sure you want to remove this service?",
+                    buttons: {
+                        ok: function(){
+                            ajax.update(dataFactory.services(item.id).update,{
+                                currentStatus : {},
+                                projectId : null
+                            },function(response){
+                                for(var i in $scope.services){
+                                    if($scope.services[i].id == item.id){
+                                        $scope.services.splice(i,1);
+                                        break;
+                                    }
+                                }
+                                toastModel.showToast("success", "Service successfully removed!");
+                            });
+                        },
+                        cancel: function(){}
                     }
-                });
+                }, event);
             };
+
+
 
         }
     ]

@@ -1,0 +1,31 @@
+<md-dialog class="ChoiceProject" aria-label="Choice the Project">
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Choice the project</h2>
+                <span flex></span>
+                <md-button class="md-icon-button btn-close" ng-click="cancel()">
+                    <ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content layout="row">
+            <div layout="column" flex>
+                <md-input-container flex>
+                    <label>Select Project</label>
+                    <md-select ng-model="selectedProject">
+                        <md-option ng-repeat="project in $root.projects" value="{{project.id}}">
+                            {{project.title}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <div layout="row" flex>
+                    <span flex></span>
+                    <md-button class="md-raised dmc-button md-primary" ng-click="addTask(selectedProject)" ng-disabled="!selectedProject">
+                        Add Task
+                    </md-button>
+                </div>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

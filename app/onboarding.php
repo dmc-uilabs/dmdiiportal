@@ -94,6 +94,7 @@
 <script src="scripts/common/models/user-model.js"></script>
 <script src="scripts/common/models/toast-model.js"></script>
 <script src="scripts/common/models/phone-model.js"></script>
+<script src="scripts/common/models/question-toast-model.js"></script>
 <script src="scripts/common/models/previous-page.js"></script>
 
 <script src="scripts/onboarding/onboarding.js"></script>

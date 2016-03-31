@@ -130,6 +130,7 @@
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/project/controllers/tasks.js"></script>
     <script src="scripts/project/controllers/task.js"></script>
+    <script src="scripts/project/controllers/add-task.js"></script>
     <script src="scripts/project/controllers/team.js"></script>
     <script src="scripts/project/controllers/workspace.js"></script>
     <script src="scripts/project/controllers/rfp-home.js"></script>

@@ -70,7 +70,7 @@
                             <!--</md-button>-->
                             <md-button class="md-raised" ng-click="follow(item.member)">{{item.member.isFollow ? 'Unfollow' : 'Follow'}}</md-button>
                             <md-button md-no-ink class="md-icon-button delete"
-                                       ng-click="delete(item)"
+                                       ng-click="delete($event,item)"
                                        aria-label="Delete">
                                 <ng-md-icon icon="delete" size="25"></ng-md-icon>
                             </md-button>

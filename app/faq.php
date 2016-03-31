@@ -97,6 +97,7 @@
     <script src="scripts/components/carousel/carousel.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
     <script src="scripts/common/models/file-upload.js"></script>
+    <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/file-model.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>

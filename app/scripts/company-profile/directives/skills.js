@@ -8,7 +8,7 @@ angular.module('dmc.company-profile').
                 source : "=",
                 changedValue : "=",
                 changes : "="
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, companyProfileModel,fileUpload) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, companyProfileModel,fileUpload,questionToastModel) {
                 $element.addClass("tab-skills");
 
                 // get company images
@@ -57,21 +57,29 @@ angular.module('dmc.company-profile').
                 };
 
                 // delete skill
-                $scope.deleteSkill = function(skill){
-                    ajax.delete(dataFactory.deleteCompanySkill(skill.id),{},
-                        function(response){
-                            var data = response.data ? response.data : response;
-                            for(var index in $scope.source.skills){
-                                if($scope.source.skills[index].id == skill.id){
-                                    $scope.source.skills.splice(index,1);
-                                    break;
-                                }
-                            }
-                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                        },function(){
-                            toastModel.showToast("error", "Error. The problem on the server.");
+                $scope.deleteSkill = function(skill,ev){
+                    questionToastModel.show({
+                        question : "Do you want to delete skill?",
+                        buttons: {
+                            ok: function(){
+                                ajax.delete(dataFactory.deleteCompanySkill(skill.id),{},
+                                    function(response){
+                                        var data = response.data ? response.data : response;
+                                        for(var index in $scope.source.skills){
+                                            if($scope.source.skills[index].id == skill.id){
+                                                $scope.source.skills.splice(index,1);
+                                                break;
+                                            }
+                                        }
+                                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                                    },function(){
+                                        toastModel.showToast("error", "Error. The problem on the server.");
+                                    }
+                                );
+                            },
+                            cancel: function(){}
                         }
-                    );
+                    },ev);
                 };
 
                 // image drop box
@@ -124,12 +132,20 @@ angular.module('dmc.company-profile').
                     }
                 };
 
-                $scope.deleteImage = function(img){
-                    if(!$scope.changes.removedSkillsImages) $scope.changes.removedSkillsImages = [];
-                    $scope.changes.removedSkillsImages.push(img.id);
-                    img.hide = true;
-                    $scope.changedValue('image');
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                $scope.deleteImage = function(img,ev){
+                    questionToastModel.show({
+                        question : "Do you want to delete image?",
+                        buttons: {
+                            ok: function(){
+                                if(!$scope.changes.removedSkillsImages) $scope.changes.removedSkillsImages = [];
+                                $scope.changes.removedSkillsImages.push(img.id);
+                                img.hide = true;
+                                $scope.changedValue('image');
+                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                            },
+                            cancel: function(){}
+                        }
+                    },ev);
                 };
             }
         };

@@ -6,6 +6,7 @@ angular.module('dmc.individual-discussion', [
 	'ui.router',
 	'dmc.ajax',
 	'dmc.data',
+    'dmc.model.question-toast-model',
 	'dmc.common.header',
 	'dmc.common.footer',
 	'dmc.model.toast-model',

@@ -8,7 +8,7 @@ angular.module('dmc.company-profile').
                 source : "=",
                 changedValue : "=",
                 changes : "="
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, questionToastModel) {
                 $element.addClass("tab-contact");
 
 
@@ -136,10 +136,18 @@ angular.module('dmc.company-profile').
                 };
 
                 // delete contact
-                $scope.deleteContact = function(contact){
-                    contact.hide = true;
-                    $scope.changedValue('contact');
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                $scope.deleteContact = function(contact,ev){
+                    questionToastModel.show({
+                        question : "Do you want to delete the contact?",
+                        buttons: {
+                            ok: function(){
+                                contact.hide = true;
+                                $scope.changedValue('contact');
+                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                            },
+                            cancel: function(){}
+                        }
+                    },ev);
                 };
             }
         };

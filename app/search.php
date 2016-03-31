@@ -116,6 +116,7 @@
     <script src="scripts/common/models/account-model.js"></script>
     <script src="scripts/common/models/phone-model.js"></script>
     <script src="scripts/common/models/zipcode-model.js"></script>
+    <script src="scripts/common/models/question-toast-model.js"></script>
 
     <script src="scripts/search/search.js"></script>
     <script src="scripts/search/search.controller.js"></script>

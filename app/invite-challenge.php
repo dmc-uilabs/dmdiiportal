@@ -69,6 +69,7 @@
     <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="/bower_components/lodash/lodash.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="/bower_components/angular-uuid4/angular-uuid4.js"></script>
     <script src="/bower_components/md-data-table/dist/md-data-table.js"></script>
     <script src="/bower_components/md-data-table/dist/md-data-table-templates.js"></script>

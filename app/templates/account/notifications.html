@@ -31,10 +31,10 @@
                                                  ng-init="item.user_item.changedSelected = item.user_item.selected"
                                                  ng-if="!item.hide">
                                                 <md-switch ng-model="item.user_item.changedSelected"
-                                                           aria-label=""
+                                                           aria-label="Switch notification"
                                                            ng-change="changedNotification(item.user_item)">
                                                 </md-switch>
-                                                <span class="title-switch" ng-click="item.user_item.changedSelected=!item.user_item.changedSelected">{{item.title}}</span>
+                                                <span class="title-switch" ng-click="switchByText(item.user_item)">{{item.title}}</span>
                                                 <span flex></span>
                                             </div>
                                         </div>

@@ -10,7 +10,7 @@
                     <img ng-src="{{company.logoImage ? company.logoImage : 'images/icon-company-lg.svg'}}" class="logo" alt="{{company.name}}" />
                     <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
                                ng-if="company.logoImage"
-                               ng-click="deleteLogo()"
+                               ng-click="deleteLogo($event)"
                                aria-label="Delete Image">
                         <ng-md-icon icon="delete" size="18"></ng-md-icon>
                     </md-button>

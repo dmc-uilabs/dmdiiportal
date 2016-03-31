@@ -38,7 +38,7 @@
 						<md-button 
 							class="md-fab md-mini md-warn md-raised delete-image"
 							ng-if="product.service_images.length" 
-							ng-click="carouselFunctions.deleteImage(indexImages)" 
+							ng-click="carouselFunctions.deleteImage(indexImages,$event)"
 							aria-label="delete">
 							<ng-md-icon icon="delete" style="fill: #fff" size="25"></ng-md-icon>
 						</md-button>
@@ -144,7 +144,7 @@
 								<p>Outputs: {{product.specifications[0].output}}</p>
 								
 								<div layout="row" ng-repeat="item in product.specifications[0].special track by $index">
-									<md-button aria-label="close" ng-click="deleteSpecifications($index)" class="md-raised deleteSpecifications">
+									<md-button aria-label="close" ng-click="deleteSpecifications($index,$event)" class="md-raised deleteSpecifications">
 										<ng-md-icon icon="close" style="fill: 'grey'" size="12"></ng-md-icon>
 									</md-button>
 									<md-input-container>
@@ -192,7 +192,7 @@
 									<md-chips ng-repeat="tag in product.service_tags track by $index">
 										<md-chip class="tags-chip">
 											{{tag.name}}
-											<md-button aria-label="close" ng-click="deleteTag($index, tag.id)" class="md-icon-button">
+											<md-button aria-label="close" ng-click="deleteTag($index, tag.id,$event)" class="md-icon-button">
 												<ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
 											</md-button>
 										</md-chip>
@@ -238,7 +238,7 @@
 									<div class="product-card" layout="column">
 										<md-toolbar>
 											<div class="md-toolbar-tools" layout layout-align="end center">
-												<md-button ng-click="deleteAthors($index, oneAuthor.id)" aria-label="close" class="md-icon-button">
+												<md-button ng-click="deleteAthors($index, oneAuthor.id,$event)" aria-label="close" class="md-icon-button">
 													<ng-md-icon icon="close" style="fill: grey;" size="25"></ng-md-icon>
 												</md-button>
 											</div>

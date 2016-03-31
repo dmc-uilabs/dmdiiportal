@@ -56,7 +56,7 @@
                         <div layout="column" class="logo-storefront-edit" layout-align="start start">
                             <div class="storefront-logo-box" ng-show="!isChangingLogo && companyData.logoImage">
                                 <img ng-src="{{companyData.logoImage}}" class="main-image" alt="" />
-                                <md-button ng-click="deleteLogo()" class="md-fab md-mini md-warn md-raised delete-logo" aria-label="Delete logo">
+                                <md-button ng-click="deleteLogo($event)" class="md-fab md-mini md-warn md-raised delete-logo" aria-label="Delete logo">
                                     <ng-md-icon icon="delete" size="18"></ng-md-icon>
                                 </md-button>
                             </div>

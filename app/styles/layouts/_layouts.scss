@@ -490,3 +490,18 @@ md-input-container:not(.md-input-has-value) input:not(:focus){
   }
 }
 
+.ChoiceProject{
+  .md-toolbar-tools{
+    h2{
+      color: #fff;
+    }
+    .btn-close{
+      ng-md-icon{
+        fill: #fff;
+      }
+    }
+  }
+  md-dialog-content{
+    min-width: 400px;
+  }
+}

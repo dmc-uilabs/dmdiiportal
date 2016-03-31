@@ -45,11 +45,22 @@ angular.module('dmc.add_members')
             }
 
             $scope.selectedTab = 0;
-
+            var askLeave = true;
             $scope.$on('$locationChangeStart', function (event, next, current) {
-                var answer = confirm("Are you sure you want to leave this page?");
-                if (!answer){
+                if(askLeave) {
                     event.preventDefault();
+                    questionToastModel.show({
+                        question: "Are you sure you want to leave this page?",
+                        buttons: {
+                            ok: function () {
+                                askLeave = false;
+                                $(window).unbind('beforeunload');
+                                window.location = next;
+                            },
+                            cancel: function () {
+                            }
+                        }
+                    }, event);
                 }
             });
 

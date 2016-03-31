@@ -98,6 +98,7 @@
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
+    <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/member-model.js"></script>
     <script src="scripts/add_project/add_project.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>

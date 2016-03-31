@@ -12,7 +12,7 @@ angular.module('dmc.company-profile').
                 source : "=",
                 changedValue : "=",
                 changes : "="
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, companyProfileModel, fileUpload ) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, companyProfileModel, fileUpload, questionToastModel) {
                 $element.addClass("tab-overview");
 
                 // get company images
@@ -72,10 +72,18 @@ angular.module('dmc.company-profile').
                 };
 
                 // delete video
-                $scope.deleteVideo = function(video){
-                    video.hide = true;
-                    $scope.changedValue('video');
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                $scope.deleteVideo = function(video,ev){
+                    questionToastModel.show({
+                        question : "Do you want to delete video?",
+                        buttons: {
+                            ok: function(){
+                                video.hide = true;
+                                $scope.changedValue('video');
+                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                            },
+                            cancel: function(){}
+                        }
+                    },ev);
                 };
 
                 // image drop box
@@ -128,12 +136,20 @@ angular.module('dmc.company-profile').
                     }
                 };
 
-                $scope.deleteImage = function(img){
-                    if(!$scope.changes.removedImages) $scope.changes.removedImages = [];
-                    $scope.changes.removedImages.push(img.id);
-                    img.hide = true;
-                    $scope.changedValue('image');
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                $scope.deleteImage = function(img,ev){
+                    questionToastModel.show({
+                        question : "Do you want to delete image?",
+                        buttons: {
+                            ok: function(){
+                                if(!$scope.changes.removedImages) $scope.changes.removedImages = [];
+                                $scope.changes.removedImages.push(img.id);
+                                img.hide = true;
+                                $scope.changedValue('image');
+                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                            },
+                            cancel: function(){}
+                        }
+                    },ev);
                 };
             }
         };

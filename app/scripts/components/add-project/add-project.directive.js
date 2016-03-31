@@ -6,13 +6,14 @@ angular.module('dmc.add_project.directive', [
     'dmc.model.project',
     'dmc.model.member',
     'ngMdIcons',
+    'dmc.model.question-toast-model',
     'dmc.widgets.documents',
     'dmc.compare'
 ]).directive('addProjectTabs', ['$parse', function ($parsel) {
     return {
         restrict: 'A',
         templateUrl: 'templates/components/add-project/ap-index.html',
-        controller: ['$scope', 'projectModel', function ($scope, projectModel) {
+        controller: ['$scope', 'projectModel', function ($scope, projectModel,questionToastModel) {
             // Specify a list of font-icons with ligatures and color overrides
             var iconData = [
                 {name: 'accessibility', color: "#777"},
@@ -44,10 +45,18 @@ angular.module('dmc.add_project.directive', [
 
             $scope.$on('$locationChangeStart', function (event, next, current) {
                 if(!$scope.goSaveProject) {
-                    var answer = confirm("Are you sure you want to leave this page?");
-                    if (!answer) {
-                        event.preventDefault();
-                    }
+                    event.preventDefault();
+                    questionToastModel.show({
+                        question: "Are you sure you want to leave this page?",
+                        buttons: {
+                            ok: function(){
+                                $(window).unbind('beforeunload');
+                                $scope.goSaveProject = true;
+                                window.location = next;
+                            },
+                            cancel: function(){}
+                        }
+                    }, event);
                 }
             });
             $(window).unbind('beforeunload');

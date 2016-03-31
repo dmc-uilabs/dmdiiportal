@@ -2,10 +2,34 @@
 
 angular.module('dmc.product')
 
-    .controller('componentEditController', ['componentData', 'DMCUserModel', 'serviceModel', '$state', '$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$timeout', '$cookies',
-        function (componentData, DMCUserModel,serviceModel, $state, $stateParams, $scope,   ajax,   dataFactory,   $mdDialog,  $timeout,   $cookies) {
+    .controller('componentEditController', [
+        'componentData',
+        'DMCUserModel',
+        'serviceModel',
+        '$state',
+        '$stateParams',
+        '$scope',
+        'ajax',
+        'dataFactory',
+        '$mdDialog',
+        '$timeout',
+        '$cookies',
+        'questionToastModel',
+        function (componentData,
+                  DMCUserModel,
+                  serviceModel,
+                  $state,
+                  $stateParams,
+                  $scope,
+                  ajax,
+                  dataFactory,
+                  $mdDialog,
+                  $timeout,
+                  $cookies,
+                  questionToastModel) {
 
             $scope.product = componentData;  //array product
+            $scope.product.service_authors = [0,1,2,3];
             $scope.not_found = false;  //product not fount
             $scope.products_card = [];  //products card
             $scope.allServices = [];
@@ -21,6 +45,7 @@ angular.module('dmc.product')
             $scope.arrAddSpecifications = [];
             $scope.arraySpecifications = [];
             $scope.autocomplete = false;
+            $scope.documents = [];
 
             $scope.changes = {};
             $scope.changesSpecifications = $scope.product.specifications[0].special.length;
@@ -120,7 +145,7 @@ angular.module('dmc.product')
                     accountId : userData.accountId
                 },function(response){
                     $scope.favoritesCount = response.data.length;
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    apply();
                 });
             };
             // ---------------------------------------
@@ -129,19 +154,26 @@ angular.module('dmc.product')
             $scope.carouselFunctions = {
                 openImage : function(index){
                     $scope.indexImages = index;
-
                 },
-                deleteImage: function(index){
-                    $scope.isChange = true;
-                    $scope.removeImages.push($scope.product.service_images[index].id);
-                    $scope.product.service_images.splice(index, 1);
-                    if ($scope.indexImages == index){
-                        $scope.indexImages = 0;
-                    }
-                    if($scope.indexImages > index){
-                        $scope.indexImages--;
-                    }
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                deleteImage: function(index,ev){
+                    questionToastModel.show({
+                        question : "Do you want to delete the image?",
+                        buttons: {
+                            ok: function(){
+                                $scope.isChange = true;
+                                $scope.removeImages.push($scope.product.service_images[index].id);
+                                $scope.product.service_images.splice(index, 1);
+                                if ($scope.indexImages == index){
+                                    $scope.indexImages = 0;
+                                }
+                                if($scope.indexImages > index){
+                                    $scope.indexImages--;
+                                }
+                                apply();
+                            },
+                            cancel: function(){}
+                        }
+                    },ev);
                 },
                 selected: function(index){
                     return index == $scope.indexImages;
@@ -151,12 +183,12 @@ angular.module('dmc.product')
 //load data
             serviceModel.get_included_services(function(data){
                 $scope.includedServices = data;
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                apply();
             });
 
             serviceModel.get_all_component({}, function(data){
                 $scope.allServices = data;
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                apply();
             });
 
 
@@ -259,21 +291,37 @@ angular.module('dmc.product')
             }
 
             //Remove included services
-            $scope.deleteIncluded = function(index, id){
-                $scope.isChange = true;
-                $scope.removeIncluded.push(id);
-                $scope.includedServices.splice(index, 1);
-            }
+            $scope.deleteIncluded = function(index, id,ev){
+                questionToastModel.show({
+                    question : "Do you want to delete the included service?",
+                    buttons: {
+                        ok: function(){
+                            $scope.isChange = true;
+                            $scope.removeIncluded.push(id);
+                            $scope.includedServices.splice(index, 1);
+                        },
+                        cancel: function(){}
+                    }
+                },ev);
+            };
 
             //remove specifications
-            $scope.deleteSpecifications = function(index){
-                $scope.arraySpecifications.push({
-                    id: $scope.product.specifications[0].special[index].specificationId,
-                    name: $scope.product.specifications[0].special[index].specification,
-                });
-                $scope.product.specifications[0].special.splice(index,1);
-                $scope.change();
-            }
+            $scope.deleteSpecifications = function(index,ev){
+                questionToastModel.show({
+                    question : "Do you want to delete the specification?",
+                    buttons: {
+                        ok: function(){
+                            $scope.arraySpecifications.push({
+                                id: $scope.product.specifications[0].special[index].specificationId,
+                                name: $scope.product.specifications[0].special[index].specification
+                            });
+                            $scope.product.specifications[0].special.splice(index,1);
+                            $scope.change();
+                        },
+                        cancel: function(){}
+                    }
+                },ev);
+            };
             //add bew sepecifications to system
             $scope.addNewSpecifications = function(text){
                 this.$$childHead.$mdAutocompleteCtrl.clear();
@@ -285,7 +333,7 @@ angular.module('dmc.product')
                             specificationId: data.id
                         });
                     });
-            }
+            };
 
             //add tag to product
             $scope.addTag = function(inputTag){
@@ -294,16 +342,41 @@ angular.module('dmc.product')
                 $scope.addTags.push(inputTag);
                 $scope.product.service_tags.push({name: inputTag});
                 this.inputTag = null;
-            }
+            };
 
             //remove tag
-            $scope.deleteTag = function(index, id){
-                $scope.isChange = true;
-                if(id || id === 0){
-                    $scope.removeTags.push(id);
-                }
-                $scope.product.service_tags.splice(index,1);
-            }
+            $scope.deleteTag = function(index, id, ev){
+                questionToastModel.show({
+                    question : "Do you want to delete the image?",
+                    buttons: {
+                        ok: function(){
+                            $scope.isChange = true;
+                            if(id || id === 0){
+                                $scope.removeTags.push(id);
+                            }
+                            $scope.product.service_tags.splice(index,1);
+                        },
+                        cancel: function(){}
+                    }
+                },ev);
+            };
+
+            //delete author
+            $scope.deleteAthors = function(index,id,ev){
+                questionToastModel.show({
+                    question : "Do you want to delete the author?",
+                    buttons: {
+                        ok: function(){
+                            $scope.isChange = true;
+                            if(id || id === 0){
+                                $scope.removeAuthors.push(id);
+                            }
+                            $scope.product.service_authors.splice(index,1);
+                        },
+                        cancel: function(){}
+                    }
+                },ev);
+            };
 
             //save edit product
             $scope.saveEdit = function(){
@@ -328,13 +401,13 @@ angular.module('dmc.product')
                         $scope.isChangingPicture = false;
                         $state.go('component', {typeProduct: $scope.product.type+'s', productId: $scope.product.id});
                     });
-            }
+            };
 
             $scope.cancelEdit = function(){
                 $scope.save = true;
                 $scope.isChangingPicture = false;
                 $state.go('component', {typeProduct: $scope.product.type+'s', productId: $scope.product.id});
-            }
+            };
 
             var getMenu = function(){
                 var dataSearch = $.extend(true,{},$stateParams);

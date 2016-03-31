@@ -93,8 +93,9 @@
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
     <script src="scripts/common/models/task-model.js"></script>
+    <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/components/ui-widgets/tasks.directive.js"></script>
-
+    <script src="scripts/components/select-project/select-project.controller.js"></script>
 
     <script src="scripts/all/all.js"></script>
     <script src="scripts/all/tasks.controller.js"></script>

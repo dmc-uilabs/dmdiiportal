@@ -44,16 +44,15 @@ angular.module('dmc.company')
 
 
                 $scope.removeMainPicture = function(ev){
-                    deletePicture();
-                    //questionToastModel.show({
-                    //    question : "Do you want to delete the picture?",
-                    //    buttons: {
-                    //        ok: function(){
-                    //            deletePicture();
-                    //        },
-                    //        cancel: function(){}
-                    //    }
-                    //},ev);
+                    questionToastModel.show({
+                        question : "Do you want to delete the picture?",
+                        buttons: {
+                            ok: function(){
+                                deletePicture();
+                            },
+                            cancel: function(){}
+                        }
+                    },ev);
                 };
 
 
@@ -153,14 +152,23 @@ angular.module('dmc.company')
                     $scope.cancelChangeLogo();
                 };
 
-                $scope.deleteLogo = function(){
-                    ajax.update(dataFactory.deleteCompanyLogo($scope.companyId), {
-                            logoImage : null
-                        }, function(response){
-                            $scope.companyData.logoImage = null;
-                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                $scope.deleteLogo = function(ev){
+                    questionToastModel.show({
+                        question : "Do you want to delete the logo?",
+                        buttons: {
+                            ok: function(){
+                                ajax.update(dataFactory.deleteCompanyLogo($scope.companyId), {
+                                        logoImage : null
+                                    }, function(){
+                                        $scope.companyData.logoImage = null;
+                                        apply();
+                                    }
+                                );
+                            },
+                            cancel: function(){}
                         }
-                    );
+                    },ev);
+
                 };
 
                 $scope.changePicture = function(){
@@ -506,27 +514,35 @@ angular.module('dmc.company')
                 };
 
                 // remove from featured
-                $scope.removeFeatured = function(item){
-                    ajax.delete(dataFactory.removeCompanyFeatured(item.featureId),{},
-                        function(response){
-                            for(var i=0; i < $scope.featuredItems.length; i++){
-                                if($scope.featuredItems[i].type == item.type && $scope.featuredItems[i].id == item.id){
-                                    $scope.featuredItems.splice(i,1);
-                                    break;
-                                }
-                            }
-                            for(var i=0;i < $scope.storefrontItems.arr.length;i++) {
-                                if($scope.storefrontItems.arr[i].type == item.type && $scope.storefrontItems.arr[i].id == item.id){
-                                    delete $scope.storefrontItems.arr[i].featureId;
-                                    delete $scope.storefrontItems.arr[i].position;
-                                    delete $scope.storefrontItems.arr[i].inFeatured;
-                                    break;
-                                }
-                            }
-                            getChangedPosition();
-                            apply();
+                $scope.removeFeatured = function(item,ev){
+                    questionToastModel.show({
+                        question : "Do you want to remove service from featured?",
+                        buttons: {
+                            ok: function(){
+                                ajax.delete(dataFactory.removeCompanyFeatured(item.featureId),{},
+                                    function(response){
+                                        for(var i=0; i < $scope.featuredItems.length; i++){
+                                            if($scope.featuredItems[i].type == item.type && $scope.featuredItems[i].id == item.id){
+                                                $scope.featuredItems.splice(i,1);
+                                                break;
+                                            }
+                                        }
+                                        for(var i=0;i < $scope.storefrontItems.arr.length;i++) {
+                                            if($scope.storefrontItems.arr[i].type == item.type && $scope.storefrontItems.arr[i].id == item.id){
+                                                delete $scope.storefrontItems.arr[i].featureId;
+                                                delete $scope.storefrontItems.arr[i].position;
+                                                delete $scope.storefrontItems.arr[i].inFeatured;
+                                                break;
+                                            }
+                                        }
+                                        getChangedPosition();
+                                        apply();
+                                    }
+                                );
+                            },
+                            cancel: function(){}
                         }
-                    );
+                    },ev);
                 };
 
                 // disable all links in storefront card

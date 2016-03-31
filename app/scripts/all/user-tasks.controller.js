@@ -158,19 +158,18 @@ angular.module('dmc.view-all')
 
             $scope.newTask = function(ev){
                 $mdDialog.show({
-                    controller: "CreateTaskController",
-                    templateUrl: 'templates/components/dialogs/create-task-tpl.html',
+                    controller: "SelectProjectController",
+                    templateUrl: 'templates/components/select-project/select-project.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true,
                     locals : {
-                        projectId : null
                     }
-                }).then(function (answer) {
+                }).then(function (answer) {},
+                    function (update) {
 
-                }, function (update) {
-                    if(update) $scope.getTasks();
-                });
+                    }
+                );
             };
         }
     ]

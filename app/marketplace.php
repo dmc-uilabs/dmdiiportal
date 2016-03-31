@@ -97,6 +97,7 @@
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/components/ui-widgets/stars.directive.js"></script>
+    <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/components/carousel/carousel.js"></script>
     <script src="scripts/components/compare/compare.js"></script>

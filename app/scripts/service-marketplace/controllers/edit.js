@@ -11,6 +11,7 @@ angular.module('dmc.service-marketplace')
         'dataFactory',
         '$mdDialog',
         '$timeout',
+        'questionToastModel',
         'DMCUserModel',
         '$cookies',
         function (serviceData,
@@ -22,6 +23,7 @@ angular.module('dmc.service-marketplace')
                   dataFactory,
                   $mdDialog,
                   $timeout,
+                  questionToastModel,
                   DMCUserModel,
                   $cookies) {
 
@@ -154,18 +156,25 @@ angular.module('dmc.service-marketplace')
                 openImage : function(index){
                     $scope.indexImages = index;
                 },
-                deleteImage: function(index){
-                    $scope.isChange = true;
-                    $scope.removeImages.push($scope.product.service_images[index].id);
-                    console.info($scope.removeImages);
-                    $scope.product.service_images.splice(index, 1);
-                    if ($scope.indexImages == index){
-                        $scope.indexImages = 0;
-                    }
-                    if($scope.indexImages > index){
-                        $scope.indexImages--;
-                    }
-                    apply();
+                deleteImage: function(index,ev){
+                    questionToastModel.show({
+                        question : "Do you want to delete the image?",
+                        buttons: {
+                            ok: function(){
+                                $scope.isChange = true;
+                                $scope.removeImages.push($scope.product.service_images[index].id);
+                                $scope.product.service_images.splice(index, 1);
+                                if ($scope.indexImages == index){
+                                    $scope.indexImages = 0;
+                                }
+                                if($scope.indexImages > index){
+                                    $scope.indexImages--;
+                                }
+                                apply();
+                            },
+                            cancel: function(){}
+                        }
+                    },ev);
                 },
                 selected: function(index){
                     return index == $scope.indexImages;
@@ -256,13 +265,21 @@ angular.module('dmc.service-marketplace')
             };
 
             //remove specifications
-            $scope.deleteSpecifications = function(index){
-                $scope.arraySpecifications.push({
-                    id: $scope.product.specifications[0].special[index].specificationId,
-                    name: $scope.product.specifications[0].special[index].specification,
-                });
-                $scope.product.specifications[0].special.splice(index,1);
-                $scope.change();
+            $scope.deleteSpecifications = function(index,ev){
+                questionToastModel.show({
+                    question : "Do you want to delete the specification?",
+                    buttons: {
+                        ok: function(){
+                            $scope.arraySpecifications.push({
+                                id: $scope.product.specifications[0].special[index].specificationId,
+                                name: $scope.product.specifications[0].special[index].specification
+                            });
+                            $scope.product.specifications[0].special.splice(index,1);
+                            $scope.change();
+                        },
+                        cancel: function(){}
+                    }
+                },ev);
             };
 
             //add bew sepecifications to system
@@ -291,17 +308,33 @@ angular.module('dmc.service-marketplace')
             };
 
             //remove tag
-            $scope.deleteTag = function(index, id){
-                $scope.isChange = true;
-                if(id || id === 0) $scope.removeTags.push(id);
-                $scope.product.service_tags.splice(index,1);
+            $scope.deleteTag = function(index, id,ev){
+                questionToastModel.show({
+                    question : "Do you want to delete the tag?",
+                    buttons: {
+                        ok: function(){
+                            $scope.isChange = true;
+                            if(id || id === 0) $scope.removeTags.push(id);
+                            $scope.product.service_tags.splice(index,1);
+                        },
+                        cancel: function(){}
+                    }
+                },ev);
             };
 
             //remove athors
-            $scope.deleteAthors = function(index, id){
-                $scope.isChange = true;
-                $scope.removeAuthors.push(id);
-                $scope.product.service_authors.splice(index, 1);
+            $scope.deleteAthors = function(index, id,ev){
+                questionToastModel.show({
+                    question : "Do you want to delete the author?",
+                    buttons: {
+                        ok: function(){
+                            $scope.isChange = true;
+                            $scope.removeAuthors.push(id);
+                            $scope.product.service_authors.splice(index, 1);
+                        },
+                        cancel: function(){}
+                    }
+                },ev);
             };
 
             //save edit product

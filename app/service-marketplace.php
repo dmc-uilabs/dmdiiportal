@@ -103,6 +103,7 @@
 <script src="scripts/common/models/previous-page.js"></script>
 <script src="scripts/components/members-card/members-card.js"></script>
 <script src="scripts/common/models/dome-model.js"></script>
+<script src="scripts/common/models/question-toast-model.js"></script>
 
 <script src="scripts/service-marketplace/service-marketplace.js"></script>
 <script src="scripts/service-marketplace/controllers/home.js"></script>

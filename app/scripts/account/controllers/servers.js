@@ -193,14 +193,22 @@ angular.module('dmc.account')
 
             // delete server
             $scope.deleteServer = function(item){
-                ajax.delete(dataFactory.serverURL(item.id).delete, {},
-                    function (response) {
-                        byParameter.delete($scope.servers, "id", item.id);
-                        toastModel.showToast("success", "Server successfully deleted!");
-                    }, function (response) {
-                        toastModel.showToast("error", response.statusText);
+                questionToastModel.show({
+                    question: "Are you sure you want to remove this server?",
+                    buttons: {
+                        ok: function(){
+                            ajax.delete(dataFactory.serverURL(item.id).delete, {},
+                                function (response) {
+                                    byParameter.delete($scope.servers, "id", item.id);
+                                    toastModel.showToast("success", "Server successfully removed!");
+                                }, function (response) {
+                                    toastModel.showToast("error", response.statusText);
+                                }
+                            );
+                        },
+                        cancel: function(){}
                     }
-                );
+                }, event);
             };
 
             function isExistChangedItem(){
@@ -215,18 +223,30 @@ angular.module('dmc.account')
             $scope.$on('$locationChangeStart', function (event, next, current) {
                 var isChangedItem = isExistChangedItem();
                 if ((isChangedItem || ($scope.newServer.ip && $scope.newServer.ip.length > 0) || ($scope.newServer.name && $scope.newServer.name.length > 0)) && current.match("\/servers")) {
-                    var answer = confirm("Are you sure you want to leave this page without saving?");
-                    if (!answer){
-                        event.preventDefault();
-                    }
+                    event.preventDefault();
+                    questionToastModel.show({
+                        question: "Are you sure you want to leave this page without saving?",
+                        buttons: {
+                            ok: function(){
+                                if(isChangedItem) {
+                                    for (var i in $scope.servers) {
+                                        $scope.servers[i].isChanging = false;
+                                    }
+                                }
+                                $scope.newServer.name = null;
+                                $scope.newServer.ip = null;
+                                window.location = next;
+                                $scope.$apply();
+                            },
+                            cancel: function(){}
+                        }
+                    }, event);
                 }
             });
 
             $(window).unbind('beforeunload');
             $(window).bind('beforeunload', function(){
                 var isChangedItem = isExistChangedItem();
-                if((isChangedItem || ($scope.newServer.ip && $scope.newServer.ip.length > 0) || ($scope.newServer.name && $scope.newServer.name.length > 0))) {
-                    return "Are you sure you want to leave this page without saving?";
-                }
+                if((isChangedItem || ($scope.newServer.ip && $scope.newServer.ip.length > 0) || ($scope.newServer.name && $scope.newServer.name.length > 0))) return "";
             });
 }]);

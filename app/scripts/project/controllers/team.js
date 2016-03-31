@@ -8,6 +8,7 @@ angular.module('dmc.project')
         "ajax",
         "dataFactory",
         "DMCUserModel",
+        "questionToastModel",
         "projectData",
         function ($scope,
                   $state,
@@ -17,6 +18,7 @@ angular.module('dmc.project')
                   ajax,
                   dataFactory,
                   DMCUserModel,
+                  questionToastModel,
                   projectData) {
 
             var projectCtrl = this;
@@ -110,16 +112,26 @@ angular.module('dmc.project')
                 }
             };
 
-            $scope.delete = function(member){
-                ajax.delete(dataFactory.deleteProjectMember(member.id), {}, function () {
-                    for(var i in $scope.members){
-                        if($scope.members[i].id == member.id){
-                            $scope.members.splice(i,1);
-                            break;
+            $scope.delete = function(event,member){
+                questionToastModel.show({
+                    question: "Are you sure you want to delete "+member.member.displayName+" from team?",
+                    buttons: {
+                        ok: function () {
+                            ajax.delete(dataFactory.deleteProjectMember(member.id), {}, function () {
+                                for(var i in $scope.members){
+                                    if($scope.members[i].id == member.id){
+                                        $scope.members.splice(i,1);
+                                        break;
+                                    }
+                                }
+                                apply();
+                            });
+                        },
+                        cancel: function () {
                         }
                     }
-                    apply();
-                });
+                }, event);
+
             };
 
             function isFollowed(data) {

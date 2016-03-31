@@ -12,6 +12,7 @@ angular.module('dmc.service-marketplace', [
     'dmc.widgets.stars',
     'dmc.widgets.documents',
     'dmc.widgets.review',
+    'dmc.model.question-toast-model',
     'dmc.widgets.tabs',
     'dmc.component.treemenu',
     'dmc.component.productcard',
