@@ -96,6 +96,7 @@
   }
   .compare-title{
     margin-right: 21px;
+    padding-left: 53px;
   }
   form:first-child{
     background-color: #efeced;
@@ -116,7 +117,7 @@
     md-dialog-content{
       overflow-y: hidden;
       overflow-x: hidden;
-      padding: 0 24px 24px 24px;
+      padding: 0 24px 24px 69px;
       max-width: 918px;
     }
     .compare-list-products{
@@ -131,7 +132,7 @@
           width: 33%;
           border-bottom: 1px solid #efeced;
           .select-block{
-            width: calc(100% - 102px);
+            max-width: calc(100% - 102px);
           }
         }
         $width100: calc(100% - 125px);
@@ -258,7 +259,7 @@
     text-align: left;
     max-height: none;
     margin: 50px 0;
-    min-width: 966px;
+    min-width: 1080px;
   }
 }
 
@@ -281,9 +282,9 @@
   }
 }
 .right-btn{
-  right: calc(50% - 535px);
+  right: calc(50% - 527px);
   text-align: right;
 }
 .left-btn{
-  left: calc(50% - 535px);
+  left: calc(50% - 527px);
 }

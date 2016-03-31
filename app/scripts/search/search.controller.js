@@ -237,9 +237,9 @@ angular.module('dmc.search')
             };
 
             $scope.onOrderChange = function (order) {
-                $scope.sort = order;
-                $scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
-                $scope.getDiscussions();
+                //$scope.sort = order;
+                //$scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
+                //$scope.getDiscussions();
             };
 
             // Discussions End ------------------------------------------------------
@@ -364,7 +364,10 @@ angular.module('dmc.search')
                     templateUrl: "templates/individual-discussion/compose-discussion.html",
                     parent: angular.element(document.body),
                     targetEvent: ev,
-                    clickOutsideToClose:true
+                    clickOutsideToClose:true,
+                    locals: {
+                        project_id: null
+                    },
                 })
                     .then(function() {
                     }, function() {

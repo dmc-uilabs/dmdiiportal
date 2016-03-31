@@ -57,9 +57,8 @@ angular.module('dmc.component.carousel', [
           };
 
           $scope.openSlide = function($event,number){
-              $($event.currentTarget).parents(".slide-buttons").find(".selected").removeClass("selected");
-              $($event.currentTarget).addClass("selected");
               Carousel.get($scope.nameCarousel).toIndex(number);
+              $scope.selectButton();
           };
 
           $scope.selectButton = function(){

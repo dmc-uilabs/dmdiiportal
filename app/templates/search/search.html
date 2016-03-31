@@ -35,7 +35,11 @@
                     <span flex="10"></span>
                     <div class="margin-bottom-17">
                         <!--<a class="link-button margin-left20" href="">Following ({{totalFollowing}})</a>-->
-                        <a ng-if="type=='discussions'" class="link-button margin-left20" ng-click="createDiscussion()">Add New Discussion</a>
+                        <!--<a ng-if="type=='discussions'" class="link-button margin-left20" ng-click="createDiscussion()">Add New Discussion</a>-->
+                        <md-button ng-if="type=='discussions'" class="md-raised dmc-button" ng-click="createDiscussion()">
+                            <ng-md-icon icon="add" size="22"></ng-md-icon>
+                            <span>Add New Discussion</span>
+                        </md-button>
                         <!--<a class="link-button margin-left20">-->
                             <!--<ng-md-icon icon="account_circle" size="18"></ng-md-icon>-->
                             <!--Contacts-->
@@ -71,14 +75,14 @@
                             <table md-data-table>
                                 <thead md-order="sort" md-trigger="onOrderChange">
                                 <tr>
-                                    <th name="Discussion" order-by="text" class="title"></th>
+                                    <th name="Discussion" order-by="title" class="title"></th>
                                     <th name="Replies" order-by="replies"></th>
                                     <th name="Created by" order-by="createdBy"></th>
                                     <th name="Latest Post" order-by="latestPost"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="item in discussions">
+                                <tr ng-repeat="item in discussions | orderBy: sort">
                                     <td>
                                         <a class="link-button font-size14 " href="/individual-discussion.php#/1">{{item.title}}</a>
                                     </td>
