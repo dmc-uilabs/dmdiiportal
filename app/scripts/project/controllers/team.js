@@ -9,6 +9,7 @@ angular.module('dmc.project')
         "dataFactory",
         "DMCUserModel",
         "questionToastModel",
+        "toastModel",
         "projectData",
         function ($scope,
                   $state,
@@ -19,6 +20,7 @@ angular.module('dmc.project')
                   dataFactory,
                   DMCUserModel,
                   questionToastModel,
+                  toastModel,
                   projectData) {
 
             var projectCtrl = this;
@@ -117,10 +119,13 @@ angular.module('dmc.project')
                     question: "Are you sure you want to delete "+member.member.displayName+" from team?",
                     buttons: {
                         ok: function () {
-                            ajax.delete(dataFactory.deleteProjectMember(member.id), {}, function () {
+                            ajax.update(dataFactory.updateMembersToProject(member.id), {
+                                removed : true,
+                                accept : false
+                            }, function (response) {
                                 for(var i in $scope.members){
-                                    if($scope.members[i].id == member.id){
-                                        $scope.members.splice(i,1);
+                                    if($scope.members[i].id == response.data.id){
+                                        $scope.members[i] = response.data;
                                         break;
                                     }
                                 }
@@ -132,6 +137,21 @@ angular.module('dmc.project')
                     }
                 }, event);
 
+            };
+
+            $scope.invite = function(event,member){
+                ajax.update(dataFactory.inviteToProject(projectCtrl.currentProjectId,member.id), {
+                    removed : false
+                }, function (response) {
+                    for(var i in $scope.members){
+                        if($scope.members[i].id == response.data.id){
+                            $scope.members[i] = response.data;
+                            break;
+                        }
+                    }
+                    apply();
+                    toastModel.showToast("success", "User successfully invited to the project");
+                });
             };
 
             function isFollowed(data) {
@@ -152,7 +172,7 @@ angular.module('dmc.project')
                 });
             }
 
-            var apply = function () {
+            function apply() {
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
         }

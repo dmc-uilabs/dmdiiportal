@@ -5,15 +5,19 @@
                 <a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a>
             </div>
             <span ng-if="projectCtrl.projectData.dueDate" class="small-text due-date-project small-text--grey">
-                Due in {{projectCtrl.projectData.dueDate}}
+                Due in {{projectCtrl.projectData.dueDate}} {{projectCtrl.projectData.type}}
             </span>
         </h1>
         <div class="md-toolbar-tools">
-            <div layout="column" flex="65" class="margin-right12-5">
+            <div layout="column" flex class="margin-right12-5">
                 <div layout="row" class="name-project" flex>
                     <div sub-nav-menu-button current-page="5"></div>
                 </div>
             </div>
+            <a ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
+               class="link-button uppercase invite-button margin-left20">
+                <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
+            </a>
         </div>
     </md-toolbar>
 </div>
@@ -47,40 +51,114 @@
                 </form>
             </div>
             <md-progress-linear md-mode="indeterminate" ng-if="loading"></md-progress-linear>
-            <div layout="row" flex layout-align="space-between start" layout-wrap>
-                <div flex="45" class="one-member" ng-repeat="item in members track by $index">
-                    <div layout="row" flex="100" layout-align="start center">
-                        <div class="avatar">
-                            <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
-                        </div>
-                        <div class="info" flex>
-                            <div class="name" flex layout-align="start center">
-                                <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a><span>{{item.member.jobTitle}}</span></h4>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Active">
+                    <md-content class="md-padding">
+                        <div layout="row" flex layout-align="space-between start" layout-wrap>
+                            <div flex="45" class="one-member" ng-repeat="item in members track by $index" ng-show="item.accept && !item.removed">
+                                <div layout="row" flex="100" layout-align="start center">
+                                    <div class="avatar">
+                                        <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
+                                    </div>
+                                    <div class="info" flex>
+                                        <div class="name" flex layout-align="start center">
+                                            <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a><span>{{item.member.jobTitle}}</span></h4>
+                                        </div>
+                                        <div class="company-name" flex>
+                                            <a href="/company.php#/{{item.member.companyId}}">{{item.member.company}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="buttons">
+                                        <md-button class="md-raised" ng-click="follow(item.member)">{{item.member.isFollow ? 'Unfollow' : 'Follow'}}</md-button>
+                                        <md-button md-no-ink class="md-icon-button delete"
+                                                   ng-click="delete($event,item)"
+                                                   aria-label="Delete">
+                                            <ng-md-icon icon="delete" size="25"></ng-md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="company-name" flex>
-                                <a href="/company.php#/{{item.member.companyId}}">{{item.member.company}}</a>
+                            <div flex="100" ng-if="members.length == 0">
+                                Team members is empty
                             </div>
                         </div>
-                        <div class="buttons">
-                            <!--<md-button md-no-ink class="md-icon-button add"-->
-                            <!--ng-click="add(item.member)"-->
-                            <!--aria-label="Add">-->
-                            <!--<md-tooltip md-direction="left">Add</md-tooltip>-->
-                            <!--<ng-md-icon icon="group_add" size="25"></ng-md-icon>-->
-                            <!--</md-button>-->
-                            <md-button class="md-raised" ng-click="follow(item.member)">{{item.member.isFollow ? 'Unfollow' : 'Follow'}}</md-button>
-                            <md-button md-no-ink class="md-icon-button delete"
-                                       ng-click="delete($event,item)"
-                                       aria-label="Delete">
-                                <ng-md-icon icon="delete" size="25"></ng-md-icon>
-                            </md-button>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Pending" ng-if="projectCtrl.projectData.type == 'private' || projectCtrl.projectData.approvalOption != 'all'">
+                    <md-content class="md-padding">
+                        <div layout="row" flex layout-align="space-between start" layout-wrap>
+                            <div flex="45" class="one-member" ng-repeat="item in members track by $index" ng-show="!item.accept && !item.removed">
+                                <div layout="row" flex="100" layout-align="start center">
+                                    <div class="avatar">
+                                        <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
+                                    </div>
+                                    <div class="info" flex>
+                                        <div class="name" flex layout-align="start center">
+                                            <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a><span>{{item.member.jobTitle}}</span></h4>
+                                        </div>
+                                        <div class="company-name" flex>
+                                            <a href="/company.php#/{{item.member.companyId}}">{{item.member.company}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="buttons" ng-if="projectCtrl.projectData.type == 'private'">
+                                        <md-button class="md-raised remind" ng-click="remind(item.member)">
+                                            <md-icon md-svg-src="images/icon_reminder.svg"></md-icon>
+                                            Remind
+                                        </md-button>
+                                        <md-button md-no-ink class="md-icon-button delete"
+                                                   ng-click="delete($event,item)"
+                                                   aria-label="Delete">
+                                            <ng-md-icon icon="delete" size="25"></ng-md-icon>
+                                        </md-button>
+                                    </div>
+                                    <div class="buttons" ng-if="projectCtrl.projectData.type == 'public'">
+                                        <md-button class="md-raised decline" ng-click="decline(item.member)">
+                                            Decline
+                                        </md-button>
+                                        <md-button class="md-raised approve" ng-click="approve(item.member)">
+                                            Approve
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div flex="100" ng-if="members.length == 0">
+                                Team members is empty
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div flex="100" ng-if="members.length == 0">
-                    Team members is empty
-                </div>
-            </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Removed">
+                    <md-content class="md-padding">
+                        <div layout="row" flex layout-align="space-between start" layout-wrap>
+                            <div flex="45" class="one-member" ng-repeat="item in members track by $index" ng-show="item.removed">
+                                <div layout="row" flex="100" layout-align="start center">
+                                    <div class="avatar">
+                                        <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
+                                    </div>
+                                    <div class="info" flex>
+                                        <div class="name" flex layout-align="start center">
+                                            <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a><span>{{item.member.jobTitle}}</span></h4>
+                                        </div>
+                                        <div class="company-name" flex>
+                                            <a href="/company.php#/{{item.member.companyId}}">{{item.member.company}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="buttons">
+                                        <md-button md-no-ink class="md-icon-button add"
+                                                   ng-click="invite($event,item)"
+                                                   aria-label="Invite to project">
+                                            <ng-md-icon icon="group_add" size="25"></ng-md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div flex="100" ng-if="members.length == 0">
+                                Team members is empty
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
         </md-content>
     </div>
 </div>

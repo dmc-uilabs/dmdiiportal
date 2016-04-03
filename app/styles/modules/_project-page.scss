@@ -72,6 +72,16 @@
         }
       }
     }
+    .remind{
+      md-icon{
+        opacity: 0.6;
+      }
+      &:hover{
+        md-icon{
+          opacity: 1;
+        }
+      }
+    }
     .avatar{
       margin-right: 13px;
       img{

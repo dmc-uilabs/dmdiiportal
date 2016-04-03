@@ -236,8 +236,12 @@ angular.module('dmc.project', [
             $scope.isPreview = true;
             $scope.invitation = null;
             $scope.userData = DMCUserModel.getUserData();
+            $scope.profile = null;
             $scope.userData.then(function(res){
                 $scope.userData = res;
+                ajax.get(dataFactory.profiles(res.profileId).get,{},function(response){
+                    $scope.profile = response.data ? response.data : null;
+                });
                 getInvitation();
             });
             function getInvitation(){
@@ -255,12 +259,12 @@ angular.module('dmc.project', [
             }
 
             $scope.accept = function(){
-                ajax.update(dataFactory.acceptProject($stateParams.projectId, $scope.invitation.id), {accept : true},
-                    function(response){
-                        toastModel.showToast("success", "Invited to "+projectData.type+" Project by " + $scope.invitation.from);
-                        document.location.href = "project.php#/"+$stateParams.projectId+"/home";
-                    }
-                );
+                if($scope.profile) {
+                    toastModel.showToast("success", "Invited to " + projectData.type + " Project by " + $scope.invitation.from);
+                    document.location.href = "project.php#/" + $stateParams.projectId + "/home";
+                }else{
+                    toastModel.showToast("error", "Your Profile does not found");
+                }
             };
 
             $scope.decline = function(){

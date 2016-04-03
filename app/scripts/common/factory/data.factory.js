@@ -288,6 +288,9 @@ angular.module('dmc.data',[])
             updateMembersToProject: function(id) {
                 return localhost+'projects_members/'+id;
             },
+            inviteToProject: function(pid,uid){
+                return localhost+'project/'+pid+'/invite/'+uid;
+            },
             removeMembersToProject: function(id) {
                 return localhost+'projects_members/'+id;
             },
@@ -814,6 +817,9 @@ angular.module('dmc.data',[])
                 return localhost+'notifications-user-statistic';
             },
             getNotificationsPm: function(){
+                return localhost+'notifications-pm';
+            },
+            addNotificationsPm: function(){
                 return localhost+'notifications-pm';
             },
             getNotificationsStatisticPm: function(){

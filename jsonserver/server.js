@@ -9,6 +9,7 @@ var server = jsonServer.create();
 server.use(jsonServer.defaults());
 // Add this before server.use(router)
 server.use(jsonServer.rewriter({
+    '/project/:pid/invite/:uid': '/projects_members/:uid',
     '/mark-read-notifications': '/user',
     '/clear-notification/:id': '/user',
     '/searchProjects' : '/projects',
