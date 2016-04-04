@@ -9,7 +9,43 @@ angular.module('dmc.profile')
         $scope.isChange = false;
         $scope.changes = {};
         $scope.changesSkills = $scope.profile.skills.length;
+        $scope.companies = [];
 
+        if(!$scope.profile.companyId){
+            loadCompanies();
+            getJoinRequest();
+        }
+
+        function getJoinRequest(){
+            ajax.get(dataFactory.getProfileCompanyJoinRequest($scope.profile.id),{
+            },function(response){
+                $scope.profile.companyJoinRequest = response.data.length > 0 && response.data[0].id > 0 ? response.data[0] : null;
+                if($scope.profile.companyJoinRequest) $scope.profile.companyId = $scope.profile.companyJoinRequest.companyId;
+                console.log($scope.profile);
+                apply();
+            });
+        }
+
+        function loadCompanies(){
+            ajax.get(dataFactory.companyURL().all,{
+                _order: "ASC",
+                _sort: "name"
+            },function(response){
+                $scope.companies = response.data;
+                apply();
+            });
+        }
+
+        $scope.goRequestToJoin = function(companyId){
+            ajax.create(dataFactory.addCompanyJoinRequest(), {
+                "profileId": $scope.profile.id,
+                "companyId": companyId
+            },function(response){
+                $scope.profile.companyJoinRequest = response.data;
+                toastModel.showToast("success", "Request to join successfully sent");
+                apply();
+            });
+        };
 
         $scope.$on('$stateChangeStart', function (event, next) {
             if(!$scope.save && $scope.isChange){

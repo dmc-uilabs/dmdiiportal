@@ -48,7 +48,7 @@
                     <md-menu-content class="header-menu-content notifications-list">
                         <div class="zone-top" layout="row" layout-align="space-between center">
                             <h3>Notifications</h3>
-                            <md-button md-no-ink ng-click="markAllRead()" class="view-all-link">Mark all as read</md-button>
+                            <md-button md-no-ink ng-click="viewAll" class="view-all-link">VIEW ALL</md-button>
                         </div>
                         <md-menu-item ng-repeat="item in notificationsList track by $index" ng-if="!item.cleared" ng-class="{'not-read' : !item.read}">
                             <a ng-href='{{item.link}}'>
@@ -76,7 +76,7 @@
                             </a>
                         </md-menu-item>
                         <md-menu-item class="all-link">
-                            <a ng-click="viewAll()">VIEW ALL</a>
+                            <a ng-click="markAllRead()">Mark all as read</a>
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>

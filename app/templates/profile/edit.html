@@ -1,129 +1,140 @@
 <div ng-if="!not_found" class="profile">
-  <md-content class="profile-padding">
-    <div layout="row">
-      <div flex="15">
-        <div class="image-profile-box">
-          <img ng-show="profile.image" ng-init="changes.image = profile.image" class="profile-image" ng-show="!isChangingPicture" ng-src="{{profile.image}}">
-          <md-button ng-show="profile.image" ng-click="removeMainPicture($event)" class="md-fab md-mini md-warn remove-picture" aria-label="Remove Picture">
-              <ng-md-icon icon="delete" size="18"></ng-md-icon>
-          </md-button>
-          </div>
-        
-        <div layout="column" ng-show="isChangingPicture || !profile.image">
-          <div class="flow-box"
-             flow-init
-             flow-drag-enter="pictureDragEnter($flow)"
-             flow-drag-leave="pictureDragLeave($flow)"
-             flow-file-success="$file.msg = $message"
-             flow-file-added="addedNewFile($file, $event, $flow )"
-             layout="column">
-            <!-- <div> -->
-            <div layout class="alert" flow-drop flow-drop-enabled="true">
-              <div class="inner-box" layout="row" layout-align="center center" style="min-width: 170px;">
-                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-                  <img flow-img="$flow.files[0]" />
-                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
-                        <ng-md-icon icon="delete" size="21"></ng-md-icon>
+    <md-content class="profile-padding">
+        <div layout="row">
+            <div flex="15">
+                <div class="image-profile-box">
+                    <img ng-show="profile.image" ng-init="changes.image = profile.image" class="profile-image" ng-show="!isChangingPicture" ng-src="{{profile.image}}">
+                    <md-button ng-show="profile.image" ng-click="removeMainPicture($event)" class="md-fab md-mini md-warn remove-picture" aria-label="Remove Picture">
+                        <ng-md-icon icon="delete" size="18"></ng-md-icon>
                     </md-button>
                 </div>
-                <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
-                    Drag And Drop your picture here<br>
-                    600 x 600 px (max 2 MB)
-                    <br>or<br>
-                    <strong>Click here</strong>
+
+                <div layout="column" ng-show="isChangingPicture || !profile.image">
+                    <div class="flow-box"
+                         flow-init
+                         flow-drag-enter="pictureDragEnter($flow)"
+                         flow-drag-leave="pictureDragLeave($flow)"
+                         flow-file-success="$file.msg = $message"
+                         flow-file-added="addedNewFile($file, $event, $flow )"
+                         layout="column">
+                        <!-- <div> -->
+                        <div layout class="alert" flow-drop flow-drop-enabled="true">
+                            <div class="inner-box" layout="row" layout-align="center center" style="min-width: 170px;">
+                                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
+                                    <img flow-img="$flow.files[0]" />
+                                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
+                                        <ng-md-icon icon="delete" size="21"></ng-md-icon>
+                                    </md-button>
+                                </div>
+                                <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
+                                    Drag And Drop your picture here<br>
+                                    600 x 600 px (max 2 MB)
+                                    <br>or<br>
+                                    <strong>Click here</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                        <md-button ng-click="cancelChangePicture($flow)">Cancel</md-button>
+                    </div>
                 </div>
-              </div>
+
+                <md-button flex="100" ng-show="!isChangingPicture && profile.image" class="md-raised" ng-click="changePicture()">
+                    <ng-md-icon icon="camera_alt" style="fill: grey;" size="25"></ng-md-icon>
+                    Change Photo
+                </md-button>
+
             </div>
-            <!-- </div> -->
-            <md-button ng-click="cancelChangePicture($flow)">Cancel</md-button>
-          </div>
-        </div>
 
-        <md-button flex="100" ng-show="!isChangingPicture && profile.image" class="md-raised" ng-click="changePicture()">
-          <ng-md-icon icon="camera_alt" style="fill: grey;" size="25"></ng-md-icon>
-          Change Photo
-        </md-button>
+            <div class="profile-header" flex="85" layout="row">
+                <div flex="50" layout="column">
+                    <div layout="row">
+                        <md-input-container flex="50">
+                            <label>Display Name</label>
+                            <input id="editDisplayNameProfile"
+                                   ng-change="change()"
+                                   ng-init="changes.displayName = profile.displayName"
+                                   ng-model="profile.displayName">
+                        </md-input-container>
+                        <md-input-container flex="50">
+                            <label>Job Title</label>
+                            <input ng-model="profile.jobTitle"
+                                   ng-change="change()"
+                                   ng-init="changes.jobTitle = profile.jobTitle">
+                        </md-input-container>
+                    </div>
+                    <md-input-container>
+                        <label>Company</label>
+                        <input ng-model="profile.company" ng-change="change()" disabled ng-if="profile.company">
+                        <md-select ng-model="profile.companyId" required ng-if="!profile.company" ng-disabled="profile.companyJoinRequest">
+                            <md-option ng-repeat="company in companies" value="{{company.id}}">
+                                {{company.name}}
+                            </md-option>
+                        </md-select>
+                        <div class="request-to-join">
+                            <md-button class="md-raised dmc-button"
+                                       ng-disabled="profile.companyJoinRequest"
+                                       ng-click="goRequestToJoin(profile.companyId)"
+                                       ng-show="profile.companyId && !profile.company">{{profile.companyJoinRequest ? 'Approval Pending' : 'Request to Join'}}</md-button>
+                        </div>
+                    </md-input-container>
 
-      </div>
+                    <md-input-container class="md-icon-float title-input-left">
+                        <label>Location</label>
+                        <md-icon class="location-gps" ng-click="getLocation()">
+                            <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
+                        </md-icon>
+                        <input ng-model="profile.location"
+                               ng-init="changes.location = profile.location"
+                               ng-change="change()"
+                               type="text">
+                    </md-input-container>
 
-      <div class="profile-header" flex="85" layout="row">
-        <div flex="50" layout="column">
-          <div layout="row">
-            <md-input-container flex="50">
-              <label>Display Name</label>
-              <input id="editDisplayNameProfile" 
-                     ng-change="change()"
-                     ng-init="changes.displayName = profile.displayName"
-                     ng-model="profile.displayName">
-            </md-input-container>
-            <md-input-container flex="50">
-              <label>Job Title</label>
-              <input ng-model="profile.jobTitle" 
-                     ng-change="change()"
-                     ng-init="changes.jobTitle = profile.jobTitle">
-            </md-input-container>
-          </div>
-          <md-input-container>
-            <label>Company</label>
-            <input ng-model="profile.company" ng-change="change()" disabled>
-          </md-input-container>
-          
-          <md-input-container class="md-icon-float title-input-left">
-            <label>Location</label>
-            <md-icon class="location-gps" ng-click="getLocation()">
-              <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
-            </md-icon>
-            <input ng-model="profile.location"
-                   ng-init="changes.location = profile.location" 
-                   ng-change="change()" 
-                   type="text">
-          </md-input-container>
-          
-        </div>
-        <div flex="50" layout="row" layout-align="end start">
-          <md-button ng-click="cancelEdit()" class="md-raised dmc-button">Cancel</md-button>
-          <md-button ng-click="saveEdit()" class="md-raised dmc-button md-primary">Save</md-button>
-        </div>
-      </div>
-    </div>
-
-    <md-divider></md-divider>
-
-    <div class="profile-description">
-      <md-input-container>
-        <label>Description</label>
-        <textarea ng-model="profile.description" 
-                  columns="1"
-                  ng-change="change()"
-                  ng-init="changes.description = profile.description" 
-                  md-maxlength="3000"></textarea>
-      </md-input-container>
-    </div>
-
-    <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="Skills">
-        <md-content class="md-padding">  
-          <div layout="column">
-            <form ng-submit="addSkill(inputSkill)" class="add-skills-form" layout="row" layout-align="start center">
-              <md-input-container>
-                <label>Enter skill</label>
-                <input ng-model="inputSkill">
-              </md-input-container>
-              <md-button ng-disabled="!inputSkill" class="md-raised md-primary add-skill">Add</md-button>
-            </form>
-            <div layout="row" class="tabs-content" layout-wrap>
-              <md-chips ng-repeat="skill in profile.skills track by $index">
-                <md-chip class="skills-chip">
-                  {{skill}}
-                  <md-button aria-label="close" ng-click="deleteSkill($index,$event)" class="md-icon-button">
-                    <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
-                  </md-button>
-                </md-chip>
-              </md-chips>
+                </div>
+                <div flex="50" layout="row" layout-align="end start">
+                    <md-button ng-click="cancelEdit()" class="md-raised dmc-button">Cancel</md-button>
+                    <md-button ng-click="saveEdit()" class="md-raised dmc-button md-primary">Save</md-button>
+                </div>
             </div>
-          </div>
-        </md-content>
-      </md-tab>
-    </md-tabs>
-  </md-content>
+        </div>
+
+        <md-divider></md-divider>
+
+        <div class="profile-description">
+            <md-input-container>
+                <label>Description</label>
+                <textarea ng-model="profile.description"
+                          columns="1"
+                          ng-change="change()"
+                          ng-init="changes.description = profile.description"
+                          md-maxlength="3000"></textarea>
+            </md-input-container>
+        </div>
+
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Skills">
+                <md-content class="md-padding">
+                    <div layout="column">
+                        <form ng-submit="addSkill(inputSkill)" class="add-skills-form" layout="row" layout-align="start center">
+                            <md-input-container>
+                                <label>Enter skill</label>
+                                <input ng-model="inputSkill">
+                            </md-input-container>
+                            <md-button ng-disabled="!inputSkill" class="md-raised md-primary add-skill">Add</md-button>
+                        </form>
+                        <div layout="row" class="tabs-content" layout-wrap>
+                            <md-chips ng-repeat="skill in profile.skills track by $index">
+                                <md-chip class="skills-chip">
+                                    {{skill}}
+                                    <md-button aria-label="close" ng-click="deleteSkill($index,$event)" class="md-icon-button">
+                                        <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
+                                    </md-button>
+                                </md-chip>
+                            </md-chips>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
 </div>
