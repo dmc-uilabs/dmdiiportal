@@ -6307,6 +6307,32 @@
       "additionalDetails": "Additional Details for task",
       "status": "InProgress",
       "id": 38
+    },
+    {
+      "title": "Description of Task",
+      "assignee": "Stephen Rencour",
+      "assigneeId": 2,
+      "reporter": "Thomas Smith",
+      "reporterId": 1,
+      "dueDate": 1460494800000,
+      "priority": 2,
+      "projectId": 4,
+      "additionalDetails": "Details of task",
+      "status": "Open",
+      "id": 39
+    },
+    {
+      "title": "Description of Task 2",
+      "assignee": "Stephen Rencour",
+      "assigneeId": 2,
+      "reporter": "Thomas Smith",
+      "reporterId": 1,
+      "dueDate": 1460494800000,
+      "priority": 3,
+      "projectId": 4,
+      "additionalDetails": "Details of task",
+      "status": "Open",
+      "id": 40
     }
   ],
   "array_specifications": [

@@ -1,5 +1,23 @@
-angular.module('dmc.project')
-    .controller('AddTaskCtrl', [
+'use strict';
+angular.module('dmc.add_task',[
+    'dmc.configs.ngmaterial',
+    'ngMdIcons',
+    'ngtimeago',
+    'ui.router',
+    'dmc.ajax',
+    'dmc.model.question-toast-model',
+    'dmc.data',
+    'dmc.common.header',
+    'dmc.common.footer',
+    'dmc.model.user'
+]).config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
+    $stateProvider.state('add', {
+        url: '/',
+        templateUrl: 'templates/add_task/add_task.html',
+        controller: 'AddTaskCtrl'
+    });
+    $urlRouterProvider.otherwise('/');
+}).controller('AddTaskCtrl', [
         "$scope",
         "$rootScope",
         "$state",
@@ -7,7 +25,6 @@ angular.module('dmc.project')
         "dataFactory",
         "$stateParams",
         "$mdDialog",
-        "projectData",
         "toastModel",
         "questionToastModel",
         function ($scope,
@@ -17,17 +34,12 @@ angular.module('dmc.project')
                   dataFactory,
                   $stateParams,
                   $mdDialog,
-                  projectData,
                   toastModel,
                   questionToastModel) {
-            var projectCtrl = this;
-            projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
-            projectCtrl.projectData = projectData;
 
             $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
-
-            $scope.projectData = projectCtrl.projectData;
-            $scope.projectId = projectCtrl.currentProjectId;
+            if(!$rootScope.projects) ajax.loadProjects();
+            $scope.selectedProject = null;
 
             $scope.task = {};
             $scope.isCreation = false;
@@ -88,12 +100,12 @@ angular.module('dmc.project')
                         "reporterId": $rootScope.userData.accountId,
                         "dueDate": Date.parse($scope.task.dueDate),
                         "priority": $scope.task.priority,
-                        "projectId": $scope.projectId,
+                        "projectId": $scope.selectedProject,
                         "additionalDetails" : $scope.task.additionalDetails,
                         "status" : "Open"
                     }, function(response){
                         $scope.isCreation = false;
-                        $state.go("project.task",{taskId:response.data.id});
+                        location.href = "/project.php#/"+$scope.selectedProject+"/task/"+response.data.id;
                         toastModel.showToast("success", "Task successfully added!");
                     },function(){
                         toastModel.showToast("error", "Ajax faild: createTask");

@@ -25,6 +25,9 @@
 					Return to Services
 				</a>
 			</div>
+            <div class="margin-bottom8">
+                <a href="/marketplace.php#/search?product=services&type={{service.serviceType}}">{{service.serviceType == 'data' ? 'Data' : service.serviceType == 'analytical' ? 'Analytical' : 'Solid'}} Service</a>
+            </div>
 			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By <a ng-href="{{'profile.php#/'+service.profileId}}">{{service.owner}}</a></span></h2>
 			<div class="margin-top8">
 				<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/detail/run-history'}}" class="link">
