@@ -51,6 +51,28 @@ angular.module('dmc.project')
                 }
             ];
 
+
+            if(projectCtrl.projectData.type == 'public' && projectCtrl.projectData.approvalOption == 'admin') loadRequests();
+            $scope.joinRequests = [];
+            function loadRequests(){
+                ajax.get(dataFactory.getProjectJoinRequests(projectCtrl.projectData.id), {}, function (response) {
+                    $scope.joinRequests = response.data;
+                    ajax.get(dataFactory.profiles().all, {
+                        id : $.map(response.data,function(x){ return x.profileId;})
+                    }, function (res) {
+                        for(var i in $scope.joinRequests){
+                            for(var j in res.data) {
+                                if ($scope.joinRequests[i].profileId == res.data[j].id) {
+                                    $scope.joinRequests[i].member = res.data[j];
+                                    break;
+                                }
+                            }
+                        }
+                        apply();
+                    });
+                });
+            }
+
             $scope.submit = function (text) {
                 $scope.searchModel = text;
                 var dataSearch = $.extend(true, {}, $stateParams);
@@ -126,6 +148,7 @@ angular.module('dmc.project')
                                 for(var i in $scope.members){
                                     if($scope.members[i].id == response.data.id){
                                         $scope.members[i] = response.data;
+                                        $scope.members[i].member = member.member;
                                         break;
                                     }
                                 }
@@ -151,6 +174,39 @@ angular.module('dmc.project')
                     }
                     apply();
                     toastModel.showToast("success", "User successfully invited to the project");
+                });
+            };
+
+            $scope.approve = function(item){
+                ajax.delete(dataFactory.deleteProjectJoinRequests(item.id), {
+                }, function (response) {
+                    ajax.create(dataFactory.createMembersToProject(), {
+                        "profileId": item.member.id,
+                        "projectId": projectCtrl.currentProjectId,
+                        "fromProfileId": $rootScope.userData.profileId,
+                        "from": $rootScope.userData.displayName,
+                        "date": Date.parse(new Date()),
+                        "accept": true
+                    }, function (response) {
+                        for(var i in $scope.joinRequests){
+                            if($scope.joinRequests[i].id == item.id){
+                                $scope.joinRequests.splice(i,1);
+                                break;
+                            }
+                        }
+                        response.data.member = item.member;
+                        $scope.members.push(response.data);
+                        apply();
+                    });
+                });
+            };
+
+            $scope.decline = function(item){
+                ajax.update(dataFactory.updateProjectJoinRequests(item.id), {
+                    decline : true
+                }, function (response) {
+                    item.decline = true;
+                    apply();
                 });
             };
 

@@ -300,6 +300,15 @@ angular.module('dmc.data',[])
             getProjectsJoinRequests: function(){
                 return localhost+'projects_join_requests';
             },
+            getProjectJoinRequests: function(id){
+                return localhost+'projects/'+id+'/projects_join_requests';
+            },
+            deleteProjectJoinRequests: function(id){
+                return localhost+'projects_join_requests/'+id;
+            },
+            updateProjectJoinRequests: function(id){
+                return localhost+'projects_join_requests/'+id;
+            },
             addCompanyJoinRequest: function(){
                 return localhost+'companies_join_requests';
             },

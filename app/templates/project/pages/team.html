@@ -86,15 +86,15 @@
                 </md-tab>
                 <md-tab label="Pending" ng-if="projectCtrl.projectData.type == 'private' || projectCtrl.projectData.approvalOption != 'all'">
                     <md-content class="md-padding">
-                        <div layout="row" flex layout-align="space-between start" layout-wrap>
-                            <div flex="45" class="one-member" ng-repeat="item in members track by $index" ng-show="!item.accept && !item.removed">
+                        <div layout="row" flex layout-align="space-between start" layout-wrap ng-if="projectCtrl.projectData.type == 'private' || projectCtrl.projectData.approvalOption == 'all'">
+                            <div flex="45" class="one-member" ng-repeat="item in members track by $index">
                                 <div layout="row" flex="100" layout-align="start center">
                                     <div class="avatar">
                                         <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
                                     </div>
                                     <div class="info" flex>
                                         <div class="name" flex layout-align="start center">
-                                            <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a><span>{{item.member.jobTitle}}</span></h4>
+                                            <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}} {{item.id}}</a><span>{{item.member.jobTitle}}</span></h4>
                                         </div>
                                         <div class="company-name" flex>
                                             <a href="/company.php#/{{item.member.companyId}}">{{item.member.company}}</a>
@@ -111,18 +111,32 @@
                                             <ng-md-icon icon="delete" size="25"></ng-md-icon>
                                         </md-button>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div layout="row" flex layout-align="space-between start" layout-wrap ng-if="projectCtrl.projectData.type == 'public' && projectCtrl.projectData.approvalOption == 'admin'">
+                            <div flex="45" class="one-member" ng-repeat="item in joinRequests track by $index" ng-if="!item.decline">
+                                <div layout="row" flex="100" layout-align="start center">
+                                    <div class="avatar">
+                                        <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
+                                    </div>
+                                    <div class="info" flex>
+                                        <div class="name" flex layout-align="start center">
+                                            <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a><span>{{item.member.jobTitle}}</span></h4>
+                                        </div>
+                                        <div class="company-name" flex>
+                                            <a href="/company.php#/{{item.member.companyId}}">{{item.member.company}}</a>
+                                        </div>
+                                    </div>
                                     <div class="buttons" ng-if="projectCtrl.projectData.type == 'public'">
-                                        <md-button class="md-raised decline" ng-click="decline(item.member)">
+                                        <md-button class="md-raised decline" ng-click="decline(item)">
                                             Decline
                                         </md-button>
-                                        <md-button class="md-raised approve" ng-click="approve(item.member)">
+                                        <md-button class="md-raised approve" ng-click="approve(item)">
                                             Approve
                                         </md-button>
                                     </div>
                                 </div>
-                            </div>
-                            <div flex="100" ng-if="members.length == 0">
-                                Team members is empty
                             </div>
                         </div>
                     </md-content>
@@ -151,9 +165,6 @@
                                         </md-button>
                                     </div>
                                 </div>
-                            </div>
-                            <div flex="100" ng-if="members.length == 0">
-                                Team members is empty
                             </div>
                         </div>
                     </md-content>

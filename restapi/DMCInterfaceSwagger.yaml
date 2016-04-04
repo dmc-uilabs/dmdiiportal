@@ -473,6 +473,33 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ProjectMember'
+  '/project/{projectId}/invite/{projectMemberId}':
+    patch:
+      tags:
+        - project
+      description: Re Invite user to the project from team project page (from removed tab)
+      parameters:
+        - name: projectId
+          in: path
+          type: string
+          description: ID of the project
+          required: true
+        - name: projectMemberId
+          in: path
+          type: string
+          description: ID of the project member
+          required: true
+        - in: body
+          name: Member
+          description: Member to be updated
+          required: false
+          schema:
+            $ref: '#/definitions/ProjectMember'
+      responses:
+        '200':
+          description: return project member
+          schema:
+            $ref: '#/definitions/ProjectMember'
   '/projects/{projectID}/projects_tags':
     get:
       tags:
@@ -5463,6 +5490,9 @@ definitions:
         description: Date when the invitation was sent out.
         type: number
         format: milliseconds
+      removed:
+        description: true - if admin removed user from team
+        type: boolean
   SimplifiedProject:
     type: object
     properties:
@@ -6984,6 +7014,9 @@ definitions:
         type: string
       profileId:
         type: string
+      decline:
+        description: true - if admin decline join request from user
+        type: boolean
   GetProjectJoinRequest:
     type: object
     properties:
@@ -6993,6 +7026,9 @@ definitions:
         type: string
       profileId:
         type: string
+      decline:
+        description: true - if admin decline join request from user
+        type: boolean
   PostCompanyJoinRequest:
       type: object
       properties:

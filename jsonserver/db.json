@@ -1140,6 +1140,24 @@
       "accept": false,
       "id": 10,
       "removed": false
+    },
+    {
+      "profileId": 2,
+      "projectId": 3,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1459757448000,
+      "accept": true,
+      "id": 11
+    },
+    {
+      "profileId": 1,
+      "projectId": 3,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1459758478599,
+      "accept": true,
+      "id": 12
     }
   ],
   "components": [
@@ -1277,21 +1295,6 @@
     },
     {
       "version": 1,
-      "modelId": "c178de78-d90a-1004-8537-10dfc1ebea8c",
-      "interfaceId": "c178de79-d90a-1004-8537-10dfc1ebea8c",
-      "type": "interface",
-      "name": "Default Interface",
-      "path": [
-        33,
-        34,
-        37
-      ],
-      "serviceId": 48,
-      "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-      "id": 8
-    },
-    {
-      "version": 1,
       "modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
       "interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
       "type": "interface",
@@ -1315,32 +1318,6 @@
       "serviceId": 49,
       "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
       "id": 10
-    },
-    {
-      "version": 1,
-      "modelId": "aff647de-d82f-1004-8e7b-5de38b2eeb0f",
-      "interfaceId": "aff647df-d82f-1004-8e7b-5de38b2eeb0f",
-      "type": "interface",
-      "name": "Default Interface",
-      "path": [
-        30
-      ],
-      "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-      "serviceId": 50,
-      "id": 11
-    },
-    {
-      "version": 1,
-      "modelId": "aff647da-d82f-1004-8e7b-5de38b2eeb0f",
-      "interfaceId": "aff647db-d82f-1004-8e7b-5de38b2eeb0f",
-      "type": "interface",
-      "name": "Default Interface",
-      "path": [
-        30
-      ],
-      "domeServer": "http://ec2-52-33-38-232.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-      "serviceId": 51,
-      "id": 12
     }
   ],
   "services": [
@@ -4032,29 +4009,9 @@
       "id": 16
     },
     {
-      "serviceId": 48,
-      "name": "tag1",
-      "id": 18
-    },
-    {
       "serviceId": 13,
       "name": "tag",
       "id": 19
-    },
-    {
-      "serviceId": 50,
-      "name": "Test tag",
-      "id": 20
-    },
-    {
-      "serviceId": 50,
-      "name": "My test tag",
-      "id": 21
-    },
-    {
-      "serviceId": 50,
-      "name": "Next tag",
-      "id": 22
     }
   ],
   "services_run_history": [
