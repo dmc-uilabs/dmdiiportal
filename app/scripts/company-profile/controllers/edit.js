@@ -387,7 +387,7 @@ angular.module('dmc.company-profile')
                                 index--;
                                 ajax.create(dataFactory.companyURL().add_contact_method,{
                                     name : item.name,
-                                    profileId : item.profileId,
+                                    companyId : item.companyId,
                                     value : item.value
                                 },function(response){
                                     var data = response.data;

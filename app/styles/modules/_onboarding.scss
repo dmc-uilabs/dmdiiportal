@@ -138,6 +138,24 @@
 }
 
 .onboarding-section{
+  .add-new-contact{
+    margin-right: 0;
+    text-transform: none;
+  }
+  .delete-contact-method{
+    position: absolute;
+    right: -20px;
+    bottom: 16px;
+    ng-md-icon{
+      fill:#999;
+    }
+    &:hover{
+      ng-md-icon{
+        fill:#333;
+      }
+    }
+  }
+
   .return{
     margin-bottom: 20px;
   }
@@ -257,8 +275,14 @@
       md-input-container{
         padding-bottom: 0;
       }
+      .contactMethodTextarea{
+        padding-bottom: 25px;
+      }
       button{
         margin: 13px 0 0 5px;
+        &.dmc-button{
+          margin-top: 0;
+        }
       }
     }
 	  .servers-container{

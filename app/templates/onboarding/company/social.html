@@ -7,6 +7,14 @@
 	</div>
 	<h3>Strengthen relationships with users over social networks.</h3>
 
+    <div layout="row" layout-align="end center">
+        <md-button class="md-raised md-primary add-new-contact"
+                   ng-click="addNewContactMethod()"
+                   aria-label="Add New Contact Method">
+            Add New Contact Method
+        </md-button>
+    </div>
+
 	<form name="focusForm" autocomplete="off" layout="row" layout-wrap>
 		<md-input-container flex="50" class="md-icon-float">
 			<label>Twitter</label>
@@ -26,7 +34,46 @@
 			<label>Website</label>
 			<input ng-model="company[8].data.website" ng-pattern="/^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/">
 		</md-input-container>
+
+        <md-input-container flex="50" class="right-space" ng-repeat="item in contactMethods track by $index" ng-if="!item.removed">
+            <label>{{item.name}}</label>
+            <input ng-model="item.value" ng-init="item.oldValue = item.value">
+            <md-button md-no-ink
+                       ng-click="deleteContactMethod(item,$event,$index)"
+                       class="md-icon-button delete-contact-method"
+                       aria-label="Delete Contact Method">
+                <ng-md-icon icon="delete" size="21"></ng-md-icon>
+            </md-button>
+        </md-input-container>
 	</form>
+
+    <div layout="row" ng-if="isAddingContactMethod">
+        <div class="list-contacts" flex="100">
+            <div layout="row" class="boxForAddContact" flex>
+                <form name="formAddContactMethod" ng-submit="saveContactMethod(newAdditionalMethod)" layout="column" flex>
+                    <div layout="row" flex>
+                        <div layout="column" class="left-space" flex>
+                            <div layout="row" layout-align="start center">
+                                <md-input-container class="contactMethodTextarea" flex>
+                                    <label>Additional Method</label>
+                                    <input ng-model="newAdditionalMethod" md-maxlength="100" required/>
+                                </md-input-container>
+                                <md-button class="md-raised dmc-button" type="button" ng-click="cancelAddContactMethod()">
+                                    Cancel
+                                </md-button>
+                                <md-button class="md-raised md-primary dmc-button"
+                                           type="submit"
+                                           ng-disabled="!formAddContactMethod.$valid">
+                                    Save
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 	<div layout="row" layout-align="end center" class="onboarding-foter">
 		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.contact">

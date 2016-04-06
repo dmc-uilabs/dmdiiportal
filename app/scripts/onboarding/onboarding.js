@@ -11,6 +11,7 @@ angular.module('dmc.onboarding', [
     'dmc.socket',
     'dmc.widgets.stars',
     'dmc.widgets.review',
+    'dmc.model.question-toast-model',
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.location',

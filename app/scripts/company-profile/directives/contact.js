@@ -102,7 +102,7 @@ angular.module('dmc.company-profile').
                 $scope.saveContactMethod = function(name){
                     var data = {
                         name : name,
-                        profileId : $scope.source.id,
+                        companyId : $scope.source.id,
                         value : null
                     };
                     $scope.source.contactMethods.push(data);
@@ -175,17 +175,6 @@ angular.module('dmc.company-profile').
                         $scope.cancelAddContact();
                         $scope.changedValue('contact-added');
                         apply();
-                        //ajax.create(dataFactory.addCompanyContact(), newContact,
-                        //    function (response) {
-                        //        var data = response.data ? response.data : response;
-                        //        if (!$scope.source.contacts) $scope.source.contacts = [];
-                        //        $scope.source.contacts.unshift(data);
-                        //        $scope.cancelAddContact();
-                        //        apply();
-                        //    }, function () {
-                        //        toastModel.showToast("error", "Error. The problem on the server (add contact).");
-                        //    }
-                        //);
                     }
                 };
 

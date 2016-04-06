@@ -51,6 +51,15 @@ angular.module('dmc.company-profile')
             $scope.invate = false;
             $scope.toProject = "";
             $scope.projects = [];
+            $scope.contactMethods = [];
+
+            function loadContactMethods(){
+                ajax.get(dataFactory.companyURL($scope.company.id).get_contact_methods,{},function(response){
+                    $scope.contactMethods = response.data;
+                    apply();
+                });
+            }
+            loadContactMethods();
 
             $scope.sortList = [
                 {

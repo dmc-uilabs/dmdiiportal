@@ -7211,7 +7211,7 @@ definitions:
         type: string
       name:
         type: string
-      profileId:
+      companyId:
         type: string
       value:
         type: string
@@ -7220,7 +7220,7 @@ definitions:
     properties:
       name:
         type: string
-      profileId:
+      companyId:
         type: string
       value:
         type: string

@@ -1095,7 +1095,7 @@
   "company_contact_methods": [
     {
       "name": "Facebook page",
-      "profileId": 1,
+      "companyId": 1,
       "value": "facebook.com",
       "id": 1
     }

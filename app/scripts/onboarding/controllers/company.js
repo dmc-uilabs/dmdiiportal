@@ -1,7 +1,7 @@
 angular.module('dmc.onboarding')
 .controller('CompanyController', 
-	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory', 'fileUpload',
-	function ($scope, $rootScope, $state, ajax, dataFactory, fileUpload) {
+	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory', 'fileUpload','questionToastModel',
+	function ($scope, $rootScope, $state, ajax, dataFactory, fileUpload, questionToastModel) {
 		if($state.current.name == "onboarding.company"){
 			$state.go($scope.company[0].state);
 		}
@@ -10,9 +10,59 @@ angular.module('dmc.onboarding')
         $scope.isAddingContact = false;
         $scope.isAddingVideo = false;
         $scope.isAddingImage = false;
-            $scope.isAddingSkillsImage = false;
+        $scope.isAddingSkillsImage = false;
         $scope.file = null;
 
+        $scope.contactMethods = [];
+        $scope.isAddingContactMethod = false;
+        $scope.addNewContactMethod = function(){
+            $scope.isAddingContactMethod = true;
+        };
+
+        $scope.cancelAddContactMethod = function(){
+            $scope.isAddingContactMethod = false;
+        };
+
+        $scope.saveContactMethod = function(name){
+            var data = {
+                name : name,
+                companyId : $scope.userData.companyId,
+                value : null
+            };
+            ajax.create(dataFactory.companyURL().add_contact_method,data,function(response){
+                response.data.oldValue = response.data.value;
+                $scope.contactMethods.push(response.data);
+                $scope.cancelAddContactMethod();
+                apply();
+            });
+        };
+
+        function apply(){
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+        }
+
+        $scope.deleteContactMethod = function(item,ev,index){
+            questionToastModel.show({
+                question : "Do you want to delete the contact method?",
+                buttons: {
+                    ok: function(){
+                        ajax.delete(dataFactory.companyURL(item.id).delete_contact_method,{},function(response){
+                            $scope.contactMethods.splice(index,1);
+                            apply();
+                        });
+                    },
+                    cancel: function(){}
+                }
+            },ev);
+        };
+
+        function loadContactMethods(){
+            ajax.get(dataFactory.companyURL($scope.userData.companyId).get_contact_methods,{},function(response){
+                $scope.contactMethods = response.data;
+                apply();
+            });
+        }
+        loadContactMethods();
 
         $scope.keyContactTypes = [
             {
@@ -378,6 +428,19 @@ angular.module('dmc.onboarding')
                         $state.go('^' + $scope.company[index+1].state);
                     });
                     break;
+                case 8:
+                    for(var i in $scope.contactMethods){
+                        if($scope.contactMethods[i].value != $scope.contactMethods[i].oldValue){
+                            ajax.update(dataFactory.companyURL($scope.contactMethods[i].id).update_contact_method,{
+                                value : $scope.contactMethods[i].value
+                            },function(response){});
+                        }
+                    }
+                    $scope.saveCompany({}, function(){
+                        $(window).scrollTop(0);
+                        $state.go('^' + $scope.company[index+1].state);
+                    });
+                    break;
                 case 9:
                     for(var i in $scope.company[9].data.keyContacts){
                         delete $scope.company[9].data.keyContacts[i]['$$hashKey'];
@@ -386,7 +449,10 @@ angular.module('dmc.onboarding')
                             $scope.company[9].data.keyContacts[i],
                             function(response){}
                         );
-                    };
+                    }
+
+
+
                     $scope.saveCompany({}, function(){
                         $(window).scrollTop(0);
                         $state.go('^' + $scope.company[index+1].state);
