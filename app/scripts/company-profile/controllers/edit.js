@@ -75,7 +75,7 @@ angular.module('dmc.company-profile')
                                 logoImage: null
                             },function(response){
                                 $scope.company.logoImage = null;
-                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                                apply();
                             });
                         },
                         cancel: function(){}
@@ -86,7 +86,7 @@ angular.module('dmc.company-profile')
             var callbackUploadPicture = function(data){
                 if(!data.error) {
                     $scope.company.logoImage = data.file.name;
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    apply();
                     toastModel.showToast('success', 'Image successfully added');
                 }else{
                     toastModel.showToast('error', 'Unable add image');
@@ -108,6 +108,16 @@ angular.module('dmc.company-profile')
                             break;
                         }
                         if($.type($scope.changes.removedSkillsImages) == 'array' && $scope.changes.removedSkillsImages.length > 0){
+                            isChange = true;
+                            break;
+                        }
+                    }
+                }
+
+                // if changed skills
+                if($scope.company.skills && $.type($scope.company.skills) == 'array') {
+                    for (var index in $scope.company.skills) {
+                        if(!$scope.company.skills[index].id || $scope.company.skills[index].removed){
                             isChange = true;
                             break;
                         }
@@ -144,7 +154,7 @@ angular.module('dmc.company-profile')
                 // if changed contacts
                 if($scope.company.contacts && $.type($scope.company.contacts) == 'array') {
                     for (var index in $scope.company.contacts) {
-                        if($scope.company.contacts[index].hide ||
+                        if(!$scope.company.contacts[index].id || $scope.company.contacts[index].hide ||
                             $scope.company.contacts[index].type != $scope.company.contacts[index].changedType ||
                             $scope.company.contacts[index].name != $scope.company.contacts[index].changedName ||
                             $scope.company.contacts[index].title != $scope.company.contacts[index].changedTitle ||
@@ -155,12 +165,21 @@ angular.module('dmc.company-profile')
                         }
                     }
                 }
+                // if changed contact methods
+                if($scope.company.contactMethods && $.type($scope.company.contactMethods) == 'array') {
+                    for (var index in $scope.company.contactMethods) {
+                        if(!$scope.company.contactMethods[index].id || $scope.company.contactMethods[index].removed || $scope.company.contactMethods[index].oldValue != $scope.company.contactMethods[index].value){
+                            isChange = true;
+                            break;
+                        }
+                    }
+                }
                 $scope.isDataChanged = isChange;
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                apply();
             };
 
             $scope.changedValue = function(name){
-                updateDataChangedStatus();
+                updateDataChangedStatus(name);
             };
 
             $scope.saveChanges = function(){
@@ -194,6 +213,41 @@ angular.module('dmc.company-profile')
                         );
                     }
 
+                    // save changed skills
+                    if($scope.company.skills && $.type($scope.company.skills) == 'array' && $scope.company.skills.length > 0){
+                        for (var index=0;index<$scope.company.skills.length;index++) {
+                            if(!$scope.company.skills[index].id){
+                                var skill = $.extend(true,{},$scope.company.skills[index]);
+                                $scope.company.skills.splice(index,1);
+                                index--;
+                                ajax.create(dataFactory.addCompanySkill(),{
+                                        companyId : skill.companyId,
+                                        name :skill.name
+                                    },
+                                    function(response){
+                                        $scope.company.skills.unshift(response.data);
+                                        updateDataChangedStatus();
+                                        apply();
+                                    },function(){
+                                        toastModel.showToast("error", "Error. The problem on the server (add skill).");
+                                    }
+                                );
+                            }else if($scope.company.skills[index].removed){
+                                var id_ = $scope.company.skills[index].id;
+                                $scope.company.skills.splice(index,1);
+                                index--;
+                                ajax.delete(dataFactory.deleteCompanySkill(id_),{},
+                                    function(response){
+                                        updateDataChangedStatus();
+                                        apply();
+                                    },function(){
+                                        toastModel.showToast("error", "Error. The problem on the server.");
+                                    }
+                                );
+                            }
+                        }
+                    }
+
                     // save changed images
                     if($scope.company.images && $.type($scope.company.images) == 'array' && $scope.company.images.length > 0){
                         for(var index in $scope.company.images){
@@ -211,7 +265,7 @@ angular.module('dmc.company-profile')
                                                 }
                                             }
                                             updateDataChangedStatus();
-                                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                                            apply();
                                         }, function () {
                                             toastModel.showToast("error", "Error. The problem on the server (update image).");
                                         }
@@ -238,7 +292,7 @@ angular.module('dmc.company-profile')
                                                 }
                                             }
                                             updateDataChangedStatus();
-                                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                                            apply();
                                         }, function () {
                                             toastModel.showToast("error", "Error. The problem on the server (update image).");
                                         }
@@ -250,8 +304,28 @@ angular.module('dmc.company-profile')
 
                     // save changed videos
                     if($scope.company.videos && $.type($scope.company.videos) == 'array' && $scope.company.videos.length > 0){
-                        for(var index in $scope.company.videos){
-                            if(!$scope.company.videos[index].hide) {
+                        for(var index=0;index<$scope.company.videos.length;index++){
+                            if(!$scope.company.videos[index].id){
+                                var requestData ={
+                                    companyId: $scope.company.videos[index].companyId,
+                                    link: $scope.company.videos[index].link,
+                                    title: $scope.company.videos[index].title
+                                };
+                                $scope.company.videos.splice(index,1);
+                                index--;
+                                ajax.create(dataFactory.addCompanyVideo(),requestData,
+                                    function(response){
+                                        var data = response.data;
+                                        data.changedTitle = data.title;
+                                        data.changedLink = data.link;
+                                        $scope.company.videos.unshift(data);
+                                        updateDataChangedStatus();
+                                        apply();
+                                    },function(){
+                                        toastModel.showToast("error", "Error. The problem on the server (add video).");
+                                    }
+                                );
+                            }else if(!$scope.company.videos[index].hide) {
                                 if ($scope.company.videos[index].title != $scope.company.videos[index].changedTitle || $scope.company.videos[index].link != $scope.company.videos[index].changedLink) {
                                     var updatedData = {};
                                     if ($scope.company.videos[index].title != $scope.company.videos[index].changedTitle) updatedData.title = $scope.company.videos[index].changedTitle;
@@ -259,7 +333,10 @@ angular.module('dmc.company-profile')
                                     updateVideo($scope.company.videos[index],updatedData);
                                 }
                             }else{
-                                deleteVideo($scope.company.videos[index]);
+                                var id_ = $scope.company.videos[index].id;
+                                $scope.company.videos.splice(index,1);
+                                index--;
+                                deleteVideo(id_);
                             }
                         }
                     }
@@ -268,18 +345,22 @@ angular.module('dmc.company-profile')
                     if($scope.company.contacts && $.type($scope.company.contacts) == 'array' && $scope.company.contacts.length > 0){
                         for(var index in $scope.company.contacts){
                             var c = $scope.company.contacts[index];
-                            if(!c.hide) {
+                            var updatedData = {};
+                            if (c.type != c.changedType) updatedData.type = c.changedType;
+                            if (c.name != c.changedName) updatedData.name = c.changedName;
+                            if (c.title != c.changedTitle) updatedData.title = c.changedTitle;
+                            if (c.phoneNumber != c.changedPhoneNumber) updatedData.phoneNumber = c.changedPhoneNumber;
+                            if (c.email != c.changedEmail) updatedData.email = c.changedEmail;
+
+                            if(!c.id) {
+                                $scope.company.contacts[index]['fId'] = Date.parse(new Date());
+                                createContact($scope.company.contacts[index], updatedData);
+                            }else if(!c.hide) {
                                 if (c.type != c.changedType ||
                                     c.name != c.changedName ||
                                     c.title != c.changedTitle ||
                                     c.phoneNumber != c.changedPhoneNumber ||
                                     c.email != c.changedEmail) {
-                                    var updatedData = {};
-                                    if (c.type != c.changedType) updatedData.type = c.changedType;
-                                    if (c.name != c.changedName) updatedData.name = c.changedName;
-                                    if (c.title != c.changedTitle) updatedData.title = c.changedTitle;
-                                    if (c.phoneNumber != c.changedPhoneNumber) updatedData.phoneNumber = c.changedPhoneNumber;
-                                    if (c.email != c.changedEmail) updatedData.email = c.changedEmail;
                                     if(c.changedType != null && ((c.changedEmail != null && c.changedEmail.length > 0) || (c.changedPhoneNumber != null && c.changedPhoneNumber.length > 0))){
                                         updateContact(c,updatedData);
                                     }else{
@@ -296,7 +377,82 @@ angular.module('dmc.company-profile')
                             }
                         }
                     }
+
+                    // save changed contacts methods
+                    if($scope.company.contactMethods && $.type($scope.company.contactMethods) == 'array') {
+                        for (var index=0;index<$scope.company.contactMethods.length;index++) {
+                            var item = $scope.company.contactMethods[index];
+                            if(!item.id) {
+                                $scope.company.contactMethods.splice(index,1);
+                                index--;
+                                ajax.create(dataFactory.companyURL().add_contact_method,{
+                                    name : item.name,
+                                    profileId : item.profileId,
+                                    value : item.value
+                                },function(response){
+                                    var data = response.data;
+                                    data.oldValue = data.value;
+                                    $scope.company.contactMethods.push(data);
+                                    apply();
+                                    updateDataChangedStatus();
+                                });
+                            }else if(item.oldValue != item.value){
+                                ajax.update(dataFactory.companyURL(item.id).update_contact_method,{
+                                    value : item.value
+                                },function(response){
+                                    for (var i in $scope.company.contactMethods) {
+                                        if($scope.company.contactMethods[i].id == response.data.id){
+                                            $scope.company.contactMethods[i].oldValue = response.data.value;
+                                            break;
+                                        }
+                                    }
+                                    apply();
+                                    updateDataChangedStatus();
+                                });
+                            }else if(item.removed){
+                                var id_ = item.id;
+                                $scope.company.contactMethods.splice(index,1);
+                                index--;
+                                ajax.delete(dataFactory.companyURL(id_).delete_contact_method,{},function(response){
+                                    apply();
+                                    updateDataChangedStatus();
+                                });
+                            }
+                        }
+                    }
                 }
+            };
+
+            // function for create contact
+            var createContact = function(contact,updatedData){
+                var contact_ = $.extend(true,{},contact);
+                for(var key in updatedData) contact_[key] = updatedData[key];
+                var fId = contact_.fId;
+                delete contact_.fId;
+                for(key in contact_){
+                    if(key == "$$hashKey" || key.indexOf('changed') != -1) delete contact_[key];
+                }
+                ajax.create(dataFactory.addCompanyContact(), contact_,
+                    function (response) {
+                        for(var index in $scope.company.contacts){
+                            if($scope.company.contacts[index].fId == fId){
+                                $scope.company.contacts.splice(index,1);
+                                break;
+                            }
+                        }
+                        var data = response.data;
+                        data.changedType = data.type;
+                        data.changedName = data.name;
+                        data.changedTitle = data.title;
+                        data.changedPhoneNumber = data.phoneNumber;
+                        data.changedEmail = data.email;
+                        $scope.company.contacts.unshift(data);
+                        apply();
+                        updateDataChangedStatus();
+                    }, function () {
+                        toastModel.showToast("error", "Error. The problem on the server (add contact).");
+                    }
+                );
             };
 
             // function for update contact
@@ -315,7 +471,7 @@ angular.module('dmc.company-profile')
                             }
                         }
                         updateDataChangedStatus();
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                        apply();
                     }, function () {
                         toastModel.showToast("error", "Error. The problem on the server (update contact).");
                     }
@@ -335,7 +491,7 @@ angular.module('dmc.company-profile')
                             }
                         }
                         updateDataChangedStatus();
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                        apply();
                     },function(){
                         toastModel.showToast("error", "Error. The problem on the server (delete contact).");
                     }
@@ -355,7 +511,7 @@ angular.module('dmc.company-profile')
                             }
                         }
                         updateDataChangedStatus();
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                        apply();
                     }, function () {
                         toastModel.showToast("error", "Error. The problem on the server (update video).");
                     }
@@ -363,18 +519,11 @@ angular.module('dmc.company-profile')
             };
 
             // function for delete video
-            var deleteVideo = function(video){
-                ajax.delete(dataFactory.deleteCompanyVideo(video.id),{},
+            var deleteVideo = function(id){
+                ajax.delete(dataFactory.deleteCompanyVideo(id),{},
                     function(response){
-                        var data = response.data ? response.data : response;
-                        for(var i in $scope.company.videos){
-                            if($scope.company.videos[i].id == video.id){
-                                $scope.company.videos.splice(i,1);
-                                break;
-                            }
-                        }
                         updateDataChangedStatus();
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                        apply();
                     },function(){
                         toastModel.showToast("error", "Error. The problem on the server (delete video).");
                     }
@@ -395,7 +544,7 @@ angular.module('dmc.company-profile')
                             }
                             $scope.changes.removedImages = [];
                             updateDataChangedStatus();
-                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                            apply();
                         }, function () {
                             toastModel.showToast("error", "Error. The problem on the server (remove images).");
                         }, "POST"
@@ -417,7 +566,7 @@ angular.module('dmc.company-profile')
                             }
                             $scope.changes.removedSkillsImages = [];
                             updateDataChangedStatus();
-                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                            apply();
                         }, function () {
                             toastModel.showToast("error", "Error. The problem on the server (remove images).");
                         }, "POST"
@@ -445,6 +594,9 @@ angular.module('dmc.company-profile')
                 },
                 membership : {
                     title : "Membership"
+                },
+                admin: {
+                    title : "Admin Members Area"
                 }
             };
 
@@ -473,5 +625,9 @@ angular.module('dmc.company-profile')
             $scope.cancelChanges = function(){
                 $location.path('/'+$scope.company.id).search();
             };
+
+            function apply(){
+                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            }
 
         }]);

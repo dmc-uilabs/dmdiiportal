@@ -455,7 +455,18 @@ angular.module('dmc.data',[])
                     updateHelpful : localhost + 'company_reviews_helpful/' + id,
                     getFlagged : localhost + 'company_reviews_flagged',
                     addFlagged : localhost + 'company_reviews_flagged',
-                    history : localhost + name +'/' + id + '/company_history'
+                    history : localhost + name +'/' + id + '/company_history',
+                    profiles : localhost + name +'/' + id + '/profiles',
+                    get_removed_members: localhost + name +'/' + id + '/removed_company_members',
+                    remove_member: localhost+'removed_company_members',
+                    remove_member_from_removed: localhost+'removed_company_members/'+id,
+                    get_member_requests: localhost+name+'/'+id+'/companies_join_requests',
+                    approve_member: localhost+'companies_join_requests/'+id,
+                    decline_member: localhost+'companies_join_requests/'+id,
+                    add_contact_method: localhost+'company_contact_methods',
+                    get_contact_methods: localhost+name+'/'+id+'/company_contact_methods',
+                    update_contact_method: localhost+'company_contact_methods/'+id,
+                    delete_contact_method: localhost+'company_contact_methods/'+id
                 }
             },
             // ---------------------------

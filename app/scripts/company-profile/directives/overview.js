@@ -18,14 +18,14 @@ angular.module('dmc.company-profile').
                 // get company images
                 var callbackImages = function(data){
                     $scope.source.images = data;
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    apply();
                 };
                 companyProfileModel.getImages($scope.source.id, callbackImages);
 
                 // get company videos
                 var callbackVideos = function(data){
                     $scope.source.videos = data;
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    apply();
                 };
                 companyProfileModel.getVideos($scope.source.id, callbackVideos);
 
@@ -44,31 +44,12 @@ angular.module('dmc.company-profile').
 
                 // save new video
                 $scope.saveVideo = function(newVideo){
-                    ajax.get(dataFactory.getLastCompanyVideoId(),{
-                            "_order" : "DESC",
-                            "_limit" : 1,
-                            "_sort" : "id"
-                        },
-                        function(response){
-                            var data = response.data ? response.data : response;
-                            var lastId = (data.length == 0 ? 1 : data[0].id+1);
-                            newVideo.id = lastId;
-                            newVideo.companyId = $scope.source.id;
-                            ajax.create(dataFactory.addCompanyVideo(),newVideo,
-                                function(response){
-                                    var data = response.data ? response.data : response;
-                                    if(!$scope.source.videos) $scope.source.videos = [];
-                                    $scope.source.videos.unshift(data);
-                                    $scope.cancelAddVideo();
-                                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                                },function(){
-                                    toastModel.showToast("error", "Error. The problem on the server (add video).");
-                                }
-                            );
-                        },function(){
-                            toastModel.showToast("error", "Error. The problem on the server (get last video id).");
-                        }
-                    );
+                    newVideo.companyId = $scope.source.id;
+                    if(!$scope.source.videos) $scope.source.videos = [];
+                    $scope.source.videos.unshift(newVideo);
+                    $scope.changedValue('video');
+                    $scope.cancelAddVideo();
+                    apply();
                 };
 
                 // delete video
@@ -77,9 +58,19 @@ angular.module('dmc.company-profile').
                         question : "Do you want to delete video?",
                         buttons: {
                             ok: function(){
-                                video.hide = true;
+                                if(!video.id) {
+                                    video.id = -1;
+                                    for(var i in $scope.source.videos){
+                                        if($scope.source.videos[i].id == -1){
+                                            $scope.source.videos.splice(i,1);
+                                            break;
+                                        }
+                                    }
+                                }else{
+                                    video.hide = true;
+                                }
                                 $scope.changedValue('video');
-                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                                apply();
                             },
                             cancel: function(){}
                         }
@@ -129,7 +120,7 @@ angular.module('dmc.company-profile').
                 var callbackUploadPicture = function(data){
                     if(!data.error) {
                         $scope.source.images.unshift(data.result);
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                        apply();
                         toastModel.showToast('success', 'Image successfully added');
                     }else{
                         toastModel.showToast('error', 'Unable add image');
@@ -145,12 +136,16 @@ angular.module('dmc.company-profile').
                                 $scope.changes.removedImages.push(img.id);
                                 img.hide = true;
                                 $scope.changedValue('image');
-                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                                apply();
                             },
                             cancel: function(){}
                         }
                     },ev);
                 };
+
+                function apply(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
             }
         };
     }]);

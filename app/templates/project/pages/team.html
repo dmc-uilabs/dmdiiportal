@@ -5,7 +5,7 @@
                 <a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a>
             </div>
             <span ng-if="projectCtrl.projectData.dueDate" class="small-text due-date-project small-text--grey">
-                Due in {{projectCtrl.projectData.dueDate}} {{projectCtrl.projectData.type}}
+                Due in {{projectCtrl.projectData.dueDate}}
             </span>
         </h1>
         <div class="md-toolbar-tools">
@@ -77,9 +77,6 @@
                                         </md-button>
                                     </div>
                                 </div>
-                            </div>
-                            <div flex="100" ng-if="members.length == 0">
-                                Team members is empty
                             </div>
                         </div>
                     </md-content>

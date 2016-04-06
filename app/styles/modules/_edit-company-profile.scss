@@ -134,8 +134,24 @@
         }
       }
     }
+    .delete-contact-method{
+      position: absolute;
+      right: 0;
+      bottom: 23px;
+      ng-md-icon{
+        fill:#999;
+      }
+      &:hover{
+        ng-md-icon{
+          fill:#333;
+        }
+      }
+    }
     .list-contacts{
-      margin-top: 34px;
+      margin-top: 13px;
+      .contactMethodTextarea{
+        padding-bottom: 25px;
+      }
       .title{
         font-size: 13px;
         color: rgba(0,0,0,0.54);

@@ -12,7 +12,7 @@ angular.module('dmc.add_task',[
     'dmc.model.user'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
     $stateProvider.state('add', {
-        url: '/',
+        url: '/?projectId',
         templateUrl: 'templates/add_task/add_task.html',
         controller: 'AddTaskCtrl'
     });
@@ -39,10 +39,11 @@ angular.module('dmc.add_task',[
 
             $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
             if(!$rootScope.projects) ajax.loadProjects();
-            $scope.selectedProject = null;
 
             $scope.task = {};
             $scope.isCreation = false;
+
+            $scope.selectedProject = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : null;
 
             $scope.setDatePickerFocus = function(){
                 $( ".dueDatePicker input").unbind( "focus" );
@@ -98,7 +99,7 @@ angular.module('dmc.add_task',[
                         "assigneeId": $scope.task.assigneeId,
                         "reporter": $rootScope.userData.displayName,
                         "reporterId": $rootScope.userData.accountId,
-                        "dueDate": Date.parse($scope.task.dueDate),
+                        "dueDate": Date.parse(!$scope.task.dueDate || $scope.task.dueDate == undefined ? new Date() : $scope.task.dueDate),
                         "priority": $scope.task.priority,
                         "projectId": $scope.selectedProject,
                         "additionalDetails" : $scope.task.additionalDetails,

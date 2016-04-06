@@ -283,6 +283,16 @@
       "id": 5,
       "companyId": 1,
       "name": "Skill 2"
+    },
+    {
+      "companyId": 1,
+      "name": 125,
+      "id": 6
+    },
+    {
+      "companyId": 1,
+      "name": 5555,
+      "id": 7
     }
   ],
   "company_key_contacts": [
@@ -317,6 +327,37 @@
       "companyId": 1,
       "id": 6,
       "phoneNumber": 212535353
+    },
+    {
+      "type": 1,
+      "phoneNumber": 423452354,
+      "companyId": 1,
+      "id": 7
+    },
+    {
+      "type": 1,
+      "phoneNumber": 34123434,
+      "companyId": 1,
+      "id": 8
+    },
+    {
+      "phoneNumber": 33333,
+      "type": 1,
+      "companyId": 1,
+      "id": 9
+    },
+    {
+      "type": 1,
+      "phoneNumber": 34123434,
+      "companyId": 1,
+      "id": 10
+    },
+    {
+      "type": 1,
+      "phoneNumber": 123,
+      "name": "sadfasdf",
+      "companyId": 1,
+      "id": 11
     }
   ],
   "company_featured": [
@@ -620,14 +661,14 @@
   ],
   "following_members": [
     {
-      "accountId": 1,
-      "profileId": 1,
-      "id": 1
-    },
-    {
       "profileId": 2,
       "accountId": 1,
       "id": 2
+    },
+    {
+      "profileId": 1,
+      "accountId": 1,
+      "id": 3
     }
   ],
   "following_companies": [
@@ -1025,8 +1066,40 @@
       }
     }
   ],
-  "projects_join_requests": [],
-  "companies_join_requests": [],
+  "projects_join_requests": [
+    {
+      "profileId": 3,
+      "projectId": 1,
+      "id": 1
+    },
+    {
+      "profileId": 5,
+      "projectId": 1,
+      "id": 2
+    }
+  ],
+  "companies_join_requests": [
+    {
+      "profileId": 2,
+      "companyId": 1,
+      "id": 2
+    }
+  ],
+  "removed_company_members": [
+    {
+      "profileId": 3,
+      "companyId": 1,
+      "id": 1
+    }
+  ],
+  "company_contact_methods": [
+    {
+      "name": "Facebook page",
+      "profileId": 1,
+      "value": "facebook.com",
+      "id": 1
+    }
+  ],
   "projects_tags": [
     {
       "projectId": 6,
@@ -1147,8 +1220,9 @@
       "fromProfileId": 1,
       "from": "Thomas Smith",
       "date": 1459757448000,
-      "accept": true,
-      "id": 11
+      "accept": false,
+      "id": 11,
+      "removed": true
     },
     {
       "profileId": 1,
@@ -1158,6 +1232,43 @@
       "date": 1459758478599,
       "accept": true,
       "id": 12
+    },
+    {
+      "profileId": 1,
+      "projectId": 1,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1459758478599,
+      "accept": true,
+      "id": 13
+    },
+    {
+      "profileId": 2,
+      "projectId": 1,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1459758478599,
+      "accept": false,
+      "id": 14,
+      "removed": true
+    },
+    {
+      "profileId": 3,
+      "projectId": 1,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1459758478599,
+      "accept": false,
+      "id": 15
+    },
+    {
+      "profileId": 4,
+      "projectId": 1,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1459758478599,
+      "accept": true,
+      "id": 16
     }
   ],
   "components": [
@@ -7337,7 +7448,7 @@
     {
       "id": 1,
       "displayName": "Thomas Smith",
-      "company": "General Electric (GE) Global Research",
+      "company": "The Turbine Company",
       "companyId": 1,
       "jobTitle": "Engineering Manager",
       "location": "Berkeley, California",
@@ -7346,16 +7457,7 @@
       "skills": [
         "skill1",
         "skill2",
-        "skill3",
-        "skill4",
-        "skill5",
-        "skill6",
-        "skill7",
-        "skill8",
-        "skill9",
-        "skill10",
-        "skill11",
-        "skill12"
+        "skill3"
       ]
     },
     {
@@ -7367,18 +7469,39 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
       "skills": [
         "skill1",
-        "skill2",
-        "skill3",
-        "skill4",
-        "skill5",
-        "skill6",
-        "skill7",
-        "skill8",
-        "skill9",
-        "skill10",
-        "skill11",
-        "skill12"
+        "skill2"
       ]
+    },
+    {
+      "id": 3,
+      "displayName": "Hussain Rizvi",
+      "jobTitle": "Engineering Manager",
+      "location": "Berkeley, California",
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "skills": []
+    },
+    {
+      "id": 4,
+      "displayName": "Jessica H. Wheaton",
+      "jobTitle": "Engineering Manager",
+      "location": "Berkeley, California",
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "skills": [],
+      "companyId": 1,
+      "company": "The Turbine Company"
+    },
+    {
+      "id": 5,
+      "displayName": "Adam Marks",
+      "jobTitle": "Engineering Manager",
+      "location": "Berkeley, California",
+      "image": "/uploads/profile/1/20151222084711000000.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.",
+      "skills": [],
+      "companyId": 1,
+      "company": "The Turbine Company"
     }
   ],
   "profile_reviews": [

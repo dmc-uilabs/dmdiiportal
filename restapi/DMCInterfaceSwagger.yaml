@@ -1584,6 +1584,146 @@ paths:
       responses:
         '200':
           description: Ok
+  '/company_contact_methods':
+    post:
+      tags:
+        - company
+      description: Add new company contact method
+      parameters:
+        - in: body
+          name: body
+          description: body of contact method
+          required: true
+          schema:
+            $ref: '#/definitions/PostCompanyContactMethod'
+      responses:
+        '200':
+          description: return contact method
+          schema:
+            $ref: '#/definitions/GetCompanyContactMethod'
+  '/company_contact_methods/{id}':
+    delete:
+      tags:
+        - company
+      description: Add new company contact method
+      parameters:
+        - in: path
+          name: id
+          description: Company contact methods id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Ok
+    patch:
+      tags:
+        - company
+      description: Update company contact method
+      parameters:
+        - in: path
+          name: id
+          description: Company contact methods id
+          type: string
+          required: true
+        - in: body
+          name: body
+          description: body of contact method
+          required: true
+          schema:
+            $ref: '#/definitions/PostCompanyContactMethod'
+      responses:
+        '200':
+          description: return contact method
+          schema:
+            $ref: '#/definitions/GetCompanyContactMethod'
+  '/companies/{companyId}/company_contact_methods':
+    get:
+      tags:
+        - company
+      description: Get contact methods of company
+      parameters:
+        - in: path
+          name: companyId
+          description: Company id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: return contact method
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GetCompanyContactMethod'
+  '/removed_company_members':
+    post:
+      tags:
+        - company
+      description: Add new removed company member
+      parameters:
+        - in: body
+          name: body
+          description: body of removed company member
+          required: true
+          schema:
+            $ref: '#/definitions/PostRemovedCompanyMember'
+      responses:
+        '200':
+          description: return removed member
+          schema:
+            $ref: '#/definitions/GetRemovedCompanyMember'
+  '/removed_company_members/{id}':
+    delete:
+      tags:
+        - company
+      description: Remove removed company member
+      parameters:
+        - in: path
+          name: id
+          description: removed company member id 
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Ok
+    patch:
+      tags:
+        - company
+      description: Update removed company member
+      parameters:
+        - in: path
+          name: id
+          description: Removed company member id
+          type: string
+          required: true
+        - in: body
+          name: body
+          description: body of removed company member
+          required: true
+          schema:
+            $ref: '#/definitions/PostRemovedCompanyMember'
+      responses:
+        '200':
+          description: return contact method
+          schema:
+            $ref: '#/definitions/GetRemovedCompanyMember'
+  '/companies/{companyId}/removed_company_members':
+    get:
+      tags:
+        - company
+      description: Get removed company members
+      parameters:
+        - in: path
+          name: companyId
+          description: Company id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: return contact method
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GetCompanyContactMethod'          
   '/companies_join_requests':
       get:
         tags:
@@ -7037,11 +7177,50 @@ definitions:
         profileId:
           type: string
   GetCompanyJoinRequest:
-      type: object
-      properties:
-        id:
-          type: string
-        companyId:
-          type: string
-        profileId:
-          type: string
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
+        type: string
+      profileId:
+        type: string
+      decline:
+        description: true - if admin decline join request from user
+        type: boolean
+  PostRemovedCompanyMember:
+    type: object
+    properties:
+      companyId:
+        type: string
+      profileId:
+        type: string
+  GetRemovedCompanyMember:
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
+        type: string
+      profileId:
+        type: string
+  GetCompanyContactMethod:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      profileId:
+        type: string
+      value:
+        type: string
+  PostCompanyContactMethod:
+    type: object
+    properties:
+      name:
+        type: string
+      profileId:
+        type: string
+      value:
+        type: string

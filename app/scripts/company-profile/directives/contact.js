@@ -11,6 +11,9 @@ angular.module('dmc.company-profile').
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, questionToastModel) {
                 $element.addClass("tab-contact");
 
+                $scope.isAddingContactMethod = false;
+
+                $scope.source.contactMethods = [];
 
                 // get company contacts
                 $scope.getContacts = function(){
@@ -88,6 +91,52 @@ angular.module('dmc.company-profile').
                     "WY|Wyoming"
                 ];
 
+                $scope.addNewContactMethod = function(){
+                    $scope.isAddingContactMethod = true;
+                };
+
+                $scope.cancelAddContactMethod = function(){
+                    $scope.isAddingContactMethod = false;
+                };
+
+                $scope.saveContactMethod = function(name){
+                    var data = {
+                        name : name,
+                        profileId : $scope.source.id,
+                        value : null
+                    };
+                    $scope.source.contactMethods.push(data);
+                    $scope.cancelAddContactMethod();
+                    $scope.changedValue('new-contact-method');
+                    apply();
+                };
+
+                $scope.deleteContactMethod = function(item,ev,index){
+                    questionToastModel.show({
+                        question : "Do you want to delete the contact method?",
+                        buttons: {
+                            ok: function(){
+                                if(item.id) {
+                                    item.removed = true;
+                                }else{
+                                    $scope.source.contactMethods.splice(index,1);
+                                }
+                                $scope.changedValue('contact-method');
+                                apply();
+                            },
+                            cancel: function(){}
+                        }
+                    },ev);
+                };
+
+                function loadContactMethods(){
+                    ajax.get(dataFactory.companyURL($scope.source.id).get_contact_methods,{},function(response){
+                        $scope.source.contactMethods = response.data;
+                        apply();
+                    });
+                }
+                loadContactMethods();
+
                 $scope.states = $.map($scope.states, function( n,index ) {
                     var name = n.split('|');
                     return {
@@ -121,19 +170,28 @@ angular.module('dmc.company-profile').
                 $scope.saveContact = function(newContact){
                     if((newContact.phoneNumber || newContact.email) && newContact.type) {
                         newContact.companyId = $scope.source.id;
-                        ajax.create(dataFactory.addCompanyContact(), newContact,
-                            function (response) {
-                                var data = response.data ? response.data : response;
-                                if (!$scope.source.contacts) $scope.source.contacts = [];
-                                $scope.source.contacts.unshift(data);
-                                $scope.cancelAddContact();
-                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                            }, function () {
-                                toastModel.showToast("error", "Error. The problem on the server (add contact).");
-                            }
-                        );
+                        if (!$scope.source.contacts) $scope.source.contacts = [];
+                        $scope.source.contacts.unshift(newContact);
+                        $scope.cancelAddContact();
+                        $scope.changedValue('contact-added');
+                        apply();
+                        //ajax.create(dataFactory.addCompanyContact(), newContact,
+                        //    function (response) {
+                        //        var data = response.data ? response.data : response;
+                        //        if (!$scope.source.contacts) $scope.source.contacts = [];
+                        //        $scope.source.contacts.unshift(data);
+                        //        $scope.cancelAddContact();
+                        //        apply();
+                        //    }, function () {
+                        //        toastModel.showToast("error", "Error. The problem on the server (add contact).");
+                        //    }
+                        //);
                     }
                 };
+
+                function apply(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
 
                 // delete contact
                 $scope.deleteContact = function(contact,ev){

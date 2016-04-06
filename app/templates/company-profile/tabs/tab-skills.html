@@ -13,7 +13,7 @@
     </div>
 </div>
 <div layout="row" class="list-skills-block" layout-wrap>
-    <div class="skill" ng-repeat="skill in source.skills">
+    <div class="skill" ng-repeat="skill in source.skills" ng-if="!skill.removed">
         {{skill.name}}
         <md-button md-no-ink
                    class="md-icon-button"

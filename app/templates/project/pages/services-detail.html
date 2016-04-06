@@ -25,15 +25,15 @@
 					Return to Services
 				</a>
 			</div>
-            <div class="margin-bottom8">
-                <a href="/marketplace.php#/search?product=services&type={{service.serviceType}}">{{service.serviceType == 'data' ? 'Data' : service.serviceType == 'analytical' ? 'Analytical' : 'Solid'}} Service</a>
-            </div>
 			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By <a ng-href="{{'profile.php#/'+service.profileId}}">{{service.owner}}</a></span></h2>
-			<div class="margin-top8">
+			<div class="margin-top8 margin-bottom8">
 				<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/detail/run-history'}}" class="link">
 					Run History
 				</a>
 			</div>
+            <div>
+                <a href="/marketplace.php#/search?product=services&type={{service.serviceType}}">{{service.serviceType == 'data' ? 'Data' : service.serviceType == 'analytical' ? 'Analytical' : 'Solid'}} Service</a>
+            </div>
 			<ui-widget-stars-static size="15" value="{{service.average_rating}}" text="({{service.average_rating}}) {{service.number_of_comments}} reviews"></ui-widget-stars-static>
 		</div>
 		<div class="buttons" layout="column" >

@@ -20,6 +20,7 @@ angular.module('dmc.company-profile', [
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.location',
+    'dmc.model.user',
     'dmc.model.toast-model',
     'dmc.model.fileUpload',
     'dmc.model.company',
@@ -64,6 +65,8 @@ angular.module('dmc.company-profile', [
             url: '/membership'
         }).state('company-profile-edit.contact', {
             url: '/contact'
+        }).state('company-profile-edit.admin', {
+            url: '/admin'
         });
 
         $urlRouterProvider.otherwise('/1');

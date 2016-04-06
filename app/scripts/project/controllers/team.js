@@ -159,7 +159,6 @@ angular.module('dmc.project')
                         }
                     }
                 }, event);
-
             };
 
             $scope.invite = function(event,member){
@@ -230,7 +229,7 @@ angular.module('dmc.project')
 
             function apply() {
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            };
+            }
         }
     ]
 );

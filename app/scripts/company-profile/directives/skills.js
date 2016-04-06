@@ -11,6 +11,10 @@ angular.module('dmc.company-profile').
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, companyProfileModel,fileUpload,questionToastModel) {
                 $element.addClass("tab-skills");
 
+                function apply(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                }
+
                 // get company images
                 var callbackImages = function(data){
                     $scope.source.skillsImages = data;
@@ -27,33 +31,15 @@ angular.module('dmc.company-profile').
 
                 // add new skill
                 $scope.sendSkill = function(){
-                    ajax.get(dataFactory.getLastCompanySkillId(),{
-                            "_order" : "DESC",
-                            "_limit" : 1,
-                            "_sort" : "id"
-                        },
-                        function(response){
-                            var data = response.data ? response.data : response;
-                            var lastId = (data.length == 0 ? 1 : data[0].id+1);
-                            ajax.create(dataFactory.addCompanySkill(),{
-                                    id : lastId,
-                                    companyId : $scope.source.id,
-                                    name : $scope.newSkill
-                                },
-                                function(response){
-                                    var data = response.data ? response.data : response;
-                                    if(!$scope.source.skills) $scope.source.skills = [];
-                                    $scope.source.skills.unshift(data);
-                                    $scope.newSkill = null;
-                                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                                },function(){
-                                    toastModel.showToast("error", "Error. The problem on the server (add skill).");
-                                }
-                            );
-                        },function(){
-                            toastModel.showToast("error", "Error. The problem on the server (get last skill id).");
-                        }
-                    );
+                    var requestData = {
+                        companyId : $scope.source.id,
+                        name : $scope.newSkill
+                    };
+                    if(!$scope.source.skills) $scope.source.skills = [];
+                    $scope.source.skills.unshift(requestData);
+                    $scope.newSkill = null;
+                    $scope.changedValue('skill');
+                    apply();
                 };
 
                 // delete skill
@@ -62,20 +48,19 @@ angular.module('dmc.company-profile').
                         question : "Do you want to delete skill?",
                         buttons: {
                             ok: function(){
-                                ajax.delete(dataFactory.deleteCompanySkill(skill.id),{},
-                                    function(response){
-                                        var data = response.data ? response.data : response;
-                                        for(var index in $scope.source.skills){
-                                            if($scope.source.skills[index].id == skill.id){
-                                                $scope.source.skills.splice(index,1);
-                                                break;
-                                            }
+                                if(!skill.id){
+                                    skill.id = -1;
+                                    for(var i in $scope.source.skills){
+                                        if($scope.source.skills[i].id == -1){
+                                            $scope.source.skills.splice(i,1);
+                                            break;
                                         }
-                                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                                    },function(){
-                                        toastModel.showToast("error", "Error. The problem on the server.");
                                     }
-                                );
+                                }else{
+                                    skill.removed = true;
+                                }
+                                $scope.changedValue('skill');
+                                apply();
                             },
                             cancel: function(){}
                         }

@@ -26,7 +26,7 @@
                             </md-input-container>
                             <md-input-container class="md-block" flex="100">
                                 <label>Additional Details</label>
-                                <textarea ng-model="task.additionalDetails" md-maxlength="1000" required></textarea>
+                                <textarea ng-model="task.additionalDetails" md-maxlength="1000"></textarea>
                             </md-input-container>
                         </div>
                     </md-content>
@@ -48,13 +48,13 @@
                                 <span class="dueDate-label" ng-show="task.dueDate">Due Date</span>
                                 <md-datepicker flex class="dueDatePicker"
                                                ng-model="task.dueDate" md-placeholder="Due Date"
-                                               ng-init="setDatePickerFocus()" required>
+                                               ng-init="setDatePickerFocus()">
                                 </md-datepicker>
                             </div>
                             <div layout="row" flex="80">
                                 <md-input-container flex>
                                     <label>Priority</label>
-                                    <md-select ng-model="task.priority" required>
+                                    <md-select ng-model="task.priority">
                                         <md-option ng-repeat="p in priorities" value="{{p.id}}">{{p.name}}</md-option>
                                     </md-select>
                                 </md-input-container>
