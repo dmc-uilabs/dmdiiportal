@@ -83,7 +83,7 @@ angular.module('dmc.account')
 
                 $(window).unbind('beforeunload');
                 $(window).bind('beforeunload', function (event) {
-                    if ($scope.changedValues) return "";
+                    if($scope.changedValues) return "";
                 });
 
                 $scope.zones = [];

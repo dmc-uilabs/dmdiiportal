@@ -80,7 +80,7 @@ angular.module('dmc.add_task',[
             $scope.loadUsers();
 
             $scope.cancel = function(){
-                $state.go("project.home");
+                window.history.back();
             };
 
             $scope.createTask = function(){
