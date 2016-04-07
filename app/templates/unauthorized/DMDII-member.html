@@ -1,0 +1,20 @@
+<div layout="row" layout-align="center center" layout-padding class="unauthorized-text" layout-wrap>
+    <div layout="column">
+  	    <h3>Oops! You company must be a DMDII member to view this content.</h3>
+    </div>
+</div>
+<div layout="row" layout-align="center center" layout-padding class="unauthorized-company" layout-wrap>
+    <div flex="50">
+        200 people have suggested that your company should become a member of DMDII
+    </div>
+    <md-button class="dmc-button md-raised md-primary"
+               ng-if="!isSuggest"
+               ng-click="suggest()">Suggest your company join DMDII</md-button>
+    <md-button class="dmc-button md-raised md-primary"
+               ng-if="isSuggest"
+               ng-click="cancelSuggest()">Suggested to your company</md-button>
+</div>
+<div layout="row" layout-align="center center" layout-padding class="unauthorized-description" layout-wrap>
+    <p>Meanwhile, explore the marketplace create a public project, ect, ect, ect, ect, ect</p>
+</div>
+<md-progress-linear md-mode="indeterminate" ng-if="isLoading"></md-progress-linear>

@@ -1723,7 +1723,56 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/GetCompanyContactMethod'          
+              $ref: '#/definitions/GetCompanyContactMethod'
+  '/suggest_join_companies':
+    post:
+      tags:
+        - company
+      description: Suggest user company joins DMDII
+      parameters:
+        - in: body
+          name: body
+          description: body of suggest join company
+          required: true
+          schema:
+            $ref: '#/definitions/PostSuggestCompany'
+      responses:
+        '200':
+          description: return new join
+          schema:
+            $ref: '#/definitions/GetSuggestCompany'
+  '/suggest_join_companies/{id}':
+    delete:
+      tags:
+        - company
+      description: Cancel suggest company join DMDII
+      parameters:
+        - in: path
+          name: id
+          description: suggest company join id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+  '/companies/{companyId}/suggest_join_companies':
+    get:
+      tags:
+        - company
+      description: Get company suggest join DMDII
+      parameters:
+        - in: path
+          name: companyId
+          description: Company id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: return new join
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GetSuggestCompany'
   '/companies_join_requests':
       get:
         tags:
@@ -7223,4 +7272,16 @@ definitions:
       companyId:
         type: string
       value:
+        type: string
+  PostSuggestCompany:
+      type: object
+      properties:
+        companyId:
+          type: string
+  GetSuggestCompany:
+    type: object
+    properties:
+      id:
+        type: string
+      companyId:
         type: string

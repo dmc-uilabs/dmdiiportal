@@ -15,7 +15,7 @@ angular.module('dmc.onboarding')
 
         $scope.enter = function(){
 			$mdDialog.hide($scope.info);
-		}
+		};
 
         function apply() {
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();

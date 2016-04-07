@@ -1066,6 +1066,11 @@
       }
     }
   ],
+  "suggest_join_companies": [
+    {
+      "id": 1
+    }
+  ],
   "projects_join_requests": [
     {
       "profileId": 3,
@@ -1083,6 +1088,11 @@
       "profileId": 2,
       "companyId": 1,
       "id": 2
+    },
+    {
+      "profileId": 1,
+      "companyId": 2,
+      "id": 3
     }
   ],
   "removed_company_members": [

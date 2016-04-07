@@ -312,8 +312,20 @@ angular.module('dmc.data',[])
             addCompanyJoinRequest: function(){
                 return localhost+'companies_join_requests';
             },
+            cancelCompanyJoinRequest: function(id){
+                return localhost+'companies_join_requests/'+id;
+            },
             getProfileCompanyJoinRequest: function(id){
                 return localhost+'profiles/'+id+'/companies_join_requests';
+            },
+            addSuggestJoinCompany: function(){
+                return localhost+'suggest_join_companies';
+            },
+            cancelSuggestJoinCompany: function(id){
+                return localhost+'suggest_join_companies/'+id;
+            },
+            getSuggestJoinCompany: function(id){
+                return localhost+'companies/'+id+'/suggest_join_companies';
             },
             followMember: function(id){
                 return localhost + 'following_members'+( id ? '/'+id : '');
