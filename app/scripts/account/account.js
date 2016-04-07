@@ -17,7 +17,6 @@ angular.module('dmc.account', [
     'dmc.model.toast-model',
     'dmc.model.question-toast-model',
     'dmc.phone-format',
-    'angular-onbeforeunload',
     'dmc.by-parameter',
     'flow'
 ]).config(function(flowFactoryProvider, $stateProvider, $urlRouterProvider, $httpProvider){
