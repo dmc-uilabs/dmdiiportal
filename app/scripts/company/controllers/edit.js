@@ -282,7 +282,6 @@ angular.module('dmc.company')
                 };
 
                 var responseData = {
-                    _limit : 4,
                     _sort : "id",
                     _order : "DESC",
                     published: true,
@@ -316,7 +315,6 @@ angular.module('dmc.company')
                     }else{
                         delete responseData.title_like;
                     }
-                    responseData._limit = $scope.pageSize;
                     responseData._start = ($scope.currentStorefrontPage-1)*$scope.pageSize;
                     switch($scope.selectedProductType){
                         case 'all':

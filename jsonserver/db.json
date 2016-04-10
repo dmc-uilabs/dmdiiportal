@@ -378,6 +378,18 @@
       "position": 11,
       "serviceId": 16,
       "id": 3
+    },
+    {
+      "companyId": 1,
+      "position": 12,
+      "serviceId": 4,
+      "id": 4
+    },
+    {
+      "companyId": 1,
+      "position": 13,
+      "serviceId": 3,
+      "id": 5
     }
   ],
   "company_reviews": [
