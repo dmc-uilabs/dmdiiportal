@@ -14,6 +14,8 @@ angular.module('dmc.search', [
     'dmc.common.notifications',
 	"dmc.ajax",
 	"dmc.data",
+    'angularUtils.directives.dirPagination',
+    'ngCookies',
     'dmc.component.treemenu',
     'dmc.model.user',
     'dmc.model.project',

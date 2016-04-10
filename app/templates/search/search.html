@@ -7,7 +7,7 @@
     <div class="search-content" layout="column" flex>
         <md-content class="container-view-all" layout="row" layout-align="center center">
             <div layout="column" flex="100">
-                <div layout="row" flex layout-align="start end" class="search-content">
+                <div layout="row" flex layout-align="start center" class="search-content">
                     <md-input-container class="filterBox">
                         <md-select placeholder="{{subTypes.placeholder}}" ng-model="subTypeModel" ng-change="subTypeChange(subTypeModel)">
                             <md-option ng-repeat="item in subTypes.items" value="{{item.tag}}">{{item.name}}</md-option>
@@ -33,12 +33,12 @@
                         </div>
                     </form>
                     <span flex="10"></span>
-                    <div class="margin-bottom-17">
+                    <div>
                         <!--<a class="link-button margin-left20" href="">Following ({{totalFollowing}})</a>-->
                         <!--<a ng-if="type=='discussions'" class="link-button margin-left20" ng-click="createDiscussion()">Add New Discussion</a>-->
                         <md-button ng-if="type=='discussions'" class="md-raised dmc-button" ng-click="createDiscussion()">
-                            <ng-md-icon icon="add" size="22"></ng-md-icon>
                             <span>Add New Discussion</span>
+                            <ng-md-icon icon="add" size="22"></ng-md-icon>
                         </md-button>
                         <!--<a class="link-button margin-left20">-->
                             <!--<ng-md-icon icon="account_circle" size="18"></ng-md-icon>-->
@@ -81,10 +81,9 @@
                                     <th name="Latest Post" order-by="latestPost"></th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr ng-repeat="item in discussions | orderBy: sort">
+                                <tr dir-paginate="item in discussions | orderBy: sort | itemsPerPage: totalItemsPerPage">
                                     <td>
-                                        <a class="link-button font-size14 " href="/individual-discussion.php#/1">{{item.title}}</a>
+                                        <a class="link-button font-size14 " href="/individual-discussion.php#/{{item.id}}">{{item.title}}</a>
                                     </td>
                                     <td>{{item.replies}} replies</td>
                                     <td class="text-normal">
@@ -96,10 +95,6 @@
                                         {{item['last']['created_at_format']}}
                                     </td>
                                 </tr>
-                                <tr ng-if="discussions.length == 0">
-                                    <td class="empty" colspan="4">No discussions</td>
-                                </tr>
-                                </tbody>
                             </table>
                         </md-data-table-container>
                     </div>
@@ -125,12 +120,17 @@
                     </div>
 
                 </div>
-                <div ng-if="pages.length > 0" class="pagination" layout="row" flex layout-align="center start">
-                    <div ng-class="{'active' : pageNumber == currentPage}"
-                         class="page-item"
-                         ng-if="visiblePages.indexOf(pageNumber) >= 0"
-                         ng-repeat="pageNumber in pages">
-                        <a href="{{getPageHref(pageNumber)}}" ng-click="openPage($event,pageNumber)">{{pageNumber}}</a>
+                <!--<div ng-if="pages.length > 0" class="pagination" layout="row" flex layout-align="center start">-->
+                    <!--<div ng-class="{'active' : pageNumber == currentPage}"-->
+                         <!--class="page-item"-->
+                         <!--ng-if="visiblePages.indexOf(pageNumber) >= 0"-->
+                         <!--ng-repeat="pageNumber in pages">-->
+                        <!--<a href="{{getPageHref(pageNumber)}}" ng-click="openPage($event,pageNumber)">{{pageNumber}}</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="content-panel-footer storefront-results-footer">
+                    <div class="text-center">
+                        <dir-pagination-controls on-page-change="pageChangeHandler(currentPage)"></dir-pagination-controls>
                     </div>
                 </div>
             </div>

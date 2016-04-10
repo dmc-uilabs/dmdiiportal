@@ -226,13 +226,13 @@ angular.module('dmc.search')
                                 if ($scope.discussions[i].replies > 0) $scope.discussions[i].replies--;
                                 if ($scope.discussions[i].isPosted == null) $scope.discussions[i].isPosted = true;
                             }
-                            var limit = ($scope.totalItemsPerPage == 'all' ? $scope.totalResults : $scope.totalItemsPerPage);
-                            if ($scope.totalItemsPerPage > limit) {
-                                $scope.discussions = $scope.discussions.splice(($scope.currentPage - 1) * limit, $scope.currentPage * limit);
-                            }
+                            //var limit = $scope.totalItemsPerPage;
+                            //if ($scope.totalResults > limit) {
+                            //    $scope.discussions = $scope.discussions.splice(($scope.currentPage - 1) * limit, $scope.currentPage * limit);
+                            //}
+                            apply();
                         });
                     }
-                    apply();
                 });
             };
 
