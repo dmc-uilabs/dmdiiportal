@@ -8603,7 +8603,8 @@
       },
       "like": 0,
       "dislike": 0,
-      "id": 27
+      "id": 27,
+      "reply": true
     },
     {
       "individual-discussionId": 18,
@@ -8619,6 +8620,19 @@
       "like": 0,
       "dislike": 0,
       "id": 28
+    },
+    {
+      "individual-discussionId": 17,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 27,
+      "text": 1256,
+      "created_at": 1460354337075,
+      "like": 0,
+      "dislike": 0,
+      "id": 29
     }
   ],
   "individual-discussion-comments-helpful": [
@@ -8658,6 +8672,11 @@
       "id": 1,
       "accountId": 1,
       "commentId": 5
+    },
+    {
+      "commentId": 28,
+      "accountId": 1,
+      "id": 2
     }
   ],
   "account-notification-categories": [

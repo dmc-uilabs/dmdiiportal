@@ -26,16 +26,16 @@
 						<div class="comment-footer" layout="row" layout-align="space-between center">
 							<div layout="row" layout-align="start center">
 								<div>
-									<a href="" ng-if="!$first" ng-click="reply($index)">Reply</a>
-									{{(!$first)?' | ':''}}
+									<a href="" ng-if="$first" ng-click="reply($index)">Reply</a>
+									{{($first)?' | ':''}}
 									<a href="" ng-if="comment.flagged">
 										Flagged
 									</a>
 									<a href="" ng-if="!comment.flagged" ng-click="flagged($index)">
 										Flag
 									</a>
-									{{(comment.reply && !$first)?' | ':''}}
-									<a href="" ng-if="comment.reply && !$first" ng-click="ShowReply($index)">
+									{{(comment.reply && $first)?' | ':''}}
+									<a href="" ng-if="comment.reply && $first" ng-click="ShowReply($index)">
 										{{(showReplyFlag === $index )? 'Hide' : 'Show' }} Repl{{(comment.replyReviews.length > 1)?'ies':'y'}}
 									</a>
 								</div>
