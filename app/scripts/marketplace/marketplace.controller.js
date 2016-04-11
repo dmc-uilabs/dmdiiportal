@@ -124,8 +124,7 @@ angular.module('dmc.marketplace')
             $scope.getPopularServices = function(){
                 ajax.get(dataFactory.getMarketPopularServices(), responseDataForCarousel,
                     function(response){
-                        $scope.carouselData.popular.arr = response.data;
-                        $scope.carouselData.popular.count = response.data.length;
+                        $scope.carouselData.popular = {arr : response.data, count : response.data.length};
                         isFavorite.check($scope.carouselData.popular.arr);
                         apply();
                     }
@@ -137,8 +136,7 @@ angular.module('dmc.marketplace')
             $scope.getNewServices = function(){
                 ajax.get(dataFactory.getMarketNewServices(), responseDataForCarousel,
                     function(response){
-                        $scope.carouselData.new.arr = response.data;
-                        $scope.carouselData.new.count = response.data.length;
+                        $scope.carouselData.new = {arr : response.data, count : response.data.length};
                         isFavorite.check($scope.carouselData.new.arr);
                         apply();
                     }
@@ -153,11 +151,12 @@ angular.module('dmc.marketplace')
                 //$state.go('marketplace_search', dataSearch, {reload: true});
                 ajax.get(dataFactory.searchMarketplace(text), responseDataForCarousel,
                     function (response) {
+                        $state.go('marketplace_search', dataSearch, {reload: true});
 						//window.alert (response.data);
-                        $scope.carouselData.new.arr = response.data;
-                        $scope.carouselData.new.count = response.data.length;
-                        isFavorite.check($scope.carouselData.new.arr);
-                        apply();
+                        //$scope.carouselData.new.arr = response.data;
+                        //$scope.carouselData.new.count = response.data.length;
+                        //isFavorite.check($scope.carouselData.new.arr);
+                        //apply();
 					}
                 );
             };

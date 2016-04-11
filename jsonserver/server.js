@@ -14,7 +14,7 @@ server.use(jsonServer.rewriter({
     '/clear-notification/:id': '/user',
     '/projects/all' : '/projects',
     '/searchProjects' : '/projects',
-    '/searchServices' : '/services',
+    '/searchServices/:text' : '/services?title_like=:text',
     '/searchComponents' : '/components',
     '/company_services': '/services',
     '/company_components': '/components',
