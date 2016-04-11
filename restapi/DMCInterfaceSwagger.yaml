@@ -519,7 +519,44 @@ paths:
             type: array
             items:
               $ref: '#/definitions/GetProjectTag'
-  /projects:
+  '/projects/all':
+    get:
+      tags:
+        - project
+      description: Get all projects
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+        - name: title_like
+          in: query
+          description: Filter by title
+          type: string
+          required: false  
+      responses:
+        '200':
+          description: return array of projects
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Project'
+  '/projects':
     get:
       tags:
         - project
@@ -546,6 +583,10 @@ paths:
           description: Sort by some parameter
           type: string
           required: false
+        - name: title_like
+          in: query
+          description: Filter by title
+          type: string
       responses:
         '200':
           description: return array of projects
@@ -1754,7 +1795,7 @@ paths:
           required: true
       responses:
         '200':
-          description: OK
+          description: OK    
   '/companies/{companyId}/suggest_join_companies':
     get:
       tags:
@@ -7275,7 +7316,7 @@ definitions:
         type: string
   PostSuggestCompany:
       type: object
-      properties:
+      properties:        
         companyId:
           type: string
   GetSuggestCompany:

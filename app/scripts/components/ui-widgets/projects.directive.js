@@ -43,7 +43,7 @@ angular.module('dmc.widgets.projects',[
                         _start : 0
                     };
                     if($scope.filterTag == "from_company") requestData.companyId = $rootScope.userData.companyId;
-                    ajax.get(dataFactory.getProjects(),requestData,function(response){
+                    ajax.get(dataFactory.getProjects($scope.widgetFormat),requestData,function(response){
                         $scope.projects = response.data;
                         var ids = [];
                         for(var i in $scope.projects) {
@@ -89,7 +89,7 @@ angular.module('dmc.widgets.projects',[
                         $scope.userCompany = response.data;
                         apply();
                     });
-                };
+                }
 
                 function isProjectsJoinRequests(ids){
                     ajax.get(dataFactory.getProjectsJoinRequests(), {

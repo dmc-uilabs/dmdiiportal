@@ -345,8 +345,8 @@ angular.module('dmc.data',[])
             getCreateProject: function() {
                 return localhost+'projects/create';
             },
-            getProjects: function(){
-                return localhost+'projects';
+            getProjects: function(type){
+                return localhost+(type == 'all-projects' ? 'projects/all' : 'projects');
             },
             getProject: function(id){
                 return localhost+'projects/'+id;

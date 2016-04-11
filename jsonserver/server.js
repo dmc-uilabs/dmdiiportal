@@ -12,6 +12,7 @@ server.use(jsonServer.rewriter({
     '/project/:pid/invite/:uid': '/projects_members/:uid',
     '/mark-read-notifications': '/user',
     '/clear-notification/:id': '/user',
+    '/projects/all' : '/projects',
     '/searchProjects' : '/projects',
     '/searchServices' : '/services',
     '/searchComponents' : '/components',
