@@ -35,9 +35,9 @@
           Favorites ({{favoritesCount}})
         </md-button>
         <md-button class="md-raised dmc-button"
-                   ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
+                   ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
                    compare-button>
-          Compare ({{compareProducts.services.length+compareProducts.components.length}})
+          Compare ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
         </md-button>
       </div>
     </md-content>

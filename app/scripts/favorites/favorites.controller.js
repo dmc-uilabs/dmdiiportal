@@ -10,6 +10,7 @@ angular.module('dmc.all-favorites')
         'dataFactory',
         'isFavorite',
         'DMCUserModel',
+        'CompareModel',
         '$cookies',
         function (  $scope,
                     $stateParams,
@@ -20,14 +21,15 @@ angular.module('dmc.all-favorites')
                     dataFactory,
                     isFavorite,
                     DMCUserModel,
+                    CompareModel,
                     $cookies) {
 
 
             $scope.selectedProduct = angular.isDefined($stateParams.product) ? $stateParams.product : 'services';
             $scope.selectedProductType = angular.isDefined($stateParams.type) ? $stateParams.type : null;
-            if($scope.selectedProduct == 'services' && !$scope.selectedProductType){
-                $scope.selectedProductType = "analytical";
-            }
+            //if($scope.selectedProduct == 'services' && !$scope.selectedProductType){
+            //    $scope.selectedProductType = "analytical";
+            //}
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
             $scope.isSearch = ($location.$$path.indexOf('search') != -1 ? true : false);
             $scope.allFavorites = { arr: [], count: 0};
@@ -146,23 +148,9 @@ angular.module('dmc.all-favorites')
             $scope.userData.then(function(data){
                 $scope.userData = data;
                 $scope.getFavorites();
+                CompareModel.get("services",$scope.userData);
             });
 
-
-            // get data from cookies
-            var updateCompareCount = function () {
-                var arr = $cookies.getObject('compareProducts');
-                return arr == null ? {services: [], components: []} : arr;
-            };
-            $scope.compareProducts = updateCompareCount();
-
-            // catch updated changedCompare variable form $cookies
-            $scope.$watch(function () {
-                return $cookies.changedCompare;
-            }, function (newValue) {
-                $scope.compareProducts = updateCompareCount();
-                apply();
-            });
 
             $scope.$on("UpdateFavorite", function(){
                 $scope.getFavorites();

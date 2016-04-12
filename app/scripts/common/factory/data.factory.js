@@ -858,13 +858,27 @@ angular.module('dmc.data',[])
                 return localhost+'notifications-pm-statistic';
             },
             searchMarketplace: function (text) {
-				return localhost+'searchServices/'+text;
+                if($window.apiUrl) {
+                    return localhost + 'searchServices/' + text;
+                }else{
+                    return localhost + 'searchServices';
+                }
 			},
             markReadNotifications: function(){
                 return localhost+'mark-read-notifications';
             },
             clearNotification: function(id){
                 return localhost+'clear-notification/'+id;
+            },
+            compare: function(id,type){
+                // type - services, members
+                var name = 'compare_'+type;
+                return {
+                    userCompares : localhost + "profiles/"+id+'/'+name,
+                    get : localhost + name + '/' + id,
+                    delete : localhost + name + '/' + id,
+                    add : localhost + name
+                }
             }
         };
     }

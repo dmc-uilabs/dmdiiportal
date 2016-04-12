@@ -1002,6 +1002,62 @@ paths:
       responses:
         '200':
           description: Ok
+  '/compare_services':
+    post:
+      tags:
+        - service
+      description: Post a new compare service
+      parameters:
+        - in: body
+          name: body
+          description: Compare service object
+          required: false
+          schema:
+            $ref: '#/definitions/PostCompareService'
+      responses:
+        '200':
+          description: Return created compare service
+          schema:
+            $ref: '#/definitions/GetCompareService'
+        '405':
+          description: Invalide input
+  '/compare_services/{id}':
+    delete:
+      tags:
+        - service
+      description: Delete service from compare
+      parameters:
+        - in: path
+          name: id
+          description: Id compared service
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok
+        '405':
+          description: Invalide input
+  '/profiles/{profileId}/compare_services':
+    get:
+      tags:
+        - service
+        - profile
+      description: Get all user compared services
+      parameters:
+        - in: path
+          name: profileId
+          description: profileId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Return array of compared services
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GetCompareService'
+        '405':
+          description: Invalide input
   '/dome-interfaces':
     post:
       tags:
@@ -1015,25 +1071,6 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/PostUpdateDomeInterface'
-        - name: _limit
-          in: query
-          description: Limit items
-          type: integer
-          required: false
-        - name: _order
-          in: query
-          description: Order by ASC or DESC
-          type: string
-          collectionFormat: multi
-          required: false
-          enum:
-            - ASC
-            - DESC
-        - name: _sort
-          in: query
-          description: Sort by some parameter
-          type: string
-          required: false
       responses:
         '200':
           description: Return dome inerface object with id
@@ -3424,7 +3461,6 @@ paths:
           collectionFormat: multi
           enum:
             - position
-          required: true
       responses:
         '200':
           description: send an object with featured products based on companyID
@@ -6421,20 +6457,22 @@ definitions:
     properties:
       id:
         type: string
-      title:
-        type: string
       projectId:
         type: string
-      modifed:
-        type: string
-        format: dateTime
-      size:
+      project-documentId:
         type: string
       owner:
         type: string
       ownerId:
         type: string
       file:
+        type: string
+      title:
+        type: string
+      modifed:
+        type: string
+        format: dateTime
+      size:
         type: string
   ServiceAuthor:
     type: object
@@ -6492,28 +6530,6 @@ definitions:
         type: string
       name:
         type: string
-  ProjectDocument:
-    type: object
-    properties:
-      id:
-        type: string
-      projectId:
-        type: string
-      project-documentId:
-        type: string
-      owner:
-        type: string
-      ownerId:
-        type: string
-      title:
-        type: string
-      modifed:
-        type: string
-        format: dateTime
-      size:
-        type: string
-      file:
-        type: string
   ServiceDocument:
     type: object
     properties:
@@ -6547,6 +6563,7 @@ definitions:
         type: string
       currentStatus:
         $ref: '#/definitions/CurrentStatus'
+
   MessagesListItem:
     type: object
     properties:
@@ -7373,4 +7390,20 @@ definitions:
       id:
         type: string
       companyId:
+        type: string
+  PostCompareService:
+    type: object
+    properties:
+      serviceId:
+        type: string
+      profileId:
+        type: string
+  GetCompareService:
+    type: object
+    properties:
+      id:
+        type: string
+      serviceId:
+        type: string
+      profileId:
         type: string

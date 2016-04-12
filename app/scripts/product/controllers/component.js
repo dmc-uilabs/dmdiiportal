@@ -2,8 +2,8 @@
 
 angular.module('dmc.product')
 
-    .controller('componentController', ['componentData','DMCUserModel', 'serviceModel', '$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$mdToast', 'toastModel','$timeout', '$cookies', 'isFavorite', '$state',
-        function (componentData,DMCUserModel, serviceModel, $stateParams,   $scope,   ajax,   dataFactory,   $mdDialog,   $mdToast,   toastModel,  $timeout,   $cookies, isFavorite, $state) {
+    .controller('componentController', ['componentData','DMCUserModel', 'serviceModel', '$stateParams', '$scope', 'ajax', 'dataFactory', '$mdDialog', '$mdToast', 'toastModel','$timeout', '$cookies', 'isFavorite', '$state','CompareModel',
+        function (componentData,DMCUserModel, serviceModel, $stateParams,   $scope,   ajax,   dataFactory,   $mdDialog,   $mdToast,   toastModel,  $timeout,   $cookies, isFavorite, $state,CompareModel) {
 
             $scope.product = componentData  //array product
             $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
@@ -22,9 +22,11 @@ angular.module('dmc.product')
             $scope.currentImage = 1;
             $scope.indexImages = 0;
 
-            var userData = DMCUserModel.getUserData();
-            userData.then(function(){
+            var userData = null;
+            DMCUserModel.getUserData().then(function(res){
+                userData = res;
                 getFavoriteCount();
+                CompareModel.get("services",userData);
             });
             // get favorites count ------------------
             $scope.favoritesCount = 0;
@@ -569,38 +571,14 @@ angular.module('dmc.product')
             });
 
             $scope.removeFromCompare = function(){
-                var compareProducts = $cookies.getObject('compareProducts');
-                if(compareProducts != null){
-                    if($scope.product.type == 'service') {
-                        if($.inArray( parseInt($scope.product.id), compareProducts.services ) != -1){
-                            compareProducts.services.splice( $.inArray(parseInt($scope.product.id), compareProducts.services), 1);
-                            $cookies.putObject('compareProducts', compareProducts);
-                            $cookies.changedCompare = new Date();
-                        }
-                    }else if($scope.product.type == 'component'){
-                        if($.inArray( parseInt($scope.product.id), compareProducts.components ) != -1){
-                            compareProducts.components.splice($.inArray(parseInt($scope.product.id), compareProducts.components), 1);
-                            $cookies.putObject('compareProducts', compareProducts);
-                            $cookies.changedCompare = new Date();
-                        }
-                    }
-                }
+                CompareModel.delete("services",$scope.product.id);
             };
 
             $scope.addToCompare = function(){
-                if($scope.product.type == 'service' && $scope.compareProducts.components.length == 0) {
-                    if($.inArray( parseInt($scope.product.id), $scope.compareProducts.services ) == -1){
-                        $scope.compareProducts.services.push(parseInt($scope.product.id));
-                        $cookies.putObject('compareProducts', $scope.compareProducts);
-                        $cookies.changedCompare = new Date();
-                    }
-                }else if($scope.product.type == 'component' && $scope.compareProducts.services.length == 0){
-                    if($.inArray( parseInt($scope.product.id), $scope.compareProducts.components ) == -1){
-                        $scope.compareProducts.components.push(parseInt($scope.product.id));
-                        $cookies.putObject('compareProducts', $scope.compareProducts);
-                        $cookies.changedCompare = new Date();
-                    }
-                }
+                CompareModel.add("services",{
+                    profileId : userData.profileId,
+                    serviceId : $scope.product.id
+                });
             };
 
             $scope.SortingReviews($scope.sortList[0].val);

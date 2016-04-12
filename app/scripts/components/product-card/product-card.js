@@ -11,6 +11,7 @@ angular.module('dmc.component.productcard', [
     'dmc.ajax',
     'dmc.data',
     'ngCookies',
+    'dmc.compare',
     'dmc.component.members-card'
 ])
 .run(function(ajax){
@@ -32,15 +33,16 @@ angular.module('dmc.component.productcard', [
         hideButtons: '='
       },
       templateUrl: 'templates/components/product-card/product-card-tpl.html',
-      controller: function($scope, $rootScope, $cookies,$timeout,ajax,dataFactory, $mdDialog, previousPage){
+      controller: function($scope, $rootScope, $cookies,$timeout,ajax,dataFactory, $mdDialog, previousPage,CompareModel,DMCUserModel){
+
+          var userData = null;
+          DMCUserModel.getUserData().then(function(res){
+              userData = res;
+              // get compared services
+              CompareModel.get("services",userData);
+          });
 
           $scope.previousPage = previousPage;
-          // get data from cookies
-          var updateCompareCount = function () {
-              var arr = $cookies.getObject('compareProducts');
-              return arr == null ? {services: [], components: []} : arr;
-          };
-          $scope.compareProducts = updateCompareCount();
 
           //$scope.hideButtons = [];
           $scope.compareStyle = {
@@ -147,52 +149,20 @@ angular.module('dmc.component.productcard', [
               $scope.projects = $scope.$root.projects;
           };
 
-          var updateCompareCount = function(){
-              var arr = $cookies.getObject('compareProducts');
-              return arr == null ? {services : [], components : []} : arr;
-          };
-
-          $scope.compareProducts = updateCompareCount();
-
-          $scope.$watch(function() { return $cookies.changedCompare; }, function(newValue) {
-              $scope.compareProducts = updateCompareCount();
-              if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-          });
-
+          // remove service from compare
           $scope.removeFromCompare = function(){
-              var compareProducts = $cookies.getObject('compareProducts');
-              if(compareProducts != null){
-                  if($scope.typeProduct == 'service') {
-                      if($.inArray( parseInt($scope.cardSource.id), compareProducts.services ) != -1){
-                          compareProducts.services.splice( $.inArray(parseInt($scope.cardSource.id), compareProducts.services), 1);
-                          $cookies.putObject('compareProducts', compareProducts);
-                          $cookies.changedCompare = new Date();
-                      }
-                  }else if($scope.typeProduct == 'component'){
-                      if($.inArray( parseInt($scope.cardSource.id), compareProducts.components ) != -1){
-                          compareProducts.components.splice($.inArray(parseInt($scope.cardSource.id), compareProducts.components), 1);
-                          $cookies.putObject('compareProducts', compareProducts);
-                          $cookies.changedCompare = new Date();
-                      }
-                  }
+              if($scope.typeProduct == 'service') {
+                  CompareModel.delete("services",$scope.cardSource.id);
               }
           };
 
+          // get service to compare
           $scope.addToCompare = function(){
-              // $cookies.remove('compareProducts');
-              // Retrieving a cookie
-              if($scope.typeProduct == 'service' && $scope.compareProducts.components.length == 0) {
-                  if($.inArray( parseInt($scope.cardSource.id), $scope.compareProducts.services ) == -1){
-                      $scope.compareProducts.services.push(parseInt($scope.cardSource.id));
-                      $cookies.putObject('compareProducts', $scope.compareProducts);
-                      $cookies.changedCompare = new Date();
-                  }
-              }else if($scope.typeProduct == 'component' && $scope.compareProducts.services.length == 0){
-                  if($.inArray( parseInt($scope.cardSource.id), $scope.compareProducts.components ) == -1){
-                      $scope.compareProducts.components.push(parseInt($scope.cardSource.id));
-                      $cookies.putObject('compareProducts', $scope.compareProducts);
-                      $cookies.changedCompare = new Date();
-                  }
+              if($scope.typeProduct == 'service'){
+                  CompareModel.add("services",{
+                      profileId : userData.profileId,
+                      serviceId : $scope.cardSource.id
+                  });
               }
           };
 

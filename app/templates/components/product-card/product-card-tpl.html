@@ -142,14 +142,14 @@
                    flex
                    class="white-button"
                    ng-click="addToCompare()"
-                   ng-disabled="(cardSource.type == 'service' && compareProducts.components.length > 0) || (cardSource.type == 'component' && compareProducts.services.length > 0)"
+                   ng-disabled="(cardSource.type == 'service' && $root.comparedServices.components.length > 0) || (cardSource.type == 'component' && $root.comparedServices.services.length > 0)"
                    ng-style="compareStyle"
-                   ng-show="!cardSource.added && addingToProject == false && (typeProduct == 'service' && compareProducts.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && compareProducts.components.indexOf(cardSource.id) == -1)">
+                   ng-show="!cardSource.added && addingToProject == false && (typeProduct == 'service' && $root.comparedServicesIds.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && $root.comparedServicesIds.components.indexOf(cardSource.id) == -1)">
             Add to Compare
         </md-button>
         <md-button aria-label="Compare" flex ng-click="removeFromCompare()" class="remove"
                    ng-style="compareStyle"
-                   ng-hide="cardSource.added || addingToProject == true || (typeProduct == 'service' && compareProducts.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && compareProducts.components.indexOf(cardSource.id) == -1)">
+                   ng-hide="cardSource.added || addingToProject == true || !$root.comparedServicesIds || (typeProduct == 'service' && $root.comparedServicesIds.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && $root.comparedServicesIds.components.indexOf(cardSource.id) == -1)">
             <ng-md-icon icon="close" size="17"></ng-md-icon>
             Compare
         </md-button>

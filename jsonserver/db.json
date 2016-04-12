@@ -2109,6 +2109,23 @@
       "id": 49
     }
   ],
+  "compare_services": [
+    {
+      "profileId": 1,
+      "serviceId": 9,
+      "id": 1
+    },
+    {
+      "profileId": 1,
+      "serviceId": 15,
+      "id": 2
+    },
+    {
+      "profileId": 1,
+      "serviceId": 4,
+      "id": 3
+    }
+  ],
   "service_runs": [
     {
       "serviceId": 45,
@@ -8221,14 +8238,6 @@
       "created_by": "Thomas Smith",
       "created_at": 1456941590000,
       "id": 17
-    },
-    {
-      "title": "New Discussion 11.04",
-      "projectId": null,
-      "accountId": 1,
-      "created_by": "Thomas Smith",
-      "created_at": 1460323347000,
-      "id": 18
     }
   ],
   "individual-discussion-comments": [

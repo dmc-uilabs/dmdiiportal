@@ -14,6 +14,7 @@ angular.module('dmc.product')
         '$mdDialog',
         '$timeout',
         '$cookies',
+        'CompareModel',
         'questionToastModel',
         function (componentData,
                   DMCUserModel,
@@ -26,6 +27,7 @@ angular.module('dmc.product')
                   $mdDialog,
                   $timeout,
                   $cookies,
+                  CompareModel,
                   questionToastModel) {
 
             $scope.product = componentData;  //array product
@@ -133,8 +135,10 @@ angular.module('dmc.product')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
-            var userData = DMCUserModel.getUserData();
-            userData.then(function(){
+            var userData = null;
+            DMCUserModel.getUserData().then(function(res){
+                userData = res;
+                CompareModel.get("services",userData);
                 getFavoriteCount();
             });
 

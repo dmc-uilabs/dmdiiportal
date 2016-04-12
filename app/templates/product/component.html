@@ -39,11 +39,11 @@
 						<ng-md-icon icon="favorite" size="14"></ng-md-icon>
 						Favorites ({{favoritesCount}})
 					</md-button>
-					<md-button ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
-                               class="md-raised dmc-button margin-left20"
+                    <md-button class="md-raised dmc-button margin-left20"
+                               ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
                                compare-button>
-						Compare ({{compareProducts.services.length+compareProducts.components.length}})
-					</md-button>
+                        Compare ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+                    </md-button>
 				</div>
 			</md-content>
 			<!--product-->
@@ -97,13 +97,13 @@
 									<md-button  
 											ng-click="addToCompare()" 
 											class="md-raised add dmc-button margin-left20"
-											ng-if="((product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)) && !invate">
+											ng-if="((product.type == 'service' && $root.comparedServicesIds.services.indexOf(product.id) == -1) || (product.type == 'component' && $root.comparedServicesIds.components.indexOf(product.id) == -1)) && !invate">
 										Add to Compare
 									</md-button>
 									<md-button 
 											ng-click="removeFromCompare()"
 											class="md-raised add"
-											ng-if="(!(product.type == 'service' && compareProducts.services.indexOf(product.id) == -1) || (product.type == 'component' && compareProducts.components.indexOf(product.id) == -1)) && !invate">
+											ng-if="(!(product.type == 'service' && $root.comparedServicesIds.services.indexOf(product.id) == -1) || (product.type == 'component' && $root.comparedServicesIds.components.indexOf(product.id) == -1)) && !invate">
 										<ng-md-icon icon="close" size="17"></ng-md-icon>
 										Compare
 									</md-button>

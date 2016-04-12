@@ -13,6 +13,7 @@ angular.module('dmc.company')
         'dataFactory',
         'isFavorite',
         'DMCUserModel',
+        'CompareModel',
         '$mdDialog', function ($stateParams,
                                $state,
                                $scope,
@@ -25,6 +26,7 @@ angular.module('dmc.company')
                                dataFactory,
                                isFavorite,
                                DMCUserModel,
+                               CompareModel,
                                $mdDialog ) {
 
         $scope.companyData  = companyData ;
@@ -40,6 +42,7 @@ angular.module('dmc.company')
             $scope.currentUser = DMCUserModel.getUserData().then(function(res){
                 $scope.currentUser = res;
                 getCompanyJoinRequest();
+                CompareModel.get("services",$scope.currentUser);
             });
             $scope.currentUser = ($scope.currentUser.$$state && $scope.currentUser.$$state.value ? $scope.currentUser.$$state.value : null);
             $scope.owner = $scope.companyData.account;
@@ -329,21 +332,6 @@ angular.module('dmc.company')
             $scope.showAll = function () {
                 $scope.submit();
             };
-
-            // get data from cookies
-            var updateCompareCount = function () {
-                var arr = $cookies.getObject('compareProducts');
-                return arr == null ? {services: [], components: []} : arr;
-            };
-            $scope.compareProducts = updateCompareCount();
-
-            // catch updated changedCompare variable form $cookies
-            $scope.$watch(function () {
-                return $cookies.changedCompare;
-            }, function (newValue) {
-                $scope.compareProducts = updateCompareCount();
-                apply();
-            });
 
             if ($scope.companyData.description.length > 200) {
                 $scope.companyData.shortDescription = $scope.companyData.description.replace(/<br>/g, '').substring(0, 200) + '...';

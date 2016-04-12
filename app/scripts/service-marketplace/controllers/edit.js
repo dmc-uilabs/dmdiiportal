@@ -13,6 +13,7 @@ angular.module('dmc.service-marketplace')
         '$timeout',
         'questionToastModel',
         'DMCUserModel',
+        'CompareModel',
         '$cookies',
         function (serviceData,
                   serviceModel,
@@ -25,6 +26,7 @@ angular.module('dmc.service-marketplace')
                   $timeout,
                   questionToastModel,
                   DMCUserModel,
+                  CompareModel,
                   $cookies) {
 
             $scope.product = serviceData;  //array product
@@ -135,8 +137,10 @@ angular.module('dmc.service-marketplace')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
-            var userData = DMCUserModel.getUserData();
-            userData.then(function(){
+            var userData = null;
+            DMCUserModel.getUserData().then(function(res){
+                userData = res;
+                CompareModel.get("services",userData);
                 getFavoriteCount();
             });
 

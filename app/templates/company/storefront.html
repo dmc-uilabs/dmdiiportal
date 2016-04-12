@@ -90,8 +90,10 @@
                                 Favorites ({{companyData.favoritesCount}})
                             </md-button>
                             <md-button class="md-raised dmc-button"
-                                       ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
-                                       compare-button>Compare ({{compareProducts.services.length+compareProducts.components.length}})</md-button>
+                                       ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
+                                       compare-button>
+                                Compare ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+                            </md-button>
                         </div>
                     </div>
                     <div layout-padding ng-if="!isSearch">

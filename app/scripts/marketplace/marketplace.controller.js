@@ -18,6 +18,8 @@ angular.module('dmc.marketplace')
         "$location",
         "is_search",
         "DMCUserModel",
+        "$window",
+        "CompareModel",
         "isFavorite",
         function($state,
                  $stateParams,
@@ -30,6 +32,8 @@ angular.module('dmc.marketplace')
                  $location,
                  is_search,
                  DMCUserModel,
+                 $window,
+                 CompareModel,
                  isFavorite){
             $scope.isSearch = is_search;
             var defaultPages = {
@@ -50,9 +54,11 @@ angular.module('dmc.marketplace')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
-            var userData = DMCUserModel.getUserData();
-            userData.then(function(){
+            var userData = null;
+            DMCUserModel.getUserData().then(function(res){
+                userData = res;
                 getFavoriteCount();
+                CompareModel.get("services",userData);
             });
 
             $scope.favoritesCount = 0;
@@ -70,18 +76,6 @@ angular.module('dmc.marketplace')
                 getFavoriteCount();
             });
 
-            // get data from cookies
-            var updateCompareCount = function(){
-                var arr = $cookies.getObject('compareProducts');
-                return arr == null ? {services : [], components : []} : arr;
-            };
-            $scope.compareProducts = updateCompareCount();
-
-            // catch updated changedCompare variable form $cookies
-            $scope.$watch(function() { return $cookies.changedCompare; }, function(newValue) {
-                $scope.compareProducts = updateCompareCount();
-                apply();
-            });
 
             // This code use for products-card -------------------------------------------------
             $scope.downloadData = false;        // on/off progress line in products-card
@@ -146,19 +140,15 @@ angular.module('dmc.marketplace')
             // ---------------------------------------------------------
 
             $scope.submit = function(text){
-                var dataSearch = $.extend(true,{},$stateParams);
-                dataSearch.text = text;
+                $stateParams.text = text;
                 //$state.go('marketplace_search', dataSearch, {reload: true});
-                ajax.get(dataFactory.searchMarketplace(text), responseDataForCarousel,
-                    function (response) {
-                        $state.go('marketplace_search', dataSearch, {reload: true});
-						//window.alert (response.data);
-                        //$scope.carouselData.new.arr = response.data;
-                        //$scope.carouselData.new.count = response.data.length;
-                        //isFavorite.check($scope.carouselData.new.arr);
-                        //apply();
-					}
-                );
+                if(!$window.apiUrl){
+                    responseDataForCarousel.title_like = text;
+                }else{
+                    delete responseDataForCarousel.title_like;
+                }
+                loadingData(true);
+                ajax.get(dataFactory.searchMarketplace(text), responseDataForCarousel, callbackServices);
             };
 
             var loadingData = function(start){ // progress line

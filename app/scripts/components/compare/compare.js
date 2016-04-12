@@ -9,18 +9,81 @@ angular.module('dmc.compare',[
         'dmc.component.productcard',
         'ngtimeago',
         'ngRoute'
-    ])
-    .controller('CompareController',function($scope,$mdDialog,$cookies,ajax,dataFactory,isFavorite){
+    ]).service('CompareModel', ['ajax', 'dataFactory','toastModel','$q','$http','$rootScope',
+    function(ajax, dataFactory,toastModel,$q,$http,$rootScope) {
+
+        this.get = function(type,user) {
+            if(!$rootScope.comparedServices) {
+                ajax.get(dataFactory.compare(user.profileId, type).userCompares, {}, function (response) {
+                    $rootScope.comparedServices = {services: response.data, components: []};
+                    $rootScope.comparedServicesIds = {services: $.map(response.data,function(x){ return x.serviceId; }), components: []};
+                });
+            }
+        };
+
+        this.add = function(type,data){
+            if($rootScope.comparedServicesIds.services.indexOf(data.serviceId) == -1) {
+                ajax.create(dataFactory.compare(null, type).add, data, function (response) {
+                    $rootScope.comparedServices.services.push(response.data);
+                    $rootScope.comparedServicesIds.services.push(response.data.serviceId);
+                });
+            }
+        };
+
+        this.delete = function(type,serviceId,callback){
+            var compareId = null;
+            for(var i in $rootScope.comparedServices.services){
+                if($rootScope.comparedServices.services[i].serviceId == serviceId){
+                    compareId = $rootScope.comparedServices.services[i].id;
+                    break;
+                }
+            }
+            if(compareId) {
+                ajax.delete(dataFactory.compare(compareId, type).delete, {}, function () {
+                    for (var i in $rootScope.comparedServices.services) {
+                        if ($rootScope.comparedServices.services[i].id == compareId) {
+                            $rootScope.comparedServices.services.splice(i, 1);
+                            break;
+                        }
+                    }
+                    if($rootScope.comparedServicesIds.services.indexOf(serviceId) != -1){
+                        $rootScope.comparedServicesIds.services.splice($rootScope.comparedServicesIds.services.indexOf(serviceId), 1);
+                    }
+                    if(callback) callback();
+                });
+            }
+        };
+
+        this.deleteAll = function(type){
+            if($rootScope.comparedServices && $rootScope.comparedServices.services && $rootScope.comparedServices.services.length > 0) {
+                var promises = {};
+                for (var i in $rootScope.comparedServices.services) {
+                    promises["service" + $rootScope.comparedServices.services[i].id] = $http.delete(dataFactory.compare($rootScope.comparedServices.services[i].id, type).delete);
+                }
+                return $q.all(promises).then(function(responses){
+                        $rootScope.comparedServices = {services : [], components : []};
+                        $rootScope.comparedServicesIds = {services : [], components : []};
+                    },
+                    function(response){
+                        toastModel.showToast("error", "Error." + response.statusText);
+                    }
+                );
+            }
+        };
+
+    }])
+    .controller('CompareController',function($scope,DMCUserModel,$mdDialog,$cookies,ajax,dataFactory,isFavorite,$rootScope,CompareModel){
         $scope.currentProductType = 'service';
         $scope.switchProductType = function(type){
             $scope.currentProductType = type;
         };
-        var updateCompareCount = function(){
-            var arr = $cookies.getObject('compareProducts');
-            return arr == null ? {services : [], components : []} : arr;
-        };
 
-        $scope.compareProducts = updateCompareCount();
+        var userData = null;
+        DMCUserModel.getUserData().then(function(res){
+            userData = res;
+            CompareModel.get("services",userData);
+        });
+
         $scope.products = {arr : [], count : 0};
         $scope.projects = [];
         $scope.itemClass = '';
@@ -37,16 +100,15 @@ angular.module('dmc.compare',[
         };
 
         $scope.clearAll = function(){
-            $cookies.remove('compareProducts');
-            $cookies.changedCompare = new Date();
+            CompareModel.deleteAll("services");
             $scope.cancel();
         };
 
         // get services
         $scope.getServices = function(){
-            if($scope.compareProducts.services.length > 0) {
+            if($rootScope.comparedServices.services.length > 0) {
                 ajax.get(dataFactory.getServices(), {
-                        id : $scope.compareProducts.services
+                        id : $rootScope.comparedServicesIds.services
                     }, function (response) {
                         $scope.products.arr = $.merge($scope.products.arr, response.data);
                         getTags($.map($scope.products.arr,function(x){ return x.id; }));
@@ -82,23 +144,6 @@ angular.module('dmc.compare',[
             $scope.cancel();
         };
 
-        // get components
-        $scope.getComponents = function(){
-            if($scope.compareProducts.components.length > 0) {
-                ajax.get(dataFactory.getComponents(), {
-                        id : $scope.compareProducts.components
-                    }, function (response) {
-                        $scope.products.arr = $.merge($scope.products.arr, response.data);
-                        $scope.products.count += response.data.length;
-                        if (response.data.length > 0) $scope.switchProductType('component');
-                        $scope.itemClass = $scope.getItemClass();
-                        apply();
-                    }
-                );
-            }
-        };
-        $scope.getComponents();
-
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
@@ -129,31 +174,16 @@ angular.module('dmc.compare',[
             });
         };
         $scope.removeFromCompare = function(id,type){
-            var compareProducts = $cookies.getObject('compareProducts');
-            if(compareProducts != null){
-                if(type == 'service') {
-                    if($.inArray( parseInt(id), compareProducts.services ) != -1){
-                        compareProducts.services.splice( $.inArray(parseInt(id), compareProducts.services), 1);
-                        $cookies.putObject('compareProducts', compareProducts);
-                        $cookies.changedCompare = new Date();
-                        $scope.removeFromArray(id,type);
-                    }
-                }else if(type == 'component'){
-                    if($.inArray( parseInt(id), compareProducts.components ) != -1){
-                        compareProducts.components.splice($.inArray(parseInt(id), compareProducts.components), 1);
-                        $cookies.putObject('compareProducts', compareProducts);
-                        $cookies.changedCompare = new Date();
-                        $scope.removeFromArray(id,type);
-                    }
-                }
-            }
+            CompareModel.delete("services",id,function(){
+                $scope.removeFromArray(id,type);
+            });
         };
         $scope.removeFromArray = function(id,type){
             for(var i=0;i<$scope.products.arr.length;i++){
                 if(parseInt($scope.products.arr[i].id) == parseInt(id) && $scope.products.arr[i].type == type){
                     $scope.products.arr.splice(i,1);
                     $scope.itemClass = $scope.getItemClass();
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                    apply();
                     break;
                 }
             }

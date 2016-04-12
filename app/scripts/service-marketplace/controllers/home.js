@@ -14,6 +14,7 @@ angular.module('dmc.service-marketplace')
         'isFavorite',
         'DMCUserModel',
         'previousPage',
+        'CompareModel',
         '$location',
         function (serviceData,
                   serviceModel,
@@ -27,6 +28,7 @@ angular.module('dmc.service-marketplace')
                   isFavorite,
                   DMCUserModel,
                   previousPage,
+                  CompareModel,
                   $location) {
 
             $scope.product = serviceData;  //array product
@@ -70,7 +72,7 @@ angular.module('dmc.service-marketplace')
                     viewAllLink: "/all.php#/history/service/"+$stateParams.serviceId+"/marketplace",
                     list:[]
                 }
-            }
+            };
 
             serviceModel.get_service_hystory(
                 {
@@ -173,13 +175,13 @@ angular.module('dmc.service-marketplace')
                     period = ["today","week"];
                 }else{
                     period = ["today","week","all"];
-                };
+                }
 
                 params['period'] = period;
 
                 if(type != "runs_by_users"){
                     params['type'] = type;
-                };
+                }
 
                 serviceModel.get_service_hystory(
                     params,
@@ -199,14 +201,16 @@ angular.module('dmc.service-marketplace')
                         apply();
                     }
                 );
-            }
+            };
             
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
-            var userData = DMCUserModel.getUserData();
-            userData.then(function(){
+            var userData = null;
+            DMCUserModel.getUserData().then(function(res){
+                userData = res;
+                CompareModel.get("services",userData);
                 getFavoriteCount();
             });
 
@@ -616,38 +620,14 @@ angular.module('dmc.service-marketplace')
             });
 
             $scope.removeFromCompare = function(){
-                var compareProducts = $cookies.getObject('compareProducts');
-                if(compareProducts != null){
-                    if($scope.product.type == 'service') {
-                        if($.inArray( parseInt($scope.product.id), compareProducts.services ) != -1){
-                            compareProducts.services.splice( $.inArray(parseInt($scope.product.id), compareProducts.services), 1);
-                            $cookies.putObject('compareProducts', compareProducts);
-                            $cookies.changedCompare = new Date();
-                        }
-                    }else if($scope.product.type == 'component'){
-                        if($.inArray( parseInt($scope.product.id), compareProducts.components ) != -1){
-                            compareProducts.components.splice($.inArray(parseInt($scope.product.id), compareProducts.components), 1);
-                            $cookies.putObject('compareProducts', compareProducts);
-                            $cookies.changedCompare = new Date();
-                        }
-                    }
-                }
+                CompareModel.delete("services",$scope.product.id);
             };
 
             $scope.addToCompare = function(){
-                if($scope.product.type == 'service' && $scope.compareProducts.components.length == 0) {
-                    if($.inArray( parseInt($scope.product.id), $scope.compareProducts.services ) == -1){
-                        $scope.compareProducts.services.push(parseInt($scope.product.id));
-                        $cookies.putObject('compareProducts', $scope.compareProducts);
-                        $cookies.changedCompare = new Date();
-                    }
-                }else if($scope.product.type == 'component' && $scope.compareProducts.services.length == 0){
-                    if($.inArray( parseInt($scope.product.id), $scope.compareProducts.components ) == -1){
-                        $scope.compareProducts.components.push(parseInt($scope.product.id));
-                        $cookies.putObject('compareProducts', $scope.compareProducts);
-                        $cookies.changedCompare = new Date();
-                    }
-                }
+                CompareModel.add("services",{
+                    profileId : userData.profileId,
+                    serviceId : $scope.product.id
+                });
             };
 
             $scope.SortingReviews($scope.sortList[0].val);

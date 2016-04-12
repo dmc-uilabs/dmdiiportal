@@ -41,12 +41,11 @@
               <md-button class="link-button" href="/marketplace.php">
                 Marketplace
               </md-button>
-              <md-button class="md-raised dmc-button"
-                     href=""
-                     ng-disabled="compareProducts.services.length+compareProducts.components.length == 0"
-                     compare-button>
-                     Compare ({{compareProducts.services.length+compareProducts.components.length}})
-              </md-button>
+                <md-button class="md-raised dmc-button"
+                           ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
+                           compare-button>
+                    Compare ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+                </md-button>
             </div>
           </div>
           <div>
