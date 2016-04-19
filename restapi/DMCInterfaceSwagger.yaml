@@ -273,7 +273,8 @@ paths:
     post:
       tags:
         - account
-        - not implemented
+        - live
+        - has tests
       description: Create a new account server
       parameters:
         - in: body
