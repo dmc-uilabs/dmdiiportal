@@ -292,7 +292,8 @@ paths:
     get:
       tags:
         - account
-        - not implemented
+        - live
+        - has tests
       description: Get server by server id
       parameters:
         - name: serverID
@@ -328,7 +329,8 @@ paths:
     delete:
       tags:
         - account
-        - not implemented
+        - live
+        - has tests
       description: Delete a server by id
       parameters:
         - in: path
