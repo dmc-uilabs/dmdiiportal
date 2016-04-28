@@ -309,7 +309,8 @@ paths:
     patch:
       tags:
         - account
-        - not implemented
+        - live
+        - has tests
       description: Update server information by server id
       parameters:
         - name: serverID
