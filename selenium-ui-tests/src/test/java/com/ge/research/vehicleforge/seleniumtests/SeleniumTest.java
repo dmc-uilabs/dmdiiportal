@@ -16,20 +16,13 @@ import static org.junit.Assert.fail;
 /**
  * Created by 200005921 on 12/16/2015.
  */
-public class SeleniumTest {
+public class SeleniumTest extends BaseTest {
 
-    public static final String BASE_URL = "http://ec2-52-34-47-123.us-west-2.compute.amazonaws.com/";
     public static final String DMC_TITLE_TEXT = "Digital Manufacturing Commons";
 
     @Ignore
     @Test
     public void testHtmlDriverWithJavascript () {
-        HtmlUnitDriver driver = null;
-        boolean useJavascrpt = true;
-
-        driver = new HtmlUnitDriver(useJavascrpt);
-        driver.manage().deleteAllCookies();
-        driver.get(BASE_URL);
         // fails: net.sourceforge.htmlunit.corejs.javascript.EcmaError: TypeError: Cannot find function addEventListener in object
 
         WebElement titleElement = driver.findElementByXPath("/html/head/title");
@@ -40,12 +33,12 @@ public class SeleniumTest {
 
     @Test
     public void testHtmlDriverWithoutJavascript () {
-        HtmlUnitDriver driver = null;
-        boolean useJavascrpt = false;
-
-        driver = new HtmlUnitDriver(useJavascrpt);
-        driver.manage().deleteAllCookies();
-        driver.get(BASE_URL);
+        try {
+            driver.setJavascriptEnabled(false);
+            initSelenium(baseUrl);
+        } catch (Exception ex) {
+            fail("Can't setup selenium without javascript!");
+        }
 
         WebElement titleElement = null;
         try {
@@ -61,16 +54,6 @@ public class SeleniumTest {
     @Ignore
     @Test
     public void testDashboardAndReturn () {
-        BrowserVersion version = BrowserVersion.CHROME;
-
-        HtmlUnitDriver driver = null;
-        boolean useJavascrpt = true;
-
-        driver = new HtmlUnitDriver(version);
-        driver.setJavascriptEnabled(useJavascrpt);
-        driver.manage().deleteAllCookies();
-        driver.get(BASE_URL);
-
         WebElement titleElement = null;
         try {
             titleElement = driver.findElementByXPath("/html/head/title[text() = 'Digital Manufacturing Commons']");
@@ -121,14 +104,6 @@ public class SeleniumTest {
     public void testDashboard () {
         BrowserVersion version = BrowserVersion.CHROME;
 
-        HtmlUnitDriver driver = null;
-        boolean useJavascrpt = true;
-
-        driver = new HtmlUnitDriver(version);
-        driver.setJavascriptEnabled(useJavascrpt);
-        driver.manage().deleteAllCookies();
-        driver.get(BASE_URL);
-
         WebElement titleElement = null;
         try {
             titleElement = driver.findElementByXPath("/html/head/title[text() = 'Digital Manufacturing Commons']");
@@ -159,16 +134,6 @@ public class SeleniumTest {
 
     @Test
     public void testMarketplace () {
-        BrowserVersion version = BrowserVersion.CHROME;
-
-        HtmlUnitDriver driver = null;
-        boolean useJavascrpt = true;
-
-        driver = new HtmlUnitDriver(version);
-        driver.setJavascriptEnabled(useJavascrpt);
-        driver.manage().deleteAllCookies();
-        driver.get(BASE_URL);
-
         WebElement titleElement = null;
         try {
             titleElement = driver.findElementByXPath("/html/head/title[text() = 'Digital Manufacturing Commons']");
