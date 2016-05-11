@@ -37,11 +37,11 @@ public class BaseTest {
     @BeforeClass
     public static void setUp() throws Exception {
 
-        String browserName = System.getProperty("browser", "none");
+        String browserName = System.getenv("browser");
 
         BrowserVersion version = null;
 
-        if (browserName.equals("none")) {
+        if (null == browserName) {
             // default to Chrome
             version = BrowserVersion.CHROME;
         } else {
@@ -55,20 +55,26 @@ public class BaseTest {
             } else {
                 fail("Unknown browser " + browserName);
             }
-            System.out.println("Using browser: " + browserName);
         }
 
+        System.out.println("Using browser: " + browserName);
         if (driver == null) {
             driver = new HtmlUnitDriver(version);
             driver.setJavascriptEnabled(enableJavaScript);
+            System.out.println("created new HTMLUnitDriver");
         }
 
-        baseUrl = System.getProperty("baseUrl", TestUtils.BASE_URL);
+        baseUrl = System.getenv("baseUrl");
+        if (null == baseUrl) {
+            baseUrl = TestUtils.BASE_URL;
+        }
+        System.out.println("baseUrl = " + baseUrl);
         initSelenium(baseUrl);
 
     }
 
     public static void initSelenium(String baseUrl) throws Exception {
+        System.out.println("initializing Selenium");
         try {
             driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
             driver.manage().deleteAllCookies();
