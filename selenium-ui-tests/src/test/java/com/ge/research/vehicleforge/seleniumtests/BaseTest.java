@@ -1,84 +1,142 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
-import com.gargoylesoftware.htmlunit.BrowserVersion;
+
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import com.gargoylesoftware.htmlunit.BrowserVersion;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by 200005921 on 12/14/2015.
  */
-public class BaseTest {
+public abstract class BaseTest {
 
-    public static final String DMC_TITLE_TEXT = "Digital Manufacturing Commons";
-    public static final String OPENDMC_TITLE_TEXT = "OPENDMC ";
+   /* public static final String DMC_TITLE_TEXT = "Digital Manufacturing Commons";
+    public static final String OPENDMC_TITLE_TEXT = "OPENDMC ";*/
 
     // max seconds before failing a script.
     private final int MAX_ATTEMPTS = 5;
 
-    private static boolean enableJavaScript = true;
-    protected static HtmlUnitDriver driver;
-    protected static String baseUrl;
+    //static HtmlUnitDriver driver;
+    static RemoteWebDriver driver;
+    static String baseUrl;   
+    static StringBuffer verificationErrors = new StringBuffer();
 
 
     @BeforeClass
     public static void setUp() throws Exception {
 
-        String browserName = System.getenv("browser");
-
+    	// System.getProperty() is used for get system properties defined with -D in bamboo Maven task Goal field.
+    	//String browserName = System.getProperty("browser").toLowerCase();
+    	String browserName = System.getenv("browser").toLowerCase();
+    	
+    	System.out.println("Get browser from maven build: " + browserName);
         BrowserVersion version = null;
-
-        if (null == browserName) {
-            // default to Chrome
-            version = BrowserVersion.CHROME;
-        } else {
-
-            if (browserName.equalsIgnoreCase("chrome")) {
+        
+            if (browserName.equals("chrome")) {
                 version = BrowserVersion.CHROME;
-            } else if (browserName.equalsIgnoreCase("firefox")) {
-                version = BrowserVersion.FIREFOX_38;
-            } else if (browserName.equalsIgnoreCase("ie")) {
+                System.setProperty("webdriver.chrome.driver", "C:/Program Files (x86)/chromedriver.exe");
+                driver = new ChromeDriver();
+            } else if (browserName.equals("firefox")) {
+                driver = new FirefoxDriver();
+            } else if (browserName.equals("ie")) {
                 version = BrowserVersion.INTERNET_EXPLORER_11;
-            } else {
+            	//driver = new InternetExplorerDriver();
+            } else if(browserName.equals("safari")){
+            	//driver = new SafariDriver();
+            }else {
                 fail("Unknown browser " + browserName);
             }
-        }
+            
+            System.out.println("version name is: " + version);
+            
+           /* driver = new HtmlUnitDriver(version);
+            driver.setJavascriptEnabled(TestUtils.ENABLE_JAVASCRIPT);*/
+           
 
-        System.out.println("Using browser: " + browserName);
-        if (driver == null) {
-            driver = new HtmlUnitDriver(version);
-            driver.setJavascriptEnabled(enableJavaScript);
-            System.out.println("created new HTMLUnitDriver");
-        }
-
-        baseUrl = System.getenv("baseUrl");
-        if (null == baseUrl) {
-            baseUrl = TestUtils.BASE_URL;
-        }
-        System.out.println("baseUrl = " + baseUrl);
-        initSelenium(baseUrl);
+        //baseUrl = TestUtils.BASE_URL;
+          baseUrl = System.getenv("baseUrl");
+          System.out.println("The first step to get Url from system environment : " + baseUrl);
+          if(null == baseUrl){
+        	  baseUrl = TestUtils.BASE_URL;
+        	  System.out.println("Get test baseUrl from TestUtils...");
+          }
+      
+        driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        initSelenium();
 
     }
 
-    public static void initSelenium(String baseUrl) throws Exception {
-        System.out.println("initializing Selenium");
+    public static void initSelenium() throws Exception {
         try {
-            driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        	
             driver.manage().deleteAllCookies();
+            System.out.println("Get URL for driver!!!");
+            
             driver.get(baseUrl);
+            System.out.println("The google page" + driver.getCurrentUrl());
+            
+        } catch (Exception e) {
+            System.out.println("*** TEST Failure New***");
+            System.out.println("URL : " + driver.getCurrentUrl());
+            System.out.println("Title : " + driver.getTitle());
+
+            fail(e.getLocalizedMessage());
+        }
+
+       /* System.out.println("Initial URL : " + driver.getCurrentUrl());
+        System.out.println("Initial Title : " + driver.getTitle());*/
+
+    }
+
+    @AfterClass
+    public static void tearDown() throws Exception {
+        driver.quit();
+        String verificationErrorString = verificationErrors.toString();
+        if (!"".equals(verificationErrorString)) {
+          fail(verificationErrorString);
+        }
+      }
+
+
+    
+    /**
+     * Test the login page that protects the overall site from public access.
+     */
+    //@Test
+    public final void testPublicLoginProtection() throws Exception {
+
+    	try {
+    		driver.manage().deleteAllCookies();
+   		
+            driver.get(baseUrl);
+            
+            System.out.println("The public login protection link URL : " + driver.getCurrentUrl());
+            /**
+            WebElement element = driver.findElement(By.name("user"));
+            element.click();
+            element.sendKeys(TestUtils.CREDENTIAL_GATEWAY_USER);
+
+            element = driver.findElement(By.name("pass"));
+            element.click();
+            element.sendKeys(TestUtils.CREDENTIAL_GATEWAY_PASS);
+
+            element = driver.findElement(By.name("login"));
+            element.submit();
+            **/
 
         } catch (Exception e) {
             System.out.println("*** TEST Failure ***");
@@ -87,83 +145,56 @@ public class BaseTest {
 
             fail(e.getLocalizedMessage());
         }
-
-        System.out.println("URL : " + driver.getCurrentUrl());
-        System.out.println("Title : " + driver.getTitle());
-
     }
-
-
-    @Test
-    public void testTitle () {
-
-        WebElement titleElement = null;
-        try {
-            if (baseUrl.contains("opendmc.org")) {
-                titleElement = driver.findElementByXPath("/html/head/title[text()[contains(., 'OPENDMC')]]");
-            } else {
-                //titleElement = driver.findElementByXPath("/html/head/title[text() = '" + DMC_TITLE_TEXT + "']");
-                titleElement = driver.findElementByXPath("/html/head/title[text()[contains(., '" + DMC_TITLE_TEXT + "')]]");
-            }
-
-
-        } catch (Exception ex) {
-            fail("Title element not found!");
-        }
-        assertTrue(titleElement != null);
+    
+    
+   // @Test
+    public void testDMCLogin() throws Exception{
+    	if (TestUtils.CREDENTIAL_GATEWAY_REQUIRED) {
+            testPublicLoginProtection();
+        } 
+ 	   else {
+        
+    		driver.manage().deleteAllCookies();
+ 	   }
+    	
+    	
+    	// logout
+	    driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
+	    WebElement logout = driver.findElement(By.xpath("//md-menu-item[4]/button"));
+	    logout.sendKeys(Keys.ENTER);;
+	    
+	    //System.out.print(driver.getPageSource());
+	    
+	    //login
+	    driver.findElement(By.xpath("//a/span")).click();
+	   // driver.findElementByLinkText("Login").click();
+	 driver.findElement(By.linkText("Google")).click();
+	      driver.findElement(By.id("Email")).clear();
+	    driver.findElement(By.id("Email")).sendKeys(System.getenv("credential_user"));
+	    driver.findElement(By.id("next")).click();
+	    driver.findElement(By.id("Passwd")).clear();
+	    driver.findElement(By.id("Passwd")).sendKeys(System.getenv("credential_pass"));
+	    driver.findElement(By.id("signIn")).click();
+	    System.out.println("*** TEST Completed ***");
+	    
+	 /*   driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+	    //driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+	    driver.findElement(By.id("input_2")).clear();
+	    driver.findElement(By.id("input_2")).sendKeys("Test First Name");
+	    driver.findElement(By.id("input_3")).clear();
+	    driver.findElement(By.id("input_3")).sendKeys("Test Last Name");
+	    driver.findElement(By.id("input_4")).clear();
+	    driver.findElement(By.id("input_4")).sendKeys("dmcuser01@gmail.com");
+	    driver.findElement(By.id("select_6")).click();
+	    driver.findElement(By.cssSelector("div.md-text.ng-binding")).click();
+	    driver.findElement(By.xpath("//md-dialog[@id='dialog_7']/md-content/div[2]/button")).click();
+	    driver.findElement(By.xpath("//md-dialog[@id='dialog_21']/md-content/div[2]/button")).click();
+	    
+	    System.out.println("The title after login is:" + driver.getTitle());
+	    System.out.println("The current URL after login : " + driver.getCurrentUrl());
+	    assertEquals("Onboarding", driver.getTitle());
+	    assertEquals("Welcome to the Digital Manufacturing Commons A collaboration community to drive advanced system engineering.", driver.findElement(By.xpath("//md-content/div/div")).getText());*/
     }
-
-
-    /**
-     * Private method that acts as an arbiter of implicit timeouts of sorts.. sort of like a Wait For Ajax method.
-     */
-    public WebElement waitForElement(By by) {
-        int attempts = 0;
-        int size = driver.findElements(by).size();
-
-        while (size == 0) {
-            size = driver.findElements(by).size();
-            if (attempts == MAX_ATTEMPTS) fail(String.format("Could not find %s after %d seconds",
-                    by.toString(),
-                    MAX_ATTEMPTS));
-            attempts++;
-            try {
-                Thread.sleep(1000); // sleep for 1 second.
-            } catch (Exception x) {
-                fail("Failed due to an exception during Thread.sleep!");
-                x.printStackTrace();
-            }
-        }
-
-        if (size > 1) System.err.println("WARN: There are more than 1 " + by.toString() + " 's!");
-
-        return driver.findElement(by);
-    }
-
-    public BaseTest validatePresent(String css) {
-        return validatePresent(By.cssSelector(css));
-    }
-
-    public BaseTest validatePresent(By by) {
-        waitForElement(by);
-        assertTrue("Element " + by.toString() + " does not exist!", isPresent(by));
-        return this;
-    }
-
-    public BaseTest validateNotPresent(String css) {
-        return validateNotPresent(By.cssSelector(css));
-    }
-
-    public BaseTest validateNotPresent(By by) {
-        assertFalse("Element " + by.toString() + " exists!", isPresent(by));
-        return this;
-    }
-
-    public boolean isPresent(String css) {
-        return isPresent(By.cssSelector(css));
-    }
-
-    public boolean isPresent(By by) {
-        return driver.findElements(by).size() > 0;
-    }
+    
 }
