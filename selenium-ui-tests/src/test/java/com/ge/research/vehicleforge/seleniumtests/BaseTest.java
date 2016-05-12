@@ -67,13 +67,9 @@ public abstract class BaseTest {
             driver.setJavascriptEnabled(TestUtils.ENABLE_JAVASCRIPT);*/
            
 
-        //baseUrl = TestUtils.BASE_URL;
           baseUrl = System.getenv("baseUrl");
           System.out.println("The first step to get Url from system environment : " + baseUrl);
-          if(null == baseUrl){
-        	  baseUrl = TestUtils.BASE_URL;
-        	  System.out.println("Get test baseUrl from TestUtils...");
-          }
+  
       
         driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         initSelenium();
