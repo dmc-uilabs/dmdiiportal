@@ -1,0 +1,436 @@
+[
+	{
+		"id": 1,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 1,
+		"selected": false
+	},
+	{
+		"id": 2,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 2,
+		"selected": false
+	},
+	{
+		"id": 3,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 3,
+		"selected": false
+	},
+	{
+		"id": 4,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 4,
+		"selected": false
+	},
+	{
+		"id": 5,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 5,
+		"selected": false
+	},
+	{
+		"id": 6,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 6,
+		"selected": false
+	},
+	{
+		"id": 7,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 7,
+		"selected": true
+	},
+	{
+		"id": 8,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 8,
+		"selected": true
+	},
+	{
+		"id": 9,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 9,
+		"selected": false
+	},
+	{
+		"id": 10,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 10,
+		"selected": false
+	},
+	{
+		"id": 11,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 11,
+		"selected": true
+	},
+	{
+		"id": 12,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 12,
+		"selected": true
+	},
+	{
+		"id": 13,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 13,
+		"selected": true
+	},
+	{
+		"id": 14,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 14,
+		"selected": false
+	},
+	{
+		"id": 15,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 15,
+		"selected": false
+	},
+	{
+		"id": 16,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 16,
+		"selected": false
+	},
+	{
+		"id": 17,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 17,
+		"selected": false
+	},
+	{
+		"id": 18,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 18,
+		"selected": false
+	},
+	{
+		"id": 19,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 19,
+		"selected": false
+	},
+	{
+		"id": 20,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 20,
+		"selected": false
+	},
+	{
+		"id": 21,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 21,
+		"selected": false
+	},
+	{
+		"id": 43,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 22,
+		"selected": false
+	},
+	{
+		"id": 44,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 23,
+		"selected": true
+	},
+	{
+		"id": 45,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 24,
+		"selected": false
+	},
+	{
+		"id": 46,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 25,
+		"selected": false
+	},
+	{
+		"id": 47,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 26,
+		"selected": false
+	},
+	{
+		"id": 48,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 27,
+		"selected": false
+	},
+	{
+		"id": 49,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 28,
+		"selected": false
+	},
+	{
+		"id": 50,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 29,
+		"selected": false
+	},
+	{
+		"id": 51,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 30,
+		"selected": false
+	},
+	{
+		"id": 52,
+		"accountId": 1,
+		"section": "website",
+		"account-notification-category-itemId": 31,
+		"selected": false
+	},
+	{
+		"id": 53,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 22,
+		"selected": true
+	},
+	{
+		"id": 54,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 23,
+		"selected": true
+	},
+	{
+		"id": 55,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 24,
+		"selected": false
+	},
+	{
+		"id": 56,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 25,
+		"selected": false
+	},
+	{
+		"id": 57,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 26,
+		"selected": false
+	},
+	{
+		"id": 58,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 27,
+		"selected": true
+	},
+	{
+		"id": 59,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 28,
+		"selected": false
+	},
+	{
+		"id": 60,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 29,
+		"selected": false
+	},
+	{
+		"id": 61,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 30,
+		"selected": false
+	},
+	{
+		"id": 62,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 31,
+		"selected": true
+	},
+	{
+		"id": 22,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 1,
+		"selected": false
+	},
+	{
+		"id": 23,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 2,
+		"selected": true
+	},
+	{
+		"id": 24,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 3,
+		"selected": false
+	},
+	{
+		"id": 25,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 4,
+		"selected": false
+	},
+	{
+		"id": 26,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 5,
+		"selected": false
+	},
+	{
+		"id": 27,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 6,
+		"selected": false
+	},
+	{
+		"id": 28,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 7,
+		"selected": true
+	},
+	{
+		"id": 29,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 8,
+		"selected": false
+	},
+	{
+		"id": 30,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 9,
+		"selected": false
+	},
+	{
+		"id": 31,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 10,
+		"selected": false
+	},
+	{
+		"id": 32,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 11,
+		"selected": true
+	},
+	{
+		"id": 33,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 12,
+		"selected": true
+	},
+	{
+		"id": 34,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 13,
+		"selected": true
+	},
+	{
+		"id": 35,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 14,
+		"selected": false
+	},
+	{
+		"id": 36,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 15,
+		"selected": true
+	},
+	{
+		"id": 37,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 16,
+		"selected": false
+	},
+	{
+		"id": 38,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 17,
+		"selected": false
+	},
+	{
+		"id": 39,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 18,
+		"selected": false
+	},
+	{
+		"id": 40,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 19,
+		"selected": false
+	},
+	{
+		"id": 41,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 20,
+		"selected": false
+	},
+	{
+		"id": 42,
+		"accountId": 1,
+		"section": "email",
+		"account-notification-category-itemId": 21,
+		"selected": true
+	}
+]
