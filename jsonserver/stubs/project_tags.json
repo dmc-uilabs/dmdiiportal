@@ -1,0 +1,67 @@
+  [
+    {
+      "projectId": 6,
+      "name": 123,
+      "id": 1
+    },
+    {
+      "projectId": 6,
+      "name": 158,
+      "id": 2
+    },
+    {
+      "projectId": 1,
+      "name": 12345,
+      "id": 3
+    },
+    {
+      "projectId": 1,
+      "name": "Test tag",
+      "id": 4
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 1",
+      "id": 36
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 2",
+      "id": 37
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 7",
+      "id": 38
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 3",
+      "id": 39
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 9",
+      "id": 40
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 4",
+      "id": 41
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 8",
+      "id": 42
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 5",
+      "id": 43
+    },
+    {
+      "projectId": 2,
+      "name": "Tag 6",
+      "id": 44
+    }
+  ]

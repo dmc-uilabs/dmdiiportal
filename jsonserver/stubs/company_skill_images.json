@@ -1,0 +1,20 @@
+  [
+    {
+      "id": 1,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/1/20160125045919000000.jpg",
+      "title": "Skill Image"
+    },
+    {
+      "id": 2,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/2/20160125051445000000.png",
+      "title": "New Image"
+    },
+    {
+      "id": 3,
+      "companyId": 1,
+      "url": "/uploads/company/skill-image/3/20160125051456000000.png",
+      "title": "New Image 2"
+    }
+  ]

@@ -1,0 +1,20 @@
+  [
+    {
+      "id": 1,
+      "companyId": 1,
+      "url": "/uploads/company/image/1/20160124071204000000.png",
+      "title": "Best Company Image"
+    },
+    {
+      "id": 2,
+      "companyId": 1,
+      "url": "/uploads/company/image/2/20160124071327000000.JPG",
+      "title": "Best Company Image 2"
+    },
+    {
+      "id": 3,
+      "companyId": 1,
+      "url": "/uploads/company/image/3/20160124071349000000.jpg",
+      "title": "Best Company Image 3"
+    }
+  ]

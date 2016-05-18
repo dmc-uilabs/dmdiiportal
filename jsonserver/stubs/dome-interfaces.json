@@ -1,0 +1,110 @@
+  [
+    {
+      "version": 1,
+      "modelId": "aff647da-d82f-1004-8e7b-5de38b2eeb0f",
+      "interfaceId": "aff647db-d82f-1004-8e7b-5de38b2eeb0f",
+      "type": "interface",
+      "name": "Default Interface",
+      "path": [
+        30
+      ],
+      "serviceId": 42,
+      "domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 1
+    },
+    {
+      "version": 1,
+      "modelId": "995f8657-d90a-1004-8438-64281c6cab63",
+      "interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
+      "type": "interface",
+      "name": "Velocity1 Interface",
+      "path": [
+        33,
+        34,
+        35
+      ],
+      "serviceId": 43,
+      "domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 2
+    },
+    {
+      "version": 1,
+      "modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
+      "interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
+      "type": "interface",
+      "name": "Default Interface",
+      "path": [
+        30
+      ],
+      "serviceId": 44,
+      "domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 3
+    },
+    {
+      "version": 1,
+      "modelId": "bd85f846-d8f4-1004-8f94-37c24b788523",
+      "interfaceId": "bd85f847-d8f4-1004-8f94-37c24b788523",
+      "type": "interface",
+      "name": "Upload a file interface",
+      "path": [
+        31
+      ],
+      "serviceId": 41,
+      "domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 4
+    },
+    {
+      "version": 1,
+      "modelId": "995f8657-d90a-1004-8438-64281c6cab63",
+      "interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
+      "type": "interface",
+      "name": "Velocity1 Interface",
+      "path": [
+        33,
+        34,
+        35
+      ],
+      "serviceId": 45,
+      "domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 5
+    },
+    {
+      "version": 1,
+      "modelId": "12bb9d5e-d8ec-1004-8394-4597bfb6a5f0",
+      "interfaceId": "12bb9d5f-d8ec-1004-8394-4597bfb6a5f0",
+      "type": "interface",
+      "name": "Default Interface",
+      "path": [
+        32
+      ],
+      "serviceId": 46,
+      "domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 6
+    },
+    {
+      "version": 1,
+      "modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
+      "interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
+      "type": "interface",
+      "name": "Default Interface",
+      "path": [
+        30
+      ],
+      "serviceId": 13,
+      "domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 9
+    },
+    {
+      "version": 1,
+      "modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
+      "interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
+      "type": "interface",
+      "name": "Default Interface",
+      "path": [
+        30
+      ],
+      "serviceId": 49,
+      "domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "id": 10
+    }
+  ]

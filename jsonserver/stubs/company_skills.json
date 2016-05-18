@@ -1,0 +1,22 @@
+  [
+    {
+      "id": 4,
+      "companyId": 1,
+      "name": "Skill 1"
+    },
+    {
+      "id": 5,
+      "companyId": 1,
+      "name": "Skill 2"
+    },
+    {
+      "companyId": 1,
+      "name": 125,
+      "id": 6
+    },
+    {
+      "companyId": 1,
+      "name": 5555,
+      "id": 7
+    }
+  ]

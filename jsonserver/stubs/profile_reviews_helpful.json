@@ -1,0 +1,26 @@
+  [
+    {
+      "id": 1,
+      "reviewId": 1,
+      "accountId": 1,
+      "helpful": true
+    },
+    {
+      "id": 2,
+      "reviewId": 2,
+      "accountId": 1,
+      "helpful": false
+    },
+    {
+      "accountId": 1,
+      "reviewId": 8,
+      "helpful": true,
+      "id": 3
+    },
+    {
+      "accountId": 1,
+      "reviewId": 4,
+      "helpful": false,
+      "id": 4
+    }
+  ]

@@ -1,0 +1,32 @@
+  [
+    {
+      "id": 1,
+      "faq_categoryId": 1,
+      "title": "Subcategory 1.1"
+    },
+    {
+      "id": 2,
+      "faq_categoryId": 1,
+      "title": "Subcategory 1.2"
+    },
+    {
+      "id": 3,
+      "faq_categoryId": 1,
+      "title": "Subcategory 1.3"
+    },
+    {
+      "id": 4,
+      "faq_categoryId": 2,
+      "title": "Subcategory 2.1"
+    },
+    {
+      "id": 5,
+      "faq_categoryId": 3,
+      "title": "Subcategory 3.1"
+    },
+    {
+      "id": 6,
+      "faq_categoryId": 4,
+      "title": "Subcategory 3.2"
+    }
+  ]
