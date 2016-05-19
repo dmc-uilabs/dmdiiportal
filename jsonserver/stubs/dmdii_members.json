@@ -42,5 +42,49 @@
 			"isOwner": true,
 			"owner": "Owner"
 		}
+	},
+	{
+		"id": 13,
+		"startDate": "2016-01-01 00:00:00",
+		"expireDate": "2019-01-01 00:00:00",
+		"dmdiiType": {
+			"id": 2,
+			"description": "Industry Tier 2"
+		},
+		"organization": {
+			"id": 15,
+			"accountId": 1,
+			"name": "GE Global Research",
+			"location": "Niskayuna",
+			"description": "GE Global Research is the research and development division of General Electric",
+			"division": "",
+			"industry": "",
+			"naicsCode": "",
+			"rdFocus": "",
+			"customers": "",
+			"techExpertise": "jet engines, software",
+			"toolsSoftwareEquipMach": "predix",
+			"postCollaboration": "",
+			"collaborationInterest": "",
+			"pastProjects": "",
+			"upcomingProjectInterests": "",
+			"addressId": 100,
+			"email": "",
+			"phone": "",
+			"website": "",
+			"socialMediaLinkedin": "",
+			"socialMediaTwitter": "",
+			"socialMediaInthenews": "",
+			"preferedCommMethod": "",
+			"categoryTier": 0,
+			"dateJoining": "",
+			"reasonJoining": "",
+			"featureImage": "",
+			"logoImage": "",
+			"follow": "",
+			"favoritesCount": 6,
+			"isOwner": true,
+			"owner": "Owner"
+		}
 	}
 ]
