@@ -39,7 +39,7 @@
 			"logoImage": "",
 			"follow": "",
 			"favoritesCount": 6,
-			"isOwner": true,
+			"isOwner": "true",
 			"owner": "Owner"
 		}
 	},
@@ -83,7 +83,7 @@
 			"logoImage": "",
 			"follow": "",
 			"favoritesCount": 6,
-			"isOwner": true,
+			"isOwner": "true",
 			"owner": "Owner"
 		}
 	}
