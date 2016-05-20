@@ -17,6 +17,6 @@ else
 	exit 1;
 fi
 
-#$INSTALL_CMD install php5 php5-cli
-#npm install -g bower gulp babel browser-sync
+$INSTALL_CMD install php5 php5-cli
+npm install -g bower gulp babel browser-sync
 sudo -u ${REG_USER} bower install
