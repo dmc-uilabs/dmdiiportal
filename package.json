@@ -57,5 +57,9 @@
     }
   },
   "dependencies": {
+  },
+  "scripts": {
+    "postinstall": "./post-install.sh",
+    "serve": "gulp serve & (cd jsonserver; node server.js)"
   }
 }
