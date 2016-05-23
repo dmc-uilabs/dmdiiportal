@@ -1168,9 +1168,11 @@ paths:
           required: false
       responses:
         '200':
-          description: Return service dome inerface object
+          description: Return service dome interface objects
           schema:
-            $ref: '#/definitions/GetDomeInterface'
+            type: array
+            items:
+                $ref: '#/definitions/GetDomeInterface'
   '/service_runs':
     post:
       tags:
