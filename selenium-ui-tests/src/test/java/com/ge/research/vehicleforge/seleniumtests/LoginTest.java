@@ -17,9 +17,15 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
  * Unit tests for navigating through the Home page of the site
  * clicking each link and checking whether the correct page is loaded.
  */
-public class HomePageLinksTest extends BaseTest {
+public class LoginTest extends BaseTest {
 
+	
+	@Test
+	public void testLogin() throws Exception{
+		testDMCLogin();	
+	}
 
+	@Ignore
     @Test
     public void testDashboard () {
 
@@ -42,6 +48,7 @@ public class HomePageLinksTest extends BaseTest {
 
     }
 
+    @Ignore
     @Test
     public void testMarketplace () {
 

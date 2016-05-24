@@ -1,0 +1,25 @@
+-------------
+ChromeDriver 
+-------------
+
+
+***************************************** Version *****************************************
+
+Currently, we are using the following specific ChromeDriver version:
+Version: ChromeDriver 2.21  Support Chrome V46-50
+
+
+***************************************** Decription *****************************************
+
+WebDriver is an open source tool for automated testing of webapps across many browsers.
+It provides capabilities for navigating to web pages, user input, JavaScript execution, and more.  
+ChromeDriver is a standalone server which implements WebDriver's wire protocol for Chromium. 
+ChromeDriver is available for Chrome on Android and Chrome on Desktop (Mac, Linux, Windows and ChromeOS).
+
+
+***************************************** Installation *****************************************
+
+1.  Download Link for OS (Linux32, Linux64, Mac32, Win32):
+		http://chromedriver.storage.googleapis.com/index.html?path=2.21/
+2.  All versions available in:
+		https://sites.google.com/a/chromium.org/chromedriver/downloads
