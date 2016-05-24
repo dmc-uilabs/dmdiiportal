@@ -37,8 +37,7 @@ public abstract class BaseTest {
     	// System.getProperty() is used for get system properties defined with -D in bamboo Maven task Goal field.
     	//String browserName = System.getProperty("browser").toLowerCase();
     	String browserName = System.getenv("browser").toLowerCase();
-    	
-    	//String browserName = "firefox";
+
     	
     	System.out.println("Get browser from maven build: " + browserName);
         BrowserVersion version = null;
@@ -76,11 +75,8 @@ public abstract class BaseTest {
     public static void initSelenium() throws Exception {
         try {
         	
-            driver.manage().deleteAllCookies();
-            System.out.println("Get URL for driver!!!");
-            
+            driver.manage().deleteAllCookies();            
             driver.get(baseUrl);
-            System.out.println("The google page" + driver.getCurrentUrl());
             
         } catch (Exception e) {
             System.out.println("*** TEST Failure New***");
@@ -90,8 +86,8 @@ public abstract class BaseTest {
             fail(e.getLocalizedMessage());
         }
 
-       /* System.out.println("Initial URL : " + driver.getCurrentUrl());
-        System.out.println("Initial Title : " + driver.getTitle());*/
+        System.out.println("Initial URL : " + driver.getCurrentUrl());
+        System.out.println("Initial Title : " + driver.getTitle());
 
     }
 
@@ -157,8 +153,7 @@ public abstract class BaseTest {
 	    WebElement logout = driver.findElement(By.xpath("//md-menu-item[4]/button"));
 	    logout.sendKeys(Keys.ENTER);;
 	    
-	    //System.out.print(driver.getPageSource());
-	    
+	   
 	    //login
 	    driver.findElement(By.xpath("//a/span")).click();
 	   // driver.findElementByLinkText("Login").click();
