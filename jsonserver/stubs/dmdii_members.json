@@ -13,78 +13,182 @@
 			"name": "GE Global Research",
 			"location": "Niskayuna",
 			"description": "GE Global Research is the research and development division of General Electric",
-			"division": "",
-			"industry": "",
-			"naicsCode": "",
-			"rdFocus": "",
-			"customers": "",
-			"techExpertise": "jet engines, software",
-			"toolsSoftwareEquipMach": "predix",
-			"postCollaboration": "",
-			"collaborationInterest": "",
-			"pastProjects": "",
-			"upcomingProjectInterests": "",
-			"addressId": 100,
 			"email": "",
 			"phone": "",
 			"website": "",
-			"socialMediaLinkedin": "",
-			"socialMediaTwitter": "",
-			"socialMediaInthenews": "",
-			"preferedCommMethod": "",
 			"categoryTier": 0,
 			"dateJoining": "",
 			"reasonJoining": "",
 			"featureImage": "",
 			"logoImage": "",
-			"follow": "",
-			"favoritesCount": 6,
-			"isOwner": "true",
-			"owner": "Owner"
-		}
-	},
-	{
-		"id": 13,
-		"startDate": "2016-01-01 00:00:00",
-		"expireDate": "2019-01-01 00:00:00",
-		"dmdiiType": {
-			"id": 2,
-			"memberDescription": "Industry Tier 2"
+			"rndFocii": [
+				{
+					"id": 1,
+					"focus_name": "R&D focus name",
+					"focus_description": "R&D focus description" 
+				},
+				{
+					"id": 2,
+					"focus_name": "R&D focus name",
+					"focus_description": "R&D focus description" 
+				},
+			],
+			"customers": [
+				{
+					"id": 1,
+					"name": "Microsoft",
+					"link": "www.microsoft.com"
+				},
+				{
+					"id": 2,
+					"name": "Google",
+					"link": "www.google.com"
+				}
+			],
+			"awards": [
+				{
+					"id": 1,
+					"name": "Award Name",
+					"description": "Award Description",
+					"link": "http://awardlink.com"
+				},
+				{
+					"id": 2,
+					"name": "Award Name",
+					"description": "Award Description",
+					"link": "http://awardlink.com"
+				}
+			],
+			"skills": [
+				{
+					"id": 1,
+					"tagName": "tag_name",
+					"tagLink": "tag_link"
+				},
+				{
+					"id": 2,
+					"tag_name": "tag_name",
+					"tag_link": "tag_link"
+				},
+			],
+			"areasOfExpertise": [
+				{
+					"id": 1,
+					"name": "Jet engines",
+					"description": "description",
+					"link": "link",
+				},
+				{
+					"id": 2,
+					"name": "Software",
+					"description": "description",
+					"link": "link",
+				}
+			],
+			"collaborations": [
+				{
+					"id": 1,
+					"collaborationDate": "09-09-2015",
+					"collaborationInterest": ""
+				},
+				{
+					"id": 1,
+					"collaborationDate": "09-09-2015",
+					"collaborationInterest": ""
+				}
+			],
+			"companyMembers": [
+				{
+					"id": 1,
+					"dmcUserId": 1,
+					"companyRole": "technician"
+				},
+				{
+					"id": 2,
+					"dmcUserId": 2,
+					"companyRole": "janitor"
+				}
+			],
+			"contacts": [
+				{
+					"executiveCommitteeLead": {
+						"id": 1,
+						"name": "Steve",
+						"email": "derp@derp.com"
+					},
+					"tacLead": {
+						"id": 1,
+						"name": "Steve",
+						"email": "derp@derp.com"
+					},
+					"sacLead": {
+						"id": 1,
+						"name": "Steve",
+						"email": "derp@derp.com"
+					},
+					"technicalLead": {
+						"id": 1,
+						"name": "Steve",
+						"email": "derp@derp.com"
+					},
+					"legalLead": {
+						"id": 1,
+						"name": "Steve",
+						"email": "derp@derp.com"
+					},
+					"financialLead": {
+						"id": 1,
+						"name": "Steve",
+						"email": "derp@derp.com"
+					},
+					"workforceDevLead": {
+						"id": 1,
+						"name": "Steve",
+						"email": "derp@derp.com"
+					},
+					"dmcLead": {
+						"id": 1,
+						"name": "Steve",
+						"email": "derp@derp.com"
+					},
+					"dmdiiAccountManager": {
+						"id": 1,
+						"name": "Steve",
+						"email": "derp@derp.com"
+					}
+				}
+			],
+			"finances": [
+				{
+					"id": 1,
+					"name": "asset name",
+					"staticAssetUrl": "url to static asset",
+					"dmdiiOwner": "asset creator"
+				},
+				{
+					"id": 2,
+					"name": "asset name",
+					"staticAssetUrl": "url to static asset",
+					"dmdiiOwner": "asset creator"
+				}
+			],
+			"instituteInvolvements": [
+				{
+					"id": 1,
+					"staticLineItem": "staticLineValue",
+					"date": "09-09-1970",
+					"dmdiiContactName": "dmdii contact name"
+				}
+			],
+			"address": {
+				"id": 1,
+				"streetAddress1": "123 Street St.",
+				"streetAddress2": "Apt. 20",
+				"city": "City",
+				"state": "ST",
+				"country": "USA",
+				"zip": "45555"
+			},
 		},
-		"organization": {
-			"id": 15,
-			"accountId": 1,
-			"name": "GE Global Research",
-			"location": "Niskayuna",
-			"description": "GE Global Research is the research and development division of General Electric",
-			"division": "",
-			"industry": "",
-			"naicsCode": "",
-			"rdFocus": "",
-			"customers": "",
-			"techExpertise": "jet engines, software",
-			"toolsSoftwareEquipMach": "predix",
-			"postCollaboration": "",
-			"collaborationInterest": "",
-			"pastProjects": "",
-			"upcomingProjectInterests": "",
-			"addressId": 100,
-			"email": "",
-			"phone": "",
-			"website": "",
-			"socialMediaLinkedin": "",
-			"socialMediaTwitter": "",
-			"socialMediaInthenews": "",
-			"preferedCommMethod": "",
-			"categoryTier": 0,
-			"dateJoining": "",
-			"reasonJoining": "",
-			"featureImage": "",
-			"logoImage": "",
-			"follow": "",
-			"favoritesCount": 6,
-			"isOwner": "true",
-			"owner": "Owner"
-		}
 	}
 ]
