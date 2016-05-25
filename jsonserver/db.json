@@ -702,13 +702,13 @@
       "id": 1,
       "companyId": 1,
       "profileId": 1,
-      "firstName": "Thomasfixed",
-      "lastName": "Smithfixed",
-      "displayName": "Thomasfixed Smithfixed",
+      "firstName": "Thomas-changed",
+      "lastName": "Smith-changed",
+      "displayName": "Thomas-changed Smith-changed",
       "email": "thomas.smith@ge.com",
       "deactivated": false,
-      "location": "",
-      "timezone": "",
+      "location": "Schenectady",
+      "timezone": "(UTC -05:00) America/Atikokan",
       "privacy": {
         "public": {
           "email": {
