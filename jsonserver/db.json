@@ -9110,56 +9110,56 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 24,
-      "selected": false
+      "selected": true
     },
     {
       "id": 56,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 25,
-      "selected": false
+      "selected": true
     },
     {
       "id": 57,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 26,
-      "selected": false
+      "selected": true
     },
     {
       "id": 58,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 27,
-      "selected": false
+      "selected": true
     },
     {
       "id": 59,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 28,
-      "selected": false
+      "selected": true
     },
     {
       "id": 60,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 29,
-      "selected": false
+      "selected": true
     },
     {
       "id": 61,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 30,
-      "selected": false
+      "selected": true
     },
     {
       "id": 62,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 31,
-      "selected": false
+      "selected": true
     },
     {
       "id": 22,
@@ -9229,7 +9229,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 10,
-      "selected": false
+      "selected": true
     },
     {
       "id": 32,
@@ -9264,35 +9264,35 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 15,
-      "selected": false
+      "selected": true
     },
     {
       "id": 37,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 16,
-      "selected": false
+      "selected": true
     },
     {
       "id": 38,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 17,
-      "selected": false
+      "selected": true
     },
     {
       "id": 39,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 18,
-      "selected": false
+      "selected": true
     },
     {
       "id": 40,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 19,
-      "selected": false
+      "selected": true
     },
     {
       "id": 41,

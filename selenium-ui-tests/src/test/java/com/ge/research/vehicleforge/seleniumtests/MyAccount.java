@@ -99,6 +99,26 @@ public class MyAccount extends BaseTest {
 		//navigate to WEBSITE sub-tab
 	    driver.findElement(By.xpath("//md-tab-item/span")).click();
 	    assertEquals("WEBSITE", driver.findElement(By.xpath("//md-tab-item")).getText());
+	    
+	    //deactivate all and activate all again and save changes
+	    driver.findElement(By.xpath("//md-tab-content/div/md-content/div/button")).click();
+	    driver.findElement(By.xpath("//md-tab-content/div/md-content/div/button[2]")).click();
+	    driver.findElement(By.xpath("//button[2]")).click();
+	    
+	    //activate all and deactivate all and save changes
+	    driver.findElement(By.xpath("//md-tab-item[2]/span")).click();
+	    assertEquals("EMAIL", driver.findElement(By.xpath("//md-tab-item[2]/span")).getText());
+	    driver.findElement(By.xpath("//md-tab-content[2]/div/md-content/div/button[2]")).click();
+	    driver.findElement(By.xpath("//button[2]")).click();
+	    driver.findElement(By.xpath("//md-tab-content[2]/div/md-content/div/button")).click();
+	    driver.findElement(By.xpath("//button[2]")).click();
+	    
+	    //activate all marketplace notifications and save changes
+	    driver.findElement(By.xpath("//md-tab-content[2]/div/md-content/div[2]/div[2]/div/md-switch/div/div[2]/div")).click();
+	    driver.findElement(By.xpath("//md-tab-content[2]/div/md-content/div[2]/div[2]/div[2]/md-switch/div/div[2]/div")).click();
+	    driver.findElement(By.xpath("//md-tab-content[2]/div/md-content/div[2]/div[2]/div[3]/md-switch/div/div[2]/div")).click();
+	    driver.findElement(By.xpath("//md-tab-content[2]/div/md-content/div[2]/div[2]/div[4]/md-switch/div/div[2]/div")).click();
+	    driver.findElement(By.xpath("//button[2]")).click();
 		
 		
 	}
