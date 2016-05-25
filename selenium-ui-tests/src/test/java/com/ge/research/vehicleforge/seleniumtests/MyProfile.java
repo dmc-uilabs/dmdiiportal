@@ -35,10 +35,7 @@ public class MyProfile extends BaseTest{
 	    
 	    //Edit profile
 	    driver.findElement(By.xpath("//div[2]/a/span")).click();
-	   /* WebDriverWait wait = new WebDriverWait(driver, 10);
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span")));
-        element.click();*/
-	    
+	    //wait for element to be clickable
 	    driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
 	    driver.findElement(By.xpath("//div/md-input-container/input")).clear();
 	    driver.findElement(By.xpath("//div/md-input-container/input")).sendKeys("Thomas Smith");
@@ -46,9 +43,17 @@ public class MyProfile extends BaseTest{
 	    driver.findElement(By.xpath("//md-input-container[2]/input")).sendKeys("Engineering Manager");
 	    driver.findElement(By.xpath("//div[2]/div/md-input-container[2]/input")).clear();
 	    driver.findElement(By.xpath("//div[2]/div/md-input-container[2]/input")).sendKeys("Berkeley, California");
+	    
+	    String skill = "skill" + TestUtils.ran;
+	    driver.findElement(By.xpath("//md-content/div/form/md-input-container/input")).clear();
+	    driver.findElement(By.xpath("//md-content/div/form/md-input-container/input")).sendKeys(skill);
+	    driver.findElement(By.xpath("//md-content/div/form/button")).click();
+	      
 	    driver.findElement(By.xpath("//button[2]")).click();
 	    assertEquals("Thomas Smith Engineering Manager", driver.findElement(By.xpath("//h2")).getText());
 	    assertEquals("Berkeley, California", driver.findElement(By.xpath("//h3[2]")).getText());
+	    driver.findElement(By.xpath("//md-tab-item[2]/span")).click();
+	    assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*"+ skill+"[\\s\\S]*$"));
 	    
 	}
 
