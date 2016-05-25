@@ -26,7 +26,7 @@ public class MyAccount extends BaseTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void testMyAccountBascis() throws Exception{
 	    myAccount();
 		
@@ -59,7 +59,7 @@ public class MyAccount extends BaseTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void testMyAccountPrivacy() throws Exception{
 		//navigate to PRIVACY tab
 		driver.findElement(By.xpath("//md-list-item[2]/a/div/div")).click();
@@ -89,7 +89,7 @@ public class MyAccount extends BaseTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void testMyAccountNotification() throws Exception{
 		//navigate to NOTIFICATIONS tab
 		driver.findElement(By.xpath("//md-list-item[3]/a/div/div")).click();
@@ -121,6 +121,65 @@ public class MyAccount extends BaseTest {
 	    driver.findElement(By.xpath("//button[2]")).click();
 		
 		
+	}
+	
+	
+	
+	//@Test
+	public void testMyAccountServer() throws Exception{
+		//myAccount();
+		/*driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span")));
+        element.click();	    
+	    System.out.println("Get current title:" + driver.getTitle());
+	    assertEquals("Manage Account", driver.getTitle());	
+		*/
+		
+		//navigate to SERVERS tab
+		driver.findElement(By.xpath("//md-list-item[4]/a/div/div")).click();
+		
+		//add server//add server
+		WebDriverWait wait1 = new WebDriverWait(driver, 20);
+		WebElement element1 = wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content/div[1]/button")));
+        element1.click();
+        
+        //server info
+        driver.findElement(By.xpath("//div[2]/md-input-container/input")).clear();
+        driver.findElement(By.xpath("//div[2]/md-input-container/input")).sendKeys("Add server for testing0000");
+        driver.findElement(By.xpath("//md-input-container[2]/input")).clear();
+        driver.findElement(By.xpath("//md-input-container[2]/input")).sendKeys("Fake server IP");
+        driver.findElement(By.xpath("//button[2]")).click();
+        
+	    
+	    //click add server button and cancel adding server
+	    driver.findElement(By.xpath("//md-content/div[1]/button")).click();
+	    driver.findElement(By.xpath("//div[2]/button[1]")).click();
+	    
+	    //rename the server alias and URL
+	    driver.findElement(By.xpath("//td/button")).click();
+	    driver.findElement(By.xpath("//td[2]/md-input-container/input")).clear();
+	    driver.findElement(By.xpath("//td[2]/md-input-container/input")).sendKeys("Add server for testing0000 rename");
+	    driver.findElement(By.xpath("//td[3]/md-input-container/input")).clear();
+	    driver.findElement(By.xpath("//td[3]/md-input-container/input")).sendKeys("Fake server IP rename");
+	    driver.findElement(By.xpath("//td[4]/button")).click();
+	    
+	    assertEquals("Add server for testing0000 rename", driver.findElement(By.xpath("//td[2]/md-input-container/input")).getAttribute("value"));
+	    assertEquals("Fake server IP rename", driver.findElement(By.xpath("//td[3]/md-input-container/input")).getAttribute("value"));
+	    
+	    //delete but not work currently
+	    driver.findElement(By.xpath("//td[5]/button")).click();
+	    
+	}
+	
+	
+	//To make test case run in order.
+	@Test
+	public void testMyAccount() throws Exception{
+		testMyAccountBascis();
+		testMyAccountPrivacy();
+		testMyAccountNotification();
+		testMyAccountServer();
 	}
 
 }
