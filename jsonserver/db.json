@@ -735,7 +735,7 @@
           },
           "location": {
             "enable": true,
-            "value": ""
+            "value": "Schenectady"
           }
         }
       }
@@ -8886,21 +8886,21 @@
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 2,
-      "selected": false
+      "selected": true
     },
     {
       "id": 3,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 3,
-      "selected": false
+      "selected": true
     },
     {
       "id": 4,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 4,
-      "selected": false
+      "selected": true
     },
     {
       "id": 5,
@@ -8935,14 +8935,14 @@
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 9,
-      "selected": false
+      "selected": true
     },
     {
       "id": 10,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 10,
-      "selected": false
+      "selected": true
     },
     {
       "id": 11,
@@ -8977,35 +8977,35 @@
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 15,
-      "selected": false
+      "selected": true
     },
     {
       "id": 16,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 16,
-      "selected": false
+      "selected": true
     },
     {
       "id": 17,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 17,
-      "selected": false
+      "selected": true
     },
     {
       "id": 18,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 18,
-      "selected": false
+      "selected": true
     },
     {
       "id": 19,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 19,
-      "selected": false
+      "selected": true
     },
     {
       "id": 20,
@@ -9026,7 +9026,7 @@
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 22,
-      "selected": false
+      "selected": true
     },
     {
       "id": 44,
@@ -9040,63 +9040,63 @@
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 24,
-      "selected": false
+      "selected": true
     },
     {
       "id": 46,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 25,
-      "selected": false
+      "selected": true
     },
     {
       "id": 47,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 26,
-      "selected": false
+      "selected": true
     },
     {
       "id": 48,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 27,
-      "selected": false
+      "selected": true
     },
     {
       "id": 49,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 28,
-      "selected": false
+      "selected": true
     },
     {
       "id": 50,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 29,
-      "selected": false
+      "selected": true
     },
     {
       "id": 51,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 30,
-      "selected": false
+      "selected": true
     },
     {
       "id": 52,
       "accountId": 1,
       "section": "website",
       "account-notification-category-itemId": 31,
-      "selected": false
+      "selected": true
     },
     {
       "id": 53,
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 22,
-      "selected": true
+      "selected": false
     },
     {
       "id": 54,
@@ -9131,7 +9131,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 27,
-      "selected": true
+      "selected": false
     },
     {
       "id": 59,
@@ -9159,7 +9159,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 31,
-      "selected": true
+      "selected": false
     },
     {
       "id": 22,
@@ -9173,7 +9173,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 2,
-      "selected": true
+      "selected": false
     },
     {
       "id": 24,
@@ -9208,7 +9208,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 7,
-      "selected": true
+      "selected": false
     },
     {
       "id": 29,
@@ -9264,7 +9264,7 @@
       "accountId": 1,
       "section": "email",
       "account-notification-category-itemId": 15,
-      "selected": true
+      "selected": false
     },
     {
       "id": 37,
