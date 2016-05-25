@@ -1361,6 +1361,33 @@
       "date": 1459758478599,
       "accept": true,
       "id": 16
+    },
+    {
+      "profileId": 1,
+      "projectId": 2,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1464215628125,
+      "accept": false,
+      "id": 17
+    },
+    {
+      "profileId": 1,
+      "projectId": 2,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1464215818725,
+      "accept": false,
+      "id": 18
+    },
+    {
+      "profileId": 1,
+      "projectId": 2,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1464215839516,
+      "accept": false,
+      "id": 19
     }
   ],
   "components": [
@@ -7570,7 +7597,9 @@
         "skill4",
         "skill4",
         "skill173056",
-        "skill384634"
+        "skill384634",
+        "skill715620",
+        "skill567335"
       ]
     },
     {

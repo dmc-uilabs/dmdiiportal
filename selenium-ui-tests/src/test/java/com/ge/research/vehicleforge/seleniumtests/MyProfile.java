@@ -55,6 +55,23 @@ public class MyProfile extends BaseTest{
 	    driver.findElement(By.xpath("//md-tab-item[2]/span")).click();
 	    assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*"+ skill+"[\\s\\S]*$"));
 	    
+	    //Follow and Unfollow
+	    driver.findElement(By.xpath("//div[2]/button")).click();
+	    assertEquals("UNFOLLOW", driver.findElement(By.xpath("//div[2]/button")).getText());
+	    driver.findElement(By.xpath("//div[2]/button")).click();
+	    assertEquals("FOLLOW", driver.findElement(By.xpath("//div[2]/button")).getText());
+	    
+	    //Invite to project
+	    driver.findElement(By.xpath("//div[2]/button[2]")).click();
+	    driver.findElement(By.xpath("//md-select")).click();
+	    driver.findElement(By.xpath("//md-option/div")).click();
+	    driver.findElement(By.xpath("//div[2]/button[2]")).click();
+	    assertEquals("Capacitor Bank for LDR Mining Co.", driver.findElement(By.xpath("//a[contains(text(),'Capacitor Bank for LDR Mining Co.')]")).getText());
+	    
+	    //delete from project
+	    driver.findElement(By.xpath("//div[2]/button[2]")).click();
+	    assertEquals("INVITE TO PROJECT", driver.findElement(By.xpath("//div[2]/button[2]")).getText());
+	    
 	}
 
 	
