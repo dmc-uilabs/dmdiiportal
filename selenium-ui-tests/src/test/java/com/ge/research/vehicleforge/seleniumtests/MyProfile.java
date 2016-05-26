@@ -6,29 +6,35 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MyProfile extends BaseTest{
 	
+	
+	WebDriverWait wait = new WebDriverWait(driver, 20);
+	
 	public void myProfile() throws Exception{
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[2]/a/span")));
         element.click();	    
 	    System.out.println("Get current title:" + driver.getTitle());
 	    assertEquals("Profile", driver.getTitle());	
 	}
 	
-	@Test
+	//@Test
 	public void testMyProfile() throws Exception{
 		//navigate to myProfile
 		myProfile();
 		
 		//validate HISTORY, SKILLS, CONTRACT
 		assertEquals("HISTORY", driver.findElement(By.xpath("//md-tab-item/span")).getText());
-	    driver.findElement(By.xpath("//md-tab-item[2]/span")).click();
+		
+		driver.findElement(By.xpath("//md-tab-item[2]/span")).click();
 	    assertEquals("SKILLS", driver.findElement(By.xpath("//md-tab-item[2]/span")).getText());
 	    driver.findElement(By.xpath("//md-tab-item[3]")).click();
 	    assertEquals("CONTACT", driver.findElement(By.xpath("//md-tab-item[3]/span")).getText());
@@ -70,8 +76,97 @@ public class MyProfile extends BaseTest{
 	    
 	    //delete from project
 	    driver.findElement(By.xpath("//div[2]/button[2]")).click();
-	    assertEquals("INVITE TO PROJECT", driver.findElement(By.xpath("//div[2]/button[2]")).getText());
+	    assertEquals("INVITE TO PROJECT", driver.findElement(By.xpath("//div[2]/button[2]")).getText());    	    
 	    
+	}
+	
+	
+	//@Test
+	public void testMyProfileReview() throws Exception{
+		myProfile();
+		
+		 assertEquals("Most recent", driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		 
+		// click LEAVE A REVIEW
+		driver.findElement(By.xpath("//div[3]/div[2]/button")).sendKeys(Keys.ENTER);
+		// Rating
+		driver.findElement(By.xpath("//form/div/div/button[5]")).sendKeys(Keys.ENTER);
+
+		driver.findElement(By.xpath("//textarea")).clear();
+		driver.findElement(By.xpath("//textarea")).sendKeys("This is test comment!" + TestUtils.ran);
+		// cancel
+		driver.findElement(By.xpath("//form/div[2]/button")).click();
+
+		// click LEAVE A REVIEW second time
+		driver.findElement(By.xpath("//div[3]/div[2]/button")).sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath("//form/div/div/button[5]")).sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath("//textarea")).clear();
+		Integer commentNum =  TestUtils.ran;
+		driver.findElement(By.xpath("//textarea")).sendKeys("This is test comments!" + commentNum);
+		System.out.println(commentNum);
+		driver.findElement(By.xpath("//form/div[2]/button[2]")).click();
+		
+		driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+		assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*" + commentNum + "[\\s\\S]*$"));
+    
+	}
+	
+	//@Test
+	public void testMyProfileSorting() throws Exception{
+		 driver.get(baseUrl);
+		myProfile();
+
+		// test sorting features
+		assertEquals("Most recent",
+				driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+
+		driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+		WebElement e = driver.findElement(By.id("select_value_label_2"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", e);
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+
+		//test for sorting by Most Helpful
+		executor.executeScript("arguments[0].click();", e);
+		driver.findElement(By.xpath("//md-option[2]/div")).click();
+		//System.out.println(driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		//assertEquals("Most Helpful", driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText()); 	
+		
+		//test for sorting by Highest to Lowest Rating
+		executor.executeScript("arguments[0].click();", e);
+		driver.findElement(By.xpath("//md-option[3]/div")).click();
+		//System.out.println(driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		//assertEquals("Highest to Lowest Rating", driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		
+		
+		//test for sorting by Lowest to Highest Rating
+		executor.executeScript("arguments[0].click();", e);
+		driver.findElement(By.xpath("//md-option[4]/div")).click();
+		//System.out.println(driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		//assertEquals("Lowest to Highest Rating", driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		
+		
+		//test for sorting by Verified Users
+		executor.executeScript("arguments[0].click();", e);
+		driver.findElement(By.xpath("//md-option[5]/div")).click();
+		//System.out.println(driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		//assertEquals("Verified Users", driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		
+		
+		
+		executor.executeScript("arguments[0].click();", e);
+		driver.findElement(By.xpath("//md-option[2]/div")).click();
+		//System.out.println(driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		//assertEquals("Most recent", driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		
+	}
+	
+	
+	@Test
+	public void testMyProfileAll() throws Exception{	
+		testMyProfile();
+		testMyProfileReview();
+		testMyProfileSorting();
+		
 	}
 
 	

@@ -48,6 +48,7 @@ public abstract class BaseTest {
                 driver = new ChromeDriver();
             } else if (browserName.equals("firefox")) {
                 driver = new FirefoxDriver();
+                driver.manage().window().maximize();;
             } else if (browserName.equals("ie")) {
                 version = BrowserVersion.INTERNET_EXPLORER_11;
             	//driver = new InternetExplorerDriver();
@@ -151,7 +152,7 @@ public abstract class BaseTest {
     	// logout
 	    driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
 	    WebElement logout = driver.findElement(By.xpath("//md-menu-item[4]/button"));
-	    logout.sendKeys(Keys.ENTER);;
+	    logout.sendKeys(Keys.ENTER);
 	    
 	   
 	    //login
