@@ -74,6 +74,7 @@
 <script src="/bower_components/angular-ui-sortable/sortable.min.js"></script>
 <script src="/bower_components/ng-autofocus/dist/ng-autofocus.js"></script>
 <script src="/bower_components/angular-route/angular-route.min.js"></script>
+<script src="/bower_components/aws-sdk/dist/aws-sdk.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 

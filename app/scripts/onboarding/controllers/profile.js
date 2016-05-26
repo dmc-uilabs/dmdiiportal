@@ -1,5 +1,5 @@
 angular.module('dmc.onboarding')
-.controller('ProfileController', 
+.controller('ProfileController',
 	['$scope', '$state', 'location', 'fileUpload',
 	function ($scope, $state, location, fileUpload) {
 		if($state.current.name == "onboarding.profile"){
@@ -66,12 +66,16 @@ angular.module('dmc.onboarding')
             if(index == 1 && $scope.file){
                 fileUpload.uploadFileToUrl(
                     $scope.file.files[0].file,
-                    {id: $scope.userData.profileId}, 
-                    'profile', 
+                    {id:1 },
+										//$scope.userData.profileId
+                    'profile',
                     function(data){
+											console.log("DataAfter");
+											console.log(data);
                         $scope.file = null;
                         if(data.file && data.file.name){
                             $scope.profile[1].data.image = data.file.name;
+														console.log("Data: " + $scope.profile[1].data);
                         }
                         $scope.saveProfile($scope.profile[index].data, function(){
                             $(window).scrollTop(0);
