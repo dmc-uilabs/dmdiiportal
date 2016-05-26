@@ -1135,6 +1135,60 @@ paths:
           description: Return dome inerface object
           schema:
             $ref: '#/definitions/GetDomeInterface'
+  '/get-children':
+    get:
+      tags:
+        - service
+        - not implemented
+      description: Get children from Dome API
+      parameters:
+        - in: query
+          name: domeServer
+          description: Address of Dome server
+          required: true
+          type: string
+        - in: query
+          name: dateModified
+          description: Date Dome model was modified (if type is model)
+          required: false
+          type: string
+        - in: query
+          name: description
+          description: Description of Dome model (if type is model)
+          required: false
+          type: string
+        - in: query
+          name: modelId
+          description: Id of Dome model (if type is model)
+          required: false
+          type: string
+        - in: query
+          name: name
+          description: Date object was modified (if type is model or folder)
+          required: false
+          type: string
+        - in: query
+          name: path
+          description: Path of Dome object (if type is model or folder)
+          required: false
+          type: array
+          items:
+            type: number
+        - in: query
+          name: type
+          description: Type of Dome object -- Either "" "folder" or "model"
+          required: false
+          type: string
+        - in: query
+          name: version
+          description: Version of Dome model (if type is model)
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Return the JSON string that was sent by the Dome API
+          schema:
+            type: string
   '/services/{serviceId}/dome-interfaces':
     get:
       tags:
