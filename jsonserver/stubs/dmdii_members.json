@@ -21,82 +21,6 @@
 			"reasonJoining": "",
 			"featureImage": "",
 			"logoImage": "",
-			"rndFocii": [
-				{
-					"id": 1,
-					"focus_name": "R&D focus name",
-					"focus_description": "R&D focus description" 
-				},
-				{
-					"id": 2,
-					"focus_name": "R&D focus name",
-					"focus_description": "R&D focus description" 
-				},
-			],
-			"customers": [
-				{
-					"id": 1,
-					"name": "Microsoft",
-					"link": "www.microsoft.com"
-				},
-				{
-					"id": 2,
-					"name": "Google",
-					"link": "www.google.com"
-				}
-			],
-			"awards": [
-				{
-					"id": 1,
-					"name": "Award Name",
-					"description": "Award Description",
-					"link": "http://awardlink.com"
-				},
-				{
-					"id": 2,
-					"name": "Award Name",
-					"description": "Award Description",
-					"link": "http://awardlink.com"
-				}
-			],
-			"skills": [
-				{
-					"id": 1,
-					"tagName": "tag_name",
-					"tagLink": "tag_link"
-				},
-				{
-					"id": 2,
-					"tag_name": "tag_name",
-					"tag_link": "tag_link"
-				},
-			],
-			"areasOfExpertise": [
-				{
-					"id": 1,
-					"name": "Jet engines",
-					"description": "description",
-					"link": "link",
-				},
-				{
-					"id": 2,
-					"name": "Software",
-					"description": "description",
-					"link": "link",
-				}
-			],
-			"collaborations": [
-				{
-					"id": 1,
-					"collaborationDate": "09-09-2015",
-					"collaborationInterest": ""
-				},
-				{
-					"id": 1,
-					"collaborationDate": "09-09-2015",
-					"collaborationInterest": ""
-				}
-			],
 			"companyMembers": [
 				{
 					"id": 1,
@@ -109,77 +33,6 @@
 					"companyRole": "janitor"
 				}
 			],
-			"contacts": [
-				{
-					"executiveCommitteeLead": {
-						"id": 1,
-						"name": "Steve",
-						"email": "derp@derp.com"
-					},
-					"tacLead": {
-						"id": 1,
-						"name": "Steve",
-						"email": "derp@derp.com"
-					},
-					"sacLead": {
-						"id": 1,
-						"name": "Steve",
-						"email": "derp@derp.com"
-					},
-					"technicalLead": {
-						"id": 1,
-						"name": "Steve",
-						"email": "derp@derp.com"
-					},
-					"legalLead": {
-						"id": 1,
-						"name": "Steve",
-						"email": "derp@derp.com"
-					},
-					"financialLead": {
-						"id": 1,
-						"name": "Steve",
-						"email": "derp@derp.com"
-					},
-					"workforceDevLead": {
-						"id": 1,
-						"name": "Steve",
-						"email": "derp@derp.com"
-					},
-					"dmcLead": {
-						"id": 1,
-						"name": "Steve",
-						"email": "derp@derp.com"
-					},
-					"dmdiiAccountManager": {
-						"id": 1,
-						"name": "Steve",
-						"email": "derp@derp.com"
-					}
-				}
-			],
-			"finances": [
-				{
-					"id": 1,
-					"name": "asset name",
-					"staticAssetUrl": "url to static asset",
-					"dmdiiOwner": "asset creator"
-				},
-				{
-					"id": 2,
-					"name": "asset name",
-					"staticAssetUrl": "url to static asset",
-					"dmdiiOwner": "asset creator"
-				}
-			],
-			"instituteInvolvements": [
-				{
-					"id": 1,
-					"staticLineItem": "staticLineValue",
-					"date": "09-09-1970",
-					"dmdiiContactName": "dmdii contact name"
-				}
-			],
 			"address": {
 				"id": 1,
 				"streetAddress1": "123 Street St.",
@@ -189,17 +42,252 @@
 				"country": "USA",
 				"zip": "45555"
 			},
-			"projects": [
-				{
-					"id": 1,
-					"primeOrganization": "company name",
-					"principleInvestigator": "name",
-					"projectStatus": "status",
-					"awardedDate": "09-09-2016",
-					"projectName": "project name",
-					"projectSummary": "short description",
-				}
-			]
 		},
+		"rndFocii": [
+			{
+				"id": 1,
+				"name": "R&D focus name",
+				"description": "R&D focus description" 
+			},
+			{
+				"id": 2,
+				"name": "R&D focus name",
+				"description": "R&D focus description" 
+			},
+		],
+		"awards": [
+			{
+				"id": 1,
+				"name": "Award Name",
+				"description": "Award Description",
+				"link": "http://awardlink.com"
+			},
+			{
+				"id": 2,
+				"name": "Award Name",
+				"description": "Award Description",
+				"link": "http://awardlink.com"
+			}
+		],
+		"customers": [
+			{
+				"id": 1,
+				"name": "Microsoft",
+				"link": "www.microsoft.com"
+			},
+			{
+				"id": 2,
+				"name": "Google",
+				"link": "www.google.com"
+			}
+		],
+		"skills": [
+			{
+				"id": 1,
+				"tagName": "tag_name",
+				"tagLink": "tag_link"
+			},
+			{
+				"id": 2,
+				"tag_name": "tag_name",
+				"tag_link": "tag_link"
+			},
+		],
+		"areasOfExpertise": [
+			{
+				"id": 1,
+				"name": "Jet engines",
+				"description": "description",
+				"link": "link",
+			},
+			{
+				"id": 2,
+				"name": "Software",
+				"description": "description",
+				"link": "link",
+			}
+		],
+		"collaborations": [
+			{
+				"id": 1,
+				"date": "09-09-2015",
+				"interest": "collaboration interests"
+			},
+			{
+				"id": 1,
+				"date": "09-09-2015",
+				"interest": "more collaboration interests"
+			}
+		],
+		"contacts": [
+			{
+				"id": 1,
+				"type": {
+					"id": 1,
+					"type": "executiveCommitteeLead"
+				},
+				"firstName": "Steve",
+				"lastName": "Smith",
+				"email": "steve.smith@email.com"
+			},
+			{
+				"id": 2,
+				"type": {
+					"id": 2,
+					"type": "tacLead"
+				},
+				"firstName": "Steve",
+				"lastName": "Smith",
+				"email": "steve.smith@email.com"
+			},
+			{
+				"id": 3,
+				"type": {
+					"id": 3,
+					"type": "sacLead"
+				},
+				"firstName": "Steve",
+				"lastName": "Smith",
+				"email": "steve.smith@email.com"
+			},
+			{
+				"id": 4,
+				"type": {
+					"id": 4,
+					"type": "technicalLead"
+				},
+				"firstName": "Steve",
+				"lastName": "Smith",
+				"email": "steve.smith@email.com"
+			},
+			{
+				"id": 5,
+				"type": {
+					"id": 5,
+					"type": "legalLead"
+				},
+				"firstName": "Steve",
+				"lastName": "Smith",
+				"email": "steve.smith@email.com"
+			},
+			{
+				"id": 6,
+				"type": {
+					"id": 6,
+					"type": "financialLead"
+				},
+				"firstName": "Steve",
+				"lastName": "Smith",
+				"email": "steve.smith@email.com"
+			},
+			{
+				"id": 7,
+				"type": {
+					"id": 7,
+					"type": "workforceDevLead"
+				},
+				"firstName": "Steve",
+				"lastName": "Smith",
+				"email": "steve.smith@email.com"
+			},
+			{
+				"id": 8,
+				"type": {
+					"id": 8,
+					"type": "dmcLead"
+				},
+				"firstName": "Steve",
+				"lastName": "Smith",
+				"email": "steve.smith@email.com"
+			},
+			{
+				"id": 9,
+				"type": {
+					"id": 9,
+					"type": "dmdiiAccountManager"
+				},
+				"firstName": "Steve",
+				"lastName": "Smith",
+				"email": "steve.smith@email.com"
+			},
+			{
+				"id": 10,
+				"type": {
+					"id": 10,
+					"type": "executiveCommitteeLead"
+				},
+				"firstName": "Steve",
+				"lastName": "Smith",
+				"email": "steve.smith@email.com"
+			},
+		],
+		"finances": [
+			{
+				"id": 1,
+				"name": "asset name",
+				"assetUrl": "url to static asset",
+				"user": {
+					"id": 1,
+					"firstName": "Max",
+					"lastName": "Rowland",
+					"email": "email@email.com"
+				}
+			},
+			{
+				"id": 2,
+				"name": "asset name",
+				"assetUrl": "url to static asset",
+				"user": {
+					"id": 2,
+					"firstName": "Notmax",
+					"lastName": "Notrowland",
+					"email": "email@email.com"
+				}
+			},
+		],
+		"instituteInvolvements": [
+			{
+				"id": 1,
+				"staticLineItem": "staticLineValue",
+				"date": "09-09-1970",
+				"user": {
+					"id": 2,
+					"firstName": "Notmax",
+					"lastName": "Notrowland",
+					"email": "email@email.com"
+				}
+			},
+			{
+				"id": 2,
+				"staticLineItem": "staticLineValue",
+				"date": "09-09-1970",
+				"user": {
+					"id": 1,
+					"firstName": "Max",
+					"lastName": "Rowland",
+					"email": "email@email.com"
+				}
+			}
+		],
+		"projects": [
+			{
+				"id": 1,
+				"primeOrganization": "company name",
+				"principleInvestigator": "name",
+				"projectStatus": "status",
+				"awardedDate": "09-09-2016",
+				"projectName": "project name",
+				"projectSummary": "short description",
+			},
+			{
+				"id": 2,
+				"primeOrganization": "company name",
+				"principleInvestigator": "name",
+				"projectStatus": "status",
+				"awardedDate": "09-09-2016",
+				"projectName": "project name",
+				"projectSummary": "short description",
+			}
+		]
 	}
 ]
