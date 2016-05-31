@@ -791,7 +791,7 @@
       "id": 1
     },
     {
-      "ip": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+      "ip": "http://localhost:8082/DOMEApiServicesV7",
       "name": "Test Server",
       "accountId": 1,
       "status": "offline",

@@ -1135,7 +1135,7 @@ paths:
           description: Return dome inerface object
           schema:
             $ref: '#/definitions/GetDomeInterface'
-  '/get-children':
+  '/getChildren':
     get:
       tags:
         - service
@@ -1164,7 +1164,7 @@ paths:
           type: string
         - in: query
           name: name
-          description: Date object was modified (if type is model or folder)
+          description: Dome object name (if type is model or folder)
           required: false
           type: string
         - in: query
@@ -1186,9 +1186,63 @@ paths:
           type: string
       responses:
         '200':
-          description: Return the JSON string that was sent by the Dome API
+          description: Return the JSON object that was sent by the Dome API, object attribute is null if not needed (needed attributes depend on if type is folder, model, or neither)
           schema:
-            type: string
+            $ref: '#/definitions/DomeResponseEntity'
+  '/getModel':
+    get:
+      tags:
+        - service
+        - not implemented
+      description: Get model from Dome API
+      parameters:
+        - in: query
+          name: domeServer
+          description: Address of Dome server
+          required: true
+          type: string
+        - in: query
+          name: interfaceId
+          description: Id of Dome interface
+          required: true
+          type: string
+        - in: query
+          name: modelId
+          description: Id of Dome model (if type is interface)
+          required: false
+          type: string
+        - in: query
+          name: projectId
+          description: Id of Dome project (if type is project)
+          required: false
+          type: string
+        - in: query
+          name: name
+          description: Name of Dome model
+          required: true
+          type: string
+        - in: query
+          name: path
+          description: Path of Dome object 
+          required: true
+          type: array
+          items:
+            type: number
+        - in: query
+          name: type
+          description: Type of Dome object -- Either "interface" or "project"
+          required: true
+          type: string
+        - in: query
+          name: version
+          description: Version of Dome model
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Return the JSON object that was sent by the Dome API, object attribute is null if not needed (needed attributes depend on if type was interface or project)
+          schema:
+            $ref: '#/definitions/DomeModelResponse'
   '/services/{serviceId}/dome-interfaces':
     get:
       tags:
@@ -7199,6 +7253,131 @@ definitions:
         type: string
       position:
         type: number
+  DomeEntity:
+    type: object
+    properties:
+      type:
+        type: string
+      name:
+        type: string
+      domeServer:
+        type: string
+      dateModified:
+        type: number
+      description:
+        type: string
+      modelId:
+        type: string
+      interfaceId:
+        type: string
+      version:
+        type: string
+      path:
+        type: array
+        items:
+          type: number
+      children:
+        $ref: '#/definitions/DomeEntity'
+  DomeResponseEntity:
+    type: object
+    properties:
+      status:
+        type: string
+      pkg:
+        $ref: '#/definitions/DomeEntity'
+  DomeModelResponse:
+    type: object
+    properties:
+      status:
+        type: string
+      pkg:
+        $ref: '#/definitions/DomeModelResponsePkg'
+  DomeModelResponsePkg:
+    type: object
+    properties:
+      interFace:
+        type: object
+        properties:
+          version:
+            type: number
+          modelId:
+            type: string
+          interfaceId:
+            type: string
+          projectId:
+            type: string
+          type:
+            type: string
+          name:
+            type: string
+          path:
+            type: array
+            items:
+              type: number
+      inParams:
+        type: object
+        properties:
+          localPath:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              unit:
+                type: string
+              value:
+                type: string
+              parameterid:
+                type: string
+          inFile:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              unit:
+                type: string
+              value:
+                type: string
+              parameterid:
+                type: string
+      outParams:
+        type: object
+        properties:
+          outFilename:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              unit:
+                type: string
+              value:
+                type: string
+              parameterid:
+                type: string
+              instancename:
+                type: string
+      modelName:
+        type: string
+      modelDescription:
+        type: string
+      server:
+        type: object
+        properties:
+          name:
+            type: string
+          port:
+            type: string
+          user:
+            type: string
+          pw:
+            type: string
+          space:
+            type: string
   GetDomeInterface:
     type: object
     properties:
