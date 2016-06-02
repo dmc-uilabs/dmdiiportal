@@ -7285,6 +7285,23 @@ definitions:
         type: string
       pkg:
         $ref: '#/definitions/DomeEntity'
+  DomeModelParam:
+    type: object
+    properties:
+      type:
+        type: string
+      name:
+        type: string
+      unit:
+        type: string
+      category:
+        type: string
+      value:
+        type: object
+      parameterid:
+        type: string
+      instancename:
+        type: string
   DomeModelResponse:
     type: object
     properties:
@@ -7315,52 +7332,13 @@ definitions:
             items:
               type: number
       inParams:
-        type: object
-        properties:
-          localPath:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-              unit:
-                type: string
-              value:
-                type: string
-              parameterid:
-                type: string
-          inFile:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-              unit:
-                type: string
-              value:
-                type: string
-              parameterid:
-                type: string
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
       outParams:
-        type: object
-        properties:
-          outFilename:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-              unit:
-                type: string
-              value:
-                type: string
-              parameterid:
-                type: string
-              instancename:
-                type: string
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
       modelName:
         type: string
       modelDescription:
