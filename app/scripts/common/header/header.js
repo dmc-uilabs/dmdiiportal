@@ -14,6 +14,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
     scope: {
       showNotification: '=',
       activePage: '=',
+      membersOnly: '='
       //userData: '='
     },
     templateUrl: 'templates/common/header/header-tpl.html',

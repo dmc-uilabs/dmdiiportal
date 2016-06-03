@@ -1,0 +1,107 @@
+<div class="container member-box"  layout="row">
+	<!--Member-->
+	<div class="content-column" flex='100'>
+		<!--member-->
+		<md-content class="member">
+			<div layout="row" layout-margin>
+				<!--member image-->
+				<div class="member-logo" layout="column">
+					<img class="main-image" ng-if="member.organization.logoImage" ng-src="{{member.organization.logoImage}}">
+					<div class="no-image" ng-if="!member.organization.logoImage" layout layout-align="center center">
+						<h3>No Images</h3>
+					</div>
+				</div>
+				<div flex>
+					<!--member header-->
+					<div class="member-header">
+						<div layout="row" layout-align="start center">
+							<h1>{{member.organization.name}}</h1>
+							<h5 class="member-subtitle">{{member.organization.category + ' Tier ' + member.organization.categoryTier}}</h5>
+						</div>
+					</div>
+
+					<md-divider></md-divider>
+					<span flex></span>
+
+					<!--member description-->
+					<div class="member-description">
+						{{member.organization.description}}
+					</div>
+					<div layout="column" class="member-contacts">
+						<h2>Contacts</h2>
+						<span ng-repeat="contact in member.contacts | limitTo:2">{{contact.firstName + ' ' + contact.lastName}} | {{contact.email}} | {{contact.type.type}}</span>
+
+					</div>
+				</div>
+			</div>
+
+			<md-divider></md-divider>
+
+			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom>
+				<md-tab label="Project Involvement">
+					<md-content class="md-padding">
+						<div layout="column">
+							<div class="pad20" ng-repeat="project in member.projects">
+								<h4><a ng-href="{{'/partner-project-page.php#/'+project.id}}">{{project.projectName}}</a></h4>
+								<p>{{project.projectSummary}}</p>
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Storefront">
+					<md-content class="carousel-padding">
+						<div  class="member-storefront">
+							<div class="member-storefront">
+								<div dmc-carousel
+								name-carousel="'carouselMemberStorefront'"
+								max-items="16"
+								show-items="4"
+								carousel-source="storefront"
+								run-carousel="true"
+								timeout="5">
+								</div>
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Awards">
+					<md-content class="md-padding">
+						<div class="tabs-content" layout="column">
+							<div class="pad20" ng-repeat="award in member.awards">
+								<h4><a ng-href="{{award.link}}">{{award.name}}</a></h4>
+								<p>{{award.description}}</p>
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Areas Of Expertise">
+					<md-content class="md-padding">
+						<div class="tabs-content"layout="column">
+							<div class="pad20" ng-repeat="AOE in member.areasOfExpertise">
+								<h4><a ng-href="{{AOE.link}}">{{AOE.name}}</a></h4>
+								<p>{{AOE.description}}</p>
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Research & Development">
+					<md-content class="md-padding">
+						<div layout="column">
+							<div class="pad20" ng-repeat="focus in member.rndFocii">
+								<h4>{{focus.name}}</h4>
+								<p>{{focus.description}}</p>
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+
+			</md-tabs>
+
+		</md-content>
+
+	</div>
+</div>
