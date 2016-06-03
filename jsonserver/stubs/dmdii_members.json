@@ -16,11 +16,12 @@
 			"email": "",
 			"phone": "",
 			"website": "",
-			"categoryTier": 0,
+			"category": "Industry",
+			"categoryTier": 1,
 			"dateJoining": "",
 			"reasonJoining": "",
 			"featureImage": "",
-			"logoImage": "",
+			"logoImage": "http://mms.businesswire.com/media/20130712005396/en/259178/5/GEMonogram.jpg?download=1",
 			"companyMembers": [
 				{
 					"id": 1,
@@ -47,12 +48,12 @@
 			{
 				"id": 1,
 				"name": "R&D focus name",
-				"description": "R&D focus description" 
+				"description": "R&D focus description"
 			},
 			{
 				"id": 2,
 				"name": "R&D focus name",
-				"description": "R&D focus description" 
+				"description": "R&D focus description"
 			}
 		],
 		"awards": [
@@ -89,8 +90,8 @@
 			},
 			{
 				"id": 2,
-				"tag_name": "tag_name",
-				"tag_link": "tag_link"
+				"tagName": "tag_name",
+				"tagLink": "tag_link"
 			}
 		],
 		"areasOfExpertise": [
@@ -292,7 +293,7 @@
 		"projects": [
 			{
 				"id": 1,
-				"projectName": "project name",
+				"projectName": "This Project Title",
 				"projectSummary": "short description",
 				"link": "link to project"
 			},

@@ -1,9 +1,9 @@
 [
   {
-    "id": 4,
+    "id": 1,
     "dmdiiProjectStatus":{
       "DMDIIStatusId": 2,
-      "statusName": "awarded"
+      "statusName": "Awarded"
       },
     "primeOrganization":{
       "DMDIIMemberId": 4,
@@ -15,7 +15,8 @@
       },
     "awardedDate": "2016-01-01 00:00:00",
     "projectTitle": "This Project Title",
-    "projectSummary": "This Project's Summary is this",
+    "projectSummary": "Lorem ipsum dolor sit amet, at sea vero menandri, dico sint oratio id vel. Graeco accusata dissentias ei vel, iriure denique similique ad vel. Mel dicit choro facilisis cu, nulla explicari mei ne. Ut elit prodesset eos.Noster ullamcorper ex mei. Per ut labore viderer, choro molestie mea ex. Cu iudico appareat efficiantur vix. Nam possit doctus suscipit in, in ullum tollit tacimates mel. Ceteros deserunt torquatos eum te, eam inani recusabo theophrastus in.",
+
     "principalPointOfContact":{
       "pocId": 3,
       "name": "POC's name",
@@ -25,14 +26,24 @@
     "contributingCompanies": [
       {
         "DMDIIMemberId": 1,
-        "name": "Contributing Company1",
-        "companyId": 14
+        "name": "GE General Research",
+        "companyId": 12,
+        "role": "Project Team Lead"
       },
       {
         "DMDIIMemberId": 2,
         "name": "Contributing Company2",
-        "companyId": 15
+        "companyId": 15,
+        "role": "Project Participant"
       }
+    ],
+    "updates": [
+        {
+            "id": 1,
+            "title": "Project Awarded",
+            "description": "The project has been awarded to GE General and Company2",
+            "date": "5-17-2016"
+        }
     ],
     "documents": [
       {
@@ -44,7 +55,12 @@
         "id": 2,
         "name": "Document Name2",
         "url": ""
-      }
+        },
+        {
+          "id": 3,
+          "name": "Document Name3",
+          "url": ""
+        }
     ],
     "reports": [
       {

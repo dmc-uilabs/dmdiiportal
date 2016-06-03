@@ -1,0 +1,100 @@
+<div class="container members-box" layout="row" >
+    <div class="content-column" layout="column" flex='20'>
+        <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
+        <dmc-products-filter state-name="'members_search'" ng-if="isSearch"></dmc-products-filter>
+    </div>
+        <!-- Left Content Column -->
+    <div class="members" layout="column" flex>
+        <md-content class="members-search" layout="row" layout-align="left center">
+
+            <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
+                <div layout="column">
+                    <div layout="row">
+                        <div layout="column" flex>
+                            <md-input-container md-no-float>
+                                <md-icon>
+                                  <ng-md-icon icon="search"></ng-md-icon>
+                                </md-icon>
+                                <input type="text" placeholder="Search Members" ng-model="searchModel">
+                            </md-input-container>
+                        </div>
+                        <div layout="column">
+                            <md-input-container>
+                                <md-button type="submit" class="search-button">Search</md-button>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </md-content>
+
+        <!-- <span flex></span> -->
+        <md-content layout="column">
+
+            <md-progress-linear md-mode="indeterminate" ng-show="membersLoading"></md-progress-linear>
+
+            <div>
+                <div class="table-head" layout="row" flex>
+                    <div class="pull-left" flex="35" ng-click="sort('organization.name')">
+                        Name
+                        <ng-md-icon icon="arrow_drop_down" size="24" ng-show="column === 'organization.name' && !reverse" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                        <ng-md-icon icon="arrow_drop_up" size="24" ng-show="column === 'organization.name' && reverse" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                    </div>
+                    <div flex="15" ng-click="sort('organization.category')">
+                        Type
+                        <ng-md-icon icon="arrow_drop_down" size="24" ng-show="column === 'organization.category' && !reverse" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                        <ng-md-icon icon="arrow_drop_up" size="24" ng-show="column === 'organization.categroy' && reverse" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                    </div>
+                    <div flex="10" ng-click="sort('organization.categoryTier')">
+                        Tier
+                        <ng-md-icon icon="arrow_drop_down" size="24" ng-show="column === 'organization.categoryTier' && !reverse" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                        <ng-md-icon icon="arrow_drop_up" size="24" ng-show="column === 'organization.categoryTier' && reverse" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                    </div>
+                    <div flex="20" ng-click="sort('hasActiveProjects')">
+                        Active Projects
+                        <ng-md-icon icon="arrow_drop_down" size="24" ng-show="column === 'hasActiveProjects' && !reverse" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                        <ng-md-icon icon="arrow_drop_up" size="24" ng-show="column === 'hasActiveProjects' && reverse" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                    </div>
+                    <div flex="15">
+                        Tags
+                    </div>
+                </div>
+                <div class="table-body" layout="column" flex>
+                    <div class="table-row" layout="row" layout-align="start center" flex ng-repeat="member in members.arr | orderBy:column:reverse">
+                        <div class="pull-left" flex="35">
+                            <h3><a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a></h3>
+                            <p class="description">{{member.organization.description}}</p>
+                        </div>
+                        <div flex="15">
+                            {{member.organization.category}}
+                        </div>
+                        <div flex="10">
+                            {{member.organization.categoryTier}}
+                        </div>
+                        <div flex="20">
+                            {{member.hasActiveProjects}}
+                        </div>
+                        <div flex="15">
+                            <a ng-repeat="tag in member.skills track by $index">{{tag.tagName}}{{$last ? '' : ', '}}<a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div layout="row" layout-align="center center">
+                <md-input-container>
+                    <md-button id="prevPage" flex ng-disabled="!hasPrev()">
+                        <ng-md-icon icon="chevron_left" size="20"  ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                        PREV
+                    </md-button>
+                </md-input-container>
+                <md-input-container>
+                    <md-button id="nextPage" flex ng-disabled="!hasNext()">
+                        NEXT
+                        <ng-md-icon icon="chevron_right" size="20" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                    </md-button>
+                </md-input-container>
+            </div>
+        </md-content>
+    </div>
+</div>
