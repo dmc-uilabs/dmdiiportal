@@ -49,6 +49,18 @@ angular.module('dmc.dmdiiProjects')
             });
 
             $scope.dmdiiProjectsLoading = true;
+            // This code use for dmdiiProject-directory -------------------------------------------------
+            $scope.downloadData = false;        // on/off progress line in dmdiiProject-directory
+            $scope.dmdiiProjectPageSize = $cookies.get('dmdiiProjectPageSize') ? +$cookies.get('dmdiiProjectPageSize') : 12;    // visible items in dmdiiProject-directory
+            $scope.dmdiiProjectCurrentPage = 1;  // current page in dmdiiProject-directory
+            // catch updated changedPage variable form $cookies
+            // variable changed in dmdiiProject-directory when user change page number (pagination)
+            $scope.$watch(function() { return $cookies.changedPage; }, function(newValue) {
+                if(newValue && $scope.dmdiiProjectCurrentPage !== newValue) {
+                    $scope.dmdiiProjectCurrentPage = newValue; // save new page number
+                    $scope.getDmdiiProjects();
+                }
+            });
 
             $scope.showArray = [
                 {
@@ -66,29 +78,38 @@ angular.module('dmc.dmdiiProjects')
             ];
 
             $scope.sizeModule = 0;
+            for(var i in $scope.showArray){
+                if($scope.showArray[i].val === $scope.pageSize){
+                    $scope.sizeModule = i;
+                    break;
+                }
+            }
 
             $scope.selectItemDropDown = function(){
                 if($scope.sizeModule != 0) {
                     var item = $scope.showArray[$scope.sizeModule];
-                    $scope.dmdiiProjectPageSize = item.val;
+                    $scope.updatePageSize(item.val);
                     $scope.showArray.splice($scope.sizeModule, 1);
                     $scope.showArray = $scope.showArray.sort(function(a,b){return a.id - b.id});
                     if ($scope.showArray.unshift(item)) $scope.sizeModule = 0;
-                    $scope.getDmdiiProjects();
                 }
             };
-            // This code use for dmdiiProject-directory -------------------------------------------------
-            $scope.downloadData = false;        // on/off progress line in dmdiiProject-directory
-            $scope.dmdiiProjectPageSize = $cookies.get('dmdiiProjectPageSize') ? $cookies.get('dmdiiProjectPageSize') : 12;    // visible items in dmdiiProject-directory
-            $scope.dmdiiProjectCurrentPage = 1;  // current page in dmdiiProject-directory
-            // catch updated changedPage variable form $cookies
-            // variable changed in dmdiiProject-directory when user change page number (pagination)
-            $scope.$watch(function() { return $cookies.changedPage; }, function(newValue) {
-                if(newValue && $scope.dmdiiProjectCurrentPage !== newValue) {
-                    $scope.dmdiiProjectCurrentPage = newValue; // save new page number
-                    $scope.getDmdiiProjects();
+
+            $scope.$watch('sort', function() {
+                if (!$scope.sort) {
+                    return;
                 }
+
+                if ($scope.sort.charAt(0) === '-') {
+                    $scope.sortDir = 'desc';
+                    $scope.sortBy =  $scope.sort.substr(1);
+                } else {
+                    $scope.sortDir = 'asc';
+                    $scope.sortBy = $scope.sort;
+                }
+                $scope.getDmdiiProjects();
             });
+
             // if dmdiiProjectPageSize changed
             $scope.$watch('dmdiiProjectPageSize', function(newValue, oldValue) {
                 if (newValue !== oldValue){ // if get another value
@@ -134,13 +155,6 @@ angular.module('dmc.dmdiiProjects')
 
             $scope.projects = {arr : [], count : 0};
 
-            $scope.column = 'name';
-            $scope.reverse = false;
-            $scope.sort = function(column) {
-              $scope.reverse = ($scope.column === column) ? !$scope.reverse : false;
-              $scope.column = column;
-            };
-
             var totalCountItems = {
                 all: 0, status: { preaward: 0, awarded: 0, completed: 0 }
             };
@@ -176,6 +190,8 @@ angular.module('dmc.dmdiiProjects')
                 var data = {
                     _limit : $scope.dmdiiProjectPageSize,
                     _start : ($scope.dmdiiProjectCurrentPage-1) * $scope.dmdiiProjectPageSize,
+                    _order_by: $scope.sortBy,
+                    _sort_dir:$scope.sortDir,
                     name_like : $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.status)) data._status = $stateParams.status;
