@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Partner Projects</title>
+    <title>DMDII Project Page</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -29,13 +29,13 @@
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app="dmc.partnerprojects">
+  <body ng-app="dmc.dmdiiProj">
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Top Header -->
-    <div dmc-top-header members-only="true" active-page="'members&partner-proj-list'"></div>
+    <div dmc-top-header members-only="true" active-page="'members&dmdiiProjPage'"></div>
 
     <div ui-view></div>
 
@@ -80,7 +80,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/members/index.js -->
+    <!-- build:js scripts/project/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
@@ -99,10 +99,10 @@
     <script src="scripts/components/ui-widgets/project-tags.directive.js"></script>
     <script src="scripts/components/sub-nav-menu/sub-nav-menu.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
-    <script src="scripts/components/tree-menu/tree-menu.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
+	<script src="scripts/components/carousel/carousel.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/products-card/products-card.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
@@ -121,9 +121,10 @@
     <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/components/ui-widgets/stars.directive.js"></script>
     <script src="scripts/community/controllers/compose-discussion.js"></script>
-    <script src="scripts/common/factory/notifications.factory.js"></script>
-    <script src="scripts/partner-projects/partner-projects.js"></script>
-    <script src="scripts/partner-projects/partner-projects.controller.js"></script>
+	<script src="scripts/common/factory/notifications.factory.js"></script>
+
+    <script src="scripts/dmdii-project-page/dmdii-project-page.js"></script>
+	<script src="scripts/dmdii-project-page/dmdii-project-page.controller.js"></script>
 
     <!-- endbuild -->
     <script type="text/javascript">

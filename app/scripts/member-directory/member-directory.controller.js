@@ -50,6 +50,34 @@ angular.module('dmc.members')
 
             $scope.membersLoading = true;
 
+            $scope.showArray = [
+                {
+                    id : 1, val:12, name: '12 items'
+                },
+                {
+                    id : 2, val:24, name: '24 items'
+                },
+                {
+                    id : 3, val:48, name: '48 items'
+                },
+                {
+                    id : 4, val:96, name: '96 items'
+                }
+            ];
+
+            $scope.sizeModule = 0;
+
+            $scope.selectItemDropDown = function(){
+                if($scope.sizeModule != 0) {
+                    var item = $scope.showArray[$scope.sizeModule];
+                    $scope.dmdiiProjectPageSize = item.val;
+                    $scope.showArray.splice($scope.sizeModule, 1);
+                    $scope.showArray = $scope.showArray.sort(function(a,b){return a.id - b.id});
+                    if ($scope.showArray.unshift(item)) $scope.sizeModule = 0;
+                    $scope.getDMDIIMembers();
+                }
+            };
+
             // This code use for member-directory -------------------------------------------------
             $scope.downloadData = false;        // on/off progress line in member-directory
             $scope.memberPageSize = $cookies.get('memberPageSize') ? $cookies.get('memberPageSize') : 12;    // visible items in member-directory
@@ -62,6 +90,17 @@ angular.module('dmc.members')
                     $scope.getDMDIIMembers();
                 }
             });
+
+            $scope.$watch('sort', function() {
+                if ($scope.sort.charAt(0) === '-') {
+                    var order = 'desc';
+                    var sortBy =  $scope.sort.substr(1);
+                } else {
+                    var order = 'asc';
+                    var sortBy = $scope.sort;
+                }
+                console.log(order, sortBy)
+            })
             // if memberPageSize changed
             $scope.$watch('memberPageSize', function(newValue, oldValue) {
                 if (newValue !== oldValue){ // if get another value
@@ -151,6 +190,7 @@ angular.module('dmc.members')
 						data[i].hasActiveProjects = 'No';
                     }
                 }
+                $scope.treeMenuModel = getMenu();
             }
 
             // callback for services
@@ -175,10 +215,20 @@ angular.module('dmc.members')
 
             $scope.getDMDIIMembers = function(){
                 loadingData(true);
-                console.log('here')
                 ajax.get(dataFactory.getDMDIIMember().all, responseData(), callbackFunction);
             };
             $scope.getDMDIIMembers();
+
+
+            $scope.getNext = function() {
+                $scope.memberCurrentPage++;
+                $scope.getDMDIIMembers();
+            }
+
+            $scope.getPrev = function() {
+                $scope.memberCurrentPage--;
+                $scope.getDMDIIMembers();
+            }
 
             var getMenu = function(){
 
