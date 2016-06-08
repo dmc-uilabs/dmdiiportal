@@ -5,8 +5,8 @@
 * Dashboard
 */
 
-angular.module('dmc.proj')
-    .controller('DMCProjectPageController',[
+angular.module('dmc.dmdiiProj')
+    .controller('DMCDmdiiProjectPageController',[
         '$state',
         '$stateParams',
         '$scope',

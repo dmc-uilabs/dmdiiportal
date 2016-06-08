@@ -5,7 +5,7 @@
 * Dashboard
 */
 
-angular.module('dmc.proj', [
+angular.module('dmc.dmdiiProj', [
     'dmc.configs.ngmaterial',
     'ngMdIcons',
     'ui.router',
@@ -27,8 +27,8 @@ angular.module('dmc.proj', [
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('project_page', {
         url: '/:projectId',
-        templateUrl: 'templates/partner-project-page/partner-project-page.html',
-        controller: 'DMCProjectPageController',
+        templateUrl: 'templates/dmdii-project-page/dmdii-project-page.html',
+        controller: 'DMCDmdiiProjectPageController',
         resolve: {
             is_search: function() {
                 return false;

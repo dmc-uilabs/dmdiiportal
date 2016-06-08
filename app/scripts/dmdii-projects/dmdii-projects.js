@@ -5,7 +5,7 @@
 * Dashboard
 */
 
-angular.module('dmc.partnerprojects', [
+angular.module('dmc.dmdiiProjects', [
     'dmc.configs.ngmaterial',
     'ngMdIcons',
     'ui.router',
@@ -24,24 +24,24 @@ angular.module('dmc.partnerprojects', [
     'dmc.widgets.tabs',
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
-    $stateProvider.state('partner_projects', {
-        url: '/partner_projects?status',
-        templateUrl: 'templates/partner-projects/partner-projects.html',
-        controller: 'DMCPartnerProjectsController',
+    $stateProvider.state('dmdii_projects', {
+        url: '/dmdii_projects?status?callnum',
+        templateUrl: 'templates/dmdii-projects/dmdii-projects.html',
+        controller: 'DMCDmdiiProjectsController',
         resolve: {
             is_search: function() {
                 return false;
             }
         }
-    }).state('partner_projects_search', {
-		url: '/partner_projects/search?status',
-        templateUrl: 'templates/partner-projects/partner-projects.html',
-        controller: 'DMCPartnerProjectsController',
+    }).state('dmdii_projects_search', {
+		url: '/dmdii_projects/search?status?callnum',
+        templateUrl: 'templates/dmdii-projects/dmdii-projects.html',
+        controller: 'DMCDmdiiProjectsController',
         resolve: {
             is_search: function() {
                 return true;
             }
         }
     });
-    $urlRouterProvider.otherwise('/partner_projects');
+    $urlRouterProvider.otherwise('/dmdii_projects');
 });

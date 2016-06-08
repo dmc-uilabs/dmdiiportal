@@ -15,6 +15,7 @@ angular.module('dmc.members', [
     'dmc.socket',
     'ngtimeago',
     'ngCookies',
+    'angularUtils.directives.dirPagination',
     'dmc.widgets.documents',
     'dmc.common.header',
     'dmc.common.footer',

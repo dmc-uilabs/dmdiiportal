@@ -1,11 +1,11 @@
-<div class="container members-box" layout="row" >
+<div class="container dmdii-projects" layout="row" >
     <div class="content-column" layout="column" flex='20'>
         <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
-        <dmc-products-filter state-name="'members_search'" ng-if="isSearch"></dmc-products-filter>
+        <dmc-products-filter state-name="dmdii_projects_search'" ng-if="isSearch"></dmc-products-filter>
     </div>
         <!-- Left Content Column -->
     <div class="members" layout="column" flex>
-        <md-content class="members-search" layout="row" layout-align="left center">
+        <md-content class="dmdii-projects-search" layout="row" layout-align="left center">
 
             <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
                 <div layout="column">
@@ -15,7 +15,7 @@
                                 <md-icon>
                                   <ng-md-icon icon="search"></ng-md-icon>
                                 </md-icon>
-                                <input type="text" placeholder="Search Members" ng-model="searchModel">
+                                <input type="text" placeholder="Search Partner Projects" ng-model="searchModel">
                             </md-input-container>
                         </div>
                         <div layout="column">
@@ -40,41 +40,35 @@
         <!-- <span flex></span> -->
         <md-content layout="column">
 
-            <md-progress-linear md-mode="indeterminate" ng-show="membersLoading"></md-progress-linear>
+            <md-progress-linear md-mode="indeterminate" ng-show="dmdiiProjectsLoading"></md-progress-linear>
 
-            <div class="members-list">
+            <div class="projects-list">
                 <md-data-table-container>
                     <table md-data-table>
                         <thead md-order="sort" md-trigger="onOrderChange">
                         <tr>
-                            <th name="Name" order-by="name" class="title"></th>
-                            <th name="Type" order-by="type"></th>
-                            <th name="Tier" order-by="tier"></th>
-                            <th name="Active Projects" order-by="hasActiveProjects"></th>
-                            <th name="Tags"></th>
-
+                            <th name="Call Number" order-by="callNumber"/>
+                            <th name="Name" class="title"/>
+                            <th name="Status" order-by="status"/>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="member in members.arr">
-                            <td class="title-member">
-                                <h3><a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a></h3>
-                                <p class="description">{{member.organization.description}}</p>
+                        <tr ng-repeat="project in projects.arr">
+                            <td>{{project.callNumber}}</td>
+                            <td class="title-project">
+                                <h3><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h3>
+                                <p class="description">{{project.projectSummary}}</p>
                             </td>
-                            <td>{{member.organization.category}}</td>
-                            <td>{{member.organization.categoryTier}}</td>
-                            <td>{{member.hasActiveProjects}}</td>
-                            <td>
-                                <a ng-repeat="tag in member.skills track by $index">{{tag.tagName}}{{$last ? '' : ', '}}<a>
-                            </td>
+                            <td>{{project.dmdiiProjectStatus.statusName}}</td>
                         </tr>
-                        <tr ng-if="members.arr.length == 0">
-                            <td class="empty" colspan="4">No Members</td>
+                        <tr ng-if="tasks.length == 0">
+                            <td class="empty" colspan="4">No tasks</td>
                         </tr>
                         </tbody>
                     </table>
                 </md-data-table-container>
             </div>
+
             <div layout="row" layout-align="center center">
                 <md-input-container ng-if="hasPrev()">
                     <md-button id="prevPage" flex ng-click="getPrev()">

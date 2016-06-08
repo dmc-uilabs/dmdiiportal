@@ -5,8 +5,8 @@
 * Dashboard
 */
 
-angular.module('dmc.partnerprojects')
-    .controller('DMCPartnerProjectsController',[
+angular.module('dmc.dmdiiProjects')
+    .controller('DMCDmdiiProjectsController',[
         '$state',
         '$stateParams',
         '$scope',
@@ -48,40 +48,67 @@ angular.module('dmc.partnerprojects')
                 CompareModel.get('services',userData);
             });
 
-            $scope.partnerProjectsLoading = true;
+            $scope.dmdiiProjectsLoading = true;
 
-            // This code use for partnerProject-directory -------------------------------------------------
-            $scope.downloadData = false;        // on/off progress line in partnerProject-directory
-            $scope.partnerProjectPageSize = $cookies.get('partnerProjectPageSize') ? $cookies.get('partnerProjectPageSize') : 12;    // visible items in partnerProject-directory
-            $scope.partnerProjectCurrentPage = 1;  // current page in partnerProject-directory
+            $scope.showArray = [
+                {
+                    id : 1, val:12, name: '12 items'
+                },
+                {
+                    id : 2, val:24, name: '24 items'
+                },
+                {
+                    id : 3, val:48, name: '48 items'
+                },
+                {
+                    id : 4, val:96, name: '96 items'
+                }
+            ];
+
+            $scope.sizeModule = 0;
+
+            $scope.selectItemDropDown = function(){
+                if($scope.sizeModule != 0) {
+                    var item = $scope.showArray[$scope.sizeModule];
+                    $scope.dmdiiProjectPageSize = item.val;
+                    $scope.showArray.splice($scope.sizeModule, 1);
+                    $scope.showArray = $scope.showArray.sort(function(a,b){return a.id - b.id});
+                    if ($scope.showArray.unshift(item)) $scope.sizeModule = 0;
+                    $scope.getDmdiiProjects();
+                }
+            };
+            // This code use for dmdiiProject-directory -------------------------------------------------
+            $scope.downloadData = false;        // on/off progress line in dmdiiProject-directory
+            $scope.dmdiiProjectPageSize = $cookies.get('dmdiiProjectPageSize') ? $cookies.get('dmdiiProjectPageSize') : 12;    // visible items in dmdiiProject-directory
+            $scope.dmdiiProjectCurrentPage = 1;  // current page in dmdiiProject-directory
             // catch updated changedPage variable form $cookies
-            // variable changed in partnerProject-directory when user change page number (pagination)
+            // variable changed in dmdiiProject-directory when user change page number (pagination)
             $scope.$watch(function() { return $cookies.changedPage; }, function(newValue) {
-                if(newValue && $scope.partnerProjectCurrentPage !== newValue) {
-                    $scope.partnerProjectCurrentPage = newValue; // save new page number
-                    $scope.getPartnerProjects();
+                if(newValue && $scope.dmdiiProjectCurrentPage !== newValue) {
+                    $scope.dmdiiProjectCurrentPage = newValue; // save new page number
+                    $scope.getDmdiiProjects();
                 }
             });
-            // if partnerProjectPageSize changed
-            $scope.$watch('partnerProjectPageSize', function(newValue, oldValue) {
+            // if dmdiiProjectPageSize changed
+            $scope.$watch('dmdiiProjectPageSize', function(newValue, oldValue) {
                 if (newValue !== oldValue){ // if get another value
-                    $cookies.put('partnerProjectPageSize', newValue);
-                    $scope.getPartnerProjects();
+                    $cookies.put('dmdiiProjectPageSize', newValue);
+                    $scope.getDmdiiProjects();
                     apply();
                 }
             }, true);
             // -----------------------------------------------------------------------------------
 
             $scope.updatePageSize = function(pageSize){
-                $scope.partnerProjectPageSize = pageSize;
+                $scope.dmdiiProjectPageSize = pageSize;
             };
 
             $scope.hasPrev = function() {
-                return $scope.partnerProjectCurrentPage !== 1;
+                return $scope.dmdiiProjectCurrentPage !== 1;
             };
 
             $scope.hasNext = function() {
-                return $scope.partnerProjectCurrentPage !== Math.ceil($scope.totalRecords / $scope.partnerProjectPageSize);
+                return $scope.dmdiiProjectCurrentPage !== Math.ceil($scope.totalRecords / $scope.dmdiiProjectPageSize);
             };
 
             var responseData = {
@@ -91,36 +118,20 @@ angular.module('dmc.partnerprojects')
 
             $scope.submit = function(text){
                 $stateParams.text = text;
-                //$state.go('marketplace_search', dataSearch, {reload: true});
+                $state.go('project_search', dataSearch, {reload: true});
                 if(!$window.apiUrl){
                     responseData.name_like = text;
                 }else{
                     delete responseData.name_like;
                 }
                 loadingData(true);
-                ajax.get(dataFactory.searchPartnerProjects(text), responseData, callbackFunction);
+                ajax.get(dataFactory.searchDmdiiProjects(text), responseData, callbackFunction);
             };
 
             var loadingData = function(start){ // progress line
                 $scope.downloadData = start;
             };
-// $scope.fakeRes = [
-//     {
-//         name: 'Awarded project',
-//         description: 'The goal of the project is to allow companies to share data',
-//         status: 'awarded'
-//     },
-//     {
-//         name: 'Completed project',
-//         description: 'The goal of the project is to allow companies to share data',
-//         status: 'completed'
-//     },
-//     {
-//         name: 'PreAward project',
-//         description: 'The goal of the project is to allow companies to share data',
-//         status: 'pre award'
-//     }
-// ]
+
             $scope.projects = {arr : [], count : 0};
 
             $scope.column = 'name';
@@ -139,30 +150,32 @@ angular.module('dmc.partnerprojects')
                 totalCountItems = {
 					all: 0, status: { preaward: 0, awarded: 0, completed: 0 }
                 };
-
                 for (var i in data){
                     totalCountItems.all++;
-                    if (data[i].status === 'preaward') {
+                    if (data[i].dmdiiProjectStatus.statusName === 'Preaward') {
                         totalCountItems.status.preaward++;
-                    } else if(data[i].status === 'awarded'){
+                    } else if(data[i].dmdiiProjectStatus.statusName === 'Awarded'){
                         totalCountItems.status.awarded++;
-                    } else if(data[i].status === 'completed'){
+                    } else if(data[i].dmdiiProjectStatus.statusName === 'Completed'){
                         totalCountItems.status.completed++;
                     }
                 }
+                $scope.treeMenuModel = getMenu();
+
             }
 
             // callback
             var callbackFunction = function(response){
                 $scope.projects.arr = response.data;
-                insertData(response.data);
+                $scope.dmdiiProjectsLoading = false;
                 $scope.totalRecords = response.totalRecords;
+                insertData(response.data);
             };
 
             var responseData = function(){
                 var data = {
-                    _limit : $scope.partnerProjectPageSize,
-                    _start : ($scope.partnerProjectCurrentPage-1) * $scope.partnerProjectPageSize,
+                    _limit : $scope.dmdiiProjectPageSize,
+                    _start : ($scope.dmdiiProjectCurrentPage-1) * $scope.dmdiiProjectPageSize,
                     name_like : $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.status)) data._status = $stateParams.status;
@@ -170,17 +183,27 @@ angular.module('dmc.partnerprojects')
                 return data;
             };
 
-            $scope.getPartnerProjects = function(){
+            $scope.getDmdiiProjects = function(){
                 loadingData(true);
                 ajax.get(dataFactory.getDMDIIProject().all, responseData(), callbackFunction);
             };
-            $scope.getPartnerProjects();
+            $scope.getDmdiiProjects();
+
+            $scope.getNext = function() {
+                $scope.dmdiiProjectCurrentPage++;
+                $scope.getDmdiiProjects();
+            }
+
+            $scope.getPrev = function() {
+                $scope.dmdiiProjectCurrentPage--;
+                $scope.getDmdiiProjects();
+            }
             var getMenu = function(){
 
                 var getUrl = function(cat, subcat){
                     var dataSearch = $.extend(true, {}, $stateParams);
                     dataSearch[cat] = subcat;
-                    return 'partnerProject-directory.php' + $state.href('partnerProject_directory', dataSearch);
+                    return 'dmdii-projects.php' + $state.href('dmdii_projects', dataSearch);
                 };
 
                 var isOpened = function(cat, subcat){
@@ -199,7 +222,7 @@ angular.module('dmc.partnerprojects')
                             'title': 'Status',
                             'tag' : 'status',
                             'opened' : isOpened('status'),
-                            'href' : getUrl('statuus', null),
+                            'href' : getUrl('status', null),
                             'categories': [
                                 {
                                     'id': 11,
