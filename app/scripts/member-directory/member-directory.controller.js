@@ -50,6 +50,21 @@ angular.module('dmc.members')
 
             $scope.membersLoading = true;
 
+
+            // This code use for member-directory -------------------------------------------------
+            $scope.downloadData = false;        // on/off progress line in member-directory
+            $scope.memberPageSize = $cookies.get('memberPageSize') ? +$cookies.get('memberPageSize') : 12;    // visible items in member-directory
+            $scope.memberCurrentPage = 1;  // current page in member-directory
+            // catch updated changedPage variable form $cookies
+            // variable changed in member-directory when user change page number (pagination)
+            $scope.$watch(function() { return $cookies.changedPage; }, function(newValue) {
+                if(newValue && $scope.memberCurrentPage !== newValue) {
+                    $scope.memberCurrentPage = newValue; // save new page number
+                    $scope.getDMDIIMembers();
+                }
+            });
+
+
             $scope.showArray = [
                 {
                     id : 1, val:12, name: '12 items'
@@ -66,41 +81,37 @@ angular.module('dmc.members')
             ];
 
             $scope.sizeModule = 0;
+            for(var i in $scope.showArray){
+                if($scope.showArray[i].val === $scope.memberPageSize){
+                    $scope.sizeModule = i;
+                    break;
+                }
+            }
 
             $scope.selectItemDropDown = function(){
                 if($scope.sizeModule != 0) {
                     var item = $scope.showArray[$scope.sizeModule];
-                    $scope.dmdiiProjectPageSize = item.val;
+                    $scope.updatePageSize(item.val);
                     $scope.showArray.splice($scope.sizeModule, 1);
                     $scope.showArray = $scope.showArray.sort(function(a,b){return a.id - b.id});
                     if ($scope.showArray.unshift(item)) $scope.sizeModule = 0;
-                    $scope.getDMDIIMembers();
                 }
             };
 
-            // This code use for member-directory -------------------------------------------------
-            $scope.downloadData = false;        // on/off progress line in member-directory
-            $scope.memberPageSize = $cookies.get('memberPageSize') ? $cookies.get('memberPageSize') : 12;    // visible items in member-directory
-            $scope.memberCurrentPage = 1;  // current page in member-directory
-            // catch updated changedPage variable form $cookies
-            // variable changed in member-directory when user change page number (pagination)
-            $scope.$watch(function() { return $cookies.changedPage; }, function(newValue) {
-                if(newValue && $scope.memberCurrentPage !== newValue) {
-                    $scope.memberCurrentPage = newValue; // save new page number
-                    $scope.getDMDIIMembers();
+            $scope.$watch('sort', function() {
+                if (!$scope.sort) {
+                    return;
                 }
+                if ($scope.sort.charAt(0) === '-') {
+                    $scope.sortDir = 'desc';
+                    $scope.sortBy =  $scope.sort.substr(1);
+                } else {
+                    $scope.sortDir = 'asc';
+                    $scope.sortBy = $scope.sort;
+                }
+                $scope.getDMDIIMembers();
             });
 
-            $scope.$watch('sort', function() {
-                if ($scope.sort.charAt(0) === '-') {
-                    var order = 'desc';
-                    var sortBy =  $scope.sort.substr(1);
-                } else {
-                    var order = 'asc';
-                    var sortBy = $scope.sort;
-                }
-                console.log(order, sortBy)
-            })
             // if memberPageSize changed
             $scope.$watch('memberPageSize', function(newValue, oldValue) {
                 if (newValue !== oldValue){ // if get another value
@@ -145,13 +156,6 @@ angular.module('dmc.members')
             };
 
             $scope.members = {arr : [], count : 0};
-
-            $scope.column = 'organization.name';
-            $scope.reverse = false;
-            $scope.sort = function(column) {
-              $scope.reverse = ($scope.column === column) ? !$scope.reverse : false;
-              $scope.column = column;
-            };
 
             var totalCountItems = {
                 all: 0, tier: { one: 0, two: 0 }, type: { industry: 0, government: 0, academic: 0 }, activeProjects: { yes: 0, no: 0 }
@@ -204,6 +208,8 @@ angular.module('dmc.members')
                 var data = {
                     _limit : $scope.memberPageSize,
                     _start : ($scope.memberCurrentPage-1) * $scope.memberPageSize,
+                    _order_by: $scope.sortBy,
+                    _sort_dir: $scope.sortDir,
                     name_like : $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.tier)) data._tier = $stateParams.tier
