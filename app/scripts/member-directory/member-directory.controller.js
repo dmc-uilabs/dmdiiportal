@@ -208,8 +208,8 @@ angular.module('dmc.members')
                 var data = {
                     _limit : $scope.memberPageSize,
                     _start : ($scope.memberCurrentPage-1) * $scope.memberPageSize,
-                    _order_by: $scope.sortBy,
-                    _sort_dir: $scope.sortDir,
+                    _order: $scope.sortDir,
+                    _sort: $scope.sortBy,
                     name_like : $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.tier)) data._tier = $stateParams.tier
