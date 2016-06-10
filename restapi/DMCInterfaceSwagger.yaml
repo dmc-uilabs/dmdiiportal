@@ -288,6 +288,15 @@ paths:
           description: new server added
           schema:
             $ref: '#/definitions/UserAccountServer'
+        '422':
+          description: Server URL is invalid
+        '500':
+          description: Unknown REST Server Error
+        '502':
+          description: DOME not running on specified server
+        '504':
+          description: Specified server is unreachable
+          
   '/account_servers/{serverID}':
     get:
       tags:
@@ -306,6 +315,15 @@ paths:
           description: Sends the server information
           schema:
             $ref: '#/definitions/UserAccountServer'
+        '401':
+          description: User does not have credentials to view this server
+        '422':
+          description: Server URL is not valid
+        '502':
+          description: DOME not running on specified server
+        '504': 
+          description: Specified server is unreachable
+        
     patch:
       tags:
         - account
@@ -327,6 +345,16 @@ paths:
           description: returns updated server information
           schema:
             $ref: '#/definitions/UserAccountServer'
+        401:
+          description: User is not permitted to edit this server
+        422:
+          description: Provided URL is invalid
+        500:
+          description: Unknown server error
+        502:
+          description: DOME not running on specified server
+        504:
+          description: Specified server specified is unreachable
     delete:
       tags:
         - account
@@ -906,7 +934,7 @@ paths:
           schema:
             $ref: '#/definitions/Task'
         '405':
-          description: Invalide input
+          description: Invalid input
   '/tasks':
     get:
       tags:
@@ -1024,7 +1052,7 @@ paths:
           schema:
             $ref: '#/definitions/GetCompareService'
         '405':
-          description: Invalide input
+          description: Invalid input
   '/compare_services/{id}':
     delete:
       tags:
@@ -1040,7 +1068,7 @@ paths:
         '200':
           description: Ok
         '405':
-          description: Invalide input
+          description: Invalid input
   '/profiles/{profileId}/compare_services':
     get:
       tags:
@@ -1061,7 +1089,7 @@ paths:
             items:
               $ref: '#/definitions/GetCompareService'
         '405':
-          description: Invalide input
+          description: Invalid input
   '/dome-interfaces':
     post:
       tags:
@@ -1081,7 +1109,7 @@ paths:
           schema:
             $ref: '#/definitions/GetDomeInterface'
         '405':
-          description: Invalide input
+          description: Invalid input
   '/dome-interfaces/{domeInterfaceId}':
     delete:
       tags:
@@ -1392,7 +1420,7 @@ paths:
             $ref: '#/definitions/Service'
       responses:
         '405':
-          description: Invalide input
+          description: Invalid input
     get:
       tags:
         - service
@@ -2393,7 +2421,7 @@ paths:
             $ref: '#/definitions/Component'
       responses:
         '405':
-          description: Invalide input
+          description: Invalid input
   '/components/{componentID}':
     get:
       tags:
@@ -2588,7 +2616,7 @@ paths:
             $ref: '#/definitions/IndividualDiscussion'
       responses:
         '405':
-          description: Invalide input
+          description: Invalid input
   '/profiles':
     post:
       tags:
