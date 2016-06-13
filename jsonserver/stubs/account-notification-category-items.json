@@ -1,0 +1,163 @@
+[
+	{
+		"id": 1,
+		"hide": true,
+		"account-notification-categoryId": 1,
+		"title": "A Member messages me"
+	},
+	{
+		"id": 2,
+		"account-notification-categoryId": 1,
+		"title": "DMC posts an event"
+	},
+	{
+		"id": 3,
+		"account-notification-categoryId": 1,
+		"title": "DMC posts an update"
+	},
+	{
+		"id": 4,
+		"account-notification-categoryId": 1,
+		"title": "DMC system updates"
+	},
+	{
+		"id": 5,
+		"hide": true,
+		"account-notification-categoryId": 2,
+		"title": "A Member requests to be a contact"
+	},
+	{
+		"id": 6,
+		"hide": true,
+		"account-notification-categoryId": 2,
+		"title": "A Member accepts contact request"
+	},
+	{
+		"id": 7,
+		"account-notification-categoryId": 2,
+		"title": "A Member reviews you"
+	},
+	{
+		"id": 8,
+		"account-notification-categoryId": 2,
+		"title": "A Member follows you"
+	},
+	{
+		"id": 9,
+		"account-notification-categoryId": 2,
+		"title": "A Member you follow posts or replies to a discussion"
+	},
+	{
+		"id": 10,
+		"account-notification-categoryId": 2,
+		"title": "A Member comments on your Discussion"
+	},
+	{
+		"id": 11,
+		"account-notification-categoryId": 3,
+		"title": "Your service is reviewed"
+	},
+	{
+		"id": 12,
+		"account-notification-categoryId": 3,
+		"title": "Your service is favorited"
+	},
+	{
+		"id": 13,
+		"account-notification-categoryId": 3,
+		"title": "Service is shared with you"
+	},
+	{
+		"id": 14,
+		"account-notification-categoryId": 4,
+		"hide": true,
+		"title": "A Member invites you to a project"
+	},
+	{
+		"id": 15,
+		"account-notification-categoryId": 4,
+		"title": "A Member accepts your project invitation"
+	},
+	{
+		"id": 16,
+		"account-notification-categoryId": 4,
+		"title": "Service completes"
+	},
+	{
+		"id": 17,
+		"account-notification-categoryId": 4,
+		"title": "Service fails"
+	},
+	{
+		"id": 18,
+		"account-notification-categoryId": 4,
+		"title": "You are assigned to a task"
+	},
+	{
+		"id": 19,
+		"account-notification-categoryId": 4,
+		"title": "Change in priority status of task"
+	},
+	{
+		"id": 20,
+		"hide": true,
+		"account-notification-categoryId": 4,
+		"title": "You receive a question on your project"
+	},
+	{
+		"id": 21,
+		"hide": true,
+		"account-notification-categoryId": 4,
+		"title": "You receive a submission for your project"
+	},
+	{
+		"id": 22,
+		"account-notification-categoryId": 1,
+		"title": "A Member shares something with you"
+	},
+	{
+		"id": 23,
+		"account-notification-categoryId": 3,
+		"title": "Your Company is reviewed"
+	},
+	{
+		"id": 24,
+		"account-notification-categoryId": 4,
+		"title": "A Member declines project invitation"
+	},
+	{
+		"id": 25,
+		"account-notification-categoryId": 4,
+		"title": "Service is removed from a project"
+	},
+	{
+		"id": 26,
+		"account-notification-categoryId": 4,
+		"title": "Service is added to a project"
+	},
+	{
+		"id": 27,
+		"account-notification-categoryId": 4,
+		"title": "Service is updated"
+	},
+	{
+		"id": 28,
+		"account-notification-categoryId": 2,
+		"title": "A Member you follow joins a project"
+	},
+	{
+		"id": 29,
+		"account-notification-categoryId": 2,
+		"title": "A Member you follow adds a service to the marketplace"
+	},
+	{
+		"id": 30,
+		"account-notification-categoryId": 2,
+		"title": "A Member you follow reviews a service"
+	},
+	{
+		"id": 31,
+		"account-notification-categoryId": 2,
+		"title": "A company you follow adds a service to the marketplace"
+	}
+]

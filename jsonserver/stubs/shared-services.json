@@ -1,0 +1,44 @@
+[
+	{
+		"accountId": 1,
+		"profileId": 1,
+		"serviceId": 44,
+		"id": 1
+	},
+	{
+		"accountId": 1,
+		"profileId": 1,
+		"serviceId": 44,
+		"id": 2
+	},
+	{
+		"accountId": 1,
+		"profileId": 1,
+		"serviceId": 44,
+		"id": 3
+	},
+	{
+		"accountId": 1,
+		"profileId": 1,
+		"serviceId": 13,
+		"id": 4
+	},
+	{
+		"accountId": 1,
+		"profileId": 1,
+		"serviceId": 2,
+		"id": 5
+	},
+	{
+		"accountId": 1,
+		"profileId": 1,
+		"serviceId": 5,
+		"id": 6
+	},
+	{
+		"accountId": 1,
+		"profileId": 1,
+		"serviceId": 30,
+		"id": 7
+	}
+]

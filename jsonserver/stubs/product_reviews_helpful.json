@@ -1,0 +1,56 @@
+[
+	{
+		"id": 1,
+		"reviewId": 13,
+		"accountId": 1,
+		"helpful": true
+	},
+	{
+		"id": 2,
+		"reviewId": 12,
+		"accountId": 1,
+		"helpful": true
+	},
+	{
+		"id": 3,
+		"reviewId": 15,
+		"accountId": 1,
+		"helpful": false
+	},
+	{
+		"id": 4,
+		"reviewId": 13,
+		"accountId": 2,
+		"helpful": true
+	},
+	{
+		"accountId": 1,
+		"reviewId": 11,
+		"helpful": null,
+		"id": 5
+	},
+	{
+		"accountId": 1,
+		"reviewId": 9,
+		"helpful": true,
+		"id": 6
+	},
+	{
+		"accountId": 1,
+		"reviewId": 15,
+		"helpful": true,
+		"id": 7
+	},
+	{
+		"accountId": 1,
+		"reviewId": 14,
+		"helpful": true,
+		"id": 8
+	},
+	{
+		"accountId": 1,
+		"reviewId": 8,
+		"helpful": false,
+		"id": 9
+	}
+]

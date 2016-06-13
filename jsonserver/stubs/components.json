@@ -1,0 +1,50 @@
+[
+	{
+		"id": 1,
+		"companyId": 1,
+		"title": "1 Component",
+		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+		"owner": "Steven Jobs",
+		"releaseDate": "08/25/2015",
+		"tags": [],
+		"specifications": "/components/1/specifications",
+		"featureImage": {
+			"thumbnail": "images/marketplace-card-image-1.jpg",
+			"large": "images/marketplace-card-image-1.jpg"
+		},
+		"projectId": 1,
+		"type": "component"
+	},
+	{
+		"id": 2,
+		"companyId": 1,
+		"title": "2 Component",
+		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+		"owner": "Steven Jobs",
+		"releaseDate": "08/25/2015",
+		"tags": [],
+		"specifications": "/components/2/specifications",
+		"featureImage": {
+			"thumbnail": "images/marketplace-card-image-1.jpg",
+			"large": "images/marketplace-card-image-1.jpg"
+		},
+		"projectId": 2,
+		"type": "component"
+	},
+	{
+		"id": 3,
+		"companyId": 2,
+		"title": "3 Component",
+		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+		"owner": "Steven Jobs",
+		"releaseDate": "08/25/2015",
+		"tags": [],
+		"specifications": "/components/3/specifications",
+		"featureImage": {
+			"thumbnail": "images/marketplace-card-image-1.jpg",
+			"large": "images/marketplace-card-image-1.jpg"
+		},
+		"projectId": 2,
+		"type": "component"
+	}
+]
