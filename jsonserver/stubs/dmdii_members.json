@@ -89,8 +89,8 @@
 			},
 			{
 				"id": 2,
-				"tag_name": "tag_name",
-				"tag_link": "tag_link"
+				"tagName": "tag_name",
+				"tagLink": "tag_link"
 			}
 		],
 		"areasOfExpertise": [

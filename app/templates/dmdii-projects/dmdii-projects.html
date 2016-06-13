@@ -1,0 +1,88 @@
+<div class="container dmdii-projects" layout="row" >
+    <div class="content-column" layout="column" flex='20'>
+        <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
+        <dmc-products-filter state-name="dmdii_projects_search'" ng-if="isSearch"></dmc-products-filter>
+    </div>
+        <!-- Left Content Column -->
+    <div class="members" layout="column" flex>
+        <md-content class="dmdii-projects-search" layout="row" layout-align="left center">
+
+            <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
+                <div layout="column">
+                    <div layout="row">
+                        <div layout="column" flex>
+                            <md-input-container md-no-float>
+                                <md-icon>
+                                  <ng-md-icon icon="search"></ng-md-icon>
+                                </md-icon>
+                                <input type="text" placeholder="Search Partner Projects" ng-model="searchModel">
+                            </md-input-container>
+                        </div>
+                        <div layout="column">
+                            <md-input-container>
+                                <md-button type="submit" class="search-button">Search</md-button>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <span flex></span>
+            <md-input-container flex=class="show-filter-input-container">
+                <label>Show</label>
+                <md-select ng-model="sizeModule" ng-change="selectItemDropDown()">
+                    <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >
+                        {{item.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </md-content>
+
+        <!-- <span flex></span> -->
+        <md-content layout="column">
+
+            <md-progress-linear md-mode="indeterminate" ng-show="dmdiiProjectsLoading"></md-progress-linear>
+
+            <div class="projects-list">
+                <md-data-table-container>
+                    <table md-data-table>
+                        <thead md-order="sort" md-trigger="onOrderChange">
+                        <tr>
+                            <th name="Call Number" order-by="callNumber"/>
+                            <th name="Name" class="title"/>
+                            <th name="Status" order-by="status"/>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="project in projects.arr">
+                            <td>{{project.callNumber}}</td>
+                            <td class="title-project">
+                                <h3><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h3>
+                                <p class="description">{{project.projectSummary}}</p>
+                            </td>
+                            <td>{{project.dmdiiProjectStatus.statusName}}</td>
+                        </tr>
+                        <tr ng-if="tasks.length == 0">
+                            <td class="empty" colspan="4">No tasks</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </md-data-table-container>
+            </div>
+
+            <div layout="row" layout-align="center center">
+                <md-input-container ng-if="hasPrev()">
+                    <md-button id="prevPage" flex ng-click="getPrev()">
+                        <ng-md-icon icon="chevron_left" size="20"></ng-md-icon>
+                        PREV
+                    </md-button>
+                </md-input-container>
+                <md-input-container ng-if="hasNext()">
+                    <md-button id="nextPage" flex>
+                        NEXT
+                        <ng-md-icon icon="chevron_right" size="20" ng-click="getNext()"></ng-md-icon>
+                    </md-button>
+                </md-input-container>
+            </div>
+        </md-content>
+    </div>
+</div>
