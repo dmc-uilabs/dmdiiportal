@@ -7,6 +7,11 @@ $bottomHeader: #363636;
 $navigation: #FFF;
 $navigationArrow: #65AF3F;
 $navigationActive: #65AF3F;
+$membersOnlyHeader: #65AF3F;
+$membersOnlyHeaderButtonText: #65AF3F;
+$membersOnlyNavigationArrow: #363636;
+$membersOnlyNavigationActive: #363636;
+$membersOnlySearchButton: #363636;
 
 div[dmc-top-header]{
   z-index: 99;
@@ -125,6 +130,9 @@ div[dmc-top-header]{
   .bottom-header {
     height: 55px;
     background-color: $bottomHeader;
+    &.member-portal{
+        background-color: $membersOnlyHeader;
+    }
     .bottom-header-content{
       position: relative;
       max-width: 1280px;
@@ -144,11 +152,17 @@ div[dmc-top-header]{
         margin: 0;
         &.active-page{
           color: $navigationActive;
+          &.member-portal{
+              color: $membersOnlyNavigationActive;
+          }
         }
 
         ng-md-icon {
           margin: -4px -13px 0;
           fill: $navigationArrow;
+          &.member-portal{
+              fill: $membersOnlyNavigationArrow;
+          }
           svg {
             vertical-align: middle;
           }
@@ -191,6 +205,9 @@ div[dmc-top-header]{
         width: 30px;
         min-width: 30px;
         background-color: #64B045;
+        &.member-portal{
+            background-color: $membersOnlySearchButton;
+        }
         ng-md-icon{
           fill: #fff;
         }

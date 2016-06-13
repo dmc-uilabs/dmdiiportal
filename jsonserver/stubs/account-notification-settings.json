@@ -11,7 +11,7 @@
 		"accountId": 1,
 		"section": "website",
 		"account-notification-category-itemId": 2,
-		"selected": true
+		"selected": false
 	},
 	{
 		"id": 3,
@@ -334,6 +334,7 @@
 		"section": "email",
 		"account-notification-category-itemId": 7,
 		"selected": false
+
 	},
 	{
 		"id": 29,
