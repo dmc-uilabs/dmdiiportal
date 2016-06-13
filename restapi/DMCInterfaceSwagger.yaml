@@ -296,7 +296,7 @@ paths:
           description: DOME not running on specified server
         '504':
           description: Specified server is unreachable
-          
+
   '/account_servers/{serverID}':
     get:
       tags:
@@ -321,9 +321,9 @@ paths:
           description: Server URL is not valid
         '502':
           description: DOME not running on specified server
-        '504': 
+        '504':
           description: Specified server is unreachable
-        
+
     patch:
       tags:
         - account
@@ -1251,7 +1251,7 @@ paths:
           type: string
         - in: query
           name: path
-          description: Path of Dome object 
+          description: Path of Dome object
           required: true
           type: array
           items:
@@ -5941,17 +5941,17 @@ paths:
               $ref: '#/definitions/DmdiiMember'
   '/dmdii_members/{memberId}':
    get:
-     tags:
+      tags:
        - dmdii members
-     description: Get dmdii member by id
-     operationId: findDmdiiMemberById
-     parameters:
+      description: Get dmdii member by id
+      operationId: findDmdiiMemberById
+      parameters:
        - name: memberId
          in: path
          type: string
          description: ID of the member
          required: true
-     responses:
+      responses:
         '200':
           description: return single dmdii member
           schema:
