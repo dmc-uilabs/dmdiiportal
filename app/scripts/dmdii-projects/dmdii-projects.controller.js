@@ -190,8 +190,8 @@ angular.module('dmc.dmdiiProjects')
                 var data = {
                     _limit : $scope.dmdiiProjectPageSize,
                     _start : ($scope.dmdiiProjectCurrentPage-1) * $scope.dmdiiProjectPageSize,
-                    _order_by: $scope.sortBy,
-                    _sort_dir:$scope.sortDir,
+                    _order: $scope.sortBy,
+                    _sort:$scope.sortDir,
                     name_like : $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.status)) data._status = $stateParams.status;
