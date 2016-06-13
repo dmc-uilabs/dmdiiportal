@@ -1,0 +1,77 @@
+[
+	{
+		"id": 2,
+		"serviceId": 1,
+		"name": "tag2"
+	},
+	{
+		"id": 3,
+		"serviceId": 1,
+		"name": "tag3"
+	},
+	{
+		"id": 4,
+		"serviceId": 1,
+		"name": "tag4"
+	},
+	{
+		"id": 5,
+		"serviceId": 42,
+		"name": "Test tag"
+	},
+	{
+		"id": 6,
+		"serviceId": 43,
+		"name": "Velocity Tag"
+	},
+	{
+		"id": 7,
+		"serviceId": 43,
+		"name": "Velocity Tag"
+	},
+	{
+		"id": 8,
+		"serviceId": 44,
+		"name": "Test Tag"
+	},
+	{
+		"serviceId": 42,
+		"name": "tag 1",
+		"id": 9
+	},
+	{
+		"serviceId": 42,
+		"name": "Tag 1",
+		"id": 10
+	},
+	{
+		"serviceId": 43,
+		"name": "tag 1",
+		"id": 11
+	},
+	{
+		"serviceId": 44,
+		"name": "Tag 1",
+		"id": 12
+	},
+	{
+		"serviceId": 41,
+		"name": "tag1",
+		"id": 14
+	},
+	{
+		"serviceId": 45,
+		"name": "Velocity",
+		"id": 15
+	},
+	{
+		"serviceId": 46,
+		"name": "tag 1",
+		"id": 16
+	},
+	{
+		"serviceId": 13,
+		"name": "tag",
+		"id": 19
+	}
+]

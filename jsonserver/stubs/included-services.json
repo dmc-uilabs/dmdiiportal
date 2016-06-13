@@ -1,0 +1,47 @@
+[
+	{
+		"id": 1,
+		"includeTo": 1,
+		"serviceId": 2
+	},
+	{
+		"id": 2,
+		"includeTo": 1,
+		"serviceId": 3
+	},
+	{
+		"id": 3,
+		"includeTo": 2,
+		"serviceId": 3
+	},
+	{
+		"id": 4,
+		"includeTo": 3,
+		"serviceId": 8
+	},
+	{
+		"id": 5,
+		"includeTo": 1,
+		"serviceId": 4
+	},
+	{
+		"id": 6,
+		"includeTo": 1,
+		"serviceId": 5
+	},
+	{
+		"id": 7,
+		"includeTo": 1,
+		"serviceId": 6
+	},
+	{
+		"id": 8,
+		"includeTo": 1,
+		"serviceId": 7
+	},
+	{
+		"id": 9,
+		"includeTo": 1,
+		"serviceId": 1
+	}
+]

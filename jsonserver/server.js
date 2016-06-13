@@ -117,7 +117,7 @@ server.get('/runModel', function(req, res){
 
 // Returns an Express router
 var port = 3000;
-var router = jsonServer.router('db.json');
+var router = jsonServer.router(require('./db'));
 router.render = function (req, res) {
     var path = req._parsedUrl.pathname;
     var method = req.method;

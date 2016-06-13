@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"commentId": 1,
+		"accountId": 1,
+		"helpful": false
+	},
+	{
+		"id": 2,
+		"commentId": 2,
+		"accountId": 1,
+		"helpful": false
+	},
+	{
+		"accountId": 1,
+		"commentId": 5,
+		"helpful": false,
+		"id": 3
+	},
+	{
+		"accountId": 1,
+		"commentId": 6,
+		"helpful": false,
+		"id": 4
+	},
+	{
+		"accountId": 1,
+		"commentId": 10,
+		"helpful": null,
+		"id": 5
+	}
+]

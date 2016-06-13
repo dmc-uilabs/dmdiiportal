@@ -1,0 +1,65 @@
+[
+	{
+		"phoneNumber": 1111111111,
+		"type": 1,
+		"name": "Bridget Cohen",
+		"title": "User Experience Designer",
+		"email": "bcohen@email.com",
+		"id": 1,
+		"companyId": 1
+	},
+	{
+		"type": 1,
+		"name": "",
+		"phoneNumber": 131098762541,
+		"title": "",
+		"email": "",
+		"id": 2,
+		"companyId": 1
+	},
+	{
+		"type": 2,
+		"phoneNumber": 12345678902222,
+		"email": "",
+		"companyId": 1,
+		"id": 5
+	},
+	{
+		"type": 2,
+		"email": "email@gmail.com",
+		"companyId": 1,
+		"id": 6,
+		"phoneNumber": 212535353
+	},
+	{
+		"type": 1,
+		"phoneNumber": 423452354,
+		"companyId": 1,
+		"id": 7
+	},
+	{
+		"type": 1,
+		"phoneNumber": 34123434,
+		"companyId": 1,
+		"id": 8
+	},
+	{
+		"phoneNumber": 33333,
+		"type": 1,
+		"companyId": 1,
+		"id": 9
+	},
+	{
+		"type": 1,
+		"phoneNumber": 34123434,
+		"companyId": 1,
+		"id": 10
+	},
+	{
+		"type": 1,
+		"phoneNumber": 123,
+		"name": "sadfasdf",
+		"companyId": 1,
+		"id": 11
+	}
+]

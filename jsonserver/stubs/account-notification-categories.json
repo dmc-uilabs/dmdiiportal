@@ -1,0 +1,22 @@
+[
+	{
+		"id": 1,
+		"title": "General",
+		"position": 1
+	},
+	{
+		"id": 2,
+		"title": "Community",
+		"position": 3
+	},
+	{
+		"id": 3,
+		"title": "Marketplace",
+		"position": 2
+	},
+	{
+		"id": 4,
+		"title": "Projects",
+		"position": 4
+	}
+]
