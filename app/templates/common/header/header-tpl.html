@@ -198,6 +198,13 @@
                         </md-menu-content>
                     </md-menu>
 
+                    <md-button
+                            href="resources.php"
+                            class="item dashboard-header-button"
+                            ng-class="{'active-page' : activePage.indexOf('resources') > -1}">
+                        Resources
+                    </md-button>
+
                     <md-menu class="item" md-offset="0 57" ng-if="version1">
                         <md-button
                                 ng-click="closeMenu(); $mdOpenMenu($event)"

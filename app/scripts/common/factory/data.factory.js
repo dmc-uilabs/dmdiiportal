@@ -857,6 +857,20 @@ angular.module('dmc.data',[])
             getNotificationsStatisticPm: function(){
                 return localhost+'notifications-pm-statistic';
             },
+
+
+            //RESOURCES
+            getResourceLab: function(id){
+                return localhost+'resources/about/'+id;
+            },
+            getfake: function(id){
+                return localhost+'companies/'+id+'/company_components';
+            },
+
+
+
+            //END RESOURCES
+
             searchMarketplace: function (text) {
                 if($window.apiUrl) {
                     return localhost + 'searchServices/' + text;
