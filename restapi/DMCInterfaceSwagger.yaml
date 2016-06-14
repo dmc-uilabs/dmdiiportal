@@ -4656,9 +4656,7 @@ paths:
           description: Inputs positions
           required: true
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/PostServiceInputPosition'
+            $ref: '#/definitions/PostServiceInputPosition'
       responses:
         '201':
           description: Return new inputs positions
