@@ -72,10 +72,6 @@ public abstract class BaseTest {
         //baseUrl = TestUtils.BASE_URL;
           baseUrl = System.getenv("baseUrl");
           System.out.println("The first step to get Url from system environment : " + baseUrl);
-          if(null == baseUrl){
-        	  baseUrl = TestUtils.BASE_URL;
-        	  System.out.println("Get test baseUrl from TestUtils...");
-          }
 
         driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         initSelenium();
@@ -86,11 +82,7 @@ public abstract class BaseTest {
         try {
 
             driver.manage().deleteAllCookies();
-            System.out.println("Get URL for driver!!!");
-
             driver.get(baseUrl);
-            System.out.println("The google page" + driver.getCurrentUrl());
-
 
         } catch (Exception e) {
             System.out.println("*** TEST Failure New***");
@@ -101,8 +93,8 @@ public abstract class BaseTest {
         }
 
 
-       /* System.out.println("Initial URL : " + driver.getCurrentUrl());
-        System.out.println("Initial Title : " + driver.getTitle());*/
+        System.out.println("Initial URL : " + driver.getCurrentUrl());
+        System.out.println("Initial Title : " + driver.getTitle());
 
     }
 
@@ -129,18 +121,6 @@ public abstract class BaseTest {
             driver.get(baseUrl);
 
             System.out.println("The public login protection link URL : " + driver.getCurrentUrl());
-            /**
-            WebElement element = driver.findElement(By.name("user"));
-            element.click();
-            element.sendKeys(TestUtils.CREDENTIAL_GATEWAY_USER);
-
-            element = driver.findElement(By.name("pass"));
-            element.click();
-            element.sendKeys(TestUtils.CREDENTIAL_GATEWAY_PASS);
-
-            element = driver.findElement(By.name("login"));
-            element.submit();
-            **/
 
         } catch (Exception e) {
             System.out.println("*** TEST Failure ***");
@@ -169,11 +149,9 @@ public abstract class BaseTest {
 	    WebElement logout = driver.findElement(By.xpath("//md-menu-item[4]/button"));
 	    logout.sendKeys(Keys.ENTER);;
 
-	    //System.out.print(driver.getPageSource());
 
 	    //login
 	    driver.findElement(By.xpath("//a/span")).click();
-	   // driver.findElementByLinkText("Login").click();
 	 driver.findElement(By.linkText("Google")).click();
 	      driver.findElement(By.id("Email")).clear();
 	    driver.findElement(By.id("Email")).sendKeys(System.getenv("credential_user"));
@@ -183,9 +161,13 @@ public abstract class BaseTest {
 	    driver.findElement(By.id("signIn")).click();
 	    System.out.println("*** TEST Completed ***");
 
-	 /*   driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-	    //driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-	    driver.findElement(By.id("input_2")).clear();
+    }
+    
+    
+  public void TestOnBoarding() throws Exception{
+    	
+    	// driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+    	driver.findElement(By.id("input_2")).clear();
 	    driver.findElement(By.id("input_2")).sendKeys("Test First Name");
 	    driver.findElement(By.id("input_3")).clear();
 	    driver.findElement(By.id("input_3")).sendKeys("Test Last Name");
@@ -195,16 +177,14 @@ public abstract class BaseTest {
 	    driver.findElement(By.id("select_option_8")).click();
 	    driver.findElement(By.xpath("//div[2]/button")).click();
 	    driver.findElement(By.xpath("//div[2]/button")).click();
-
-
-
+	
+	    
 	    System.out.println("The title after login is:" + driver.getTitle());
 	    System.out.println("The current URL after login : " + driver.getCurrentUrl());
 	    assertEquals("Onboarding", driver.getTitle());
-	    assertEquals("Welcome to the Digital Manufacturing Commons A collaboration community to drive advanced system engineering.",
+	    assertEquals("Welcome to the Digital Manufacturing Commons A collaboration community to drive advanced system engineering.", 
 	    		driver.findElement(By.xpath("//md-content/div/div")).getText());
-
-	    assertEquals("Welcome to the Digital Manufacturing Commons A collaboration community to drive advanced system engineering.", driver.findElement(By.xpath("//md-content/div/div")).getText());*/
+    	
     }
 
 }
