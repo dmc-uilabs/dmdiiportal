@@ -8,9 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MyAccountProject extends BaseTest {
+public class ProjectAdding extends BaseTest{
 	WebDriverWait wait = new WebDriverWait(driver, 20);
 
+	//Navigate from MyAccount Menu
 	@Test
 	public void accountProjectNav() throws Exception{
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
@@ -22,4 +23,6 @@ public class MyAccountProject extends BaseTest {
 	    driver.findElement(By.linkText("Test project")).click();
 	    assertEquals("MENU\nHOME", driver.findElement(By.xpath("//md-toolbar/div/div/div")).getText());
 	}
+
+	
 }
