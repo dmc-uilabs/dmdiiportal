@@ -1,0 +1,29 @@
+[
+	{
+		"id": 1,
+		"title": "DMC Demonstration 1",
+		"date": "02/13/2016 10:18 AM",
+		"startTime": "02/13/2016 10:18 AM",
+		"endTime": "02/13/2016 10:18 AM",
+		"address": "DMDII 100 Main St Chicago, IL",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
+	},
+	{
+		"id": 2,
+		"title": "DMC Demonstration 2",
+		"date": "02/13/2016 10:18 AM",
+		"startTime": "02/13/2016 10:18 AM",
+		"endTime": "02/13/2016 10:18 AM",
+		"address": "DMDII 100 Main St Chicago, IL",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
+	},
+	{
+		"id": 3,
+		"title": "DMC Demonstration 3",
+		"date": "02/13/2016 10:18 AM",
+		"startTime": "02/13/2016 10:18 AM",
+		"endTime": "02/13/2016 10:18 AM",
+		"address": "DMDII 100 Main St Chicago, IL",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
+	}
+]

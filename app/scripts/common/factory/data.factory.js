@@ -448,6 +448,18 @@ angular.module('dmc.data',[])
             createStorefrontMessage: function(){
                 return localhost+'messages';
             },
+            getDMDIIMember: function(id) {
+                return {
+                    get: localhost+'dmdii_members/'+id,
+                    all: localhost+'dmdii_members'
+                }
+            },
+            getDMDIIProject: function(id) {
+                return {
+                    get: localhost+'dmdii_projects/'+id,
+                    all: localhost+'dmdii_projects'
+                }
+            },
             // companies ------------------
             companyURL: function(id){
                 var name = 'companies';

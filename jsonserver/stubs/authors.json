@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"display_name": "John Thomas",
+		"jobTitle": "Engineering Manager",
+		"avatar": "/uploads/profile/1/20151222084711000000.jpg",
+		"company": "General Electric (GE) Software"
+	},
+	{
+		"id": 2,
+		"display_name": "Thomas Smith",
+		"jobTitle": "Engineering Manager",
+		"avatar": "/uploads/profile/1/20151222084711000000.jpg",
+		"company": "General Electric (GE) Software"
+	},
+	{
+		"id": 3,
+		"display_name": "Bill Gates",
+		"jobTitle": "Engineering Manager",
+		"avatar": "/uploads/profile/1/20151222084711000000.jpg",
+		"company": "General Electric (GE) Software"
+	}
+]

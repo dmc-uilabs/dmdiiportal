@@ -1,0 +1,52 @@
+[
+	{
+		"senderId": 1,
+		"recipientId": 2,
+		"isRead": false,
+		"senderDelete": false,
+		"recipientDelete": false,
+		"text": "Hello Bill!",
+		"created_at": "01/15/2016-01-15 08:37 AM",
+		"id": 1
+	},
+	{
+		"senderId": 1,
+		"recipientId": 2,
+		"isRead": false,
+		"senderDelete": false,
+		"recipientDelete": false,
+		"text": "New message",
+		"created_at": "01/15/2016-01-15 08:37 AM",
+		"id": 7
+	},
+	{
+		"senderId": 1,
+		"recipientId": 2,
+		"isRead": false,
+		"senderDelete": false,
+		"recipientDelete": false,
+		"text": "New Message",
+		"created_at": "01/15/2016-01-15 08:37 AM",
+		"id": 8
+	},
+	{
+		"senderId": 1,
+		"recipientId": 2,
+		"isRead": false,
+		"senderDelete": false,
+		"recipientDelete": false,
+		"text": "New Message",
+		"created_at": "01/15/2016-01-15 08:37 AM",
+		"id": 9
+	},
+	{
+		"senderId": 1,
+		"recipientId": 2,
+		"isRead": false,
+		"senderDelete": false,
+		"recipientDelete": false,
+		"text": 159,
+		"created_at": "01/15/2016-01-15 08:37 AM",
+		"id": 10
+	}
+]

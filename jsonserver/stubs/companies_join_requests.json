@@ -1,0 +1,12 @@
+[
+	{
+		"profileId": 2,
+		"companyId": 1,
+		"id": 2
+	},
+	{
+		"profileId": 1,
+		"companyId": 2,
+		"id": 3
+	}
+]

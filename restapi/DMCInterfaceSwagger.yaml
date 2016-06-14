@@ -102,7 +102,7 @@ paths:
           description: returns updated User Details
           schema:
             $ref: '#/definitions/UserDetails'
-  
+
   '/accounts/{accountID}':
     get:
       tags:
@@ -288,6 +288,15 @@ paths:
           description: new server added
           schema:
             $ref: '#/definitions/UserAccountServer'
+        '422':
+          description: Server URL is invalid
+        '500':
+          description: Unknown REST Server Error
+        '502':
+          description: DOME not running on specified server
+        '504':
+          description: Specified server is unreachable
+
   '/account_servers/{serverID}':
     get:
       tags:
@@ -306,6 +315,15 @@ paths:
           description: Sends the server information
           schema:
             $ref: '#/definitions/UserAccountServer'
+        '401':
+          description: User does not have credentials to view this server
+        '422':
+          description: Server URL is not valid
+        '502':
+          description: DOME not running on specified server
+        '504':
+          description: Specified server is unreachable
+
     patch:
       tags:
         - account
@@ -327,6 +345,16 @@ paths:
           description: returns updated server information
           schema:
             $ref: '#/definitions/UserAccountServer'
+        401:
+          description: User is not permitted to edit this server
+        422:
+          description: Provided URL is invalid
+        500:
+          description: Unknown server error
+        502:
+          description: DOME not running on specified server
+        504:
+          description: Specified server specified is unreachable
     delete:
       tags:
         - account
@@ -552,7 +580,7 @@ paths:
           in: query
           description: Filter by title
           type: string
-          required: false  
+          required: false
       responses:
         '200':
           description: return array of projects
@@ -906,7 +934,7 @@ paths:
           schema:
             $ref: '#/definitions/Task'
         '405':
-          description: Invalide input
+          description: Invalid input
   '/tasks':
     get:
       tags:
@@ -1024,7 +1052,7 @@ paths:
           schema:
             $ref: '#/definitions/GetCompareService'
         '405':
-          description: Invalide input
+          description: Invalid input
   '/compare_services/{id}':
     delete:
       tags:
@@ -1040,7 +1068,7 @@ paths:
         '200':
           description: Ok
         '405':
-          description: Invalide input
+          description: Invalid input
   '/profiles/{profileId}/compare_services':
     get:
       tags:
@@ -1061,7 +1089,7 @@ paths:
             items:
               $ref: '#/definitions/GetCompareService'
         '405':
-          description: Invalide input
+          description: Invalid input
   '/dome-interfaces':
     post:
       tags:
@@ -1081,7 +1109,7 @@ paths:
           schema:
             $ref: '#/definitions/GetDomeInterface'
         '405':
-          description: Invalide input
+          description: Invalid input
   '/dome-interfaces/{domeInterfaceId}':
     delete:
       tags:
@@ -1135,6 +1163,114 @@ paths:
           description: Return dome inerface object
           schema:
             $ref: '#/definitions/GetDomeInterface'
+  '/getChildren':
+    get:
+      tags:
+        - service
+        - not implemented
+      description: Get children from Dome API
+      parameters:
+        - in: query
+          name: domeServer
+          description: Address of Dome server
+          required: true
+          type: string
+        - in: query
+          name: dateModified
+          description: Date Dome model was modified (if type is model)
+          required: false
+          type: string
+        - in: query
+          name: description
+          description: Description of Dome model (if type is model)
+          required: false
+          type: string
+        - in: query
+          name: modelId
+          description: Id of Dome model (if type is model)
+          required: false
+          type: string
+        - in: query
+          name: name
+          description: Dome object name (if type is model or folder)
+          required: false
+          type: string
+        - in: query
+          name: path
+          description: Path of Dome object (if type is model or folder)
+          required: false
+          type: array
+          items:
+            type: number
+        - in: query
+          name: type
+          description: Type of Dome object -- Either "" "folder" or "model"
+          required: false
+          type: string
+        - in: query
+          name: version
+          description: Version of Dome model (if type is model)
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Return the JSON object that was sent by the Dome API, object attribute is null if not needed (needed attributes depend on if type is folder, model, or neither)
+          schema:
+            $ref: '#/definitions/DomeResponseEntity'
+  '/getModel':
+    get:
+      tags:
+        - service
+        - not implemented
+      description: Get model from Dome API
+      parameters:
+        - in: query
+          name: domeServer
+          description: Address of Dome server
+          required: true
+          type: string
+        - in: query
+          name: interfaceId
+          description: Id of Dome interface
+          required: true
+          type: string
+        - in: query
+          name: modelId
+          description: Id of Dome model (if type is interface)
+          required: false
+          type: string
+        - in: query
+          name: projectId
+          description: Id of Dome project (if type is project)
+          required: false
+          type: string
+        - in: query
+          name: name
+          description: Name of Dome model
+          required: true
+          type: string
+        - in: query
+          name: path
+          description: Path of Dome object
+          required: true
+          type: array
+          items:
+            type: number
+        - in: query
+          name: type
+          description: Type of Dome object -- Either "interface" or "project"
+          required: true
+          type: string
+        - in: query
+          name: version
+          description: Version of Dome model
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Return the JSON object that was sent by the Dome API, object attribute is null if not needed (needed attributes depend on if type was interface or project)
+          schema:
+            $ref: '#/definitions/DomeModelResponse'
   '/services/{serviceId}/dome-interfaces':
     get:
       tags:
@@ -1168,9 +1304,11 @@ paths:
           required: false
       responses:
         '200':
-          description: Return service dome inerface object
+          description: Return service dome interface objects
           schema:
-            $ref: '#/definitions/GetDomeInterface'
+            type: array
+            items:
+                $ref: '#/definitions/GetDomeInterface'
   '/service_runs':
     post:
       tags:
@@ -1282,7 +1420,7 @@ paths:
             $ref: '#/definitions/Service'
       responses:
         '405':
-          description: Invalide input
+          description: Invalid input
     get:
       tags:
         - service
@@ -1581,7 +1719,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/GetProjectJoinRequest'     
+              $ref: '#/definitions/GetProjectJoinRequest'
     post:
       tags:
         - project
@@ -1599,7 +1737,7 @@ paths:
           description: return created request
           schema:
             $ref: '#/definitions/GetProjectJoinRequest'
-  '/projects/{projectId}/projects_join_requests':        
+  '/projects/{projectId}/projects_join_requests':
     get:
       tags:
         - project
@@ -1625,7 +1763,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/GetProjectJoinRequest'
-  '/profiles/{profileId}/projects_join_requests':        
+  '/profiles/{profileId}/projects_join_requests':
     get:
       tags:
         - project
@@ -1761,7 +1899,7 @@ paths:
       parameters:
         - in: path
           name: id
-          description: removed company member id 
+          description: removed company member id
           type: string
           required: true
       responses:
@@ -1836,7 +1974,7 @@ paths:
           required: true
       responses:
         '200':
-          description: OK    
+          description: OK
   '/companies/{companyId}/suggest_join_companies':
     get:
       tags:
@@ -2283,7 +2421,7 @@ paths:
             $ref: '#/definitions/Component'
       responses:
         '405':
-          description: Invalide input
+          description: Invalid input
   '/components/{componentID}':
     get:
       tags:
@@ -2478,7 +2616,7 @@ paths:
             $ref: '#/definitions/IndividualDiscussion'
       responses:
         '405':
-          description: Invalide input
+          description: Invalid input
   '/profiles':
     post:
       tags:
@@ -4518,9 +4656,7 @@ paths:
           description: Inputs positions
           required: true
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/PostServiceInputPosition'
+            $ref: '#/definitions/PostServiceInputPosition'
       responses:
         '201':
           description: Return new inputs positions
@@ -5675,6 +5811,149 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Service'
+  '/dmdii_projects':
+    get:
+      tags:
+        - dmdii projects
+      description: Get all dmdii projects
+      operationId: getDmdiiProjects
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _start
+          in: query
+          description: offset
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+        - name: title_like
+          in: query
+          description: Filter by title
+          type: string
+        - name: _status
+          in: query
+          description: Filter by status
+          type: string
+          required: false
+        - name: _callNum
+          in: query
+          description: Filter by call number
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return array of dmdii projects
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiProject'
+  '/dmdii_projects/{projectId}':
+   get:
+     tags:
+       - dmdii projects
+     description: Get dmdii project by id
+     operationId: findDmdiiProjectById
+     parameters:
+       - name: projectId
+         in: path
+         type: string
+         description: ID of the project
+         required: true
+     responses:
+        '200':
+          description: return single dmdii project
+          schema:
+            $ref: '#/definitions/DmdiiProject'
+  '/dmdii_members':
+   get:
+     tags:
+       - dmdii members
+     description: Get all dmdii members
+     operationId: getDmdiiMembers
+     parameters:
+       - name: _limit
+         in: query
+         description: Limit items
+         type: integer
+         required: false
+       - name: _start
+         in: query
+         description: Offset
+         type: integer
+         required: false
+       - name: _order
+         in: query
+         description: Order by ASC or DESC
+         type: string
+         collectionFormat: multi
+         required: false
+         enum:
+           - ASC
+           - DESC
+       - name: _sort
+         in: query
+         description: Sort by some parameter
+         type: string
+         required: false
+       - name: title_like
+         in: query
+         description: Filter by title
+         type: string
+       - name: _tier
+         in: query
+         description: Filter by tier
+         type: string
+         required: false
+       - name: _type
+         in: query
+         description: Filter by type/category
+         type: string
+         required: false
+       - name: _activeProjects
+         in: query
+         description: Filter by has active projects
+         type: boolean
+         required: false
+     responses:
+        '200':
+          description: return array of dmdii members
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiMember'
+  '/dmdii_members/{memberId}':
+   get:
+      tags:
+       - dmdii members
+      description: Get dmdii member by id
+      operationId: findDmdiiMemberById
+      parameters:
+       - name: memberId
+         in: path
+         type: string
+         description: ID of the member
+         required: true
+      responses:
+        '200':
+          description: return single dmdii member
+          schema:
+            $ref: '#/definitions/DmdiiMember'
 definitions:
   PostFollowingMemeber:
     type: object
@@ -6882,9 +7161,9 @@ definitions:
       date:
         type: string
         format: dateTime
-      read: 
+      read:
         type: boolean
-      cleared: 
+      cleared:
         type: boolean
       linkParams:
         type: object
@@ -7143,6 +7422,109 @@ definitions:
         type: string
       position:
         type: number
+  DomeEntity:
+    type: object
+    properties:
+      type:
+        type: string
+      name:
+        type: string
+      domeServer:
+        type: string
+      dateModified:
+        type: number
+      description:
+        type: string
+      modelId:
+        type: string
+      interfaceId:
+        type: string
+      version:
+        type: string
+      path:
+        type: array
+        items:
+          type: number
+      children:
+        $ref: '#/definitions/DomeEntity'
+  DomeResponseEntity:
+    type: object
+    properties:
+      status:
+        type: string
+      pkg:
+        $ref: '#/definitions/DomeEntity'
+  DomeModelParam:
+    type: object
+    properties:
+      type:
+        type: string
+      name:
+        type: string
+      unit:
+        type: string
+      category:
+        type: string
+      value:
+        type: object
+      parameterid:
+        type: string
+      instancename:
+        type: string
+  DomeModelResponse:
+    type: object
+    properties:
+      status:
+        type: string
+      pkg:
+        $ref: '#/definitions/DomeModelResponsePkg'
+  DomeModelResponsePkg:
+    type: object
+    properties:
+      interFace:
+        type: object
+        properties:
+          version:
+            type: number
+          modelId:
+            type: string
+          interfaceId:
+            type: string
+          projectId:
+            type: string
+          type:
+            type: string
+          name:
+            type: string
+          path:
+            type: array
+            items:
+              type: number
+      inParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
+      outParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
+      modelName:
+        type: string
+      modelDescription:
+        type: string
+      server:
+        type: object
+        properties:
+          name:
+            type: string
+          port:
+            type: string
+          user:
+            type: string
+          pw:
+            type: string
+          space:
+            type: string
   GetDomeInterface:
     type: object
     properties:
@@ -7385,7 +7767,7 @@ definitions:
         type: string
   PostSuggestCompany:
       type: object
-      properties:        
+      properties:
         companyId:
           type: string
   GetSuggestCompany:
@@ -7411,3 +7793,377 @@ definitions:
         type: string
       profileId:
         type: string
+  DmdiiProject:
+    type: object
+    properties:
+      id:
+        type: string
+      dmdiiProjectStatus:
+        type: object
+        properties:
+          DMDIIStatusId:
+            type: string
+          statusName:
+            type: string
+      primeOrganization:
+        type: object
+        properties:
+          DMDIIMemberId:
+            type: string
+          name:
+            type: string
+      principalInvestigator:
+        type: object
+        properties:
+          investigatorId:
+            type: string
+          name:
+            type: string
+      awardedDate:
+        type: string
+        format: dateTime
+      projectTitle:
+        type: string
+      projectSummary:
+        type: string
+      principalPointOfContact:
+        type: object
+        properties:
+          pocId:
+            type: string
+          name:
+            type: string
+          email:
+            type: string
+          phone:
+            type: string
+      contributingCompanies:
+        type: array
+        items:
+          type: object
+          properties:
+            DMDIIMemberId:
+              type: string
+            name:
+              type: string
+            companyId:
+              type: string
+            role:
+              type: string
+      updates:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            date:
+              type: string
+              format: dateTime
+      documents:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            url:
+              type: string
+      reports:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            reportId:
+              type: string
+            reportAuthor:
+              type: string
+            reportDate:
+              type: string
+              format: dateTime
+            usgApprovalStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            dmdiiCostAnalysisStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            ecApprovalStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            sowStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            ipPlanStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            migsStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            eaaStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+  DmdiiMember:
+    type: object
+    properties:
+      id:
+        type: string
+      startDate:
+        type: string
+        format: dateTime
+      expireDate:
+        type: string
+        format: dateTime
+      dmdiiType:
+        type: object
+        properties:
+          id:
+            type: string
+          memberDescription:
+            type: string
+      organization:
+        type: object
+        properties:
+          id:
+            type: string
+          accountId:
+            type: string
+          name:
+            type: string
+          location:
+            type: string
+          description:
+            type: string
+          email:
+            type: string
+          phone:
+            type: string
+          website:
+            type: string
+          category:
+            type: string
+          categoryTier:
+            type: string
+          dateJoining:
+            type: string
+            format: date
+          reasonJoining:
+            type: string
+          featureImage:
+            type: string
+          logoImage:
+            type: string
+          companyMembers:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                dmcUserId:
+                  type: string
+                companyRole:
+                  type: string
+          address:
+            type: object
+            properties:
+              id:
+                type: string
+              streetAddress1:
+                type: string
+              streetAddress2:
+                type: string
+              city:
+                type: string
+              state:
+                type: string
+              country:
+                type: string
+              zip:
+                type: string
+      rndFocii:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+      awards:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            link:
+              type: string
+      customers:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            link:
+              type: string
+      skills:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            tagName:
+              type: string
+            tagLink:
+              type: string
+      areasOfExpertise:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            link:
+              type: string
+      collaborations:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            date:
+              type: string
+              format: date
+            interest:
+              type: string
+      contacts:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: object
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+            email:
+              type: string
+      finances:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            assetUrl:
+              type: string
+            user:
+              type: object
+              properties:
+                id:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+      instituteInvolvements:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            staticLineItem:
+              type: string
+            date:
+              type: string
+              format: date
+            user:
+              type: object
+              properties:
+                id:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+      projects:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            projectName:
+              type: string
+            projectSummary:
+              type: string
+            link:
+              type: string

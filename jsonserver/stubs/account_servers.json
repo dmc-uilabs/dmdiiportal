@@ -1,0 +1,86 @@
+[
+	{
+		"name": "amazonaws",
+		"ip": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
+		"accountId": 1,
+		"status": "offline",
+		"id": 1
+	},
+	{
+		"ip": "http://localhost:8082/DOMEApiServicesV7",
+		"name": "Test Server",
+		"accountId": 1,
+		"status": "offline",
+		"id": 2
+	},
+	{
+		"name": "test server name",
+		"ip": "server ip",
+		"accountId": 1,
+		"status": "offline",
+		"id": 3
+	},
+	{
+		"name": "Add server for testing",
+		"ip": "Fake server IP for testing",
+		"accountId": 1,
+		"status": "offline",
+		"id": 4
+	},
+	{
+		"name": "test1",
+		"ip": "ip 122",
+		"accountId": 1,
+		"status": "offline",
+		"id": 5
+	},
+	{
+		"name": "test111222",
+		"ip": "fakeip 111111",
+		"accountId": 1,
+		"status": "offline",
+		"id": 6
+	},
+	{
+		"name": "Add server for testing",
+		"ip": "Fake server IP",
+		"accountId": 1,
+		"status": "offline",
+		"id": 7
+	},
+	{
+		"name": "Add server for testing0000",
+		"ip": "Fake server IP",
+		"accountId": 1,
+		"status": "offline",
+		"id": 8
+	},
+	{
+		"name": "Add server for testing0000 rename",
+		"ip": "Fake server IP rename",
+		"accountId": 1,
+		"status": "offline",
+		"id": 9
+	},
+	{
+		"name": "Add server for testing0000 rename",
+		"ip": "Fake server IP rename",
+		"accountId": 1,
+		"status": "offline",
+		"id": 10
+	},
+	{
+		"name": "Add server for testing0000 rename",
+		"ip": "Fake server IP rename",
+		"accountId": 1,
+		"status": "offline",
+		"id": 11
+	},
+	{
+		"name": "Add server for testing0000 rename",
+		"ip": "Fake server IP rename",
+		"accountId": 1,
+		"status": "offline",
+		"id": 12
+	}
+]

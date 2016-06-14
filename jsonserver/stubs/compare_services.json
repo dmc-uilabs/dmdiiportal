@@ -1,0 +1,17 @@
+[
+	{
+		"profileId": 1,
+		"serviceId": 9,
+		"id": 1
+	},
+	{
+		"profileId": 1,
+		"serviceId": 15,
+		"id": 2
+	},
+	{
+		"profileId": 1,
+		"serviceId": 4,
+		"id": 3
+	}
+]

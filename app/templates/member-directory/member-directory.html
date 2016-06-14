@@ -1,0 +1,94 @@
+<div class="container members-box" layout="row" >
+    <div class="content-column" layout="column" flex='20'>
+        <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
+        <dmc-products-filter state-name="'members_search'" ng-if="isSearch"></dmc-products-filter>
+    </div>
+        <!-- Left Content Column -->
+    <div class="members" layout="column" flex>
+        <md-content class="members-search" layout="row" layout-align="left center">
+
+            <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
+                <div layout="column">
+                    <div layout="row">
+                        <div layout="column" flex>
+                            <md-input-container md-no-float>
+                                <md-icon>
+                                  <ng-md-icon icon="search"></ng-md-icon>
+                                </md-icon>
+                                <input type="text" placeholder="Search Members" ng-model="searchModel">
+                            </md-input-container>
+                        </div>
+                        <div layout="column">
+                            <md-input-container>
+                                <md-button type="submit" class="search-button">Search</md-button>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <span flex></span>
+            <md-input-container flex=class="show-filter-input-container">
+                <label>Show</label>
+                <md-select ng-model="sizeModule" ng-change="selectItemDropDown()">
+                    <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >
+                        {{item.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </md-content>
+
+        <!-- <span flex></span> -->
+        <md-content layout="column">
+
+            <md-progress-linear md-mode="indeterminate" ng-show="membersLoading"></md-progress-linear>
+
+            <div class="members-list">
+                <md-data-table-container>
+                    <table md-data-table>
+                        <thead md-order="sort" md-trigger="onOrderChange">
+                        <tr>
+                            <th name="Name" order-by="name" class="title"></th>
+                            <th name="Type" order-by="type"></th>
+                            <th name="Tier" order-by="tier"></th>
+                            <th name="Active Projects" order-by="hasActiveProjects"></th>
+                            <th name="Tags"></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="member in members.arr">
+                            <td class="title-member">
+                                <h3><a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a></h3>
+                                <p class="description">{{member.organization.description}}</p>
+                            </td>
+                            <td>{{member.organization.category}}</td>
+                            <td>{{member.organization.categoryTier}}</td>
+                            <td>{{member.hasActiveProjects}}</td>
+                            <td>
+                                <a ng-repeat="tag in member.skills track by $index">{{tag.tagName}}{{$last ? '' : ', '}}<a>
+                            </td>
+                        </tr>
+                        <tr ng-if="members.arr.length == 0">
+                            <td class="empty" colspan="4">No Members</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </md-data-table-container>
+            </div>
+            <div layout="row" layout-align="center center">
+                <md-input-container ng-if="hasPrev()">
+                    <md-button id="prevPage" flex ng-click="getPrev()">
+                        <ng-md-icon icon="chevron_left" size="20"></ng-md-icon>
+                        PREV
+                    </md-button>
+                </md-input-container>
+                <md-input-container ng-if="hasNext()">
+                    <md-button id="nextPage" flex>
+                        NEXT
+                        <ng-md-icon icon="chevron_right" size="20" ng-click="getNext()"></ng-md-icon>
+                    </md-button>
+                </md-input-container>
+            </div>
+        </md-content>
+    </div>
+</div>
