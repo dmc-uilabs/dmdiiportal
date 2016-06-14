@@ -127,15 +127,6 @@ public class MyAccount extends BaseTest {
 	
 	//@Test
 	public void testMyAccountServer() throws Exception{
-		//myAccount();
-		/*driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span")));
-        element.click();	    
-	    System.out.println("Get current title:" + driver.getTitle());
-	    assertEquals("Manage Account", driver.getTitle());	
-		*/
-		
 		//navigate to SERVERS tab
 		driver.findElement(By.xpath("//md-list-item[4]/a/div/div")).click();
 		
