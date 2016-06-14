@@ -5813,23 +5813,23 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Service'
-  '/dmdii_projects':
+  '/dmdiiprojects':
     get:
       tags:
         - dmdii projects
       description: Get all dmdii projects
       operationId: getDmdiiProjects
       parameters:
-        - name: _limit
+        - name: pageSize
           in: query
           description: Limit items
           type: integer
-          required: false
-        - name: _start
+          required: true
+        - name: page
           in: query
           description: offset
           type: integer
-          required: false
+          required: true
         - name: _order
           in: query
           description: Order by ASC or DESC
@@ -5848,16 +5848,6 @@ paths:
           in: query
           description: Filter by title
           type: string
-        - name: _status
-          in: query
-          description: Filter by status
-          type: string
-          required: false
-        - name: _callNum
-          in: query
-          description: Filter by call number
-          type: string
-          required: false
       responses:
         '200':
           description: return array of dmdii projects
@@ -5865,7 +5855,54 @@ paths:
             type: array
             items:
               $ref: '#/definitions/DmdiiProject'
-  '/dmdii_projects/{projectId}':
+  '/dmdiiprojects/status/{statusId}':
+    get:
+      tags:
+        - dmdii projects
+      description: Get all dmdii projects by status
+      operationId: getDmdiiProjectsByStatus
+      parameters:
+        - name: statusId
+          in: path
+          type: integer
+          description: ID of the project status
+          required: true
+        - name: pageSize
+          in: query
+          description: Limit items
+          type: integer
+          required: true
+        - name: page
+          in: query
+          description: offset
+          type: integer
+          required: true
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+        - name: title_like
+          in: query
+          description: Filter by title
+          type: string
+      responses:
+        '200':
+          description: return array of dmdii projects
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiProject'
+  '/dmdiiprojects/{projectId}':
    get:
      tags:
        - dmdii projects
@@ -5882,23 +5919,23 @@ paths:
           description: return single dmdii project
           schema:
             $ref: '#/definitions/DmdiiProject'
-  '/dmdii_members':
+  '/dmdiiMembers':
    get:
      tags:
        - dmdii members
      description: Get all dmdii members
      operationId: getDmdiiMembers
      parameters:
-       - name: _limit
+       - name: pageSize
          in: query
          description: Limit items
          type: integer
-         required: false
-       - name: _start
+         required: true
+       - name: page
          in: query
          description: Offset
          type: integer
-         required: false
+         required: true
        - name: _order
          in: query
          description: Order by ASC or DESC
@@ -5917,20 +5954,57 @@ paths:
          in: query
          description: Filter by title
          type: string
-       - name: _tier
+     responses:
+        '200':
+          description: return array of dmdii members
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiMember'
+  '/dmdiiMembers/type':
+   get:
+     tags:
+       - dmdii members
+     description: Get all by category and/or tier dmdii members
+     operationId: getDmdiiMembersByType
+     parameters:
+       - name: pageSize
+         in: query
+         description: Limit items
+         type: integer
+         required: true
+       - name: page
+         in: query
+         description: Offset
+         type: integer
+         required: true
+       - name: _order
+         in: query
+         description: Order by ASC or DESC
+         type: string
+         collectionFormat: multi
+         required: false
+         enum:
+           - ASC
+           - DESC
+       - name: _sort
+         in: query
+         description: Sort by some parameter
+         type: string
+         required: false
+       - name: title_like
+         in: query
+         description: Filter by title
+         type: string
+       - name: categoryId
+         in: query
+         description: Filter by categoryId
+         type: integer
+         required: false
+       - name: tier
          in: query
          description: Filter by tier
-         type: string
-         required: false
-       - name: _type
-         in: query
-         description: Filter by type/category
-         type: string
-         required: false
-       - name: _activeProjects
-         in: query
-         description: Filter by has active projects
-         type: boolean
+         type: integer
          required: false
      responses:
         '200':
@@ -5941,17 +6015,17 @@ paths:
               $ref: '#/definitions/DmdiiMember'
   '/dmdii_members/{memberId}':
    get:
-      tags:
-       - dmdii members
-      description: Get dmdii member by id
-      operationId: findDmdiiMemberById
-      parameters:
-       - name: memberId
-         in: path
-         type: string
-         description: ID of the member
-         required: true
-      responses:
+     tags:
+        - dmdii members
+     description: Get dmdii member by id
+     operationId: findDmdiiMemberById
+     parameters:
+        - name: memberId
+          in: path
+          type: string
+          description: ID of the member
+          required: true
+     responses:
         '200':
           description: return single dmdii member
           schema:

@@ -57,27 +57,28 @@ angular.module('dmc.member')
 
             // callback for member
             var callbackFunction = function(response){
+                console.log($scope.member)
                 $scope.member = response.data;
 				$scope.memberLoading = false;
             };
 
             var responseData = function(){
-                var data = {};
+                var data = {
+                    id: $stateParams.memberId
+                };
                 return data;
             };
 
             $scope.getDMDIIMember = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIMember($stateParams.memberId).get, responseData(), callbackFunction);
+                ajax.get(dataFactory.getDMDIIMember(responseData()), null, callbackFunction);
             };
             $scope.getDMDIIMember();
 
 			$scope.storefront = [];
 
 			var callbackStorefrontFunction = function(response){
-				console.log(response.data)
 				$scope.storefront = response.data;
-				console.log($scope.storefront)
 			};
 
 			var responseStorefrontData = function(){
