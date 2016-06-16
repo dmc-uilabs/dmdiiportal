@@ -1,6 +1,7 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
