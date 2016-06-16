@@ -1146,6 +1146,67 @@
         "totalItems": 0,
         "link": "/projects/9/projects_tags"
       }
+    },
+    {
+      "title": "hi",
+      "type": "private",
+      "dueDate": 1466395200000,
+      "projectManager": "Thomas Smith",
+      "projectManagerId": 1,
+      "companyId": 1,
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": "asdfasdf",
+      "id": 10,
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/10/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/10/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/10/services"
+      },
+      "tags": {
+        "totalItems": 0,
+        "link": "/projects/10/projects_tags"
+      }
+    },
+    {
+      "title": "This is a sample project for a Selenium test.",
+      "type": "public",
+      "dueDate": 1469505600000,
+      "projectManager": "Thomas Smith",
+      "projectManagerId": 1,
+      "companyId": 1,
+      "approvalOption": "all",
+      "featureImage": {
+        "thumbnail": "/images/project_relay_controller.png",
+        "large": "/images/project_relay_controller.png"
+      },
+      "description": "Greetings",
+      "id": 11,
+      "tasks": {
+        "totalItems": 0,
+        "link": "/projects/11/tasks"
+      },
+      "discussions": {
+        "totalItems": 0,
+        "link": "/projects/11/discussions"
+      },
+      "services": {
+        "totalItems": 0,
+        "link": "/projects/11/services"
+      },
+      "tags": {
+        "totalItems": 0,
+        "link": "/projects/11/projects_tags"
+      }
     }
   ],
   "suggest_join_companies": [
@@ -1257,6 +1318,16 @@
       "projectId": 2,
       "name": "Tag 6",
       "id": 44
+    },
+    {
+      "projectId": 10,
+      "name": "adfas",
+      "id": 45
+    },
+    {
+      "projectId": 11,
+      "name": "DMC",
+      "id": 46
     }
   ],
   "projects_members": [
@@ -1496,6 +1567,51 @@
       "date": 1464293431461,
       "accept": false,
       "id": 31
+    },
+    {
+      "profileId": 1,
+      "projectId": 10,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1466001374920,
+      "accept": true,
+      "id": 32
+    },
+    {
+      "profileId": 5,
+      "projectId": 10,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1466001374921,
+      "accept": false,
+      "id": 33
+    },
+    {
+      "profileId": 1,
+      "projectId": 11,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1466014478012,
+      "accept": true,
+      "id": 34
+    },
+    {
+      "profileId": 2,
+      "projectId": 11,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1466014478012,
+      "accept": false,
+      "id": 35
+    },
+    {
+      "profileId": 4,
+      "projectId": 11,
+      "fromProfileId": 1,
+      "from": "Thomas Smith",
+      "date": 1466014478012,
+      "accept": false,
+      "id": 36
     }
   ],
   "components": [
@@ -2276,15 +2392,15 @@
       "averageRun": 0,
       "currentStatus": {
         "project": {
-          "id": 1,
-          "name": "Control Compartment for LDR Mining"
+          "id": 10,
+          "title": "hi"
         }
       },
       "parent_component": null,
-      "projectId": 1,
+      "projectId": 10,
       "type": "service",
       "published": true,
-      "from": "project",
+      "from": "marketplace",
       "id": 46
     },
     {
@@ -7224,6 +7340,18 @@
       "modifed": "03/17/2016 11:49 AM",
       "link": "/uploads/10/654776434_31e44151_47.jpg",
       "id": 10
+    },
+    {
+      "projectId": 11,
+      "file": true,
+      "project-documentId": 0,
+      "title": "documentation",
+      "owner": "Thomas Smith",
+      "ownerId": 1,
+      "size": "36 KB",
+      "modifed": "06/15/2016 14:14 PM",
+      "link": "/uploads/11/documentation.html",
+      "id": 11
     }
   ],
   "documents": [
@@ -8489,11 +8617,6 @@
   "follow_discussions": [
     {
       "accountId": 1,
-      "individual-discussionId": 1,
-      "id": 1
-    },
-    {
-      "accountId": 1,
       "individual-discussionId": 2,
       "id": 2
     },
@@ -8586,6 +8709,36 @@
       "accountId": 1,
       "individual-discussionId": 18,
       "id": 20
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 18,
+      "id": 21
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 19,
+      "id": 22
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 1,
+      "id": 23
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 20,
+      "id": 24
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 21,
+      "id": 25
+    },
+    {
+      "accountId": 1,
+      "individual-discussionId": 22,
+      "id": 26
     }
   ],
   "individual-discussion-tags": [
@@ -8633,6 +8786,31 @@
       "name": "tag 3",
       "individual-discussionId": 17,
       "id": 9
+    },
+    {
+      "name": "sample",
+      "individual-discussionId": 18,
+      "id": 10
+    },
+    {
+      "name": "DMC UI test",
+      "individual-discussionId": 19,
+      "id": 11
+    },
+    {
+      "name": "selenium",
+      "individual-discussionId": 20,
+      "id": 12
+    },
+    {
+      "name": "to get tests working",
+      "individual-discussionId": 21,
+      "id": 13
+    },
+    {
+      "name": "work NOW",
+      "individual-discussionId": 22,
+      "id": 14
     }
   ],
   "individual-discussion": [
@@ -8719,6 +8897,46 @@
       "created_by": "Thomas Smith",
       "created_at": 1456941590000,
       "id": 17
+    },
+    {
+      "title": "testing 123",
+      "projectId": 10,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1466001511000,
+      "id": 18
+    },
+    {
+      "title": "This is another test discussion",
+      "projectId": 10,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1466012589000,
+      "id": 19
+    },
+    {
+      "title": "Selenium test",
+      "projectId": 5,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1466092011000,
+      "id": 20
+    },
+    {
+      "title": "Selenium discussion 2",
+      "projectId": 5,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1466092301000,
+      "id": 21
+    },
+    {
+      "title": "selenium discussion 3",
+      "projectId": 5,
+      "accountId": 1,
+      "created_by": "Thomas Smith",
+      "created_at": 1466092325000,
+      "id": 22
     }
   ],
   "individual-discussion-comments": [
@@ -9123,6 +9341,94 @@
       "like": 0,
       "dislike": 0,
       "id": 29
+    },
+    {
+      "individual-discussionId": 18,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "message sample",
+      "created_at": "06/15/2016 10:38 AM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 30
+    },
+    {
+      "individual-discussionId": 19,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "Hello DMC!",
+      "created_at": "06/15/2016 01:43 PM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 31
+    },
+    {
+      "individual-discussionId": 20,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "testing new discussion",
+      "created_at": "06/16/2016 11:46 AM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 32
+    },
+    {
+      "individual-discussionId": 20,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "avatar": "/images/carbone.png",
+      "reply": false,
+      "commentId": 0,
+      "text": "Does this work?",
+      "created_at": 1466092020753,
+      "like": 0,
+      "dislike": 0,
+      "id": 33
+    },
+    {
+      "individual-discussionId": 21,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "more selenium",
+      "created_at": "06/16/2016 11:51 AM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 34
+    },
+    {
+      "individual-discussionId": 22,
+      "full_name": "Thomas Smith",
+      "accountId": 1,
+      "commentId": 0,
+      "avatar": "/images/carbone.png",
+      "text": "this should get the test to read properly",
+      "created_at": "06/16/2016 11:52 AM",
+      "userRatingReview": {
+        "DMC Member": "like"
+      },
+      "like": 0,
+      "dislike": 0,
+      "id": 35
     }
   ],
   "individual-discussion-comments-helpful": [
@@ -9155,6 +9461,12 @@
       "commentId": 10,
       "helpful": null,
       "id": 5
+    },
+    {
+      "accountId": 1,
+      "commentId": 30,
+      "helpful": null,
+      "id": 6
     }
   ],
   "individual-discussion-comments-flagged": [
@@ -9167,6 +9479,11 @@
       "commentId": 28,
       "accountId": 1,
       "id": 2
+    },
+    {
+      "commentId": 7,
+      "accountId": 1,
+      "id": 3
     }
   ],
   "account-notification-categories": [

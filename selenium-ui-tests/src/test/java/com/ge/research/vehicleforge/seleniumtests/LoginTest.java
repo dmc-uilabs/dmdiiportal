@@ -19,7 +19,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
  */
 public class LoginTest extends BaseTest {
 
-	
+	@Ignore
 	@Test
 	public void testLogin() throws Exception{
 		testDMCLogin();	

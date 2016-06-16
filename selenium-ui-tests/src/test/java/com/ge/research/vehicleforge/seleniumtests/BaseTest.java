@@ -13,6 +13,8 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 import static org.junit.Assert.*;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by 200005921 on 12/14/2015.
@@ -29,28 +31,29 @@ public abstract class BaseTest {
     static RemoteWebDriver driver;
     static String baseUrl;   
     static StringBuffer verificationErrors = new StringBuffer();
+    public static Logger log = Logger.getGlobal();
 
 
-    @BeforeClass
+    @SuppressWarnings("deprecation")
+	@BeforeClass
     public static void setUp() throws Exception {
 
     	// System.getProperty() is used for get system properties defined with -D in bamboo Maven task Goal field.
     	//String browserName = System.getProperty("browser").toLowerCase();
     	String browserName = System.getenv("browser").toLowerCase();
 
-    	
+    	log.log(Level.INFO, "set up");
     	System.out.println("Get browser from maven build: " + browserName);
-        BrowserVersion version = null;
-        
+    	String version = null;
             if (browserName.equals("chrome")) {
-                version = BrowserVersion.CHROME;
+            	version = "chrome";
                 System.setProperty("webdriver.chrome.driver", "C:/Program Files (x86)/chromedriver.exe");
                 driver = new ChromeDriver();
             } else if (browserName.equals("firefox")) {
                 driver = new FirefoxDriver();
                 driver.manage().window().maximize();;
             } else if (browserName.equals("ie")) {
-                version = BrowserVersion.INTERNET_EXPLORER_11;
+                version = "Internet Explorer";
             	//driver = new InternetExplorerDriver();
             } else if(browserName.equals("safari")){
             	//driver = new SafariDriver();
