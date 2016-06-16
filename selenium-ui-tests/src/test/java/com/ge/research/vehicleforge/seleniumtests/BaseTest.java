@@ -1,19 +1,13 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 import static org.junit.Assert.*;
@@ -54,6 +48,7 @@ public abstract class BaseTest {
                 driver = new ChromeDriver();
             } else if (browserName.equals("firefox")) {
                 driver = new FirefoxDriver();
+                //driver.manage().window().maximize();
             } else if (browserName.equals("ie")) {
                 version = BrowserVersion.INTERNET_EXPLORER_11;
             	//driver = new InternetExplorerDriver();
