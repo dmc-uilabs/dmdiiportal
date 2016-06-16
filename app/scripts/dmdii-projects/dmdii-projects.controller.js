@@ -164,6 +164,7 @@ angular.module('dmc.dmdiiProjects')
                 totalCountItems = {
 					all: 0, status: { preaward: 0, awarded: 0, completed: 0 }
                 };
+                console.log(data)
                 for (var i in data){
                     totalCountItems.all++;
                     if (data[i].dmdiiProjectStatus.statusName === 'Preaward') {
@@ -180,6 +181,7 @@ angular.module('dmc.dmdiiProjects')
 
             // callback
             var callbackFunction = function(response){
+                console.log(response.data)
                 $scope.projects.arr = response.data;
                 $scope.dmdiiProjectsLoading = false;
                 $scope.totalRecords = response.totalRecords;
@@ -188,20 +190,20 @@ angular.module('dmc.dmdiiProjects')
 
             var responseData = function(){
                 var data = {
-                    _limit : $scope.dmdiiProjectPageSize,
-                    _start : ($scope.dmdiiProjectCurrentPage-1) * $scope.dmdiiProjectPageSize,
-                    _order: $scope.sortBy,
-                    _sort:$scope.sortDir,
-                    name_like : $scope.searchModel
+                    pageSize : $scope.dmdiiProjectPageSize,
+                    page : $scope.dmdiiProjectCurrentPage
+                    // _order: $scope.sortBy,
+                    // _sort: $scope.sortDir,
+                    // name_like : $scope.searchModel
                 };
-                if(angular.isDefined($stateParams.status)) data._status = $stateParams.status;
+                if(angular.isDefined($stateParams.status)) data.status = $stateParams.status;
 
                 return data;
             };
 
             $scope.getDmdiiProjects = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIProject().all, responseData(), callbackFunction);
+                ajax.get(dataFactory.getDMDIIProject(responseData()), null, callbackFunction);
             };
             $scope.getDmdiiProjects();
 
