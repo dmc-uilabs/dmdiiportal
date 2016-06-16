@@ -25,7 +25,8 @@ public abstract class BaseTest {
     public static final String OPENDMC_TITLE_TEXT = "OPENDMC ";*/
 
     // max seconds before failing a script.
-    private final int MAX_ATTEMPTS = 5;
+    @SuppressWarnings("unused")
+	private final int MAX_ATTEMPTS = 5;
 
     //static HtmlUnitDriver driver;
     static RemoteWebDriver driver;
@@ -34,8 +35,7 @@ public abstract class BaseTest {
     public static Logger log = Logger.getGlobal();
 
 
-    @SuppressWarnings("deprecation")
-	@BeforeClass
+    @BeforeClass
     public static void setUp() throws Exception {
 
     	// System.getProperty() is used for get system properties defined with -D in bamboo Maven task Goal field.

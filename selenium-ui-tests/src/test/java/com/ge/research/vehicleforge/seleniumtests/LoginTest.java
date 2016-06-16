@@ -17,6 +17,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
  * Unit tests for navigating through the Home page of the site
  * clicking each link and checking whether the correct page is loaded.
  */
+@SuppressWarnings("unused")
 public class LoginTest extends BaseTest {
 
 	@Ignore
