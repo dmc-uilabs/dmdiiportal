@@ -19,14 +19,14 @@ import java.util.logging.Logger;
 /**
  * Created by 200005921 on 12/14/2015.
  */
+@SuppressWarnings("unused")
 public abstract class BaseTest {
 
    /*public static final String DMC_TITLE_TEXT = "Digital Manufacturing Commons";
     public static final String OPENDMC_TITLE_TEXT = "OPENDMC ";*/
 
     // max seconds before failing a script.
-    @SuppressWarnings("unused")
-	private final int MAX_ATTEMPTS = 5;
+    private final int MAX_ATTEMPTS = 5;
 
     //static HtmlUnitDriver driver;
     static RemoteWebDriver driver;

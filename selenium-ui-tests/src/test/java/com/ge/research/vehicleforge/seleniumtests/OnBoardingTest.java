@@ -2,7 +2,7 @@ package com.ge.research.vehicleforge.seleniumtests;
 
 import org.junit.Test;
 
-public class OnBoarding extends BaseTest {
+public class OnBoardingTest extends BaseTest {
 	
 	@Test
 	public void onBoarding() throws Exception{
