@@ -155,7 +155,7 @@ public abstract class BaseTest {
 	    driver.findElement(By.id("Passwd")).clear();
 	    driver.findElement(By.id("Passwd")).sendKeys(System.getenv("credential_pass"));
 	    driver.findElement(By.id("signIn")).click();
-	    System.out.println("*** TEST Completed ***");
+	    //System.out.println("*** TEST Completed ***");
 
     }
     
