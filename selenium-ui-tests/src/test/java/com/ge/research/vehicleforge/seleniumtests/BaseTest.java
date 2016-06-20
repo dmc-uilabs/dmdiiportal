@@ -10,6 +10,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 
@@ -35,6 +36,7 @@ public abstract class BaseTest {
 	static String baseUrl;   
 	static StringBuffer verificationErrors = new StringBuffer();
 	public static Logger log = Logger.getGlobal();
+	Actions actions;
 
 
 	@Before
@@ -43,6 +45,7 @@ public abstract class BaseTest {
 		// System.getProperty() is used for get system properties defined with -D in bamboo Maven task Goal field.
 		//String browserName = System.getProperty("browser").toLowerCase();
 		String browserName = System.getenv("browser").toLowerCase();
+		
 
 		log.log(Level.INFO, "set up");
 		System.out.println("Get browser from maven build: " + browserName);
@@ -72,6 +75,7 @@ public abstract class BaseTest {
 		baseUrl = System.getenv("baseUrl");
 		System.out.println("The first step to get Url from system environment : " + baseUrl);
 
+		actions = new Actions(driver);
 		
 
 
@@ -99,7 +103,7 @@ public abstract class BaseTest {
 
 	}
 
-	@After
+/*	@After
     public void tearDown() throws Exception {
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
@@ -107,7 +111,7 @@ public abstract class BaseTest {
           fail(verificationErrorString);
         }
       }
-
+*/
 
 
 	/**
