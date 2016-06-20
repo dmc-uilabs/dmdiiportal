@@ -31,7 +31,7 @@ public class IndividualDiscussionTest extends BaseTest{
 
 	@Test
 	public void testIndividualDiscussion() throws Exception {
-		this.setUp();
+		//this.setUp();
 		String header = TestUtils.getHeader();
 		driver.get(baseUrl + "/my-projects.php#/");
 		driver.findElement(By.xpath("(//a[contains(text(),'View All (6)')])[2]")).click();

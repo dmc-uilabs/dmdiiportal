@@ -15,11 +15,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MyProfileTest extends BaseTest{
 	
 	
-	WebDriverWait wait = new WebDriverWait(driver, 20);
+	
 	
 	public void myProfile() throws Exception{
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
-		
+		WebDriverWait wait = new WebDriverWait(driver, 20);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[2]/a/span")));
         element.click();	    
 	    System.out.println("Get current title:" + driver.getTitle());
