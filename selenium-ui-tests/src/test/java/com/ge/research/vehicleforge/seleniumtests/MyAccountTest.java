@@ -9,15 +9,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MyAccountTest extends BaseTest {
-
 	private String firstName = "Thomas-changed";
 	private String lastName = "Smith-changed";
 	private String location = "Schenectady";
 	private String timeZone = "(UTC -05:00) America/Atikokan";
 
 	public void myAccount() throws Exception{
-		
+
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span")));
