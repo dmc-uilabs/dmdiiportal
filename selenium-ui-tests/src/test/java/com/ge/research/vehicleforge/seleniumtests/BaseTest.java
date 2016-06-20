@@ -1,7 +1,9 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
 
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -35,8 +37,8 @@ public abstract class BaseTest {
     public static Logger log = Logger.getGlobal();
 
 
-    @BeforeClass
-    public static void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
 
     	// System.getProperty() is used for get system properties defined with -D in bamboo Maven task Goal field.
     	//String browserName = System.getProperty("browser").toLowerCase();
@@ -95,8 +97,8 @@ public abstract class BaseTest {
 
     }
 
-    @AfterClass
-    public static void tearDown() throws Exception {
+    @After
+    public void tearDown() throws Exception {
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString)) {
