@@ -94,15 +94,6 @@ public abstract class BaseTest {
 
     }
 
-    @AfterClass
-    public static void tearDown() throws Exception {
-        driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-          fail(verificationErrorString);
-        }
-      }
-
 
 
     /**
@@ -182,5 +173,16 @@ public abstract class BaseTest {
 	    		driver.findElement(By.xpath("//md-content/div/div")).getText());
     	
     }
+  
+  
+  @AfterClass
+  public static void tearDown() throws Exception {
+      driver.quit();
+      String verificationErrorString = verificationErrors.toString();
+      if (!"".equals(verificationErrorString)) {
+        fail(verificationErrorString);
+      }
+    }
+
 
 }
