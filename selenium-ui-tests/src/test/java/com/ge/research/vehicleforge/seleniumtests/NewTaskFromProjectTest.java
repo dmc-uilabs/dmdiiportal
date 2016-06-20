@@ -10,11 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class NewTaskFromProjectTest extends BaseTest {
-	private WebDriver driver;
-	private String baseUrl;
-	private boolean acceptNextAlert = true;
-	private StringBuffer verificationErrors = new StringBuffer();
-
+	
 
 	@Test
 	public void testNewTaskFromProject() throws Exception {

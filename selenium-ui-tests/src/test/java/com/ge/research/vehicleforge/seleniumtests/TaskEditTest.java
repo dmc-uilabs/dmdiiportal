@@ -10,13 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class TaskEditTest extends BaseTest {
-	private WebDriver driver;
-	private String baseUrl;
-	private boolean acceptNextAlert = true;
-	private StringBuffer verificationErrors = new StringBuffer();
-
 	
-
 	@Test
 	public void testTaskEdit() throws Exception {
 		
