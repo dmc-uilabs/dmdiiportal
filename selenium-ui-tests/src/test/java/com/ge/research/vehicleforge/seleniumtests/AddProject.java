@@ -18,6 +18,8 @@ public class AddProject extends BaseTest{
 	//Navigate from MyAccount Menu
 	//@Test
 	public void accountProjectNav() throws Exception{
+		testPublicLoginProtection();
+		
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[3]/a/span")));
         element.click();	    
@@ -28,7 +30,6 @@ public class AddProject extends BaseTest{
 	@Test
 	public void testAddProject() throws Exception{
 		Integer projectNum =TestUtils.ran;
-		 
 		accountProjectNav();
 		driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
 		WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("input_5")));

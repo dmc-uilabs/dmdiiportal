@@ -18,6 +18,7 @@ public class MyProfile extends BaseTest{
 	WebDriverWait wait = new WebDriverWait(driver, 20);
 	
 	public void myProfile() throws Exception{
+		testPublicLoginProtection();
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
 		
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[2]/a/span")));
