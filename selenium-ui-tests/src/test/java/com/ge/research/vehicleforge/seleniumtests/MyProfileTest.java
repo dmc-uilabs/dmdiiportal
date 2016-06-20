@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MyProfile extends BaseTest{
+public class MyProfileTest extends BaseTest{
 	
 	
 	WebDriverWait wait = new WebDriverWait(driver, 20);
