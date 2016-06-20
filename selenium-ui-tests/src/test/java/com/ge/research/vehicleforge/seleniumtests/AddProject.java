@@ -16,7 +16,6 @@ public class AddProject extends BaseTest{
 	WebDriverWait wait = new WebDriverWait(driver, 30);
 
 	//Navigate from MyAccount Menu
-	//@Test
 	public void accountProjectNav() throws Exception{
 		testPublicLoginProtection();
 		
@@ -29,7 +28,8 @@ public class AddProject extends BaseTest{
 	
 	@Test
 	public void testAddProject() throws Exception{
-		testDMCLogin();
+		driver.get(baseUrl);
+		//testDMCLogin();
 		Integer projectNum =TestUtils.ran;
 		accountProjectNav();
 		driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
