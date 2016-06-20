@@ -30,7 +30,7 @@ public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	    if(reply.isEnabled()){
 	    	reply.sendKeys(Keys.ENTER);;
 		}else{
-			System.out.println("Can not click the button Follow!!!");
+			System.out.println("Can not click the button Reply!!!");
 		}
 	    driver.findElement(By.xpath("//textarea")).clear();
 	    driver.findElement(By.xpath("//textarea")).sendKeys(header + "test a reply");

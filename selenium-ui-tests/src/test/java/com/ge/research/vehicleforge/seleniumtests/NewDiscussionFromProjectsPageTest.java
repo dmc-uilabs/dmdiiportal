@@ -13,23 +13,39 @@ public class NewDiscussionFromProjectsPageTest extends BaseTest{
 
 
 
-  @Test
-  public void testNewDiscussionFromProjectsPage() throws Exception {
-	  String header = TestUtils.getHeader();
-    driver.get(baseUrl + "/project.php#/5/home");
-    driver.findElement(By.xpath("//div/button")).click();
-    driver.findElement(By.xpath("//div/button")).click();
-    driver.findElement(By.id("subject-compose-discussion")).clear();
-    driver.findElement(By.id("subject-compose-discussion")).sendKeys(header + "selenium test from projects page");
-    driver.findElement(By.xpath("//md-dialog[@id='dialog_10']/div/div/div/div/div/md-content/md-input-container/textarea")).clear();
-    driver.findElement(By.xpath("//md-dialog[@id='dialog_10']/div/div/div/div/div/md-content/md-input-container/textarea")).sendKeys(header + "selenium test from projects page comment");
-    driver.findElement(By.xpath("//md-dialog[@id='dialog_10']/div/div/div[2]/div/form/md-input-container/input")).clear();
-    driver.findElement(By.xpath("//md-dialog[@id='dialog_10']/div/div/div[2]/div/form/md-input-container/input")).sendKeys(header + "selenium test from projects page tag");
-    driver.findElement(By.xpath("//md-dialog[@id='dialog_10']/div/div/div[2]/div/form/button")).click();
-    driver.findElement(By.xpath("//md-dialog[@id='dialog_10']/div/div[2]/button[2]")).click();
-  }
+	@Test
+	public void testNewDiscussionFromProjectsPage() throws Exception {
+		String header = TestUtils.getHeader();
+		driver.get(baseUrl + "/project.php#/1/home");
+		driver.findElement(By.xpath("//div/button")).click();
+		driver.findElement(By.xpath("//div/md-input-container/input")).clear();
+		driver.findElement(By.xpath("//div/md-input-container/input")).sendKeys("testing discussion from projects page");
+		driver.findElement(By.xpath("//textarea")).clear();
+		driver.findElement(By.xpath("//textarea")).sendKeys("running a selenium test");
+		driver.findElement(By.xpath("//div[2]/div/form/md-input-container/input")).clear();
+		driver.findElement(By.xpath("//div[2]/div/form/md-input-container/input")).sendKeys("selenium test");
+		driver.findElement(By.xpath("//div[2]/div/form/button")).click();
+		driver.findElement(By.xpath("//button[2]")).click();
+		driver.findElement(By.linkText("Reply")).click();
+		driver.findElement(By.xpath("//textarea")).clear();
+		driver.findElement(By.xpath("//textarea")).sendKeys("test the reply feature");
+		driver.findElement(By.xpath("//form/div/div/button[2]")).click();
+		driver.findElement(By.linkText("Flag")).click();
+		driver.findElement(By.xpath("//md-select")).click();
+		driver.findElement(By.xpath("//md-option")).click();
+		driver.findElement(By.xpath("//textarea")).clear();
+		driver.findElement(By.xpath("//textarea")).sendKeys("test the flagging feature");
+		driver.findElement(By.xpath("//form/div/div/button[2]")).click();
+		driver.findElement(By.xpath("//textarea")).clear();
+		driver.findElement(By.xpath("//textarea")).sendKeys("test the commenting feature");
+		driver.findElement(By.xpath("//form/div/button")).click();
+		driver.findElement(By.xpath("//button[2]")).click();
+		driver.findElement(By.xpath("//div[3]/button")).click();
+		driver.findElement(By.xpath("//div/button")).click();
+		driver.findElement(By.xpath("//div/button")).click();
 
-  
 
-  
+
+
+	}
 }
