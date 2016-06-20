@@ -29,6 +29,7 @@ public class AddProject extends BaseTest{
 	
 	@Test
 	public void testAddProject() throws Exception{
+		testDMCLogin();
 		Integer projectNum =TestUtils.ran;
 		accountProjectNav();
 		driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
