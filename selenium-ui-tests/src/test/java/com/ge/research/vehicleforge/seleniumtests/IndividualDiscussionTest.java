@@ -31,22 +31,24 @@ public class IndividualDiscussionTest {
 
   @Test
   public void testIndividualDiscussion() throws Exception {
+	  long timestamp = System.currentTimeMillis();
+		String header = timestamp + ": ";
     driver.get(baseUrl + "/my-projects.php#/");
     driver.findElement(By.xpath("(//a[contains(text(),'View All (4)')])[2]")).click();
     driver.findElement(By.linkText("Flag")).click();
     driver.findElement(By.id("select_5")).click();
     driver.findElement(By.id("select_option_4")).click();
     driver.findElement(By.id("input_6")).clear();
-    driver.findElement(By.id("input_6")).sendKeys("test");
+    driver.findElement(By.id("input_6")).sendKeys(header + "test");
     // ERROR: Caught exception [Error: Dom locators are not implemented yet!]
     driver.findElement(By.linkText("Reply")).click();
     driver.findElement(By.id("input_7")).clear();
-    driver.findElement(By.id("input_7")).sendKeys("test reply");
+    driver.findElement(By.id("input_7")).sendKeys(header + "test reply");
     // ERROR: Caught exception [Error: Dom locators are not implemented yet!]
     driver.findElement(By.xpath("//div[2]/button")).click();
     driver.findElement(By.xpath("//div[3]/button[2]")).click();
     driver.findElement(By.id("input_2")).clear();
-    driver.findElement(By.id("input_2")).sendKeys("test new comment");
+    driver.findElement(By.id("input_2")).sendKeys(header + "test new comment");
     // ERROR: Caught exception [Error: Dom locators are not implemented yet!]
     driver.findElement(By.xpath("//div/button")).click();
     driver.findElement(By.xpath("//div/button")).click();

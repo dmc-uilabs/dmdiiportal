@@ -19,6 +19,10 @@ public class TestUtils {
     public static final String TITLE_DMC = "Digital Manufacturing Commons";
     public static final String TITLE_OPENDMC = "OPENDMC";
     
+    public static String getHeader(){
+    	return System.currentTimeMillis() + ": ";
+    }
+    
     
 
     

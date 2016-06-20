@@ -24,6 +24,8 @@ public class TasksPageTest {
 
   @Test
   public void testTasksPage() throws Exception {
+		
+		String header = TestUtils.getHeader();  	  
     driver.get(baseUrl + "/project.php#/5/tasks");
     driver.findElement(By.xpath("//div/md-icon")).click();
     driver.findElement(By.xpath("//div/md-icon")).click();
