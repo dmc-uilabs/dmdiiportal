@@ -51,16 +51,16 @@ public class IndividualDiscussionTest extends BaseTest{
 	    driver.findElement(By.linkText("Created from discussions project page")).click();
 	    driver.findElement(By.linkText("Reply")).click();
 	    driver.findElement(By.xpath("//textarea")).clear();
-	    driver.findElement(By.xpath("//textarea")).sendKeys("selenium reply");
+	    driver.findElement(By.xpath("//textarea")).sendKeys(header + "selenium reply");
 	    driver.findElement(By.xpath("//form/div/div/button[2]")).click();
 	    driver.findElement(By.xpath("//textarea")).clear();
-	    driver.findElement(By.xpath("//textarea")).sendKeys("selenium comment");
+	    driver.findElement(By.xpath("//textarea")).sendKeys(header + "selenium comment");
 	    driver.findElement(By.xpath("//form/div/button")).click();
 	    driver.findElement(By.linkText("Flag")).click();
 	    driver.findElement(By.xpath("//md-select")).click();
 	    driver.findElement(By.xpath("//md-option")).click();
 	    driver.findElement(By.xpath("//textarea")).clear();
-	    driver.findElement(By.xpath("//textarea")).sendKeys("selenium flag");
+	    driver.findElement(By.xpath("//textarea")).sendKeys(header + "selenium flag");
 	    driver.findElement(By.xpath("//form/div/div/button[2]")).click();
 	    WebElement likeButton = driver.findElement(By.xpath("//div[4]/div[3]/div[2]/button"));
 	    if(likeButton.isEnabled()){
