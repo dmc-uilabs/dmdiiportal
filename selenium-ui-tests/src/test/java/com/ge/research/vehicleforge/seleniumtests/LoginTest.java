@@ -25,50 +25,5 @@ public class LoginTest extends BaseTest {
 		testDMCLogin();	
 	}
 
-	@Ignore
-    @Test
-    public void testDashboard () {
-
-        driver.get(baseUrl);
-
-        // Click on dashboard link
-        WebElement dashboardViewButton = null;
-        try {
-
-            dashboardViewButton = driver.findElementByXPath("/html/body/div[2]/div[1]/a[1]/button");
-
-        } catch (Exception ex) {
-            fail("Dashboard element not found!");
-        }
-        assertTrue(dashboardViewButton != null);
-        dashboardViewButton.click();
-        String currentURL = driver.getCurrentUrl();
-        assertTrue (currentURL != null);
-        assertTrue (currentURL.endsWith("dashboard.php"));
-
-    }
-
-    @Ignore
-    @Test
-    public void testMarketplace () {
-
-        driver.get(baseUrl);
-
-        // Click on marketplace link
-        WebElement dashboardViewButton = null;
-        try {
-            dashboardViewButton = driver.findElementByXPath("/html/body/div[2]/div[2]/a[1]/button");
-
-        } catch (Exception ex) {
-            fail("Dashboard element not found!");
-        }
-        assertTrue(dashboardViewButton != null);
-        dashboardViewButton.click();
-        String currentURL = driver.getCurrentUrl();
-        assertTrue (currentURL != null);
-        assertTrue (currentURL.indexOf("marketplace.php") > 0);
-
-    }
-
 
 }
