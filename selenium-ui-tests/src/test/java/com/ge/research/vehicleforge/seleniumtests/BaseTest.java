@@ -99,7 +99,6 @@ public abstract class BaseTest {
     /**
      * Test the login page that protects the overall site from public access.
      */
-    //@Test
     public final void testPublicLoginProtection() throws Exception {
 
     	try {
@@ -120,7 +119,6 @@ public abstract class BaseTest {
     }
 
 
-   // @Test
     public void testDMCLogin() throws Exception{
     	if (TestUtils.CREDENTIAL_GATEWAY_REQUIRED) {
             testPublicLoginProtection();
