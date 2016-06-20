@@ -67,9 +67,11 @@ public class AddProjectTest extends BaseTest{
 		}
 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
+		// Invite members to this project
 	    driver.findElement(By.xpath("//div[2]/dmc-add-members-card/div/div[5]/button")).click();
 	    driver.findElement(By.xpath("//div[3]/dmc-add-members-card/div/div[5]/button")).click();
+	    
+	    //submit to create the new project
 	    driver.findElement(By.xpath("//div[2]/button[2]")).click();
 	}
 
