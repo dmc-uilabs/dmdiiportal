@@ -103,7 +103,7 @@ public abstract class BaseTest {
 
 	}
 
-/*	@After
+	@After
     public void tearDown() throws Exception {
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
@@ -111,7 +111,7 @@ public abstract class BaseTest {
           fail(verificationErrorString);
         }
       }
-*/
+
 
 
 	/**
