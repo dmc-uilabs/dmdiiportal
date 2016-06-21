@@ -75,9 +75,7 @@ public abstract class BaseTest {
 		baseUrl = System.getenv("baseUrl");
 		System.out.println("The first step to get Url from system environment : " + baseUrl);
 
-		actions = new Actions(driver);
 		
-
 
 		driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
 		initSelenium();
