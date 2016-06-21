@@ -45,6 +45,7 @@ public class IndividualDiscussionTest extends BaseTest{
 		}
 		
 		String projectsPage = driver.getCurrentUrl();
+		System.out.println("Projects page is " + projectsPage);
 		
 		/*Integer iBottom = clickViewAll.getSize().height;
 	    Integer iRight = clickViewAll.getSize().width;
@@ -95,14 +96,16 @@ public class IndividualDiscussionTest extends BaseTest{
 			System.out.println("Can not click the button Follow!!!");
 		} 
 	    
-	    assertEquals(followUnfollowButton.getText(), "UNFOLLOW");
-	    
+	    String firstClick = followUnfollowButton.getText();
+	    followUnfollowButton = driver.findElement(By.xpath("//div/button"));
 	    if(followUnfollowButton.isEnabled()){
 	    	followUnfollowButton.sendKeys(Keys.ENTER);;
 		}else{
 			System.out.println("Can not click the button Unfollow!!!");
 		}
-	    assertEquals(followUnfollowButton.getText(), "FOLLOW");
+	    String secondClick = followUnfollowButton.getText();
+	    assertTrue((firstClick.equals("FOLLOW") && secondClick.equals("UNFOLLOW")) 
+	    		|| (firstClick.equals("UNFOLLOW") && secondClick.equals("FOLLOW")));
 	   // driver.findElement(By.xpath("//div/button")).click();
 	    driver.get(projectsPage);
 	    numReplies = driver.findElement
