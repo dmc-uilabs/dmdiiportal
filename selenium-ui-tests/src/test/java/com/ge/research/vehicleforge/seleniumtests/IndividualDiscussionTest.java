@@ -35,7 +35,8 @@ public class IndividualDiscussionTest extends BaseTest{
 		String header = TestUtils.getHeader();
 		driver.get(baseUrl + "/my-projects.php#/");
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		WebElement clickViewAll = driver.findElement(By.xpath("(//a[contains(text(),'View All (6)')])[2]"));
+		WebElement clickViewAll = 
+				driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div[2]/md-content[10]/div/div[2]/md-content[2]/div/a"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", clickViewAll);
 		if(clickViewAll.isEnabled()){
 			clickViewAll.sendKeys(Keys.ENTER);;
@@ -43,10 +44,17 @@ public class IndividualDiscussionTest extends BaseTest{
 			System.out.println("Can not click the button View All!!!");
 		}
 		
+		String projectsPage = driver.getCurrentUrl();
+		
 		/*Integer iBottom = clickViewAll.getSize().height;
 	    Integer iRight = clickViewAll.getSize().width;
 	    actions.moveToElement(clickViewAll, iRight/2, iBottom/2).click().perform();
 		*/
+		
+		WebElement numReplies = driver.findElement
+				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/"
+						+ "div[2]/md-data-table-container/table/tbody/tr[10]/td[2]"));
+		int replyCount = Integer.parseInt(numReplies.getText().split("\\s+")[0]);
 		
 	    driver.findElement(By.linkText("Created from discussions project page")).click();
 	    driver.findElement(By.linkText("Reply")).click();
@@ -68,25 +76,40 @@ public class IndividualDiscussionTest extends BaseTest{
 		}else{
 			System.out.println("Can not click the button Like!!!");
 		}
+	    
+	    assertTrue(likeButton.isEnabled());
+	    
 	    WebElement dislikeButton = driver.findElement(By.xpath("//div[4]/div[3]/div[2]/button[2]"));
 	    if(dislikeButton.isEnabled()){
 	    	dislikeButton.sendKeys(Keys.ENTER);;
 		}else{
 			System.out.println("Can not click the button Dislike!!!");
 		}
+	    
+	    assertTrue(dislikeButton.isEnabled());
+	    
 	    WebElement followUnfollowButton = driver.findElement(By.xpath("//div/button"));
 	    if(followUnfollowButton.isEnabled()){
 	    	followUnfollowButton.sendKeys(Keys.ENTER);;
 		}else{
 			System.out.println("Can not click the button Follow!!!");
-		}
+		} 
+	    
+	    assertEquals(followUnfollowButton.getText(), "UNFOLLOW");
 	    
 	    if(followUnfollowButton.isEnabled()){
 	    	followUnfollowButton.sendKeys(Keys.ENTER);;
 		}else{
 			System.out.println("Can not click the button Unfollow!!!");
 		}
+	    assertEquals(followUnfollowButton.getText(), "FOLLOW");
 	   // driver.findElement(By.xpath("//div/button")).click();
+	    driver.get(projectsPage);
+	    numReplies = driver.findElement
+				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/"
+						+ "div[2]/md-data-table-container/table/tbody/tr[10]/td[2]"));
+	    int newReplyCount = Integer.parseInt(numReplies.getText().split("\\s+")[0]);
+	    assertEquals(newReplyCount, replyCount + 1);
 	}
 
 
