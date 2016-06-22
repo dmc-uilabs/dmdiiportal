@@ -197,6 +197,83 @@ angular.module('dmc.members')
                 $scope.treeMenuModel = getMenu();
             }
 
+
+            $scope.news = [
+                {
+                    title: 'Recent News 1',
+                    content: 'This is the article content'
+                },
+                {
+                    title: 'Recent News 2',
+                    content: 'This is the article content'
+                },
+                {
+                    title: 'Recent News 3',
+                    content: 'This is the article content'
+                },
+                {
+                    title: 'Recent News 4',
+                    content: 'This is the article content'
+                }
+            ]
+            $scope.events = [
+                {
+                    date: '2016-06-16',
+                    title: 'this is the title',
+                    description: 'do the thing',
+                    location: ''
+                },
+                {
+                    date: '2016-06-17',
+                    title: 'this is the title',
+                    description: 'do the thing',
+                    location: ''
+                },
+                {
+                    date: '2016-06-18',
+                    title: 'this is the title',
+                    description: 'do the thing',
+                    location: ''
+                },
+                {
+                    date: '2016-06-18',
+                    title: 'this is the title',
+                    description: 'do the thing',
+                    location: ''
+                }
+            ]
+            $scope.options = {
+                forceSixRows: true,
+                trackSelectedDate: true
+            }
+            $scope.showCalendar = false;
+
+            $scope.toggleCalendar = function() {
+                if ($scope.showCalendar) {
+                    $scope.showCalendar = false;
+                } else {
+                    $scope.showCalendar = true;
+                }
+            }
+
+            $scope.eventClicked = function(event) {
+                if (!$scope.showCalendar) {
+                    $scope.showCalendar = true;
+                }
+                $(".is-selected").removeClass("is-selected");
+
+                $(".calendar-day-"+event.date).addClass("is-selected");
+                $scope.showEvents([event]);
+            }
+            $scope.dayClicked = function($event, day) {
+                $(".is-selected").removeClass("is-selected");
+                $($event.target).addClass("is-selected");
+                $scope.showEvents(day.events)
+            }
+
+            $scope.showEvents = function(events) {
+                $scope.dayEvents = events;
+            }
             // callback for services
             var callbackFunction = function(response){
                 $scope.members.arr = response.data;

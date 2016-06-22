@@ -23,6 +23,7 @@ angular.module('dmc.members', [
     'dmc.compare',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
+    'tien.clndr'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('member_directory', {

@@ -15,6 +15,7 @@ angular.module('dmc.dmdiiProjects', [
     'dmc.socket',
     'ngtimeago',
     'ngCookies',
+    'angular-horizontal-timeline',
     'dmc.widgets.documents',
     'dmc.common.header',
     'dmc.common.footer',

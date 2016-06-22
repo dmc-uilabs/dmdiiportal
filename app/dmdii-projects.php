@@ -13,6 +13,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/angular-carousel/angular-carousel.css" />
     <link rel="stylesheet" href="/bower_components/angular-datepicker/dist/angular-datepicker.css" />
+    <link rel="stylesheet" href="/bower_components/angular-horizontal-timeline/angular-horizontal-timeline.css" />
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
     <link rel="stylesheet" href="/bower_components/dropzone/dist/min/dropzone.min.css" />
@@ -46,11 +47,13 @@
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/hammerjs/hammer.js"></script>
+    <script src="/bower_components/angular-horizontal-timeline/angular-horizontal-timeline.js"></script>
     <script src="/bower_components/angular-carousel/angular-carousel.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/moment/moment.js"></script>
     <script src="/bower_components/angular-moment/angular-moment.js"></script>
     <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+    <script src="/bower_components/moment-range/lib/moment-range.js"></script>
     <script src="/bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-aria/angular-aria.js"></script>

@@ -132,6 +132,16 @@ angular.module('dmc.dmdiiProjects')
                 return $scope.dmdiiProjectCurrentPage !== Math.ceil($scope.totalRecords / $scope.dmdiiProjectPageSize);
             };
 
+            $scope.events= [
+                {
+                    'date':'2016-06-13',
+                    'content':'<p>lorem ipsum</p>'
+                },
+                {
+                    'date':'2016-06-27',
+                    'content':'<p>lorem ipsum</p>'
+                }
+            ]
             var responseData = {
                 _sort : 'id',
                 _order : 'DESC'
@@ -156,13 +166,50 @@ angular.module('dmc.dmdiiProjects')
             $scope.projects = {arr : [], count : 0};
 
             var totalCountItems = {
-                all: 0, status: { preaward: 0, awarded: 0, completed: 0 }
+                all: 0,
+                status:
+                    {
+                        1: 0,
+                        2: 0,
+                        3: 0
+                    },
+                    focus: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0
+                    },
+                    thrust: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0
+                    }
             };
 
             // insert response data to array of marketplace items
             var insertData = function(data){
                 totalCountItems = {
-					all: 0, status: { preaward: 0, awarded: 0, completed: 0 }
+					all: 0,
+                    status: {
+                        1: 0,
+                        2: 0,
+                        3: 0
+                    },
+                    focus: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0
+                    },
+                    thrust: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0
+                    }
                 };
                 console.log(data)
                 for (var i in data){
@@ -245,28 +292,127 @@ angular.module('dmc.dmdiiProjects')
                                 {
                                     'id': 11,
                                     'title': 'Pre Award',
-                                    'tag' : 'preaward',
-                                    'items': totalCountItems.status.preaward,
-                                    'opened' : isOpened('status', 'preaward'),
-                                    'href' : getUrl('status', 'preaward'),
+                                    'tag' : '1',
+                                    'items': totalCountItems.status[1],
+                                    'opened' : isOpened('status', '1'),
+                                    'href' : getUrl('status', '1'),
                                     'categories': []
                                 },
                                 {
                                     'id': 12,
                                     'title': 'Awarded',
-                                    'tag' : 'awarded',
-                                    'items': totalCountItems.status.awarded,
-                                    'opened' : isOpened('status', 'awarded'),
-                                    'href' : getUrl('status', 'awarded'),
+                                    'tag' : '2',
+                                    'items': totalCountItems.status[2],
+                                    'opened' : isOpened('status', '2'),
+                                    'href' : getUrl('status', '2'),
                                     'categories': []
                                 },
 								{
                                     'id': 13,
                                     'title': 'Completed',
-                                    'tag' : 'completed',
-                                    'items': totalCountItems.status.completed,
-                                    'opened' : isOpened('status', 'completed'),
-                                    'href' : getUrl('status', 'completed'),
+                                    'tag' : '3',
+                                    'items': totalCountItems.status[3],
+                                    'opened' : isOpened('status', '3'),
+                                    'href' : getUrl('status', '3'),
+                                    'categories': []
+                                }
+                            ]
+                        },
+                        {
+                            'id': 20,
+                            'title': 'Focus Area',
+                            'tag' : 'focus',
+                            'opened' : isOpened('focus'),
+                            'href' : getUrl('focus', null),
+                            'categories': [
+                                {
+                                    'id': 21,
+                                    'title': 'Model-Based Design/Enterprise',
+                                    'tag' : '1',
+                                    'items': totalCountItems.focus[1],
+                                    'opened' : isOpened('focus', '1'),
+                                    'href' : getUrl('focus', '1'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 22,
+                                    'title': 'Manufacturing Process',
+                                    'tag' : '2',
+                                    'items': totalCountItems.focus[2],
+                                    'opened' : isOpened('focus', '2'),
+                                    'href' : getUrl('focus', '2'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 23,
+                                    'title': 'Sensors & Metrology',
+                                    'tag' : '3',
+                                    'items': totalCountItems.focus[3],
+                                    'opened' : isOpened('focus', '3'),
+                                    'href' : getUrl('focus', '3'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 24,
+                                    'title': 'Product Lifecycle Management',
+                                    'tag' : '4',
+                                    'items': totalCountItems.focus[4],
+                                    'opened' : isOpened('focus', '4'),
+                                    'href' : getUrl('focus', '4'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 25,
+                                    'title': 'Other',
+                                    'tag' : '5',
+                                    'items': totalCountItems.focus[5],
+                                    'opened' : isOpened('focus', '5'),
+                                    'href' : getUrl('focus', '5'),
+                                    'categories': []
+                                }
+                            ]
+                        },
+                        {
+                            'id': 30,
+                            'title': 'Thrust Area',
+                            'tag' : 'thrust',
+                            'opened' : isOpened('thrust'),
+                            'href' : getUrl('thrust', null),
+                            'categories': [
+                                {
+                                    'id': 33,
+                                    'title': 'Advanced Analysis',
+                                    'tag' : '3',
+                                    'items': totalCountItems.thrust[3],
+                                    'opened' : isOpened('thrust', '3'),
+                                    'href' : getUrl('thrust', '3'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 31,
+                                    'title': 'Advanced Manufacturing Enterprise',
+                                    'tag' : '1',
+                                    'items': totalCountItems.thrust[1],
+                                    'opened' : isOpened('thrust', '1'),
+                                    'href' : getUrl('thrust', '1'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 34,
+                                    'title': 'Cybersecurity',
+                                    'tag' : '4',
+                                    'items': totalCountItems.thrust[4],
+                                    'opened' : isOpened('thrust', '4'),
+                                    'href' : getUrl('thrust', '4'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 32,
+                                    'title': 'Intelligent Machining',
+                                    'tag' : '2',
+                                    'items': totalCountItems.thrust[2],
+                                    'opened' : isOpened('thrust', '2'),
+                                    'href' : getUrl('thrust', '2'),
                                     'categories': []
                                 }
                             ]

@@ -1,10 +1,94 @@
 <div class="container members-box" layout="row" >
+
     <div class="content-column" layout="column" flex='20'>
         <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
         <dmc-products-filter state-name="'members_search'" ng-if="isSearch"></dmc-products-filter>
     </div>
         <!-- Left Content Column -->
     <div class="members" layout="column" flex>
+        <md-content layout="row" layout-align="center">
+            <div class="newsAndEvents" flex="95" layout="column">
+                <div class="news slim-margin">
+                    <h2>Recent News</h2>
+                    <div>
+                        <h3 class="no-bottom">Headline 1</h3>
+                        <p>descript</p>
+                        <md-divider></md-divider>
+                    </div>
+                </div>
+
+                <div class="events slim-margin">
+                    <h2>Upcoming Events</h2>
+                    <div ng-repeat="event in events | limitTo:3" ng-click="eventClicked(event)">
+                        <h3 class="no-top no-bottom">{{event.title}}</h3>
+                        <span>{{event.date}}</span>
+                        <p>{{event.description}}</p>
+                        <md-divider></md-divider>
+                    </div>
+                </div>
+            </div>
+        </md-content>
+
+        <md-content>
+            <div layout="row" layout-padding layout-align="center stretch">
+                <div flex="25" layout="row" layout-align="center">
+                    <md-icon ng-click="toggleCalendar()" ng-hide="showCalendar">
+                        <ng-md-icon class="calendarIcon" icon="event" size="48">Show Calendar</ng-md-icon>
+                    </md-icon>
+                    <div ng-show="showCalendar" class="pull-right">
+                        <span ng-click="toggleCalendar()">x</span>
+                        <tien-clndr class="clndr" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
+                            <div class="clndr-controls">
+                                <div class="clndr-previous-button" ng-click="clndr.back()">
+                                    &lsaquo;
+                                </div>
+                                <div class="month">
+                                  {{month}}
+                                </div>
+                                <div class="clndr-next-button" ng-click="clndr.forward()">
+                                  &rsaquo;
+                                </div>
+                            </div>
+                            <div class="clndr-grid">
+                                <div class="days-of-the-week">
+                                  <div class="header-day" ng-repeat="day in daysOfTheWeek track by $index">
+                                    {{day}}
+                                  </div>
+                                </div>
+                                <div class="days">
+                                  <div class="{{day.classes}}" ng-repeat="day in days" ng-click="dayClicked($event, day)">
+                                    <div class="event-indicator" ng-show="day.events.length" ng-click="showEvents(day.events)">{{day.events.length}}</div>
+                                    {{day.day}}
+                                  </div>
+                                </div>
+                            </div>
+                        </tien-clndr>
+                    </div>
+                </div>
+
+                <span flex></span>
+
+                <div flex="20" ng-show="showCalendar">
+                    <h2>Event Details</h2>
+                    <md-divider></md-divider>
+                    <span ng-repeat="event in dayEvents">
+                        <h3>{{event.title}}</h3>
+                        <p>{{event.description}}</p>
+                    </span>
+                </div>
+
+                <span flex></span>
+
+                <div layout="row" layout-align="center center" layout-padding flex="50">
+                    <md-icon>
+                        <ng-md-icon icon="map" size="96"></ng-md-icon>
+                    </md-icon>
+                </div>
+            </div>
+        </md-content>
+
+        <md-divider></md-divider>
+
         <md-content class="members-search" layout="row" layout-align="left center">
 
             <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
@@ -65,7 +149,7 @@
                             <td>{{member.organization.categoryTier}}</td>
                             <td>{{member.hasActiveProjects}}</td>
                             <td>
-                                <a ng-repeat="tag in member.skills track by $index">{{tag.tagName}}{{$last ? '' : ', '}}<a>
+                                <a ng-repeat="tag in member.skills track by $index">{{tag.tagName}}{{$last ? '' : ', '}}</a>
                             </td>
                         </tr>
                         <tr ng-if="members.arr.length == 0">

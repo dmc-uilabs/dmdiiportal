@@ -28,12 +28,7 @@ angular.module('dmc.member', [
     $stateProvider.state('member_page', {
         url: '/:memberId',
         templateUrl: 'templates/member-page/member-page.html',
-        controller: 'DMCMemberPageController',
-        resolve: {
-            is_search: function() {
-                return false;
-            }
-        }
+        controller: 'DMCMemberPageController'
     });
     $urlRouterProvider.otherwise('/member_page');
 });
