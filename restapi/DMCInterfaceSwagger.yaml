@@ -745,6 +745,46 @@ paths:
             type: array
             items:
               $ref: '#/definitions/IndividualDiscussion'
+  '/projects/{projectID}/individual-discussion':
+    get:
+      tags:
+        - project
+        - discussion
+        - live
+        - has tests
+      description: Get all project individual discussions
+      parameters:
+        - name: projectID
+          in: path
+          type: string
+          description: ID of the project
+          required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return all individual discussions with projectId
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IndividualDiscussion'
   '/all-discussions':
     get:
       tags:
@@ -4895,7 +4935,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Get all community individual discussions
       parameters:
         - name: _limit
@@ -4928,18 +4969,38 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
-      description: Create a new individual discussions
+        - live
+        - has tests
+      description: Create a new individual discussion
       parameters:
         - in: body
           name: Discussion
-          description: Individual discussions to be created
+          description: Individual discussion to be created
           required: false
           schema:
             $ref: '#/definitions/IndividualDiscussion'
       responses:
         '201':
-          description: New individual discussion comment
+          description: New individual discussion
+          schema:
+            $ref: '#/definitions/IndividualDiscussion'
+  '/individual-discussion/{individualDiscussionID}':
+    get:
+      tags:
+        - discussion
+        - community
+        - live
+        - has tests
+      description: Get single individual discussion from id
+      parameters:
+        - in: path
+          name: individualDiscussionID
+          description: ID of individual discussion
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return individual discussion from id
           schema:
             $ref: '#/definitions/IndividualDiscussion'
   '/individual-discussion/{individualDiscussionID}/individual-discussion-comments':
@@ -4947,8 +5008,9 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
-      description: Get all individual discussions comments
+        - live
+        - has tests
+      description: Get all individual discussions comments from individual discussion id
       parameters:
         - in: path
           name: individualDiscussionID
@@ -4974,25 +5036,77 @@ paths:
           description: Sort by some parameter (id, title, etc.)
           type: string
           required: false
+        - name: _limit
+          in: query
+          description: Limit number of results
+          type: integer
+          required: false
       responses:
         '200':
-          description: return all all individual discussions comments
+          description: return all individual discussions comments from individual discussion id
           schema:
             type: array
             items:
               $ref: '#/definitions/IndividualDiscussionComment'
   '/individual-discussion-comments':
+    get:
+      tags:
+        - discussion
+        - community
+        - live
+        - has tests
+      description: Get all individual discussion comments
+      parameters:
+        - in: query
+          name: individualDiscussionID
+          description: ID of individual discussions
+          required: true
+          type: array
+          items:
+            type: string
+        - in: query
+          name: commentId
+          description: Id comment of individual discussions comments
+          required: true
+          type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return all individual discussion comments with commentId and individualDiscussionID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IndividualDiscussionComment'
     post:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Create a new individual discussions comment
       parameters:
         - in: body
           name: DiscussionComment
           description: Individual discussions comment to be created
-          required: false
+          required: true
           schema:
             $ref: '#/definitions/IndividualDiscussionComment'
       responses:
@@ -5020,7 +5134,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Update a individual discussions comment
       parameters:
         - name: commentID
@@ -5035,6 +5150,24 @@ paths:
       responses:
         200:
           description: returns updated individual discussions comment
+          schema:
+            $ref: '#/definitions/IndividualDiscussionComment'
+    get:
+      tags:
+        - discussion
+        - community
+        - live
+        - has tests
+      description: Get a individual discussions comment
+      parameters:
+        - name: commentID
+          in: path
+          type: string
+          description: ID of the comment
+          required: true
+      responses:
+        200:
+          description: returns individual discussions comment from commentId
           schema:
             $ref: '#/definitions/IndividualDiscussionComment'
   '/individual-discussion/{individualDiscussionID}/individual-discussion-tags':
@@ -7358,7 +7491,7 @@ definitions:
       individual-discussionId:
         type: string
       accountId:
-        type: string
+        type: number
       full_name:
         type: string
       avatar:
@@ -7371,12 +7504,10 @@ definitions:
       reply:
         type: boolean
       commentId:
-        type: string
+        type: number
       like:
         type: number
       dislike:
-        type: number
-      projectId:
         type: number
   IndividualDiscussionCommentHelpful:
     type: object
@@ -7405,17 +7536,15 @@ definitions:
         type: string
       title:
         type: string
-      message:
-        type: string
       created_by:
         type: string
       created_at:
         type: number
         format: milliseconds
       accountId:
-        type: string
+        type: number
       projectId:
-        type: string
+        type: number
   IndividualDiscussionTag:
     type: object
     properties:
