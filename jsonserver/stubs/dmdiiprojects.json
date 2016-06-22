@@ -13,6 +13,9 @@
 			"investigatorId": 2,
 			"name": "Investigator's name"
 		},
+		"projectRootNumber": 16,
+		"projectCallNumber": 2,
+		"projectNumber": 1,
 		"awardedDate": "2016-01-01 00:00:00",
 		"projectTitle": "This Project Title",
 		"projectSummary": "This Project's Summary is this",
@@ -46,6 +49,15 @@
 				"url": ""
 			}
 		],
+		"thrust": {
+			"id": 1,
+			"name": "Advanced Manufacturing Enterprise",
+			"code": "AME"
+		},
+		"focusArea": {
+			"id": 1,
+			"name": "Model-Based Design/Enterprise"
+		},
 		"reports": [
 			{
 				"id": 1,

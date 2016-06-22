@@ -12,6 +12,7 @@
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/angular-carousel/angular-carousel.css" />
+    <link rel="stylesheet" href="/bower_components/angular-clndr/angular-clndr.css" />
     <link rel="stylesheet" href="/bower_components/angular-datepicker/dist/angular-datepicker.css" />
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
@@ -47,8 +48,10 @@
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/hammerjs/hammer.js"></script>
     <script src="/bower_components/angular-carousel/angular-carousel.js"></script>
+    <script src="/bower_components/angular-clndr/angular-clndr.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/clndr/clndr.min.js"></script>
     <script src="/bower_components/angular-moment/angular-moment.js"></script>
     <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
     <script src="/bower_components/angular-datepicker/dist/angular-datepicker.js"></script>

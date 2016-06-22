@@ -16,7 +16,7 @@
 					<div class="member-header">
 						<div layout="row" layout-align="start center">
 							<h1>{{member.organization.name}}</h1>
-							<h5 class="member-subtitle">{{member.organization.category + ' Tier ' + member.organization.categoryTier}}</h5>
+							<h5 class="member-subtitle">{{member.organization.category + ' Tier ' + member.organization.categoryTier + ', Member Since ' + member.organization.dateJoining}}</h5>
 						</div>
 					</div>
 
@@ -77,23 +77,23 @@
 					</md-content>
 				</md-tab>
 
-				<md-tab label="Areas Of Expertise">
+				<md-tab label="Capabilities">
 					<md-content class="md-padding">
-						<div class="tabs-content"layout="column">
-							<div class="pad20" ng-repeat="AOE in member.areasOfExpertise">
-								<h4><a ng-href="{{AOE.link}}">{{AOE.name}}</a></h4>
-								<p>{{AOE.description}}</p>
+						<div class="tabs-content" layout="column">
+							<div>
+								<h3 class="no-bottom slim-margin">Areas Of Expertise</h3>
+								<div class="pad20" ng-repeat="AOE in member.areasOfExpertise">
+									<h4><a ng-href="{{AOE.link}}">{{AOE.name}}</a></h4>
+									<p>{{AOE.description}}</p>
+								</div>
 							</div>
-						</div>
-					</md-content>
-				</md-tab>
 
-				<md-tab label="Research & Development">
-					<md-content class="md-padding">
-						<div layout="column">
-							<div class="pad20" ng-repeat="focus in member.rndFocii">
-								<h4>{{focus.name}}</h4>
-								<p>{{focus.description}}</p>
+							<div layout="column">
+								<h3 class="no-bottom slim-margin">Sector</h3>
+								<div class="pad20" ng-repeat="focus in member.rndFocii">
+									<h4>{{focus.name}}</h4>
+									<p>{{focus.description}}</p>
+								</div>
 							</div>
 						</div>
 					</md-content>
