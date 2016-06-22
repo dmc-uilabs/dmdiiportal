@@ -88,7 +88,8 @@ public class AddProjectTest extends BaseTest{
 		driver.get(baseUrl + "/my-projects.php#/");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Test Project65549")));
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(projectName)));
+		//WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Test Project65549")));
         element.click();
         
         /*driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
