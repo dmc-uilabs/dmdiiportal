@@ -92,12 +92,7 @@ public class AddProjectTest extends BaseTest{
 		//WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Test Project65549")));
         element.click();
         
-        /*driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	    //driver.findElement(By.linkText(projectName)).click();
-        driver.findElement(By.linkText("Test Project65549")).click();*/
-	    driver.findElement(By.linkText("Edit")).click();
-		
-	    
+	    driver.findElement(By.linkText("Edit")).click();	    
 	    driver.findElement(By.id("input_12")).clear();
 	    driver.findElement(By.id("input_12")).sendKeys(overviewEdit);
 	    //add tag
