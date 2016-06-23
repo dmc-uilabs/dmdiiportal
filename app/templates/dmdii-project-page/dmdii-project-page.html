@@ -5,22 +5,34 @@
 		<md-content class="project">
 			<!--project header-->
 			<div class="project-header">
-				<h2 class="no-bottom">{{project.id}}</h2>
 				<div layout="row" layout-align="start center">
-					<h2>{{project.projectTitle}}</h2>
+					<h2 class="no-bottom">{{project.projectRootNumber}}-{{project.projectCallNumber}}-{{project.projectNumber}}</h2>
+					<span layout="column">
+						<h5 class="project-subtitle no-bottom">{{project.focusArea.name}}</h5>
+						<h5 class="project-subtitle no-bottom no-top">{{project.thrust.name}}</h5>
+					</span>
+				</div>
+
+				<div layout="row" layout-align="start center">
+					<h3>{{project.projectTitle}}</h3>
 					<h5 class="project-subtitle">{{project.dmdiiProjectStatus.statusName}}</h5>
 				</div>
 				<md-divider></md-divider>
 				<span flex></span>
 			</div>
 			<div layout="row">
-				<div flex="70">
+				<div flex="50">
 					<!--project description-->
 					<div class="project-overview">
 						<h2>Summary</h2>
 						<p class="slim-margin">{{project.projectSummary}}</p>
 					</div>
 
+				</div>
+
+				<div flex="20">
+					<h2>Project Financials</h2>
+					<img>image</img>
 				</div>
 				<div layout="row" flex="30" layout-align="end start">
 					<div class="project-updates">
@@ -61,13 +73,6 @@
 				<md-tab label="Project Schedule">
 					<md-content class="carousel-padding">
 						<div class="project-schedule">
-						</div>
-					</md-content>
-				</md-tab>
-
-				<md-tab label="Project Financials">
-					<md-content class="md-padding">
-						<div class="tabs-content" layout="column">
 						</div>
 					</md-content>
 				</md-tab>
