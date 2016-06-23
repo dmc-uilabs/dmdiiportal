@@ -77,8 +77,7 @@ public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	    driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
 	    
 	    String table = driver.findElement(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content")).getText();
-	    System.out.println("searching for " + discussionName);
-	   
+	    	   
 	    assertTrue(table.contains(discussionName));
 		
 	    
