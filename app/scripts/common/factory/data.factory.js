@@ -872,14 +872,38 @@ angular.module('dmc.data',[])
 
 
             //RESOURCES
-            getResourceLab: function(id){
-                return localhost+'resources/about/'+id;
+            getResourceLab: function(LabNum){
+                return localhost+'resource_labs/'+LabNum;
             },
-            getfake: function(id){
-                return localhost+'companies/'+id+'/company_components';
+            getResourceBay: function(id){
+                return localhost+'resource_bays/'+id;
+            },
+
+            getMachines: function(id){
+                return localhost+'resource_machines/'+id;
             },
 
 
+            getFellows: function(){
+                return localhost+'resource_fellows';
+            },
+
+            getCurrentProj: function(){
+                return localhost+'resource_projects_current';
+            },
+
+            getUpcomingProj: function() {
+              return localhost +'resource_projects_upcoming';
+            },
+            getCourse: function() {
+              return localhost +'resource_workforce_courses';
+            },
+            getJob: function() {
+              return localhost +'resource_workforce_jobs';
+            },
+            getAssessment: function() {
+              return localhost +'resource_workforce_assessment';
+            },
 
             //END RESOURCES
 
@@ -889,7 +913,7 @@ angular.module('dmc.data',[])
                 }else{
                     return localhost + 'searchServices';
                 }
-			},
+			      },
             markReadNotifications: function(){
                 return localhost+'mark-read-notifications';
             },
