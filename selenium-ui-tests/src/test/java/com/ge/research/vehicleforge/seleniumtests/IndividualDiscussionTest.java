@@ -45,12 +45,6 @@ public class IndividualDiscussionTest extends BaseTest{
 		}
 		
 		String projectsPage = driver.getCurrentUrl();
-		System.out.println("Projects page is " + projectsPage);
-		
-		/*Integer iBottom = clickViewAll.getSize().height;
-	    Integer iRight = clickViewAll.getSize().width;
-	    actions.moveToElement(clickViewAll, iRight/2, iBottom/2).click().perform();
-		*/
 		
 		WebElement numReplies = driver.findElement
 				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/"
