@@ -62,15 +62,13 @@ angular.module('dmc.dmdiiProj')
             };
 
             var responseData = function(){
-                var data = {
-                    id: $stateParams.projectId
-                };
+                var data = {};
                 return data;
             };
 
             $scope.getDMDIIProject = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIProject(responseData()), null, callbackFunction);
+                ajax.get(dataFactory.getDMDIIProject($stateParams.projectId).get, responseData(), callbackFunction);
             };
             $scope.getDMDIIProject();
 		}

@@ -52,7 +52,7 @@ angular.module('dmc.dmdiiProjects')
             // This code use for dmdiiProject-directory -------------------------------------------------
             $scope.downloadData = false;        // on/off progress line in dmdiiProject-directory
             $scope.dmdiiProjectPageSize = $cookies.get('dmdiiProjectPageSize') ? +$cookies.get('dmdiiProjectPageSize') : 12;    // visible items in dmdiiProject-directory
-            $scope.dmdiiProjectCurrentPage = 1;  // current page in dmdiiProject-directory
+            $scope.dmdiiProjectCurrentPage = 0;  // current page in dmdiiProject-directory
             // catch updated changedPage variable form $cookies
             // variable changed in dmdiiProject-directory when user change page number (pagination)
             $scope.$watch(function() { return $cookies.changedPage; }, function(newValue) {
@@ -125,7 +125,7 @@ angular.module('dmc.dmdiiProjects')
             };
 
             $scope.hasPrev = function() {
-                return $scope.dmdiiProjectCurrentPage !== 1;
+                return $scope.dmdiiProjectCurrentPage !== 0;
             };
 
             $scope.hasNext = function() {
@@ -167,25 +167,24 @@ angular.module('dmc.dmdiiProjects')
 
             var totalCountItems = {
                 all: 0,
-                status:
-                    {
-                        1: 0,
-                        2: 0,
-                        3: 0
-                    },
-                    focus: {
-                        1: 0,
-                        2: 0,
-                        3: 0,
-                        4: 0,
-                        5: 0
-                    },
-                    thrust: {
-                        1: 0,
-                        2: 0,
-                        3: 0,
-                        4: 0
-                    }
+                status: {
+                    1: 0,
+                    2: 0,
+                    3: 0
+                },
+                focus: {
+                    1: 0,
+                    2: 0,
+                    3: 0,
+                    4: 0,
+                    5: 0
+                },
+                thrust: {
+                    1: 0,
+                    2: 0,
+                    3: 0,
+                    4: 0
+                }
             };
 
             // insert response data to array of marketplace items
@@ -211,7 +210,7 @@ angular.module('dmc.dmdiiProjects')
                         4: 0
                     }
                 };
-                console.log(data)
+
                 for (var i in data){
                     totalCountItems.all++;
                     if (data[i].dmdiiProjectStatus.statusName === 'Preaward') {
@@ -228,7 +227,6 @@ angular.module('dmc.dmdiiProjects')
 
             // callback
             var callbackFunction = function(response){
-                console.log(response.data)
                 $scope.projects.arr = response.data;
                 $scope.dmdiiProjectsLoading = false;
                 $scope.totalRecords = response.totalRecords;
@@ -238,19 +236,23 @@ angular.module('dmc.dmdiiProjects')
             var responseData = function(){
                 var data = {
                     pageSize : $scope.dmdiiProjectPageSize,
-                    page : $scope.dmdiiProjectCurrentPage
-                    // _order: $scope.sortBy,
-                    // _sort: $scope.sortDir,
-                    // name_like : $scope.searchModel
+                    page : $scope.dmdiiProjectCurrentPage,
+                    _order: $scope.sortBy,
+                    _sort: $scope.sortDir,
+                    name_like : $scope.searchModel
                 };
-                if(angular.isDefined($stateParams.status)) data.status = $stateParams.status;
+                if(angular.isDefined($stateParams.status)) data.statusId = $stateParams.status;
+                if(angular.isDefined($stateParams.callNumber)) data.callNumber = $stateParams.callNumber;
+                if(angular.isDefined($stateParams.rootNumber)) data.rootNumber = $stateParams.rootNumber;
+                if(angular.isDefined($stateParams.focusId)) data.focusId = $stateParams.focusId;
+                if(angular.isDefined($stateParams.thrustId)) data.thrustId = $stateParams.thrustId;
 
                 return data;
             };
 
             $scope.getDmdiiProjects = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIProject(responseData()), null, callbackFunction);
+                ajax.get(dataFactory.getDMDIIProject().all, responseData(), callbackFunction);
             };
             $scope.getDmdiiProjects();
 
@@ -268,6 +270,8 @@ angular.module('dmc.dmdiiProjects')
                 var getUrl = function(cat, subcat){
                     var dataSearch = $.extend(true, {}, $stateParams);
                     dataSearch[cat] = subcat;
+                    console.log(dataSearch)
+                    console.log('dmdii-projects.php' + $state.href('dmdii_projects', dataSearch))
                     return 'dmdii-projects.php' + $state.href('dmdii_projects', dataSearch);
                 };
 
@@ -319,19 +323,19 @@ angular.module('dmc.dmdiiProjects')
                             ]
                         },
                         {
-                            'id': 20,
-                            'title': 'Focus Area',
-                            'tag' : 'focus',
-                            'opened' : isOpened('focus'),
-                            'href' : getUrl('focus', null),
+                            'id': 2,
+                            'title': 'Focus',
+                            'tag' : 'focusId',
+                            'opened' : isOpened('focusId'),
+                            'href' : getUrl('focusId', null),
                             'categories': [
                                 {
                                     'id': 21,
                                     'title': 'Model-Based Design/Enterprise',
                                     'tag' : '1',
                                     'items': totalCountItems.focus[1],
-                                    'opened' : isOpened('focus', '1'),
-                                    'href' : getUrl('focus', '1'),
+                                    'opened' : isOpened('focusId', '1'),
+                                    'href' : getUrl('focusId', '1'),
                                     'categories': []
                                 },
                                 {
@@ -339,8 +343,8 @@ angular.module('dmc.dmdiiProjects')
                                     'title': 'Manufacturing Process',
                                     'tag' : '2',
                                     'items': totalCountItems.focus[2],
-                                    'opened' : isOpened('focus', '2'),
-                                    'href' : getUrl('focus', '2'),
+                                    'opened' : isOpened('focusId', '2'),
+                                    'href' : getUrl('focusId', '2'),
                                     'categories': []
                                 },
                                 {
@@ -348,8 +352,8 @@ angular.module('dmc.dmdiiProjects')
                                     'title': 'Sensors & Metrology',
                                     'tag' : '3',
                                     'items': totalCountItems.focus[3],
-                                    'opened' : isOpened('focus', '3'),
-                                    'href' : getUrl('focus', '3'),
+                                    'opened' : isOpened('focusId', '3'),
+                                    'href' : getUrl('focusId', '3'),
                                     'categories': []
                                 },
                                 {
@@ -357,8 +361,8 @@ angular.module('dmc.dmdiiProjects')
                                     'title': 'Product Lifecycle Management',
                                     'tag' : '4',
                                     'items': totalCountItems.focus[4],
-                                    'opened' : isOpened('focus', '4'),
-                                    'href' : getUrl('focus', '4'),
+                                    'opened' : isOpened('focusId', '4'),
+                                    'href' : getUrl('focusId', '4'),
                                     'categories': []
                                 },
                                 {
@@ -366,14 +370,14 @@ angular.module('dmc.dmdiiProjects')
                                     'title': 'Other',
                                     'tag' : '5',
                                     'items': totalCountItems.focus[5],
-                                    'opened' : isOpened('focus', '5'),
-                                    'href' : getUrl('focus', '5'),
+                                    'opened' : isOpened('focusId', '5'),
+                                    'href' : getUrl('focusId', '5'),
                                     'categories': []
                                 }
                             ]
                         },
                         {
-                            'id': 30,
+                            'id': 3,
                             'title': 'Thrust Area',
                             'tag' : 'thrust',
                             'opened' : isOpened('thrust'),
