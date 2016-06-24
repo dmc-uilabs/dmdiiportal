@@ -870,43 +870,6 @@ angular.module('dmc.data',[])
                 return localhost+'notifications-pm-statistic';
             },
 
-
-            //RESOURCES
-            getResourceLab: function(LabNum){
-                return localhost+'resource_labs/'+LabNum;
-            },
-            getResourceBay: function(id){
-                return localhost+'resource_bays/'+id;
-            },
-
-            getMachines: function(id){
-                return localhost+'resource_machines/'+id;
-            },
-
-
-            getFellows: function(){
-                return localhost+'resource_fellows';
-            },
-
-            getCurrentProj: function(){
-                return localhost+'resource_projects_current';
-            },
-
-            getUpcomingProj: function() {
-              return localhost +'resource_projects_upcoming';
-            },
-            getCourse: function() {
-              return localhost +'resource_workforce_courses';
-            },
-            getJob: function() {
-              return localhost +'resource_workforce_jobs';
-            },
-            getAssessment: function() {
-              return localhost +'resource_workforce_assessment';
-            },
-
-            //END RESOURCES
-
             searchMarketplace: function (text) {
                 if($window.apiUrl) {
                     return localhost + 'searchServices/' + text;
