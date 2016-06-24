@@ -51,10 +51,12 @@ public class RegisterServiceTest extends BaseTest{
 
 	    assertEquals("Alpha", driver.findElement(By.linkText("Alpha")).getText());
 
-	   /* driver.findElement(By.xpath("//div[2]/a/span")).click();
+	    driver.findElement(By.xpath("//div[2]/a/span")).click();
+	    Thread.sleep(5000);
+	    assertEquals("Status: Not Running", driver.findElement(By.xpath("//h3")).getText());
+	    Thread.sleep(1000);
 	    driver.findElement(By.xpath("//button[2]")).click();
 	    assertEquals("Status: running", driver.findElement(By.xpath("//h3")).getText());
-	    assertEquals("Last Run Status: success", driver.findElement(By.xpath("//h3[2]")).getText());*/
 	  }
 
 
