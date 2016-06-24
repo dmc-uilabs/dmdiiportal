@@ -4861,7 +4861,8 @@ paths:
     get:
       tags:
         - community
-        - not implemented
+        - live
+        - has tests
       description: Get all community events
       parameters:
         - name: _limit
@@ -4890,6 +4891,43 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CommunityEvent'
+    post:
+      tags:
+        - community
+        - live
+        - has tests
+      description: Post one new event
+      parameters:
+        - in: body
+          name: event
+          description: Individual event to be created
+          required: true
+          schema:
+            $ref: '#/definitions/CommunityEvent'
+      responses:
+        '200':
+          description: return id of created event
+          schema:
+             $ref: '#/definitions/Id'
+  '/events/{id}':
+    delete:
+      tags:
+        - community
+        - live
+        - has tests
+      description: Delete a single event
+      parameters:
+        - in: path
+          name: id
+          description: ID of individual event
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return id of deleted event
+          schema:
+             $ref: '#/definitions/Id'
+
   '/individual-discussion':
     get:
       tags:
@@ -7315,6 +7353,11 @@ definitions:
         type: string
       description:
         type: string
+  Id:
+     type: object
+     properties:
+       id:
+         type: string
   CompanyHistory:
     type: object
     properties:
