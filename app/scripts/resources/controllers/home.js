@@ -15,27 +15,6 @@ angular.module('dmc.resources')
           highlighted: true
         };
 
-        $scope.featureBay = {
-          id: 5,
-          title: "Welding and Fabrication",
-          image: "http://goreenterprisespr.com/yahoo_site_admin/assets/images/Machine_shop_2008_021.100135939_std.JPG",
-          description: " Quisque cursus eu tellus sed blandit. Vestibulum sit amet urna quis tortor sollicitudin varius. Nunc ut pharetra mi. Pellentesque placerat elit in turpis rhoncus, eu sollicitudin ex varius. Pellentesque ut magna ultricies, pretium sem eget, accumsan sapien. Vivamus vel luctus urna. Curabitur id auctor nibh, id ullamcorper elit. Nullam volutpat augue eu consequat commodo. ",
-          dateCreated: "#",
-          link: "#",
-          contact: "#",
-          highlighted: true
-        };
-
-        $scope.bays ={
-          one: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIdyuW4lg2prvSc3w0Q-AnE5ylxWwjP4TC5G9XhMr-68uR32M8OQ",
-          two: "https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-two-number-key-512.png",
-          three:"https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-number-three-key-512.png",
-          four: "https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-four-number-key-512.png",
-          five: "https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-five-number-key-512.png",
-          six: "https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-six-number-key-512.png",
-          seven:"https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-seven-number-key-512.png",
-          eight:"https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-eight-number-key-512.png"
-        };
 
         $scope.machines = [
           {
@@ -69,6 +48,30 @@ angular.module('dmc.resources')
             highlighted: true
           }
         ];
+
+        $scope.featureBay = {
+          id: 5,
+          title: "Welding and Fabrication",
+          image: "http://goreenterprisespr.com/yahoo_site_admin/assets/images/Machine_shop_2008_021.100135939_std.JPG",
+          description: " Quisque cursus eu tellus sed blandit. Vestibulum sit amet urna quis tortor sollicitudin varius. Nunc ut pharetra mi. Pellentesque placerat elit in turpis rhoncus, eu sollicitudin ex varius. Pellentesque ut magna ultricies, pretium sem eget, accumsan sapien. Vivamus vel luctus urna. Curabitur id auctor nibh, id ullamcorper elit. Nullam volutpat augue eu consequat commodo. ",
+          dateCreated: "#",
+          link: "#",
+          contact: "#",
+          highlighted: true,
+          machines: $scope.machines
+        };
+
+        $scope.bays ={
+          one: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIdyuW4lg2prvSc3w0Q-AnE5ylxWwjP4TC5G9XhMr-68uR32M8OQ",
+          two: "https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-two-number-key-512.png",
+          three:"https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-number-three-key-512.png",
+          four: "https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-four-number-key-512.png",
+          five: "https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-five-number-key-512.png",
+          six: "https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-six-number-key-512.png",
+          seven:"https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-seven-number-key-512.png",
+          eight:"https://cdn1.iconfinder.com/data/icons/modern-latin-alphabet-lowercase-and-uppercase-lett/154/keyboard-eight-number-key-512.png"
+        };
+
         $scope.fellows = [];
         $scope.currentProjects = [];
         $scope.upcomingProjects = [];
@@ -91,7 +94,7 @@ angular.module('dmc.resources')
               }
           );
         };
-
+/*
         $scope.changeMachines = function(BayNum){
           ajax.get(dataFactory.getMachines(BayNum), {
               }, function(response){
@@ -99,12 +102,16 @@ angular.module('dmc.resources')
                 apply();
               }
           );
-        };
+        };*/
+
+
+
         $scope.changeBay = function(BayNum){
           ajax.get(dataFactory.getResourceBay(BayNum), {
               }, function(response){
+                $scope.machines = response.data.machines
                 $scope.featureBay = response.data;
-                $scope.changeMachines(BayNum);
+                //$scope.changeMachines(BayNum);
                 apply();
               }
           );
