@@ -448,52 +448,17 @@ angular.module('dmc.data',[])
             createStorefrontMessage: function(){
                 return localhost+'messages';
             },
-            getDMDIIMember: function(params) {
-                var paging;
-                var categoryString = '';
-                var tierString = '';
-
-                if (params.page && params.pageSize) {
-                    paging = 'page=' + params.page + '&pageSize=' + params.pageSize;
-                }
-
-                if (angular.isDefined(params.id)) {
-                    return localhost+'dmdiiMember/' + params.id;
-                } else if (angular.isDefined(params.categoryId) || angular.isDefined(params.tier)) {
-                    if (angular.isDefined(params.categoryId)) {
-                        categoryString = 'categoryId=' + params.categoryId;
-                    }
-                    if (angular.isDefined(params.tier)) {
-                        tierString = 'tier=' + params.tier;
-                    }
-
-                    if (categoryString !== '' && tierString !== '') {
-                        return localhost+'dmdiiMember/type?' + categoryString + '&' + tierString + '&' + paging;
-                    } else {
-                        return localhost+'dmdiiMember/type?' + categoryString + tierString + '&' + paging;
-
-                    }
-
-                } else {
-                    return localhost+'dmdiiMember?' + paging ;
+            getDMDIIMember: function(id) {
+                return {
+                    get: localhost+'dmdii_members/'+id,
+                    all: localhost+'dmdii_members'
                 }
             },
-            getDMDIIProject: function(params) {
-                var paging;
-
-                if (params.page && params.pageSize) {
-                    paging = 'page=' + params.page + '&pageSize=' + params.pageSize;
+            getDMDIIProject: function(id) {
+                return {
+                    get: localhost+'dmdii_projects/'+id,
+                    all: localhost+'dmdii_projects'
                 }
-                if (angular.isDefined(params.id)) {
-                    return localhost+'dmdiiprojects/' + params.id;
-                } else if (angular.isDefined(params.statusId)) {
-                    return localhost+'dmdiiprojects/status/' + params.statusId + '?' + paging;
-                } else {
-                    return localhost+'dmdiiprojects?' + paging;
-                }
-                // return {
-                // getByNumber: localhost+'dmdiiProject/'
-                // }
             },
             // companies ------------------
             companyURL: function(id){
@@ -904,13 +869,51 @@ angular.module('dmc.data',[])
             getNotificationsStatisticPm: function(){
                 return localhost+'notifications-pm-statistic';
             },
+
+
+            //RESOURCES
+            getResourceLab: function(LabNum){
+                return localhost+'resource_labs/'+LabNum;
+            },
+            getResourceBay: function(id){
+                return localhost+'resource_bays/'+id;
+            },
+
+            getMachines: function(id){
+                return localhost+'resource_machines/'+id;
+            },
+
+
+            getFellows: function(){
+                return localhost+'resource_fellows';
+            },
+
+            getCurrentProj: function(){
+                return localhost+'resource_projects_current';
+            },
+
+            getUpcomingProj: function() {
+              return localhost +'resource_projects_upcoming';
+            },
+            getCourse: function() {
+              return localhost +'resource_workforce_courses';
+            },
+            getJob: function() {
+              return localhost +'resource_workforce_jobs';
+            },
+            getAssessment: function() {
+              return localhost +'resource_workforce_assessment';
+            },
+
+            //END RESOURCES
+
             searchMarketplace: function (text) {
                 if($window.apiUrl) {
                     return localhost + 'searchServices/' + text;
                 }else{
                     return localhost + 'searchServices';
                 }
-			},
+			      },
             markReadNotifications: function(){
                 return localhost+'mark-read-notifications';
             },
