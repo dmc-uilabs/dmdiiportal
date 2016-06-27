@@ -5,6 +5,60 @@
     </div>
         <!-- Left Content Column -->
     <div class="members" layout="column" flex>
+        <md-content class="md-padding" layout-padding>
+            <div class="newsAndEvents" layout="column">
+                <div class="news slim-margin">
+                    <h2>Recent News</h2>
+                    <div ng-repeat="item in news">
+                        <h3 class="no-bottom">{{item.title}} {{item.dateCreated}}</h3>
+                        <p>{{item.content}}</p>
+                        <md-divider></md-divider>
+                    </div>
+                </div>
+            </div>
+
+            <div layout="column" layout-padding layout-align="start">
+                <div layout="row" layout-padding layout-align="center stretch">
+                    <div flex="33" layout-align="center">
+                        <h3>Projects Overview</h3>
+                        <md-icon>
+                            <ng-md-icon icon="event" size="48"></ng-md-icon>
+                        </md-icon>
+                    </div>
+
+                    <div layout-align="center center" flex="33">
+                        <h3>Projects Status</h3>
+                        <md-icon>
+                            <ng-md-icon icon="map" size="48"></ng-md-icon>
+                        </md-icon>
+                    </div>
+                    <div layout="column" layout-align="end start" flex="33">
+                        <h3>Quick Links</h3>
+                        <div layout="column">
+                            <a>link 1</a>
+                            <a>link 2</a>
+                            <a>link 3</a>
+                            <a>link 4</a>
+                        </div>
+                    </div>
+                </div>
+
+            <div>
+                <horizontal-timeline
+                    start-date="2016-04-20"
+                    end-date="2016-08-20"
+                    events="events">
+                </horizontal-timeline>
+            </div>
+
+            <span flex></span>
+
+            <md-divider></md-divider>
+
+            <span flex></span>
+
+        </md-content>
+
         <md-content class="dmdii-projects-search" layout="row" layout-align="left center">
 
             <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
@@ -47,19 +101,26 @@
                     <table md-data-table>
                         <thead md-order="sort" md-trigger="onOrderChange">
                         <tr>
-                            <th name="Call Number" order-by="callNumber"/>
                             <th name="Name" class="title"/>
                             <th name="Status" order-by="status"/>
+                            <th name="Focus Area"/>
+                            <th name="Thrust Area"/>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="project in projects.arr">
-                            <td>{{project.callNumber}}</td>
                             <td class="title-project">
-                                <h3><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h3>
-                                <p class="description">{{project.projectSummary}}</p>
+                                <h4>{{project.projectIdentifier}}</h4>
+                                <a class="no-bottom no-top" ng-href="{{'/dmdii-project-page.php#/'+project.id}}"><h3 class="no-bottom no-top">{{project.projectTitle}}</h3></a>
+                                <a class="no-bottom no-top" ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h5 class="project-lead no-bottom no-top">{{project.primeOrganization.organization.name}}</h5></a>
                             </td>
-                            <td>{{project.dmdiiProjectStatus.statusName}}</td>
+                            <td>{{project.projectStatus.name}}</td>
+                            <td>
+                                {{project.projectFocusArea.name}}
+                            </td>
+                            <td>
+                                {{project.projectThrust.name}}
+                            </td>
                         </tr>
                         <tr ng-if="tasks.length == 0">
                             <td class="empty" colspan="4">No tasks</td>

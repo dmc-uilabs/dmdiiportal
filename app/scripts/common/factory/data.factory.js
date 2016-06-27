@@ -448,52 +448,22 @@ angular.module('dmc.data',[])
             createStorefrontMessage: function(){
                 return localhost+'messages';
             },
-            getDMDIIMember: function(params) {
-                var paging;
-                var categoryString = '';
-                var tierString = '';
-
-                if (params.page && params.pageSize) {
-                    paging = 'page=' + params.page + '&pageSize=' + params.pageSize;
+            getDMDIIMember: function(id) {
+                return {
+                    get: localhost+'dmdiiMember/'+ id,
+                    all: localhost+'dmdiiMember',
+                    events: localhost+'dmdiiMember/events',
+                    news: localhost+'dmdiiMember/news'
                 }
 
-                if (angular.isDefined(params.id)) {
-                    return localhost+'dmdiiMember/' + params.id;
-                } else if (angular.isDefined(params.categoryId) || angular.isDefined(params.tier)) {
-                    if (angular.isDefined(params.categoryId)) {
-                        categoryString = 'categoryId=' + params.categoryId;
-                    }
-                    if (angular.isDefined(params.tier)) {
-                        tierString = 'tier=' + params.tier;
-                    }
-
-                    if (categoryString !== '' && tierString !== '') {
-                        return localhost+'dmdiiMember/type?' + categoryString + '&' + tierString + '&' + paging;
-                    } else {
-                        return localhost+'dmdiiMember/type?' + categoryString + tierString + '&' + paging;
-
-                    }
-
-                } else {
-                    return localhost+'dmdiiMember?' + paging ;
-                }
             },
-            getDMDIIProject: function(params) {
-                var paging;
-
-                if (params.page && params.pageSize) {
-                    paging = 'page=' + params.page + '&pageSize=' + params.pageSize;
+            getDMDIIProject: function(id) {
+                return {
+                    get: localhost+'dmdiiprojects/' + id,
+                    all: localhost+'dmdiiprojects',
+                    events: localhost+'dmdiiprojects/events',
+                    news: localhost+'dmdiiprojects/news'
                 }
-                if (angular.isDefined(params.id)) {
-                    return localhost+'dmdiiprojects/' + params.id;
-                } else if (angular.isDefined(params.statusId)) {
-                    return localhost+'dmdiiprojects/status/' + params.statusId + '?' + paging;
-                } else {
-                    return localhost+'dmdiiprojects?' + paging;
-                }
-                // return {
-                // getByNumber: localhost+'dmdiiProject/'
-                // }
             },
             // companies ------------------
             companyURL: function(id){

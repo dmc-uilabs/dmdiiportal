@@ -6,47 +6,88 @@
 			<!--project header-->
 			<div class="project-header">
 				<div layout="row" layout-align="start center">
-					<h1>{{project.projectTitle}}</h1>
-					<h5 class="project-subtitle">{{project.dmdiiProjectStatus.statusName}}</h5>
+					<h2 class="no-bottom">{{project.projectIdentifier}}</h2>
+					<span layout="column">
+						<h5 class="project-subtitle no-bottom">{{project.projectFocusArea.name}}</h5>
+						<h5 class="project-subtitle no-bottom no-top">{{project.projectThrust.name}}</h5>
+					</span>
+				</div>
+
+				<div layout="row" layout-align="start center">
+					<h3>{{project.projectTitle}}</h3>
+					<h5 class="project-subtitle">{{project.projectStatus.name}}</h5>
 				</div>
 				<md-divider></md-divider>
 				<span flex></span>
 			</div>
 			<div layout="row">
-				<div flex="70">
+				<div flex="50">
 					<!--project description-->
 					<div class="project-overview">
-						<h2>Overview</h2>
+						<h2>Summary</h2>
 						<p class="slim-margin">{{project.projectSummary}}</p>
 					</div>
 
-					<md-divider></md-divider>
-
-					<div class="project-updates">
-						<h2>Project Updates</h2>
-						<div layout="column" ng-repeat="update in project.updates">
-							<span class="slim-margin">{{update.date}}</span>
-								<h3 class="slim-margin">{{update.title}}</h3>
-								<p class="slim-margin">{{update.description}}</p>
-						</div>
-					</div>
-
-					<div layout="column" class="project-documents">
-						<h2>Documents</h2>
-						<a class="slim-margin" ng-repeat="doc in project.documents">{{doc.name}}</a>
-					</div>
 				</div>
 
+				<div flex="20">
+					<h2>Project Financials</h2>
+					<img>image</img>
+				</div>
 				<div layout="row" flex="30" layout-align="end start">
-					<div class="project-contributors">
-						<h2 class="slim-side-margin">Project Contributors</h2>
-						<div layout="column" ng-repeat="member in project.contributingCompanies">
-							<h3 class="slim-margin no-bottom"><a ng-href="{{'/member-page.php#/'+member.companyId}}">{{member.name}}</a></h3>
-							<span class="slim-margin">{{member.role}}</span>
+					<div class="project-updates">
+						<h2>Key Dates</h2>
+						<div layout="column">
+							<h3 class="slim-margin">Project Awarded - <span class="slim-margin">{{project.awardedDate}}</span></h3>
+
+							<h3 class="slim-margin">Project End Date - <span class="slim-margin">{{project.endDate}}</span></h3>
 						</div>
 					</div>
 				</div>
 			</div>
+
+			<md-divider></md-divider>
+
+			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom>
+				<md-tab label="Project Contributors">
+					<md-content class="md-padding">
+						<div layout="row">
+							<div layout="column" flex="50">
+								<h2>Principal Investigator</h2>
+								<div layout="column">
+									<h3 class="slim-margin no-bottom"><a ng-href="{{'/member-page.php#/'+project.principalInvestigator.id}}">{{project.principalInvestigator.firstName + ' ' + project.principalInvestigator.lastName}}</a></h3>
+									<span>{{project.principalInvestigator.email}}</span>
+								</div>
+							</div>
+							<div layout="column" flex="50">
+								<h2>Participants</h2>
+								<div layout="column" ng-repeat="member in project.contributingCompanies">
+									<h3 class="slim-margin no-bottom"><a ng-href="{{'/member-page.php#/'+member.companyId}}">{{member.organization.name}}</a></h3>
+								</div>
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Project Schedule">
+					<md-content class="carousel-padding">
+						<div class="project-schedule">
+						</div>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Project Documents">
+					<md-content class="md-padding">
+						<div class="tabs-content" layout="column">
+							<div layout="column" class="project-documents">
+								<a class="slim-margin" ng-repeat="doc in project.documents">{{doc.name}}</a>
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+
+			</md-tabs>
+
 		</md-content>
 	</div>
 </div>

@@ -131,7 +131,7 @@ angular.module('dmc.members')
             };
 
             $scope.hasNext = function() {
-                return $scope.memberCurrentPage !== Math.ceil($scope.totalRecords / $scope.memberPageSize);
+                return $scope.memberCurrentPage !== Math.ceil($scope.members.count / $scope.memberPageSize);
             };
 
             var responseData = {
@@ -157,60 +157,87 @@ angular.module('dmc.members')
 
             $scope.members = {arr : [], count : 0};
 
-            var totalCountItems = {
-                all: 0, tier: { one: 0, two: 0 }, type: { industry: 0, government: 0, academic: 0, nonprofit: 0 }, activeProjects: { yes: 0, no: 0 }
-            };
-
             // insert response data to array of marketplace items
             var insertData = function(data){
-                totalCountItems = {
-                    all: 0, tier: { one: 0, two: 0 }, type: { industry: 0, government: 0, academic: 0, nonprofit: 0 }, activeProjects: { yes: 0, no: 0 }
-                };
-
-                for (var i in data){
-
-                    totalCountItems.all++;
-                    if (data[i].organization.categoryTier === 1) {
-                        totalCountItems.tier.one++;
-                    } else if(data[i].organizaiton.categoryTier === 2){
-                        totalCountItems.tier.two++;
-                    }
-
-                    if(data[i].organization.category === 'Industry'){
-                        totalCountItems.type.industry++;
-                    } else if(data[i].organization.category === 'Government'){
-                        totalCountItems.type.government++;
-                    } else if(data[i].organization.category === 'Academic'){
-                        totalCountItems.type.academic++;
-                    }
-
-                    if (data[i].projects.find(function(project) {
-						return project.status === 'active';
-					})) {
-                        totalCountItems.activeProjects.yes++;
-						data[i].hasActiveProjects = 'Yes';
+                $scope.membersByState = {};
+                angular.forEach(data, function(member) {
+                    if (!$scope.membersByState[member.organization.address.state]) {
+                        $scope.membersByState[member.organization.address.state] =  [{name: member.organization.name, id: member.organization.id}];
                     } else {
-                        totalCountItems.activeProjects.no++;
-						data[i].hasActiveProjects = 'No';
+                        $scope.membersByState[member.organization.address.state].push({name: member.organization.name, id: member.organization.id});
                     }
-                }
-                $scope.treeMenuModel = getMenu();
+                });
             }
 
+            $scope.options = {
+                forceSixRows: true,
+                trackSelectedDate: true
+            }
+            $scope.showCalendar = false;
+
+            var eventsCallbackFunction = function(response) {
+                $scope.events = response.data;
+            }
+            $scope.getEvents = function(){
+                ajax.get(dataFactory.getDMDIIMember().events, {limit: 3}, eventsCallbackFunction);
+            };
+            $scope.getEvents();
+
+            var newsCallbackFunction = function(response) {
+                $scope.news = response.data;
+            }
+            $scope.getNews = function(){
+                ajax.get(dataFactory.getDMDIIMember().news, {limit: 3}, newsCallbackFunction);
+            };
+            $scope.getNews();
+
+            $scope.toggleCalendar = function() {
+                if ($scope.showCalendar) {
+                    $scope.showCalendar = false;
+                } else {
+                    $scope.showCalendar = true;
+
+                }
+            }
+
+            $scope.eventClicked = function(event) {
+                if (!$scope.showCalendar) {
+                    $scope.showCalendar = true;
+                }
+                $(".is-selected").removeClass("is-selected");
+
+                $(".calendar-day-"+event.date).addClass("is-selected");
+                $scope.showEvents([event]);
+            }
+            $scope.dayClicked = function($event, day) {
+                $(".is-selected").removeClass("is-selected");
+                $($event.target).addClass("is-selected");
+                $scope.showEvents(day.events)
+            }
+
+            $scope.showEvents = function(events) {
+                $scope.dayEvents = events;
+            }
             // callback for services
             var callbackFunction = function(response){
-                $scope.members.arr = response.data;
 				$scope.membersLoading = false;
-                insertData(response.data);
+                if (response.data.count) {
+                    $scope.members.arr = response.data.data;
+                    $scope.members.count = response.data.count;
+                    insertData(response.data.data);
+                } else {
+                    $scope.members.arr = response.data;
+                    insertData(response.data);
+                }
             };
 
             var responseData = function(){
                 var data = {
                     pageSize : $scope.memberPageSize,
-                    page : $scope.memberCurrentPage
+                    page : $scope.memberCurrentPage,
                     // _order: $scope.sortDir,
                     // _sort: $scope.sortBy,
-                    // name_like : $scope.searchModel
+                    name_like : $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.tier)) data.tier = $stateParams.tier
                 if(angular.isDefined($stateParams.type)) data.categoryId = $stateParams.type;
@@ -221,7 +248,7 @@ angular.module('dmc.members')
 
             $scope.getDMDIIMembers = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIMember(responseData()), null, callbackFunction);
+                ajax.get(dataFactory.getDMDIIMember().all, responseData(), callbackFunction);
             };
             $scope.getDMDIIMembers();
 
@@ -266,7 +293,6 @@ angular.module('dmc.members')
                                     'id': 11,
                                     'title': 'One',
                                     'tag' : '1',
-                                    'items': totalCountItems.tier.one,
                                     'opened' : isOpened('tier', '1'),
                                     'href' : getUrl('tier', '1'),
                                     'categories': []
@@ -275,7 +301,6 @@ angular.module('dmc.members')
                                     'id': 12,
                                     'title': 'Two',
                                     'tag' : '2',
-                                    'items': totalCountItems.tier.two,
                                     'opened' : isOpened('tier', '2'),
                                     'href' : getUrl('tier', '2'),
                                     'categories': []
@@ -293,7 +318,6 @@ angular.module('dmc.members')
                                     'id': 21,
                                     'title': 'Academic',
                                     'tag' : '2',
-                                    'items': totalCountItems.type.academic,
                                     'opened' : isOpened('type', '2'),
                                     'href' : getUrl('type', '2'),
                                     'categories': []
@@ -302,7 +326,6 @@ angular.module('dmc.members')
                                     'id': 22,
                                     'title': 'Government',
                                     'tag' : '3',
-                                    'items': totalCountItems.type.government,
                                     'opened' : isOpened('type', '3'),
                                     'href' : getUrl('type', '3'),
                                     'categories': []
@@ -311,7 +334,6 @@ angular.module('dmc.members')
                                     'id': 23,
                                     'title': 'Industry',
                                     'tag' : '1',
-                                    'items': totalCountItems.type.industry,
                                     'opened' : isOpened('type', '1'),
                                     'href' : getUrl('type', '1'),
                                     'categories': []
@@ -320,7 +342,6 @@ angular.module('dmc.members')
                                     'id': 24,
                                     'title': 'Non-Profit',
                                     'tag' : '4',
-                                    'items': totalCountItems.type.nonprofit,
                                     'opened' : isOpened('type', '4'),
                                     'href' : getUrl('type', '4'),
                                     'categories': []
@@ -338,7 +359,6 @@ angular.module('dmc.members')
                                     'id': 31,
                                     'title': 'Yes',
                                     'tag' : 'yes',
-                                    'items': totalCountItems.activeProjects.yes,
                                     'opened' : isOpened('activeProjects', 'yes'),
                                     'href' : getUrl('activeProjects', 'yes'),
                                     'categories': []
@@ -347,7 +367,6 @@ angular.module('dmc.members')
                                     'id': 32,
                                     'title': 'No',
                                     'tag' : 'no',
-                                    'items': totalCountItems.activeProjects.no,
                                     'opened' : isOpened('activeProjects', 'no'),
                                     'href' : getUrl('activeProjects', 'no'),
                                     'categories': []

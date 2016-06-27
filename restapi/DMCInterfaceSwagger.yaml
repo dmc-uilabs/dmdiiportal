@@ -6017,60 +6017,38 @@ paths:
           in: query
           description: Filter by title
           type: string
-      responses:
-        '200':
-          description: return array of dmdii projects
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/DmdiiProject'
-  '/dmdiiprojects/status/{statusId}':
-    get:
-      tags:
-        - dmdii projects
-      description: Get all dmdii projects by status
-      operationId: getDmdiiProjectsByStatus
-      parameters:
         - name: statusId
-          in: path
+          in: query
+          description: Filter by status
           type: integer
-          description: ID of the project status
-          required: true
-        - name: pageSize
+        - name: callNumber
           in: query
-          description: Limit items
+          description: Filter by callNumber
           type: integer
-          required: true
-        - name: page
+        - name: rootNumber
           in: query
-          description: offset
+          description: Filter by rootNumber
           type: integer
-          required: true
-        - name: _order
+        - name: focusId
           in: query
-          description: Order by ASC or DESC
-          type: string
-          collectionFormat: multi
-          required: false
-          enum:
-            - ASC
-            - DESC
-        - name: _sort
+          description: Filter by focusId
+          type: integer
+        - name: thrustId
           in: query
-          description: Sort by some parameter
-          type: string
-          required: false
-        - name: title_like
-          in: query
-          description: Filter by title
-          type: string
+          description: Filter by thrustId
+          type: integer
       responses:
         '200':
           description: return array of dmdii projects
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/DmdiiProject'
+            type: object
+            properties:
+              count:
+                type: integer
+              projects:
+                type: array
+                items:
+                  $ref: '#/definitions/DmdiiProject'
   '/dmdiiprojects/{projectId}':
    get:
      tags:
@@ -6123,65 +6101,26 @@ paths:
          in: query
          description: Filter by title
          type: string
-     responses:
-        '200':
-          description: return array of dmdii members
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/DmdiiMember'
-  '/dmdiiMembers/type':
-   get:
-     tags:
-       - dmdii members
-     description: Get all by category and/or tier dmdii members
-     operationId: getDmdiiMembersByType
-     parameters:
-       - name: pageSize
-         in: query
-         description: Limit items
-         type: integer
-         required: true
-       - name: page
-         in: query
-         description: Offset
-         type: integer
-         required: true
-       - name: _order
-         in: query
-         description: Order by ASC or DESC
-         type: string
-         collectionFormat: multi
-         required: false
-         enum:
-           - ASC
-           - DESC
-       - name: _sort
-         in: query
-         description: Sort by some parameter
-         type: string
-         required: false
-       - name: title_like
-         in: query
-         description: Filter by title
-         type: string
-       - name: categoryId
-         in: query
-         description: Filter by categoryId
-         type: integer
-         required: false
        - name: tier
          in: query
          description: Filter by tier
          type: integer
-         required: false
+       - name: categoryId
+         in: query
+         description: Filter by categoryId
+         type: integer
      responses:
         '200':
           description: return array of dmdii members
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/DmdiiMember'
+            type: object
+            properties:
+              count:
+                type: integer
+              members:
+                type: array
+                items:
+                  $ref: '#/definitions/DmdiiMember'
   '/dmdii_members/{memberId}':
    get:
      tags:
