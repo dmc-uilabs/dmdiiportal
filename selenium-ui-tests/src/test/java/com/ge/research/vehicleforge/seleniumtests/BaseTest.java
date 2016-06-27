@@ -9,16 +9,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 
 import org.openqa.selenium.interactions.Actions;
 
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 import static org.junit.Assert.*;
@@ -53,7 +54,7 @@ public abstract class BaseTest {
 		// System.getProperty() is used for get system properties defined with -D in bamboo Maven task Goal field.
 		//String browserName = System.getProperty("browser").toLowerCase();
 		String browserName = System.getenv("browser").toLowerCase();
-
+		
 
 		log.log(Level.INFO, "set up");
 		log.log(Level.INFO,"Get browser from maven build: " + browserName);
@@ -74,25 +75,22 @@ public abstract class BaseTest {
 			fail("Unknown browser " + browserName);
 		}
 
-
 		log.log(Level.INFO,"version name is: " + version);
-		baseUrl = System.getenv("baseUrl");
-		log.log(Level.INFO, this.getClass().getName() + " -- Base URL for site is " + baseUrl);
+		baseUrl = System.getProperty("baseUrl");
 
-
-
-
+	
 	}
 
 
+   
 
+   
 
 	public static void initSelenium() throws Exception {
 		try {
 
 			driver.manage().deleteAllCookies();            
 			driver.get(baseUrl);
-
 
 		} catch (Exception e) {
 			log.log(Level.SEVERE,"*** TEST Failure New***");
@@ -105,18 +103,16 @@ public abstract class BaseTest {
 		log.log(Level.INFO,"Initial URL : " + driver.getCurrentUrl());
 		log.log(Level.INFO,"Initial Title : " + driver.getTitle());
 
-		driver.manage().deleteAllCookies();
-		driver.get(baseUrl);
-
-
 	}
 
-
-
-
-
-
-
+	@After
+    public void tearDown() throws Exception {
+        driver.quit();
+        String verificationErrorString = verificationErrors.toString();
+        if (!"".equals(verificationErrorString)) {
+          fail(verificationErrorString);
+        }
+      }
 
 
 
@@ -125,16 +121,16 @@ public abstract class BaseTest {
 	 * Test the login page that protects the overall site from public access.
 	 */
 
-	public final void testPublicLoginProtection() throws Exception {
 
-		try {
-			driver.manage().deleteAllCookies();
+    public final void testPublicLoginProtection() throws Exception {
 
-			driver.get(baseUrl);
+    	try {
+    		driver.manage().deleteAllCookies();
 
+            driver.get(baseUrl);
 
-			log.log(Level.INFO,"The public login protection link URL : " + driver.getCurrentUrl());
-			/**
+            log.log(Level.INFO,"The public login protection link URL : " + driver.getCurrentUrl());
+            /**
 
             WebElement element = driver.findElement(By.name("user"));
             element.click();
@@ -148,9 +144,6 @@ public abstract class BaseTest {
             element.submit();
 			 **/
 
-			log.log(Level.INFO, "The public login protection link URL : " + driver.getCurrentUrl());
-
-
 		} catch (Exception e) {
 			log.log(Level.SEVERE,"*** TEST Failure ***");
 			log.log(Level.SEVERE,"URL : " + driver.getCurrentUrl());
@@ -161,7 +154,7 @@ public abstract class BaseTest {
 	}
 
 
-
+	
 
 
 	public void TestOnBoarding(){
@@ -187,56 +180,42 @@ public abstract class BaseTest {
 
 	}
 
+            
+
+  
 
 
 
+    public void testDMCLogin() throws Exception{
+    	if (TestUtils.CREDENTIAL_GATEWAY_REQUIRED) {
+            testPublicLoginProtection();
+        }
+ 	   else {
+
+    		driver.manage().deleteAllCookies();
+ 	   }
 
 
+    	// logout
+	    driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
+	    WebElement logout = driver.findElement(By.xpath("//md-menu-item[4]/button"));
+	    logout.sendKeys(Keys.ENTER);;
 
-	public void testDMCLogin() throws Exception{
-		if (TestUtils.CREDENTIAL_GATEWAY_REQUIRED) {
-			testPublicLoginProtection();
-		}
-		else {
+	    //System.out.print(driver.getPageSource());
 
-			driver.manage().deleteAllCookies();
-		}
+	    //login
+	    driver.findElement(By.xpath("//a/span")).click();
+	   // driver.findElementByLinkText("Login").click();
+	 driver.findElement(By.linkText("Google")).click();
+	      driver.findElement(By.id("Email")).clear();
+	    driver.findElement(By.id("Email")).sendKeys(System.getenv("credential_user"));
+	    driver.findElement(By.id("next")).click();
+	    driver.findElement(By.id("Passwd")).clear();
+	    driver.findElement(By.id("Passwd")).sendKeys(System.getenv("credential_pass"));
+	    driver.findElement(By.id("signIn")).click();
+	    log.log(Level.INFO,"*** TEST Completed ***");
 
-
-		// logout
-		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
-		WebElement logout = driver.findElement(By.xpath("//md-menu-item[4]/button"));
-		logout.sendKeys(Keys.ENTER);;
-
-
-		//login
-		driver.findElement(By.xpath("//a/span")).click();
-		driver.findElement(By.linkText("Google")).click();
-		driver.findElement(By.id("Email")).clear();
-		driver.findElement(By.id("Email")).sendKeys(System.getenv("credential_user"));
-		driver.findElement(By.id("next")).click();
-		driver.findElement(By.id("Passwd")).clear();
-		driver.findElement(By.id("Passwd")).sendKeys(System.getenv("credential_pass"));
-		driver.findElement(By.id("signIn")).click();
-
-		log.log(Level.INFO,"*** TEST Completed ***");
-
-
-
-	}
-
-
-
-
-
-	@AfterClass
-	public static void tearDown() throws Exception {
-		driver.quit();
-		String verificationErrorString = verificationErrors.toString();
-		if (!"".equals(verificationErrorString)) {
-			fail(verificationErrorString);
-		}
-	}
-
+	
+    }
 
 }
