@@ -47,13 +47,13 @@
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/hammerjs/hammer.js"></script>
-    <script src="/bower_components/angular-horizontal-timeline/angular-horizontal-timeline.js"></script>
     <script src="/bower_components/angular-carousel/angular-carousel.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/clndr/clndr.min.js"></script>
+    <script src="/bower_components/angular-clndr/angular-clndr.min.js"></script>
     <script src="/bower_components/angular-moment/angular-moment.js"></script>
     <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
-    <script src="/bower_components/moment-range/lib/moment-range.js"></script>
     <script src="/bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-aria/angular-aria.js"></script>
@@ -80,10 +80,11 @@
     <script src="/bower_components/angular-ui-sortable/sortable.min.js"></script>
     <script src="/bower_components/ng-autofocus/dist/ng-autofocus.js"></script>
     <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/bower_components/angular-horizontal-timeline/angular-horizontal-timeline.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/members/index.js -->
+    <!-- build:js scripts/dmdii-projects/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>

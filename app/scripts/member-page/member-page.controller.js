@@ -69,7 +69,7 @@ angular.module('dmc.member')
 
             $scope.getDMDIIMember = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIMember(stateParams.memberId).get, responseData(), callbackFunction);
+                ajax.get(dataFactory.getDMDIIMember($stateParams.memberId).get, responseData(), callbackFunction);
             };
             $scope.getDMDIIMember();
 

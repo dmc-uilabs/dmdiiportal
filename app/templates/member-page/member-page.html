@@ -6,8 +6,8 @@
 			<div layout="row" layout-margin>
 				<!--member image-->
 				<div class="member-logo" layout="column">
-					<img class="main-image" ng-if="member.organization.logoImage" ng-src="{{member.organization.logoImage}}">
-					<div class="no-image" ng-if="!member.organization.logoImage" layout layout-align="center center">
+					<img class="main-image" ng-if="member.organization.featureImage" ng-src="{{member.organization.featureImage}}">
+					<div class="no-image" ng-if="!member.organization.featureImage" layout layout-align="center center">
 						<h3>No Images</h3>
 					</div>
 				</div>
@@ -16,7 +16,7 @@
 					<div class="member-header">
 						<div layout="row" layout-align="start center">
 							<h1>{{member.organization.name}}</h1>
-							<h5 class="member-subtitle">{{member.organization.category + ' Tier ' + member.organization.categoryTier + ', Member Since ' + member.organization.dateJoining}}</h5>
+							<h5 class="member-subtitle">{{member.dmdiiType.dmdiiTypeCategory.category + ' Tier ' + member.dmdiiType.tier + ', Member Since ' + member.organization.dateJoining}}</h5>
 						</div>
 					</div>
 
@@ -42,8 +42,9 @@
 					<md-content class="md-padding">
 						<div layout="column">
 							<div class="pad20" ng-repeat="project in member.projects">
-								<h4><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectName}}</a></h4>
-								<p>{{project.projectSummary}}</p>
+								<h4 class="no-bottom no-top"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectIdentifier}}</a></h4>
+								<h4 class="no-bottom no-top"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h4>
+								<p>Prime Investigator</p>
 							</div>
 						</div>
 					</md-content>

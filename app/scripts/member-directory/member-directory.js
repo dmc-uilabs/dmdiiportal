@@ -16,14 +16,14 @@ angular.module('dmc.members', [
     'ngtimeago',
     'ngCookies',
     'angularUtils.directives.dirPagination',
+    'tien.clndr',
     'dmc.widgets.documents',
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.component.treemenu',
     'dmc.compare',
     'dmc.widgets.tasks',
-    'dmc.widgets.tabs',
-    'tien.clndr'
+    'dmc.widgets.tabs'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('member_directory', {
