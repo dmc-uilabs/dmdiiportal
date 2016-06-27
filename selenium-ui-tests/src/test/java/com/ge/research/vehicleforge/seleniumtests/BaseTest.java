@@ -76,7 +76,8 @@ public abstract class BaseTest {
 
 
 		log.log(Level.INFO,"version name is: " + version);
-		baseUrl = System.getProperty("baseUrl");
+		baseUrl = System.getenv("baseUrl");
+		log.log(Level.INFO, this.getClass().getName() + " -- Base URL for site is " + baseUrl);
 
 
 
