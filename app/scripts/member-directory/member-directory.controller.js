@@ -159,6 +159,7 @@ angular.module('dmc.members')
 
             // insert response data to array of marketplace items
             var insertData = function(data){
+<<<<<<< HEAD
                 $scope.membersByState = {};
                 angular.forEach(data, function(member) {
                     if (!$scope.membersByState[member.organization.address.state]) {
@@ -196,6 +197,7 @@ angular.module('dmc.members')
                     $scope.showCalendar = false;
                 } else {
                     $scope.showCalendar = true;
+
                 }
             }
 

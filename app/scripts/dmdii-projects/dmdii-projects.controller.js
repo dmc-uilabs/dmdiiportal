@@ -276,7 +276,6 @@ angular.module('dmc.dmdiiProjects')
 
                 var getUrl = function(cat, subcat){
                     var dataSearch = $.extend(true, {}, $stateParams);
-                
                     return 'dmdii-projects.php' + $state.href('dmdii_projects', dataSearch);
                 };
 
