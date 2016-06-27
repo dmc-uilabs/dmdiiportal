@@ -1,28 +1,18 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
-import java.util.regex.Pattern;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.*;
-import org.junit.rules.ErrorCollector;
+
 
 import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+
 import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	
 	
-	@Rule
-	 public ErrorCollector collector= new ErrorCollector();
-	private static Logger log = Logger.getGlobal();
+	
 	
 	@Test
 	public void testNewDiscussion() throws Exception {

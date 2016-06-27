@@ -20,7 +20,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 @SuppressWarnings("unused")
 public class LoginTest extends BaseTest {
 
-	@Ignore
+	
 	@Test
 	public void testLogin() throws Exception{
 		testDMCLogin();	
