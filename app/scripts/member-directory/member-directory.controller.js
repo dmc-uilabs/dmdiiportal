@@ -158,13 +158,13 @@ angular.module('dmc.members')
             $scope.members = {arr : [], count : 0};
 
             var totalCountItems = {
-                all: 0, tier: { one: 0, two: 0 }, type: { industry: 0, government: 0, academic: 0 }, activeProjects: { yes: 0, no: 0 }
+                all: 0, tier: { one: 0, two: 0 }, type: { industry: 0, government: 0, academic: 0, nonprofit: 0 }, activeProjects: { yes: 0, no: 0 }
             };
 
             // insert response data to array of marketplace items
             var insertData = function(data){
                 totalCountItems = {
-                    all: 0, tier: { one: 0, two: 0 }, type: { industry: 0, government: 0, academic: 0 }, activeProjects: { yes: 0, no: 0 }
+                    all: 0, tier: { one: 0, two: 0 }, type: { industry: 0, government: 0, academic: 0, nonprofit: 0 }, activeProjects: { yes: 0, no: 0 }
                 };
 
                 for (var i in data){
@@ -206,22 +206,22 @@ angular.module('dmc.members')
 
             var responseData = function(){
                 var data = {
-                    _limit : $scope.memberPageSize,
-                    _start : ($scope.memberCurrentPage-1) * $scope.memberPageSize,
-                    _order: $scope.sortDir,
-                    _sort: $scope.sortBy,
-                    name_like : $scope.searchModel
+                    pageSize : $scope.memberPageSize,
+                    page : $scope.memberCurrentPage
+                    // _order: $scope.sortDir,
+                    // _sort: $scope.sortBy,
+                    // name_like : $scope.searchModel
                 };
-                if(angular.isDefined($stateParams.tier)) data._tier = $stateParams.tier
-                if(angular.isDefined($stateParams.type)) data._type = $stateParams.type;
-                if(angular.isDefined($stateParams.activeProjects)) data._activeProjects = $stateParams.activeProjects;
+                if(angular.isDefined($stateParams.tier)) data.tier = $stateParams.tier
+                if(angular.isDefined($stateParams.type)) data.categoryId = $stateParams.type;
+                if(angular.isDefined($stateParams.activeProjects)) data.activeProjects = $stateParams.activeProjects;
 
                 return data;
             };
 
             $scope.getDMDIIMembers = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIMember().all, responseData(), callbackFunction);
+                ajax.get(dataFactory.getDMDIIMember(responseData()), null, callbackFunction);
             };
             $scope.getDMDIIMembers();
 
@@ -265,19 +265,19 @@ angular.module('dmc.members')
                                 {
                                     'id': 11,
                                     'title': 'One',
-                                    'tag' : 'one',
+                                    'tag' : '1',
                                     'items': totalCountItems.tier.one,
-                                    'opened' : isOpened('tier', 'one'),
-                                    'href' : getUrl('tier', 'one'),
+                                    'opened' : isOpened('tier', '1'),
+                                    'href' : getUrl('tier', '1'),
                                     'categories': []
                                 },
                                 {
                                     'id': 12,
                                     'title': 'Two',
-                                    'tag' : 'two',
+                                    'tag' : '2',
                                     'items': totalCountItems.tier.two,
-                                    'opened' : isOpened('tier', 'two'),
-                                    'href' : getUrl('tier', 'two'),
+                                    'opened' : isOpened('tier', '2'),
+                                    'href' : getUrl('tier', '2'),
                                     'categories': []
                                 }
                             ]
@@ -292,28 +292,37 @@ angular.module('dmc.members')
                                 {
                                     'id': 21,
                                     'title': 'Academic',
-                                    'tag' : 'academic',
+                                    'tag' : '2',
                                     'items': totalCountItems.type.academic,
-                                    'opened' : isOpened('type', 'academic'),
-                                    'href' : getUrl('type', 'academic'),
+                                    'opened' : isOpened('type', '2'),
+                                    'href' : getUrl('type', '2'),
                                     'categories': []
                                 },
                                 {
                                     'id': 22,
                                     'title': 'Government',
-                                    'tag' : 'government',
+                                    'tag' : '3',
                                     'items': totalCountItems.type.government,
-                                    'opened' : isOpened('type', 'government'),
-                                    'href' : getUrl('type', 'government'),
+                                    'opened' : isOpened('type', '3'),
+                                    'href' : getUrl('type', '3'),
                                     'categories': []
                                 },
                                 {
                                     'id': 23,
                                     'title': 'Industry',
-                                    'tag' : 'industry',
+                                    'tag' : '1',
                                     'items': totalCountItems.type.industry,
-                                    'opened' : isOpened('type', 'industry'),
-                                    'href' : getUrl('type', 'industry'),
+                                    'opened' : isOpened('type', '1'),
+                                    'href' : getUrl('type', '1'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 24,
+                                    'title': 'Non-Profit',
+                                    'tag' : '4',
+                                    'items': totalCountItems.type.nonprofit,
+                                    'opened' : isOpened('type', '4'),
+                                    'href' : getUrl('type', '4'),
                                     'categories': []
                                 }
                             ]
