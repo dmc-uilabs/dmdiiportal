@@ -79,12 +79,14 @@
 
                 <span flex></span>
 
-                <div layout="column" layout-align="center center" layout-padding flex="50">
-                    <span>Map Placeholder</span>
-                    <p>Will display location of members by state</p>
-                    <md-icon>
-                        <ng-md-icon icon="map" size="48"></ng-md-icon>
-                    </md-icon>
+                <div class="map" layout="column" layout-align="center center" layout-padding flex="50">
+                    <us-map>
+                        <div ng-repeat="(state, members) in membersByState track by $index">
+                        <map-data state="{{state}}" color="#65AF3F"  hover-bg-color="#f5f7fa">
+                            <p ng-repeat="member in members">{{member.name}}</p>
+                        </map-data>
+                    </div>
+                    </us-map>
                 </div>
             </div>
         </md-content>

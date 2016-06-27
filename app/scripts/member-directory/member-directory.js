@@ -23,7 +23,8 @@ angular.module('dmc.members', [
     'dmc.component.treemenu',
     'dmc.compare',
     'dmc.widgets.tasks',
-    'dmc.widgets.tabs'
+    'dmc.widgets.tabs',
+    'usMap'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('member_directory', {

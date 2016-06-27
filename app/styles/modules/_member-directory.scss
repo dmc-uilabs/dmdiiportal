@@ -26,6 +26,14 @@ ng-md-icon {
   }
 }
 
+us-map > svg{
+    max-width: 500px;
+    max-height: 300px;
+}
+
+.map{
+    max-height: 300px;
+}
 .event-indicator {
     background-color: #65AF3F !important;
 }
