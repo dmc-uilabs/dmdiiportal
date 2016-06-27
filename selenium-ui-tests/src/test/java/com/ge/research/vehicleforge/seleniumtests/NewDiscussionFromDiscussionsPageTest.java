@@ -28,7 +28,7 @@ public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 		String discussionFlag = header + "test a flag";
 		String discussionComment = header + "test a comment";
 		
-		
+		//create a brand new discussion
 	    driver.findElement(By.xpath("//div/button")).click();
 	    driver.findElement(By.xpath("//md-dialog/div/md-input-container/input")).clear();
 	    driver.findElement(By.xpath("//md-dialog/div/md-input-container/input")).sendKeys(discussionName);
@@ -38,6 +38,8 @@ public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	    driver.findElement(By.xpath("//div[2]/div/form/md-input-container/input")).sendKeys(discussionTag);
 	    driver.findElement(By.xpath("//div[2]/div/form/button")).click();
 	    driver.findElement(By.xpath("//button[2]")).click();
+	    
+	    //attempt to reply to the discussion
 	    WebElement reply = driver.findElement(By.linkText("Reply"));
 	    if(reply.isEnabled()){
 	    	reply.sendKeys(Keys.ENTER);;
@@ -47,18 +49,26 @@ public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	    driver.findElement(By.xpath("//textarea")).clear();
 	    driver.findElement(By.xpath("//textarea")).sendKeys(discussionReply);
 	    driver.findElement(By.xpath("//form/div/div/button[2]")).click();
+	    
+	    //attempt to flag the discussion
 	    driver.findElement(By.linkText("Flag")).click();
 	    driver.findElement(By.xpath("//md-select")).click();
 	    driver.findElement(By.xpath("//md-option/div")).click();
 	    driver.findElement(By.xpath("//textarea")).clear();
 	    driver.findElement(By.xpath("//textarea")).sendKeys(discussionFlag);
 	    driver.findElement(By.xpath("//form/div/div/button[2]")).click();
+	    
+	    //try the like and dislike buttons
 	    driver.findElement(By.xpath("//div[2]/button")).click();
 	    driver.findElement(By.xpath("//div[3]/button[2]")).click();
+	    
+	    //attempt to write a comment
 	    driver.findElement(By.xpath("//textarea")).clear();
 	    driver.findElement(By.xpath("//textarea")).sendKeys(discussionComment);
 	    driver.findElement(By.xpath("//form/div/button")).click();
 	   
+	    //check that the reply and comment made it to the page
+	    //Improvement: optimize this code, as it will be slow on massive pages
 	    assertTrue(driver.getPageSource().contains(discussionReply));
 	  
 	    assertTrue(driver.getPageSource().contains(discussionComment));
