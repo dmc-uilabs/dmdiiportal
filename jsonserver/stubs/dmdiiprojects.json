@@ -1,0 +1,120 @@
+[
+	{
+		"id": 1,
+		"dmdiiProjectStatus":{
+			"DMDIIStatusId": 2,
+			"statusName": "awarded"
+		},
+		"primeOrganization":{
+			"DMDIIMemberId": 4,
+			"name": "DMDII Member Name"
+		},
+		"principalInvestigator":{
+			"investigatorId": 2,
+			"name": "Investigator's name"
+		},
+		"awardedDate": "2016-01-01 00:00:00",
+		"projectTitle": "This Project Title",
+		"projectSummary": "This Project's Summary is this",
+		"principalPointOfContact":{
+			"pocId": 3,
+			"name": "POC's name",
+			"email": "poc@poc.com",
+			"phone": "888-555-1212"
+		},
+		"contributingCompanies": [
+			{
+				"DMDIIMemberId": 1,
+				"name": "Contributing Company1",
+				"companyId": 12
+			},
+			{
+				"DMDIIMemberId": 2,
+				"name": "Contributing Company2",
+				"companyId": 15
+			}
+		],
+		"documents": [
+			{
+				"id": 1,
+				"name": "Document Name1",
+				"url": ""
+			},
+			{
+				"id": 2,
+				"name": "Document Name2",
+				"url": ""
+			}
+		],
+		"reports": [
+			{
+				"id": 1,
+				"reportId": 20,
+				"reportAuthor": "Report Author1",
+				"reportDate": "2016-05-31 15:30:00",
+				"usgApprovalStatus": {
+					"id": 1,
+					"statusName": "status1"
+				},
+				"dmdiiCostAnalysisStatus": {
+					"id": 2,
+					"statusName": "status2"
+				},
+				"ecApprovalStatus": {
+					"id": 1,
+					"statusName": "status1"
+				},
+				"sowStatus": {
+					"id": 1,
+					"statusName": "status1"
+				},
+				"ipPlanStatus": {
+					"id": 2,
+					"statusName": "status2"
+				},
+				"migsStatus": {
+					"id": 1,
+					"statusName": "status1"
+				},
+				"eaaStatus": {
+					"id": 1,
+					"statusName": "status1"
+				}
+			},
+			{
+				"id": 2,
+				"reportId": 21,
+				"reportAuthor": "Report Author2",
+				"reportDate": "2016-06-01 15:30:00",
+				"usgApprovalStatus": {
+					"id": 1,
+					"statusName": "status1"
+				},
+				"dmdiiCostAnalysisStatus": {
+					"id": 2,
+					"statusName": "status2"
+				},
+				"ecApprovalStatus": {
+					"id": 1,
+					"statusName": "status1"
+				},
+				"sowStatus": {
+					"id": 1,
+					"statusName": "status1"
+				},
+				"ipPlanStatus": {
+					"id": 2,
+					"statusName": "status2"
+				},
+				"migsStatus": {
+					"id": 1,
+					"statusName": "status1"
+				},
+				"eaaStatus": {
+					"id": 1,
+					"statusName": "status1"
+				}
+			}
+		]
+	}
+]

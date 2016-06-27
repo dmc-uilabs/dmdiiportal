@@ -102,7 +102,7 @@ paths:
           description: returns updated User Details
           schema:
             $ref: '#/definitions/UserDetails'
-  
+
   '/accounts/{accountID}':
     get:
       tags:
@@ -296,7 +296,7 @@ paths:
           description: DOME not running on specified server
         '504':
           description: Specified server is unreachable
-          
+
   '/account_servers/{serverID}':
     get:
       tags:
@@ -321,9 +321,9 @@ paths:
           description: Server URL is not valid
         '502':
           description: DOME not running on specified server
-        '504': 
+        '504':
           description: Specified server is unreachable
-        
+
     patch:
       tags:
         - account
@@ -580,7 +580,7 @@ paths:
           in: query
           description: Filter by title
           type: string
-          required: false  
+          required: false
       responses:
         '200':
           description: return array of projects
@@ -741,6 +741,46 @@ paths:
       responses:
         '200':
           description: return project discussion threads
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IndividualDiscussion'
+  '/projects/{projectID}/individual-discussion':
+    get:
+      tags:
+        - project
+        - discussion
+        - live
+        - has tests
+      description: Get all project individual discussions
+      parameters:
+        - name: projectID
+          in: path
+          type: string
+          description: ID of the project
+          required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return all individual discussions with projectId
           schema:
             type: array
             items:
@@ -1251,7 +1291,7 @@ paths:
           type: string
         - in: query
           name: path
-          description: Path of Dome object 
+          description: Path of Dome object
           required: true
           type: array
           items:
@@ -1719,7 +1759,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/GetProjectJoinRequest'     
+              $ref: '#/definitions/GetProjectJoinRequest'
     post:
       tags:
         - project
@@ -1737,7 +1777,7 @@ paths:
           description: return created request
           schema:
             $ref: '#/definitions/GetProjectJoinRequest'
-  '/projects/{projectId}/projects_join_requests':        
+  '/projects/{projectId}/projects_join_requests':
     get:
       tags:
         - project
@@ -1763,7 +1803,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/GetProjectJoinRequest'
-  '/profiles/{profileId}/projects_join_requests':        
+  '/profiles/{profileId}/projects_join_requests':
     get:
       tags:
         - project
@@ -1899,7 +1939,7 @@ paths:
       parameters:
         - in: path
           name: id
-          description: removed company member id 
+          description: removed company member id
           type: string
           required: true
       responses:
@@ -1974,7 +2014,7 @@ paths:
           required: true
       responses:
         '200':
-          description: OK    
+          description: OK
   '/companies/{companyId}/suggest_join_companies':
     get:
       tags:
@@ -4656,9 +4696,7 @@ paths:
           description: Inputs positions
           required: true
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/PostServiceInputPosition'
+            $ref: '#/definitions/PostServiceInputPosition'
       responses:
         '201':
           description: Return new inputs positions
@@ -4863,7 +4901,8 @@ paths:
     get:
       tags:
         - community
-        - not implemented
+        - live
+        - has tests
       description: Get all community events
       parameters:
         - name: _limit
@@ -4892,12 +4931,50 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CommunityEvent'
+    post:
+      tags:
+        - community
+        - live
+        - has tests
+      description: Post one new event
+      parameters:
+        - in: body
+          name: event
+          description: Individual event to be created
+          required: true
+          schema:
+            $ref: '#/definitions/CommunityEvent'
+      responses:
+        '200':
+          description: return id of created event
+          schema:
+             $ref: '#/definitions/Id'
+  '/events/{id}':
+    delete:
+      tags:
+        - community
+        - live
+        - has tests
+      description: Delete a single event
+      parameters:
+        - in: path
+          name: id
+          description: ID of individual event
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return id of deleted event
+          schema:
+             $ref: '#/definitions/Id'
+
   '/individual-discussion':
     get:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Get all community individual discussions
       parameters:
         - name: _limit
@@ -4930,18 +5007,38 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
-      description: Create a new individual discussions
+        - live
+        - has tests
+      description: Create a new individual discussion
       parameters:
         - in: body
           name: Discussion
-          description: Individual discussions to be created
+          description: Individual discussion to be created
           required: false
           schema:
             $ref: '#/definitions/IndividualDiscussion'
       responses:
         '201':
-          description: New individual discussion comment
+          description: New individual discussion
+          schema:
+            $ref: '#/definitions/IndividualDiscussion'
+  '/individual-discussion/{individualDiscussionID}':
+    get:
+      tags:
+        - discussion
+        - community
+        - live
+        - has tests
+      description: Get single individual discussion from id
+      parameters:
+        - in: path
+          name: individualDiscussionID
+          description: ID of individual discussion
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return individual discussion from id
           schema:
             $ref: '#/definitions/IndividualDiscussion'
   '/individual-discussion/{individualDiscussionID}/individual-discussion-comments':
@@ -4949,8 +5046,9 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
-      description: Get all individual discussions comments
+        - live
+        - has tests
+      description: Get all individual discussions comments from individual discussion id
       parameters:
         - in: path
           name: individualDiscussionID
@@ -4976,25 +5074,77 @@ paths:
           description: Sort by some parameter (id, title, etc.)
           type: string
           required: false
+        - name: _limit
+          in: query
+          description: Limit number of results
+          type: integer
+          required: false
       responses:
         '200':
-          description: return all all individual discussions comments
+          description: return all individual discussions comments from individual discussion id
           schema:
             type: array
             items:
               $ref: '#/definitions/IndividualDiscussionComment'
   '/individual-discussion-comments':
+    get:
+      tags:
+        - discussion
+        - community
+        - live
+        - has tests
+      description: Get all individual discussion comments
+      parameters:
+        - in: query
+          name: individualDiscussionID
+          description: ID of individual discussions
+          required: true
+          type: array
+          items:
+            type: string
+        - in: query
+          name: commentId
+          description: Id comment of individual discussions comments
+          required: true
+          type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return all individual discussion comments with commentId and individualDiscussionID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IndividualDiscussionComment'
     post:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Create a new individual discussions comment
       parameters:
         - in: body
           name: DiscussionComment
           description: Individual discussions comment to be created
-          required: false
+          required: true
           schema:
             $ref: '#/definitions/IndividualDiscussionComment'
       responses:
@@ -5022,7 +5172,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Update a individual discussions comment
       parameters:
         - name: commentID
@@ -5037,6 +5188,24 @@ paths:
       responses:
         200:
           description: returns updated individual discussions comment
+          schema:
+            $ref: '#/definitions/IndividualDiscussionComment'
+    get:
+      tags:
+        - discussion
+        - community
+        - live
+        - has tests
+      description: Get a individual discussions comment
+      parameters:
+        - name: commentID
+          in: path
+          type: string
+          description: ID of the comment
+          required: true
+      responses:
+        200:
+          description: returns individual discussions comment from commentId
           schema:
             $ref: '#/definitions/IndividualDiscussionComment'
   '/individual-discussion/{individualDiscussionID}/individual-discussion-tags':
@@ -5813,6 +5982,223 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Service'
+  '/dmdiiprojects':
+    get:
+      tags:
+        - dmdii projects
+      description: Get all dmdii projects
+      operationId: getDmdiiProjects
+      parameters:
+        - name: pageSize
+          in: query
+          description: Limit items
+          type: integer
+          required: true
+        - name: page
+          in: query
+          description: offset
+          type: integer
+          required: true
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+        - name: title_like
+          in: query
+          description: Filter by title
+          type: string
+      responses:
+        '200':
+          description: return array of dmdii projects
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiProject'
+  '/dmdiiprojects/status/{statusId}':
+    get:
+      tags:
+        - dmdii projects
+      description: Get all dmdii projects by status
+      operationId: getDmdiiProjectsByStatus
+      parameters:
+        - name: statusId
+          in: path
+          type: integer
+          description: ID of the project status
+          required: true
+        - name: pageSize
+          in: query
+          description: Limit items
+          type: integer
+          required: true
+        - name: page
+          in: query
+          description: offset
+          type: integer
+          required: true
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+        - name: title_like
+          in: query
+          description: Filter by title
+          type: string
+      responses:
+        '200':
+          description: return array of dmdii projects
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiProject'
+  '/dmdiiprojects/{projectId}':
+   get:
+     tags:
+       - dmdii projects
+     description: Get dmdii project by id
+     operationId: findDmdiiProjectById
+     parameters:
+       - name: projectId
+         in: path
+         type: string
+         description: ID of the project
+         required: true
+     responses:
+        '200':
+          description: return single dmdii project
+          schema:
+            $ref: '#/definitions/DmdiiProject'
+  '/dmdiiMembers':
+   get:
+     tags:
+       - dmdii members
+     description: Get all dmdii members
+     operationId: getDmdiiMembers
+     parameters:
+       - name: pageSize
+         in: query
+         description: Limit items
+         type: integer
+         required: true
+       - name: page
+         in: query
+         description: Offset
+         type: integer
+         required: true
+       - name: _order
+         in: query
+         description: Order by ASC or DESC
+         type: string
+         collectionFormat: multi
+         required: false
+         enum:
+           - ASC
+           - DESC
+       - name: _sort
+         in: query
+         description: Sort by some parameter
+         type: string
+         required: false
+       - name: title_like
+         in: query
+         description: Filter by title
+         type: string
+     responses:
+        '200':
+          description: return array of dmdii members
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiMember'
+  '/dmdiiMembers/type':
+   get:
+     tags:
+       - dmdii members
+     description: Get all by category and/or tier dmdii members
+     operationId: getDmdiiMembersByType
+     parameters:
+       - name: pageSize
+         in: query
+         description: Limit items
+         type: integer
+         required: true
+       - name: page
+         in: query
+         description: Offset
+         type: integer
+         required: true
+       - name: _order
+         in: query
+         description: Order by ASC or DESC
+         type: string
+         collectionFormat: multi
+         required: false
+         enum:
+           - ASC
+           - DESC
+       - name: _sort
+         in: query
+         description: Sort by some parameter
+         type: string
+         required: false
+       - name: title_like
+         in: query
+         description: Filter by title
+         type: string
+       - name: categoryId
+         in: query
+         description: Filter by categoryId
+         type: integer
+         required: false
+       - name: tier
+         in: query
+         description: Filter by tier
+         type: integer
+         required: false
+     responses:
+        '200':
+          description: return array of dmdii members
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiMember'
+  '/dmdii_members/{memberId}':
+   get:
+     tags:
+        - dmdii members
+     description: Get dmdii member by id
+     operationId: findDmdiiMemberById
+     parameters:
+        - name: memberId
+          in: path
+          type: string
+          description: ID of the member
+          required: true
+     responses:
+        '200':
+          description: return single dmdii member
+          schema:
+            $ref: '#/definitions/DmdiiMember'
 definitions:
   PostFollowingMemeber:
     type: object
@@ -7020,9 +7406,9 @@ definitions:
       date:
         type: string
         format: dateTime
-      read: 
+      read:
         type: boolean
-      cleared: 
+      cleared:
         type: boolean
       linkParams:
         type: object
@@ -7100,6 +7486,11 @@ definitions:
         type: string
       description:
         type: string
+  Id:
+     type: object
+     properties:
+       id:
+         type: string
   CompanyHistory:
     type: object
     properties:
@@ -7143,7 +7534,7 @@ definitions:
       individual-discussionId:
         type: string
       accountId:
-        type: string
+        type: number
       full_name:
         type: string
       avatar:
@@ -7156,12 +7547,10 @@ definitions:
       reply:
         type: boolean
       commentId:
-        type: string
+        type: number
       like:
         type: number
       dislike:
-        type: number
-      projectId:
         type: number
   IndividualDiscussionCommentHelpful:
     type: object
@@ -7190,17 +7579,15 @@ definitions:
         type: string
       title:
         type: string
-      message:
-        type: string
       created_by:
         type: string
       created_at:
         type: number
         format: milliseconds
       accountId:
-        type: string
+        type: number
       projectId:
-        type: string
+        type: number
   IndividualDiscussionTag:
     type: object
     properties:
@@ -7313,6 +7700,23 @@ definitions:
         type: string
       pkg:
         $ref: '#/definitions/DomeEntity'
+  DomeModelParam:
+    type: object
+    properties:
+      type:
+        type: string
+      name:
+        type: string
+      unit:
+        type: string
+      category:
+        type: string
+      value:
+        type: object
+      parameterid:
+        type: string
+      instancename:
+        type: string
   DomeModelResponse:
     type: object
     properties:
@@ -7343,52 +7747,13 @@ definitions:
             items:
               type: number
       inParams:
-        type: object
-        properties:
-          localPath:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-              unit:
-                type: string
-              value:
-                type: string
-              parameterid:
-                type: string
-          inFile:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-              unit:
-                type: string
-              value:
-                type: string
-              parameterid:
-                type: string
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
       outParams:
-        type: object
-        properties:
-          outFilename:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-              unit:
-                type: string
-              value:
-                type: string
-              parameterid:
-                type: string
-              instancename:
-                type: string
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
       modelName:
         type: string
       modelDescription:
@@ -7648,7 +8013,7 @@ definitions:
         type: string
   PostSuggestCompany:
       type: object
-      properties:        
+      properties:
         companyId:
           type: string
   GetSuggestCompany:
@@ -7674,3 +8039,377 @@ definitions:
         type: string
       profileId:
         type: string
+  DmdiiProject:
+    type: object
+    properties:
+      id:
+        type: string
+      dmdiiProjectStatus:
+        type: object
+        properties:
+          DMDIIStatusId:
+            type: string
+          statusName:
+            type: string
+      primeOrganization:
+        type: object
+        properties:
+          DMDIIMemberId:
+            type: string
+          name:
+            type: string
+      principalInvestigator:
+        type: object
+        properties:
+          investigatorId:
+            type: string
+          name:
+            type: string
+      awardedDate:
+        type: string
+        format: dateTime
+      projectTitle:
+        type: string
+      projectSummary:
+        type: string
+      principalPointOfContact:
+        type: object
+        properties:
+          pocId:
+            type: string
+          name:
+            type: string
+          email:
+            type: string
+          phone:
+            type: string
+      contributingCompanies:
+        type: array
+        items:
+          type: object
+          properties:
+            DMDIIMemberId:
+              type: string
+            name:
+              type: string
+            companyId:
+              type: string
+            role:
+              type: string
+      updates:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            date:
+              type: string
+              format: dateTime
+      documents:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            url:
+              type: string
+      reports:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            reportId:
+              type: string
+            reportAuthor:
+              type: string
+            reportDate:
+              type: string
+              format: dateTime
+            usgApprovalStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            dmdiiCostAnalysisStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            ecApprovalStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            sowStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            ipPlanStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            migsStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+            eaaStatus:
+              type: object
+              properties:
+                id:
+                  type: string
+                statusName:
+                  type: string
+  DmdiiMember:
+    type: object
+    properties:
+      id:
+        type: string
+      startDate:
+        type: string
+        format: dateTime
+      expireDate:
+        type: string
+        format: dateTime
+      dmdiiType:
+        type: object
+        properties:
+          id:
+            type: string
+          memberDescription:
+            type: string
+      organization:
+        type: object
+        properties:
+          id:
+            type: string
+          accountId:
+            type: string
+          name:
+            type: string
+          location:
+            type: string
+          description:
+            type: string
+          email:
+            type: string
+          phone:
+            type: string
+          website:
+            type: string
+          category:
+            type: string
+          categoryTier:
+            type: string
+          dateJoining:
+            type: string
+            format: date
+          reasonJoining:
+            type: string
+          featureImage:
+            type: string
+          logoImage:
+            type: string
+          companyMembers:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                dmcUserId:
+                  type: string
+                companyRole:
+                  type: string
+          address:
+            type: object
+            properties:
+              id:
+                type: string
+              streetAddress1:
+                type: string
+              streetAddress2:
+                type: string
+              city:
+                type: string
+              state:
+                type: string
+              country:
+                type: string
+              zip:
+                type: string
+      rndFocii:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+      awards:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            link:
+              type: string
+      customers:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            link:
+              type: string
+      skills:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            tagName:
+              type: string
+            tagLink:
+              type: string
+      areasOfExpertise:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            link:
+              type: string
+      collaborations:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            date:
+              type: string
+              format: date
+            interest:
+              type: string
+      contacts:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: object
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+            email:
+              type: string
+      finances:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            assetUrl:
+              type: string
+            user:
+              type: object
+              properties:
+                id:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+      instituteInvolvements:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            staticLineItem:
+              type: string
+            date:
+              type: string
+              format: date
+            user:
+              type: object
+              properties:
+                id:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+      projects:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            projectName:
+              type: string
+            projectSummary:
+              type: string
+            link:
+              type: string

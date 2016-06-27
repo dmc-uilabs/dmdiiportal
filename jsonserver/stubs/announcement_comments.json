@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"announcementId": 1,
+		"accountId": 1,
+		"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
+		"created_at": "02/13/2016 10:18 AM"
+	},
+	{
+		"id": 2,
+		"announcementId": 1,
+		"accountId": 1,
+		"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
+		"created_at": "02/13/2016 10:18 AM"
+	},
+	{
+		"id": 3,
+		"announcementId": 2,
+		"accountId": 1,
+		"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor",
+		"created_at": "02/13/2016 10:18 AM"
+	}
+]

@@ -1,0 +1,233 @@
+[
+	{
+		"id": 2,
+		"title": "Capacitor Bank for LDR Mining Co.",
+		"type": "public",
+		"dueDate": 1454450400000,
+		"projectManager": "PDM Co.",
+		"projectManagerId": 2,
+		"companyId": 2,
+		"featureImage": {
+			"thumbnail": "/images/logo-ldr-mining.png",
+			"large": "/images/logo-ldr-mining.png"
+		},
+		"images": "/projects/2/images",
+		"description": "Build a Shunt power capacitor bank for an application at LDR industrial mining Co.to correct a medium  voltage power factor",
+		"tasks": {
+			"totalItems": 5,
+			"link": "/projects/2/tasks"
+		},
+		"discussions": {
+			"totalItems": 5,
+			"link": "/projects/2/discussions"
+		},
+		"services": {
+			"totalItems": 5,
+			"link": "/projects/2/services"
+		},
+		"approvalOption": "all"
+	},
+	{
+		"id": 4,
+		"title": "Incoming Compartment for LDR Mining",
+		"type": "private",
+		"dueDate": 1455544706000,
+		"projectManager": "PDM Co.",
+		"projectManagerId": 2,
+		"companyId": 1,
+		"featureImage": {
+			"thumbnail": "/images/project-incoming-compartment.png",
+			"large": "/images/project-incoming-compartment.png"
+		},
+		"images": "/projects/4/images",
+		"description": "Breakers, disconnect switches, transformers and ratings",
+		"tasks": {
+			"totalItems": 5,
+			"link": "/projects/4/tasks"
+		},
+		"discussions": {
+			"totalItems": 5,
+			"link": "/projects/4/discussions"
+		},
+		"services": {
+			"totalItems": 5,
+			"link": "/projects/4/services"
+		},
+		"approvalOption": "admin"
+	},
+	{
+		"id": 1,
+		"title": "Control Compartment for LDR Mining",
+		"type": "public",
+		"dueDate": 1458081477000,
+		"projectManager": "PDM Co.",
+		"projectManagerId": 2,
+		"companyId": 2,
+		"featureImage": {
+			"thumbnail": "/images/project_relay_controller.png",
+			"large": "/images/project_relay_controller.png"
+		},
+		"description": "PLC and other metering and control, communication and indication devices",
+		"tasks": {
+			"totalItems": 5,
+			"link": "/projects/1/tasks"
+		},
+		"discussions": {
+			"totalItems": 5,
+			"link": "/projects/1/discussions"
+		},
+		"services": {
+			"totalItems": 5,
+			"link": "/projects/1/services"
+		},
+		"approvalOption": "admin"
+	},
+	{
+		"id": 3,
+		"title": "Capacitor Design",
+		"type": "public",
+		"dueDate": 1455544706321,
+		"projectManager": "PDM. Co",
+		"projectManagerId": 2,
+		"companyId": 2,
+		"featureImage": {
+			"thumbnail": "/images/project_capacitor_compartment.png",
+			"large": "/images/project_capacitor_compartment.png"
+		},
+		"images": "/projects/3/images",
+		"description": "Capacitor, fuses, switching device and reactors",
+		"tasks": {
+			"totalItems": 0,
+			"link": "/projects/3/tasks"
+		},
+		"discussions": {
+			"totalItems": 0,
+			"link": "/projects/3/discussions"
+		},
+		"services": {
+			"totalItems": 0,
+			"link": "/projects/3/services"
+		},
+		"approvalOption": "all"
+	},
+	{
+		"id": 5,
+		"title": "Low Heat Loss Transformer",
+		"type": "public",
+		"dueDate": 1455544706321,
+		"projectManager": "R.Palmer",
+		"projectManagerId": 1,
+		"companyId": 1,
+		"featureImage": {
+			"thumbnail": "/images/project_ge_transformer.png",
+			"large": "/images/project_ge_transformer.png"
+		},
+		"images": "/projects/5/images",
+		"description": "Power transformer with improved heat losses relative to a standard iron core transformer. Cost and time to delivery are also critical. See attached documents for detailed specs. Evaluator Service encompasses how the trade-offs will be valued among heat loss, cost, and delivery time.",
+		"tasks": {
+			"totalItems": 0,
+			"link": "/projects/5/tasks"
+		},
+		"discussions": {
+			"totalItems": 0,
+			"link": "/projects/5/discussions"
+		},
+		"services": {
+			"totalItems": 0,
+			"link": "/projects/5/services"
+		},
+		"approvalOption": "all"
+	},
+	{
+		"title": "Test project",
+		"type": "private",
+		"dueDate": 1457647200000,
+		"projectManager": "DMC member",
+		"projectManagerId": 1,
+		"companyId": 1,
+		"featureImage": {
+			"thumbnail": "/images/project_relay_controller.png",
+			"large": "/images/project_relay_controller.png"
+		},
+		"description": "Description",
+		"id": 6,
+		"tasks": {
+			"totalItems": 0,
+			"link": "/projects/6/tasks"
+		},
+		"discussions": {
+			"totalItems": 0,
+			"link": "/projects/6/discussions"
+		},
+		"services": {
+			"totalItems": 0,
+			"link": "/projects/6/services"
+		},
+		"tags": {
+			"totalItems": 0,
+			"link": "/projects/6/projects_tags"
+		},
+		"approvalOption": "all"
+	},
+	{
+		"title": "Project",
+		"type": "private",
+		"dueDate": 1456783200000,
+		"projectManager": "DMC member",
+		"projectManagerId": 1,
+		"companyId": 1,
+		"featureImage": {
+			"thumbnail": "/images/project_relay_controller.png",
+			"large": "/images/project_relay_controller.png"
+		},
+		"description": 1,
+		"id": 8,
+		"tasks": {
+			"totalItems": 0,
+			"link": "/projects/8/tasks"
+		},
+		"discussions": {
+			"totalItems": 0,
+			"link": "/projects/8/discussions"
+		},
+		"services": {
+			"totalItems": 0,
+			"link": "/projects/8/services"
+		},
+		"tags": {
+			"totalItems": 0,
+			"link": "/projects/8/projects_tags"
+		}
+	},
+	{
+		"title": "Test project",
+		"type": "public",
+		"dueDate": 1456783200000,
+		"projectManager": "DMC member",
+		"projectManagerId": 1,
+		"companyId": 1,
+		"approvalOption": "admin",
+		"featureImage": {
+			"thumbnail": "/images/project_relay_controller.png",
+			"large": "/images/project_relay_controller.png"
+		},
+		"description": 123,
+		"id": 9,
+		"tasks": {
+			"totalItems": 0,
+			"link": "/projects/9/tasks"
+		},
+		"discussions": {
+			"totalItems": 0,
+			"link": "/projects/9/discussions"
+		},
+		"services": {
+			"totalItems": 0,
+			"link": "/projects/9/services"
+		},
+		"tags": {
+			"totalItems": 0,
+			"link": "/projects/9/projects_tags"
+		}
+	}
+]

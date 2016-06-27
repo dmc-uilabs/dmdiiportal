@@ -1,0 +1,32 @@
+[
+	{
+		"companyId": 1,
+		"position": 9,
+		"serviceId": 15,
+		"id": 1
+	},
+	{
+		"companyId": 1,
+		"position": 10,
+		"serviceId": 9,
+		"id": 2
+	},
+	{
+		"companyId": 1,
+		"position": 11,
+		"serviceId": 16,
+		"id": 3
+	},
+	{
+		"companyId": 1,
+		"position": 12,
+		"serviceId": 4,
+		"id": 4
+	},
+	{
+		"companyId": 1,
+		"position": 13,
+		"serviceId": 3,
+		"id": 5
+	}
+]
