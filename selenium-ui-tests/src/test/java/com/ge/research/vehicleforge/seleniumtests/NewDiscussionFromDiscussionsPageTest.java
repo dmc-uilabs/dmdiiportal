@@ -40,7 +40,7 @@ public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	    driver.findElement(By.xpath("//button[2]")).click();
 	    
 	    //attempt to reply to the discussion
-	    WebElement reply = driver.findElement(By.linkText("Reply"));
+	    WebElement reply = driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[1]/div/div[2]/div[3]/div[1]/div/a[1]"));
 	    if(reply.isEnabled()){
 	    	reply.sendKeys(Keys.ENTER);;
 		}else{
