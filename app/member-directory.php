@@ -48,7 +48,6 @@
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/hammerjs/hammer.js"></script>
     <script src="/bower_components/angular-carousel/angular-carousel.js"></script>
-    <script src="/bower_components/angular-clndr/angular-clndr.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="/bower_components/moment/moment.js"></script>
     <script src="/bower_components/clndr/clndr.min.js"></script>
@@ -80,10 +79,11 @@
     <script src="/bower_components/angular-ui-sortable/sortable.min.js"></script>
     <script src="/bower_components/ng-autofocus/dist/ng-autofocus.js"></script>
     <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/bower_components/angular-clndr/angular-clndr.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/members/index.js -->
+    <!-- build:js scripts/member-directory/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>

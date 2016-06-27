@@ -163,90 +163,106 @@ angular.module('dmc.members')
 
             // insert response data to array of marketplace items
             var insertData = function(data){
-                totalCountItems = {
-                    all: 0, tier: { one: 0, two: 0 }, type: { industry: 0, government: 0, academic: 0, nonprofit: 0 }, activeProjects: { yes: 0, no: 0 }
-                };
+                // totalCountItems = {
+                //     all: 0, tier: { one: 0, two: 0 }, type: { industry: 0, government: 0, academic: 0, nonprofit: 0 }, activeProjects: { yes: 0, no: 0 }
+                // };
 
-                for (var i in data){
-
-                    totalCountItems.all++;
-                    if (data[i].organization.categoryTier === 1) {
-                        totalCountItems.tier.one++;
-                    } else if(data[i].organizaiton.categoryTier === 2){
-                        totalCountItems.tier.two++;
-                    }
-
-                    if(data[i].organization.category === 'Industry'){
-                        totalCountItems.type.industry++;
-                    } else if(data[i].organization.category === 'Government'){
-                        totalCountItems.type.government++;
-                    } else if(data[i].organization.category === 'Academic'){
-                        totalCountItems.type.academic++;
-                    }
-
-                    if (data[i].projects.find(function(project) {
-						return project.status === 'active';
-					})) {
-                        totalCountItems.activeProjects.yes++;
-						data[i].hasActiveProjects = 'Yes';
-                    } else {
-                        totalCountItems.activeProjects.no++;
-						data[i].hasActiveProjects = 'No';
-                    }
-                }
+                // for (var i in data){
+                //
+                //     totalCountItems.all++;
+                //     if (data[i].organization.categoryTier === 1) {
+                //         totalCountItems.tier.one++;
+                //     } else if(data[i].organizaiton.categoryTier === 2){
+                //         totalCountItems.tier.two++;
+                //     }
+                //
+                //     if(data[i].organization.category === 'Industry'){
+                //         totalCountItems.type.industry++;
+                //     } else if(data[i].organization.category === 'Government'){
+                //         totalCountItems.type.government++;
+                //     } else if(data[i].organization.category === 'Academic'){
+                //         totalCountItems.type.academic++;
+                //     }
+                //
+                //     if (data[i].projects.find(function(project) {
+				// 		return project.status === 'active';
+				// 	})) {
+                //         totalCountItems.activeProjects.yes++;
+				// 		data[i].hasActiveProjects = 'Yes';
+                //     } else {
+                //         totalCountItems.activeProjects.no++;
+				// 		data[i].hasActiveProjects = 'No';
+                //     }
+                // }
                 $scope.treeMenuModel = getMenu();
             }
 
 
-            $scope.news = [
-                {
-                    title: 'Recent News 1',
-                    content: 'This is the article content'
-                },
-                {
-                    title: 'Recent News 2',
-                    content: 'This is the article content'
-                },
-                {
-                    title: 'Recent News 3',
-                    content: 'This is the article content'
-                },
-                {
-                    title: 'Recent News 4',
-                    content: 'This is the article content'
-                }
-            ]
-            $scope.events = [
-                {
-                    date: '2016-06-16',
-                    title: 'this is the title',
-                    description: 'do the thing',
-                    location: ''
-                },
-                {
-                    date: '2016-06-17',
-                    title: 'this is the title',
-                    description: 'do the thing',
-                    location: ''
-                },
-                {
-                    date: '2016-06-18',
-                    title: 'this is the title',
-                    description: 'do the thing',
-                    location: ''
-                },
-                {
-                    date: '2016-06-18',
-                    title: 'this is the title',
-                    description: 'do the thing',
-                    location: ''
-                }
-            ]
+            // $scope.news = [
+            //     {
+            //         title: 'Recent News 1',
+            //         content: 'This is the article content'
+            //     },
+            //     {
+            //         title: 'Recent News 2',
+            //         content: 'This is the article content'
+            //     },
+            //     {
+            //         title: 'Recent News 3',
+            //         content: 'This is the article content'
+            //     },
+            //     {
+            //         title: 'Recent News 4',
+            //         content: 'This is the article content'
+            //     }
+            // ]
+            // $scope.events = [
+            //     {
+            //         date: '2016-06-16',
+            //         title: 'this is the title',
+            //         description: 'do the thing',
+            //         location: ''
+            //     },
+            //     {
+            //         date: '2016-06-17',
+            //         title: 'this is the title',
+            //         description: 'do the thing',
+            //         location: ''
+            //     },
+            //     {
+            //         date: '2016-06-18',
+            //         title: 'this is the title',
+            //         description: 'do the thing',
+            //         location: ''
+            //     },
+            //     {
+            //         date: '2016-06-18',
+            //         title: 'this is the title',
+            //         description: 'do the thing',
+            //         location: ''
+            //     }
+            // ]
             $scope.options = {
                 forceSixRows: true,
                 trackSelectedDate: true
             }
             $scope.showCalendar = false;
+
+            var eventsCallbackFunction = function(response) {
+                $scope.events = response.data;
+            }
+            $scope.getEvents = function(){
+                ajax.get(dataFactory.getDMDIIMember().events, {limit: 3}, eventsCallbackFunction);
+            };
+            $scope.getEvents();
+
+            var newsCallbackFunction = function(response) {
+                $scope.news = response.data;
+            }
+            $scope.getNews = function(){
+                ajax.get(dataFactory.getDMDIIMember().news, {limit: 3}, newsCallbackFunction);
+            };
+            $scope.getNews();
 
             $scope.toggleCalendar = function() {
                 if ($scope.showCalendar) {
@@ -284,10 +300,10 @@ angular.module('dmc.members')
             var responseData = function(){
                 var data = {
                     pageSize : $scope.memberPageSize,
-                    page : $scope.memberCurrentPage
+                    page : $scope.memberCurrentPage,
                     // _order: $scope.sortDir,
                     // _sort: $scope.sortBy,
-                    // name_like : $scope.searchModel
+                    name_like : $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.tier)) data.tier = $stateParams.tier
                 if(angular.isDefined($stateParams.type)) data.categoryId = $stateParams.type;

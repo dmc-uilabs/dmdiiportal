@@ -451,14 +451,18 @@ angular.module('dmc.data',[])
             getDMDIIMember: function(id) {
                 return {
                     get: localhost+'dmdiiMember/'+ id,
-                    all: localhost+'dmdiiMember'
+                    all: localhost+'dmdiiMember',
+                    events: localhost+'dmdiiMember/events',
+                    news: localhost+'dmdiiMember/news'
                 }
 
             },
             getDMDIIProject: function(id) {
                 return {
                     get: localhost+'dmdiiprojects/' + id,
-                    all: localhost+'dmdiiprojects'
+                    all: localhost+'dmdiiprojects',
+                    events: localhost+'dmdiiprojects/events',
+                    news: localhost+'dmdiiprojects/news'
                 }
             },
             // companies ------------------

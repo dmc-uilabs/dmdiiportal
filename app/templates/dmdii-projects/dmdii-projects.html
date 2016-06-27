@@ -9,9 +9,9 @@
             <div class="newsAndEvents" layout="column">
                 <div class="news slim-margin">
                     <h2>Recent News</h2>
-                    <div>
-                        <h3 class="no-bottom">Headline 1</h3>
-                        <p>descript</p>
+                    <div ng-repeat="item in news">
+                        <h3 class="no-bottom">{{item.title}} {{item.dateCreated}}</h3>
+                        <p>{{item.content}}</p>
                         <md-divider></md-divider>
                     </div>
                 </div>
@@ -19,13 +19,15 @@
 
             <div layout="column" layout-padding layout-align="start">
                 <div layout="row" layout-padding layout-align="center stretch">
-                    <div flex="33" layout="row" layout-align="center">
+                    <div flex="33" layout-align="center">
+                        <h3>Projects Overview</h3>
                         <md-icon>
-                            <ng-md-icon class="calendarIcon" icon="event" size="48"></ng-md-icon>
+                            <ng-md-icon icon="event" size="48"></ng-md-icon>
                         </md-icon>
                     </div>
 
-                    <div layout="row" layout-align="center center" flex="33">
+                    <div layout-align="center center" flex="33">
+                        <h3>Projects Status</h3>
                         <md-icon>
                             <ng-md-icon icon="map" size="48"></ng-md-icon>
                         </md-icon>
@@ -108,17 +110,16 @@
                         <tbody>
                         <tr ng-repeat="project in projects.arr">
                             <td class="title-project">
-                                <h4>{{project.projectRootNumber}}-{{project.projectCallNumber}}-{{project.projectNumber}}</h4>
+                                <h4>{{project.projectIdentifier}}</h4>
                                 <a class="no-bottom no-top" ng-href="{{'/dmdii-project-page.php#/'+project.id}}"><h3 class="no-bottom no-top">{{project.projectTitle}}</h3></a>
-                                <a class="no-bottom no-top" ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h5 class="project-lead no-bottom no-top">{{project.primeOrganization.name}}</h5></a>
-                                <p class="description">{{project.projectSummary}}</p>
+                                <a class="no-bottom no-top" ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h5 class="project-lead no-bottom no-top">{{project.primeOrganization.organization.name}}</h5></a>
                             </td>
-                            <td>{{project.status.name}}</td>
+                            <td>{{project.projectStatus.name}}</td>
                             <td>
-                                {{project.focusArea.name}}
+                                {{project.projectFocusArea.name}}
                             </td>
                             <td>
-                                {{project.thrust.name}}
+                                {{project.projectThrust.name}}
                             </td>
                         </tr>
                         <tr ng-if="tasks.length == 0">
