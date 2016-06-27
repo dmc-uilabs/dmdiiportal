@@ -5265,32 +5265,11 @@ paths:
           description: Id account
           required: true
           type: string
-        - name: _limit
-          in: query
-          description: Limit items
-          type: integer
-          required: false
-        - name: _order
-          in: query
-          description: Order by ASC or DESC
-          type: string
-          collectionFormat: multi
-          required: false
-          enum:
-            - ASC
-            - DESC
-        - name: _sort
-          in: query
-          description: Sort by some parameter
-          type: string
-          required: false
       responses:
         '200':
           description: return individual discussions comment helpful
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/IndividualDiscussionCommentHelpful'
+            $ref: '#/definitions/IndividualDiscussionCommentHelpful'
     post:
       tags:
         - discussion
@@ -5301,7 +5280,7 @@ paths:
         - in: body
           name: IndividualDiscussionCommentHelpful
           description: Individual comments helpful
-          required: false
+          required: true
           schema:
             $ref: '#/definitions/IndividualDiscussionCommentHelpful'
       responses:
@@ -5324,6 +5303,7 @@ paths:
           required: true
         - name: helpful
           in: body
+          required: true
           schema:
             $ref: '#/definitions/IndividualDiscussionCommentHelpful'
       responses:
@@ -7500,7 +7480,7 @@ definitions:
         type: string
       accountId:
         type: string
-      helpfull:
+      helpful:
         type: boolean
   IndividualDiscussionCommentFlagged:
     type: object
