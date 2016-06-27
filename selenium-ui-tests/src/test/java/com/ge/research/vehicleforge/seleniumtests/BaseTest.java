@@ -76,6 +76,7 @@ public abstract class BaseTest {
 		}
 
 		log.log(Level.INFO,"version name is: " + version);
+		baseUrl = System.getProperty("baseUrl");
 
 	
 	}
