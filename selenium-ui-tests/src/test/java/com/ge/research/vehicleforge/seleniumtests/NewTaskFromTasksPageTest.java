@@ -12,9 +12,6 @@ public class NewTaskFromTasksPageTest extends BaseTest{
 	public void testNewTaskFromTasksPage() throws Exception {
 		
 		String header = TestUtils.getHeader();  
-		
-		
-
 		driver.get(baseUrl + "/project.php#/3/tasks");
 		// ERROR: Caught exception [Error: locator strategy either id or name must be specified explicitly.]
 		driver.findElement(By.id("input_6")).clear();

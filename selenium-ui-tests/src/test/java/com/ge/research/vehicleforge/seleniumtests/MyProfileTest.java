@@ -15,9 +15,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MyProfileTest extends BaseTest{
 	
-	
-	
-	
 	public void myProfile() throws Exception{
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
 		WebDriverWait wait = new WebDriverWait(driver, 20);
@@ -26,8 +23,7 @@ public class MyProfileTest extends BaseTest{
 	    log.log(Level.INFO,"Get current title:" + driver.getTitle());
 	    assertEquals("Profile", driver.getTitle());	
 	}
-	
-	//@Test
+
 	public void testMyProfile() throws Exception{
 		//navigate to myProfile
 		myProfile();

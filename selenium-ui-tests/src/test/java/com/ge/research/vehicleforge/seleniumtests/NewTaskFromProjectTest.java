@@ -14,9 +14,7 @@ public class NewTaskFromProjectTest extends BaseTest {
 		
 		String header = TestUtils.getHeader();  
 		
-		// This is the SVG xpath I need to use. 
-		// /html/body/div[2]/ui-view/div[2]/div/div[1]/div[3]/div[1]/md-toolbar/div/a[1]/ng-md-icon/svg
-
+		
 		driver.get(baseUrl + "/project.php#/5/home");
 		driver.findElement(By.xpath("//html/body/div[2]/ui-view/div[2]/div/div[1]/div[3]/div[1]/md-toolbar/div/a[1]/ng-md-icon/svg")).click();
 		// ERROR: Caught exception [Error: locator strategy either id or name must be specified explicitly.]

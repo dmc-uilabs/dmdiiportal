@@ -32,7 +32,6 @@ public class IndividualDiscussionTest extends BaseTest{
 
 	@Test
 	public void testIndividualDiscussion() throws Exception {
-		//this.setUp();
 		String header = TestUtils.getHeader();
 		driver.get(baseUrl + "/my-projects.php#/");
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -42,7 +41,7 @@ public class IndividualDiscussionTest extends BaseTest{
 		if(clickViewAll.isEnabled()){
 			clickViewAll.sendKeys(Keys.ENTER);;
 		}else{
-			log.log(Level.INFO,"Can not click the button View All!!!");
+			log.log(Level.SEVERE,"Can not click the button View All!!!");
 		}
 		
 		String projectsPage = driver.getCurrentUrl();
@@ -70,7 +69,7 @@ public class IndividualDiscussionTest extends BaseTest{
 	    if(likeButton.isEnabled()){
 	    	likeButton.sendKeys(Keys.ENTER);;
 		}else{
-			log.log(Level.INFO,"Can not click the button Like!!!");
+			log.log(Level.SEVERE,"Can not click the button Like!!!");
 		}
 	    
 	    assertTrue(likeButton.isEnabled());
@@ -79,7 +78,7 @@ public class IndividualDiscussionTest extends BaseTest{
 	    if(dislikeButton.isEnabled()){
 	    	dislikeButton.sendKeys(Keys.ENTER);;
 		}else{
-			log.log(Level.INFO,"Can not click the button Dislike!!!");
+			log.log(Level.SEVERE,"Can not click the button Dislike!!!");
 		}
 	    
 	    assertTrue(dislikeButton.isEnabled());
@@ -88,7 +87,7 @@ public class IndividualDiscussionTest extends BaseTest{
 	    if(followUnfollowButton.isEnabled()){
 	    	followUnfollowButton.sendKeys(Keys.ENTER);;
 		}else{
-			log.log(Level.INFO,"Can not click the button Follow!!!");
+			log.log(Level.SEVERE,"Can not click the button Follow!!!");
 		} 
 	    
 	    String firstClick = followUnfollowButton.getText();
@@ -96,7 +95,7 @@ public class IndividualDiscussionTest extends BaseTest{
 	    if(followUnfollowButton.isEnabled()){
 	    	followUnfollowButton.sendKeys(Keys.ENTER);;
 		}else{
-			log.log(Level.INFO,"Can not click the button Unfollow!!!");
+			log.log(Level.SEVERE,"Can not click the button Unfollow!!!");
 		}
 	    String secondClick = followUnfollowButton.getText();
 	    assertTrue((firstClick.equals("FOLLOW") && secondClick.equals("UNFOLLOW")) 

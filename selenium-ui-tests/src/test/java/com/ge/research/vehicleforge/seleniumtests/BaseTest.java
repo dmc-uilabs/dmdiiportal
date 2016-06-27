@@ -77,8 +77,7 @@ public abstract class BaseTest {
 
 		log.log(Level.INFO,"version name is: " + version);
 
-		/* driver = new HtmlUnitDriver(version);
-            driver.setJavascriptEnabled(TestUtils.ENABLE_JAVASCRIPT);*/
+	
 	}
 
 
@@ -93,9 +92,9 @@ public abstract class BaseTest {
 			driver.get(baseUrl);
 
 		} catch (Exception e) {
-			log.log(Level.INFO,"*** TEST Failure New***");
-			log.log(Level.INFO,"URL : " + driver.getCurrentUrl());
-			log.log(Level.INFO,"Title : " + driver.getTitle());
+			log.log(Level.SEVERE,"*** TEST Failure New***");
+			log.log(Level.SEVERE,"URL : " + driver.getCurrentUrl());
+			log.log(Level.SEVERE,"Title : " + driver.getTitle());
 
 			fail(e.getLocalizedMessage());
 		}
@@ -121,7 +120,7 @@ public abstract class BaseTest {
 	 * Test the login page that protects the overall site from public access.
 	 */
 
-    //@Test
+
     public final void testPublicLoginProtection() throws Exception {
 
     	try {
@@ -145,9 +144,9 @@ public abstract class BaseTest {
 			 **/
 
 		} catch (Exception e) {
-			log.log(Level.INFO,"*** TEST Failure ***");
-			log.log(Level.INFO,"URL : " + driver.getCurrentUrl());
-			log.log(Level.INFO,"Title : " + driver.getTitle());
+			log.log(Level.SEVERE,"*** TEST Failure ***");
+			log.log(Level.SEVERE,"URL : " + driver.getCurrentUrl());
+			log.log(Level.SEVERE,"Title : " + driver.getTitle());
 
 			fail(e.getLocalizedMessage());
 		}
@@ -185,7 +184,7 @@ public abstract class BaseTest {
   
 
 
-   // @Test
+
     public void testDMCLogin() throws Exception{
     	if (TestUtils.CREDENTIAL_GATEWAY_REQUIRED) {
             testPublicLoginProtection();
@@ -215,28 +214,7 @@ public abstract class BaseTest {
 	    driver.findElement(By.id("signIn")).click();
 	    log.log(Level.INFO,"*** TEST Completed ***");
 
-	 /*   driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-	    //driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-	    driver.findElement(By.id("input_2")).clear();
-	    driver.findElement(By.id("input_2")).sendKeys("Test First Name");
-	    driver.findElement(By.id("input_3")).clear();
-	    driver.findElement(By.id("input_3")).sendKeys("Test Last Name");
-	    driver.findElement(By.id("input_4")).clear();
-	    driver.findElement(By.id("input_4")).sendKeys("dmcuser01@gmail.com");
-	    driver.findElement(By.id("select_6")).click();
-	    driver.findElement(By.id("select_option_8")).click();
-	    driver.findElement(By.xpath("//div[2]/button")).click();
-	    driver.findElement(By.xpath("//div[2]/button")).click();
-
-
-
-	    log.log(Level.INFO,"The title after login is:" + driver.getTitle());
-	    log.log(Level.INFO,"The current URL after login : " + driver.getCurrentUrl());
-	    assertEquals("Onboarding", driver.getTitle());
-	    assertEquals("Welcome to the Digital Manufacturing Commons A collaboration community to drive advanced system engineering.",
-	    		driver.findElement(By.xpath("//md-content/div/div")).getText());
-
-	    assertEquals("Welcome to the Digital Manufacturing Commons A collaboration community to drive advanced system engineering.", driver.findElement(By.xpath("//md-content/div/div")).getText());*/
+	
     }
 
 }

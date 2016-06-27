@@ -7,9 +7,7 @@ import org.openqa.selenium.*;
 
 
 public class NewDiscussionFromProjectsPageTest extends BaseTest{
-
-
-
+	
 	@Test
 	public void testNewDiscussionFromProjectsPage() throws Exception {
 		String header = TestUtils.getHeader();
@@ -62,9 +60,6 @@ public class NewDiscussionFromProjectsPageTest extends BaseTest{
 		String table = driver.findElement(By.xpath("/html/body/div[2]/ui-view/div[2]/div/div[1]/div[2]/div[2]/md-content")).getText();
 
 		assertTrue(table.contains(discussionName));
-
-
-
 
 	}
 }

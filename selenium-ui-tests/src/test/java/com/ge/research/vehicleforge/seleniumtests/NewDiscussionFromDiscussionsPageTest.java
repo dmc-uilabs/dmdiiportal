@@ -42,7 +42,7 @@ public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	    if(reply.isEnabled()){
 	    	reply.sendKeys(Keys.ENTER);;
 		}else{
-			log.log(Level.INFO,"Can not click the button Reply!!!");
+			log.log(Level.SEVERE,"Can not click the button Reply!!!");
 		}
 	    driver.findElement(By.xpath("//textarea")).clear();
 	    driver.findElement(By.xpath("//textarea")).sendKeys(discussionReply);

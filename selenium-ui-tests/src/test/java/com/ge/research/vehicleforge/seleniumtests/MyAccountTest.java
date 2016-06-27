@@ -28,8 +28,8 @@ public class MyAccountTest extends BaseTest {
 	}
 	
 	
-	//@Test
-	public void testMyAccountBascis() throws Exception{
+	
+	public void testMyAccountBasis() throws Exception{
 	    myAccount();
 		
 	    //edit firstName, lastName;
@@ -61,7 +61,7 @@ public class MyAccountTest extends BaseTest {
 	}
 	
 	
-	//@Test
+	
 	public void testMyAccountPrivacy() throws Exception{
 		//navigate to PRIVACY tab
 		driver.findElement(By.xpath("//md-list-item[2]/a/div/div")).click();
@@ -91,7 +91,7 @@ public class MyAccountTest extends BaseTest {
 	}
 	
 	
-	//@Test
+	
 	public void testMyAccountNotification() throws Exception{
 		//navigate to NOTIFICATIONS tab
 		driver.findElement(By.xpath("//md-list-item[3]/a/div/div")).click();
@@ -127,16 +127,9 @@ public class MyAccountTest extends BaseTest {
 	
 	
 	
-	//@Test
+	
 	public void testMyAccountServer() throws Exception{
-		//myAccount();
-		/*driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span")));
-        element.click();	    
-	    log.log(Level.INFO,"Get current title:" + driver.getTitle());
-	    assertEquals("Manage Account", driver.getTitle());	
-		*/
+		
 		
 		//navigate to SERVERS tab
 		driver.findElement(By.xpath("//md-list-item[4]/a/div/div")).click();
@@ -178,7 +171,7 @@ public class MyAccountTest extends BaseTest {
 	//To make test case run in order.
 	@Test
 	public void testMyAccount() throws Exception{
-		testMyAccountBascis();
+		testMyAccountBasis();
 		testMyAccountPrivacy();
 		testMyAccountNotification();
 		testMyAccountServer();
