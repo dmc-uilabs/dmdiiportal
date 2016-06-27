@@ -28,7 +28,6 @@
 <script src="/bower_components/jquery/dist/jquery.js"></script>
 <script src="/bower_components/angular/angular.js"></script>
 <script src="/bower_components/hammerjs/hammer.js"></script>
-<script src="bower_components/angular-us-map/src/us-map.js"></script>
 <script src="/bower_components/angular-carousel/angular-carousel.js"></script>
 <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="/bower_components/moment/moment.js"></script>

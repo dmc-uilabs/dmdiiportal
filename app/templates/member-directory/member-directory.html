@@ -80,13 +80,7 @@
                 <span flex></span>
 
                 <div class="map" layout="column" layout-align="center center" layout-padding flex="50">
-                    <us-map>
-                        <div ng-repeat="(state, members) in membersByState track by $index">
-                        <map-data state="{{state}}" color="#65AF3F"  hover-bg-color="#f5f7fa">
-                            <p ng-repeat="member in members">{{member.name}}</p>
-                        </map-data>
-                    </div>
-                    </us-map>
+                    
                 </div>
             </div>
         </md-content>

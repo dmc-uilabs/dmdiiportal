@@ -131,7 +131,7 @@ angular.module('dmc.members')
             };
 
             $scope.hasNext = function() {
-                return $scope.memberCurrentPage !== Math.ceil($scope.totalRecords / $scope.memberPageSize);
+                return $scope.memberCurrentPage !== Math.ceil($scope.members.count / $scope.memberPageSize);
             };
 
             var responseData = {
@@ -159,7 +159,6 @@ angular.module('dmc.members')
 
             // insert response data to array of marketplace items
             var insertData = function(data){
-<<<<<<< HEAD
                 $scope.membersByState = {};
                 angular.forEach(data, function(member) {
                     if (!$scope.membersByState[member.organization.address.state]) {
@@ -167,7 +166,7 @@ angular.module('dmc.members')
                     } else {
                         $scope.membersByState[member.organization.address.state].push({name: member.organization.name, id: member.organization.id});
                     }
-                })
+                });
             }
 
             $scope.options = {
@@ -221,11 +220,13 @@ angular.module('dmc.members')
             }
             // callback for services
             var callbackFunction = function(response){
-                $scope.members.arr = response.data;
 				$scope.membersLoading = false;
                 if (response.data.count) {
+                    $scope.members.arr = response.data.data;
+                    $scope.members.count = response.data.count;
                     insertData(response.data.data);
                 } else {
+                    $scope.members.arr = response.data;
                     insertData(response.data);
                 }
             };

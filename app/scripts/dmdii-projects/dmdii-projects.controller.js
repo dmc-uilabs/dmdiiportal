@@ -218,16 +218,7 @@ angular.module('dmc.dmdiiProjects')
                     }
                 };
 
-                // for (var i in data){
-                //     totalCountItems.all++;
-                //     if (data[i].dmdiiProjectStatus.statusName === 'Preaward') {
-                //         totalCountItems.status.preaward++;
-                //     } else if(data[i].dmdiiProjectStatus.statusName === 'Awarded'){
-                //         totalCountItems.status.awarded++;
-                //     } else if(data[i].dmdiiProjectStatus.statusName === 'Completed'){
-                //         totalCountItems.status.completed++;
-                //     }
-                // }
+
                 $scope.treeMenuModel = getMenu();
 
             }
