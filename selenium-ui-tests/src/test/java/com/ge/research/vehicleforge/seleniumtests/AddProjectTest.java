@@ -3,6 +3,7 @@ package com.ge.research.vehicleforge.seleniumtests;
 import static org.junit.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -14,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AddProjectTest extends BaseTest{
 	WebDriverWait wait = new WebDriverWait(driver, 30);
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
 	
 	Integer projectNum =TestUtils.ran;
 	String projectName = "Test Project " + projectNum;
@@ -39,7 +41,8 @@ public class AddProjectTest extends BaseTest{
 		
 		accountProjectNav();
 		driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
-		WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("input_5")));
+		//WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("input_5")));
+		WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//md-content/form/md-input-container/input")));
 		e.clear();
 		e.sendKeys(projectName);
 		
@@ -70,7 +73,8 @@ public class AddProjectTest extends BaseTest{
 		if(next.isEnabled()){
 			next.sendKeys(Keys.ENTER);;
 		}else{
-			System.out.println("Can not click the button NEXT!!!");
+			//System.out.println("Can not click the button NEXT!!!");
+			LOGGER.info("The button NEXT is not clickable!");
 		}
 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
