@@ -3,6 +3,7 @@ package com.ge.research.vehicleforge.seleniumtests;
 import static org.junit.Assert.*;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -41,7 +42,7 @@ public class IndividualDiscussionTest extends BaseTest{
 		if(clickViewAll.isEnabled()){
 			clickViewAll.sendKeys(Keys.ENTER);;
 		}else{
-			System.out.println("Can not click the button View All!!!");
+			log.log(Level.INFO,"Can not click the button View All!!!");
 		}
 		
 		String projectsPage = driver.getCurrentUrl();
@@ -69,7 +70,7 @@ public class IndividualDiscussionTest extends BaseTest{
 	    if(likeButton.isEnabled()){
 	    	likeButton.sendKeys(Keys.ENTER);;
 		}else{
-			System.out.println("Can not click the button Like!!!");
+			log.log(Level.INFO,"Can not click the button Like!!!");
 		}
 	    
 	    assertTrue(likeButton.isEnabled());
@@ -78,7 +79,7 @@ public class IndividualDiscussionTest extends BaseTest{
 	    if(dislikeButton.isEnabled()){
 	    	dislikeButton.sendKeys(Keys.ENTER);;
 		}else{
-			System.out.println("Can not click the button Dislike!!!");
+			log.log(Level.INFO,"Can not click the button Dislike!!!");
 		}
 	    
 	    assertTrue(dislikeButton.isEnabled());
@@ -87,7 +88,7 @@ public class IndividualDiscussionTest extends BaseTest{
 	    if(followUnfollowButton.isEnabled()){
 	    	followUnfollowButton.sendKeys(Keys.ENTER);;
 		}else{
-			System.out.println("Can not click the button Follow!!!");
+			log.log(Level.INFO,"Can not click the button Follow!!!");
 		} 
 	    
 	    String firstClick = followUnfollowButton.getText();
@@ -95,7 +96,7 @@ public class IndividualDiscussionTest extends BaseTest{
 	    if(followUnfollowButton.isEnabled()){
 	    	followUnfollowButton.sendKeys(Keys.ENTER);;
 		}else{
-			System.out.println("Can not click the button Unfollow!!!");
+			log.log(Level.INFO,"Can not click the button Unfollow!!!");
 		}
 	    String secondClick = followUnfollowButton.getText();
 	    assertTrue((firstClick.equals("FOLLOW") && secondClick.equals("UNFOLLOW")) 

@@ -1,6 +1,7 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
 import org.junit.*;
 
@@ -41,7 +42,7 @@ public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	    if(reply.isEnabled()){
 	    	reply.sendKeys(Keys.ENTER);;
 		}else{
-			System.out.println("Can not click the button Reply!!!");
+			log.log(Level.INFO,"Can not click the button Reply!!!");
 		}
 	    driver.findElement(By.xpath("//textarea")).clear();
 	    driver.findElement(By.xpath("//textarea")).sendKeys(discussionReply);

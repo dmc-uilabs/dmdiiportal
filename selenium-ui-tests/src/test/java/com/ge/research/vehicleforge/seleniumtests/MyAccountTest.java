@@ -3,6 +3,8 @@ package com.ge.research.vehicleforge.seleniumtests;
 
 import static org.junit.Assert.*;
 
+import java.util.logging.Level;
+
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -21,7 +23,7 @@ public class MyAccountTest extends BaseTest {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span")));
         element.click();	    
-	    System.out.println("Get current title:" + driver.getTitle());
+	    log.log(Level.INFO,"Get current title:" + driver.getTitle());
 	    assertEquals("Manage Account", driver.getTitle());	
 	}
 	
@@ -132,7 +134,7 @@ public class MyAccountTest extends BaseTest {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span")));
         element.click();	    
-	    System.out.println("Get current title:" + driver.getTitle());
+	    log.log(Level.INFO,"Get current title:" + driver.getTitle());
 	    assertEquals("Manage Account", driver.getTitle());	
 		*/
 		

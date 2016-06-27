@@ -57,7 +57,7 @@ public abstract class BaseTest {
 		
 
 		log.log(Level.INFO, "set up");
-		System.out.println("Get browser from maven build: " + browserName);
+		log.log(Level.INFO,"Get browser from maven build: " + browserName);
 		String version = null;
 		if (browserName.equals("chrome")) {
 			version = "chrome";
@@ -75,7 +75,7 @@ public abstract class BaseTest {
 			fail("Unknown browser " + browserName);
 		}
 
-		System.out.println("version name is: " + version);
+		log.log(Level.INFO,"version name is: " + version);
 
 		/* driver = new HtmlUnitDriver(version);
             driver.setJavascriptEnabled(TestUtils.ENABLE_JAVASCRIPT);*/
@@ -93,15 +93,15 @@ public abstract class BaseTest {
 			driver.get(baseUrl);
 
 		} catch (Exception e) {
-			System.out.println("*** TEST Failure New***");
-			System.out.println("URL : " + driver.getCurrentUrl());
-			System.out.println("Title : " + driver.getTitle());
+			log.log(Level.INFO,"*** TEST Failure New***");
+			log.log(Level.INFO,"URL : " + driver.getCurrentUrl());
+			log.log(Level.INFO,"Title : " + driver.getTitle());
 
 			fail(e.getLocalizedMessage());
 		}
 
-		System.out.println("Initial URL : " + driver.getCurrentUrl());
-		System.out.println("Initial Title : " + driver.getTitle());
+		log.log(Level.INFO,"Initial URL : " + driver.getCurrentUrl());
+		log.log(Level.INFO,"Initial Title : " + driver.getTitle());
 
 	}
 
@@ -129,7 +129,7 @@ public abstract class BaseTest {
 
             driver.get(baseUrl);
 
-            System.out.println("The public login protection link URL : " + driver.getCurrentUrl());
+            log.log(Level.INFO,"The public login protection link URL : " + driver.getCurrentUrl());
             /**
 
             WebElement element = driver.findElement(By.name("user"));
@@ -145,9 +145,9 @@ public abstract class BaseTest {
 			 **/
 
 		} catch (Exception e) {
-			System.out.println("*** TEST Failure ***");
-			System.out.println("URL : " + driver.getCurrentUrl());
-			System.out.println("Title : " + driver.getTitle());
+			log.log(Level.INFO,"*** TEST Failure ***");
+			log.log(Level.INFO,"URL : " + driver.getCurrentUrl());
+			log.log(Level.INFO,"Title : " + driver.getTitle());
 
 			fail(e.getLocalizedMessage());
 		}
@@ -172,8 +172,8 @@ public abstract class BaseTest {
 		driver.findElement(By.xpath("//div[2]/button")).click();
 
 
-		System.out.println("The title after login is:" + driver.getTitle());
-		System.out.println("The current URL after login : " + driver.getCurrentUrl());
+		log.log(Level.INFO,"The title after login is:" + driver.getTitle());
+		log.log(Level.INFO,"The current URL after login : " + driver.getCurrentUrl());
 		assertEquals("Onboarding", driver.getTitle());
 		assertEquals("Welcome to the Digital Manufacturing Commons A collaboration community to drive advanced system engineering.", 
 				driver.findElement(By.xpath("//md-content/div/div")).getText());
@@ -213,7 +213,7 @@ public abstract class BaseTest {
 	    driver.findElement(By.id("Passwd")).clear();
 	    driver.findElement(By.id("Passwd")).sendKeys(System.getenv("credential_pass"));
 	    driver.findElement(By.id("signIn")).click();
-	    System.out.println("*** TEST Completed ***");
+	    log.log(Level.INFO,"*** TEST Completed ***");
 
 	 /*   driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 	    //driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
@@ -230,8 +230,8 @@ public abstract class BaseTest {
 
 
 
-	    System.out.println("The title after login is:" + driver.getTitle());
-	    System.out.println("The current URL after login : " + driver.getCurrentUrl());
+	    log.log(Level.INFO,"The title after login is:" + driver.getTitle());
+	    log.log(Level.INFO,"The current URL after login : " + driver.getCurrentUrl());
 	    assertEquals("Onboarding", driver.getTitle());
 	    assertEquals("Welcome to the Digital Manufacturing Commons A collaboration community to drive advanced system engineering.",
 	    		driver.findElement(By.xpath("//md-content/div/div")).getText());

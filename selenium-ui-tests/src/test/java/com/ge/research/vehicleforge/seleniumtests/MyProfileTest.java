@@ -3,6 +3,7 @@ package com.ge.research.vehicleforge.seleniumtests;
 import static org.junit.Assert.*;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -22,7 +23,7 @@ public class MyProfileTest extends BaseTest{
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[2]/a/span")));
         element.click();	    
-	    System.out.println("Get current title:" + driver.getTitle());
+	    log.log(Level.INFO,"Get current title:" + driver.getTitle());
 	    assertEquals("Profile", driver.getTitle());	
 	}
 	
@@ -103,7 +104,7 @@ public class MyProfileTest extends BaseTest{
 		driver.findElement(By.xpath("//textarea")).clear();
 		Integer commentNum =  TestUtils.ran;
 		driver.findElement(By.xpath("//textarea")).sendKeys("This is test comments!" + commentNum);
-		System.out.println(commentNum);
+		log.log(Level.INFO,commentNum.toString());
 		driver.findElement(By.xpath("//form/div[2]/button[2]")).click();
 		
 		driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
@@ -128,34 +129,34 @@ public class MyProfileTest extends BaseTest{
 		//test for sorting by Most Helpful
 		executor.executeScript("arguments[0].click();", e);
 		driver.findElement(By.xpath("//md-option[2]/div")).click();
-		//System.out.println(driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		//log.log(Level.INFO,driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
 		//assertEquals("Most Helpful", driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText()); 	
 		
 		//test for sorting by Highest to Lowest Rating
 		executor.executeScript("arguments[0].click();", e);
 		driver.findElement(By.xpath("//md-option[3]/div")).click();
-		//System.out.println(driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		//log.log(Level.INFO,driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
 		//assertEquals("Highest to Lowest Rating", driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
 		
 		
 		//test for sorting by Lowest to Highest Rating
 		executor.executeScript("arguments[0].click();", e);
 		driver.findElement(By.xpath("//md-option[4]/div")).click();
-		//System.out.println(driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		//log.log(Level.INFO,driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
 		//assertEquals("Lowest to Highest Rating", driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
 		
 		
 		//test for sorting by Verified Users
 		executor.executeScript("arguments[0].click();", e);
 		driver.findElement(By.xpath("//md-option[5]/div")).click();
-		//System.out.println(driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		//log.log(Level.INFO,driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
 		//assertEquals("Verified Users", driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
 		
 		
 		
 		executor.executeScript("arguments[0].click();", e);
 		driver.findElement(By.xpath("//md-option[2]/div")).click();
-		//System.out.println(driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
+		//log.log(Level.INFO,driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
 		//assertEquals("Most recent", driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
 		
 	}
