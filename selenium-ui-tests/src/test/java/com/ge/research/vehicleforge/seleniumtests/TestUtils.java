@@ -43,7 +43,6 @@ public class TestUtils {
 
 
     /**
-     * Uses java.net.URLEncoder to encode String as UTF-8.
      *
      * @param input String to encode.
      * @return UTF-8 encoded String.
