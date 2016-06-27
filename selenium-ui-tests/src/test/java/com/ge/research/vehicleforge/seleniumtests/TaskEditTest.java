@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class TaskEditTest extends BaseTest {
 	
+	@Ignore
 	@Test
 	public void testTaskEdit() throws Exception {
 		

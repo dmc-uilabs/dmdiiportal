@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class NewTaskFromProjectTest extends BaseTest {
 	
-
+	@Ignore
 	@Test
 	public void testNewTaskFromProject() throws Exception {
 		

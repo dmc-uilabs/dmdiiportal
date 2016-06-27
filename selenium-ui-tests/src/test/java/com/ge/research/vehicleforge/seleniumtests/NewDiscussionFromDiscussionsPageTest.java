@@ -23,7 +23,7 @@ public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	@Rule
 	 public ErrorCollector collector= new ErrorCollector();
 	private static Logger log = Logger.getGlobal();
-
+	
 	@Test
 	public void testNewDiscussion() throws Exception {
 		

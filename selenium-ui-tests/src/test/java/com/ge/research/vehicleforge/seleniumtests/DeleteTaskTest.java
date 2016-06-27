@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class DeleteTaskTest extends BaseTest{
 
-
+	@Ignore
 	@Test
 	public void testDeleteTask() throws Exception {
 		
