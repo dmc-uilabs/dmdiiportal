@@ -8,18 +8,24 @@
 	<h3>Adding a server allows you to include your services in projects and place them into the marketplace.</h3>
 	<form name="serverForm" autocomplete="off">
 		<div layout="row">
-			<div flex="50">
+			<div flex="40">
 				<md-input-container>
 					<label>Server name</label>
 					<input ng-model="newServer.name">
 				</md-input-container>
 			</div>
-			<div flex="50" class="ip-container">
+			<div flex="40" class="ip-container">
+                <md-input-container>
+                    <label>Server URL</label>
+                    <input ng-model="newServer.ip">
+                </md-input-container>
+                <ng-md-icon ng-show="changeIP(newServer.ip)" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
+            </div>
+            <div flex="20" class="ip-container">
 				<md-input-container>
-					<label>Server Host/IP</label>
-					<input ng-model="newServer.ip">
+					<label>Port</label>
+					<input ng-model="newServer.port" type="number">
 				</md-input-container>
-				<ng-md-icon ng-show="changeIP(newServer.ip)" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
 			</div>
 		</div>
 	</form>

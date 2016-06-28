@@ -25,7 +25,7 @@
 }
 
 .preview-header{
-  
+
     font-size: 24px;
 }
 
@@ -130,12 +130,16 @@
 .upload-service.correct-ip{
   position: absolute;
   bottom: 26px;
-  margin-left: -43px;
+  right: 10px;
   fill: #4CAF50;
   right: -5px;
   input{
     padding-right: 28px;
   }
+}
+
+.server-url-input {
+  margin-right: 15px;
 }
 
 .project-tags-list{

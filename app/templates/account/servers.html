@@ -17,10 +17,15 @@
                                 <input id="createServerAlias" ng-model="newServer.name">
                             </md-input-container>
                             <md-input-container>
-                                <label>Server Host/IP</label>
-                                <input ng-model="newServer.ip" ng-change="changeIP('new')">
+                                <label>Server URL</label>
+                                <input ng-model="newServer.ip" ng-change="changeIP('new')" class="server-url-input">
+                                <ng-md-icon ng-show="isCorrectNewIP" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
                             </md-input-container>
-                            <ng-md-icon ng-show="isCorrectNewIP" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
+                            <md-input-container>
+                                <label>Port</label>
+                                <input ng-model="newServer.port" type="number">
+                            </md-input-container>
+
                             <md-button class="md-raised close-add-server" ng-click="cancelAdding()" ng-show="isAddingServer">
                                 <ng-md-icon icon="cancel" fill="#333" size="21" aria-label="Close Adding"></ng-md-icon>
                                 Cancel
