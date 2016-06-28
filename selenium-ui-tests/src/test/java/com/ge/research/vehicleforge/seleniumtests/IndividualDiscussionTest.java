@@ -12,6 +12,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 
@@ -23,8 +25,9 @@ public class IndividualDiscussionTest extends BaseTest{
 		String header = TestUtils.getHeader();
 		driver.get(baseUrl + "/my-projects.php#/");
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		Thread.sleep(5000);
 		WebElement clickViewAll = 
-				driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div[2]/md-content[10]/div/div[2]/md-content[2]/div/a"));
+				driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div[2]/md-content[7]/div/div[2]/md-content[2]/div/a"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", clickViewAll);
 		if(clickViewAll.isEnabled()){
 			clickViewAll.sendKeys(Keys.ENTER);;
@@ -35,12 +38,13 @@ public class IndividualDiscussionTest extends BaseTest{
 		String projectsPage = driver.getCurrentUrl();
 		
 		WebElement numReplies = driver.findElement
-				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/"
-						+ "div[2]/md-data-table-container/table/tbody/tr[10]/td[2]"));
+				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/div[2]/md-data-table-container/table/tbody/tr[17]/td[2]"));
 		int replyCount = Integer.parseInt(numReplies.getText().split("\\s+")[0]);
+		log.log(Level.INFO, "reply count is " + replyCount);
 		
 		//find a discussion
 	    driver.findElement(By.linkText("Created from discussions project page")).click();
+	    Thread.sleep(2000);
 	    driver.findElement(By.linkText("Reply")).click();
 	    driver.findElement(By.xpath("//textarea")).clear();
 	    
@@ -54,12 +58,36 @@ public class IndividualDiscussionTest extends BaseTest{
 	    driver.findElement(By.xpath("//form/div/button")).click();
 	    
 	    //try flagging
-	    driver.findElement(By.linkText("Flag")).click();
-	    driver.findElement(By.xpath("//md-select")).click();
-	    driver.findElement(By.xpath("//md-option")).click();
+	    WebElement flag = driver.findElement(By.linkText("Flag"));
+	    jse.executeScript("arguments[0].scrollIntoView(true);", flag);
+	    if(flag.isEnabled()){
+	    	flag.sendKeys(Keys.ENTER);;
+		}else{
+			log.log(Level.SEVERE,"Can not click the link Flag!!!");
+		}
+	    WebElement reason = driver.findElement(By.xpath("//md-select"));
+	    jse.executeScript("arguments[0].scrollIntoView(true);", reason);
+	    if(reason.isEnabled()){
+	    	reason.sendKeys(Keys.ENTER);;
+		}else{
+			log.log(Level.SEVERE,"Can not click the link!!!");
+		}
+	    WebElement element = driver.findElement(By.xpath("//md-option"));
+	    jse.executeScript("arguments[0].scrollIntoView(true);", element);
+	    if(element.isEnabled()){
+	    	element.sendKeys(Keys.ENTER);;
+		}else{
+			log.log(Level.SEVERE,"Can not click the link!!!");
+		}
 	    driver.findElement(By.xpath("//textarea")).clear();
 	    driver.findElement(By.xpath("//textarea")).sendKeys(header + "selenium flag");
-	    driver.findElement(By.xpath("//form/div/div/button[2]")).click();
+	    WebElement flagSubmit = driver.findElement(By.xpath("//form/div/div/button[2]"));
+	    jse.executeScript("arguments[0].scrollIntoView(true);", flagSubmit);
+	    if(flagSubmit.isEnabled()){
+	    	flagSubmit.sendKeys(Keys.ENTER);;
+		}else{
+			log.log(Level.SEVERE,"Can not click the link!!!");
+		}
 	    
 	    //try clicking like button
 	    WebElement likeButton = driver.findElement(By.xpath("//div[4]/div[3]/div[2]/button"));
@@ -83,30 +111,27 @@ public class IndividualDiscussionTest extends BaseTest{
 	    
 	    
 	    //try using follow button
-	    WebElement followUnfollowButton = driver.findElement(By.xpath("//div/button"));
+	    
+	    WebElement followUnfollowButton = driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[1]/div/div[1]/button"));
 	    if(followUnfollowButton.isEnabled()){
-	    	followUnfollowButton.sendKeys(Keys.ENTER);;
+	    	jse.executeScript("arguments[0].scrollIntoView(true);", followUnfollowButton);
+	    	followUnfollowButton.sendKeys(Keys.ENTER);
 		}else{
 			log.log(Level.SEVERE,"Can not click the button Follow!!!");
 		} 
+	   
+	    String click = followUnfollowButton.getText();
 	    
-	    String firstClick = followUnfollowButton.getText();
-	    followUnfollowButton = driver.findElement(By.xpath("//div/button"));
-	    if(followUnfollowButton.isEnabled()){
-	    	followUnfollowButton.sendKeys(Keys.ENTER);;
-		}else{
-			log.log(Level.SEVERE,"Can not click the button Unfollow!!!");
-		}
-	    String secondClick = followUnfollowButton.getText();
-	    assertTrue((firstClick.equals("FOLLOW") && secondClick.equals("UNFOLLOW")) 
-	    		|| (firstClick.equals("UNFOLLOW") && secondClick.equals("FOLLOW")));
+	   
+	    assertTrue(click.toUpperCase().equals("UNFOLLOW"));
 
 	    //go to project page and verify that we have a new reply
 	    driver.get(projectsPage);
+	    Thread.sleep(5000);
 	    numReplies = driver.findElement
-				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/"
-						+ "div[2]/md-data-table-container/table/tbody/tr[10]/td[2]"));
+				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/div[2]/md-data-table-container/table/tbody/tr[17]/td[2]"));
 	    int newReplyCount = Integer.parseInt(numReplies.getText().split("\\s+")[0]);
+	    log.log(Level.INFO, "updated reply count is " + newReplyCount);
 	    assertEquals(newReplyCount, replyCount + 1);
 	}
 

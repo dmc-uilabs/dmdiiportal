@@ -19,7 +19,7 @@ public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	public void testNewDiscussion() throws Exception {
 		
 		String header = TestUtils.getHeader();
-		String discussionsPage = baseUrl + "/project.php#/1/discussions";
+		String discussionsPage = baseUrl + "project.php#/1/discussions";
 		driver.get(discussionsPage);
 		String discussionName = header + "testing for selenium";
 		String discussionMessage = header + "new discussion from discussions page";
@@ -39,8 +39,9 @@ public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	    driver.findElement(By.xpath("//div[2]/div/form/button")).click();
 	    driver.findElement(By.xpath("//button[2]")).click();
 	    
-	    //attempt to reply to the discussion
-	    WebElement reply = driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[1]/div/div[2]/div[3]/div[1]/div/a[1]"));
+	    //attempt to reply to the discussion   
+	    Thread.sleep(2000);
+	    WebElement reply = driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[1]/div/div[2]/div[3]/div[1]/div/a[1]"));;
 	    if(reply.isEnabled()){
 	    	reply.sendKeys(Keys.ENTER);;
 		}else{

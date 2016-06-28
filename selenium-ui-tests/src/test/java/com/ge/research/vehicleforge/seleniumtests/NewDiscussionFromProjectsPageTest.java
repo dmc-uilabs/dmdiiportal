@@ -40,6 +40,7 @@ public class NewDiscussionFromProjectsPageTest extends BaseTest{
 		driver.findElement(By.xpath("//div[2]/div/form/button")).click();
 		driver.findElement(By.xpath("//button[2]")).click();
 
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//div[3]/div/div/a")).click();
 		//write a reply
 		driver.findElement(By.xpath("//textarea")).clear();
@@ -77,7 +78,7 @@ public class NewDiscussionFromProjectsPageTest extends BaseTest{
 		
 		//check discussion list for new discussion
 		driver.get(projectsPage);
-		
+		Thread.sleep(5000);
 		String table = driver.findElement(By.xpath("/html/body/div[2]/ui-view/div[2]/div/div[1]/div[2]/div[2]/md-content")).getText();
 
 		assertTrue(table.contains(discussionName));
