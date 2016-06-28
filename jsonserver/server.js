@@ -45,8 +45,8 @@ server.use(jsonServer.rewriter({
     '/projects/:projectId/reject/:memberId': '/projects_members/:memberId',
     '/dmdiiMember/events': '/dmdiiMemberEvents',
     '/dmdiiMember/news': '/dmdiiMemberNews',
-    '/dmdiiprojects/events': '/dmdiiProjectEvents',
-    '/dmdiiprojects/news': '/dmdiiProjectNews'
+    '/dmdiiProject/events': '/dmdiiProjectEvents',
+    '/dmdiiProject/news': '/dmdiiProjectNews'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 

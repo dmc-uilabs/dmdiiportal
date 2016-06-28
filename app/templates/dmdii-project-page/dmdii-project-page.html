@@ -56,13 +56,25 @@
 								<h2>Principal Investigator</h2>
 								<div layout="column">
 									<h3 class="slim-margin no-bottom"><a ng-href="{{'/member-page.php#/'+project.principalInvestigator.id}}">{{project.principalInvestigator.firstName + ' ' + project.principalInvestigator.lastName}}</a></h3>
-									<span>{{project.principalInvestigator.email}}</span>
+									<span class="slim-margin">{{project.principalInvestigator.email}}</span>
+								</div>
+								<h2>DMDII Project Manager</h2>
+								<div layout="column">
+									<h3 class="slim-margin no-bottom"><a ng-href="{{'/member-page.php#/'+project.principalPointOfContact.id}}">{{project.principalPointOfContact.firstname + ' ' + project.principalPointOfContact.lastname}}</a></h3>
+									<span class="slim-margin">{{project.principalPointOfContact.email}}</span>
 								</div>
 							</div>
 							<div layout="column" flex="50">
 								<h2>Participants</h2>
+
+								<div layout="column">
+									<div layout="row">
+										<h3 class="slim-margin no-bottom"><a ng-href="{{'/member-page.php#/'+project.primeOrganization.id}}">{{project.primeOrganization.organization.name}}</a></h3>
+										<span class="slim-margin po-subtitle">(Prime Organization)</span>
+									</div>
+								</div>
 								<div layout="column" ng-repeat="member in project.contributingCompanies">
-									<h3 class="slim-margin no-bottom"><a ng-href="{{'/member-page.php#/'+member.companyId}}">{{member.organization.name}}</a></h3>
+									<h4 class="slim-margin no-bottom"><a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a></h3>
 								</div>
 							</div>
 						</div>

@@ -461,8 +461,8 @@ angular.module('dmc.data',[])
                 return {
                     get: localhost+'dmdiiprojects/' + id,
                     all: localhost+'dmdiiprojects',
-                    events: localhost+'dmdiiprojects/events',
-                    news: localhost+'dmdiiprojects/news'
+                    events: localhost+'dmdiiProject/events',
+                    news: localhost+'dmdiiProject/news'
                 }
             },
             // companies ------------------
