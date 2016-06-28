@@ -20,6 +20,7 @@ angular.module('dmc.member', [
     'dmc.common.footer',
 	'dmc.component.productscard',
 	'dmc.component.carousel',
+    'dmc.compare',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
 ])
