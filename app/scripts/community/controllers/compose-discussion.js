@@ -114,7 +114,7 @@ angular.module('dmc.compose-discussion',[])
                         "commentId" : 0,
                         "avatar": "/images/carbone.png",
                         "text": message,
-                        "created_at": moment(new Date).format("MM/DD/YYYY hh:mm A"),
+                        "created_at": moment(new Date).format("x"),
                         "userRatingReview": {
                             "DMC Member": "like"
                         },
