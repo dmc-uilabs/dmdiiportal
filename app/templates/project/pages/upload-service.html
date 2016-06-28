@@ -42,21 +42,25 @@
                 <div layout="row" ng-if="flagAddServer" layout-fill>
                     <form flex="100" novalidate name="addServer" ng-submit="saveServer(newServerModel)">
                         <div  layout="row" layout-align="center center">
-                            <md-input-container flex="35">
+                            <md-input-container flex="30">
                                 <label>Server Alias</label>
                                 <input ng-model="newServerModel.name" name="serverName" required>
                                 <div ng-messages="addServer.serverName.$error">
                                     <div ng-message="required">Server Alias is required.</div>
                                 </div>
                             </md-input-container>
-                            <md-input-container  flex="35">
-                                <label>Server Host/IP</label>
-                                <input ng-model="newServerModel.ip" name="serverIp" required>
+                            <md-input-container  flex="30">
+                                <label>Server URL</label>
+                                <input ng-model="newServerModel.ip" name="serverIp" class="server-url-input" required>
                                 <ng-md-icon ng-show="newServerModel.ip" class="upload-service correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
                                 <div ng-messages="addServer.serverIp.$error">
                                     <!-- <div ng-pattern='/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/' ng-message="pattern">x.x.x.x (x = 0-255)</div> -->
                                     <div ng-message="required">Server Host/IP is required.</div>
                                 </div>
+                            </md-input-container>
+                            <md-input-container  flex="10">
+                                <label>Port</label>
+                                <input ng-model="newServerModel.port" name="serverPort" type="number">
                             </md-input-container>
                             <md-input-container>
                                 <md-button ng-click="cancelServer()" class="md-raised add-server margin-left20">

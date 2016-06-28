@@ -1,15 +1,16 @@
 angular.module('dmc.onboarding')
-.controller('AccountController', 
-	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory', 'location', 
+.controller('AccountController',
+	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory', 'location',
 	function ($scope, $rootScope, $state, ajax, dataFactory, location) {
 		if($state.current.name == "onboarding.account"){
 			$state.go($scope.account[0].state);
 		}
         $scope.activePage = $state;
-		
-        $scope.newServer = { 
-            name: null, 
-            ip: null, 
+
+        $scope.newServer = {
+            name: null,
+            ip: null,
+            port: null,
             status: "offline",
             accountId: $scope.userData.accountId
         };
@@ -76,13 +77,20 @@ angular.module('dmc.onboarding')
         };
 
         $scope.addServer = function(){
+            var serverDetails = {
+                name: $scope.newServer.name,
+                ip: $scope.newServer.port != null ? $scope.newServer.ip + ':' + $scope.newServer.port : $scope.newServer.ip,
+                status: $scope.newServer.status,
+                accountId: $scope.newServer.accountId
+            }
             ajax.create(
-                dataFactory.serverURL().create, 
-                $scope.newServer,
+                dataFactory.serverURL().create,
+                serverDetails,
                 function (response) {
-                    $scope.newServer = { 
-                        name: null, 
-                        ip: null, 
+                    $scope.newServer = {
+                        name: null,
+                        ip: null,
+                        port: null,
                         status: "offline",
                         accountId: $scope.userData.accountId
                     };
