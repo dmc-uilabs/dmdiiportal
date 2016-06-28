@@ -38,6 +38,20 @@
 					"enable": true,
 					"value": "Schenectady"
 				}
+			},
+			"memberPortal": {
+				"email": {
+					"enable": false,
+					"value": null
+				},
+				"phone": {
+					"enable": false,
+					"value": null
+				},
+				"location": {
+					"enable": false,
+					"value": null
+				}
 			}
 		}
 	},
