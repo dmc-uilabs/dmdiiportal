@@ -5349,6 +5349,11 @@ paths:
           description: Id account
           required: true
           type: string
+        - in: query
+          name: comment
+          description: Comment related to flagging
+          required: true
+          type: string
       responses:
         '200':
           description: return individual discussions comment flagged
@@ -7571,6 +7576,8 @@ definitions:
       commentId:
         type: string
       accountId:
+        type: string
+      comment:
         type: string
   IndividualDiscussion:
     type: object

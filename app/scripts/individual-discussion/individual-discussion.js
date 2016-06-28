@@ -128,7 +128,7 @@ angular.module('dmc.individual-discussion', [
                             for(var i in response.data){
                                 response.data[i].created_at = moment(response.data[i].created_at).format("MM/DD/YYYY hh:mm A");
                                 $scope.get_helpful(response.data[i]);
-                            }                        
+                            }
                             comment['replyReviews'] = response.data;
                         }
                     )
@@ -226,7 +226,7 @@ angular.module('dmc.individual-discussion', [
                             {
                                 accountId: $rootScope.userData.accountId,
                                 commentId: item.id,
-                                helpful: true      
+                                helpful: true
                             },function(response){
                                 item.helpful = response.data;
                             }
@@ -269,7 +269,7 @@ angular.module('dmc.individual-discussion', [
                             {
                                 accountId: $rootScope.userData.accountId,
                                 commentId: item.id,
-                                helpful: false      
+                                helpful: false
                             },function(response){
                                 item.helpful = response.data;
                             }
@@ -359,7 +359,8 @@ angular.module('dmc.individual-discussion', [
                     ajax.create(dataFactory.addDiscussionCommentsFlagged(),
                         {
                             'commentId': id,
-                            'accountId': $rootScope.userData.accountId
+                            'accountId': $rootScope.userData.accountId,
+                            'comment': NewComment.Comment
                         },
                         function(response){}
                     );
