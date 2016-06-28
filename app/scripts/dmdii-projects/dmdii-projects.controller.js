@@ -129,7 +129,7 @@ angular.module('dmc.dmdiiProjects')
             };
 
             $scope.hasNext = function() {
-                return $scope.dmdiiProjectCurrentPage !== Math.ceil($scope.totalRecords / $scope.dmdiiProjectPageSize);
+                return $scope.dmdiiProjectCurrentPage !== Math.ceil($scope.projects.count / $scope.dmdiiProjectPageSize);
             };
 
             var eventsCallbackFunction = function(response) {
@@ -225,9 +225,13 @@ angular.module('dmc.dmdiiProjects')
 
             // callback
             var callbackFunction = function(response){
-                $scope.projects.arr = response.data;
+                if (response.data.count) {
+                    $scope.projects.arr = response.data.data;
+                    $scope.projects.count = response.totalRecords;
+                } else {
+                    $scope.projects.arr = response.data;
+                }
                 $scope.dmdiiProjectsLoading = false;
-                $scope.totalRecords = response.totalRecords;
                 insertData(response.data);
             };
 
