@@ -63,13 +63,15 @@ angular.module('dmc.member')
             };
 
             var responseData = function(){
-                var data = {};
+                var data = {
+                    id: $stateParams.memberId
+                };
                 return data;
             };
 
             $scope.getDMDIIMember = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIMember($stateParams.memberId).get, responseData(), callbackFunction);
+                ajax.get(dataFactory.getDMDIIMember(responseData()), null, callbackFunction);
             };
             $scope.getDMDIIMember();
 
