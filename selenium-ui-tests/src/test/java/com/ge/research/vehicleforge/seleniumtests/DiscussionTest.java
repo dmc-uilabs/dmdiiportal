@@ -16,10 +16,16 @@ import org.openqa.selenium.WebElement;
 
 
 
-public class IndividualDiscussionTest extends BaseTest{
+public class DiscussionTest extends BaseTest{
 	
 	@Test
-	public void testIndividualDiscussion() throws Exception {
+	public void testDiscussionFunctionality() throws Exception {
+		verifyDiscussionFunctionality();
+	}
+	
+	
+	
+	public void verifyDiscussionFunctionality() throws Exception {
 		String header = TestUtils.getHeader();
 		driver.get(baseUrl + "/my-projects.php#/");
 		JavascriptExecutor jse = (JavascriptExecutor)driver;

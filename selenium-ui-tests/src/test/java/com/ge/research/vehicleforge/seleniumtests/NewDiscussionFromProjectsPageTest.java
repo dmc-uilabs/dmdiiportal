@@ -9,7 +9,12 @@ import org.openqa.selenium.*;
 public class NewDiscussionFromProjectsPageTest extends BaseTest{
 	
 	@Test
-	public void testNewDiscussionFromProjectsPage() throws Exception {
+	public void testCreateNewDiscussionFromProjectsPage() throws Exception{
+		createNewDiscussionFromProjectsPage();
+	}
+	
+	
+	public void createNewDiscussionFromProjectsPage() throws Exception {
 		String header = TestUtils.getHeader();
 
 		String projectsPage = baseUrl + "/project.php#/3/home";

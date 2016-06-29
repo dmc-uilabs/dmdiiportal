@@ -13,10 +13,15 @@ import org.openqa.selenium.*;
 public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	
 	
+	@Test 
+	public void testCreateNewDiscussionFromDiscussionsPage() throws Exception {
+		createNewDiscussionFromDiscussionsPage();
+	}
 	
 	
-	@Test
-	public void testNewDiscussion() throws Exception {
+	
+	
+	public void createNewDiscussionFromDiscussionsPage() throws Exception {
 		
 		String header = TestUtils.getHeader();
 		String discussionsPage = baseUrl + "project.php#/1/discussions";
