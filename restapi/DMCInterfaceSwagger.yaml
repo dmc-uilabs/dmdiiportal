@@ -6073,10 +6073,15 @@ paths:
         '200':
           description: return array of dmdii projects
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/DmdiiProject'
-  '/dmdiiprojects/{projectId}':
+            type: object
+            properties:
+              count:
+                type: integer
+              projects:
+                type: array
+                items:
+                  $ref: '#/definitions/DmdiiProject'
+  '/dmdiiProject/{projectId}':
    get:
      tags:
        - dmdii projects
