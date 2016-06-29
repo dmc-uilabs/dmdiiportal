@@ -6049,7 +6049,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/DmdiiProject'
-  '/dmdiiprojects/{projectId}':
+  '/dmdiiProject/{projectId}':
    get:
      tags:
        - dmdii projects
