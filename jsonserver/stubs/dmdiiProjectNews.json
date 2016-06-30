@@ -1,0 +1,23 @@
+[
+  {
+    "id": 3,
+    "title": "News title 3",
+    "content": "This is the content of news item 3",
+    "dateCreated": "2016-06-01",
+    "projectNumber": null
+  },
+  {
+    "id": 2,
+    "title": "News title 2",
+    "content": "This is the content of news item 2",
+    "dateCreated": "2016-05-12",
+    "projectNumber": null
+  },
+  {
+    "id": 1,
+    "title": "News title 1",
+    "content": "This is the content of news item 1",
+    "dateCreated": "2016-04-26",
+    "projectNumber": null
+  }
+]
