@@ -15,6 +15,7 @@ public class NewTaskFromTasksPageTest extends BaseTest{
 		driver.get(baseUrl + "/project.php#/3/tasks");
 		// ERROR: Caught exception [Error: locator strategy either id or name must be specified explicitly.]
 		driver.findElement(By.id("input_6")).clear();
+		driver.findElement(By.xpath("/html/body/div[2]/ui-view/div[1]/md-toolbar/div/div/div/a/ng-md-icon/svg")).click();
 		driver.findElement(By.id("input_6")).sendKeys(header + "Selenium Task Test");
 		driver.findElement(By.id("input_7")).clear();
 		driver.findElement(By.id("input_7")).sendKeys(header + "testing new task from tasks list for Selenium");
