@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -35,6 +36,7 @@ public class AddProjectTest extends BaseTest{
 	    assertEquals("My Projects", driver.getTitle());
 	}
 	
+	@Ignore
 	@Test
 	public void testAddProject() throws Exception{
 		testDMCLogin();
@@ -86,6 +88,7 @@ public class AddProjectTest extends BaseTest{
 	    driver.findElement(By.xpath("//div[2]/button[2]")).click();
 	}
 	
+	@Ignore
 	@Test
 	public void editProjectTest() throws Exception{
 		testDMCLogin();

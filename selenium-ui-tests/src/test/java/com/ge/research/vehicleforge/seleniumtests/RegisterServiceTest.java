@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,6 +18,7 @@ public class RegisterServiceTest extends BaseTest{
 	private String serviceDes = "This is the description for service AppliedLoad " + num;
 	private String serviceTag = "alpha " + num;
 
+	@Ignore
 	@Test
 	public void testRegisterService() throws Exception{
 		driver.get(baseUrl + "/project.php#/14/services");
