@@ -220,7 +220,7 @@ angular.module('dmc.members')
             // callback for services
             var callbackFunction = function(response){
 				$scope.membersLoading = false;
-                if (response.data.count) {
+                if (angular.isDefined(response.data.count)) {
                     $scope.members.arr = response.data.data;
                     $scope.members.count = response.data.count;
                     insertData(response.data.data);
