@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AddProjectTest extends BaseTest{
-	WebDriverWait wait = new WebDriverWait(driver, 30);
+	
 	private static Logger LOGGER = Logger.getLogger("InfoLogging");
 	
 	Integer projectNum =TestUtils.ran;
@@ -26,6 +26,7 @@ public class AddProjectTest extends BaseTest{
 
 	//Navigate from MyAccount Menu
 	public void accountProjectNav() throws Exception{
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		testPublicLoginProtection();
 		
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
@@ -36,9 +37,14 @@ public class AddProjectTest extends BaseTest{
 	}
 	
 	@Test
+	public void runTestAddProject() throws Exception{
+		testAddProject();
+	}
+	
+	
 	public void testAddProject() throws Exception{
 		testDMCLogin();
-		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		accountProjectNav();
 		driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
 		//WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("input_5")));
@@ -89,6 +95,7 @@ public class AddProjectTest extends BaseTest{
 	@Test
 	public void editProjectTest() throws Exception{
 		testDMCLogin();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		driver.get(baseUrl + "/my-projects.php#/");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		

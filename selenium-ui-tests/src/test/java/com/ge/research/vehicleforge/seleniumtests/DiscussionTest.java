@@ -31,7 +31,7 @@ public class DiscussionTest extends BaseTest{
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Thread.sleep(5000);
 		WebElement clickViewAll = 
-				driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div[2]/md-content[7]/div/div[2]/md-content[2]/div/a"));
+				driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div[2]/md-content[8]/div/div[2]/md-content[2]/div/a"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", clickViewAll);
 		if(clickViewAll.isEnabled()){
 			clickViewAll.sendKeys(Keys.ENTER);;
@@ -42,7 +42,7 @@ public class DiscussionTest extends BaseTest{
 		String projectsPage = driver.getCurrentUrl();
 		
 		WebElement numReplies = driver.findElement
-				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/div[2]/md-data-table-container/table/tbody/tr[17]/td[2]"));
+				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/div[2]/md-data-table-container/table/tbody/tr[2]/td[2]"));
 		int replyCount = Integer.parseInt(numReplies.getText().split("\\s+")[0]);
 		log.log(Level.INFO, "reply count is " + replyCount);
 		
@@ -94,7 +94,7 @@ public class DiscussionTest extends BaseTest{
 		}
 	    
 	    //try clicking like button
-	    WebElement likeButton = driver.findElement(By.xpath("//div[4]/div[3]/div[2]/button"));
+	    WebElement likeButton = driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[1]/div/div[2]/div[3]/div[2]/button[1]"));
 	    if(likeButton.isEnabled()){
 	    	likeButton.sendKeys(Keys.ENTER);;
 		}else{
@@ -104,7 +104,7 @@ public class DiscussionTest extends BaseTest{
 	    assertTrue(likeButton.isEnabled());
 	    
 	    //try clicking dislike button
-	    WebElement dislikeButton = driver.findElement(By.xpath("//div[4]/div[3]/div[2]/button[2]"));
+	    WebElement dislikeButton = driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[1]/div/div[2]/div[3]/div[2]/button[2]"));
 	    if(dislikeButton.isEnabled()){
 	    	dislikeButton.sendKeys(Keys.ENTER);;
 		}else{
@@ -133,7 +133,7 @@ public class DiscussionTest extends BaseTest{
 	    driver.get(projectsPage);
 	    Thread.sleep(5000);
 	    numReplies = driver.findElement
-				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/div[2]/md-data-table-container/table/tbody/tr[17]/td[2]"));
+				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/div[2]/md-data-table-container/table/tbody/tr[2]/td[2]"));
 	    int newReplyCount = Integer.parseInt(numReplies.getText().split("\\s+")[0]);
 	    log.log(Level.INFO, "updated reply count is " + newReplyCount);
 	    assertEquals(newReplyCount, replyCount + 1);

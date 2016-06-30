@@ -188,6 +188,10 @@ public abstract class BaseTest {
 
 
     public void testDMCLogin() throws Exception{
+    	
+    	if (baseUrl.contains("localhost"))
+    		return;
+    	
     	if (TestUtils.CREDENTIAL_GATEWAY_REQUIRED) {
             testPublicLoginProtection();
         }
