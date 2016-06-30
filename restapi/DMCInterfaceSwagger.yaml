@@ -6073,10 +6073,15 @@ paths:
         '200':
           description: return array of dmdii projects
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/DmdiiProject'
-  '/dmdiiprojects/{projectId}':
+            type: object
+            properties:
+              count:
+                type: integer
+              projects:
+                type: array
+                items:
+                  $ref: '#/definitions/DmdiiProject'
+  '/dmdiiProject/{projectId}':
    get:
      tags:
        - dmdii projects
@@ -6093,6 +6098,44 @@ paths:
           description: return single dmdii project
           schema:
             $ref: '#/definitions/DmdiiProject'
+  '/dmdiiProject/events':
+    get:
+      tags:
+       - dmdii projects
+      description: Get institute wide project events
+      operationId: getDmdiiProjectEvents
+      parameters:
+        - name: limit
+          in: query
+          description: limit items returned
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: return array of events
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiProjectEvents'
+  '/dmdiiProject/news':
+    get:
+      tags:
+       - dmdii projects
+      description: Get institute wide project news
+      operationId: getDmdiiProjectNews
+      parameters:
+        - name: limit
+          in: query
+          description: limit items returned
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: return array of news
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiProjectNews'
   '/dmdiiMembers':
    get:
      tags:
@@ -6184,10 +6227,15 @@ paths:
         '200':
           description: return array of dmdii members
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/DmdiiMember'
-  '/dmdii_members/{memberId}':
+            type: object
+            properties:
+              count:
+                type: integer
+              members:
+                type: array
+                items:
+                  $ref: '#/definitions/DmdiiMember'
+  '/dmdiiMember/{memberId}':
    get:
      tags:
         - dmdii members
@@ -6204,6 +6252,44 @@ paths:
           description: return single dmdii member
           schema:
             $ref: '#/definitions/DmdiiMember'
+  '/dmdiiMember/events':
+    get:
+      tags:
+       - dmdii members
+      description: Get institute wide member events
+      operationId: getDmdiiMemberEvents
+      parameters:
+        - name: limit
+          in: query
+          description: limit items returned
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: return array of events
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiMemberEvents'
+  '/dmdiiMember/news':
+    get:
+      tags:
+       - dmdii members
+      description: Get institute wide member news
+      operationId: getDmdiiMemberNews
+      parameters:
+        - name: limit
+          in: query
+          description: limit items returned
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: return array of news
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiMemberNews'
 definitions:
   PostFollowingMemeber:
     type: object
@@ -8227,6 +8313,32 @@ definitions:
                   type: string
                 statusName:
                   type: string
+  DmdiiProjectEvents:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      content:
+        type: string
+      date:
+        type: string
+        format: date
+  DmdiiProjectNews:
+    type: object
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+      content:
+        type: string
+      dateCreated:
+        type: string
+        format: date
+      projectNumber:
+        type: string
   DmdiiMember:
     type: object
     properties:
@@ -8456,3 +8568,29 @@ definitions:
               type: string
             link:
               type: string
+  DmdiiMemberEvents:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+      location:
+        type: string
+      date:
+        type: string
+        format: date
+  DmdiiMemberNews:
+    type: object
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+      content:
+        type: string
+      dateCreated:
+        type: string
+        format: date
