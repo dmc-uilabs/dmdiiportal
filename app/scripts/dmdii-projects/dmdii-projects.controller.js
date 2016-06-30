@@ -52,7 +52,7 @@ angular.module('dmc.dmdiiProjects')
             // This code use for dmdiiProject-directory -------------------------------------------------
             $scope.downloadData = false;        // on/off progress line in dmdiiProject-directory
             $scope.dmdiiProjectPageSize = $cookies.get('dmdiiProjectPageSize') ? +$cookies.get('dmdiiProjectPageSize') : 12;    // visible items in dmdiiProject-directory
-            $scope.dmdiiProjectCurrentPage = 1;  // current page in dmdiiProject-directory
+            $scope.dmdiiProjectCurrentPage = 0;  // current page in dmdiiProject-directory
             // catch updated changedPage variable form $cookies
             // variable changed in dmdiiProject-directory when user change page number (pagination)
             $scope.$watch(function() { return $cookies.changedPage; }, function(newValue) {
@@ -125,12 +125,29 @@ angular.module('dmc.dmdiiProjects')
             };
 
             $scope.hasPrev = function() {
-                return $scope.dmdiiProjectCurrentPage !== 1;
+                return $scope.dmdiiProjectCurrentPage !== 0;
             };
 
             $scope.hasNext = function() {
                 return $scope.dmdiiProjectCurrentPage !== Math.ceil($scope.totalRecords / $scope.dmdiiProjectPageSize);
             };
+
+            var eventsCallbackFunction = function(response) {
+                $scope.events = response.data;
+            }
+            $scope.getEvents = function(){
+                ajax.get(dataFactory.getDMDIIProject().events, {limit: 3}, eventsCallbackFunction);
+            };
+            $scope.getEvents();
+
+            var newsCallbackFunction = function(response) {
+                $scope.news = response.data;
+            }
+
+            $scope.getNews = function(){
+                ajax.get(dataFactory.getDMDIIProject().news, {limit: 3}, newsCallbackFunction);
+            };
+            $scope.getNews();
 
             var responseData = {
                 _sort : 'id',
@@ -156,32 +173,57 @@ angular.module('dmc.dmdiiProjects')
             $scope.projects = {arr : [], count : 0};
 
             var totalCountItems = {
-                all: 0, status: { preaward: 0, awarded: 0, completed: 0 }
+                all: 0,
+                status: {
+                    1: 0,
+                    2: 0,
+                    3: 0
+                },
+                focus: {
+                    1: 0,
+                    2: 0,
+                    3: 0,
+                    4: 0,
+                    5: 0
+                },
+                thrust: {
+                    1: 0,
+                    2: 0,
+                    3: 0,
+                    4: 0
+                }
             };
 
             // insert response data to array of marketplace items
             var insertData = function(data){
                 totalCountItems = {
-					all: 0, status: { preaward: 0, awarded: 0, completed: 0 }
-                };
-                console.log(data)
-                for (var i in data){
-                    totalCountItems.all++;
-                    if (data[i].dmdiiProjectStatus.statusName === 'Preaward') {
-                        totalCountItems.status.preaward++;
-                    } else if(data[i].dmdiiProjectStatus.statusName === 'Awarded'){
-                        totalCountItems.status.awarded++;
-                    } else if(data[i].dmdiiProjectStatus.statusName === 'Completed'){
-                        totalCountItems.status.completed++;
+					all: 0,
+                    status: {
+                        1: 0,
+                        2: 0,
+                        3: 0
+                    },
+                    focus: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0,
+                        5: 0
+                    },
+                    thrust: {
+                        1: 0,
+                        2: 0,
+                        3: 0,
+                        4: 0
                     }
-                }
-                $scope.treeMenuModel = getMenu();
+                };
 
+
+                $scope.treeMenuModel = getMenu();
             }
 
             // callback
             var callbackFunction = function(response){
-                console.log(response.data)
                 $scope.projects.arr = response.data;
                 $scope.dmdiiProjectsLoading = false;
                 $scope.totalRecords = response.totalRecords;
@@ -191,19 +233,23 @@ angular.module('dmc.dmdiiProjects')
             var responseData = function(){
                 var data = {
                     pageSize : $scope.dmdiiProjectPageSize,
-                    page : $scope.dmdiiProjectCurrentPage
-                    // _order: $scope.sortBy,
-                    // _sort: $scope.sortDir,
-                    // name_like : $scope.searchModel
+                    page : $scope.dmdiiProjectCurrentPage,
+                    _order: $scope.sortBy,
+                    _sort: $scope.sortDir,
+                    name_like : $scope.searchModel
                 };
-                if(angular.isDefined($stateParams.status)) data.status = $stateParams.status;
+                if(angular.isDefined($stateParams.status)) data.statusId = $stateParams.status;
+                if(angular.isDefined($stateParams.callNumber)) data.callNumber = $stateParams.callNumber;
+                if(angular.isDefined($stateParams.rootNumber)) data.rootNumber = $stateParams.rootNumber;
+                if(angular.isDefined($stateParams.focusId)) data.focusId = $stateParams.focusId;
+                if(angular.isDefined($stateParams.thrustId)) data.thrustId = $stateParams.thrustId;
 
                 return data;
             };
 
             $scope.getDmdiiProjects = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIProject(responseData()), null, callbackFunction);
+                ajax.get(dataFactory.getDMDIIProject().all, responseData(), callbackFunction);
             };
             $scope.getDmdiiProjects();
 
@@ -221,6 +267,8 @@ angular.module('dmc.dmdiiProjects')
                 var getUrl = function(cat, subcat){
                     var dataSearch = $.extend(true, {}, $stateParams);
                     dataSearch[cat] = subcat;
+                    console.log(dataSearch)
+                    console.log('dmdii-projects.php' + $state.href('dmdii_projects', dataSearch))
                     return 'dmdii-projects.php' + $state.href('dmdii_projects', dataSearch);
                 };
 
@@ -245,28 +293,107 @@ angular.module('dmc.dmdiiProjects')
                                 {
                                     'id': 11,
                                     'title': 'Pre Award',
-                                    'tag' : 'preaward',
-                                    'items': totalCountItems.status.preaward,
-                                    'opened' : isOpened('status', 'preaward'),
-                                    'href' : getUrl('status', 'preaward'),
+                                    'tag' : '1',
+                                    'opened' : isOpened('status', '1'),
+                                    'href' : getUrl('status', '1'),
                                     'categories': []
                                 },
                                 {
                                     'id': 12,
                                     'title': 'Awarded',
-                                    'tag' : 'awarded',
-                                    'items': totalCountItems.status.awarded,
-                                    'opened' : isOpened('status', 'awarded'),
-                                    'href' : getUrl('status', 'awarded'),
+                                    'tag' : '2',
+                                    'opened' : isOpened('status', '2'),
+                                    'href' : getUrl('status', '2'),
                                     'categories': []
                                 },
 								{
                                     'id': 13,
                                     'title': 'Completed',
-                                    'tag' : 'completed',
-                                    'items': totalCountItems.status.completed,
-                                    'opened' : isOpened('status', 'completed'),
-                                    'href' : getUrl('status', 'completed'),
+                                    'tag' : '3',
+                                    'opened' : isOpened('status', '3'),
+                                    'href' : getUrl('status', '3'),
+                                    'categories': []
+                                }
+                            ]
+                        },
+                        {
+                            'id': 2,
+                            'title': 'Focus',
+                            'tag' : 'focusId',
+                            'opened' : isOpened('focusId'),
+                            'href' : getUrl('focusId', null),
+                            'categories': [
+                                {
+                                    'id': 21,
+                                    'title': 'Model-Based Design/Enterprise',
+                                    'tag' : '1',
+                                    'opened' : isOpened('focusId', '1'),
+                                    'href' : getUrl('focusId', '1'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 22,
+                                    'title': 'Manufacturing Process',
+                                    'tag' : '2',
+                                    'opened' : isOpened('focusId', '2'),
+                                    'href' : getUrl('focusId', '2'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 23,
+                                    'title': 'Sensors & Metrology',
+                                    'tag' : '3',
+                                    'opened' : isOpened('focusId', '3'),
+                                    'href' : getUrl('focusId', '3'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 24,
+                                    'title': 'Product Lifecycle Management',
+                                    'tag' : '4',
+                                    'opened' : isOpened('focusId', '4'),
+                                    'href' : getUrl('focusId', '4'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 25,
+                                    'title': 'Other',
+                                    'tag' : '5',
+                                    'opened' : isOpened('focusId', '5'),
+                                    'href' : getUrl('focusId', '5'),
+                                    'categories': []
+                                }
+                            ]
+                        },
+                        {
+                            'id': 3,
+                            'title': 'Thrust Area',
+                            'tag' : 'thrust',
+                            'opened' : isOpened('thrust'),
+                            'href' : getUrl('thrust', null),
+                            'categories': [
+                                {
+                                    'id': 33,
+                                    'title': 'Advanced Analysis',
+                                    'tag' : '3',
+                                    'opened' : isOpened('thrust', '3'),
+                                    'href' : getUrl('thrust', '3'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 31,
+                                    'title': 'Advanced Manufacturing Enterprise',
+                                    'tag' : '1',
+                                    'opened' : isOpened('thrust', '1'),
+                                    'href' : getUrl('thrust', '1'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 32,
+                                    'title': 'Intelligent Machining',
+                                    'tag' : '2',
+                                    'opened' : isOpened('thrust', '2'),
+                                    'href' : getUrl('thrust', '2'),
                                     'categories': []
                                 }
                             ]

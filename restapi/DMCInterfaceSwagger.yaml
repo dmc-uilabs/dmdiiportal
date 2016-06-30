@@ -967,7 +967,7 @@ paths:
           description: Task object to be added to the database
           required: false
           schema:
-            $ref: '#/definitions/Task'
+            $ref: '#/definitions/TaskToCreate'
       responses:
         '200':
           description: return created task
@@ -5349,6 +5349,11 @@ paths:
           description: Id account
           required: true
           type: string
+        - in: query
+          name: comment
+          description: Comment related to flagging
+          required: true
+          type: string
       responses:
         '200':
           description: return individual discussions comment flagged
@@ -6352,6 +6357,42 @@ definitions:
         type: string
       project:
         $ref: '#/definitions/SimplifiedProject'
+      assignee:
+        type: string
+      assigneeId:
+        type: string
+      reporter:
+        type: string
+      reporterId:
+        type: string
+      dueDate:
+        type: number
+        format: milliseconds
+      additionalDetails:
+        type: string
+      status:
+        type: string
+        enum:
+          - Open
+          - InProgress
+          - Completed
+      priority:
+        type: number
+        enum:
+            - 1
+            - 2
+            - 3
+            - 4
+  TaskToCreate:
+    type: object
+    description: "Priority: 1 - Critical, 2 - High, 3 - Medium, 4 - Low"
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      projectId:
+        type: string
       assignee:
         type: string
       assigneeId:
@@ -7571,6 +7612,8 @@ definitions:
       commentId:
         type: string
       accountId:
+        type: string
+      comment:
         type: string
   IndividualDiscussion:
     type: object

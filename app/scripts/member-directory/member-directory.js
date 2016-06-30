@@ -16,17 +16,18 @@ angular.module('dmc.members', [
     'ngtimeago',
     'ngCookies',
     'angularUtils.directives.dirPagination',
+    'tien.clndr',
     'dmc.widgets.documents',
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.component.treemenu',
     'dmc.compare',
     'dmc.widgets.tasks',
-    'dmc.widgets.tabs',
+    'dmc.widgets.tabs'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('member_directory', {
-        url: '/member_directory?type?tier?activeProjects',
+        url: '/member_directory?categoryId?tier?hasActiveProjects?tag',
         templateUrl: 'templates/member-directory/member-directory.html',
         controller: 'DMCMemberDirectoryController',
         resolve: {
@@ -35,7 +36,7 @@ angular.module('dmc.members', [
             }
         }
     }).state('members_search', {
-        url: '/member_directory/search?type?tier?activeProjects',
+        url: '/member_directory/search?categoryId?tier?hasActiveProjects?tag',
         templateUrl: 'templates/member-directory/member-directory.html',
         controller: 'DMCMemberDirectoryController',
         resolve: {

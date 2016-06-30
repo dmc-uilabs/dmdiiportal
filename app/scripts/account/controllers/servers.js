@@ -30,7 +30,7 @@ angular.module('dmc.account')
             $scope.isAddingServer = false;
             $scope.isCorrectNewIP = false;
 
-            $scope.newServer = { name : null, ip : null };
+            $scope.newServer = { name : null, ip : null, port: null };
 
             $scope.servers = [];
             $scope.sort = 'name';
@@ -68,7 +68,7 @@ angular.module('dmc.account')
             };
 
             $scope.cancelAdding = function(){
-                $scope.newServer = { name : null, ip : null };
+                $scope.newServer = { name : null, ip : null, port: null };
                 $scope.isCorrectNewIP = false;
                 $scope.isAddingServer = false;
             };
@@ -151,7 +151,10 @@ angular.module('dmc.account')
                 if($scope.newServer.ip && $scope.newServer.ip.trim().length > 0 &&
                     $scope.newServer.name != null && $scope.newServer.name.trim().length > 0){
                     // send request
-                    var data = $.extend(true,{},$scope.newServer);
+                    var combinedAddress = $scope.newServer.port != null ? ($scope.newServer.ip + ':' + $scope.newServer.port) : $scope.newServer.ip ;
+                    var serverDetails = {name: $scope.newServer.name, ip: combinedAddress};
+
+                    var data = $.extend(true,{},serverDetails);
                     data.accountId = $scope.accountId;
                     data.status = "offline";
                     ajax.create(dataFactory.serverURL().create, data,
