@@ -4,6 +4,7 @@ package com.ge.research.vehicleforge.seleniumtests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -165,6 +166,7 @@ public class MyAccountTest extends BaseTest {
 
 
 	//To make test case run in order.
+	@Ignore
 	@Test
 	public void testMyAccount() throws Exception{
 		testDMCLogin();
