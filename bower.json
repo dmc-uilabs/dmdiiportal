@@ -50,6 +50,5 @@
     "lodash": "~3.10.1",
     "moment": "^2.13.0",
     "angular-sanitize": "~1.4.8",
-
   }
 }
