@@ -42,7 +42,11 @@ server.use(jsonServer.rewriter({
     '/company_featured/add': '/company_featured',
     '/company_featured/:id': '/company_featured/:id',
     '/projects/:projectId/accept/:memberId': '/projects_members/:memberId',
-    '/projects/:projectId/reject/:memberId': '/projects_members/:memberId'
+    '/projects/:projectId/reject/:memberId': '/projects_members/:memberId',
+    '/dmdiiMember/events': '/dmdiiMemberEvents',
+    '/dmdiiMember/news': '/dmdiiMemberNews',
+    '/dmdiiprojects/events': '/dmdiiProjectEvents',
+    '/dmdiiprojects/news': '/dmdiiProjectNews'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 
