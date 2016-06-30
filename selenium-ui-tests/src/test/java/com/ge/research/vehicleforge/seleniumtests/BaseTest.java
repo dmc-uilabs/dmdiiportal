@@ -2,35 +2,25 @@ package com.ge.research.vehicleforge.seleniumtests;
 
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import org.openqa.selenium.interactions.Actions;
 
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariDriver;
-import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 import static org.junit.Assert.*;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * Created by 200005921 on 12/14/2015.
  */
-@SuppressWarnings("unused")
 public abstract class BaseTest {
 
 
@@ -38,7 +28,7 @@ public abstract class BaseTest {
     public static final String OPENDMC_TITLE_TEXT = "OPENDMC ";*/
 
 	// max seconds before failing a script.
-	private final int MAX_ATTEMPTS = 5;
+	//private final int MAX_ATTEMPTS = 5;
 
 	//static HtmlUnitDriver driver;
 	static RemoteWebDriver driver;
