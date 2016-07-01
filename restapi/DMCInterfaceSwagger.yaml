@@ -1018,6 +1018,7 @@ paths:
     patch:
       tags:
         - task
+        - not implemented
       description: Update task
       parameters:
         - name: taskID
