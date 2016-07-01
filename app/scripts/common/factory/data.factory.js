@@ -223,7 +223,10 @@ angular.module('dmc.data',[])
                 return localhost + 'getModel';
             },
             runModel: function(){
-                return localhost + 'runModel';
+                return localhost + 'model_run';
+            },
+            pollModel: function(id) {
+                return localhost + 'model_poll/'+id;
             },
             updateServiceStatus: function(id){
                 return localhost + 'service_runs/'+id;

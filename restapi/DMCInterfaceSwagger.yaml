@@ -6291,6 +6291,41 @@ paths:
             type: array
             items:
               $ref: '#/definitions/DmdiiMemberNews'
+  '/model_run':
+    post:
+      tags:
+        - model run
+        - service run
+      description: Run a DOME model.
+      parameters:
+        - in: body
+          name: InputPackage
+          description: an instance DomeModelResponsePkg, Key infomation interface id string, and input parameters
+          required: true
+          schema:
+            $ref: '#/definitions/DomeModelResponsePkg'
+      responses:
+        '200':
+          description: Unique id for this service run
+          schema:
+            $ref: '#/definitions/RunDomeModelResponse'
+  '/model_poll/{serviceRunID}':
+    get:
+      tags:
+        - model run
+        - model poll
+      description: Poll results from ActiveMQ for a model run
+      parameters:
+       - in: path
+         name: serviceRunID
+         description: Unique id for this service run (returened by calling /model_run service)
+         required: true
+         type: integer
+      responses:
+        '200':
+          description: An object representing poll result
+          schema:
+            $ref: '#/definitions/ServiceRunResult'
 definitions:
   PostFollowingMemeber:
     type: object
@@ -7854,6 +7889,11 @@ definitions:
         type: string
       pkg:
         $ref: '#/definitions/DomeModelResponsePkg'
+  RunDomeModelResponse:
+     type: object
+     properties:
+      runId:
+        type: integet
   DomeModelResponsePkg:
     type: object
     properties:
@@ -8595,3 +8635,21 @@ definitions:
       dateCreated:
         type: string
         format: date
+  ServiceRunResult:
+    type: object
+    properties:
+      status:
+        type: integer
+      outs:
+        $ref: '#/definitions/ServiceRunOuts'
+  ServiceRunOuts:
+    type: array
+    items:
+      $ref: '#/definitions/ServiceRunOut'
+  ServiceRunOut:
+    type: object
+    properties:
+      value:
+        type: string
+      parameterid:
+        type: string
