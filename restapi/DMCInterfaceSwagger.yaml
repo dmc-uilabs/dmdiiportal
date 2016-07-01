@@ -791,6 +791,7 @@ paths:
         - project
         - discussion
         - live
+        - has tests
       description: Get all user discussion threads
       parameters:
         - name: _limit
@@ -5254,6 +5255,7 @@ paths:
         - discussion
         - community
         - live
+        - has tests
       description: Get individual discussions comment helpful
       parameters:
         - in: query
@@ -5297,6 +5299,7 @@ paths:
         - discussion
         - community
         - live
+        - has tests
       description: Create individual discussions comments helpful
       parameters:
         - in: body
@@ -5316,6 +5319,7 @@ paths:
         - discussion
         - community
         - live
+        - has tests
       description: Update a individual discussions comment helpful
       parameters:
         - name: helpfulID
