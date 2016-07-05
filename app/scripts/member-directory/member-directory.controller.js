@@ -54,7 +54,7 @@ angular.module('dmc.members')
             // This code use for member-directory -------------------------------------------------
             $scope.downloadData = false;        // on/off progress line in member-directory
             $scope.memberPageSize = $cookies.get('memberPageSize') ? +$cookies.get('memberPageSize') : 12;    // visible items in member-directory
-            $scope.memberCurrentPage = 1;  // current page in member-directory
+            $scope.memberCurrentPage = 0;  // current page in member-directory
             // catch updated changedPage variable form $cookies
             // variable changed in member-directory when user change page number (pagination)
             $scope.$watch(function() { return $cookies.changedPage; }, function(newValue) {
