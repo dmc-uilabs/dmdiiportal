@@ -883,7 +883,7 @@ angular.module('dmc.data',[])
                 }else{
                     return localhost + 'searchServices';
                 }
-			      },
+            },
             markReadNotifications: function(){
                 return localhost+'mark-read-notifications';
             },
