@@ -65,7 +65,7 @@ public abstract class BaseTest {
                 fail("Unknown browser " + browserName);
             }
 
-            log.log(Level.INFO, "version name is: " + version);
+          log.log(Level.INFO, "version name is: " + version);
           baseUrl = System.getenv("baseUrl");
           System.out.println("The first step to get Url from system environment : " + baseUrl);
 
@@ -139,6 +139,8 @@ public abstract class BaseTest {
 
     	Thread.sleep(1000);
     	// logout
+    	driver.findElement(By.xpath("html/body/div[1]/header/div[2]/div/div/div/div/a[1]/span")).click();
+    	Thread.sleep(5000);
 	    driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
 	    WebElement logout = driver.findElement(By.xpath("//md-menu-item[4]/button"));
 	    logout.sendKeys(Keys.ENTER);;
