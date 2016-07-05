@@ -1,10 +1,16 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
-
+/*
+ * Currently Unused Imports
+ * import org.openqa.selenium.JavascriptExecutor;
 import org.junit.After;
+*/
+
+
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -91,6 +97,7 @@ public abstract class BaseTest {
     	//String browserName = System.getProperty("browser").toLowerCase();
     	log.log(Level.INFO, "set up");
 		log.log(Level.INFO, "Get browser from maven build: " + browserName);
+
 		String version = null;
 		
 		if (browserName.equals("chrome")) {
@@ -109,6 +116,10 @@ public abstract class BaseTest {
         }else {
             fail("Unknown browser " + browserName);
         }
+
+
+        
+
 
         log.log(Level.INFO, "version name is: " + version);
       baseUrl = System.getenv("baseUrl");
@@ -130,15 +141,6 @@ public abstract class BaseTest {
 		log.log(Level.INFO,"Initial Title : " + driver.getTitle());
 
 	}
-
-	@After
-    public void tearDown() throws Exception {
-        driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-          fail(verificationErrorString);
-        }
-      }
 
 
 
@@ -230,6 +232,8 @@ public abstract class BaseTest {
 
     	Thread.sleep(1000);
     	// logout
+    	driver.findElement(By.xpath("html/body/div[1]/header/div[2]/div/div/div/div/a[1]/span")).click();
+    	Thread.sleep(5000);
 	    driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
 	    WebElement logout = driver.findElement(By.xpath("//md-menu-item[4]/button"));
 	    logout.sendKeys(Keys.ENTER);;
@@ -260,6 +264,16 @@ public abstract class BaseTest {
  
   
   
+
+  @AfterClass
+  public static void tearDown() throws Exception {
+      driver.quit();
+      String verificationErrorString = verificationErrors.toString();
+      if (!"".equals(verificationErrorString)) {
+        fail(verificationErrorString);
+      }
+    }
+
 
 
 }

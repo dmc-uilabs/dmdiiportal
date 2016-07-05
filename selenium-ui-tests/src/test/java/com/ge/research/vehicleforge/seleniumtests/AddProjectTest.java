@@ -2,6 +2,8 @@ package com.ge.research.vehicleforge.seleniumtests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -37,7 +39,7 @@ public class AddProjectTest extends BaseTest{
 	    assertEquals("My Projects", driver.getTitle());
 	}
 	
-	@Ignore
+	
 	@Test
 	public void runTestAddProject() throws Exception{
 		testAddProject();
@@ -57,9 +59,8 @@ public class AddProjectTest extends BaseTest{
 		//select due date
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//md-datepicker/button")).click();
+		String[] currentDate = (new SimpleDateFormat("yyyy-mm-dd")).format(new Date()).split("-");
 		driver.findElement(By.xpath("//tbody[4]/tr[5]/td[3]/span")).click();
-	    driver.findElement(By.id("input_7")).click();
-	    driver.findElement(By.xpath("//tbody[4]/tr[4]/td[5]/span")).click();
 	    //select type
 	    driver.findElement(By.id("select_11")).click();
 	    driver.findElement(By.xpath("//md-option/div[1]")).click();
