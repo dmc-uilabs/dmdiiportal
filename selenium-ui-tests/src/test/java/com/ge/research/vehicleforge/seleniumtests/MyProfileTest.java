@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -12,7 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MyProfile extends BaseTest{
+public class MyProfileTest extends BaseTest{
 	
 	
 	WebDriverWait wait = new WebDriverWait(driver, 20);
@@ -160,9 +161,10 @@ public class MyProfile extends BaseTest{
 		
 	}
 	
-	
+	@Ignore
 	@Test
-	public void testMyProfileAll() throws Exception{	
+	public void testMyProfileAll() throws Exception{
+		testDMCLogin();
 		testMyProfile();
 		testMyProfileReview();
 		testMyProfileSorting();

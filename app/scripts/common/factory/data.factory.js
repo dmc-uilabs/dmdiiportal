@@ -223,7 +223,10 @@ angular.module('dmc.data',[])
                 return localhost + 'getModel';
             },
             runModel: function(){
-                return localhost + 'runModel';
+                return localhost + 'model_run';
+            },
+            pollModel: function(id) {
+                return localhost + 'model_poll/'+id;
             },
             updateServiceStatus: function(id){
                 return localhost + 'service_runs/'+id;
@@ -450,14 +453,19 @@ angular.module('dmc.data',[])
             },
             getDMDIIMember: function(id) {
                 return {
-                    get: localhost+'dmdii_members/'+id,
-                    all: localhost+'dmdii_members'
+                    get: localhost+'dmdiiMember/'+ id,
+                    all: localhost+'dmdiiMember',
+                    events: localhost+'dmdiiMember/events',
+                    news: localhost+'dmdiiMember/news'
                 }
+
             },
             getDMDIIProject: function(id) {
                 return {
-                    get: localhost+'dmdii_projects/'+id,
-                    all: localhost+'dmdii_projects'
+                    get: localhost+'dmdiiProject/' + id,
+                    all: localhost+'dmdiiprojects',
+                    events: localhost+'dmdiiProject/events',
+                    news: localhost+'dmdiiProject/news'
                 }
             },
             // companies ------------------
@@ -869,7 +877,6 @@ angular.module('dmc.data',[])
             getNotificationsStatisticPm: function(){
                 return localhost+'notifications-pm-statistic';
             },
-
             searchMarketplace: function (text) {
                 if($window.apiUrl) {
                     return localhost + 'searchServices/' + text;

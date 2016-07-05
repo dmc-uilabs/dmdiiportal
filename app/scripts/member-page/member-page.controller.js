@@ -57,6 +57,7 @@ angular.module('dmc.member')
 
             // callback for member
             var callbackFunction = function(response){
+                console.log($scope.member)
                 $scope.member = response.data;
 				$scope.memberLoading = false;
             };
@@ -75,9 +76,7 @@ angular.module('dmc.member')
 			$scope.storefront = [];
 
 			var callbackStorefrontFunction = function(response){
-				console.log(response.data)
 				$scope.storefront = response.data;
-				console.log($scope.storefront)
 			};
 
 			var responseStorefrontData = function(){

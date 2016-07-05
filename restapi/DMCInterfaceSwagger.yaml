@@ -745,12 +745,53 @@ paths:
             type: array
             items:
               $ref: '#/definitions/IndividualDiscussion'
+  '/projects/{projectID}/individual-discussion':
+    get:
+      tags:
+        - project
+        - discussion
+        - live
+        - has tests
+      description: Get all project individual discussions
+      parameters:
+        - name: projectID
+          in: path
+          type: string
+          description: ID of the project
+          required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return all individual discussions with projectId
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IndividualDiscussion'
   '/all-discussions':
     get:
       tags:
         - project
         - discussion
-        - not implemented
+        - live
+        - has tests
       description: Get all user discussion threads
       parameters:
         - name: _limit
@@ -927,7 +968,7 @@ paths:
           description: Task object to be added to the database
           required: false
           schema:
-            $ref: '#/definitions/Task'
+            $ref: '#/definitions/TaskToCreate'
       responses:
         '200':
           description: return created task
@@ -978,6 +1019,7 @@ paths:
     patch:
       tags:
         - task
+        - not implemented
       description: Update task
       parameters:
         - name: taskID
@@ -1023,7 +1065,8 @@ paths:
     delete:
       tags:
         - task
-        - not implemented
+        - live
+        - has tests
       description: Delete task
       parameters:
         - name: taskID
@@ -4861,7 +4904,8 @@ paths:
     get:
       tags:
         - community
-        - not implemented
+        - live
+        - has tests
       description: Get all community events
       parameters:
         - name: _limit
@@ -4890,12 +4934,50 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CommunityEvent'
+    post:
+      tags:
+        - community
+        - live
+        - has tests
+      description: Post one new event
+      parameters:
+        - in: body
+          name: event
+          description: Individual event to be created
+          required: true
+          schema:
+            $ref: '#/definitions/CommunityEvent'
+      responses:
+        '200':
+          description: return id of created event
+          schema:
+             $ref: '#/definitions/Id'
+  '/events/{id}':
+    delete:
+      tags:
+        - community
+        - live
+        - has tests
+      description: Delete a single event
+      parameters:
+        - in: path
+          name: id
+          description: ID of individual event
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return id of deleted event
+          schema:
+             $ref: '#/definitions/Id'
+
   '/individual-discussion':
     get:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Get all community individual discussions
       parameters:
         - name: _limit
@@ -4928,18 +5010,38 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
-      description: Create a new individual discussions
+        - live
+        - has tests
+      description: Create a new individual discussion
       parameters:
         - in: body
           name: Discussion
-          description: Individual discussions to be created
+          description: Individual discussion to be created
           required: false
           schema:
             $ref: '#/definitions/IndividualDiscussion'
       responses:
         '201':
-          description: New individual discussion comment
+          description: New individual discussion
+          schema:
+            $ref: '#/definitions/IndividualDiscussion'
+  '/individual-discussion/{individualDiscussionID}':
+    get:
+      tags:
+        - discussion
+        - community
+        - live
+        - has tests
+      description: Get single individual discussion from id
+      parameters:
+        - in: path
+          name: individualDiscussionID
+          description: ID of individual discussion
+          required: true
+          type: string
+      responses:
+        '200':
+          description: return individual discussion from id
           schema:
             $ref: '#/definitions/IndividualDiscussion'
   '/individual-discussion/{individualDiscussionID}/individual-discussion-comments':
@@ -4947,8 +5049,9 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
-      description: Get all individual discussions comments
+        - live
+        - has tests
+      description: Get all individual discussions comments from individual discussion id
       parameters:
         - in: path
           name: individualDiscussionID
@@ -4974,25 +5077,77 @@ paths:
           description: Sort by some parameter (id, title, etc.)
           type: string
           required: false
+        - name: _limit
+          in: query
+          description: Limit number of results
+          type: integer
+          required: false
       responses:
         '200':
-          description: return all all individual discussions comments
+          description: return all individual discussions comments from individual discussion id
           schema:
             type: array
             items:
               $ref: '#/definitions/IndividualDiscussionComment'
   '/individual-discussion-comments':
+    get:
+      tags:
+        - discussion
+        - community
+        - live
+        - has tests
+      description: Get all individual discussion comments
+      parameters:
+        - in: query
+          name: individualDiscussionID
+          description: ID of individual discussions
+          required: true
+          type: array
+          items:
+            type: string
+        - in: query
+          name: commentId
+          description: Id comment of individual discussions comments
+          required: true
+          type: string
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return all individual discussion comments with commentId and individualDiscussionID
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IndividualDiscussionComment'
     post:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Create a new individual discussions comment
       parameters:
         - in: body
           name: DiscussionComment
           description: Individual discussions comment to be created
-          required: false
+          required: true
           schema:
             $ref: '#/definitions/IndividualDiscussionComment'
       responses:
@@ -5020,7 +5175,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Update a individual discussions comment
       parameters:
         - name: commentID
@@ -5035,6 +5191,24 @@ paths:
       responses:
         200:
           description: returns updated individual discussions comment
+          schema:
+            $ref: '#/definitions/IndividualDiscussionComment'
+    get:
+      tags:
+        - discussion
+        - community
+        - live
+        - has tests
+      description: Get a individual discussions comment
+      parameters:
+        - name: commentID
+          in: path
+          type: string
+          description: ID of the comment
+          required: true
+      responses:
+        200:
+          description: returns individual discussions comment from commentId
           schema:
             $ref: '#/definitions/IndividualDiscussionComment'
   '/individual-discussion/{individualDiscussionID}/individual-discussion-tags':
@@ -5081,7 +5255,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Get individual discussions comment helpful
       parameters:
         - in: query
@@ -5124,7 +5299,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Create individual discussions comments helpful
       parameters:
         - in: body
@@ -5143,7 +5319,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Update a individual discussions comment helpful
       parameters:
         - name: helpfulID
@@ -5176,6 +5353,11 @@ paths:
         - in: query
           name: accountId
           description: Id account
+          required: true
+          type: string
+        - in: query
+          name: comment
+          description: Comment related to flagging
           required: true
           type: string
       responses:
@@ -5811,23 +5993,23 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Service'
-  '/dmdii_projects':
+  '/dmdiiprojects':
     get:
       tags:
         - dmdii projects
       description: Get all dmdii projects
       operationId: getDmdiiProjects
       parameters:
-        - name: _limit
+        - name: pageSize
           in: query
           description: Limit items
           type: integer
-          required: false
-        - name: _start
+          required: true
+        - name: page
           in: query
           description: offset
           type: integer
-          required: false
+          required: true
         - name: _order
           in: query
           description: Order by ASC or DESC
@@ -5846,16 +6028,6 @@ paths:
           in: query
           description: Filter by title
           type: string
-        - name: _status
-          in: query
-          description: Filter by status
-          type: string
-          required: false
-        - name: _callNum
-          in: query
-          description: Filter by call number
-          type: string
-          required: false
       responses:
         '200':
           description: return array of dmdii projects
@@ -5863,7 +6035,59 @@ paths:
             type: array
             items:
               $ref: '#/definitions/DmdiiProject'
-  '/dmdii_projects/{projectId}':
+  '/dmdiiprojects/status/{statusId}':
+    get:
+      tags:
+        - dmdii projects
+      description: Get all dmdii projects by status
+      operationId: getDmdiiProjectsByStatus
+      parameters:
+        - name: statusId
+          in: path
+          type: integer
+          description: ID of the project status
+          required: true
+        - name: pageSize
+          in: query
+          description: Limit items
+          type: integer
+          required: true
+        - name: page
+          in: query
+          description: offset
+          type: integer
+          required: true
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+        - name: title_like
+          in: query
+          description: Filter by title
+          type: string
+      responses:
+        '200':
+          description: return array of dmdii projects
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+              projects:
+                type: array
+                items:
+                  $ref: '#/definitions/DmdiiProject'
+  '/dmdiiProject/{projectId}':
    get:
      tags:
        - dmdii projects
@@ -5880,23 +6104,61 @@ paths:
           description: return single dmdii project
           schema:
             $ref: '#/definitions/DmdiiProject'
-  '/dmdii_members':
+  '/dmdiiProject/events':
+    get:
+      tags:
+       - dmdii projects
+      description: Get institute wide project events
+      operationId: getDmdiiProjectEvents
+      parameters:
+        - name: limit
+          in: query
+          description: limit items returned
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: return array of events
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiProjectEvents'
+  '/dmdiiProject/news':
+    get:
+      tags:
+       - dmdii projects
+      description: Get institute wide project news
+      operationId: getDmdiiProjectNews
+      parameters:
+        - name: limit
+          in: query
+          description: limit items returned
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: return array of news
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiProjectNews'
+  '/dmdiiMembers':
    get:
      tags:
        - dmdii members
      description: Get all dmdii members
      operationId: getDmdiiMembers
      parameters:
-       - name: _limit
+       - name: pageSize
          in: query
          description: Limit items
          type: integer
-         required: false
-       - name: _start
+         required: true
+       - name: page
          in: query
          description: Offset
          type: integer
-         required: false
+         required: true
        - name: _order
          in: query
          description: Order by ASC or DESC
@@ -5915,21 +6177,6 @@ paths:
          in: query
          description: Filter by title
          type: string
-       - name: _tier
-         in: query
-         description: Filter by tier
-         type: string
-         required: false
-       - name: _type
-         in: query
-         description: Filter by type/category
-         type: string
-         required: false
-       - name: _activeProjects
-         in: query
-         description: Filter by has active projects
-         type: boolean
-         required: false
      responses:
         '200':
           description: return array of dmdii members
@@ -5937,23 +6184,153 @@ paths:
             type: array
             items:
               $ref: '#/definitions/DmdiiMember'
-  '/dmdii_members/{memberId}':
+  '/dmdiiMembers/type':
    get:
-      tags:
+     tags:
        - dmdii members
-      description: Get dmdii member by id
-      operationId: findDmdiiMemberById
-      parameters:
-       - name: memberId
-         in: path
-         type: string
-         description: ID of the member
+     description: Get all by category and/or tier dmdii members
+     operationId: getDmdiiMembersByType
+     parameters:
+       - name: pageSize
+         in: query
+         description: Limit items
+         type: integer
          required: true
-      responses:
+       - name: page
+         in: query
+         description: Offset
+         type: integer
+         required: true
+       - name: _order
+         in: query
+         description: Order by ASC or DESC
+         type: string
+         collectionFormat: multi
+         required: false
+         enum:
+           - ASC
+           - DESC
+       - name: _sort
+         in: query
+         description: Sort by some parameter
+         type: string
+         required: false
+       - name: title_like
+         in: query
+         description: Filter by title
+         type: string
+       - name: categoryId
+         in: query
+         description: Filter by categoryId
+         type: integer
+         required: false
+       - name: tier
+         in: query
+         description: Filter by tier
+         type: integer
+         required: false
+     responses:
+        '200':
+          description: return array of dmdii members
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+              members:
+                type: array
+                items:
+                  $ref: '#/definitions/DmdiiMember'
+  '/dmdiiMember/{memberId}':
+   get:
+     tags:
+        - dmdii members
+     description: Get dmdii member by id
+     operationId: findDmdiiMemberById
+     parameters:
+        - name: memberId
+          in: path
+          type: string
+          description: ID of the member
+          required: true
+     responses:
         '200':
           description: return single dmdii member
           schema:
             $ref: '#/definitions/DmdiiMember'
+  '/dmdiiMember/events':
+    get:
+      tags:
+       - dmdii members
+      description: Get institute wide member events
+      operationId: getDmdiiMemberEvents
+      parameters:
+        - name: limit
+          in: query
+          description: limit items returned
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: return array of events
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiMemberEvents'
+  '/dmdiiMember/news':
+    get:
+      tags:
+       - dmdii members
+      description: Get institute wide member news
+      operationId: getDmdiiMemberNews
+      parameters:
+        - name: limit
+          in: query
+          description: limit items returned
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: return array of news
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DmdiiMemberNews'
+  '/model_run':
+    post:
+      tags:
+        - model run
+        - service run
+      description: Run a DOME model.
+      parameters:
+        - in: body
+          name: InputPackage
+          description: an instance DomeModelResponsePkg, Key infomation interface id string, and input parameters
+          required: true
+          schema:
+            $ref: '#/definitions/DomeModelResponsePkg'
+      responses:
+        '200':
+          description: Unique id for this service run
+          schema:
+            $ref: '#/definitions/RunDomeModelResponse'
+  '/model_poll/{serviceRunID}':
+    get:
+      tags:
+        - model run
+        - model poll
+      description: Poll results from ActiveMQ for a model run
+      parameters:
+       - in: path
+         name: serviceRunID
+         description: Unique id for this service run (returened by calling /model_run service)
+         required: true
+         type: integer
+      responses:
+        '200':
+          description: An object representing poll result
+          schema:
+            $ref: '#/definitions/ServiceRunResult'
 definitions:
   PostFollowingMemeber:
     type: object
@@ -6107,6 +6484,42 @@ definitions:
         type: string
       project:
         $ref: '#/definitions/SimplifiedProject'
+      assignee:
+        type: string
+      assigneeId:
+        type: string
+      reporter:
+        type: string
+      reporterId:
+        type: string
+      dueDate:
+        type: number
+        format: milliseconds
+      additionalDetails:
+        type: string
+      status:
+        type: string
+        enum:
+          - Open
+          - InProgress
+          - Completed
+      priority:
+        type: number
+        enum:
+            - 1
+            - 2
+            - 3
+            - 4
+  TaskToCreate:
+    type: object
+    description: "Priority: 1 - Critical, 2 - High, 3 - Medium, 4 - Low"
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      projectId:
+        type: string
       assignee:
         type: string
       assigneeId:
@@ -7241,6 +7654,11 @@ definitions:
         type: string
       description:
         type: string
+  Id:
+     type: object
+     properties:
+       id:
+         type: string
   CompanyHistory:
     type: object
     properties:
@@ -7284,7 +7702,7 @@ definitions:
       individual-discussionId:
         type: string
       accountId:
-        type: string
+        type: number
       full_name:
         type: string
       avatar:
@@ -7297,12 +7715,10 @@ definitions:
       reply:
         type: boolean
       commentId:
-        type: string
+        type: number
       like:
         type: number
       dislike:
-        type: number
-      projectId:
         type: number
   IndividualDiscussionCommentHelpful:
     type: object
@@ -7324,6 +7740,8 @@ definitions:
         type: string
       accountId:
         type: string
+      comment:
+        type: string
   IndividualDiscussion:
     type: object
     properties:
@@ -7331,17 +7749,15 @@ definitions:
         type: string
       title:
         type: string
-      message:
-        type: string
       created_by:
         type: string
       created_at:
         type: number
         format: milliseconds
       accountId:
-        type: string
+        type: number
       projectId:
-        type: string
+        type: number
   IndividualDiscussionTag:
     type: object
     properties:
@@ -7478,6 +7894,11 @@ definitions:
         type: string
       pkg:
         $ref: '#/definitions/DomeModelResponsePkg'
+  RunDomeModelResponse:
+     type: object
+     properties:
+      runId:
+        type: integet
   DomeModelResponsePkg:
     type: object
     properties:
@@ -7938,6 +8359,32 @@ definitions:
                   type: string
                 statusName:
                   type: string
+  DmdiiProjectEvents:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      content:
+        type: string
+      date:
+        type: string
+        format: date
+  DmdiiProjectNews:
+    type: object
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+      content:
+        type: string
+      dateCreated:
+        type: string
+        format: date
+      projectNumber:
+        type: string
   DmdiiMember:
     type: object
     properties:
@@ -8167,3 +8614,47 @@ definitions:
               type: string
             link:
               type: string
+  DmdiiMemberEvents:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+      location:
+        type: string
+      date:
+        type: string
+        format: date
+  DmdiiMemberNews:
+    type: object
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+      content:
+        type: string
+      dateCreated:
+        type: string
+        format: date
+  ServiceRunResult:
+    type: object
+    properties:
+      status:
+        type: integer
+      outs:
+        $ref: '#/definitions/ServiceRunOuts'
+  ServiceRunOuts:
+    type: array
+    items:
+      $ref: '#/definitions/ServiceRunOut'
+  ServiceRunOut:
+    type: object
+    properties:
+      value:
+        type: string
+      parameterid:
+        type: string

@@ -1,0 +1,48 @@
+ng-md-icon {
+    fill: currentColor;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1;
+}
+.members-list{
+  margin-top: 21px;
+  th{
+    min-width: 75px;
+  }
+  td{
+    text-transform: none !important;
+    &:first-child a{
+      font-size: 16px;
+    }
+  }
+  .title{
+    width: 40%;
+  }
+  .title-member{
+    cursor: pointer;
+    a.link-button {
+      font-size: 14px;
+    }
+  }
+}
+
+.event-indicator {
+    background-color: #65AF3F !important;
+}
+.is-selected {
+    background-color: #5e5e5e !important;
+    color: #fff
+}
+.newsAndEvents {
+    border: solid;
+    border-width: 3px;
+    border-color: #5e5e5e;
+    border-radius: 5px;
+}
+
+.calendarIcon {
+    fill:#5e5e5e;
+}
+.calendarIcon:hover {
+    fill: #65AF3F;
+}

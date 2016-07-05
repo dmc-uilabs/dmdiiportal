@@ -114,12 +114,10 @@ angular.module('dmc.compose-discussion',[])
                         "commentId" : 0,
                         "avatar": "/images/carbone.png",
                         "text": message,
-                        "created_at": moment(new Date).format("MM/DD/YYYY hh:mm A"),
-                        "userRatingReview": {
-                            "DMC Member": "like"
-                        },
+                        "created_at": moment(new Date).format("x"),
                         "like": 0,
-                        "dislike": 0
+                        "dislike": 0,
+                        "reply": false
                     },
                     function(response){
                         followDiscussion(id);
