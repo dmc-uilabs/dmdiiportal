@@ -57,7 +57,6 @@ angular.module('dmc.member')
 
             // callback for member
             var callbackFunction = function(response){
-                console.log($scope.member)
                 $scope.member = response.data;
 				$scope.memberLoading = false;
             };
