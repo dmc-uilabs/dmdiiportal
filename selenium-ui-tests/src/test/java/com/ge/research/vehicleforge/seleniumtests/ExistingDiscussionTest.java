@@ -16,7 +16,7 @@ import org.openqa.selenium.WebElement;
 
 
 
-public class DiscussionTest extends BaseTest{
+public class ExistingDiscussionTest extends BaseTest{
 	
 	@Test
 	public void testDiscussionFunctionality() throws Exception {
