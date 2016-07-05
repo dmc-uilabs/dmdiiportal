@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -159,7 +160,7 @@ public class MyProfileTest extends BaseTest{
 		
 	}
 	
-	
+	@Ignore
 	@Test
 	public void testMyProfileAll() throws Exception{
 		testDMCLogin();

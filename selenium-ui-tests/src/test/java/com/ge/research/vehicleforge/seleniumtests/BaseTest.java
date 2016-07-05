@@ -4,17 +4,22 @@ package com.ge.research.vehicleforge.seleniumtests;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+
 import org.openqa.selenium.interactions.Actions;
+
 
 
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static org.junit.Assert.*;
+
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +37,7 @@ public abstract class BaseTest {
 
 	//static HtmlUnitDriver driver;
 	static RemoteWebDriver driver;
-	static String baseUrl;   
+	static String baseUrl, browserName;   
 	static StringBuffer verificationErrors = new StringBuffer();
 	public static Logger log = Logger.getGlobal();
 	Actions actions;
@@ -75,13 +80,43 @@ public abstract class BaseTest {
 
    
 
-   
-
 	public static void initSelenium() throws Exception {
 		try {
 
+
 			driver.manage().deleteAllCookies();            
 			driver.get(baseUrl);
+
+    	// System.getProperty() is used for get system properties defined with -D in bamboo Maven task Goal field.
+    	//String browserName = System.getProperty("browser").toLowerCase();
+    	log.log(Level.INFO, "set up");
+		log.log(Level.INFO, "Get browser from maven build: " + browserName);
+		String version = null;
+		
+		if (browserName.equals("chrome")) {
+            version = "chrome";
+            System.setProperty("webdriver.chrome.driver", "C:/Program Files (x86)/chromedriver.exe");
+            driver = new ChromeDriver();
+            driver.manage().window().maximize();
+        } else if (browserName.equals("firefox")) {
+            driver = new FirefoxDriver();
+            driver.manage().window().maximize();
+        } else if (browserName.equals("ie")) {
+            //version = BrowserVersion.INTERNET_EXPLORER_11;
+        	//driver = new InternetExplorerDriver();
+        } else if(browserName.equals("safari")){
+        	//driver = new SafariDriver();
+        }else {
+            fail("Unknown browser " + browserName);
+        }
+
+        log.log(Level.INFO, "version name is: " + version);
+      baseUrl = System.getenv("baseUrl");
+      System.out.println("The first step to get Url from system environment : " + baseUrl);
+
+    driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+    //initSelenium();
+
 
 		} catch (Exception e) {
 			log.log(Level.SEVERE,"*** TEST Failure New***");
@@ -108,12 +143,15 @@ public abstract class BaseTest {
 
 
 
+            
+
+
 	/**
 	 * Test the login page that protects the overall site from public access.
 	 */
 
 
-    public final void testPublicLoginProtection() throws Exception {
+    public final static void testPublicLoginProtection() throws Exception {
 
     	try {
     		driver.manage().deleteAllCookies();
@@ -148,6 +186,7 @@ public abstract class BaseTest {
 	
 
 
+
 	public void TestOnBoarding(){
 
 		// driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
@@ -171,13 +210,12 @@ public abstract class BaseTest {
 
 	}
 
-            
 
-  
-
+          
 
 
-    public void testDMCLogin() throws Exception{
+
+    public static void testDMCLogin() throws Exception{
     	
     	if (baseUrl.contains("localhost"))
     		return;
@@ -190,7 +228,7 @@ public abstract class BaseTest {
     		driver.manage().deleteAllCookies();
  	   }
 
-
+    	Thread.sleep(1000);
     	// logout
 	    driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
 	    WebElement logout = driver.findElement(By.xpath("//md-menu-item[4]/button"));
@@ -199,6 +237,7 @@ public abstract class BaseTest {
 	    //System.out.print(driver.getPageSource());
 
 	    //login
+
 	    driver.findElement(By.xpath("//a/span")).click();
 	   // driver.findElementByLinkText("Login").click();
 	 driver.findElement(By.linkText("Google")).click();
@@ -212,5 +251,15 @@ public abstract class BaseTest {
 
 	
     }
+
+		
+
+    
+    
+    
+ 
+  
+  
+
 
 }

@@ -3,6 +3,7 @@
 
 <!-- build:css styles/vendor.css -->
 <!-- bower:css -->
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/bower_components/angular-carousel/angular-carousel.css" />
 <link rel="stylesheet" href="/bower_components/angular-clndr/angular-clndr.css" />
 <link rel="stylesheet" href="/bower_components/angular-datepicker/dist/angular-datepicker.css" />

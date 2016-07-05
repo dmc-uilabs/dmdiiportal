@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -17,15 +18,15 @@ public class AddProjectTest extends BaseTest{
 	
 	private static Logger LOGGER = Logger.getLogger("InfoLogging");
 	
-	Integer projectNum =TestUtils.ran;
-	String projectName = "Test Project " + projectNum;
-	String overview = "This is a test for adding project" + projectNum;
-	String ProjectTag = "Test tag" + projectNum;
-	String overviewEdit = "This is a test for editing project" + projectNum;
-	String ProjectTagEdit = "Test tag edited" + projectNum;
+	static Integer projectNum =TestUtils.ran;
+	static String projectName = "Test Project " + projectNum;
+	static String overview = "This is a test for adding project" + projectNum;
+	static String ProjectTag = "Test tag" + projectNum;
+	static String overviewEdit = "This is a test for editing project" + projectNum;
+	static String ProjectTagEdit = "Test tag edited" + projectNum;
 
 	//Navigate from MyAccount Menu
-	public void accountProjectNav() throws Exception{
+	public static void accountProjectNav() throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		testPublicLoginProtection();
 		
@@ -36,13 +37,14 @@ public class AddProjectTest extends BaseTest{
 	    assertEquals("My Projects", driver.getTitle());
 	}
 	
+	@Ignore
 	@Test
 	public void runTestAddProject() throws Exception{
 		testAddProject();
 	}
 	
 	
-	public void testAddProject() throws Exception{
+	public static void testAddProject() throws Exception{
 		testDMCLogin();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		accountProjectNav();
@@ -92,6 +94,7 @@ public class AddProjectTest extends BaseTest{
 	    driver.findElement(By.xpath("//div[2]/button[2]")).click();
 	}
 	
+	@Ignore
 	@Test
 	public void editProjectTest() throws Exception{
 		testDMCLogin();

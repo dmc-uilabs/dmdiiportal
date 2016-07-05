@@ -129,7 +129,7 @@ angular.module('dmc.dmdiiProjects')
             };
 
             $scope.hasNext = function() {
-                return $scope.dmdiiProjectCurrentPage !== Math.ceil($scope.totalRecords / $scope.dmdiiProjectPageSize);
+                return $scope.dmdiiProjectCurrentPage !== Math.ceil($scope.projects.count / $scope.dmdiiProjectPageSize);
             };
 
             var eventsCallbackFunction = function(response) {
@@ -224,10 +224,15 @@ angular.module('dmc.dmdiiProjects')
 
             // callback
             var callbackFunction = function(response){
-                $scope.projects.arr = response.data;
+                console.log(response.data)
+                if (angular.isDefined(response.data.count)) {
+                    $scope.projects.arr = response.data.data;
+                    $scope.projects.count = response.data.count;
+                } else {
+                    $scope.projects.arr = response.data;
+                }
                 $scope.dmdiiProjectsLoading = false;
-                $scope.totalRecords = response.totalRecords;
-                insertData(response.data);
+                // insertData(response.data);
             };
 
             var responseData = function(){
@@ -267,8 +272,6 @@ angular.module('dmc.dmdiiProjects')
                 var getUrl = function(cat, subcat){
                     var dataSearch = $.extend(true, {}, $stateParams);
                     dataSearch[cat] = subcat;
-                    console.log(dataSearch)
-                    console.log('dmdii-projects.php' + $state.href('dmdii_projects', dataSearch))
                     return 'dmdii-projects.php' + $state.href('dmdii_projects', dataSearch);
                 };
 
