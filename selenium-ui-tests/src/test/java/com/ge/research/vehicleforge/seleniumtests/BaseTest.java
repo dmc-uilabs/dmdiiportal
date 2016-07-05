@@ -56,7 +56,7 @@ public abstract class BaseTest {
 		String version = null;
 		if (browserName.equals("chrome")) {
 			version = "chrome";
-			System.setProperty("webdriver.chrome.driver", "C:/dmc/selenium-test-cases/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "C:/Program Files (x86)/chromedriver.exe");
 			driver = new ChromeDriver();
 		} else if (browserName.equals("firefox")) {
 			driver = new FirefoxDriver();
