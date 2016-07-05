@@ -3,6 +3,7 @@ package com.ge.research.vehicleforge.seleniumtests;
 import static org.junit.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.junit.Test;
@@ -24,24 +25,26 @@ public class AddProjectTest extends BaseTest{
 	String ProjectTag = "Test tag" + projectNum;
 	String overviewEdit = "This is a test for editing project" + projectNum;
 	String ProjectTagEdit = "Test tag edited" + projectNum;
+	JavascriptExecutor jse = (JavascriptExecutor)driver;
 
 	//Navigate from MyAccount Menu
 	public void accountProjectNav() throws Exception{
-		testPublicLoginProtection();
+		//testPublicLoginProtection();
 		
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[3]/a/span")));
         element.click();	    
-	    System.out.println("Get current title:" + driver.getTitle());
+        log.log(Level.INFO, "Get current title:" + driver.getTitle());
 	    assertEquals("My Projects", driver.getTitle());
 	}
 	
-	@Ignore
-	@Test
+	//@Ignore
+	//@Test
 	public void testAddProject() throws Exception{
 		testDMCLogin();
-		
-		accountProjectNav();
+		driver.get(baseUrl + "/my-projects.php#/");
+		Thread.sleep(1000);
+		//accountProjectNav();
 		driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
 		//WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("input_5")));
 		WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//md-content/form/md-input-container/input")));
@@ -52,23 +55,25 @@ public class AddProjectTest extends BaseTest{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//md-datepicker/button")).click();
 		driver.findElement(By.xpath("//tbody[4]/tr[5]/td[3]/span")).click();
-	    driver.findElement(By.id("input_7")).click();
-	    driver.findElement(By.xpath("//tbody[4]/tr[4]/td[5]/span")).click();
-	    //select type
-	    driver.findElement(By.id("select_11")).click();
-	    driver.findElement(By.xpath("//md-option/div[1]")).click();
+	    
+		driver.findElement(By.xpath("//div/button")).click();
+	    driver.findElement(By.xpath("//tbody[4]/tr[5]/td[3]/span")).click();
+	    
+	    //select private type
+	    driver.findElement(By.xpath("//md-select")).click();
+	    driver.findElement(By.xpath("//md-option[2]/div")).click();
+	    
 	    //add overview
-	   
-	    driver.findElement(By.id("input_12")).clear();
-	    driver.findElement(By.id("input_12")).sendKeys(overview);
+	    driver.findElement(By.xpath("//textarea")).clear();
+	    driver.findElement(By.xpath("//textarea")).sendKeys(overview);
+	    
 	    //add tag
-	    driver.findElement(By.id("input_13")).clear();
-	    driver.findElement(By.id("input_13")).sendKeys(ProjectTag);
+	    driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input")).clear();
+	    driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input")).sendKeys(ProjectTag);
+	    Thread.sleep(3000);
 	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content[2]/div/form/button"))).click();
-	    //driver.findElement(By.xpath("//md-content[2]/div/form/button")).click();
 	    
 	    //next to add member
-	    JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebElement next = driver.findElement(By.xpath("//ap-tab-one/div/div[2]/button"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", next);
 		//System.out.println("NEXT is enable or disabled: " + next.isEnabled());
@@ -80,18 +85,24 @@ public class AddProjectTest extends BaseTest{
 		}
 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
 		// Invite members to this project
-	    driver.findElement(By.xpath("//div[2]/dmc-add-members-card/div/div[5]/button")).click();
-	    driver.findElement(By.xpath("//div[3]/dmc-add-members-card/div/div[5]/button")).click();
+	    /*driver.findElement(By.xpath("//div[2]/dmc-add-members-card/div/div[5]/button")).click();
+	    driver.findElement(By.xpath("//div[3]/dmc-add-members-card/div/div[5]/button")).click();*/
 	    
-	    //submit to create the new project
-	    driver.findElement(By.xpath("//div[2]/button[2]")).click();
+		//submit to create the new project
+				WebElement submit = driver.findElement(By.xpath("//div[2]/button[2]"));
+				jse.executeScript("arguments[0].scrollIntoView(true);", submit);
+				if(next.isEnabled()){
+					next.sendKeys(Keys.ENTER);;
+				}else{
+					log.log(Level.INFO,"The button submit is not clickable!");
+				}
 	}
 	
-	@Ignore
-	@Test
+	//@Ignore
+	//@Test
 	public void editProjectTest() throws Exception{
-		testDMCLogin();
 		driver.get(baseUrl + "/my-projects.php#/");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
@@ -99,17 +110,18 @@ public class AddProjectTest extends BaseTest{
 		//WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Test Project65549")));
         element.click();
         
-	    driver.findElement(By.linkText("Edit")).click();	    
-	    driver.findElement(By.id("input_12")).clear();
-	    driver.findElement(By.id("input_12")).sendKeys(overviewEdit);
+	    driver.findElement(By.linkText("Edit")).click();
+	    driver.findElement(By.xpath("//textarea")).clear();
+	    driver.findElement(By.xpath("//textarea")).sendKeys(overviewEdit);
+	    
 	    //add tag
-	    driver.findElement(By.id("input_13")).clear();
-	    driver.findElement(By.id("input_13")).sendKeys(ProjectTagEdit);
+	    driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input")).clear();
+	    driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input")).sendKeys(ProjectTagEdit);
+	    Thread.sleep(1000);
 	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content[2]/div/form/button"))).click();
-	    //driver.findElement(By.xpath("//md-content[2]/div/form/button")).click();
+	    
 	    
 	    //next to add member
-	    JavascriptExecutor jse = (JavascriptExecutor)driver;
 		WebElement next = driver.findElement(By.xpath("//ap-tab-one/div/div[2]/button"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", next);
 		//System.out.println("NEXT is enable or disabled: " + next.isEnabled());
@@ -122,10 +134,21 @@ public class AddProjectTest extends BaseTest{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 	    //submit to create the new project
-	    driver.findElement(By.xpath("//div[2]/button[2]")).click();
+		WebElement submit = driver.findElement(By.xpath("//div[2]/button[2]"));
+		jse.executeScript("arguments[0].scrollIntoView(true);", submit);
+		if(next.isEnabled()){
+			next.sendKeys(Keys.ENTER);;
+		}else{
+			log.log(Level.INFO,"The button submit is not clickable!");
+		}
 		
 	}
 	
+	@Test
+	public void ProjectTest() throws Exception{
+		testAddProject();
+		//editProjectTest()
+	}
 	
 
 	
