@@ -3,6 +3,8 @@ package com.ge.research.vehicleforge.seleniumtests;
 
 import static org.junit.Assert.*;
 
+import java.util.logging.Level;
+
 import org.junit.Test;
 import org.junit.Ignore;
 import org.openqa.selenium.By;
@@ -19,10 +21,10 @@ public class MyAccountTest extends BaseTest {
 	public void myAccount() throws Exception{
 
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span")));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[1]/a/span")));
         element.click();
-	    System.out.println("Get current title:" + driver.getTitle());
+	    log.log(Level.INFO, "Get current title:" + driver.getTitle());
 	    assertEquals("Manage Account", driver.getTitle());
 	}
 
@@ -145,7 +147,7 @@ public class MyAccountTest extends BaseTest {
 
 
 	    //click add server button and cancel adding server
-	    driver.findElement(By.xpath("//md-content/div[1]/button")).click();
+	   // driver.findElement(By.xpath("//md-content/div[1]/button")).click();
 	    driver.findElement(By.xpath("//div[2]/button[1]")).click();
 
 	    //rename the server alias and URL
@@ -166,13 +168,14 @@ public class MyAccountTest extends BaseTest {
 
 
 	//To make test case run in order.
-	@Ignore
+	//@Ignore
 	@Test
 	public void testMyAccount() throws Exception{
 		testDMCLogin();
 		testMyAccountBascis();
-		testMyAccountPrivacy();
-		testMyAccountNotification();
+		//These two feature not implemented yet.
+		//testMyAccountPrivacy();
+		//testMyAccountNotification();
 		testMyAccountServer();
 	}
 
