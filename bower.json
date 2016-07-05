@@ -36,7 +36,8 @@
     "angular-route": "~1.4.8",
     "angular-horizontal-timeline": "*",
     "angular-clndr": "^0.3.2",
-    "clndr": "^1.4.1"
+    "clndr": "^1.4.1",
+    "aws-sdk": "aws-sdk-js#^2.2.41"
   },
   "devDependencies": {
     "angular": "~1.4.4",
