@@ -12,7 +12,7 @@ import org.openqa.selenium.*;
 
 public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	
-	
+	@Ignore
 	@Test 
 	public void testCreateNewDiscussionFromDiscussionsPage() throws Exception {
 		createNewDiscussionFromDiscussionsPage();

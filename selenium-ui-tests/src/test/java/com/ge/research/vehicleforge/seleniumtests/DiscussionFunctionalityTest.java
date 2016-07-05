@@ -17,7 +17,7 @@ import org.openqa.selenium.WebElement;
 
 
 public class DiscussionFunctionalityTest extends BaseTest{
-	
+	@Ignore
 	@Test
 	public void testDiscussionFunctionality() throws Exception {
 		AddProjectTest.testAddProject();

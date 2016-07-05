@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import java.util.logging.Level;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import org.openqa.selenium.By;
@@ -17,7 +18,7 @@ import org.openqa.selenium.WebElement;
 
 
 public class ExistingDiscussionTest extends BaseTest{
-	
+	@Ignore
 	@Test
 	public void testDiscussionFunctionality() throws Exception {
 		verifyDiscussionFunctionality();
