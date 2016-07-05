@@ -5,7 +5,10 @@ import static org.junit.Assert.assertEquals;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.junit.Test;
 import org.junit.Ignore;
@@ -59,18 +62,26 @@ public class AddProjectTest extends BaseTest{
 		//select due date
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//md-datepicker/button")).click();
-		String[] currentDate = (new SimpleDateFormat("yyyy-mm-dd")).format(new Date()).split("-");
-		driver.findElement(By.xpath("//tbody[4]/tr[5]/td[3]/span")).click();
+		String[] currentDate = (new SimpleDateFormat("yyyy-MM-dd")).format(new Date()).split("-");
+		String regex = "^0*";
+		currentDate[1] = currentDate[1].matches(regex) ? currentDate[1].substring(1) : currentDate[1];
+		String substitutedDate = currentDate[0] + "-" + currentDate[1] + "-" + currentDate[2];
+		log.log(Level.INFO, "addProjectTest, xpath is " + "//td[@id='md-0-"+ substitutedDate + "']/span");
+		driver.findElement(By.xpath("//tbody[2]/tr[2]/td[2]/span")).click();
 	    //select type
-	    driver.findElement(By.id("select_11")).click();
-	    driver.findElement(By.xpath("//md-option/div[1]")).click();
+	    driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div[2]/md-content/md-tabs/"
+	    		+ "md-tabs-content-wrapper/md-tab-content[1]/div/md-content/ap-tab-one/div/div[1]/"
+	    		+ "div[1]/div/div[2]/md-content[1]/form/div/md-input-container[2]/md-select")).click();
+	    //driver.findElement(By.xpath("//md-select-value[@id='select_value_label_3']/span[2]")).click();
+	    driver.findElement(By.xpath("//md-option[2]/div")).click();
 	    //add overview
 	   
-	    driver.findElement(By.id("input_12")).clear();
-	    driver.findElement(By.id("input_12")).sendKeys(overview);
+	    driver.findElement(By.name("overview")).clear();
+	    driver.findElement(By.name("overview")).sendKeys(overview);
 	    //add tag
-	    driver.findElement(By.id("input_13")).clear();
-	    driver.findElement(By.id("input_13")).sendKeys(ProjectTag);
+	   
+	    driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input")).clear();
+	    driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input")).sendKeys(ProjectTag);
 	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content[2]/div/form/button"))).click();
 	    //driver.findElement(By.xpath("//md-content[2]/div/form/button")).click();
 	    
@@ -88,8 +99,12 @@ public class AddProjectTest extends BaseTest{
 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		// Invite members to this project
-	    driver.findElement(By.xpath("//div[2]/dmc-add-members-card/div/div[5]/button")).click();
-	    driver.findElement(By.xpath("//div[3]/dmc-add-members-card/div/div[5]/button")).click();
+		WebElement firstMember = driver.findElement(By.xpath("//div[2]/dmc-add-members-card/div/div[5]/button"));
+		jse.executeScript("arguments[0].scrollIntoView(true);", firstMember);
+		firstMember.sendKeys(Keys.ENTER);
+		WebElement secondMember = driver.findElement(By.xpath("//div[3]/dmc-add-members-card/div/div[5]/button"));
+		jse.executeScript("arguments[0].scrollIntoView(true);", secondMember);
+		secondMember.sendKeys(Keys.ENTER);
 	    
 	    //submit to create the new project
 	    driver.findElement(By.xpath("//div[2]/button[2]")).click();
