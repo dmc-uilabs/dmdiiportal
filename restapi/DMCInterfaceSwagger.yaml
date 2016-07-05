@@ -1065,7 +1065,8 @@ paths:
     delete:
       tags:
         - task
-        - not implemented
+        - live
+        - has tests
       description: Delete task
       parameters:
         - name: taskID
