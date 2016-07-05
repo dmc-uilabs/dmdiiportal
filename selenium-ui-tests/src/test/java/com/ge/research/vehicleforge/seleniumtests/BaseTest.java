@@ -189,14 +189,14 @@ public abstract class BaseTest {
     }
   
   
- /* @AfterClass
+  @AfterClass
   public static void tearDown() throws Exception {
       driver.quit();
       String verificationErrorString = verificationErrors.toString();
       if (!"".equals(verificationErrorString)) {
         fail(verificationErrorString);
       }
-    }*/
+    }
 
 
 }
