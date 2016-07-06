@@ -2566,21 +2566,21 @@ paths:
             items:
               $ref: '#/definitions/IndividualDiscussion'
   '/follow_discussions':
-    patch:
+    post:
       tags:
         - discussion
         - not implemented
-      description: Update follow discussion
+      description: Post follow discussion (follow a discussion)
       parameters:
         - in: body
           name: body
           description: Follow Discussion object to be added to the database
-          required: false
+          required: true
           schema:
             $ref: '#/definitions/FollowingIndividualDiscussion'
       responses:
         200:
-          description: Returns updated Follow Discussion
+          description: Returns posted Follow Discussion
           schema:
             $ref: '#/definitions/FollowingIndividualDiscussion'
   '/follow_discussions/{followID}':
@@ -5355,18 +5355,11 @@ paths:
           description: Id account
           required: true
           type: string
-        - in: query
-          name: comment
-          description: Comment related to flagging
-          required: true
-          type: string
       responses:
         '200':
           description: return individual discussions comment flagged
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/IndividualDiscussionCommentFlagged'
+            $ref: '#/definitions/IndividualDiscussionCommentFlagged'
     post:
       tags:
         - discussion
@@ -7708,6 +7701,8 @@ definitions:
         type: string
       comment:
         type: string
+      reason:
+        type: string
   IndividualDiscussion:
     type: object
     properties:
@@ -7861,10 +7856,10 @@ definitions:
       pkg:
         $ref: '#/definitions/DomeModelResponsePkg'
   RunDomeModelResponse:
-     type: object
-     properties:
+    type: object
+    properties:
       runId:
-        type: integet
+        type: integer
   DomeModelResponsePkg:
     type: object
     properties:
