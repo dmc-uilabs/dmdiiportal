@@ -6181,58 +6181,6 @@ paths:
         '200':
           description: return array of dmdii members
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/DmdiiMember'
-  '/dmdiiMembers/type':
-   get:
-     tags:
-       - dmdii members
-     description: Get all by category and/or tier dmdii members
-     operationId: getDmdiiMembersByType
-     parameters:
-       - name: pageSize
-         in: query
-         description: Limit items
-         type: integer
-         required: true
-       - name: page
-         in: query
-         description: Offset
-         type: integer
-         required: true
-       - name: _order
-         in: query
-         description: Order by ASC or DESC
-         type: string
-         collectionFormat: multi
-         required: false
-         enum:
-           - ASC
-           - DESC
-       - name: _sort
-         in: query
-         description: Sort by some parameter
-         type: string
-         required: false
-       - name: title_like
-         in: query
-         description: Filter by title
-         type: string
-       - name: categoryId
-         in: query
-         description: Filter by categoryId
-         type: integer
-         required: false
-       - name: tier
-         in: query
-         description: Filter by tier
-         type: integer
-         required: false
-     responses:
-        '200':
-          description: return array of dmdii members
-          schema:
             type: object
             properties:
               count:
@@ -6258,6 +6206,24 @@ paths:
           description: return single dmdii member
           schema:
             $ref: '#/definitions/DmdiiMember'
+  '/dmdiiMember/save':
+   post:
+     tags:
+        - dmdii members
+     description: Save Dmdii Member
+     operationId: saveDmdiiMember
+     parameters:
+      - in: body
+        name: body
+        description: member to be saved
+        required: true
+        schema:
+          $ref: '#/definitions/DmdiiMember'
+     responses:
+      '200':
+        description: 'saved member object'
+        schema:
+          $ref: '#/definitions/DmdiiMember'
   '/dmdiiMember/events':
     get:
       tags:
@@ -8285,6 +8251,8 @@ definitions:
             date:
               type: string
               format: dateTime
+            author:
+              type: string
       documents:
         type: array
         items:

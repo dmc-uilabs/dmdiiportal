@@ -458,7 +458,9 @@ angular.module('dmc.data',[])
                     events: localhost+'dmdiiMember/events',
                     news: localhost+'dmdiiMember/news'
                 }
-
+            },
+            saveDMDIIMember: function(id) {
+                return localhost + 'dmdiiMember/' + id
             },
             getDMDIIProject: function(id) {
                 return {

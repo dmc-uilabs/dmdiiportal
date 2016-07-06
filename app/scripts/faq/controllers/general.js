@@ -29,6 +29,7 @@ angular.module('dmc.faq')
                 }
             );
         };
+        
 
         // get categories
         $scope.getFAQCategories = function(){
