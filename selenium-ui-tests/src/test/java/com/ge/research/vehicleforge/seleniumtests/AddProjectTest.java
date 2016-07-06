@@ -2,6 +2,8 @@ package com.ge.research.vehicleforge.seleniumtests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,9 +46,7 @@ public class AddProjectTest extends BaseTest{
 		testDMCLogin();
 		driver.get(baseUrl + "/my-projects.php#/");
 		Thread.sleep(1000);
-		//accountProjectNav();
 		driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
-		//WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("input_5")));
 		WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//md-content/form/md-input-container/input")));
 		e.clear();
 		e.sendKeys(projectName);
@@ -54,13 +54,20 @@ public class AddProjectTest extends BaseTest{
 		//select due date
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//md-datepicker/button")).click();
+		
+		String[] currentDate = (new SimpleDateFormat("yyyy-MM-dd")).format(new Date()).split("-");
+		String regex = "^0*";
+		currentDate[1] = currentDate[1].matches(regex) ? currentDate[1].substring(1) : currentDate[1];
+		String substitutedDate = currentDate[0] + "-" + currentDate[1] + "-" + currentDate[2];
+		log.log(Level.INFO, "addProjectTest, xpath is " + "//td[@id='md-0-"+ substitutedDate + "']/span");
+		
 		driver.findElement(By.xpath("//tbody[4]/tr[5]/td[3]/span")).click();
 	    
-		driver.findElement(By.xpath("//div/button")).click();
-	    driver.findElement(By.xpath("//tbody[4]/tr[5]/td[3]/span")).click();
+		/*driver.findElement(By.xpath("//div/button")).click();
+	    driver.findElement(By.xpath("//tbody[4]/tr[5]/td[3]/span")).click();*/
 	    
 	    //select private type
-	    driver.findElement(By.xpath("//md-select")).click();
+	    driver.findElement(By.xpath("//md-input-container[2]/md-select")).click();
 	    driver.findElement(By.xpath("//md-option[2]/div")).click();
 	    
 	    //add overview
@@ -71,16 +78,14 @@ public class AddProjectTest extends BaseTest{
 	    driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input")).clear();
 	    driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input")).sendKeys(ProjectTag);
 	    Thread.sleep(3000);
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content[2]/div/form/button"))).click();
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content[2]/div/form/button"))).sendKeys(Keys.ENTER);;
 	    
 	    //next to add member
 		WebElement next = driver.findElement(By.xpath("//ap-tab-one/div/div[2]/button"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", next);
-		//System.out.println("NEXT is enable or disabled: " + next.isEnabled());
 		if(next.isEnabled()){
 			next.sendKeys(Keys.ENTER);;
 		}else{
-			//System.out.println("Can not click the button NEXT!!!");
 			LOGGER.info("The button NEXT is not clickable!");
 		}
 
