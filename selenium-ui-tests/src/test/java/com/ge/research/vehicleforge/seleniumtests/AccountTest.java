@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MyAccountTest extends BaseTest {
+public class AccountTest extends BaseTest {
 	private String firstName = "Thomas-changed";
 	private String lastName = "Smith-changed";
 	private String location = "Schenectady";
@@ -20,6 +20,8 @@ public class MyAccountTest extends BaseTest {
 
 	public void myAccount() throws Exception{
 
+		driver.get(baseUrl+"/dashboard.php#/");
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[1]/a/span")));
