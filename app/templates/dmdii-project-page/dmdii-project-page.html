@@ -88,6 +88,23 @@
 					</md-content>
 				</md-tab>
 
+				<md-tab label="Project Updates">
+					<md-content class="md-padding">
+						<div class="tabs-content" layout="column">
+							<div layout="column">
+								<div class="bottom20" ng-repeat="update in project.updates">
+									<div class="slim-side-margin no-bottom" layout="row">
+										<h4 class="no-top no-bottom">{{update.title}}</h4>
+										<span class="slim-side-margin">{{update.date}}</span>
+									</div>
+									<p class="slim-margin">{{update.description}}</p>
+									<span class="slim-side-margin no-top bottom10">-{{update.author}}</span>
+								</div>
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+
 				<md-tab label="Project Documents">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
