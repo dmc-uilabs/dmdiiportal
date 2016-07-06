@@ -13,9 +13,8 @@ public class MenuNavigationTest extends BaseTest {
 	
 	@Test
 	public void testMenuNavigation() throws Exception{
-		driver.get(baseUrl+"/index.php");
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("//a/span")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//a/span")).sendKeys(Keys.ENTER);
 	    assertEquals("Dashboard", driver.getTitle());
 	    driver.findElement(By.xpath("//div[2]/div/div/div/div/md-menu/button")).click();
 	    Thread.sleep(2000);

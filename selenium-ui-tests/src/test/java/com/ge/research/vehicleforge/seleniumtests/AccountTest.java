@@ -6,8 +6,8 @@ import static org.junit.Assert.*;
 import java.util.logging.Level;
 
 import org.junit.Test;
-import org.junit.Ignore;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,7 +22,7 @@ public class AccountTest extends BaseTest {
 
 		driver.get(baseUrl+"/dashboard.php#/");
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
+		driver.findElement(By.xpath("//div[3]/md-menu/button")).sendKeys(Keys.ENTER);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[1]/a/span")));
         element.click();
