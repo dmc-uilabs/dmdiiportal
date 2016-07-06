@@ -169,7 +169,7 @@ public class ProfileTest extends BaseTest{
 	//@Ignore
 	@Test
 	public void testMyProfileAll() throws Exception{
-		testDMCLogin();
+		//testDMCLogin();
 		//testMyProfile();
 		testMyProfileReview();
 		testMyProfileSorting();

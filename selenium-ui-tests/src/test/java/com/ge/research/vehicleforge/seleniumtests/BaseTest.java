@@ -70,36 +70,15 @@ public abstract class BaseTest {
           System.out.println("The first step to get Url from system environment : " + baseUrl);
 
         driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-        //initSelenium();
+        testDMCLogin();
 
     }
-
-    public static void initSelenium() throws Exception {
-        try {
-
-            driver.manage().deleteAllCookies();
-            driver.get(baseUrl);
-
-        } catch (Exception e) {
-            System.out.println("*** TEST Failure New***");
-            System.out.println("URL : " + driver.getCurrentUrl());
-            System.out.println("Title : " + driver.getTitle());
-
-            fail(e.getLocalizedMessage());
-        }
-
-
-        System.out.println("Initial URL : " + driver.getCurrentUrl());
-        System.out.println("Initial Title : " + driver.getTitle());
-
-    }
-
 
 
     /**
      * Test the login page that protects the overall site from public access.
      */
-    public final void testPublicLoginProtection() throws Exception {
+    public final static void testPublicLoginProtection() throws Exception {
 
     	try {
     		driver.manage().deleteAllCookies();
@@ -128,7 +107,7 @@ public abstract class BaseTest {
     }
 
 
-    public void testDMCLogin() throws Exception{
+    public static void testDMCLogin() throws Exception{
     	if (TestUtils.CREDENTIAL_GATEWAY_REQUIRED) {
             testPublicLoginProtection();
         }

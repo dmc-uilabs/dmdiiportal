@@ -173,7 +173,7 @@ public class AccountTest extends BaseTest {
 	//@Ignore
 	@Test
 	public void testMyAccount() throws Exception{
-		testDMCLogin();
+		//testDMCLogin();
 		testMyAccountBascis();
 		//These two feature not implemented yet.
 		//testMyAccountPrivacy();

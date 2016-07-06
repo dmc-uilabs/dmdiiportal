@@ -43,7 +43,7 @@ public class AddProjectTest extends BaseTest{
 	//@Ignore
 	//@Test
 	public void testAddProject() throws Exception{
-		testDMCLogin();
+		//testDMCLogin();
 		driver.get(baseUrl + "/my-projects.php#/");
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
