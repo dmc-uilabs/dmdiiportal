@@ -8246,6 +8246,8 @@ definitions:
             date:
               type: string
               format: dateTime
+            author:
+              type: string
       documents:
         type: array
         items:
