@@ -2613,7 +2613,7 @@ paths:
         - in: query
           name: individual-discussionId
           description: discussion Id
-          required: true
+          required: false
           type: string
         - name: _limit
           in: query
