@@ -60,7 +60,6 @@ public class AddProjectTest extends BaseTest{
 		currentDate[1] = currentDate[1].matches(regex) ? currentDate[1].substring(1) : currentDate[1];
 		String substitutedDate = currentDate[0] + "-" + currentDate[1] + "-" + currentDate[2];
 		log.log(Level.INFO, "addProjectTest, xpath is " + "//td[@id='md-0-"+ substitutedDate + "']/span");
-		
 		driver.findElement(By.xpath("//tbody[4]/tr[5]/td[3]/span")).click();
 	    
 		/*driver.findElement(By.xpath("//div/button")).click();
