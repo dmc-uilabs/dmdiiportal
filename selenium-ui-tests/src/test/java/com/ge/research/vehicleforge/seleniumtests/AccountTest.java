@@ -29,7 +29,6 @@ public class AccountTest extends BaseTest {
 		assertEquals("Manage Account", driver.getTitle());
 	}
 
-	// @Test
 	public void testMyAccountBascis() throws Exception {
 		myAccount();
 
@@ -61,7 +60,6 @@ public class AccountTest extends BaseTest {
 
 	}
 
-	// @Test
 	public void testMyAccountPrivacy() throws Exception {
 		// navigate to PRIVACY tab
 		driver.findElement(By.xpath("//md-list-item[2]/a/div/div")).click();
@@ -90,7 +88,6 @@ public class AccountTest extends BaseTest {
 		driver.findElement(By.xpath("//button[2]")).click();
 	}
 
-	// @Test
 	public void testMyAccountNotification() throws Exception {
 		// navigate to NOTIFICATIONS tab
 		driver.findElement(By.xpath("//md-list-item[3]/a/div/div")).click();
@@ -124,10 +121,8 @@ public class AccountTest extends BaseTest {
 		driver.findElement(By.xpath("//md-tab-content[2]/div/md-content/div[2]/div[2]/div[4]/md-switch/div/div[2]/div"))
 				.click();
 		driver.findElement(By.xpath("//button[2]")).click();
-
 	}
 
-	// @Test
 	public void testMyAccountServer() throws Exception {
 		// navigate to SERVERS tab
 		driver.findElement(By.xpath("//md-list-item[4]/a/div/div")).click();
