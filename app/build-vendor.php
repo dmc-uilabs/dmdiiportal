@@ -12,7 +12,9 @@
 <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
 <link rel="stylesheet" href="/bower_components/dropzone/dist/min/dropzone.min.css" />
 <link rel="stylesheet" href="/bower_components/md-data-table/dist/md-data-table-style.css" />
-<link rel="stylesheet" href="/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css" />
+<link rel="stylesheet" href="/bower_components/angular-ui-select/dist/select.min.css" />
+<link rel="stylesheet" href="/bower_components/select2/select2.css" />
+
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -37,6 +39,7 @@
 <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
 <script src="/bower_components/moment-range/lib/moment-range.min.js"></script>
 <script src="/bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
+<script src="/bower_components/angular-ui-select/dist/select.min.js"></script>
 <script src="/bower_components/angular-animate/angular-animate.js"></script>
 <script src="/bower_components/angular-aria/angular-aria.js"></script>
 <script src="/bower_components/angular-material/angular-material.js"></script>

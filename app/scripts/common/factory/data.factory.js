@@ -468,6 +468,12 @@ angular.module('dmc.data',[])
                     news: localhost+'dmdiiProject/news'
                 }
             },
+            getDocumentTags: function() {
+                return localhost + 'documents/tags'
+            },
+            createDocumentTag: function() {
+                return localhost + 'documents/tags'
+            },
             // companies ------------------
             companyURL: function(id){
                 var name = 'companies';

@@ -6331,6 +6331,47 @@ paths:
           description: An object representing poll result
           schema:
             $ref: '#/definitions/ServiceRunResult'
+  '/documents/tags':
+    get:
+      tags:
+        - document tags
+      description: get all document tags
+      responses:
+        '200':
+          description: an array of all tags
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+    post:
+      tags:
+        - document tags
+      description: add new document tags
+      parameters:
+        - in: body
+          name: body
+          description: tag to be created
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+      responses:
+        '200':
+          description: new tag object
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
 definitions:
   PostFollowingMemeber:
     type: object
@@ -7170,6 +7211,15 @@ definitions:
         format: dateTime
       size:
         type: string
+      tags:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
   ServiceAuthor:
     type: object
     properties:
@@ -7898,7 +7948,7 @@ definitions:
      type: object
      properties:
       runId:
-        type: integet
+        type: integer
   DomeModelResponsePkg:
     type: object
     properties:
