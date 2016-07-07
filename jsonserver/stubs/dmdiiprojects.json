@@ -75,7 +75,8 @@
       "name": "Advanced Manufacturing Enterprise",
       "code": "AME"
     },
-    "finances": ["2500", "1250"],
+    "dmdii_funding": 2500,
+    "cost_share": 1260,
     "updates": [
         {
             "date": "2016-07-05",
@@ -259,6 +260,22 @@
       "name": "Intelligent Machining",
       "code": "IM"
     },
+    "dmdii_funding": 2500,
+    "cost_share": 1260,
+    "updates": [
+        {
+            "date": "2016-07-05",
+            "title": "Update 2",
+            "description": "This is the other update",
+            "author": "Arthur McArty"
+        },
+        {
+            "date": "2016-07-04",
+            "title": "Update 1",
+            "description": "This is the update",
+            "author": "Arthur McArty"
+        }
+    ],
     "contributingCompanies": [
       {
         "id": 1000,
