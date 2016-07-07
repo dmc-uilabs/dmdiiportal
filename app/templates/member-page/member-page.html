@@ -29,8 +29,26 @@
 					</div>
 					<div layout="column" class="member-contacts">
 						<h2>Contacts</h2>
-						<span ng-repeat="contact in member.contacts | limitTo:2">{{contact.firstName + ' ' + contact.lastName}} | {{contact.email}} | {{contact.type.type}}</span>
-
+						<div layout="row">
+							<div flex="50" layout="column" class="contact no-bottom" ng-repeat="contact in member.contacts | limitTo:2">
+				        		<h3 class="no-bottom">{{contact.contactType.type}}</h3>
+				                <div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.firstName && contact.lastName">
+				                    <h4 class="no-bottom">{{contact.firstName + ' ' + contact.lastName}}</h4>
+				                </div>
+				                <div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.title && contact.title.length > 0">
+				                    <h3 class="no-bottom">{{contact.title}}</h3>
+				                </div>
+				                <div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.phone">
+				                    <ng-md-icon icon="phone" style="fill: grey" size="30"></ng-md-icon>
+				                    <h3><a href="tel:{{contact.phone}}">{{contact.phone}}</a></h3>
+				                </div>
+				                <div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.email">
+				                    <ng-md-icon icon="mail" style="fill: grey" size="30"></ng-md-icon>
+				                    <h3><a href="mailto:{{contact.email}}">{{contact.email}}</a></h3>
+				                </div>
+								<md-divider></md-divider>
+				            </div>
+						</div>
 					</div>
 				</div>
 			</div>

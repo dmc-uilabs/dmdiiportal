@@ -22,7 +22,28 @@
 						</div>
 						<div flex="20">
 							<h2>Project Financials</h2>
-							<img>image</img>
+							<div class="project-financials">
+				                <md-data-table-container>
+				                    <table md-data-table>
+				                        <thead>
+				                        <tr>
+				                            <th name="DMDII Funding"/>
+				                            <th name="Cost Share"/>
+				                        </tr>
+				                        </thead>
+				                        <tbody>
+				                        <tr>
+				                            <td>
+				                                <h4 class="no-top no-bottom">{{project.finances[0]}}</h4>
+				                            </td>
+											<td>
+												<h4 class="no-top no-bottom">{{project.finances[1]}}</h4>
+											</td>
+										</tr>
+				                        </tbody>
+				                    </table>
+				                </md-data-table-container>
+				            </div>
 						</div>
 						<span flex></span>
 						<div layout="row" flex="30" layout-align="end start">
