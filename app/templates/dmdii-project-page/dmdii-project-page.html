@@ -4,49 +4,40 @@
 		<!--project-->
 		<md-content class="project">
 			<!--project header-->
-			<div class="project-header">
-				<div layout="row" layout-align="start center">
-					<h2 class="no-bottom">{{project.projectIdentifier}}</h2>
-					<span layout="column">
-						<h5 class="project-subtitle no-bottom">{{project.projectFocusArea.name}}</h5>
-						<h5 class="project-subtitle no-bottom no-top">{{project.projectThrust.name}}</h5>
-					</span>
-				</div>
+			<div class="project-header bottom20">
+				<div layout="column">
+					<div layout="row" layout-align="start start">
+						<div layout="column" flex="40">
+							<div layout="row" layout-align="start start">
+								<h2 class="no-bottom">{{project.projectIdentifier}}</h2>
+								<span layout="column">
+									<h5 class="project-subtitle no-bottom">{{project.projectFocusArea.name}}</h5>
+									<h5 class="project-subtitle no-bottom no-top">{{project.projectThrust.name}}</h5>
+								</span>
+							</div>
+							<div layout="row" flex="40">
+								<h3>{{project.projectTitle}}</h3>
+								<h5 class="project-subtitle">{{project.projectStatus.name}}</h5>
+							</div>
+						</div>
+						<div flex="20">
+							<h2>Project Financials</h2>
+							<img>image</img>
+						</div>
+						<span flex></span>
+						<div layout="row" flex="30" layout-align="end start">
+							<div class="project-updates">
+								<h2>Key Dates</h2>
+								<div layout="column">
+									<h3 class="slim-margin">Project Awarded - <span class="slim-margin">{{project.awardedDate}}</span></h3>
 
-				<div layout="row" layout-align="start center">
-					<h3>{{project.projectTitle}}</h3>
-					<h5 class="project-subtitle">{{project.projectStatus.name}}</h5>
-				</div>
-				<md-divider></md-divider>
-				<span flex></span>
-			</div>
-			<div layout="row">
-				<div flex="50">
-					<!--project description-->
-					<div class="project-overview">
-						<h2>Summary</h2>
-						<p class="slim-margin">{{project.projectSummary}}</p>
-					</div>
-
-				</div>
-
-				<div flex="20">
-					<h2>Project Financials</h2>
-					<img>image</img>
-				</div>
-				<div layout="row" flex="30" layout-align="end start">
-					<div class="project-updates">
-						<h2>Key Dates</h2>
-						<div layout="column">
-							<h3 class="slim-margin">Project Awarded - <span class="slim-margin">{{project.awardedDate}}</span></h3>
-
-							<h3 class="slim-margin">Project End Date - <span class="slim-margin">{{project.endDate}}</span></h3>
+									<h3 class="slim-margin">Project End Date - <span class="slim-margin">{{project.endDate}}</span></h3>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<md-divider></md-divider>
 
 			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom>
 				<md-tab label="Project Contributors">
@@ -114,9 +105,19 @@
 						</div>
 					</md-content>
 				</md-tab>
-
 			</md-tabs>
 
+			<md-divider></md-divider>
+
+			<div layout="row">
+				<div flex="50">
+					<!--project description-->
+					<div class="project-overview">
+						<h2>Summary</h2>
+						<p class="slim-margin">{{project.projectSummary}}</p>
+					</div>
+				</div>
+			</div>
 		</md-content>
 	</div>
 </div>
