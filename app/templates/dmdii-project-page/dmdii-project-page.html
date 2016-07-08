@@ -34,10 +34,10 @@
 				                        <tbody>
 				                        <tr>
 				                            <td>
-				                                <h4 class="no-top no-bottom">{{project.dmdii_funding}}</h4>
+				                                <h4 class="no-top no-bottom">{{project.finances[0]}}</h4>
 				                            </td>
 											<td>
-												<h4 class="no-top no-bottom">{{project.cost_share}}</h4>
+												<h4 class="no-top no-bottom">{{project.finances[1]}}</h4>
 											</td>
 										</tr>
 				                        </tbody>
@@ -76,7 +76,7 @@
 									<span class="slim-margin">{{project.principalPointOfContact.email}}</span>
 								</div>
 							</div>
-							<div layout="column" flex="50">
+							<div layout="column" flex="50" ng-if="project.projectStatus.id > 1">
 								<h2>Participants</h2>
 
 								<div layout="column">
@@ -100,7 +100,7 @@
 					</md-content>
 				</md-tab>
 
-				<md-tab label="Project Updates">
+				<md-tab label="Project Updates" ng-if="project.updates.length > 0">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
 							<div layout="column">
@@ -117,7 +117,7 @@
 					</md-content>
 				</md-tab>
 
-				<md-tab label="Project Documents">
+				<md-tab label="Project Documents" ng-if="project.documents.length > 0">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
 							<div layout="column" class="project-documents">

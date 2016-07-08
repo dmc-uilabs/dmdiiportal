@@ -459,6 +459,9 @@ angular.module('dmc.data',[])
                     news: localhost+'dmdiiMember/news'
                 }
             },
+            getDMDIIMemberProjects: function() {
+                return localhost + 'dmdiiprojects/member';
+            },
             saveDMDIIMember: function(id) {
                 return localhost + 'dmdiiMember/' + id
             },

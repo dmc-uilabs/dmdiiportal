@@ -8,7 +8,7 @@
 				<div class="member-logo" layout="column">
 					<img class="main-image" ng-if="member.organization.featureImage" ng-src="{{member.organization.featureImage}}">
 					<div class="no-image" ng-if="!member.organization.featureImage" layout layout-align="center center">
-						<h3>No Images</h3>
+						<h3>No Image</h3>
 					</div>
 				</div>
 				<div flex>
@@ -16,7 +16,7 @@
 					<div class="member-header">
 						<div layout="row" layout-align="start center">
 							<h1>{{member.organization.name}}</h1>
-							<h5 class="member-subtitle">{{member.dmdiiType.dmdiiTypeCategory.category + ' Tier ' + member.dmdiiType.tier + ', Member Since ' + member.organization.dateJoining}}</h5>
+							<h5 class="member-subtitle">{{member.dmdiiType.dmdiiTypeCategory.category + ' Tier ' + member.dmdiiType.tier + ', Member Since ' + member.startDate}}</h5>
 						</div>
 					</div>
 
@@ -64,6 +64,8 @@
 								<h4 class="no-bottom no-top"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h4>
 								<p>Prime Investigator</p>
 							</div>
+							<div ng-if="!member.projects || member.projects.length === 0">
+								<p>This Member is not on any projects yet</p>
 						</div>
 					</md-content>
 				</md-tab>
@@ -85,7 +87,7 @@
 					</md-content>
 				</md-tab>
 
-				<md-tab label="Recognitions">
+				<md-tab label="Recognitions" ng-if="member.awards.length > 0">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
 							<div class="pad20" ng-repeat="award in member.awards">
@@ -96,18 +98,18 @@
 					</md-content>
 				</md-tab>
 
-				<md-tab label="Capabilities">
+				<md-tab label="Capabilities" ng-if="member.areasOfExpertise.length > 0 || member.rndFocii.length > 0">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
 							<div>
-								<h3 class="no-bottom slim-margin">Areas Of Expertise</h3>
+								<h3 class="no-bottom slim-margin" ng-if="member.areasOfExpertise.length > 0">Areas Of Expertise</h3>
 								<div class="pad20" ng-repeat="AOE in member.areasOfExpertise">
 									<h4><a ng-href="{{AOE.link}}">{{AOE.name}}</a></h4>
 									<p>{{AOE.description}}</p>
 								</div>
 							</div>
 
-							<div layout="column">
+							<div layout="column" ng-if="member.rndFocii.length > 0">
 								<h3 class="no-bottom slim-margin">Sector</h3>
 								<div class="pad20" ng-repeat="focus in member.rndFocii">
 									<h4>{{focus.name}}</h4>
