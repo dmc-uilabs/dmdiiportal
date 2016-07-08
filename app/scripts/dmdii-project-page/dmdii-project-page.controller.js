@@ -19,8 +19,6 @@ angular.module('dmc.dmdiiProj')
         'is_search',
         'DMCUserModel',
         '$window',
-        'CompareModel',
-        'isFavorite',
         function($state,
                  $stateParams,
                  $scope,
@@ -32,9 +30,7 @@ angular.module('dmc.dmdiiProj')
                  $location,
                  is_search,
                  DMCUserModel,
-                 $window,
-                 CompareModel,
-                 isFavorite){
+                 $window){
 
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
 
@@ -45,7 +41,6 @@ angular.module('dmc.dmdiiProj')
             var userData = null;
             DMCUserModel.getUserData().then(function(res){
                 userData = res;
-                CompareModel.get('services',userData);
             });
 
             $scope.projectLoading = true;

@@ -1,0 +1,22 @@
+[
+	{
+		"name": "General Electric",
+		"state": "IL"
+	},
+	{
+		"name": "Test Company 1",
+		"state": "IL"
+	},
+	{
+		"name": "Test Company 2",
+		"state": "MI"
+	},
+	{
+		"name": "Test Company 3",
+		"state": "NY"
+	},
+	{
+		"name": "Test Company 4",
+		"state": "AK"
+	}
+]

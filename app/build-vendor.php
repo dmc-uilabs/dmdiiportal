@@ -3,7 +3,7 @@
 
 <!-- build:css styles/vendor.css -->
 <!-- bower:css -->
-<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link rel='stylesheet' type='text/css' href="//fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="/bower_components/angular-carousel/angular-carousel.css" />
 <link rel="stylesheet" href="/bower_components/angular-clndr/angular-clndr.css" />
 <link rel="stylesheet" href="/bower_components/angular-datepicker/dist/angular-datepicker.css" />
@@ -31,6 +31,10 @@
 <script src="/bower_components/jquery/dist/jquery.js"></script>
 <script src="/bower_components/angular/angular.js"></script>
 <script src="/bower_components/hammerjs/hammer.js"></script>
+<script src="/bower_components/d3/d3.min.js"></script>
+<script src="/bower_components/topojson/topojson.min.js"></script>
+<script src="/bower_components/datamaps/dist/datamaps.all.min.js"></script>
+<script src="/bower_components/angular-datamaps/dist/angular-datamaps.min.js"></script>
 <script src="/bower_components/angular-carousel/angular-carousel.js"></script>
 <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="/bower_components/moment/moment.js"></script>

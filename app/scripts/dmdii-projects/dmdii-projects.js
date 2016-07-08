@@ -21,7 +21,6 @@ angular.module('dmc.dmdiiProjects', [
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.component.treemenu',
-    'dmc.compare',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
 ])
