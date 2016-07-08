@@ -143,12 +143,13 @@ div[dmc-top-header]{
     .navigation{
       .md-button{
         text-transform: initial;
-        font-size: 18px;
+        font-size: 16px;
         color: $navigation;
         height: 44px;
         min-height: 44px;
         line-height: 44px;
         margin: 0;
+        text-transform: uppercase;
         &.active-page{
           color: $navigationActive;
           &.member-portal{

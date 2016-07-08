@@ -3,22 +3,27 @@
 	<div class="content-column" flex='100'>
 		<!--member-->
 		<md-content class="member">
+
+
+
 			<div layout="row" layout-margin>
 				<!--member image-->
 				<div class="member-logo" layout="column">
-					<img class="main-image" ng-if="member.organization.featureImage" ng-src="{{member.organization.featureImage}}">
+					<img class="company-logo" ng-if="member.organization.featureImage" ng-src="{{member.organization.featureImage}}">
 					<div class="no-image" ng-if="!member.organization.featureImage" layout layout-align="center center">
 						<h3>No Image</h3>
 					</div>
 				</div>
 				<div flex>
 					<!--member header-->
-					<div class="member-header">
+
 						<div layout="row" layout-align="start center">
-							<h1>{{member.organization.name}}</h1>
-							<h5 class="member-subtitle">{{member.dmdiiType.dmdiiTypeCategory.category + ' Tier ' + member.dmdiiType.tier + ', Member Since ' + member.startDate}}</h5>
+							<p class="member-header">{{member.organization.name}}</p>
 						</div>
-					</div>
+						<div layout="row" layout-align="start center">
+							<h5 class="member-subtitle">{{member.dmdiiType.dmdiiTypeCategory.category + ' Tier ' + member.dmdiiType.tier + ' Partner' }}<br>{{' Member Since ' + member.organization.dateJoining}}</h5>
+						</div>
+
 
 					<md-divider></md-divider>
 					<span flex></span>
@@ -27,41 +32,52 @@
 					<div class="member-description">
 						{{member.organization.description}}
 					</div>
-					<div layout="column" class="member-contacts">
-						<h2>Contacts</h2>
-						<div layout="row">
-							<div flex="50" layout="column" class="contact no-bottom" ng-repeat="contact in member.contacts | limitTo:2">
-				        		<h3 class="no-bottom">{{contact.contactType.type}}</h3>
-				                <div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.firstName && contact.lastName">
-				                    <h4 class="no-bottom">{{contact.firstName + ' ' + contact.lastName}}</h4>
-				                </div>
-				                <div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.title && contact.title.length > 0">
-				                    <h3 class="no-bottom">{{contact.title}}</h3>
-				                </div>
-				                <div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.phone">
-				                    <ng-md-icon icon="phone" style="fill: grey" size="30"></ng-md-icon>
-				                    <h3><a href="tel:{{contact.phone}}">{{contact.phone}}</a></h3>
-				                </div>
-				                <div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.email">
-				                    <ng-md-icon icon="mail" style="fill: grey" size="30"></ng-md-icon>
-				                    <h3><a href="mailto:{{contact.email}}">{{contact.email}}</a></h3>
-				                </div>
-								<md-divider></md-divider>
-				            </div>
-						</div>
-					</div>
+
 				</div>
 			</div>
 
+			<div layout="row" layout-margin >
+
+				<div layout="column" class="member-contacts">
+
+					<h2>Contacts</h2>
+					<div layout="row">
+						<div flex="50" layout="column" class="contact no-bottom" ng-repeat="contact in member.contacts | limitTo:2">
+
+											<div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.firstName && contact.lastName">
+													<h3 class="no-bottom">{{contact.firstName + ' ' + contact.lastName}}</h3>
+											</div>
+											<div layout="row" layout-align="start center" >
+
+														<h5 style="color:green;margin-top:-3px">{{contact.contactType.type}}</h5>
+											</div>
+											<div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.title && contact.title.length > 0">
+													<h3 class="no-bottom">{{contact.title}}</h3>
+											</div>
+											<div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.phone">
+													<ng-md-icon icon="phone" style="fill: green" size="30"></ng-md-icon>
+													<a href="tel:{{contact.phone}}">{{contact.phone}}</a>
+											</div>
+											<div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.email">
+													<ng-md-icon icon="mail" style="fill: green;margin-right:3px" size="30"></ng-md-icon>
+													<a href="mailto:{{contact.email}}">{{contact.email}}</a>
+											</div>
+
+									</div>
+					</div>
+				</div>
+
+			</div>
+	<div layout="row" layout-margin >
 			<md-divider></md-divider>
 
-			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom>
+			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom style="width:100%">
 				<md-tab label="Project Involvement">
 					<md-content class="md-padding">
 						<div layout="column">
 							<div class="pad20" ng-repeat="project in member.projects">
 								<h4 class="no-bottom no-top"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectIdentifier}}</a></h4>
-								<h4 class="no-bottom no-top"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h4>
+								<h2 class="no-bottom no-top" style="font-weight: bolder;"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h2>
 								<p>Prime Investigator</p>
 							</div>
 							<div ng-if="!member.projects || member.projects.length === 0">
@@ -104,7 +120,7 @@
 							<div>
 								<h3 class="no-bottom slim-margin" ng-if="member.areasOfExpertise.length > 0">Areas Of Expertise</h3>
 								<div class="pad20" ng-repeat="AOE in member.areasOfExpertise">
-									<h4><a ng-href="{{AOE.link}}">{{AOE.name}}</a></h4>
+									<h4><a ng-href="{{AOE.link}}" style="color:green">{{AOE.name}}</a></h4>
 									<p>{{AOE.description}}</p>
 								</div>
 							</div>
@@ -112,7 +128,7 @@
 							<div layout="column" ng-if="member.rndFocii.length > 0">
 								<h3 class="no-bottom slim-margin">Sector</h3>
 								<div class="pad20" ng-repeat="focus in member.rndFocii">
-									<h4>{{focus.name}}</h4>
+									<h4 style="color:green">{{focus.name}}</h4>
 									<p>{{focus.description}}</p>
 								</div>
 							</div>
