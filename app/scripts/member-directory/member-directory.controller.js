@@ -127,7 +127,7 @@ angular.module('dmc.members')
             };
 
             $scope.hasPrev = function() {
-                return $scope.memberCurrentPage !== 1;
+                return $scope.memberCurrentPage !== 0;
             };
 
             $scope.hasNext = function() {
@@ -217,6 +217,7 @@ angular.module('dmc.members')
             $scope.showEvents = function(events) {
                 $scope.dayEvents = events;
             }
+
             // callback for services
             var callbackFunction = function(response){
 				$scope.membersLoading = false;

@@ -38,10 +38,10 @@
 				                        <tbody>
 				                        <tr>
 				                            <td>
-				                                <h4 class="no-top no-bottom">{{project.dmdii_funding}}</h4>
+				                                <h4 class="no-top no-bottom">{{project.finances[0]}}</h4>
 				                            </td>
 											<td>
-												<h4 class="no-top no-bottom">{{project.cost_share}}</h4>
+												<h4 class="no-top no-bottom">{{project.finances[1]}}</h4>
 											</td>
 										</tr>
 				                        </tbody>
@@ -70,7 +70,7 @@
 			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom>
 				<md-tab label="Project Contributors">
 					<md-content class="md-padding">
-						<div layout="row">
+						<div layout="row" ng-if="project.projectStatus.id > 1">
 							<div layout="column" flex="50">
 								<h2 class="no-bottom">Principal Investigator</h2>
 								<div layout="column">
@@ -84,6 +84,7 @@
 									<span class="close-email ">{{project.principalPointOfContact.email}}</span>
 								</div>
 							</div>
+
 							<div layout="column" flex="50">
 								<h2 class="no-bottom">Participants</h2>
 
@@ -98,6 +99,7 @@
 								</div>
 							</div>
 						</div>
+						<span ng-hide="project.projectStatus.id > 1">This project has not been awarded yet</span>
 					</md-content>
 				</md-tab>
 
@@ -111,7 +113,7 @@
 				<md-tab label="Project Updates">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
-							<div layout="column">
+							<div layout="column" ng-show="project.updates.length > 0">
 								<div class="bottom20" ng-repeat="update in project.updates">
 									<div class="slim-side-margin no-bottom" layout="row">
 										<h2 class="margin-top-25 no-bottom green">{{update.title}}</h4>
@@ -121,6 +123,7 @@
 									<p class="byline no-top bottom10">-{{update.author}}</p>
 								</div>
 							</div>
+							<span ng-hide="project.updates.length > 0">This Project has no updates</span>
 						</div>
 					</md-content>
 				</md-tab>
@@ -128,9 +131,10 @@
 				<md-tab label="Project Documents">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
-							<div layout="column" class="project-documents">
+							<div layout="column" class="project-documents" ng-show="project.documents.length > 0">
 								<a class="slim-margin" ng-repeat="doc in project.documents">{{doc.name}}</a>
 							</div>
+							<span ng-hide="project.documents.length > 0">This Project has no documents</span>
 						</div>
 					</md-content>
 				</md-tab>
