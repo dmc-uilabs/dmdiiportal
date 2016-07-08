@@ -3,7 +3,42 @@
 }
 
 h5.member-subtitle{
-    padding-left: 8px;
-    color: #666;
-    font-weight: 600;
+   color: #65af3f;
+   font-weight: normal;
+   margin-top: -15px;
+   padding-left: 25px;
+}
+
+p.member-header{
+  color: black;
+  font-size: 30px;
+  font-weight: lighter;
+  text-transform: uppercase;
+}
+
+.company-logo{
+  height: auto;
+  margin-left: 20px;
+  width: 80%;
+}
+
+.member-description{
+  margin-top: 10px;
+}
+
+.member-contacts{
+  margin-top: 45px;
+}
+
+.member-contacts h2{
+  color: #65af3f;
+   font-weight: 400;
+
+   text-transform: uppercase;
+}
+
+
+.contact{
+  margin-bottom: 50px;
+  margin-left: 25px;
 }
