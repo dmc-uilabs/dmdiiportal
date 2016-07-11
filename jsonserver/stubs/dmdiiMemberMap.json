@@ -1,22 +1,138 @@
 [
 	{
 		"name": "General Electric",
-		"state": "IL"
-	},
-	{
-		"name": "Test Company 1",
-		"state": "IL"
-	},
-	{
-		"name": "Test Company 2",
-		"state": "MI"
-	},
-	{
-		"name": "Test Company 3",
 		"state": "NY"
 	},
 	{
-		"name": "Test Company 4",
-		"state": "AK"
+		"name": "Kentucky Cabinet for Economic Development",
+		"state": "KY"
+	},
+	{
+		"name": "Iowa State University (ISU)",
+		"state": "IA"
+	},
+	{
+		"name": "Northwestern",
+		"state": "IL"
+	},
+	{
+		"name": "Rochester Institute of Technology (RIT)",
+		"state": "NY"
+	},
+	{
+		"name": "University at Buffalo, The State University of New York",
+		"state": "NY"
+	},
+	{
+		"name": "University of Cincinnati",
+		"state": "OH"
+	},
+	{
+		"name": "University of Illinois-Chicago (UIC)",
+		"state": "IL"
+	},
+	{
+		"name": "University of Illinois-Urbana Champaign (UIUC)",
+		"state": "IL"
+	},
+	{
+		"name": "University of Louisville",
+		"state": "KY"
+	},
+	{
+		"name": "University of Michigan",
+		"state": "MI"
+	},
+	{
+		"name": "University of Nebraska - Lincoln (UN-L)",
+		"state": "NE"
+	},
+	{
+		"name": "UT Austin",
+		"state": "TX"
+	},
+	{
+		"name": "Dow",
+		"state": "MI"
+	},
+	{
+		"name": "Lockheed Martin Corporation",
+		"state": "MD"
+	},
+	{
+		"name": "Rolls-Royce",
+		"state": "IN"
+	},
+	{
+		"name": "Siemens Product Lifecycle Management Software Inc.",
+		"state": "TX"
+	},
+	{
+		"name": "Case Western Reserve University",
+		"state": "OH"
+	},
+	{
+		"name": "Colorado Boulder",
+		"state": "CO"
+	},
+	{
+		"name": "Georgia Tech (Georgia Tech Research Corp.)",
+		"state": "GA"
+	},
+	{
+		"name": "Missouri University of Science and Technology",
+		"state": "MO"
+	},
+	{
+		"name": "Oregon State University (OSU)",
+		"state": "OR"
+	},
+	{
+		"name": "Purdue University",
+		"state": "IN"
+	},
+	{
+		"name": "University of Iowa",
+		"state": "IA"
+	},
+	{
+		"name": "University of Wisconsin - Madison",
+		"state": "WI"
+	},
+	{
+		"name": "Wayne State University",
+		"state": "MI"
+	},
+	{
+		"name": "Boeing",
+		"state": "MO"
+	},
+	{
+		"name": "Caterpillar",
+		"state": "IL"
+	},
+	{
+		"name": "Deere and Company",
+		"state": "IL"
+	},
+	{
+		"name": "Faurecia",
+		"state": "MI"
+	},
+	{
+		"name": "Illinois Tool Works (ITW)",
+		"state": "IL"
+	},
+	{
+		"name": "Johnson & Johnson",
+		"state": "NY"
+	},
+	{
+		"name": "Microsoft",
+		"state": "WA"
+	},
+	{
+		"name": "Procter & Gamble",
+		"state": "OH"
 	}
 ]

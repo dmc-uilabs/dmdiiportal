@@ -198,7 +198,7 @@
       },
       "organization": {
         "id": 1001,
-        "name": "Test Company",
+        "name": "Iowa State University",
         "location": "Chicago, IL",
         "description": "test description",
         "email": "test email",
@@ -238,26 +238,26 @@
       "id": 2,
       "name": "awarded"
     },
-    "awardedDate": "2016-06-01",
-    "endDate": "2017-05-31",
-    "projectTitle": "Death Star",
-    "projectSummary": "test summary",
+    "awardedDate": "3/15/2016",
+    "endDate": "3/15/2018",
+    "projectTitle": "FactBoard: Real-Time Data-Driven Visual Decision Support System for the Factory Floor",
+    "projectSummary": "This project would define, develop and validate FactBoard, a shop floor decision support system to improve the production efficiency.",
     "principalPointOfContact": {
       "id": 1001,
-      "username": "test2",
-      "firstname": null,
-      "lastname": null,
-      "email": "test2@test.com",
+      "username": "KAT",
+      "firstname": "Katie" ,
+      "lastname": "Tillery-Merk",
+      "email": "katie.tillery-merk@uilabs.org",
       "address": "test address",
       "phone": "phone"
     },
     "projectFocusArea": {
       "id": 4,
-      "name": "Supply Chain Management"
+      "name": "MBE/MBD (CAD/CAM)"
     },
     "projectThrust": {
       "id": 2,
-      "name": "Intelligent Machining",
+      "name": "AVM",
       "code": "IM"
     },
     "dmdii_funding": 2500,
@@ -367,6 +367,6 @@
     "rootNumber": 2015,
     "callNumber": 1,
     "projectNumber": 1,
-    "projectIdentifier": "2015-1-1"
+    "projectIdentifier": "15-02-08"
   }
 ]
