@@ -7,11 +7,12 @@
     <div class="members" layout="column" flex>
         <md-content class="md-padding" layout-padding>
             <div class="newsAndEvents" layout="column">
-                <div class="news slim-margin">
-                    <h2>Recent News</h2>
+                <div class=" slim-margin">
+                      <p class="news">Recent News</p>
                     <div ng-repeat="item in news">
-                        <h3 class="no-bottom">{{item.title}} {{item.dateCreated}}</h3>
-                        <p>{{item.content}}</p>
+                      <h3 class="no-top no-bottom ">{{item.dateCreated}}</h3>
+                      <h2 class="no-top no-bottom green">{{item.title}}</h2>
+                      <p class="no-top no-bottom ">{{item.content}}</p>
                         <md-divider></md-divider>
                     </div>
                 </div>

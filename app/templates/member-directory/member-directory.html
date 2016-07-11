@@ -8,20 +8,21 @@
     <div class="members" layout="column" flex>
         <md-content layout="row" layout-align="center">
             <div class="newsAndEvents" flex="95" layout="column">
-                <div class="news slim-margin">
-                    <h2 class="no-top">Recent News</h2>
+                <div class=" slim-margin">
+                    <p class="news">Recent News</p>
                     <div class="slim-margin" ng-repeat="item in news">
-                        <h3 class="no-top no-bottom">{{item.title}} {{item.dateCreated}}</h3>
-                        <p class="no-top no-bottom">{{item.content}}</p>
+                        <h3 class="no-top no-bottom ">{{item.dateCreated}}</h3>
+                        <h2 class="no-top no-bottom green">{{item.title}}</h2>
+                        <p class="no-top no-bottom ">{{item.content}}</p>
                         <md-divider></md-divider>
                     </div>
                 </div>
 
                 <div class="events slim-margin">
-                    <h2 class="no-top">Upcoming Events</h2>
+                    <h2 class="news">Upcoming Events</h2>
                     <div class="slim-margin" ng-repeat="event in events | limitTo:3" ng-click="eventClicked(event)">
-                        <span>{{event.date}}</span>
-                        <h3 class="no-top no-bottom">{{event.name}}</h3>
+                        <h3  class="no-top no-bottom" >{{event.date}}</h3>
+                        <h2 class="no-top no-bottom green">{{event.name}}</h2>
                         <p class="no-top no-bottom">{{event.description}}</p>
                         <md-divider></md-divider>
                     </div>
@@ -76,7 +77,7 @@
                         <p>{{event.description}}</p>
                     </span>
                 </div>
-                
+
                 <div class="map" layout="column" layout-align="center center" layout-padding flex="50">
                     <datamap
                       map="mapObject"
@@ -134,7 +135,8 @@
                             <th name="Type" order-by="type"></th>
                             <th name="Tier" order-by="tier"></th>
                             <th name="Active Projects" order-by="hasActiveProjects"></th>
-                            <th name="Tags"></th>
+                            <th name="Core Capabilities"></th>
+                            <th name="Seeking Colaboration"></th>
 
                         </tr>
                         </thead>
@@ -147,8 +149,12 @@
                             <td>{{member.dmdiiType.dmdiiTypeCategory.category}}</td>
                             <td>{{member.dmdiiType.tier}}</td>
                             <td>{{member.hasActiveProjects}}</td>
+
                             <td>
                                 <a ng-repeat="tag in member.skills track by $index">{{tag.tagName}}{{$last ? '' : ', '}}</a>
+                            </td>
+                            <td>
+                                <a ng-repeat="tag in member.seekColaboration track by $index">{{tag.tagName}}{{$last ? '' : ', '}}</a>
                             </td>
                         </tr>
                         <tr ng-if="members.arr.length == 0">
