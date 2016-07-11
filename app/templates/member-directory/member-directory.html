@@ -148,7 +148,9 @@
                             </td>
                             <td>{{member.dmdiiType.dmdiiTypeCategory.category}}</td>
                             <td>{{member.dmdiiType.tier}}</td>
-                            <td>{{member.hasActiveProjects}}</td>
+                            <td>
+                                <a ng-repeat="tag in member.activeProjects track by $index">{{tag.tagName}}{{$last ? '' : ', '}}</a>
+                            </td>
 
                             <td>
                                 <a ng-repeat="tag in member.skills track by $index">{{tag.tagName}}{{$last ? '' : ', '}}</a>

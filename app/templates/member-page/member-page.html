@@ -14,7 +14,7 @@
 
 			<div layout="row" layout-margin>
 				<!--member image-->
-				<div class="member-logo" layout="column">
+				<div class="member-logo" layout="column" style="max-width:20%">
 					<img class="company-logo" ng-if="member.organization.featureImage" ng-src="{{member.organization.featureImage}}">
 					<div class="no-image" ng-if="!member.organization.featureImage" layout layout-align="center center">
 						<h3>No Image</h3>
@@ -123,9 +123,9 @@
 
 				<md-tab label="Capabilities" >
 					<md-content class="md-padding">
-						<div class="tabs-content" layout="column">
-							<div>
-								<h3 class="no-bottom slim-margin">Areas Of Expertise</h3>
+						<div class="tabs-content" layout="row" >
+							<div style="width:40%">
+								<h3 class="no-bottom slim-margin">Core Capabilities</h3>
 								<div class="pad20" ng-repeat="AOE in member.areasOfExpertise" ng-show="member.areasOfExpertise.length > 0">
 									<h4><a ng-href="{{AOE.link}}" style="color:green">{{AOE.name}}</a></h4>
 									<p>{{AOE.description}}</p>
@@ -133,8 +133,8 @@
 								<span ng-hide="member.areasOfExpertise.length > 0">This member hasn't added any areas of expertise yet</span>
 							</div>
 
-							<div layout="column">
-								<h3 class="no-bottom slim-margin">Sector</h3>
+							<div layout="column" style="margin-left:solid;">
+								<h3 class="no-bottom slim-margin">Desired Areas for Collaboration</h3>
 								<div class="pad20" ng-repeat="focus in member.rndFocii" ng-show="member.rndFocii.length > 0">
 									<h4 style="color:green">{{focus.name}}</h4>
 									<p>{{focus.description}}</p>
