@@ -456,7 +456,8 @@ angular.module('dmc.data',[])
                     get: localhost+'dmdiiMember/'+ id,
                     all: localhost+'dmdiiMember',
                     events: localhost+'dmdiiMember/events',
-                    news: localhost+'dmdiiMember/news'
+                    news: localhost+'dmdiiMember/news',
+                    map: localhost + 'dmdiiMember/mapEntry'
                 }
             },
             getDMDIIMemberProjects: function() {

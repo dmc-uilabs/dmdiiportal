@@ -4,6 +4,14 @@
 		<!--member-->
 		<md-content class="member">
 
+			<div layout="row" layout-align="end">
+				<md-button ng-if="company.isOwner || user.isDmdiiAdmin"
+						   class="md-raised dmc-button"
+						   href="edit-member-page.php#/{{member.id}}/edit">
+					Edit DMDII Member Profile
+				</md-button>
+			</div>
+
 			<div layout="row" layout-margin>
 				<!--member image-->
 				<div class="member-logo" layout="column">

@@ -19,8 +19,6 @@ angular.module('dmc.members')
         'is_search',
         'DMCUserModel',
         '$window',
-        'CompareModel',
-        'isFavorite',
         function($state,
                  $stateParams,
                  $scope,
@@ -32,9 +30,7 @@ angular.module('dmc.members')
                  $location,
                  is_search,
                  DMCUserModel,
-                 $window,
-                 CompareModel,
-                 isFavorite){
+                 $window){
 
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
 
@@ -45,7 +41,6 @@ angular.module('dmc.members')
             var userData = null;
             DMCUserModel.getUserData().then(function(res){
                 userData = res;
-                CompareModel.get('services',userData);
             });
 
             $scope.membersLoading = true;
@@ -252,6 +247,22 @@ angular.module('dmc.members')
             };
             $scope.getDMDIIMembers();
 
+            var callbackMapFunction = function(response) {
+                angular.forEach(response.data, function(member) {
+                    if (angular.isDefined($scope.mapObject.data[member.state])) {
+                        $scope.mapObject.data[member.state].members.push('<li>' + member.name + '</li>');
+                    } else {
+                        $scope.mapObject.data[member.state] = {
+                            fillKey: "HAS_MEMBER",
+                            members: ['<li>' + member.name + '</li>']
+                        };
+                    }
+                })
+            }
+            $scope.getDMDIIMemberMap = function() {
+                ajax.get(dataFactory.getDMDIIMember().map, null, callbackMapFunction);
+            }
+            $scope.getDMDIIMemberMap();
 
             $scope.getNext = function() {
                 $scope.memberCurrentPage++;
@@ -378,6 +389,33 @@ angular.module('dmc.members')
             };
 
             $scope.treeMenuModel = getMenu();
+            $scope.mapObject = {
+                scope: 'usa',
+
+                options: {
+                    width: 500
+                },
+                geographyConfig: {
+                    popupTemplate: function(geo, data) {
+                        return [
+                            '<div class="hoverinfo"><strong>',
+                            'Number Of Members in ' + geo.properties.name,
+                            ': ' + data.members.length,
+                            '</strong>',
+                            '<ul>' + data.members.join('') + '</ul>',
+                            '</div>'
+                        ].join('');
+                    },
+                    highlighBorderColor: '#EAA9A8',
+                    highlighBorderWidth: 2
+                },
+                fills: {
+                    'HAS_MEMBER': '#65AF3F',
+                    'defaultFill': '#DDDDDD'
+                },
+                data: {},
+                zoomable: false
+            }
         }
     ]
 );
