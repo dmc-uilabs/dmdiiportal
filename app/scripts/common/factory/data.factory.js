@@ -458,7 +458,12 @@ angular.module('dmc.data',[])
                     events: localhost+'dmdiiMember/events',
                     news: localhost+'dmdiiMember/news'
                 }
-
+            },
+            getDMDIIMemberProjects: function() {
+                return localhost + 'dmdiiprojects/member';
+            },
+            saveDMDIIMember: function(id) {
+                return localhost + 'dmdiiMember/' + id
             },
             getDMDIIProject: function(id) {
                 return {
@@ -467,6 +472,12 @@ angular.module('dmc.data',[])
                     events: localhost+'dmdiiProject/events',
                     news: localhost+'dmdiiProject/news'
                 }
+            },
+            getDocumentTags: function() {
+                return localhost + 'documents/tags'
+            },
+            createDocumentTag: function() {
+                return localhost + 'documents/tags'
             },
             // companies ------------------
             companyURL: function(id){

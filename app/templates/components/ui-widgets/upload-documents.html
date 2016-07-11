@@ -21,18 +21,22 @@
         <md-list>
             <md-list-item ng-repeat="item in source" ng-show="!item.deleted">
                 <p ng-show="!item.editing && !item.delete">{{item.title}}</p>
+                <span ng-show="!item.editing && !item.delete && allowTagging" ng-repeat="tag in item.tags track by $index">{{tag.name || tag}}{{$last ? '' : ', '}}</span>
                 <md-button class="md-icon-button edit" ng-show="!item.editing && !item.delete" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="21"></ng-md-icon></md-button>
                 <md-input-container ng-show="item.editing" flex>
                     <label>Document name</label>
                     <input ng-value="item.title" ng-model="item.title">
                 </md-input-container>
+                <ui-select multiple tagging tagging-label="false" append-to-body="true" ng-model="item.tags" theme="select2" flex ng-show="item.editing && allowTagging">
+                    <ui-select-match placeholder="Tags">{{$item.name || $item}}</ui-select-match>
+                    <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.name || tag}}</ui-select-choices>
+                </ui-select>
                 <md-input-container ng-show="item.editing">
                     <md-button class="md-raised cancel" ng-click="cancelEdit(item)" aria-label="Cancel">Cancel</md-button>
                 </md-input-container>
                 <md-input-container ng-show="item.editing">
                     <md-button class="md-raised save" ng-click="saveEdit(item)" aria-label="Save">Save</md-button>
                 </md-input-container>
-
                 <md-button ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="21"></ng-md-icon></md-button>
                 <p ng-show="item.delete">Are you sure you want to remove this document?</p>
                 <md-button ng-show="item.delete" class="md-raised cancel" ng-click="cancelConfirm(item)" aria-label="Cancel">Cancel</md-button>

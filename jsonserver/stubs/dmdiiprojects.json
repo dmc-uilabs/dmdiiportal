@@ -38,7 +38,7 @@
       "areasOfExpertise": [],
       "contacts": [],
       "customers": [],
-      "finances": [],
+      "finances": ["2500", "1250"],
       "instituteInvolvement": [],
       "rndFocus": [],
       "skills": [],
@@ -75,6 +75,22 @@
       "name": "Advanced Manufacturing Enterprise",
       "code": "AME"
     },
+    "dmdii_funding": 2500,
+    "cost_share": 1260,
+    "updates": [
+        {
+            "date": "2016-07-05",
+            "title": "Update 2",
+            "description": "This is the other update",
+            "author": "Arthur McArty"
+        },
+        {
+            "date": "2016-07-04",
+            "title": "Update 1",
+            "description": "This is the update",
+            "author": "Arthur McArty"
+        }
+    ],
     "contributingCompanies": [
       {
         "id": 1001,
@@ -113,7 +129,7 @@
         "areasOfExpertise": [],
         "contacts": [],
         "customers": [],
-        "finances": [],
+        "finances": ["2500", "1250"],
         "instituteInvolvement": [],
         "rndFocus": [],
         "skills": [],
@@ -156,7 +172,7 @@
         "areasOfExpertise": [],
         "contacts": [],
         "customers": [],
-        "finances": [],
+        "finances": ["2500", "1250"],
         "instituteInvolvement": [],
         "rndFocus": [],
         "skills": [],
@@ -207,7 +223,7 @@
       "areasOfExpertise": [],
       "contacts": [],
       "customers": [],
-      "finances": [],
+      "finances": ["2500", "1250"],
       "instituteInvolvement": [],
       "rndFocus": [],
       "skills": [],
@@ -244,6 +260,22 @@
       "name": "Intelligent Machining",
       "code": "IM"
     },
+    "dmdii_funding": 2500,
+    "cost_share": 1260,
+    "updates": [
+        {
+            "date": "2016-07-05",
+            "title": "Update 2",
+            "description": "This is the other update",
+            "author": "Arthur McArty"
+        },
+        {
+            "date": "2016-07-04",
+            "title": "Update 1",
+            "description": "This is the update",
+            "author": "Arthur McArty"
+        }
+    ],
     "contributingCompanies": [
       {
         "id": 1000,
@@ -282,7 +314,7 @@
         "areasOfExpertise": [],
         "contacts": [],
         "customers": [],
-        "finances": [],
+        "finances": ["2500", "1250"],
         "instituteInvolvement": [],
         "rndFocus": [],
         "skills": [],
@@ -325,7 +357,7 @@
         "areasOfExpertise": [],
         "contacts": [],
         "customers": [],
-        "finances": [],
+        "finances": ["2500", "1250"],
         "instituteInvolvement": [],
         "rndFocus": [],
         "skills": [],

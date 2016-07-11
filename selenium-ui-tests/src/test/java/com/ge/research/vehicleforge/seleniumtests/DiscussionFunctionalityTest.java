@@ -21,7 +21,8 @@ public class DiscussionFunctionalityTest extends BaseTest{
 	@Ignore
 	@Test
 	public void testDiscussionFunctionality() throws Exception {
-		AddProjectTest.testAddProject();
+		AddProjectTest apt = new AddProjectTest();
+		String projectUrl = apt.testAddProject();
 		verifyDiscussionFunctionality();
 	}
 	

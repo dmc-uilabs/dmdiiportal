@@ -1,0 +1,198 @@
+<div ng-if="!not_found" class="edit-member-page">
+    <md-content class="company-profile-padding">
+        <div layout="row" layout-align="end start">
+            <md-button class="md-raised cancel-button" ng-click="cancelChanges()">Cancel</md-button>
+            <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!isDataChanged">Save</md-button>
+        </div>
+        <div layout="row">
+            <div layout="column" class="logo-column" ng-show="!changingLogo">
+                <div class="profile-logo">
+                    <img ng-src="{{company.logoImage ? company.logoImage : 'images/icon-company-lg.svg'}}" class="logo" alt="{{company.name}}" />
+                    <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
+                               ng-if="company.logoImage"
+                               ng-click="deleteLogo($event)"
+                               aria-label="Delete Image">
+                        <ng-md-icon icon="delete" size="18"></ng-md-icon>
+                    </md-button>
+                </div>
+                <md-button style="width: auto;" flex class="md-raised change-logo" ng-click="changeLogo()" ng-disabled="!user.isOwner && !user.isDmdiiAdmin">Change Logo</md-button>
+            </div>
+            <div ng-if="changingLogo">
+                <div>
+                    <div class="flow-box"
+                         flow-init
+                         flow-drag-enter="pictureDragEnter($flow)"
+                         flow-drag-leave="pictureDragLeave($flow)"
+                         flow-file-success="$file.msg = $message"
+                         flow-file-added="addedNewFile($file, $event, $flow )"
+                         layout="row" flex layout-align="start start">
+                        <div class="alert" flow-drop flow-drop-enabled="true" flex>
+                            <div class="inner-box" layout="row" layout-align="center center" flex>
+                                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
+                                    <img id="flowImage" flow-img="$flow.files[0]" />
+                                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
+                                        <ng-md-icon icon="close" size="21"></ng-md-icon>
+                                    </md-button>
+                                </div>
+                                <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
+                                    Drag And Drop your picture here<br>
+                                    300 x 300 px (max 2 MB)
+                                    <br>or<br>
+                                    <strong>Click here</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div layout="row" layout-align="space-between start">
+                    <md-button flex class="md-raised md-primary upload-logo" ng-disabled="!newLogo" ng-click="uploadLogo()">Upload</md-button>
+                    <md-button flex class="md-raised cancel-change-logo" ng-click="cancelChangingLogo()">Cancel</md-button>
+                </div>
+            </div>
+            <div layout="column" flex class="inputs-top">
+                <div layout="row">
+                    <md-input-container flex="35" class="company-name" md-no-float>
+                        <input ng-model="company.organization.name"
+                               ng-change="changedValue('name')"
+                               ng-disabled="!user.isOwner && !user.isDmdiiAdmin"
+                               placeholder="Company Name">
+                    </md-input-container>
+                    <md-input-container flex="35" class="company-industry" md-no-float>
+                        <input ng-model="company.organization.industry"
+                            ng-change="changedValue('industry')"
+                            ng-disabled="!user.isOwner && !user.isDmdiiAdmin"
+                            placeholder="Industry">
+                    </md-input-container>
+                </div>
+
+                <div layout="row">
+                    <md-input-container flex="35" class="company-join-date" md-no-float>
+                        <input ng-model="company.startDate"
+                        ng-change="changedValue('startDate')"
+                        ng-disabled="!user.isDmdiiAdmin"
+                        placeholder="Start Date">
+                    </md-input-container>
+                    <md-input-container flex="35" class="company-expire-date" md-no-float>
+                        <input ng-model="company.expireDate"
+                        ng-change="changedValue('expireDate')"
+                        ng-disabled="!user.isDmdiiAdmin"
+                        placeholder="Expire Date">
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+        <div layout="row">
+            <md-input-container flex class="company-descriptionOrganization" md-no-float>
+                <textarea ng-model="company.organization.description"
+                          columns="1"
+                          ng-change="changedValue('description')"
+                          ng-disabled="!user.isOwner && !user.isDmdiiAdmin"
+                          md-maxlength="1000"
+                          placeholder="Description of Organization"></textarea>
+            </md-input-container>
+        </div>
+
+
+        <div layout="column">
+            <div layout="row" ng-if="user.isOwner || user.isDmdiiAdmin">
+                <md-autocomplete flex="33"
+                    md-input-name="areasOfExpertise"
+                    md-items="area in queryAreaSearch(searchArea)"
+                    md-search-text="searchArea"
+                    md-selected-item="selectedArea"
+                    md-selected-item-change="addArea(selectedArea)"
+                    md-item-text="area.name"
+                    md-floating-label="Areas Of Expertise">
+                    <md-item-template>
+                      <span md-highlight-text="searchArea">{{area.name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                      No Areas of Expertise matching "{{searchArea}}" were found.
+                    </md-not-found>
+                </md-autocomplete>
+                <span flex></span>
+                <md-autocomplete flex="33"
+                    md-input-name="sector"
+                    md-items="sector in querySectorSearch(searchSector)"
+                    md-search-text="searchSector"
+                    md-selected-item="selectedSector"
+                    md-selected-item-change="addSector(selectedSector)"
+                    md-item-text="sector.name"
+                    md-floating-label="Sectors">
+                    <md-item-template>
+                      <span md-highlight-text="searchSector">{{sector.name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                      No Sectors matching "{{searchSector}}" were found.
+                    </md-not-found>
+                </md-autocomplete>
+            </div>
+
+            <div layout="row">
+                <div layout="row" layout-wrap flex="33">
+                    <div layout="column">
+                        <span class="no-bottom" flex>Selected Areas (Click tag to remove)</span>
+                        <div layout="row" layout-wrap>
+                            <md-chips ng-repeat="area in company.areasOfExpertise track by $index">
+                                <md-chip ng-click="(user.isOwner || user.isDmdiiAdmin) && removeArea($index)">
+                                    <span>{{area.name}}</span>
+                                </md-chip>
+                            </md-chips>
+                        </div>
+                    </div>
+                </div>
+
+                <span flex></span>
+
+                <div layout="row" layout-wrap flex="33">
+                    <div layout="column">
+                        <span class="no-bottom" flex>Selected Sectors (Click tag to remove)</span>
+                        <div layout="row" layout-wrap>
+                            <md-chips ng-repeat="sector in company.sector track by $index">
+                                <md-chip ng-click="(user.isOwner || user.isDmdiiAdmin) && removeSector($index)">
+                                    <span>{{sector.name}}</span>
+                                </md-chip>
+                            </md-chips>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div layout="column" ng-if="user.isOwner || user.isDmdiiAdmin">
+            <h3 class="no-bottom">Recognitions</h3>
+            <div layout="row">
+                <div layout="column" flex="20">
+                    <md-input-container md-no-float>
+                        <input id="awardName"
+                            ng-model="award.name"
+                            placeholder="Recognition Name">
+                    </md-input-container>
+                    <md-input-container md-no-float>
+                        <textarea id="awardDescription"
+                            ng-model="award.description"
+                            columns="4"
+                            md-maxlength="250"
+                            placeholder="Recognition Description"></textarea>
+                    </md-input-container>
+                    <md-input-container md-no-float>
+                        <input id="awardLink"
+                            ng-model="award.link"
+                            placeholder="Recognition Link (Optional)">
+                    </md-input-container>
+                    <md-button class="md-raised" ng-click="addAward()">Add Award</md-button>
+                </div>
+                <span flex></span>
+                <div layout="row" flex="75" layout-wrap>
+                    <div flex="20" ng-repeat="award in company.awards track by $index">
+                        <div>
+                            <h4>{{award.name}}</h4>
+                            <p>{{award.description}}</p>
+                            <span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+    </md-content>
+</div>

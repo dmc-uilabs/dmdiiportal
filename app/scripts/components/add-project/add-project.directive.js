@@ -73,8 +73,20 @@ angular.module('dmc.add_project.directive', [
                     newProject.dueDate = "";
                 }
 
-                $(window).unbind('beforeunload');
+                $(window).unbind('beforeunload')
                 newProject.documents = $scope.documents;
+                angular.forEach(newProject.documents, function(doc) {
+                    angular.forEach(doc.tag, function(tag, index) {
+                        console.log(doc, tag, index, angular.isObject(tag))
+                        if (!angular.isObject(tag)) {
+                            ajax.create(dataFactory.createDocumentTag(), tag, function(response) {
+                                console.log(response.data)
+                                doc.tag[index] = response.data;
+                            });
+                        }
+                    });
+                });
+                console.log(newProject)
                 projectModel.add_project(newProject, data, function(data){
                     document.location.href = "project.php#/"+data+"/home";
                 });
@@ -700,4 +712,3 @@ angular.module('dmc.add_project.directive', [
             }
         }
     });
-

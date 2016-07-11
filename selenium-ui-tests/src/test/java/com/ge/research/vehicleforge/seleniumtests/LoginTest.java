@@ -1,5 +1,6 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -12,7 +13,7 @@ import org.junit.Test;
 
 public class LoginTest extends BaseTest {
 
-	
+	@Ignore
 	@Test
 	public void testLogin() throws Exception{
 		testDMCLogin();	

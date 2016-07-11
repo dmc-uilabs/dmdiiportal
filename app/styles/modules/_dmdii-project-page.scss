@@ -15,7 +15,54 @@ h5.project-subtitle{
     color: #666666;
 }
 .project-updates{
-    border: 2px;
-    border-style: solid;
-    text-align: center;
+ background-color: rgb(250, 250, 250);
+ border-radius: 3px;
+ box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+ text-align: center;
+}
+
+.project-overview{
+  text-align: left;
+  background-color: rgb(250, 250, 250);
+  border-radius: 3px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  padding: 15px;
+}
+
+
+#project-title{
+    color: black;
+    font-size: 40px;
+    font-weight: lighter;
+    text-transform: uppercase;
+
+}
+
+
+.green{
+  color:green;
+}
+
+.close-email{
+  margin-left: 30px;
+  margin-top: -4px;
+}
+
+.margin-top-25{
+  margin-top: 25px;
+}
+
+.superset{
+    color: #666;
+    font-weight: 600;
+    padding-left: 8px;
+}
+
+.byline{
+  color: black;
+  font-size: 16px;
+  font-weight: lighter;
+  margin-left: 30px;
+  text-align: right;
+  text-transform: uppercase;
 }

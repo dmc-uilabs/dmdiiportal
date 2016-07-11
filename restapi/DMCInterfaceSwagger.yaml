@@ -2566,21 +2566,21 @@ paths:
             items:
               $ref: '#/definitions/IndividualDiscussion'
   '/follow_discussions':
-    patch:
+    post:
       tags:
         - discussion
         - not implemented
-      description: Update follow discussion
+      description: Post follow discussion (follow a discussion)
       parameters:
         - in: body
           name: body
           description: Follow Discussion object to be added to the database
-          required: false
+          required: true
           schema:
             $ref: '#/definitions/FollowingIndividualDiscussion'
       responses:
         200:
-          description: Returns updated Follow Discussion
+          description: Returns posted Follow Discussion
           schema:
             $ref: '#/definitions/FollowingIndividualDiscussion'
   '/follow_discussions/{followID}':
@@ -2613,7 +2613,7 @@ paths:
         - in: query
           name: individual-discussionId
           description: discussion Id
-          required: true
+          required: false
           type: string
         - name: _limit
           in: query
@@ -5355,18 +5355,11 @@ paths:
           description: Id account
           required: true
           type: string
-        - in: query
-          name: comment
-          description: Comment related to flagging
-          required: true
-          type: string
       responses:
         '200':
           description: return individual discussions comment flagged
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/IndividualDiscussionCommentFlagged'
+            $ref: '#/definitions/IndividualDiscussionCommentFlagged'
     post:
       tags:
         - discussion
@@ -6181,58 +6174,6 @@ paths:
         '200':
           description: return array of dmdii members
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/DmdiiMember'
-  '/dmdiiMembers/type':
-   get:
-     tags:
-       - dmdii members
-     description: Get all by category and/or tier dmdii members
-     operationId: getDmdiiMembersByType
-     parameters:
-       - name: pageSize
-         in: query
-         description: Limit items
-         type: integer
-         required: true
-       - name: page
-         in: query
-         description: Offset
-         type: integer
-         required: true
-       - name: _order
-         in: query
-         description: Order by ASC or DESC
-         type: string
-         collectionFormat: multi
-         required: false
-         enum:
-           - ASC
-           - DESC
-       - name: _sort
-         in: query
-         description: Sort by some parameter
-         type: string
-         required: false
-       - name: title_like
-         in: query
-         description: Filter by title
-         type: string
-       - name: categoryId
-         in: query
-         description: Filter by categoryId
-         type: integer
-         required: false
-       - name: tier
-         in: query
-         description: Filter by tier
-         type: integer
-         required: false
-     responses:
-        '200':
-          description: return array of dmdii members
-          schema:
             type: object
             properties:
               count:
@@ -6258,6 +6199,24 @@ paths:
           description: return single dmdii member
           schema:
             $ref: '#/definitions/DmdiiMember'
+  '/dmdiiMember/save':
+   post:
+     tags:
+        - dmdii members
+     description: Save Dmdii Member
+     operationId: saveDmdiiMember
+     parameters:
+      - in: body
+        name: body
+        description: member to be saved
+        required: true
+        schema:
+          $ref: '#/definitions/DmdiiMember'
+     responses:
+      '200':
+        description: 'saved member object'
+        schema:
+          $ref: '#/definitions/DmdiiMember'
   '/dmdiiMember/events':
     get:
       tags:
@@ -6331,6 +6290,47 @@ paths:
           description: An object representing poll result
           schema:
             $ref: '#/definitions/ServiceRunResult'
+  '/documents/tags':
+    get:
+      tags:
+        - document tags
+      description: get all document tags
+      responses:
+        '200':
+          description: an array of all tags
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+    post:
+      tags:
+        - document tags
+      description: add new document tags
+      parameters:
+        - in: body
+          name: body
+          description: tag to be created
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+      responses:
+        '200':
+          description: new tag object
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
 definitions:
   PostFollowingMemeber:
     type: object
@@ -7170,6 +7170,15 @@ definitions:
         format: dateTime
       size:
         type: string
+      tags:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
   ServiceAuthor:
     type: object
     properties:
@@ -7742,6 +7751,8 @@ definitions:
         type: string
       comment:
         type: string
+      reason:
+        type: string
   IndividualDiscussion:
     type: object
     properties:
@@ -7895,10 +7906,10 @@ definitions:
       pkg:
         $ref: '#/definitions/DomeModelResponsePkg'
   RunDomeModelResponse:
-     type: object
-     properties:
+    type: object
+    properties:
       runId:
-        type: integet
+        type: integer
   DomeModelResponsePkg:
     type: object
     properties:
@@ -8285,6 +8296,8 @@ definitions:
             date:
               type: string
               format: dateTime
+            author:
+              type: string
       documents:
         type: array
         items:
