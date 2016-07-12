@@ -7980,6 +7980,14 @@ definitions:
         type: number
       domeServer:
         type: string
+      inParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
+      outParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
   PostUpdateDomeInterface:
     type: object
     properties:
@@ -8001,6 +8009,14 @@ definitions:
         type: number
       domeServer:
         type: string
+      inParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
+      outParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
   PostServiceRun:
     type: object
     properties:
