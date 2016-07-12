@@ -65,6 +65,7 @@
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/dmdii-projects/dmdii-projects.js"></script>
     <script src="scripts/dmdii-projects/dmdii-projects.controller.js"></script>
+    <script src="scripts/dmdii-projects/quick-doc.controller.js"></script>
 
     <!-- endbuild -->
     <script type="text/javascript">

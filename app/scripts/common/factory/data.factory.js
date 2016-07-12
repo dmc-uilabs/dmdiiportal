@@ -474,6 +474,11 @@ angular.module('dmc.data',[])
                     news: localhost+'dmdiiProject/news'
                 }
             },
+            getQuickLinks: function() {
+                return {
+                    all: localhost + 'dmdiiquicklink'
+                }
+            },
             getDocumentTags: function() {
                 return localhost + 'documents/tags'
             },
