@@ -18,6 +18,7 @@ angular.module('dmc.dmdiiProjects')
         '$location',
         'is_search',
         'DMCUserModel',
+        '$mdDialog',
         '$window',
         function($state,
                  $stateParams,
@@ -30,6 +31,7 @@ angular.module('dmc.dmdiiProjects')
                  $location,
                  is_search,
                  DMCUserModel,
+                 $mdDialog,
                  $window){
 
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
@@ -262,6 +264,42 @@ angular.module('dmc.dmdiiProjects')
                 $scope.dmdiiProjectCurrentPage--;
                 $scope.getDmdiiProjects();
             }
+
+            $scope.docs = [];
+
+            var callbackLinksFunction = function(response) {
+                $scope.docs = response.data;
+            }
+            
+            $scope.getQuickLinks = function() {
+                ajax.get(dataFactory.getQuickLinks().all, {limit: 7}, callbackLinksFunction)
+            }
+            $scope.getQuickLinks();
+
+            $scope.showModalQuickLink = function(doc){
+                $mdDialog.show({
+                    controller: 'QuickDocController',
+                    templateUrl: 'templates/dmdii-projects/quick-doc.html',
+                    parent: angular.element(document.body),
+                    locals: {
+                       doc: doc
+                },
+                    clickOutsideToClose: true
+                });
+            }
+
+            $scope.quickLinkAction = function(doc) {
+                if (angular.isDefined(doc.description)) {
+                    $scope.showModalQuickLink(doc);
+                }
+                if (angular.isDefined(doc.link)) {
+                    $window.open(doc.link);
+                }
+                if (angular.isDefined(doc.file)) {
+                    $window.open(doc.file);
+                }
+            }
+
             var getMenu = function(){
 
                 var getUrl = function(cat, subcat){
