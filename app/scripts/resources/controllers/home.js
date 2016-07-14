@@ -94,29 +94,28 @@ angular.module('dmc.resources')
               }
           );
         };
-/*
+
         $scope.changeMachines = function(BayNum){
-          ajax.get(dataFactory.getMachines(BayNum), {
+          ajax.get(dataFactory.getAllBayMachines(BayNum), {
               }, function(response){
                 $scope.machines = response.data.machines;
                 apply();
               }
           );
-        };*/
+        };
 
 
 
         $scope.changeBay = function(BayNum){
           ajax.get(dataFactory.getResourceBay(BayNum), {
               }, function(response){
-                $scope.machines = response.data.machines
                 $scope.featureBay = response.data;
-                //$scope.changeMachines(BayNum);
+                $scope.changeMachines(BayNum);
                 apply();
               }
           );
         };
-
+/*
         $scope.getFellows = function(){
             ajax.get(dataFactory.getFellows(), {
                 },
@@ -125,30 +124,40 @@ angular.module('dmc.resources')
                     apply();
                 }
             );
-        };
+        };*/
 
         $scope.getCurrentProjects = function(){
-            ajax.get(dataFactory.getCurrentProj(), {
+            ajax.get(dataFactory.getAllProjects(), {
                 },
                 function(response){
-                    $scope.currentProjects = response.data;
-                    apply();
+                  var tempProject = response.data;
+                  for(var c in tempProject) {
+                      if(tempProject[c].current == true) {
+                          $scope.currentProjects.push(tempProject[c]);
+                      }
+                  }
+                  apply();
                 }
             );
         };
 
         $scope.getUpcomingProjects = function(){
-            ajax.get(dataFactory.getUpcomingProj(), {
-                },
-                function(response){
-                    $scope.upcomingProjects = response.data;
-                    apply();
+          ajax.get(dataFactory.getAllProjects(), {
+              },
+              function(response){
+                var tempProject = response.data;
+                for(var c in tempProject) {
+                    if(tempProject[c].current == false) {
+                        $scope.upcomingProjects.push(tempProject[c]);
+                    }
                 }
-            );
+                apply();
+              }
+          );
         };
 
         $scope.getCourses = function(){
-            ajax.get(dataFactory.getCourse(), {
+            ajax.get(dataFactory.getAllCourses(), {
                 },
                 function(response){
                     $scope.courses = response.data;
@@ -158,7 +167,7 @@ angular.module('dmc.resources')
         };
 
         $scope.getJobs = function(){
-            ajax.get(dataFactory.getJob(), {
+            ajax.get(dataFactory.getAllJobs(), {
                 },
                 function(response){
                     $scope.jobs = response.data;
@@ -168,7 +177,7 @@ angular.module('dmc.resources')
         };
 
         $scope.getAssessments = function(){
-            ajax.get(dataFactory.getAssessment(), {
+            ajax.get(dataFactory.getAllAssessments(), {
                 },
                 function(response){
                     $scope.assessments = response.data;
@@ -179,7 +188,6 @@ angular.module('dmc.resources')
 
 
         //Run Functions
-        $scope.getFellows();
         $scope.getCurrentProjects();
         $scope.getUpcomingProjects();
         $scope.getCourses();

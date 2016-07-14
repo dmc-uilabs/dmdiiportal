@@ -3,7 +3,7 @@
 angular.module('dmc.data',[])
     .factory('dataFactory', function ($window,$location) {
         var baseServer = $window.apiUrl ? $window.apiUrl : '/static/?p=';
-        var localhost = ($location.$$absUrl.indexOf("http://localhost") != -1  || $location.$$absUrl.indexOf(':9000') != -1 ? "http://localhost:3000/" : "http://ge-dmc-01.thecreativeadvantage.net:3000/");
+        var localhost = ($location.$$absUrl.indexOf("http://localhost") != -1  || $location.$$absUrl.indexOf(':9000') != -1 ? "http://localhost:8080/" : "http://ge-dmc-01.thecreativeadvantage.net:3000/");
         localhost = $window.apiUrl ? $window.apiUrl + '/' : localhost;
         var urlSocketServer = 'http://localhost:8080/';
         var appendId = function(id){
@@ -872,37 +872,60 @@ angular.module('dmc.data',[])
 
 
             //RESOURCES
-            getResourceLab: function(LabNum){
-                return localhost+'resource_labs/'+LabNum;
+            getAllResourceLabs: function(){
+                return localhost+'resource/lab';
+            },
+            getResourceLab: function(id){
+                return localhost+'resource/lab/'+id;
+            },
+
+
+            getAllResourceBays: function(){
+                return localhost+'resource/bay/';
             },
             getResourceBay: function(id){
-                return localhost+'resource_bays/'+id;
-            },
-
-            getMachines: function(id){
-                return localhost+'resource_machines/'+id;
+                return localhost+'resource/bay/'+id;
             },
 
 
-            getFellows: function(){
-                return localhost+'resource_fellows';
+            getAllBayMachines: function(id){
+                return localhost+'resource/machine/'+id;
             },
 
-            getCurrentProj: function(){
-                return localhost+'resource_projects_current';
+
+
+            getProject: function(id){
+                return localhost+'resource/project/' + id;
             },
 
-            getUpcomingProj: function() {
-              return localhost +'resource_projects_upcoming';
+            getAllProjects: function() {
+              return localhost +'resource/project';
             },
-            getCourse: function() {
-              return localhost +'resource_workforce_courses';
+
+
+            getAllCourses: function() {
+              return localhost +'resource/course';
             },
-            getJob: function() {
-              return localhost +'resource_workforce_jobs';
+            getCourse: function(id) {
+              return localhost +'resource/course/' + id;
             },
-            getAssessment: function() {
-              return localhost +'resource_workforce_assessment';
+
+
+            getAllJobs: function() {
+              return localhost +'resource/job';
+            },
+
+            getJob: function(id) {
+              return localhost +'resource/job/' + id;
+            },
+
+
+            getAllAssessments: function() {
+              return localhost +'resource/assessment';
+            },
+
+            getAssessment: function(id) {
+              return localhost +'resource/assessment/' + id;
             },
 
             //END RESOURCES
