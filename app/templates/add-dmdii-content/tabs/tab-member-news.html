@@ -1,0 +1,15 @@
+<div layout="column" flex="100">
+    <div layout="row">
+        <md-input-container>
+            <label>Title</label>
+            <input ng-model="news.news_title" ng-required="true"/>
+        </md-input-container>
+    </div>
+
+    <div layout="row">
+        <md-input-container flex="50">
+            <label>Content</label>
+            <textarea type="text" ng-model="news.new_content" ng-required="true"/>
+        </md-input-container>
+    </div>
+</div>

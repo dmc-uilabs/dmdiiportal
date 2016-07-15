@@ -1,0 +1,44 @@
+<div layout="column">
+    <div layout="row">
+        <md-select class="top20 bottom20 width-25" ng-model="linkType">
+            <md-option value="document">Document</md-option>
+            <md-option value="link">Link</md-option>
+            <md-option value="text">Text</md-option>
+        </md-select>
+    </div>
+
+    <div layout="row">
+        <md-input-container>
+            <label>Title</label>
+            <input ng-model="quicklink.title" ng-required="true"/>
+        </md-input-container>
+    </div>
+
+    <div layout="row">
+        <md-input-container ng-show="linkType === 'link'" flex="50">
+            <label>Link</link>
+            <input type="text" ng-model="quicklink.link" ng-required="linkType === 'link'"/>
+        </md-input-container>
+        <md-input-container ng-show="linkType === 'text'" ng-required="linkType === 'text'" flex="50">
+            <label>Description</label>
+            <textarea ng-model="quicklink.description" ng-required="linkType === 'text'"/>
+        </md-input-container>
+
+        <div class="content-column upload-documents" layout="column" flex="25" ng-show="linkType === 'document'">
+            <div class="content-panel"
+                source="document"
+                ui-widget-upload-documents
+                widget-type="'row'"
+                auto-upload="false"
+                widget-title="'Upload Document'"
+                allow-tagging="true"
+                single-file="true">
+            </div>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="end start">
+        <md-button class="md-raised cancel-button" ng-click="cancelChanges()">Cancel</md-button>
+        <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!isDataChanged">Save</md-button>
+    </div>
+</div>

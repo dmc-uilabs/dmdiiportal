@@ -129,6 +129,9 @@
                         <md-menu-item ng-if="version1">
                             <md-button href="#">My Submissions</md-button>
                         </md-menu-item>
+                        <md-menu-item ng-if="!user.isDmdiiAdmin">
+                            <md-button href="/add-dmdii-content.php">Add DMDII Content</md-button>
+                        </md-menu-item>
                         <md-menu-item>
                             <md-button ng-click='logout()'>Logout</md-button>
                         </md-menu-item>

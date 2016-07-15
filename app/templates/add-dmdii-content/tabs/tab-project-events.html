@@ -1,0 +1,21 @@
+<div layout="row" layout-align="end start">
+    <md-button class="md-raised cancel-button" ng-click="cancelChanges()">Cancel</md-button>
+    <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!isDataChanged">Save</md-button>
+</div>
+<div layout="column" flex="100">
+    <div layout="row">
+        <md-input-container>
+            <label>Title</label>
+            <input ng-model="event.event_name" ng-required="true"/>
+        </md-input-container>
+
+        <md-datepicker class="top10" ng-model="event.event_date" ng-required="true" md-placeholder="Date"></md-datepicker>
+    </div>
+
+    <div layout="row">
+        <md-input-container flex="50">
+            <label>Description</label>
+            <textarea type="text" ng-model="event.event_description" ng-required="true"/>
+        </md-input-container>
+    </div>
+</div>

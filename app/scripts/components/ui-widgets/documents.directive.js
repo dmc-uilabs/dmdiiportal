@@ -73,7 +73,7 @@ angular.module('dmc.widgets.documents',[
 	}]).
 	directive('uiWidgetUploadDocuments', ['$parse', function ($parse) {
 		return {
-			restrict: 'A',
+			restrict: 'EA',
 			templateUrl: 'templates/components/ui-widgets/upload-documents.html',
 			scope: {
                 source : "=",
@@ -83,12 +83,14 @@ angular.module('dmc.widgets.documents',[
 				autoUpload: "=",
                 serviceId: "=",
 				product: "=",
-				allowTagging: "="
+				allowTagging: "=",
+				singleFile: "="
 			},
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
                 $scope.documentDropZone;
 				$scope.autoProcessQueue = ($scope.autoUpload != null ? $scope.autoUpload : true);
 				if(!$scope.source) $scope.source = [];
+
                 var requestData = {
                     _sort : 'name',
                     _order : 'DESC'
@@ -114,7 +116,6 @@ angular.module('dmc.widgets.documents',[
 
 				var callbackTagFunction = function(response) {
 					$scope.tags = response.data
-					console.log($scope.tags)
 				}
 
 				var getTags = function(){
@@ -126,12 +127,14 @@ angular.module('dmc.widgets.documents',[
 					if(item.file._removeLink){
 						item.file._removeLink.click();
 					}
-                    for(var i in $scope.source) {
-                        if ($scope.source[i].id == item.id) {
-                            $scope.source[i].deleted = true;
-                            break;
-                        }
-                    }
+
+					for(var i in $scope.source) {
+						if ($scope.source[i].id == item.id) {
+							$scope.source[i].deleted = true;
+							break;
+						}
+					}
+
 				};
 
 				$scope.confirmDeleteFile = function(item){
@@ -166,19 +169,25 @@ angular.module('dmc.widgets.documents',[
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
 
+				if ($scope.singleFile === true) {
+					$scope.maxFiles = 1;
+				} else {
+					$scope.maxFiles = null;
+				}
+
 				$scope.dropzoneConfig = {
 					'options': { // passed into the Dropzone constructor
 						'url': dataFactory.getDocumentUpload($scope.projectId),
 						'autoProcessQueue': $scope.autoProcessQueue,
 						'maxFilesize': 10,
 						'addRemoveLinks': true,
+						'maxFiles': $scope.maxFiles,
 						'init' : function() {
 							$scope.documentDropZone = this;
 							this.on("addedfile", function(file) {
 								if($scope.autoProcessQueue == false) {
 									var file_ = file;
 									var title = file_.name.substring(0,file_.name.lastIndexOf('.'));
-									file_.id = $scope.source.length + 1;
 									file_.title = title;
 									$scope.source.push({
 										id : file_.id,
@@ -187,7 +196,7 @@ angular.module('dmc.widgets.documents',[
 										editing : false,
 										type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length)
 									});
-                                    apply();
+                                    $scope.$apply();
 								}
 							});
 							this.on('removedfile', function (file) {

@@ -1,0 +1,32 @@
+<div ng-if="!not_found" class="add-dmdii-content">
+    <md-content class="add-dmdii-content-padding">
+        <div layout="row">
+            <md-tabs class="add-content-tabs"
+                     md-selected="currentSection.index"
+                     md-dynamic-height
+                     md-border-bottom
+					 flex="100">
+                <md-tab label="{{section.title}}"
+                        md-on-select="onSectionSelected(key)"
+                        ng-repeat="(key,section) in sections">
+                    <md-content class="mainSectionsContent" ng-switch on="key">
+                        <div tab-quicklinks
+                             ng-switch-when="quicklinks"></div>
+                        <div tab-member-events
+                            ng-switch-when="memberEvents"></div>
+                        <div tab-member-news
+                            ng-switch-when="memberNews"></div>
+                        <div tab-project-events
+                             ng-switch-when="projectEvents"></div>
+                        <div tab-project-news
+                             ng-switch-when="projectNews"></div>
+                        <div tab-projects-overview
+                             ng-switch-when="projectsOverview"></div>
+                        <div tab-project-status
+                            ng-switch-when="projectStatus"></div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </div>
+    </md-content>
+</div>
