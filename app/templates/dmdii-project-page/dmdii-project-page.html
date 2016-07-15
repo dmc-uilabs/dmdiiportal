@@ -7,8 +7,8 @@
 			<div class="project-header bottom20">
 				<div layout="column">
 					<div layout="row" layout-align="start start">
-						<div layout="column" flex="40">
-							<div layout="row" flex="40">
+						<div layout="column" flex="60">
+							<div layout="row" flex="60">
 								<p id="project-title">{{project.projectTitle}}</p>
 									<br>
 								<p style="color:green" class="project-subtitle">{{project.projectStatus.name}}</p>
@@ -24,7 +24,7 @@
 
 
 						</div>
-						<div flex="20">
+						<div flex="20" style="border-left: solid;padding-left: 20px; margin-left: 20px">
 							<h4 style="color:green">Project Financials</h4>
 							<div class="project-financials">
 				                <md-data-table-container>
@@ -38,10 +38,10 @@
 				                        <tbody>
 				                        <tr>
 				                            <td>
-				                                <h4 class="no-top no-bottom">{{project.finances[0]}}</h4>
+				                                <h4 class="no-top no-bottom">{{project.dmdii_funding}}</h4>
 				                            </td>
 											<td>
-												<h4 class="no-top no-bottom">{{project.finances[1]}}</h4>
+												<h4 class="no-top no-bottom">{{project.cost_share}}</h4>
 											</td>
 										</tr>
 				                        </tbody>
@@ -104,8 +104,12 @@
 				</md-tab>
 
 				<md-tab label="Project Schedule">
+				  <img style="border:1px solid;width:70%;margin:25px;  padding:20px; " src="/images/DMDIIGantChart.png"></img>
+
 					<md-content class="carousel-padding">
 						<div class="project-schedule">
+
+
 						</div>
 					</md-content>
 				</md-tab>

@@ -4,9 +4,17 @@
 		<!--member-->
 		<md-content class="member">
 
+			<div layout="row" layout-align="end">
+				<md-button ng-if="company.isOwner || user.isDmdiiAdmin"
+						   class="md-raised dmc-button"
+						   href="edit-member-page.php#/{{member.id}}/edit">
+					Edit DMDII Member Profile
+				</md-button>
+			</div>
+
 			<div layout="row" layout-margin>
 				<!--member image-->
-				<div class="member-logo" layout="column">
+				<div class="member-logo" layout="column" style="max-width:20%">
 					<img class="company-logo" ng-if="member.organization.featureImage" ng-src="{{member.organization.featureImage}}">
 					<div class="no-image" ng-if="!member.organization.featureImage" layout layout-align="center center">
 						<h3>No Image</h3>
@@ -72,11 +80,11 @@
 			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom style="width:100%">
 				<md-tab label="Project Involvement">
 					<md-content class="md-padding">
-						<div layout="column" ng-show="member.projects.length > 0">
-							<div class="pad20" ng-repeat="project in member.projects">
+						<div layout="row" ng-show="member.projects.length > 0">
+							<div class="pad20 member-project" ng-repeat="project in member.projects">
 								<h4 class="no-bottom no-top"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectIdentifier}}</a></h4>
-								<h2 class="no-bottom no-top" style="font-weight: bolder;"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h2>
-								<p>Prime Investigator</p>
+								<h2 class="no-bottom no-top" style="color:green;font-weight: bolder;"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h2>
+
 							</div>
 							<div ng-show="!member.projects || member.projects.length === 0">
 								<p>This Member is not on any projects yet</p>
@@ -103,9 +111,9 @@
 
 				<md-tab label="Recognitions">
 					<md-content class="md-padding">
-						<div class="tabs-content" layout="column">
-							<div class="pad20" ng-repeat="award in member.awards" ng-show="member.awards.length > 0">
-								<h4><a ng-href="{{award.link}}">{{award.name}}</a></h4>
+						<div class="tabs-content" layout="row">
+							<div class="pad20 member-project" ng-repeat="award in member.awards" ng-show="member.awards.length > 0">
+								<h4 class="green"><a ng-href="{{award.link}}">{{award.name}}</a></h4>
 								<p>{{award.description}}</p>
 							</div>
 							<span ng-hide="!member.awards || member.awards.length > 0">This member hasn't added any recognitions yet</span>
@@ -115,9 +123,9 @@
 
 				<md-tab label="Capabilities" >
 					<md-content class="md-padding">
-						<div class="tabs-content" layout="column">
-							<div>
-								<h3 class="no-bottom slim-margin">Areas Of Expertise</h3>
+						<div class="tabs-content" layout="row" >
+							<div style="width:40%">
+								<h3 class="no-bottom slim-margin">Core Capabilities</h3>
 								<div class="pad20" ng-repeat="AOE in member.areasOfExpertise" ng-show="member.areasOfExpertise.length > 0">
 									<h4><a ng-href="{{AOE.link}}" style="color:green">{{AOE.name}}</a></h4>
 									<p>{{AOE.description}}</p>
@@ -125,8 +133,8 @@
 								<span ng-hide="member.areasOfExpertise.length > 0">This member hasn't added any areas of expertise yet</span>
 							</div>
 
-							<div layout="column">
-								<h3 class="no-bottom slim-margin">Sector</h3>
+							<div layout="column" style="margin-left:solid;">
+								<h3 class="no-bottom slim-margin">Desired Areas for Collaboration</h3>
 								<div class="pad20" ng-repeat="focus in member.rndFocii" ng-show="member.rndFocii.length > 0">
 									<h4 style="color:green">{{focus.name}}</h4>
 									<p>{{focus.description}}</p>

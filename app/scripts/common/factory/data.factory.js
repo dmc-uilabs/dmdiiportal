@@ -456,7 +456,8 @@ angular.module('dmc.data',[])
                     get: localhost+'dmdiiMember/'+ id,
                     all: localhost+'dmdiiMember',
                     events: localhost+'dmdiiMember/events',
-                    news: localhost+'dmdiiMember/news'
+                    news: localhost+'dmdiiMember/news',
+                    map: localhost + 'dmdiiMember/mapEntry'
                 }
             },
             getDMDIIMemberProjects: function() {
@@ -471,6 +472,11 @@ angular.module('dmc.data',[])
                     all: localhost+'dmdiiprojects',
                     events: localhost+'dmdiiProject/events',
                     news: localhost+'dmdiiProject/news'
+                }
+            },
+            getQuickLinks: function() {
+                return {
+                    all: localhost + 'dmdiiquicklink'
                 }
             },
             getDocumentTags: function() {
@@ -643,7 +649,6 @@ angular.module('dmc.data',[])
                     update_tag : localhost + 'service_tags/' + id,
                     get_history : localhost + name + '/' + id + '/services_history',
                     get_run_history : localhost + name + '/' + id + '/service_runs',
-                    get_interfaces : localhost + 'services_interface',
                     get_servers : localhost + 'account_servers',
                     add_servers : localhost + 'services_servers',
                     get_images : localhost + name + '/' + id + '/service_images',
@@ -655,7 +660,6 @@ angular.module('dmc.data',[])
                     edit_specifications: localhost + 'specifications/' + id,
                     add_specifications:  localhost + 'specifications',
                     update_specifications:  localhost + 'specifications/'+id,
-                    get_inputs_outputs: localhost + name + '/' + id + '/service_input_output',
                     get_statistics: localhost + name + '/' + id + '/services_statistic',
                     add_interface: localhost + 'dome-interfaces',
                     get_interface: localhost + name + '/' + id + '/dome-interfaces',

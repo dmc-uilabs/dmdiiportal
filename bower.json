@@ -39,7 +39,8 @@
     "clndr": "^1.4.1",
     "aws-sdk": "aws-sdk-js#^2.2.41",
     "angular-ui-select": "^0.18.0",
-    "select2": "~3.4.5"
+    "select2": "~3.4.5",
+    "angular-datamaps": "^0.1.2"
   },
   "devDependencies": {
     "angular": "~1.4.4",

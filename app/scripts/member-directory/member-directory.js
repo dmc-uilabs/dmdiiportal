@@ -21,9 +21,9 @@ angular.module('dmc.members', [
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.component.treemenu',
-    'dmc.compare',
     'dmc.widgets.tasks',
-    'dmc.widgets.tabs'
+    'dmc.widgets.tabs',
+    'datamaps'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('member_directory', {

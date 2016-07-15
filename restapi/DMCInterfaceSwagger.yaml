@@ -6331,6 +6331,35 @@ paths:
                 type: string
               name:
                 type: string
+  '/dmdiiquicklink':
+    get:
+      tags:
+        - quick links
+      description: get quick links for dmdii project directory
+      parameters:
+        - in: query
+          name: limit
+          description: max number of quick links to return
+          type: integer
+          required: false
+      responses:
+        '200':
+          description: an array of quick links
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+                link:
+                  type: string
+                file:
+                  type: string
 definitions:
   PostFollowingMemeber:
     type: object
@@ -7980,6 +8009,14 @@ definitions:
         type: number
       domeServer:
         type: string
+      inParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
+      outParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
   PostUpdateDomeInterface:
     type: object
     properties:
@@ -8001,6 +8038,14 @@ definitions:
         type: number
       domeServer:
         type: string
+      inParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
+      outParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
   PostServiceRun:
     type: object
     properties:

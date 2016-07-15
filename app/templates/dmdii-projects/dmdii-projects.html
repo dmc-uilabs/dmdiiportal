@@ -7,11 +7,12 @@
     <div class="members" layout="column" flex>
         <md-content class="md-padding" layout-padding>
             <div class="newsAndEvents" layout="column">
-                <div class="news slim-margin">
-                    <h2>Recent News</h2>
+                <div class=" slim-margin">
+                      <p class="news">Recent News</p>
                     <div ng-repeat="item in news">
-                        <h3 class="no-bottom">{{item.title}} {{item.dateCreated}}</h3>
-                        <p>{{item.content}}</p>
+                      <h3 class="no-top no-bottom ">{{item.dateCreated}}</h3>
+                      <h2 class="no-top no-bottom green">{{item.title}}</h2>
+                      <p class="no-top no-bottom ">{{item.content}}</p>
                         <md-divider></md-divider>
                     </div>
                 </div>
@@ -21,25 +22,20 @@
                 <div layout="row" layout-padding layout-align="center stretch">
                     <div flex="33" layout-align="center">
                         <h3>Projects Overview</h3>
-                        <md-icon>
-                            <ng-md-icon icon="event" size="48"></ng-md-icon>
-                        </md-icon>
+                        <img style="border:1px solid;width:100% " src="/images/DMDIIProjectsAwarded.png"></img>
+
                     </div>
 
                     <div layout-align="center center" flex="33">
                         <h3>Projects Status</h3>
-                        <md-icon>
-                            <ng-md-icon icon="map" size="48"></ng-md-icon>
-                        </md-icon>
+                        <img style="border:1px solid; height:76%" src="/images/DMDIIProjectsOverview.png"></img>
+
                     </div>
-                    <div layout="column" layout-align="end start" flex="33">
+                    <div layout-align="end start" flex="33">
                         <h3>Quick Links</h3>
-                        <div layout="column">
-                            <a>link 1</a>
-                            <a>link 2</a>
-                            <a>link 3</a>
-                            <a>link 4</a>
-                        </div>
+                          <ul>
+                            <li ng-repeat="doc in docs track by $index" ng-click="quickLinkAction(doc)"><a>{{doc.title}}</a></li> <br>
+                         </ul>
                     </div>
                 </div>
 

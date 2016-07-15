@@ -264,6 +264,175 @@
             "callNumber": 5,
             "projectNumber": 1,
             "projectIdentifier": "2014-5-1"
+          },
+          {
+            "id": 1000,
+            "primeOrganization": {
+              "id": 1000,
+              "dmdiiType": {
+                "id": 1,
+                "dmdiiTypeCategory": {
+                  "id": 1,
+                  "category": "Industry"
+                },
+                "tier": 1
+              },
+              "organization": {
+                "id": 1000,
+                "name": "Amalgamated Widgets",
+                "location": "Gary, IN",
+                "description": "test description",
+                "email": "test email",
+                "phone": "test phone",
+                "website": "test website",
+                "dateJoining": null,
+                "reasonJoining": "test reason",
+                "featureImage": null,
+                "address": {
+                  "id": 1,
+                  "streetAddress1": "1 Main St.",
+                  "streetAddress2": "",
+                  "city": "Plesentville",
+                  "state": "MS",
+                  "country": "US",
+                  "zip": "00000"
+                }
+              },
+              "startDate": "2016-01-01",
+              "expireDate": "2020-01-01",
+              "awards": [],
+              "areasOfExpertise": [],
+              "contacts": [],
+              "customers": [],
+              "finances": [],
+              "instituteInvolvement": [],
+              "rndFocus": [],
+              "skills": [],
+              "users": []
+            },
+            "principalInvestigator": {
+            "firstName": "Armin",
+            "lastName": "Tamzaria",
+            "email": "armin.tamz@tamtam.com"
+          },
+            "projectStatus": {
+              "id": 1,
+              "name": "pre-awarded"
+            },
+            "awardedDate": "2016-07-01",
+            "endDate": "2017-06-30",
+            "projectTitle": "Soylent Green",
+            "projectSummary": "test summary",
+            "principalPointOfContact": {
+              "id": 1000,
+              "username": "test1",
+              "firstname": null,
+              "lastname": null,
+              "email": "test1@test.com",
+              "address": "test address",
+              "phone": "phone"
+            },
+            "projectFocusArea": {
+              "id": 5,
+              "name": "Product Lifecycle Management"
+            },
+            "projectThrust": {
+              "id": 1,
+              "name": "Advanced Manufacturing Enterprise",
+              "code": "AME"
+            },
+            "contributingCompanies": [
+              {
+                "id": 1001,
+                "dmdiiType": {
+                  "id": 2,
+                  "dmdiiTypeCategory": {
+                    "id": 1,
+                    "category": "Industry"
+                  },
+                  "tier": 2
+                },
+                "organization": {
+                  "id": 1001,
+                  "name": "Test Company",
+                  "location": "Chicago, IL",
+                  "description": "test description",
+                  "email": "test email",
+                  "phone": "test phone",
+                  "website": "test website",
+                  "dateJoining": null,
+                  "reasonJoining": "test reason",
+                  "featureImage": null,
+                  "address": {
+                    "id": 2,
+                    "streetAddress1": "1 Main St.",
+                    "streetAddress2": "",
+                    "city": "Plesentville",
+                    "state": "MI",
+                    "country": "US",
+                    "zip": "00000"
+                  }
+                },
+                "startDate": "2016-01-01",
+                "expireDate": "2020-01-01",
+                "awards": [],
+                "areasOfExpertise": [],
+                "contacts": [],
+                "customers": [],
+                "finances": [],
+                "instituteInvolvement": [],
+                "rndFocus": [],
+                "skills": [],
+                "users": []
+              },
+              {
+                "id": 1007,
+                "dmdiiType": {
+                  "id": 8,
+                  "dmdiiTypeCategory": {
+                    "id": 3,
+                    "category": "U.S. Government"
+                  },
+                  "tier": null
+                },
+                "organization": {
+                  "id": 1007,
+                  "name": "US Gov",
+                  "location": "Washington, DC",
+                  "description": "test description",
+                  "email": "test email",
+                  "phone": "test phone",
+                  "website": "test website",
+                  "dateJoining": null,
+                  "reasonJoining": "test reason",
+                  "featureImage": null,
+                  "address": {
+                    "id": 8,
+                    "streetAddress1": "1 Main St.",
+                    "streetAddress2": "",
+                    "city": "Plesentville",
+                    "state": "IL",
+                    "country": "US",
+                    "zip": "00000"
+                  }
+                },
+                "startDate": "2016-01-01",
+                "expireDate": "2020-01-01",
+                "awards": [],
+                "areasOfExpertise": [],
+                "contacts": [],
+                "customers": [],
+                "finances": [],
+                "instituteInvolvement": [],
+                "rndFocus": [],
+                "skills": [],
+                "users": []
+              }
+            ],
+            "rootNumber": 2014,
+            "callNumber": 5,
+            "projectNumber": 1,
+            "projectIdentifier": "2014-5-1"
           }
       ],
       "finances": [
@@ -309,13 +478,25 @@
       "skills": [
         {
           "id": 1,
-          "tagName": "tag1",
+          "tagName": "Smart Factory",
           "tagLink": "taglink1"
         },
         {
           "id": 2,
-          "tagName": "tag2",
+          "tagName": "IOT",
           "tagLink": "taglink2"
+        }
+      ],
+      "seekColaboration": [
+        {
+          "id": 1,
+          "tagName": "Supply Chain Management",
+          "tagLink": "taglink1"
+        },
+        {
+          "id": 2,
+          "tagName": "Logistics",
+          "tagLink": "tagLink1"
         }
       ],
       "users": []
