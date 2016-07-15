@@ -1,0 +1,17 @@
+<div layout="column" flex="100">
+    <div layout="row">
+        <md-input-container>
+            <label>Title</label>
+            <input ng-model="event.event_title" ng-required="true"/>
+        </md-input-container>
+
+        <md-datepicker class="top10" ng-model="event.event_date" ng-required="true" md-placeholder="Date"></md-datepicker>
+    </div>
+
+    <div layout="row">
+        <md-input-container flex="50">
+            <label>Description</label>
+            <textarea type="text" ng-model="event.event_description" ng-required="true"/>
+        </md-input-container>
+    </div>
+</div>
