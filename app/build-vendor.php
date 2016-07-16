@@ -71,5 +71,6 @@
 <script src="/bower_components/angular-route/angular-route.min.js"></script>
 <script src="/bower_components/angular-clndr/angular-clndr.js"></script>
 <script src="/bower_components/angular-horizontal-timeline/angular-horizontal-timeline.js"></script>
+<script src="/bower_components/aws-sdk/dist/aws-sdk.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
