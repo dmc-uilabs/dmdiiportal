@@ -22,7 +22,6 @@
 <?php include 'build-vendor.php' ?>
 
 <!-- build:js scripts/onboarding/index.js -->
-<script src="https://sdk.amazonaws.com/js/aws-sdk-2.4.7.min.js"></script>
 <script src="scripts/socket/socket.io.js"></script>
 <script src="scripts/configs/ngMaterial-config.js"></script>
 <script src="scripts/common/header/header.js"></script>
