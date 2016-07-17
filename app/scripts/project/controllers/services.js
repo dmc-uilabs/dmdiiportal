@@ -1,11 +1,11 @@
 angular.module('dmc.project')
-.controller('projectServicesCtrl', ['$scope', '$stateParams', 'ajax', 'dataFactory', 'projectData', 'serviceData', '$rootScope','$mdDialog', 
+.controller('projectServicesCtrl', ['$scope', '$stateParams', 'ajax', 'dataFactory', 'projectData', 'serviceData', '$rootScope','$mdDialog',
     function ($scope, $stateParams, ajax, dataFactory, projectData, serviceData, $rootScope,$mdDialog) {
 
         $scope.projectData = projectData;
         $scope.projectData.services.data = serviceData;
         for(var item in $scope.projectData.services.data){
-            $scope.projectData.services.data[item].releaseDate = moment($scope.projectData.services.data[item].releaseDate).format("MM/DD/YYYY");
+            $scope.projectData.services.data[item].releaseDate = moment($scope.projectData.services.data[item].releaseDate).format("YYYY-MM-DD");
         }
 
         var apply = function(){
