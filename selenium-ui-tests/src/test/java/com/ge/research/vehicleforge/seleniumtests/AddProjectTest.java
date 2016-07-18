@@ -88,8 +88,8 @@ public class AddProjectTest extends BaseTest {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		WebElement submit = driver.findElement(By.xpath("//div[2]/button[2]"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", submit);
-		if (submit.isEnabled()) {
-			submit.sendKeys(Keys.ENTER);
+		if (next.isEnabled()) {
+			next.sendKeys(Keys.ENTER);
 			;
 		} else {
 			log.log(Level.INFO, "The button submit is not clickable!");
