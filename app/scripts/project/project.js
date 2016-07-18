@@ -672,7 +672,7 @@ angular.module('dmc.project', [
                         "description": params.description,
                         "owner": $rootScope.userData.displayName,
                         "accountId": $rootScope.userData.accountId,
-                        "releaseDate": moment(new Date).format("MM/DD/YYYY"),
+                        "releaseDate": moment(new Date).format("YYYY-MM-DD"),
                         "serviceType": params.serviceType,
                         "specifications": "/services/3/specifications",
                         "featureImage": {
