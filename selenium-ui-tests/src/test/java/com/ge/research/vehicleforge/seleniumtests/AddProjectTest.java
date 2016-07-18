@@ -86,7 +86,7 @@ public class AddProjectTest extends BaseTest {
 
 		// submit to create the new project
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		WebElement submit = driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div[2]/md-content/md-tabs/md-tabs-content-wrapper/md-tab-content[2]/div/md-content/ap-tab-two/div/div[2]/button[2]"));
+		WebElement submit = driver.findElement(By.xpath("//div[2]/button[2]"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", submit);
 		if (submit.isEnabled()) {
 			submit.sendKeys(Keys.ENTER);
