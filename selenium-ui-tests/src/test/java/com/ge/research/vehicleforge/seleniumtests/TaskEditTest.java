@@ -9,34 +9,23 @@ public class TaskEditTest extends BaseTest {
 	
 	@Ignore
 	@Test
-	public void testTaskEdit() throws Exception {
+	public void testTaskEdit(String taskUrl) throws Exception {
 		
 		String header = TestUtils.getHeader();  	  
-		driver.get(baseUrl + "/project.php#/5/tasks");
+		driver.get(taskUrl);
 		// ERROR: Caught exception [Error: locator strategy either id or name must be specified explicitly.]
-		driver.findElement(By.id("input_6")).clear();
-		driver.findElement(By.id("input_6")).sendKeys(header + "test task edit");
-		driver.findElement(By.id("input_7")).clear();
-		driver.findElement(By.id("input_7")).sendKeys(header + "for selenium");
-		driver.findElement(By.xpath("(//button[@type='button'])[8]")).click();
-		driver.findElement(By.cssSelector("#md-0-2016-6-31 > span.md-calendar-date-selection-indicator")).click();
-		driver.findElement(By.id("select_10")).click();
-		driver.findElement(By.cssSelector("#select_option_14 > div.md-text.ng-binding")).click();
-		driver.findElement(By.id("select_12")).click();
-		driver.findElement(By.cssSelector("div.md-text.ng-binding")).click();
-		driver.findElement(By.xpath("//button[2]")).click();
 		driver.findElement(By.xpath("//div[2]/button")).click();
-		driver.findElement(By.id("input_16")).clear();
-		driver.findElement(By.id("input_16")).sendKeys(header + "this is a selenium test");
-		driver.findElement(By.id("input_15")).clear();
-		driver.findElement(By.id("input_15")).sendKeys(header + "task has been edited for selenium");
-		driver.findElement(By.xpath("(//button[@type='button'])[8]")).click();
-		driver.findElement(By.id("md-0-2016-6-19")).click();
-		driver.findElement(By.cssSelector("#select_value_label_1 > span")).click();
-		driver.findElement(By.id("select_option_10")).click();
-		driver.findElement(By.cssSelector("#select_value_label_2 > span")).click();
-		driver.findElement(By.cssSelector("#select_option_13 > div.md-text.ng-binding")).click();
-		driver.findElement(By.xpath("//button[4]")).click();
+	    driver.findElement(By.xpath("//textarea")).clear();
+	    driver.findElement(By.xpath("//textarea")).sendKeys(header + "task edit");
+	    driver.findElement(By.xpath("//md-input-container[2]/textarea")).clear();
+	    driver.findElement(By.xpath("//md-input-container[2]/textarea")).sendKeys(header + "detail edit");
+	    driver.findElement(By.xpath("//md-datepicker/div/button")).click();
+	    driver.findElement(By.xpath("//tbody[4]/tr[3]/td[3]/span")).click();
+	    driver.findElement(By.xpath("//md-select-value")).click();
+	    driver.findElement(By.xpath("//md-option")).click();
+	    driver.findElement(By.xpath("//div[3]/md-input-container/md-select/md-select-value/span[2]")).click();
+	    driver.findElement(By.xpath("//md-option[2]")).click();
+	    driver.findElement(By.xpath("//button[4]")).click();
 	}
 
 	

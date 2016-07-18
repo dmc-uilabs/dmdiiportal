@@ -18,13 +18,6 @@ import org.openqa.selenium.WebElement;
 
 
 public class DiscussionFunctionalityTest extends BaseTest{
-	@Test
-	public void testDiscussionFunctionality() throws Exception {
-		AddProjectTest apt = new AddProjectTest();
-		String projectUrl = apt.testAddProject();
-		System.out.println("project URL is " + projectUrl);
-		verifyDiscussionFunctionality(projectUrl);
-	}
 	
 	
 	
