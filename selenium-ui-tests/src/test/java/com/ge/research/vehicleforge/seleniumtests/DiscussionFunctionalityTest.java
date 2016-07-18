@@ -18,23 +18,33 @@ import org.openqa.selenium.WebElement;
 
 
 public class DiscussionFunctionalityTest extends BaseTest{
-	@Ignore
 	@Test
 	public void testDiscussionFunctionality() throws Exception {
 		AddProjectTest apt = new AddProjectTest();
 		String projectUrl = apt.testAddProject();
-		verifyDiscussionFunctionality();
+		System.out.println("project URL is " + projectUrl);
+		verifyDiscussionFunctionality(projectUrl);
 	}
 	
 	
 	
-	public void verifyDiscussionFunctionality() throws Exception {
+	public void verifyDiscussionFunctionality(String projectUrl) throws Exception {
 		String header = TestUtils.getHeader();
-		driver.get(baseUrl + "/my-projects.php#/");
+		driver.get(projectUrl);
+		
+		NewDiscussionFromProjectsPageTest discussionFromProject = new NewDiscussionFromProjectsPageTest();
+		discussionFromProject.createNewDiscussionFromProjectsPage(projectUrl);
+		
+		String discussionHome = projectUrl.replace("home", "discussions");
+		NewDiscussionFromDiscussionsPageTest newDiscussionFromDiscussionsHome = new NewDiscussionFromDiscussionsPageTest();
+		newDiscussionFromDiscussionsHome.createNewDiscussionFromDiscussionsPage(discussionHome);
+		
+		driver.get(projectUrl);
+		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		Thread.sleep(5000);
 		WebElement clickViewAll = 
-				driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div[2]/md-content[8]/div/div[2]/md-content[2]/div/a"));
+				driver.findElement(By.xpath("/html/body/div[2]/ui-view/div[2]/div/div[1]/div[2]/div[1]/md-toolbar/div/a"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", clickViewAll);
 		if(clickViewAll.isEnabled()){
 			clickViewAll.sendKeys(Keys.ENTER);;
@@ -44,13 +54,15 @@ public class DiscussionFunctionalityTest extends BaseTest{
 		
 		String projectsPage = driver.getCurrentUrl();
 		
+		
+		
 		WebElement numReplies = driver.findElement
 				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/div[2]/md-data-table-container/table/tbody/tr[2]/td[2]"));
 		int replyCount = Integer.parseInt(numReplies.getText().split("\\s+")[0]);
 		log.log(Level.INFO, "reply count is " + replyCount);
 		
 		//find a discussion
-	    driver.findElement(By.linkText("Created from discussions project page")).click();
+	    driver.findElement(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/div[2]/md-data-table-container/table/tbody/tr[1]/td[1]/a")).click();
 	    Thread.sleep(2000);
 	    driver.findElement(By.linkText("Reply")).click();
 	    driver.findElement(By.xpath("//textarea")).clear();
@@ -133,10 +145,10 @@ public class DiscussionFunctionalityTest extends BaseTest{
 	    assertTrue(click.toUpperCase().equals("UNFOLLOW"));
 
 	    //go to project page and verify that we have a new reply
-	    driver.get(projectsPage);
+	    driver.get(discussionHome);
 	    Thread.sleep(5000);
 	    numReplies = driver.findElement
-				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/div[2]/md-data-table-container/table/tbody/tr[2]/td[2]"));
+				(By.xpath("/html/body/div[2]/ui-view/div[2]/div/md-content/div[2]/md-data-table-container/table/tbody/tr[1]/td[2]"));
 	    int newReplyCount = Integer.parseInt(numReplies.getText().split("\\s+")[0]);
 	    log.log(Level.INFO, "updated reply count is " + newReplyCount);
 	    assertEquals(newReplyCount, replyCount + 1);

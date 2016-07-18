@@ -7,17 +7,17 @@ import org.openqa.selenium.*;
 
 
 public class NewDiscussionFromProjectsPageTest extends BaseTest{
-	@Ignore
+	/*@Ignore
 	@Test
 	public void testCreateNewDiscussionFromProjectsPage() throws Exception{
 		createNewDiscussionFromProjectsPage();
-	}
+	}*/
 	
 	
-	public void createNewDiscussionFromProjectsPage() throws Exception {
+	public void createNewDiscussionFromProjectsPage(String projectsPage) throws Exception {
 		String header = TestUtils.getHeader();
 
-		String projectsPage = baseUrl + "/project.php#/3/home";
+		//String projectsPage = baseUrl + "/project.php#/3/home";
 		driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
 		driver.get(projectsPage);
 

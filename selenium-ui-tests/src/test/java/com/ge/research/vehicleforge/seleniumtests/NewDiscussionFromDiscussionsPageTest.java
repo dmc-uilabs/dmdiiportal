@@ -12,19 +12,19 @@ import org.openqa.selenium.*;
 
 public class NewDiscussionFromDiscussionsPageTest extends BaseTest{
 	
-	@Ignore
+	/*@Ignore
 	@Test 
 	public void testCreateNewDiscussionFromDiscussionsPage() throws Exception {
 		createNewDiscussionFromDiscussionsPage();
-	}
+	}*/
 	
 	
 	
 	
-	public void createNewDiscussionFromDiscussionsPage() throws Exception {
+	public void createNewDiscussionFromDiscussionsPage(String discussionsPage) throws Exception {
 		
 		String header = TestUtils.getHeader();
-		String discussionsPage = baseUrl + "project.php#/1/discussions";
+		//String discussionsPage = baseUrl + "project.php#/1/discussions";
 		driver.get(discussionsPage);
 		String discussionName = header + "testing for selenium";
 		String discussionMessage = header + "new discussion from discussions page";

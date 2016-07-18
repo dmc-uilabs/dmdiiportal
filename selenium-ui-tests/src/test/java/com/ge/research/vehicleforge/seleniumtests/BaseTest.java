@@ -56,7 +56,8 @@ public abstract class BaseTest {
 		System.out.println("The first step to get Url from system environment : " + baseUrl);
 
 		driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-		testDMCLogin();
+		if (!(baseUrl.contains("localhost") || baseUrl.contains("127.0.0.1")))
+			testDMCLogin();
 
 	}
 
@@ -91,6 +92,9 @@ public abstract class BaseTest {
 	}
 
 	public static void testDMCLogin() throws Exception {
+		
+		
+		
 		if (TestUtils.CREDENTIAL_GATEWAY_REQUIRED) {
 			testPublicLoginProtection();
 		} else {

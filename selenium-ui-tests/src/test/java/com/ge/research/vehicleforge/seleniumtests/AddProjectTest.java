@@ -85,15 +85,17 @@ public class AddProjectTest extends BaseTest {
 		 */
 
 		// submit to create the new project
-		WebElement submit = driver.findElement(By.xpath("//div[2]/button[2]"));
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		WebElement submit = driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div[2]/md-content/md-tabs/md-tabs-content-wrapper/md-tab-content[2]/div/md-content/ap-tab-two/div/div[2]/button[2]"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", submit);
-		if (next.isEnabled()) {
-			next.sendKeys(Keys.ENTER);
+		if (submit.isEnabled()) {
+			submit.sendKeys(Keys.ENTER);
 			;
 		} else {
 			log.log(Level.INFO, "The button submit is not clickable!");
 		}
-		
+		Thread.sleep(2000);
+		System.out.println(driver.getCurrentUrl());
 		return driver.getCurrentUrl();
 	}
 
