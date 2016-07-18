@@ -7,8 +7,7 @@ import org.openqa.selenium.*;
 
 public class TasksPageTest extends BaseTest {
 
-	@Ignore
-	@Test
+	
 	public void testTasksPage() throws Exception {
 
 		 	  

@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 public class NewTaskFromProjectTest extends BaseTest {
 	
 	
-	public void testNewTaskFromProject(String projectHome) throws Exception {
+	public String testNewTaskFromProject(String projectHome) throws Exception {
 		
 		String header = TestUtils.getHeader();  
 		
@@ -31,6 +31,8 @@ public class NewTaskFromProjectTest extends BaseTest {
 	    driver.findElement(By.xpath("//div[3]/md-input-container/md-select")).click();
 	    driver.findElement(By.xpath("//md-option")).click();
 	    driver.findElement(By.xpath("//button[2]")).click();
+	    
+	    return driver.getCurrentUrl();
 	}
 
 	

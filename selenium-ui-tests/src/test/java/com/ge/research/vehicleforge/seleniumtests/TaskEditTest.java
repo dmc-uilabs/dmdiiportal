@@ -7,8 +7,7 @@ import org.openqa.selenium.*;
 
 public class TaskEditTest extends BaseTest {
 	
-	@Ignore
-	@Test
+	
 	public void testTaskEdit(String taskUrl) throws Exception {
 		
 		String header = TestUtils.getHeader();  	  
