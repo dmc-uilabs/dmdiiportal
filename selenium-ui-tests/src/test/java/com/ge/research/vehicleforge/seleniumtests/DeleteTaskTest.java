@@ -6,12 +6,11 @@ import org.openqa.selenium.*;
 
 public class DeleteTaskTest extends BaseTest{
 
-	@Ignore
-	@Test
-	public void testDeleteTask() throws Exception {
+	
+	public void testDeleteTask(String toBeDeleted) throws Exception {
 		
 		String header = TestUtils.getHeader();
-		driver.get(baseUrl + "/project.php#/5/home");
+		driver.get(toBeDeleted);
 		// ERROR: Caught exception [Error: locator strategy either id or name must be specified explicitly.]
 		driver.findElement(By.id("input_6")).clear();
 		driver.findElement(By.id("input_6")).sendKeys(header + "testing delete functionality");
