@@ -29,7 +29,7 @@ public class AddProjectTest extends BaseTest {
 		assertEquals("My Projects", driver.getTitle());
 	}
 
-	public void testAddProject() throws Exception {
+	public String testAddProject() throws Exception {
 		driver.get(baseUrl + "/my-projects.php#/");
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
@@ -85,6 +85,7 @@ public class AddProjectTest extends BaseTest {
 		 */
 
 		// submit to create the new project
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		WebElement submit = driver.findElement(By.xpath("//div[2]/button[2]"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", submit);
 		if (next.isEnabled()) {
@@ -93,6 +94,9 @@ public class AddProjectTest extends BaseTest {
 		} else {
 			log.log(Level.INFO, "The button submit is not clickable!");
 		}
+		Thread.sleep(2000);
+		System.out.println(driver.getCurrentUrl());
+		return driver.getCurrentUrl();
 	}
 
 	public void editProjectTest() throws Exception {
