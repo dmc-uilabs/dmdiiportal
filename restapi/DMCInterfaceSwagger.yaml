@@ -1019,7 +1019,8 @@ paths:
     patch:
       tags:
         - task
-        - not implemented
+        - live
+        - has tests
       description: Update task
       parameters:
         - name: taskID
