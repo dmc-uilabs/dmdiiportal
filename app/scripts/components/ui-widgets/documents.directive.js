@@ -3,7 +3,8 @@
 angular.module('dmc.widgets.documents',[
 		'dmc.ajax',
 		'dmc.data',
-		'DropZone'
+		'DropZone',
+		'ui.select'
 	]).
 	directive('uiWidgetDocuments', ['$parse', function ($parse) {
 		return {
@@ -81,7 +82,8 @@ angular.module('dmc.widgets.documents',[
                 widgetType: "=",
 				autoUpload: "=",
                 serviceId: "=",
-				product: "="
+				product: "=",
+				allowTagging: "="
 			},
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
                 $scope.documentDropZone;
@@ -107,6 +109,18 @@ angular.module('dmc.widgets.documents',[
                         }
                     );
                 }
+
+				$scope.tags = [];
+
+				var callbackTagFunction = function(response) {
+					$scope.tags = response.data
+					console.log($scope.tags)
+				}
+
+				var getTags = function(){
+					ajax.get(dataFactory.getDocumentTags(), null, callbackTagFunction);
+				}
+				getTags();
 
 				$scope.removeFile = function(item){
 					if(item.file._removeLink){

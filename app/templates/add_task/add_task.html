@@ -10,9 +10,9 @@
                     </md-toolbar>
                 </div>
                 <div class="content-panel-body">
-                    <md-content layout="row">
+                    <md-content>
                         <div flex layout="column">
-                            <md-input-container flex="50">
+                            <md-input-container class="md-block" style="width: 50%;">
                                 <label>Project</label>
                                 <md-select ng-model="selectedProject" required>
                                     <md-option ng-repeat="project in $root.projects" value="{{project.id}}">
@@ -20,11 +20,11 @@
                                     </md-option>
                                 </md-select>
                             </md-input-container>
-                            <md-input-container class="md-block" flex="100">
+                            <md-input-container class="md-block">
                                 <label>Description</label>
                                 <textarea ng-model="task.title" required></textarea>
                             </md-input-container>
-                            <md-input-container class="md-block" flex="100">
+                            <md-input-container class="md-block">
                                 <label>Additional Details</label>
                                 <textarea ng-model="task.additionalDetails" md-maxlength="1000"></textarea>
                             </md-input-container>
@@ -42,31 +42,25 @@
                     </md-toolbar>
                 </div>
                 <div class="content-panel-body">
-                    <md-content layout="row" class="task-details-container">
+                    <md-content class="task-details-container">
                         <div layout="column" class="edit-details-block" flex="80">
-                            <div layout="row" flex="80">
-                                <span class="dueDate-label" ng-show="task.dueDate">Due Date</span>
-                                <md-datepicker flex class="dueDatePicker"
-                                               ng-model="task.dueDate" md-placeholder="Due Date"
-                                               ng-init="setDatePickerFocus()">
-                                </md-datepicker>
-                            </div>
-                            <div layout="row" flex="80">
-                                <md-input-container flex>
-                                    <label>Priority</label>
-                                    <md-select ng-model="task.priority">
-                                        <md-option ng-repeat="p in priorities" value="{{p.id}}">{{p.name}}</md-option>
-                                    </md-select>
-                                </md-input-container>
-                            </div>
-                            <div layout="row" flex="80">
-                                <md-input-container flex>
-                                    <label>Assigned To</label>
-                                    <md-select ng-model="task.assigneeId">
-                                        <md-option ng-value="user.id" ng-repeat="user in users">{{user.name}}</md-option>
-                                    </md-select>
-                                </md-input-container>
-                            </div>
+                            <span class="dueDate-label" ng-show="task.dueDate">Due Date</span>
+                            <md-datepicker flex class="dueDatePicker"
+                                           ng-model="task.dueDate" md-placeholder="Due Date"
+                                           ng-init="setDatePickerFocus()">
+                            </md-datepicker>
+                            <md-input-container>
+                                <label>Priority</label>
+                                <md-select ng-model="task.priority">
+                                    <md-option ng-repeat="p in priorities" value="{{p.id}}">{{p.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Assigned To</label>
+                                <md-select ng-model="task.assigneeId">
+                                    <md-option ng-value="user.id" ng-repeat="user in users">{{user.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
                         </div>
                     </md-content>
                 </div>

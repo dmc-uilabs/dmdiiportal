@@ -55,23 +55,30 @@ angular.module('dmc.member')
             };
 
 
+            var getProjects = function() {
+            }
+
             // callback for member
             var callbackFunction = function(response){
-                console.log($scope.member)
                 $scope.member = response.data;
-				$scope.memberLoading = false;
+
+                if (!member.projects) {
+                    ajax.get(dataFactory.getDMDIIMemberProjects(), { page: 0, pageSize: 50, memberId: $stateParams.memberId }, function(response) {
+                        $scope.member.projects = response.data.results;
+                    });
+                }
+
+                $scope.memberLoading = false;
             };
 
             var responseData = function(){
-                var data = {
-                    id: $stateParams.memberId
-                };
+                var data = {};
                 return data;
             };
 
             $scope.getDMDIIMember = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIMember(responseData()), null, callbackFunction);
+                ajax.get(dataFactory.getDMDIIMember($stateParams.memberId).get, responseData(), callbackFunction);
             };
             $scope.getDMDIIMember();
 

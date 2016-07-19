@@ -128,7 +128,7 @@ angular.module('dmc.project')
             $scope.saveServer = function(server){
 
                 serviceModel.add_servers({
-                    ip: server.ip,
+                    ip: server.port != null ? server.ip + ':' + server.port : server.ip,
                     name: server.name,
                     accountId: $scope.userData.accountId,
                     status: "offline"
@@ -187,18 +187,30 @@ angular.module('dmc.project')
 
             $scope.finish = function(){
                 var interfaceId = !$scope.interface ? null : $scope.interface.id;
+                var newDomeInterface = {};
+
                 if(!$scope.interface) {
-                    $scope.selectedInterface.interFace.domeServer = $scope.selectedServerIp;
+                    newDomeInterface.domeServer = $scope.selectedServerIp;
                 }else{
-                    $scope.selectedInterface.interFace = ($scope.selectedInterface.interFace ? $scope.selectedInterface.interFace : $scope.interface);
-                    if($scope.selectedServerIp) $scope.selectedInterface.interFace.domeServer = $scope.selectedServerIp;
+
+                    if ($scope.selectedInterface.interFace) {
+                        newDomeInterface = $.extend(true, {
+                        'inParams': $scope.selectedInterface.inParams,
+                        'outParams': $scope.selectedInterface.outParams
+                        }, $scope.selectedInterface.interFace);
+
+                    } else {
+                        newDomeInterface = $.extend(true, {}, $scope.interface);
+                    }
+
+                    if($scope.selectedServerIp) newDomeInterface.domeServer = $scope.selectedServerIp;
                 }
                 serviceModel.edit_service({
                     title: $scope.NewService.serviceName,
                     description: $scope.NewService.serviceDescription,
                     serviceType: $scope.NewService.serviceType,
                     parent: $scope.NewService.parentComponent
-                },$scope.removeTags,$scope.addTags,$scope.selectedInterface.interFace, interfaceId);
+                },$scope.removeTags,$scope.addTags,newDomeInterface, interfaceId);
             };
 
             $scope.$on('$locationChangeStart', function (event, next, current) {

@@ -128,7 +128,9 @@ angular.module('dmc.account')
 
             $scope.information = {
                 public : $.extend(true,{},information_),
-                private : $.extend(true,{},information_)
+                private : $.extend(true,{},information_),
+                memberPortal: $.extend(true,{},information_)
+
             };
 
             $scope.blockedUser = [

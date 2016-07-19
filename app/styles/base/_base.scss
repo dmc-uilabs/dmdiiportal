@@ -46,9 +46,11 @@ div[ui-view] {
   }
 }
 
-//member-directory
 .pull-left{
     text-align: left !important;
+}
+.pull-right{
+    text-align: right !important;
 }
 
 .table-row{
@@ -75,94 +77,17 @@ div[ui-view] {
     color: #fff;
     height: 46px;
 }
-ng-md-icon {
-    fill: currentColor;
-    vertical-align: middle;
-    display: inline-block;
-    line-height: 1;
-}
-.members-list{
-  margin-top: 21px;
-  th{
-    min-width: 75px;
-  }
-  td{
-    text-transform: none !important;
-    &:first-child a{
-      font-size: 16px;
-    }
-  }
-  .title{
-    width: 40%;
-  }
-  .title-member{
-    cursor: pointer;
-    a.link-button {
-      font-size: 14px;
-    }
-  }
-}
-// end member-directory
-
-//member-page
-.member{
-    font-size: 16px;
-}
-
-h5.member-subtitle{
-    padding-left: 8px;
-    color: #666;
-    font-weight: 600;
-}
 
 .pad20{
     padding-left: 20px;
 }
-//end member-page
 
-
-//project-list
-.projects-list{
-  margin-top: 21px;
-  th{
-    min-width: 100px;
-  }
-  td{
-    text-transform: none !important;
-    &:first-child a{
-      font-size: 16px;
-    }
-  }
-  .title{
-    width: 50%;
-  }
-  .title-project{
-    cursor: pointer;
-    a.link-button {
-      font-size: 14px;
-    }
-  }
-}
-// end project-list
-
-//project-page
-.project{
-    font-size: 16px;
-}
-h5.project-subtitle{
-    padding-left: 8px;
-    color: #666;
-    font-weight: 600;
+.no-pad-bottom{
+    padding-bottom: 0px;
 }
 
-.project-documents a:nth-child(n+3){
-    padding-top: 15px;
-}
-
-.project-contributors{
-    border: 2px;
-    border-style: solid;
-    text-align: center;
+.bottom20{
+    margin-bottom: 20px;
 }
 
 .slim-margin{
@@ -177,7 +102,10 @@ h5.project-subtitle{
 .no-bottom{
     margin-bottom: 0px;
 }
-//end project-page
+
+.no-top{
+    margin-top: 0px;
+}
 
 md-content{
   padding: 15px;

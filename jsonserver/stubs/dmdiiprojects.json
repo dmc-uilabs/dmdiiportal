@@ -1,120 +1,372 @@
 [
-	{
-		"id": 1,
-		"dmdiiProjectStatus":{
-			"DMDIIStatusId": 2,
-			"statusName": "awarded"
-		},
-		"primeOrganization":{
-			"DMDIIMemberId": 4,
-			"name": "DMDII Member Name"
-		},
-		"principalInvestigator":{
-			"investigatorId": 2,
-			"name": "Investigator's name"
-		},
-		"awardedDate": "2016-01-01 00:00:00",
-		"projectTitle": "This Project Title",
-		"projectSummary": "This Project's Summary is this",
-		"principalPointOfContact":{
-			"pocId": 3,
-			"name": "POC's name",
-			"email": "poc@poc.com",
-			"phone": "888-555-1212"
-		},
-		"contributingCompanies": [
-			{
-				"DMDIIMemberId": 1,
-				"name": "Contributing Company1",
-				"companyId": 12
-			},
-			{
-				"DMDIIMemberId": 2,
-				"name": "Contributing Company2",
-				"companyId": 15
-			}
-		],
-		"documents": [
-			{
-				"id": 1,
-				"name": "Document Name1",
-				"url": ""
-			},
-			{
-				"id": 2,
-				"name": "Document Name2",
-				"url": ""
-			}
-		],
-		"reports": [
-			{
-				"id": 1,
-				"reportId": 20,
-				"reportAuthor": "Report Author1",
-				"reportDate": "2016-05-31 15:30:00",
-				"usgApprovalStatus": {
-					"id": 1,
-					"statusName": "status1"
-				},
-				"dmdiiCostAnalysisStatus": {
-					"id": 2,
-					"statusName": "status2"
-				},
-				"ecApprovalStatus": {
-					"id": 1,
-					"statusName": "status1"
-				},
-				"sowStatus": {
-					"id": 1,
-					"statusName": "status1"
-				},
-				"ipPlanStatus": {
-					"id": 2,
-					"statusName": "status2"
-				},
-				"migsStatus": {
-					"id": 1,
-					"statusName": "status1"
-				},
-				"eaaStatus": {
-					"id": 1,
-					"statusName": "status1"
-				}
-			},
-			{
-				"id": 2,
-				"reportId": 21,
-				"reportAuthor": "Report Author2",
-				"reportDate": "2016-06-01 15:30:00",
-				"usgApprovalStatus": {
-					"id": 1,
-					"statusName": "status1"
-				},
-				"dmdiiCostAnalysisStatus": {
-					"id": 2,
-					"statusName": "status2"
-				},
-				"ecApprovalStatus": {
-					"id": 1,
-					"statusName": "status1"
-				},
-				"sowStatus": {
-					"id": 1,
-					"statusName": "status1"
-				},
-				"ipPlanStatus": {
-					"id": 2,
-					"statusName": "status2"
-				},
-				"migsStatus": {
-					"id": 1,
-					"statusName": "status1"
-				},
-				"eaaStatus": {
-					"id": 1,
-					"statusName": "status1"
-				}
-			}
-		]
-	}
+  {
+    "id": 1000,
+    "primeOrganization": {
+      "id": 1000,
+      "dmdiiType": {
+        "id": 1,
+        "dmdiiTypeCategory": {
+          "id": 1,
+          "category": "Industry"
+        },
+        "tier": 1
+      },
+      "organization": {
+        "id": 1000,
+        "name": "Amalgamated Widgets",
+        "location": "Gary, IN",
+        "description": "test description",
+        "email": "test email",
+        "phone": "test phone",
+        "website": "test website",
+        "dateJoining": null,
+        "reasonJoining": "test reason",
+        "featureImage": null,
+        "address": {
+          "id": 1,
+          "streetAddress1": "1 Main St.",
+          "streetAddress2": "",
+          "city": "Plesentville",
+          "state": "XX",
+          "country": "US",
+          "zip": "00000"
+        }
+      },
+      "startDate": "2016-01-01",
+      "expireDate": "2020-01-01",
+      "awards": [],
+      "areasOfExpertise": [],
+      "contacts": [],
+      "customers": [],
+      "finances": ["2500", "1250"],
+      "instituteInvolvement": [],
+      "rndFocus": [],
+      "skills": [],
+      "users": []
+    },
+    "principalInvestigator": {
+		"firstName": "Armin",
+		"lastName": "Tamzaria",
+		"email": "armin.tamz@tamtam.com"
+	},
+    "projectStatus": {
+      "id": 1,
+      "name": "pre-awarded"
+    },
+    "awardedDate": "2016-07-01",
+    "endDate": "2017-06-30",
+    "projectTitle": "Soylent Green",
+    "projectSummary": "test summary",
+    "principalPointOfContact": {
+      "id": 1000,
+      "username": "test1",
+      "firstname": null,
+      "lastname": null,
+      "email": "test1@test.com",
+      "address": "test address",
+      "phone": "phone"
+    },
+    "projectFocusArea": {
+      "id": 5,
+      "name": "Product Lifecycle Management"
+    },
+    "projectThrust": {
+      "id": 1,
+      "name": "Advanced Manufacturing Enterprise",
+      "code": "AME"
+    },
+    "dmdii_funding": 2500,
+    "cost_share": 1260,
+    "updates": [
+        {
+            "date": "2016-07-05",
+            "title": "Update 2",
+            "description": "This is the other update",
+            "author": "Arthur McArty"
+        },
+        {
+            "date": "2016-07-04",
+            "title": "Update 1",
+            "description": "This is the update",
+            "author": "Arthur McArty"
+        }
+    ],
+    "contributingCompanies": [
+      {
+        "id": 1001,
+        "dmdiiType": {
+          "id": 2,
+          "dmdiiTypeCategory": {
+            "id": 1,
+            "category": "Industry"
+          },
+          "tier": 2
+        },
+        "organization": {
+          "id": 1001,
+          "name": "Test Company",
+          "location": "Chicago, IL",
+          "description": "test description",
+          "email": "test email",
+          "phone": "test phone",
+          "website": "test website",
+          "dateJoining": null,
+          "reasonJoining": "test reason",
+          "featureImage": null,
+          "address": {
+            "id": 2,
+            "streetAddress1": "1 Main St.",
+            "streetAddress2": "",
+            "city": "Plesentville",
+            "state": "XX",
+            "country": "US",
+            "zip": "00000"
+          }
+        },
+        "startDate": "2016-01-01",
+        "expireDate": "2020-01-01",
+        "awards": [],
+        "areasOfExpertise": [],
+        "contacts": [],
+        "customers": [],
+        "finances": ["2500", "1250"],
+        "instituteInvolvement": [],
+        "rndFocus": [],
+        "skills": [],
+        "users": []
+      },
+      {
+        "id": 1007,
+        "dmdiiType": {
+          "id": 8,
+          "dmdiiTypeCategory": {
+            "id": 3,
+            "category": "U.S. Government"
+          },
+          "tier": null
+        },
+        "organization": {
+          "id": 1007,
+          "name": "US Gov",
+          "location": "Washington, DC",
+          "description": "test description",
+          "email": "test email",
+          "phone": "test phone",
+          "website": "test website",
+          "dateJoining": null,
+          "reasonJoining": "test reason",
+          "featureImage": null,
+          "address": {
+            "id": 8,
+            "streetAddress1": "1 Main St.",
+            "streetAddress2": "",
+            "city": "Plesentville",
+            "state": "XX",
+            "country": "US",
+            "zip": "00000"
+          }
+        },
+        "startDate": "2016-01-01",
+        "expireDate": "2020-01-01",
+        "awards": [],
+        "areasOfExpertise": [],
+        "contacts": [],
+        "customers": [],
+        "finances": ["2500", "1250"],
+        "instituteInvolvement": [],
+        "rndFocus": [],
+        "skills": [],
+        "users": []
+      }
+    ],
+    "rootNumber": 2014,
+    "callNumber": 5,
+    "projectNumber": 1,
+    "projectIdentifier": "2014-5-1"
+  },
+  {
+    "id": 1001,
+    "primeOrganization": {
+      "id": 1001,
+      "dmdiiType": {
+        "id": 2,
+        "dmdiiTypeCategory": {
+          "id": 1,
+          "category": "Industry"
+        },
+        "tier": 2
+      },
+      "organization": {
+        "id": 1001,
+        "name": "Iowa State University",
+        "location": "Chicago, IL",
+        "description": "test description",
+        "email": "test email",
+        "phone": "test phone",
+        "website": "test website",
+        "dateJoining": null,
+        "reasonJoining": "test reason",
+        "featureImage": null,
+        "address": {
+          "id": 2,
+          "streetAddress1": "1 Main St.",
+          "streetAddress2": "",
+          "city": "Plesentville",
+          "state": "XX",
+          "country": "US",
+          "zip": "00000"
+        }
+      },
+      "startDate": "2016-01-01",
+      "expireDate": "2020-01-01",
+      "awards": [],
+      "areasOfExpertise": [],
+      "contacts": [],
+      "customers": [],
+      "finances": ["2500", "1250"],
+      "instituteInvolvement": [],
+      "rndFocus": [],
+      "skills": [],
+      "users": []
+    },
+	"principalInvestigator": {
+		"firstName": "Armin",
+		"lastName": "Tamzaria",
+		"email": "armin.tamz@tamtam.com"
+	},
+    "projectStatus": {
+      "id": 2,
+      "name": "awarded"
+    },
+    "awardedDate": "3/15/2016",
+    "endDate": "3/15/2018",
+    "projectTitle": "FactBoard: Real-Time Data-Driven Visual Decision Support System for the Factory Floor",
+    "projectSummary": "This project would define, develop and validate FactBoard, a shop floor decision support system to improve the production efficiency.",
+    "principalPointOfContact": {
+      "id": 1001,
+      "username": "KAT",
+      "firstname": "Katie" ,
+      "lastname": "Tillery-Merk",
+      "email": "katie.tillery-merk@uilabs.org",
+      "address": "test address",
+      "phone": "phone"
+    },
+    "projectFocusArea": {
+      "id": 4,
+      "name": "MBE/MBD (CAD/CAM)"
+    },
+    "projectThrust": {
+      "id": 2,
+      "name": "AVM",
+      "code": "IM"
+    },
+    "dmdii_funding": 2500,
+    "cost_share": 1260,
+    "updates": [
+        {
+            "date": "2016-07-05",
+            "title": "Update 2",
+            "description": "This is the other update",
+            "author": "Arthur McArty"
+        },
+        {
+            "date": "2016-07-04",
+            "title": "Update 1",
+            "description": "This is the update",
+            "author": "Arthur McArty"
+        }
+    ],
+    "contributingCompanies": [
+      {
+        "id": 1000,
+        "dmdiiType": {
+          "id": 1,
+          "dmdiiTypeCategory": {
+            "id": 1,
+            "category": "Industry"
+          },
+          "tier": 1
+        },
+        "organization": {
+          "id": 1000,
+          "name": "Amalgamated Widgets",
+          "location": "Gary, IN",
+          "description": "test description",
+          "email": "test email",
+          "phone": "test phone",
+          "website": "test website",
+          "dateJoining": null,
+          "reasonJoining": "test reason",
+          "featureImage": null,
+          "address": {
+            "id": 1,
+            "streetAddress1": "1 Main St.",
+            "streetAddress2": "",
+            "city": "Plesentville",
+            "state": "XX",
+            "country": "US",
+            "zip": "00000"
+          }
+        },
+        "startDate": "2016-01-01",
+        "expireDate": "2020-01-01",
+        "awards": [],
+        "areasOfExpertise": [],
+        "contacts": [],
+        "customers": [],
+        "finances": ["2500", "1250"],
+        "instituteInvolvement": [],
+        "rndFocus": [],
+        "skills": [],
+        "users": []
+      },
+      {
+        "id": 1006,
+        "dmdiiType": {
+          "id": 7,
+          "dmdiiTypeCategory": {
+            "id": 2,
+            "category": "Academic"
+          },
+          "tier": 4
+        },
+        "organization": {
+          "id": 1006,
+          "name": "Small College",
+          "location": "Pierre, ND",
+          "description": "test description",
+          "email": "test email",
+          "phone": "test phone",
+          "website": "test website",
+          "dateJoining": null,
+          "reasonJoining": "test reason",
+          "featureImage": null,
+          "address": {
+            "id": 7,
+            "streetAddress1": "1 Main St.",
+            "streetAddress2": "",
+            "city": "Plesentville",
+            "state": "XX",
+            "country": "US",
+            "zip": "00000"
+          }
+        },
+        "startDate": "2016-01-01",
+        "expireDate": "2020-01-01",
+        "awards": [],
+        "areasOfExpertise": [],
+        "contacts": [],
+        "customers": [],
+        "finances": ["2500", "1250"],
+        "instituteInvolvement": [],
+        "rndFocus": [],
+        "skills": [],
+        "users": []
+      }
+    ],
+    "rootNumber": 2015,
+    "callNumber": 1,
+    "projectNumber": 1,
+    "projectIdentifier": "15-02-08"
+  }
 ]
