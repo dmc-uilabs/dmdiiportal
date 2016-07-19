@@ -360,7 +360,8 @@ angular.module('dmc.individual-discussion', [
                         {
                             'commentId': id,
                             'accountId': $rootScope.userData.accountId,
-                            'comment': NewComment.Comment
+                            'comment': NewComment.Comment,
+                            'reason': NewComment.Reason
                         },
                         function(response){}
                     );
