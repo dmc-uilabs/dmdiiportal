@@ -72,8 +72,8 @@
 						    <form name="flagCommentForm" layout="row" layout-align="start start">
 						      <md-input-container flex="20">
 						        <label>Reason</label>
-						        <md-select ng-model="NewReview.Reasone" ng-change="">
-						          <md-option value="1">None</md-option>
+						        <md-select ng-model="NewReview.Reason" ng-change="">
+						          <md-option value="none">None</md-option>
 						        </md-select>
 						      </md-input-container>
 						      <div flex layout="column">
@@ -83,7 +83,7 @@
 						        </md-input-container>
 						        <div layout layout-align="end end">
 						          <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
-						          <md-button class="md-raised" ng-click="SubmitFlagged(NewReview, comment.id, $index)" ng-disabled="!NewReview.Comment || !NewReview.Reasone" >Submit</md-button>
+						          <md-button class="md-raised" ng-click="SubmitFlagged(NewReview, comment.id, $index)" ng-disabled="!NewReview.Comment || !NewReview.Reason" >Submit</md-button>
 						        </div>
 						      </div>
 						    </form>
