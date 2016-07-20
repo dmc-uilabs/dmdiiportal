@@ -8011,12 +8011,12 @@ definitions:
       domeServer:
         type: string
       inParams:
-        type: object
-        additionalProperties:
+        type: array
+        items:
           $ref: '#/definitions/DomeModelParam'
       outParams:
-        type: object
-        additionalProperties:
+        type: array
+        items:
           $ref: '#/definitions/DomeModelParam'
   PostUpdateDomeInterface:
     type: object
@@ -8040,12 +8040,12 @@ definitions:
       domeServer:
         type: string
       inParams:
-        type: object
-        additionalProperties:
+        type: array
+        items:
           $ref: '#/definitions/DomeModelParam'
       outParams:
-        type: object
-        additionalProperties:
+        type: array
+        items:
           $ref: '#/definitions/DomeModelParam'
   PostServiceRun:
     type: object
