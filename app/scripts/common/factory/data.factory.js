@@ -892,13 +892,74 @@ angular.module('dmc.data',[])
             getNotificationsStatisticPm: function(){
                 return localhost+'notifications-pm-statistic';
             },
+
+
+            //RESOURCES
+            getAllResourceLabs: function(){
+                return localhost+'resource/lab';
+            },
+            getResourceLab: function(id){
+                return localhost+'resource/lab/'+id;
+            },
+
+
+            getAllResourceBays: function(){
+                return localhost+'resource/bay/';
+            },
+            getResourceBay: function(id){
+                return localhost+'resource/bay/'+id;
+            },
+
+
+            getAllBayMachines: function(id){
+                return localhost+'resource/machine/'+id;
+            },
+
+
+
+            getProject: function(id){
+                return localhost+'resource/project/' + id;
+            },
+
+            getAllProjects: function() {
+              return localhost +'resource/project';
+            },
+
+
+            getAllCourses: function() {
+              return localhost +'resource/course';
+            },
+            getCourse: function(id) {
+              return localhost +'resource/course/' + id;
+            },
+
+
+            getAllJobs: function() {
+              return localhost +'resource/job';
+            },
+
+            getJob: function(id) {
+              return localhost +'resource/job/' + id;
+            },
+
+
+            getAllAssessments: function() {
+              return localhost +'resource/assessment';
+            },
+
+            getAssessment: function(id) {
+              return localhost +'resource/assessment/' + id;
+            },
+
+            //END RESOURCES
+
             searchMarketplace: function (text) {
                 if($window.apiUrl) {
                     return localhost + 'searchServices/' + text;
                 }else{
                     return localhost + 'searchServices';
                 }
-            },
+			      },
             markReadNotifications: function(){
                 return localhost+'mark-read-notifications';
             },

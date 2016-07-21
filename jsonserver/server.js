@@ -49,7 +49,15 @@ server.use(jsonServer.rewriter({
     '/dmdiiProject/:id': '/dmdiiProjects/:id',
     '/dmdiiProject/events': '/dmdiiProjectEvents',
     '/dmdiiProject/news': '/dmdiiProjectNews',
-    '/documents/tags': '/document_tags'
+    '/documents/tags': '/document_tags',
+    '/resource/lab' : '/resource_labs',
+    '/resource/lab/:id':'/resource_labs/:id',
+    '/resource/assessment': '/resource_workforce_assessment',
+    '/resource/job' : '/resource_workforce_jobs',
+    '/resource/course' : '/resource_workforce_courses',
+    '/resource/project' :'/resource_projects',
+    '/resource/bay/:id' : '/resource_bays/:id',
+    '/resource/machine/:id' : '/resource_machines/:id'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 
