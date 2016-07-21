@@ -2,17 +2,21 @@
 
 angular.module('dmc.model.fileUpload', ['dmc.data'])
     .service('fileUpload', ['$http','dataFactory', 'toastModel', function ($http,dataFactory, toastModel) {
-        this.uploadFileToUrl = function(file,data, type, callbackUploadPicture){
+        this.uploadFileToUrl = function(file, callbackUploadPicture){
 
           //AWS Upload To Get Temp URL
           var S3Upload = function (file){
 
             // james.barkley creds (used for testing)
             //make into ENV vars
-            var creds = {bucket: '', access_key: '',secret_key: ''}
-            // Configure The S3 Object
-            AWS.config.update({ accessKeyId: creds.access_key, secretAccessKey: creds.secret_key });
-            AWS.config.region = '';
+            var creds = {bucket: 'test-temp-verify', access_key: 'AKIAJDE3BJULBHCYEX4Q',secret_key: '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'}
+
+                // Configure The S3 Object
+
+                AWS.config.update({ accessKeyId: creds.access_key, secretAccessKey: creds.secret_key });
+
+            AWS.config.region = 'us-east-1';
+
 
             //Create connection
             var s3 = new AWS.S3({ params: { Bucket:creds.bucket }});
