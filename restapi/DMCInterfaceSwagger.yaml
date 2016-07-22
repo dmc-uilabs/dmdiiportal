@@ -6264,11 +6264,14 @@ paths:
       description: Run a DOME model.
       parameters:
         - in: body
-          name: InputPackage
-          description: an instance DomeModelResponsePkg, Key infomation interface id string, and input parameters
+          name: ServiceId
+          description: service id to be run
           required: true
           schema:
-            $ref: '#/definitions/DomeModelResponsePkg'
+            type: object
+            properties:
+              serviceId:
+                type: string
       responses:
         '200':
           description: Unique id for this service run
