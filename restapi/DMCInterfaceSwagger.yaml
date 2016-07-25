@@ -6268,10 +6268,7 @@ paths:
           description: service id to be run
           required: true
           schema:
-            type: object
-            properties:
-              serviceId:
-                type: string
+            $ref: '#/definitions/RunDomeModelRequest'
       responses:
         '200':
           description: Unique id for this service run
@@ -7938,6 +7935,19 @@ definitions:
         type: string
       pkg:
         $ref: '#/definitions/DomeModelResponsePkg'
+  RunDomeModelRequest:
+    type: object
+    properties:
+      serviceId:
+        type: string
+      inParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
+      outParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
   RunDomeModelResponse:
     type: object
     properties:
