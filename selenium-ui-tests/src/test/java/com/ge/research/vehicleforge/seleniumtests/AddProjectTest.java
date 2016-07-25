@@ -106,30 +106,31 @@ public class AddProjectTest extends BaseTest {
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(TestUtils.projectName)));
 		element.click();
 
-		driver.findElement(By.linkText("Edit")).click();
+		// edit overview
 		driver.findElement(By.xpath("//textarea")).clear();
 		driver.findElement(By.xpath("//textarea")).sendKeys(TestUtils.overviewEdit);
 
-		// add tag
+		// edit tag
 		driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input")).clear();
 		driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input"))
 				.sendKeys(TestUtils.ProjectTagEdit);
-		Thread.sleep(1000);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content[2]/div/form/button"))).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content[2]/div/form/button")))
+				.sendKeys(Keys.ENTER);
+		
 
 		// next to add member
 		WebElement next = driver.findElement(By.xpath("//ap-tab-one/div/div[2]/button"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", next);
 		if (next.isEnabled()) {
 			next.sendKeys(Keys.ENTER);
-			;
 		} else {
 			System.out.println("Can not click the button NEXT!!!");
 		}
 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-		// submit to create the new project
+		// submit to update the new project
 		WebElement submit = driver.findElement(By.xpath("//div[2]/button[2]"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", submit);
 		if (next.isEnabled()) {
