@@ -917,11 +917,11 @@ angular.module('dmc.data',[])
 
 
 
-            getProject: function(id){
+            getResourceProject: function(id){
                 return localhost+'resource/project/' + id;
             },
 
-            getAllProjects: function() {
+            getAllResourceProjects: function() {
               return localhost +'resource/project';
             },
 

@@ -127,7 +127,7 @@ angular.module('dmc.resources')
         };*/
 
         $scope.getCurrentProjects = function(){
-            ajax.get(dataFactory.getAllProjects(), {
+            ajax.get(dataFactory.getAllResourceProjects(), {
                 },
                 function(response){
                   var tempProject = response.data;
@@ -142,7 +142,7 @@ angular.module('dmc.resources')
         };
 
         $scope.getUpcomingProjects = function(){
-          ajax.get(dataFactory.getAllProjects(), {
+          ajax.get(dataFactory.getAllResourceProjects(), {
               },
               function(response){
                 var tempProject = response.data;
