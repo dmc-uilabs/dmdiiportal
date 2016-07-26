@@ -790,8 +790,7 @@ paths:
       tags:
         - project
         - discussion
-        - live
-        - has tests
+        - not implemented
       description: Get all user discussion threads
       parameters:
         - name: _limit
@@ -2570,7 +2569,8 @@ paths:
     post:
       tags:
         - discussion
-        - not implemented
+        - live
+        - has tests
       description: Post follow discussion (follow a discussion)
       parameters:
         - in: body
@@ -2588,7 +2588,8 @@ paths:
     delete:
       tags:
         - discussion
-        - not implemented
+        - live
+        - has tests
       description: remove follow discussion (Unfollow discussion)
       parameters:
         - in: path
@@ -2603,7 +2604,8 @@ paths:
     get:
       tags:
         - discussion
-        - not implemented
+        - live
+        - has tests
       description: Get follow discussion
       parameters:
         - in: path
@@ -2646,8 +2648,7 @@ paths:
     post:
       tags:
         - discussion
-        - live
-        - has tests
+        - not implemented
       summary: Post a new discussion
       description: Post a new discussion to store in the database
       operationId: postDiscussion
@@ -5217,7 +5218,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Get all individual discussions tags
       parameters:
         - in: path
@@ -5270,32 +5272,11 @@ paths:
           description: Id account
           required: true
           type: string
-        - name: _limit
-          in: query
-          description: Limit items
-          type: integer
-          required: false
-        - name: _order
-          in: query
-          description: Order by ASC or DESC
-          type: string
-          collectionFormat: multi
-          required: false
-          enum:
-            - ASC
-            - DESC
-        - name: _sort
-          in: query
-          description: Sort by some parameter
-          type: string
-          required: false
       responses:
         '200':
           description: return individual discussions comment helpful
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/IndividualDiscussionCommentHelpful'
+            $ref: '#/definitions/IndividualDiscussionCommentHelpful'
     post:
       tags:
         - discussion
@@ -5307,7 +5288,7 @@ paths:
         - in: body
           name: IndividualDiscussionCommentHelpful
           description: Individual comments helpful
-          required: false
+          required: true
           schema:
             $ref: '#/definitions/IndividualDiscussionCommentHelpful'
       responses:
@@ -5331,6 +5312,7 @@ paths:
           required: true
         - name: helpful
           in: body
+          required: true
           schema:
             $ref: '#/definitions/IndividualDiscussionCommentHelpful'
       responses:
@@ -5343,7 +5325,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Get individual discussions comment flagged
       parameters:
         - in: query
@@ -5365,7 +5348,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Create individual discussions comments flagged
       parameters:
         - in: body
@@ -5384,7 +5368,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Create a new individual discussions tag
       parameters:
         - in: body
@@ -7768,7 +7753,7 @@ definitions:
         type: string
       accountId:
         type: string
-      helpfull:
+      helpful:
         type: boolean
   IndividualDiscussionCommentFlagged:
     type: object
