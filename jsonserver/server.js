@@ -42,7 +42,22 @@ server.use(jsonServer.rewriter({
     '/company_featured/add': '/company_featured',
     '/company_featured/:id': '/company_featured/:id',
     '/projects/:projectId/accept/:memberId': '/projects_members/:memberId',
-    '/projects/:projectId/reject/:memberId': '/projects_members/:memberId'
+    '/projects/:projectId/reject/:memberId': '/projects_members/:memberId',
+    '/dmdiiMember/events': '/dmdiiMemberEvents',
+    '/dmdiiMember/news': '/dmdiiMemberNews',
+    '/dmdiiMember/mapEntry' : '/dmdiiMemberMap',
+    '/dmdiiProject/:id': '/dmdiiProjects/:id',
+    '/dmdiiProject/events': '/dmdiiProjectEvents',
+    '/dmdiiProject/news': '/dmdiiProjectNews',
+    '/documents/tags': '/document_tags',
+    '/resource/lab' : '/resource_labs',
+    '/resource/lab/:id':'/resource_labs/:id',
+    '/resource/assessment': '/resource_workforce_assessment',
+    '/resource/job' : '/resource_workforce_jobs',
+    '/resource/course' : '/resource_workforce_courses',
+    '/resource/project' :'/resource_projects',
+    '/resource/bay/:id' : '/resource_bays/:id',
+    '/resource/machine/:id' : '/resource_machines/:id'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 

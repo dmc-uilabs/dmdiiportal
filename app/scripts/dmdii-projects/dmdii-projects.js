@@ -15,17 +15,18 @@ angular.module('dmc.dmdiiProjects', [
     'dmc.socket',
     'ngtimeago',
     'ngCookies',
+    'angularUtils.directives.dirPagination',
+    'angular-horizontal-timeline',
     'dmc.widgets.documents',
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.component.treemenu',
-    'dmc.compare',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('dmdii_projects', {
-        url: '/dmdii_projects?status?callnum',
+        url: '/dmdii_projects?status?rootNumber?callNumber?statusId?focusId',
         templateUrl: 'templates/dmdii-projects/dmdii-projects.html',
         controller: 'DMCDmdiiProjectsController',
         resolve: {
@@ -34,7 +35,7 @@ angular.module('dmc.dmdiiProjects', [
             }
         }
     }).state('dmdii_projects_search', {
-		url: '/dmdii_projects/search?status?callnum',
+		url: '/dmdii_projects/search?status?rootNumber?callNumber?statusId?focusId',
         templateUrl: 'templates/dmdii-projects/dmdii-projects.html',
         controller: 'DMCDmdiiProjectsController',
         resolve: {

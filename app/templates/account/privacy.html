@@ -68,6 +68,34 @@
                             </div>
                         </div>
                     </div>
+                    <div class="inputs-container" layout="row">
+                        <div layout="column" flex="50">
+                            <h2 class="md-title title-block">Member Portal information</h2>
+                            <div layout="row">
+                                <div layout="column" flex="20" ng-repeat="(key,item) in information.memberPortal">
+                                    <md-checkbox ng-init="userBasics.privacy.memberPortal[key].enable = (userBasics.privacy.memberPortal[key].enable == true || userBasics.privacy.memberPortal[key].enable == 'true' ? true : false)"
+                                                 ng-model="userBasics.privacy.memberPortal[key].enable"
+                                                 aria-label="{{item.title}}"
+                                                 ng-change="changedCheckbox('memberPortal',key,userBasics.privacy.memberPortal[key].enable)">{{item.title}}</md-checkbox>
+                                </div>
+                            </div>
+                            <div layout="row" ng-repeat="(key,item) in information.memberPortal" ng-if="userBasics.privacy.memberPortal[key].enable">
+                                <md-input-container class="md-icon-float information-item" layout="column" flex id="{{'edit_memberPortal_'+key}}">
+                                    <label>{{item.title}}</label>
+                                    <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('memberPortal')">
+                                        <ng-md-icon icon="{{item.icon}}" size="26"></ng-md-icon>
+                                    </md-icon>
+                                    <input ng-if="key == 'phone'"
+                                           ng-model="userBasics.privacy.memberPortal[key].value"
+                                           ng-change="changedValue('memberPortal',key,userBasics.privacy.memberPortal[key].value)"
+                                           phone-input>
+                                    <input ng-if="key != 'phone'"
+                                           ng-model="userBasics.privacy.memberPortal[key].value"
+                                           ng-change="changedValue('memberPortal',key,userBasics.privacy.memberPortal[key].value)">
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
                     <!--<md-divider ></md-divider>-->
                     <!--<div class="inputs-container blocked-users" layout="row">-->
                         <!--<div layout="column" flex="50">-->

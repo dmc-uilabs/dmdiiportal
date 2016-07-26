@@ -94,7 +94,7 @@ angular.module('dmc.project')
             // save new server
             $scope.saveServer = function(server){
                 serviceModel.add_servers({
-                    ip: server.ip,
+                    ip: server.port != null ? server.ip + ':' + server.port : server.ip,
                     name: server.name,
                     accountId: $scope.userData.accountId,
                     status: "offline"
@@ -138,6 +138,10 @@ angular.module('dmc.project')
             // upload service
             $scope.finish = function(){
                 $scope.selectedInterface.interFace.domeServer = $scope.selectedServerIp;
+                var newDomeInterface = $.extend(true,{
+                    'inParams': $scope.selectedInterface.inParams,
+                    'outParams': $scope.selectedInterface.outParams
+                },$scope.selectedInterface.interFace);
                 serviceModel.upload_services({
                     title: $scope.NewService.serviceName,
                     description: $scope.NewService.serviceDescription,
@@ -146,7 +150,7 @@ angular.module('dmc.project')
                     pojectId: projectData.id,
                     pojectTitle: projectData.title,
                     parent: $scope.NewService.parentComponent
-                },$scope.addTags,$scope.selectedInterface.interFace);
+                },$scope.addTags,newDomeInterface);
             }
 
         }

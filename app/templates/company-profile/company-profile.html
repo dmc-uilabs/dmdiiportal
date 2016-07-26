@@ -43,6 +43,11 @@
                            ui-sref="company-profile-edit({companyId: company.id})">
                     Edit Company
                 </md-button>
+                <md-button ng-if="company.isOwner || user.isDmdiiAdmin"
+                           class="md-raised dmc-button"
+                           href="edit-member-page.php#/{{company.id}}/edit">
+                    Edit DMDII Member Profile
+                </md-button>
                 <md-button class="md-raised dmc-button margin-left12-5" ng-if="!invate" ng-click="btnInviteToProject()">
                     Invite to Project
                 </md-button>

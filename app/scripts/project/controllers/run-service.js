@@ -124,7 +124,6 @@ angular.module('dmc.project')
                     function(response){
                         $scope.rerun = null;
                         if(response.data && response.data.id){
-                            //$scope.service.interfaceModel = response.data.interface;
                             $scope.service.interfaceModel.inputs = [];
                             for (var key in $scope.service.interfaceModel.inParams) {
                                 $scope.service.interfaceModel.inParams[key].defaultValue = $scope.service.interfaceModel.inParams[key].value;

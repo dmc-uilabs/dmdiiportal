@@ -4,46 +4,154 @@
 		<!--project-->
 		<md-content class="project">
 			<!--project header-->
-			<div class="project-header">
-				<div layout="row" layout-align="start center">
-					<h1>{{project.projectTitle}}</h1>
-					<h5 class="project-subtitle">{{project.dmdiiProjectStatus.statusName}}</h5>
+			<div class="project-header bottom20">
+				<div layout="column">
+					<div layout="row" layout-align="start start">
+						<div layout="column" flex="60">
+							<div layout="row" flex="60">
+								<p id="project-title">{{project.projectTitle}}</p>
+									<br>
+								<p style="color:green" class="project-subtitle">{{project.projectStatus.name}}</p>
+							</div>
+
+							<div layout="row" layout-align="start start" style=" margin-top: -45px;">
+								<h2 class="no-bottom" style="color:green">{{project.projectIdentifier}}</h2>
+								<span layout="column">
+									<h5 class="project-subtitle no-bottom">{{project.projectFocusArea.name}}</h5>
+									<h5 class="project-subtitle no-bottom no-top">{{project.projectThrust.name}}</h5>
+								</span>
+							</div>
+
+
+						</div>
+						<div flex="20" style="border-left: solid;padding-left: 20px; margin-left: 20px">
+							<h4 style="color:green">Project Financials</h4>
+							<div class="project-financials">
+				                <md-data-table-container>
+				                    <table md-data-table>
+				                        <thead>
+				                        <tr>
+				                            <th name="DMDII Funding"/>
+				                            <th name="Cost Share"/>
+				                        </tr>
+				                        </thead>
+				                        <tbody>
+				                        <tr>
+				                            <td>
+				                                <h4 class="no-top no-bottom">{{project.dmdii_funding}}</h4>
+				                            </td>
+											<td>
+												<h4 class="no-top no-bottom">{{project.cost_share}}</h4>
+											</td>
+										</tr>
+				                        </tbody>
+				                    </table>
+				                </md-data-table-container>
+				            </div>
+						</div>
+						<span flex></span>
+						<div layout="row" flex="30" layout-align="end start">
+							<div class="project-updates">
+								<h4 style="color:green">Key Dates</h4>
+								<md-divider></md-divider>
+								<div layout="column" style="text-align: right;">
+									<h5 class="slim-margin">Awarded On: <span class="slim-margin">{{project.awardedDate}}</span></h5>
+
+									<h5 class="slim-margin">Completed By: <span class="slim-margin">{{project.endDate}}</span></h5>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<md-divider></md-divider>
-				<span flex></span>
 			</div>
-			<div layout="row">
-				<div flex="70">
+
+<md-divider style="margin-top:100px"></md-divider>
+
+			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom>
+				<md-tab label="Project Contributors">
+					<md-content class="md-padding">
+						<div layout="row" ng-if="project.projectStatus.id > 1">
+							<div layout="column" flex="50">
+								<h2 class="no-bottom">Principal Investigator</h2>
+								<div layout="column">
+									<h3 class="slim-margin no-bottom green" ><a ng-href="{{'/member-page.php#/'+project.principalInvestigator.id}}">{{project.principalInvestigator.firstName + ' ' + project.principalInvestigator.lastName}}</a></h3>
+									<span class="close-email">{{project.principalInvestigator.email}}</span>
+								</div>
+								<br><br>
+								<h2 class="no-bottom">DMDII Project Manager</h2>
+								<div layout="column">
+									<h3 class="slim-margin no-bottom green"><a ng-href="{{'/member-page.php#/'+project.principalPointOfContact.id}}">{{project.principalPointOfContact.firstname + ' ' + project.principalPointOfContact.lastname}}</a></h3>
+									<span class="close-email ">{{project.principalPointOfContact.email}}</span>
+								</div>
+							</div>
+
+							<div layout="column" flex="50">
+								<h2 class="no-bottom">Participants</h2>
+
+								<div layout="column">
+									<div layout="row">
+										<h3 class="slim-margin no-bottom green"><a ng-href="{{'/member-page.php#/'+project.primeOrganization.id}}">{{project.primeOrganization.organization.name}}</a></h3>
+										<span class="slim-margin po-subtitle">[ Prime ]</span>
+									</div>
+								</div>
+								<div layout="column" ng-repeat="member in project.contributingCompanies">
+									<h4 class="close-email no-bottom"><a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a></h3>
+								</div>
+							</div>
+						</div>
+						<span ng-hide="project.projectStatus.id > 1">This project has not been awarded yet</span>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Project Schedule">
+				  <img style="border:1px solid;width:70%;margin:25px;  padding:20px; " src="/images/DMDIIGantChart.png"></img>
+
+					<md-content class="carousel-padding">
+						<div class="project-schedule">
+
+
+						</div>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Project Updates">
+					<md-content class="md-padding">
+						<div class="tabs-content" layout="column">
+							<div layout="column" ng-show="project.updates.length > 0">
+								<div class="bottom20" ng-repeat="update in project.updates">
+									<div class="slim-side-margin no-bottom" layout="row">
+										<h2 class="margin-top-25 no-bottom green">{{update.title}}</h4>
+										<p class="superset">{{update.date}}</p>
+									</div>
+									<p class="slim-margin">{{update.description}}</p>
+									<p class="byline no-top bottom10">-{{update.author}}</p>
+								</div>
+							</div>
+							<span ng-hide="project.updates.length > 0">This Project has no updates</span>
+						</div>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Project Documents">
+					<md-content class="md-padding">
+						<div class="tabs-content" layout="column">
+							<div layout="column" class="project-documents" ng-show="project.documents.length > 0">
+								<a class="slim-margin" ng-repeat="doc in project.documents">{{doc.name}}</a>
+							</div>
+							<span ng-hide="project.documents.length > 0">This Project has no documents</span>
+						</div>
+					</md-content>
+				</md-tab>
+			</md-tabs>
+
+			<md-divider style="margin-bottom: 50px"></md-divider>
+
+			<div layout="row" style="margin-top:50">
+				<div flex>
 					<!--project description-->
 					<div class="project-overview">
-						<h2>Overview</h2>
+						<h2 >Summary</h2>
 						<p class="slim-margin">{{project.projectSummary}}</p>
-					</div>
-
-					<md-divider></md-divider>
-
-					<div class="project-updates">
-						<h2>Project Updates</h2>
-						<div layout="column" ng-repeat="update in project.updates">
-							<span class="slim-margin">{{update.date}}</span>
-								<h3 class="slim-margin">{{update.title}}</h3>
-								<p class="slim-margin">{{update.description}}</p>
-						</div>
-					</div>
-
-					<div layout="column" class="project-documents">
-						<h2>Documents</h2>
-						<a class="slim-margin" ng-repeat="doc in project.documents">{{doc.name}}</a>
-					</div>
-				</div>
-
-				<div layout="row" flex="30" layout-align="end start">
-					<div class="project-contributors">
-						<h2 class="slim-side-margin">Project Contributors</h2>
-						<div layout="column" ng-repeat="member in project.contributingCompanies">
-							<h3 class="slim-margin no-bottom"><a ng-href="{{'/member-page.php#/'+member.companyId}}">{{member.name}}</a></h3>
-							<span class="slim-margin">{{member.role}}</span>
-						</div>
 					</div>
 				</div>
 			</div>
