@@ -106,6 +106,7 @@ public class AddProjectTest extends BaseTest {
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(TestUtils.projectName)));
 		element.click();
 
+		driver.findElement(By.linkText("Edit")).click();
 		// edit overview
 		driver.findElement(By.xpath("//textarea")).clear();
 		driver.findElement(By.xpath("//textarea")).sendKeys(TestUtils.overviewEdit);
@@ -135,17 +136,38 @@ public class AddProjectTest extends BaseTest {
 		jse.executeScript("arguments[0].scrollIntoView(true);", submit);
 		if (next.isEnabled()) {
 			next.sendKeys(Keys.ENTER);
-			;
 		} else {
 			log.log(Level.INFO, "The button submit is not clickable!");
 		}
 
 	}
+	
+	
+	
+	public void deleteProjectTest() throws Exception {
+		driver.get(baseUrl + "/my-projects.php#/");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(TestUtils.projectName)));
+		element.click();
+		//click "edit" button
+		driver.findElement(By.xpath("//md-toolbar/div/a")).click();
+		//click "Delete Project"
+		driver.findElement(By.xpath("//div/button")).click();
+		//choose No
+		driver.findElement(By.xpath("//md-dialog/div/button")).click();
+		//click "Delete Project"
+		driver.findElement(By.xpath("//div/button")).click();
+		//choose Yes
+		driver.findElement(By.xpath("//md-dialog/div/button[2]")).click();
+		
+	}
 
 	@Test
 	public void ProjectTest() throws Exception {
 		testAddProject();
-		// editProjectTest()
+		// editProjectTest();
+		// deleteProjectTest();
 	}
 
 }
