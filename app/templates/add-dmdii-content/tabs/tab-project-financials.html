@@ -1,5 +1,6 @@
-<div layout="column" flex="100">
-    <div layout="row">
+<div layout="column">
+
+    <div layout="row" class="slim-margin">
         <div layout="column" class="top10 bottom20" flex="33">
             <md-autocomplete
                 md-selected-item="selectedItem"
@@ -9,10 +10,10 @@
                 md-min-length="0"
                 md-floating-label="Project Name">
                 <md-item-template>
-                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.projectTitle}}</span>
+                  <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.projectTitle}}</span>
                 </md-item-template>
                 <md-not-found>
-                    No projects matching "{{searchText}}" were found.
+                  No projects matching "{{searchText}}" were found.
                 </md-not-found>
             </md-autocomplete>
             <div class="error" ng-show="noProjectSelected">
@@ -21,28 +22,21 @@
         </div>
     </div>
 
-    <div layout="row">
-		<div layout="column" flex="33">
-	        <md-input-container>
-	            <label>Title</label>
-	            <input ng-model="news.news_title" ng-required="true"/>
-	        </md-input-container>
-			<div ng-show="noTitle">
-				<p class="slim-margin error">You <b>must</b> enter a title</p>
-			</div>
-		</div>
+    <div layout="row" class="top10">
+        <div class="content-column upload-documents" layout="column">
+            <div class="content-panel"
+                source="doc"
+                ui-widget-upload-documents
+                widget-type="'row'"
+                auto-upload="false"
+                widget-title="'Upload Project Financials'"
+                allow-tagging="true"
+                single-file="true">
+            </div>
+        </div>
     </div>
-
-    <div layout="row">
-		<div layout="column" flex="50">
-	        <md-input-container>
-	            <label>Content</label>
-	            <textarea type="text" ng-model="news.news_content" ng-required="true"/>
-	        </md-input-container>
-			<div ng-show="noContent">
-				<p class="slim-margin error">You <b>must</b> enter some content</p>
-			</div>
-		</div>
+    <div class="slim-margin error" ng-show="noDocSelected">
+        <p>You <b>must</b> select a document</p>
     </div>
 
     <div layout="row" layout-align="end start">

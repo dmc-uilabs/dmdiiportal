@@ -11,19 +11,25 @@
                         ng-repeat="(key,section) in sections">
                     <md-content class="mainSectionsContent" ng-switch on="key">
                         <div tab-quicklinks
-                             ng-switch-when="quicklinks"></div>
+                             ng-switch-when="quicklinks"
+                             projects="projects"></div>
                         <div tab-member-events
                             ng-switch-when="memberEvents"></div>
                         <div tab-member-news
                             ng-switch-when="memberNews"></div>
                         <div tab-project-events
-                             ng-switch-when="projectEvents"></div>
+                             ng-switch-when="projectEvents"
+                             projects="projects"></div>
                         <div tab-project-news
-                             ng-switch-when="projectNews"></div>
+                             ng-switch-when="projectNews"
+                             projects="projects"></div>
                         <div tab-projects-overview
                              ng-switch-when="projectsOverview"></div>
                         <div tab-project-status
                             ng-switch-when="projectStatus"></div>
+                        <div tab-project-financials
+                            ng-switch-when="projectFinancials"
+                            projects="projects"></div>
                     </md-content>
                 </md-tab>
             </md-tabs>

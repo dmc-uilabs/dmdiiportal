@@ -38,10 +38,12 @@ angular.module('dmc.addDmdiiContent', [
             url: '/memberEvents'
         }).state('add-dmdii-content.memberNews', {
             url: '/memberNews'
-        }).state('add-dmdii-content.projectOverview', {
-            url: '/projectOverview'
+        }).state('add-dmdii-content.projectsOverview', {
+            url: '/projectsOverview'
 		}).state('add-dmdii-content.projectStatus', {
 			url: '/projectStatus'
+		}).state('add-dmdii-content.projectFinancials', {
+			url: '/projectFinancials'
 		});
 
         $urlRouterProvider.otherwise('/addContent/quicklinks');

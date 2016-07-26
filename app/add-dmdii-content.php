@@ -46,6 +46,7 @@
     <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/community/controllers/compose-discussion.js"></script>
     <script src="scripts/common/factory/notifications.factory.js"></script>
+    <script src="scripts/common/models/file-upload.js"></script>
     <script src="scripts/add-dmdii-content/add-dmdii-content.js"></script>
     <script src="scripts/add-dmdii-content/add-dmdii-content.controller.js"></script>
     <script src="scripts/add-dmdii-content/directives/quicklinks.js"></script>
@@ -55,8 +56,10 @@
     <script src="scripts/add-dmdii-content/directives/projectNews.js"></script>
     <script src="scripts/add-dmdii-content/directives/projectStatus.js"></script>
     <script src="scripts/add-dmdii-content/directives/projectsOverview.js"></script>
+    <script src="scripts/add-dmdii-content/directives/projectFinancials.js"></script>
+
     <!-- endbuild -->
-    
+
     <script type="text/javascript">
         <?php
           echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');

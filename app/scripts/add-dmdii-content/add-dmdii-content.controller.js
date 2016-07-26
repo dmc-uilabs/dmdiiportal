@@ -54,6 +54,20 @@ angular.module('dmc.addDmdiiContent')
             };
             // --------------------------------------------------------------------
 
+            $scope.projects = [];
+
+            var callbackFunction = function(response) {
+                if(angular.isDefined(response.data.count)) {
+                    $scope.projects = response.data.data;
+                } else {
+                    $scope.projects = response.data;
+                }
+            }
+            $scope.getProjects = function() {
+                ajax.get(dataFactory.getDMDIIProject().all, {pageSize: 200, page:0}, callbackFunction)
+            };
+            $scope.getProjects();
+
             $scope.currentSection = {
                 index : 0,
                 name : 'quickLinks'
@@ -80,13 +94,16 @@ angular.module('dmc.addDmdiiContent')
                 },
 				projectStatus: {
                     title : 'Projects Status'
+                },
+                projectFinancials: {
+                    title : 'Project Financials'
                 }
             };
 
             var getCurrentSection = function(){
                 var sectionName = $location.$$path.split('/');
                 sectionName = sectionName[sectionName.length-1];
-				console.log(sectionName)
+
                 var index = 0;
                 for(var s in $scope.sections){
                     if(s == sectionName) {
