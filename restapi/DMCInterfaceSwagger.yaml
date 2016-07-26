@@ -8702,16 +8702,7 @@ definitions:
     properties:
       status:
         type: integer
-      outs:
-        $ref: '#/definitions/ServiceRunOuts'
-  ServiceRunOuts:
-    type: array
-    items:
-      $ref: '#/definitions/ServiceRunOut'
-  ServiceRunOut:
-    type: object
-    properties:
-      value:
-        type: string
-      parameterid:
-        type: string
+      outParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
