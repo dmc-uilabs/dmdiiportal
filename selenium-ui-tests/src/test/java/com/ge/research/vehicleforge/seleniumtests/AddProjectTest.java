@@ -165,6 +165,7 @@ public class AddProjectTest extends BaseTest {
 
 	@Test
 	public void ProjectTest() throws Exception {
+		accountProjectNav();
 		testAddProject();
 		// editProjectTest();
 		// deleteProjectTest();
