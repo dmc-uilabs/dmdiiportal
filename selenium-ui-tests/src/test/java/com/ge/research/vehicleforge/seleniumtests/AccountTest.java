@@ -135,9 +135,9 @@ public class AccountTest extends BaseTest {
 
 		// server info
 		driver.findElement(By.xpath("//div[2]/md-input-container/input")).clear();
-		driver.findElement(By.xpath("//div[2]/md-input-container/input")).sendKeys("Add Server for testing");
+		driver.findElement(By.xpath("//div[2]/md-input-container/input")).sendKeys("QA SERVER" + TestUtils.ran);
 		driver.findElement(By.xpath("//md-input-container[2]/input")).clear();
-		driver.findElement(By.xpath("//md-input-container[2]/input")).sendKeys("http://serverurl");
+		driver.findElement(By.xpath("//md-input-container[2]/input")).sendKeys("http://52.33.38.232");
 		driver.findElement(By.xpath("//md-input-container[3]/input")).clear();
 		driver.findElement(By.xpath("//md-input-container[3]/input")).sendKeys("8080");
 		driver.findElement(By.xpath("//button[2]")).click();
