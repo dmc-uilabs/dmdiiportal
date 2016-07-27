@@ -7,7 +7,7 @@ angular.module('dmc.addDmdiiContent').
             scope: {
                 source: "=",
                 projects: "=",
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, $q, fileUpload) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $q, fileUpload) {
                 $element.addClass("tab-projectFinancials");
                 $scope.doc = [];
                 $scope.document = {};
@@ -37,6 +37,11 @@ angular.module('dmc.addDmdiiContent').
                         $scope.noDocSelected = false;
                     }
                 });
+
+                $scope.callback = function(response) {
+                    toastModel.showToast('success', 'Project Financial Saved!');
+
+                }
                 $scope.save = function() {
                     if (!$scope.selectedItem) {
                         $scope.noProjectSelected = true;

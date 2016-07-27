@@ -11,6 +11,8 @@ angular.module('dmc.addDmdiiContent').
                 $scope.event = {};
 
                 var eventCallback = function(response) {
+                    toastModel.showToast('success', 'Member Event Saved!');
+
                 };
 
                 $scope.clear = function() {

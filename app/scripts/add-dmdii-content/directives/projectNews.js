@@ -6,11 +6,11 @@ angular.module('dmc.addDmdiiContent').
             templateUrl: 'templates/add-dmdii-content/tabs/tab-project-news.html',
             scope: {
                 source : "="
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel) {
                 $element.addClass("tab-projectNews");
 
                 var eventCallback = function(response) {
-                    console.log(response.data);
+                    toastModel.showToast('success', 'Project News Saved!');
                 };
 
                 $scope.clear = function() {
@@ -54,7 +54,7 @@ angular.module('dmc.addDmdiiContent').
                     }
 
                     $scope.news.project_id = $scope.selectedItem.id;
-                    
+
                     ajax.create(dataFactory.saveDMDIIMProject().news, $scope.news, eventCallback);
                 };
 

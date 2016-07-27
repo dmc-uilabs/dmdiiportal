@@ -21,9 +21,9 @@
 
 	<div layout="row" flex="100">
 	    <div layout="column" flex="50">
-	        <md-input-container class="no-bottom no-pad-bottom" ng-show="linkType === 'link'" flex="50">
-	            <label>Link</link>
-	            <input type="text" ng-model="quicklink.link" ng-required="linkType === 'link'"/>
+	        <md-input-container class="no-bottom no-pad-bottom" ng-show="linkType === 'link'" ng-required="linkType === 'link'">
+	            <label>Link</label>
+	            <input ng-model="quicklink.link" ng-required="linkType === 'link'"/>
 	        </md-input-container>
 			<div ng-show="noLink">
 	            <p class="slim-margin error">You <b>must</b> enter a link</p>
@@ -36,7 +36,7 @@
 	            <p class="slim-margin error">You <b>must</b> enter a description</p>
 	        </div>
 
-	        <div class="content-column upload-documents" layout="column" flex="50" ng-show="linkType === 'document'">
+	        <div class="content-column upload-documents top10" layout="column" flex="50" ng-show="linkType === 'document'">
 	            <div class="content-panel"
 	                source="document"
 	                ui-widget-upload-documents

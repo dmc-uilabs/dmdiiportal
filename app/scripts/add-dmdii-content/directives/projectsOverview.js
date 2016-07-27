@@ -6,13 +6,13 @@ angular.module('dmc.addDmdiiContent').
             templateUrl: 'templates/add-dmdii-content/tabs/tab-projects-overview.html',
             scope: {
                 source: "=",
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload) {
                 $element.addClass("tab-projectsOverview");
                 $scope.document = {};
                 $scope.doc = [];
 
                 var callback = function(response) {
-                    console.log(response.data);
+                    toastModel.showToast('success', 'Project Overview Saved!');
                 };
 
                 $scope.$watchCollection('doc', function() {
@@ -20,7 +20,7 @@ angular.module('dmc.addDmdiiContent').
                         $scope.noDocSelected = false;
                     }
                 });
-                
+
                 $scope.save = function() {
                     if ($scope.doc.length === 0) {
                         $scope.noDocSelected = true;

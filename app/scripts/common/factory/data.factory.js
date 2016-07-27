@@ -490,7 +490,7 @@ angular.module('dmc.data',[])
                     all: localhost + 'dmdiiquicklink'
                 }
             },
-            saveQuickLinks: function() {
+            saveQuicklink: function() {
                 return localhost + 'dmdiiquicklink';
             },
             getDMDIIDocuments: function(id) {
@@ -500,7 +500,7 @@ angular.module('dmc.data',[])
                 }
             },
             saveDMDIIDocument: function() {
-                return localhost
+                return localhost + 'dmdiidocument'
             },
             getDocumentTags: function() {
                 return localhost + 'documents/tags'

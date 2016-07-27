@@ -14,13 +14,31 @@ angular.module('dmc.addDmdiiContent').
                 $scope.document = [];
 
                 var quicklinkCallback = function(response) {
-                    console.log(response.data);
+                    toastModel.showToast('success', 'Quicklink Saved!');
                 };
 
                 $scope.clear = function() {
                     $scope.quicklink = {};
                     $scope.document = [];
                 };
+
+                $scope.$watch('quicklink', function() {
+                    if ($scope.noTitle && angular.isDefined($scope.quicklink.title) && $scope.quicklink.title.trim().length > 0) {
+                        $scope.noTitle = false;
+                    }
+
+                    if ($scope.linkType === 'text' && $scope.noDescription && angular.isDefined($scope.quicklink.description) && $scope.quicklink.description.trim().length > 0) {
+                        $scope.noDescription = false;
+                    }
+
+                    if ($scope.linkType === 'link' && $scope.noLink && angular.isDefined($scope.quicklink.link) && $scope.quicklink.link.trim().length > 0) {
+                        $scope.noLink = false;
+                    }
+
+                    if ($scope.linkType === 'document' && $scope.noDocSelected && angular.isDefined($scope.document) && $scope.document.length > 0) {
+                        $scope.noDocSelected = false;
+                    }
+                }, true);
 
                 $scope.save = function() {
                     if (!$scope.quicklink.title) {
@@ -45,7 +63,7 @@ angular.module('dmc.addDmdiiContent').
                         }
 
                         delete $scope.quicklink.description;
-                        delete $scope.quicklink.file;
+                        delete $scope.quicklink.path;
 
                         if ($scope.noTitle || $scope.noLink) {
                             return;
@@ -66,6 +84,7 @@ angular.module('dmc.addDmdiiContent').
                     if ($scope.linkType === 'document') {
                         fileUpload.uploadFileToUrl($scope.document[0].file, function(response) {
                             $scope.quicklink.path = response.file.name;
+
                             ajax.create(dataFactory.saveQuicklink(), $scope.quicklink, quicklinkCallback);
                         });
                     } else {

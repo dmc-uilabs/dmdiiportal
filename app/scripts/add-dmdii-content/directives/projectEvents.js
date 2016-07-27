@@ -7,7 +7,7 @@ angular.module('dmc.addDmdiiContent').
             scope: {
                 source : "=",
                 projects: "=",
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, questionToastModel) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel) {
                 $element.addClass("tab-projectEvents");
 
 
@@ -26,7 +26,7 @@ angular.module('dmc.addDmdiiContent').
                 }, true);
 
                 var eventCallback = function(response) {
-                    console.log(response.data);
+                    toastModel.showToast('success', 'Project Event Saved!');
                 };
 
                 $scope.clear = function() {
