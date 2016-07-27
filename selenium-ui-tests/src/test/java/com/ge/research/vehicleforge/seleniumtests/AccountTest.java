@@ -16,13 +16,13 @@ public class AccountTest extends BaseTest {
 	private String lastName = "Smith-changed";
 	private String location = "Schenectady";
 	private String timeZone = "(UTC -05:00) America/Atikokan";
+	WebDriverWait wait = new WebDriverWait(driver, 30);
 
 	public void myAccount() throws Exception {
 
 		driver.get(baseUrl + "/dashboard.php#/");
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).sendKeys(Keys.ENTER);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[1]/a/span")));
 		element.click();
 		log.log(Level.INFO, "Get current title:" + driver.getTitle());
@@ -128,8 +128,7 @@ public class AccountTest extends BaseTest {
 		driver.findElement(By.xpath("//md-list-item[4]/a/div/div")).click();
 
 		// add server
-		WebDriverWait wait1 = new WebDriverWait(driver, 20);
-		WebElement element1 = wait1
+		WebElement element1 = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content/div[1]/button")));
 		element1.click();
 
@@ -143,6 +142,8 @@ public class AccountTest extends BaseTest {
 		driver.findElement(By.xpath("//button[2]")).click();
 
 
+		// add server
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content/div[1]/button"))).click();;
 		// click add server button and cancel adding server
 		driver.findElement(By.xpath("//div[2]/button[1]")).click();
 
