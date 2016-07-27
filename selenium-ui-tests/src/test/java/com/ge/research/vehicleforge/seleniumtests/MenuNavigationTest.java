@@ -15,6 +15,7 @@ public class MenuNavigationTest extends BaseTest {
 		//Test Dashboard
 		driver.findElement(By.xpath("html/body/div[1]/header/div[2]/div/div/div/div/a[1]/span")).click();
 	    assertEquals("Dashboard", driver.getTitle());
+	    Thread.sleep(2000);
 	    driver.findElement(By.xpath("//div[2]/div/div/div/div/md-menu/button")).click();
 	    //Test Marketplace -> Home
 	    Thread.sleep(2000);
@@ -22,16 +23,17 @@ public class MenuNavigationTest extends BaseTest {
 	    assertEquals("Marketplace", driver.getTitle());
 	    
 	    //Test Marketplace -> My Storefront
-	    Thread.sleep(2000);
+	    Thread.sleep(3000);
 	    driver.findElement(By.xpath("//div[2]/div/div/div/div/md-menu/button")).click();
 	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[2]/a/span"))).click();
 	    assertEquals("Company", driver.getTitle());
 	    
 	    //Test Marketplace -> Favorites
-	    Thread.sleep(2000);
+	    Thread.sleep(3000);
 	    driver.findElement(By.xpath("//div[2]/div/div/div/div/md-menu/button")).click();
 	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[3]/a/span"))).click();
 	    assertEquals("All Favorites", driver.getTitle());
+	    
 	    
 	    //Test Community
 	    Thread.sleep(2000);
