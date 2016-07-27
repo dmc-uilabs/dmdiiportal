@@ -2,7 +2,7 @@
 
 angular.module('dmc.model.fileUpload', ['dmc.data'])
     .service('fileUpload', ['$http','dataFactory', 'toastModel', function ($http,dataFactory, toastModel) {
-        this.uploadFileToUrl = function(file, callbackUploadPicture){
+        this.uploadFileToUrl = function(file, data, type, callbackUploadPicture){
 
           //AWS Upload To Get Temp URL
           var S3Upload = function (file){

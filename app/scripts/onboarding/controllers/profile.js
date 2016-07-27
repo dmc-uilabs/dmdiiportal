@@ -66,6 +66,8 @@ angular.module('dmc.onboarding')
             if(index == 1 && $scope.file){
                 fileUpload.uploadFileToUrl(
                     $scope.file.files[0].file,
+										{id:$scope.userData.profileId },
+                   	'profile',
                     function(data){
                         $scope.file = null;
                         if(data.file && data.file.name){
