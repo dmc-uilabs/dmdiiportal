@@ -135,10 +135,13 @@ public class AccountTest extends BaseTest {
 
 		// server info
 		driver.findElement(By.xpath("//div[2]/md-input-container/input")).clear();
-		driver.findElement(By.xpath("//div[2]/md-input-container/input")).sendKeys("Add server for testing0000");
+		driver.findElement(By.xpath("//div[2]/md-input-container/input")).sendKeys("Add Server for testing");
 		driver.findElement(By.xpath("//md-input-container[2]/input")).clear();
-		driver.findElement(By.xpath("//md-input-container[2]/input")).sendKeys("Fake server IP");
+		driver.findElement(By.xpath("//md-input-container[2]/input")).sendKeys("http://serverurl");
+		driver.findElement(By.xpath("//md-input-container[3]/input")).clear();
+		driver.findElement(By.xpath("//md-input-container[3]/input")).sendKeys("8080");
 		driver.findElement(By.xpath("//button[2]")).click();
+
 
 		// click add server button and cancel adding server
 		driver.findElement(By.xpath("//div[2]/button[1]")).click();
