@@ -51,7 +51,7 @@ public class EditProjectTest extends BaseTest{
 		
 
 		// next to add member
-		WebElement next = driver.findElement(By.xpath("//div[2]/button[2]"));
+		WebElement next = driver.findElement(By.xpath("//ap-tab-one/div/div[2]/button"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", next);
 		if (next.isEnabled()) {
 			next.sendKeys(Keys.ENTER);
