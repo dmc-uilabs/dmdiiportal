@@ -457,7 +457,8 @@ paths:
     post:
       tags:
         - project
-        - not implemented
+        - has tests
+        - live
       description: Add new project tag
       parameters:
         - in: body
@@ -471,11 +472,49 @@ paths:
           description: return added project tag
           schema:
             $ref: '#/definitions/GetProjectTag'
+    get:
+      tags:
+        - project
+        - has tests
+      description: Get all project tags
+      parameters:
+        - name: _start
+          in: query
+          description: Offset
+          type: integer
+          required: false
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some projectId or tagName
+          type: string
+          required: false
+      responses:
+        '200':
+          description: return array of project tags
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GetProjectTag'
   '/projects_tags/{projectTagid}':
     delete:
       tags:
         - project
-        - not implemented
+        - has tests
+        - live
       description: Delete Project Tag
       parameters:
         - name: projectTagid
@@ -544,6 +583,30 @@ paths:
           type: string
           description: ID of the project
           required: true
+        - name: _start
+          in: query
+          description: Offset
+          type: integer
+          required: false
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some projectId or tagName
+          type: string
+          required: false
       responses:
         '200':
           description: return array of project tags
