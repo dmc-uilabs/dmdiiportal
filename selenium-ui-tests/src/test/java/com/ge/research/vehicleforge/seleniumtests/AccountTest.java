@@ -20,8 +20,8 @@ public class AccountTest extends BaseTest {
 
 	public void myAccount() throws Exception {
 
-		driver.get(baseUrl + "/dashboard.php#/");
-		Thread.sleep(2000);
+		//driver.get(baseUrl + "/dashboard.php#/");
+		//Thread.sleep(2000);
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).sendKeys(Keys.ENTER);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[1]/a/span")));
 		element.click();
