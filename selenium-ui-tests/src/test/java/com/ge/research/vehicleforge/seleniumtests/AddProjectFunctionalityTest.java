@@ -51,6 +51,7 @@ public class AddProjectFunctionalityTest extends BaseTest {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content[2]/div/form/button")))
 				.sendKeys(Keys.ENTER);
 
+		Thread.sleep(2000);
 		// next to add member
 		WebElement next = driver.findElement(By.xpath("//ap-tab-one/div/div[2]/button"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", next);

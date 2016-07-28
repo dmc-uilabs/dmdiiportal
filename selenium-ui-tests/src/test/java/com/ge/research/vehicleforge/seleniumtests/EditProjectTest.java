@@ -56,7 +56,7 @@ public class EditProjectTest extends BaseTest{
 		if (next.isEnabled()) {
 			next.sendKeys(Keys.ENTER);
 		} else {
-			System.out.println("Can not click the button NEXT!!!");
+			log.info("The button NEXT is not clickable!");
 		}
 
 		Thread.sleep(3000);
