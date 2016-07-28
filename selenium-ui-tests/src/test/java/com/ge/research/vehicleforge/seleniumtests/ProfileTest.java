@@ -17,8 +17,8 @@ public class ProfileTest extends BaseTest {
 	WebDriverWait wait = new WebDriverWait(driver, 20);
 
 	public void myProfile() throws Exception {
-		driver.get(baseUrl + "/dashboard.php#/");
-		Thread.sleep(3000);
+		/*driver.get(baseUrl + "/dashboard.php#/");
+		Thread.sleep(3000);*/
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).sendKeys(Keys.ENTER);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[2]/a/span")));
 		element.click();
