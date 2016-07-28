@@ -37,6 +37,7 @@ angular.module('dmc.project', [
     'ui.autocomplete',
     'ui.sortable',
     'dmc.model.toast-model',
+    'dmc.model.fileUpload',
     'dmc.model.services',
     'dmc.widgets.project-tags',
     'dmc.sub-nav-menu'
