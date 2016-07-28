@@ -109,13 +109,6 @@ angular.module('dmc.data',[])
                 }
                 return url
             },
-            getUrlCreateDiscussion: function(id){
-                var url = baseServer+'/create_discussion'+appendId(id);
-                if (window.apiUrl) {
-                    url = baseServer+'/discussions/create';
-                }
-                return url
-            },
             getProduct: function(){
                 return baseServer+'/product';
             },
@@ -369,9 +362,6 @@ angular.module('dmc.data',[])
             getProjectTags: function(id){
                 return localhost+'projects/'+id+'/projects_tags/';
             },
-            createDiscussion: function(id){
-                return localhost+'discussions/create';
-            },
             getAssignUsers: function(){
                 return localhost+'assign_users';
             },
@@ -464,7 +454,11 @@ angular.module('dmc.data',[])
                 return localhost + 'dmdiiprojects/member';
             },
             saveDMDIIMember: function(id) {
-                return localhost + 'dmdiiMember/' + id
+                return {
+                    member: localhost + 'dmdiiMember/' + id,
+                    events: localhost + 'dmdiiMember/events',
+                    news: localhost + 'dmdiiMember/news'
+                }
             },
             getDMDIIProject: function(id) {
                 return {
@@ -473,6 +467,30 @@ angular.module('dmc.data',[])
                     events: localhost+'dmdiiProject/events',
                     news: localhost+'dmdiiProject/news'
                 }
+            },
+            saveDMDIIProject: function(id) {
+                return {
+                    project: localhost + 'dmdiiProject/' + id,
+                    events: localhost + 'dmdiiProject/events',
+                    news: localhost + 'dmdiiProject/news'
+                }
+            },
+            getQuickLinks: function() {
+                return {
+                    all: localhost + 'dmdiiquicklink'
+                }
+            },
+            saveQuicklink: function() {
+                return localhost + 'dmdiiquicklink';
+            },
+            getDMDIIDocuments: function(id) {
+                return {
+                    all: localhost,
+                    single: localhost + id
+                }
+            },
+            saveDMDIIDocument: function() {
+                return localhost + 'dmdiidocument'
             },
             getDocumentTags: function() {
                 return localhost + 'documents/tags'
@@ -644,7 +662,6 @@ angular.module('dmc.data',[])
                     update_tag : localhost + 'service_tags/' + id,
                     get_history : localhost + name + '/' + id + '/services_history',
                     get_run_history : localhost + name + '/' + id + '/service_runs',
-                    get_interfaces : localhost + 'services_interface',
                     get_servers : localhost + 'account_servers',
                     add_servers : localhost + 'services_servers',
                     get_images : localhost + name + '/' + id + '/service_images',
@@ -656,7 +673,6 @@ angular.module('dmc.data',[])
                     edit_specifications: localhost + 'specifications/' + id,
                     add_specifications:  localhost + 'specifications',
                     update_specifications:  localhost + 'specifications/'+id,
-                    get_inputs_outputs: localhost + name + '/' + id + '/service_input_output',
                     get_statistics: localhost + name + '/' + id + '/services_statistic',
                     add_interface: localhost + 'dome-interfaces',
                     get_interface: localhost + name + '/' + id + '/dome-interfaces',
@@ -889,13 +905,74 @@ angular.module('dmc.data',[])
             getNotificationsStatisticPm: function(){
                 return localhost+'notifications-pm-statistic';
             },
+
+
+            //RESOURCES
+            getAllResourceLabs: function(){
+                return localhost+'resource/lab';
+            },
+            getResourceLab: function(id){
+                return localhost+'resource/lab/'+id;
+            },
+
+
+            getAllResourceBays: function(){
+                return localhost+'resource/bay/';
+            },
+            getResourceBay: function(id){
+                return localhost+'resource/bay/'+id;
+            },
+
+
+            getAllBayMachines: function(id){
+                return localhost+'resource/machine/'+id;
+            },
+
+
+
+            getResourceProject: function(id){
+                return localhost+'resource/project/' + id;
+            },
+
+            getAllResourceProjects: function() {
+              return localhost +'resource/project';
+            },
+
+
+            getAllCourses: function() {
+              return localhost +'resource/course';
+            },
+            getCourse: function(id) {
+              return localhost +'resource/course/' + id;
+            },
+
+
+            getAllJobs: function() {
+              return localhost +'resource/job';
+            },
+
+            getJob: function(id) {
+              return localhost +'resource/job/' + id;
+            },
+
+
+            getAllAssessments: function() {
+              return localhost +'resource/assessment';
+            },
+
+            getAssessment: function(id) {
+              return localhost +'resource/assessment/' + id;
+            },
+
+            //END RESOURCES
+
             searchMarketplace: function (text) {
                 if($window.apiUrl) {
                     return localhost + 'searchServices/' + text;
                 }else{
                     return localhost + 'searchServices';
                 }
-            },
+			      },
             markReadNotifications: function(){
                 return localhost+'mark-read-notifications';
             },

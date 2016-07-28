@@ -1,0 +1,39 @@
+<div layout="column" flex="100">
+    <div layout="row">
+        <div layout="column" flex="33">
+            <md-input-container class="no-bottom no-pad-bottom">
+                <label>Title</label>
+                <input ng-model="event.event_title" ng-required="true"/>
+            </md-input-container>
+            <div ng-show="noTitle">
+                <p class="slim-margin error">You <b>must</b> enter a title</p>
+            </div>
+        </div>
+
+        <div layout="column">
+            <md-datepicker class="no-bottom no-pad-bottom top10" name="date" ng-model="event.event_date" required md-placeholder="Date"></md-datepicker>
+            <div ng-show="noDateSelected">
+                <p class="slim-side-margin no-top error">You <b>must</b> select a date</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div layout="row">
+        <div layout="column" flex="33">
+            <md-input-container class="no-bottom no-pad-bottom" flex="50">
+                <label>Description</label>
+                <textarea type="text" ng-model="event.event_description" ng-required="true"/>
+            </md-input-container>
+
+            <div ng-show="noDescription">
+                <p class="slim-margin error">You <b>must</b> enter a description</p>
+            </div>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="end start">
+        <md-button class="md-raised cancel-button" ng-click="clear()">Clear</md-button>
+        <md-button class="md-raised md-primary save-button" ng-click="save()">Save</md-button>
+    </div>
+</div>

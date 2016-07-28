@@ -37,6 +37,7 @@ angular.module('dmc.project', [
     'ui.autocomplete',
     'ui.sortable',
     'dmc.model.toast-model',
+    'dmc.model.fileUpload',
     'dmc.model.services',
     'dmc.widgets.project-tags',
     'dmc.sub-nav-menu'
@@ -572,7 +573,6 @@ angular.module('dmc.project', [
                     "service": $http.get(dataFactory.services(id).get),
                     "specifications": $http.get(dataFactory.services(id).get_specifications),
                     "service_authors": $http.get(dataFactory.services(id).get_authors),
-                    "service_input_output": $http.get(dataFactory.services(id).get_inputs_outputs),
                     "position_inputs": $http.get(dataFactory.services(id).get_position_inputs),
                     "service_tags": $http.get(dataFactory.services(id).get_tags),
                     "services_statistic": $http.get(dataFactory.services(id).get_statistics),
@@ -602,16 +602,16 @@ angular.module('dmc.project', [
                         var service = extractData(responses.service);
                         service.interface = (responses.interface.data && responses.interface.data.length > 0 ? responses.interface.data[0] : null);
                         if(service.interface){
-                            domeModel.getModel(service.interface,function(response){
-                                service.interfaceModel = response.data.pkg;
-                            });
+                            // domeModel.getModel(service.interface,function(response){
+                            //     service.interfaceModel = response.data.pkg;
+                            // });
+                            service.interfaceModel = service.interface;
                         }
                         service.currentStatus = (responses.currentStatus.data && responses.currentStatus.data.length > 0 ? responses.currentStatus.data[0] : null);
                         service.lastStatus = (responses.lastStatus.data && responses.lastStatus.data.length > 0 ? responses.lastStatus.data[0] : null);
                         service.specifications = extractData(responses.specifications);
                         service.specifications = service.specifications.length > 0 ? service.specifications[0] : null;
                         service.service_authors = extractData(responses.service_authors);
-                        service.service_input_output = extractData(responses.service_input_output);
                         service.position_inputs = (responses.position_inputs.data && responses.position_inputs.data.length > 0 ? responses.position_inputs.data[0] : null);
                         service.service_tags = extractData(responses.service_tags);
                         service.services_statistic = extractData(responses.services_statistic);
@@ -673,7 +673,7 @@ angular.module('dmc.project', [
                         "description": params.description,
                         "owner": $rootScope.userData.displayName,
                         "accountId": $rootScope.userData.accountId,
-                        "releaseDate": moment(new Date).format("MM/DD/YYYY"),
+                        "releaseDate": moment(new Date).format("YYYY-MM-DD"),
                         "serviceType": params.serviceType,
                         "specifications": "/services/3/specifications",
                         "featureImage": {

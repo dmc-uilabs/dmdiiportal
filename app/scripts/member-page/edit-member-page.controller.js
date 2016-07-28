@@ -82,7 +82,7 @@ angular.module('dmc.edit-member')
             }
 
             $scope.querySectorSearch = function(query) {
-                var results = query ? $scope.sectorTags.filter( createFilterFor(query) ) : $scope.areasOfExpertiseTags;
+                var results = query ? $scope.sectorTags.filter( createFilterFor(query) ) : $scope.sectorTags;
                 var deferred = $q.defer();
                 $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
                 return deferred.promise;
@@ -200,7 +200,7 @@ angular.module('dmc.edit-member')
             }
 
             $scope.saveChanges = function() {
-                ajax.update(dataFactory.saveDMDIIMember($scope.company.id), $scope.company, callbackSaveFunction);
+                ajax.update(dataFactory.saveDMDIIMember($scope.company.id).member, $scope.company, callbackSaveFunction);
             };
             $scope.cancelChanges = function(){
                 $location.path('/'+$scope.company.id).search();

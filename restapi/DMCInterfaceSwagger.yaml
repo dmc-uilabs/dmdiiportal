@@ -706,45 +706,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/IndividualDiscussion'
-  '/projects/{projectID}/all-discussions':
-    get:
-      tags:
-        - project
-        - discussion
-        - not implemented
-      description: Get all project discussion threads
-      parameters:
-        - name: projectID
-          in: path
-          type: string
-          description: ID of the project
-          required: true
-        - name: _limit
-          in: query
-          description: Limit items
-          type: integer
-          required: false
-        - name: _order
-          in: query
-          description: Order by ASC or DESC
-          type: string
-          collectionFormat: multi
-          required: false
-          enum:
-            - ASC
-            - DESC
-        - name: _sort
-          in: query
-          description: Sort by some parameter
-          type: string
-          required: false
-      responses:
-        '200':
-          description: return project discussion threads
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/IndividualDiscussion'
   '/projects/{projectID}/individual-discussion':
     get:
       tags:
@@ -790,8 +751,7 @@ paths:
       tags:
         - project
         - discussion
-        - live
-        - has tests
+        - not implemented
       description: Get all user discussion threads
       parameters:
         - name: _limit
@@ -1019,7 +979,8 @@ paths:
     patch:
       tags:
         - task
-        - not implemented
+        - live
+        - has tests
       description: Update task
       parameters:
         - name: taskID
@@ -2569,7 +2530,8 @@ paths:
     post:
       tags:
         - discussion
-        - not implemented
+        - live
+        - has tests
       description: Post follow discussion (follow a discussion)
       parameters:
         - in: body
@@ -2587,7 +2549,8 @@ paths:
     delete:
       tags:
         - discussion
-        - not implemented
+        - live
+        - has tests
       description: remove follow discussion (Unfollow discussion)
       parameters:
         - in: path
@@ -2602,7 +2565,8 @@ paths:
     get:
       tags:
         - discussion
-        - not implemented
+        - live
+        - has tests
       description: Get follow discussion
       parameters:
         - in: path
@@ -2645,8 +2609,7 @@ paths:
     post:
       tags:
         - discussion
-        - live
-        - has tests
+        - not implemented
       summary: Post a new discussion
       description: Post a new discussion to store in the database
       operationId: postDiscussion
@@ -5216,7 +5179,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Get all individual discussions tags
       parameters:
         - in: path
@@ -5269,32 +5233,11 @@ paths:
           description: Id account
           required: true
           type: string
-        - name: _limit
-          in: query
-          description: Limit items
-          type: integer
-          required: false
-        - name: _order
-          in: query
-          description: Order by ASC or DESC
-          type: string
-          collectionFormat: multi
-          required: false
-          enum:
-            - ASC
-            - DESC
-        - name: _sort
-          in: query
-          description: Sort by some parameter
-          type: string
-          required: false
       responses:
         '200':
           description: return individual discussions comment helpful
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/IndividualDiscussionCommentHelpful'
+            $ref: '#/definitions/IndividualDiscussionCommentHelpful'
     post:
       tags:
         - discussion
@@ -5306,7 +5249,7 @@ paths:
         - in: body
           name: IndividualDiscussionCommentHelpful
           description: Individual comments helpful
-          required: false
+          required: true
           schema:
             $ref: '#/definitions/IndividualDiscussionCommentHelpful'
       responses:
@@ -5330,6 +5273,7 @@ paths:
           required: true
         - name: helpful
           in: body
+          required: true
           schema:
             $ref: '#/definitions/IndividualDiscussionCommentHelpful'
       responses:
@@ -5342,7 +5286,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Get individual discussions comment flagged
       parameters:
         - in: query
@@ -5364,7 +5309,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Create individual discussions comments flagged
       parameters:
         - in: body
@@ -5383,7 +5329,8 @@ paths:
       tags:
         - discussion
         - community
-        - not implemented
+        - live
+        - has tests
       description: Create a new individual discussions tag
       parameters:
         - in: body
@@ -6263,11 +6210,11 @@ paths:
       description: Run a DOME model.
       parameters:
         - in: body
-          name: InputPackage
-          description: an instance DomeModelResponsePkg, Key infomation interface id string, and input parameters
+          name: ServiceId
+          description: service id to be run
           required: true
           schema:
-            $ref: '#/definitions/DomeModelResponsePkg'
+            $ref: '#/definitions/RunDomeModelRequest'
       responses:
         '200':
           description: Unique id for this service run
@@ -6331,6 +6278,35 @@ paths:
                 type: string
               name:
                 type: string
+  '/dmdiiquicklink':
+    get:
+      tags:
+        - quick links
+      description: get quick links for dmdii project directory
+      parameters:
+        - in: query
+          name: limit
+          description: max number of quick links to return
+          type: integer
+          required: false
+      responses:
+        '200':
+          description: an array of quick links
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+                link:
+                  type: string
+                file:
+                  type: string
 definitions:
   PostFollowingMemeber:
     type: object
@@ -7738,7 +7714,7 @@ definitions:
         type: string
       accountId:
         type: string
-      helpfull:
+      helpful:
         type: boolean
   IndividualDiscussionCommentFlagged:
     type: object
@@ -7905,6 +7881,19 @@ definitions:
         type: string
       pkg:
         $ref: '#/definitions/DomeModelResponsePkg'
+  RunDomeModelRequest:
+    type: object
+    properties:
+      serviceId:
+        type: string
+      inParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
+      outParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
   RunDomeModelResponse:
     type: object
     properties:
@@ -7980,6 +7969,14 @@ definitions:
         type: number
       domeServer:
         type: string
+      inParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
+      outParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
   PostUpdateDomeInterface:
     type: object
     properties:
@@ -8001,6 +7998,14 @@ definitions:
         type: number
       domeServer:
         type: string
+      inParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
+      outParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'
   PostServiceRun:
     type: object
     properties:
@@ -8658,16 +8663,7 @@ definitions:
     properties:
       status:
         type: integer
-      outs:
-        $ref: '#/definitions/ServiceRunOuts'
-  ServiceRunOuts:
-    type: array
-    items:
-      $ref: '#/definitions/ServiceRunOut'
-  ServiceRunOut:
-    type: object
-    properties:
-      value:
-        type: string
-      parameterid:
-        type: string
+      outParams:
+        type: array
+        items:
+          $ref: '#/definitions/DomeModelParam'

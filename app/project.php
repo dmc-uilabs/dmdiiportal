@@ -47,10 +47,10 @@
     <script src="scripts/components/products-card/products-card.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
     <script src="scripts/common/models/task-model.js"></script>
-    <script src="scripts/common/models/discussion-model.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
+    <script src="scripts/common/models/file-upload.js"></script>
     <script src="scripts/common/models/services.model.js"></script>
     <script src="scripts/common/models/dome-model.js"></script>
     <script src="scripts/common/models/member-model.js"></script>

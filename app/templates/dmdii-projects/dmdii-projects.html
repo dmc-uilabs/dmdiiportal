@@ -34,9 +34,7 @@
                     <div layout-align="end start" flex="33">
                         <h3>Quick Links</h3>
                           <ul>
-                            <li> <a herf="http://dmdii.uilabs.org/press-releases/dmdii-announces-xx-million-in-research-awards-including-first-projects-in-augmented-reality-for-industry"> DMDII Announces $12 Milliion in Applied R&D Awards</a> </li> <br>
-                            <li> <a href="http://dmdii.uilabs.org/press-releases/dmdii-announces-first-2016-project-call-for-advanced-manufacturing-r-d-projects"> DMDII Announces First 2016 Project Call for Advanced Manufacturing R&D Projects</a> </li> <br>
-                            <li> <a href="http://dmdii.uilabs.org/press-releases/dmdii-announces-new-research-awards-helps-enable-widespread-comploance-with-manufacturing-cybersecurity-standards"> DMDII Announces New Research Awards</a> </li>
+                            <li ng-repeat="doc in docs track by $index" ng-click="quickLinkAction(doc)"><a>{{doc.title}}</a></li> <br>
                          </ul>
                     </div>
                 </div>

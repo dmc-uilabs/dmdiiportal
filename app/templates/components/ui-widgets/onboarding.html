@@ -6,7 +6,7 @@
     </md-toolbar>
 </div>
 <div class="content-panel-body onboarding-widget">
-    <md-content layout>
+    <md-content>
     	<div layout="column" layout-align="start center" layout-fill>
 			<div class="section" layout="row" layout-align="center center" layout-fill>
 				<div flex="10">
@@ -20,7 +20,7 @@
 					<md-icon md-svg-src="images/icon-complete.svg" aria-label="done" ng-if="data.profile"></md-icon>
 				</div>
 			</div>
-			
+
 			<md-divider></md-divider>
 
 			<div class="section" layout="row" layout-align="center center" layout-fill>
@@ -35,7 +35,7 @@
 					<md-icon md-svg-src="images/icon-complete.svg" aria-label="done" ng-if="data.account"></md-icon>
 				</div>
 			</div>
-			
+
 			<md-divider></md-divider>
 
 			<div ng-if="$root.userData.role == 1" class="section" layout="row" layout-align="center center" layout-fill>

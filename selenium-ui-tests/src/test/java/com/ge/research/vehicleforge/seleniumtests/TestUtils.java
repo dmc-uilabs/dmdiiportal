@@ -37,4 +37,9 @@ public class TestUtils {
 
         return output;
     }
+
+
+	public static String getHeader() {
+		return "Test " + System.currentTimeMillis() + ": "; 
+	}
 }

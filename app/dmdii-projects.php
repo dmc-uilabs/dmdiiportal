@@ -48,7 +48,6 @@
     <script src="scripts/components/products-card/products-card.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
     <script src="scripts/common/models/task-model.js"></script>
-    <script src="scripts/common/models/discussion-model.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
@@ -65,6 +64,7 @@
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/dmdii-projects/dmdii-projects.js"></script>
     <script src="scripts/dmdii-projects/dmdii-projects.controller.js"></script>
+    <script src="scripts/dmdii-projects/quick-doc.controller.js"></script>
 
     <!-- endbuild -->
     <script type="text/javascript">

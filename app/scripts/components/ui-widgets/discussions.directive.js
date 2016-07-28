@@ -3,7 +3,6 @@
 angular.module('dmc.widgets.discussions',[
         'dmc.ajax',
         'dmc.data',
-        'dmc.model.discussion',
         'ngSanitize',
         'ngCookies',
         'dmc.socket',
