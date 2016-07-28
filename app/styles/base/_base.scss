@@ -46,6 +46,9 @@ div[ui-view] {
   }
 }
 
+.error {
+    color: red;
+}
 .pull-left{
     text-align: left !important;
 }
@@ -88,6 +91,18 @@ div[ui-view] {
 
 .bottom20{
     margin-bottom: 20px;
+}
+
+.top20{
+    margin-top: 20px;
+}
+
+.top10{
+    margin-top: 10px;
+}
+
+.width-25{
+    width: 25%;
 }
 
 .slim-margin{

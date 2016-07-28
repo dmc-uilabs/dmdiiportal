@@ -19,7 +19,7 @@
     </md-content>
     <md-content class="md-padding upload-documents" ng-if="source.length > 0" flex="{{widgetType == 'row' ? 100 : 50}}">
         <md-list>
-            <md-list-item ng-repeat="item in source" ng-show="!item.deleted">
+            <md-list-item ng-repeat="item in source | limitTo: maxFiles" ng-show="!item.deleted">
                 <p ng-show="!item.editing && !item.delete">{{item.title}}</p>
                 <span ng-show="!item.editing && !item.delete && allowTagging" ng-repeat="tag in item.tags track by $index">{{tag.name || tag}}{{$last ? '' : ', '}}</span>
                 <md-button class="md-icon-button edit" ng-show="!item.editing && !item.delete" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="21"></ng-md-icon></md-button>
