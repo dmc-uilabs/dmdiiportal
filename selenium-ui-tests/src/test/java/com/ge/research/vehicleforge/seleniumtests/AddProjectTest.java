@@ -68,7 +68,7 @@ public class AddProjectTest extends BaseTest {
 		// next to add member
 		WebElement next = driver.findElement(By.xpath("//ap-tab-one/div/div[2]/button"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", next);
-		if (next.isEnabled()) {
+		if (next.isDisplayed()) {
 			next.sendKeys(Keys.ENTER);
 		} else {
 			log.info("The button NEXT is not clickable!");
