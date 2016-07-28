@@ -1,7 +1,5 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
-import static org.junit.Assert.assertEquals;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -14,18 +12,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AddProjectFromAllProjectsPage extends BaseTest{
+public class AddProjectFunctionalityTest extends BaseTest {
+	
 	WebDriverWait wait = new WebDriverWait(driver, 30);
 	JavascriptExecutor jse = (JavascriptExecutor) driver;
-
-	public AddProjectFromAllProjectsPage() throws Exception{
-		 //Test Projects -> All Projects
-	    driver.findElement(By.xpath("//div[2]/div/div/div/div/md-menu[2]/button")).click();
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[2]/a/span"))).click();
-	    assertEquals("All Projects", driver.getTitle());
-		
-	    
-	    driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
+	
+	public String addProjectFunctionalityTest() throws Exception {
+		// TODO Auto-generated constructor stub
 		WebElement e = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//md-content/form/md-input-container/input")));
 		e.clear();
@@ -40,7 +33,7 @@ public class AddProjectFromAllProjectsPage extends BaseTest{
 		currentDate[1] = currentDate[1].matches(regex) ? currentDate[1].substring(1) : currentDate[1];
 		String substitutedDate = currentDate[0] + "-" + currentDate[1] + "-" + currentDate[2];
 		log.log(Level.INFO, "addProjectTest, xpath is " + "//td[@id='md-0-" + substitutedDate + "']/span");
-		driver.findElement(By.xpath("//tbody[4]/tr[5]/td[3]/span")).click();
+		driver.findElement(By.xpath("//tbody[4]/tr[5]/td[6]/span")).click();
 
 		// select private type
 		driver.findElement(By.xpath("//md-input-container[2]/md-select")).click();
@@ -59,15 +52,13 @@ public class AddProjectFromAllProjectsPage extends BaseTest{
 				.sendKeys(Keys.ENTER);
 
 		// next to add member
-		WebElement next = driver.findElement(By.xpath("//ap-tab-one/div/div[2]/button"));
+		WebElement next = driver.findElement(By.xpath("//div[2]/button"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", next);
 		if (next.isEnabled()) {
 			next.sendKeys(Keys.ENTER);
 		} else {
 			log.info("The button NEXT is not clickable!");
 		}
-
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 		// Invite members to this project
 		/*
@@ -81,13 +72,15 @@ public class AddProjectFromAllProjectsPage extends BaseTest{
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		WebElement submit = driver.findElement(By.xpath("//div[2]/button[2]"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", submit);
-		if (next.isEnabled()) {
-			next.sendKeys(Keys.ENTER);
-			;
+		if (submit.isEnabled()) {
+			submit.sendKeys(Keys.ENTER);
 		} else {
 			log.log(Level.INFO, "The button submit is not clickable!");
 		}
-	    
+		
+		Thread.sleep(2000);
+		System.out.println(driver.getCurrentUrl());
+		return driver.getCurrentUrl();
 	}
 
 }

@@ -7,8 +7,8 @@ public class DiscussionsAndTasksFunctionalityRunnerTest extends BaseTest{
 	@Ignore
 	@Test
 	public void testFunctionality() throws Exception {
-		AddProjectTest apt = new AddProjectTest();
-		String projectUrl = apt.testAddProject();
+		AddProjectFunctionalityTest apt = new AddProjectFunctionalityTest();
+		String projectUrl = apt.addProjectFunctionalityTest();
 		DiscussionFunctionalityTest discussion = new DiscussionFunctionalityTest();
 		discussion.verifyDiscussionFunctionality(projectUrl);
 	}
