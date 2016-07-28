@@ -102,7 +102,7 @@ public abstract class BaseTest {
 			driver.manage().deleteAllCookies();
 		}
 
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		// logout
 		driver.findElement(By.xpath("html/body/div[1]/header/div[2]/div/div/div/div/a[1]/span")).click();
 		Thread.sleep(5000);
