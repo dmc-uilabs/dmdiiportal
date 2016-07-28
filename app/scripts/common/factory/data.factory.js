@@ -109,13 +109,6 @@ angular.module('dmc.data',[])
                 }
                 return url
             },
-            getUrlCreateDiscussion: function(id){
-                var url = baseServer+'/create_discussion'+appendId(id);
-                if (window.apiUrl) {
-                    url = baseServer+'/discussions/create';
-                }
-                return url
-            },
             getProduct: function(){
                 return baseServer+'/product';
             },
@@ -368,9 +361,6 @@ angular.module('dmc.data',[])
             },
             getProjectTags: function(id){
                 return localhost+'projects/'+id+'/projects_tags/';
-            },
-            createDiscussion: function(id){
-                return localhost+'discussions/create';
             },
             getAssignUsers: function(){
                 return localhost+'assign_users';

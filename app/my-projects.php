@@ -28,7 +28,6 @@
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
     <script src="scripts/common/models/task-model.js"></script>
-    <script src="scripts/common/models/discussion-model.js"></script>
     <script src="scripts/components/ui-widgets/tasks.directive.js"></script>
     <script src="scripts/components/ui-widgets/services.directive.js"></script>
     <script src="scripts/components/ui-widgets/discussions.directive.js"></script>

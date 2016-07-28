@@ -706,45 +706,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/IndividualDiscussion'
-  '/projects/{projectID}/all-discussions':
-    get:
-      tags:
-        - project
-        - discussion
-        - not implemented
-      description: Get all project discussion threads
-      parameters:
-        - name: projectID
-          in: path
-          type: string
-          description: ID of the project
-          required: true
-        - name: _limit
-          in: query
-          description: Limit items
-          type: integer
-          required: false
-        - name: _order
-          in: query
-          description: Order by ASC or DESC
-          type: string
-          collectionFormat: multi
-          required: false
-          enum:
-            - ASC
-            - DESC
-        - name: _sort
-          in: query
-          description: Sort by some parameter
-          type: string
-          required: false
-      responses:
-        '200':
-          description: return project discussion threads
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/IndividualDiscussion'
   '/projects/{projectID}/individual-discussion':
     get:
       tags:
