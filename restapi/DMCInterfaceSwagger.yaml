@@ -8023,8 +8023,6 @@ definitions:
         type: string
       startTime:
         type: string
-      runId:
-        type: integer
       project:
         $ref: '#/definitions/SimplifiedProject'
   GetServiceRun:
@@ -8052,8 +8050,6 @@ definitions:
         type: string
       stopTime:
         type: string
-      runId:
-        type: integer
       interface:
         $ref: '#/definitions/Interface'
   UpdateServiceRun:
