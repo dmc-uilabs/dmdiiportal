@@ -14,7 +14,7 @@ public class DeleteProjectTest extends BaseTest{
 	public void deleteProjectTest() throws Exception {	
 		Thread.sleep(2000);
 	    driver.findElement(By.xpath("//div[2]/div/div/div/div/md-menu[2]/button")).click();
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span"))).click();
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[1]/a/span"))).click();
 	    assertEquals("My Projects", driver.getTitle());
 		
 		/*String url2 = "https://ben-web.opendmc.org/project.php#/11/home";
@@ -25,6 +25,7 @@ public class DeleteProjectTest extends BaseTest{
 		AddProjectFunctionalityTest addProject = new AddProjectFunctionalityTest();
 		addProject.addProjectFunctionalityTest();
 		
+		Thread.sleep(2000);
 		//click "edit" button
 		driver.findElement(By.xpath("html/body/div[2]/ui-view/div[1]/md-toolbar/div/a[1]")).click();
 		//click "Delete Project"

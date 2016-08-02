@@ -20,7 +20,7 @@ public class EditProjectTest extends BaseTest{
 	public void testEditProject() throws Exception{
 		Thread.sleep(2000);
 	    driver.findElement(By.xpath("//div[2]/div/div/div/div/md-menu[2]/button")).click();
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span"))).click();
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[1]/a/span"))).click();
 	    assertEquals("My Projects", driver.getTitle());
 	    
 	    driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
@@ -28,7 +28,7 @@ public class EditProjectTest extends BaseTest{
 		String url = addProject.addProjectFunctionalityTest();
 		System.out.println(url);
 		
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(2000);
 
 
 		driver.findElement(By.xpath("html/body/div[2]/ui-view/div[1]/md-toolbar/div/a[1]")).click();
