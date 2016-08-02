@@ -35,7 +35,6 @@ angular.module('dmc.widgets.services',[
                 $scope.order = 'DESC';
                 //if(!$scope.limit) $scope.limit = 5;
                 // function for get all services from DB
-
                 var allServices = [];
                 $scope.getServices = function(){
                     ajax.get(dataFactory.getServices($scope.projectId),{},
@@ -78,10 +77,11 @@ angular.module('dmc.widgets.services',[
                                         break;
                                     }
                                 }
-                                if(!allServices[i].currentStatus || !allServices[i].currentStatus.project){
-                                    allServices.splice(i,1);
-                                    i--;
-                                }
+                                // commented out to test service run
+                                // if(!allServices[i].currentStatus || !allServices[i].currentStatus.project){
+                                //     allServices.splice(i,1);
+                                //     i--;
+                                // }
                             }
                             $scope.total = allServices.length;
                             allServices.sort(function(a, b) { return b.currentStatus.status - a.currentStatus.status });

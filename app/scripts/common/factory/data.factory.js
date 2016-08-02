@@ -988,6 +988,15 @@ angular.module('dmc.data',[])
                     delete : localhost + name + '/' + id,
                     add : localhost + name
                 }
+            },
+            getDateFormat: function(){
+                return 'YYYY-MM-DD';
+            },
+            getTimeFormat: function(){
+                return 'hh:mm:ss A';
+            },
+            getDateTimeFormat: function(){
+                return getDateFormat() + ' ' + getTimeFormat();
             }
         };
     }

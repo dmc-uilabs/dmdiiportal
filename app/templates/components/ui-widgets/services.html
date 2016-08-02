@@ -15,11 +15,11 @@
                 <a href="/project.php#/{{projectId}}/services/{{service.id}}/detail" class="service-title link-button">{{service.title}}</a>
             </h3>
             <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button" ng-if="service.currentStatus.id">
-                <md-progress-linear ng-if="service.currentStatus.status == 1"
+                <!-- <md-progress-linear ng-if="service.currentStatus.status == 1"
                                     md-mode="determinate"
                                     value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
-                <span ng-if="service.currentStatus.status == 1">Estimated - 1:30 of 2:00</span>
-                <span ng-if="service.currentStatus.status != 1">{{service.currentStatus.status == 0 ? 'success' : ( service.currentStatus.status == -1 ? 'error' : '')}}</span>
+                <span ng-if="service.currentStatus.status == 1">Estimated - 1:30 of 2:00</span> -->
+                <span ng-if="service.currentStatus.status != 0">{{service.currentStatus.status == 1 ? 'success' : ( service.currentStatus.status == -1 ? 'error' : '')}}</span>
             </a>
         </div>
     </md-list-item>
@@ -37,11 +37,11 @@
         </div>
         <div layout="column" flex="20" class="service-progress">
             <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button"  ng-if="service.currentStatus.id">
-                <md-progress-linear ng-if="service.currentStatus.status == 1"
+                <!-- <md-progress-linear ng-if="service.currentStatus.status == 1"
                                 md-mode="determinate"
                                 value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
-                <span ng-if="service.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span>
-                <span ng-if="service.currentStatus.status != 1">{{service.currentStatus.status == 0 ? 'success' : ( service.currentStatus.status == -1 ? 'error' : '')}}</span>
+                <span ng-if="service.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span> -->
+                <span ng-if="service.currentStatus.status != 0">{{service.currentStatus.status == 1 ? 'success' : ( service.currentStatus.status == -1 ? 'error' : '')}}</span>
             </a>
         </div>
     </md-list-item>
@@ -86,7 +86,7 @@
                             <md-button class="md-raised run" ng-href="{{'project.php#/' + item.projectId + '/services/' + item.id + '/run'}}">Run</md-button>
                         </td>
                         <td ng-show="columns.indexOf('name') > -1">
-                            <a ng-href="{{'/project.php#/'+item.currentStatus.project.id+'/services/'+item.id+'/detail'}}" class="link-button">
+                            <a ng-href="{{'/project.php#/'+item.projectId+'/services/'+item.id+'/detail'}}" class="link-button">
                                 <em>{{item.title}}</em>
                             </a>
                             <span class="services-time-info" ng-hide="widgetStyle == 'full'">{{item.releaseDateFormat}}</span>
@@ -95,19 +95,19 @@
                             {{item.parent_component ? item.parent_component : 'None'}}
                         </td>
                         <td ng-show="columns.indexOf('project') > -1">
-                            <a href="/project.php#/{{item.currentStatus.project.id}}/home" class="link-button">{{item.currentStatus.project.title}}</a>
+                            <a href="/project.php#/{{item.projectId}}/home" class="link-button">{{item.currentStatus.project.title}}</a>
                         </td>
                         <td ng-show="columns.indexOf('start') > -1">
                             {{item.currentStatus.startDate}}
                             <span class="services-time-info">{{item.currentStatus.startTime}}</span>
                         </td>
                         <td ng-show="columns.indexOf('status') > -1">
-                            <a href="/project.php#/{{item.currentStatus.project.id}}/services/{{item.id}}/run" class="link-button" ng-if="item.currentStatus.project.id">
-                                <md-progress-linear ng-if="item.currentStatus.status == 1"
+                            <a href="/project.php#/{{item.projectId}}/services/{{item.id}}/run" class="link-button" ng-if="item.projectId">
+                                <!-- <md-progress-linear ng-if="item.currentStatus.status == 1"
                                                     md-mode="determinate"
                                                     value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
-                                <span ng-if="item.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span>
-                                <span ng-if="item.currentStatus.status != 1">{{item.currentStatus.status == 0 ? 'success' : ( item.currentStatus.status == -1 ? 'error' : '')}}</span>
+                                <span ng-if="item.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span> -->
+                                <span ng-if="item.currentStatus.status != 0">{{item.currentStatus.status == 1 ? 'success' : ( item.currentStatus.status == -1 ? 'error' : '')}}</span>
                             </a>
                         </td>
                         <td ng-show="columns.indexOf('dateAdded') > -1">
