@@ -810,40 +810,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/IndividualDiscussion'
-  '/all-discussions':
-    get:
-      tags:
-        - project
-        - discussion
-        - not implemented
-      description: Get all user discussion threads
-      parameters:
-        - name: _limit
-          in: query
-          description: Limit items
-          type: integer
-          required: false
-        - name: _order
-          in: query
-          description: Order by ASC or DESC
-          type: string
-          collectionFormat: multi
-          required: false
-          enum:
-            - ASC
-            - DESC
-        - name: _sort
-          in: query
-          description: Sort by some parameter
-          type: string
-          required: false
-      responses:
-        '200':
-          description: return user discussion threads
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/IndividualDiscussion'
   '/projects_members':
     get:
       tags:
@@ -2682,24 +2648,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/FollowingIndividualDiscussion'
-  /discussions/create:
-    post:
-      tags:
-        - discussion
-        - not implemented
-      summary: Post a new discussion
-      description: Post a new discussion to store in the database
-      operationId: postDiscussion
-      parameters:
-        - in: body
-          name: body
-          description: Discussion object to be added to the database
-          required: false
-          schema:
-            $ref: '#/definitions/IndividualDiscussion'
-      responses:
-        '405':
-          description: Invalid input
   '/profiles':
     post:
       tags:
