@@ -619,6 +619,8 @@ paths:
     get:
       tags:
         - project
+        - has tests
+        - live
       description: Get all projects
       parameters:
         - name: _limit
@@ -1108,6 +1110,7 @@ paths:
       tags:
         - service
         - profile
+        - not implemented
       description: Get all user compared services
       parameters:
         - in: path
@@ -1390,6 +1393,38 @@ paths:
           description: Return list of service runs
           schema:
             $ref: '#/definitions/GetServiceRun'
+    get:
+      tags:
+        - service
+        - live
+        - has tests
+      summary: Get service runs list
+      description: Post a new run service
+      parameters:
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+      responses:
+        '200':
+          description: Return array of run service objects
+          schema:
+            $ref: '#/definitions/GetServiceRun'
   '/service_runs/{id}':
     get:
       tags:
@@ -1408,7 +1443,9 @@ paths:
         '200':
           description: Return run service object with id
           schema:
-            $ref: '#/definitions/GetServiceRun'
+            type: array
+            items:
+                $ref: '#/definitions/GetServiceRun'
     patch:
       tags:
         - service
@@ -1578,7 +1615,8 @@ paths:
       tags:
         - project
         - document
-        - not implemented
+        - live
+        - has tests
       description: Get all documents in a project
       parameters:
         - name: projectID
@@ -1742,6 +1780,8 @@ paths:
       tags:
         - project
         - profile
+        - live
+        - has tests
       description: Return all join requests of projects
       parameters:
         - in: query
@@ -1788,6 +1828,8 @@ paths:
       tags:
         - project
         - profile
+        - live
+        - has tests
       description: Return all join requests of project
       parameters:
         - in: path
@@ -1814,6 +1856,8 @@ paths:
       tags:
         - project
         - profile
+        - live
+        - has tests
       description: Return all project join requests of user
       parameters:
         - in: path
@@ -1906,6 +1950,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       description: Get contact methods of company
       parameters:
         - in: path
@@ -1976,6 +2021,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       description: Get removed company members
       parameters:
         - in: path
@@ -2025,6 +2071,7 @@ paths:
     get:
       tags:
         - company
+        - not implemented
       description: Get company suggest join DMDII
       parameters:
         - in: path
@@ -2044,6 +2091,7 @@ paths:
         tags:
           - company
           - profile
+          - not implemented
         description: Return all join requests of companies
         parameters:
           - in: query
@@ -2089,6 +2137,7 @@ paths:
         tags:
           - company
           - profile
+          - not implemented
         description: Return all join requests of company
         parameters:
           - in: path
@@ -2115,6 +2164,7 @@ paths:
         tags:
           - company
           - profile
+          - not implemented
         description: Return all company join requests of user
         parameters:
           - in: path
@@ -2156,7 +2206,8 @@ paths:
       tags:
         - service
         - marketplace
-        - not implemented
+        - live
+        - has tests
       description: Get all authors for a service
       parameters:
         - name: serviceID
@@ -2253,7 +2304,8 @@ paths:
       tags:
         - service
         - marketplace
-        - not implemented
+        - live
+        - has tests
       description: Get latest service tag
       parameters:
         - name: _limit
@@ -2670,7 +2722,8 @@ paths:
     get:
       tags:
         - profile
-        - not implemented
+        - live
+        - has tests
       description: Get all user profiles
       parameters:
         - name: _limit
@@ -3088,7 +3141,8 @@ paths:
     get:
       tags:
         - company
-        - not implemented
+        - live
+        - has tests
       description: Get company members based on companyID
       parameters:
         - name: companyID
@@ -3147,7 +3201,8 @@ paths:
     get:
       tags:
         - company
-        - not implemented
+        - live
+        - has tests
       summary: Get company profile videos
       description: Get company profile videos based on companyID
       parameters:
@@ -3167,7 +3222,8 @@ paths:
     get:
       tags:
         - company
-        - not implemented
+        - live
+        - has tests
       summary: Get company profile skill
       description: Get company profile skill based on companyID
       parameters:
@@ -3187,7 +3243,8 @@ paths:
     get:
       tags:
         - company
-        - not implemented
+        - live
+        - has tests
       summary: Get company profile contacts
       description: Get company profile contacts based on companyID
       parameters:
@@ -4259,7 +4316,8 @@ paths:
       tags:
         - service
         - marketplace
-        - not implemented
+        - live
+        - has tests
       description: Get latest review service in marketplace
       parameters:
         - name: _limit
@@ -4474,7 +4532,8 @@ paths:
       tags:
         - service
         - marketplace
-        - not implemented
+        - live
+        - has tests
       description: Get array of specifications for services
       parameters:
         - name: _limit
@@ -5962,6 +6021,7 @@ paths:
     get:
       tags:
         - dmdii projects
+        - live
       description: Get all dmdii projects
       operationId: getDmdiiProjects
       parameters:
@@ -6250,6 +6310,8 @@ paths:
       tags:
         - model run
         - model poll
+        - live
+        - has tests
       description: Poll results from ActiveMQ for a model run
       parameters:
        - in: path
