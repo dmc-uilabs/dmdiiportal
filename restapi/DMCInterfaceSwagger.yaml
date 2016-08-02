@@ -147,7 +147,7 @@ paths:
       tags:
         - account
         - live
-        - has
+        - has tests
       description: Get servers by account id
       parameters:
         - name: accountID
@@ -1162,7 +1162,8 @@ paths:
     post:
       tags:
         - service
-        - not implemented
+        - live
+        - has tests
       description: Post a new dome interface
       parameters:
         - in: body
@@ -1182,7 +1183,8 @@ paths:
     delete:
       tags:
         - service
-        - not implemented
+        - live
+        - has tests
       description: Get service dome interface
       parameters:
         - in: path
@@ -1196,7 +1198,8 @@ paths:
     patch:
       tags:
         - service
-        - not implemented
+        - live
+        - has tests
       description: Update dome interface
       parameters:
         - in: path
@@ -1218,7 +1221,8 @@ paths:
     get:
       tags:
         - service
-        - not implemented
+        - live
+        - has tests
       description: Get dome interface
       parameters:
         - in: path
@@ -1235,7 +1239,8 @@ paths:
     get:
       tags:
         - service
-        - not implemented
+        - live
+        - has tests
       description: Get children from Dome API
       parameters:
         - in: query
@@ -1289,7 +1294,8 @@ paths:
     get:
       tags:
         - service
-        - not implemented
+        - live
+        - has tests
       description: Get model from Dome API
       parameters:
         - in: query
@@ -1343,7 +1349,8 @@ paths:
     get:
       tags:
         - service
-        - not implemented
+        - live
+        - has tests
       description: Get service dome interface
       parameters:
         - in: path
@@ -1378,19 +1385,14 @@ paths:
             items:
                 $ref: '#/definitions/GetDomeInterface'
   '/service_runs':
-    post:
+    get:
       tags:
         - service
-        - not implemented
-      summary: Post a new run service
-      description: Post a new run service
+        - live
+        - has tests
+      summary: Get service_runs
+      description: Get service_runs
       parameters:
-        - in: body
-          name: body
-          description: Service run object to be added to the database
-          required: false
-          schema:
-            $ref: '#/definitions/PostServiceRun'
         - name: _limit
           in: query
           description: Limit items
@@ -1410,16 +1412,24 @@ paths:
           description: Sort by some parameter
           type: string
           required: false
+        - name: serviceId
+          in: query
+          description: array of serviceIDs
+          type: array
+          items:
+            type: string
+          required: true
       responses:
         '200':
-          description: Return run service object with id
+          description: Return list of service runs
           schema:
             $ref: '#/definitions/GetServiceRun'
   '/service_runs/{id}':
     get:
       tags:
         - service
-        - not implemented
+        - live
+        - has tests
       summary: Get a run service
       description: Get a run service
       parameters:
@@ -1436,7 +1446,8 @@ paths:
     patch:
       tags:
         - service
-        - not implemented
+        - live
+        - has tests
       summary: Update run service
       description: Update run service
       parameters:
@@ -2350,6 +2361,7 @@ paths:
         - specification
         - marketplace
         - live
+        - has tests
       parameters:
         - name: serviceID
           in: path
@@ -8071,25 +8083,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/DomeModelParam'
-  PostServiceRun:
-    type: object
-    properties:
-      serviceId:
-        type: string
-      accountId:
-        type: string
-      runBy:
-        type: string
-      status:
-        type: number
-      percentComplete:
-        type: number
-      startDate:
-        type: string
-      startTime:
-        type: string
-      project:
-        $ref: '#/definitions/SimplifiedProject'
   GetServiceRun:
     type: object
     properties:
