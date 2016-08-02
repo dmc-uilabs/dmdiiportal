@@ -897,7 +897,7 @@ paths:
       tags:
         - project
         - add member
-        - in progress
+        - blocked
       description: Create a new member
       parameters:
         - in: body
@@ -1792,7 +1792,7 @@ paths:
       tags:
         - project
         - profile
-        - in progress
+        - blocked
       description: Add new join requests of project
       parameters:
         - in: body
