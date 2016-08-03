@@ -21,10 +21,12 @@ public class MyProfileTest extends BaseTest{
 	public void myProfile() throws Exception{
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
 		
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[2]/a/span")));
+		//WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[2]/a/span")));
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("My Profile")));
         element.click();	    
 	    log.log(Level.INFO,"Get current title:" + driver.getTitle());
 	    assertEquals("Profile", driver.getTitle());	
+
 	}
 
 	public void testMyProfile() throws Exception{
