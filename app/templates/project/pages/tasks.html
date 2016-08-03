@@ -62,7 +62,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in tasks">
-                            <td class="title-task"><a class="link-button" href="/project.php#/{{item.projectId}}/task/{{item.id}}">{{item.title}}</a></td>
+                            <td class="title-task"><a class="link-button" href="/project.php#/{{item.project.id}}/task/{{item.id}}">{{item.title}}</a></td>
                             <td><a href="profile.php#/{{item.assigneeId}}">{{item.assignee}}</a></td>
                             <td>
                                 <span ng-bind-html="item.formatedDueDate[1]" class="label" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>

@@ -12,11 +12,11 @@ angular.module('dmc.model.task', ['dmc.data'])
     }
 
     this.createTask  = function(task) {
-      var projectId = task.projectId;
+      var projectId = task.project.id;
       var deffered = $q.defer();
 
         ajax.create(
-            dataFactory.getUrlCreateTask(task.projectId),
+            dataFactory.getUrlCreateTask(projectId),
             task,
             function(data){
                 deffered.resolve(data)
