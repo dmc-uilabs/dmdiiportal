@@ -1,6 +1,7 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
 import static org.junit.Assert.assertEquals;
+import org.junit.Ignore;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -141,6 +142,7 @@ public class AddProjectTest extends BaseTest {
 
 	}
 
+	@Ignore
 	@Test
 	public void ProjectTest() throws Exception {
 		testAddProject();

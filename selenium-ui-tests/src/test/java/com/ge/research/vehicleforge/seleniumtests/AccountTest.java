@@ -1,6 +1,7 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 import java.util.logging.Level;
 
@@ -162,6 +163,7 @@ public class AccountTest extends BaseTest {
 	}
 
 	// To make test case run in order.
+	@Ignore
 	@Test
 	public void testMyAccount() throws Exception {
 		testMyAccountBascis();
