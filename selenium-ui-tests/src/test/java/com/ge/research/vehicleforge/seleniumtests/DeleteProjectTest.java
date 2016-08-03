@@ -18,6 +18,7 @@ public class DeleteProjectTest extends BaseTest{
 	    //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[1]/a/span"))).click();
 	    wait.until(ExpectedConditions.elementToBeClickable(By.linkText("My Projects"))).click();*/
 		driver.get(baseUrl + "/my-projects.php#/");
+		Thread.sleep(5000);
 	    assertEquals("My Projects", driver.getTitle());
 		
 		/*String url2 = "https://ben-web.opendmc.org/project.php#/11/home";
