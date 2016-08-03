@@ -56,7 +56,8 @@ public class MenuNavigationTest extends BaseTest {
 	    //Test Members -> Member Directory
 	    Thread.sleep(2000);
 	    driver.findElement(By.xpath("//div[2]/div/div/div/div/md-menu[3]/button")).click(); 
-	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span"))).click();
+	    //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item/a/span"))).click();
+	    wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Member Directory"))).click();
 	    assertEquals("Member Directory", driver.getTitle());
 	    
 	    //Not implemented Members -> DMDII Projects

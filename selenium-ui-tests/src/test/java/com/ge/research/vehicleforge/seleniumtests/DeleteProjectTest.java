@@ -26,7 +26,7 @@ public class DeleteProjectTest extends BaseTest{
 		AddProjectFunctionalityTest addProject = new AddProjectFunctionalityTest();
 		addProject.addProjectFunctionalityTest();
 		
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		//click "edit" button
 		driver.findElement(By.xpath("html/body/div[2]/ui-view/div[1]/md-toolbar/div/a[1]")).click();
 		//click "Delete Project"
