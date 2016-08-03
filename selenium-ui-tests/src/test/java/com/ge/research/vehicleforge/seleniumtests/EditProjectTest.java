@@ -27,7 +27,7 @@ public class EditProjectTest extends BaseTest{
 	    driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
 		AddProjectFunctionalityTest addProject = new AddProjectFunctionalityTest();
 		String url = addProject.addProjectFunctionalityTest();
-		System.out.println(url);
+		//System.out.println(url);
 		
 		Thread.sleep(5000);
 
@@ -52,7 +52,7 @@ public class EditProjectTest extends BaseTest{
 		
 
 		// next to add member
-		WebElement next = driver.findElement(By.xpath("//ap-tab-one/div/div[2]/button"));
+		WebElement next = driver.findElement(By.xpath("//button[2]"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", next);
 		if (next.isEnabled()) {
 			next.sendKeys(Keys.ENTER);
@@ -63,7 +63,7 @@ public class EditProjectTest extends BaseTest{
 		Thread.sleep(3000);
 
 		// submit to update the new project
-		WebElement submit = driver.findElement(By.xpath("html/body/div[2]/ui-view/div/div/div/div[2]/md-content/md-tabs/md-tabs-content-wrapper/md-tab-content[2]/div/md-content/ap-tab-two/div/div[2]/button[2]"));
+		WebElement submit = driver.findElement(By.xpath("//ap-tab-two/div/div[2]/button[2]"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", submit);
 		if (submit.isEnabled()) {
 			submit.sendKeys(Keys.ENTER);
