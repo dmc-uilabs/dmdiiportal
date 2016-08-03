@@ -141,6 +141,7 @@ public class AddProjectTest extends BaseTest {
 
 	}
 
+	@Ignore
 	@Test
 	public void ProjectTest() throws Exception {
 		testAddProject();

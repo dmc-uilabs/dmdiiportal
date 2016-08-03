@@ -148,6 +148,7 @@ public class ProfileTest extends BaseTest {
 
 	}
 
+	@Ignore
 	@Test
 	public void testMyProfileAll() throws Exception {
 		// testMyProfile();

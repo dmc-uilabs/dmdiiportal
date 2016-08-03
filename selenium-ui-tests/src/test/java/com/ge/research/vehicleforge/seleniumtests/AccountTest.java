@@ -162,6 +162,7 @@ public class AccountTest extends BaseTest {
 	}
 
 	// To make test case run in order.
+	@Ignore
 	@Test
 	public void testMyAccount() throws Exception {
 		testMyAccountBascis();

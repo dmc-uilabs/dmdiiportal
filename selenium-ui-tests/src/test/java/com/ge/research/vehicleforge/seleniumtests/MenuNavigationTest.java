@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MenuNavigationTest extends BaseTest {
 	WebDriverWait wait = new WebDriverWait(driver, 30);
 	
+	@Ignore
 	@Test
 	public void testMenuNavigation() throws Exception{
 		//Test Dashboard
