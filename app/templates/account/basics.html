@@ -7,6 +7,7 @@
             <div class="content-panel-body">
                 <md-content>
                     <div class="header-right-content" layout="row">
+                        <h5 class="subtitle" ng-hide="!role && !isVerified">Verified</h5>
                         <div layout="column">
                             <h2 class="md-title">{{title}}</h2>
                         </div>
@@ -79,6 +80,19 @@
                                         No matches found for "{{ctrl.searchText}}".
                                     </md-not-found>
                                 </md-autocomplete>
+                        </div>
+                    </div>
+                    <div layout="row" ng-if="!user.isVerified">
+                        <div layout="column" flex="50">
+                            <md-input-container flex="75">
+                                <label>Verification Token</label>
+                                <input type="text" ng-model="token"></input>
+                            </md-input-container>
+
+                            <p class="error" ng-show="error != ''">{{error}}</p>
+                        </div>
+                        <div>
+                            <md-button class="md-raised md-primary save-button" ng-click="verifyToken()" flex="25">Verify</md-button>
                         </div>
                     </div>
                 </md-content>

@@ -4,6 +4,22 @@
             <md-button class="md-raised cancel-button" ng-click="cancelChanges()">Cancel</md-button>
             <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!isDataChanged">Save</md-button>
         </div>
+        <div layout="row" ng-show="!company">
+            <md-autocomplete flex="33"
+                md-input-name="organizations"
+                md-items="org in queryOrgSearch(searchOrg)"
+                md-search-text="searchOrg"
+                md-selected-item="selectedOrg"
+                md-item-text="org.name"
+                md-floating-label="Organization">
+                <md-item-template>
+                  <span md-highlight-text="searchOrg">{{org.name}}</span>
+                </md-item-template>
+                <md-not-found>
+                  No Organizations matching "{{searchOrg}}" were found.
+                </md-not-found>
+            </md-autocomplete>
+        </div>
         <div layout="row">
             <div layout="column" class="logo-column" ng-show="!changingLogo">
                 <div class="profile-logo">
@@ -15,7 +31,7 @@
                         <ng-md-icon icon="delete" size="18"></ng-md-icon>
                     </md-button>
                 </div>
-                <md-button style="width: auto;" flex class="md-raised change-logo" ng-click="changeLogo()" ng-disabled="!user.isOwner && !user.isDmdiiAdmin">Change Logo</md-button>
+                <md-button style="width: auto;" flex class="md-raised change-logo" ng-click="changeLogo()" ng-disabled="!user.isAdmin && !user.isDmdiiAdmin">Change Logo</md-button>
             </div>
             <div ng-if="changingLogo">
                 <div>
@@ -54,14 +70,16 @@
                     <md-input-container flex="35" class="company-name" md-no-float>
                         <input ng-model="company.organization.name"
                                ng-change="changedValue('name')"
-                               ng-disabled="!user.isOwner && !user.isDmdiiAdmin"
+                               ng-disabled="!user.isAdmin && !user.isDmdiiAdmin"
                                placeholder="Company Name">
                     </md-input-container>
+
                     <md-input-container flex="35" class="company-industry" md-no-float>
-                        <input ng-model="company.organization.industry"
-                            ng-change="changedValue('industry')"
-                            ng-disabled="!user.isOwner && !user.isDmdiiAdmin"
-                            placeholder="Industry">
+                        <md-select ng-model="companyTier"
+                            ng-change="setTier()"
+                            ng-disabled="!user.isDmdiiAdmin"
+                            placeholder="Category and Tier">
+                            <md-option ng-value="type" ng-repeat="type in types">{{categories[type.category] + type.tier}}</md-option>
                     </md-input-container>
                 </div>
 
@@ -86,15 +104,14 @@
                 <textarea ng-model="company.organization.description"
                           columns="1"
                           ng-change="changedValue('description')"
-                          ng-disabled="!user.isOwner && !user.isDmdiiAdmin"
+                          ng-disabled="!user.isAdmin && !user.isDmdiiAdmin"
                           md-maxlength="1000"
                           placeholder="Description of Organization"></textarea>
             </md-input-container>
         </div>
 
-
         <div layout="column">
-            <div layout="row" ng-if="user.isOwner || user.isDmdiiAdmin">
+            <div layout="row" ng-if="user.isAdmin || user.isDmdiiAdmin">
                 <md-autocomplete flex="33"
                     md-input-name="areasOfExpertise"
                     md-items="area in queryAreaSearch(searchArea)"
@@ -102,7 +119,7 @@
                     md-selected-item="selectedArea"
                     md-selected-item-change="addArea(selectedArea)"
                     md-item-text="area.name"
-                    md-floating-label="Areas Of Expertise">
+                    md-floating-label="Core Capabilities">
                     <md-item-template>
                       <span md-highlight-text="searchArea">{{area.name}}</span>
                     </md-item-template>
@@ -111,6 +128,7 @@
                     </md-not-found>
                 </md-autocomplete>
                 <span flex></span>
+
                 <md-autocomplete flex="33"
                     md-input-name="sector"
                     md-items="sector in querySectorSearch(searchSector)"
@@ -118,7 +136,7 @@
                     md-selected-item="selectedSector"
                     md-selected-item-change="addSector(selectedSector)"
                     md-item-text="sector.name"
-                    md-floating-label="Sectors">
+                    md-floating-label="Seeking Collaboration">
                     <md-item-template>
                       <span md-highlight-text="searchSector">{{sector.name}}</span>
                     </md-item-template>
@@ -134,7 +152,7 @@
                         <span class="no-bottom" flex>Selected Areas (Click tag to remove)</span>
                         <div layout="row" layout-wrap>
                             <md-chips ng-repeat="area in company.areasOfExpertise track by $index">
-                                <md-chip ng-click="(user.isOwner || user.isDmdiiAdmin) && removeArea($index)">
+                                <md-chip ng-click="(user.isAdmin || user.isDmdiiAdmin) && removeArea($index)">
                                     <span>{{area.name}}</span>
                                 </md-chip>
                             </md-chips>
@@ -143,13 +161,13 @@
                 </div>
 
                 <span flex></span>
-
+<!-- change to looking for -->
                 <div layout="row" layout-wrap flex="33">
                     <div layout="column">
                         <span class="no-bottom" flex>Selected Sectors (Click tag to remove)</span>
                         <div layout="row" layout-wrap>
                             <md-chips ng-repeat="sector in company.sector track by $index">
-                                <md-chip ng-click="(user.isOwner || user.isDmdiiAdmin) && removeSector($index)">
+                                <md-chip ng-click="(user.isAdmin || user.isDmdiiAdmin) && removeSector($index)">
                                     <span>{{sector.name}}</span>
                                 </md-chip>
                             </md-chips>
@@ -158,7 +176,48 @@
                 </div>
             </div>
 
-        <div layout="column" ng-if="user.isOwner || user.isDmdiiAdmin">
+        <div layout="column" ng-show="user.isAdmin || user.isDmdiiAdmin">
+            <h3 class="no-bottom">Contacts</h3>
+            <div layout="row">
+                <div layout="column" flex="20">
+                    <md-input-container>
+                        <label>First Name</label>
+                        <input id="contactFirstName"
+                            ng-model="contact.firstName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Last Name</label>
+                        <input id="contactLastName"
+                            ng-model="contact.lastName">
+                    </md-input-container>
+                    <md-input-container md-no-float>
+                        <label>Email</label>
+                        <input id="contactEmail"
+                            ng-model="contact.email">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Contact Type</label>
+                        <md-select id="contactType"
+                            ng-model="contact.type">
+                            <md-option ng-repeat="(key, value) in contactTypes" ng-value="key">{{value}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-button class="md-raised" ng-click="addContact()">Add Contact</md-button>
+                </div>
+                <span flex></span>
+                <div layout="row" flex="75" layout-wrap>
+                    <div flex="20" ng-repeat="award in company.contacts track by $index">
+                        <div>
+                            <h4>{{contact.firstName + ' ' + contact.lastName}}</h4>
+                            <p>{{contact.email}}</p>
+                            <span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div layout="column" ng-show="user.isAdmin || user.isDmdiiAdmin">
             <h3 class="no-bottom">Recognitions</h3>
             <div layout="row">
                 <div layout="column" flex="20">
@@ -188,11 +247,10 @@
                             <h4>{{award.name}}</h4>
                             <p>{{award.description}}</p>
                             <span>
-                            </div>
                         </div>
                     </div>
+                </div>
             </div>
-
         </div>
     </md-content>
 </div>

@@ -6,6 +6,7 @@ angular.module('dmc.account')
         "$scope",
         "$timeout",
         "$q",
+        "$mdDialog",
         "ajax",
         "location",
         "$location",
@@ -20,6 +21,7 @@ angular.module('dmc.account')
                   $scope,
                   $timeout,
                   $q,
+                  $mdDialog,
                   ajax,
                   location,
                   $location,
@@ -37,6 +39,17 @@ angular.module('dmc.account')
                 $scope.deactivated = $scope.accountData.deactivated;
                 $scope.activatedText = (!$scope.deactivated ? "Deactivate Account?" : "Activate Account?");
                 $scope.user = $.extend(true, {}, accountData);
+
+                var roleCallback = function(response) {
+                    if (response.data.roles) {
+                        $scope.role = response.data.roles[$scope.user.companyId];
+                    } else {
+                        $scope.role = null;
+                    }
+                };
+
+                ajax.get(dataFactory.userAccount($scope.accountId).get, {}, roleCallback);
+
                 var callback = function (success, data) {
                     if (success) {
                         $scope.user.dataLocation = data;
@@ -46,6 +59,7 @@ angular.module('dmc.account')
                         $scope.changedValue('timezone', $scope.user.timezone);
                         $scope.changedValue('location', $scope.user.location);
                     }
+
                 };
 
                 $scope.getLocation = function () {
@@ -125,6 +139,31 @@ angular.module('dmc.account')
                         $scope.changedValues = null;
                     }
                 };
+
+                $scope.openModal = function() {
+                    console.log($scope.user);
+                    $mdDialog.show({
+                        contentElement: '#addToken',
+                        parent: angular.element(document.body)
+                    });
+                }
+                var tokenCallback = function(response) {
+                    $scope.res = response.data;
+
+                    if($scope.res.responseCode === 0) {
+                        $scope.user.isVerified = true;
+                    } else {
+                        $scope.error = $scope.res.responseDescription;
+                    }
+                }
+                $scope.verifyToken = function() {
+                    if ($scope.token && $scope.token.trim().length > 0) {
+                        $scope.error = '';
+                        ajax.create(dataFactory.verifyToken(), {userId: $scope.userId, token: $scope.token}, tokenCallback);
+                    } else {
+                        $scope.error = "You MUST enter a token";
+                    }
+                }
 
                 $scope.suffixes = [
                     {

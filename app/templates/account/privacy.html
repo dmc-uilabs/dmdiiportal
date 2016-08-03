@@ -1,4 +1,4 @@
-<div class="container container-account" layout="row" ng-if="accountData.id">
+<div class="container container-account" layout="row" ng-if="userBasics.id">
     <div class="content-column left-content margin-right12-5" layout="column" flex="20">
         <div class="content-panel" account-menu account-id="accountId" page="page"></div>
     </div>
@@ -19,25 +19,26 @@
                             <h2 class="md-title title-block">Public information</h2>
                             <div layout="row">
                                 <div layout="column" flex="20" ng-repeat="(key,item) in information.public">
-                                    <md-checkbox ng-init="userBasics.privacy.public[key].enable = (userBasics.privacy.public[key].enable == true || userBasics.privacy.public[key].enable == 'true' ? true : false)"
-                                                 ng-model="userBasics.privacy.public[key].enable"
-                                                 aria-label="{{item.title}}"
-                                                 ng-change="changedCheckbox('public',key,userBasics.privacy.public[key].enable)">{{item.title}}</md-checkbox>
+                                    <md-checkbox
+                                        ng-init="enabled.public[key] = userBasics.userContactInfo.userPublicContactInfo[key] != null"
+                                        ng-model="enabled.public[key]"
+                                        aria-label="{{item.title}}"
+                                        ng-change="changedCheckbox('userPublicContactInfo',key,enabled.public[key])">{{item.title}}</md-checkbox>
                                 </div>
                             </div>
-                            <div layout="row" ng-repeat="(key,item) in information.public" ng-if="userBasics.privacy.public[key].enable">
+                            <div layout="row" ng-repeat="(key,item) in information.public" ng-if="enabled.public[key]">
                                 <md-input-container class="md-icon-float information-item" layout="column" flex id="{{'edit_public_'+key}}">
                                     <label>{{item.title}}</label>
-                                    <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('public')">
+                                    <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('userPublicContactInfo')">
                                         <ng-md-icon icon="{{item.icon}}" size="26"></ng-md-icon>
                                     </md-icon>
                                     <input ng-if="key == 'phone'"
-                                           ng-model="userBasics.privacy.public[key].value"
-                                           ng-change="changedValue('public',key,userBasics.privacy.public[key].value)"
+                                           ng-model="userBasics.userContactInfo.userPublicContactInfo[key]"
+                                           ng-change="changedValue('public',key,userBasics.userContactInfo.userPublicContactInfo[key])"
                                            phone-input>
                                     <input ng-if="key != 'phone'"
-                                           ng-model="userBasics.privacy.public[key].value"
-                                           ng-change="changedValue('public',key,userBasics.privacy.public[key].value)">
+                                           ng-model="userBasics.userContactInfo.userPublicContactInfo[key]"
+                                           ng-change="changedValue('public',key,userBasics.userContactInfo.userPublicContactInfo[key])">
                                 </md-input-container>
                             </div>
                         </div>
@@ -45,25 +46,28 @@
                             <h2 class="md-title title-block">Private information</h2>
                             <div layout="row">
                                 <div layout="column" flex="20" ng-repeat="(key,item) in information.private">
-                                    <md-checkbox ng-init="userBasics.privacy.private[key].enable = (userBasics.privacy.private[key].enable == true || userBasics.privacy.private[key].enable == 'true' ? true : false)"
-                                                 ng-model="userBasics.privacy.private[key].enable"
-                                                 aria-label="{{item.title}}"
-                                                 ng-change="changedCheckbox('private',key,userBasics.privacy.private[key].enable)">{{item.title}}</md-checkbox>
+                                    <md-checkbox
+                                        ng-init="enabled.private[key] = userBasics.userContactInfo.userPrivateContactInfo[key] != null"
+                                        ng-model="enabled.private[key]"
+                                        aria-label="{{item.title}}"
+                                        ng-change="changedCheckbox('userPrivateContactInfo',key,enabled.private[key])"
+                                    >{{item.title}}</md-checkbox>
                                 </div>
+                                <!-- ng-model="userBasics.userContactInfo.userPrivateContactInfo[key].enable" -->
                             </div>
-                            <div layout="row" ng-repeat="(key,item) in information.private" ng-if="userBasics.privacy.private[key].enable">
+                            <div layout="row" ng-repeat="(key,item) in information.private" ng-if="enabled.private[key]">
                                 <md-input-container class="md-icon-float information-item" layout="column" flex id="{{'edit_private_'+key}}">
                                     <label>{{item.title}}</label>
-                                    <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('private')">
+                                    <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('userPrivateContactInfo')">
                                         <ng-md-icon icon="{{item.icon}}" class="location" size="26"></ng-md-icon>
                                     </md-icon>
                                     <input ng-if="key == 'phone'"
-                                           ng-model="userBasics.privacy.private[key].value"
-                                           ng-change="changedValue('private',key,userBasics.privacy.private[key].value)"
+                                           ng-model="userBasics.userContactInfo.userPrivateContactInfo[key]"
+                                           ng-change="changedValue('private',key,userBasics.userContactInfo.userPrivateContactInfo[key])"
                                            phone-input>
                                     <input ng-if="key != 'phone'"
-                                           ng-model="userBasics.privacy.private[key].value"
-                                           ng-change="changedValue('private',key,userBasics.privacy.private[key].value)">
+                                           ng-model="userBasics.userContactInfo.userPrivateContactInfo[key]"
+                                           ng-change="changedValue('private',key,userBasics.userContactInfo.userPrivateContactInfo[key])">
                                 </md-input-container>
                             </div>
                         </div>
@@ -73,25 +77,26 @@
                             <h2 class="md-title title-block">Member Portal information</h2>
                             <div layout="row">
                                 <div layout="column" flex="20" ng-repeat="(key,item) in information.memberPortal">
-                                    <md-checkbox ng-init="userBasics.privacy.memberPortal[key].enable = (userBasics.privacy.memberPortal[key].enable == true || userBasics.privacy.memberPortal[key].enable == 'true' ? true : false)"
-                                                 ng-model="userBasics.privacy.memberPortal[key].enable"
-                                                 aria-label="{{item.title}}"
-                                                 ng-change="changedCheckbox('memberPortal',key,userBasics.privacy.memberPortal[key].enable)">{{item.title}}</md-checkbox>
+                                    <md-checkbox
+                                        ng-init="enabled.memberPortal[key] = userBasics.userContactInfo.userMemberPortalContactInfo[key] != null"
+                                        ng-model="enabled.memberPortal[key]"
+                                        aria-label="{{item.title}}"
+                                        ng-change="changedCheckbox('userMemberPortalContactInfo',key,enabled.memberPortal[key])">{{item.title}}</md-checkbox>
                                 </div>
                             </div>
-                            <div layout="row" ng-repeat="(key,item) in information.memberPortal" ng-if="userBasics.privacy.memberPortal[key].enable">
+                            <div layout="row" ng-repeat="(key,item) in information.memberPortal" ng-if="enabled.memberPortal[key]">
                                 <md-input-container class="md-icon-float information-item" layout="column" flex id="{{'edit_memberPortal_'+key}}">
                                     <label>{{item.title}}</label>
-                                    <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('memberPortal')">
+                                    <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('userMemberPortalContactInfo')">
                                         <ng-md-icon icon="{{item.icon}}" size="26"></ng-md-icon>
                                     </md-icon>
                                     <input ng-if="key == 'phone'"
-                                           ng-model="userBasics.privacy.memberPortal[key].value"
-                                           ng-change="changedValue('memberPortal',key,userBasics.privacy.memberPortal[key].value)"
+                                           ng-model="userBasics.userContactInfo.userMemberPortalContactInfo[key]"
+                                           ng-change="changedValue('memberPortal',key,userBasics.userContactInfo.userMemberPortalContactInfo[key])"
                                            phone-input>
                                     <input ng-if="key != 'phone'"
-                                           ng-model="userBasics.privacy.memberPortal[key].value"
-                                           ng-change="changedValue('memberPortal',key,userBasics.privacy.memberPortal[key].value)">
+                                           ng-model="userBasics.userContactInfo.userMemberPortalContactInfo[key]"
+                                           ng-change="changedValue('memberPortal',key,userBasics.userContactInfo.userMemberPortalContactInfo[key])">
                                 </md-input-container>
                             </div>
                         </div>

@@ -10,50 +10,7 @@
 		"deactivated": false,
 		"location": "Schenectady",
 		"timezone": "(UTC -05:00) America/Atikokan",
-		"privacy": {
-			"public": {
-				"email": {
-					"enable": true,
-					"value": "email@gmail.com"
-				},
-				"phone": {
-					"enable": true,
-					"value": "1113322211111111"
-				},
-				"location": {
-					"enable": true,
-					"value": "USA"
-				}
-			},
-			"private": {
-				"email": {
-					"enable": true,
-					"value": "denis.sobko@gmail.com"
-				},
-				"phone": {
-					"enable": true,
-					"value": "111444111111"
-				},
-				"location": {
-					"enable": true,
-					"value": "Schenectady"
-				}
-			},
-			"memberPortal": {
-				"email": {
-					"enable": false,
-					"value": null
-				},
-				"phone": {
-					"enable": false,
-					"value": null
-				},
-				"location": {
-					"enable": false,
-					"value": null
-				}
-			}
-		}
+		"userContactInfo": null
 	},
 	{
 		"id": 2,
@@ -65,35 +22,10 @@
 		"deactivated": false,
 		"location": null,
 		"timezone": null,
-		"privacy": {
-			"public": {
-				"email": {
-					"enable": false,
-					"value": "email@gmail.com"
-				},
-				"phone": {
-					"enable": false,
-					"value": null
-				},
-				"location": {
-					"enable": false,
-					"value": null
-				}
-			},
-			"private": {
-				"email": {
-					"enable": false,
-					"value": "email@gmail.com"
-				},
-				"phone": {
-					"enable": false,
-					"value": null
-				},
-				"location": {
-					"enable": false,
-					"value": null
-				}
-			}
+		"userContactInfo": {
+			"userPublicContactInfo": {},
+			"userPrivateContactInfo": {},
+			"userMemberPortalContactInfo": {}
 		}
 	}
 ]

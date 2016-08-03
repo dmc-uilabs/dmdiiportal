@@ -306,17 +306,32 @@
 
 <!--MEMBERS -->
 
-<div class="company-members" ng-if="company.members.length">
+<div class="company-members" ng-if="company.verifiedMembers.length">
     <div layout="row" layout-align="space-between center">
         <div layout="row" layout-align="center center">
-            <h3>MEMBERS</h3>
-            <h4>{{company.members.length}} total</h4>
+            <h3>VERIFIED MEMBERS</h3>
+            <h4>{{company.verifiedMembers.length}} total</h4>
         </div>
         <a class="viewAll" ng-href="{{'search.php#/members'}}">View All</a>
     </div>
     <md-divider></md-divider>
     <div layout="row">
-        <div flex="20" class="padding-card" ng-repeat="item in company.members">
+        <div flex="20" class="padding-card" ng-repeat="item in company.verifiedMembers">
+            <dmc-members-card card-source="item"></dmc-members-card>
+        </div>
+    </div>
+</div>
+<div class="company-members" ng-if="company.unverifiedMembers.length">
+    <div layout="row" layout-align="space-between center">
+        <div layout="row" layout-align="center center">
+            <h3>UNVERIFIED MEMBERS</h3>
+            <h4>{{company.unverifiedMembers.length}} total</h4>
+        </div>
+        <a class="viewAll" ng-href="{{'search.php#/members'}}">View All</a>
+    </div>
+    <md-divider></md-divider>
+    <div layout="row">
+        <div flex="20" class="padding-card" ng-repeat="item in company.unverifiedMembers">
             <dmc-members-card card-source="item"></dmc-members-card>
         </div>
     </div>

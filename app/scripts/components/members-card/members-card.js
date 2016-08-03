@@ -73,6 +73,72 @@ angular.module('dmc.component.members-card', [
                 }
             };
 
+			$scope.roles = [
+				{
+					id: 2,
+					name: 'Admin'
+				},
+				{
+					id: 3,
+					name: 'VIP'
+				},
+				{
+					id: 4,
+					name: 'Member'
+				}
+			]
+
+			var getUserRoleCallback = function(response) {
+				console.log(response.data)
+				$scope.isMember = false;
+				angular.forEach(response.data, function(role) {
+					if(role.organizationId === $scope.$root.userData.companyId) {
+						$scope.isMember = true;
+					}
+				})
+			}
+			$scope.getUserRole = function() {
+				ajax.get(dataFactory.userRole(), {dmdiiMemberId: $scope.cardSource.id}, getUserRoleCallback);
+			}
+			$scope.getUserRole();
+
+			$scope.setRole = function() {
+                $scope.settingRole = true;
+            };
+
+            $scope.cancelSetRole = function() {
+                $scope.settingRole = false;
+            };
+
+			var setRoleCallback = function(response) {
+				$scope.isMember = true;
+			}
+			$scope.saveMember = function() {
+				var role = {
+					userId: $scope.cardSource.id,
+					organizationId: $scope.cardSource.companyId,
+					roleId: $scope.roleId
+				}
+				$scope.addingMember = false;
+				ajax.update(dataFactory.userRole(), role, setRoleCallback);
+			}
+
+			var tokenCallback = function(response) {
+				$scope.token = response.data.token;
+
+				$mdDialog.show({
+					controller: 'DisplayTokenController',
+					templateUrl: "templates/components/token-modal/token-modal.html",
+					parent: angular.element(document.body),
+					locals: {
+					   token: $scope.token
+				},
+					clickOutsideToClose: true
+				});
+			}
+			$scope.generateToken = function() {
+				ajax.create(dataFactory.generateToken(), {userId: $scope.cardSource.id}, tokenCallback)
+			}
             $scope.showMembers = function(id, ev){
                 $(window).scrollTop();
                   $mdDialog.show({
@@ -113,6 +179,14 @@ angular.module('dmc.component.members-card', [
 		}]
 	}
 })
+.controller('DisplayTokenController',
+	['$scope', '$rootScope', '$mdDialog', 'token',
+	function ($scope, $rootScope, $mdDialog, token) {
+        $scope.token = token;
+		$scope.cancel = function(){
+            $mdDialog.hide();
+		}
+}])
 .directive('dmcAddMembersCard', function () {
     return {
         restrict: 'E',
