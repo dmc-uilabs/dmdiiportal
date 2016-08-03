@@ -24,8 +24,8 @@ public class AccountTest extends BaseTest {
 		Thread.sleep(2000);
 		
 		driver.findElement(By.xpath("html/body/div[1]/header/div[1]/div/div/div[3]/md-menu/button")).sendKeys(Keys.ENTER);
-		//driver.findElement(By.xpath("//div[3]/md-menu/button")).sendKeys(Keys.ENTER);
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("html/body/div[6]/md-menu-content/md-menu-item[1]/a/span")));
+		//WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("html/body/div[6]/md-menu-content/md-menu-item[1]/a/span")));
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("My Account")));
 		element.click();
 		log.log(Level.INFO, "Get current title:" + driver.getTitle());
 		assertEquals("Manage Account", driver.getTitle());
