@@ -1,6 +1,7 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
