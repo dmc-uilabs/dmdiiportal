@@ -4,6 +4,14 @@
 		<!--project-->
 		<md-content class="project">
 			<!--project header-->
+			<div layout="row" layout-align="end">
+				<md-button ng-if="userData.isDmdiiAdmin"
+						   class="md-raised dmc-button"
+						   href="edit-project-page.php#/{{project.id}}/edit">
+					Edit DMDII Project
+				</md-button>
+			</div>
+
 			<div class="project-header bottom20">
 				<div layout="column">
 					<div layout="row" layout-align="start start">
@@ -38,10 +46,10 @@
 				                        <tbody>
 				                        <tr>
 				                            <td>
-				                                <h4 class="no-top no-bottom">{{project.dmdii_funding}}</h4>
+				                                <h4 class="no-top no-bottom">{{project.dmdiiFunding}}</h4>
 				                            </td>
 											<td>
-												<h4 class="no-top no-bottom">{{project.cost_share}}</h4>
+												<h4 class="no-top no-bottom">{{project.costShare}}</h4>
 											</td>
 										</tr>
 				                        </tbody>

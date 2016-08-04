@@ -75,8 +75,8 @@
       "name": "Advanced Manufacturing Enterprise",
       "code": "AME"
     },
-    "dmdii_funding": 2500,
-    "cost_share": 1260,
+    "dmdiiFunding": 2500,
+    "costShare": 1260,
     "updates": [
         {
             "date": "2016-07-05",
@@ -260,8 +260,8 @@
       "name": "AVM",
       "code": "IM"
     },
-    "dmdii_funding": 2500,
-    "cost_share": 1260,
+    "dmdiiFunding": 2500,
+    "costShare": 1260,
     "updates": [
         {
             "date": "2016-07-05",

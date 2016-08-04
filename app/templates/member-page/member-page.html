@@ -5,7 +5,7 @@
 		<md-content class="member">
 
 			<div layout="row" layout-align="end">
-				<md-button ng-if="company.isOwner || user.isDmdiiAdmin"
+				<md-button ng-if="userData.isAdmin || userData.isDmdiiAdmin"
 						   class="md-raised dmc-button"
 						   href="edit-member-page.php#/{{member.id}}/edit">
 					Edit DMDII Member Profile
