@@ -109,7 +109,7 @@ public abstract class BaseTest {
 		driver.findElement(By.xpath("html/body/div[1]/header/div[1]/div/div/div[3]/md-menu/button")).sendKeys(Keys.ENTER);
 		//driver.findElement(By.xpath("//div[3]/md-menu/button")).sendKeys(Keys.ENTER);;
 		//driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
-		WebElement logout = driver.findElement(By.xpath("//md-menu-item[4]/button"));
+		WebElement logout = driver.findElement(By.xpath("//md-menu-item[5]/button"));
 		logout.sendKeys(Keys.ENTER);
 
 		// login
