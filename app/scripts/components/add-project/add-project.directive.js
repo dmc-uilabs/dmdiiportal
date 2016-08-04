@@ -239,6 +239,7 @@ angular.module('dmc.add_project.directive', [
             controller: function ($scope, ajax, dataFactory) {
                 DMCMemberModel.getMembers().then(
                     function(data){
+                        $scope.allMembers = data;
                         $scope.foundMembers = data;
                         isInvite();
                     },
@@ -323,6 +324,12 @@ angular.module('dmc.add_project.directive', [
                         });
                 };
 
+                $scope.resetMembers = function(){
+                    console.log("add-project.directive.resetMembers:");
+                    $scope.foundMembers = $scope.allMembers;
+                    $scope.searchModel = "";
+                    isInvite();
+                };
 
                 $scope.addToInvitation = function(item){
                     var found = false;
