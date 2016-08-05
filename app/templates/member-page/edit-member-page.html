@@ -113,35 +113,35 @@
         <div layout="column">
             <div layout="row" ng-if="user.isAdmin || user.isDmdiiAdmin">
                 <md-autocomplete flex="33"
-                    md-input-name="areasOfExpertise"
-                    md-items="area in queryAreaSearch(searchArea)"
-                    md-search-text="searchArea"
-                    md-selected-item="selectedArea"
-                    md-selected-item-change="addArea(selectedArea)"
-                    md-item-text="area.name"
+                    md-input-name="coreCpabilites"
+                    md-items="tag in queryTagSearch(searchWellTag)"
+                    md-search-text="searchWellTag"
+                    md-selected-item="selectedWellTag"
+                    md-selected-item-change="addWellTag(selectedWellTag)"
+                    md-item-text="Tag.name"
                     md-floating-label="Core Capabilities">
                     <md-item-template>
-                      <span md-highlight-text="searchArea">{{area.name}}</span>
+                      <span md-highlight-text="searchWellTag">{{tag.name}}</span>
                     </md-item-template>
                     <md-not-found>
-                      No Areas of Expertise matching "{{searchArea}}" were found.
+                      No Tags matching "{{searchWellTag}}" were found.
                     </md-not-found>
                 </md-autocomplete>
                 <span flex></span>
 
                 <md-autocomplete flex="33"
-                    md-input-name="sector"
-                    md-items="sector in querySectorSearch(searchSector)"
-                    md-search-text="searchSector"
-                    md-selected-item="selectedSector"
-                    md-selected-item-change="addSector(selectedSector)"
-                    md-item-text="sector.name"
+                    md-input-name="seeking"
+                    md-items="tag in queryTagSearch(searchSeekTag)"
+                    md-search-text="searchSeekTag"
+                    md-selected-item="selectedSeekTag"
+                    md-selected-item-change="addSeekTag(selectedSeekTag)"
+                    md-item-text="tag.name"
                     md-floating-label="Seeking Collaboration">
                     <md-item-template>
-                      <span md-highlight-text="searchSector">{{sector.name}}</span>
+                      <span md-highlight-text="searchSeekTag">{{tag.name}}</span>
                     </md-item-template>
                     <md-not-found>
-                      No Sectors matching "{{searchSector}}" were found.
+                      No Tags matching "{{searchSeekTag}}" were found.
                     </md-not-found>
                 </md-autocomplete>
             </div>

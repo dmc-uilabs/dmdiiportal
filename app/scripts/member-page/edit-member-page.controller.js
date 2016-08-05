@@ -129,52 +129,45 @@ angular.module('dmc.edit-member')
                     }
                 }
             }
+
+            var tagCallbackFunction = function(response) {
+                $scope.dmdiiMemberTags = response.data;
+            }
+
+            $scope.getTags = function() {
+                ajax.get(dataFactory.getDmdiiMemberTags(), {}, tagCallbackFunction)
+            }
             //areas of expertise and sector tags
-            $scope.searchArea = null;
-            $scope.searchSector = null;
-            $scope.areasOfExpertiseTags = [
-                {name: "computers"},
-                {name: "cars"},
-                {name: "Turbines"}
-            ]
-            $scope.sectorTags = [
-                {name: "private"},
-                {name: "public"}
-            ]
-            $scope.selectedArea = null;
-            $scope.selectedSector = null;
+            $scope.searchWellTag = null;
+            $scope.selectedWellTag = null;
+
+            $scope.searchSeekTag = null;
+            $scope.selectedSeekTag = null;
 
 
-            $scope.queryAreaSearch = function(query) {
-                var results = query ? $scope.areasOfExpertiseTags.filter( createFilterFor(query) ) : $scope.areasOfExpertiseTags;
+            $scope.queryTagSearch = function(query) {
+                var results = query ? $scope.dmdiiMemberTags.filter( createFilterFor(query) ) : $scope.dmdiiMemberTags;
                 var deferred = $q.defer();
                 $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
                 return deferred.promise;
             }
-            $scope.removeArea = function(index) {
+            $scope.removeWellTag = function(index) {
                 $scope.company.areasOfExpertise.splice(index, 1);
             }
 
-            $scope.addArea = function(area) {
-                if (area && $scope.company.areasOfExpertise.indexOf(area) === -1) {
-                    $scope.company.areasOfExpertise.push(area);
-                }
-            }
-
-            $scope.querySectorSearch = function(query) {
-                var results = query ? $scope.sectorTags.filter( createFilterFor(query) ) : $scope.sectorTags;
-                var deferred = $q.defer();
-                $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-                return deferred.promise;
-            }
-
-            $scope.removeSector = function(index) {
+            $scope.removeSeekTag = function(index) {
                 $scope.company.sector.splice(index, 1);
             }
 
-            $scope.addSector = function(sector) {
-                if (sector && $scope.company.sector.indexOf(sector) === -1) {
-                    $scope.company.sector.push(sector);
+            $scope.addWellTag = function(tag) {
+                if (tag && $scope.company.areasOfExpertise.indexOf(tag) === -1) {
+                    $scope.company.areasOfExpertise.push(tag);
+                }
+            }
+
+            $scope.addSeekTag = function(tag) {
+                if (tag && $scope.company.sector.indexOf(tag) === -1) {
+                    $scope.company.sector.push(tag);
                 }
             }
 
