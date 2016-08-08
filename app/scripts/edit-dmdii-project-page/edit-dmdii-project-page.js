@@ -35,7 +35,7 @@ angular.module('dmc.edit-project', [
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('edit-project-page', {
         url: '/:projectId/edit',
-        templateUrl: 'templates/dmdii-project-page/edit-dmdii-project-page.html',
+        templateUrl: 'templates/edit-dmdii-project-page/edit-dmdii-project-page.html',
         controller: 'DMCEditProjectPageController',
         resolve: {
             is_search: function() {
@@ -45,7 +45,7 @@ angular.module('dmc.edit-project', [
     })
     .state('create-project-page', {
         url: '/',
-        templateUrl: 'templates/dmdii-project-page/edit-dmdii-project-page.html',
+        templateUrl: 'templates/edit-dmdii-project-page/edit-dmdii-project-page.html',
         controller: 'DMCEditProjectPageController',
         resolve: {
             is_search: function() {

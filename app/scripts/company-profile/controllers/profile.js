@@ -177,12 +177,15 @@ angular.module('dmc.company-profile')
                     } else {
                         $scope.company.unverifiedMembers.push(member);
                     }
-                })
+                });
                 // $scope.company.members = data;
                 apply();
             };
 
-            ajax.get(dataFactory.getUsersByOrganization($scope.company.id, {}, callbackMembers);
+            $scope.getCompanyMembers = function() {
+                ajax.get(dataFactory.getUsersByOrganization($scope.company.id), {}, callbackMembers);
+            }
+            $scope.getCompanyMembers();
 
             // get company history
             var callbackPublicHistory = function(data){

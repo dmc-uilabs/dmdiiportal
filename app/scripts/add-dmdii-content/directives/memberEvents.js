@@ -23,28 +23,28 @@ angular.module('dmc.addDmdiiContent').
                 };
 
                 $scope.$watch('event', function() {
-                    if ($scope.noTitle && angular.isDefined($scope.event.event_title) && $scope.event.event_title.length > 0) {
+                    if ($scope.noTitle && angular.isDefined($scope.event.title) && $scope.event.title.length > 0) {
                         $scope.noTitle = false;
                     }
 
-                    if ($scope.noDateSelected && angular.isDefined($scope.event.event_date)) {
+                    if ($scope.noDateSelected && angular.isDefined($scope.event.date)) {
                         $scope.noDateSelected = false;
                     }
 
-                    if ($scope.noDescription && angular.isDefined($scope.event.event_description) && $scope.event.event_description.length > 0) {
+                    if ($scope.noDescription && angular.isDefined($scope.event.description) && $scope.event.description.length > 0) {
                         $scope.noDescription = false;
                     }
                 }, true);
 
                 $scope.save = function() {
 
-                    if (!$scope.event.event_title) {
+                    if (!$scope.event.title) {
                         $scope.noTitle = true;
                     }
-                    if (!$scope.event.event_date) {
+                    if (!$scope.event.date) {
                         $scope.noDateSelected = true;
                     }
-                    if (!$scope.event.event_description) {
+                    if (!$scope.event.description) {
                         $scope.noDescription = true;
                     }
 

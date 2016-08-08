@@ -25,7 +25,7 @@
 		<div layout="column" flex="33">
 	        <md-input-container>
 	            <label>Title</label>
-	            <input ng-model="news.news_title" ng-required="true"/>
+	            <input ng-model="news.title" ng-required="true"/>
 	        </md-input-container>
 			<div ng-show="noTitle">
 				<p class="slim-margin error">You <b>must</b> enter a title</p>
@@ -37,7 +37,7 @@
 		<div layout="column" flex="50">
 	        <md-input-container>
 	            <label>Content</label>
-	            <textarea type="text" ng-model="news.news_content" ng-required="true"/>
+	            <textarea type="text" ng-model="news.content" ng-required="true"/>
 	        </md-input-container>
 			<div ng-show="noContent">
 				<p class="slim-margin error">You <b>must</b> enter some content</p>

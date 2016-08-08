@@ -35,7 +35,7 @@ angular.module('dmc.edit-member', [
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('edit-member-page', {
         url: '/:memberId/edit',
-        templateUrl: 'templates/member-page/edit-member-page.html',
+        templateUrl: 'templates/edit-member-page/edit-member-page.html',
         controller: 'DMCEditMemberPageController',
         resolve: {
             is_search: function() {
@@ -45,7 +45,7 @@ angular.module('dmc.edit-member', [
     })
     .state('create-member-page', {
         url: '/',
-        templateUrl: 'templates/member-page/edit-member-page.html',
+        templateUrl: 'templates/edit-member-page/edit-member-page.html',
         controller: 'DMCEditMemberPageController',
         resolve: {
             is_search: function() {

@@ -58,7 +58,7 @@ angular.module('dmc.dmdiiProjects')
                     $scope.getDmdiiProjects();
                 }
             });
-
+            
             $scope.showArray = [
                 {
                     id : 1, val:12, name: '12 items'
@@ -130,7 +130,7 @@ angular.module('dmc.dmdiiProjects')
             };
 
             var eventsCallbackFunction = function(response) {
-                $scope.events = response.data;
+                $scope.events = response.data || [];
             }
             $scope.getEvents = function(){
                 ajax.get(dataFactory.getDMDIIProject().events, {limit: 3}, eventsCallbackFunction);
@@ -270,7 +270,7 @@ angular.module('dmc.dmdiiProjects')
             var callbackLinksFunction = function(response) {
                 $scope.docs = response.data;
             }
-            
+
             $scope.getQuickLinks = function() {
                 ajax.get(dataFactory.getQuickLinks().all, {limit: 7}, callbackLinksFunction)
             }
