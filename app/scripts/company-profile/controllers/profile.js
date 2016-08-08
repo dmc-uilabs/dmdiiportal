@@ -172,7 +172,7 @@ angular.module('dmc.company-profile')
                 $scope.company.unverifiedMembers = [];
 
                 angular.forEach(response.data, function(member) {
-                    if (member.isVerified) {
+                    if (angular.isDefined(member.roles[$scope.company.id])) {
                         $scope.company.verifiedMembers.push(member);
                     } else {
                         $scope.company.unverifiedMembers.push(member);
@@ -181,7 +181,8 @@ angular.module('dmc.company-profile')
                 // $scope.company.members = data;
                 apply();
             };
-            ajax.get(dataFactory.getMembersUrl(), {}, callbackMembers);
+
+            ajax.get(dataFactory.getUsersByOrganization($scope.company.id, {}, callbackMembers);
 
             // get company history
             var callbackPublicHistory = function(data){
