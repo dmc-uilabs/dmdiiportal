@@ -673,7 +673,7 @@ angular.module('dmc.data',[])
                     remove_tags : localhost + 'service_tags/' + id,
                     update_tag : localhost + 'service_tags/' + id,
                     get_history : localhost + name + '/' + id + '/services_history',
-                    get_run_history : localhost + name + '/' + id + '/service_runs',
+                    get_run_history : localhost + 'service_runs' + '?serviceId=' + id,
                     get_servers : localhost + 'account_servers',
                     add_servers : localhost + 'services_servers',
                     get_images : localhost + name + '/' + id + '/service_images',

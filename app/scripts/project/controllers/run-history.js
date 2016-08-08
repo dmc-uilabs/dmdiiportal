@@ -82,7 +82,6 @@ angular.module('dmc.project')
             };
 
             $http.get(dataFactory.services($scope.history.serviceId).get_position_inputs).then(function(response){
-                console.log(response);
                 if(response.data && response.data.length > 0){
                     $scope.history.position_inputs = response.data[0];
                     updatePositionInputs();
