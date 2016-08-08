@@ -1,9 +1,33 @@
 <div ng-if="!not_found" class="edit-member-page">
     <md-content class="company-profile-padding">
-        <div layout="row" layout-align="end start">
-            <md-button class="md-raised cancel-button" ng-click="cancelChanges()">Cancel</md-button>
-            <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!isDataChanged">Save</md-button>
+        <div layout="row">
+            <div layout="row" layout-align="start start" flex="50">
+                <h2>{{title}}</h2>
+            </div>
+
+            <div layout="row" flex="50" layout-align="end start">
+                <md-button class="md-raised cancel-button" ng-click="cancelChanges()">Cancel</md-button>
+                <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!isDataChanged">Save</md-button>
+            </div>
         </div>
+
+        <div layout="row" ng-show="!company">
+            <md-autocomplete flex="33"
+                md-input-name="organizations"
+                md-items="org in queryOrgSearch(searchOrg)"
+                md-search-text="searchOrg"
+                md-item="selectedOrg"
+                md-item-text="org.name"
+                md-floating-label="Organization">
+                <md-item-template>
+                  <span md-highlight-text="searchOrg">{{org.name}}</span>
+                </md-item-template>
+                <md-not-found>
+                  No Organizations matching "{{searchOrg}}" were found.
+                </md-not-found>
+            </md-autocomplete>
+        </div>
+
         <div layout="row">
             <div layout="column" class="logo-column" ng-show="!changingLogo">
                 <div class="profile-logo">
@@ -82,7 +106,7 @@
             </div>
         </div>
         <div layout="row">
-            <md-input-container flex class="company-descriptionOrganization" md-no-float>
+            <md-input-container flex class="company-description" md-no-float>
                 <textarea ng-model="company.organization.description"
                           columns="1"
                           ng-change="changedValue('description')"
