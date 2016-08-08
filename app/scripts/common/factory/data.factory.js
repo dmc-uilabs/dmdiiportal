@@ -441,6 +441,18 @@ angular.module('dmc.data',[])
             createStorefrontMessage: function(){
                 return localhost+'messages';
             },
+            userRole: function() {
+                return localhost + 'dmdiiaccess/role';
+            },
+            generateToken: function() {
+                return localhost + 'user/createtoken';
+            },
+            validateToken: function() {
+                return localhost + 'user/verify';
+            },
+            getDmdiiMemberTags: function(){
+                return localhost + 'dmdiiTag'
+            },
             getDMDIIMember: function(id) {
                 return {
                     get: localhost+'dmdiiMember/'+ id,
@@ -874,6 +886,12 @@ angular.module('dmc.data',[])
             },
             getUserUrl: function(){
                 return localhost+'user';
+            },
+            userAccount: function(id){
+                return {
+                    get: localhost + 'user/' + id,
+                    save: localhost + 'user/save'
+                }
             },
             getOnboardingBasicInfoUrl: function() {
                 return localhost+'user-basic-information'

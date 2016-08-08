@@ -41,6 +41,7 @@
 <script src="scripts/components/product-card/product-card.js"></script>
 <script src="scripts/components/products-card/products-card.js"></script>
 <script src="scripts/components/members-card/members-card.js"></script>
+<script src="scripts/components/token-modal/token-modal.controller.js"></script>
 <script src="scripts/common/models/toast-model.js"></script>
 <script src="scripts/common/models/user-model.js"></script>
 <script src="scripts/common/models/question-toast-model.js"></script>

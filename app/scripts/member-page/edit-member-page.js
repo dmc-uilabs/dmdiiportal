@@ -42,6 +42,16 @@ angular.module('dmc.edit-member', [
                 return false;
             }
         }
+    })
+    .state('create-member-page', {
+        url: '/',
+        templateUrl: 'templates/member-page/edit-member-page.html',
+        controller: 'DMCEditMemberPageController',
+        resolve: {
+            is_search: function() {
+                return false;
+            }
+        }
     });
-    $urlRouterProvider.otherwise('/edit_member_page');
+    $urlRouterProvider.otherwise('/');
 });
