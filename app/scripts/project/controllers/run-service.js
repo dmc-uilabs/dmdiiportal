@@ -342,7 +342,7 @@ angular.module('dmc.project')
             }
 
             // service is still running
-            if ($scope.service.currentStatus.status == 0) {
+            if ($scope.service.currentStatus && $scope.service.currentStatus.status == 0) {
                 updateStatusAndPoll($scope.service.currentStatus.id);
             }
         }

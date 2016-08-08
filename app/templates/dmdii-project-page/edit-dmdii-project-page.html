@@ -1,0 +1,206 @@
+<div ng-if="!not_found" class="edit-project-page">
+    <md-content class="project-profile-padding">
+        <div layout="row">
+            <div layout="row" layout-align="start start" flex="50">
+                <h2>{{title}}</h2>
+            </div>
+
+            <div layout="row" flex="50" layout-align="end start">
+                <md-button class="md-raised cancel-button" ng-click="cancelChanges()">Cancel</md-button>
+                <md-button class="md-raised md-primary save-button" ng-click="saveChanges()">Save</md-button>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div layout="column" flex class="inputs-top">
+                <div layout="row">
+                    <md-input-container flex="15" class="project-root" md-no-float>
+                        <input ng-model="project.rootNumber"
+                               ng-disabled="!user.isDmdiiAdmin"
+                               placeholder="Root Number">
+                    </md-input-container>
+
+                    <md-input-container flex="15" class="project-call" md-no-float>
+                        <input ng-model="project.callNumber"
+                               ng-disabled="!user.isDmdiiAdmin"
+                               placeholder="Call Number">
+                    </md-input-container>
+
+                    <md-input-container flex="10" class="project-number" md-no-float>
+                        <input ng-model="project.projectNumber"
+                               ng-disabled="!user.isDmdiiAdmin"
+                               placeholder="Number">
+                    </md-input-container>
+
+                    <md-input-container flex="15" class="project-cost-share" md-no-float>
+                        <input ng-model="project.costShare"
+                               ng-disabled="!user.isDmdiiAdmin"
+                               placeholder="Cost Share">
+                    </md-input-container>
+
+                    <md-input-container flex="15" class="project-dmdii-funding" md-no-float>
+                        <input ng-model="project.dmdiiFunding"
+                               ng-disabled="!user.isDmdiiAdmin"
+                               placeholder="DMDII Funding">
+                    </md-input-container>
+                </div>
+
+                <div layout="row">
+                    <md-input-container flex="35" class="project-name" md-no-float>
+                        <input ng-model="project.projectTitle"
+                               ng-disabled="!user.isDmdiiAdmin"
+                               placeholder="Title">
+                    </md-input-container>
+
+                    <md-input-container flex="35" class="project-status" md-no-float>
+                        <md-select ng-model="project.projectStatus.id"
+                        ng-disabled="!user.isDmdiiAdmin"
+                        placeholder="Status">
+                        <md-option ng-value="key" ng-repeat="(key, value) in statuses">{{value}}</md-option>
+                    </md-input-container>
+                </div>
+
+                <div layout="row">
+                    <md-input-container flex="35" class="project-award-date" md-no-float>
+                        <input ng-model="project.awardedDate"
+                        ng-disabled="!user.isDmdiiAdmin"
+                        placeholder="Award Date">
+                    </md-input-container>
+
+                    <md-input-container flex="35" class="project-end-date" md-no-float>
+                        <input ng-model="project.endDate"
+                        ng-disabled="!user.isDmdiiAdmin"
+                        placeholder="End Date">
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row">
+            <md-input-container flex="70" class="project-Summary" md-no-float>
+                <textarea ng-model="project.projectSummary"
+                          columns="1"
+                          ng-disabled=" !user.isDmdiiAdmin"
+                          md-maxlength="1000"
+                          placeholder="Summary of Project"></textarea>
+            </md-input-container>
+        </div>
+
+        <div layout="row">
+            <md-input-container flex="35" class="project-focus-area" md-no-float>
+                <md-select ng-model="project.projectFocusArea.id"
+                    ng-disabled="!user.isDmdiiAdmin"
+                    placeholder="Focus Area">
+                    <md-option ng-value="key" ng-repeat="(key, value) in focusAreas">{{value}}</md-option>
+            </md-input-container>
+
+            <md-input-container flex="35" class="project-thrust" md-no-float>
+                <md-select ng-model="project.projectThrust.id"
+                    ng-disabled="!user.isDmdiiAdmin"
+                    placeholder="Thrust Area">
+                    <md-option ng-value="key" ng-repeat="(key, value) in thrustAreas">{{value}}</md-option>
+            </md-input-container>
+        </div>
+
+        <div layout="column">
+            <md-autocomplete flex="33" ng-show="user.isDmdiiAdmin"
+                md-input-name="organizations"
+                md-items="org in queryOrgSearch(searchOrg)"
+                md-search-text="searchOrg"
+                md-selected-item="selectedOrg"
+                md-item-text="org.name"
+                md-selected-item-change="setPrimeOrg(selectedOrg)"
+                md-floating-label="Prime Oganization">
+                <md-item-template>
+                  <span md-highlight-text="searchOrg">{{org.name}}</span>
+                </md-item-template>
+                <md-not-found>
+                  No Organizations matching "{{searchOrg}}" were found.
+                </md-not-found>
+            </md-autocomplete>
+
+            <span flex></span>
+
+            <div layout="row" ng-show="user.isDmdiiAdmin">
+                <md-autocomplete flex="33"
+                    md-input-name="organizations"
+                    md-items="org in queryOrgSearch(searchContOrg)"
+                    md-search-text="searchContOrg"
+                    md-selected-item="selectedContOrg"
+                    md-item-text="org.name"
+                    md-selected-item-change="addContributor(selectedContOrg)"
+                    md-floating-label="Contributing Company">
+                    <md-item-template>
+                      <span md-highlight-text="searchContOrg">{{org.name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                      No Organizations matching "{{searchContOrg}}" were found.
+                    </md-not-found>
+                </md-autocomplete>
+            </div>
+        </div>
+
+        <span flex></span>
+
+        <div layout="row" layout-wrap flex="33">
+            <div layout="column">
+                <span class="no-bottom" flex>Selected Contributors (Click Company to remove)</span>
+                <div layout="row" layout-wrap>
+                    <md-chips ng-repeat="company in project.contributingCompanies track by $index">
+                        <md-chip ng-click="(user.isDmdiiAdmin) && removeCont($index)">
+                            <span>{{company.name}}</span>
+                        </md-chip>
+                    </md-chips>
+                </div>
+            </div>
+        </div>
+
+        <div layout="column" ng-show="user.isDmdiiAdmin">
+            <h3 class="no-bottom">Principal Investigator</h3>
+            <div layout="row">
+                <div layout="column" flex="20">
+                    <md-input-container>
+                        <label>First Name</label>
+                        <input id="contactFirstName"
+                            ng-model="project.principalInvestigator.firstName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Last Name</label>
+                        <input id="contactLastName"
+                            ng-model="project.principalInvestigator.lastName">
+                    </md-input-container>
+                    <md-input-container md-no-float>
+                        <label>Email</label>
+                        <input id="contactEmail"
+                            ng-model="project.principalInvestigator.email">
+                    </md-input-container>
+                </div>
+                <span flex></span>
+            </div>
+        </div>
+
+        <div layout="column" ng-show="user.isDmdiiAdmin">
+            <h3 class="no-bottom">Primary Point of Contact</h3>
+            <div layout="row">
+                <div layout="column" flex="20">
+                    <md-input-container>
+                        <label>First Name</label>
+                        <input id="contactFirstName"
+                            ng-model="project.primaryPointOfContact.firstName">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Last Name</label>
+                        <input id="contactLastName"
+                            ng-model="project.primaryPointOfContact.lastName">
+                    </md-input-container>
+                    <md-input-container md-no-float>
+                        <label>Email</label>
+                        <input id="contactEmail"
+                            ng-model="project.primaryPointOfContact.email">
+                    </md-input-container>
+                </div>
+                <span flex></span>
+            </div>
+        </div>
+    </md-content>
+</div>

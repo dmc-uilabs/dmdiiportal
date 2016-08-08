@@ -68,6 +68,9 @@ angular.module('dmc.project')
                     case "InProgress":
                         newStatus = "Completed";
                         break;
+                    case "Closed":
+                        newStatus = "Open";
+                        break;
                     default:
                         break;
                 }

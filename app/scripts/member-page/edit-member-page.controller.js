@@ -70,7 +70,10 @@ angular.module('dmc.edit-member')
 
             $scope.getDMDIIMember = function(){
                 if ($stateParams.memberId) {
+                    $scope.title = 'Edit Member';
                     ajax.get(dataFactory.getDMDIIMember($stateParams.memberId).get, responseData(), callbackFunction);
+                } else {
+                    $scope.title = 'Create Member';
                 }
             };
             $scope.getDMDIIMember();
