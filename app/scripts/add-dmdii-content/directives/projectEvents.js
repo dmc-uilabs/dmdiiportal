@@ -12,15 +12,15 @@ angular.module('dmc.addDmdiiContent').
 
 
                 $scope.$watch('event', function() {
-                    if ($scope.noTitle && angular.isDefined($scope.event.event_title) && $scope.event.event_title.length > 0) {
+                    if ($scope.noTitle && angular.isDefined($scope.event.eventTitle) && $scope.event.eventTitle.length > 0) {
                         $scope.noTitle = false;
                     }
 
-                    if ($scope.noDateSelected && angular.isDefined($scope.event.event_date)) {
+                    if ($scope.noDateSelected && angular.isDefined($scope.event.eventDate)) {
                         $scope.noDateSelected = false;
                     }
 
-                    if ($scope.noDescription && angular.isDefined($scope.event.event_description) && $scope.event.event_description.length > 0) {
+                    if ($scope.noDescription && angular.isDefined($scope.event.eventDescription) && $scope.event.eventDescription.length > 0) {
                         $scope.noDescription = false;
                     }
                 }, true);
@@ -48,22 +48,22 @@ angular.module('dmc.addDmdiiContent').
 
                 $scope.save = function() {
 
-                    if (!$scope.event.event_title) {
+                    if (!$scope.event.eventTitle) {
                         $scope.noTitle = true;
                     }
-                    if (!$scope.event.event_date) {
+                    if (!$scope.event.eventDate) {
                         $scope.noDateSelected = true;
                     }
-                    if (!$scope.event.event_description) {
+                    if (!$scope.event.eventDescription) {
                         $scope.noDescription = true;
                     }
 
                     if ( $scope.noTitle || $scope.noDateSelected || $scope.noDescription) {
                         return;
                     }
-                    if ($scope.selectedItem) {
-                        $scope.news.project_id = $scope.selectedItem.id;
-                    }
+                    // if ($scope.selectedItem) {
+                    //     $scope.event.projectId = $scope.selectedItem.id;
+                    // }
 
                     ajax.create(dataFactory.saveDMDIIProject().events, $scope.event, eventCallback);
                 };

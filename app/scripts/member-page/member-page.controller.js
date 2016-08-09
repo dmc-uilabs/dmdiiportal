@@ -54,7 +54,6 @@ angular.module('dmc.member')
                 $scope.downloadData = start;
             };
 
-
             var getProjects = function() {
             }
 

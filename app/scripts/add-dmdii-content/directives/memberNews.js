@@ -18,21 +18,21 @@ angular.module('dmc.addDmdiiContent').
                 };
 
                 $scope.$watch('news', function() {
-                    if ($scope.noTitle && angular.isDefined($scope.news.news_title) && $scope.news.news_title.trim().length > 0) {
+                    if ($scope.noTitle && angular.isDefined($scope.news.title) && $scope.news.title.trim().length > 0) {
                         $scope.noTitle = false;
                     }
 
-                    if ($scope.noContent && angular.isDefined($scope.news.news_content) && $scope.news.news_content.trim().length > 0) {
+                    if ($scope.noContent && angular.isDefined($scope.news.content) && $scope.news.content.trim().length > 0) {
                         $scope.noContent = false;
                     }
                 }, true);
 
                 $scope.save = function() {
-                    if (!$scope.news.news_title) {
+                    if (!$scope.news.title) {
                         $scope.noTitle = true;
                     }
 
-                    if (!$scope.news.news_content) {
+                    if (!$scope.news.content) {
                         $scope.noContent = true;
                     }
 

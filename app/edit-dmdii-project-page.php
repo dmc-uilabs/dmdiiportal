@@ -20,7 +20,7 @@
 
 <?php include 'build-vendor.php' ?>
 
-<!-- build:js scripts/company-profile/index.js -->
+<!-- build:js scripts/edit-dmdii-project-page/index.js -->
 <script src="scripts/socket/socket.io.js"></script>
 <script src="scripts/configs/ngMaterial-config.js"></script>
 <script src="scripts/common/header/header.js"></script>
@@ -44,8 +44,8 @@
 <script src="scripts/common/models/question-toast-model.js"></script>
 <script src="scripts/common/models/user-model.js"></script>
 <script src="scripts/common/models/zipcode-model.js"></script>
-<script src="scripts/dmdii-project-page/edit-dmdii-project-page.js"></script>
-<script src="scripts/dmdii-project-page/edit-dmdii-project-page.controller.js"></script>
+<script src="scripts/edit-dmdii-project-page/edit-dmdii-project-page.js"></script>
+<script src="scripts/edit-dmdii-project-page/edit-dmdii-project-page.controller.js"></script>
 
 <!-- endbuild -->
 <script type="text/javascript">
