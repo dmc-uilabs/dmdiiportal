@@ -454,7 +454,7 @@ angular.module('dmc.data',[])
                 return localhost + 'dmdiiTag'
             },
             getUsersByOrganization: function(id) {
-                    return localhost + "/user/organization/" + id
+                    return localhost + 'user/organization/' + id
             },
             getDMDIIMember: function(id) {
                 return {

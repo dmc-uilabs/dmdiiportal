@@ -11,7 +11,7 @@
 	<div layout layout-align="center center">
 		<div flex="50">
 			<img ng-if="cardSource.image" ng-src="{{cardSource.image}}">
-			<img ng-if="!cardSource.image" ng-src=""
+			<img ng-if="!cardSource.image" ng-src="/uploads/profile/1/20151222084711000000.jpg">
 		</div>
 	</div>
 	<div layout="column" class="info">
@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="description">
-		{{cardSource.description}}
+		{{cardSource.aboutMe}}
 	</div>
 
 	<div class="footer" layout="row" >
@@ -35,7 +35,7 @@
 	        Add to Project
 	    </md-button>
 
-		<md-button ng-click="generateToken()" ng-hide="cardSource.isVerified" class="white-button" aria-label="Verify" flex>
+		<md-button ng-click="generateToken()" ng-hide="cardSource.roles[companyId]" class="white-button" aria-label="Verify" flex>
 	        Verify
 	    </md-button>
 

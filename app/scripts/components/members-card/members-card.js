@@ -9,6 +9,7 @@ angular.module('dmc.component.members-card', [
 		replace: true,
 		scope: {
 			cardSource: '=',
+			companyId: '='
 		},
 		templateUrl: 'templates/components/members-card/members-card.html',
 		controller: ['$scope', '$mdDialog', 'ajax', 'dataFactory', 'DMCUserModel', function($scope, $mdDialog, ajax, dataFactory, DMCUserModel){
@@ -73,34 +74,25 @@ angular.module('dmc.component.members-card', [
                 }
             };
 
-			$scope.roles = [
-				{
-					id: 2,
-					name: 'Admin'
-				},
-				{
-					id: 3,
-					name: 'VIP'
-				},
-				{
-					id: 4,
-					name: 'Member'
-				}
-			]
+			$scope.roles = {
+				2: 'Admin',
+				3: 'VIP',
+				4: 'Member'
+			}
 
-			var getUserRoleCallback = function(response) {
-				console.log(response.data)
-				$scope.isMember = false;
-				angular.forEach(response.data, function(role) {
-					if(role.organizationId === $scope.$root.userData.companyId) {
-						$scope.isMember = true;
-					}
-				})
+			if (angular.isDefined($scope.cardSource.roles[$scope.companyId])) {
+				switch ($scope.cardSource.roles[$scope.companyId]) {
+					case 'ADMIN':
+						$scope.roleId = 2;
+						break;
+					case 'VIP':
+						$scope.roleId = 3;
+						break;
+					case 'MEMBER':
+						$scope.roleId = 4;
+						break;
+				}
 			}
-			$scope.getUserRole = function() {
-				ajax.get(dataFactory.userRole(), {dmdiiMemberId: $scope.cardSource.id}, getUserRoleCallback);
-			}
-			$scope.getUserRole();
 
 			$scope.setRole = function() {
                 $scope.settingRole = true;
@@ -116,7 +108,7 @@ angular.module('dmc.component.members-card', [
 			$scope.saveMember = function() {
 				var role = {
 					userId: $scope.cardSource.id,
-					organizationId: $scope.cardSource.companyId,
+					organizationId: $scope.cardSource.$scope.companyId,
 					roleId: $scope.roleId
 				}
 				$scope.addingMember = false;

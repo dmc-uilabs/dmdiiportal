@@ -59,7 +59,8 @@ server.use(jsonServer.rewriter({
     '/resource/bay/:id' : '/resource_bays/:id',
     '/resource/machine/:id' : '/resource_machines/:id',
     '/user/:id' : '/user-account/:id',
-    '/user/save': '/user-account'
+    '/user/save': '/user-account',
+    '/user/organization/:id': '/userByOrganization/:id'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 
