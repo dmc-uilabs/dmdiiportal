@@ -508,10 +508,10 @@ angular.module('dmc.data',[])
                 return localhost + 'dmdiidocument'
             },
             getDocumentTags: function() {
-                return localhost + 'documents/tags'
+                return localhost + 'dmdiidocuments/getAllTags'
             },
             createDocumentTag: function() {
-                return localhost + 'documents/tags'
+                return localhost + 'dmdiidocuments/saveDocumentTag'
             },
             // companies ------------------
             companyURL: function(id){

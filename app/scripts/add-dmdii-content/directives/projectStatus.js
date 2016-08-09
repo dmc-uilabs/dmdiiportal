@@ -29,9 +29,10 @@ angular.module('dmc.addDmdiiContent').
                     }
 
                     //send to s3, save returned link to document table
-                    fileUpload.uploadFileToUrl($scope.doc[0].file, function(response) {
-                        $scope.document.path = response.file.name
-                        $scope.document.fileType = 0;
+                    fileUpload.uploadFileToUrl($scope.doc[0].file, {}, 'projectStatus', function(response) {
+                        $scope.document.documentUrl = response.file.name;
+                        $scope.document.documentName = 'projectStatus';
+                        $scope.document.fileType = 2;
 
                         ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);
                     });
