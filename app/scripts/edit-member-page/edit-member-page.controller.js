@@ -31,9 +31,35 @@ angular.module('dmc.edit-member')
                 $scope.user = res;
             });
 
+            $scope.getOrganizations = function() {
+                if (!$stateParams.memberId) {
+                    ajax.get(dataFactory.companyURL().all, {}, function(response) {
+                        $scope.organizations = response.data;
+                    });
+                    $scope.company = {
+                        dmdiiType: {},
+                        contacts: [],
+                        awards: [],
+                        areasOfExpertise: [],
+                        sectors: []
+                    };
+                }
+            }
+            $scope.getOrganizations();
+
+            $scope.queryOrgSearch = function(query) {
+                var results = query ? $scope.organizations.filter( createFilterFor(query) ) : $scope.organizations;
+                var deferred = $q.defer();
+                $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+                return deferred.promise;
+            }
             // callback for member
             var callbackFunction = function(response){
               $scope.company = response.data;
+              $scope.companyType = {
+                  tier: $scope.company.dmdiiType.tier,
+                  category: $scope.company.dmdiiTypeCategory.id
+              }
               $scope.memberLoading = false;
             };
 
@@ -43,58 +69,108 @@ angular.module('dmc.edit-member')
             };
 
             $scope.getDMDIIMember = function(){
-              ajax.get(dataFactory.getDMDIIMember($stateParams.memberId).get, responseData(), callbackFunction);
+                if ($stateParams.memberId) {
+                    $scope.title = 'Edit Member';
+                    ajax.get(dataFactory.getDMDIIMember($stateParams.memberId).get, responseData(), callbackFunction);
+                } else {
+                    $scope.title = 'Create Member';
+                }
             };
             $scope.getDMDIIMember();
 
             $scope.changes = {};
             $scope.isDataChanged = false;
-
-            //areas of expertise and sector tags
-            $scope.searchArea = null;
-            $scope.searchSector = null;
-            $scope.areasOfExpertiseTags = [
-                {name: "computers"},
-                {name: "cars"},
-                {name: "Turbines"}
-            ]
-            $scope.sectorTags = [
-                {name: "private"},
-                {name: "public"}
-            ]
-            $scope.selectedArea = null;
-            $scope.selectedSector = null;
-
-            $scope.queryAreaSearch = function(query) {
-                var results = query ? $scope.areasOfExpertiseTags.filter( createFilterFor(query) ) : $scope.areasOfExpertiseTags;
-                var deferred = $q.defer();
-                $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-                return deferred.promise;
+            $scope.categories = {
+                1: 'Industry Tier ',
+                2: 'Academic Tier ',
+                3: 'Government'
             }
-            $scope.removeArea = function(index) {
-                $scope.company.areasOfExpertise.splice(index, 1);
-            }
+            $scope.types = [
+                {
+                    tier: 1,
+                    category: 2
+                },
+                {
+                    tier: 2,
+                    category: 2
+                },
+                {
+                    tier: 3,
+                    category: 2
+                },
+                {
+                    category: 3
+                },
+                {
+                    tier: 1,
+                    category: 1
+                },
+                {
+                    tier: 2,
+                    category: 1
+                },
+                {
+                    tier: 3,
+                    category: 1
+                },
+                {
+                    tier: 4,
+                    category: 1
+                }
+            ]
 
-            $scope.addArea = function(area) {
-                if (area && $scope.company.areasOfExpertise.indexOf(area) === -1) {
-                    $scope.company.areasOfExpertise.push(area);
+            $scope.setTier = function() {
+                if ($scope.company.dmdiiType) {
+                    $scope.company.dmdiiType.tier = $scope.companyType.tier;
+                    $scope.company.dmdiiType.dmdiiTypeCategory.id = $scope.companyType.category;
+                } else {
+                    $scope.company.dmdiiType = {
+                        tier: $scope.companyType.tier,
+                        dmdiiTypeCategory: {
+                            id: $scope.companyType.category
+                        }
+                    }
                 }
             }
 
-            $scope.querySectorSearch = function(query) {
-                var results = query ? $scope.sectorTags.filter( createFilterFor(query) ) : $scope.sectorTags;
+            var tagCallbackFunction = function(response) {
+                $scope.dmdiiMemberTags = response.data;
+            }
+
+            $scope.getTags = function() {
+                ajax.get(dataFactory.getDmdiiMemberTags(), {}, tagCallbackFunction)
+            }
+            //areas of expertise and sector tags
+            $scope.searchWellTag = null;
+            $scope.selectedWellTag = null;
+
+            $scope.searchSeekTag = null;
+            $scope.selectedSeekTag = null;
+
+
+            $scope.queryTagSearch = function(query) {
+                var results = query ? $scope.dmdiiMemberTags.filter( createFilterFor(query) ) : $scope.dmdiiMemberTags;
                 var deferred = $q.defer();
                 $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
                 return deferred.promise;
             }
+            $scope.removeWellTag = function(index) {
+                $scope.company.areasOfExpertise.splice(index, 1);
+            }
 
-            $scope.removeSector = function(index) {
+            $scope.removeSeekTag = function(index) {
                 $scope.company.sector.splice(index, 1);
             }
 
-            $scope.addSector = function(sector) {
-                if (sector && $scope.company.sector.indexOf(sector) === -1) {
-                    $scope.company.sector.push(sector);
+            $scope.addWellTag = function(tag) {
+                if (tag && $scope.company.areasOfExpertise.indexOf(tag) === -1) {
+                    $scope.company.areasOfExpertise.push(tag);
+                }
+            }
+
+            $scope.addSeekTag = function(tag) {
+                if (tag && $scope.company.sector.indexOf(tag) === -1) {
+                    $scope.company.sector.push(tag);
                 }
             }
 
@@ -117,11 +193,36 @@ angular.module('dmc.edit-member')
                 $('#awardName').val('');
                 $('#awardDescription').val('');
                 $('#awardLink').val('');
-
             };
 
             $scope.removeAward = function(index) {
                 $scope.company.awards.splice(index, 1);
+            };
+
+            //contacts
+            $scope.contact = {
+                firstName: null,
+                lastName: null,
+                email: null,
+                type: null
+            };
+
+            $scope.contactTypes = {
+                1: 'primary point of contact',
+                2: 'secondary point of contact',
+                3: 'executive lead'
+            };
+
+            $scope.addContact = function() {
+                $scope.company.contacts.push($scope.contact);
+                $('#contactFirstName').val('');
+                $('#contactLastName').val('');
+                $('#contactEmail').val('');
+                $('#contactType').val('');
+            };
+
+            $scope.removeContact = function(index) {
+                $scope.company.contacts.splice(index, 1);
             };
 
             // logo drop box --------------------------------------------

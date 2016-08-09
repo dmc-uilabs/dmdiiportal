@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Edit DMDII Member Profile</title>
+  <title>Edit DMDII Project</title>
 <!--  <base href="/">-->
 </head>
-<body ng-app="dmc.edit-member">
+<body ng-app="dmc.edit-project">
 
 <!--[if lt IE 10]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -20,7 +20,7 @@
 
 <?php include 'build-vendor.php' ?>
 
-<!-- build:js scripts/edit-member-page/index.js -->
+<!-- build:js scripts/edit-dmdii-project-page/index.js -->
 <script src="scripts/socket/socket.io.js"></script>
 <script src="scripts/configs/ngMaterial-config.js"></script>
 <script src="scripts/common/header/header.js"></script>
@@ -44,8 +44,8 @@
 <script src="scripts/common/models/question-toast-model.js"></script>
 <script src="scripts/common/models/user-model.js"></script>
 <script src="scripts/common/models/zipcode-model.js"></script>
-<script src="scripts/edit-member-page/edit-member-page.js"></script>
-<script src="scripts/edit-member-page/edit-member-page.controller.js"></script>
+<script src="scripts/edit-dmdii-project-page/edit-dmdii-project-page.js"></script>
+<script src="scripts/edit-dmdii-project-page/edit-dmdii-project-page.controller.js"></script>
 
 <!-- endbuild -->
 <script type="text/javascript">

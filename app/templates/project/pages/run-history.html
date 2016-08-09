@@ -47,8 +47,8 @@
                 <td>
                     {{item.runTime}}s.
                 </td>
-                <td ng-style="{color: (item.status == '0' ? '#65AF3F': (item.status == '-1' ? 'red' : 'orange'))}">
-                    <a ng-click="openResults(item)">{{(item.status == 0 ? 'success' : (item.status == -1 ? 'error' : 'running' ))}}</a>
+                <td ng-style="{color: (item.status == '1' ? '#65AF3F': (item.status == '-1' ? 'red' : 'orange'))}">
+                    <a ng-click="openResults(item)">{{(item.status == 1 ? 'success' : (item.status == -1 ? 'error' : 'running' ))}}</a>
                 </td>
             </tr>
             <tr ng-if="history.length == 0">

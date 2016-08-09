@@ -41,11 +41,11 @@ angular.module('dmc.member')
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
-
             var userData = null;
             DMCUserModel.getUserData().then(function(res){
                 userData = res;
                 CompareModel.get('services',userData);
+                $scope.userData.isDmdiiAdmin = true;
             });
 
             $scope.memberLoading = true;
@@ -53,7 +53,6 @@ angular.module('dmc.member')
             var loadingData = function(start){ // progress line
                 $scope.downloadData = start;
             };
-
 
             var getProjects = function() {
             }

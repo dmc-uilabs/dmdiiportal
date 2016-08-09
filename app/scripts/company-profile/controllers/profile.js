@@ -166,12 +166,26 @@ angular.module('dmc.company-profile')
             };
             companyProfileModel.getSkills($scope.company.id, callbackSkills);
 
-            // get company members
-            var callbackMembers = function(data){
-                $scope.company.members = data;
+            // get company membersconsole.log(data)
+            var callbackMembers = function(response){
+                $scope.company.verifiedMembers = [];
+                $scope.company.unverifiedMembers = [];
+
+                angular.forEach(response.data, function(member) {
+                    if (angular.isDefined(member.roles[$scope.company.id])) {
+                        $scope.company.verifiedMembers.push(member);
+                    } else {
+                        $scope.company.unverifiedMembers.push(member);
+                    }
+                });
+                // $scope.company.members = data;
                 apply();
             };
-            companyProfileModel.getMembers($scope.company.id, callbackMembers);
+
+            $scope.getCompanyMembers = function() {
+                ajax.get(dataFactory.getUsersByOrganization($scope.company.id), {}, callbackMembers);
+            }
+            $scope.getCompanyMembers();
 
             // get company history
             var callbackPublicHistory = function(data){
@@ -498,4 +512,3 @@ angular.module('dmc.company-profile')
 
             $scope.SortingReviews($scope.sortList[0].val);
         }]);
-

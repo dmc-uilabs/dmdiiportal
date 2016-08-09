@@ -441,6 +441,21 @@ angular.module('dmc.data',[])
             createStorefrontMessage: function(){
                 return localhost+'messages';
             },
+            userRole: function() {
+                return localhost + 'dmdiiaccess/role';
+            },
+            generateToken: function() {
+                return localhost + 'user/createtoken';
+            },
+            validateToken: function() {
+                return localhost + 'user/verify';
+            },
+            getDmdiiMemberTags: function(){
+                return localhost + 'dmdiiTag'
+            },
+            getUsersByOrganization: function(id) {
+                    return localhost + 'user/organization/' + id
+            },
             getDMDIIMember: function(id) {
                 return {
                     get: localhost+'dmdiiMember/'+ id,
@@ -661,7 +676,7 @@ angular.module('dmc.data',[])
                     remove_tags : localhost + 'service_tags/' + id,
                     update_tag : localhost + 'service_tags/' + id,
                     get_history : localhost + name + '/' + id + '/services_history',
-                    get_run_history : localhost + name + '/' + id + '/service_runs',
+                    get_run_history : localhost + 'service_runs' + '?serviceId=' + id,
                     get_servers : localhost + 'account_servers',
                     add_servers : localhost + 'services_servers',
                     get_images : localhost + name + '/' + id + '/service_images',
@@ -874,6 +889,12 @@ angular.module('dmc.data',[])
             },
             getUserUrl: function(){
                 return localhost+'user';
+            },
+            userAccount: function(id){
+                return {
+                    get: localhost + 'user/' + id,
+                    save: localhost + 'user/save'
+                }
             },
             getOnboardingBasicInfoUrl: function() {
                 return localhost+'user-basic-information'
