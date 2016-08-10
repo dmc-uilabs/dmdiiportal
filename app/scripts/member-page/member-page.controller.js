@@ -71,6 +71,24 @@ angular.module('dmc.member')
             var getProjects = function() {
             }
 
+            var callbackMembers = function(reponse) {
+                $scope.contacts = [];
+                angular.forEach(response.data, function(member) {
+                    if (member.userContactInfo.userMemberPortalContactInfo && member.userContactInfo.userMemberPortalContactInfo.id) {
+                        $scope.member.contacts.push({
+                            firstName: member.firstName,
+                            lastName: member.lastName,
+                            phone: member.userContactInfo.userMemberPortalContactInfo.phone,
+                            email:  member.userContactInfo.userMemberPortalContactInfo.email
+                        })
+                    }
+                })
+            }
+            $scope.getCompanyMembers = function() {
+                ajax.get(dataFactory.getUsersByOrganization($scope.company.id), {}, callbackMembers);
+            }
+            $scope.getCompanyMembers();
+
             // callback for member
             var callbackFunction = function(response){
                 $scope.member = response.data;
