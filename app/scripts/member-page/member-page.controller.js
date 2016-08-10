@@ -46,7 +46,7 @@ angular.module('dmc.member')
                 $scope.userData = res;
                 CompareModel.get('services', $scope.userData);
 
-                if (angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
+                if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
                     $scope.userData.isVerified = true;
                     switch ($scope.userData.roles[$stateParams.memberId]) {
                         case 'ADMIN':

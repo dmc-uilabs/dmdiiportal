@@ -23,7 +23,7 @@ angular.module('dmc.addDmdiiContent').
                 };
 
                 $scope.$watch('quicklink', function() {
-                    if ($scope.noTitle && angular.isDefined($scope.quicklink.title) && $scope.quicklink.title.trim().length > 0) {
+                    if ($scope.noTitle && angular.isDefined($scope.quicklink.displayName) && $scope.quicklink.displayName.trim().length > 0) {
                         $scope.noTitle = false;
                     }
 
@@ -41,7 +41,7 @@ angular.module('dmc.addDmdiiContent').
                 }, true);
 
                 $scope.save = function() {
-                    if (!$scope.quicklink.title) {
+                    if (!$scope.quicklink.displayName) {
                         $scope.noTitle = true;
                     }
 
@@ -92,7 +92,7 @@ angular.module('dmc.addDmdiiContent').
                     if ($scope.linkType === 'document') {
                         fileUpload.uploadFileToUrl($scope.document[0].file, {}, 'quickdoc', function(response) {
                             $scope.quicklink.doc = response.file.name;
-                            ajax.create(dataFactory.saveDMDIIDocument(), {documentUrl: $scope.quicklink.doc, documentName: $scope.quicklink.title }, function(response) {
+                            ajax.create(dataFactory.saveDMDIIDocument(), {documentUrl: $scope.quicklink.doc, documentName: $scope.quicklink.displayName }, function(response) {
                                 $scope.quicklink.doc = response;
 
                                 ajax.create(dataFactory.saveQuicklink(), $scope.quicklink, quicklinkCallback);
