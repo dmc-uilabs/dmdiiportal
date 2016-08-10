@@ -41,11 +41,25 @@ angular.module('dmc.member')
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
-            var userData = null;
+            $scope.userData = null;
             DMCUserModel.getUserData().then(function(res){
-                userData = res;
-                CompareModel.get('services',userData);
-                $scope.userData.isDmdiiAdmin = true;
+                $scope.userData = res;
+                CompareModel.get('services', $scope.userData);
+
+                if (angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
+                    $scope.userData.isVerified = true;
+                    switch ($scope.userData.roles[$stateParams.memberId]) {
+                        case 'ADMIN':
+                            $scope.userData.isAdmin = true;
+                            break;
+                        case 'VIP':
+                            $scope.userData.isVIP = true;
+                            break;
+                        case 'MEMBER':
+                            $scope.userData.isMember = true;
+                            break;
+                    }
+                }
             });
 
             $scope.memberLoading = true;

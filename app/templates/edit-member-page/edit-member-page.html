@@ -7,7 +7,7 @@
 
             <div layout="row" flex="50" layout-align="end start">
                 <md-button class="md-raised cancel-button" ng-click="cancelChanges()">Cancel</md-button>
-                <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!isDataChanged">Save</md-button>
+                <md-button class="md-raised md-primary save-button" ng-click="saveChanges()">Save</md-button>
             </div>
         </div>
         <div layout="row" ng-show="!company">
@@ -155,10 +155,10 @@
             <div layout="row">
                 <div layout="row" layout-wrap flex="33">
                     <div layout="column">
-                        <span class="no-bottom" flex>Selected Areas (Click tag to remove)</span>
+                        <span class="no-bottom" flex>Selected Core Capabilities (Click tag to remove)</span>
                         <div layout="row" layout-wrap>
                             <md-chips ng-repeat="area in company.areasOfExpertise track by $index">
-                                <md-chip ng-click="(user.isAdmin || user.isDmdiiAdmin) && removeArea($index)">
+                                <md-chip ng-click="(user.isAdmin || user.isDmdiiAdmin) && removeWellTag($index)">
                                     <span>{{area.name}}</span>
                                 </md-chip>
                             </md-chips>
@@ -167,13 +167,13 @@
                 </div>
 
                 <span flex></span>
-<!-- change to looking for -->
+
                 <div layout="row" layout-wrap flex="33">
                     <div layout="column">
-                        <span class="no-bottom" flex>Selected Sectors (Click tag to remove)</span>
+                        <span class="no-bottom" flex>Selected Seeking Collaborations (Click tag to remove)</span>
                         <div layout="row" layout-wrap>
-                            <md-chips ng-repeat="sector in company.sector track by $index">
-                                <md-chip ng-click="(user.isAdmin || user.isDmdiiAdmin) && removeSector($index)">
+                            <md-chips ng-repeat="sector in company.desiredAreasOfExpertise track by $index">
+                                <md-chip ng-click="(user.isAdmin || user.isDmdiiAdmin) && removeSeekTag($index)">
                                     <span>{{sector.name}}</span>
                                 </md-chip>
                             </md-chips>

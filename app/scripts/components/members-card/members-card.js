@@ -22,9 +22,29 @@ angular.module('dmc.component.members-card', [
                 }
             );
 
+			$scope.user = null;
+			DMCUserModel.getUserData().then(function(res){
+				$scope.user = res;
+			});
+
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
+
+			if (angular.isDefined($scope.userData.roles[$scope.companyId])) {
+				$scope.userData.isVerified = true;
+				switch ($scope.userData.roles[$scope.companyId]) {
+					case 'ADMIN':
+						$scope.userData.isAdmin = true;
+						break;
+					case 'VIP':
+						$scope.userData.isVIP = true;
+						break;
+					case 'MEMBER':
+						$scope.userData.isMember = true;
+						break;
+				}
+			}
 
             $scope.addToProject = function(){
                 $scope.addingToProject = true;

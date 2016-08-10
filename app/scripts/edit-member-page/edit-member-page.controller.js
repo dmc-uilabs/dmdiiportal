@@ -71,6 +71,22 @@ angular.module('dmc.edit-member')
             $scope.getDMDIIMember = function(){
                 if ($stateParams.memberId) {
                     $scope.title = 'Edit Member';
+
+                    if (angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
+                        $scope.userData.isVerified = true;
+                        switch ($scope.userData.roles[$stateParams.memberId]) {
+                            case 'ADMIN':
+                                $scope.userData.isAdmin = true;
+                                break;
+                            case 'VIP':
+                                $scope.userData.isVIP = true;
+                                break;
+                            case 'MEMBER':
+                                $scope.userData.isMember = true;
+                                break;
+                        }
+                    }
+
                     ajax.get(dataFactory.getDMDIIMember($stateParams.memberId).get, responseData(), callbackFunction);
                 } else {
                     $scope.title = 'Create Member';
@@ -159,7 +175,7 @@ angular.module('dmc.edit-member')
             }
 
             $scope.removeSeekTag = function(index) {
-                $scope.company.sector.splice(index, 1);
+                $scope.company.desiredAreasOfExpertise.splice(index, 1);
             }
 
             $scope.addWellTag = function(tag) {
@@ -169,8 +185,8 @@ angular.module('dmc.edit-member')
             }
 
             $scope.addSeekTag = function(tag) {
-                if (tag && $scope.company.sector.indexOf(tag) === -1) {
-                    $scope.company.sector.push(tag);
+                if (tag && $scope.company.desiredAreasOfExpertise.indexOf(tag) === -1) {
+                    $scope.company.desiredAreasOfExpertise.push(tag);
                 }
             }
 
