@@ -19,7 +19,7 @@ public class RegisterServiceTest extends BaseTest {
 	private String serviceDes = "This is the description for service AppliedLoad " + num;
 	private String serviceTag = "alpha " + num;
 
-	//@Ignore
+	@Ignore
 	@Test
 	public void testRegisterService() throws Exception {
 		AddProjectFromMyProjectsPageTest addProject = new AddProjectFromMyProjectsPageTest();

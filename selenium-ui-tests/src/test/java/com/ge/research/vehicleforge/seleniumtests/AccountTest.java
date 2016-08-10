@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.logging.Level;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -169,6 +170,7 @@ public class AccountTest extends BaseTest {
 	}
 
 	// To make test case run in order.
+	@Ignore
 	@Test
 	public void testMyAccount() throws Exception {
 		testMyAccountBascis();
