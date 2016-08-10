@@ -35,15 +35,15 @@
                            ng-click="join()">
                     {{ !company.joinRequest ? 'Request to Join' : 'Pending Approval' }}
                 </md-button>
-                <md-button ng-if="!company.isOwner" class="md-raised dmc-button" ng-click="follow()">
+                <md-button ng-if="!user.isAdmin" class="md-raised dmc-button" ng-click="follow()">
                     {{(followFlag) ? 'Unfollow' : 'Follow'}}
                 </md-button>
-                <md-button ng-if="company.isOwner"
+                <md-button ng-if="user.isAdmin"
                            class="md-raised dmc-button"
                            ui-sref="company-profile-edit({companyId: company.id})">
                     Edit Company
                 </md-button>
-                <md-button ng-if="company.isOwner || user.isDmdiiAdmin"
+                <md-button ng-if="user.isAdmin || user.isDmdiiAdmin"
                            class="md-raised dmc-button"
                            href="edit-member-page.php#/{{company.id}}/edit">
                     Edit DMDII Member Profile

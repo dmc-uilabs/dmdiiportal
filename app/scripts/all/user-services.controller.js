@@ -183,10 +183,11 @@ angular.module('dmc.view-all')
                     question: "Are you sure you want to remove this service?",
                     buttons: {
                         ok: function(){
-                            ajax.update(dataFactory.services(item.id).update,{
-                                currentStatus : {},
-                                projectId : null
-                            },function(response){
+                            var deleteItem = $.extend(true, {}, item.__serviceData);
+                            deleteItem.currentStatus = {};
+                            deleteItem.projectId = 0;
+                            ajax.update(dataFactory.services(item.id).update, deleteItem,
+                            function(response){
                                 for(var i in $scope.services){
                                     if($scope.services[i].id == item.id){
                                         $scope.services.splice(i,1);

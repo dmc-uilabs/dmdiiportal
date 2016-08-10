@@ -602,6 +602,7 @@ angular.module('dmc.project', [
 
                 return $q.all(promises).then(function(responses){
                         var service = extractData(responses.service);
+                        service.__serviceData = $.extend(true, {}, service);
                         service.interface = (responses.interface.data && responses.interface.data.length > 0 ? responses.interface.data[0] : null);
                         if(service.interface){
                             // domeModel.getModel(service.interface,function(response){

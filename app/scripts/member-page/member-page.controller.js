@@ -41,11 +41,25 @@ angular.module('dmc.member')
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
-            var userData = null;
+            $scope.userData = null;
             DMCUserModel.getUserData().then(function(res){
-                userData = res;
-                CompareModel.get('services',userData);
-                $scope.userData.isDmdiiAdmin = true;
+                $scope.userData = res;
+                CompareModel.get('services', $scope.userData);
+
+                if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
+                    $scope.userData.isVerified = true;
+                    switch ($scope.userData.roles[$stateParams.memberId]) {
+                        case 'ADMIN':
+                            $scope.userData.isAdmin = true;
+                            break;
+                        case 'VIP':
+                            $scope.userData.isVIP = true;
+                            break;
+                        case 'MEMBER':
+                            $scope.userData.isMember = true;
+                            break;
+                    }
+                }
             });
 
             $scope.memberLoading = true;
@@ -56,6 +70,24 @@ angular.module('dmc.member')
 
             var getProjects = function() {
             }
+
+            var callbackMembers = function(reponse) {
+                $scope.contacts = [];
+                angular.forEach(response.data, function(member) {
+                    if (member.userContactInfo.userMemberPortalContactInfo && member.userContactInfo.userMemberPortalContactInfo.id) {
+                        $scope.member.contacts.push({
+                            firstName: member.firstName,
+                            lastName: member.lastName,
+                            phone: member.userContactInfo.userMemberPortalContactInfo.phone,
+                            email:  member.userContactInfo.userMemberPortalContactInfo.email
+                        })
+                    }
+                })
+            }
+            $scope.getCompanyMembers = function() {
+                ajax.get(dataFactory.getUsersByOrganization($scope.company.id), {}, callbackMembers);
+            }
+            $scope.getCompanyMembers();
 
             // callback for member
             var callbackFunction = function(response){

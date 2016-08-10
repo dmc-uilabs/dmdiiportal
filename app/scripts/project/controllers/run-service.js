@@ -286,9 +286,10 @@ angular.module('dmc.project')
                             time += parseFloat($scope.calcRunTime(history[i]));
                         }
                         var averageRun = time/history.length;
-                        ajax.update(dataFactory.services($scope.service.id).update, {
-                                averageRun: averageRun
-                            }, function(response){
+                        var updatedItem = $.extend(true, {}, $scope.service.__serviceData);
+                        updatedItem.averageRun = averageRun;
+                        ajax.update(dataFactory.services($scope.service.id).update, updatedItem,
+                            function(response){
                                 $scope.service.averageRun = response.data.averageRun;
                                 $scope.averageRun = $scope.service.averageRun.toFixed(2);
                                 apply();

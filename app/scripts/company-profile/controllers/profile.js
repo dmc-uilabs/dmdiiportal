@@ -18,6 +18,7 @@ angular.module('dmc.company-profile')
         "$rootScope",
         "companyData",
         "companyProfileModel",
+        "DMCUserModel",
         function ($stateParams,
                   $scope,
                   ajax,
@@ -33,7 +34,8 @@ angular.module('dmc.company-profile')
                   location,
                   $rootScope,
                   companyData,
-                  companyProfileModel) {
+                  companyProfileModel,
+                  DMCUserModel) {
 
             $scope.company = companyData;
             //$scope.company.dateJoined = moment( $scope.company.dateJoined,"YYYY-DD-MM").format("MM/DD/YYYY");
@@ -52,6 +54,26 @@ angular.module('dmc.company-profile')
             $scope.toProject = "";
             $scope.projects = [];
             $scope.contactMethods = [];
+
+            $scope.userData = null;
+            DMCUserModel.getUserData().then(function(res){
+                $scope.userData = res;
+
+                if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
+                    $scope.userData.isVerified = true;
+                    switch ($scope.userData.roles[$stateParams.memberId]) {
+                        case 'ADMIN':
+                            $scope.userData.isAdmin = true;
+                            break;
+                        case 'VIP':
+                            $scope.userData.isVIP = true;
+                            break;
+                        case 'MEMBER':
+                            $scope.userData.isMember = true;
+                            break;
+                    }
+                }
+            });
 
             function loadContactMethods(){
                 ajax.get(dataFactory.companyURL($scope.company.id).get_contact_methods,{},function(response){
