@@ -19,41 +19,6 @@ angular.module('dmc.addDmdiiContent')
                   questionToastModel,
                   fileUpload) {
 
-            // logo drop box --------------------------------------------
-            $scope.newLogo = null;
-            $scope.fileDragEnter = function(flow){
-                $scope.newFile = flow.files[0];
-                flow.files = [];
-            };
-
-            $scope.addedNewFile = function(file,event,flow){
-                $scope.newFile = file;
-                flow.files.shift();
-            };
-
-            $scope.removeFile = function(flow){
-                flow.files = [];
-                $scope.newFile = null;
-            };
-
-            $scope.uploadFile = function(){
-                if($scope.newFile){
-                    fileUpload.uploadFileToUrl($scope.newFile.file, callbackUploadFile);
-                    $scope.cancelChangingLogo();
-                }
-            };
-
-            var callbackUploadFile = function(data){
-                if(!data.error) {
-                    $scope.quicklink.file = data.file.name;
-                    apply();
-                    toastModel.showToast('success', 'File successfully added');
-                }else{
-                    toastModel.showToast('error', 'Unable add File');
-                }
-            };
-            // --------------------------------------------------------------------
-
             $scope.projects = [];
 
             var callbackFunction = function(response) {

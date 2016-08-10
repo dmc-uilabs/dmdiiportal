@@ -27,7 +27,7 @@ angular.module('dmc.addDmdiiContent').
                         $scope.noTitle = false;
                     }
 
-                    if ($scope.linkType === 'text' && $scope.noDescription && angular.isDefined($scope.quicklink.description) && $scope.quicklink.description.trim().length > 0) {
+                    if ($scope.linkType === 'text' && $scope.noText && angular.isDefined($scope.quicklink.text) && $scope.quicklink.text.trim().length > 0) {
                         $scope.noDescription = false;
                     }
 
@@ -46,8 +46,8 @@ angular.module('dmc.addDmdiiContent').
                     }
 
                     if ($scope.linkType === 'text') {
-                        if (!$scope.quicklink.description) {
-                            $scope.noDescription = true;
+                        if (!$scope.quicklink.text) {
+                            $scope.noText = true;
                         }
 
                         delete $scope.quicklink.link;
@@ -62,7 +62,7 @@ angular.module('dmc.addDmdiiContent').
                             $scope.noLink = true;
                         }
 
-                        delete $scope.quicklink.description;
+                        delete $scope.quicklink.text;
                         delete $scope.quicklink.path;
 
                         if ($scope.noTitle || $scope.noLink) {
@@ -73,7 +73,7 @@ angular.module('dmc.addDmdiiContent').
                             $scope.noDocSelected = true;
                         }
 
-                        delete $scope.quicklink.description;
+                        delete $scope.quicklink.text;
                         delete $scope.quicklink.link;
 
                         if ($scope.noTitle || $scope.noDocSelected) {
@@ -81,11 +81,22 @@ angular.module('dmc.addDmdiiContent').
                         }
                     }
 
-                    if ($scope.linkType === 'document') {
-                        fileUpload.uploadFileToUrl($scope.document[0].file, function(response) {
-                            $scope.quicklink.path = response.file.name;
+                    var date = new Date();
+                    var year = date.getFullYear();
+                    var month = date.getMonth() + 1;
+                    month = (month < 10) ? '0' + month : month;
+                    var day = date.getDate();
 
-                            ajax.create(dataFactory.saveQuicklink(), $scope.quicklink, quicklinkCallback);
+                    $scope.quicklink.created = date;
+
+                    if ($scope.linkType === 'document') {
+                        fileUpload.uploadFileToUrl($scope.document[0].file, {}, 'quickdoc', function(response) {
+                            $scope.quicklink.doc = response.file.name;
+                            ajax.create(dataFactory.saveDMDIIDocument(), {documentUrl: $scope.quicklink.doc, documentName: $scope.quicklink.title }, function(response) {
+                                $scope.quicklink.doc = response;
+
+                                ajax.create(dataFactory.saveQuicklink(), $scope.quicklink, quicklinkCallback);
+                            });
                         });
                     } else {
                         ajax.create(dataFactory.saveQuicklink(), $scope.quicklink, quicklinkCallback);

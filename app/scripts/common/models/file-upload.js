@@ -9,7 +9,7 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
 
             // james.barkley creds (used for testing)
             //make into ENV vars
-            var creds = {bucket: '', access_key: '',secret_key: ''}
+            var creds = {bucket: '', access_key: '',secret_key: ''};
 
                 // Configure The S3 Object
 
