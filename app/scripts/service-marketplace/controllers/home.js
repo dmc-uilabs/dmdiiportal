@@ -77,7 +77,7 @@ angular.module('dmc.service-marketplace')
             serviceModel.get_service_hystory(
                 {
                     "period": "today",
-                    "section": "marketplace" 
+                    "section": "marketplace"
                 },
                 function(data){
                     for(var i in data){
@@ -95,25 +95,25 @@ angular.module('dmc.service-marketplace')
                                 break;
                             case "worked":
                                 data[i].icon = "images/icon_project.svg";
-                                break;  
+                                break;
                             case "favorited":
                                 data[i].icon = "images/ic_favorite_black_24px.svg";
-                                break;   
+                                break;
                             case "shared":
                                 data[i].icon = "images/ic_done_all_black_24px.svg";
-                                break;   
+                                break;
                             case "discussion":
                                 data[i].icon = "images/ic_forum_black_24px.svg";
-                                break;     
+                                break;
                             case "edited":
                                 data[i].icon = "images/ic_create_black_24px.svg";
-                                break;   
+                                break;
                             case "unavailable_runs":
                                 data[i].icon = "images/ic_block_black_24px.svg";
-                                break;    
+                                break;
                             case "incomplete_runs":
                                 data[i].icon = "images/ic_file_download_black_24px.svg";
-                                break;                                                                 
+                                break;
                         }
 
                     }
@@ -141,25 +141,25 @@ angular.module('dmc.service-marketplace')
                                 break;
                             case "worked":
                                 data[i].icon = "images/icon_project.svg";
-                                break;  
+                                break;
                             case "favorited":
                                 data[i].icon = "images/ic_favorite_black_24px.svg";
-                                break;   
+                                break;
                             case "shared":
                                 data[i].icon = "images/ic_done_all_black_24px.svg";
-                                break;   
+                                break;
                             case "discussion":
                                 data[i].icon = "images/ic_forum_black_24px.svg";
-                                break;     
+                                break;
                             case "edited":
                                 data[i].icon = "images/ic_create_black_24px.svg";
-                                break;   
+                                break;
                             case "unavailable_runs":
                                 data[i].icon = "images/ic_block_black_24px.svg";
-                                break;    
+                                break;
                             case "incomplete_runs":
                                 data[i].icon = "images/ic_file_download_black_24px.svg";
-                                break;                                                                 
+                                break;
                         }
                     }
                     $scope.history.rightColumn.list = data;
@@ -202,7 +202,7 @@ angular.module('dmc.service-marketplace')
                     }
                 );
             };
-            
+
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
@@ -373,7 +373,7 @@ angular.module('dmc.service-marketplace')
                         }else{
                             review['replyReviews'] = [data];
                         }
-                        serviceModel.update_service_reviews(NewReview.id, 
+                        serviceModel.update_service_reviews(NewReview.id,
                             {
                                 'reply': true
                             },
@@ -470,7 +470,7 @@ angular.module('dmc.service-marketplace')
                 }
 
                 if ($scope.limit_reviews && !$scope.selectSortingStar) params['_limit'] = 2;
-                
+
                 serviceModel.get_service_reviews(params, function(data){
                     $scope.product.service_reviews = data;
                     if($scope.limit_reviews === false){
@@ -550,15 +550,15 @@ angular.module('dmc.service-marketplace')
             };
 
             $scope.btnRemoveOfProject = function(){
-                ajax.update(dataFactory.addServiceToProject($scope.product.id), {
-                    currentStatus: {
+                var updatedItem = $.extend(true, {}, $scope.product.__serviceData);
+                updatedItem.currentStatus = {
                         project: {
                             id: 0,
                             title: ""
                         }
-                    },
-                    projectId: 0
-                }, function (response) {
+                    };
+                updatedItem.projectId = 0;
+                ajax.update(dataFactory.addServiceToProject($scope.product.id), updatedItem, function (response) {
                     $scope.product.projectId = 0;
                     $scope.product.currentStatus.project.id = 0;
                     $scope.product.currentStatus.project.title = "";
@@ -580,16 +580,16 @@ angular.module('dmc.service-marketplace')
                 }
 
                 if(project) {
-                    ajax.update(dataFactory.addServiceToProject($scope.product.id), {
-                            currentStatus: {
-                                project: {
-                                    id: id,
-                                    title: project.title
-                                }
-                            },
-                            projectId: id,
-                            from: 'marketplace'
-                        }, function (response) {
+                    var updatedItem = $.extend(true, {}, $scope.product.__serviceData);
+                    updatedItem.currentStatus = {
+                            project: {
+                                id: id,
+                                title: project.title
+                            }
+                        };
+                    updatedItem.projectId = id;
+                    updatedItem.from = 'marketplace';
+                    ajax.update(dataFactory.addServiceToProject($scope.product.id), updatedItem, function (response) {
                             $scope.product.projectId = id;
                             $scope.product.currentStatus.project.id = id;
                             $scope.product.currentStatus.project.title = project.title;

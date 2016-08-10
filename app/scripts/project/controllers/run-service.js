@@ -35,9 +35,6 @@ angular.module('dmc.project')
             $scope.isChangedOrder = false;
             $scope.isChangedValues = false;
 
-
-            console.log($scope.service);
-
             $scope.sortableOptions = {
                 update: function(e, ui) {
                     $scope.isChangedOrder = true;
@@ -77,21 +74,8 @@ angular.module('dmc.project')
                 }
                     updatePositionInputs();
                     // get current status
-                    if($scope.service.currentStatus && $scope.service.currentStatus.status == 1){
+                    if($scope.service.currentStatus && $scope.service.currentStatus.status == 0){
                         $scope.status = getStatus($scope.service.currentStatus.status);
-                        ajax.update(dataFactory.updateServiceStatus($scope.service.currentStatus.id),{
-                                startDate: moment(new Date()).format("MM/DD/YYYY"),
-                                startTime: moment(new Date()).format("hh:mm:ss A")
-                            }, function(response){
-                                $scope.service.currentStatus.percentCompleted = 50;
-                                runModel();
-                                $scope.service.currentStatus.startDate = response.data.startDate;
-                                $scope.service.currentStatus.startTime = response.data.startTime;
-                                $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
-                            }, function(){
-                                toastModel.showToast("error", "Run Failed. Please check your inputs and try again");
-                            }
-                        );
                     }
                     if($scope.rerun) getServiceInterface();
                     apply();
@@ -168,7 +152,7 @@ angular.module('dmc.project')
 
             // get last status
             if($scope.service.lastStatus){
-                $scope.lastRunTime = $scope.calcRunTime($scope.service.lastStatus);
+                // $scope.lastRunTime = $scope.calcRunTime($scope.service.lastStatus);
                 $scope.lastStatus = getStatus($scope.service.lastStatus.status);
                 apply();
             }
@@ -177,36 +161,15 @@ angular.module('dmc.project')
 
             // run Service
             $scope.run = function(){
-                ajax.create(dataFactory.runService(),{
-                        serviceId : $scope.service.id,
-                        accountId : $rootScope.userData.accountId,
-                        runBy : $rootScope.userData.displayName,
-                        status : 1,
-                        percentCompleted: 0,
-                        startDate: moment(new Date()).format("MM/DD/YYYY"),
-                        startTime: moment(new Date()).format("hh:mm:ss A"),
-                        project: {
-                            "id": $scope.projectData.id,
-                            "title": $scope.projectData.title
-                        }
-                    }, function(response){
-                        $scope.status = getStatus(response.data.status);
-                        $scope.service.currentStatus = response.data;
-                        $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
-                        apply();
-                        runModel();
-                    }, function(){
-                        toastModel.showToast("error", "Run Failed. Please check your inputs and try again");
-                    }
-                );
+                runModel();
             };
 
             function getStatus(status){
                 switch(status){
-                    case 1:
+                    case 0:
                         return "running";
                         break;
-                    case 0:
+                    case 1:
                         return "success";
                         break;
                     case -1:
@@ -218,13 +181,49 @@ angular.module('dmc.project')
                 }
             }
 
-            function runModelCallback(response){
-                updateStatus((response.data.status == "error" ? -1 : 0),response.data.pkg);
-                $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
+            $scope.isRunning = function() {
+                return angular.isDefined(pollingInterval) ? true : false;
             }
+
+            var pollingInterval;
+
+            function startPolling(data) {
+                // if internal is already running don't start another
+                if (angular.isDefined(pollingInterval)) return;
+                getUpdatedStatus(data.runId);
+                pollingInterval = $interval( function(){
+                    domeModel.pollModel(data, pollModellCallback, pollModelErrorCallback);
+                }, 5000);
+            }
+
+            function stopPolling() {
+                if (angular.isDefined(pollingInterval)) {
+                    $interval.cancel(pollingInterval);
+                    pollingInterval = undefined;
+                  }
+                getUpdatedStatus($scope.service.currentStatus.id);
+            }
+
+            function pollModellCallback(response) {
+                if (response.data.status == 1) {
+                    // model done running
+                    stopPolling();
+                    $scope.service.interfaceModel.outParams = response.data.outParams;
+                } else {
+                    // model still running
+                }
+            }
+
+            function pollModelErrorCallback(response) {
+                toastModel.showToast("error", "Error poling Dome service");
+            }
+
+            function runModelCallback(response){
+                startPolling(response.data);
+            }
+
             function runModelErrorCallback(response){
-                updateStatus(-1,$scope.service.interfaceModel);
-                $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
+                toastModel.showToast("error", "Error running Dome service");
             }
             // run Model
             function runModel(){
@@ -234,16 +233,13 @@ angular.module('dmc.project')
                     }
                 }
                 if($scope.service.interface && $scope.service.interface.domeServer) {
-                    $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
                     domeModel.runModel({
-                        model: $scope.service.interfaceModel,
-                        interface: $scope.service.interface,
-                        domeServer: $scope.service.interface.domeServer
+                        serviceId : $scope.service.id.toString(),
+                        inParams: $scope.service.interfaceModel.inParams,
+                        outParams: $scope.service.interfaceModel.outParams
                     }, runModelCallback, runModelErrorCallback);
                 }else{
-                    toastModel.showToast("error", "Dome server douse not found!");
-                    updateStatus(-1,$scope.service.interfaceModel);
-                    $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
+                    toastModel.showToast("error", "Dome server is not found!");
                 }
             }
 
@@ -253,47 +249,29 @@ angular.module('dmc.project')
             }
 
             // update service status
-            function updateStatus(status,interface_){
-                var countDelay = getRandomInt(50,300);
-                var upPercent = (status == -1 ? 100 : (100/countDelay));
-                var interval = $interval(function() {
-                    if($scope.service.currentStatus) {
-                        $scope.service.currentStatus.percentCompleted += upPercent;
-                        $scope.runTime = $scope.calcRunTime($scope.service.currentStatus);
-                        if ($scope.service.currentStatus.percentCompleted >= 100) {
-                            $interval.cancel(interval);
-                            ajax.update(dataFactory.updateServiceStatus($scope.service.currentStatus.id), {
-                                    status: status,
-                                    percentCompleted: 100,
-                                    stopDate: moment(new Date()).format("MM/DD/YYYY"),
-                                    stopTime: moment(new Date()).format("hh:mm:ss A"),
-                                    interface: {
-                                        inParams : ( interface_ && interface_.inParams ? interface_.inParams : null ),
-                                        outParams : ( interface_ && interface_.outParams ? interface_.outParams : null )
-                                    }
-                                }, function (response) {
-                                    $scope.service.lastStatus = $.extend(true,{},response.data);
-                                    $scope.service.currentStatus = null;
-                                    $scope.runTime = 0;
-                                    $scope.status = "Not Running";
-                                    $scope.lastStatus = getStatus(response.data.status);
-                                    $scope.lastRunTime = $scope.calcRunTime($scope.service.lastStatus);
-                                    if (getStatus(response.data.status) == "success") {
-                                        toastModel.showToast("success", "Run Completed Successfully");
-                                        for (var key in $scope.service.interfaceModel.outParams) {
-                                            $scope.service.interfaceModel.outParams[key].value = interface_.outParams[key].value;
-                                        }
-                                    } else if (getStatus(response.data.status) == "error") {
-                                        toastModel.showToast("error", "Run Completed with Error");
-                                    }
-                                    updateAverageRun();
-                                    apply();
-                                }
-                            );
-                        }
-                        apply();
+            function getUpdatedStatus(id){
+                ajax.get(dataFactory.getServiceRun(id),{},
+                    function(response){
+                        $scope.service.currentStatus = response.data;
+                        $scope.status = getStatus(response.data.status);
                     }
-                },100);
+                );
+            }
+
+            function updateStatusAndPoll() {
+                $scope.service.interfaceModel.inputs = [];
+                for (var key in $scope.service.interfaceModel.inParams) {
+                    $scope.service.interfaceModel.inParams[key].defaultValue = $scope.service.interfaceModel.inParams[key].value;
+                    $scope.service.interfaceModel.inParams[key].value = $scope.service.currentStatus.interface.inParams[key].value;
+                    $scope.service.interfaceModel.inputs.push($scope.service.interfaceModel.inParams[key]);
+                }
+                for (var key in $scope.service.interfaceModel.outParams) {
+                    $scope.service.interfaceModel.outParams[key].value = null;
+                }
+                $scope.changedValue();
+                updatePositionInputs();
+                startPolling({runId: $scope.service.currentStatus.id });
+                apply();
             }
 
             function updateAverageRun(){
@@ -308,9 +286,10 @@ angular.module('dmc.project')
                             time += parseFloat($scope.calcRunTime(history[i]));
                         }
                         var averageRun = time/history.length;
-                        ajax.update(dataFactory.services($scope.service.id).update, {
-                                averageRun: averageRun
-                            }, function(response){
+                        var updatedItem = $.extend(true, {}, $scope.service.__serviceData);
+                        updatedItem.averageRun = averageRun;
+                        ajax.update(dataFactory.services($scope.service.id).update, updatedItem,
+                            function(response){
                                 $scope.service.averageRun = response.data.averageRun;
                                 $scope.averageRun = $scope.service.averageRun.toFixed(2);
                                 apply();
@@ -361,6 +340,11 @@ angular.module('dmc.project')
                         }
                     );
                 }
+            }
+
+            // service is still running
+            if ($scope.service.currentStatus && $scope.service.currentStatus.status == 0) {
+                updateStatusAndPoll($scope.service.currentStatus.id);
             }
         }
     ]

@@ -1,0 +1,199 @@
+
+<div class="page-header">
+</div>
+
+<md-divider></md-divider>
+<md-tabs md-dynamic-height md-border-bottom>
+<md-tab label="Labs">
+    <md-content class="tab-projects">
+      <div layout="column">
+        <div layout="row" class="text-row">
+            <div layout="column">
+                <h2>{{featureLab.title}}</h2>
+            </div>
+        </div>
+        <div layout="row" >
+          <div layout="column" flex="20" class="image margin-right8 padding-right16">
+            <img ng-src="{{featureLab.image}}">
+          </div>
+          <div layout="column" flex="60" class="text margin-left8 padding-left16" >
+            <p> {{featureLab.description}}</p>
+          </div>
+        </div>
+      </div>
+        <br><br><br>
+      <div layout="column" class="background">
+        <div layout="row" class="text-row" layout-align="center center">
+            <div layout="column">
+                <h2>Labs</h2>
+            </div>
+        </div>
+        <div class="section" layout="row" layout-align="center center" layout-fill>
+          <div class="image padding-right16" flex="20">
+            <img ng-src="http://www.sme.org/uploadedImages/Publications/ME_Magazine/2015/January/Web-only_Content/UI%20Labs%20logo.png" ng-click="changeLab(1)">
+          </div>
+          <div class="image padding-right16" flex="20">
+            <img ng-src="http://www.colorado.edu/engineering/node/1476149/attachment/newest" ng-click="changeLab(2)">
+          </div>
+          <div class="image padding-left16"  flex="20">
+            <img ng-src="http://static1.squarespace.com/static/54ef7b7ce4b09ed4fc06023f/t/55e72897e4b076794acc5b45/1446048757841/?format=1500w" ng-click="changeLab(3)">
+          </div>
+        </div>
+      </div>
+    </md-content>
+</md-tab>
+
+<md-tab label="Shop Floor">
+    <md-content class="md-padding">
+      <div layout="row">
+        <div layout="column" flex="35" class="padding-right8">
+            <h2>{{featureBay.title}}</h2>
+        </div>
+        <div layout="column" flex="25" class="padding-left8"></div>
+        <div layout="column" >
+            <h2>Other Bays</h2>
+        </div>
+      </div>
+      <div layout="row" >
+          <div layout="column" flex="20" class="image margin-right8 padding-right16">
+            <img ng-src="{{featureBay.image}}">
+          </div>
+          <div layout="column" flex="35" class="text margin-left8 padding-left16" >
+            <p> {{featureBay.description}}</p>
+          </div>
+          <div layout="column" flex = "10" class="padding-left8">
+              <img  ng-src="{{bays.one}}" ng-click="changeBay(1)" >
+              <img ng-src="{{bays.two}}" ng-click="changeBay(2)">
+          </div>
+          <div layout="column" flex = "10" class="padding-left8">
+              <img ng-src="{{bays.three}}" ng-click="changeBay(3)">
+              <img ng-src="{{bays.four}}" ng-click="changeBay(4)">
+          </div>
+          <div layout="column"  flex = "10" class="padding-left8">
+              <img ng-src="{{bays.five}}" ng-click="changeBay(5)">
+              <img ng-src="{{bays.six}}" ng-click="changeBay(6)">
+          </div>
+          <div layout="column" flex = "10" class="padding-left8">
+              <img ng-src="{{bays.seven}}" ng-click="changeBay(7)">
+              <img ng-src="{{bays.eight}}" ng-click="changeBay(8)">
+          </div>
+      </div>
+      <div layout="row" class="padding-right8">
+          <div layout="column" class="image padding-left8 padding-right8" ng-repeat="item in [0,1,2,3]" >
+                  <img ng-src="{{machines[item+index].image}}">
+                  <h3>{{machines[item+index].title}}</h3>
+                  <p>{{machines[item+index].description}} </p>
+          </div>
+    </div>
+    </md-content>
+</md-tab>
+
+
+
+<md-tab label="Projects">
+  <md-content class="tab-projects">
+    <div layout="row" class="text-row">
+      <h2>Current DMDII Projects</h2>
+    </div>
+
+        <div layout="row" class="padding-right8">
+            <div layout="column" class="image padding-left8 padding-right8" ng-repeat="item in [0,1,2,3]" >
+                    <img ng-src="{{currentProjects[item+index].image}}">
+                    <h3>{{currentProjects[item+index].title}}</h3>
+                    <p>{{currentProjects[item+index].description}} </p>
+                    <p> Contact: <a href="{{currentProjects[item+index].contact}}"> {{currentProjects[item+index].contact}} </a> </p>
+            </div>
+      </div>
+
+    <md-divider></md-divider>
+
+    <div layout="row" class="text-row">
+      <h2>Upcoming DMDII Projects</h2>
+    </div>
+
+        <div layout="row" class="padding-right8">
+            <div layout="column" class="image padding-left8 padding-right8" ng-repeat="item in [0,1,2,3]" >
+                    <img ng-src="{{upcomingProjects[item+index].image}}">
+                    <h3>{{upcomingProjects[item+index].title}}</h3>
+                    <p>{{upcomingProjects[item+index].description}} </p>
+                    <p> Contact: <a href="{{upcomingProjects[item+index].contact}}"> {{upcomingProjects[item+index].contact}} </a> </p>
+            </div>
+      </div>
+  </md-content>
+</md-tab>
+
+<md-tab label="Workforce">
+  <md-content class="tab-projects">
+    <div layout="row" class="text-row">
+      <h2> Online Courses </h2>
+    </div>
+
+        <div layout="row" class="padding-right8">
+            <div layout="column" class="image padding-left8 padding-right8" ng-repeat="item in [0,1,2,3]" >
+                    <img ng-src="{{courses[item+index].image}}">
+                    <h3>{{courses[item+index].title}}</h3>
+                    <p>{{courses[item+index].description}} </p>
+                    <p> <a href="{{courses[item+index].link}}"> Learn More </a> </p>
+            </div>
+      </div>
+
+    <md-divider></md-divider>
+
+    <div layout="row" class="text-row">
+      <h2>Readiness Assesments</h2>
+    </div>
+
+        <div layout="row" class="padding-right8">
+            <div layout="column" class="image padding-left8 padding-right8" ng-repeat="item in [0,1,2,3]" >
+                    <img ng-src="{{assessments[item+index].image}}">
+                    <h3>{{assessments[item+index].title}}</h3>
+                    <p>{{assessments[item+index].description}} </p>
+                    <p> <a href="{{assessments[item+index].link}}"> More Information </a> </p>
+            </div>
+      </div>
+
+      <md-divider></md-divider>
+
+      <div layout="row" class="text-row">
+        <h2> Job Profiles </h2>
+      </div>
+
+          <div layout="row" class="padding-right8">
+              <div layout="column" class="padding-left8 padding-right8" ng-repeat="item in [0,1,2,3]" >
+                      <h3>{{jobs[item+index].title}}</h3>
+                      <h4> Job Description: </h4>
+                      <p>{{jobs[item+index].description}} </p>
+                      <p> <a href="{{jobs[item+index].link}}"> Learn More </a> </p>
+              </div>
+        </div>
+  </md-content>
+</md-tab>
+
+<!--<md-tab label="People">
+    <md-content class="tab-fellowships">
+        <div layout="row" class="text-row">
+          <h2>Core DMC Developers</h2>
+        </div>
+
+            <div layout="row" class="padding-right8">
+                <div layout="column" class="image padding-left8 padding-right8"  ng-repeat="item in [0,1,2,3,4]" >
+                        <img ng-src="{{fellows[item+index].image}}">
+                        <h3>{{fellows[item+index].name}}</h3>
+                        <p> {{fellows[item+index].info}} </p>
+                </div>
+          </div>
+
+        <md-divider></md-divider>
+
+        <div layout="row" class="text-row">
+            <div layout="column" class="padding-right8">
+                <h2>Become a Developer</h2>
+                <p>Eu usu omnis lorem maluisset, has quot legere id. An usu veniam munere, atqui senserit ex pri. Quo etiam officiis delicatissimi at. Denique sensibus ei pro, mea ad nostrud volutpat conclusionemque. Nec possim impedit adipiscing no, ex mea illum tantas nostrum. Sea no eius utamur probatus, ius ne pertinax reprimique scribentur. </p>
+            </div>
+
+        </div>
+    </md-content>
+</md-tab>-->
+
+
+</md-tabs>

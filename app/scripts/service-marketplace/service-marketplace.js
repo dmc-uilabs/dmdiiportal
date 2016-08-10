@@ -82,7 +82,7 @@ angular.module('dmc.service-marketplace', [
 
                 return $q.all(promises).then(function(responses){
                         var service = extractData(responses.service);
-                        console.log(service);
+                        service.__serviceData = $.extend(true, {}, service);
                         service.interface = (responses.interface.data && responses.interface.data.length > 0 ? responses.interface.data[0] : null);
                         if(service.interface){
                             // domeModel.getModel(service.interface,function(response){

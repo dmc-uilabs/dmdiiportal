@@ -21,8 +21,8 @@ angular.module('dmc.community.dmc-events',[]).
                         $scope.totalEvents = $scope.events.length;
                         for(var e in $scope.events){
                             $scope.events[e].date = [moment($scope.events[e].date).format("MMM"),moment($scope.events[e].date).format("D")];
-                            $scope.events[e].startTime = moment($scope.events[e].startTime).format("h:mm A");
-                            $scope.events[e].endTime = moment($scope.events[e].endTime).format("h:mm A");
+                            $scope.events[e].startTime =$scope.events[e].startTime;
+                            $scope.events[e].endTime = $scope.events[e].endTime;
                         }
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     });

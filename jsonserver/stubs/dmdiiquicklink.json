@@ -1,13 +1,16 @@
 [
 	{
+		"id": 1,
 		"title": "Test Blurb 1",
 		"description": "Test blurb about the blurb worthy thing that happened"
 	},
 	{
+		"id": 2,
 		"title": "Test Doc 1",
 		"file": "http://www.file.com/file1.pdf"
 	},
 	{
+		"id": 3,
 		"title": "Test Link 1",
 		"link": "http://www.google.com"
 	}

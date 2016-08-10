@@ -9,6 +9,7 @@ angular.module('dmc.component.members-card', [
 		replace: true,
 		scope: {
 			cardSource: '=',
+			companyId: '='
 		},
 		templateUrl: 'templates/components/members-card/members-card.html',
 		controller: ['$scope', '$mdDialog', 'ajax', 'dataFactory', 'DMCUserModel', function($scope, $mdDialog, ajax, dataFactory, DMCUserModel){
@@ -21,9 +22,29 @@ angular.module('dmc.component.members-card', [
                 }
             );
 
+			$scope.user = null;
+			DMCUserModel.getUserData().then(function(res){
+				$scope.user = res;
+			});
+
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
+
+			if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$scope.companyId])) {
+				$scope.userData.isVerified = true;
+				switch ($scope.userData.roles[$scope.companyId]) {
+					case 'ADMIN':
+						$scope.userData.isAdmin = true;
+						break;
+					case 'VIP':
+						$scope.userData.isVIP = true;
+						break;
+					case 'MEMBER':
+						$scope.userData.isMember = true;
+						break;
+				}
+			}
 
             $scope.addToProject = function(){
                 $scope.addingToProject = true;
@@ -73,6 +94,63 @@ angular.module('dmc.component.members-card', [
                 }
             };
 
+			$scope.roles = {
+				2: 'Admin',
+				3: 'VIP',
+				4: 'Member'
+			}
+
+			if (angular.isDefined($scope.cardSource.roles[$scope.companyId])) {
+				switch ($scope.cardSource.roles[$scope.companyId]) {
+					case 'ADMIN':
+						$scope.roleId = 2;
+						break;
+					case 'VIP':
+						$scope.roleId = 3;
+						break;
+					case 'MEMBER':
+						$scope.roleId = 4;
+						break;
+				}
+			}
+
+			$scope.setRole = function() {
+                $scope.settingRole = true;
+            };
+
+            $scope.cancelSetRole = function() {
+                $scope.settingRole = false;
+            };
+
+			var setRoleCallback = function(response) {
+				$scope.isMember = true;
+			}
+			$scope.saveMember = function() {
+				var role = {
+					userId: $scope.cardSource.id,
+					organizationId: $scope.cardSource.$scope.companyId,
+					roleId: $scope.roleId
+				}
+				$scope.addingMember = false;
+				ajax.update(dataFactory.userRole(), role, setRoleCallback);
+			}
+
+			var tokenCallback = function(response) {
+				$scope.token = response.data.token;
+
+				$mdDialog.show({
+					controller: 'DisplayTokenController',
+					templateUrl: "templates/components/token-modal/token-modal.html",
+					parent: angular.element(document.body),
+					locals: {
+					   token: $scope.token
+				},
+					clickOutsideToClose: true
+				});
+			}
+			$scope.generateToken = function() {
+				ajax.create(dataFactory.generateToken(), {userId: $scope.cardSource.id}, tokenCallback)
+			}
             $scope.showMembers = function(id, ev){
                 $(window).scrollTop();
                   $mdDialog.show({
@@ -113,6 +191,14 @@ angular.module('dmc.component.members-card', [
 		}]
 	}
 })
+.controller('DisplayTokenController',
+	['$scope', '$rootScope', '$mdDialog', 'token',
+	function ($scope, $rootScope, $mdDialog, token) {
+        $scope.token = token;
+		$scope.cancel = function(){
+            $mdDialog.hide();
+		}
+}])
 .directive('dmcAddMembersCard', function () {
     return {
         restrict: 'E',

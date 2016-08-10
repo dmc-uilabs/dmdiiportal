@@ -18,6 +18,7 @@ angular.module('dmc.company-profile')
         "$rootScope",
         "companyData",
         "companyProfileModel",
+        "DMCUserModel",
         function ($stateParams,
                   $scope,
                   ajax,
@@ -33,7 +34,8 @@ angular.module('dmc.company-profile')
                   location,
                   $rootScope,
                   companyData,
-                  companyProfileModel) {
+                  companyProfileModel,
+                  DMCUserModel) {
 
             $scope.company = companyData;
             //$scope.company.dateJoined = moment( $scope.company.dateJoined,"YYYY-DD-MM").format("MM/DD/YYYY");
@@ -52,6 +54,26 @@ angular.module('dmc.company-profile')
             $scope.toProject = "";
             $scope.projects = [];
             $scope.contactMethods = [];
+
+            $scope.userData = null;
+            DMCUserModel.getUserData().then(function(res){
+                $scope.userData = res;
+
+                if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
+                    $scope.userData.isVerified = true;
+                    switch ($scope.userData.roles[$stateParams.memberId]) {
+                        case 'ADMIN':
+                            $scope.userData.isAdmin = true;
+                            break;
+                        case 'VIP':
+                            $scope.userData.isVIP = true;
+                            break;
+                        case 'MEMBER':
+                            $scope.userData.isMember = true;
+                            break;
+                    }
+                }
+            });
 
             function loadContactMethods(){
                 ajax.get(dataFactory.companyURL($scope.company.id).get_contact_methods,{},function(response){
@@ -166,12 +188,26 @@ angular.module('dmc.company-profile')
             };
             companyProfileModel.getSkills($scope.company.id, callbackSkills);
 
-            // get company members
-            var callbackMembers = function(data){
-                $scope.company.members = data;
+            // get company membersconsole.log(data)
+            var callbackMembers = function(response){
+                $scope.company.verifiedMembers = [];
+                $scope.company.unverifiedMembers = [];
+
+                angular.forEach(response.data, function(member) {
+                    if (angular.isDefined(member.roles[$scope.company.id])) {
+                        $scope.company.verifiedMembers.push(member);
+                    } else {
+                        $scope.company.unverifiedMembers.push(member);
+                    }
+                });
+                // $scope.company.members = data;
                 apply();
             };
-            companyProfileModel.getMembers($scope.company.id, callbackMembers);
+
+            $scope.getCompanyMembers = function() {
+                ajax.get(dataFactory.getUsersByOrganization($scope.company.id), {}, callbackMembers);
+            }
+            $scope.getCompanyMembers();
 
             // get company history
             var callbackPublicHistory = function(data){
@@ -498,4 +534,3 @@ angular.module('dmc.company-profile')
 
             $scope.SortingReviews($scope.sortList[0].val);
         }]);
-

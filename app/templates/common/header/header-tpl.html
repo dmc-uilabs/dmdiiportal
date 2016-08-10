@@ -129,6 +129,15 @@
                         <md-menu-item ng-if="version1">
                             <md-button href="#">My Submissions</md-button>
                         </md-menu-item>
+                        <md-menu-item ng-if="userData.isDmdiiAdmin">
+                            <md-button href="/add-dmdii-content.php">Add DMDII Content</md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-if="userData.isDmdiiAdmin">
+                            <md-button href="/edit-member-page.php">Create DMDII Member</md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-if="userData.isDmdiiAdmin">
+                            <md-button href="/edit-dmdii-project-page.php">Create DMDII Project</md-button>
+                        </md-menu-item>
                         <md-menu-item>
                             <md-button ng-click='logout()'>Logout</md-button>
                         </md-menu-item>
@@ -219,6 +228,7 @@
                     <md-menu class="item" md-offset="0 57">
                         <md-button ng-click="closeMenu(); $mdOpenMenu($event);"
                                    class="members-header-button"
+                                   ng-show="userData.isDMDIIMember || userData.isDmdiiAdmin"
                                    ng-class="{'active-page' : activePage.indexOf('member') > -1,
                                         'member-portal': membersOnly}">
                             Members

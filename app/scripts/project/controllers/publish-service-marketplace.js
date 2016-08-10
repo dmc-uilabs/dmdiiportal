@@ -185,17 +185,12 @@ angular.module('dmc.project')
 
             var deletedDocuments = [];
             $scope.finish = function(){
-                // documents
-                //for(var i in $scope.publishService2.documents){
-                //    fd.append('file[' + i + ']', $scope.publishService2.documents[i].file);
-                //}
-                ajax.update(dataFactory.services($scope.serviceData.id).update,{
-                    title : $scope.publishService.name,
-                    description : $scope.publishService.description,
-                    serviceType : $scope.publishService.serviceType,
-                    published: true
-                },function(response){
-
+                var updateService = $scope.serviceData.__serviceData;
+                updateService.title = $scope.publishService.name;
+                updateService.description = $scope.publishService.description;
+                updateService.serviceType = $scope.publishService.serviceType;
+                updateService.published = true;
+                ajax.update(dataFactory.services($scope.serviceData.id).update, updateService, function(response){
                     // specifications
                     if(!$scope.serviceData.specifications){
                         saveSpecifications();

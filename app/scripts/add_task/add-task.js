@@ -102,7 +102,7 @@ angular.module('dmc.add_task',[
                         "dueDate": Date.parse(!$scope.task.dueDate || $scope.task.dueDate == undefined ? new Date() : $scope.task.dueDate),
                         "priority": $scope.task.priority,
                         "projectId": $scope.selectedProject,
-                        "additionalDetails" : $scope.task.additionalDetails,
+                        "additionalDetails" : $scope.task.additionalDetails || '',
                         "status" : "Open"
                     }, function(response){
                         $scope.isCreation = false;

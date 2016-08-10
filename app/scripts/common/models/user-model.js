@@ -54,6 +54,8 @@ angular.module('dmc.model.user', ['dmc.data', 'dmc.ajax'])
                         var data = response.data ? response.data : response;
                         // cache user data
                         $rootScope.userData = data;
+                        $rootScope.userData.isDmdiiAdmin = ($rootScope.userData.roles && angular.isDefined($rootScope.userData.roles[0])) ? true : false;
+
                         return data;
                     },
                     function(response) {

@@ -5,7 +5,7 @@
 		<md-content class="member">
 
 			<div layout="row" layout-align="end">
-				<md-button ng-if="company.isOwner || user.isDmdiiAdmin"
+				<md-button ng-if="userData.isAdmin || userData.isDmdiiAdmin"
 						   class="md-raised dmc-button"
 						   href="edit-member-page.php#/{{member.id}}/edit">
 					Edit DMDII Member Profile
@@ -48,14 +48,13 @@
 
 					<h2>Contacts</h2>
 					<div layout="row">
-						<div flex="50" layout="column" class="contact no-bottom" ng-repeat="contact in member.contacts | limitTo:2">
+						<div flex="50" layout="column" class="contact no-bottom" ng-repeat="contact in member.contacts | limitTo:4">
 
 							<div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.firstName && contact.lastName">
 									<h3 class="no-bottom">{{contact.firstName + ' ' + contact.lastName}}</h3>
 							</div>
-							<div layout="row" layout-align="start center" >
-
-										<h5 style="color:green;margin-top:-3px">{{contact.contactType.type}}</h5>
+							<div layout="row" layout-align="start center" ng-show="contact.contactType && contact.contactType.type">
+								<h5 style="color:green;margin-top:-3px">{{contact.contactType.type}}</h5>
 							</div>
 							<div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.title && contact.title.length > 0">
 									<h3 class="no-bottom">{{contact.title}}</h3>

@@ -17,7 +17,7 @@ angular.module('dmc.project')
             ajax.get(dataFactory.services(item.id).get,{},
                 function(response){
                     var services = response.data;
-                    services['projectId'] = null;
+                    services['projectId'] = 0;
                     services['currentStatus'] = {};
 
                     ajax.update(dataFactory.services(item.id).update, services,

@@ -35,15 +35,15 @@
                            ng-click="join()">
                     {{ !company.joinRequest ? 'Request to Join' : 'Pending Approval' }}
                 </md-button>
-                <md-button ng-if="!company.isOwner" class="md-raised dmc-button" ng-click="follow()">
+                <md-button ng-if="!user.isAdmin" class="md-raised dmc-button" ng-click="follow()">
                     {{(followFlag) ? 'Unfollow' : 'Follow'}}
                 </md-button>
-                <md-button ng-if="company.isOwner"
+                <md-button ng-if="user.isAdmin"
                            class="md-raised dmc-button"
                            ui-sref="company-profile-edit({companyId: company.id})">
                     Edit Company
                 </md-button>
-                <md-button ng-if="company.isOwner || user.isDmdiiAdmin"
+                <md-button ng-if="user.isAdmin || user.isDmdiiAdmin"
                            class="md-raised dmc-button"
                            href="edit-member-page.php#/{{company.id}}/edit">
                     Edit DMDII Member Profile
@@ -306,18 +306,33 @@
 
 <!--MEMBERS -->
 
-<div class="company-members" ng-if="company.members.length">
+<div class="company-members" ng-if="company.verifiedMembers.length">
     <div layout="row" layout-align="space-between center">
         <div layout="row" layout-align="center center">
-            <h3>MEMBERS</h3>
-            <h4>{{company.members.length}} total</h4>
+            <h3>VERIFIED MEMBERS</h3>
+            <h4>{{company.verifiedMembers.length}} total</h4>
         </div>
         <a class="viewAll" ng-href="{{'search.php#/members'}}">View All</a>
     </div>
     <md-divider></md-divider>
     <div layout="row">
-        <div flex="20" class="padding-card" ng-repeat="item in company.members">
-            <dmc-members-card card-source="item"></dmc-members-card>
+        <div flex="20" class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: 5">
+            <dmc-members-card card-source="item" companyId="company.id"></dmc-members-card>
+        </div>
+    </div>
+</div>
+<div class="company-members" ng-if="company.unverifiedMembers.length">
+    <div layout="row" layout-align="space-between center">
+        <div layout="row" layout-align="center center">
+            <h3>UNVERIFIED MEMBERS</h3>
+            <h4>{{company.unverifiedMembers.length}} total</h4>
+        </div>
+        <a class="viewAll" ng-href="{{'search.php#/members'}}">View All</a>
+    </div>
+    <md-divider></md-divider>
+    <div layout="row">
+        <div flex="20" class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: 5">
+            <dmc-members-card card-source="item" companyId="company.id"></dmc-members-card>
         </div>
     </div>
 </div>

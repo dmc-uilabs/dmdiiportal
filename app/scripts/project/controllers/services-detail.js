@@ -1,7 +1,7 @@
 angular.module('dmc.project')
 .controller('projectServicesDetailCtrl', ['serviceData', 'serviceModel', '$scope', '$stateParams', 'projectData', 'ajax', 'dataFactory', '$state', '$mdDialog',
 	function (serviceData, serviceModel ,$scope, $stateParams, projectData, ajax, dataFactory, $state, $mdDialog) {
-	
+
 	$scope.projectData = projectData;
 	$scope.service = serviceData;
 	$scope.followFlag = false;
@@ -41,25 +41,25 @@ angular.module('dmc.project')
                         break;
                     case "worked":
                         data[i].icon = "images/icon_project.svg";
-                        break;  
+                        break;
                     case "favorited":
                         data[i].icon = "images/ic_favorite_black_24px.svg";
-                        break;   
+                        break;
                     case "shared":
                         data[i].icon = "images/ic_done_all_black_24px.svg";
-                        break;   
+                        break;
                     case "discussion":
                         data[i].icon = "images/ic_forum_black_24px.svg";
-                        break;     
+                        break;
                     case "edited":
                         data[i].icon = "images/ic_create_black_24px.svg";
-                        break;   
+                        break;
                     case "unavailable_runs":
                         data[i].icon = "images/ic_block_black_24px.svg";
-                        break;    
+                        break;
                     case "incomplete_runs":
                         data[i].icon = "images/ic_file_download_black_24px.svg";
-                        break;                                                                 
+                        break;
                 }
             }
             $scope.history.leftColumn.list = data;
@@ -86,25 +86,25 @@ angular.module('dmc.project')
                         break;
                     case "worked":
                         data[i].icon = "images/icon_project.svg";
-                        break;  
+                        break;
                     case "favorited":
                         data[i].icon = "images/ic_favorite_black_24px.svg";
-                        break;   
+                        break;
                     case "shared":
                         data[i].icon = "images/ic_done_all_black_24px.svg";
-                        break;   
+                        break;
                     case "discussion":
                         data[i].icon = "images/ic_forum_black_24px.svg";
-                        break;     
+                        break;
                     case "edited":
                         data[i].icon = "images/ic_create_black_24px.svg";
-                        break;   
+                        break;
                     case "unavailable_runs":
                         data[i].icon = "images/ic_block_black_24px.svg";
-                        break;    
+                        break;
                     case "incomplete_runs":
                         data[i].icon = "images/ic_file_download_black_24px.svg";
-                        break;                                                                 
+                        break;
                 }
             }
             $scope.history.rightColumn.list = data;
@@ -423,20 +423,14 @@ angular.module('dmc.project')
 	];
 
 	$scope.delete = function(){
-		ajax.get(dataFactory.services($scope.service.id).get,{},
-            function(response){
-                var services = response.data;
-                services['projectId'] = 0;
-                // services['currentStatus']['project']['id'] = 0;
-                // services['currentStatus']['project']['title'] = "";
-
-                ajax.update(dataFactory.services($scope.service.id).update, services,
+    var deleteServiceItem = $.extend(true, {}, $scope.service.__serviceData);
+    deleteServiceItem.projectId = 0;
+    deleteServiceItem.currentStatus = {};
+    ajax.update(dataFactory.services($scope.service.id).update, deleteServiceItem,
                     function(response){
                         $state.go('project.services')
                     }
                 );
-            }
-        );
 	}
 
 	$scope.follow = function(){
