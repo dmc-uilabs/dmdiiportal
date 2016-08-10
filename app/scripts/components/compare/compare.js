@@ -235,16 +235,16 @@ angular.module('dmc.compare',[
                 }
             }
             if(project) {
-                ajax.update(dataFactory.addServiceToProject(item.id), {
-                        currentStatus: {
+                var updatedItem = $.extend(true, {}, item.__serviceData);
+                updatedItem.currentStatus =  {
                             project: {
                                 id: project.id,
                                 title: project.title
                             }
-                        },
-                        projectId: projectId,
-                        from: 'marketplace'
-                    }, function (response) {
+                        };
+                updatedItem.projectId = project.id;
+                updatedItem.from = 'marketplace';
+                ajax.update(dataFactory.addServiceToProject(item.id), updatedItem, function (response) {
                         $scope.cancelAddToProject(item);
                         if(!item.currentStatus) item.currentStatus = {};
                         if(!item.currentStatus.project) item.currentStatus.project = {};

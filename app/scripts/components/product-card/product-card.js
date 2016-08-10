@@ -113,16 +113,19 @@ angular.module('dmc.component.productcard', [
                   }
               }
               if(project) {
-                  ajax.update(dataFactory.addServiceToProject($scope.cardSource.id), {
-                          currentStatus: {
+                  var updatedItem = $.extend(true, {}, $scope.cardSource);
+                  if (updatedItem.hasOwnProperty('$$hashKey')) {
+                     delete updatedItem['$$hashKey'];
+                  }
+                  updatedItem.currentStatus = {
                               project: {
                                   id: project.id,
                                   title: project.title
                               }
-                          },
-                          projectId: projectId,
-                          from: 'marketplace'
-                      }, function (response) {
+                          };
+                  updatedItem.projectId = project.id;
+                  updatedItem.from = 'marketplace';
+                  ajax.update(dataFactory.addServiceToProject($scope.cardSource.id), updatedItem, function (response) {
                           $scope.cancelAddToProject();
                           if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
                           if(!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
