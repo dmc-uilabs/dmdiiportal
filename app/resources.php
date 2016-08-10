@@ -6,26 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Resources</title>
 <!--  <base href="/">-->
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <!-- Place favicon.ico in the root directory -->
 
-  <!-- build:css styles/vendor.css -->
-  <!-- bower:css -->
-  <link rel="stylesheet" href="/bower_components/angular-carousel/angular-carousel.css" />
-  <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
-  <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
-  <link rel="stylesheet" href="/bower_components/dropzone/dist/min/dropzone.min.css" />
-  <link rel="stylesheet" href="/bower_components/md-data-table/dist/md-data-table-style.css" />
-  <!-- endbower -->
-  <!-- endbuild -->
-
-  <!-- build:css styles/main.css -->
-  <link rel="stylesheet" href="styles/main.css">
-  <!-- endbuild -->
-
-  <!-- build:js scripts/vendor/modernizr.js -->
-  <script src="/bower_components/modernizr/modernizr.js"></script>
-  <!-- endbuild -->
 </head>
 <body ng-app="dmc.resources">
 

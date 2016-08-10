@@ -31,7 +31,7 @@ angular.module('dmc.component.members-card', [
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
-			if (angular.isDefined($scope.userData.roles[$scope.companyId])) {
+			if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$scope.companyId])) {
 				$scope.userData.isVerified = true;
 				switch ($scope.userData.roles[$scope.companyId]) {
 					case 'ADMIN':
