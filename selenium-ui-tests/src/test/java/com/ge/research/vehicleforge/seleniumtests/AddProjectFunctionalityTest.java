@@ -60,7 +60,14 @@ public class AddProjectFunctionalityTest extends BaseTest {
 		} else {
 			log.info("The button NEXT is not clickable!");
 		}
-
+		Thread.sleep(3000);
+		// Search members to invite
+		driver.findElement(By.xpath("//div[1]/md-input-container/input")).clear();
+		driver.findElement(By.xpath("//div[1]/md-input-container/input")).sendKeys("Forge");
+		// Click reset button
+		driver.findElement(By.xpath("//div[2]/md-input-container/button")).click();
+		driver.findElement(By.xpath("//div[2]/md-content[1]/button[1]")).click();
+		
 		// Invite members to this project
 		/*
 		 * driver.findElement(By.xpath(
