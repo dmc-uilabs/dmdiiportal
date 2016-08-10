@@ -2,6 +2,7 @@ package com.ge.research.vehicleforge.seleniumtests;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,6 +14,7 @@ public class AddProjectFromMyProjectsPageTest extends BaseTest {
 	WebDriverWait wait = new WebDriverWait(driver, 30);
 	JavascriptExecutor jse = (JavascriptExecutor) driver;
 	
+	@Ignore
 	@Test
 	public void addProjectFromMyProjectsPageTest() throws Exception{
 		// TODO Auto-generated constructor stub

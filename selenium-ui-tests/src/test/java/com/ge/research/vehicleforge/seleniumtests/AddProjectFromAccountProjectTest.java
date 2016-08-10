@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.logging.Level;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -16,6 +17,7 @@ public class AddProjectFromAccountProjectTest extends BaseTest {
 	JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 	// Navigate from MyAccount Menu
+	@Ignore
 	@Test
 	public void accountProjectNav() throws Exception {
 		Thread.sleep(3000);

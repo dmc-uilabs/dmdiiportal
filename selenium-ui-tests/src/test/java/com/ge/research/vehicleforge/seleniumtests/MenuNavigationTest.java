@@ -2,6 +2,7 @@ package com.ge.research.vehicleforge.seleniumtests;
 
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MenuNavigationTest extends BaseTest {
 	WebDriverWait wait = new WebDriverWait(driver, 30);
 	
+	@Ignore
 	@Test
 	public void testMenuNavigation() throws Exception{
 		//Test Dashboard

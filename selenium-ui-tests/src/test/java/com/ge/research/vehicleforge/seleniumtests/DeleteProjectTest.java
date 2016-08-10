@@ -1,6 +1,7 @@
 package com.ge.research.vehicleforge.seleniumtests;
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class DeleteProjectTest extends BaseTest{
 	WebDriverWait wait = new WebDriverWait(driver, 30);
 	JavascriptExecutor jse = (JavascriptExecutor) driver;
+	
+	@Ignore
 	@Test
 	public void deleteProjectTest() throws Exception {	
 		Thread.sleep(2000);
