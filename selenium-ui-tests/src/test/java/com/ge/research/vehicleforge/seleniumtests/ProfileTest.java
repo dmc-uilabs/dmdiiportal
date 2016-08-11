@@ -7,19 +7,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProfileTest extends BaseTest {
 
-	WebDriverWait wait = new WebDriverWait(driver, 20);
 
 	public void myProfile() throws Exception {
-		/*driver.get(baseUrl + "/dashboard.php#/");
-		Thread.sleep(3000);*/
 		driver.findElement(By.xpath("//div[3]/md-menu/button")).sendKeys(Keys.ENTER);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[2]/a/span")));
 		element.click();
@@ -125,26 +120,25 @@ public class ProfileTest extends BaseTest {
 				driver.findElement(By.xpath("//md-input-container/md-select/md-select-value/span")).getText());
 		driver.manage().timeouts().implicitlyWait(TestUtils.DEFAULT_IMPLICIT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
 		WebElement e = driver.findElement(By.id("select_value_label_2"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", e);
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);", e);
 
 		// test for sorting by Most Helpful
-		executor.executeScript("arguments[0].click();", e);
+		jse.executeScript("arguments[0].click();", e);
 		driver.findElement(By.xpath("//md-option[2]/div")).click();
 
 		// test for sorting by Highest to Lowest Rating
-		executor.executeScript("arguments[0].click();", e);
+		jse.executeScript("arguments[0].click();", e);
 		driver.findElement(By.xpath("//md-option[3]/div")).click();
 
 		// test for sorting by Lowest to Highest Rating
-		executor.executeScript("arguments[0].click();", e);
+		jse.executeScript("arguments[0].click();", e);
 		driver.findElement(By.xpath("//md-option[4]/div")).click();
 
 		// test for sorting by Verified Users
-		executor.executeScript("arguments[0].click();", e);
+		jse.executeScript("arguments[0].click();", e);
 		driver.findElement(By.xpath("//md-option[5]/div")).click();
 
-		executor.executeScript("arguments[0].click();", e);
+		jse.executeScript("arguments[0].click();", e);
 		driver.findElement(By.xpath("//md-option[2]/div")).click();
 
 	}

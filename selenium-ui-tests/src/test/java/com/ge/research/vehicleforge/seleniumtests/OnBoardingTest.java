@@ -4,11 +4,11 @@ import org.junit.Test;
 import org.junit.Ignore;
 
 public class OnBoardingTest extends BaseTest {
-	
+
 	@Ignore
 	@Test
-	public void onBoarding() throws Exception{
-		testDMCLogin();	
+	public void onBoarding() throws Exception {
+		testDMCLogin();
 		TestOnBoarding();
 	}
 

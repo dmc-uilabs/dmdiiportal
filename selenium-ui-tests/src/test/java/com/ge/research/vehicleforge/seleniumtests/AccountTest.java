@@ -5,28 +5,24 @@ import org.junit.Ignore;
 
 import java.util.logging.Level;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AccountTest extends BaseTest {
 	private String firstName = "Thomas-changed";
 	private String lastName = "Smith-changed";
 	private String location = "Schenectady";
 	private String timeZone = "(UTC -05:00) America/Atikokan";
-	WebDriverWait wait = new WebDriverWait(driver, 30);
+	
 
 	public void myAccount() throws Exception {
+		Thread.sleep(TestUtils.sleep3Second);
 
-		//driver.get(baseUrl + "/dashboard.php#/");
-		Thread.sleep(2000);
-		
-		driver.findElement(By.xpath("html/body/div[1]/header/div[1]/div/div/div[3]/md-menu/button")).sendKeys(Keys.ENTER);
-		//WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("html/body/div[6]/md-menu-content/md-menu-item[1]/a/span")));
+		driver.findElement(By.xpath("html/body/div[1]/header/div[1]/div/div/div[3]/md-menu/button"))
+				.sendKeys(Keys.ENTER);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("My Account")));
 		element.click();
 		log.log(Level.INFO, "Get current title:" + driver.getTitle());
@@ -140,15 +136,14 @@ public class AccountTest extends BaseTest {
 		driver.findElement(By.xpath("//div[2]/md-input-container/input")).clear();
 		driver.findElement(By.xpath("//div[2]/md-input-container/input")).sendKeys("QA SERVER" + TestUtils.ran);
 		driver.findElement(By.xpath("//md-input-container[2]/input")).clear();
-		driver.findElement(By.xpath("//md-input-container[2]/input")).sendKeys("http://52.33.38.232");
+		driver.findElement(By.xpath("//md-input-container[2]/input")).sendKeys(domeUrl);
 		driver.findElement(By.xpath("//md-input-container[3]/input")).clear();
-		driver.findElement(By.xpath("//md-input-container[3]/input")).sendKeys("8080");
-		Thread.sleep(2000);
+		driver.findElement(By.xpath("//md-input-container[3]/input")).sendKeys(port);
+		Thread.sleep(TestUtils.sleep3Second);
 		driver.findElement(By.xpath("//div[2]/button[2]")).click();
 
-
 		// add server
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content/div[1]/button"))).click();;
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content/div[1]/button"))).click();
 		// click add server button and cancel adding server
 		driver.findElement(By.xpath("//div[2]/button[1]")).click();
 

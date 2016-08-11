@@ -1,50 +1,38 @@
 package com.ge.research.vehicleforge.seleniumtests;
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class DeleteProjectTest extends BaseTest{
-	WebDriverWait wait = new WebDriverWait(driver, 30);
-	JavascriptExecutor jse = (JavascriptExecutor) driver;
-	
+public class DeleteProjectTest extends BaseTest {
+
 	@Ignore
 	@Test
-	public void deleteProjectTest() throws Exception {	
-		Thread.sleep(2000);
-/*	    
-	    driver.findElement(By.xpath("//div[2]/div/div/div/div/md-menu[2]/button")).click();
-	    //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-menu-item[1]/a/span"))).click();
-	    wait.until(ExpectedConditions.elementToBeClickable(By.linkText("My Projects"))).click();*/
+	public void deleteProjectTest() throws Exception {
+		Thread.sleep(TestUtils.sleep3Second);
 		driver.get(baseUrl + "/my-projects.php#/");
-		Thread.sleep(5000);
-	    assertEquals("My Projects", driver.getTitle());
+		Thread.sleep(TestUtils.sleep5Second);
+		assertEquals("My Projects", driver.getTitle());
 		
-		/*String url2 = "https://ben-web.opendmc.org/project.php#/11/home";
-		driver.get(url2);*/
-		
-	    
-	    driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
+		driver.findElement(By.xpath("//md-toolbar/div/a/span")).click();
 		AddProjectFunctionalityTest addProject = new AddProjectFunctionalityTest();
 		addProject.addProjectFunctionalityTest();
-		
-		Thread.sleep(5000);
-		//click "edit" button
+
+		Thread.sleep(TestUtils.sleep5Second);
+		// click "edit" button
 		driver.findElement(By.xpath("html/body/div[2]/ui-view/div[1]/md-toolbar/div/a[1]")).click();
-		//click "Delete Project"
+		// click "Delete Project"
 		driver.findElement(By.xpath("html/body/div[2]/ui-view/div/div/div/div[1]/md-toolbar/div/button")).click();
-		//choose No
+		// choose No
 		driver.findElement(By.xpath("html/body/div[6]/md-dialog/div/button[1]")).click();
-		Thread.sleep(2000);
-		//click "Delete Project"
+		Thread.sleep(TestUtils.sleep3Second);
+		// click "Delete Project"
 		driver.findElement(By.xpath("html/body/div[2]/ui-view/div/div/div/div[1]/md-toolbar/div/button")).click();
-		//choose Yes
+		// choose Yes
 		driver.findElement(By.xpath("html/body/div[6]/md-dialog/div/button[2]")).click();
-		
+
 	}
 
 }

@@ -1,7 +1,4 @@
 package com.ge.research.vehicleforge.seleniumtests;
-import static org.junit.Assert.assertEquals;
-import org.junit.Ignore;
-
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,19 +6,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AddProjectFunctionalityTest extends BaseTest {
-	
-	WebDriverWait wait = new WebDriverWait(driver, 30);
-	JavascriptExecutor jse = (JavascriptExecutor) driver;
-	
+
 	public String addProjectFunctionalityTest() throws Exception {
-		// TODO Auto-generated constructor stub
 		WebElement e = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//md-content/form/md-input-container/input")));
 		e.clear();
@@ -50,11 +41,11 @@ public class AddProjectFunctionalityTest extends BaseTest {
 		driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input")).clear();
 		driver.findElement(By.xpath("//md-content[2]/div/form/md-input-container/input"))
 				.sendKeys(TestUtils.ProjectTag);
-		Thread.sleep(3000);
+		Thread.sleep(TestUtils.sleep3Second);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//md-content[2]/div/form/button")))
 				.sendKeys(Keys.ENTER);
 
-		Thread.sleep(2000);
+		Thread.sleep(TestUtils.sleep3Second);
 		// next to add member
 		WebElement next = driver.findElement(By.xpath("//ap-tab-one/div/div[2]/button"));
 		jse.executeScript("arguments[0].scrollIntoView(true);", next);
@@ -63,14 +54,14 @@ public class AddProjectFunctionalityTest extends BaseTest {
 		} else {
 			log.info("The button NEXT is not clickable!");
 		}
-		Thread.sleep(3000);
+		Thread.sleep(TestUtils.sleep3Second);
 		// Search members to invite
 		driver.findElement(By.xpath("//div[1]/md-input-container/input")).clear();
 		driver.findElement(By.xpath("//div[1]/md-input-container/input")).sendKeys("Forge");
 		// Click reset button
 		driver.findElement(By.xpath("//div[2]/md-input-container/button")).click();
 		driver.findElement(By.xpath("//div[2]/md-content[1]/button[1]")).click();
-		
+
 		// Invite members to this project
 		/*
 		 * driver.findElement(By.xpath(
@@ -88,8 +79,8 @@ public class AddProjectFunctionalityTest extends BaseTest {
 		} else {
 			log.log(Level.INFO, "The button submit is not clickable!");
 		}
-		
-		Thread.sleep(2000);
+
+		Thread.sleep(TestUtils.sleep3Second);
 		System.out.println(driver.getCurrentUrl());
 		return driver.getCurrentUrl();
 	}
