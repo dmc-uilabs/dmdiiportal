@@ -10,12 +10,13 @@
                 <md-button class="md-raised md-primary save-button" ng-click="saveChanges()">Save</md-button>
             </div>
         </div>
-        <div layout="row" ng-show="!company">
+        <div layout="row" ng-show="!company.id">
             <md-autocomplete flex="33"
                 md-input-name="organizations"
                 md-items="org in queryOrgSearch(searchOrg)"
                 md-search-text="searchOrg"
                 md-selected-item="selectedOrg"
+                md-selected-item-change="setOrg(selectedOrg)"
                 md-item-text="org.name"
                 md-floating-label="Organization">
                 <md-item-template>
@@ -29,15 +30,15 @@
         <div layout="row">
             <div layout="column" class="logo-column" ng-show="!changingLogo">
                 <div class="profile-logo">
-                    <img ng-src="{{company.logoImage ? company.logoImage : 'images/icon-company-lg.svg'}}" class="logo" alt="{{company.name}}" />
+                    <img ng-src="{{company.organization.logoImage ? company.organization.logoImage : 'images/icon-company-lg.svg'}}" class="logo" alt="{{company.organization.name}}" />
                     <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
-                               ng-if="company.logoImage"
+                               ng-if="company.organization.logoImage"
                                ng-click="deleteLogo($event)"
                                aria-label="Delete Image">
                         <ng-md-icon icon="delete" size="18"></ng-md-icon>
                     </md-button>
                 </div>
-                <md-button style="width: auto;" flex class="md-raised change-logo" ng-click="changeLogo()" ng-disabled="!user.isAdmin && !user.isDmdiiAdmin">Change Logo</md-button>
+                <md-button style="width: auto;" flex class="md-raised change-logo" ng-click="changeLogo()" ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin">Change Logo</md-button>
             </div>
             <div ng-if="changingLogo">
                 <div>
@@ -76,32 +77,30 @@
                     <md-input-container flex="35" class="company-name" md-no-float>
                         <input ng-model="company.organization.name"
                                ng-change="changedValue('name')"
-                               ng-disabled="!user.isAdmin && !user.isDmdiiAdmin"
+                               ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin"
                                placeholder="Company Name">
                     </md-input-container>
 
                     <md-input-container flex="35" class="company-industry" md-no-float>
                         <md-select ng-model="companyTier"
-                            ng-change="setTier()"
-                            ng-disabled="!user.isDmdiiAdmin"
+                            ng-model-options="{trackBy: '$value.id'}"
+                            ng-change="setTier(companyTier)"
+                            ng-disabled="!userData.isDmdiiAdmin"
                             placeholder="Category and Tier">
-                            <md-option ng-value="type" ng-repeat="type in types">{{categories[type.category] + type.tier}}</md-option>
+                            <md-option ng-value="{{type}}" ng-repeat="type in types">{{categories[type.category] + type.tier}}</md-option>
                     </md-input-container>
                 </div>
 
                 <div layout="row">
-                    <md-input-container flex="35" class="company-join-date" md-no-float>
-                        <input ng-model="company.startDate"
-                        ng-change="changedValue('startDate')"
-                        ng-disabled="!user.isDmdiiAdmin"
-                        placeholder="Start Date">
-                    </md-input-container>
-                    <md-input-container flex="35" class="company-expire-date" md-no-float>
-                        <input ng-model="company.expireDate"
-                        ng-change="changedValue('expireDate')"
-                        ng-disabled="!user.isDmdiiAdmin"
-                        placeholder="Expire Date">
-                    </md-input-container>
+                    <div layout="row">
+                        <div layout="column">
+                            <md-datepicker class="no-bottom no-pad-bottom top10" name="joinDate" ng-model="company.startDate" required md-placeholder="Join Date"></md-datepicker>
+                        </div>
+
+                        <div layout="column">
+                            <md-datepicker class="no-bottom no-pad-bottom top10" name="date" ng-model="company.expireDate" required md-placeholder="Expire Date"></md-datepicker>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,21 +109,21 @@
                 <textarea ng-model="company.organization.description"
                           columns="1"
                           ng-change="changedValue('description')"
-                          ng-disabled="!user.isAdmin && !user.isDmdiiAdmin"
+                          ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin"
                           md-maxlength="1000"
                           placeholder="Description of Organization"></textarea>
             </md-input-container>
         </div>
 
         <div layout="column">
-            <div layout="row" ng-if="user.isAdmin || user.isDmdiiAdmin">
-                <md-autocomplete flex="33"
+            <div layout="row" ng-if="userData.isAdmin || userData.isDmdiiAdmin">
+                <md-autocomplete flex="45"
                     md-input-name="coreCpabilites"
                     md-items="tag in queryTagSearch(searchWellTag)"
                     md-search-text="searchWellTag"
                     md-selected-item="selectedWellTag"
                     md-selected-item-change="addWellTag(selectedWellTag)"
-                    md-item-text="Tag.name"
+                    md-item-text="tag.name"
                     md-floating-label="Core Capabilities">
                     <md-item-template>
                       <span md-highlight-text="searchWellTag">{{tag.name}}</span>
@@ -135,7 +134,7 @@
                 </md-autocomplete>
                 <span flex></span>
 
-                <md-autocomplete flex="33"
+                <md-autocomplete flex="45"
                     md-input-name="seeking"
                     md-items="tag in queryTagSearch(searchSeekTag)"
                     md-search-text="searchSeekTag"
@@ -153,12 +152,12 @@
             </div>
 
             <div layout="row">
-                <div layout="row" layout-wrap flex="33">
+                <div layout="row" layout-wrap flex="45">
                     <div layout="column">
                         <span class="no-bottom" flex>Selected Core Capabilities (Click tag to remove)</span>
                         <div layout="row" layout-wrap>
                             <md-chips ng-repeat="area in company.areasOfExpertise track by $index">
-                                <md-chip ng-click="(user.isAdmin || user.isDmdiiAdmin) && removeWellTag($index)">
+                                <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeWellTag($index)">
                                     <span>{{area.name}}</span>
                                 </md-chip>
                             </md-chips>
@@ -168,13 +167,13 @@
 
                 <span flex></span>
 
-                <div layout="row" layout-wrap flex="33">
+                <div layout="row" layout-wrap flex="45">
                     <div layout="column">
                         <span class="no-bottom" flex>Selected Seeking Collaborations (Click tag to remove)</span>
                         <div layout="row" layout-wrap>
-                            <md-chips ng-repeat="sector in company.desiredAreasOfExpertise track by $index">
-                                <md-chip ng-click="(user.isAdmin || user.isDmdiiAdmin) && removeSeekTag($index)">
-                                    <span>{{sector.name}}</span>
+                            <md-chips ng-repeat="area in company.desiredAreasOfExpertise track by $index">
+                                <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeSeekTag($index)">
+                                    <span>{{area.name}}</span>
                                 </md-chip>
                             </md-chips>
                         </div>
@@ -182,7 +181,7 @@
                 </div>
             </div>
 
-        <div layout="column" ng-show="user.isAdmin || user.isDmdiiAdmin">
+        <div layout="column" ng-show="userData.isAdmin || userData.isDmdiiAdmin">
             <h3 class="no-bottom">Contacts</h3>
             <div layout="row">
                 <div layout="column" flex="20">
@@ -204,26 +203,28 @@
                     <md-input-container>
                         <label>Contact Type</label>
                         <md-select id="contactType"
-                            ng-model="contact.type">
-                            <md-option ng-repeat="(key, value) in contactTypes" ng-value="key">{{value}}</md-option>
+                            ng-model="contact.contactType">
+                            <md-option ng-repeat="type in contactTypes" ng-value="type">{{type.type}}</md-option>
                         </md-select>
                     </md-input-container>
                     <md-button class="md-raised" ng-click="addContact()">Add Contact</md-button>
                 </div>
                 <span flex></span>
-                <div layout="row" flex="75" layout-wrap>
-                    <div flex="20" ng-repeat="award in company.contacts track by $index">
-                        <div>
-                            <h4>{{contact.firstName + ' ' + contact.lastName}}</h4>
-                            <p>{{contact.email}}</p>
+
+                <div layout="row" flex="75" layout-align="start start" layout-wrap>
+                    <md-chips ng-repeat="contact in company.contacts track by $index">
+                        <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeContact($index)">
                             <span>
-                        </div>
-                    </div>
+                                <strong>{{contact.firstName + ' ' + contact.lastName}}</strong>
+                                <em>{{contact.email}}</em>
+                            </span>
+                        </md-chip>
+                    </md-chips>
                 </div>
             </div>
         </div>
 
-        <div layout="column" ng-show="user.isAdmin || user.isDmdiiAdmin">
+        <div layout="column" ng-show="userData.isAdmin || userData.isDmdiiAdmin">
             <h3 class="no-bottom">Recognitions</h3>
             <div layout="row">
                 <div layout="column" flex="20">
@@ -249,11 +250,9 @@
                 <span flex></span>
                 <div layout="row" flex="75" layout-wrap>
                     <div flex="20" ng-repeat="award in company.awards track by $index">
-                        <div>
-                            <h4>{{award.name}}</h4>
-                            <p>{{award.description}}</p>
-                            <span>
-                        </div>
+                        <span flex="5" ng-click="removeAward($index)">x</span>
+                        <h4 class="no-top">{{award.name}}</h4>
+                        <p>{{award.description}}</p>
                     </div>
                 </div>
             </div>

@@ -32,7 +32,7 @@ angular.module('dmc.edit-project')
             });
 
             $scope.getOrganizations = function() {
-                ajax.get(dataFactory.companyURL().all, {}, function(response) {
+                ajax.get(dataFactory.getDMDIIMember().full, {}, function(response) {
                     $scope.organizations = response.data;
                 });
             }
@@ -53,7 +53,21 @@ angular.module('dmc.edit-project')
             };
             // callback for project
             var callbackFunction = function(response){
-              $scope.project = response.data;
+                $scope.project = response.data;
+
+                $scope.project.awardedDate = new Date($scope.project.awardedDate);
+                $scope.project.endDate = new Date($scope.project.endDate);
+
+                $scope.contributors = [];
+                ajax.get(dataFactory.getDMDIIProject().contributors, {projectId: $scope.project.id}, function(response) {
+                    angular.forEach(response.data, function(company) {
+                      $scope.contributors.push({
+                          id: company.id,
+                          name: company.organization.name
+                      });
+                  })
+              });
+
               $scope.projectLoading = false;
             };
 
@@ -70,7 +84,7 @@ angular.module('dmc.edit-project')
                     $scope.title = 'Create Project';
 
                     $scope.project = {
-                        contributingCompanies: [],
+                        contributingCompanyIds: [],
                         primeOrganization: {},
                         primaryPointOfContact: {},
                         principalInvestigator: {},
@@ -83,26 +97,65 @@ angular.module('dmc.edit-project')
             };
             $scope.getDMDIIProject();
 
-            $scope.focusAreas = {
-                1:'Model-Based Design/Enterprise',
-                2:'Manufacturing Processes',
-                3:'Sensors & Metrology',
-                4:'Supply Chain Management',
-                5:'Product Lifecycle Management',
-                6:'Other'
-            }
+            $scope.focusAreas = [
+                {
+                    id: 1,
+                    name: 'Model-Based Design/Enterprise'
+                },
+                {
+                    id: 2,
+                    name:'Manufacturing Processes'
+                },
+                {
+                    id: 3,
+                    name: 'Sensors & Metrology'
+                },
+                {
+                    id: 4,
+                    name:'Supply Chain Management'
+                },
+                {
+                    id: 5,
+                    name:'Product Lifecycle Management'
+                },
+                {
+                    id: 6,
+                    name:'Other'
+                }
+            ]
 
-            $scope.thrustAreas = {
-                1:'Advanced Manufacturing Enterprise',
-                2:'Intelligent Machining',
-                3:'Advanced Analysis'
-            }
+            $scope.thrustAreas = [
+                {
+                    id: 1,
+                    name: 'Advanced Manufacturing Enterprise',
+                    code: 'AME'
+                },
+                {
+                    id: 2,
+                    name: 'Intelligent Machining',
+                    code: 'IM'
+                },
+                {
+                    id: 3,
+                    name:'Advanced Analysis',
+                    code: 'AA'
+                }
+            ]
 
-            $scope.statuses = {
-                1:'pre-awarded',
-                2:'awarded',
-                3:'completed'
-            }
+            $scope.statuses = [
+                {
+                    id: 1,
+                    name:'pre-awarded'
+                },
+                {
+                    id: 2,
+                    name:'awarded'
+                },
+                {
+                    id: 3,
+                    name:'completed'
+                }
+            ]
 
 
             $scope.setPrimeOrg = function(org) {
@@ -110,11 +163,13 @@ angular.module('dmc.edit-project')
             }
 
             $scope.addContributor = function(org) {
-                $scope.project.contributingCompanies.push(org);
+                $scope.project.contributingCompanyIds.push(org.id);
+                $scope.contributors.push(org);
             };
 
             $scope.removeContributor = function(index) {
-                $scope.project.contributingCompanies.splice(index, 1);
+                $scope.project.contributingCompanyIds.splice(index, 1);
+                $scope.contributors.splice(index, 1);
             };
 
             $scope.changedValue = function(){
@@ -126,8 +181,24 @@ angular.module('dmc.edit-project')
             }
 
             $scope.saveChanges = function() {
-                $scope.projectIdentifier = $scope.project.projectRootNumber + '-' + $scope.project.projectCallNumber + '-' + $scope.project.projectNumber
-                ajax.update(dataFactory.saveDMDIIProject($scope.project.id).project, $scope.project, callbackSaveFunction);
+                var date = new Date($scope.project.awardedDate);
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                month = (month < 10) ? '0' + month : month;
+                var day = date.getDate();
+
+                $scope.project.awardedDate = year + '-' + month + '-' + day;
+
+                var date = new Date($scope.project.endDate);
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                month = (month < 10) ? '0' + month : month;
+                var day = date.getDate();
+
+                $scope.project.endDate = year + '-' + month + '-' + day;
+
+                $scope.project.projectIdentifier = $scope.project.rootNumber + '-' + $scope.project.callNumber + '-' + $scope.project.projectNumber
+                ajax.create(dataFactory.saveDMDIIProject().project, $scope.project, callbackSaveFunction);
             };
             $scope.cancelChanges = function(){
                 $location.path('/'+$scope.project.id).search();

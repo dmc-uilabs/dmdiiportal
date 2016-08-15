@@ -26,22 +26,41 @@ angular.module('dmc.edit-member')
                 fileUpload) {
 
 
-            $scope.user = null;
+            $scope.userData = null;
             DMCUserModel.getUserData().then(function(res){
-                $scope.user = res;
+                $scope.userData = res;
+
+                if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
+                    $scope.userData.isVerified = true;
+                    switch ($scope.userData.roles[$stateParams.memberId]) {
+                        case 'ADMIN':
+                            $scope.userData.isAdmin = true;
+                            break;
+                        case 'VIP':
+                            $scope.userData.isVIP = true;
+                            break;
+                        case 'MEMBER':
+                            $scope.userData.isMember = true;
+                            break;
+                    }
+                }
             });
+
+            $scope.isChange = {};
 
             $scope.getOrganizations = function() {
                 if (!$stateParams.memberId) {
-                    ajax.get(dataFactory.companyURL().all, {}, function(response) {
+                    ajax.get(dataFactory.getNonDmdiiMembers(), {}, function(response) {
                         $scope.organizations = response.data;
                     });
                     $scope.company = {
-                        dmdiiType: {},
+                        dmdiiType: {
+                            dmdiiTypeCategory: {}
+                        },
                         contacts: [],
                         awards: [],
                         areasOfExpertise: [],
-                        sectors: []
+                        desiredAreasOfExpertise: []
                     };
                 }
             }
@@ -53,12 +72,22 @@ angular.module('dmc.edit-member')
                 $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
                 return deferred.promise;
             }
+
+            $scope.setOrg = function(org) {
+                $scope.company.organization = org;
+            }
+
             // callback for member
             var callbackFunction = function(response){
               $scope.company = response.data;
-              $scope.companyType = {
-                  tier: $scope.company.dmdiiType.tier,
-                  category: $scope.company.dmdiiTypeCategory.id
+              $scope.company.startDate = new Date($scope.company.startDate);
+              $scope.company.expireDate = new Date($scope.company.expireDate);
+
+              $scope.companyTier = {
+                  id: $scope.company.dmdiiType.id,
+                  tier: $scope.company.dmdiiType.tier || undefined,
+                  category: $scope.company.dmdiiType.dmdiiTypeCategory.id,
+                  categoryString: $scope.company.dmdiiType.dmdiiTypeCategory.category
               }
               $scope.memberLoading = false;
             };
@@ -72,21 +101,6 @@ angular.module('dmc.edit-member')
                 if ($stateParams.memberId) {
                     $scope.title = 'Edit Member';
 
-                    if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
-                        $scope.userData.isVerified = true;
-                        switch ($scope.userData.roles[$stateParams.memberId]) {
-                            case 'ADMIN':
-                                $scope.userData.isAdmin = true;
-                                break;
-                            case 'VIP':
-                                $scope.userData.isVIP = true;
-                                break;
-                            case 'MEMBER':
-                                $scope.userData.isMember = true;
-                                break;
-                        }
-                    }
-
                     ajax.get(dataFactory.getDMDIIMember($stateParams.memberId).get, responseData(), callbackFunction);
                 } else {
                     $scope.title = 'Create Member';
@@ -99,51 +113,81 @@ angular.module('dmc.edit-member')
             $scope.categories = {
                 1: 'Industry Tier ',
                 2: 'Academic Tier ',
-                3: 'Government'
+                3: 'U.S. Government',
+                4: 'State And Local Government'
             }
             $scope.types = [
                 {
+                    id: 4,
                     tier: 1,
-                    category: 2
+                    category: 2,
+                    categoryString: 'Academic'
                 },
                 {
+                    id: 5,
                     tier: 2,
-                    category: 2
+                    category: 2,
+                    categoryString: 'Academic'
                 },
                 {
+                    id: 6,
                     tier: 3,
-                    category: 2
+                    category: 2,
+                    categoryString: 'Academic'
                 },
                 {
-                    category: 3
-                },
-                {
-                    tier: 1,
-                    category: 1
-                },
-                {
-                    tier: 2,
-                    category: 1
-                },
-                {
-                    tier: 3,
-                    category: 1
-                },
-                {
+                    id: 7,
                     tier: 4,
-                    category: 1
+                    category: 2,
+                    categoryString: 'Academic'
+                },
+                {
+                    id: 1,
+                    tier: 1,
+                    category: 1,
+                    categoryString: 'Industry'
+                },
+                {
+                    id: 2,
+                    tier: 2,
+                    category: 1,
+                    categoryString: 'Industry'
+                },
+                {
+                    id: 3,
+                    tier: 3,
+                    category: 1,
+                    categoryString: 'Industry'
+                },
+                {
+                    id: 9,
+                    category: 4,
+                    categoryString: 'State And Local Government'
+                },
+                {
+                    id: 8,
+                    category: 3,
+                    categoryString: 'U.S. Government'
                 }
             ]
 
-            $scope.setTier = function() {
+            $scope.setTier = function(companyTier) {
+                console.log(companyTier)
                 if ($scope.company.dmdiiType) {
-                    $scope.company.dmdiiType.tier = $scope.companyType.tier;
-                    $scope.company.dmdiiType.dmdiiTypeCategory.id = $scope.companyType.category;
+                    $scope.company.dmdiiType.id = companyTier.id;
+
+                    $scope.company.dmdiiType.tier = companyTier.tier || undefined;
+                    $scope.company.dmdiiType.dmdiiTypeCategory.id = companyTier.category;
+                    $scope.company.dmdiiType.dmdiiTypeCategory.category = companyTier.categoryString;
+
                 } else {
                     $scope.company.dmdiiType = {
-                        tier: $scope.companyType.tier,
+                        id: companyTier.id,
+                        tier: companyTier.tier,
                         dmdiiTypeCategory: {
-                            id: $scope.companyType.category
+                            id: companyTier.category,
+                            category: companyTier.categoryString
+
                         }
                     }
                 }
@@ -156,6 +200,7 @@ angular.module('dmc.edit-member')
             $scope.getTags = function() {
                 ajax.get(dataFactory.getDmdiiMemberTags(), {}, tagCallbackFunction)
             }
+            $scope.getTags();
             //areas of expertise and sector tags
             $scope.searchWellTag = null;
             $scope.selectedWellTag = null;
@@ -206,12 +251,14 @@ angular.module('dmc.edit-member')
 
             $scope.addAward = function() {
                 $scope.company.awards.push($scope.award);
+                $scope.award = {};
                 $('#awardName').val('');
                 $('#awardDescription').val('');
                 $('#awardLink').val('');
             };
 
             $scope.removeAward = function(index) {
+                console.log(index)
                 $scope.company.awards.splice(index, 1);
             };
 
@@ -223,14 +270,24 @@ angular.module('dmc.edit-member')
                 type: null
             };
 
-            $scope.contactTypes = {
-                1: 'primary point of contact',
-                2: 'secondary point of contact',
-                3: 'executive lead'
-            };
+            $scope.contactTypes = [
+                {
+                    id: 1,
+                    type: 'primary point of contact'
+                },
+                {
+                    id: 2,
+                    type: 'secondary point of contact'
+                },
+                {
+                    id: 3,
+                    type: 'executive lead'
+                }
+            ];
 
             $scope.addContact = function() {
                 $scope.company.contacts.push($scope.contact);
+                $scope.contact = {};
                 $('#contactFirstName').val('');
                 $('#contactLastName').val('');
                 $('#contactEmail').val('');
@@ -317,7 +374,24 @@ angular.module('dmc.edit-member')
             }
 
             $scope.saveChanges = function() {
-                ajax.update(dataFactory.saveDMDIIMember($scope.company.id).member, $scope.company, callbackSaveFunction);
+                var date = new Date($scope.company.startDate);
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                month = (month < 10) ? '0' + month : month;
+                var day = date.getDate();
+
+                $scope.company.startDate = year + '-' + month + '-' + day;
+
+                var date = new Date($scope.company.expireDate);
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                month = (month < 10) ? '0' + month : month;
+                var day = date.getDate();
+
+                $scope.company.expireDate = year + '-' + month + '-' + day;
+
+
+                ajax.create(dataFactory.saveDMDIIMember().member, $scope.company, callbackSaveFunction);
             };
             $scope.cancelChanges = function(){
                 $location.path('/'+$scope.company.id).search();

@@ -58,7 +58,7 @@ angular.module('dmc.dmdiiProjects')
                     $scope.getDmdiiProjects();
                 }
             });
-            
+
             $scope.showArray = [
                 {
                     id : 1, val:12, name: '12 items'
@@ -215,13 +215,11 @@ angular.module('dmc.dmdiiProjects')
                     }
                 };
 
-
                 $scope.treeMenuModel = getMenu();
             }
 
             // callback
             var callbackFunction = function(response){
-                console.log(response.data)
                 if (angular.isDefined(response.data.count)) {
                     $scope.projects.arr = response.data.data;
                     $scope.projects.count = response.data.count;
@@ -289,14 +287,16 @@ angular.module('dmc.dmdiiProjects')
             }
 
             $scope.quickLinkAction = function(doc) {
-                if (angular.isDefined(doc.description)) {
+                if (angular.isDefined(doc.text) && doc.text !== null) {
                     $scope.showModalQuickLink(doc);
                 }
-                if (angular.isDefined(doc.link)) {
+                if (angular.isDefined(doc.link) && doc.link !== null) {
                     $window.open(doc.link);
                 }
-                if (angular.isDefined(doc.file)) {
-                    $window.open(doc.file);
+                if (angular.isDefined(doc.doc) && doc.doc !== null) {
+                    ajax.get(dataFactory.getDMDIIDocuments(doc.doc.id).single, {}, function(response) {
+                        $window.open(response.data.documentUrl);
+                    })
                 }
             }
 
@@ -404,32 +404,32 @@ angular.module('dmc.dmdiiProjects')
                         {
                             'id': 3,
                             'title': 'Thrust Area',
-                            'tag' : 'thrust',
-                            'opened' : isOpened('thrust'),
-                            'href' : getUrl('thrust', null),
+                            'tag' : 'thrustId',
+                            'opened' : isOpened('thrustId'),
+                            'href' : getUrl('thrustId', null),
                             'categories': [
                                 {
                                     'id': 33,
                                     'title': 'Advanced Analysis',
                                     'tag' : '3',
-                                    'opened' : isOpened('thrust', '3'),
-                                    'href' : getUrl('thrust', '3'),
+                                    'opened' : isOpened('thrustId', '3'),
+                                    'href' : getUrl('thrustId', '3'),
                                     'categories': []
                                 },
                                 {
                                     'id': 31,
                                     'title': 'Advanced Manufacturing Enterprise',
                                     'tag' : '1',
-                                    'opened' : isOpened('thrust', '1'),
-                                    'href' : getUrl('thrust', '1'),
+                                    'opened' : isOpened('thrustId', '1'),
+                                    'href' : getUrl('thrustId', '1'),
                                     'categories': []
                                 },
                                 {
                                     'id': 32,
                                     'title': 'Intelligent Machining',
                                     'tag' : '2',
-                                    'opened' : isOpened('thrust', '2'),
-                                    'href' : getUrl('thrust', '2'),
+                                    'opened' : isOpened('thrustId', '2'),
+                                    'href' : getUrl('thrustId', '2'),
                                     'categories': []
                                 }
                             ]

@@ -6,8 +6,8 @@ angular.module('dmc.model.toast-model', [])
         var last = {
             bottom: false,
             top: true,
-            left: false,
-            right: true
+            left: true,
+            right: false
         };
 
         var toastPosition = angular.extend({},last);

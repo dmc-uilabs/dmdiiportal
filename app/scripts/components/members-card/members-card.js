@@ -22,29 +22,30 @@ angular.module('dmc.component.members-card', [
                 }
             );
 
-			$scope.user = null;
+			$scope.userData = null;
 			DMCUserModel.getUserData().then(function(res){
-				$scope.user = res;
+				$scope.userData = res;
+
+				if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$scope.companyId])) {
+					$scope.userData.isVerified = true;
+					switch ($scope.userData.roles[$scope.companyId]) {
+						case 'ADMIN':
+						$scope.userData.isAdmin = true;
+						break;
+						case 'VIP':
+						$scope.userData.isVIP = true;
+						break;
+						case 'MEMBER':
+						$scope.userData.isMember = true;
+						break;
+					}
+				}
 			});
 
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
-			if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$scope.companyId])) {
-				$scope.userData.isVerified = true;
-				switch ($scope.userData.roles[$scope.companyId]) {
-					case 'ADMIN':
-						$scope.userData.isAdmin = true;
-						break;
-					case 'VIP':
-						$scope.userData.isVIP = true;
-						break;
-					case 'MEMBER':
-						$scope.userData.isMember = true;
-						break;
-				}
-			}
 
             $scope.addToProject = function(){
                 $scope.addingToProject = true;
@@ -144,12 +145,12 @@ angular.module('dmc.component.members-card', [
 					parent: angular.element(document.body),
 					locals: {
 					   token: $scope.token
-				},
+					},
 					clickOutsideToClose: true
 				});
 			}
 			$scope.generateToken = function() {
-				ajax.create(dataFactory.generateToken(), {userId: $scope.cardSource.id}, tokenCallback)
+				ajax.create(dataFactory.generateToken($scope.cardSource.id), {}, tokenCallback)
 			}
             $scope.showMembers = function(id, ev){
                 $(window).scrollTop();

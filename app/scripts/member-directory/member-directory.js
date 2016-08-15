@@ -27,7 +27,7 @@ angular.module('dmc.members', [
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('member_directory', {
-        url: '/member_directory?categoryId?tier?hasActiveProjects?tag',
+        url: '/member_directory?type?tier?activeProjects?tag',
         templateUrl: 'templates/member-directory/member-directory.html',
         controller: 'DMCMemberDirectoryController',
         resolve: {
@@ -36,7 +36,7 @@ angular.module('dmc.members', [
             }
         }
     }).state('members_search', {
-        url: '/member_directory/search?categoryId?tier?hasActiveProjects?tag',
+        url: '/member_directory/search?type?tier?activeProjects?tag',
         templateUrl: 'templates/member-directory/member-directory.html',
         controller: 'DMCMemberDirectoryController',
         resolve: {
