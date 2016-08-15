@@ -126,7 +126,7 @@ angular.module('dmc.members')
             };
 
             $scope.hasNext = function() {
-                return $scope.memberCurrentPage !== Math.ceil($scope.members.count / $scope.memberPageSize);
+                return $scope.memberCurrentPage !== Math.ceil($scope.members.count / $scope.memberPageSize) - 1;
             };
 
             var responseData = {
@@ -314,6 +314,22 @@ angular.module('dmc.members')
                                     'tag' : '2',
                                     'opened' : isOpened('tier', '2'),
                                     'href' : getUrl('tier', '2'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 13,
+                                    'title': 'Three',
+                                    'tag' : '3',
+                                    'opened' : isOpened('tier', '3'),
+                                    'href' : getUrl('tier', '3'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 14,
+                                    'title': 'Four',
+                                    'tag' : '4',
+                                    'opened' : isOpened('tier', '4'),
+                                    'href' : getUrl('tier', '4'),
                                     'categories': []
                                 }
                             ]

@@ -32,6 +32,8 @@ angular.module('dmc.addDmdiiContent').
                     fileUpload.uploadFileToUrl($scope.doc[0].file, {}, 'projectStatus', function(response) {
                         $scope.document.documentUrl = response.file.name;
                         $scope.document.documentName = 'projectStatus';
+                        $scope.document.ownerId = $scope.$root.userData.accountId;
+                        $scope.document.path = '';
                         $scope.document.fileType = 2;
 
                         ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);

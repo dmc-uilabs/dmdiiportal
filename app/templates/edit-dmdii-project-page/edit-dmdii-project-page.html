@@ -53,25 +53,22 @@
                     </md-input-container>
 
                     <md-input-container flex="35" class="project-status" md-no-float>
-                        <md-select ng-model="project.projectStatus.id"
+                        <md-select ng-model="project.projectStatus"
+                        ng-model-options="{trackBy: '$value.id'}"
                         ng-disabled="!user.isDmdiiAdmin"
                         placeholder="Status">
-                        <md-option ng-value="key" ng-repeat="(key, value) in statuses">{{value}}</md-option>
+                        <md-option ng-value="{{status}}" ng-repeat="status in statuses">{{status.name}}</md-option>
                     </md-input-container>
                 </div>
 
                 <div layout="row">
-                    <md-input-container flex="35" class="project-award-date" md-no-float>
-                        <input ng-model="project.awardedDate"
-                        ng-disabled="!user.isDmdiiAdmin"
-                        placeholder="Award Date">
-                    </md-input-container>
+                    <div layout="column">
+                        <md-datepicker class="no-bottom no-pad-bottom top10" name="date" ng-model="project.awardedDate" required md-placeholder="Award Date"></md-datepicker>
+                    </div>
 
-                    <md-input-container flex="35" class="project-end-date" md-no-float>
-                        <input ng-model="project.endDate"
-                        ng-disabled="!user.isDmdiiAdmin"
-                        placeholder="End Date">
-                    </md-input-container>
+                    <div layout="column">
+                        <md-datepicker class="no-bottom no-pad-bottom top10" name="date" ng-model="project.endDate" required md-placeholder="End Date"></md-datepicker>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,17 +85,19 @@
 
         <div layout="row">
             <md-input-container flex="35" class="project-focus-area" md-no-float>
-                <md-select ng-model="project.projectFocusArea.id"
+                <md-select ng-model="project.projectFocusArea"
+                    ng-model-options="{trackBy: '$value.id'}"
                     ng-disabled="!user.isDmdiiAdmin"
                     placeholder="Focus Area">
-                    <md-option ng-value="key" ng-repeat="(key, value) in focusAreas">{{value}}</md-option>
+                    <md-option ng-value="{{focus}}" ng-repeat="focus in focusAreas">{{focus.name}}</md-option>
             </md-input-container>
 
             <md-input-container flex="35" class="project-thrust" md-no-float>
-                <md-select ng-model="project.projectThrust.id"
+                <md-select ng-model="project.projectThrust"
+                    ng-model-options="{trackBy: '$value.id'}"
                     ng-disabled="!user.isDmdiiAdmin"
                     placeholder="Thrust Area">
-                    <md-option ng-value="key" ng-repeat="(key, value) in thrustAreas">{{value}}</md-option>
+                    <md-option ng-value="{{thrust}}" ng-repeat="thrust in thrustAreas">{{thrust.name}}</md-option>
             </md-input-container>
         </div>
 
@@ -121,6 +120,21 @@
 
             <span flex></span>
 
+            <div layout="row" layout-wrap flex="33" ng-show="project.primeOrganization.name">
+                <div layout="column">
+                    <span class="no-bottom" flex>Selected Prime Organization</span>
+                    <div layout="row" layout-wrap>
+                        <md-chips>
+                            <md-chip>
+                                <span>{{project.primeOrganization.name}}</span>
+                            </md-chip>
+                        </md-chips>
+                    </div>
+                </div>
+            </div>
+
+            <span flex></span>
+
             <div layout="row" ng-show="user.isDmdiiAdmin">
                 <md-autocomplete flex="33"
                     md-input-name="organizations"
@@ -129,7 +143,7 @@
                     md-selected-item="selectedContOrg"
                     md-item-text="org.name"
                     md-selected-item-change="addContributor(selectedContOrg)"
-                    md-floating-label="Contributing Company">
+                    md-floating-label="Add Contributing Company">
                     <md-item-template>
                       <span md-highlight-text="searchContOrg">{{org.name}}</span>
                     </md-item-template>
@@ -146,7 +160,7 @@
             <div layout="column">
                 <span class="no-bottom" flex>Selected Contributors (Click Company to remove)</span>
                 <div layout="row" layout-wrap>
-                    <md-chips ng-repeat="company in project.contributingCompanies track by $index">
+                    <md-chips ng-repeat="company in contributors track by $index">
                         <md-chip ng-click="(user.isDmdiiAdmin) && removeCont($index)">
                             <span>{{company.name}}</span>
                         </md-chip>
@@ -180,23 +194,23 @@
         </div>
 
         <div layout="column" ng-show="user.isDmdiiAdmin">
-            <h3 class="no-bottom">Primary Point of Contact</h3>
+            <h3 class="no-bottom">Principal Point of Contact</h3>
             <div layout="row">
                 <div layout="column" flex="20">
                     <md-input-container>
                         <label>First Name</label>
                         <input id="contactFirstName"
-                            ng-model="project.primaryPointOfContact.firstName">
+                            ng-model="project.principalPointOfContact.firstName">
                     </md-input-container>
                     <md-input-container>
                         <label>Last Name</label>
                         <input id="contactLastName"
-                            ng-model="project.primaryPointOfContact.lastName">
+                            ng-model="project.principalPointOfContact.lastName">
                     </md-input-container>
                     <md-input-container md-no-float>
                         <label>Email</label>
                         <input id="contactEmail"
-                            ng-model="project.primaryPointOfContact.email">
+                            ng-model="project.principalPointOfContact.email">
                     </md-input-container>
                 </div>
                 <span flex></span>

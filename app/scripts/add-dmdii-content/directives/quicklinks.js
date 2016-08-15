@@ -87,14 +87,20 @@ angular.module('dmc.addDmdiiContent').
                     month = (month < 10) ? '0' + month : month;
                     var day = date.getDate();
 
-                    $scope.quicklink.created = date;
+                    $scope.quicklink.created = year + '-' + month + '-' + day;
 
                     if ($scope.linkType === 'document') {
                         fileUpload.uploadFileToUrl($scope.document[0].file, {}, 'quickdoc', function(response) {
+                            console.log(response)
                             $scope.quicklink.doc = response.file.name;
-                            ajax.create(dataFactory.saveDMDIIDocument(), {documentUrl: $scope.quicklink.doc, documentName: $scope.quicklink.displayName }, function(response) {
-                                $scope.quicklink.doc = response;
-
+                            ajax.create(dataFactory.saveDMDIIDocument(),
+                                {
+                                    ownerId: $scope.$root.userData.accountId,
+                                    path: '',
+                                    documentUrl: $scope.quicklink.doc,
+                                    documentName: $scope.quicklink.displayName
+                                }, function(response) {
+                                $scope.quicklink.doc = response.data;
                                 ajax.create(dataFactory.saveQuicklink(), $scope.quicklink, quicklinkCallback);
                             });
                         });

@@ -4,6 +4,9 @@
 	"profileId": 1,
 	"companyId": 1,
 	"role": 1,
+	"roles": {
+		"0": "SUPERADMIN"
+	},
 	"termsConditions": true,
 	"notifications": {
 		"total": 3,

@@ -38,7 +38,7 @@ angular.module('dmc.addDmdiiContent').
                     }
                 });
 
-                $scope.callback = function(response) {
+                var callback = function(response) {
                     toastModel.showToast('success', 'Project Financial Saved!');
 
                 }
@@ -60,6 +60,8 @@ angular.module('dmc.addDmdiiContent').
                         $scope.document.documentUrl = response.file.name;
                         $scope.document.documentName = 'projectFinancials';
                         $scope.document.fileType = 3;
+                        $scope.document.ownerId = $scope.$root.userData.accountId;
+                        $scope.document.path = '';
                         $scope.document.dmdiiProjectId = $scope.selectedItem.id;
 
                         ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);
