@@ -162,6 +162,8 @@ angular.module('dmc.edit-project')
                 $scope.project.primeOrganization = org;
             }
 
+            $scope.contributors = [];
+
             $scope.addContributor = function(org) {
                 $scope.project.contributingCompanyIds.push(org.id);
                 $scope.contributors.push(org);
@@ -181,19 +183,21 @@ angular.module('dmc.edit-project')
             }
 
             $scope.saveChanges = function() {
-                var date = new Date($scope.project.awardedDate);
-                var year = date.getFullYear();
-                var month = date.getMonth() + 1;
+                var startDate = new Date($scope.project.awardedDate);
+                var year = startDate.getFullYear();
+                var month = startDate.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
-                var day = date.getDate();
+                var day = startDate.getDate();
+                day = (day < 10) ? '0' + day : day;
 
                 $scope.project.awardedDate = year + '-' + month + '-' + day;
 
-                var date = new Date($scope.project.endDate);
-                var year = date.getFullYear();
-                var month = date.getMonth() + 1;
+                var endDate = new Date($scope.project.endDate);
+                year = endDate.getFullYear();
+                month = endDate.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
-                var day = date.getDate();
+                day = endDate.getDate();
+                day = (day < 10) ? '0' + day : day;
 
                 $scope.project.endDate = year + '-' + month + '-' + day;
 

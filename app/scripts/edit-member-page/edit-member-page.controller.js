@@ -258,7 +258,6 @@ angular.module('dmc.edit-member')
             };
 
             $scope.removeAward = function(index) {
-                console.log(index)
                 $scope.company.awards.splice(index, 1);
             };
 
@@ -358,7 +357,7 @@ angular.module('dmc.edit-member')
                     $scope.company.logoImage = data.file.name;
                     apply();
                     toastModel.showToast('success', 'Image successfully added');
-                    saveMemeber();
+                    saveMember();
                 }else{
                     toastModel.showToast('error', 'Unable add image');
                 }
@@ -379,6 +378,7 @@ angular.module('dmc.edit-member')
                 var month = date.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
                 var day = date.getDate();
+                day = (day < 10) ? '0' + day : day;
 
                 $scope.company.startDate = year + '-' + month + '-' + day;
 
@@ -387,6 +387,7 @@ angular.module('dmc.edit-member')
                 var month = date.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
                 var day = date.getDate();
+                day = (day < 10) ? '0' + day : day;
 
                 $scope.company.expireDate = year + '-' + month + '-' + day;
 
