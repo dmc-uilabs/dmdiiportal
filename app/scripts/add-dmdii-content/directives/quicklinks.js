@@ -13,6 +13,13 @@ angular.module('dmc.addDmdiiContent').
                 $scope.linkType = 'text';
                 $scope.document = [];
 
+                $scope.docAccessLevels = {
+                    'All Members': 'ALL_MEMBERS',
+                    'Project Participants': 'PROJECT_PARTICIPANTS',
+                    'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
+                    'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
+                }
+                
                 var quicklinkCallback = function(response) {
                     toastModel.showToast('success', 'Quicklink Saved!');
                 };
@@ -91,7 +98,6 @@ angular.module('dmc.addDmdiiContent').
 
                     if ($scope.linkType === 'document') {
                         fileUpload.uploadFileToUrl($scope.document[0].file, {}, 'quickdoc', function(response) {
-                            console.log(response)
                             $scope.quicklink.doc = response.file.name;
                             ajax.create(dataFactory.saveDMDIIDocument(),
                                 {

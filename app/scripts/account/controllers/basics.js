@@ -140,13 +140,8 @@ angular.module('dmc.account')
                     }
                 };
 
-                $scope.openModal = function() {
-                    console.log($scope.user);
-                    $mdDialog.show({
-                        contentElement: '#addToken',
-                        parent: angular.element(document.body)
-                    });
-                }
+                $scope.token = {};
+
                 var tokenCallback = function(response) {
                     $scope.res = response.data;
 
@@ -157,9 +152,9 @@ angular.module('dmc.account')
                     }
                 }
                 $scope.verifyToken = function() {
-                    if ($scope.token && $scope.token.trim().length > 0) {
+                    if ($scope.token && $scope.token.token.trim().length > 0) {
                         $scope.error = '';
-                        ajax.create(dataFactory.verifyToken($scope.userId), {token: $scope.token}, tokenCallback);
+                        ajax.create(dataFactory.validateToken($scope.user.id, $scope.token.token), {}, tokenCallback);
                     } else {
                         $scope.error = "You MUST enter a token";
                     }

@@ -45,7 +45,7 @@ angular.module('dmc.member')
             $scope.userData = null;
             DMCUserModel.getUserData().then(function(res){
                 $scope.userData = res;
-                CompareModel.get('services', $scope.userData);
+                // CompareModel.get('services', $scope.userData);
 
                 if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
                     $scope.userData.isVerified = true;
@@ -72,13 +72,14 @@ angular.module('dmc.member')
             var callbackFunction = function(response){
                 $scope.member = response.data;
 
-                if (!$scope.member.projects) {
-                    ajax.get(dataFactory.getDMDIIMemberProjects(), { page: 0, pageSize: 50, dmdiiMemberId: $scope.member.id }, function(response) {
-                        $scope.member.projects = response.data.data;
-                    });
-                }
+                // if (!$scope.member.projects) {
+                //     ajax.get(dataFactory.getDMDIIMemberProjects(), { page: 0, pageSize: 50, dmdiiMemberId: $scope.member.id }, function(response) {
+                //         $scope.member.projects = response.data.data;
+                //     });
+                // }
                 $scope.getCompanyMembers($scope.member.id);
 
+                $scope.getProjects($scope.member.id);
                 $scope.memberLoading = false;
             };
 
@@ -93,14 +94,13 @@ angular.module('dmc.member')
             };
             $scope.getDMDIIMember();
 
-
-            var getProjects = function(id) {
-                ajax.get(dataFactory.getDMDIIMemberProjects().prime, {memberId: id}, function(response) {
-                    $scope.primes = response.data;
-                })
-                ajax.get(dataFactory.getDMDIIMemberProjects().contrbuting, {memberId: id}, function(response) {
+            $scope.getProjects = function(id) {
+                ajax.get(dataFactory.getDMDIIMemberProjects().prime, {dmdiiMemberId: id, page: 0, pageSize: 50}, function(response) {
+                    $scope.primes = response.data.data;
+                });
+                ajax.get(dataFactory.getDMDIIMemberProjects().contributing, {dmdiiMemberId: id}, function(response) {
                     $scope.contributing = response.data;
-                })
+                });
             }
 
             var callbackMembers = function(response) {

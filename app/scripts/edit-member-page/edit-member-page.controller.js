@@ -84,10 +84,12 @@ angular.module('dmc.edit-member')
               $scope.company.expireDate = new Date($scope.company.expireDate);
 
               $scope.companyTier = {
-                  id: $scope.company.dmdiiType.id,
-                  tier: $scope.company.dmdiiType.tier || undefined,
-                  category: $scope.company.dmdiiType.dmdiiTypeCategory.id,
-                  categoryString: $scope.company.dmdiiType.dmdiiTypeCategory.category
+                  data: {
+                      id: $scope.company.dmdiiType.id,
+                      tier: $scope.company.dmdiiType.tier || undefined,
+                      category: $scope.company.dmdiiType.dmdiiTypeCategory.id,
+                      categoryString: $scope.company.dmdiiType.dmdiiTypeCategory.category
+                  }
               }
               $scope.memberLoading = false;
             };
@@ -100,16 +102,17 @@ angular.module('dmc.edit-member')
             $scope.getDMDIIMember = function(){
                 if ($stateParams.memberId) {
                     $scope.title = 'Edit Member';
+                    $scope.action = 'Edited';
 
                     ajax.get(dataFactory.getDMDIIMember($stateParams.memberId).get, responseData(), callbackFunction);
                 } else {
                     $scope.title = 'Create Member';
+                    $scope.action = 'Created';
                 }
             };
             $scope.getDMDIIMember();
 
-            $scope.changes = {};
-            $scope.isDataChanged = false;
+            $scope.companyTier = {};
             $scope.categories = {
                 1: 'Industry Tier ',
                 2: 'Academic Tier ',
@@ -171,22 +174,21 @@ angular.module('dmc.edit-member')
                 }
             ]
 
-            $scope.setTier = function(companyTier) {
-                console.log(companyTier)
+            $scope.setTier = function() {
                 if ($scope.company.dmdiiType) {
-                    $scope.company.dmdiiType.id = companyTier.id;
+                    $scope.company.dmdiiType.id = $scope.companyTier.data.id;
 
-                    $scope.company.dmdiiType.tier = companyTier.tier || undefined;
-                    $scope.company.dmdiiType.dmdiiTypeCategory.id = companyTier.category;
-                    $scope.company.dmdiiType.dmdiiTypeCategory.category = companyTier.categoryString;
+                    $scope.company.dmdiiType.tier = $scope.companyTier.data.tier || undefined;
+                    $scope.company.dmdiiType.dmdiiTypeCategory.id = $scope.companyTier.data.category;
+                    $scope.company.dmdiiType.dmdiiTypeCategory.category = $scope.companyTier.data.categoryString;
 
                 } else {
                     $scope.company.dmdiiType = {
-                        id: companyTier.id,
-                        tier: companyTier.tier,
+                        id: $scope.companyTier.data.id,
+                        tier: $scope.companyTier.data.tier,
                         dmdiiTypeCategory: {
-                            id: companyTier.category,
-                            category: companyTier.categoryString
+                            id: $scope.companyTier.data.category,
+                            category: $scope.companyTier.data.categoryString
 
                         }
                     }
@@ -266,7 +268,7 @@ angular.module('dmc.edit-member')
                 firstName: null,
                 lastName: null,
                 email: null,
-                type: null
+                contactType: null
             };
 
             $scope.contactTypes = [
@@ -329,8 +331,8 @@ angular.module('dmc.edit-member')
             };
 
             $scope.uploadLogo = function(){
-                if($scope.newLogo){
-                    fileUpload.uploadFileToUrl($scope.newLogo.file,{id : $scope.company.id},'company-logo',callbackUploadPicture);
+                if ($scope.newLogo) {
+                    fileUpload.uploadFileToUrl($scope.newLogo.file, {id : $scope.company.id}, 'company-logo', callbackUploadPicture);
                     $scope.cancelChangingLogo();
                 }
             };
@@ -354,25 +356,25 @@ angular.module('dmc.edit-member')
 
             var callbackUploadPicture = function(data){
                 if(!data.error) {
-                    $scope.company.logoImage = data.file.name;
+                    $scope.company.organization.logoImage = data.file.name;
                     apply();
                     toastModel.showToast('success', 'Image successfully added');
-                    saveMember();
                 }else{
-                    toastModel.showToast('error', 'Unable add image');
+                    toastModel.showToast('error', 'Unable to add image');
                 }
             };
             // --------------------------------------------------------------------
 
-            $scope.changedValue = function(){
-                $scope.isDataChanged = isChange;
-            };
-
             var callbackSaveFunction = function(response) {
-                $location.path('/'+$scope.company.id).search();
+                if (response.status === 200) {
+                    toastModel.showToast('success', 'Member Successfully ' + $scope.action + '!')
+                    $location.path('member-page.php#/' + response.data.id);
+                }
             }
 
             $scope.saveChanges = function() {
+                $scope.setTier();
+
                 var date = new Date($scope.company.startDate);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
@@ -394,8 +396,13 @@ angular.module('dmc.edit-member')
 
                 ajax.create(dataFactory.saveDMDIIMember().member, $scope.company, callbackSaveFunction);
             };
+
             $scope.cancelChanges = function(){
-                $location.path('/'+$scope.company.id).search();
+                if ($scope.company && $scope.company.id) {
+                    $location.path('/member-directory.php#/' + $scope.company.id);
+                } else {
+                    $location.path('/member-directory.php#/');
+                }
             };
 
             function apply(){

@@ -84,7 +84,8 @@ angular.module('dmc.widgets.documents',[
                 serviceId: "=",
 				product: "=",
 				allowTagging: "=",
-				singleFile: "="
+				singleFile: "=",
+				accessLevel: "="
 			},
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
                 $scope.documentDropZone;
@@ -103,7 +104,7 @@ angular.module('dmc.widgets.documents',[
                             apply();
 					    }
                     );
-				}else if($scope.serviceId){
+				} else if($scope.serviceId){
                     ajax.get(dataFactory.getServiceDocuments($scope.serviceId), requestData,
                         function(response){
                             $scope.source = response.data;
