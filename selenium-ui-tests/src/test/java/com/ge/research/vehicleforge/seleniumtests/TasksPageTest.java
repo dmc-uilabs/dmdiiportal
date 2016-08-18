@@ -1,16 +1,11 @@
 package com.ge.research.vehicleforge.seleniumtests;
 
-
-import org.junit.*;
-
 import org.openqa.selenium.*;
 
 public class TasksPageTest extends BaseTest {
 
-	
 	public void testTasksPage() throws Exception {
 
-		 	  
 		driver.get(baseUrl + "/project.php#/5/tasks");
 		driver.findElement(By.xpath("//th/div")).click();
 		driver.findElement(By.xpath("//th/div")).click();
@@ -25,6 +20,5 @@ public class TasksPageTest extends BaseTest {
 		driver.findElement(By.xpath("//div/div/button")).click();
 		driver.findElement(By.xpath("//div/div/button")).click();
 	}
-
 
 }

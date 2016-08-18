@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 import static org.junit.Assert.*;
@@ -24,6 +26,11 @@ public abstract class BaseTest {
 	static StringBuffer verificationErrors = new StringBuffer();
 	static String browserName = System.getenv("browser").toLowerCase();
 	public static Logger log = Logger.getGlobal();
+	static String domeUrl = System.getenv("domeurl");
+	static String port = System.getenv("port");
+	
+	WebDriverWait wait = new WebDriverWait(driver, 30);
+	JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 	@BeforeClass
 	public static void setUp() throws Exception {
@@ -43,7 +50,7 @@ public abstract class BaseTest {
 			driver = new FirefoxDriver();
 			driver.manage().window().maximize();
 		} else if (browserName.equals("ie")) {
-			version = BrowserVersion.INTERNET_EXPLORER_11;
+			version = BrowserVersion.INTERNET_EXPLORER;
 			// driver = new InternetExplorerDriver();
 		} else if (browserName.equals("safari")) {
 			// driver = new SafariDriver();
@@ -70,7 +77,7 @@ public abstract class BaseTest {
 			driver.manage().deleteAllCookies();
 
 			driver.get(baseUrl);
-			Thread.sleep(3000);
+			Thread.sleep(TestUtils.sleep3Second);
 
 			if (browserName.equals("firefox")) {
 				driver.findElement(By.xpath("html/body/div[4]/md-dialog")).sendKeys(Keys.ESCAPE);
@@ -92,9 +99,7 @@ public abstract class BaseTest {
 	}
 
 	public static void testDMCLogin() throws Exception {
-		
-		
-		
+
 		if (TestUtils.CREDENTIAL_GATEWAY_REQUIRED) {
 			testPublicLoginProtection();
 		} else {
@@ -102,18 +107,21 @@ public abstract class BaseTest {
 			driver.manage().deleteAllCookies();
 		}
 
-		Thread.sleep(1000);
+		Thread.sleep(TestUtils.sleep3Second);
 		// logout
 		driver.findElement(By.xpath("html/body/div[1]/header/div[2]/div/div/div/div/a[1]/span")).click();
-		Thread.sleep(5000);
-		driver.findElement(By.xpath("//div[3]/md-menu/button")).click();
-		WebElement logout = driver.findElement(By.xpath("//md-menu-item[4]/button"));
+		Thread.sleep(TestUtils.sleep5Second);
+		driver.findElement(By.xpath("html/body/div[1]/header/div[1]/div/div/div[3]/md-menu/button"))
+				.sendKeys(Keys.ENTER);
+		WebElement logout = driver.findElement(By.xpath("//md-menu-item[5]/button"));
 		logout.sendKeys(Keys.ENTER);
 
 		// login
+		Thread.sleep(TestUtils.sleep3Second);
 		driver.findElement(By.xpath("//a/span")).click();
-		driver.findElement(By.linkText("Google")).click();
-		Thread.sleep(2000);
+		driver.findElement(By.xpath("//li/a")).click();
+
+		Thread.sleep(TestUtils.sleep3Second);
 		driver.findElement(By.id("Email")).clear();
 		driver.findElement(By.id("Email")).sendKeys(System.getenv("credential_user"));
 		driver.findElement(By.id("next")).click();
@@ -126,7 +134,7 @@ public abstract class BaseTest {
 	}
 
 	public void TestOnBoarding() throws Exception {
-		Thread.sleep(3000);
+		Thread.sleep(TestUtils.sleep3Second);
 
 		driver.findElement(By.id("input_2")).clear();
 		driver.findElement(By.id("input_2")).sendKeys("Test First Name");
@@ -138,7 +146,7 @@ public abstract class BaseTest {
 		driver.findElement(By.id("select_option_8")).click();
 		driver.findElement(By.xpath("//div[2]/button")).click();
 		driver.findElement(By.xpath("//div[2]/button")).click();
-		Thread.sleep(1000);
+		Thread.sleep(TestUtils.sleep3Second);
 		WebElement e = driver.findElement(By.xpath("//div[2]/button"));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", e);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
