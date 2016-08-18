@@ -34,7 +34,7 @@
                     <div layout-align="end start" flex="33">
                         <h3>Quick Links</h3>
                           <ul>
-                            <li ng-repeat="doc in docs track by $index" ng-click="quickLinkAction(doc)"><a>{{doc.title}}</a></li> <br>
+                            <li ng-repeat="doc in docs track by $index" ng-click="quickLinkAction(doc)"><a>{{doc.displayName}}</a></li> <br>
                          </ul>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                             <td class="title-project">
                                 <h4>{{project.projectIdentifier}}</h4>
                                 <a class="no-bottom no-top" ng-href="{{'/dmdii-project-page.php#/'+project.id}}"><h3 class="no-bottom no-top">{{project.projectTitle}}</h3></a>
-                                <a class="no-bottom no-top" ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h5 class="project-lead no-bottom no-top">{{project.primeOrganization.organization.name}}</h5></a>
+                                <a class="no-bottom no-top" ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h5 class="project-lead no-bottom no-top">{{project.primeOrganization.name}}</h5></a>
                             </td>
                             <td>{{project.projectStatus.name}}</td>
                             <td>

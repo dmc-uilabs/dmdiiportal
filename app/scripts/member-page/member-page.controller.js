@@ -41,6 +41,7 @@ angular.module('dmc.member')
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
+
             $scope.userData = null;
             DMCUserModel.getUserData().then(function(res){
                 $scope.userData = res;
@@ -67,37 +68,16 @@ angular.module('dmc.member')
             var loadingData = function(start){ // progress line
                 $scope.downloadData = start;
             };
-
-            var getProjects = function() {
-            }
-
-            var callbackMembers = function(reponse) {
-                $scope.contacts = [];
-                angular.forEach(response.data, function(member) {
-                    if (member.userContactInfo.userMemberPortalContactInfo && member.userContactInfo.userMemberPortalContactInfo.id) {
-                        $scope.member.contacts.push({
-                            firstName: member.firstName,
-                            lastName: member.lastName,
-                            phone: member.userContactInfo.userMemberPortalContactInfo.phone,
-                            email:  member.userContactInfo.userMemberPortalContactInfo.email
-                        })
-                    }
-                })
-            }
-            $scope.getCompanyMembers = function() {
-                ajax.get(dataFactory.getUsersByOrganization($scope.company.id), {}, callbackMembers);
-            }
-            $scope.getCompanyMembers();
-
             // callback for member
             var callbackFunction = function(response){
                 $scope.member = response.data;
 
-                if (!member.projects) {
-                    ajax.get(dataFactory.getDMDIIMemberProjects(), { page: 0, pageSize: 50, memberId: $stateParams.memberId }, function(response) {
-                        $scope.member.projects = response.data.results;
+                if (!$scope.member.projects) {
+                    ajax.get(dataFactory.getDMDIIMemberProjects(), { page: 0, pageSize: 50, dmdiiMemberId: $scope.member.id }, function(response) {
+                        $scope.member.projects = response.data.data;
                     });
                 }
+                $scope.getCompanyMembers($scope.member.id);
 
                 $scope.memberLoading = false;
             };
@@ -112,6 +92,33 @@ angular.module('dmc.member')
                 ajax.get(dataFactory.getDMDIIMember($stateParams.memberId).get, responseData(), callbackFunction);
             };
             $scope.getDMDIIMember();
+
+
+            var getProjects = function(id) {
+                ajax.get(dataFactory.getDMDIIMemberProjects().prime, {memberId: id}, function(response) {
+                    $scope.primes = response.data;
+                })
+                ajax.get(dataFactory.getDMDIIMemberProjects().contrbuting, {memberId: id}, function(response) {
+                    $scope.contributing = response.data;
+                })
+            }
+
+            var callbackMembers = function(response) {
+                $scope.contacts = [];
+                angular.forEach(response.data, function(member) {
+                    if (member.userContactInfo && member.userContactInfo.userMemberPortalContactInfo && member.userContactInfo.userMemberPortalContactInfo.id) {
+                        $scope.member.contacts.push({
+                            firstName: member.firstName,
+                            lastName: member.lastName,
+                            phone: member.userContactInfo.userMemberPortalContactInfo.phone,
+                            email:  member.userContactInfo.userMemberPortalContactInfo.email
+                        });
+                    }
+                });
+            }
+            $scope.getCompanyMembers = function(id) {
+                ajax.get(dataFactory.getUsersByOrganization(id), {}, callbackMembers);
+            }
 
 			$scope.storefront = [];
 
@@ -128,7 +135,7 @@ angular.module('dmc.member')
 			};
 
 			$scope.getDMDIIMemberStorefront = function() {
-				ajax.get(dataFactory.getServices(), responseData(), callbackStorefrontFunction);
+				ajax.get(dataFactory.getServices(), responseStorefrontData(), callbackStorefrontFunction);
 			}
 			$scope.getDMDIIMemberStorefront();
         }

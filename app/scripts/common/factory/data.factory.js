@@ -444,11 +444,11 @@ angular.module('dmc.data',[])
             userRole: function() {
                 return localhost + 'dmdiiaccess/role';
             },
-            generateToken: function() {
-                return localhost + 'user/createtoken';
+            generateToken: function(id) {
+                return localhost + 'user/createtoken?userId=' + id;
             },
-            validateToken: function() {
-                return localhost + 'user/verify';
+            validateToken: function(id) {
+                return localhost + 'user/verify?userId=' + id;
             },
             getDmdiiMemberTags: function(){
                 return localhost + 'dmdiiTag'
@@ -456,21 +456,28 @@ angular.module('dmc.data',[])
             getUsersByOrganization: function(id) {
                     return localhost + 'user/organization/' + id
             },
+            getOrganization: function() {
+                return localhost + 'organization'
+            },
             getDMDIIMember: function(id) {
                 return {
                     get: localhost+'dmdiiMember/'+ id,
                     all: localhost+'dmdiiMember',
+                    full: localhost+'dmdiiMember/all',
                     events: localhost+'dmdiiMember/events',
                     news: localhost+'dmdiiMember/news',
                     map: localhost + 'dmdiiMember/mapEntry'
                 }
             },
             getDMDIIMemberProjects: function() {
-                return localhost + 'dmdiiprojects/member';
-            },
-            saveDMDIIMember: function(id) {
                 return {
-                    member: localhost + 'dmdiiMember/' + id,
+                    prime: localhost + 'dmdiiprojects/member',
+                    contrbuting: localhost + '/contributingCompanies'
+                }
+            },
+            saveDMDIIMember: function() {
+                return {
+                    member: localhost + 'dmdiiMember/save',
                     events: localhost + 'dmdiiMember/events',
                     news: localhost + 'dmdiiMember/news'
                 }
@@ -480,12 +487,13 @@ angular.module('dmc.data',[])
                     get: localhost+'dmdiiProject/' + id,
                     all: localhost+'dmdiiprojects',
                     events: localhost+'dmdiiProject/events',
-                    news: localhost+'dmdiiProject/news'
+                    news: localhost+'dmdiiProject/news',
+                    contributors: localhost + '/dmdiiproject/contributingcompanies'
                 }
             },
-            saveDMDIIProject: function(id) {
+            saveDMDIIProject: function() {
                 return {
-                    project: localhost + 'dmdiiProject/' + id,
+                    project: localhost + 'dmdiiProject/save',
                     events: localhost + 'dmdiiProject/events',
                     news: localhost + 'dmdiiProject/news'
                 }
@@ -493,25 +501,28 @@ angular.module('dmc.data',[])
             getQuickLinks: function() {
                 return {
                     all: localhost + 'dmdiiquicklink'
-                }
+                };
             },
             saveQuicklink: function() {
                 return localhost + 'dmdiiquicklink';
             },
             getDMDIIDocuments: function(id) {
                 return {
-                    all: localhost,
-                    single: localhost + id
-                }
+                    all: localhost + 'dmdiidocuments',
+                    single: localhost + 'dmdiidocument/' + id
+                };
             },
             saveDMDIIDocument: function() {
-                return localhost + 'dmdiidocument'
+                return localhost + 'dmdiidocument';
             },
             getDocumentTags: function() {
-                return localhost + 'dmdiidocuments/getAllTags'
+                return localhost + 'dmdiidocuments/getAllTags';
             },
             createDocumentTag: function() {
-                return localhost + 'dmdiidocuments/saveDocumentTag'
+                return localhost + 'dmdiidocuments/saveDocumentTag';
+            },
+            getNonDmdiiMembers: function() {
+                return localhost + 'organization/nonMember';
             },
             // companies ------------------
             companyURL: function(id){

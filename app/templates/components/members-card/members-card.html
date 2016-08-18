@@ -35,7 +35,7 @@
 	        Add to Project
 	    </md-button>
 
-		<md-button ng-click="generateToken()" ng-hide="cardSource.isVerified || !userData.isAdmin" class="white-button" aria-label="Verify" flex>
+		<md-button ng-click="generateToken()" ng-hide="cardSource.isVerified || (!userData.isAdmin && !userData.isDmdiiAdmin)" class="white-button" aria-label="Verify" flex>
 	        Verify
 	    </md-button>
 

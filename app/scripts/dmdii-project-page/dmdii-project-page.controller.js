@@ -53,7 +53,12 @@ angular.module('dmc.dmdiiProj')
             // callback for project
             var callbackFunction = function(response){
                 $scope.project = response.data;
-				$scope.projectLoading = false;
+
+                ajax.get(dataFactory.getDMDIIProject().contributors, {projectId: $scope.project.id}, function(response) {
+                    $scope.project.contributingCompanies = response.data;
+                    $scope.projectLoading = false;
+                });
+
             };
 
             var responseData = function(){

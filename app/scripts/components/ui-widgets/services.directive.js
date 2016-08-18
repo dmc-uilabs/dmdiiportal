@@ -136,7 +136,11 @@ angular.module('dmc.widgets.services',[
                         question: "Are you sure you want to remove this service?",
                         buttons: {
                             ok: function(){
-                                var deleteItem = $.extend(true, {}, item.__serviceData);
+                                var itemData = angular.isDefined(item.__serviceData) ? item.__serviceData : item;
+                                if (itemData.hasOwnProperty('$$hashKey')) {
+                                    delete itemData['$$hashKey'];
+                                }
+                                var deleteItem = $.extend(true, {}, itemData);
                                 deleteItem.currentStatus = {};
                                 deleteItem.projectId = 0;
                                 ajax.update(dataFactory.services(item.id).update, deleteItem, function(response){

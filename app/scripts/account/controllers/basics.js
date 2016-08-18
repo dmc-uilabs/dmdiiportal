@@ -159,7 +159,7 @@ angular.module('dmc.account')
                 $scope.verifyToken = function() {
                     if ($scope.token && $scope.token.trim().length > 0) {
                         $scope.error = '';
-                        ajax.create(dataFactory.verifyToken(), {userId: $scope.userId, token: $scope.token}, tokenCallback);
+                        ajax.create(dataFactory.verifyToken($scope.userId), {token: $scope.token}, tokenCallback);
                     } else {
                         $scope.error = "You MUST enter a token";
                     }
