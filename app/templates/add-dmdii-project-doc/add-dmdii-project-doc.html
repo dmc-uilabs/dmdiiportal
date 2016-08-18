@@ -1,0 +1,62 @@
+<div ng-if="!not_found" class="add-project-doc">
+    <md-content class="project-profile-padding">
+        <div layout="column">
+            <div layout="row" layout-align="start start" flex="50">
+                <h2>{{project.projectTitle}} Documents and Updates</h2>
+            </div>
+
+			<div layout="row" layout-align="start start" flex="50">
+                <h3>Documents</h3>
+            </div>
+			<div>
+				<div class="content-column upload-documents top10" layout="column" flex="50">
+					<div class="content-panel"
+						source="documents"
+						ui-widget-upload-documents
+						widget-type="'row'"
+						auto-upload="false"
+						widget-title="'Upload Document'"
+						allow-tagging="true"
+						single-file="true"
+						access-level="docAccessLevels">
+					</div>
+				</div>
+				<div layout="row" flex="50" layout-align="end start">
+	                <md-button class="md-raised md-primary save-button" ng-click="uploadDocs()">Upload</md-button>
+	            </div>
+			</div>
+
+			<div layout="row" layout-align="start start" flex="50">
+                <h3>Updates</h3>
+			</div>
+
+			<div layout="column">
+				<md-input-container>
+					<label>Title</label>
+					<input type="text" ng-model="update.title">
+				</md-input-container>
+
+				<div layout="column">
+					<md-datepicker class="no-bottom no-pad-bottom top10" name="date" ng-model="update.created" required md-placeholder="Date"></md-datepicker>
+				</div>
+
+				<md-input-container>
+					<label>Description</label>
+					<input type="text" ng-model="update.description">
+				</md-input-container>
+
+				<md-input-container>
+					<label>Access Level</label>
+					<md-select ng-model="update.accessLevel">
+						<md-option ng-value="value" ng-repeat="(key, value) in updateAccessLevels">{{key}}</md-option>
+					</md-select>
+				</md-input-container>
+
+				<div layout="row" flex="50" layout-align="end start">
+	                <md-button class="md-raised md-primary save-button" ng-click="saveUpdates()">Save Update</md-button>
+	            </div>
+			</div>
+		</div>
+
+	</md-content>
+</div>

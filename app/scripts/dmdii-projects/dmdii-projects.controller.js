@@ -126,7 +126,7 @@ angular.module('dmc.dmdiiProjects')
             };
 
             $scope.hasNext = function() {
-                return $scope.dmdiiProjectCurrentPage !== Math.ceil($scope.projects.count / $scope.dmdiiProjectPageSize);
+                return $scope.dmdiiProjectCurrentPage !== Math.ceil($scope.projects.count / $scope.dmdiiProjectPageSize) - 1;
             };
 
             var eventsCallbackFunction = function(response) {

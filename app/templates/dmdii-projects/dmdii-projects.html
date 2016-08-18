@@ -134,9 +134,9 @@
                     </md-button>
                 </md-input-container>
                 <md-input-container ng-if="hasNext()">
-                    <md-button id="nextPage" flex>
+                    <md-button id="nextPage" ng-click="getNext()" flex>
                         NEXT
-                        <ng-md-icon icon="chevron_right" size="20" ng-click="getNext()"></ng-md-icon>
+                        <ng-md-icon icon="chevron_right" size="20"></ng-md-icon>
                     </md-button>
                 </md-input-container>
             </div>

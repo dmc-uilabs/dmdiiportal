@@ -27,6 +27,12 @@
                     <label>Document name</label>
                     <input ng-value="item.title" ng-model="item.title">
                 </md-input-container>
+                <md-input-container ng-if="accessLevel" flex>
+                    <label>Access Level</label>
+                    <md-select ng-model="doc.accessLevel">
+                        <md-option ng-value="value" ng-repeat="(key, value) in accessLevel">{{key}}</md-option>
+                    </md-select>
+                </md-input-container>
                 <ui-select multiple tagging tagging-label="false" append-to-body="true" ng-model="item.tags" theme="select2" flex ng-show="item.editing && allowTagging">
                     <ui-select-match placeholder="Tags">{{$item.name || $item}}</ui-select-match>
                     <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.name || tag}}</ui-select-choices>

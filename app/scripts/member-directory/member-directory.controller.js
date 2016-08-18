@@ -224,6 +224,14 @@ angular.module('dmc.members')
                     $scope.members.arr = response.data;
                     insertData(response.data);
                 }
+                $scope.activeProjects = {};
+
+                angular.forEach($scope.members.arr, function(member) {
+                    ajax.get(dataFactory.getDMDIIProject().active, {dmdiiMemberId: member.id, page: 0, pageSize: 15}, function(response) {
+                        console.log(response.data)
+                        $scope.activeProjects[member.id] = response.data.data;
+                    });
+                });
             };
 
             var responseData = function(){

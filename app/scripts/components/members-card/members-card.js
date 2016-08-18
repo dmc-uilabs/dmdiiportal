@@ -46,7 +46,6 @@ angular.module('dmc.component.members-card', [
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
 
-
             $scope.addToProject = function(){
                 $scope.addingToProject = true;
             };
@@ -95,13 +94,23 @@ angular.module('dmc.component.members-card', [
                 }
             };
 
-			$scope.roles = {
-				2: 'Admin',
-				3: 'VIP',
-				4: 'Member'
-			}
+			$scope.roles = [
+				{
+					id: 2,
+					name: 'Admin'
+				},
+				{
+					id: 3,
+					name: 'VIP'
+				},
+				{
+					id: 4,
+					name: 'Member'
+				}
+			]
 
 			if (angular.isDefined($scope.cardSource.roles[$scope.companyId])) {
+				$scope.cardSource.isVerified = true;
 				switch ($scope.cardSource.roles[$scope.companyId]) {
 					case 'ADMIN':
 						$scope.roleId = 2;
@@ -113,6 +122,8 @@ angular.module('dmc.component.members-card', [
 						$scope.roleId = 4;
 						break;
 				}
+			} else {
+				$scope.cardSource.isVerified = false;
 			}
 
 			$scope.setRole = function() {
@@ -129,7 +140,7 @@ angular.module('dmc.component.members-card', [
 			$scope.saveMember = function() {
 				var role = {
 					userId: $scope.cardSource.id,
-					organizationId: $scope.cardSource.$scope.companyId,
+					organizationId: $scope.companyId,
 					roleId: $scope.roleId
 				}
 				$scope.addingMember = false;

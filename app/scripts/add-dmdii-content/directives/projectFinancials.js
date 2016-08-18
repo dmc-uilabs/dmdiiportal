@@ -13,6 +13,11 @@ angular.module('dmc.addDmdiiContent').
                 $scope.document = {};
                 $scope.noProjectSelected = false;
 
+                $scope.docAccessLevels = {
+                    'All Members': 'ALL_MEMBERS',
+                    'Project Participants': 'PROJECT_PARTICIPANTS',
+                    'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
+                }
                 $scope.querySearch = function(query) {
                     var results = query ? $scope.projects.filter( createFilterFor(query) ) : $scope.projects,
                         deferred;

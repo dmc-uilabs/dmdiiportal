@@ -57,7 +57,6 @@ angular.module('dmc.company-profile')
 
             $scope.userData = null;
             DMCUserModel.getUserData().then(function(res){
-                console.log(res)
                 $scope.userData = res;
 
                 if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
@@ -74,7 +73,6 @@ angular.module('dmc.company-profile')
                             break;
                     }
                 }
-                console.log($scope.userData)
             });
 
             function loadContactMethods(){

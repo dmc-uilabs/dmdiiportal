@@ -4,9 +4,19 @@
 		<!--project-->
 		<md-content class="project">
 			<!--project header-->
-			<div layout="row" layout-align="end">
+			<div layout="row" layout-align="end" flex="50">
+				<md-button ng-if="userData.isDmdiiAdmin"
+					   class="md-raised dmc-button"
+					   flex="25"
+					   href="add-dmdii-project-doc.php#/{{project.id}}">
+					Add Documents and Updates
+				</md-button>
+
+				<span flex></span>
+				
 				<md-button ng-if="userData.isDmdiiAdmin"
 						   class="md-raised dmc-button"
+						   flex="20"
 						   href="edit-dmdii-project-page.php#/{{project.id}}/edit">
 					Edit DMDII Project
 				</md-button>
@@ -98,7 +108,7 @@
 
 								<div layout="column">
 									<div layout="row">
-										<h3 class="slim-margin no-bottom green"><a ng-href="{{'/member-page.php#/'+project.primeOrganization.id}}">{{project.primeOrganization.name}}</a></h3>
+										<h3 class="slim-margin green"><a ng-href="{{'/member-page.php#/'+project.primeOrganization.id}}">{{project.primeOrganization.name}}</a></h3>
 										<span class="slim-margin po-subtitle">[ Prime ]</span>
 									</div>
 								</div>
@@ -125,8 +135,8 @@
 				<md-tab label="Project Updates">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
-							<div layout="column" ng-show="project.updates.length > 0">
-								<div class="bottom20" ng-repeat="update in project.updates">
+							<div layout="column" ng-show="updates.length > 0">
+								<div class="bottom20" ng-repeat="update in updates">
 									<div class="slim-side-margin no-bottom" layout="row">
 										<h2 class="margin-top-25 no-bottom green">{{update.title}}</h4>
 										<p class="superset">{{update.date}}</p>
@@ -135,7 +145,7 @@
 									<p class="byline no-top bottom10">-{{update.author}}</p>
 								</div>
 							</div>
-							<span ng-hide="project.updates.length > 0">This Project has no updates</span>
+							<span ng-hide="updates.length > 0">This Project has no updates</span>
 						</div>
 					</md-content>
 				</md-tab>
@@ -143,10 +153,10 @@
 				<md-tab label="Project Documents">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
-							<div layout="column" class="project-documents" ng-show="project.documents.length > 0">
-								<a class="slim-margin" ng-repeat="doc in project.documents">{{doc.name}}</a>
+							<div layout="column" class="project-documents" ng-show="documents.length > 0">
+								<a class="slim-margin" ng-repeat="doc in documents">{{doc.name}}</a>
 							</div>
-							<span ng-hide="project.documents.length > 0">This Project has no documents</span>
+							<span ng-hide="documents.length > 0">This Project has no documents</span>
 						</div>
 					</md-content>
 				</md-tab>

@@ -59,6 +59,15 @@ angular.module('dmc.dmdiiProj')
                     $scope.projectLoading = false;
                 });
 
+                ajax.get(dataFactory.getDMDIIProject().updates, {limit: 5, projectId: $scope.project.id}, function(response) {
+                    $scope.updates = response.data;
+                    $scope.projectLoading = false;
+                });
+
+                ajax.get(dataFactory.getDMDIIDocuments().project, {page: 0, pageSize: 15, dmdiiProjectId: $scope.project.id}, function(response) {
+                    $scope.documents = response.data;
+                });
+
             };
 
             var responseData = function(){

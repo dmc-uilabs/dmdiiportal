@@ -213,11 +213,11 @@
 
         <div layout="row" class="text-row">
             <div layout="column" flex="50" class="padding-right8">
-                <h2>Past DMDll Projects</h2>
+                <h2>Past DMDII Projects</h2>
                 <p>{{company.pastProjects}}</p>
             </div>
             <div layout="column" flex="50" class="padding-left8">
-                <h2>Upcoming DMDll Project Interests</h2>
+                <h2>Upcoming DMDII Project Interests</h2>
                 <p>{{company.upcomingProjectInterests}}</p>
             </div>
         </div>
@@ -316,8 +316,8 @@
     </div>
     <md-divider></md-divider>
     <div layout="row">
-        <div flex="20" class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: 5">
-            <dmc-members-card card-source="item" companyId="company.id"></dmc-members-card>
+        <div flex="25" class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: 4">
+            <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
         </div>
     </div>
 </div>
@@ -331,8 +331,8 @@
     </div>
     <md-divider></md-divider>
     <div layout="row">
-        <div flex="20" class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: 5">
-            <dmc-members-card card-source="item" companyId="company.id"></dmc-members-card>
+        <div flex="25" class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: 4">
+            <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
         </div>
     </div>
 </div>

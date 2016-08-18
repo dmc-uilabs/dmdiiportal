@@ -149,7 +149,7 @@
                             <td>{{member.dmdiiType.dmdiiTypeCategory.category}}</td>
                             <td>{{member.dmdiiType.tier}}</td>
                             <td>
-                                <a ng-repeat="tag in member.activeProjects track by $index">{{tag.tagName}}{{$last ? '' : ', '}}</a>
+                                <a ng-repeat="project in activeProjects[member.id] track by $index" ng-href="{{'/dmdii-project-page.php#/' + project.id}}">{{project.projectTitle}}{{$last ? '' : ', '}}</a>
                             </td>
 
                             <td>

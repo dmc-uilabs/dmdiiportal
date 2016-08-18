@@ -75,15 +75,7 @@ angular.module('dmc.add_project.directive', [
 
                 $(window).unbind('beforeunload')
                 newProject.documents = $scope.documents;
-                angular.forEach(newProject.documents, function(doc) {
-                    angular.forEach(doc.tag, function(tag, index) {
-                        if (!angular.isObject(tag)) {
-                            ajax.create(dataFactory.createDocumentTag(), tag, function(response) {
-                                doc.tag[index] = response.data;
-                            });
-                        }
-                    });
-                });
+                
                 projectModel.add_project(newProject, data, function(data){
                     document.location.href = "project.php#/"+data+"/home";
                 });

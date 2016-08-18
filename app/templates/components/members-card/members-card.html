@@ -27,15 +27,15 @@
 
 	<div class="footer" layout="row" >
 
-		<md-button class="white-button" ng-click="setRole()" aria-label="Select Role" ng-hide="settingRole || addingToProject || !cardSource.isVerified || !userData.isAdmin" flex>
+		<md-button class="white-button" ng-click="setRole()" aria-label="Select Role" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || !cardSource.isVerified || (settingRole || addingToProject)" flex>
 			Select Role
 		</md-button>
 
-    	<md-button ng-click="addToProject()" ng-hide="addingToProject || cardSource.added || settingRole || !cardSource.isVerified || !userData.isAdmin" class="white-button" aria-label="Add to Project" flex>
+    	<md-button ng-click="addToProject()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || !cardSource.isVerified || (addingToProject || cardSource.added || settingRole)" class="white-button" aria-label="Add to Project" flex>
 	        Add to Project
 	    </md-button>
 
-		<md-button ng-click="generateToken()" ng-hide="cardSource.isVerified || (!userData.isAdmin && !userData.isDmdiiAdmin)" class="white-button" aria-label="Verify" flex>
+		<md-button ng-click="generateToken()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || cardSource.isVerified" class="white-button" aria-label="Verify" flex>
 	        Verify
 	    </md-button>
 
@@ -69,8 +69,8 @@
 	        </div>
 	    </div>
 
-		<div class="adding-to-project" ng-show="settingRole">
-	        <div layout="row" layout-align="center center" class="inner-add-to-project">
+		<div class="select-role" ng-show="settingRole">
+	        <div layout="row" layout-align="center center" class="inner-select-role">
 	            <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelSetRole()">
 	                <ng-md-icon icon="close" size="17"></ng-md-icon>
 	            </md-button>

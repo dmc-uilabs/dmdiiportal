@@ -447,8 +447,8 @@ angular.module('dmc.data',[])
             generateToken: function(id) {
                 return localhost + 'user/createtoken?userId=' + id;
             },
-            validateToken: function(id) {
-                return localhost + 'user/verify?userId=' + id;
+            validateToken: function(id, token) {
+                return localhost + 'user/verify?userId=' + id + '&token=' + token;
             },
             getDmdiiMemberTags: function(){
                 return localhost + 'dmdiiTag'
@@ -472,7 +472,7 @@ angular.module('dmc.data',[])
             getDMDIIMemberProjects: function() {
                 return {
                     prime: localhost + 'dmdiiprojects/member',
-                    contrbuting: localhost + '/contributingCompanies'
+                    contributing: localhost + '/contributingCompanies'
                 }
             },
             saveDMDIIMember: function() {
@@ -486,16 +486,19 @@ angular.module('dmc.data',[])
                 return {
                     get: localhost+'dmdiiProject/' + id,
                     all: localhost+'dmdiiprojects',
+                    active: localhost + '/dmdiiprojects/member/active',
                     events: localhost+'dmdiiProject/events',
                     news: localhost+'dmdiiProject/news',
-                    contributors: localhost + '/dmdiiproject/contributingcompanies'
+                    contributors: localhost + 'dmdiiproject/contributingcompanies',
+                    updates: localhost + 'dmdiiProjectUpdate'
                 }
             },
             saveDMDIIProject: function() {
                 return {
                     project: localhost + 'dmdiiProject/save',
                     events: localhost + 'dmdiiProject/events',
-                    news: localhost + 'dmdiiProject/news'
+                    news: localhost + 'dmdiiProject/news',
+                    update: localhost + 'dmdiiProjectUpdate'
                 }
             },
             getQuickLinks: function() {
@@ -509,7 +512,8 @@ angular.module('dmc.data',[])
             getDMDIIDocuments: function(id) {
                 return {
                     all: localhost + 'dmdiidocuments',
-                    single: localhost + 'dmdiidocument/' + id
+                    single: localhost + 'dmdiidocument/' + id,
+                    project: localhost + 'dmdiidocuments/dmdiiProjectId'
                 };
             },
             saveDMDIIDocument: function() {
