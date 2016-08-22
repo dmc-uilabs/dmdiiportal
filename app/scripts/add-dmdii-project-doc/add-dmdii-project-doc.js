@@ -37,13 +37,16 @@ angular.module('dmc.add-project-doc', [
     $stateProvider.state('add-doc', {
         url: '/:projectId',
         templateUrl: 'templates/add-dmdii-project-doc/add-dmdii-project-doc.html',
-        controller: 'DMCAddProjectDocController',
-        resolve: {
-            is_search: function() {
-                return false;
-            }
-        }
-    });
+        controller: 'DMCAddProjectDocController'
+    }).state('add-doc.projectUpdates', {
+		url: '/projectUpdates'
+	}).state('add-doc.projectDocuments', {
+		url: '/projectDocuments'
+	}).state('add-doc.projectFinancials', {
+		url: '/projectFinancials'
+	}).state('add-doc.projectSchedule', {
+		url: '/projectSchedule'
+	});
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/:projectId/projectUpdates');
 });
