@@ -19,14 +19,23 @@ angular.module('dmc.addDmdiiContent').
                     'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
                     'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
                 }
-                
+
                 var quicklinkCallback = function(response) {
                     toastModel.showToast('success', 'Quicklink Saved!');
+                    $scope.quicklink = {};
+                    $scope.noTitle = false;
+                    $scope.noDescription = false;
+                    $scope.noLink = false;
+                    $scope.noDocSelected = false;
                 };
 
                 $scope.clear = function() {
                     $scope.quicklink = {};
                     $scope.document = [];
+                    $scope.noTitle = false;
+                    $scope.noDescription = false;
+                    $scope.noLink = false;
+                    $scope.noDocSelected = false;
                 };
 
                 $scope.$watch('quicklink', function() {
@@ -68,6 +77,8 @@ angular.module('dmc.addDmdiiContent').
                         if (!$scope.quicklink.link) {
                             $scope.noLink = true;
                         }
+
+                        $scope.quicklink.link = 'HTTP://' + $scope.quicklink.link;
 
                         delete $scope.quicklink.text;
                         delete $scope.quicklink.path;

@@ -12,7 +12,7 @@ angular.module('dmc.addDmdiiContent').
 
 
                 $scope.$watch('event', function() {
-                    if ($scope.noTitle && angular.isDefined($scope.event.eventTitle) && $scope.event.eventTitle.length > 0) {
+                    if ($scope.noTitle && angular.isDefined($scope.event.eventName) && $scope.event.eventName.length > 0) {
                         $scope.noTitle = false;
                     }
 
@@ -48,7 +48,7 @@ angular.module('dmc.addDmdiiContent').
 
                 $scope.save = function() {
 
-                    if (!$scope.event.eventTitle) {
+                    if (!$scope.event.eventName) {
                         $scope.noTitle = true;
                     }
                     if (!$scope.event.eventDate) {

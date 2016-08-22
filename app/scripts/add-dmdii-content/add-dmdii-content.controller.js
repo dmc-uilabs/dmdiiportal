@@ -11,13 +11,13 @@ angular.module('dmc.addDmdiiContent')
         "questionToastModel",
         "fileUpload",
         function ($stateParams,
-                  $scope,
-                  ajax,
-                  dataFactory,
-                  $location,
-                  toastModel,
-                  questionToastModel,
-                  fileUpload) {
+            $scope,
+            ajax,
+            dataFactory,
+            $location,
+            toastModel,
+            questionToastModel,
+            fileUpload) {
 
             $scope.projects = [];
 
@@ -28,6 +28,7 @@ angular.module('dmc.addDmdiiContent')
                     $scope.projects = response.data;
                 }
             }
+
             $scope.getProjects = function() {
                 ajax.get(dataFactory.getDMDIIProject().all, {pageSize: 200, page:0}, callbackFunction)
             };
@@ -59,9 +60,6 @@ angular.module('dmc.addDmdiiContent')
                 },
 				projectStatus: {
                     title : 'Projects Status'
-                },
-                projectFinancials: {
-                    title : 'Project Financials'
                 }
             };
 
@@ -92,4 +90,5 @@ angular.module('dmc.addDmdiiContent')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }
 
-        }]);
+        }
+    ]);

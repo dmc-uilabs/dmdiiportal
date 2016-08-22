@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div layout="row" ng-if="!user.isVerified">
-                        <div layout="column" flex="50">
+                        <div layout="column" flex="75">
                             <md-input-container flex="75">
                                 <label>Verification Token</label>
                                 <input type="text" ng-model="token.token">
@@ -92,7 +92,7 @@
                             <p class="error" ng-show="error != ''">{{error}}</p>
                         </div>
                         <div>
-                            <md-button class="md-raised md-primary save-button" ng-click="verifyToken()" flex="25">Verify</md-button>
+                            <md-button class="md-raised md-primary save-button" ng-click="verifyToken()" flex="20">Verify</md-button>
                         </div>
                     </div>
                 </md-content>
