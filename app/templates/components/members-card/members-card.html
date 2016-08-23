@@ -18,6 +18,7 @@
 		<h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{cardSource.firstName + ' ' + cardSource.lastName}}</a></h3>
 		<h4>{{cardSource.jobTitle}}</h4>
 		<h4>{{cardSource.userContactInfo.userPublicContactInfo.email}}</h4>
+		<a href="" ng-if="(userData.isDmdiiAdmin || userData.isAdmin) && cardSource.isVerified" ng-click="removeMember()">Remove from Organization</a>
 	</div>
 
 	<div class="description">

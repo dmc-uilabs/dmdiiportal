@@ -37,9 +37,9 @@ angular.module('dmc.add-project-doc').
                     }
 
                     //send to s3, save returned link to document table
-                    fileUpload.uploadFileToUrl($scope.doc[0].file, {}, 'projectFinancials', function(response) {
+                    fileUpload.uploadFileToUrl($scope.doc[0].file, {}, 'projectSchedule', function(response) {
                         $scope.document.documentUrl = response.file.name;
-                        $scope.document.documentName = 'projectFinancials';
+                        $scope.document.documentName = 'projectSchedule';
                         $scope.document.fileType = 4;
                         $scope.document.ownerId = $scope.$root.userData.accountId;
                         $scope.document.dmdiiProjectId = $scope.project.id;

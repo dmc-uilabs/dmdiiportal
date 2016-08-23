@@ -450,6 +450,9 @@ angular.module('dmc.data',[])
             validateToken: function(id, token) {
                 return localhost + 'user/verify?userId=' + id + '&token=' + token;
             },
+            unverify: function(id) {
+                return localhost + 'user/unverify?userId=' + id;
+            },
             getDmdiiMemberTags: function(){
                 return localhost + 'dmdiiTag'
             },
