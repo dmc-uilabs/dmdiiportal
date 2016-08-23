@@ -113,7 +113,6 @@ angular.module('dmc.addDmdiiContent').
                             ajax.create(dataFactory.saveDMDIIDocument(),
                                 {
                                     ownerId: $scope.$root.userData.accountId,
-                                    path: '',
                                     documentUrl: $scope.quicklink.doc,
                                     documentName: $scope.quicklink.displayName
                                 }, function(response) {

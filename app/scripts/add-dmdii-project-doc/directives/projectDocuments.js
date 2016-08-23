@@ -50,7 +50,6 @@ angular.module('dmc.add-project-doc').
                                 documentUrl: response.file.name,
                                 documentName: response.key,
                                 ownerId: $scope.user.accountId,
-                                path: '',
                                 dmdiiProjectId: $scope.project.id
                             }
 
