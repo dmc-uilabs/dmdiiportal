@@ -42,7 +42,6 @@ angular.module('dmc.add-project-doc').
                         $scope.document.documentName = 'projectFinancials';
                         $scope.document.fileType = 4;
                         $scope.document.ownerId = $scope.$root.userData.accountId;
-                        $scope.document.path = '';
                         $scope.document.dmdiiProjectId = $scope.project.id;
 
                         ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);
