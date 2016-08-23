@@ -12,7 +12,7 @@ angular.module('dmc.component.members-card', [
 			companyId: '='
 		},
 		templateUrl: 'templates/components/members-card/members-card.html',
-		controller: ['$scope', '$mdDialog', 'ajax', 'dataFactory', 'DMCUserModel', function($scope, $mdDialog, ajax, dataFactory, DMCUserModel){
+		controller: ['$scope', '$mdDialog', 'ajax', 'dataFactory', 'DMCUserModel', 'toastModel', function($scope, $mdDialog, ajax, dataFactory, DMCUserModel, toastModel){
             $scope.projects = [];
             $scope.addingToProject = false;
             ajax.get(
@@ -128,6 +128,13 @@ angular.module('dmc.component.members-card', [
 				}
 				$scope.settingRole = false;
 				ajax.put(dataFactory.userRole(), role, setRoleCallback);
+			}
+
+			$scope.removeMember = function() {
+				ajax.create(dataFactory.unverify($scope.cardSource.id), {}, function(response) {
+					toastModel.showToast('success', $scope.cardSource.firstName + ' ' + $scope.cardSource.lastName + ' removed from Organization!');
+					console.log(response.data)
+				})
 			}
 
 			var tokenCallback = function(response) {
