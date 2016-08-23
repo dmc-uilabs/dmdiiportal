@@ -56,8 +56,6 @@
     <script src="scripts/add-dmdii-content/directives/projectNews.js"></script>
     <script src="scripts/add-dmdii-content/directives/projectStatus.js"></script>
     <script src="scripts/add-dmdii-content/directives/projectsOverview.js"></script>
-    <script src="scripts/add-dmdii-content/directives/projectFinancials.js"></script>
-
     <!-- endbuild -->
 
     <script type="text/javascript">

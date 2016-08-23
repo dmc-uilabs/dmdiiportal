@@ -42,8 +42,6 @@ angular.module('dmc.addDmdiiContent', [
             url: '/projectsOverview'
 		}).state('add-dmdii-content.projectStatus', {
 			url: '/projectStatus'
-		}).state('add-dmdii-content.projectFinancials', {
-			url: '/projectFinancials'
 		});
 
         $urlRouterProvider.otherwise('/addContent/quicklinks');

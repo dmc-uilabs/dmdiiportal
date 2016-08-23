@@ -59,6 +59,28 @@ angular.module('dmc.dmdiiProjects')
                 }
             });
 
+            $scope.startDate = new Date();
+            $scope.startDate.setMonth($scope.startDate.getMonth()-4);
+
+            var year = $scope.startDate.getFullYear();
+            var month = $scope.startDate.getMonth() + 1;
+            month = (month < 10) ? '0' + month : month;
+            var day = $scope.startDate.getDate();
+            day = (day < 10) ? '0' + day : day;
+
+            $scope.startDate = year + '-' + month + '-' + day;
+
+            $scope.endDate = new Date();
+            $scope.endDate.setMonth($scope.endDate.getMonth()+4);
+
+            var year = $scope.endDate.getFullYear();
+            var month = $scope.endDate.getMonth() + 1;
+            month = (month < 10) ? '0' + month : month;
+            var day = $scope.endDate.getDate();
+            day = (day < 10) ? '0' + day : day;
+
+            $scope.endDate = year + '-' + month + '-' + day;
+
             $scope.showArray = [
                 {
                     id : 1, val:12, name: '12 items'
@@ -81,6 +103,17 @@ angular.module('dmc.dmdiiProjects')
                     break;
                 }
             }
+
+            $scope.getProjectStaticImages = function() {
+                ajax.get(dataFactory.getDMDIIDocuments().overview, {}, function(response)  {
+                    $scope.projectOverview = response.data;
+                });
+
+                ajax.get(dataFactory.getDMDIIDocuments().status, {}, function(response)  {
+                    $scope.projectStatus = response.data;
+                });
+            }
+            $scope.getProjectStaticImages();
 
             $scope.selectItemDropDown = function(){
                 if($scope.sizeModule != 0) {
@@ -130,7 +163,15 @@ angular.module('dmc.dmdiiProjects')
             };
 
             var eventsCallbackFunction = function(response) {
-                $scope.events = response.data || [];
+                $scope.events = [];
+                angular.forEach(response.data, function(event) {
+                    var e = {
+                        date: event.eventDate,
+                        content: '<h3>' + event.eventName + '</h3>' +
+                            '<p>' + event.eventDescription + '</p>'
+                    }
+                    $scope.events.push(e);
+                });
             }
             $scope.getEvents = function(){
                 ajax.get(dataFactory.getDMDIIProject().events, {limit: 3}, eventsCallbackFunction);

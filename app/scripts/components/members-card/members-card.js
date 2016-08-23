@@ -95,33 +95,15 @@ angular.module('dmc.component.members-card', [
             };
 
 			$scope.roles = [
-				{
-					id: 2,
-					name: 'Admin'
-				},
-				{
-					id: 3,
-					name: 'VIP'
-				},
-				{
-					id: 4,
-					name: 'Member'
-				}
+				'ADMIN',
+				'VIP',
+				'MEMBER'
 			]
 
 			if (angular.isDefined($scope.cardSource.roles[$scope.companyId])) {
 				$scope.cardSource.isVerified = true;
-				switch ($scope.cardSource.roles[$scope.companyId]) {
-					case 'ADMIN':
-						$scope.roleId = 2;
-						break;
-					case 'VIP':
-						$scope.roleId = 3;
-						break;
-					case 'MEMBER':
-						$scope.roleId = 4;
-						break;
-				}
+				$scope.role = $scope.cardSource.roles[$scope.companyId];
+				console.log($scope.role, $scope.cardSource.roles[$scope.companyId])
 			} else {
 				$scope.cardSource.isVerified = false;
 			}
@@ -135,16 +117,17 @@ angular.module('dmc.component.members-card', [
             };
 
 			var setRoleCallback = function(response) {
+				toastModel.showToast('success', $scope.cardSource.firstName + ' ' + $scope.cardSource.lastName + ' role updated!');
 				$scope.isMember = true;
 			}
 			$scope.saveMember = function() {
 				var role = {
 					userId: $scope.cardSource.id,
 					organizationId: $scope.companyId,
-					roleId: $scope.roleId
+					role: $scope.role
 				}
-				$scope.addingMember = false;
-				ajax.update(dataFactory.userRole(), role, setRoleCallback);
+				$scope.settingRole = false;
+				ajax.put(dataFactory.userRole(), role, setRoleCallback);
 			}
 
 			var tokenCallback = function(response) {

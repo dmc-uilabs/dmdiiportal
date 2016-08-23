@@ -18,7 +18,6 @@
 		<h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{cardSource.firstName + ' ' + cardSource.lastName}}</a></h3>
 		<h4>{{cardSource.jobTitle}}</h4>
 		<h4>{{cardSource.userContactInfo.userPublicContactInfo.email}}</h4>
-		<ui-widget-stars-static size="15" value="{{cardSource.rating}}" text="({{cardSource.rating}})"></ui-widget-stars-static>
 	</div>
 
 	<div class="description">
@@ -75,13 +74,13 @@
 	                <ng-md-icon icon="close" size="17"></ng-md-icon>
 	            </md-button>
 	            <div layout="column" class="select-block" flex>
-	                <md-select placeholder="Select Role" ng-model="roleId">
-	                    <md-option ng-repeat="r in roles" ng-value="{{r.id}}">{{r.name}}</md-option>
+	                <md-select placeholder="Select Role" ng-model="role">
+	                    <md-option ng-repeat="r in roles" ng-value="r">{{r}}</md-option>
 	                </md-select>
 	            </div>
 	            <md-button aria-label="Set"
 	                       layout="column"
-	                       ng-disabled="!roleId"
+	                       ng-disabled="!role"
 	                       class="md-raised add"
 	                       ng-click="saveMember()">Set
 	            </md-button>

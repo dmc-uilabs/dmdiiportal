@@ -63,6 +63,9 @@ angular.module('dmc.ajax',[
                 create: function(urlAddress,dataObject,successFunction,errorFunction){
                     return request(urlAddress,dataObject,successFunction,errorFunction,"POST");
                 },
+                put: function(urlAddress,dataObject,successFunction,errorFunction){
+                    return request(urlAddress,dataObject,successFunction,errorFunction,"PUT");
+                },
                 loadProjects: function(){
                     this.get(
                         dataFactory.getProjects(), {

@@ -442,7 +442,7 @@ angular.module('dmc.data',[])
                 return localhost+'messages';
             },
             userRole: function() {
-                return localhost + 'dmdiiaccess/role';
+                return localhost + 'userRole';
             },
             generateToken: function(id) {
                 return localhost + 'user/createtoken?userId=' + id;
@@ -461,12 +461,12 @@ angular.module('dmc.data',[])
             },
             getDMDIIMember: function(id) {
                 return {
-                    get: localhost+'dmdiiMember/'+ id,
-                    all: localhost+'dmdiiMember',
-                    full: localhost+'dmdiiMember/all',
-                    events: localhost+'dmdiiMember/events',
-                    news: localhost+'dmdiiMember/news',
-                    map: localhost + 'dmdiiMember/mapEntry'
+                    get: localhost + 'dmdiiMember/' + id,
+                    all: localhost + 'dmdiiMember',
+                    full: localhost + 'dmdiiMember/all',
+                    events: localhost + 'dmdiiMember/events',
+                    news: localhost + 'dmdiiMember/news',
+                    map: localhost  +  'dmdiiMember/mapEntry'
                 }
             },
             getDMDIIMemberProjects: function() {
@@ -513,7 +513,10 @@ angular.module('dmc.data',[])
                 return {
                     all: localhost + 'dmdiidocuments',
                     single: localhost + 'dmdiidocument/' + id,
-                    project: localhost + 'dmdiidocuments/dmdiiProjectId'
+                    project: localhost + 'dmdiidocuments/dmdiiProjectId',
+                    overview: localhost + 'staticdocument/1',
+                    status: localhost + 'staticdocument/2',
+                    projectDocument: localhost + 'dmdiidocument/filetype'
                 };
             },
             saveDMDIIDocument: function() {
