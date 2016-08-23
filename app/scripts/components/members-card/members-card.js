@@ -117,6 +117,7 @@ angular.module('dmc.component.members-card', [
             };
 
 			var setRoleCallback = function(response) {
+				toastModel.showToast('success', $scope.cardSource.firstName + ' ' + $scope.cardSource.lastName + ' role updated!');
 				$scope.isMember = true;
 			}
 			$scope.saveMember = function() {
