@@ -95,18 +95,9 @@ angular.module('dmc.component.members-card', [
             };
 
 			$scope.roles = [
-				{
-					id: 'ADMIN',
-					name: 'Admin'
-				},
-				{
-					id: 'VIP',
-					name: 'VIP'
-				},
-				{
-					id: 'MEMBER',
-					name: 'Member'
-				}
+				'ADMIN',
+				'VIP',
+				'MEMBER'
 			]
 
 			if (angular.isDefined($scope.cardSource.roles[$scope.companyId])) {
@@ -134,8 +125,8 @@ angular.module('dmc.component.members-card', [
 					organizationId: $scope.companyId,
 					role: $scope.role
 				}
-				$scope.addingMember = false;
-				ajax.update(dataFactory.userRole(), role, setRoleCallback);
+				$scope.settingRole = false;
+				ajax.put(dataFactory.userRole(), role, setRoleCallback);
 			}
 
 			var tokenCallback = function(response) {

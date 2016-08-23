@@ -76,7 +76,7 @@
 	            </md-button>
 	            <div layout="column" class="select-block" flex>
 	                <md-select placeholder="Select Role" ng-model="role">
-	                    <md-option ng-repeat="r in roles" ng-value="{{r.id}}">{{r.name}}</md-option>
+	                    <md-option ng-repeat="r in roles" ng-value="r">{{r}}</md-option>
 	                </md-select>
 	            </div>
 	            <md-button aria-label="Set"

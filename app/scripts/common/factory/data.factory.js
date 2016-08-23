@@ -442,7 +442,7 @@ angular.module('dmc.data',[])
                 return localhost+'messages';
             },
             userRole: function() {
-                return localhost + 'dmdiiaccess/role';
+                return localhost + 'userRole';
             },
             generateToken: function(id) {
                 return localhost + 'user/createtoken?userId=' + id;
