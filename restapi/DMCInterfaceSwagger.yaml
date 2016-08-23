@@ -1359,8 +1359,8 @@ paths:
         - service
         - live
         - has tests
-      summary: Get service_runs
-      description: Get service_runs
+      summary: Get service runs list
+      description: Post a new run service
       parameters:
         - name: _limit
           in: query
@@ -1387,38 +1387,6 @@ paths:
           type: array
           items:
             type: string
-          required: true
-      responses:
-        '200':
-          description: Return list of service runs
-          schema:
-            $ref: '#/definitions/GetServiceRun'
-    get:
-      tags:
-        - service
-        - live
-        - has tests
-      summary: Get service runs list
-      description: Post a new run service
-      parameters:
-        - name: _limit
-          in: query
-          description: Limit items
-          type: integer
-          required: false
-        - name: _order
-          in: query
-          description: Order by ASC or DESC
-          type: string
-          collectionFormat: multi
-          required: false
-          enum:
-            - ASC
-            - DESC
-        - name: _sort
-          in: query
-          description: Sort by some parameter
-          type: string
           required: false
       responses:
         '200':
