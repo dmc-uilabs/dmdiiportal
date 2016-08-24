@@ -8,6 +8,7 @@ angular.module('dmc.addDmdiiContent')
         "dataFactory",
         "$location",
         "toastModel",
+        "DMCUserModel",
         "questionToastModel",
         "fileUpload",
         function ($stateParams,
@@ -16,8 +17,14 @@ angular.module('dmc.addDmdiiContent')
             dataFactory,
             $location,
             toastModel,
+            DMCUserModel,
             questionToastModel,
             fileUpload) {
+
+            $scope.user = null;
+            DMCUserModel.getUserData().then(function(res){
+                $scope.user = res;
+            });
 
             $scope.projects = [];
 

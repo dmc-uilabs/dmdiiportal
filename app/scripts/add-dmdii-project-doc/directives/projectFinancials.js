@@ -7,7 +7,7 @@ angular.module('dmc.add-project-doc').
             scope: {
                 source: "=",
                 project: "=",
-                user: "=",
+                user: "="
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $q, fileUpload, $window) {
                 $element.addClass("tab-projectFinancials");
                 $scope.doc = [];
@@ -41,7 +41,7 @@ angular.module('dmc.add-project-doc').
                         $scope.document.documentUrl = response.file.name;
                         $scope.document.documentName = 'projectFinancials';
                         $scope.document.fileType = 3;
-                        $scope.document.ownerId = $scope.$root.userData.accountId;
+                        $scope.document.ownerId = $scope.user.accountId;
                         $scope.document.dmdiiProjectId = $scope.project.id;
 
                         ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);

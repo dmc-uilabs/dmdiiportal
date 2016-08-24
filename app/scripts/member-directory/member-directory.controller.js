@@ -32,8 +32,6 @@ angular.module('dmc.members')
                  DMCUserModel,
                  $window){
 
-            $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
@@ -129,22 +127,6 @@ angular.module('dmc.members')
                 return $scope.memberCurrentPage !== Math.ceil($scope.members.count / $scope.memberPageSize) - 1;
             };
 
-            var responseData = {
-                _sort : 'id',
-                _order : 'DESC'
-            };
-
-            $scope.submit = function(text){
-                $stateParams.text = text;
-                //$state.go('marketplace_search', dataSearch, {reload: true});
-                if(!$window.apiUrl){
-                    responseData.name_like = text;
-                }else{
-                    delete responseData.name_like;
-                }
-                loadingData(true);
-                ajax.get(dataFactory.searchDMDIIMembers(text), responseData, callbackFunction);
-            };
 
             var loadingData = function(start){ // progress line
                 $scope.downloadData = start;
@@ -236,11 +218,11 @@ angular.module('dmc.members')
 
             var responseData = function(){
                 var data = {
-                    pageSize : $scope.memberPageSize,
-                    page : $scope.memberCurrentPage,
+                    pageSize: $scope.memberPageSize,
+                    page: $scope.memberCurrentPage,
                     // _order: $scope.sortDir,
                     // _sort: $scope.sortBy,
-                    name_like : $scope.searchModel
+                    name: $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.tier)) data.tier = $stateParams.tier
                 if(angular.isDefined($stateParams.type)) data.categoryId = $stateParams.type;
@@ -251,9 +233,21 @@ angular.module('dmc.members')
 
             $scope.getDMDIIMembers = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIMember().all, responseData(), callbackFunction);
+
+                if (!angular.isDefined($scope.searchModel)) {
+                    ajax.get(dataFactory.getDMDIIMember().all, responseData(), callbackFunction);
+                } else {
+                    ajax.get(dataFactory.getDMDIIMember().search, responseData(), callbackFunction);
+                }
             };
             $scope.getDMDIIMembers();
+
+            $scope.submit = function(name){
+                $scope.memberCurrentPage = 0;
+                $stateParams.name = name;
+                loadingData(true);
+                ajax.get(dataFactory.getDMDIIMember().search, responseData(), callbackFunction);
+            };
 
             var callbackMapFunction = function(response) {
                 angular.forEach(response.data, function(member) {

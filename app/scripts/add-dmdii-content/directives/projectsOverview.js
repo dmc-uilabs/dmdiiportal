@@ -6,6 +6,7 @@ angular.module('dmc.addDmdiiContent').
             templateUrl: 'templates/add-dmdii-content/tabs/tab-projects-overview.html',
             scope: {
                 source: "=",
+                user: "="
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload) {
                 $element.addClass("tab-projectsOverview");
                 $scope.document = {};
@@ -31,7 +32,7 @@ angular.module('dmc.addDmdiiContent').
                     fileUpload.uploadFileToUrl($scope.doc[0].file, {}, 'projectOverview', function(response) {
                         $scope.document.documentUrl = response.file.name;
                         $scope.document.documentName = 'projectOverview';
-                        $scope.document.ownerId = $scope.$root.userData.accountId;
+                        $scope.document.ownerId = $scope.user.accountId;
                         $scope.document.fileType = 1;
 
                         ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);

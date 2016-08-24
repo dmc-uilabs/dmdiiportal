@@ -5,7 +5,8 @@ angular.module('dmc.addDmdiiContent').
             restrict: 'A',
             templateUrl: 'templates/add-dmdii-content/tabs/tab-quicklinks.html',
             scope: {
-                source : "="
+                source : "=",
+                user: "="
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload, questionToastModel) {
                 $element.addClass("tab-quicklinks");
 
@@ -112,7 +113,7 @@ angular.module('dmc.addDmdiiContent').
                             $scope.quicklink.doc = response.file.name;
                             ajax.create(dataFactory.saveDMDIIDocument(),
                                 {
-                                    ownerId: $scope.$root.userData.accountId,
+                                    ownerId: $scope.user.accountId,
                                     documentUrl: $scope.quicklink.doc,
                                     documentName: $scope.quicklink.displayName
                                 }, function(response) {
