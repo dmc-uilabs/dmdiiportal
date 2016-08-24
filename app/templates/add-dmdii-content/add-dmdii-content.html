@@ -12,6 +12,7 @@
                     <md-content class="mainSectionsContent" ng-switch on="key">
                         <div tab-quicklinks
                              ng-switch-when="quicklinks"
+                             user="user"
                              projects="projects"></div>
                         <div tab-member-events
                             ng-switch-when="memberEvents"></div>
@@ -24,15 +25,11 @@
                              ng-switch-when="projectNews"
                              projects="projects"></div>
                         <div tab-projects-overview
-                             ng-switch-when="projectsOverview"></div>
+                            user="user"
+                            ng-switch-when="projectsOverview"></div>
                         <div tab-project-status
+                            user="user"
                             ng-switch-when="projectStatus"></div>
-                        <div tab-project-financials
-                            ng-switch-when="projectFinancials"
-                            projects="projects"></div>
-                        <div tab-project-schedule
-                            ng-switch-when="projectSchedule"
-                            projects="projects"></div>
                     </md-content>
                 </md-tab>
             </md-tabs>

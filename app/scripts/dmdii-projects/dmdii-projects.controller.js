@@ -34,8 +34,6 @@ angular.module('dmc.dmdiiProjects')
                  $mdDialog,
                  $window){
 
-            $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
@@ -192,18 +190,6 @@ angular.module('dmc.dmdiiProjects')
                 _order : 'DESC'
             };
 
-            $scope.submit = function(text){
-                $stateParams.text = text;
-                $state.go('project_search', dataSearch, {reload: true});
-                if(!$window.apiUrl){
-                    responseData.name_like = text;
-                }else{
-                    delete responseData.name_like;
-                }
-                loadingData(true);
-                ajax.get(dataFactory.searchDmdiiProjects(text), responseData, callbackFunction);
-            };
-
             var loadingData = function(start){ // progress line
                 $scope.downloadData = start;
             };
@@ -277,7 +263,7 @@ angular.module('dmc.dmdiiProjects')
                     page : $scope.dmdiiProjectCurrentPage,
                     _order: $scope.sortBy,
                     _sort: $scope.sortDir,
-                    name_like : $scope.searchModel
+                    name: $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.status)) data.statusId = $stateParams.status;
                 if(angular.isDefined($stateParams.callNumber)) data.callNumber = $stateParams.callNumber;
@@ -290,10 +276,22 @@ angular.module('dmc.dmdiiProjects')
 
             $scope.getDmdiiProjects = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIProject().all, responseData(), callbackFunction);
+
+                if (!angular.isDefined($scope.searchModel)) {
+                    ajax.get(dataFactory.getDMDIIProject().all, responseData(), callbackFunction);
+                } else {
+                    ajax.get(dataFactory.getDMDIIProject().search, responseData(), callbackFunction);
+                }
             };
             $scope.getDmdiiProjects();
 
+            $scope.submit = function(text){
+                $scope.dmdiiProjectCurrentPage = 0;
+                $stateParams.text = text;
+                loadingData(true);
+                ajax.get(dataFactory.getDMDIIProject().search, responseData, callbackFunction);
+            };
+            
             $scope.getNext = function() {
                 $scope.dmdiiProjectCurrentPage++;
                 $scope.getDmdiiProjects();

@@ -464,6 +464,7 @@ angular.module('dmc.data',[])
                     get: localhost + 'dmdiiMember/' + id,
                     all: localhost + 'dmdiiMember',
                     full: localhost + 'dmdiiMember/all',
+                    search: localhost + 'dmdiiMember/search',
                     events: localhost + 'dmdiiMember/events',
                     news: localhost + 'dmdiiMember/news',
                     map: localhost  +  'dmdiiMember/mapEntry'
@@ -490,7 +491,8 @@ angular.module('dmc.data',[])
                     events: localhost+'dmdiiProject/events',
                     news: localhost+'dmdiiProject/news',
                     contributors: localhost + 'dmdiiproject/contributingcompanies',
-                    updates: localhost + 'dmdiiProjectUpdate'
+                    updates: localhost + 'dmdiiProjectUpdate',
+                    search: localhost + 'dmdiiprojects/search'
                 }
             },
             saveDMDIIProject: function() {

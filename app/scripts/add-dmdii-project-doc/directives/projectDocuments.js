@@ -7,7 +7,7 @@ angular.module('dmc.add-project-doc').
             scope: {
                 source: "=",
                 project: "=",
-				user: "=",
+				user: "="
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $q, fileUpload, $window) {
                 $element.addClass("tab-projectDocuments");
 
