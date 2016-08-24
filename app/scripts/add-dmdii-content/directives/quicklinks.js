@@ -7,7 +7,7 @@ angular.module('dmc.addDmdiiContent').
             scope: {
                 source : "=",
                 user: "="
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload, questionToastModel) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload, questionToastModel, $window) {
                 $element.addClass("tab-quicklinks");
 
                 $scope.quicklink = {};
@@ -28,6 +28,7 @@ angular.module('dmc.addDmdiiContent').
                     $scope.noDescription = false;
                     $scope.noLink = false;
                     $scope.noDocSelected = false;
+                    $window.location.reload();
                 };
 
                 $scope.clear = function() {

@@ -7,13 +7,14 @@ angular.module('dmc.addDmdiiContent').
             scope: {
                 source: "=",
                 user: "="
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload, $window) {
                 $element.addClass("tab-projectsOverview");
                 $scope.document = {};
                 $scope.doc = [];
 
                 var callback = function(response) {
                     toastModel.showToast('success', 'Project Overview Saved!');
+                    $window.location.reload();
                 };
 
                 $scope.$watchCollection('doc', function() {

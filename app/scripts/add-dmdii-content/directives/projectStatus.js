@@ -7,7 +7,7 @@ angular.module('dmc.addDmdiiContent').
             scope: {
                 source: "=",
                 user: "="
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload, $window) {
                 $element.addClass("tab-projectsStatus");
                 $scope.document = {};
                 $scope.doc = [];
@@ -15,6 +15,8 @@ angular.module('dmc.addDmdiiContent').
 
                 var callback = function(response) {
                     toastModel.showToast('success', 'Project Status Saved!');
+                    $window.location.reload();
+
                 };
 
                 $scope.$watchCollection('doc', function() {

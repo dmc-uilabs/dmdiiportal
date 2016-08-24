@@ -12,6 +12,7 @@ angular.module('dmc.edit-project')
         'toastModel',
         'questionToastModel',
         'DMCUserModel',
+        '$window',
         'fileUpload',
         function ($stateParams,
                 $scope,
@@ -23,6 +24,7 @@ angular.module('dmc.edit-project')
                 toastModel,
                 questionToastModel,
                 DMCUserModel,
+                $window,
                 fileUpload) {
 
 
@@ -79,9 +81,11 @@ angular.module('dmc.edit-project')
             $scope.getDMDIIProject = function(){
                 if ($stateParams.projectId) {
                     $scope.title = 'Edit Project';
+                    $scope.action = 'Edited';
                     ajax.get(dataFactory.getDMDIIProject($stateParams.projectId).get, responseData(), callbackFunction);
                 } else {
                     $scope.title = 'Create Project';
+                    $scope.action = 'Created';
 
                     $scope.project = {
                         contributingCompanyIds: [],
@@ -179,7 +183,10 @@ angular.module('dmc.edit-project')
             };
 
             var callbackSaveFunction = function(response) {
-                $location.path('/'+$scope.project.id).search();
+                if (response.status === 200) {
+                    toastModel.showToast('success', 'Member Successfully ' + $scope.action + '!')
+                    $window.location.href = '/dmdii-project-page.php#/' + response.data.id;
+                }
             }
 
             $scope.saveChanges = function() {
@@ -204,8 +211,13 @@ angular.module('dmc.edit-project')
                 $scope.project.projectIdentifier = $scope.project.rootNumber + '-' + $scope.project.callNumber + '-' + $scope.project.projectNumber
                 ajax.create(dataFactory.saveDMDIIProject().project, $scope.project, callbackSaveFunction);
             };
+            
             $scope.cancelChanges = function(){
-                $location.path('/'+$scope.project.id).search();
+                if ($scope.project.id) {
+                    $window.location.href = '/dmdii-project-page.php#/' + $scope.project.id;
+                } else {
+                    $window.location.href = '/dmdii-projects.php#/';
+                }
             };
 
             function apply(){
