@@ -129,14 +129,13 @@
 				<md-tab label="Project Updates">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
-							<div layout="column" ng-show="updates.length > 0">
-								<div class="bottom20" ng-repeat="update in updates">
+							<div layout="row" layout-wrap ng-show="updates.length > 0">
+								<div class="bottom10" ng-repeat="update in updates">
 									<div class="slim-side-margin no-bottom" layout="row">
 										<h2 class="margin-top-25 no-bottom green">{{update.title}}</h4>
-										<p class="superset">{{update.date}}</p>
+										<p class="superset">{{update.created}}</p>
 									</div>
 									<p class="slim-margin">{{update.description}}</p>
-									<p class="byline no-top bottom10">-{{update.author}}</p>
 								</div>
 							</div>
 							<span ng-hide="updates.length > 0">This Project has no updates</span>
