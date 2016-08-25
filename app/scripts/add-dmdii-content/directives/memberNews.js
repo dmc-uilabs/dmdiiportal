@@ -6,11 +6,12 @@ angular.module('dmc.addDmdiiContent').
             templateUrl: 'templates/add-dmdii-content/tabs/tab-member-news.html',
             scope: {
                 source : "="
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $window) {
                 $element.addClass("tab-memberNews");
 
                 var newsCallbackFunction = function(response) {
                     toastModel.showToast('success', 'Member News Saved!');
+                    $window.location.reload();
                 };
 
                 $scope.clear = function() {

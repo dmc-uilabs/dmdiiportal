@@ -12,6 +12,7 @@ angular.module('dmc.edit-member')
         "toastModel",
         "questionToastModel",
         "DMCUserModel",
+        "$window",
         "fileUpload",
         function ($stateParams,
                 $scope,
@@ -23,6 +24,7 @@ angular.module('dmc.edit-member')
                 toastModel,
                 questionToastModel,
                 DMCUserModel,
+                $window,
                 fileUpload) {
 
 
@@ -368,7 +370,7 @@ angular.module('dmc.edit-member')
             var callbackSaveFunction = function(response) {
                 if (response.status === 200) {
                     toastModel.showToast('success', 'Member Successfully ' + $scope.action + '!')
-                    $location.path('member-page.php#/' + response.data.id);
+                    $window.location.href = '/member-page.php#/' + response.data.id;
                 }
             }
 
@@ -399,9 +401,9 @@ angular.module('dmc.edit-member')
 
             $scope.cancelChanges = function(){
                 if ($scope.company && $scope.company.id) {
-                    $location.path('/member-directory.php#/' + $scope.company.id);
+                    $window.location.href = '/member-page.php#/' + $scope.company.id;
                 } else {
-                    $location.path('/member-directory.php#/');
+                    $window.location.href = '/member-directory.php#/';
                 }
             };
 

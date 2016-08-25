@@ -7,11 +7,12 @@ angular.module('dmc.addDmdiiContent').
             scope: {
                 source : "=",
                 projects: "="
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $window) {
                 $element.addClass("tab-projectNews");
 
                 var eventCallback = function(response) {
                     toastModel.showToast('success', 'Project News Saved!');
+                    $window.location.reload();
                 };
 
                 $scope.clear = function() {

@@ -38,7 +38,7 @@
                 <md-button ng-if="!user.isAdmin" class="md-raised dmc-button" ng-click="follow()">
                     {{(followFlag) ? 'Unfollow' : 'Follow'}}
                 </md-button>
-                <md-button ng-if="userData.isAdmin"
+                <md-button ng-if="userData.isAdmin || userData.isDmdiiAdmin"
                            class="md-raised dmc-button"
                            ui-sref="company-profile-edit({companyId: company.id})">
                     Edit Company
