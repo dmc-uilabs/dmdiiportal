@@ -261,9 +261,9 @@ angular.module('dmc.dmdiiProjects')
                 var data = {
                     pageSize : $scope.dmdiiProjectPageSize,
                     page : $scope.dmdiiProjectCurrentPage,
-                    _order: $scope.sortBy,
-                    _sort: $scope.sortDir,
-                    name: $scope.searchModel
+                    // _order: $scope.sortBy,
+                    // _sort: $scope.sortDir,
+                    title: $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.status)) data.statusId = $stateParams.status;
                 if(angular.isDefined($stateParams.callNumber)) data.callNumber = $stateParams.callNumber;
@@ -287,11 +287,11 @@ angular.module('dmc.dmdiiProjects')
 
             $scope.submit = function(text){
                 $scope.dmdiiProjectCurrentPage = 0;
-                $stateParams.text = text;
+                // $stateParams.title = text;
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIProject().search, responseData, callbackFunction);
+                ajax.get(dataFactory.getDMDIIProject().search, responseData(), callbackFunction);
             };
-            
+
             $scope.getNext = function() {
                 $scope.dmdiiProjectCurrentPage++;
                 $scope.getDmdiiProjects();

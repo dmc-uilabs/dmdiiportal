@@ -131,11 +131,26 @@ angular.module('dmc.component.members-card', [
 			}
 
 			$scope.removeMember = function() {
-				ajax.create(dataFactory.unverify($scope.cardSource.id), {}, function(response) {
-					toastModel.showToast('success', $scope.cardSource.firstName + ' ' + $scope.cardSource.lastName + ' removed from Organization!');
-					console.log(response.data)
+				ajax.put(dataFactory.unverify($scope.cardSource.id), {}, function(response) {
+					if(response.status === 200) {
+						toastModel.showToast('success', $scope.cardSource.firstName + ' ' + $scope.cardSource.lastName + ' removed from Organization!');
+						$scope.isRemoved = true;
+					} else {
+						toastModel.showToast('error', response.data)
+					}
 				})
 			}
+
+			$scope.declineMember = function() {
+				ajax.put(dataFactory.declineMember($scope.cardSource.id), {}, function(response) {
+					if(response.status === 200) {
+						toastModel.showToast('success', $scope.cardSource.firstName + ' ' + $scope.cardSource.lastName + ' declined!');
+						$scope.isRemoved = true;
+					} else {
+						toastModel.showToast('error', response.data)
+					}
+				});
+			};
 
 			var tokenCallback = function(response) {
 				$scope.token = response.data.token;

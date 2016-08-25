@@ -7,10 +7,10 @@
             <div class="content-panel-body">
                 <md-content>
                     <div class="header-right-content" layout="row">
-                        <h5 class="subtitle" ng-hide="!role && !isVerified">Verified</h5>
                         <div layout="column">
                             <h2 class="md-title">{{title}}</h2>
                         </div>
+                        <h5 class="subtitle" ng-hide="!role && !isVerified">Verified</h5>
                         <md-button class="md-raised deactivate-button"
                                    style="display:none"
                                    ng-click="deactivateAccount()">{{activatedText}}</md-button>
@@ -24,12 +24,14 @@
                             <input ng-model="user.firstName"
                                    id="editFirstName"
                                    ng-blur="blurInput()"
+                                   ng-disabled="isVerified"
                                    ng-change="changedValue('firstName',user.firstName)">
                         </md-input-container>
                         <md-input-container flex="30">
                             <label>Last Name</label>
                             <input ng-model="user.lastName"
                                    ng-blur="blurInput()"
+                                   ng-disabled="isVerified"
                                    ng-change="changedValue('lastName',user.lastName)">
                         </md-input-container>
                         <md-input-container flex="40">
@@ -37,6 +39,7 @@
                             <input ng-model="user.email"
                                    ng-blur="blurInput()"
                                    type="email"
+                                   ng-disabled="isVerified"
                                    ng-change="changedValue('email',user.email)">
                         </md-input-container>
                     </div>
@@ -61,28 +64,54 @@
                         </md-input-container>
                         </div>
                         <div flex="40" layout="column" class="autocomplete-block">
-                                <md-autocomplete md-floating-label="Time Zone"
-                                                 ng-disabled="ctrl.isDisabled"
-                                                 md-no-cache="ctrl.noCache"
-                                                 md-selected-item="ctrl.selectedItem"
-                                                 md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-                                                 md-search-text="ctrl.searchText"
-                                                 md-selected-item-change="ctrl.selectedItemChange(item)"
-                                                 md-items="item in ctrl.querySearch(ctrl.searchText)"
-                                                 md-item-text="item.display"
-                                                 md-min-length="0"
-                                                 ng-blur="blurInput()"
-                                                 placeholder="What is your time zone?">
-                                    <md-item-template>
-                                        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
-                                    </md-item-template>
-                                    <md-not-found>
-                                        No matches found for "{{ctrl.searchText}}".
-                                    </md-not-found>
-                                </md-autocomplete>
+                            <md-autocomplete
+                                md-floating-label="Time Zone"
+                                ng-disabled="ctrl.isDisabled"
+                                md-no-cache="ctrl.noCache"
+                                md-selected-item="ctrl.selectedItem"
+                                md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                                md-search-text="ctrl.searchText"
+                                md-selected-item-change="ctrl.selectedItemChange(item)"
+                                md-items="item in ctrl.querySearch(ctrl.searchText)"
+                                md-item-text="item.display"
+                                md-min-length="0"
+                                ng-blur="blurInput()"
+                                placeholder="What is your time zone?"
+                            >
+                                <md-item-template>
+                                    <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    No matches found for "{{ctrl.searchText}}".
+                                </md-not-found>
+                            </md-autocomplete>
                         </div>
                     </div>
-                    <div layout="row" ng-if="!user.isVerified">
+                    <div class="inputs-container" layout="row" layout-align="start end" >
+                        <div flex="40" class="autocomplete-block">
+                            <md-autocomplete
+                                md-floating-label="Organization Name"
+                                ng-disabled="isVerified"
+                                md-no-cache="ctrl.noCache"
+                                ng-blur="blurInput()"
+                                md-selected-item="ctrl.selectedCompany"
+                                md-search-text="ctrl.searchCompany"
+                                md-search-text-change="ctrl.searchCompanyChange(ctrl.searchCompany)"
+                                md-selected-item-change="ctrl.setCompany(item)"
+                                md-items="item in ctrl.queryCompanySearch(ctrl.searchCompany)"
+                                md-item-text="item.name"
+                                placeholder="Organization Name"
+                            >
+                                <md-item-template>
+                                    <span md-highlight-text="ctrl.searchCompany" md-highlight-flags="^i">{{item.name}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    No matches found for "{{ctrl.searchCompany}}".
+                                </md-not-found>
+                            </md-autocomplete>
+                        </div>
+                    </div>
+                    <div layout="row" ng-if="!isVerified">
                         <div layout="column" flex="75">
                             <md-input-container flex="75">
                                 <label>Verification Token</label>

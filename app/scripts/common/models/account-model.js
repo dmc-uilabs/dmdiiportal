@@ -16,7 +16,8 @@ angular.module('dmc.model.account', [
 
         // update account
         this.update = function(data){
-            var params = ['displayName', 'firstName', 'lastName', 'email' , 'location', 'timezone', 'jobTitle', 'description', 'privacy'];
+            console.log(data)
+            var params = ['displayName', 'firstName', 'lastName', 'email' , 'id', 'companyId', 'location', 'timezone', 'jobTitle', 'description', 'privacy'];
             var updatedParams = {};
             for(var i=0; i<params.length; i++) updatedParams[params[i]] = data[params[i]];
             ajax.update(dataFactory.updateAccount(data.id),updatedParams,
@@ -25,7 +26,7 @@ angular.module('dmc.model.account', [
                         toastModel.showToast('success',"Successfully updated!");
                     }
                 },function(result){
-                    toastModel.showToast('error',"Unable update data");
+                    toastModel.showToast('error',"Unable to update data");
                 }
             );
         }
