@@ -31,7 +31,7 @@
                                             <input type="text" placeholder="Search Members" ng-model="searchModel">
                                         </md-input-container>
                                     </div>
-                                    <div layout="column">
+                                    <div layout="row">
                                         <md-input-container>
                                             <md-button type="submit" class="search-button">Search</md-button>
                                         </md-input-container>
@@ -39,6 +39,8 @@
                                 </div>
                             </div>
                         </form>
+                        <span flex></span>
+                        <md-button class="md-raised dmc-button" ng-click="resetMembers()">Reset</md-button>
                         <span flex></span>
                         <md-button class="md-raised dmc-button" ng-click="showFavorites()" ng-disabled="favorites.length == 0 && !showFavoritesFlag">
                             {{(showFavoritesFlag == false) ? 'Favorites(' + favorites.length + ')' : 'All'}}     

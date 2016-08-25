@@ -1009,6 +1009,12 @@ angular.module('dmc.data',[])
                     return localhost + 'searchServices';
                 }
 			      },
+
+            searchMembers: function (text) {
+                console.log("data.factory.searchMembers: text=" + text);
+                return localhost + 'searchMembers/' + text;
+            },
+
             markReadNotifications: function(){
                 return localhost+'mark-read-notifications';
             },
