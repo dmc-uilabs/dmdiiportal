@@ -456,6 +456,9 @@ angular.module('dmc.data',[])
             declineMember: function(id) {
                 return localhost + 'user/' + id + '?action=decline';
             },
+            unverify: function(id) {
+                return localhost + 'user/unverify?userId=' + id;
+            },
             getDmdiiMemberTags: function(){
                 return localhost + 'dmdiiTag'
             },
