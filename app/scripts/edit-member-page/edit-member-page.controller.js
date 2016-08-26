@@ -82,8 +82,8 @@ angular.module('dmc.edit-member')
             // callback for member
             var callbackFunction = function(response){
               $scope.company = response.data;
-              $scope.company.startDate = new Date($scope.company.startDate);
-              $scope.company.expireDate = new Date($scope.company.expireDate);
+              $scope.startDate = new Date($scope.company.startDate);
+              $scope.expireDate = new Date($scope.company.expireDate);
 
               $scope.companyTier = {
                   data: {
@@ -377,7 +377,7 @@ angular.module('dmc.edit-member')
             $scope.saveChanges = function() {
                 $scope.setTier();
 
-                var date = new Date($scope.company.startDate);
+                var date = new Date($scope.startDate);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
@@ -386,7 +386,7 @@ angular.module('dmc.edit-member')
 
                 $scope.company.startDate = year + '-' + month + '-' + day;
 
-                var date = new Date($scope.company.expireDate);
+                var date = new Date($scope.expireDate);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
