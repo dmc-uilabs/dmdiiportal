@@ -33,6 +33,8 @@ angular.module('dmc.edit-project')
                 $scope.user = res;
             });
 
+            $scope.date = {};
+
             $scope.getOrganizations = function() {
                 ajax.get(dataFactory.getDMDIIMember().full, {}, function(response) {
                     $scope.organizations = response.data;
@@ -57,8 +59,11 @@ angular.module('dmc.edit-project')
             var callbackFunction = function(response){
                 $scope.project = response.data;
 
-                $scope.awardedDate = new Date($scope.project.awardedDate);
-                $scope.endDate = new Date($scope.project.endDate);
+                var awardedDate = $scope.project.awardedDate.split('-');
+                $scope.date.awarded = new Date(awardedDate[1] + '-' + awardedDate[2] + '-' + awardedDate[0]);
+
+                var endDate = $scope.project.endDate.split('-');
+                $scope.date.end = new Date(endDate[1] + '-' + endDate[2] + '-' + endDate[0]);
 
                 $scope.contributors = [];
                 ajax.get(dataFactory.getDMDIIProject().contributors, {projectId: $scope.project.id}, function(response) {
@@ -188,8 +193,13 @@ angular.module('dmc.edit-project')
                 }
             }
 
+            $scope.$watch('date', function() {
+                console.log($scope.date);
+            }, true)
+
             $scope.saveChanges = function() {
-                var startDate = new Date($scope.awardedDate);
+
+                var startDate = new Date($scope.date.awarded);
                 var year = startDate.getFullYear();
                 var month = startDate.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
@@ -198,7 +208,7 @@ angular.module('dmc.edit-project')
 
                 $scope.project.awardedDate = year + '-' + month + '-' + day;
 
-                var endDate = new Date($scope.endDate);
+                var endDate = new Date($scope.date.end);
                 year = endDate.getFullYear();
                 month = endDate.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
