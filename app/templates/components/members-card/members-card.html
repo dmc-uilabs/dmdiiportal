@@ -1,4 +1,4 @@
-<div class="members-card" layout="column">
+<div class="members-card" layout="column" ng-hide="isRemoved">
 	<div class="header" layout="row" layout-align="space-between center">
 		<md-button href="" aria-label="grou_add" class="md-icon-button">
 			<ng-md-icon ng-if="version1" icon="group_add" style="fill: grey;" size="25"></ng-md-icon>
@@ -18,6 +18,7 @@
 		<h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{cardSource.firstName + ' ' + cardSource.lastName}}</a></h3>
 		<h4>{{cardSource.jobTitle}}</h4>
 		<h4>{{cardSource.userContactInfo.userPublicContactInfo.email}}</h4>
+		<a href="" ng-if="(userData.isDmdiiAdmin || userData.isAdmin) && cardSource.isVerified" ng-click="removeMember()">Remove from Organization</a>
 	</div>
 
 	<div class="description">
@@ -36,6 +37,10 @@
 
 		<md-button ng-click="generateToken()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || cardSource.isVerified" class="white-button" aria-label="Verify" flex>
 	        Verify
+	    </md-button>
+
+		<md-button ng-click="declineUser()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || cardSource.isVerified" class="white-button" aria-label="Decline" flex>
+	        Decline
 	    </md-button>
 
 	    <md-button aria-label="Project Link"

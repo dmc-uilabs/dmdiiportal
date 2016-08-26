@@ -42,8 +42,6 @@ angular.module('dmc.members')
             });
 
             $scope.membersLoading = true;
-
-
             // This code use for member-directory -------------------------------------------------
             $scope.downloadData = false;        // on/off progress line in member-directory
             $scope.memberPageSize = $cookies.get('memberPageSize') ? +$cookies.get('memberPageSize') : 12;    // visible items in member-directory
@@ -210,7 +208,6 @@ angular.module('dmc.members')
 
                 angular.forEach($scope.members.arr, function(member) {
                     ajax.get(dataFactory.getDMDIIProject().active, {dmdiiMemberId: member.id, page: 0, pageSize: 15}, function(response) {
-                        console.log(response.data)
                         $scope.activeProjects[member.id] = response.data.data;
                     });
                 });
@@ -260,6 +257,7 @@ angular.module('dmc.members')
                         };
                     }
                 })
+                console.log($scope.mapObject)
             }
             $scope.getDMDIIMemberMap = function() {
                 ajax.get(dataFactory.getDMDIIMember().map, null, callbackMapFunction);

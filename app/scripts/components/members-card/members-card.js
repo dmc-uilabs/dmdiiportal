@@ -12,7 +12,7 @@ angular.module('dmc.component.members-card', [
 			companyId: '='
 		},
 		templateUrl: 'templates/components/members-card/members-card.html',
-		controller: ['$scope', '$mdDialog', 'ajax', 'dataFactory', 'DMCUserModel', function($scope, $mdDialog, ajax, dataFactory, DMCUserModel){
+		controller: ['$scope', '$mdDialog', 'ajax', 'dataFactory', 'DMCUserModel', 'toastModel', function($scope, $mdDialog, ajax, dataFactory, DMCUserModel, toastModel){
             $scope.projects = [];
             $scope.addingToProject = false;
             ajax.get(
@@ -129,6 +129,28 @@ angular.module('dmc.component.members-card', [
 				$scope.settingRole = false;
 				ajax.put(dataFactory.userRole(), role, setRoleCallback);
 			}
+
+			$scope.removeMember = function() {
+				ajax.put(dataFactory.unverify($scope.cardSource.id), {}, function(response) {
+					if(response.status === 200) {
+						toastModel.showToast('success', $scope.cardSource.firstName + ' ' + $scope.cardSource.lastName + ' removed from Organization!');
+						$scope.isRemoved = true;
+					} else {
+						toastModel.showToast('error', response.data)
+					}
+				})
+			}
+
+			$scope.declineMember = function() {
+				ajax.put(dataFactory.declineMember($scope.cardSource.id), {}, function(response) {
+					if(response.status === 200) {
+						toastModel.showToast('success', $scope.cardSource.firstName + ' ' + $scope.cardSource.lastName + ' declined!');
+						$scope.isRemoved = true;
+					} else {
+						toastModel.showToast('error', response.data)
+					}
+				});
+			};
 
 			var tokenCallback = function(response) {
 				$scope.token = response.data.token;

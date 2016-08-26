@@ -43,11 +43,16 @@
                            ui-sref="company-profile-edit({companyId: company.id})">
                     Edit Company
                 </md-button>
-                <md-button ng-if="userData.isAdmin || userData.isDmdiiAdmin"
+                <md-button ng-if="(userData.isAdmin || userData.isDmdiiAdmin) && userData.isDMDIIMember"
                            class="md-raised dmc-button"
                            href="edit-member-page.php#/{{company.id}}/edit">
                     Edit DMDII Member Profile
                 </md-button>
+                <md-button ng-if="userData.isDmdiiAdmin"
+						   class="md-raised dmc-button"
+						   ng-click="deleteOrganization()">
+					Delete Company
+				</md-button>
                 <md-button class="md-raised dmc-button margin-left12-5" ng-if="!invate" ng-click="btnInviteToProject()">
                     Invite to Project
                 </md-button>
@@ -316,7 +321,7 @@
     </div>
     <md-divider></md-divider>
     <div layout="row">
-        <div flex="25" class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: 4">
+        <div flex="20" class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: 5">
             <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
         </div>
     </div>
@@ -331,7 +336,7 @@
     </div>
     <md-divider></md-divider>
     <div layout="row">
-        <div flex="25" class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: 4">
+        <div flex="20" class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: 5">
             <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
         </div>
     </div>
