@@ -248,10 +248,10 @@ angular.module('dmc.members')
 
             var callbackMapFunction = function(response) {
                 angular.forEach(response.data, function(member) {
-                    if (angular.isDefined($scope.mapObject.data[member.state])) {
-                        $scope.mapObject.data[member.state].members.push('<li>' + member.name + '</li>');
+                    if (angular.isDefined($scope.mapObject.data[member.state.trim()])) {
+                        $scope.mapObject.data[member.state.trim()].members.push('<li>' + member.name + '</li>');
                     } else {
-                        $scope.mapObject.data[member.state] = {
+                        $scope.mapObject.data[member.state.trim()] = {
                             fillKey: "HAS_MEMBER",
                             members: ['<li>' + member.name + '</li>']
                         };
