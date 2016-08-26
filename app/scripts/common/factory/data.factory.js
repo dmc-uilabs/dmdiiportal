@@ -448,16 +448,13 @@ angular.module('dmc.data',[])
                 return localhost + 'user/createtoken?userId=' + id;
             },
             validateToken: function(id, token) {
-                return localhost + 'user/' + id + '?action=verify'
+                return localhost + 'users/' + id + '?action=verify'
             },
             unverify: function(id) {
-                return localhost + 'user/' + id + '?action=unverify';
+                return localhost + 'users/' + id + '?action=unverify';
             },
             declineMember: function(id) {
-                return localhost + 'user/' + id + '?action=decline';
-            },
-            unverify: function(id) {
-                return localhost + 'user/unverify?userId=' + id;
+                return localhost + 'users/' + id + '?action=decline';
             },
             getDmdiiMemberTags: function(){
                 return localhost + 'dmdiiTag'
