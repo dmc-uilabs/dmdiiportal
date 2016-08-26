@@ -41,7 +41,6 @@ angular.module('dmc.account')
                 $scope.user = $.extend(true, {}, accountData);
 
                 var roleCallback = function(response) {
-                    console.log(response.data)
                     if (response.data.roles && response.data.roles[$scope.accountData.companyId]) {
                         $scope.role = response.data.roles[$scope.accountData.companyId];
                         $scope.isVerified = true;
@@ -165,7 +164,7 @@ angular.module('dmc.account')
                     $scope.res = response.data;
 
                     if($scope.res.responseCode === 0) {
-                        $scope.user.isVerified = true;
+                        $scope.isVerified = true;
                     } else {
                         $scope.error = $scope.res.responseDescription;
                     }
