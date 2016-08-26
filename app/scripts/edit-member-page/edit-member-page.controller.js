@@ -49,6 +49,7 @@ angular.module('dmc.edit-member')
             });
 
             $scope.isChange = {};
+            $scope.date = {};
 
             $scope.getOrganizations = function() {
                 if (!$stateParams.memberId) {
@@ -82,8 +83,11 @@ angular.module('dmc.edit-member')
             // callback for member
             var callbackFunction = function(response){
               $scope.company = response.data;
-              $scope.startDate = new Date($scope.company.startDate);
-              $scope.expireDate = new Date($scope.company.expireDate);
+              var startDate = $scope.project.startDate.split('-');
+              $scope.date.start = new Date(startDate[1] + '-' + startDate[2] + '-' + startDate[0]);
+
+              var expireDate = $scope.project.expireDate.split('-');
+              $scope.date.expire = new Date(expireDate[1] + '-' + expireDate[2] + '-' + expireDate[0]);
 
               $scope.companyTier = {
                   data: {
@@ -377,7 +381,7 @@ angular.module('dmc.edit-member')
             $scope.saveChanges = function() {
                 $scope.setTier();
 
-                var date = new Date($scope.startDate);
+                var date = new Date($scope.date.start);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
@@ -386,7 +390,7 @@ angular.module('dmc.edit-member')
 
                 $scope.company.startDate = year + '-' + month + '-' + day;
 
-                var date = new Date($scope.expireDate);
+                var date = new Date($scope.date.expire);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
