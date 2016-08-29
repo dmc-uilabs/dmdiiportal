@@ -41,10 +41,18 @@ angular.module('dmc.account')
                 $scope.user = $.extend(true, {}, accountData);
 
                 var roleCallback = function(response) {
-                    if (response.data.roles) {
-                        $scope.role = response.data.roles[$scope.user.companyId];
+                    if (response.data.roles && response.data.roles[$scope.accountData.companyId]) {
+                        $scope.role = response.data.roles[$scope.accountData.companyId];
+                        $scope.isVerified = true;
                     } else {
                         $scope.role = null;
+                    }
+
+                    if($scope.accountData.companyId) {
+                        ajax.get(dataFactory.getCompanyUrl($scope.accountData.companyId), {}, function(response) {
+                            $scope.ctrl.searchCompany = response.data.name;
+                            $scope.ctrl.selectCompany = response.data;
+                        });
                     }
                 };
 
@@ -109,8 +117,11 @@ angular.module('dmc.account')
                 $scope.ctrl.querySearch = querySearch;
                 $scope.ctrl.selectedItemChange = selectedItemChange;
                 $scope.ctrl.searchTextChange = searchTextChange;
-
                 $scope.ctrl.searchText = $scope.user.timezone;
+                $scope.ctrl.companies = getAllCompanies();
+                $scope.ctrl.setCompany = setCompany;
+                $scope.ctrl.queryCompanySearch = queryCompanySearch;
+                $scope.ctrl.searchCompanyChange = searchCompanyChange;
 
                 $scope.changedValue = function (name, value) {
                     if (!$scope.changedValues) $scope.changedValues = {};
@@ -131,6 +142,7 @@ angular.module('dmc.account')
                 };
 
                 $scope.saveChanges = function () {
+                    console.log($scope.user)
                     if ($scope.changedValues) {
                         if (!validateEmail($scope.user.email)) {
                             $scope.user.email = $scope.accountData.email;
@@ -140,21 +152,28 @@ angular.module('dmc.account')
                     }
                 };
 
+                function getAllCompanies(){
+                    ajax.get(dataFactory.companyURL().all,{},function(response){
+                        return response.data;
+                    });
+                }
+
                 $scope.token = {};
 
                 var tokenCallback = function(response) {
                     $scope.res = response.data;
 
                     if($scope.res.responseCode === 0) {
-                        $scope.user.isVerified = true;
+                        $scope.isVerified = true;
                     } else {
                         $scope.error = $scope.res.responseDescription;
                     }
                 }
+
                 $scope.verifyToken = function() {
                     if ($scope.token && $scope.token.token.trim().length > 0) {
                         $scope.error = '';
-                        ajax.create(dataFactory.validateToken($scope.user.id, $scope.token.token), {}, tokenCallback);
+                        ajax.put(dataFactory.validateToken($scope.user.id), {token: $scope.token.token}, tokenCallback);
                     } else {
                         $scope.error = "You MUST enter a token";
                     }
@@ -221,8 +240,15 @@ angular.module('dmc.account')
 
             function createFilterFor(query) {
                 var lowercaseQuery = angular.lowercase(query);
-                return function filterFn(state) {
-                    return (state.value.indexOf(lowercaseQuery) != -1);
+                return function filterFn(item) {
+                    return (item.value.indexOf(lowercaseQuery) != -1);
+                };
+            }
+
+            function createCompanyFilterFor(query) {
+                var lowercaseQuery = angular.lowercase(query);
+                return function filterFn(item) {
+                    return (item.name.toLowerCase().indexOf(lowercaseQuery) === 0);
                 };
             }
 
@@ -271,6 +297,24 @@ angular.module('dmc.account')
                 });
             }
 
+            var queryCompanySearch = function(query) {
+                var results = query ? $scope.ctrl.companies.filter( createCompanyFilterFor(query) ) : $scope.ctrl.companies,
+                    deferred;
+                if ($scope.ctrl.simulateQuery) {
+                    deferred = $q.defer();
+                    $timeout(function () {
+                        deferred.resolve(results);
+                    }, Math.random() * 1000, false);
+                    return deferred.promise;
+                } else {
+                    return results;
+                }
+            }
+
+            var setCompany = function(company) {
+                $scope.user.companyId = company.id;
+            }
+
             function querySearch(query) {
                 var results = query ? $scope.ctrl.states.filter(createFilterFor(query)) : $scope.ctrl.states,
                     deferred;
@@ -282,6 +326,13 @@ angular.module('dmc.account')
                     return deferred.promise;
                 } else {
                     return results;
+                }
+            }
+
+            function searchCompanyChange(text) {
+                if (text.trim().length == 0) {
+                    $scope.user.companyId = null;
+                    $scope.changedValue('companyId', $scope.user.companyId);
                 }
             }
 

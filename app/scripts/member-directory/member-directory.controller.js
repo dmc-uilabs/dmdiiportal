@@ -32,8 +32,6 @@ angular.module('dmc.members')
                  DMCUserModel,
                  $window){
 
-            $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
@@ -44,8 +42,6 @@ angular.module('dmc.members')
             });
 
             $scope.membersLoading = true;
-
-
             // This code use for member-directory -------------------------------------------------
             $scope.downloadData = false;        // on/off progress line in member-directory
             $scope.memberPageSize = $cookies.get('memberPageSize') ? +$cookies.get('memberPageSize') : 12;    // visible items in member-directory
@@ -129,22 +125,6 @@ angular.module('dmc.members')
                 return $scope.memberCurrentPage !== Math.ceil($scope.members.count / $scope.memberPageSize) - 1;
             };
 
-            var responseData = {
-                _sort : 'id',
-                _order : 'DESC'
-            };
-
-            $scope.submit = function(text){
-                $stateParams.text = text;
-                //$state.go('marketplace_search', dataSearch, {reload: true});
-                if(!$window.apiUrl){
-                    responseData.name_like = text;
-                }else{
-                    delete responseData.name_like;
-                }
-                loadingData(true);
-                ajax.get(dataFactory.searchDMDIIMembers(text), responseData, callbackFunction);
-            };
 
             var loadingData = function(start){ // progress line
                 $scope.downloadData = start;
@@ -228,7 +208,6 @@ angular.module('dmc.members')
 
                 angular.forEach($scope.members.arr, function(member) {
                     ajax.get(dataFactory.getDMDIIProject().active, {dmdiiMemberId: member.id, page: 0, pageSize: 15}, function(response) {
-                        console.log(response.data)
                         $scope.activeProjects[member.id] = response.data.data;
                     });
                 });
@@ -236,11 +215,11 @@ angular.module('dmc.members')
 
             var responseData = function(){
                 var data = {
-                    pageSize : $scope.memberPageSize,
-                    page : $scope.memberCurrentPage,
+                    pageSize: $scope.memberPageSize,
+                    page: $scope.memberCurrentPage,
                     // _order: $scope.sortDir,
                     // _sort: $scope.sortBy,
-                    name_like : $scope.searchModel
+                    name: $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.tier)) data.tier = $stateParams.tier
                 if(angular.isDefined($stateParams.type)) data.categoryId = $stateParams.type;
@@ -251,21 +230,34 @@ angular.module('dmc.members')
 
             $scope.getDMDIIMembers = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIMember().all, responseData(), callbackFunction);
+
+                if (!angular.isDefined($scope.searchModel)) {
+                    ajax.get(dataFactory.getDMDIIMember().all, responseData(), callbackFunction);
+                } else {
+                    ajax.get(dataFactory.getDMDIIMember().search, responseData(), callbackFunction);
+                }
             };
             $scope.getDMDIIMembers();
 
+            $scope.submit = function(name){
+                $scope.memberCurrentPage = 0;
+                $stateParams.name = name;
+                loadingData(true);
+                ajax.get(dataFactory.getDMDIIMember().search, responseData(), callbackFunction);
+            };
+
             var callbackMapFunction = function(response) {
                 angular.forEach(response.data, function(member) {
-                    if (angular.isDefined($scope.mapObject.data[member.state])) {
-                        $scope.mapObject.data[member.state].members.push('<li>' + member.name + '</li>');
+                    if (angular.isDefined($scope.mapObject.data[member.state.trim()])) {
+                        $scope.mapObject.data[member.state.trim()].members.push('<li>' + member.name + '</li>');
                     } else {
-                        $scope.mapObject.data[member.state] = {
+                        $scope.mapObject.data[member.state.trim()] = {
                             fillKey: "HAS_MEMBER",
                             members: ['<li>' + member.name + '</li>']
                         };
                     }
                 })
+                console.log($scope.mapObject)
             }
             $scope.getDMDIIMemberMap = function() {
                 ajax.get(dataFactory.getDMDIIMember().map, null, callbackMapFunction);

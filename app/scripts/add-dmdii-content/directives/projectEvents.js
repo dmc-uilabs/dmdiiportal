@@ -7,12 +7,12 @@ angular.module('dmc.addDmdiiContent').
             scope: {
                 source : "=",
                 projects: "=",
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $window) {
                 $element.addClass("tab-projectEvents");
 
 
                 $scope.$watch('event', function() {
-                    if ($scope.noTitle && angular.isDefined($scope.event.eventTitle) && $scope.event.eventTitle.length > 0) {
+                    if ($scope.noTitle && angular.isDefined($scope.event.eventName) && $scope.event.eventName.length > 0) {
                         $scope.noTitle = false;
                     }
 
@@ -27,6 +27,7 @@ angular.module('dmc.addDmdiiContent').
 
                 var eventCallback = function(response) {
                     toastModel.showToast('success', 'Project Event Saved!');
+                    $window.location.reload();
                 };
 
                 $scope.clear = function() {
@@ -48,7 +49,7 @@ angular.module('dmc.addDmdiiContent').
 
                 $scope.save = function() {
 
-                    if (!$scope.event.eventTitle) {
+                    if (!$scope.event.eventName) {
                         $scope.noTitle = true;
                     }
                     if (!$scope.event.eventDate) {

@@ -204,6 +204,17 @@ angular.module('dmc.company-profile')
                 apply();
             };
 
+            $scope.deleteOrganization = function() {
+                ajax.create(dataFactory.deleteOrganization(id), {}, function(response) {
+                    if(response.status === 200) {
+                        toastModel.showToast('success', 'Organization successfully deleted!');
+                        $window.location.href = '/';
+                    } else {
+                        toastModel.showToast('error', response.data);
+                    }
+                });
+            };
+
             $scope.getCompanyMembers = function() {
                 ajax.get(dataFactory.getUsersByOrganization($scope.company.id), {}, callbackMembers);
             }

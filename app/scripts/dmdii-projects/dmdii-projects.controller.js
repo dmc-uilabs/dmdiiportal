@@ -34,8 +34,6 @@ angular.module('dmc.dmdiiProjects')
                  $mdDialog,
                  $window){
 
-            $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
@@ -59,6 +57,28 @@ angular.module('dmc.dmdiiProjects')
                 }
             });
 
+            $scope.startDate = new Date();
+            $scope.startDate.setMonth($scope.startDate.getMonth()-4);
+
+            var year = $scope.startDate.getFullYear();
+            var month = $scope.startDate.getMonth() + 1;
+            month = (month < 10) ? '0' + month : month;
+            var day = $scope.startDate.getDate();
+            day = (day < 10) ? '0' + day : day;
+
+            $scope.startDate = year + '-' + month + '-' + day;
+
+            $scope.endDate = new Date();
+            $scope.endDate.setMonth($scope.endDate.getMonth()+4);
+
+            var year = $scope.endDate.getFullYear();
+            var month = $scope.endDate.getMonth() + 1;
+            month = (month < 10) ? '0' + month : month;
+            var day = $scope.endDate.getDate();
+            day = (day < 10) ? '0' + day : day;
+
+            $scope.endDate = year + '-' + month + '-' + day;
+
             $scope.showArray = [
                 {
                     id : 1, val:12, name: '12 items'
@@ -81,6 +101,17 @@ angular.module('dmc.dmdiiProjects')
                     break;
                 }
             }
+
+            $scope.getProjectStaticImages = function() {
+                ajax.get(dataFactory.getDMDIIDocuments().overview, {}, function(response)  {
+                    $scope.projectOverview = response.data;
+                });
+
+                ajax.get(dataFactory.getDMDIIDocuments().status, {}, function(response)  {
+                    $scope.projectStatus = response.data;
+                });
+            }
+            $scope.getProjectStaticImages();
 
             $scope.selectItemDropDown = function(){
                 if($scope.sizeModule != 0) {
@@ -130,7 +161,15 @@ angular.module('dmc.dmdiiProjects')
             };
 
             var eventsCallbackFunction = function(response) {
-                $scope.events = response.data || [];
+                $scope.events = [];
+                angular.forEach(response.data, function(event) {
+                    var e = {
+                        date: event.eventDate,
+                        content: '<h3>' + event.eventName + '</h3>' +
+                            '<p>' + event.eventDescription + '</p>'
+                    }
+                    $scope.events.push(e);
+                });
             }
             $scope.getEvents = function(){
                 ajax.get(dataFactory.getDMDIIProject().events, {limit: 3}, eventsCallbackFunction);
@@ -149,18 +188,6 @@ angular.module('dmc.dmdiiProjects')
             var responseData = {
                 _sort : 'id',
                 _order : 'DESC'
-            };
-
-            $scope.submit = function(text){
-                $stateParams.text = text;
-                $state.go('project_search', dataSearch, {reload: true});
-                if(!$window.apiUrl){
-                    responseData.name_like = text;
-                }else{
-                    delete responseData.name_like;
-                }
-                loadingData(true);
-                ajax.get(dataFactory.searchDmdiiProjects(text), responseData, callbackFunction);
             };
 
             var loadingData = function(start){ // progress line
@@ -234,9 +261,9 @@ angular.module('dmc.dmdiiProjects')
                 var data = {
                     pageSize : $scope.dmdiiProjectPageSize,
                     page : $scope.dmdiiProjectCurrentPage,
-                    _order: $scope.sortBy,
-                    _sort: $scope.sortDir,
-                    name_like : $scope.searchModel
+                    // _order: $scope.sortBy,
+                    // _sort: $scope.sortDir,
+                    title: $scope.searchModel
                 };
                 if(angular.isDefined($stateParams.status)) data.statusId = $stateParams.status;
                 if(angular.isDefined($stateParams.callNumber)) data.callNumber = $stateParams.callNumber;
@@ -249,9 +276,21 @@ angular.module('dmc.dmdiiProjects')
 
             $scope.getDmdiiProjects = function(){
                 loadingData(true);
-                ajax.get(dataFactory.getDMDIIProject().all, responseData(), callbackFunction);
+
+                if (!angular.isDefined($scope.searchModel)) {
+                    ajax.get(dataFactory.getDMDIIProject().all, responseData(), callbackFunction);
+                } else {
+                    ajax.get(dataFactory.getDMDIIProject().search, responseData(), callbackFunction);
+                }
             };
             $scope.getDmdiiProjects();
+
+            $scope.submit = function(text){
+                $scope.dmdiiProjectCurrentPage = 0;
+                // $stateParams.title = text;
+                loadingData(true);
+                ajax.get(dataFactory.getDMDIIProject().search, responseData(), callbackFunction);
+            };
 
             $scope.getNext = function() {
                 $scope.dmdiiProjectCurrentPage++;

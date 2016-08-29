@@ -4,16 +4,16 @@
 		<!--project-->
 		<md-content class="project">
 			<!--project header-->
-			<div layout="row" layout-align="end" flex="50">
+			<div layout="row" layout-align="end">
 				<md-button ng-if="userData.isDmdiiAdmin"
 					   class="md-raised dmc-button"
 					   flex="25"
-					   href="add-dmdii-project-doc.php#/{{project.id}}">
+					   href="add-dmdii-project-doc.php#/{{project.id}}/projectUpdates">
 					Add Documents and Updates
 				</md-button>
 
 				<span flex></span>
-				
+
 				<md-button ng-if="userData.isDmdiiAdmin"
 						   class="md-raised dmc-button"
 						   flex="20"
@@ -65,6 +65,7 @@
 				                        </tbody>
 				                    </table>
 				                </md-data-table-container>
+								<img src="{{projectFinancials.documentUrl}}" flex="50"></img>
 				            </div>
 						</div>
 						<span flex></span>
@@ -83,7 +84,7 @@
 				</div>
 			</div>
 
-<md-divider style="margin-top:100px"></md-divider>
+			<md-divider style="margin-top:100px"></md-divider>
 
 			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom>
 				<md-tab label="Project Contributors">
@@ -98,7 +99,7 @@
 								<br><br>
 								<h2 class="no-bottom">DMDII Project Manager</h2>
 								<div layout="column">
-									<h3 class="slim-margin no-bottom green"><a ng-href="{{'/member-page.php#/'+project.principalPointOfContact.id}}">{{project.principalPointOfContact.firstname + ' ' + project.principalPointOfContact.lastname}}</a></h3>
+									<h3 class="slim-margin no-bottom green"><a ng-href="{{'/member-page.php#/'+project.principalPointOfContact.id}}">{{project.principalPointOfContact.firstName + ' ' + project.principalPointOfContact.lastName}}</a></h3>
 									<span class="close-email ">{{project.principalPointOfContact.email}}</span>
 								</div>
 							</div>
@@ -122,27 +123,19 @@
 				</md-tab>
 
 				<md-tab label="Project Schedule">
-				  <img style="border:1px solid;width:70%;margin:25px;  padding:20px; " src="/images/DMDIIGantChart.png"></img>
-
-					<md-content class="carousel-padding">
-						<div class="project-schedule">
-
-
-						</div>
-					</md-content>
+				  <img style="border:1px solid;width:70%;margin:25px;  padding:20px; " src="{{projectSchedule.documentUrl}}"></img>
 				</md-tab>
 
 				<md-tab label="Project Updates">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
-							<div layout="column" ng-show="updates.length > 0">
-								<div class="bottom20" ng-repeat="update in updates">
+							<div layout="row" layout-wrap ng-show="updates.length > 0">
+								<div class="bottom10" ng-repeat="update in updates">
 									<div class="slim-side-margin no-bottom" layout="row">
 										<h2 class="margin-top-25 no-bottom green">{{update.title}}</h4>
-										<p class="superset">{{update.date}}</p>
+										<p class="superset">{{update.created}}</p>
 									</div>
 									<p class="slim-margin">{{update.description}}</p>
-									<p class="byline no-top bottom10">-{{update.author}}</p>
 								</div>
 							</div>
 							<span ng-hide="updates.length > 0">This Project has no updates</span>
@@ -154,7 +147,7 @@
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
 							<div layout="column" class="project-documents" ng-show="documents.length > 0">
-								<a class="slim-margin" ng-repeat="doc in documents">{{doc.name}}</a>
+								<a class="slim-margin" ng-repeat="doc in documents" href="{{doc.documentUrl}}">{{doc.documentName}}</a>
 							</div>
 							<span ng-hide="documents.length > 0">This Project has no documents</span>
 						</div>

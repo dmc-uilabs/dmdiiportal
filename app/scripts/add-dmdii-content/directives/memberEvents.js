@@ -6,13 +6,13 @@ angular.module('dmc.addDmdiiContent').
             templateUrl: 'templates/add-dmdii-content/tabs/tab-member-events.html',
             scope: {
                 source : "=",
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, questionToastModel) {
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, questionToastModel, $window) {
                 $element.addClass("tab-memberEvents");
                 $scope.event = {};
 
                 var eventCallback = function(response) {
                     toastModel.showToast('success', 'Member Event Saved!');
-
+                    $window.location.reload();
                 };
 
                 $scope.clear = function() {
@@ -23,7 +23,7 @@ angular.module('dmc.addDmdiiContent').
                 };
 
                 $scope.$watch('event', function() {
-                    if ($scope.noTitle && angular.isDefined($scope.event.title) && $scope.event.title.length > 0) {
+                    if ($scope.noTitle && angular.isDefined($scope.event.name) && $scope.event.name.length > 0) {
                         $scope.noTitle = false;
                     }
 
@@ -38,7 +38,7 @@ angular.module('dmc.addDmdiiContent').
 
                 $scope.save = function() {
 
-                    if (!$scope.event.title) {
+                    if (!$scope.event.name) {
                         $scope.noTitle = true;
                     }
                     if (!$scope.event.date) {

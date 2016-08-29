@@ -68,6 +68,14 @@ angular.module('dmc.dmdiiProj')
                     $scope.documents = response.data;
                 });
 
+                ajax.get(dataFactory.getDMDIIDocuments().projectDocument, {fileTypeId: 3, dmdiiProjectId: $scope.project.id}, function(response) {
+                    $scope.projectFinancials = response.data;
+                });
+
+                ajax.get(dataFactory.getDMDIIDocuments().projectDocument, {fileTypeId: 4, dmdiiProjectId: $scope.project.id}, function(response) {
+                    $scope.projectSchedule = response.data;
+                });
+
             };
 
             var responseData = function(){

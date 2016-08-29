@@ -153,10 +153,10 @@
                             </td>
 
                             <td>
-                                <a ng-repeat="tag in member.skills track by $index">{{tag.tagName}}{{$last ? '' : ', '}}</a>
+                                <a ng-repeat="tag in member.areasOfExpertise track by $index">{{tag.name}}{{$last ? '' : ', '}}</a>
                             </td>
                             <td>
-                                <a ng-repeat="tag in member.seekColaboration track by $index">{{tag.tagName}}{{$last ? '' : ', '}}</a>
+                                <a ng-repeat="tag in member.desiredAreasOfExpertise track by $index">{{tag.name}}{{$last ? '' : ', '}}</a>
                             </td>
                         </tr>
                         <tr ng-if="members.arr.length == 0">

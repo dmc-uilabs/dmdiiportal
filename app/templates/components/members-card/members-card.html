@@ -1,4 +1,4 @@
-<div class="members-card" layout="column">
+<div class="members-card" layout="column" ng-hide="isRemoved">
 	<div class="header" layout="row" layout-align="space-between center">
 		<md-button href="" aria-label="grou_add" class="md-icon-button">
 			<ng-md-icon ng-if="version1" icon="group_add" style="fill: grey;" size="25"></ng-md-icon>
@@ -18,7 +18,7 @@
 		<h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{cardSource.firstName + ' ' + cardSource.lastName}}</a></h3>
 		<h4>{{cardSource.jobTitle}}</h4>
 		<h4>{{cardSource.userContactInfo.userPublicContactInfo.email}}</h4>
-		<ui-widget-stars-static size="15" value="{{cardSource.rating}}" text="({{cardSource.rating}})"></ui-widget-stars-static>
+		<a href="" ng-if="(userData.isDmdiiAdmin || userData.isAdmin) && cardSource.isVerified" ng-click="removeMember()">Remove from Organization</a>
 	</div>
 
 	<div class="description">
@@ -37,6 +37,10 @@
 
 		<md-button ng-click="generateToken()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || cardSource.isVerified" class="white-button" aria-label="Verify" flex>
 	        Verify
+	    </md-button>
+
+		<md-button ng-click="declineUser()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || cardSource.isVerified" class="white-button" aria-label="Decline" flex>
+	        Decline
 	    </md-button>
 
 	    <md-button aria-label="Project Link"
@@ -75,13 +79,13 @@
 	                <ng-md-icon icon="close" size="17"></ng-md-icon>
 	            </md-button>
 	            <div layout="column" class="select-block" flex>
-	                <md-select placeholder="Select Role" ng-model="roleId">
-	                    <md-option ng-repeat="r in roles" ng-value="{{r.id}}">{{r.name}}</md-option>
+	                <md-select placeholder="Select Role" ng-model="role">
+	                    <md-option ng-repeat="r in roles" ng-value="r">{{r}}</md-option>
 	                </md-select>
 	            </div>
 	            <md-button aria-label="Set"
 	                       layout="column"
-	                       ng-disabled="!roleId"
+	                       ng-disabled="!role"
 	                       class="md-raised add"
 	                       ng-click="saveMember()">Set
 	            </md-button>

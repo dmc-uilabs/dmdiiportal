@@ -38,10 +38,6 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
               var s3Url = 'https://s3.amazonaws.com/' + creds.bucket + '/' + params.Key;
 
               s3.upload(params, function(err, data) {
-                //Testing
-                var file = new Object();
-                file["name"] = data.Location;
-                data["file"] = file;
 
                     if (err) {
                         // There Was An Error With Your S3 Config
@@ -49,6 +45,10 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
                         callbackUploadPicture(data);
                     }
                     else {
+                        //Testing
+                        var file = new Object();
+                        file["name"] = data.Location;
+                        data["file"] = file;
                         console.log('Upload Done'); // Success!
                         toastModel.showToast('success',"Upload Done!");
                         console.log("final resource at " + data.Location);  //Testing

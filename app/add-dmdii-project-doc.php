@@ -48,6 +48,10 @@
 <script src="scripts/common/models/zipcode-model.js"></script>
 <script src="scripts/add-dmdii-project-doc/add-dmdii-project-doc.js"></script>
 <script src="scripts/add-dmdii-project-doc/add-dmdii-project-doc.controller.js"></script>
+<script src="scripts/add-dmdii-project-doc/directives/projectFinancials.js"></script>
+<script src="scripts/add-dmdii-project-doc/directives/projectSchedule.js"></script>
+<script src="scripts/add-dmdii-project-doc/directives/projectUpdates.js"></script>
+<script src="scripts/add-dmdii-project-doc/directives/projectDocuments.js"></script>
 
 <!-- endbuild -->
 <script type="text/javascript">

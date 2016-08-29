@@ -442,13 +442,19 @@ angular.module('dmc.data',[])
                 return localhost+'messages';
             },
             userRole: function() {
-                return localhost + 'dmdiiaccess/role';
+                return localhost + 'userRole';
             },
             generateToken: function(id) {
                 return localhost + 'user/createtoken?userId=' + id;
             },
             validateToken: function(id, token) {
-                return localhost + 'user/verify?userId=' + id + '&token=' + token;
+                return localhost + 'users/' + id + '?action=verify'
+            },
+            unverify: function(id) {
+                return localhost + 'users/' + id + '?action=unverify';
+            },
+            declineMember: function(id) {
+                return localhost + 'users/' + id + '?action=decline';
             },
             getDmdiiMemberTags: function(){
                 return localhost + 'dmdiiTag'
@@ -459,14 +465,21 @@ angular.module('dmc.data',[])
             getOrganization: function() {
                 return localhost + 'organization'
             },
+            deleteOrganization: function(id) {
+                return localhost + 'organization/delete/' + id
+            },
+            changeUsersOrganization: function(id) {
+                return 'not implemented'
+            },
             getDMDIIMember: function(id) {
                 return {
-                    get: localhost+'dmdiiMember/'+ id,
-                    all: localhost+'dmdiiMember',
-                    full: localhost+'dmdiiMember/all',
-                    events: localhost+'dmdiiMember/events',
-                    news: localhost+'dmdiiMember/news',
-                    map: localhost + 'dmdiiMember/mapEntry'
+                    get: localhost + 'dmdiiMember/' + id,
+                    all: localhost + 'dmdiiMember',
+                    full: localhost + 'dmdiiMember/all',
+                    search: localhost + 'dmdiiMember/search',
+                    events: localhost + 'dmdiiMember/events',
+                    news: localhost + 'dmdiiMember/news',
+                    map: localhost  +  'dmdiiMember/mapEntry'
                 }
             },
             getDMDIIMemberProjects: function() {
@@ -490,7 +503,8 @@ angular.module('dmc.data',[])
                     events: localhost+'dmdiiProject/events',
                     news: localhost+'dmdiiProject/news',
                     contributors: localhost + 'dmdiiproject/contributingcompanies',
-                    updates: localhost + 'dmdiiProjectUpdate'
+                    updates: localhost + 'dmdiiProjectUpdate',
+                    search: localhost + 'dmdiiprojects/search'
                 }
             },
             saveDMDIIProject: function() {
@@ -513,7 +527,10 @@ angular.module('dmc.data',[])
                 return {
                     all: localhost + 'dmdiidocuments',
                     single: localhost + 'dmdiidocument/' + id,
-                    project: localhost + 'dmdiidocuments/dmdiiProjectId'
+                    project: localhost + 'dmdiidocuments/dmdiiProjectId',
+                    overview: localhost + 'staticdocument/1',
+                    status: localhost + 'staticdocument/2',
+                    projectDocument: localhost + 'dmdiidocument/filetype'
                 };
             },
             saveDMDIIDocument: function() {

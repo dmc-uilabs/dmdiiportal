@@ -12,6 +12,7 @@ angular.module('dmc.edit-project')
         'toastModel',
         'questionToastModel',
         'DMCUserModel',
+        '$window',
         'fileUpload',
         function ($stateParams,
                 $scope,
@@ -23,6 +24,7 @@ angular.module('dmc.edit-project')
                 toastModel,
                 questionToastModel,
                 DMCUserModel,
+                $window,
                 fileUpload) {
 
 
@@ -30,6 +32,8 @@ angular.module('dmc.edit-project')
             DMCUserModel.getUserData().then(function(res){
                 $scope.user = res;
             });
+
+            $scope.date = {};
 
             $scope.getOrganizations = function() {
                 ajax.get(dataFactory.getDMDIIMember().full, {}, function(response) {
@@ -55,8 +59,11 @@ angular.module('dmc.edit-project')
             var callbackFunction = function(response){
                 $scope.project = response.data;
 
-                $scope.project.awardedDate = new Date($scope.project.awardedDate);
-                $scope.project.endDate = new Date($scope.project.endDate);
+                var awardedDate = $scope.project.awardedDate.split('-');
+                $scope.date.awarded = new Date(awardedDate[1] + '-' + awardedDate[2] + '-' + awardedDate[0]);
+
+                var endDate = $scope.project.endDate.split('-');
+                $scope.date.end = new Date(endDate[1] + '-' + endDate[2] + '-' + endDate[0]);
 
                 $scope.contributors = [];
                 ajax.get(dataFactory.getDMDIIProject().contributors, {projectId: $scope.project.id}, function(response) {
@@ -79,9 +86,11 @@ angular.module('dmc.edit-project')
             $scope.getDMDIIProject = function(){
                 if ($stateParams.projectId) {
                     $scope.title = 'Edit Project';
+                    $scope.action = 'Edited';
                     ajax.get(dataFactory.getDMDIIProject($stateParams.projectId).get, responseData(), callbackFunction);
                 } else {
                     $scope.title = 'Create Project';
+                    $scope.action = 'Created';
 
                     $scope.project = {
                         contributingCompanyIds: [],
@@ -90,8 +99,7 @@ angular.module('dmc.edit-project')
                         principalInvestigator: {},
                         projectStatus: {},
                         projectThrust: {},
-                        projectFocusArea: {},
-
+                        projectFocusArea: {}
                     }
                 }
             };
@@ -179,11 +187,19 @@ angular.module('dmc.edit-project')
             };
 
             var callbackSaveFunction = function(response) {
-                $location.path('/'+$scope.project.id).search();
+                if (response.status === 200) {
+                    toastModel.showToast('success', 'Member Successfully ' + $scope.action + '!')
+                    $window.location.href = '/dmdii-project-page.php#/' + response.data.id;
+                }
             }
 
+            $scope.$watch('date', function() {
+                console.log($scope.date);
+            }, true)
+
             $scope.saveChanges = function() {
-                var startDate = new Date($scope.project.awardedDate);
+
+                var startDate = new Date($scope.date.awarded);
                 var year = startDate.getFullYear();
                 var month = startDate.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
@@ -192,7 +208,7 @@ angular.module('dmc.edit-project')
 
                 $scope.project.awardedDate = year + '-' + month + '-' + day;
 
-                var endDate = new Date($scope.project.endDate);
+                var endDate = new Date($scope.date.end);
                 year = endDate.getFullYear();
                 month = endDate.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
@@ -204,8 +220,13 @@ angular.module('dmc.edit-project')
                 $scope.project.projectIdentifier = $scope.project.rootNumber + '-' + $scope.project.callNumber + '-' + $scope.project.projectNumber
                 ajax.create(dataFactory.saveDMDIIProject().project, $scope.project, callbackSaveFunction);
             };
+
             $scope.cancelChanges = function(){
-                $location.path('/'+$scope.project.id).search();
+                if ($scope.project.id) {
+                    $window.location.href = '/dmdii-project-page.php#/' + $scope.project.id;
+                } else {
+                    $window.location.href = '/dmdii-projects.php#/';
+                }
             };
 
             function apply(){

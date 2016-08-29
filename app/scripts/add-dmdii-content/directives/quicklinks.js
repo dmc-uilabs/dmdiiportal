@@ -5,8 +5,9 @@ angular.module('dmc.addDmdiiContent').
             restrict: 'A',
             templateUrl: 'templates/add-dmdii-content/tabs/tab-quicklinks.html',
             scope: {
-                source : "="
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload, questionToastModel) {
+                source : "=",
+                user: "="
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload, questionToastModel, $window) {
                 $element.addClass("tab-quicklinks");
 
                 $scope.quicklink = {};
@@ -19,14 +20,24 @@ angular.module('dmc.addDmdiiContent').
                     'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
                     'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
                 }
-                
+
                 var quicklinkCallback = function(response) {
                     toastModel.showToast('success', 'Quicklink Saved!');
+                    $scope.quicklink = {};
+                    $scope.noTitle = false;
+                    $scope.noDescription = false;
+                    $scope.noLink = false;
+                    $scope.noDocSelected = false;
+                    $window.location.reload();
                 };
 
                 $scope.clear = function() {
                     $scope.quicklink = {};
                     $scope.document = [];
+                    $scope.noTitle = false;
+                    $scope.noDescription = false;
+                    $scope.noLink = false;
+                    $scope.noDocSelected = false;
                 };
 
                 $scope.$watch('quicklink', function() {
@@ -69,6 +80,8 @@ angular.module('dmc.addDmdiiContent').
                             $scope.noLink = true;
                         }
 
+                        $scope.quicklink.link = 'HTTP://' + $scope.quicklink.link;
+
                         delete $scope.quicklink.text;
                         delete $scope.quicklink.path;
 
@@ -101,8 +114,7 @@ angular.module('dmc.addDmdiiContent').
                             $scope.quicklink.doc = response.file.name;
                             ajax.create(dataFactory.saveDMDIIDocument(),
                                 {
-                                    ownerId: $scope.$root.userData.accountId,
-                                    path: '',
+                                    ownerId: $scope.user.accountId,
                                     documentUrl: $scope.quicklink.doc,
                                     documentName: $scope.quicklink.displayName
                                 }, function(response) {

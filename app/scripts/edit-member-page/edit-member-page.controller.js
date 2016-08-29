@@ -12,6 +12,7 @@ angular.module('dmc.edit-member')
         "toastModel",
         "questionToastModel",
         "DMCUserModel",
+        "$window",
         "fileUpload",
         function ($stateParams,
                 $scope,
@@ -23,6 +24,7 @@ angular.module('dmc.edit-member')
                 toastModel,
                 questionToastModel,
                 DMCUserModel,
+                $window,
                 fileUpload) {
 
 
@@ -47,6 +49,7 @@ angular.module('dmc.edit-member')
             });
 
             $scope.isChange = {};
+            $scope.date = {};
 
             $scope.getOrganizations = function() {
                 if (!$stateParams.memberId) {
@@ -80,8 +83,11 @@ angular.module('dmc.edit-member')
             // callback for member
             var callbackFunction = function(response){
               $scope.company = response.data;
-              $scope.company.startDate = new Date($scope.company.startDate);
-              $scope.company.expireDate = new Date($scope.company.expireDate);
+              var startDate = $scope.project.startDate.split('-');
+              $scope.date.start = new Date(startDate[1] + '-' + startDate[2] + '-' + startDate[0]);
+
+              var expireDate = $scope.project.expireDate.split('-');
+              $scope.date.expire = new Date(expireDate[1] + '-' + expireDate[2] + '-' + expireDate[0]);
 
               $scope.companyTier = {
                   data: {
@@ -368,14 +374,14 @@ angular.module('dmc.edit-member')
             var callbackSaveFunction = function(response) {
                 if (response.status === 200) {
                     toastModel.showToast('success', 'Member Successfully ' + $scope.action + '!')
-                    $location.path('member-page.php#/' + response.data.id);
+                    $window.location.href = '/member-page.php#/' + response.data.id;
                 }
             }
 
             $scope.saveChanges = function() {
                 $scope.setTier();
 
-                var date = new Date($scope.company.startDate);
+                var date = new Date($scope.date.start);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
@@ -384,7 +390,7 @@ angular.module('dmc.edit-member')
 
                 $scope.company.startDate = year + '-' + month + '-' + day;
 
-                var date = new Date($scope.company.expireDate);
+                var date = new Date($scope.date.expire);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
@@ -399,9 +405,9 @@ angular.module('dmc.edit-member')
 
             $scope.cancelChanges = function(){
                 if ($scope.company && $scope.company.id) {
-                    $location.path('/member-directory.php#/' + $scope.company.id);
+                    $window.location.href = '/member-page.php#/' + $scope.company.id;
                 } else {
-                    $location.path('/member-directory.php#/');
+                    $window.location.href = '/member-directory.php#/';
                 }
             };
 

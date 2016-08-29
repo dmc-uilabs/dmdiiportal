@@ -22,13 +22,13 @@
                 <div layout="row" layout-padding layout-align="center stretch">
                     <div flex="33" layout-align="center">
                         <h3>Projects Overview</h3>
-                        <img style="border:1px solid;width:100% " src="/images/DMDIIProjectsAwarded.png"></img>
+                        <img style="border:1px solid;width:100% " src="{{projectOverview.documentUrl}}"></img>
 
                     </div>
 
                     <div layout-align="center center" flex="33">
                         <h3>Projects Status</h3>
-                        <img style="border:1px solid; height:76%" src="/images/DMDIIProjectsOverview.png"></img>
+                        <img style="border:1px solid; height:76%" src="{{projectStatus.documentUrl}}"></img>
 
                     </div>
                     <div layout-align="end start" flex="33">
@@ -41,8 +41,8 @@
 
             <div>
                 <horizontal-timeline
-                    start-date="2016-04-20"
-                    end-date="2016-08-20"
+                    start-date="{{startDate}}"
+                    end-date="{{endDate}}"
                     events="events">
                 </horizontal-timeline>
             </div>
