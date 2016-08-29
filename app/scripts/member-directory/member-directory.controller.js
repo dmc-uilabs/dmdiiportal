@@ -257,8 +257,8 @@ angular.module('dmc.members')
                         };
                     }
                 })
-                console.log($scope.mapObject)
             }
+
             $scope.getDMDIIMemberMap = function() {
                 ajax.get(dataFactory.getDMDIIMember().map, null, callbackMapFunction);
             }
