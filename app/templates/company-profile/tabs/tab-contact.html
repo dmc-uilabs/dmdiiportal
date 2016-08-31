@@ -22,7 +22,7 @@
     <md-input-container flex class="left-space right-space">
         <label>State</label>
         <md-select ng-model="source.address.state">
-            <md-option ng-repeat="state in states" value="{{state.id}}">{{state.name}}</md-option>
+            <md-option ng-repeat="state in states" value="{{state.abbr}}">{{state.name}}</md-option>
         </md-select>
     </md-input-container>
     <md-input-container flex class="left-space">
@@ -174,8 +174,8 @@
             <div layout="column" class="right-space" flex="20">
                 <md-input-container>
                     <label>Type</label>
-                    <md-select ng-model="item.type">
-                        <md-option ng-repeat="c in keyContactTypes" value="{{c.id}}">{{c.name}}</md-option>
+                    <md-select ng-model="item.type" ng-model-options="{trackBy: '$value.id'}"
+                        <md-option ng-repeat="c in keyContactTypes" value="{{c}}">{{c.type}}</md-option>
                     </md-select>
                 </md-input-container>
             </div>

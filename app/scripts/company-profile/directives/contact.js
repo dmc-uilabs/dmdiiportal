@@ -1,4 +1,4 @@
-'use strict';
+    'use strict';
 angular.module('dmc.company-profile').
     directive('tabContact', ['$parse', function ($parse) {
         return {
@@ -14,10 +14,10 @@ angular.module('dmc.company-profile').
                 $scope.keyContactTypes = [
                     {
                         id : 1,
-                        name : "LEGAL"
+                        type : "LEGAL"
                     }, {
                         id : 2,
-                        name : "LEGAL 2"
+                        type : "LEGAL 2"
                     }
                 ];
 

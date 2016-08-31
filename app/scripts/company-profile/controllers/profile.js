@@ -37,8 +37,15 @@ angular.module('dmc.company-profile')
                   companyProfileModel,
                   DMCUserModel) {
 
-            $scope.company = companyData;
-
+            // $scope.company = companyData;
+            var getCompany = function() {
+                ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
+                    $scope.company = response.data;
+                    $scope.getCompanyMembers();
+                    $scope.SortingReviews();
+                });
+            }
+            getCompany();
             $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
             $scope.submit_rating = 0;  //
             $scope.limit_reviews = true;  //limit reviews
@@ -134,18 +141,18 @@ angular.module('dmc.company-profile')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }
 
-            // get company contacts
-            var initContacts = function(data){
-                for(var i in data){
-                    if(data[i].type == 1){
-                        data[i].type = "LEGAL";
-                    }else if(data[i].type == 2){
-                        data[i].type = "LEGAL 2";
-                    }
-                }
-                $scope.company.keyContacts = data;
-            };
-            initContacts($scope.company.keyContacts);
+            // // get company contacts
+            // var initContacts = function(data){
+            //     for(var i in data){
+            //         if(data[i].type == 1){
+            //             data[i].type = "LEGAL";
+            //         }else if(data[i].type == 2){
+            //             data[i].type = "LEGAL 2";
+            //         }
+            //     }
+            //     $scope.company.contacts = data;
+            // };
+            // initContacts($scope.company.contacts);
 
 
             // get company images
@@ -153,14 +160,14 @@ angular.module('dmc.company-profile')
                 $scope.company.videos = data;
                 apply();
             };
-            companyProfileModel.getVideos($scope.company.id, callbackVideaos);
+            // companyProfileModel.getVideos($scope.company.id, callbackVideaos);
 
             // get company images
             var callbackImages = function(data){
                 $scope.company.images = data;
                 apply();
             };
-            companyProfileModel.getImages($scope.company.id, callbackImages);
+            // companyProfileModel.getImages($scope.company.id, callbackImages);
 
             // get company membersconsole.log(data)
             var callbackMembers = function(response){
@@ -192,7 +199,6 @@ angular.module('dmc.company-profile')
             $scope.getCompanyMembers = function() {
                 ajax.get(dataFactory.getUsersByOrganization($scope.company.id), {}, callbackMembers);
             }
-            $scope.getCompanyMembers();
 
             // get company history
             var callbackPublicHistory = function(data){
