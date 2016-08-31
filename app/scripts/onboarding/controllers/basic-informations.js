@@ -51,9 +51,6 @@ angular.module('dmc.onboarding')
 
         $scope.enter = function(){
 			$mdDialog.hide($scope.info);
-			if ($scope.info.company === 13) {
-				$window.location.href = '/company-profile.php#/create'
-			};
 		};
 
         function apply() {
