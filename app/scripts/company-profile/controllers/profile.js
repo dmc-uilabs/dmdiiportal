@@ -59,9 +59,9 @@ angular.module('dmc.company-profile')
             DMCUserModel.getUserData().then(function(res){
                 $scope.userData = res;
 
-                if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
+                if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.companyId])) {
                     $scope.userData.isVerified = true;
-                    switch ($scope.userData.roles[$stateParams.memberId]) {
+                    switch ($scope.userData.roles[$stateParams.companyId]) {
                         case 'ADMIN':
                             $scope.userData.isAdmin = true;
                             break;
