@@ -114,11 +114,11 @@
 				<md-tab label="Recognitions">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="row">
-							<div class="pad20 member-project" ng-repeat="award in member.awards" ng-show="member.awards.length > 0">
+							<div class="pad20 member-project" ng-repeat="award in member.organization.awards" ng-show="member.organization.awards.length > 0">
 								<h4 class="green"><a ng-href="{{award.link}}">{{award.name}}</a></h4>
 								<p>{{award.description}}</p>
 							</div>
-							<span ng-hide="!member.awards || member.awards.length > 0">This member hasn't added any recognitions yet</span>
+							<span ng-hide="!member.organization.awards || member.organization.awards.length > 0">This member hasn't added any recognitions yet</span>
 						</div>
 					</md-content>
 				</md-tab>
@@ -128,19 +128,18 @@
 						<div class="tabs-content" layout="row" >
 							<div style="width:40%">
 								<h3 class="no-bottom slim-margin">Core Capabilities</h3>
-								<div class="pad20" ng-repeat="AOE in member.areasOfExpertise" ng-show="member.areasOfExpertise.length > 0">
-									<h4><a ng-href="{{AOE.link}}" style="color:green">{{AOE.name}}</a></h4>
-									<p>{{AOE.description}}</p>
+								<div class="pad20" ng-repeat="AOE in member.organization.areasOfExpertise">
+									<h4 style="color:green">{{AOE.name}}</h4>
 								</div>
-								<span ng-hide="member.areasOfExpertise.length > 0">This member hasn't added any areas of expertise yet</span>
+								<span ng-hide="member.organization.areasOfExpertise.length > 0">This member hasn't added any areas of expertise yet</span>
 							</div>
 
 							<div layout="column" style="margin-left:solid;">
 								<h3 class="no-bottom slim-margin">Desired Areas for Collaboration</h3>
-								<div class="pad20" ng-repeat="area in member.desiredAreasOfExpertise">
+								<div class="pad20" ng-repeat="area in member.organization.desiredAreasOfExpertise">
 									<h4 style="color:green">{{area.name}}</h4>
 								</div>
-								<span ng-hide="member.areasOfExpertise.length > 0">This member hasn't added any sectors yet</span>
+								<span ng-hide="member.organization.areasOfExpertise.length > 0">This member hasn't added any desired areas of collaboration yet</span>
 							</div>
 						</div>
 					</md-content>

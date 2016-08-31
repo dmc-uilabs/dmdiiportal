@@ -147,6 +147,32 @@ angular.module('dmc.company-profile').
                     },ev);
                 };
 
+                $scope.isAddingAward = false;
+                // open form for add award
+                $scope.addNewAward = function(){
+                    $scope.isAddingAward = true;
+                };
+
+                // close form for add award
+                $scope.cancelAddAward = function(){
+                    $scope.isAddingAward = false;
+                };
+
+                // save new award
+                $scope.saveAward = function(newAward){
+                    if(newAward.description && newAward.name) {
+                        if (!$scope.source.awards) $scope.source.awards = [];
+                        $scope.source.awards.push(newAward);
+                        $scope.cancelAddAward();
+                        apply();
+                    }
+                };
+
+                // delete award
+                $scope.deleteAward = function(index){
+                    $scope.source.awards.splice(index, 1);
+                };
+
                 function apply(){
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }

@@ -125,8 +125,8 @@
                     <div layout="column" class="right-space" flex="20">
                         <md-input-container>
                             <label>Type</label>
-                            <md-select required name="type" ng-model="newContact.type">
-                                <md-option ng-repeat="c in keyContactTypes" value="{{c.id}}">{{c.name}}</md-option>
+                            <md-select required name="type" ng-model="newContact.contactType">
+                                <md-option ng-repeat="c in keyContactTypes" value="{{c.id}}">{{c.type}}</md-option>
                             </md-select>
                         </md-input-container>
                     </div>
@@ -170,12 +170,12 @@
         <div layout="row"
              layout-align="start start"
              class="contact-item"
-             ng-repeat="item in source.contacts" ng-show="!item.hide" flex>
+             ng-repeat="item in source.contacts track by $index" ng-show="!item.hide" flex>
             <div layout="column" class="right-space" flex="20">
                 <md-input-container>
                     <label>Type</label>
-                    <md-select ng-model="item.type" ng-model-options="{trackBy: '$value.id'}"
-                        <md-option ng-repeat="c in keyContactTypes" value="{{c}}">{{c.type}}</md-option>
+                    <md-select ng-model="item.contactType.id">
+                        <md-option ng-repeat="c in keyContactTypes" value="{{c.id}}">{{c.type}}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
@@ -204,7 +204,7 @@
             </div>
             <div layout="column" class="left-space">
                 <md-button md-no-ink
-                           ng-click="deleteContact(item,$event)"
+                           ng-click="deleteContact($index)"
                            class="md-icon-button delete-contact"
                            aria-label="Delete Contact">
                     <ng-md-icon icon="delete" size="32"></ng-md-icon>

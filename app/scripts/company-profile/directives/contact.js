@@ -13,11 +13,28 @@ angular.module('dmc.company-profile').
 
                 $scope.keyContactTypes = [
                     {
-                        id : 1,
-                        type : "LEGAL"
-                    }, {
-                        id : 2,
-                        type : "LEGAL 2"
+                        id: 1,
+                        type: "ENGINEERING"
+                    },
+                    {
+                        id: 2,
+                        type: "LEGAL"
+                    },
+                    {
+                        id: 3,
+                        type: "MARKETING"
+                    },
+                    {
+                        id: 4,
+                        type: "SOURCING"
+                    },
+                    {
+                        id: 5,
+                        type: "SUPPORT"
+                    },
+                    {
+                        id: 6,
+                        type: "RESEARCH AND DEVELOPMENT"
                     }
                 ];
 
@@ -141,7 +158,10 @@ angular.module('dmc.company-profile').
 
                 // save new contact
                 $scope.saveContact = function(newContact){
-                    if((newContact.phoneNumber || newContact.email) && newContact.type) {
+                    if((newContact.phoneNumber || newContact.email) && newContact.contactType) {
+                        newContact.contactType = {
+                            id: newContact.contactType
+                        }
                         newContact.companyId = $scope.source.id;
                         if (!$scope.source.contacts) $scope.source.contacts = [];
                         $scope.source.contacts.push(newContact);

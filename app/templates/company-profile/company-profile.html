@@ -89,9 +89,14 @@
     <md-content class="tab-projects">
 
         <div layout="row" class="text-row">
-            <div layout="column" flex="50" class="padding-left8">
+            <div layout="column" flex="100" class="padding-left8">
                 <h2>Awards Received</h2>
-                <p>{{company.awardsReceived}}</p>
+                <div layout="row" layout-wrap>
+                    <div class="pad-left-10" layout="column" flex="20" ng-repeat="award in company.awards">
+                        <h4><a href="{{award.link}}">{{award.name}}</a></h4>
+                        <p>{{award.description}}</p>
+                    </div>
+                </div>
             </div>
         </div>
 
