@@ -9,9 +9,7 @@ angular.module('dmc.company-profile').
             restrict: 'A',
             templateUrl: 'templates/company-profile/tabs/tab-overview.html',
             scope: {
-                source : "=",
-                changedValue : "=",
-                changes : "="
+                source : "="
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, companyProfileModel, fileUpload, questionToastModel) {
                 $element.addClass("tab-overview");
 
@@ -20,7 +18,7 @@ angular.module('dmc.company-profile').
                     $scope.source.images = data;
                     apply();
                 };
-                if ($scope.source.id) {
+                if ($scope.source && $scope.source.id) {
                     companyProfileModel.getImages($scope.source.id, callbackImages);
                 }
 
@@ -29,7 +27,7 @@ angular.module('dmc.company-profile').
                     $scope.source.videos = data;
                     apply();
                 };
-                if ($scope.source.id) {
+                if ($scope.source && $scope.source.id) {
                     companyProfileModel.getVideos($scope.source.id, callbackVideos);
                 }
 

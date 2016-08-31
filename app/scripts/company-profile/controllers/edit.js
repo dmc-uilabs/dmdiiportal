@@ -127,7 +127,7 @@ angular.module('dmc.company-profile')
                 if(response.status === 200) {
                     toastModel.showToast('success', 'Organization successfully ' + $scope.action);
                     $timeout(function() {
-                        $window.location.href = '/company-profile.php#/' + response.data.id;
+                        $window.location.href = '/company-profile.php#/profile/' + response.data.id;
                     }, 500);
                 }else{
                     toastModel.showToast('error', 'Organization could not be ' + $scope.action);
