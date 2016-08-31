@@ -46,6 +46,7 @@ angular.module('dmc.company-profile')
                 });
             }
             getCompany();
+
             $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
             $scope.submit_rating = 0;  //
             $scope.limit_reviews = true;  //limit reviews
