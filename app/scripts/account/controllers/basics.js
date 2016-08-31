@@ -76,8 +76,12 @@ angular.module('dmc.account')
 
                 // auto focus for First Name input
                 $timeout(function () {
+                    $('input').each(function(){
+                        $(this).trigger('blur');
+                        //each input event one by one... will be blured
+                    })
                     $("#editFirstName").focus();
-                }, 1000);
+                }, 500);
 
                 $scope.blurInput = function () {
                     if ($scope.user.displayName == null || $scope.user.displayName.trim().length == 0) {
