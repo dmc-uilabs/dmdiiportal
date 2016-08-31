@@ -87,13 +87,12 @@
                             </md-autocomplete>
                         </div>
                     </div>
-                    <div class="inputs-container" layout="row" layout-align="start end" >
+                    <div class="inputs-container" layout="row" layout-align="start" >
                         <div flex="40" class="autocomplete-block">
-                            <md-autocomplete
+                            <md-autocomplete id="orgSelect"
                                 md-floating-label="Organization Name"
                                 ng-disabled="isVerified"
                                 md-no-cache="ctrl.noCache"
-                                ng-blur="blurInput()"
                                 md-selected-item="ctrl.selectedCompany"
                                 md-search-text="ctrl.searchCompany"
                                 md-search-text-change="ctrl.searchCompanyChange(ctrl.searchCompany)"
@@ -101,6 +100,7 @@
                                 md-items="item in ctrl.queryCompanySearch(ctrl.searchCompany)"
                                 md-item-text="item.name"
                                 placeholder="Organization Name"
+                                ng-blur="blurInput()"
                             >
                                 <md-item-template>
                                     <span md-highlight-text="ctrl.searchCompany" md-highlight-flags="^i">{{item.name}}</span>
@@ -109,6 +109,9 @@
                                     No matches found for "{{ctrl.searchCompany}}".
                                 </md-not-found>
                             </md-autocomplete>
+                        </div>
+                        <div>
+                            <md-button class="md-raised md-primary" href="/company-profile.php#/create">Create New Organization</md-button>
                         </div>
                     </div>
                     <div layout="row" ng-if="!isVerified">
@@ -121,7 +124,7 @@
                             <p class="error" ng-show="error != ''">{{error}}</p>
                         </div>
                         <div>
-                            <md-button class="md-raised md-primary save-button" ng-click="verifyToken()" flex="20">Verify</md-button>
+                            <md-button class="md-raised md-primary" ng-click="verifyToken()" flex="20">Verify</md-button>
                         </div>
                     </div>
                 </md-content>
