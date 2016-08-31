@@ -26,7 +26,6 @@ angular.module('dmc.onboarding')
 		}
 
 		function queryCompanySearch(query) {
-			console.log($scope.ctrl.companies, query, $scope.ctrl.searchCompany)
 			var results = query ? $scope.ctrl.companies.filter( createCompanyFilterFor(query) ) : $scope.ctrl.companies,
 				deferred;
 			if ($scope.ctrl.simulateQuery) {
@@ -45,7 +44,6 @@ angular.module('dmc.onboarding')
 		}
 
 		function searchCompanyChange(text) {
-			console.log($scope.ctrl, $scope.ctrl.companies, text, $scope.ctrl.searchCompany)
 			if (text.trim().length == 0) {
 				$scope.info.company = null;
 			}
@@ -53,6 +51,9 @@ angular.module('dmc.onboarding')
 
         $scope.enter = function(){
 			$mdDialog.hide($scope.info);
+			if ($scope.info.company === 13) {
+				$window.location.href = '/company-profile.php#/create'
+			};
 		};
 
         function apply() {
