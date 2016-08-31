@@ -62,10 +62,7 @@ angular.module('dmc.addDmdiiContent').
                     if ( $scope.noTitle || $scope.noDateSelected || $scope.noDescription) {
                         return;
                     }
-                    // if ($scope.selectedItem) {
-                    //     $scope.event.projectId = $scope.selectedItem.id;
-                    // }
-
+                
                     ajax.create(dataFactory.saveDMDIIProject().events, $scope.event, eventCallback);
                 };
 

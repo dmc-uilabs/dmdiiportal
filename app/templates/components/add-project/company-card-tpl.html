@@ -14,7 +14,7 @@
         <img ng-src="{{cardSource.logoImage ? cardSource.logoImage : 'images/icon-company-lg.svg'}}" alt="{{cardSource.name}}">
     </div>
     <div class="member-card__header" layout="column" layout-padding layout-margin>
-        <h3 class="member-name"><a href="/company-profile.php#/{{cardSource.id}}">{{cardSource.name}}</a></h3>
+        <h3 class="member-name"><a href="/company-profile.php#/profile/{{cardSource.id}}">{{cardSource.name}}</a></h3>
         <h4 class="industry" ng-if="cardSource.industry">{{cardSource.industry}}</h4>
     </div>
     <div class="member-card__content" layout="row" layout-padding flex>

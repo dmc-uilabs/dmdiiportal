@@ -38,8 +38,6 @@ angular.module('dmc.company-profile')
                   DMCUserModel) {
 
             $scope.company = companyData;
-            //$scope.company.dateJoined = moment( $scope.company.dateJoined,"YYYY-DD-MM").format("MM/DD/YYYY");
-            $scope.company.categoryTier = "Tier 4 Academic / Nonprofit";
 
             $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
             $scope.submit_rating = 0;  //
@@ -74,14 +72,6 @@ angular.module('dmc.company-profile')
                     }
                 }
             });
-
-            function loadContactMethods(){
-                ajax.get(dataFactory.companyURL($scope.company.id).get_contact_methods,{},function(response){
-                    $scope.contactMethods = response.data;
-                    apply();
-                });
-            }
-            loadContactMethods();
 
             $scope.sortList = [
                 {
@@ -145,10 +135,8 @@ angular.module('dmc.company-profile')
             }
 
             // get company contacts
-            var callbackContacts = function(data){
-                // console.info(data);
+            var initContacts = function(data){
                 for(var i in data){
-                    // console.info(data[i]);
                     if(data[i].type == 1){
                         data[i].type = "LEGAL";
                     }else if(data[i].type == 2){
@@ -157,7 +145,7 @@ angular.module('dmc.company-profile')
                 }
                 $scope.company.keyContacts = data;
             };
-            companyProfileModel.getKeyContacts($scope.company.id, callbackContacts);
+            initContacts($scope.company.keyContacts);
 
 
             // get company images
@@ -173,20 +161,6 @@ angular.module('dmc.company-profile')
                 apply();
             };
             companyProfileModel.getImages($scope.company.id, callbackImages);
-
-            // get company skills images
-            var callbackSkillsImages = function(data){
-                $scope.company.skillsImages = data;
-                apply();
-            };
-            companyProfileModel.getSkillsImages($scope.company.id, callbackSkillsImages);
-
-            // get company skills
-            var callbackSkills = function(data){
-                $scope.company.skills = data;
-                apply();
-            };
-            companyProfileModel.getSkills($scope.company.id, callbackSkills);
 
             // get company membersconsole.log(data)
             var callbackMembers = function(response){
@@ -205,7 +179,7 @@ angular.module('dmc.company-profile')
             };
 
             $scope.deleteOrganization = function() {
-                ajax.create(dataFactory.deleteOrganization(id), {}, function(response) {
+                ajax.delete(dataFactory.deleteOrganization(id), {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Organization successfully deleted!');
                         $window.location.href = '/';

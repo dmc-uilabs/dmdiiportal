@@ -1,25 +1,7 @@
-<div layout="row">
-    <md-input-container flex class="company-RDFocus" >
-        <label>R&D Focus</label>
-        <textarea ng-init="changes.RDFocus = source.RDFocus"
-                  ng-model="changes.RDFocus"
-                  ng-change="changedValue('RDFocus')"
-                  columns="1"></textarea>
-    </md-input-container>
-</div>
 <div layout="row" layout-align="start start">
-    <md-input-container flex class="company-customers right-space" >
-        <label>Customers</label>
-        <textarea ng-init="changes.customers = source.customers"
-                  ng-model="changes.customers"
-                  ng-change="changedValue('customers')"
-                  columns="1"></textarea>
-    </md-input-container>
     <md-input-container flex class="company-awardsReceived left-space" >
         <label>Awards Received</label>
-        <textarea ng-init="changes.awardsReceived = source.awardsReceived"
-                  ng-model="changes.awardsReceived"
-                  ng-change="changedValue('awardsReceived')"
+        <textarea ng-model="source.awardsReceived"
                   columns="1"></textarea>
     </md-input-container>
 </div>
@@ -93,9 +75,7 @@
             <div class="list-images-item" ng-repeat="image in source.images" ng-show="!image.hide">
                 <div class="img"><img ng-src="{{image.url}}"/></div>
                 <md-input-container md-no-float>
-                    <input ng-init="image.changedTitle = image.title"
-                           ng-model="image.changedTitle"
-                           ng-change="changedValue('image')"
+                    <input ng-model="image.title"
                            type="text"
                            placeholder="Image Title">
                 </md-input-container>
@@ -150,15 +130,11 @@
              ng-repeat="video in source.videos" ng-show="!video.hide" flex>
             <md-input-container class="title-video right-space" flex>
                 <label>Title</label>
-                <input ng-init="video.changedTitle = video.title"
-                       ng-change="changedValue('video')"
-                       ng-model="video.changedTitle">
+                <input ng-model="video.title">
             </md-input-container>
             <md-input-container class="link-video left-space" flex>
                 <label>Link</label>
-                <input ng-init="video.changedLink = video.link"
-                       ng-change="changedValue('video')"
-                       ng-model="video.changedLink">
+                <input ng-model="video.changedLink">
             </md-input-container>
             <md-button md-no-ink
                        ng-click="deleteVideo(video,$event)"

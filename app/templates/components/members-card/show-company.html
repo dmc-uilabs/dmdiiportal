@@ -1,7 +1,7 @@
 <md-dialog aria-label="View" class="view-all-included company-profile">
 	<md-dialog-content class="component">
 		<div layout="row" layout-align="end center">
-            
+
             <md-button md-no-ink class="md-icon-button" ng-click="cancel()">
                 <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
             </md-button>
@@ -15,7 +15,7 @@
                 <div flex>
                     <!--product header-->
                     <div class="product-header">
-                        <h2><a href="/company-profile.php#/{{company.id}}">{{company.name}}</a></h2>
+                        <h2><a href="/company-profile.php#/profile/{{company.id}}">{{company.name}}</a></h2>
                     </div>
 
                     <md-divider></md-divider>
@@ -121,7 +121,7 @@
                             <p>{{company.toolsSoftwareEquipmentMachines}}</p>
                         </div>
                     </div>
-                    
+
                     <md-divider></md-divider>
 
                     <div layout="column">

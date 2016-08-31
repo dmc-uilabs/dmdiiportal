@@ -20,14 +20,18 @@ angular.module('dmc.company-profile').
                     $scope.source.images = data;
                     apply();
                 };
-                companyProfileModel.getImages($scope.source.id, callbackImages);
+                if ($scope.source.id) {
+                    companyProfileModel.getImages($scope.source.id, callbackImages);
+                }
 
                 // get company videos
                 var callbackVideos = function(data){
                     $scope.source.videos = data;
                     apply();
                 };
-                companyProfileModel.getVideos($scope.source.id, callbackVideos);
+                if ($scope.source.id) {
+                    companyProfileModel.getVideos($scope.source.id, callbackVideos);
+                }
 
 
                 $scope.isAddingVideo = false;
