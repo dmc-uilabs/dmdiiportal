@@ -5,28 +5,11 @@ angular.module('dmc.company-profile').
             restrict: 'A',
             templateUrl: 'templates/company-profile/tabs/tab-contact.html',
             scope: {
-                source : "=",
-                changedValue : "=",
-                changes : "="
+                source : "="
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, questionToastModel) {
                 $element.addClass("tab-contact");
 
                 $scope.isAddingContactMethod = false;
-
-                $scope.source.contactMethods = [];
-
-                // get company contacts
-                $scope.getContacts = function(){
-                    ajax.get(dataFactory.getCompanyKeyContacts($scope.source.id),{
-                            "_order" : "DESC",
-                            "_sort" : "id"
-                        }, function(response){
-                            $scope.source.contacts = response.data;
-                            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                        }
-                    );
-                };
-                $scope.getContacts();
 
                 $scope.keyContactTypes = [
                     {
@@ -107,7 +90,6 @@ angular.module('dmc.company-profile').
                     };
                     $scope.source.contactMethods.push(data);
                     $scope.cancelAddContactMethod();
-                    $scope.changedValue('new-contact-method');
                     apply();
                 };
 
@@ -121,21 +103,12 @@ angular.module('dmc.company-profile').
                                 }else{
                                     $scope.source.contactMethods.splice(index,1);
                                 }
-                                $scope.changedValue('contact-method');
                                 apply();
                             },
                             cancel: function(){}
                         }
                     },ev);
                 };
-
-                function loadContactMethods(){
-                    ajax.get(dataFactory.companyURL($scope.source.id).get_contact_methods,{},function(response){
-                        $scope.source.contactMethods = response.data;
-                        apply();
-                    });
-                }
-                loadContactMethods();
 
                 $scope.states = $.map($scope.states, function( n,index ) {
                     var name = n.split('|');
@@ -171,9 +144,8 @@ angular.module('dmc.company-profile').
                     if((newContact.phoneNumber || newContact.email) && newContact.type) {
                         newContact.companyId = $scope.source.id;
                         if (!$scope.source.contacts) $scope.source.contacts = [];
-                        $scope.source.contacts.unshift(newContact);
+                        $scope.source.contacts.push(newContact);
                         $scope.cancelAddContact();
-                        $scope.changedValue('contact-added');
                         apply();
                     }
                 };
@@ -183,18 +155,8 @@ angular.module('dmc.company-profile').
                 }
 
                 // delete contact
-                $scope.deleteContact = function(contact,ev){
-                    questionToastModel.show({
-                        question : "Do you want to delete the contact?",
-                        buttons: {
-                            ok: function(){
-                                contact.hide = true;
-                                $scope.changedValue('contact');
-                                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                            },
-                            cancel: function(){}
-                        }
-                    },ev);
+                $scope.deleteContact = function(index){
+                    $scope.source.contacts.splice(index, 1);
                 };
             }
         };

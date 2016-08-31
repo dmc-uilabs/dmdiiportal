@@ -1,8 +1,9 @@
 <div ng-if="!not_found" class="edit-company-profile">
     <md-content class="company-profile-padding">
+        <h2>{{title}}</h2>
         <div layout="row" layout-align="end start">
             <md-button class="md-raised cancel-button" ng-click="cancelChanges()">Cancel</md-button>
-            <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!isDataChanged">Save</md-button>
+            <md-button class="md-raised md-primary save-button" ng-click="saveChanges()">Save</md-button>
         </div>
         <div layout="row">
             <div layout="column" class="logo-column" ng-show="!changingLogo">
@@ -45,7 +46,7 @@
                     </div>
                 </div>
                 <div layout="row" layout-aling="space-between start">
-                    <md-button flex class="md-raised md-primary upload-logo" ng-disabled="!newLogo" ng-click="uploadLogo()">Upload</md-button>
+                    <md-button flex class="md-raised md-primary upload-logo" ng-disabled="!newLogo" ng-click="saveLogo()">Upload</md-button>
                     <md-button flex class="md-raised cancel-change-logo" ng-click="cancelChangingLogo()">Cancel</md-button>
                 </div>
             </div>
@@ -53,30 +54,22 @@
                 <div layout="row">
                     <md-input-container flex="35" class="company-name">
                         <label>Company Name</label>
-                        <input ng-init="changes.name = company.name"
-                               ng-model="changes.name"
-                               ng-change="changedValue('name')">
+                        <input ng-model="company.name">
                     </md-input-container>
                     <md-input-container flex="35" class="company-division">
                         <label>Division</label>
-                        <input ng-init="changes.division = company.division"
-                               ng-model="changes.division"
-                               ng-change="changedValue('division')">
+                        <input ng-model="company.division">
                     </md-input-container>
                 </div>
                 <div layout="row">
                     <md-input-container flex="35" class="company-industry">
                         <label>Industry</label>
-                        <input ng-init="changes.industry = company.industry"
-                               ng-model="changes.industry"
-                               ng-change="changedValue('industry')">
+                        <input ng-model="company.industry">
                     </md-input-container>
                     <md-input-container flex="35" class="company-NAICSCode" >
                         <label>NAICS Code</label>
-                        <input ng-init="changes.NAICSCode = company.NAICSCode"
-                               maxlength="11"
-                               ng-model="changes.NAICSCode"
-                               ng-change="changedValue('NAICSCode')">
+                        <input maxlength="11"
+                               ng-model="company.naicsCode">
                     </md-input-container>
                 </div>
             </div>
@@ -84,10 +77,8 @@
         <div layout="row">
             <md-input-container flex class="company-descriptionOrganization" >
                 <label>Description of Organization</label>
-                <textarea ng-init="changes.description = company.description"
-                          ng-model="changes.description"
+                <textarea ng-model="company.description"
                           columns="1"
-                          ng-change="changedValue('description')"
                           md-maxlength="1000"></textarea>
             </md-input-container>
         </div>
@@ -102,32 +93,21 @@
                     <md-content class="mainSectionsContent" ng-switch on="key">
                         <div tab-overview
                              source="company"
-                             changes="changes"
-                             changed-value="changedValue"
                              ng-switch-when="overview"></div>
                         <div tab-skills
                              source="company"
-                             changes="changes"
-                             changed-value="changedValue"
+                             tags="tags"
                              ng-switch-when="skills"></div>
                         <div tab-projects
                              source="company"
-                             changes="changes"
-                             changed-value="changedValue"
+                             tags="tags"
                              ng-switch-when="projects"></div>
                         <div tab-contact
                              source="company"
-                             changes="changes"
-                             changed-value="changedValue"
                              ng-switch-when="contact"></div>
                         <div tab-membership
                              source="company"
-                             changes="changes"
-                             changed-value="changedValue"
                              ng-switch-when="membership"></div>
-                        <div tab-admin-member-area
-                             source="company"
-                             ng-switch-when="admin"></div>
                     </md-content>
                 </md-tab>
             </md-tabs>

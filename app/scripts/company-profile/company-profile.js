@@ -42,16 +42,17 @@ angular.module('dmc.company-profile', [
                 }]
         };
         $stateProvider.state('company-profile', {
-            url: '/:companyId',
+            url: '/profile/:companyId',
             templateUrl: 'templates/company-profile/company-profile.html',
             controller: 'CompanyProfileController',
             resolve: {
                 companyData: ['companyProfileModel', '$stateParams', function(companyProfileModel,$stateParams){
-                    return companyProfileModel.get_company($stateParams.companyId);
+                    data = companyProfileModel.get_company($stateParams.companyId);
+                    return data;
                 }]
             }
         }).state('company-profile-edit', {
-            url: '/:companyId/edit',
+            url: '/edit/:companyId',
             templateUrl: 'templates/company-profile/edit-company-profile.html',
             controller: 'EditCompanyProfileController',
             resolve: resolve
@@ -65,11 +66,24 @@ angular.module('dmc.company-profile', [
             url: '/membership'
         }).state('company-profile-edit.contact', {
             url: '/contact'
-        }).state('company-profile-edit.admin', {
-            url: '/admin'
+        }).state('company-profile-create', {
+            url: '/create',
+            templateUrl: 'templates/company-profile/edit-company-profile.html',
+            controller: 'EditCompanyProfileController',
+            resolve: resolve
+        }).state('company-profile-create.overview', {
+            url: '/overview'
+        }).state('company-profile-create.skills', {
+            url: '/skills'
+        }).state('company-profile-create.projects', {
+            url: '/projects'
+        }).state('company-profile-create.membership', {
+            url: '/membership'
+        }).state('company-profile-create.contact', {
+            url: '/contact'
         });
 
-        $urlRouterProvider.otherwise('/1');
+        $urlRouterProvider.otherwise('/profile/1');
 
     })
     .service('companyProfileModel', [
