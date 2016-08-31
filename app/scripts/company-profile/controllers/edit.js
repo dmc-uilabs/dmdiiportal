@@ -4,9 +4,10 @@ angular.module('dmc.company-profile')
     .controller('EditCompanyProfileController', [
         "$stateParams",
         "$scope",
+        "$timeout",
+        "$window",
         "ajax",
         "dataFactory",
-        "companyData",
         "$location",
         "toastModel",
         "questionToastModel",
@@ -14,22 +15,15 @@ angular.module('dmc.company-profile')
         "fileUpload",
         function ($stateParams,
                   $scope,
+                  $timeout,
+                  $window,
                   ajax,
                   dataFactory,
-                  companyData,
                   $location,
                   toastModel,
                   questionToastModel,
                   DMCUserModel,
                   fileUpload) {
-
-            $scope.company = companyData || {
-                contacts: [],
-                awards: [],
-                areasOfExpertise: [],
-                desiredAreasOfExpertise: [],
-                address: {}
-            };
 
             var getCompany = function() {
                 ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
@@ -43,6 +37,13 @@ angular.module('dmc.company-profile')
             } else {
                 $scope.title = "Create an Organization";
                 $scope.action = "created";
+                $scope.company = {
+                    contacts: [],
+                    awards: [],
+                    areasOfExpertise: [],
+                    desiredAreasOfExpertise: [],
+                    address: {}
+                };
             }
 
             $scope.user = null;
@@ -125,6 +126,9 @@ angular.module('dmc.company-profile')
             var saveCallback = function(response) {
                 if(response.status === 200) {
                     toastModel.showToast('success', 'Organization successfully ' + $scope.action);
+                    $timeout(function() {
+                        $window.location.href = '/company-profile.php#/' + response.data.id;
+                    }, 500);
                 }else{
                     toastModel.showToast('error', 'Organization could not be ' + $scope.action);
                 }

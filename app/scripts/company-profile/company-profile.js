@@ -31,11 +31,6 @@ angular.module('dmc.company-profile', [
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
         var resolve = {
-            companyData: ['CompanyModel', '$stateParams',
-                function(CompanyModel, $stateParams) {
-                    return CompanyModel.getModel($stateParams.companyId);
-                }
-            ],
             companyReview: ['CompanyModel', '$stateParams',
                 function(CompanyModel, $stateParams) {
                     return CompanyModel.getReviewModel($stateParams.profileId);
