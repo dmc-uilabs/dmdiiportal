@@ -274,13 +274,19 @@ angular.module('dmc.members')
                 $scope.getDMDIIMembers();
             }
 
+            $scope.getUrl = function(cat, subcat){
+                var dataSearch = $.extend(true, {}, $stateParams);
+                dataSearch[cat] = subcat;
+                return 'member-directory.php' + $state.href('member_directory', dataSearch);
+            };
+
             var getMenu = function(){
 
-                var getUrl = function(cat, subcat){
-                    var dataSearch = $.extend(true, {}, $stateParams);
-                    dataSearch[cat] = subcat;
-                    return 'member-directory.php' + $state.href('member_directory', dataSearch);
-                };
+                // var getUrl = function(cat, subcat){
+                //     var dataSearch = $.extend(true, {}, $stateParams);
+                //     dataSearch[cat] = subcat;
+                //     return 'member-directory.php' + $state.href('member_directory', dataSearch);
+                // };
 
                 var isOpened = function(cat, subcat){
                     if (cat) {
@@ -298,14 +304,14 @@ angular.module('dmc.members')
                             'title': 'Tier',
                             'tag' : 'tier',
                             'opened' : isOpened('tier'),
-                            'href' : getUrl('tier', null),
+                            'href' : $scope.getUrl('tier', null),
                             'categories': [
                                 {
                                     'id': 11,
                                     'title': 'One',
                                     'tag' : '1',
                                     'opened' : isOpened('tier', '1'),
-                                    'href' : getUrl('tier', '1'),
+                                    'href' : $scope.getUrl('tier', '1'),
                                     'categories': []
                                 },
                                 {
@@ -313,7 +319,7 @@ angular.module('dmc.members')
                                     'title': 'Two',
                                     'tag' : '2',
                                     'opened' : isOpened('tier', '2'),
-                                    'href' : getUrl('tier', '2'),
+                                    'href' : $scope.getUrl('tier', '2'),
                                     'categories': []
                                 },
                                 {
@@ -321,7 +327,7 @@ angular.module('dmc.members')
                                     'title': 'Three',
                                     'tag' : '3',
                                     'opened' : isOpened('tier', '3'),
-                                    'href' : getUrl('tier', '3'),
+                                    'href' : $scope.getUrl('tier', '3'),
                                     'categories': []
                                 },
                                 {
@@ -329,7 +335,7 @@ angular.module('dmc.members')
                                     'title': 'Four',
                                     'tag' : '4',
                                     'opened' : isOpened('tier', '4'),
-                                    'href' : getUrl('tier', '4'),
+                                    'href' : $scope.getUrl('tier', '4'),
                                     'categories': []
                                 }
                             ]
@@ -339,14 +345,14 @@ angular.module('dmc.members')
                             'title': 'Type',
                             'tag' : 'type',
                             'opened' : isOpened('type'),
-                            'href' : getUrl('type', null),
+                            'href' : $scope.getUrl('type', null),
                             'categories': [
                                 {
                                     'id': 21,
                                     'title': 'Academic',
                                     'tag' : '2',
                                     'opened' : isOpened('type', '2'),
-                                    'href' : getUrl('type', '2'),
+                                    'href' : $scope.getUrl('type', '2'),
                                     'categories': []
                                 },
                                 {
@@ -354,7 +360,7 @@ angular.module('dmc.members')
                                     'title': 'Government',
                                     'tag' : '3',
                                     'opened' : isOpened('type', '3'),
-                                    'href' : getUrl('type', '3'),
+                                    'href' : $scope.getUrl('type', '3'),
                                     'categories': []
                                 },
                                 {
@@ -362,7 +368,7 @@ angular.module('dmc.members')
                                     'title': 'Industry',
                                     'tag' : '1',
                                     'opened' : isOpened('type', '1'),
-                                    'href' : getUrl('type', '1'),
+                                    'href' : $scope.getUrl('type', '1'),
                                     'categories': []
                                 },
                                 {
@@ -370,7 +376,7 @@ angular.module('dmc.members')
                                     'title': 'Non-Profit',
                                     'tag' : '4',
                                     'opened' : isOpened('type', '4'),
-                                    'href' : getUrl('type', '4'),
+                                    'href' : $scope.getUrl('type', '4'),
                                     'categories': []
                                 }
                             ]
@@ -380,14 +386,14 @@ angular.module('dmc.members')
                             'title': 'Active Projects',
                             'tag' : 'activeProjects',
                             'opened' : isOpened('activeProjects'),
-                            'href' : getUrl('activeProjects', null),
+                            'href' : $scope.getUrl('activeProjects', null),
                             'categories': [
                                 {
                                     'id': 31,
                                     'title': 'Yes',
                                     'tag' : 'yes',
                                     'opened' : isOpened('activeProjects', 'yes'),
-                                    'href' : getUrl('activeProjects', 'yes'),
+                                    'href' : $scope.getUrl('activeProjects', 'yes'),
                                     'categories': []
                                 },
                                 {
@@ -395,7 +401,7 @@ angular.module('dmc.members')
                                     'title': 'No',
                                     'tag' : 'no',
                                     'opened' : isOpened('activeProjects', 'no'),
-                                    'href' : getUrl('activeProjects', 'no'),
+                                    'href' : $scope.getUrl('activeProjects', 'no'),
                                     'categories': []
                                 }
                             ]
