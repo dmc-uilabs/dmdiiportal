@@ -106,7 +106,7 @@
                         <tbody>
                         <tr ng-repeat="project in projects.arr">
                             <td class="title-project">
-                                <h4>{{project.projectIdentifier}}</h4>
+                                <h4>{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</h4>
                                 <a class="no-bottom no-top" ng-href="{{'/dmdii-project-page.php#/'+project.id}}"><h3 class="no-bottom no-top">{{project.projectTitle}}</h3></a>
                                 <a class="no-bottom no-top" ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h5 class="project-lead no-bottom no-top">{{project.primeOrganization.name}}</h5></a>
                             </td>

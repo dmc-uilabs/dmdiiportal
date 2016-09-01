@@ -33,9 +33,9 @@
 							</div>
 
 							<div layout="row" layout-align="start start" style=" margin-top: -45px;">
-								<h2 class="no-bottom" style="color:green">{{project.projectIdentifier}}</h2>
+								<h2 class="no-bottom" style="color:green">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</h2>
 								<span layout="column">
-									<h5 class="project-subtitle no-bottom">{{project.projectFocusArea.name}}</h5>
+									<h5 class="project-subtitle no-bottom">{{project.projectFocusArea.name }}</h5>
 									<h5 class="project-subtitle no-bottom no-top">{{project.projectThrust.name}}</h5>
 								</span>
 							</div>
