@@ -76,8 +76,12 @@ angular.module('dmc.account')
 
                 // auto focus for First Name input
                 $timeout(function () {
+                    $('input').each(function(){
+                        $(this).trigger('blur');
+                        //each input event one by one... will be blured
+                    })
                     $("#editFirstName").focus();
-                });
+                }, 500);
 
                 $scope.blurInput = function () {
                     if ($scope.user.displayName == null || $scope.user.displayName.trim().length == 0) {
@@ -118,7 +122,6 @@ angular.module('dmc.account')
                 $scope.ctrl.selectedItemChange = selectedItemChange;
                 $scope.ctrl.searchTextChange = searchTextChange;
                 $scope.ctrl.searchText = $scope.user.timezone;
-                $scope.ctrl.companies = getAllCompanies();
                 $scope.ctrl.setCompany = setCompany;
                 $scope.ctrl.queryCompanySearch = queryCompanySearch;
                 $scope.ctrl.searchCompanyChange = searchCompanyChange;
@@ -142,7 +145,6 @@ angular.module('dmc.account')
                 };
 
                 $scope.saveChanges = function () {
-                    console.log($scope.user)
                     if ($scope.changedValues) {
                         if (!validateEmail($scope.user.email)) {
                             $scope.user.email = $scope.accountData.email;
@@ -152,11 +154,12 @@ angular.module('dmc.account')
                     }
                 };
 
-                function getAllCompanies(){
+                var getAllCompanies = function(){
                     ajax.get(dataFactory.companyURL().all,{},function(response){
-                        return response.data;
+                        $scope.ctrl.companies = response.data;
                     });
                 }
+                getAllCompanies();
 
                 $scope.token = {};
 
@@ -297,7 +300,8 @@ angular.module('dmc.account')
                 });
             }
 
-            var queryCompanySearch = function(query) {
+            function queryCompanySearch(query) {
+                console.log($scope.ctrl, query)
                 var results = query ? $scope.ctrl.companies.filter( createCompanyFilterFor(query) ) : $scope.ctrl.companies,
                     deferred;
                 if ($scope.ctrl.simulateQuery) {
@@ -311,7 +315,7 @@ angular.module('dmc.account')
                 }
             }
 
-            var setCompany = function(company) {
+            function setCompany(company) {
                 $scope.user.companyId = company.id;
             }
 

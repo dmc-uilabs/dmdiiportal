@@ -1,27 +1,90 @@
-<div layout="row">
-    <md-input-container flex class="company-RDFocus" >
-        <label>R&D Focus</label>
-        <textarea ng-init="changes.RDFocus = source.RDFocus"
-                  ng-model="changes.RDFocus"
-                  ng-change="changedValue('RDFocus')"
-                  columns="1"></textarea>
-    </md-input-container>
-</div>
-<div layout="row" layout-align="start start">
-    <md-input-container flex class="company-customers right-space" >
-        <label>Customers</label>
-        <textarea ng-init="changes.customers = source.customers"
-                  ng-model="changes.customers"
-                  ng-change="changedValue('customers')"
-                  columns="1"></textarea>
-    </md-input-container>
+<!-- <div layout="row" layout-align="start start">
     <md-input-container flex class="company-awardsReceived left-space" >
         <label>Awards Received</label>
-        <textarea ng-init="changes.awardsReceived = source.awardsReceived"
-                  ng-model="changes.awardsReceived"
-                  ng-change="changedValue('awardsReceived')"
+        <textarea ng-model="source.awardsReceived"
                   columns="1"></textarea>
     </md-input-container>
+</div> -->
+<div layout="row">
+    <div class="list-contacts" flex="100">
+        <div layout="row" class="title-list-contacts" layout-align="space-between center">
+            <div class="title">Awards Recieved</div>
+            <md-button class="md-raised md-primary add-new-contact"
+                       ng-click="addNewAward()"
+                       ng-show="!isAddingAward"
+                       aria-label="Add Award">
+                Add New Award
+            </md-button>
+        </div>
+        <div layout="row" class="boxForAddAward" flex ng-if="isAddingAward">
+            <form name="formAddAward" ng-submit="saveAward(newAward)" layout="column" flex>
+                <div layout="row" flex>
+                    <div layout="column" class="left-space" flex>
+                        <div layout="row">
+                            <md-input-container flex="50" class="right-space">
+                                <label>Name</label>
+                                <input name="name" ng-model="newAward.name">
+                            </md-input-container>
+                            <md-input-container flex="50" class="left-space">
+                                <label>Link</label>
+                                <input name="link" ng-model="newAward.link">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex="50" class="right-space">
+                                <label>Description</label>
+                                <input name="description"
+                                       ng-model="newAward.description">
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-raised" type="button" ng-click="cancelAddAward()">
+                        Cancel
+                    </md-button>
+                    <md-button class="md-raised md-primary"
+                               type="submit"
+                               ng-disabled="!formAddAward.$valid || (!newAward.description && !newAward.name)">
+                        Save
+                    </md-button>
+                </div>
+            </form>
+        </div>
+        <div layout="row"
+             layout-align="start start"
+             class="contact-item"
+             ng-repeat="item in source.awards track by $index" ng-show="!item.hide" flex>
+
+            <div layout="column" class="left-space" flex>
+                <div layout="row">
+                    <md-input-container flex="50" class="right-space">
+                        <label>Name</label>
+                        <input ng-model="item.name">
+                    </md-input-container>
+                    <md-input-container flex="50" class="left-space">
+                        <label>Link</label>
+                        <input ng-model="item.link">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex="100" class="right-space">
+                        <label>Description</label>
+                        <textarea ng-model="item.description"/>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="column" class="left-space">
+                <md-button md-no-ink
+                           ng-click="deleteAward($index)"
+                           class="md-icon-button delete-contact"
+                           aria-label="Delete Award">
+                    <ng-md-icon icon="delete" size="32"></ng-md-icon>
+                </md-button>
+            </div>
+        </div>
+        <div layout="row" ng-if="source.contacts.length == 0 && !isAddingAward">No contacts</div>
+    </div>
 </div>
 <div layout="row">
     <div class="list-images" flex="100">
@@ -93,9 +156,7 @@
             <div class="list-images-item" ng-repeat="image in source.images" ng-show="!image.hide">
                 <div class="img"><img ng-src="{{image.url}}"/></div>
                 <md-input-container md-no-float>
-                    <input ng-init="image.changedTitle = image.title"
-                           ng-model="image.changedTitle"
-                           ng-change="changedValue('image')"
+                    <input ng-model="image.title"
                            type="text"
                            placeholder="Image Title">
                 </md-input-container>
@@ -150,15 +211,11 @@
              ng-repeat="video in source.videos" ng-show="!video.hide" flex>
             <md-input-container class="title-video right-space" flex>
                 <label>Title</label>
-                <input ng-init="video.changedTitle = video.title"
-                       ng-change="changedValue('video')"
-                       ng-model="video.changedTitle">
+                <input ng-model="video.title">
             </md-input-container>
             <md-input-container class="link-video left-space" flex>
                 <label>Link</label>
-                <input ng-init="video.changedLink = video.link"
-                       ng-change="changedValue('video')"
-                       ng-model="video.changedLink">
+                <input ng-model="video.changedLink">
             </md-input-container>
             <md-button md-no-ink
                        ng-click="deleteVideo(video,$event)"

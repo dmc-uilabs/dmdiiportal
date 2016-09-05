@@ -18,7 +18,7 @@
                         <div layout="column" flex="70">
                             <h2 class="md-title" layout="row" layout-align="start center">
                                 {{companyData.name}}
-                                <a style="margin-left: 15px;" class="company-buttons link-button uppercase" ng-href="/company-profile.php#/{{companyData.id}}">Profile</a>
+                                <a style="margin-left: 15px;" class="company-buttons link-button uppercase" ng-href="/company-profile.php#/profile/{{companyData.id}}">Profile</a>
                             </h2>
                             <p>
                                 <div ng-bind-html="(companyData.shortDescription == null || isReadMore ? companyData.description : companyData.shortDescription)"></div>

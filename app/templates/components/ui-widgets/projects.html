@@ -11,7 +11,7 @@
 <div class="content-panel-body" layout="column" flex="100">
   <md-content class="rp-panel" layout="row" ng-repeat="item in projects">
       <div layout="column" flex>
-          <div class="company-name" ng-if="item.companyId == userCompany.id">A Project From <a href="/company-profile.php#/{{userCompany.id}}">{{userCompany.name}}</a></div>
+          <div class="company-name" ng-if="item.companyId == userCompany.id">A Project From <a href="/company-profile.php#/profile/{{userCompany.id}}">{{userCompany.name}}</a></div>
           <div class="rp-panel__title my-projects" layout="row">
               <h2>
                   <a ng-if="item.isMember" href="project.php#/{{ item.isMember.accept || item.companyId == userCompany.id ? item.id : 'preview/'+item.id }}" class="link-button">{{item.title}}</a>
@@ -123,4 +123,3 @@
       </div>
   </md-content>
 </div>
-

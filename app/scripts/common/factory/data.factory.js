@@ -457,19 +457,32 @@ angular.module('dmc.data',[])
                 return localhost + 'users/' + id + '?action=decline';
             },
             getDmdiiMemberTags: function(){
-                return localhost + 'dmdiiTag'
+                return localhost + 'tags/dmdiiMember';
+            },
+            getOrgTags: function() {
+                return localhost + 'tags/organization';
             },
             getUsersByOrganization: function(id) {
-                    return localhost + 'user/organization/' + id
+                return localhost + 'user/organization/' + id
+                    //add paged and filtered
             },
-            getOrganization: function() {
-                return localhost + 'organization'
+            getOrganization: function(id) {
+                return localhost + 'organizations/' + id
+            },
+            updateOrganization: function(id) {
+                return localhost + 'organizations/' + id;
+            },
+            createOrganization: function(id) {
+                return localhost + 'organizations/';
             },
             deleteOrganization: function(id) {
-                return localhost + 'organization/delete/' + id
+                return localhost + 'organization?organizationId=' + id
             },
             changeUsersOrganization: function(id) {
                 return 'not implemented'
+            },
+            saveDocument: function() {
+                return localhost + 'document'
             },
             getDMDIIMember: function(id) {
                 return {

@@ -28,37 +28,43 @@
             <ui-widget-stars-static size="15" ng-click="goToReview()" value="{{company.average_rating}}" text="({{company.average_rating}})"></ui-widget-stars-static>
             <a ng-href="company.php#/{{company.id}}/storefront?product=services">View Storefront</a>
             <span flex></span>
-            <div layout="row" ng-show="!inviteToProject">
-                <md-button class="md-raised dmc-button margin-right12-5"
-                           ng-disabled="company.joinRequest"
-                           ng-if="$root.userData.companyId != company.id && !invate"
-                           ng-click="join()">
-                    {{ !company.joinRequest ? 'Request to Join' : 'Pending Approval' }}
-                </md-button>
-                <md-button ng-if="!user.isAdmin" class="md-raised dmc-button" ng-click="follow()">
-                    {{(followFlag) ? 'Unfollow' : 'Follow'}}
-                </md-button>
-                <md-button ng-if="userData.isAdmin || userData.isDmdiiAdmin"
-                           class="md-raised dmc-button"
-                           ui-sref="company-profile-edit({companyId: company.id})">
-                    Edit Company
-                </md-button>
-                <md-button ng-if="(userData.isAdmin || userData.isDmdiiAdmin) && userData.isDMDIIMember"
-                           class="md-raised dmc-button"
-                           href="edit-member-page.php#/{{company.id}}/edit">
-                    Edit DMDII Member Profile
-                </md-button>
-                <md-button ng-if="userData.isDmdiiAdmin"
-						   class="md-raised dmc-button"
-						   ng-click="deleteOrganization()">
-					Delete Company
-				</md-button>
-                <md-button class="md-raised dmc-button margin-left12-5" ng-if="!invate" ng-click="btnInviteToProject()">
-                    Invite to Project
-                </md-button>
-                <md-button class="md-raised dmc-button margin-left12-5" ng-if="invate" ng-click="btnRemoveOfProject()">
-                    <ng-md-icon icon="close" size="17"></ng-md-icon>{{ toProject}}
-                </md-button>
+            <div layout="column">
+                <div layout="row" flex="50">
+                    <md-button ng-if="userData.isAdmin || userData.isDmdiiAdmin"
+                        class="md-raised dmc-button"
+                        ui-sref="company-profile-edit({companyId: company.id})">
+                        Edit Company
+                    </md-button>
+                    <md-button ng-if="(userData.isAdmin || userData.isDmdiiAdmin) && userData.isDMDIIMember"
+                        class="md-raised dmc-button"
+                        href="edit-member-page.php#/{{company.id}}/edit">
+                        Edit DMDII Member Profile
+                    </md-button>
+                    <md-button ng-if="userData.isDmdiiAdmin"
+                        class="md-raised dmc-button"
+                        href=""
+                        ng-click="deleteOrganization()">
+                        Delete Company
+                    </md-button>
+                </div>
+                <div layout="row" class="top10" flex="50" ng-show="!inviteToProject">
+                    <md-button class="md-raised dmc-button margin-right12-5"
+                               ng-disabled="company.joinRequest"
+                               ng-if="$root.userData.companyId != company.id && !invate"
+                               ng-click="join()">
+                        {{ !company.joinRequest ? 'Request to Join' : 'Pending Approval' }}
+                    </md-button>
+                    <md-button ng-if="!user.isAdmin" class="md-raised dmc-button" ng-click="follow()">
+                        {{(followFlag) ? 'Unfollow' : 'Follow'}}
+                    </md-button>
+
+                    <md-button class="md-raised dmc-button margin-left12-5" ng-if="!invate" ng-click="btnInviteToProject()">
+                        Invite to Project
+                    </md-button>
+                    <md-button class="md-raised dmc-button margin-left12-5" ng-if="invate" ng-click="btnRemoveOfProject()">
+                        <ng-md-icon icon="close" size="17"></ng-md-icon>{{ toProject}}
+                    </md-button>
+                </div>
             </div>
             <div flex="50" layout="row"  layout-align="center center" class="invite" ng-show="inviteToProject">
                 <md-button class="md-raised cancelProject dmc-button" ng-click="btnCanselToProject()">
@@ -81,21 +87,16 @@
 <md-tabs md-dynamic-height md-border-bottom>
 <md-tab label="Overview">
     <md-content class="tab-projects">
-        <div layout="row" class="text-row">
-            <div layout="column">
-                <h2>R&D Focus</h2>
-                <p>{{company.RDFocus}}</p>
-            </div>
-        </div>
 
         <div layout="row" class="text-row">
-            <div layout="column" flex="50" class="padding-right8">
-                <h2>Customers</h2>
-                <p>{{company.customers}}</p>
-            </div>
-            <div layout="column" flex="50" class="padding-left8">
+            <div layout="column" flex="100" class="padding-left8">
                 <h2>Awards Received</h2>
-                <p>{{company.awardsReceived}}</p>
+                <div layout="row" layout-wrap>
+                    <div class="pad-left-10" layout="column" flex="20" ng-repeat="award in company.awards">
+                        <h4><a href="{{award.link}}">{{award.name}}</a></h4>
+                        <p>{{award.description}}</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -153,65 +154,36 @@
 <md-tab label="Skills">
     <md-content class="md-padding">
         <div layout="row" class="tabs-content" layout-wrap>
-            <md-chips ng-repeat="skill in company.skills track by $index">
+            <md-chips ng-repeat="skill in company.areasOfExpertise track by $index">
                 <md-chip>
-                    <a ng-href="{{'search.php#/companies?text='+skill.name}}">{{skill.name}}</a>
+                    <!-- <a ng-href="{{'search.php#/companies?text='+skill.name}}">{{skill.name}}</a> -->
+                    {{skill.name}}
                 </md-chip>
             </md-chips>
         </div>
 
-        <md-divider></md-divider>
-
-        <div layout="row" class="text-row">
-            <div layout="column" flex="50" class="padding-right8">
-                <h2>Technical Expertise</h2>
-                <p>{{company.technicalExpertise}}</p>
-            </div>
-            <div layout="column" flex="50" class="padding-left8">
-                <h2>Tools, Software, Equipment, Machines</h2>
-                <p>{{company.toolsSoftwareEquipmentMachines}}</p>
-            </div>
-        </div>
-
-        <md-divider></md-divider>
-
-        <div layout="column">
-            <h2>Images</h2>
-            <div layout="row" class="images-carousel" layout-align="start start">
-                <div class="arrow-left" ng-hide="company.skillsImages.length <= 5 || index == 0">
-                    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1">
-                        <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
-                    </md-button>
-                </div>
-
-                <div layout="column" class="image" flex="15" ng-repeat="item in [0,1,2,3,4]">
-                    <div class="one-image">
-                        <img ng-src="{{company.skillsImages[item+index].url}}">
-                    </div>
-                    <h2>{{company.skillsImages[item].title}}</h2>
-                </div>
-
-                <div class="arrow-right" ng-hide="company.skillsImages.length <= 5 || index == company.skillsImages.length - 5">
-                    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1">
-                        <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
-                    </md-button>
-                </div>
-            </div>
-        </div>
     </md-content>
 </md-tab>
 
 <md-tab label="Projects">
-    <md-content class="tab-projects">
+    <md-content class="tab-content">
         <div layout="row" class="text-row">
             <div layout="column" flex="50" class="padding-right8">
                 <h2>Past Collaboration</h2>
                 <p>{{company.pastCollaborations}}</p>
             </div>
-            <div layout="column" flex="50" class="padding-left8">
-                <h2>Collaboration Interests</h2>
-                <p>{{company.collaborationInterests}}</p>
-            </div>
+        </div>
+
+        <md-divider></md-divider>
+
+        <div layout="row" flex="50" class="padding-left8">
+            <h2>Collaboration Interests</h2>
+            <md-chips ng-repeat="skill in company.desiredAreasOfExpertise track by $index">
+                <md-chip>
+                    <!-- <a ng-href="{{'search.php#/companies?text='+skill.name}}">{{skill.name}}</a> -->
+                    {{skill.name}}
+                </md-chip>
+            </md-chips>
         </div>
 
         <md-divider></md-divider>
@@ -242,7 +214,7 @@
             </div>
             <div layout="row" layout-align="start center" layout-align="start center">
                 <ng-md-icon icon="room" style="fill: grey" size="30" flex="10"></ng-md-icon>
-                <h3>{{company.state}}, {{company.city}}, {{company.zipCode}}</h3>
+                <h3>{{company.address.state}}, {{company.address.city}}, {{company.address.zip}}</h3>
             </div>
             <div layout="row" layout-align="start center" ng-show="company.phone && company.phone.length > 0">
                 <ng-md-icon icon="phone" style="fill: grey" size="30" flex="10"></ng-md-icon>
@@ -252,13 +224,13 @@
                 <ng-md-icon icon="mail" style="fill: grey" size="30" flex="10"></ng-md-icon>
                 <h3><a href="mailto:{{company.email}}">{{company.email}}</a></h3>
             </div>
-            <div layout="row" layout-align="start center" ng-show="company.twitter && company.twitter.length > 0">
+            <div layout="row" layout-align="start center" ng-show="company.socialMediaTwitter && company.socailMedia.Twitter.length > 0">
                 <ng-md-icon icon="twitter" style="fill: grey" size="30" flex="10"></ng-md-icon>
-                <h3><a href="{{company.twitter}}">{{company.twitter}}</a></h3>
+                <h3><a href="{{company.twitter}}">{{company.socialMediaTwitter}}</a></h3>
             </div>
-            <div layout="row" layout-align="start center" ng-show="company.linkedIn && company.linkedIn.length > 0">
+            <div layout="row" layout-align="start center" ng-show="company.socialMediaLinkedin && company.socialMediaLinkedin.length > 0">
                 <ng-md-icon icon="linkedin-box" style="fill: grey" size="30" flex="10"></ng-md-icon>
-                <h3><a href="{{company.linkedIn}}">{{company.linkedIn}}</a></h3>
+                <h3><a href="{{company.linkedIn}}">{{company.socialMediaLinkedin}}</a></h3>
             </div>
             <div layout="row" layout-align="start center" ng-show="company.website && company.website.length > 0">
                 <ng-md-icon icon="link" style="fill: grey" size="30" flex="10"></ng-md-icon>
@@ -269,10 +241,10 @@
         <div class="vertical-divider"></div>
 
         <div layout="row" flex="60" layout-wrap>
-            <div flex="50" class="contact" ng-repeat="contact in company.keyContacts">
-                <h2>{{contact.type}}</h2>
-                <div layout="row" layout-align="start center" layout-align="start center" ng-show="contact.name && contact.name.length > 0">
-                    <h4>{{contact.name}}</h4>
+            <div flex="50" class="contact" ng-repeat="contact in company.contacts">
+                <h2>{{contact.contactType.type}}</h2>
+                <div layout="row" layout-align="start center" layout-align="start center" ng-show="contact.firstName && contact.firstName.length > 0">
+                    <h4>{{contact.firstName + ' ' + contact.lastName}}</h4>
                 </div>
                 <div layout="row" layout-align="start center" ng-show="contact.title && contact.title.length > 0">
                     <h3>{{contact.title}}</h3>
@@ -293,13 +265,9 @@
 
 <md-tab label="Membership">
     <md-content class="tab-projects" layout="row">
-        <div layout="column" flex="33" class="padding-right8">
-            <h2>Category & Tier</h2>
-            <p>{{company.categoryTier}}</p>
-        </div>
-        <div layout="column" flex="33" class="padding-left8">
-            <h2>Date Joined DMDll</h2>
-            <p>{{company.dateJoined}}</p>
+        <div layout="column" flex="33" class="padding-left8" ng-if="company.dmdiiMemberId">
+            <h2>Dmdii Profile</h2>
+            <a href="{{'member-page.php#/' + company.dmdiiMemberId}}">{{company.name}}</a>
         </div>
         <div layout="column" flex="33" class="padding-left8">
             <h2>Reason for Joinig DMDll</h2>

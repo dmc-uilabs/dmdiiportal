@@ -37,9 +37,15 @@ angular.module('dmc.company-profile')
                   companyProfileModel,
                   DMCUserModel) {
 
-            $scope.company = companyData;
-            //$scope.company.dateJoined = moment( $scope.company.dateJoined,"YYYY-DD-MM").format("MM/DD/YYYY");
-            $scope.company.categoryTier = "Tier 4 Academic / Nonprofit";
+            // $scope.company = companyData;
+            var getCompany = function() {
+                ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
+                    $scope.company = response.data;
+                    $scope.getCompanyMembers();
+                    $scope.SortingReviews();
+                });
+            }
+            getCompany();
 
             $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
             $scope.submit_rating = 0;  //
@@ -74,14 +80,6 @@ angular.module('dmc.company-profile')
                     }
                 }
             });
-
-            function loadContactMethods(){
-                ajax.get(dataFactory.companyURL($scope.company.id).get_contact_methods,{},function(response){
-                    $scope.contactMethods = response.data;
-                    apply();
-                });
-            }
-            loadContactMethods();
 
             $scope.sortList = [
                 {
@@ -144,20 +142,18 @@ angular.module('dmc.company-profile')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }
 
-            // get company contacts
-            var callbackContacts = function(data){
-                // console.info(data);
-                for(var i in data){
-                    // console.info(data[i]);
-                    if(data[i].type == 1){
-                        data[i].type = "LEGAL";
-                    }else if(data[i].type == 2){
-                        data[i].type = "LEGAL 2";
-                    }
-                }
-                $scope.company.keyContacts = data;
-            };
-            companyProfileModel.getKeyContacts($scope.company.id, callbackContacts);
+            // // get company contacts
+            // var initContacts = function(data){
+            //     for(var i in data){
+            //         if(data[i].type == 1){
+            //             data[i].type = "LEGAL";
+            //         }else if(data[i].type == 2){
+            //             data[i].type = "LEGAL 2";
+            //         }
+            //     }
+            //     $scope.company.contacts = data;
+            // };
+            // initContacts($scope.company.contacts);
 
 
             // get company images
@@ -165,28 +161,14 @@ angular.module('dmc.company-profile')
                 $scope.company.videos = data;
                 apply();
             };
-            companyProfileModel.getVideos($scope.company.id, callbackVideaos);
+            // companyProfileModel.getVideos($scope.company.id, callbackVideaos);
 
             // get company images
             var callbackImages = function(data){
                 $scope.company.images = data;
                 apply();
             };
-            companyProfileModel.getImages($scope.company.id, callbackImages);
-
-            // get company skills images
-            var callbackSkillsImages = function(data){
-                $scope.company.skillsImages = data;
-                apply();
-            };
-            companyProfileModel.getSkillsImages($scope.company.id, callbackSkillsImages);
-
-            // get company skills
-            var callbackSkills = function(data){
-                $scope.company.skills = data;
-                apply();
-            };
-            companyProfileModel.getSkills($scope.company.id, callbackSkills);
+            // companyProfileModel.getImages($scope.company.id, callbackImages);
 
             // get company membersconsole.log(data)
             var callbackMembers = function(response){
@@ -205,7 +187,7 @@ angular.module('dmc.company-profile')
             };
 
             $scope.deleteOrganization = function() {
-                ajax.create(dataFactory.deleteOrganization(id), {}, function(response) {
+                ajax.delete(dataFactory.deleteOrganization(id), {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Organization successfully deleted!');
                         $window.location.href = '/';
@@ -218,7 +200,6 @@ angular.module('dmc.company-profile')
             $scope.getCompanyMembers = function() {
                 ajax.get(dataFactory.getUsersByOrganization($scope.company.id), {}, callbackMembers);
             }
-            $scope.getCompanyMembers();
 
             // get company history
             var callbackPublicHistory = function(data){

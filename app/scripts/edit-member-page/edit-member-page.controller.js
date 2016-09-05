@@ -59,11 +59,7 @@ angular.module('dmc.edit-member')
                     $scope.company = {
                         dmdiiType: {
                             dmdiiTypeCategory: {}
-                        },
-                        contacts: [],
-                        awards: [],
-                        areasOfExpertise: [],
-                        desiredAreasOfExpertise: []
+                        }
                     };
                 }
             }
@@ -258,7 +254,7 @@ angular.module('dmc.edit-member')
             };
 
             $scope.addAward = function() {
-                $scope.company.awards.push($scope.award);
+                $scope.company.organization.awards.push($scope.award);
                 $scope.award = {};
                 $('#awardName').val('');
                 $('#awardDescription').val('');
@@ -266,7 +262,7 @@ angular.module('dmc.edit-member')
             };
 
             $scope.removeAward = function(index) {
-                $scope.company.awards.splice(index, 1);
+                $scope.company.organization.awards.splice(index, 1);
             };
 
             //contacts

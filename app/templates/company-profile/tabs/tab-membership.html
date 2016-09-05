@@ -1,23 +1,7 @@
 <div layout="row" class="line-block" layout-align="start start">
-    <md-input-container flex class="right-space">
-        <label>Category & Tier*</label>
-        <md-select ng-init="changes.categoryTier = source.categoryTier"
-                   ng-model="changes.categoryTier"
-                   ng-change="changedValue('categoryTier')">
-            <md-option ng-repeat="item in categoriesTiers" value="{{item.id}}">{{item.title}}</md-option>
-        </md-select>
-    </md-input-container>
-    <md-input-container flex class="left-space right-space">
-        <label>Date Joined DMDII*</label>
-        <input ng-init="changes.dateJoined = source.dateJoined"
-               ng-model="changes.dateJoined"
-               ng-change="changedValue('dateJoined')">
-    </md-input-container>
-    <md-input-container flex class="left-space">
+    <md-input-container flex="100">
         <label>Reason for Joining DMDII</label>
-        <textarea ng-init="changes.reasonJoining = source.reasonJoining"
-                  ng-model="changes.reasonJoining"
-                  ng-change="changedValue('reasonJoining')"
+        <textarea ng-model="source.reasonJoining"
                   columns="1"></textarea>
     </md-input-container>
 </div>

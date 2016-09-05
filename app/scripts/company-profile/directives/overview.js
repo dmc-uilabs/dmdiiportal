@@ -9,9 +9,7 @@ angular.module('dmc.company-profile').
             restrict: 'A',
             templateUrl: 'templates/company-profile/tabs/tab-overview.html',
             scope: {
-                source : "=",
-                changedValue : "=",
-                changes : "="
+                source : "="
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, companyProfileModel, fileUpload, questionToastModel) {
                 $element.addClass("tab-overview");
 
@@ -20,14 +18,18 @@ angular.module('dmc.company-profile').
                     $scope.source.images = data;
                     apply();
                 };
-                companyProfileModel.getImages($scope.source.id, callbackImages);
+                if ($scope.source && $scope.source.id) {
+                    companyProfileModel.getImages($scope.source.id, callbackImages);
+                }
 
                 // get company videos
                 var callbackVideos = function(data){
                     $scope.source.videos = data;
                     apply();
                 };
-                companyProfileModel.getVideos($scope.source.id, callbackVideos);
+                if ($scope.source && $scope.source.id) {
+                    companyProfileModel.getVideos($scope.source.id, callbackVideos);
+                }
 
 
                 $scope.isAddingVideo = false;
@@ -141,6 +143,32 @@ angular.module('dmc.company-profile').
                             cancel: function(){}
                         }
                     },ev);
+                };
+
+                $scope.isAddingAward = false;
+                // open form for add award
+                $scope.addNewAward = function(){
+                    $scope.isAddingAward = true;
+                };
+
+                // close form for add award
+                $scope.cancelAddAward = function(){
+                    $scope.isAddingAward = false;
+                };
+
+                // save new award
+                $scope.saveAward = function(newAward){
+                    if(newAward.description && newAward.name) {
+                        if (!$scope.source.awards) $scope.source.awards = [];
+                        $scope.source.awards.push(newAward);
+                        $scope.cancelAddAward();
+                        apply();
+                    }
+                };
+
+                // delete award
+                $scope.deleteAward = function(index){
+                    $scope.source.awards.splice(index, 1);
                 };
 
                 function apply(){

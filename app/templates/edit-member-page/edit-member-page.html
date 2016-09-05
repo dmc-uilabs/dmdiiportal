@@ -155,7 +155,7 @@
                     <div layout="column">
                         <span class="no-bottom" flex>Selected Core Capabilities (Click tag to remove)</span>
                         <div layout="row" layout-wrap>
-                            <md-chips ng-repeat="area in company.areasOfExpertise track by $index">
+                            <md-chips ng-repeat="area in company.organization.areasOfExpertise track by $index">
                                 <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeWellTag($index)">
                                     <span>{{area.name}}</span>
                                 </md-chip>
@@ -170,7 +170,7 @@
                     <div layout="column">
                         <span class="no-bottom" flex>Selected Seeking Collaborations (Click tag to remove)</span>
                         <div layout="row" layout-wrap>
-                            <md-chips ng-repeat="area in company.desiredAreasOfExpertise track by $index">
+                            <md-chips ng-repeat="area in company.organization.desiredAreasOfExpertise track by $index">
                                 <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeSeekTag($index)">
                                     <span>{{area.name}}</span>
                                 </md-chip>
@@ -248,7 +248,7 @@
                 </div>
                 <span flex></span>
                 <div layout="row" flex="75" layout-wrap>
-                    <div flex="20" ng-repeat="award in company.awards track by $index">
+                    <div flex="20" ng-repeat="award in company.organization.awards track by $index">
                         <span flex="5" ng-click="removeAward($index)">x</span>
                         <h4 class="no-top">{{award.name}}</h4>
                         <p>{{award.description}}</p>

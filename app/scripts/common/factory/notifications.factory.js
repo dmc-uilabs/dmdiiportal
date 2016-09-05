@@ -28,7 +28,7 @@ angular.module('dmc.common.notifications',[])
           }
 
           if (type == 'company') {
-            _link = '/company-profile.php#/'+linkParams.companyId;
+            _link = '/company-profile.php#/profile/'+linkParams.companyId;
             switch (action) {
               case 'REVIEW_COMPANY':
                 _actionTitle = linkParams.displayName + ' gave a review to ' + linkParams.companyName + '. ';
