@@ -498,7 +498,7 @@ angular.module('dmc.data',[])
             getDMDIIMemberProjects: function() {
                 return {
                     prime: localhost + 'dmdiiprojects/member',
-                    contributing: localhost + '/contributingCompanies'
+                    contributing: localhost + 'contributingCompanies'
                 }
             },
             saveDMDIIMember: function() {
@@ -512,7 +512,7 @@ angular.module('dmc.data',[])
                 return {
                     get: localhost+'dmdiiProject/' + id,
                     all: localhost+'dmdiiprojects',
-                    active: localhost + '/dmdiiprojects/member/active',
+                    active: localhost + 'dmdiiprojects/member/active',
                     events: localhost+'dmdiiProject/events',
                     news: localhost+'dmdiiProject/news',
                     contributors: localhost + 'dmdiiproject/contributingcompanies',
