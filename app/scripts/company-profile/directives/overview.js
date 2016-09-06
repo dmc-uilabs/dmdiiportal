@@ -9,28 +9,14 @@ angular.module('dmc.company-profile').
             restrict: 'A',
             templateUrl: 'templates/company-profile/tabs/tab-overview.html',
             scope: {
-                source : "="
+                source : "=",
+                imgs: "=",
+                videos: "=",
+                removedImages: "=",
+                removedVideos: "=",
+                limit: "="
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, companyProfileModel, fileUpload, questionToastModel) {
                 $element.addClass("tab-overview");
-
-                // get company images
-                var callbackImages = function(data){
-                    $scope.source.images = data;
-                    apply();
-                };
-                if ($scope.source && $scope.source.id) {
-                    companyProfileModel.getImages($scope.source.id, callbackImages);
-                }
-
-                // get company videos
-                var callbackVideos = function(data){
-                    $scope.source.videos = data;
-                    apply();
-                };
-                if ($scope.source && $scope.source.id) {
-                    companyProfileModel.getVideos($scope.source.id, callbackVideos);
-                }
-
 
                 $scope.isAddingVideo = false;
 
@@ -44,40 +30,51 @@ angular.module('dmc.company-profile').
                     $scope.isAddingVideo = false;
                 };
 
+                $scope.videoStrings = [];
                 // save new video
                 $scope.saveVideo = function(newVideo){
                     newVideo.companyId = $scope.source.id;
-                    if(!$scope.source.videos) $scope.source.videos = [];
-                    $scope.source.videos.unshift(newVideo);
-                    $scope.changedValue('video');
+                    if(!$scope.videos) {
+                        $scope.videos = [];
+                    }
+                    $scope.videos.unshift({file: $scope.newAddedVideo.file, title: newVideo.title});
+                    $scope.videos.splice($scope.limit);
+
                     $scope.cancelAddVideo();
                     apply();
                 };
 
+
                 // delete video
-                $scope.deleteVideo = function(video,ev){
+                $scope.deleteVideo = function(video, ev){
                     questionToastModel.show({
-                        question : "Do you want to delete video?",
+                        question : "Do you want to delete this video?",
                         buttons: {
                             ok: function(){
-                                if(!video.id) {
-                                    video.id = -1;
-                                    for(var i in $scope.source.videos){
-                                        if($scope.source.videos[i].id == -1){
-                                            $scope.source.videos.splice(i,1);
-                                            break;
-                                        }
-                                    }
-                                }else{
-                                    video.hide = true;
+                                if(!$scope.removedVideos) {
+                                    $scope.removedVideos = [];
                                 }
-                                $scope.changedValue('video');
+                                $scope.removedVideos.push(video.id);
+                                video.hide = true;
                                 apply();
                             },
                             cancel: function(){}
                         }
                     },ev);
                 };
+
+                $scope.deleteVideoToAdd = function(index, ev) {
+                    questionToastModel.show({
+                        question : "Do you want to cancel adding this video?",
+                        buttons: {
+                            ok: function(){
+                                $scope.videos.splice(index);
+                                apply();
+                            },
+                            cancel: function(){}
+                        }
+                    },ev);
+                }
 
                 // image drop box
                 $scope.prevPicture = null;
@@ -99,6 +96,12 @@ angular.module('dmc.company-profile').
                     flow.files.shift();
                 };
 
+                $scope.addedNewVideo = function(file,event,flow){
+                    console.log(file, event, flow)
+                    $scope.newAddedVideo = file;
+                    flow.files.shift();
+                };
+
                 $scope.removePicture = function(flow){
                     flow.files = [];
                     $scope.newAddedImage = null;
@@ -113,31 +116,50 @@ angular.module('dmc.company-profile').
                 };
 
                 $scope.saveImage = function(newImage){
-                    if(newImage && $scope.newAddedImage){
-                        fileUpload.uploadFileToUrl($scope.newAddedImage.file,{id : $scope.source.id, title : newImage.title},'company-profile',callbackUploadPicture);
+                    if(newImage && $scope.newAddedImage.file) {
+                        $scope.imgs.unshift({ file: $scope.newAddedImage.file, title: newImage.title});
+                        $scope.imgs.splice($scope.limit);
+
+                        $scope.cancelAddImage();
+
+                        $scope.imageStrings = [];
+                        angular.forEach($scope.imgs, function(fileObject, i){
+                            var fileReader = new FileReader();
+                            fileReader.onload = function (event) {
+                                var uri = event.target.result;
+                                $scope.imageStrings[i] = uri;
+                                $scope.imageStrings.splice($scope.limit);
+                            };
+                            fileReader.readAsDataURL(fileObject.file);
+                        });
+                        // fileUpload.uploadFileToUrl($scope.newAddedImage.file,{id : $scope.source.id, title : newImage.title},'company-profile',callbackUploadPicture);
                         $scope.cancelAddImage();
                     }
                 };
 
-                var callbackUploadPicture = function(data){
-                    if(!data.error) {
-                        $scope.source.images.unshift(data.result);
-                        apply();
-                        toastModel.showToast('success', 'Image successfully added');
-                    }else{
-                        toastModel.showToast('error', 'Unable add image');
-                    }
-                };
-
-                $scope.deleteImage = function(img,ev){
+                $scope.deleteImage = function(img, ev){
                     questionToastModel.show({
-                        question : "Do you want to delete image?",
+                        question : "Do you want to delete this image?",
                         buttons: {
                             ok: function(){
-                                if(!$scope.changes.removedImages) $scope.changes.removedImages = [];
-                                $scope.changes.removedImages.push(img.id);
+                                if(!$scope.removedImages) {
+                                    $scope.removedImages = [];
+                                }
+                                $scope.removedImages.push(img.id);
                                 img.hide = true;
-                                $scope.changedValue('image');
+                                apply();
+                            },
+                            cancel: function(){}
+                        }
+                    },ev);
+                };
+
+                $scope.deleteImageToAdd = function(index, ev){
+                    questionToastModel.show({
+                        question : "Do you want to cancel adding this image?",
+                        buttons: {
+                            ok: function(){
+                                $scope.imageStrings.splice(index, 1);
                                 apply();
                             },
                             cancel: function(){}

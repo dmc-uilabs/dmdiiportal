@@ -481,6 +481,14 @@ angular.module('dmc.data',[])
             changeUsersOrganization: function(id) {
                 return 'not implemented'
             },
+            getDocument: function() {
+                return {
+                    byType: localhost + 'documents/organization'
+                }
+            },
+            deleteDocument: function(id) {
+                return localhost + 'document/' + id;
+            },
             saveDocument: function() {
                 return localhost + 'document'
             },

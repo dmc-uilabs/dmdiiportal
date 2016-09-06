@@ -105,17 +105,17 @@
         <div layout="column">
             <h2>Images</h2>
             <div layout="row" class="images-carousel" layout-align="start start">
-                <div class="arrow-left" ng-hide="company.skillsImages.length <= 5 || index == 0">
+                <div class="arrow-left" ng-hide="company.images.length <= 5 || index == 0">
                     <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1">
                         <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
                     </md-button>
                 </div>
 
-                <div layout="column" flex="15" class="image" ng-repeat="item in [0,1,2,3,4]">
+                <div layout="column" flex="15" class="image" ng-repeat="image in company.images">
                     <div class="one-image">
-                        <img ng-src="{{company.images[item+index].url}}">
+                        <img ng-src="{{image.documentUrl}}">
                     </div>
-                    <h2>{{company.images[item].title}}</h2>
+                    <h2>{{image.documentTitle}}</h2>
                 </div>
 
                 <div class="arrow-right" ng-hide="company.images.length <= 5 || index <= company.skillsImages.length - 5">
@@ -129,19 +129,26 @@
         <div layout="column">
             <h2>Videos</h2>
             <div layout="row" class="images-carousel" layout-align="start start">
-                <div class="arrow-left" ng-hide="company.images.length <= 5 || index == 0">
+                <div class="arrow-left" ng-hide="company.video.length <= 5 || index == 0">
                     <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1">
                         <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
                     </md-button>
                 </div>
 
-                <div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">
-                    <div class="one-image">
-                        <a ng-href="{{company.videos[item+index].link}}">{{company.videos[item+index].title}}</a>
-                    </div>
+                <div ng-repeat="video in company.videos">
+                    <iframe title="{{video.documentTitle}}" class="youtube-player" type="text/html"
+                        width="640" height="390" src="{{video.documentUrl}}"
+                        frameborder="0" allowFullScreen>
+                    </iframe>
                 </div>
 
-                <div class="arrow-right" ng-hide="company.skillsImages.length <= 5 || index <= company.skillsImages.length - 5">
+                <!-- <div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">
+                    <div class="one-image">
+                        <a ng-href="https://youtu.be/1S6g4qpEfks">video</a>
+                    </div>
+                </div> -->
+
+                <div class="arrow-right" ng-hide="company.videos.length <= 5 || index <= company.videos.length - 5">
                     <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1">
                         <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
                     </md-button>

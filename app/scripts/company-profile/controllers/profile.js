@@ -38,11 +38,27 @@ angular.module('dmc.company-profile')
                   DMCUserModel) {
 
             // $scope.company = companyData;
+            //limit of images and videos a company can have
+            $scope.limit = 3;
             var getCompany = function() {
                 ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
                     $scope.company = response.data;
                     $scope.getCompanyMembers();
                     $scope.SortingReviews();
+
+                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 1, limit: 1}, function(response) {
+                        if (response.data.length > 0) {
+                            $scope.company.logoImage = response.data[0];
+                        };
+                    });
+
+                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 2, limit: $scope.limit}, function(response) {
+                        $scope.company.images = response.data;
+                    });
+
+                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 3, limit: $scope.limit}, function(response) {
+                        $scope.company.videos = response.data;
+                    });
                 });
             }
             getCompany();
