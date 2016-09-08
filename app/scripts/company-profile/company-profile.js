@@ -5,6 +5,7 @@ var currentAccountId = 1;
 angular.module('dmc.company-profile', [
     'dmc.configs.ngmaterial',
     'ngMdIcons',
+    'ngSanitize',
     'ngtimeago',
     'ui.router',
     'md.data.table',

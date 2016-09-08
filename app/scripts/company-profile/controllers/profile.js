@@ -7,6 +7,7 @@ angular.module('dmc.company-profile')
         "ajax",
         "dataFactory",
         "$mdDialog",
+        "$sce",
         "fileUpload",
         "$location",
         "$anchorScroll",
@@ -24,6 +25,7 @@ angular.module('dmc.company-profile')
                   ajax,
                   dataFactory,
                   $mdDialog,
+                  $sce,
                   fileUpload,
                   $location,
                   $anchorScroll,
@@ -171,20 +173,9 @@ angular.module('dmc.company-profile')
             // };
             // initContacts($scope.company.contacts);
 
-
-            // get company images
-            var callbackVideaos = function(data){
-                $scope.company.videos = data;
-                apply();
+            $scope.trustVideoSrc = function(src) {
+                return $sce.trustAsResourceUrl(src);
             };
-            // companyProfileModel.getVideos($scope.company.id, callbackVideaos);
-
-            // get company images
-            var callbackImages = function(data){
-                $scope.company.images = data;
-                apply();
-            };
-            // companyProfileModel.getImages($scope.company.id, callbackImages);
 
             // get company membersconsole.log(data)
             var callbackMembers = function(response){

@@ -237,7 +237,7 @@
                                 </div>
                                 <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
                                     Drag And Drop your Video here<br>
-                                    600 x 600 px (max 2 MB)
+                                    600 x 600 px (max 10 MB)
                                     <br>or<br>
                                     <strong>Click here</strong>
                                 </div>
@@ -285,10 +285,10 @@
         </div> -->
         <h4>Current Videos</h4>
         <div ng-repeat="video in source.videos track by $index">
-            <iframe title="{{video.documentTitle}}" class="youtube-player" type="text/html"
-                width="425" height="349" src="{{videoStrings[$index]}}"
-                frameborder="0" allowFullScreen>
-            </iframe>
+            <video width="320" height="240" controls>
+                Your browser does not support HTML5 video playback
+                <source src="{{trustVideoSrc(video.documentUrl)}}" type="video/mp4">
+            </video>
             <md-button md-no-ink
                 ng-click="deleteVideo(video,$event)"
                 class="md-icon-button delete-video"

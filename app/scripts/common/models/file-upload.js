@@ -9,7 +9,7 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
 
             // james.barkley creds (used for testing)
             //make into ENV vars
-            var creds = {bucket: '', access_key: '',secret_key: ''};
+            var creds = {bucket: '', access_key: '',secret_key: ''}
 
                 // Configure The S3 Object
 
@@ -26,15 +26,17 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
               //Testing
               console.log("file size: " + file.size);
               console.log("file name: " + file.name);
+              var name = file.name.replace(/%20/g, '-').replace(/ /g, '-');
+              console.log("file name: " + file.name, name);
 
-              //Size Check
+              //File Size Check
               if(file.size > 10585760) {
                 toastModel.showToast('error',"Sorry, file size must be under 10MB");
                 return null;
               }
 
               //Apply extra business logic to the file.name here
-              var params = {Key: file.name, ContentType: file.type, Body: file, ServerSideEncryption: 'AES256' };
+              var params = {Key: name, ContentType: file.type, Body: file, ServerSideEncryption: 'AES256' };
               var s3Url = 'https://s3.amazonaws.com/' + creds.bucket + '/' + params.Key;
 
               s3.upload(params, function(err, data) {

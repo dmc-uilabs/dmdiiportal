@@ -2,7 +2,7 @@
 <md-content class="company-profile-padding">
 <div layout="row">
     <div flex="20">
-        <img class="company-profile-image" ng-src="{{company.logoImage}}">
+        <img class="company-profile-image" ng-src="{{company.logoImage.documentUrl}}">
     </div>
     <div flex="80" layout="column" class="company-profile-header">
         <div layout="row" layout-align="center center">
@@ -118,7 +118,7 @@
                     <h2>{{image.documentTitle}}</h2>
                 </div>
 
-                <div class="arrow-right" ng-hide="company.images.length <= 5 || index <= company.skillsImages.length - 5">
+                <div class="arrow-right" ng-hide="company.images.length <= 5 || index <= company.images.length - 5">
                     <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1">
                         <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
                     </md-button>
@@ -136,10 +136,10 @@
                 </div>
 
                 <div ng-repeat="video in company.videos">
-                    <iframe title="{{video.documentTitle}}" class="youtube-player" type="text/html"
-                        width="640" height="390" src="{{video.documentUrl}}"
-                        frameborder="0" allowFullScreen>
-                    </iframe>
+                    <video width="320" height="240" controls>
+                        Your browser does not support HTML5 video playback
+                        <source ng-src="{{trustVideoSrc(video.documentUrl)}}">
+                    </video>
                 </div>
 
                 <!-- <div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">

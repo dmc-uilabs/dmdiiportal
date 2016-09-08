@@ -4,7 +4,7 @@
 // 23.01.2016
 
 angular.module('dmc.company-profile').
-    directive('tabOverview', ['$parse', function ($parse) {
+    directive('tabOverview', ['$parse', '$sce', function ($parse, $sce) {
         return {
             restrict: 'A',
             templateUrl: 'templates/company-profile/tabs/tab-overview.html',
@@ -30,7 +30,6 @@ angular.module('dmc.company-profile').
                     $scope.isAddingVideo = false;
                 };
 
-                $scope.videoStrings = [];
                 // save new video
                 $scope.saveVideo = function(newVideo){
                     newVideo.companyId = $scope.source.id;
@@ -45,6 +44,10 @@ angular.module('dmc.company-profile').
                 };
 
 
+                $scope.trustVideoSrc = function(src) {
+                    return $sce.trustAsResourceUrl(src);
+                };
+                
                 // delete video
                 $scope.deleteVideo = function(video, ev){
                     questionToastModel.show({

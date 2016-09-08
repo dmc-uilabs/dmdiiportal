@@ -3,11 +3,10 @@
 
 <!-- build:css styles/vendor.css -->
 <!-- bower:css -->
-
 <link rel="stylesheet" href="/bower_components/angular-carousel/angular-carousel.css" />
 <link rel="stylesheet" href="/bower_components/angular-clndr/angular-clndr.css" />
 <link rel="stylesheet" href="/bower_components/angular-datepicker/dist/angular-datepicker.css" />
-<link rel="stylesheet" href="/bower_components/angular-horizontal-timeline/angular-horizontal-timeline.css" />
+<link rel="stylesheet" href="/styles/https-angular-horizontal-timeline.css" />
 <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
 <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
 <link rel="stylesheet" href="/bower_components/dropzone/dist/min/dropzone.min.css" />
