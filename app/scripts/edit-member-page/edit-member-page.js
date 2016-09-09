@@ -14,11 +14,8 @@ angular.module('dmc.edit-member', [
     'dmc.ajax',
     'dmc.data',
     'dmc.socket',
-    'dmc.widgets.stars',
     'dmc.model.question-toast-model',
-    'dmc.widgets.review',
     'dmc.widgets.tabs',
-    'dmc.component.members-card',
     'dmc.component.contacts-card',
     'dmc.common.header',
     'dmc.common.footer',
@@ -26,10 +23,8 @@ angular.module('dmc.edit-member', [
     'dmc.model.user',
     'dmc.model.toast-model',
     'dmc.model.fileUpload',
-    'dmc.model.company',
     'dmc.phone-format',
     'dmc.zip-code-format',
-    'dmc.model.account',
     'flow'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){

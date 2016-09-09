@@ -43,6 +43,7 @@ angular.module('dmc.add-project-doc').
                         $scope.document.fileType = 3;
                         $scope.document.ownerId = $scope.user.accountId;
                         $scope.document.dmdiiProjectId = $scope.project.id;
+                        $scope.document.accessLevel = $scope.doc[0].accessLevel;
 
                         ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);
                     });

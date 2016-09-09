@@ -128,7 +128,7 @@ angular.module('dmc.company-profile')
 
             var uploadLogo = function(companyId){
                 if($scope.newLogo){
-                    fileUpload.uploadFileToUrl($scope.newLogo.file, {id : $scope.company.id}, 'company-logo', function(response) {
+                    fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
                         ajax.create(dataFactory.saveDocument(),
                             {
                                 organizationId: companyId,
@@ -199,7 +199,6 @@ angular.module('dmc.company-profile')
             };
 
             var uploadVideos = function(companyId){
-                console.log($scope.videos)
                 angular.forEach($scope.videos, function(video) {
                     fileUpload.uploadFileToUrl(video.file, {id : $scope.company.id}, 'company-video', function(response) {
                         ajax.create(dataFactory.saveDocument(),

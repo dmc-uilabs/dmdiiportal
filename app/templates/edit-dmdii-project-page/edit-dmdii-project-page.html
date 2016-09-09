@@ -53,11 +53,11 @@
                     </md-input-container>
 
                     <md-input-container flex="35" class="project-status" md-no-float>
+                        <label>Status</label>
                         <md-select ng-model="project.projectStatus"
                         ng-model-options="{trackBy: '$value.id'}"
-                        ng-disabled="!user.isDmdiiAdmin"
-                        placeholder="Status">
-                        <md-option ng-value="{{status}}" ng-repeat="status in statuses">{{status.name}}</md-option>
+                        ng-disabled="!user.isDmdiiAdmin">
+                        <md-option ng-value="status" ng-repeat="status in statuses">{{status.name}}</md-option>
                     </md-input-container>
                 </div>
 
@@ -85,19 +85,19 @@
 
         <div layout="row">
             <md-input-container flex="35" class="project-focus-area" md-no-float>
+                <label>Focus Area</label>
                 <md-select ng-model="project.projectFocusArea"
                     ng-model-options="{trackBy: '$value.id'}"
-                    ng-disabled="!user.isDmdiiAdmin"
-                    placeholder="Focus Area">
-                    <md-option ng-value="{{focus}}" ng-repeat="focus in focusAreas">{{focus.name}}</md-option>
+                    ng-disabled="!user.isDmdiiAdmin">
+                    <md-option ng-value="focus" ng-repeat="focus in focusAreas">{{focus.name}}</md-option>
             </md-input-container>
 
             <md-input-container flex="35" class="project-thrust" md-no-float>
+                <label>Thrust Area</label>
                 <md-select ng-model="project.projectThrust"
                     ng-model-options="{trackBy: '$value.id'}"
-                    ng-disabled="!user.isDmdiiAdmin"
-                    placeholder="Thrust Area">
-                    <md-option ng-value="{{thrust}}" ng-repeat="thrust in thrustAreas">{{thrust.name}}</md-option>
+                    ng-disabled="!user.isDmdiiAdmin">
+                    <md-option ng-value="thrust" ng-repeat="thrust in thrustAreas">{{thrust.name}}</md-option>
             </md-input-container>
         </div>
 

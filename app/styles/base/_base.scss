@@ -135,6 +135,20 @@ div[ui-view] {
     margin-top: 0px;
 }
 
+.profile-logo{
+  position: relative;
+  img{
+    width: 150px;
+  }
+  .remove-logo{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    svg{
+      margin-top: -3px;
+    }
+  }
+}
 md-content{
   padding: 15px;
   @include borderRadius(2px);

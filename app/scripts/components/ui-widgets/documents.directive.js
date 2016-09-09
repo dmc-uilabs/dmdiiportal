@@ -195,7 +195,8 @@ angular.module('dmc.widgets.documents',[
 										title : title,
 										file : file_,
 										editing : false,
-										type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length)
+										type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length),
+										accessLevel: file_.accessLevel
 									});
                                     $scope.$apply();
 								}
@@ -230,7 +231,8 @@ angular.module('dmc.widgets.documents',[
 									projectId: data.result.projectId,
 									file : file_,
 									editing : false,
-									type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length)
+									type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length),
+									accessLevel: file_.accessLevel
 								});
                                 apply();
 							}else{

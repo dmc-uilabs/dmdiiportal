@@ -29,14 +29,20 @@ angular.module('dmc.company')
                                CompareModel,
                                $mdDialog ) {
 
-        $scope.companyData  = companyData ;
+        $scope.companyData = companyData ;
 
-            function getCompanyJoinRequest(){
-                ajax.get(dataFactory.getProfileCompanyJoinRequest($scope.currentUser.profileId), {},function(response){
-                    $scope.companyData.joinRequest = response.data && response.data.length > 0 ? response.data[0] : null;
-                    apply();
-                });
-            }
+        ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.companyData.id, fileTypeId: 1, limit: 1}, function(response) {
+            if (response.data.length > 0) {
+                $scope.companyData.logoImage = response.data[0];
+            };
+        });
+
+        function getCompanyJoinRequest(){
+            ajax.get(dataFactory.getProfileCompanyJoinRequest($scope.currentUser.profileId), {},function(response){
+                $scope.companyData.joinRequest = response.data && response.data.length > 0 ? response.data[0] : null;
+                apply();
+            });
+        }
 
         if($scope.companyData && $scope.companyData.id) {
             $scope.currentUser = DMCUserModel.getUserData().then(function(res){

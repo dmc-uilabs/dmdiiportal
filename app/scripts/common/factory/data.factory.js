@@ -476,7 +476,7 @@ angular.module('dmc.data',[])
                 return localhost + 'organizations/';
             },
             deleteOrganization: function(id) {
-                return localhost + 'organization?organizationId=' + id
+                return localhost + 'organizations/' + id;
             },
             changeUsersOrganization: function(id) {
                 return 'not implemented'
