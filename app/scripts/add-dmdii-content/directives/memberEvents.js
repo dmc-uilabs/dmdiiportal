@@ -15,6 +15,11 @@ angular.module('dmc.addDmdiiContent').
                     $window.location.reload();
                 };
 
+                var escapeRich = function(input) {
+                    var escaped = input.replace(/"/g, "/\"").replace(/\//g, "\\/");
+                    return escaped;
+                };
+
                 $scope.clear = function() {
                     $scope.event = {};
                     $scope.noTitle = false;
@@ -52,6 +57,7 @@ angular.module('dmc.addDmdiiContent').
                         return;
                     }
 
+                    $scope.event.description = escapeRich($scope.event.description);
                     ajax.create(dataFactory.saveDMDIIMember().events, $scope.event, eventCallback);
                 };
 

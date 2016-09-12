@@ -64,8 +64,6 @@ angular.module('dmc.account')
                         $scope.user.location = $scope.user.dataLocation.city + ", " + $scope.user.dataLocation.region;
                         $scope.ctrl.searchText = $scope.user.dataLocation.timezone;
                         $scope.user.timezone = $scope.user.dataLocation.timezone;
-                        $scope.changedValue('timezone', $scope.user.timezone);
-                        $scope.changedValue('location', $scope.user.location);
                     }
 
                 };
@@ -90,13 +88,12 @@ angular.module('dmc.account')
                 };
 
                 $scope.$on('$locationChangeStart', function (event, next, current) {
-                    if ($scope.changedValues && current.match("\/basics")) {
+                    if (current.match("\/basics")) {
                         event.preventDefault();
                         questionToastModel.show({
                             question: "Are you sure you want to leave this page without saving?",
                             buttons: {
                                 ok: function(){
-                                    $scope.changedValues = null;
                                     window.location = next;
                                     $scope.$apply();
                                 },
@@ -109,7 +106,6 @@ angular.module('dmc.account')
 
                 $(window).unbind('beforeunload');
                 $(window).bind('beforeunload', function (event) {
-                    if($scope.changedValues) return "";
                 });
 
                 $scope.zones = [];
@@ -126,32 +122,15 @@ angular.module('dmc.account')
                 $scope.ctrl.queryCompanySearch = queryCompanySearch;
                 $scope.ctrl.searchCompanyChange = searchCompanyChange;
 
-                $scope.changedValue = function (name, value) {
-                    if (!$scope.changedValues) $scope.changedValues = {};
-                    $scope.changedValues[name] = value;
-                    if (name == "firstName" || name == "lastName") {
-                        $scope.user.displayName = $scope.user.displayName = $scope.user.firstName + ' ' + $scope.user.lastName;
-                    }
-                };
-
-                $scope.cancelChanges = function () {
-                    for (var item in $scope.changedValues) {
-                        $scope.user[item] = $scope.accountData[item];
-                        if (item == 'timezone') {
-                            $scope.ctrl.searchText = $scope.accountData[item];
-                        }
-                    }
-                    $scope.changedValues = null;
-                };
 
                 $scope.saveChanges = function () {
-                    if ($scope.changedValues) {
-                        if (!validateEmail($scope.user.email)) {
-                            $scope.user.email = $scope.accountData.email;
-                        }
-                        AccountModel.update($scope.user);
-                        $scope.changedValues = null;
+                    if (!validateEmail($scope.user.email)) {
+                        $scope.user.email = $scope.accountData.email;
                     }
+                    ajax.update(dataFactory.updateUser(), $scope.user, function(response) {
+                        toastModel.showToast('success', 'User updated successfully!');
+                    });
+                    // AccountModel.update($scope.user);
                 };
 
                 var getAllCompanies = function(){
@@ -266,7 +245,6 @@ angular.module('dmc.account')
                 } else {
                     $scope.user.timezone = item.display;
                 }
-                $scope.changedValue('timezone', $scope.user.timezone);
             }
 
             function loadAll() {
@@ -336,14 +314,12 @@ angular.module('dmc.account')
             function searchCompanyChange(text) {
                 if (text.trim().length == 0) {
                     $scope.user.companyId = null;
-                    $scope.changedValue('companyId', $scope.user.companyId);
                 }
             }
 
             function searchTextChange(text) {
                 if (text.trim().length == 0) {
                     $scope.user.timezone = null;
-                    $scope.changedValue('timezone', $scope.user.timezone);
                 }
             }
         }]);

@@ -8,6 +8,7 @@ angular.module('dmc.addDmdiiContent', [
     'ngtimeago',
     'ui.router',
     'md.data.table',
+    'angular-medium-editor',
     'dmc.ajax',
     'dmc.data',
     'dmc.socket',

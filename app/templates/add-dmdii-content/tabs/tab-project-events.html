@@ -45,9 +45,11 @@
     <div layout="row">
         <div layout="column" flex="50">
             <md-input-container class="no-bottom no-pad-bottom">
-                <label>Description</label>
-                <textarea type="text" ng-model="event.eventDescription" ng-required="true"/>
-            </md-input-container>
+	            <div class="rich" medium-editor ng-model="event.eventDescription"
+                    data-placeholder="Description"
+                    bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote', 'orderedlist','unorderedlist', 'h2', 'h3'] } }"
+                    ng-required="true"></div>
+	        </md-input-container>
 
             <div ng-show="noDescription">
                 <p class="slim-margin error">You <b>must</b> enter a description</p>

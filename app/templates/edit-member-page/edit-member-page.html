@@ -113,13 +113,13 @@
             </div>
         </div>
         <div layout="row">
-            <md-input-container flex class="company-description" md-no-float>
-                <textarea ng-model="company.organization.description"
-                          columns="1"
-                          ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin"
-                          md-maxlength="1000"
-                          placeholder="Description of Organization"></textarea>
-            </md-input-container>
+            <md-input-container class="no-bottom no-pad-bottom company-description">
+	            <div class="rich" medium-editor ng-model="company.organization.description"
+                    data-placeholder="Description of Organization"
+                    bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote', 'orderedlist','unorderedlist', 'h2', 'h3'] } }"
+                    ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin"
+                    ng-required="true"></div>
+	        </md-input-container>
         </div>
 
         <div layout="column">

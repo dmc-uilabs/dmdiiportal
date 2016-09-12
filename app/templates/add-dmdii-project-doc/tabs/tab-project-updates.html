@@ -8,9 +8,11 @@
 		<md-datepicker class="no-bottom no-pad-bottom top10" name="date" ng-model="update.created" required md-placeholder="Date"></md-datepicker>
 	</div>
 
-	<md-input-container>
-		<label>Description</label>
-		<input type="text" ng-model="update.description">
+	<md-input-container class="no-bottom no-pad-bottom">
+		<div class="rich" medium-editor ng-model="update.text"
+			data-placeholder="Description"
+			bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote', 'orderedlist','unorderedlist', 'h2', 'h3'] } }"
+			ng-required="true"></div>
 	</md-input-container>
 
 	<md-input-container>

@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="/bower_components/md-data-table/dist/md-data-table-style.css" />
 <link rel="stylesheet" href="/bower_components/angular-ui-select/dist/select.min.css" />
 <link rel="stylesheet" href="/bower_components/select2/select2.css" />
-
+<link rel="stylesheet" href="/bower_components/medium-editor/dist/css/medium-editor.min.css" />
+<link rel="stylesheet" href="/bower_components/medium-editor/dist/css/themes/beagle.css" />
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -71,5 +72,7 @@
 <script src="/bower_components/angular-clndr/angular-clndr.js"></script>
 <script src="/bower_components/angular-horizontal-timeline/angular-horizontal-timeline.js"></script>
 <script src="/bower_components/aws-sdk/dist/aws-sdk.min.js"></script>
+<script src="/bower_components/medium-editor/dist/js/medium-editor.min.js"></script>
+<script src="/bower_components/angular-medium-editor/dist/angular-medium-editor.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
