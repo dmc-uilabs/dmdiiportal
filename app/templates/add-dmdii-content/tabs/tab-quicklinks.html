@@ -9,7 +9,7 @@
 
 	<div layout="row">
 	    <div layout="column" flex="33">
-	        <md-input-container class="no-bottom no-pad-bottom">
+	        <md-input-container>
 	            <label>Title</label>
 	            <input ng-model="quicklink.displayName" ng-required="true"/>
 	        </md-input-container>
@@ -35,8 +35,10 @@
 	            <p class="slim-margin error">You <b>must</b> enter a link</p>
 	        </div>
 	        <md-input-container class="no-bottom no-pad-bottom" ng-show="linkType === 'text'" ng-required="linkType === 'text'">
-	            <label>Description</label>
-	            <textarea ng-model="quicklink.text" ng-required="linkType === 'text'"/>
+	            <div class="rich" medium-editor ng-model="quicklink.text"
+                    data-placeholder="Description"
+                    bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote', 'orderedlist','unorderedlist', 'h2', 'h3'] } }"
+                    ng-required="linkType === 'text'"></div>
 	        </md-input-container>
 			<div ng-show="noText">
 	            <p class="slim-margin error">You <b>must</b> enter a description</p>

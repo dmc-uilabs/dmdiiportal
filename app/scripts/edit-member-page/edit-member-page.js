@@ -11,6 +11,7 @@ angular.module('dmc.edit-member', [
     'ngtimeago',
     'ui.router',
     'md.data.table',
+    'angular-medium-editor',
     'dmc.ajax',
     'dmc.data',
     'dmc.socket',

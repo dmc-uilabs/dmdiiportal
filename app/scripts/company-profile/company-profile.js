@@ -9,6 +9,7 @@ angular.module('dmc.company-profile', [
     'ngtimeago',
     'ui.router',
     'md.data.table',
+    'angular-medium-editor',
     'dmc.ajax',
     'dmc.data',
     'dmc.socket',

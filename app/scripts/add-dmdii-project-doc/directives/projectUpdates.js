@@ -20,6 +20,10 @@ angular.module('dmc.add-project-doc').
 				$scope.update = {};
 				$scope.projectUpdates = [];
 
+                var escapeRich = function(input) {
+                    var escaped = input.replace(/"/g, "/\"").replace(/\//g, "\\/");
+                    return escaped;
+                };
 
 				$scope.saveUpdates = function() {
 					var startDate = new Date($scope.update.created);
@@ -35,6 +39,8 @@ angular.module('dmc.add-project-doc').
 
 					$scope.update.dmdiiProject = $scope.project.id;
 
+                    $scope.update.description = escapeRich($scope.update.description);
+                    
 					ajax.create(dataFactory.saveDMDIIProject().update, $scope.update, function(response) {
 						$scope.update = {};
 						toastModel.showToast('success', 'Project Update Saved!');

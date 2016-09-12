@@ -35,9 +35,11 @@
 
     <div layout="row">
 		<div layout="column" flex="50">
-	        <md-input-container>
-	            <label>Content</label>
-	            <textarea type="text" ng-model="news.content" ng-required="true"/>
+            <md-input-container class="no-bottom no-pad-bottom">
+	            <div class="rich" medium-editor ng-model="news.content"
+                    data-placeholder="Content"
+                    bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote', 'orderedlist','unorderedlist', 'h2', 'h3'] } }"
+                    ng-required="true"></div>
 	        </md-input-container>
 			<div ng-show="noContent">
 				<p class="slim-margin error">You <b>must</b> enter some content</p>

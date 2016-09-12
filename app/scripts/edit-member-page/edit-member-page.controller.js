@@ -403,6 +403,11 @@ angular.module('dmc.edit-member')
                 }
             }
 
+            var escapeRich = function(input) {
+                var escaped = input.replace(/"/g, "/\"").replace(/\//g, "\\/");
+                return escaped;
+            };
+
             $scope.saveChanges = function() {
                 console.log($scope.company)
                 $scope.setTier();
@@ -426,6 +431,8 @@ angular.module('dmc.edit-member')
                 $scope.company.expireDate = year + '-' + month + '-' + day;
 
                 delete $scope.company.organization.logoImage;
+
+                $scope.company.organization.description = escapeRich($scope.company.organization.description);
 
                 ajax.create(dataFactory.saveDMDIIMember().member, $scope.company, callbackSaveFunction);
             };

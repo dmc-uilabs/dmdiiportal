@@ -258,17 +258,23 @@ angular.module('dmc.company-profile')
                 }
             };
 
+            var escapeRich = function(input) {
+                var escaped = input.replace(/"/g, "/\"").replace(/\//g, "\\/");
+                return escaped;
+            };
+
             $scope.saveChanges = function(){
                 delete $scope.company.images;
                 delete $scope.company.videos;
                 delete $scope.company.logoImage;
 
+                $scope.company.description = escapeRich($scope.company.description);
+                
                 if ($scope.company.id) {
                     ajax.put(dataFactory.updateOrganization($scope.company.id), $scope.company, saveCallback);
                 } else {
                     ajax.create(dataFactory.createOrganization(), $scope.company, saveCallback);
                 }
-                //save doc
             };
 
             // function for create contact

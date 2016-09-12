@@ -197,6 +197,11 @@ angular.module('dmc.edit-project')
                 console.log($scope.date);
             }, true)
 
+            var escapeRich = function(input) {
+                var escaped = input.replace(/"/g, "/\"").replace(/\//g, "\\/");
+                return escaped;
+            };
+
             $scope.saveChanges = function() {
 
                 var startDate = new Date($scope.date.awarded);
@@ -217,6 +222,8 @@ angular.module('dmc.edit-project')
 
                 $scope.project.endDate = year + '-' + month + '-' + day;
 
+                $scope.project.projectSummary = escapeRich($scope.project.projectSummary);
+                
                 $scope.project.projectIdentifier = $scope.project.rootNumber + '-' + $scope.project.callNumber + '-' + $scope.project.projectNumber
                 ajax.create(dataFactory.saveDMDIIProject().project, $scope.project, callbackSaveFunction);
             };
