@@ -1,6 +1,6 @@
 <div class="container members-box" layout="row" >
 
-    <div class="content-column" layout="column" flex='20'>
+    <div class="content-column" layout="column" flex='15'>
         <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
         <dmc-products-filter state-name="'members_search'" ng-if="isSearch"></dmc-products-filter>
     </div>
@@ -131,6 +131,7 @@
                     <table md-data-table>
                         <thead md-order="sort" md-trigger="onOrderChange">
                         <tr>
+                            <th></th>
                             <th name="Name" order-by="name" class="title"></th>
                             <th name="Type" order-by="type"></th>
                             <th name="Tier" order-by="tier"></th>
@@ -142,6 +143,9 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="member in members.arr">
+                            <td class="profile-logo">
+                                <img ng-src="{{member.organization.logoImage.documentUrl}}" ng-if="member.organization.logoImage">
+                            </td>
                             <td class="title-member">
                                 <h3><a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a></h3>
                                 <p class="description">{{member.organization.description}}</p>

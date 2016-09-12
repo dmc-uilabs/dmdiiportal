@@ -35,7 +35,6 @@ angular.module('dmc.add-project-doc').
                         $scope.noDocSelected = true;
                         return;
                     }
-
                     //send to s3, save returned link to document table
                     fileUpload.uploadFileToUrl($scope.doc[0].file, {}, 'projectSchedule', function(response) {
                         $scope.document.documentUrl = response.file.name;
@@ -43,6 +42,7 @@ angular.module('dmc.add-project-doc').
                         $scope.document.fileType = 4;
                         $scope.document.ownerId = $scope.user.accountId;
                         $scope.document.dmdiiProjectId = $scope.project.id;
+                        $scope.document.accessLevel = $scope.doc[0].accessLevel;
 
                         ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);
                     });

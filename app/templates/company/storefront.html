@@ -13,7 +13,7 @@
                          class="company-image"></div>
                     <div layout="row" layout-padding layout-align="start start" class="company-title">
                         <div layout="column" class="logo-storefront" layout-align="center center" ng-if="companyData.logoImage">
-                            <div><img ng-src="{{companyData.logoImage}}" alt=""/></div>
+                            <div><img ng-src="{{companyData.logoImage.documentUrl}}" alt=""/></div>
                         </div>
                         <div layout="column" flex="70">
                             <h2 class="md-title" layout="row" layout-align="start center">
@@ -30,13 +30,13 @@
 
                         <span flex></span>
 
-                        <md-button ng-if="currentUser.profileId && !companyData.isOwner"
+                        <md-button ng-if="currentUser.profileId && !companyData.isOwner && !currentUser.isDmdiiAdmin"
                                    ng-click="join()"
                                    ng-disabled="companyData.joinRequest"
                                    class="md-raised dmc-button margin-right15">
                             {{ !companyData.joinRequest ? 'Request to Join' : 'Pending Approval' }}
                         </md-button>
-                        <md-button ng-if="!companyData.isOwner"
+                        <md-button ng-if="!companyData.isOwner && !currentUser.isDmdiiAdmin"
                                    class="md-raised dmc-button"
                                    ng-click="followCompany()">
                             {{(companyData.follow ? 'Unfollow' : 'Follow')}}
@@ -48,7 +48,7 @@
                             <!--<ng-md-icon icon="email" size="32"></ng-md-icon>-->
                         <!--</md-button>-->
 
-                        <md-button ng-if="companyData.isOwner"
+                        <md-button ng-if="companyData.isOwner || currentUser.isDmdiiAdmin"
                                    class="md-raised dmc-button"
                                    ng-href="/company.php#/{{companyId}}/edit?product=services">
                             Edit Storefront

@@ -34,7 +34,7 @@ angular.module('dmc.add-project-doc').
                         return;
                     }
 
-                    angular.forEach($scope.documents, function(doc) {
+                    angular.forEach($scope.documents, function(doc, i) {
                         $scope.docCount = $scope.documents.length;
                         angular.forEach(doc.tag, function(tag, index) {
                             if (!angular.isObject(tag)) {
@@ -50,7 +50,8 @@ angular.module('dmc.add-project-doc').
                                 documentUrl: response.file.name,
                                 documentName: response.key,
                                 ownerId: $scope.user.accountId,
-                                dmdiiProjectId: $scope.project.id
+                                dmdiiProjectId: $scope.project.id,
+                                accessLevel: $scope.documents[i].accessLevel
                             }
 
                             ajax.create(dataFactory.saveDMDIIDocument(), doc, callback);

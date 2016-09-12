@@ -476,10 +476,18 @@ angular.module('dmc.data',[])
                 return localhost + 'organizations/';
             },
             deleteOrganization: function(id) {
-                return localhost + 'organization?organizationId=' + id
+                return localhost + 'organizations/' + id;
             },
             changeUsersOrganization: function(id) {
                 return 'not implemented'
+            },
+            getDocument: function() {
+                return {
+                    byType: localhost + 'documents/organization'
+                }
+            },
+            deleteDocument: function(id) {
+                return localhost + 'document/' + id;
             },
             saveDocument: function() {
                 return localhost + 'document'

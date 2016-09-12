@@ -8,10 +8,19 @@
         <div layout="row">
             <div layout="column" class="logo-column" ng-show="!changingLogo">
                 <div class="profile-logo">
-                    <img ng-src="{{company.logoImage ? company.logoImage : 'images/icon-company-lg.svg'}}" class="logo" alt="{{company.name}}" />
+                    <img ng-src="{{company.logoImage.documentUrl}}" class="logo" alt="{{company.name}}" ng-if="company.logoImage && !newLogo"/>
+                    <img ng-src="{{newLogo ? newLogoUri : 'images/icon-company-lg.svg'}}" class="logo" alt="{{company.name}}" ng-if="!company.logoImage"/>
+
                     <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
-                               ng-if="company.logoImage"
-                               ng-click="deleteLogo($event)"
+                               ng-if="company.logoImage && !newLogo"
+                               ng-click="removeLogo($event)"
+                               aria-label="Delete Image">
+                        <ng-md-icon icon="delete" size="18"></ng-md-icon>
+                    </md-button>
+
+                    <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
+                               ng-if="newLogo && !company.logoImage"
+                               ng-click="removeAddedLogo($event)"
                                aria-label="Delete Image">
                         <ng-md-icon icon="delete" size="18"></ng-md-icon>
                     </md-button>
@@ -93,6 +102,11 @@
                     <md-content class="mainSectionsContent" ng-switch on="key">
                         <div tab-overview
                              source="company"
+                             imgs="images"
+                             videos="videos"
+                             limit="limit"
+                             removed-images="removedImages"
+                             removed-videos="removedVideos"
                              ng-switch-when="overview"></div>
                         <div tab-skills
                              source="company"

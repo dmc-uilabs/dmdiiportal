@@ -27,8 +27,6 @@
 <script src="scripts/common/factory/notifications.factory.js"></script>
 <script src="scripts/common/footer/footer.js"></script>
 <script src="scripts/common/factory/location.factory.js"></script>
-<script src="scripts/components/ui-widgets/stars.directive.js"></script>
-<script src="scripts/components/ui-widgets/review.directive.js"></script>
 <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
 <script src="scripts/components/members-card/members-card.js"></script>
 <script src="scripts/components/contacts-card/contacts-card.js"></script>
@@ -38,8 +36,6 @@
 <script src="scripts/common/factory/data.factory.js"></script>
 <script src="scripts/common/models/file-upload.js"></script>
 <script src="scripts/common/models/toast-model.js"></script>
-<script src="scripts/common/models/company-model.js"></script>
-<script src="scripts/common/models/account-model.js"></script>
 <script src="scripts/common/models/phone-model.js"></script>
 <script src="scripts/common/models/question-toast-model.js"></script>
 <script src="scripts/common/models/user-model.js"></script>

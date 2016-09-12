@@ -72,6 +72,11 @@ angular.module('dmc.member')
             var callbackFunction = function(response){
                 $scope.member = response.data;
 
+                ajax.get(dataFactory.getDocument().byType, {organizationId: member.organization.id, fileTypeId: 1, limit: 1}, function(response) {
+                    if (response.data.length > 0) {
+                        $scope.member.organization.logoImage = response.data[0];
+                    };
+                });
                 // if (!$scope.member.projects) {
                 //     ajax.get(dataFactory.getDMDIIMemberProjects(), { page: 0, pageSize: 50, dmdiiMemberId: $scope.member.id }, function(response) {
                 //         $scope.member.projects = response.data.data;

@@ -25,11 +25,28 @@ angular.module('dmc.company-profile')
                   DMCUserModel,
                   fileUpload) {
 
+            //limit of images and videos a company can have
+            $scope.limit = 3;
             var getCompany = function() {
                 ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
                     $scope.company = response.data;
+
+                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 1, limit: 1}, function(response) {
+                        if (response.data.length > 0) {
+                            $scope.company.logoImage = response.data[0];
+                        };
+                    });
+
+                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 2, limit: $scope.limit}, function(response) {
+                        $scope.company.images = response.data;
+                    });
+
+                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 3, limit: $scope.limit}, function(response) {
+                        $scope.company.videos = response.data;
+                    });
                 });
-            }
+            };
+
             if (angular.isDefined($stateParams.companyId)) {
                 getCompany();
                 $scope.title = "Update an Organization";
@@ -51,8 +68,12 @@ angular.module('dmc.company-profile')
                 $scope.user = res;
             });
 
-            // logo drop box --------------------------------------------
+            $scope.images = [];
+            $scope.videos = [];
+            $scope.removedVideos = [];
+            $scope.removedImages = [];
 
+            // logo drop box --------------------------------------------
             ajax.get(dataFactory.getOrgTags(), {}, function(response) {
                 $scope.tags = response.data;
             });
@@ -66,7 +87,7 @@ angular.module('dmc.company-profile')
                 $scope.changingLogo = false;
             };
 
-            $scope.newLogo = null;
+            $scope.newLogo = undefined;
             $scope.pictureDragEnter = function(flow){
                 $scope.newLogo = flow.files[0];
                 flow.files = [];
@@ -83,24 +104,38 @@ angular.module('dmc.company-profile')
 
             $scope.removePicture = function(flow){
                 flow.files = [];
-                $scope.newLogo = null;
             };
 
             $scope.saveLogo = function() {
                 $scope.cancelChangingLogo();
-                uploadLogo();
-            }
+                var fileReader = new FileReader();
+                fileReader.onload = function (event) {
+                    $scope.newLogoUri = event.target.result;
+                };
+                fileReader.readAsDataURL($scope.newLogo.file);
+            };
+
+            $scope.removeLogo = function() {
+                $scope.logoIsDeleted = true;
+                $scope.companyLogoId = $scope.company.logoImage.id;
+                delete $scope.company.logoImage;
+            };
+
+            $scope.removeAddedLogo = function() {
+                $scope.newLogo = undefined;
+                $scope.newLogoUri = undefined;
+            };
 
             var uploadLogo = function(companyId){
                 if($scope.newLogo){
-                    fileUpload.uploadFileToUrl($scope.newLogo.file,{id : $scope.company.id},'company-logo', function(response) {
+                    fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
                         ajax.create(dataFactory.saveDocument(),
                             {
                                 organizationId: companyId,
                                 ownerId: $scope.user.accountId,
                                 documentUrl: response.file.name,
                                 documentName: 'company-logo',
-                                fileTypeId: 1
+                                fileType: 1
                             }, function(response) {
                                 if (response.status === 200) {
                                     toastModel.showToast('success', 'Logo uploaded successfully');
@@ -110,15 +145,83 @@ angular.module('dmc.company-profile')
                 }
             };
 
-            $scope.deleteLogo = function(ev){
-                //TODO soft delete doc
+            var deleteLogo = function(){
+                ajax.delete(dataFactory.deleteDocument($scope.companyLogoId), {}, function(response) {
+                    if(response.status === 200) {
+                        toastModel.showToast('success', 'Logo successfully deleted');
+                    }else{
+                        toastModel.showToast('error', 'Unable to delete logo');
+                    }
+                });
             };
 
+            var deleteImages = function(){
+                angular.forEach($scope.removedImages, function(imageId) {
+                    ajax.delete(dataFactory.deleteDocument(imageId), {}, function(response) {
+                        if(response.status === 200) {
+                            toastModel.showToast('success', 'Image successfully deleted');
+                        } else {
+                            toastModel.showToast('error', 'Unable to delete image');
+                        }
+                    });
+                });
+            };
+
+            var deleteVideos = function(){
+                angular.forEach($scope.removedVideos, function(videoId) {
+                    ajax.delete(dataFactory.deleteDocument(videoId), {}, function(response) {
+                        if(response.status === 200) {
+                            toastModel.showToast('success', 'Video successfully deleted');
+                        }else{
+                            toastModel.showToast('error', 'Unable to delete video');
+                        }
+                    });
+                });
+            };
+
+            var uploadImages = function(companyId){
+                angular.forEach($scope.images, function(image) {
+                    fileUpload.uploadFileToUrl(image.file, {id : $scope.company.id}, 'company-image', function(response) {
+                        ajax.create(dataFactory.saveDocument(),
+                            {
+                                organizationId: companyId,
+                                ownerId: $scope.user.accountId,
+                                documentUrl: response.file.name,
+                                documentName: image.title,
+                                fileType: 2
+                            }, function(response) {
+                                if (response.status === 200) {
+                                    toastModel.showToast('success', 'Image uploaded successfully');
+                                }
+                            });
+                    });
+                });
+            };
+
+            var uploadVideos = function(companyId){
+                angular.forEach($scope.videos, function(video) {
+                    fileUpload.uploadFileToUrl(video.file, {id : $scope.company.id}, 'company-video', function(response) {
+                        ajax.create(dataFactory.saveDocument(),
+                            {
+                                organizationId: companyId,
+                                ownerId: $scope.user.accountId,
+                                documentUrl: response.file.name,
+                                documentName: video.title,
+                                fileType: 3
+                            }, function(response) {
+                                if (response.status === 200) {
+                                    toastModel.showToast('success', 'Video uploaded successfully');
+                                }
+                            });
+                        });
+                });
+
+            };
             var callbackUploadPicture = function(data){
                 if(!data.error) {
                     toastModel.showToast('success', 'Image successfully added');
                 }else{
-                    toastModel.showToast('error', 'Unable add image');
+                    toastModel.showToast('error', 'Unable to add image');
                 }
             };
             // --------------------------------------------------------------------
@@ -126,88 +229,52 @@ angular.module('dmc.company-profile')
             var saveCallback = function(response) {
                 if(response.status === 200) {
                     toastModel.showToast('success', 'Organization successfully ' + $scope.action);
+                    var companyId = response.data.id;
+
+                    if ($scope.newLogo) {
+                        uploadLogo(companyId);
+                    }
+                    if ($scope.logoIsDeleted) {
+                        deleteLogo();
+                    }
+                    if ($scope.images.length > 0) {
+                        uploadImages(companyId);
+                    }
+                    if ($scope.removedImages.length > 0) {
+                        deleteImages();
+                    }
+                    if ($scope.videos.length > 0) {
+                        uploadVideos(companyId);
+                    }
+                    if ($scope.removedVideos.length > 0) {
+                        deleteVideos();
+                    }
+
                     $timeout(function() {
                         $window.location.href = '/company-profile.php#/profile/' + response.data.id;
                     }, 500);
                 }else{
                     toastModel.showToast('error', 'Organization could not be ' + $scope.action);
                 }
-                uploadLogo();
-                // uploadVideos();
-                // uploadImages();
-            }
+            };
 
             $scope.saveChanges = function(){
+                delete $scope.company.images;
+                delete $scope.company.videos;
+                delete $scope.company.logoImage;
+
                 if ($scope.company.id) {
                     ajax.put(dataFactory.updateOrganization($scope.company.id), $scope.company, saveCallback);
                 } else {
                     ajax.create(dataFactory.createOrganization(), $scope.company, saveCallback);
                 }
                 //save doc
-
             };
 
             // function for create contact
             var createContact = function(contact,updatedData){
                 var contact_ = $.extend(true,{},contact);
-                console.log(contact)
             };
-
-
-            // function for update video
-            var updateVideo = function(video,updatedData){
-                //TODO upload doc, s3
-                // ajax.update(dataFactory.updateCompanyVideo(video.id), updatedData,
-                //     function (response) {
-                //         var data = response.data ? response.data : response;
-                //         for (var i in $scope.company.videos) {
-                //             if ($scope.company.videos[i].id == video.id) {
-                //                 $scope.company.videos[i].title = $scope.company.videos[i].changedTitle;
-                //                 $scope.company.videos[i].link = $scope.company.videos[i].changedLink;
-                //                 break;
-                //             }
-                //         }
-                //         apply();
-                //     }, function () {
-                //         toastModel.showToast("error", "Error. The problem on the server (update video).");
-                //     }
-                // );
-            };
-
-            // function for delete video
-            var deleteVideo = function(id){
-                //TODO soft delete doc
-                // ajax.delete(dataFactory.deleteCompanyVideo(id),{},
-                //     function(response){
-                //         apply();
-                //     },function(){
-                //         toastModel.showToast("error", "Error. The problem on the server (delete video).");
-                //     }
-                // );
-            };
-
-            // function for delete array of images
-            var removeImages = function(){
-                //TODO soft delete all images
-                // if($scope.changes.removedImages.length > 0){
-                //     ajax.on(dataFactory.removeCompanyImages(),{
-                //             ids : $scope.changes.removedImages
-                //         },
-                //         function (data) {
-                //             for ( var index = 0; index < $scope.company.images.length; index++) {
-                //                 if($scope.changes.removedImages.indexOf($scope.company.images[index].id) != -1){
-                //                     $scope.company.images.splice(index,1);
-                //                 }
-                //             }
-                //             $scope.changes.removedImages = [];
-                //             apply();
-                //         }, function () {
-                //             toastModel.showToast("error", "Error. The problem on the server (remove images).");
-                //         }, "POST"
-                //     );
-                // }
-            };
-
 
             $scope.currentSection = {
                 index : 0,
