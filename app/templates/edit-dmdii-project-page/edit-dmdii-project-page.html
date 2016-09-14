@@ -74,13 +74,13 @@
         </div>
 
         <div layout="row">
-            <md-input-container flex="70" class="project-Summary" md-no-float>
-                <textarea ng-model="project.projectSummary"
-                          columns="1"
-                          ng-disabled=" !user.isDmdiiAdmin"
-                          md-maxlength="1000"
-                          placeholder="Summary of Project"></textarea>
-            </md-input-container>
+            <md-input-container class="no-bottom no-pad-bottom project-Summary" flex="70">
+	            <div class="rich" medium-editor ng-model="project.projectSummary"
+                    data-placeholder="Summary of Project"
+                    bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
+                    ng-disabled=" !user.isDmdiiAdmin"
+                    ng-required="true"></div>
+	        </md-input-container>
         </div>
 
         <div layout="row">

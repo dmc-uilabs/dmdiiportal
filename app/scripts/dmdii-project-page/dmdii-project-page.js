@@ -10,6 +10,7 @@ angular.module('dmc.dmdiiProj', [
     'ngMdIcons',
     'ui.router',
     'md.data.table',
+    'ng-showdown',
     'dmc.ajax',
     'dmc.data',
     'dmc.socket',

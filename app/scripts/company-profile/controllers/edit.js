@@ -6,6 +6,7 @@ angular.module('dmc.company-profile')
         "$scope",
         "$timeout",
         "$window",
+        "$showdown",
         "ajax",
         "dataFactory",
         "$location",
@@ -17,6 +18,7 @@ angular.module('dmc.company-profile')
                   $scope,
                   $timeout,
                   $window,
+                  $showdown,
                   ajax,
                   dataFactory,
                   $location,
@@ -31,6 +33,7 @@ angular.module('dmc.company-profile')
                 ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
                     $scope.company = response.data;
 
+                    $scope.company.description = $showdown.makeHtml($scope.company.description);
                     ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 1, limit: 1}, function(response) {
                         if (response.data.length > 0) {
                             $scope.company.logoImage = response.data[0];
@@ -258,17 +261,23 @@ angular.module('dmc.company-profile')
                 }
             };
 
+            var convertToMarkdown = function(input) {
+                var escaped = toMarkdown(input);
+                return escaped;
+            };
+
             $scope.saveChanges = function(){
                 delete $scope.company.images;
                 delete $scope.company.videos;
                 delete $scope.company.logoImage;
+
+                $scope.company.description = convertToMarkdown($scope.company.description);
 
                 if ($scope.company.id) {
                     ajax.put(dataFactory.updateOrganization($scope.company.id), $scope.company, saveCallback);
                 } else {
                     ajax.create(dataFactory.createOrganization(), $scope.company, saveCallback);
                 }
-                //save doc
             };
 
             // function for create contact

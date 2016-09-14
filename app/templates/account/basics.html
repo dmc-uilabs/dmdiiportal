@@ -15,8 +15,7 @@
                                    style="display:none"
                                    ng-click="deactivateAccount()">{{activatedText}}</md-button>
                         <span layout="column" flex></span>
-                        <md-button class="md-raised cancel-button" ng-click="cancelChanges()" ng-disabled="!changedValues">Cancel</md-button>
-                        <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="!changedValues">Save</md-button>
+                        <md-button class="md-raised md-primary save-button" ng-click="saveChanges()">Save</md-button>
                     </div>
                     <div class="inputs-container" layout="row">
                         <md-input-container flex="30">
@@ -24,23 +23,20 @@
                             <input ng-model="user.firstName"
                                    id="editFirstName"
                                    ng-blur="blurInput()"
-                                   ng-disabled="isVerified"
-                                   ng-change="changedValue('firstName',user.firstName)">
+                                   ng-disabled="isVerified">
                         </md-input-container>
                         <md-input-container flex="30">
                             <label>Last Name</label>
                             <input ng-model="user.lastName"
                                    ng-blur="blurInput()"
-                                   ng-disabled="isVerified"
-                                   ng-change="changedValue('lastName',user.lastName)">
+                                   ng-disabled="isVerified">
                         </md-input-container>
                         <md-input-container flex="40">
                             <label>Email Address</label>
                             <input ng-model="user.email"
                                    ng-blur="blurInput()"
                                    type="email"
-                                   ng-disabled="isVerified"
-                                   ng-change="changedValue('email',user.email)">
+                                   ng-disabled="isVerified">
                         </md-input-container>
                     </div>
                     <div class="inputs-container" layout="row" layout-align="end end" >
@@ -48,8 +44,7 @@
                             <label>Display Name</label>
                             <input ng-blur="blurInput()"
                                    autofocus
-                                   ng-model="user.displayName"
-                                   ng-change="changedValue('displayName',user.displayName)">
+                                   ng-model="user.displayName">
                         </md-input-container>
                         <div flex="30">
                         <md-input-container class="md-icon-float title-input-left">
@@ -59,8 +54,7 @@
                             </md-icon>
                             <input ng-model="user.location"
                                    type="text"
-                                   ng-blur="blurInput()"
-                                   ng-change="changedValue('location',user.location)">
+                                   ng-blur="blurInput()">
                         </md-input-container>
                         </div>
                         <div flex="40" layout="column" class="autocomplete-block">

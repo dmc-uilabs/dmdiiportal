@@ -444,6 +444,9 @@ angular.module('dmc.data',[])
             userRole: function() {
                 return localhost + 'userRole';
             },
+            updateUser: function() {
+                return localhost + 'user';
+            },
             generateToken: function(id) {
                 return localhost + 'user/createtoken?userId=' + id;
             },

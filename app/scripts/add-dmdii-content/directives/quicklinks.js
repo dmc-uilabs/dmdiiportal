@@ -21,6 +21,11 @@ angular.module('dmc.addDmdiiContent').
                     'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
                 }
 
+                var convertToMarkdown = function(input) {
+                    var escaped = toMarkdown(input);
+                    return escaped;
+                };
+
                 var quicklinkCallback = function(response) {
                     toastModel.showToast('success', 'Quicklink Saved!');
                     $scope.quicklink = {};
@@ -67,6 +72,8 @@ angular.module('dmc.addDmdiiContent').
                         if (!$scope.quicklink.text) {
                             $scope.noText = true;
                         }
+
+                        $scope.quicklink.text = convertToMarkdown($scope.quicklink.text);
 
                         delete $scope.quicklink.link;
                         delete $scope.quicklink.path;

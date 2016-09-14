@@ -35,9 +35,8 @@
 
     <div layout="row">
 		<div layout="column" flex="50">
-	        <md-input-container>
-	            <label>Content</label>
-	            <textarea type="text" ng-model="news.content" ng-required="true"/>
+            <md-input-container class="no-bottom no-pad-bottom">
+                <textarea ng-model="news.content" ng-required="true" placeholder="Content"></textarea>
 	        </md-input-container>
 			<div ng-show="noContent">
 				<p class="slim-margin error">You <b>must</b> enter some content</p>

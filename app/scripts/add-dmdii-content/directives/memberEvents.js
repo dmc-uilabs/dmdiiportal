@@ -15,6 +15,11 @@ angular.module('dmc.addDmdiiContent').
                     $window.location.reload();
                 };
 
+                var convertToMarkdown = function(input) {
+                    var escaped = toMarkdown(input);
+                    return escaped;
+                };
+
                 $scope.clear = function() {
                     $scope.event = {};
                     $scope.noTitle = false;
@@ -52,6 +57,7 @@ angular.module('dmc.addDmdiiContent').
                         return;
                     }
 
+                    $scope.event.description = convertToMarkdown($scope.event.description);
                     ajax.create(dataFactory.saveDMDIIMember().events, $scope.event, eventCallback);
                 };
 

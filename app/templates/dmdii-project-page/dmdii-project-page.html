@@ -135,7 +135,7 @@
 										<h2 class="margin-top-25 no-bottom green">{{update.title}}</h4>
 										<p class="superset">{{update.created}}</p>
 									</div>
-									<p class="slim-margin">{{update.description}}</p>
+									<p class="slim-margin" markdown-to-html="update.description"></p>
 								</div>
 							</div>
 							<span ng-hide="updates.length > 0">This Project has no updates</span>
@@ -162,7 +162,7 @@
 					<!--project description-->
 					<div class="project-overview">
 						<h2 >Summary</h2>
-						<p class="slim-margin">{{project.projectSummary}}</p>
+						<div class="slim-margin" markdown-to-html="project.projectSummary"></div>
 					</div>
 				</div>
 			</div>

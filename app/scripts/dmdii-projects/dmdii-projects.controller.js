@@ -12,6 +12,7 @@ angular.module('dmc.dmdiiProjects')
         '$scope',
         '$rootScope',
         '$cookies',
+        '$showdown',
         'ajax',
         'dataFactory',
         'socketFactory',
@@ -25,6 +26,7 @@ angular.module('dmc.dmdiiProjects')
                  $scope,
                  $rootScope,
                  $cookies,
+                 $showdown,
                  ajax,
                  dataFactory,
                  socketFactory,
@@ -166,7 +168,7 @@ angular.module('dmc.dmdiiProjects')
                     var e = {
                         date: event.eventDate,
                         content: '<h3>' + event.eventName + '</h3>' +
-                            '<p>' + event.eventDescription + '</p>'
+                            $showdown.makeHtml(event.eventDescription)
                     }
                     $scope.events.push(e);
                 });

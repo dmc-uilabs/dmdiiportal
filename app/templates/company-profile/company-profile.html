@@ -81,9 +81,9 @@
     </div>
 </div>
 <md-divider></md-divider>
-<div class="company-profile-description">
-    {{(showflag) ? company.descriptionSmall : company.description}} <a ng-click="showMore()" ng-if="showflag" href="">Read More</a>
-</div>
+
+<div class="company-profile-description" markdown-to-html="company.description"></div>
+
 <md-tabs md-dynamic-height md-border-bottom>
 <md-tab label="Overview">
     <md-content class="tab-projects">

@@ -23,7 +23,7 @@
                     <div class="slim-margin" ng-repeat="event in events | limitTo:3" ng-click="eventClicked(event)">
                         <h3  class="no-top no-bottom" >{{event.date}}</h3>
                         <h2 class="no-top no-bottom green">{{event.name}}</h2>
-                        <p class="no-top no-bottom">{{event.description}}</p>
+                        <p class="no-top no-bottom">{{plainText(event.description)}}</p>
                         <md-divider></md-divider>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <md-divider></md-divider>
                     <span ng-repeat="event in dayEvents">
                         <h3>{{event.title}}</h3>
-                        <p>{{event.description}}</p>
+                        <p markdown-to-html="event.description"></p>
                     </span>
                 </div>
 

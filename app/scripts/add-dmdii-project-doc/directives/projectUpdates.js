@@ -20,6 +20,10 @@ angular.module('dmc.add-project-doc').
 				$scope.update = {};
 				$scope.projectUpdates = [];
 
+                var convertToMarkdown = function(input) {
+                    var escaped = toMarkdown(input);
+                    return escaped;
+                };
 
 				$scope.saveUpdates = function() {
 					var startDate = new Date($scope.update.created);
@@ -34,6 +38,8 @@ angular.module('dmc.add-project-doc').
 					$scope.update.creator = $scope.user.accountId;
 
 					$scope.update.dmdiiProject = $scope.project.id;
+
+                    $scope.update.description = convertToMarkdown($scope.update.description);
 
 					ajax.create(dataFactory.saveDMDIIProject().update, $scope.update, function(response) {
 						$scope.update = {};
