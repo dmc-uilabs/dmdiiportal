@@ -9,6 +9,7 @@ angular.module('dmc.edit-project', [
     'dmc.configs.ngmaterial',
     'ngMdIcons',
     'ngtimeago',
+    'ng-showdown',
     'ui.router',
     'md.data.table',
     'angular-medium-editor',

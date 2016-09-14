@@ -8,6 +8,7 @@
 angular.module('dmc.members', [
     'dmc.configs.ngmaterial',
     'ngMdIcons',
+    'ng-showdown',
     'ui.router',
     'md.data.table',
     'dmc.ajax',

@@ -47,8 +47,11 @@
             <md-input-container class="no-bottom no-pad-bottom">
 	            <div class="rich" medium-editor ng-model="event.eventDescription"
                     data-placeholder="Description"
-                    bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote', 'orderedlist','unorderedlist', 'h2', 'h3'] } }"
+                    bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
                     ng-required="true"></div>
+	        </md-input-container>
+            <md-input-container class="no-bottom no-pad-bottom">
+                <textarea ng-model="event.eventDescription" ng-required="true" placeholder="Description"></textarea>
 	        </md-input-container>
 
             <div ng-show="noDescription">

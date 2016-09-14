@@ -6,6 +6,7 @@ angular.module('dmc.edit-project')
         '$scope',
         '$q',
         '$timeout',
+        '$showdown',
         'ajax',
         'dataFactory',
         '$location',
@@ -18,6 +19,7 @@ angular.module('dmc.edit-project')
                 $scope,
                 $q,
                 $timeout,
+                $showdown,
                 ajax,
                 dataFactory,
                 $location,
@@ -58,6 +60,8 @@ angular.module('dmc.edit-project')
             // callback for project
             var callbackFunction = function(response){
                 $scope.project = response.data;
+
+                $scope.project.projectSummary = $showdown.makeHtml($scope.project.projectSummary);
 
                 var awardedDate = $scope.project.awardedDate.split('-');
                 $scope.date.awarded = new Date(awardedDate[1] + '-' + awardedDate[2] + '-' + awardedDate[0]);
@@ -197,8 +201,8 @@ angular.module('dmc.edit-project')
                 console.log($scope.date);
             }, true)
 
-            var escapeRich = function(input) {
-                var escaped = input.replace(/"/g, "/\"").replace(/\//g, "\\/");
+            var convertToMarkdown = function(input) {
+                var escaped = toMarkdown(input);
                 return escaped;
             };
 
@@ -222,8 +226,8 @@ angular.module('dmc.edit-project')
 
                 $scope.project.endDate = year + '-' + month + '-' + day;
 
-                $scope.project.projectSummary = escapeRich($scope.project.projectSummary);
-                
+                $scope.project.projectSummary = convertToMarkdown($scope.project.projectSummary);
+
                 $scope.project.projectIdentifier = $scope.project.rootNumber + '-' + $scope.project.callNumber + '-' + $scope.project.projectNumber
                 ajax.create(dataFactory.saveDMDIIProject().project, $scope.project, callbackSaveFunction);
             };

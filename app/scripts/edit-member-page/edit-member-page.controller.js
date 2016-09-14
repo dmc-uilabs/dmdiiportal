@@ -6,6 +6,7 @@ angular.module('dmc.edit-member')
         "$scope",
         "$q",
         "$timeout",
+        '$showdown',
         "ajax",
         "dataFactory",
         "$location",
@@ -18,6 +19,7 @@ angular.module('dmc.edit-member')
                 $scope,
                 $q,
                 $timeout,
+                $showdown,
                 ajax,
                 dataFactory,
                 $location,
@@ -81,6 +83,8 @@ angular.module('dmc.edit-member')
             // callback for member
             var callbackFunction = function(response){
                 $scope.company = response.data;
+
+                $scope.company.organization.description = $showdown.makeHtml($scope.company.organization.description);
                 var startDate = $scope.company.startDate.split('-');
                 $scope.date.start = new Date(startDate[1] + '-' + startDate[2] + '-' + startDate[0]);
 
@@ -403,8 +407,8 @@ angular.module('dmc.edit-member')
                 }
             }
 
-            var escapeRich = function(input) {
-                var escaped = input.replace(/"/g, "/\"").replace(/\//g, "\\/");
+            var convertToMarkdown = function(input) {
+                var escaped = toMarkdown(input);
                 return escaped;
             };
 
@@ -432,7 +436,7 @@ angular.module('dmc.edit-member')
 
                 delete $scope.company.organization.logoImage;
 
-                $scope.company.organization.description = escapeRich($scope.company.organization.description);
+                $scope.company.organization.description = convertToMarkdown($scope.company.organization.description);
 
                 ajax.create(dataFactory.saveDMDIIMember().member, $scope.company, callbackSaveFunction);
             };

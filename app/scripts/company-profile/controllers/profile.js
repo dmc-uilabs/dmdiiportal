@@ -6,6 +6,7 @@ angular.module('dmc.company-profile')
         "$scope",
         "ajax",
         "dataFactory",
+        "$showdown",
         "$mdDialog",
         "$sce",
         "fileUpload",
@@ -24,6 +25,7 @@ angular.module('dmc.company-profile')
                   $scope,
                   ajax,
                   dataFactory,
+                  $showdown,
                   $mdDialog,
                   $sce,
                   fileUpload,
@@ -45,6 +47,7 @@ angular.module('dmc.company-profile')
             var getCompany = function() {
                 ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
                     $scope.company = response.data;
+
                     $scope.getCompanyMembers();
                     $scope.SortingReviews();
 
