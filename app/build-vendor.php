@@ -74,5 +74,8 @@
 <script src="/bower_components/aws-sdk/dist/aws-sdk.min.js"></script>
 <script src="/bower_components/medium-editor/dist/js/medium-editor.min.js"></script>
 <script src="/bower_components/angular-medium-editor/dist/angular-medium-editor.min.js"></script>
+<script src="/bower_components/to-markdown/dist/to-markdown.js"></script>
+<script src="/bower_components/showdown/dist/showdown.min.js"></script>
+<script src="/bower_components/ng-showdown/dist/ng-showdown.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->

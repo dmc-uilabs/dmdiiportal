@@ -7,6 +7,7 @@ angular.module('dmc.company-profile', [
     'ngMdIcons',
     'ngSanitize',
     'ngtimeago',
+    'ng-showdown',
     'ui.router',
     'md.data.table',
     'angular-medium-editor',

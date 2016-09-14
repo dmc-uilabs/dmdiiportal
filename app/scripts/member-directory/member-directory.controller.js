@@ -12,6 +12,7 @@ angular.module('dmc.members')
         '$scope',
         '$rootScope',
         '$cookies',
+        '$showdown',
         'ajax',
         'dataFactory',
         'socketFactory',
@@ -24,6 +25,7 @@ angular.module('dmc.members')
                  $scope,
                  $rootScope,
                  $cookies,
+                 $showdown,
                  ajax,
                  dataFactory,
                  socketFactory,
@@ -125,6 +127,9 @@ angular.module('dmc.members')
                 return $scope.memberCurrentPage !== Math.ceil($scope.members.count / $scope.memberPageSize) - 1;
             };
 
+            $scope.plainText = function(input) {
+                return $showdown.stripHtml($showdown.makeHtml(input));
+            };
 
             var loadingData = function(start){ // progress line
                 $scope.downloadData = start;
@@ -136,6 +141,7 @@ angular.module('dmc.members')
             var insertData = function(data){
                 $scope.membersByState = {};
                 angular.forEach(data, function(member) {
+                    member.organization.description = $showdown.stripHtml($showdown.makeHtml(member.organization.description));
                     if (!$scope.membersByState[member.organization.address.state]) {
                         $scope.membersByState[member.organization.address.state] =  [{name: member.organization.name, id: member.organization.id}];
                     } else {

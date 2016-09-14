@@ -30,8 +30,8 @@ angular.module('dmc.addDmdiiContent').
                     $window.location.reload();
                 };
 
-                var escapeRich = function(input) {
-                    var escaped = input.replace(/"/g, "/\"").replace(/\//g, "\\/");
+                var convertToMarkdown = function(input) {
+                    var escaped = toMarkdown(input);
                     return escaped;
                 };
 
@@ -68,8 +68,8 @@ angular.module('dmc.addDmdiiContent').
                         return;
                     }
 
-                    $scope.event.eventDescription = escapeRich($scope.event.eventDescription);
-                    
+                    $scope.event.eventDescription = convertToMarkdown($scope.event.eventDescription);
+
                     ajax.create(dataFactory.saveDMDIIProject().events, $scope.event, eventCallback);
                 };
 

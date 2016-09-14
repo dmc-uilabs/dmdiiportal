@@ -21,8 +21,8 @@ angular.module('dmc.addDmdiiContent').
                     'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
                 }
 
-                var escapeRich = function(input) {
-                    var escaped = input.replace(/"/g, "/\"").replace(/\//g, "\\/");
+                var convertToMarkdown = function(input) {
+                    var escaped = toMarkdown(input);
                     return escaped;
                 };
 
@@ -73,7 +73,7 @@ angular.module('dmc.addDmdiiContent').
                             $scope.noText = true;
                         }
 
-                        $scope.quicklink.text = escapeRich($scope.quicklink.text);
+                        $scope.quicklink.text = convertToMarkdown($scope.quicklink.text);
 
                         delete $scope.quicklink.link;
                         delete $scope.quicklink.path;

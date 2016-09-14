@@ -14,11 +14,6 @@ angular.module('dmc.addDmdiiContent').
                     $window.location.reload();
                 };
 
-                var escapeRich = function(input) {
-                    var escaped = input.replace(/"/g, "/\"").replace(/\//g, "\\/");
-                    return escaped;
-                };
-
                 $scope.clear = function() {
                     $scope.news = {};
                 };
@@ -46,7 +41,6 @@ angular.module('dmc.addDmdiiContent').
                         return;
                     }
 
-                    $scope.news.content = escapeRich($scope.news.content);
                     ajax.create(dataFactory.saveDMDIIMember().news, $scope.news, newsCallbackFunction);
                 };
 

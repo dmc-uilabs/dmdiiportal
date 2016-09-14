@@ -8,6 +8,8 @@
 angular.module('dmc.dmdiiProjects', [
     'dmc.configs.ngmaterial',
     'ngMdIcons',
+    'ngSanitize',
+    'ng-showdown',
     'ui.router',
     'md.data.table',
     'dmc.ajax',
@@ -22,7 +24,7 @@ angular.module('dmc.dmdiiProjects', [
     'dmc.common.footer',
     'dmc.component.treemenu',
     'dmc.widgets.tasks',
-    'dmc.widgets.tabs',
+    'dmc.widgets.tabs'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('dmdii_projects', {
