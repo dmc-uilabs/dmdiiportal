@@ -9,11 +9,15 @@
 	</div>
 
 	<md-input-container class="no-bottom no-pad-bottom">
-		<div class="rich" medium-editor ng-model="update.text"
+		<div class="rich" medium-editor ng-model="update.description"
 			data-placeholder="Description"
 			bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
 			ng-required="true"></div>
 	</md-input-container>
+
+	<div>
+		<p class="textHint">Highlight text to format</p>
+	</div>
 
 	<md-input-container>
 		<label>Access Level</label>
