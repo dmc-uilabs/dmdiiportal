@@ -37,15 +37,20 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
           $scope.userCompanyId = $scope.userData.companyId;
 
           $scope.userData.isDmdiiAdmin = ($scope.userData.roles && angular.isDefined($scope.userData.roles[0])) ? true : false;
-          $scope.runningServicesList = $scope.userData.runningServices.items;
-          $scope.messagesList = $scope.userData.messages.items;
-          $scope.notificationsList = getExtendedNotifications($scope.userData.notifications.items);
+          if ($scope.userData.runningServices) {
+              $scope.runningServicesList = $scope.userData.runningServices.items;
+              $scope.service_alert = $scope.userData.runningServices.total;
+          }
 
-          $scope.service_alert = $scope.userData.runningServices.total;
+          if ($scope.userData.messages) {
+              $scope.messagesList = $scope.userData.messages.items;
+              $scope.message_alert = $scope.userData.messages.total;
+          }
 
-          $scope.notification_alert = $scope.userData.notifications.total;
-          $scope.message_alert = $scope.userData.messages.total;
-
+          if ($scope.userData.notifications) {
+              $scope.notificationsList = getExtendedNotifications($scope.userData.notifications.items);
+              $scope.notification_alert = $scope.userData.notifications.total;
+          }
             apply();
         };
 

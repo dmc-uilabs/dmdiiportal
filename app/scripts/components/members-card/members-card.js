@@ -100,7 +100,7 @@ angular.module('dmc.component.members-card', [
 				'MEMBER'
 			]
 
-			if (angular.isDefined($scope.cardSource.roles[$scope.companyId])) {
+			if ($scope.cardSource.roles && angular.isDefined($scope.cardSource.roles[$scope.companyId])) {
 				$scope.cardSource.isVerified = true;
 				$scope.role = $scope.cardSource.roles[$scope.companyId];
 				console.log($scope.role, $scope.cardSource.roles[$scope.companyId])

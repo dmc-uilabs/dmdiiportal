@@ -261,14 +261,16 @@ angular.module('dmc.search')
                             $scope.totalFollowing = 0;
                             $scope.arrayItems = response.data;
                             $scope.totalResults = response.data.length;
-                            for (var i in $scope.arrayItems) {
-                                $scope.arrayItems[i].isCompany = true;
-                                ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.organization.id, fileTypeId: 1, limit: 1}, function(response) {
+
+                            angular.forEach($scope.arrayItems, function(company) {
+                                company.isCompany = true;
+                                ajax.get(dataFactory.getDocument().byType, {organizationId: company.id, fileTypeId: 1, limit: 1}, function(response) {
                                     if (response.data.length > 0) {
-                                        $scope.arrayItems[i].logoImage = response.data[0];
+                                        company.logoImage = response.data[0];
                                     };
                                 });
-                            }
+                            });
+                            
                             isFollowCompany($.map($scope.arrayItems, function (x) {
                                 return x.id;
                             }));

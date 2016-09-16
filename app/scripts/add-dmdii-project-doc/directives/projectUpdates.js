@@ -44,7 +44,7 @@ angular.module('dmc.add-project-doc').
 					ajax.create(dataFactory.saveDMDIIProject().update, $scope.update, function(response) {
 						$scope.update = {};
 						toastModel.showToast('success', 'Project Update Saved!');
-                        $window.location.reload();
+                        $timeout($window.location.reload, 500);
 					});
 				};
 			}

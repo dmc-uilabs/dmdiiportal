@@ -15,7 +15,7 @@
 			<div layout="row" layout-margin>
 				<!--member image-->
 				<div class="member-logo" layout="column" style="max-width:20%">
-					<img class="company-logo" ng-if="member.organization.logoImage" ng-src="{{member.organization.logoImage}}">
+					<img class="company-logo" ng-if="member.organization.logoImage" ng-src="{{member.organization.logoImage.documentUrl}}">
 					<div class="no-image" ng-if="!member.organization.logoImage" layout layout-align="center center">
 						<h3>No Image</h3>
 					</div>
@@ -27,7 +27,7 @@
 							<p class="member-header">{{member.organization.name}}</p>
 						</div>
 						<div layout="row" layout-align="start center">
-							<h5 class="member-subtitle">{{member.dmdiiType.dmdiiTypeCategory.category + ' Tier ' + member.dmdiiType.tier + ' Partner' }}<br>{{' Member Since ' + member.organization.startDate}}</h5>
+							<h5 class="member-subtitle">{{member.dmdiiType.dmdiiTypeCategory.category + ' Tier ' + member.dmdiiType.tier + ' Partner' }}<br>{{' Member Since ' + member.startDate}}</h5>
 						</div>
 
 

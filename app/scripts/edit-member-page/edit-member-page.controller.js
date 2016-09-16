@@ -61,7 +61,8 @@ angular.module('dmc.edit-member')
                     $scope.company = {
                         dmdiiType: {
                             dmdiiTypeCategory: {}
-                        }
+                        },
+                        contacts: []
                     };
                 } else {
                     return;
@@ -232,22 +233,22 @@ angular.module('dmc.edit-member')
                 return deferred.promise;
             }
             $scope.removeWellTag = function(index) {
-                $scope.company.areasOfExpertise.splice(index, 1);
+                $scope.company.organization.areasOfExpertise.splice(index, 1);
             }
 
             $scope.removeSeekTag = function(index) {
-                $scope.company.desiredAreasOfExpertise.splice(index, 1);
+                $scope.company.organization.desiredAreasOfExpertise.splice(index, 1);
             }
 
             $scope.addWellTag = function(tag) {
-                if (tag && $scope.company.areasOfExpertise.indexOf(tag) === -1) {
-                    $scope.company.areasOfExpertise.push(tag);
+                if (tag && $scope.company.organization.areasOfExpertise.indexOf(tag) === -1) {
+                    $scope.company.organization.areasOfExpertise.push(tag);
                 }
             }
 
             $scope.addSeekTag = function(tag) {
-                if (tag && $scope.company.desiredAreasOfExpertise.indexOf(tag) === -1) {
-                    $scope.company.desiredAreasOfExpertise.push(tag);
+                if (tag && $scope.company.organization.desiredAreasOfExpertise.indexOf(tag) === -1) {
+                    $scope.company.organization.desiredAreasOfExpertise.push(tag);
                 }
             }
 
@@ -362,14 +363,16 @@ angular.module('dmc.edit-member')
             var uploadLogo = function(companyId){
                 if($scope.newLogo){
                     fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
+console.log(response)
                         ajax.create(dataFactory.saveDocument(),
                             {
                                 organizationId: companyId,
-                                ownerId: $scope.user.accountId,
+                                ownerId: $scope.userData.accountId,
                                 documentUrl: response.file.name,
                                 documentName: 'company-logo',
                                 fileType: 1
                             }, function(response) {
+                                console.log(response)
                                 if (response.status === 200) {
                                     toastModel.showToast('success', 'Logo uploaded successfully');
                                 }
@@ -401,7 +404,7 @@ angular.module('dmc.edit-member')
 
                     $timeout(function() {
                         $window.location.href = '/member-page.php#/' + response.data.id;
-                    }, 500);
+                    }, 1000);
                 } else {
                     toastModel.showToast('error', 'Organization could not be ' + $scope.action);
                 }

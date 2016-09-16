@@ -18,7 +18,7 @@
                 md-selected-item="selectedOrg"
                 md-selected-item-change="setOrg(selectedOrg)"
                 md-item-text="org.name"
-                md-floating-label="Organization">
+                placeholder="Enter an Organization Name to get stated">
                 <md-item-template>
                   <span md-highlight-text="searchOrg">{{org.name}}</span>
                 </md-item-template>
@@ -27,239 +27,244 @@
                 </md-not-found>
             </md-autocomplete>
         </div>
-        <div layout="row">
-            <div layout="column" class="logo-column" ng-show="!changingLogo">
-                <div class="profile-logo">
-                    <img ng-src="{{company.organization.logoImage.documentUrl}}" class="logo" alt="{{company.name}}" ng-if="company.organization.logoImage && !newLogo"/>
-                    <img ng-src="{{newLogo ? newLogoUri : 'images/icon-company-lg.svg'}}" class="logo" alt="{{company.name}}" ng-if="!company.organization.logoImage"/>
-                    <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
-                               ng-if="company.organization.logoImage && !newLogo"
-                               ng-click="removeLogo($event)"
-                               aria-label="Delete Image">
-                        <ng-md-icon icon="delete" size="18"></ng-md-icon>
-                    </md-button>
+        <div ng-hide=!company.organization>
+            <div layout="row">
+                <div layout="column" class="logo-column" ng-show="!changingLogo">
+                    <div class="profile-logo">
+                        <img ng-src="{{company.organization.logoImage.documentUrl}}" class="logo" alt="{{company.name}}" ng-if="company.organization.logoImage && !newLogo"/>
+                        <img ng-src="{{newLogo ? newLogoUri : 'images/icon-company-lg.svg'}}" class="logo" alt="{{company.name}}" ng-if="!company.organization.logoImage"/>
+                        <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
+                                   ng-if="company.organization.logoImage && !newLogo"
+                                   ng-click="removeLogo($event)"
+                                   aria-label="Delete Image">
+                            <ng-md-icon icon="delete" size="18"></ng-md-icon>
+                        </md-button>
 
-                    <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
-                               ng-if="newLogo && !company.organization.logoImage"
-                               ng-click="removeAddedLogo($event)"
-                               aria-label="Delete Image">
-                        <ng-md-icon icon="delete" size="18"></ng-md-icon>
-                    </md-button>
+                        <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
+                                   ng-if="newLogo && !company.organization.logoImage"
+                                   ng-click="removeAddedLogo($event)"
+                                   aria-label="Delete Image">
+                            <ng-md-icon icon="delete" size="18"></ng-md-icon>
+                        </md-button>
+                    </div>
+                    <md-button style="width: auto;" flex class="md-raised change-logo" ng-click="changeLogo()" ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin">Change Logo</md-button>
                 </div>
-                <md-button style="width: auto;" flex class="md-raised change-logo" ng-click="changeLogo()" ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin">Change Logo</md-button>
-            </div>
-            <div ng-if="changingLogo">
-                <div>
-                    <div class="flow-box"
-                         flow-init
-                         flow-drag-enter="pictureDragEnter($flow)"
-                         flow-drag-leave="pictureDragLeave($flow)"
-                         flow-file-success="$file.msg = $message"
-                         flow-file-added="addedNewFile($file, $event, $flow )"
-                         layout="row" flex layout-align="start start">
-                        <div class="alert" flow-drop flow-drop-enabled="true" flex>
-                            <div class="inner-box" layout="row" layout-align="center center" flex>
-                                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-                                    <img id="flowImage" flow-img="$flow.files[0]" />
-                                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
-                                        <ng-md-icon icon="close" size="21"></ng-md-icon>
-                                    </md-button>
-                                </div>
-                                <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
-                                    Drag And Drop your picture here<br>
-                                    300 x 300 px (max 2 MB)
-                                    <br>or<br>
-                                    <strong>Click here</strong>
+                <div ng-if="changingLogo">
+                    <div>
+                        <div class="flow-box"
+                             flow-init
+                             flow-drag-enter="pictureDragEnter($flow)"
+                             flow-drag-leave="pictureDragLeave($flow)"
+                             flow-file-success="$file.msg = $message"
+                             flow-file-added="addedNewFile($file, $event, $flow )"
+                             layout="row" flex layout-align="start start">
+                            <div class="alert" flow-drop flow-drop-enabled="true" flex>
+                                <div class="inner-box" layout="row" layout-align="center center" flex>
+                                    <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
+                                        <img id="flowImage" flow-img="$flow.files[0]" />
+                                        <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
+                                            <ng-md-icon icon="close" size="21"></ng-md-icon>
+                                        </md-button>
+                                    </div>
+                                    <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
+                                        Drag And Drop your picture here<br>
+                                        300 x 300 px (max 2 MB)
+                                        <br>or<br>
+                                        <strong>Click here</strong>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div layout="row" layout-align="space-between start">
+                        <md-button flex class="md-raised md-primary upload-logo" ng-disabled="!newLogo" ng-click="saveLogo()">Upload</md-button>
+                        <md-button flex class="md-raised cancel-change-logo" ng-click="cancelChangingLogo()">Cancel</md-button>
+                    </div>
                 </div>
-                <div layout="row" layout-align="space-between start">
-                    <md-button flex class="md-raised md-primary upload-logo" ng-disabled="!newLogo" ng-click="saveLogo()">Upload</md-button>
-                    <md-button flex class="md-raised cancel-change-logo" ng-click="cancelChangingLogo()">Cancel</md-button>
-                </div>
-            </div>
-            <div layout="column" flex class="inputs-top">
-                <div layout="row">
-                    <md-input-container class="company-name" flex="50" md-no-float>
-                        <input ng-model="company.organization.name"
-                               ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin"
-                               placeholder="Company Name">
-                    </md-input-container>
-                </div>
-
-                <div layout="row">
-                    <md-input-container flex="35" class="company-industry" md-no-float>
-                        <md-select ng-model="companyTier.data"
-                        ng-model-options="{trackBy: '$value.id'}"
-                        ng-disabled="!userData.isDmdiiAdmin"
-                        placeholder="Category and Tier">
-                        <md-option ng-value="type" ng-repeat="type in types">{{categories[type.category] + type.tier}}</md-option>
-                    </md-input-container>
-                </div>
-
-                <div layout="row">
+                <div layout="column" flex class="inputs-top">
                     <div layout="row">
+                        <md-input-container class="company-name" flex="50" md-no-float>
+                            <input ng-model="company.organization.name"
+                                   ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin"
+                                   placeholder="Company Name">
+                        </md-input-container>
+                    </div>
+
+                    <div layout="row">
+                        <md-input-container flex="35" class="company-industry" md-no-float>
+                            <md-select ng-model="companyTier.data"
+                            ng-model-options="{trackBy: '$value.id'}"
+                            ng-disabled="!userData.isDmdiiAdmin"
+                            placeholder="Category and Tier">
+                            <md-option ng-value="type" ng-repeat="type in types">{{categories[type.category] + type.tier}}</md-option>
+                        </md-input-container>
+                    </div>
+
+                    <div layout="row">
+                        <div layout="row">
+                            <div layout="column">
+                                <md-datepicker class="no-bottom no-pad-bottom top10" name="joinDate" ng-model="date.start" required md-placeholder="Join Date"></md-datepicker>
+                            </div>
+
+                            <div layout="column">
+                                <md-datepicker class="no-bottom no-pad-bottom top10" name="expireDate" ng-model="date.expire" required md-placeholder="Expire Date"></md-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div layout="row">
+                <md-input-container class="no-bottom no-pad-bottom company-description">
+    	            <div class="rich" medium-editor ng-model="company.organization.description"
+                        data-placeholder="Description of Organization"
+                        bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
+                        ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin"
+                        ng-required="true"></div>
+    	        </md-input-container>
+                <div>
+                    <p class="textHint">Highlight text to format</p>
+                </div>
+            </div>
+
+            <div layout="column">
+                <div layout="row" ng-if="userData.isAdmin || userData.isDmdiiAdmin">
+                    <md-autocomplete flex="45"
+                        md-input-name="coreCpabilites"
+                        md-items="tag in queryTagSearch(searchWellTag)"
+                        md-search-text="searchWellTag"
+                        md-selected-item="selectedWellTag"
+                        md-selected-item-change="addWellTag(selectedWellTag)"
+                        md-item-text="tag.name"
+                        md-floating-label="Core Capabilities">
+                        <md-item-template>
+                          <span md-highlight-text="searchWellTag">{{tag.name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                          No Tags matching "{{searchWellTag}}" were found.
+                        </md-not-found>
+                    </md-autocomplete>
+                    <span flex></span>
+
+                    <md-autocomplete flex="45"
+                        md-input-name="seeking"
+                        md-items="tag in queryTagSearch(searchSeekTag)"
+                        md-search-text="searchSeekTag"
+                        md-selected-item="selectedSeekTag"
+                        md-selected-item-change="addSeekTag(selectedSeekTag)"
+                        md-item-text="tag.name"
+                        md-floating-label="Seeking Collaboration">
+                        <md-item-template>
+                          <span md-highlight-text="searchSeekTag">{{tag.name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                          No Tags matching "{{searchSeekTag}}" were found.
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+
+                <div layout="row">
+                    <div layout="row" layout-wrap flex="45">
                         <div layout="column">
-                            <md-datepicker class="no-bottom no-pad-bottom top10" name="joinDate" ng-model="date.start" required md-placeholder="Join Date"></md-datepicker>
+                            <span class="no-bottom" flex>Selected Core Capabilities (Click tag to remove)</span>
+                            <div layout="row" layout-wrap>
+                                <md-chips ng-repeat="area in company.organization.areasOfExpertise track by $index">
+                                    <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeWellTag($index)">
+                                        <span>{{area.name}}</span>
+                                    </md-chip>
+                                </md-chips>
+                            </div>
                         </div>
+                    </div>
 
+                    <span flex></span>
+
+                    <div layout="row" layout-wrap flex="45">
                         <div layout="column">
-                            <md-datepicker class="no-bottom no-pad-bottom top10" name="expireDate" ng-model="date.expire" required md-placeholder="Expire Date"></md-datepicker>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div layout="row">
-            <md-input-container class="no-bottom no-pad-bottom company-description">
-	            <div class="rich" medium-editor ng-model="company.organization.description"
-                    data-placeholder="Description of Organization"
-                    bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
-                    ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin"
-                    ng-required="true"></div>
-	        </md-input-container>
-        </div>
-
-        <div layout="column">
-            <div layout="row" ng-if="userData.isAdmin || userData.isDmdiiAdmin">
-                <md-autocomplete flex="45"
-                    md-input-name="coreCpabilites"
-                    md-items="tag in queryTagSearch(searchWellTag)"
-                    md-search-text="searchWellTag"
-                    md-selected-item="selectedWellTag"
-                    md-selected-item-change="addWellTag(selectedWellTag)"
-                    md-item-text="tag.name"
-                    md-floating-label="Core Capabilities">
-                    <md-item-template>
-                      <span md-highlight-text="searchWellTag">{{tag.name}}</span>
-                    </md-item-template>
-                    <md-not-found>
-                      No Tags matching "{{searchWellTag}}" were found.
-                    </md-not-found>
-                </md-autocomplete>
-                <span flex></span>
-
-                <md-autocomplete flex="45"
-                    md-input-name="seeking"
-                    md-items="tag in queryTagSearch(searchSeekTag)"
-                    md-search-text="searchSeekTag"
-                    md-selected-item="selectedSeekTag"
-                    md-selected-item-change="addSeekTag(selectedSeekTag)"
-                    md-item-text="tag.name"
-                    md-floating-label="Seeking Collaboration">
-                    <md-item-template>
-                      <span md-highlight-text="searchSeekTag">{{tag.name}}</span>
-                    </md-item-template>
-                    <md-not-found>
-                      No Tags matching "{{searchSeekTag}}" were found.
-                    </md-not-found>
-                </md-autocomplete>
-            </div>
-
-            <div layout="row">
-                <div layout="row" layout-wrap flex="45">
-                    <div layout="column">
-                        <span class="no-bottom" flex>Selected Core Capabilities (Click tag to remove)</span>
-                        <div layout="row" layout-wrap>
-                            <md-chips ng-repeat="area in company.organization.areasOfExpertise track by $index">
-                                <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeWellTag($index)">
-                                    <span>{{area.name}}</span>
-                                </md-chip>
-                            </md-chips>
+                            <span class="no-bottom" flex>Selected Seeking Collaborations (Click tag to remove)</span>
+                            <div layout="row" layout-wrap>
+                                <md-chips ng-repeat="area in company.organization.desiredAreasOfExpertise track by $index">
+                                    <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeSeekTag($index)">
+                                        <span>{{area.name}}</span>
+                                    </md-chip>
+                                </md-chips>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <span flex></span>
+            <div layout="column" ng-show="userData.isAdmin || userData.isDmdiiAdmin">
+                <h3 class="no-bottom">Contacts</h3>
+                <div layout="row">
+                    <div layout="column" flex="20">
+                        <md-input-container>
+                            <label>First Name</label>
+                            <input id="contactFirstName"
+                                ng-model="contact.firstName">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Last Name</label>
+                            <input id="contactLastName"
+                                ng-model="contact.lastName">
+                        </md-input-container>
+                        <md-input-container md-no-float>
+                            <label>Email</label>
+                            <input id="contactEmail"
+                                ng-model="contact.email">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Contact Type</label>
+                            <md-select id="contactType"
+                                ng-model="contact.contactType" ng-model-options="{trackBy: '$value.id'}">
+                                <md-option ng-repeat="type in contactTypes" ng-value="type">{{type.type}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-button class="md-raised" ng-click="addContact()">Add Contact</md-button>
+                    </div>
+                    <span flex></span>
 
-                <div layout="row" layout-wrap flex="45">
-                    <div layout="column">
-                        <span class="no-bottom" flex>Selected Seeking Collaborations (Click tag to remove)</span>
-                        <div layout="row" layout-wrap>
-                            <md-chips ng-repeat="area in company.organization.desiredAreasOfExpertise track by $index">
-                                <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeSeekTag($index)">
-                                    <span>{{area.name}}</span>
-                                </md-chip>
-                            </md-chips>
-                        </div>
+                    <div layout="row" flex="75" layout-align="start start" layout-wrap>
+                        <md-chips ng-repeat="contact in company.contacts track by $index">
+                            <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeContact($index)">
+                                <span>
+                                    <strong>{{contact.firstName + ' ' + contact.lastName}}</strong>
+                                    <em>{{contact.email}}</em>
+                                </span>
+                            </md-chip>
+                        </md-chips>
                     </div>
                 </div>
             </div>
 
-        <div layout="column" ng-show="userData.isAdmin || userData.isDmdiiAdmin">
-            <h3 class="no-bottom">Contacts</h3>
-            <div layout="row">
-                <div layout="column" flex="20">
-                    <md-input-container>
-                        <label>First Name</label>
-                        <input id="contactFirstName"
-                            ng-model="contact.firstName">
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Last Name</label>
-                        <input id="contactLastName"
-                            ng-model="contact.lastName">
-                    </md-input-container>
-                    <md-input-container md-no-float>
-                        <label>Email</label>
-                        <input id="contactEmail"
-                            ng-model="contact.email">
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Contact Type</label>
-                        <md-select id="contactType"
-                            ng-model="contact.contactType" ng-model-options="{trackBy: '$value.id'}">
-                            <md-option ng-repeat="type in contactTypes" ng-value="type">{{type.type}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-button class="md-raised" ng-click="addContact()">Add Contact</md-button>
-                </div>
-                <span flex></span>
-
-                <div layout="row" flex="75" layout-align="start start" layout-wrap>
-                    <md-chips ng-repeat="contact in company.contacts track by $index">
-                        <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeContact($index)">
-                            <span>
-                                <strong>{{contact.firstName + ' ' + contact.lastName}}</strong>
-                                <em>{{contact.email}}</em>
-                            </span>
-                        </md-chip>
-                    </md-chips>
-                </div>
-            </div>
-        </div>
-
-        <div layout="column" ng-show="userData.isAdmin || userData.isDmdiiAdmin">
-            <h3 class="no-bottom">Recognitions</h3>
-            <div layout="row">
-                <div layout="column" flex="20">
-                    <md-input-container md-no-float>
-                        <input id="awardName"
-                            ng-model="award.name"
-                            placeholder="Recognition Name">
-                    </md-input-container>
-                    <md-input-container md-no-float>
-                        <textarea id="awardDescription"
-                            ng-model="award.description"
-                            columns="4"
-                            md-maxlength="250"
-                            placeholder="Recognition Description"></textarea>
-                    </md-input-container>
-                    <md-input-container md-no-float>
-                        <input id="awardLink"
-                            ng-model="award.link"
-                            placeholder="Recognition Link (Optional)">
-                    </md-input-container>
-                    <md-button class="md-raised" ng-click="addAward()">Add Award</md-button>
-                </div>
-                <span flex></span>
-                <div layout="row" flex="75" layout-wrap>
-                    <div flex="20" ng-repeat="award in company.organization.awards track by $index">
-                        <span flex="5" ng-click="removeAward($index)">x</span>
-                        <h4 class="no-top">{{award.name}}</h4>
-                        <p>{{award.description}}</p>
+            <div layout="column" ng-show="userData.isAdmin || userData.isDmdiiAdmin">
+                <h3 class="no-bottom">Recognitions</h3>
+                <div layout="row">
+                    <div layout="column" flex="20">
+                        <md-input-container md-no-float>
+                            <input id="awardName"
+                                ng-model="award.name"
+                                placeholder="Recognition Name">
+                        </md-input-container>
+                        <md-input-container md-no-float>
+                            <textarea id="awardDescription"
+                                ng-model="award.description"
+                                columns="4"
+                                md-maxlength="250"
+                                placeholder="Recognition Description"></textarea>
+                        </md-input-container>
+                        <md-input-container md-no-float>
+                            <input id="awardLink"
+                                ng-model="award.link"
+                                placeholder="Recognition Link (Optional)">
+                        </md-input-container>
+                        <md-button class="md-raised" ng-click="addAward()">Add Award</md-button>
+                    </div>
+                    <span flex></span>
+                    <div layout="row" flex="75" layout-wrap>
+                        <div flex="20" ng-repeat="award in company.organization.awards track by $index">
+                            <span flex="5" ng-click="removeAward($index)">x</span>
+                            <h4 class="no-top">{{award.name}}</h4>
+                            <p>{{award.description}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
