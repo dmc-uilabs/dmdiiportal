@@ -18,7 +18,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
       //userData: '='
     },
     templateUrl: 'templates/common/header/header-tpl.html',
-    controller : function($scope,ajax,dataFactory){
+    controller : function($scope,ajax,dataFactory,$window){
         $scope.userData;
         $scope.userName = userModel.getUserName();
         userModel.getUserData().then(
@@ -63,7 +63,10 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         };
 
         $scope.logout = function(){
-          userModel.logout();
+          ajax.get(dataFactory.logoutUrl(),{},function(resp){
+            userModel.logout();
+            $window.location.href=$window.location.origin;
+          });
         };
 
         $scope.closeMenu = function(){
