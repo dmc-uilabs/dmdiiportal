@@ -191,7 +191,7 @@ angular.module('dmc.data',[])
                 return baseServer+'/add_discussion_like_dislike';
             },
             logoutUrl: function(custom){
-                return localhost+'Shibboleth.sso/Logout?return='+(custom||localhost);
+                return baseServer+'/Shibboleth.sso/Logout?return='+(custom||baseServer);
             },
 
 
