@@ -45,8 +45,9 @@
     <div layout="row">
         <div layout="column" flex="50">
             <md-input-container class="no-bottom no-pad-bottom">
+                <label>Description</label>
 	            <div class="rich" medium-editor ng-model="event.eventDescription"
-                    data-placeholder="Description"
+                    data-placeholder="Enter text here"
                     bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
                     ng-required="true"></div>
 	        </md-input-container>

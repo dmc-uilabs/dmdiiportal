@@ -62,8 +62,9 @@
             <div layout="column" flex class="inputs-top">
                 <div layout="row">
                     <md-input-container flex="35" class="company-name">
-                        <label>Company Name</label>
-                        <input ng-model="company.name">
+                        <label>Company Name (Required)</label>
+                        <input ng-model="company.name"
+                        ng-required="true">
                     </md-input-container>
                     <md-input-container flex="35" class="company-division">
                         <label>Division</label>
@@ -84,14 +85,17 @@
             </div>
         </div>
         <div layout="row">
-            <md-input-container class="no-bottom no-pad-bottom" flex class="company-descriptionOrganization">
-	            <div class="rich" medium-editor ng-model="company.description"
-                    data-placeholder="Description of Organization"
-                    bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
-                    ng-required="true"></div>
-	        </md-input-container>
-            <div>
-                <p class="textHint">Highlight text to format</p>
+            <div layout="column">
+                <md-input-container class="no-bottom no-pad-bottom" flex class="company-descriptionOrganization">
+                    <label>Description (Required)</label>
+    	            <div class="rich" medium-editor ng-model="company.description"
+                        data-placeholder="Place text here"
+                        bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
+                        ng-required="true"></div>
+    	        </md-input-container>
+                <div>
+                    <p class="textHint">Highlight text to format</p>
+                </div>
             </div>
         </div>
         <div layout="row">

@@ -22,16 +22,20 @@
     <div layout="row">
         <div layout="column" flex="33">
             <md-input-container class="no-bottom no-pad-bottom">
-	            <div class="rich" medium-editor ng-model="event.description"
-                    data-placeholder="Description"
-                    bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
-                    ng-required="true"></div>
+                <label>Description</label>
+                <div richText
+                    is-required="true"
+                    ng-model="event.description"
+                    limit="limit"
+	                is-saved="isSaved"
+                    is-valid="isValid">
+                </div>
 	        </md-input-container>
 
             <div>
                 <p class="textHint">Highlight text to format</p>
             </div>
-            
+
             <div ng-show="noDescription">
                 <p class="slim-margin error">You <b>must</b> enter a description</p>
             </div>

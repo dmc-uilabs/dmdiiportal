@@ -112,10 +112,10 @@
                             <div layout="row" flex layout-align="start start" class="company-description">
                                 <md-input-container flex="60">
                                     <label>Description</label>
-                                    <textarea ng-model="companyData.description"
+                                    <div class="rich" medium-editor ng-model="companyData.description"
                                               ng-change="changedInput('description')"
-                                              id="descriptionCompany"
-                                              columns="1"></textarea>
+                                              data-placeholder="Enter text here"
+                                              id="descriptionCompany"></div>
                                 </md-input-container>
                             </div>
                         </div>

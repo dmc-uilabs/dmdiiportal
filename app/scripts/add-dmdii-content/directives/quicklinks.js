@@ -5,14 +5,15 @@ angular.module('dmc.addDmdiiContent').
             restrict: 'A',
             templateUrl: 'templates/add-dmdii-content/tabs/tab-quicklinks.html',
             scope: {
-                source : "=",
-                user: "="
+                source : '=',
+                user: '='
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload, questionToastModel, $window) {
-                $element.addClass("tab-quicklinks");
+                $element.addClass('tab-quicklinks');
 
                 $scope.quicklink = {};
                 $scope.linkType = 'text';
                 $scope.document = [];
+                $scope.descriptionLimit = 5000;
 
                 $scope.docAccessLevels = {
                     'All Members': 'ALL_MEMBERS',
@@ -27,12 +28,13 @@ angular.module('dmc.addDmdiiContent').
                 };
 
                 var quicklinkCallback = function(response) {
-                    toastModel.showToast('success', 'Quicklink Saved!');
                     $scope.quicklink = {};
                     $scope.noTitle = false;
                     $scope.noDescription = false;
                     $scope.noLink = false;
                     $scope.noDocSelected = false;
+                    $scope.descriptionOverLimit = false;
+                    toastModel.showToast('success', 'Quicklink Saved!');
                     $window.location.reload();
                 };
 
@@ -43,6 +45,7 @@ angular.module('dmc.addDmdiiContent').
                     $scope.noDescription = false;
                     $scope.noLink = false;
                     $scope.noDocSelected = false;
+                    $scope.descriptionOverLimit = falese;
                 };
 
                 $scope.$watch('quicklink', function() {
@@ -54,6 +57,10 @@ angular.module('dmc.addDmdiiContent').
                         $scope.noDescription = false;
                     }
 
+                    if ($scope.linkType === 'text' && $scope.descriptionOverLimit && angular.isDefined($scope.quicklink.text) && $scope.quicklink.text.length < $scope.descriptionLimit) {
+                        $scope.descriptionOverLimit = false;
+                    }
+
                     if ($scope.linkType === 'link' && $scope.noLink && angular.isDefined($scope.quicklink.link) && $scope.quicklink.link.trim().length > 0) {
                         $scope.noLink = false;
                     }
@@ -61,6 +68,7 @@ angular.module('dmc.addDmdiiContent').
                     if ($scope.linkType === 'document' && $scope.noDocSelected && angular.isDefined($scope.document) && $scope.document.length > 0) {
                         $scope.noDocSelected = false;
                     }
+
                 }, true);
 
                 $scope.save = function() {
@@ -73,12 +81,16 @@ angular.module('dmc.addDmdiiContent').
                             $scope.noText = true;
                         }
 
+                        if ($scope.quicklinl.text.length < $scope.descriptionLimit) {
+                            $scope.descriptionOverLimit = true;
+                        }
+
                         $scope.quicklink.text = convertToMarkdown($scope.quicklink.text);
 
                         delete $scope.quicklink.link;
                         delete $scope.quicklink.path;
 
-                        if ($scope.noTitle || $scope.noDescription) {
+                        if ($scope.noTitle || $scope.noDescription || $scope.descriptionOverLimit) {
                             return;
                         }
 

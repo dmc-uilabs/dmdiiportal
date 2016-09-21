@@ -5,14 +5,16 @@ angular.module('dmc.addDmdiiContent').
             restrict: 'A',
             templateUrl: 'templates/add-dmdii-content/tabs/tab-member-events.html',
             scope: {
-                source : "=",
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, questionToastModel, $window) {
-                $element.addClass("tab-memberEvents");
+                source : '=',
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, questionToastModel, $window, $timeout) {
+                $element.addClass('tab-memberEvents');
                 $scope.event = {};
+
+                $scope.descriptionLimit = 5000;
 
                 var eventCallback = function(response) {
                     toastModel.showToast('success', 'Member Event Saved!');
-                    $window.location.reload();
+                    $setTimeout($window.location.reload, 500);
                 };
 
                 var convertToMarkdown = function(input) {
@@ -39,6 +41,10 @@ angular.module('dmc.addDmdiiContent').
                     if ($scope.noDescription && angular.isDefined($scope.event.description) && $scope.event.description.length > 0) {
                         $scope.noDescription = false;
                     }
+
+                    if ($scope.descriptionOverLimit && angular.isDefined($scope.event.description) && $scope.event.description.length < $scope.descriptionLimit) {
+                        $scope.descriptionOverLimit = false;
+                    }
                 }, true);
 
                 $scope.save = function() {
@@ -53,7 +59,11 @@ angular.module('dmc.addDmdiiContent').
                         $scope.noDescription = true;
                     }
 
-                    if ( $scope.noTitle || $scope.noDateSelected || $scope.noDescription) {
+                    if ($scope.event.description.length < $scope.descriptionLimit) {
+                        $scope.descriptionOverLimit = true;
+                    }
+
+                    if ( $scope.noTitle || $scope.noDateSelected || $scope.noDescription || $scope.descriptionOverLimit) {
                         return;
                     }
 

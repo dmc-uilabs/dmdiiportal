@@ -35,8 +35,9 @@
 	            <p class="slim-margin error">You <b>must</b> enter a link</p>
 	        </div>
 	        <md-input-container class="no-bottom no-pad-bottom" ng-show="linkType === 'text'" ng-required="linkType === 'text'">
+                <label>Description</label>
 	            <div class="rich" medium-editor ng-model="quicklink.text"
-                    data-placeholder="Description"
+                    data-placeholder="Enter text here"
                     bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
                     ng-required="linkType === 'text'"></div>
 	        </md-input-container>
@@ -44,7 +45,7 @@
             <div>
                 <p class="textHint">Highlight text to format</p>
             </div>
-            
+
 			<div ng-show="noText">
 	            <p class="slim-margin error">You <b>must</b> enter a description</p>
 	        </div>

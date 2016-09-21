@@ -363,7 +363,6 @@ angular.module('dmc.edit-member')
             var uploadLogo = function(companyId){
                 if($scope.newLogo){
                     fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
-console.log(response)
                         ajax.create(dataFactory.saveDocument(),
                             {
                                 organizationId: companyId,

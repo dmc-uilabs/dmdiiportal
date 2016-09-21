@@ -18,7 +18,9 @@
 		<h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{cardSource.firstName + ' ' + cardSource.lastName}}</a></h3>
 		<h4>{{cardSource.jobTitle}}</h4>
 		<h4>{{cardSource.userContactInfo.userPublicContactInfo.email}}</h4>
-		<a href="" ng-if="(userData.isDmdiiAdmin || userData.isAdmin) && cardSource.isVerified" ng-click="removeMember()">Remove from Organization</a>
+		<a href="" ng-if="(userData.isDmdiiAdmin || userData.isAdmin) && cardSource.isVerified && cardSource.id !== userData.accountId" ng-click="removeMember()">Remove from Organization</a>
+		<a href="" ng-if="cardSource.isVerified && cardSource.id === userData.accountId" ng-click="removeMember()">Leave Organization</a>
+
 	</div>
 
 	<div class="description">
@@ -39,7 +41,7 @@
 	        Verify
 	    </md-button>
 
-		<md-button ng-click="declineUser()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || cardSource.isVerified" class="white-button" aria-label="Decline" flex>
+		<md-button ng-click="declineMember()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || cardSource.isVerified" class="white-button" aria-label="Decline" flex>
 	        Decline
 	    </md-button>
 
@@ -73,8 +75,8 @@
 	        </div>
 	    </div>
 
-		<div class="select-role" ng-show="settingRole">
-	        <div layout="row" layout-align="center center" class="inner-select-role">
+		<div class="adding-to-project" ng-show="settingRole">
+	        <div layout="row" layout-align="center center" class="inner-add-to-project">
 	            <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelSetRole()">
 	                <ng-md-icon icon="close" size="17"></ng-md-icon>
 	            </md-button>

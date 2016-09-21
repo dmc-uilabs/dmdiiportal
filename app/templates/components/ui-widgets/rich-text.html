@@ -1,0 +1,14 @@
+<div class="rich" medium-editor ng-model="ngModel"
+	data-placeholder="Enter text here"
+	bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
+	ng-required="isRequired">
+</div>
+<div layout="row">
+	<p class="textHint" flex="50">Highlight text to format</p>
+	<p>{{chars + "/" + limit}}<p>
+</div>
+
+<div ng-show="isSaved">
+	<p class="slim-margin error" ng-show="noDescription">You <b>must</b> enter a description</p>
+	<p class="slim-margin error" ng-show="descriptionOverLimit">You <b>must</b> enter a description</p>
+</div>

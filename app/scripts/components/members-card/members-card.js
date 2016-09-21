@@ -66,12 +66,12 @@ angular.module('dmc.component.members-card', [
                 if(project) {
                     ajax.create(dataFactory.createMembersToProject(),
                         {
-                            "profileId": $scope.cardSource.id,
-                            "projectId": project.id,
-                            "fromProfileId": $scope.$root.userData.profileId,
-                            "from": $scope.$root.userData.displayName,
-                            "date": moment(new Date).format('x'),
-                            "accept": false
+                            'profileId': $scope.cardSource.id,
+                            'projectId': project.id,
+                            'fromProfileId': $scope.$root.userData.profileId,
+                            'from': $scope.$root.userData.displayName,
+                            'date': moment(new Date).format('x'),
+                            'accept': false
                         },
                         function (response) {
                             $scope.cancelAddToProject();
@@ -157,7 +157,7 @@ angular.module('dmc.component.members-card', [
 
 				$mdDialog.show({
 					controller: 'DisplayTokenController',
-					templateUrl: "templates/components/token-modal/token-modal.html",
+					templateUrl: 'templates/components/token-modal/token-modal.html',
 					parent: angular.element(document.body),
 					locals: {
 					   token: $scope.token
@@ -171,13 +171,13 @@ angular.module('dmc.component.members-card', [
             $scope.showMembers = function(id, ev){
                 $(window).scrollTop();
                   $mdDialog.show({
-                      controller: "showMembers",
-                      templateUrl: "templates/components/members-card/show-members.html",
+                      controller: 'showMembers',
+                      templateUrl: 'templates/components/members-card/show-members.html',
                       parent: angular.element(document.body),
                       targetEvent: ev,
                       clickOutsideToClose:true,
                       locals: {
-                          "id" : id
+                          'id' : id
                       }
                   }).then(function() {
                       $(window).scrollTop();
@@ -252,13 +252,13 @@ angular.module('dmc.component.members-card', [
 
     $scope.history = {
         leftColumn: {
-            title: "Public",
-            viewAllLink: "/all.php#/history/profile/"+id+"/public",
+            title: 'Public',
+            viewAllLink: '/all.php#/history/profile/'+id+'/public',
             list: []
         },
         rightColumn: {
-            title: "Mutual",
-            viewAllLink: "/all.php#/history/profile/"+id+"/mutual",
+            title: 'Mutual',
+            viewAllLink: '/all.php#/history/profile/'+id+'/mutual',
             list:[]
         }
     }
@@ -266,34 +266,34 @@ angular.module('dmc.component.members-card', [
     // get profile history
     ajax.get(dataFactory.profiles(id).history,
         {
-            "_limit": 3,
-            "section": "public"
+            '_limit': 3,
+            'section': 'public'
         },
         function(response){
             var data = response.data;
             for(var i in data){
-                data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
+                data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
                 switch(data[i].type){
-                    case "completed":
-                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                    case 'completed':
+                        data[i].icon = 'images/ic_done_all_black_24px.svg';
                         break;
-                    case "added":
-                        data[i].icon = "images/ic_group_add_black_24px.svg";
+                    case 'added':
+                        data[i].icon = 'images/ic_group_add_black_24px.svg';
                         break;
-                    case "rated":
-                        data[i].icon = "images/ic_star_black_24px.svg";
+                    case 'rated':
+                        data[i].icon = 'images/ic_star_black_24px.svg';
                         break;
-                    case "worked":
-                        data[i].icon = "images/icon_project.svg";
+                    case 'worked':
+                        data[i].icon = 'images/icon_project.svg';
                         break;
-                    case "favorited":
-                        data[i].icon = "images/ic_favorite_black_24px.svg";
+                    case 'favorited':
+                        data[i].icon = 'images/ic_favorite_black_24px.svg';
                         break;
-                    case "shared":
-                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                    case 'shared':
+                        data[i].icon = 'images/ic_done_all_black_24px.svg';
                         break;
-                    case "discussion":
-                        data[i].icon = "images/ic_forum_black_24px.svg";
+                    case 'discussion':
+                        data[i].icon = 'images/ic_forum_black_24px.svg';
                         break;
                 }
             }
@@ -305,34 +305,34 @@ angular.module('dmc.component.members-card', [
     // get Profile history
     ajax.get(dataFactory.profiles(id).history,
         {
-            "_limit": 3,
-            "section": "mutual"
+            '_limit': 3,
+            'section': 'mutual'
         },
         function(response){
             var data = response.data;
             for(var i in data){
-                data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
+                data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
                 switch(data[i].type){
-                    case "completed":
-                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                    case 'completed':
+                        data[i].icon = 'images/ic_done_all_black_24px.svg';
                         break;
-                    case "added":
-                        data[i].icon = "images/ic_group_add_black_24px.svg";
+                    case 'added':
+                        data[i].icon = 'images/ic_group_add_black_24px.svg';
                         break;
-                    case "rated":
-                        data[i].icon = "images/ic_star_black_24px.svg";
+                    case 'rated':
+                        data[i].icon = 'images/ic_star_black_24px.svg';
                         break;
-                    case "worked":
-                        data[i].icon = "images/icon_project.svg";
+                    case 'worked':
+                        data[i].icon = 'images/icon_project.svg';
                         break;
-                    case "favorited":
-                        data[i].icon = "images/ic_favorite_black_24px.svg";
+                    case 'favorited':
+                        data[i].icon = 'images/ic_favorite_black_24px.svg';
                         break;
-                    case "shared":
-                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                    case 'shared':
+                        data[i].icon = 'images/ic_done_all_black_24px.svg';
                         break;
-                    case "discussion":
-                        data[i].icon = "images/ic_forum_black_24px.svg";
+                    case 'discussion':
+                        data[i].icon = 'images/ic_forum_black_24px.svg';
                         break;
                 }
             }
@@ -355,74 +355,74 @@ angular.module('dmc.component.members-card', [
 
     $scope.history = {
         leftColumn: {
-            title: "Public",
-            viewAllLink: "/all.php#/history/company/"+id+"/public",
+            title: 'Public',
+            viewAllLink: '/all.php#/history/company/'+id+'/public',
             list: []
         },
         rightColumn: {
-            title: "Mutual",
-            viewAllLink: "/all.php#/history/company/"+id+"/mutual",
+            title: 'Mutual',
+            viewAllLink: '/all.php#/history/company/'+id+'/mutual',
             list:[]
         }
     }
 
     var promises = {
-        "company": $http.get(dataFactory.companyURL(id).get),
-        "videos": $http.get(dataFactory.getCompanyVideos(id)),
-        "images": $http.get(dataFactory.getCompanyImages(id)),
-        "skillsImages": $http.get(dataFactory.getCompanySkillsImages(id)),
-        "skills": $http.get(dataFactory.getCompanySkills(id)),
-        "keyContacts": $http.get(dataFactory.getCompanyKeyContacts(id)),
-        "public_history": $http.get(dataFactory.companyURL(id).history,{params: {
-            "_limit": 3,
-            "section": "public"
+        'company': $http.get(dataFactory.companyURL(id).get),
+        'videos': $http.get(dataFactory.getCompanyVideos(id)),
+        'images': $http.get(dataFactory.getCompanyImages(id)),
+        'skillsImages': $http.get(dataFactory.getCompanySkillsImages(id)),
+        'skills': $http.get(dataFactory.getCompanySkills(id)),
+        'keyContacts': $http.get(dataFactory.getCompanyKeyContacts(id)),
+        'public_history': $http.get(dataFactory.companyURL(id).history,{params: {
+            '_limit': 3,
+            'section': 'public'
         }}),
-        "private_history": $http.get(dataFactory.companyURL(id).history,{params: {
-            "_limit": 3,
-            "section": "mutual"
+        'private_history': $http.get(dataFactory.companyURL(id).history,{params: {
+            '_limit': 3,
+            'section': 'mutual'
         }})
     }
 
     $q.all(promises).then(function(responses){
         $scope.company = responses.company.data;
-        $scope.company["videos"] = responses.videos.data;
-        $scope.company["images"] = responses.images.data;
-        $scope.company["skillsImages"] = responses.skillsImages.data;
-        $scope.company["skills"] = responses.skills.data;
-        $scope.company["keyContacts"] = responses.keyContacts.data;
+        $scope.company['videos'] = responses.videos.data;
+        $scope.company['images'] = responses.images.data;
+        $scope.company['skillsImages'] = responses.skillsImages.data;
+        $scope.company['skills'] = responses.skills.data;
+        $scope.company['keyContacts'] = responses.keyContacts.data;
 
-        for(var i in $scope.company["keyContacts"]){
-            if($scope.company["keyContacts"][i].type == 1){
-                $scope.company["keyContacts"][i].type = "LEGAL";
-            }else if($scope.company["keyContacts"][i].type == 2){
-                $scope.company["keyContacts"][i].type = "LEGAL 2";
+        for(var i in $scope.company['keyContacts']){
+            if($scope.company['keyContacts'][i].type == 1){
+                $scope.company['keyContacts'][i].type = 'LEGAL';
+            }else if($scope.company['keyContacts'][i].type == 2){
+                $scope.company['keyContacts'][i].type = 'LEGAL 2';
             }
         };
 
         var data = responses.public_history.data;
         for(var i in data){
-            data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
+            data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
             switch(data[i].type){
-                case "completed":
-                    data[i].icon = "images/ic_done_all_black_24px.svg";
+                case 'completed':
+                    data[i].icon = 'images/ic_done_all_black_24px.svg';
                     break;
-                case "added":
-                    data[i].icon = "images/ic_group_add_black_24px.svg";
+                case 'added':
+                    data[i].icon = 'images/ic_group_add_black_24px.svg';
                     break;
-                case "rated":
-                    data[i].icon = "images/ic_star_black_24px.svg";
+                case 'rated':
+                    data[i].icon = 'images/ic_star_black_24px.svg';
                     break;
-                case "worked":
-                    data[i].icon = "images/icon_project.svg";
+                case 'worked':
+                    data[i].icon = 'images/icon_project.svg';
                     break;
-                case "favorited":
-                    data[i].icon = "images/ic_favorite_black_24px.svg";
+                case 'favorited':
+                    data[i].icon = 'images/ic_favorite_black_24px.svg';
                     break;
-                case "shared":
-                    data[i].icon = "images/ic_done_all_black_24px.svg";
+                case 'shared':
+                    data[i].icon = 'images/ic_done_all_black_24px.svg';
                     break;
-                case "discussion":
-                    data[i].icon = "images/ic_forum_black_24px.svg";
+                case 'discussion':
+                    data[i].icon = 'images/ic_forum_black_24px.svg';
                     break;
             }
         }
@@ -430,28 +430,28 @@ angular.module('dmc.component.members-card', [
 
         var data = responses.private_history.data;
         for(var i in data){
-            data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
+            data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
             switch(data[i].type){
-                case "completed":
-                    data[i].icon = "images/ic_done_all_black_24px.svg";
+                case 'completed':
+                    data[i].icon = 'images/ic_done_all_black_24px.svg';
                     break;
-                case "added":
-                    data[i].icon = "images/ic_group_add_black_24px.svg";
+                case 'added':
+                    data[i].icon = 'images/ic_group_add_black_24px.svg';
                     break;
-                case "rated":
-                    data[i].icon = "images/ic_star_black_24px.svg";
+                case 'rated':
+                    data[i].icon = 'images/ic_star_black_24px.svg';
                     break;
-                case "worked":
-                    data[i].icon = "images/icon_project.svg";
+                case 'worked':
+                    data[i].icon = 'images/icon_project.svg';
                     break;
-                case "favorited":
-                    data[i].icon = "images/ic_favorite_black_24px.svg";
+                case 'favorited':
+                    data[i].icon = 'images/ic_favorite_black_24px.svg';
                     break;
-                case "shared":
-                    data[i].icon = "images/ic_done_all_black_24px.svg";
+                case 'shared':
+                    data[i].icon = 'images/ic_done_all_black_24px.svg';
                     break;
-                case "discussion":
-                    data[i].icon = "images/ic_forum_black_24px.svg";
+                case 'discussion':
+                    data[i].icon = 'images/ic_forum_black_24px.svg';
                     break;
             }
         }

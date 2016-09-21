@@ -14,49 +14,56 @@
         <div layout="row">
             <div layout="column" flex class="inputs-top">
                 <div layout="row">
-                    <md-input-container flex="15" class="project-root" md-no-float>
+                    <md-input-container flex="15" class="project-root">
+                        <label>Root Number (Required)</label>
                         <input ng-model="project.rootNumber"
                                ng-disabled="!user.isDmdiiAdmin"
-                               placeholder="Root Number">
+                               ng-required="true">
                     </md-input-container>
 
-                    <md-input-container flex="15" class="project-call" md-no-float>
+                    <md-input-container flex="15" class="project-call">
+                        <label>Call Number (Required)</label>
                         <input ng-model="project.callNumber"
                                ng-disabled="!user.isDmdiiAdmin"
-                               placeholder="Call Number">
+                               ng-required="true">
                     </md-input-container>
 
-                    <md-input-container flex="10" class="project-number" md-no-float>
+                    <md-input-container flex="10" class="project-number">
+                        <label>Project Number (Required)</label>
                         <input ng-model="project.projectNumber"
                                ng-disabled="!user.isDmdiiAdmin"
-                               placeholder="Number">
+                               ng-required="true">
                     </md-input-container>
 
-                    <md-input-container flex="15" class="project-cost-share" md-no-float>
+                    <md-input-container flex="15" class="project-cost-share">
+                        <label>Cost Share</label>
                         <input ng-model="project.costShare"
                                ng-disabled="!user.isDmdiiAdmin"
-                               placeholder="Cost Share">
+                               >
                     </md-input-container>
 
-                    <md-input-container flex="15" class="project-dmdii-funding" md-no-float>
+                    <md-input-container flex="15" class="project-dmdii-funding">
+                        <label>DMDII Funding</label>
                         <input ng-model="project.dmdiiFunding"
                                ng-disabled="!user.isDmdiiAdmin"
-                               placeholder="DMDII Funding">
+                               >
                     </md-input-container>
                 </div>
 
                 <div layout="row">
-                    <md-input-container flex="35" class="project-name" md-no-float>
+                    <md-input-container flex="35" class="project-name">
+                        <label>Title (Required)</label>
                         <input ng-model="project.projectTitle"
                                ng-disabled="!user.isDmdiiAdmin"
-                               placeholder="Title">
+                               ng-required="true">
                     </md-input-container>
 
-                    <md-input-container flex="35" class="project-status" md-no-float>
-                        <label>Status</label>
+                    <md-input-container flex="35" class="project-status">
+                        <label>Status (Required)</label>
                         <md-select ng-model="project.projectStatus"
                         ng-model-options="{trackBy: '$value.id'}"
-                        ng-disabled="!user.isDmdiiAdmin">
+                        ng-disabled="!user.isDmdiiAdmin"
+                        ng-required="true">
                         <md-option ng-value="status" ng-repeat="status in statuses">{{status.name}}</md-option>
                     </md-input-container>
                 </div>
@@ -74,32 +81,37 @@
         </div>
 
         <div layout="row">
-            <md-input-container class="no-bottom no-pad-bottom project-Summary" flex="70">
-	            <div class="rich" medium-editor ng-model="project.projectSummary"
-                    data-placeholder="Summary of Project"
-                    bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
-                    ng-disabled=" !user.isDmdiiAdmin"
-                    ng-required="true"></div>
-	        </md-input-container>
-            <div>
-                <p class="textHint">Highlight text to format</p>
+            <div layout="column">
+                <label>Summary (Required)</label>
+                <md-input-container class="no-bottom no-pad-bottom project-Summary" flex="70">
+    	            <div class="rich" medium-editor ng-model="project.projectSummary"
+                        data-placeholder="Summary of Project"
+                        bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
+                        ng-disabled=" !user.isDmdiiAdmin"
+                        ng-required="true"></div>
+    	        </md-input-container>
+                <div>
+                    <p class="textHint">Highlight text to format</p>
+                </div>
             </div>
         </div>
 
         <div layout="row">
-            <md-input-container flex="35" class="project-focus-area" md-no-float>
-                <label>Focus Area</label>
+            <md-input-container flex="35" class="project-focus-area">
+                <label>Focus Area (Required)</label>
                 <md-select ng-model="project.projectFocusArea"
                     ng-model-options="{trackBy: '$value.id'}"
-                    ng-disabled="!user.isDmdiiAdmin">
+                    ng-disabled="!user.isDmdiiAdmin"
+                    ng-required="true">
                     <md-option ng-value="focus" ng-repeat="focus in focusAreas">{{focus.name}}</md-option>
             </md-input-container>
 
-            <md-input-container flex="35" class="project-thrust" md-no-float>
-                <label>Thrust Area</label>
+            <md-input-container flex="35" class="project-thrust">
+                <label>Thrust Area (Required)</label>
                 <md-select ng-model="project.projectThrust"
                     ng-model-options="{trackBy: '$value.id'}"
-                    ng-disabled="!user.isDmdiiAdmin">
+                    ng-disabled="!user.isDmdiiAdmin"
+                    ng-required="true">
                     <md-option ng-value="thrust" ng-repeat="thrust in thrustAreas">{{thrust.name}}</md-option>
             </md-input-container>
         </div>

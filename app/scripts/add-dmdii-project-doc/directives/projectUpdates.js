@@ -5,11 +5,11 @@ angular.module('dmc.add-project-doc').
             restrict: 'A',
             templateUrl: 'templates/add-dmdii-project-doc/tabs/tab-project-updates.html',
             scope: {
-                source: "=",
-                project: "=",
-				user: "=",
+                source: '=',
+                project: '=',
+				user: '=',
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $q, fileUpload, $window) {
-                $element.addClass("tab-projectUpdates");
+                $element.addClass('tab-projectUpdates');
 
 				$scope.updateAccessLevels = {
 					'All Members': 'ALL_MEMBERS',
@@ -19,6 +19,7 @@ angular.module('dmc.add-project-doc').
 
 				$scope.update = {};
 				$scope.projectUpdates = [];
+                $scope.descriptionLimit = 5000;
 
                 var convertToMarkdown = function(input) {
                     var escaped = toMarkdown(input);
@@ -26,6 +27,7 @@ angular.module('dmc.add-project-doc').
                 };
 
 				$scope.saveUpdates = function() {
+
 					var startDate = new Date($scope.update.created);
 					var year = startDate.getFullYear();
 					var month = startDate.getMonth() + 1;
@@ -34,6 +36,24 @@ angular.module('dmc.add-project-doc').
 					day = (day < 10) ? '0' + day : day;
 
 					$scope.update.created = year + '-' + month + '-' + day;
+
+                    if (!$scope.update.name) {
+                        $scope.noTitle = true;
+                    }
+                    if (!$scope.update.created) {
+                        $scope.noDateSelected = true;
+                    }
+                    if (!$scope.event.description) {
+                        $scope.noDescription = true;
+                    }
+
+                    if ($scope.event.description.length < $scope.descriptionLimit) {
+                        $scope.descriptionOverLimit = true;
+                    }
+
+                    if ( $scope.noTitle || $scope.noDateSelected || $scope.noDescription || $scope.descriptionOverLimit) {
+                        return;
+                    }
 
 					$scope.update.creator = $scope.user.accountId;
 
@@ -44,7 +64,7 @@ angular.module('dmc.add-project-doc').
 					ajax.create(dataFactory.saveDMDIIProject().update, $scope.update, function(response) {
 						$scope.update = {};
 						toastModel.showToast('success', 'Project Update Saved!');
-                        $timeout($window.location.reload, 500);
+                        $window.location.reload();
 					});
 				};
 			}
