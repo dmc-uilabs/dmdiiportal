@@ -3,6 +3,9 @@
 angular.module('dmc.ajax',[
     'dmc.model.toast-model'
 ])
+.config(function($httpProvider){
+  $httpProvider.interceptors.push('logoutInterceptor');
+})
     .factory('ajax', [
         "$http",
         "dataFactory",
@@ -80,4 +83,13 @@ angular.module('dmc.ajax',[
             };
         }
     ]
-);
+).factory('logoutInterceptor', ['$q', '$window', function($q, $window) {
+  return {
+   responseError: function(rejection) {
+      if (rejection.status == 403) {
+        $window.location.href=$window.location.origin;
+      }
+      return $q.reject(rejection);
+    }
+  };
+}]);
