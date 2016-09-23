@@ -2,19 +2,19 @@
 
 angular.module('dmc.edit-member')
     .controller('DMCEditMemberPageController', [
-        "$stateParams",
-        "$scope",
-        "$q",
-        "$timeout",
+        '$stateParams',
+        '$scope',
+        '$q',
+        '$timeout',
         '$showdown',
-        "ajax",
-        "dataFactory",
-        "$location",
-        "toastModel",
-        "questionToastModel",
-        "DMCUserModel",
-        "$window",
-        "fileUpload",
+        'ajax',
+        'dataFactory',
+        '$location',
+        'toastModel',
+        'questionToastModel',
+        'DMCUserModel',
+        '$window',
+        'fileUpload',
         function ($stateParams,
                 $scope,
                 $q,
@@ -52,18 +52,32 @@ angular.module('dmc.edit-member')
 
             $scope.date = {};
 
+            $scope.descriptionLimit = 5000;
+            $scope.isSaved = false;
+            $scope.fieldName = 'Description';
+            $scope.isValid = false;
+
+            $scope.company = {
+                dmdiiType: {
+                    dmdiiTypeCategory: {}
+                },
+                contacts: [],
+                organization: {
+                    description: ''
+                }
+            };
+            
+            $scope.$on('isValid', function (event, data) {
+                $scope.isValid = data;
+            });
+
             var getOrganizations = function() {
                 if (!$stateParams.memberId) {
 
                     ajax.get(dataFactory.getNonDmdiiMembers(), {}, function(response) {
                         $scope.organizations = response.data;
                     });
-                    $scope.company = {
-                        dmdiiType: {
-                            dmdiiTypeCategory: {}
-                        },
-                        contacts: []
-                    };
+
                 } else {
                     return;
                 }
@@ -363,7 +377,6 @@ angular.module('dmc.edit-member')
             var uploadLogo = function(companyId){
                 if($scope.newLogo){
                     fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
-console.log(response)
                         ajax.create(dataFactory.saveDocument(),
                             {
                                 organizationId: companyId,
@@ -415,8 +428,16 @@ console.log(response)
                 return escaped;
             };
 
-            $scope.saveChanges = function() {
+            $scope.$watch('company.organization.description', function() {
                 console.log($scope.company)
+            })
+            $scope.saveChanges = function() {
+                $scope.isSaved = true;
+console.log($scope.isValid, $scope.isSaved)
+                if (!$scope.isValid) {
+                    return;
+                }
+
                 $scope.setTier();
 
                 var date = new Date($scope.date.start);

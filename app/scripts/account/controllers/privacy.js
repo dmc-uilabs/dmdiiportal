@@ -3,15 +3,15 @@ angular.module('dmc.account')
     .controller('PrivacyAccountCtr', [
         '$stateParams',
         '$state',
-        "$scope",
-        "location",
-        "accountData",
-        "AccountModel",
-        "$timeout",
-		"toastModel",
-        "questionToastModel",
-		"ajax",
-		"dataFactory",
+        '$scope',
+        'location',
+        'accountData',
+        'AccountModel',
+        '$timeout',
+		'toastModel',
+        'questionToastModel',
+		'ajax',
+		'dataFactory',
         function ($stateParams,
                   $state,
                   $scope,
@@ -29,12 +29,10 @@ angular.module('dmc.account')
             $scope.title = pageTitles[$scope.page];
 
 			var getUserCallback = function(response){
-				console.log(response.data);
 				$scope.userBasics = response.data;
 				if ($scope.userBasics.userContactInfo === null) {
 					$scope.userBasics.userContactInfo = {
 						userPublicContactInfo: {},
-						userPrivateContactInfo: {},
 						userMemberPortalContactInfo: {}
 					}
 				}
@@ -45,11 +43,6 @@ angular.module('dmc.account')
 			$scope.getUser();
 
             $scope.enabled = {
-                private: {
-                    email: false,
-                    phone: false,
-                    location: false
-                },
                 public: {
                     email: false,
                     phone: false,
@@ -65,7 +58,7 @@ angular.module('dmc.account')
             var currentContainer = null;
             var callback = function(success,data){
                 if(success == true) {
-                    $scope.userBasics.userContactInfo[currentContainer].location.value = data.city+", "+data.region;
+                    $scope.userBasics.userContactInfo[currentContainer].location.value = data.city+', '+data.region;
                     $scope.changedValue(currentContainer,'location',$scope.userBasics.userContactInfo[currentContainer].location.value);
                 }
             };
@@ -77,22 +70,22 @@ angular.module('dmc.account')
 
             var information_ = {
                 email : {
-                    title : "Email",
-                    icon : "email"
+                    title : 'Email',
+                    icon : 'email'
                 },
                 phone : {
-                    title : "Phone",
-                    icon : "phone"
+                    title : 'Phone',
+                    icon : 'phone'
                 },
                 location : {
-                    title : "Location",
-                    icon : "gps_fixed"
+                    title : 'Location',
+                    icon : 'gps_fixed'
                 }
             };
 
             // auto focus for edit first input
             $timeout(function() {
-                $(".information-item:first input").focus();
+                $('.information-item:first input').focus();
             });
 
             $scope.changedCheckbox = function(block,name,value){
@@ -102,7 +95,7 @@ angular.module('dmc.account')
                 $scope.changedValues.changedCheckbox[block][name] = value;
                 $scope.userBasics.userContactInfo[block][name] = null;
                 $timeout(function() {
-                    $("#edit_"+block+"_"+name+" input").focus();
+                    $('#edit_'+block+'_'+name+' input').focus();
                 });
             };
 
@@ -118,9 +111,9 @@ angular.module('dmc.account')
                 for(var category in $scope.changedValues){
                     for(var block in $scope.changedValues[category]) {
                         for(var key in $scope.changedValues[category][block]) {
-                            var item = (category === "changedCheckbox" ? "enable" : "value");
+                            var item = (category === 'changedCheckbox' ? 'enable' : 'value');
                             $scope.userBasics.userContactInfo[block][key][item] = $scope.accountData.userContactInfo[block][key][item];
-                            if(item == "enable") $scope.userBasics.userContactInfo[block][key][item] = ($scope.userBasics.userContactInfo[block][key][item] == true || $scope.userBasics.userContactInfo[block][key][item] == "true" ? true : false);
+                            if(item == 'enable') $scope.userBasics.userContactInfo[block][key][item] = ($scope.userBasics.userContactInfo[block][key][item] == true || $scope.userBasics.userContactInfo[block][key][item] == 'true' ? true : false);
                         }
                     }
                 }
@@ -137,10 +130,10 @@ angular.module('dmc.account')
             };
 
             $scope.$on('$locationChangeStart', function (event, next, current) {
-                if ($scope.changedValues && current.match("\/privacy")) {
+                if ($scope.changedValues && current.match('\/privacy')) {
                     event.preventDefault();
                     questionToastModel.show({
-                        question: "Are you sure you want to leave this page without saving?",
+                        question: 'Are you sure you want to leave this page without saving?',
                         buttons: {
                             ok: function(){
                                 $scope.changedValues = null;
@@ -155,7 +148,7 @@ angular.module('dmc.account')
 
             $(window).unbind('beforeunload');
             $(window).bind('beforeunload', function(){
-                if($scope.changedValues) return "";
+                if($scope.changedValues) return '';
             });
 
             $scope.keyDown = function(type, container, $event){
@@ -164,27 +157,25 @@ angular.module('dmc.account')
 
             $scope.information = {
                 public : $.extend(true,{},information_),
-                private : $.extend(true,{},information_),
                 memberPortal: $.extend(true,{},information_)
-
             };
 
             $scope.blockedUser = [
                 {
                     id : 1,
-                    fullName : "John Doe 1"
+                    fullName : 'John Doe 1'
                 },
                 {
                     id : 2,
-                    fullName : "John Doe 2"
+                    fullName : 'John Doe 2'
                 },
                 {
                     id : 3,
-                    fullName : "John Doe 3"
+                    fullName : 'John Doe 3'
                 },
                 {
                     id : 4,
-                    fullName : "John Doe 4"
+                    fullName : 'John Doe 4'
                 }
             ];
 

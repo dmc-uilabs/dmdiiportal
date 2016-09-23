@@ -18,6 +18,7 @@ angular.module('dmc.edit-member', [
     'dmc.socket',
     'dmc.model.question-toast-model',
     'dmc.widgets.tabs',
+    'dmc.widgets.rich-text',
     'dmc.component.contacts-card',
     'dmc.common.header',
     'dmc.common.footer',

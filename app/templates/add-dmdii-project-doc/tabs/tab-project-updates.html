@@ -8,15 +8,14 @@
 		<md-datepicker class="no-bottom no-pad-bottom top10" name="date" ng-model="update.created" required md-placeholder="Date"></md-datepicker>
 	</div>
 
-	<md-input-container class="no-bottom no-pad-bottom">
-		<div class="rich" medium-editor ng-model="update.description"
-			data-placeholder="Description"
-			bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
-			ng-required="true"></div>
-	</md-input-container>
-
-	<div>
-		<p class="textHint">Highlight text to format</p>
+	<div layout="column" flex="50"
+		ui-widget-rich-text
+		field-name="fieldName"
+		is-required="true"
+		model="update.description"
+		limit="descriptionLimit"
+		is-saved="isSaved"
+		is-valid="isValid">
 	</div>
 
 	<md-input-container>

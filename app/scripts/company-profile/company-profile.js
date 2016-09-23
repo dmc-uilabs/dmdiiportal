@@ -11,6 +11,7 @@ angular.module('dmc.company-profile', [
     'ui.router',
     'md.data.table',
     'angular-medium-editor',
+    'dmc.widgets.rich-text',
     'dmc.ajax',
     'dmc.data',
     'dmc.socket',
@@ -104,8 +105,8 @@ angular.module('dmc.company-profile', [
             // get company skills
             this.getSkills = function(id, callback) {
                 return ajax.get(dataFactory.getCompanySkills(id),{
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     }, function(response){
                         callback(response.data);
                     }
@@ -115,8 +116,8 @@ angular.module('dmc.company-profile', [
             // get company images
             this.getImages = function(id, callback){
                 return ajax.get(dataFactory.getCompanyImages(id),{
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     }, function(response){
                         callback(response.data);
                     }
@@ -126,8 +127,8 @@ angular.module('dmc.company-profile', [
             // get company images
             this.getSkillsImages = function(id, callback){
                 return ajax.get(dataFactory.getCompanySkillsImages(id),{
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     }, function(response){
                         callback(response.data);
                     }
@@ -137,8 +138,8 @@ angular.module('dmc.company-profile', [
             // get company videos
             this.getVideos = function(id, callback){
                 return ajax.get(dataFactory.getCompanyVideos(id),{
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     }, function(response){
                         callback(response.data);
                     }
@@ -148,8 +149,8 @@ angular.module('dmc.company-profile', [
             // get company contacts
             this.getKeyContacts = function(id, callback){
                 return ajax.get(dataFactory.getCompanyKeyContacts(id),{
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     }, function(response){
                         callback(response.data);
                     }
@@ -182,7 +183,6 @@ angular.module('dmc.company-profile', [
                 );
             };
 
-
             this.getCompanyHistory = function(params, callback){
                 return ajax.get(dataFactory.companyURL($stateParams.companyId).history,
                     params,
@@ -194,9 +194,9 @@ angular.module('dmc.company-profile', [
 
             this.get_company = function(id){
                 var promises = {
-                    "company": $http.get(dataFactory.companyURL(id).get),
-                    "company_members": $http.get(dataFactory.getCompanyMembers(id)),
-                    "company_reviews": $http.get(dataFactory.companyURL(id).reviews)
+                    'company': $http.get(dataFactory.companyURL(id).get),
+                    'company_members': $http.get(dataFactory.getCompanyMembers(id)),
+                    'company_reviews': $http.get(dataFactory.companyURL(id).reviews)
                 };
 
                 var extractData = function(response){
@@ -237,19 +237,19 @@ angular.module('dmc.company-profile', [
                     }
                     return company;
                 }, function(response){
-                    toastModel.showToast("error", "Error." + response.statusText);
+                    toastModel.showToast('error', 'Error.' + response.statusText);
                 });
             };
 
             var get_reply = function(review){
                 ajax.get(dataFactory.companyURL(review.id).getReply,
                     {
-                        '_order': "DESC",
-                        '_sort': "date"
+                        '_order': 'DESC',
+                        '_sort': 'date'
                     },
                     function(response){
                         for(var i in response.data){
-                            response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
+                            response.data[i].date = moment(response.data[i].date).format('MM/DD/YYYY hh:mm A');
                             get_helpful(response.data[i]);
                             get_flagged(response.data[i]);
                         }
@@ -301,7 +301,7 @@ angular.module('dmc.company-profile', [
                     params,
                     function(response){
                         for(var i in response.data){
-                            response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
+                            response.data[i].date = moment(response.data[i].date).format('MM/DD/YYYY hh:mm A');
                             get_helpful(response.data[i]);
                             get_flagged(response.data[i]);
                             if(response.data[i].reply){
@@ -311,7 +311,7 @@ angular.module('dmc.company-profile', [
                         callback(response.data)
                     },
                     function(response){
-                        toastModel.showToast("error", "Error." + response.statusText);
+                        toastModel.showToast('error', 'Error.' + response.statusText);
                     }
                 )
             }
@@ -319,33 +319,33 @@ angular.module('dmc.company-profile', [
             this.add_company_reviews = function(params, callback){
                 ajax.get(dataFactory.companyURL($stateParams.companyId).addReviews,
                     {
-                        "_limit" : 1,
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_limit' : 1,
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     },
                     function(response){
                         var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
-                        params["id"] = lastId;
-                        params["companyId"] = $stateParams.companyId;
-                        params["reply"] = false;
-                        params["status"] = true;
-                        params["date"] = moment().format('x');
-                        params["like"] = 0;
-                        params["dislike"] = 0;
+                        params['id'] = lastId;
+                        params['companyId'] = $stateParams.companyId;
+                        params['reply'] = false;
+                        params['status'] = true;
+                        params['date'] = moment().format('x');
+                        params['like'] = 0;
+                        params['dislike'] = 0;
 
                         return ajax.create(dataFactory.companyURL($stateParams.companyId).addReviews,
                             params,
                             function(response){
-                                toastModel.showToast("success", "Review added");
+                                toastModel.showToast('success', 'Review added');
                                 if(callback) callback(response.data)
                             },
                             function(response){
-                                toastModel.showToast("error", "Error." + response.statusText);
+                                toastModel.showToast('error', 'Error.' + response.statusText);
                             }
                         )
                     },
                     function(response){
-                        toastModel.showToast("error", "Error." + response.statusText);
+                        toastModel.showToast('error', 'Error.' + response.statusText);
                     }
                 )
             }
@@ -366,7 +366,7 @@ angular.module('dmc.company-profile', [
                             review,
                             function(response){
                                 if(params.reply){
-                                    toastModel.showToast("success", "reply added");
+                                    toastModel.showToast('success', 'reply added');
                                 }
                                 if(callback) callback(response.data)
                             }

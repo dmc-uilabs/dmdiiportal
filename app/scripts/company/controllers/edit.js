@@ -7,9 +7,9 @@ angular.module('dmc.company')
     .controller('EditStorefrontCompanyCtr', [
         '$stateParams',
         '$state',
-        "$scope",
-        "$cookies",
-        "ajax",
+        '$scope',
+        '$cookies',
+        'ajax',
         'companyData',
         'CompanyModel',
         '$location',
@@ -45,7 +45,7 @@ angular.module('dmc.company')
 
                 $scope.removeMainPicture = function(ev){
                     questionToastModel.show({
-                        question : "Do you want to delete the picture?",
+                        question : 'Do you want to delete the picture?',
                         buttons: {
                             ok: function(){
                                 deletePicture();
@@ -61,7 +61,7 @@ angular.module('dmc.company')
                 $timeout(function() {
                     if(!isFocused) {
                         isFocused = true;
-                        $("#descriptionCompany").focus();
+                        $('#descriptionCompany').focus();
                     }
                 });
 
@@ -89,18 +89,27 @@ angular.module('dmc.company')
                 $scope.downloadData = false;
                 $scope.isChangingLogo = false;
 
+                $scope.descriptionLimit = 5000;
+                $scope.isValid = false;
+                $scope.isSaved = false;
+                $scope.fieldName = 'Description'
+
+                $scope.$on('isValid', function (event, data) {
+                    $scope.isValid = data;
+                });
+                
                 $scope.productTypes = [
                     //{
-                    //    name : "all",
-                    //    title : "All"
+                    //    name : 'all',
+                    //    title : 'All'
                     //},
                     {
-                        name : "services",
-                        title : "Services"
+                        name : 'services',
+                        title : 'Services'
                     }
                     //,{
-                    //    name : "components",
-                    //    title : "Components"
+                    //    name : 'components',
+                    //    title : 'Components'
                     //}
                 ];
 
@@ -154,7 +163,7 @@ angular.module('dmc.company')
 
                 $scope.deleteLogo = function(ev){
                     questionToastModel.show({
-                        question : "Do you want to delete the logo?",
+                        question : 'Do you want to delete the logo?',
                         buttons: {
                             ok: function(){
                                 ajax.update(dataFactory.deleteCompanyLogo($scope.companyId), {
@@ -206,7 +215,7 @@ angular.module('dmc.company')
                 };
 
                 $scope.$watch(function(){
-                    return $("#flowImage").attr("src");
+                    return $('#flowImage').attr('src');
                 },function(newVal,oldVal){
                     if(newVal && newVal != oldVal){
                         $scope.currentPicture = $scope.companyPicture['background-image'];
@@ -233,7 +242,7 @@ angular.module('dmc.company')
                 // callback for services
                 var callbackCompanyServices = function(response){
                     for(var index in response.data){
-                        response.data[index].type = "service";
+                        response.data[index].type = 'service';
                         checkIfFeatured(response.data[index]);
                     }
                     insertData(response.data);
@@ -242,7 +251,7 @@ angular.module('dmc.company')
                 // callback for components
                 var callbackCompanyComponents = function(response){
                     for(var index in response.data){
-                        response.data[index].type = "component";
+                        response.data[index].type = 'component';
                         checkIfFeatured(response.data[index]);
                     }
                     insertData(response.data);
@@ -250,7 +259,7 @@ angular.module('dmc.company')
 
                 // check if storefront item is added to Featured
                 var checkIfFeatured = function(item){
-                    if(item.company_featured && $.type(item.company_featured) == "array" && item.company_featured.length > 0){
+                    if(item.company_featured && $.type(item.company_featured) == 'array' && item.company_featured.length > 0){
                         var featured = item.company_featured[0];
                         item.featureId = featured.id;
                         item.inFeatured = true;
@@ -282,8 +291,8 @@ angular.module('dmc.company')
                 };
 
                 var responseData = {
-                    _sort : "id",
-                    _order : "DESC",
+                    _sort : 'id',
+                    _order : 'DESC',
                     published: true,
                     _start : ($scope.currentStorefrontPage-1)*$scope.pageSize
                 };
@@ -382,10 +391,10 @@ angular.module('dmc.company')
 
                 var getChangedPosition = function(){
                     var data = [];
-                    $(".feature-item").each(function(index){
-                        if((index + 1) != parseInt($(this).find(".product-card-position").val())) {
-                            $(this).find(".product-card-position").val((index + 1));
-                            var id = $(this).find(".product-card-featureId").val();
+                    $('.feature-item').each(function(index){
+                        if((index + 1) != parseInt($(this).find('.product-card-position').val())) {
+                            $(this).find('.product-card-position').val((index + 1));
+                            var id = $(this).find('.product-card-featureId').val();
                             data.push({id: id, position: (index + 1)});
                         }
                     });
@@ -395,6 +404,12 @@ angular.module('dmc.company')
                 // save company changes
                 $scope.saveChanges = function(){
                     // save new positions
+                    $scope.isSaved = true;
+
+                    if (!$scope.isValid) {
+                        return;
+                    }
+
                     if(changedPositions){
                         for(var index in changedPositions){
                             ajax.update(dataFactory.updateCompanyFeaturedPosition(changedPositions[index].id),{
@@ -420,8 +435,8 @@ angular.module('dmc.company')
                 var lastPosition = 0;
                 $scope.getFeatured = function () {
                     ajax.get(dataFactory.getCompanyFeatured($scope.companyId), {
-                            "_order" : "DESC",
-                            "_sort" : "position"
+                            '_order' : 'DESC',
+                            '_sort' : 'position'
                         },
                         function (response) {
                             var servicesIds = [];
@@ -454,10 +469,10 @@ angular.module('dmc.company')
                                     var item_ = null;
                                     if(featuredData[index].service){
                                         item_ = featuredData[index].service;
-                                        item_.type = "service";
+                                        item_.type = 'service';
                                     }else if(featuredData[index].component){
                                         item_ = featuredData[index].component;
-                                        item_.type = "component";
+                                        item_.type = 'component';
                                     }
                                     if(item_) {
                                         item_.featureId = featuredData[index].id;
@@ -486,7 +501,7 @@ angular.module('dmc.company')
                         companyId : $scope.companyId,
                         position : lastPosition
                     };
-                    if(item.type == "service"){
+                    if(item.type == 'service'){
                         requestData.serviceId = item.id;
                     }else{
                         requestData.componentId = item.id;
@@ -514,7 +529,7 @@ angular.module('dmc.company')
                 // remove from featured
                 $scope.removeFeatured = function(item,ev){
                     questionToastModel.show({
-                        question : "Do you want to remove service from featured?",
+                        question : 'Do you want to remove service from featured?',
                         buttons: {
                             ok: function(){
                                 ajax.delete(dataFactory.removeCompanyFeatured(item.featureId),{},
@@ -544,11 +559,11 @@ angular.module('dmc.company')
                 };
 
                 // disable all links in storefront card
-                $("md-tabs").on("click",".product-card a",function(event){
+                $('md-tabs').on('click','.product-card a',function(event){
                     event.preventDefault();
-                }).on("mouseenter",".product-card a",function(){
-                    $(this).attr("href","");
-                    $(this).css("cursor","move");
+                }).on('mouseenter','.product-card a',function(){
+                    $(this).attr('href','');
+                    $(this).css('cursor','move');
                 });
             }
 
@@ -568,14 +583,14 @@ angular.module('dmc.company')
 
             function deletePicture(){
                 ajax.update(dataFactory.deleteCompanyLogo($scope.companyData.id),{
-                    "featureImage": {
-                        "thumbnail": null,
-                        "large": null
+                    'featureImage': {
+                        'thumbnail': null,
+                        'large': null
                     }
                 },function(response){
                     $scope.companyData.featureImage = {
-                        "thumbnail": null,
-                        "large": null
+                        'thumbnail': null,
+                        'large': null
                     };
                     $scope.companyPicture = {
                         'background-image' : null

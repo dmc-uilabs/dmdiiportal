@@ -2,18 +2,18 @@
 
 angular.module('dmc.company-profile')
     .controller('EditCompanyProfileController', [
-        "$stateParams",
-        "$scope",
-        "$timeout",
-        "$window",
-        "$showdown",
-        "ajax",
-        "dataFactory",
-        "$location",
-        "toastModel",
-        "questionToastModel",
-        "DMCUserModel",
-        "fileUpload",
+        '$stateParams',
+        '$scope',
+        '$timeout',
+        '$window',
+        '$showdown',
+        'ajax',
+        'dataFactory',
+        '$location',
+        'toastModel',
+        'questionToastModel',
+        'DMCUserModel',
+        'fileUpload',
         function ($stateParams,
                   $scope,
                   $timeout,
@@ -50,20 +50,22 @@ angular.module('dmc.company-profile')
                 });
             };
 
+            $scope.company = {
+                description: '',
+                contacts: [],
+                awards: [],
+                areasOfExpertise: [],
+                desiredAreasOfExpertise: [],
+                address: {}
+            };
+
             if (angular.isDefined($stateParams.companyId)) {
                 getCompany();
-                $scope.title = "Update an Organization";
-                $scope.action = "updated";
+                $scope.title = 'Update an Organization';
+                $scope.action = 'updated';
             } else {
-                $scope.title = "Create an Organization";
-                $scope.action = "created";
-                $scope.company = {
-                    contacts: [],
-                    awards: [],
-                    areasOfExpertise: [],
-                    desiredAreasOfExpertise: [],
-                    address: {}
-                };
+                $scope.title = 'Create an Organization';
+                $scope.action = 'created';
             }
 
             $scope.user = null;
@@ -71,6 +73,15 @@ angular.module('dmc.company-profile')
                 $scope.user = res;
             });
 
+            $scope.descriptionLimit = 5000;
+            $scope.isValid = false;
+            $scope.isSaved = false;
+            $scope.fieldName = 'Description'
+
+            $scope.$on('isValid', function (event, data) {
+                $scope.isValid = data;
+            });
+            
             $scope.images = [];
             $scope.videos = [];
             $scope.removedVideos = [];
@@ -267,6 +278,11 @@ angular.module('dmc.company-profile')
             };
 
             $scope.saveChanges = function(){
+                $scope.isSaved = true;
+
+                if (!$scope.isValid) {
+                    return;
+                }
                 delete $scope.company.images;
                 delete $scope.company.videos;
                 delete $scope.company.logoImage;
@@ -292,19 +308,19 @@ angular.module('dmc.company-profile')
 
             $scope.sections = {
                 overview : {
-                    title : "Overview"
+                    title : 'Overview'
                 },
                 skills : {
-                    title : "Skills"
+                    title : 'Skills'
                 },
                 projects : {
-                    title : "Projects"
+                    title : 'Projects'
                 },
                 contact : {
-                    title : "Contact"
+                    title : 'Contact'
                 },
                 membership : {
-                    title : "Membership"
+                    title : 'Membership'
                 }
             };
 

@@ -5,11 +5,19 @@ angular.module('dmc.addDmdiiContent').
             restrict: 'A',
             templateUrl: 'templates/add-dmdii-content/tabs/tab-project-events.html',
             scope: {
-                source : "=",
-                projects: "=",
-            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $window) {
-                $element.addClass("tab-projectEvents");
+                source : '=',
+                projects: '=',
+            }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $window, $timeout) {
+                $element.addClass('tab-projectEvents');
 
+                $scope.event = {
+                    eventDescription: ''
+                };
+
+                $scope.descriptionLimit = 5000;
+                $scope.isValid = false;
+                $scope.isSaved = false;
+                $scope.fieldName = 'Description'
 
                 $scope.$watch('event', function() {
                     if ($scope.noTitle && angular.isDefined($scope.event.eventName) && $scope.event.eventName.length > 0) {
@@ -19,16 +27,13 @@ angular.module('dmc.addDmdiiContent').
                     if ($scope.noDateSelected && angular.isDefined($scope.event.eventDate)) {
                         $scope.noDateSelected = false;
                     }
-
-                    if ($scope.noDescription && angular.isDefined($scope.event.eventDescription) && $scope.event.eventDescription.length > 0) {
-                        $scope.noDescription = false;
-                    }
                 }, true);
 
                 var eventCallback = function(response) {
                     toastModel.showToast('success', 'Project Event Saved!');
-                    $window.location.reload();
-                };
+                    $timeout(function() {
+                        $window.location.reload();
+                    }, 500);                };
 
                 var convertToMarkdown = function(input) {
                     var escaped = toMarkdown(input);
@@ -36,7 +41,9 @@ angular.module('dmc.addDmdiiContent').
                 };
 
                 $scope.clear = function() {
-                    $scope.event = {};
+                    $scope.event = {
+                        description: ''
+                    };
                 };
 
                 $scope.querySearch = function(query) {
@@ -53,6 +60,7 @@ angular.module('dmc.addDmdiiContent').
                 }
 
                 $scope.save = function() {
+                    $scope.isSaved = true;
 
                     if (!$scope.event.eventName) {
                         $scope.noTitle = true;
@@ -60,11 +68,8 @@ angular.module('dmc.addDmdiiContent').
                     if (!$scope.event.eventDate) {
                         $scope.noDateSelected = true;
                     }
-                    if (!$scope.event.eventDescription) {
-                        $scope.noDescription = true;
-                    }
 
-                    if ( $scope.noTitle || $scope.noDateSelected || $scope.noDescription) {
+                    if ( $scope.noTitle || $scope.noDateSelected || !$scope.isValid) {
                         return;
                     }
 
