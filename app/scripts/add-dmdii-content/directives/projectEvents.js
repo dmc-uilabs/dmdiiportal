@@ -10,7 +10,14 @@ angular.module('dmc.addDmdiiContent').
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $window, $timeout) {
                 $element.addClass('tab-projectEvents');
 
-                $scope.descriptionOverLimit = 5000;
+                $scope.event = {
+                    eventDescription: ''
+                };
+
+                $scope.descriptionLimit = 5000;
+                $scope.isValid = false;
+                $scope.isSaved = false;
+                $scope.fieldName = 'Description'
 
                 $scope.$watch('event', function() {
                     if ($scope.noTitle && angular.isDefined($scope.event.eventName) && $scope.event.eventName.length > 0) {
@@ -19,14 +26,6 @@ angular.module('dmc.addDmdiiContent').
 
                     if ($scope.noDateSelected && angular.isDefined($scope.event.eventDate)) {
                         $scope.noDateSelected = false;
-                    }
-
-                    if ($scope.noDescription && angular.isDefined($scope.event.eventDescription) && $scope.event.eventDescription.length > 0) {
-                        $scope.noDescription = false;
-                    }
-
-                    if ($scope.descriptionOverLimit && angular.isDefined($scope.event.description) && $scope.event.description.length < $scope.descriptionLimit) {
-                        $scope.descriptionOverLimit = false;
                     }
                 }, true);
 
@@ -41,7 +40,9 @@ angular.module('dmc.addDmdiiContent').
                 };
 
                 $scope.clear = function() {
-                    $scope.event = {};
+                    $scope.event = {
+                        description: ''
+                    };
                 };
 
                 $scope.querySearch = function(query) {
@@ -58,6 +59,7 @@ angular.module('dmc.addDmdiiContent').
                 }
 
                 $scope.save = function() {
+                    $scope.isSaved = true;
 
                     if (!$scope.event.eventName) {
                         $scope.noTitle = true;
@@ -65,15 +67,8 @@ angular.module('dmc.addDmdiiContent').
                     if (!$scope.event.eventDate) {
                         $scope.noDateSelected = true;
                     }
-                    if (!$scope.event.eventDescription) {
-                        $scope.noDescription = true;
-                    }
 
-                    if ($scope.event.eventDescription.length < $scope.descriptionLimit) {
-                        $scope.descriptionOverLimit = true;
-                    }
-
-                    if ( $scope.noTitle || $scope.noDateSelected || $scope.noDescription || $scope.descriptionOverLimit) {
+                    if ( $scope.noTitle || $scope.noDateSelected || !$scope.isValid) {
                         return;
                     }
 

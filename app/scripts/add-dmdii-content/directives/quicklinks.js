@@ -10,10 +10,16 @@ angular.module('dmc.addDmdiiContent').
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, fileUpload, questionToastModel, $window) {
                 $element.addClass('tab-quicklinks');
 
-                $scope.quicklink = {};
+                $scope.quicklink = {
+                    text: ''
+                };
                 $scope.linkType = 'text';
                 $scope.document = [];
+
                 $scope.descriptionLimit = 5000;
+                $scope.isValid = false;
+                $scope.isSaved = false;
+                $scope.fieldName = 'Description'
 
                 $scope.docAccessLevels = {
                     'All Members': 'ALL_MEMBERS',
@@ -42,10 +48,9 @@ angular.module('dmc.addDmdiiContent').
                     $scope.quicklink = {};
                     $scope.document = [];
                     $scope.noTitle = false;
-                    $scope.noDescription = false;
                     $scope.noLink = false;
                     $scope.noDocSelected = false;
-                    $scope.descriptionOverLimit = falese;
+
                 };
 
                 $scope.$watch('quicklink', function() {
@@ -53,13 +58,6 @@ angular.module('dmc.addDmdiiContent').
                         $scope.noTitle = false;
                     }
 
-                    if ($scope.linkType === 'text' && $scope.noText && angular.isDefined($scope.quicklink.text) && $scope.quicklink.text.trim().length > 0) {
-                        $scope.noDescription = false;
-                    }
-
-                    if ($scope.linkType === 'text' && $scope.descriptionOverLimit && angular.isDefined($scope.quicklink.text) && $scope.quicklink.text.length < $scope.descriptionLimit) {
-                        $scope.descriptionOverLimit = false;
-                    }
 
                     if ($scope.linkType === 'link' && $scope.noLink && angular.isDefined($scope.quicklink.link) && $scope.quicklink.link.trim().length > 0) {
                         $scope.noLink = false;
@@ -72,25 +70,20 @@ angular.module('dmc.addDmdiiContent').
                 }, true);
 
                 $scope.save = function() {
+                    $scope.isSaved = true;
+
                     if (!$scope.quicklink.displayName) {
                         $scope.noTitle = true;
                     }
 
                     if ($scope.linkType === 'text') {
-                        if (!$scope.quicklink.text) {
-                            $scope.noText = true;
-                        }
-
-                        if ($scope.quicklinl.text.length < $scope.descriptionLimit) {
-                            $scope.descriptionOverLimit = true;
-                        }
 
                         $scope.quicklink.text = convertToMarkdown($scope.quicklink.text);
 
                         delete $scope.quicklink.link;
                         delete $scope.quicklink.path;
 
-                        if ($scope.noTitle || $scope.noDescription || $scope.descriptionOverLimit) {
+                        if ($scope.noTitle || !$scope.isValid) {
                             return;
                         }
 

@@ -81,18 +81,14 @@
         </div>
 
         <div layout="row">
-            <div layout="column">
-                <label>Summary (Required)</label>
-                <md-input-container class="no-bottom no-pad-bottom project-Summary" flex="70">
-    	            <div class="rich" medium-editor ng-model="project.projectSummary"
-                        data-placeholder="Summary of Project"
-                        bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
-                        ng-disabled=" !user.isDmdiiAdmin"
-                        ng-required="true"></div>
-    	        </md-input-container>
-                <div>
-                    <p class="textHint">Highlight text to format</p>
-                </div>
+            <div layout="column" flex="50"
+                ui-widget-rich-text
+                field-name="fieldName"
+                is-required="true"
+                model="project.projectSummary"
+                limit="descriptionLimit"
+                is-saved="isSaved"
+                is-valid="isValid">
             </div>
         </div>
 

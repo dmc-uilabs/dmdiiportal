@@ -85,17 +85,14 @@
             </div>
         </div>
         <div layout="row">
-            <div layout="column">
-                <md-input-container class="no-bottom no-pad-bottom" flex class="company-descriptionOrganization">
-                    <label>Description (Required)</label>
-    	            <div class="rich" medium-editor ng-model="company.description"
-                        data-placeholder="Place text here"
-                        bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
-                        ng-required="true"></div>
-    	        </md-input-container>
-                <div>
-                    <p class="textHint">Highlight text to format</p>
-                </div>
+            <div layout="column" flex="50"
+                ui-widget-rich-text
+                field-name="fieldName"
+                is-required="true"
+                model="company.description"
+                limit="descriptionLimit"
+                is-saved="isSaved"
+                is-valid="isValid">
             </div>
         </div>
         <div layout="row">

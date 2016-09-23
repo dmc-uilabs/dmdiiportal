@@ -1,14 +1,15 @@
 //TODO the thing
 //rich text isRequired, limit, model then html
 
-angular.module('dmc.widgets.richText', [
+angular.module('dmc.widgets.rich-text', [
 	'angular-medium-editor'
-]).directive('richText', function() {
+]).directive('uiWidgetRichText', function() {
 	return {
 		restrict: 'A',
 		templateUrl: 'templates/components/ui-widgets/rich-text.html',
 		scope: {
-			ngModel: '=',
+			fieldName: '=',
+			model: '=',
 			isRequired: '=',
 			limit: '=',
 			isSaved: '=',
@@ -19,10 +20,25 @@ angular.module('dmc.widgets.richText', [
 			$scope.noDescription = false;
 			$scope.descriptionOverLimit = false;
 			$scope.isValid = !$scope.isRequired;
+			$scope.chars = 0;
 
-			$scope.$watch('ngModel', function() {
-				$scope.ngModel = $scope.ngModel.trim()
-				$scope.chars = $scope.ngModel.length;
+			if ($scope.isRequired) {
+				$scope.placeholderText = 'Enter text here (required)';
+			} else {
+				$scope.placeholderText = 'Enter text here';
+			}
+
+			$scope.$watch('model', function() {
+				$scope.chars = $('#richdiv').text().trim().length;
+
+				if (!$scope.model && $scope.isRequired && $scope.chars === 0) {
+					$scope.noDescription = true;
+					return;
+				} else {
+					$scope.noDescription = false;
+				}
+
+				$scope.model = $scope.model.trim()
 
 				if ($scope.chars > $scope.limit) {
 					$scope.descriptionOverLimit = true;
@@ -30,11 +46,6 @@ angular.module('dmc.widgets.richText', [
 					$scope.descriptionOverLimit = false;
 				}
 
-				if ($scope.isRequired && $scope.chars === 0) {
-					$scope.noDescription = true;
-				} else {
-					$scope.noDescription = false;
-				}
 
 				if ($scope.noDescription || $scope.descriptionOverLimit) {
 					$scope.isValid = false;

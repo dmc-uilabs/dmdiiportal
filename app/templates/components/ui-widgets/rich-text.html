@@ -1,5 +1,6 @@
-<div class="rich" medium-editor ng-model="ngModel"
-	data-placeholder="Enter text here"
+<label class="top10 bottom5">{{fieldName}}</label>
+<div id="richdiv" class="rich" medium-editor ng-model="model"
+	data-placeholder="{{placeholderText}}"
 	bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
 	ng-required="isRequired">
 </div>
@@ -9,6 +10,6 @@
 </div>
 
 <div ng-show="isSaved">
-	<p class="slim-margin error" ng-show="noDescription">You <b>must</b> enter a description</p>
-	<p class="slim-margin error" ng-show="descriptionOverLimit">You <b>must</b> enter a description</p>
+	<p class="slim-margin error" ng-show="noDescription">You <b>must</b> enter a {{fieldName.toLowerCase()}}</p>
+	<p class="slim-margin error" ng-show="descriptionOverLimit">Your {{fieldName.toLowerCase()}} is too long</p>
 </div>

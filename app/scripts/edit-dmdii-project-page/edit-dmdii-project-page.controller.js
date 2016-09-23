@@ -87,6 +87,11 @@ angular.module('dmc.edit-project')
               return data;
             };
 
+            $scope.descriptionLimit = 5000;
+            $scope.isValid = false;
+            $scope.isSaved = false;
+            $scope.fieldName = 'Project Summary'
+
             $scope.getDMDIIProject = function(){
                 if ($stateParams.projectId) {
                     $scope.title = 'Edit Project';
@@ -103,7 +108,8 @@ angular.module('dmc.edit-project')
                         principalInvestigator: {},
                         projectStatus: {},
                         projectThrust: {},
-                        projectFocusArea: {}
+                        projectFocusArea: {},
+                        projectSummary: ''
                     }
                 }
             };
@@ -207,7 +213,11 @@ angular.module('dmc.edit-project')
             };
 
             $scope.saveChanges = function() {
+                $scope.isSaved = true;
 
+                if (!$scope.isValid) {
+                    return;
+                }
                 var startDate = new Date($scope.date.awarded);
                 var year = startDate.getFullYear();
                 var month = startDate.getMonth() + 1;

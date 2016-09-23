@@ -2,19 +2,19 @@
 
 angular.module('dmc.edit-member')
     .controller('DMCEditMemberPageController', [
-        "$stateParams",
-        "$scope",
-        "$q",
-        "$timeout",
+        '$stateParams',
+        '$scope',
+        '$q',
+        '$timeout',
         '$showdown',
-        "ajax",
-        "dataFactory",
-        "$location",
-        "toastModel",
-        "questionToastModel",
-        "DMCUserModel",
-        "$window",
-        "fileUpload",
+        'ajax',
+        'dataFactory',
+        '$location',
+        'toastModel',
+        'questionToastModel',
+        'DMCUserModel',
+        '$window',
+        'fileUpload',
         function ($stateParams,
                 $scope,
                 $q,
@@ -51,6 +51,11 @@ angular.module('dmc.edit-member')
             });
 
             $scope.date = {};
+
+            $scope.descriptionLimit = 5000;
+            $scope.isValid = false;
+            $scope.isSaved = false;
+            $scope.fieldName = 'Description'
 
             var getOrganizations = function() {
                 if (!$stateParams.memberId) {
@@ -415,7 +420,12 @@ angular.module('dmc.edit-member')
             };
 
             $scope.saveChanges = function() {
-                console.log($scope.company)
+                $scope.isSaved = true;
+
+                if (!$scope.isValid) {
+                    return;
+                }
+
                 $scope.setTier();
 
                 var date = new Date($scope.date.start);

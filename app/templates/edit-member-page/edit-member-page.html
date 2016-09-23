@@ -116,18 +116,14 @@
                 </div>
             </div>
             <div layout="row">
-                <div layout="column">
-                    <label>Description (Required)</label>
-                    <md-input-container class="no-bottom no-pad-bottom company-description">
-        	            <div class="rich" medium-editor ng-model="company.organization.description"
-                            data-placeholder="Description of Organization"
-                            bind-options="{toolbar: { 'buttons': ['bold','italic','underline','anchor', 'quote',  'h2', 'h3'] } }"
-                            ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin"
-                            ng-required="true"></div>
-        	        </md-input-container>
-                    <div>
-                        <p class="textHint">Highlight text to format</p>
-                    </div>
+                <div layout="column" flex="50"
+                    ui-widget-rich-text
+                    field-name="fieldName"
+                    is-required="true"
+                    model="company.organization.description"
+                    limit="descriptionLimit"
+                    is-saved="isSaved"
+                    is-valid="isValid">
                 </div>
             </div>
 

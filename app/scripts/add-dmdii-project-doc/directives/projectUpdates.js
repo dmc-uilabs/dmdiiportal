@@ -17,9 +17,14 @@ angular.module('dmc.add-project-doc').
 					'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
 				};
 
-				$scope.update = {};
+				$scope.update = {
+                    description: ''
+                };
 				$scope.projectUpdates = [];
                 $scope.descriptionLimit = 5000;
+                $scope.isValid = false;
+                $scope.isSaved = false;
+                $scope.fieldName = 'Description'
 
                 var convertToMarkdown = function(input) {
                     var escaped = toMarkdown(input);
@@ -43,15 +48,8 @@ angular.module('dmc.add-project-doc').
                     if (!$scope.update.created) {
                         $scope.noDateSelected = true;
                     }
-                    if (!$scope.event.description) {
-                        $scope.noDescription = true;
-                    }
 
-                    if ($scope.event.description.length < $scope.descriptionLimit) {
-                        $scope.descriptionOverLimit = true;
-                    }
-
-                    if ( $scope.noTitle || $scope.noDateSelected || $scope.noDescription || $scope.descriptionOverLimit) {
+                    if ( $scope.noTitle || $scope.noDateSelected || !$scope.isValid) {
                         return;
                     }
 
