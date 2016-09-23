@@ -29,9 +29,10 @@ angular.module('dmc.widgets.rich-text', [
 				$scope.placeholderText = 'Enter text here';
 			}
 
-$scope.$watch('isValid', function() {
-	console.log('rich',$scope.isValid)
-})
+			$scope.$watch('isValid', function() {
+				$scope.$emit('isValid', $scope.isValid);
+			});
+
 			$scope.$watch('model', function() {
 				if ($scope.model === undefined) {
 					$scope.model = '';
@@ -51,7 +52,6 @@ $scope.$watch('isValid', function() {
 				} else {
 					$scope.descriptionOverLimit = false;
 				}
-console.log($scope.noDescription, $scope.descriptionOverLimit)
 
 				if ($scope.noDescription || $scope.descriptionOverLimit) {
 					$scope.isValid = false;
@@ -59,6 +59,7 @@ console.log($scope.noDescription, $scope.descriptionOverLimit)
 					$scope.isValid = true;
 				}
 			});
+
 		}
 
 	}

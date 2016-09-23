@@ -94,6 +94,10 @@ angular.module('dmc.company')
                 $scope.isSaved = false;
                 $scope.fieldName = 'Description'
 
+                $scope.$on('isValid', function (event, data) {
+                    $scope.isValid = data;
+                });
+                
                 $scope.productTypes = [
                     //{
                     //    name : 'all',
@@ -405,7 +409,7 @@ angular.module('dmc.company')
                     if (!$scope.isValid) {
                         return;
                     }
-                    
+
                     if(changedPositions){
                         for(var index in changedPositions){
                             ajax.update(dataFactory.updateCompanyFeaturedPosition(changedPositions[index].id),{

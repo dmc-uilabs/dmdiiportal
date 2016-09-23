@@ -27,7 +27,7 @@
                 </md-not-found>
             </md-autocomplete>
         </div>
-        <div ng-hide=!company.organization>
+        <div ng-hide=!company.organization.id>
             <div layout="row">
                 <div layout="column" class="logo-column" ng-show="!changingLogo">
                     <div class="profile-logo">
@@ -116,7 +116,7 @@
                 </div>
             </div>
             <div layout="row">
-                <div layout="column" flex="100"
+                <div layout="column" flex="100" ng-if="userData.isAdmin || userData.isDmdiiAdmin"
                     ui-widget-rich-text
                     field-name="fieldName"
                     is-required="true"
@@ -124,6 +124,10 @@
                     limit="descriptionLimit"
                     is-saved="isSaved"
                     is-valid="isValid">
+                </div>
+                <div layout="column" flex="100"
+                    ng-if="!userData.isAdmin && !userData.isDmdiiAdmin"
+                    markdown-to-html="company.organization.description">
                 </div>
             </div>
 

@@ -58,7 +58,7 @@ angular.module('dmc.company-profile')
                 desiredAreasOfExpertise: [],
                 address: {}
             };
-            
+
             if (angular.isDefined($stateParams.companyId)) {
                 getCompany();
                 $scope.title = 'Update an Organization';
@@ -78,6 +78,10 @@ angular.module('dmc.company-profile')
             $scope.isSaved = false;
             $scope.fieldName = 'Description'
 
+            $scope.$on('isValid', function (event, data) {
+                $scope.isValid = data;
+            });
+            
             $scope.images = [];
             $scope.videos = [];
             $scope.removedVideos = [];

@@ -26,12 +26,20 @@ angular.module('dmc.add-project-doc').
                 $scope.isSaved = false;
                 $scope.fieldName = 'Description'
 
+                $scope.$on('isValid', function(event, data) {
+                    $scope.isValid = data;
+                })
                 var convertToMarkdown = function(input) {
                     var escaped = toMarkdown(input);
                     return escaped;
                 };
 
 				$scope.saveUpdates = function() {
+                    $scope.isSaved = true;
+
+                    if (!$scope.isValid) {
+                        return;
+                    }
 
 					var startDate = new Date($scope.update.created);
 					var year = startDate.getFullYear();
@@ -49,7 +57,7 @@ angular.module('dmc.add-project-doc').
                         $scope.noDateSelected = true;
                     }
 
-                    if ( $scope.noTitle || $scope.noDateSelected || !$scope.isValid) {
+                    if ( $scope.noTitle || $scope.noDateSelected) {
                         return;
                     }
 

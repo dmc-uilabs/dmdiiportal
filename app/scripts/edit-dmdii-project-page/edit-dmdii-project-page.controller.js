@@ -92,6 +92,10 @@ angular.module('dmc.edit-project')
             $scope.isSaved = false;
             $scope.fieldName = 'Project Summary'
 
+            $scope.$on('isValid', function (event, data) {
+                $scope.isValid = data;
+            });
+            
             $scope.project = {
                 contributingCompanyIds: [],
                 primeOrganization: {},
@@ -102,7 +106,7 @@ angular.module('dmc.edit-project')
                 projectFocusArea: {},
                 projectSummary: ''
             }
-            
+
             $scope.getDMDIIProject = function(){
                 if ($stateParams.projectId) {
                     $scope.title = 'Edit Project';
@@ -204,10 +208,6 @@ angular.module('dmc.edit-project')
                 }
             }
 
-            $scope.$watch('date', function() {
-                console.log($scope.date);
-            }, true)
-
             var convertToMarkdown = function(input) {
                 var escaped = toMarkdown(input);
                 return escaped;
@@ -215,7 +215,6 @@ angular.module('dmc.edit-project')
 
             $scope.saveChanges = function() {
                 $scope.isSaved = true;
-                console.log($scope.isValid, $scope.isSaved)
 
                 if (!$scope.isValid) {
                     return;

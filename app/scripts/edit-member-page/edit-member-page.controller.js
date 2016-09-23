@@ -57,9 +57,6 @@ angular.module('dmc.edit-member')
             $scope.fieldName = 'Description';
             $scope.isValid = false;
 
-            $scope.$watch('isValid', function() {
-            	console.log('memb', $scope.isValid)
-            })
             $scope.company = {
                 dmdiiType: {
                     dmdiiTypeCategory: {}
@@ -69,6 +66,10 @@ angular.module('dmc.edit-member')
                     description: ''
                 }
             };
+            
+            $scope.$on('isValid', function (event, data) {
+                $scope.isValid = data;
+            });
 
             var getOrganizations = function() {
                 if (!$stateParams.memberId) {
