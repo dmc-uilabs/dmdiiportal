@@ -427,6 +427,9 @@ angular.module('dmc.edit-member')
                 return escaped;
             };
 
+            $scope.$watch('company.organization.description', function() {
+                console.log($scope.company)
+            })
             $scope.saveChanges = function() {
                 $scope.isSaved = true;
 console.log($scope.isValid, $scope.isSaved)

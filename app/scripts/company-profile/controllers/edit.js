@@ -50,6 +50,15 @@ angular.module('dmc.company-profile')
                 });
             };
 
+            $scope.company = {
+                description: '',
+                contacts: [],
+                awards: [],
+                areasOfExpertise: [],
+                desiredAreasOfExpertise: [],
+                address: {}
+            };
+            
             if (angular.isDefined($stateParams.companyId)) {
                 getCompany();
                 $scope.title = 'Update an Organization';
@@ -57,14 +66,6 @@ angular.module('dmc.company-profile')
             } else {
                 $scope.title = 'Create an Organization';
                 $scope.action = 'created';
-                $scope.company = {
-                    description: '',
-                    contacts: [],
-                    awards: [],
-                    areasOfExpertise: [],
-                    desiredAreasOfExpertise: [],
-                    address: {}
-                };
             }
 
             $scope.user = null;

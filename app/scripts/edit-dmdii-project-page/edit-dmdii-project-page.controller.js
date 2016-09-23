@@ -92,6 +92,17 @@ angular.module('dmc.edit-project')
             $scope.isSaved = false;
             $scope.fieldName = 'Project Summary'
 
+            $scope.project = {
+                contributingCompanyIds: [],
+                primeOrganization: {},
+                primaryPointOfContact: {},
+                principalInvestigator: {},
+                projectStatus: {},
+                projectThrust: {},
+                projectFocusArea: {},
+                projectSummary: ''
+            }
+            
             $scope.getDMDIIProject = function(){
                 if ($stateParams.projectId) {
                     $scope.title = 'Edit Project';
@@ -101,16 +112,6 @@ angular.module('dmc.edit-project')
                     $scope.title = 'Create Project';
                     $scope.action = 'Created';
 
-                    $scope.project = {
-                        contributingCompanyIds: [],
-                        primeOrganization: {},
-                        primaryPointOfContact: {},
-                        principalInvestigator: {},
-                        projectStatus: {},
-                        projectThrust: {},
-                        projectFocusArea: {},
-                        projectSummary: ''
-                    }
                 }
             };
             $scope.getDMDIIProject();
