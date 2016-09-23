@@ -17,6 +17,7 @@ angular.module('dmc.edit-project', [
     'dmc.data',
     'dmc.socket',
     'dmc.widgets.stars',
+    'dmc.widgets.rich-text',
     'dmc.model.question-toast-model',
     'dmc.widgets.review',
     'dmc.widgets.tabs',

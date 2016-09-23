@@ -31,8 +31,9 @@ angular.module('dmc.addDmdiiContent').
 
                 var eventCallback = function(response) {
                     toastModel.showToast('success', 'Project Event Saved!');
-                    $timeout($window.location.reload, 500)
-                };
+                    $timeout(function() {
+                        $window.location.reload();
+                    }, 500);                };
 
                 var convertToMarkdown = function(input) {
                     var escaped = toMarkdown(input);

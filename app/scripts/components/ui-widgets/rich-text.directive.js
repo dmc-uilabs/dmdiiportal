@@ -2,8 +2,9 @@
 //rich text isRequired, limit, model then html
 
 angular.module('dmc.widgets.rich-text', [
-	'angular-medium-editor'
-]).directive('uiWidgetRichText', function() {
+	'angular-medium-editor',
+	'ng-showdown'
+]).directive('uiWidgetRichText', [ '$showdown', function($showdown) {
 	return {
 		restrict: 'A',
 		templateUrl: 'templates/components/ui-widgets/rich-text.html',
@@ -28,24 +29,29 @@ angular.module('dmc.widgets.rich-text', [
 				$scope.placeholderText = 'Enter text here';
 			}
 
+$scope.$watch('isValid', function() {
+	console.log('rich',$scope.isValid)
+})
 			$scope.$watch('model', function() {
-				$scope.chars = $('#richdiv').text().trim().length;
-
-				if (!$scope.model && $scope.isRequired && $scope.chars === 0) {
-					$scope.noDescription = true;
-					return;
-				} else {
-					$scope.noDescription = false;
+				if ($scope.model === undefined) {
+					$scope.model = '';
 				}
 
 				$scope.model = $scope.model.trim()
+				$scope.chars = $showdown.stripHtml($scope.model).length;
+
+				if ($scope.isRequired && $scope.chars === 0) {
+					$scope.noDescription = true;
+				} else {
+					$scope.noDescription = false;
+				}
 
 				if ($scope.chars > $scope.limit) {
 					$scope.descriptionOverLimit = true;
 				} else {
 					$scope.descriptionOverLimit = false;
 				}
-
+console.log($scope.noDescription, $scope.descriptionOverLimit)
 
 				if ($scope.noDescription || $scope.descriptionOverLimit) {
 					$scope.isValid = false;
@@ -56,4 +62,4 @@ angular.module('dmc.widgets.rich-text', [
 		}
 
 	}
-});
+}]);

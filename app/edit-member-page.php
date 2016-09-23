@@ -28,6 +28,7 @@
 <script src="scripts/common/footer/footer.js"></script>
 <script src="scripts/common/factory/location.factory.js"></script>
 <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
+<script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
 <script src="scripts/components/members-card/members-card.js"></script>
 <script src="scripts/components/contacts-card/contacts-card.js"></script>
 <script src="scripts/common/models/previous-page.js"></script>

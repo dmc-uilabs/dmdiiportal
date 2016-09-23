@@ -214,6 +214,7 @@ angular.module('dmc.edit-project')
 
             $scope.saveChanges = function() {
                 $scope.isSaved = true;
+                console.log($scope.isValid, $scope.isSaved)
 
                 if (!$scope.isValid) {
                     return;

@@ -31,6 +31,7 @@ angular.module('dmc.company', [
     'flow',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
+    'dmc.widgets.rich-text',
     'ng-autofocus'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
     var resolve = {

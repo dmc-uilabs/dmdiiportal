@@ -11,6 +11,7 @@ angular.module('dmc.company-profile', [
     'ui.router',
     'md.data.table',
     'angular-medium-editor',
+    'dmc.widgets.rich-text',
     'dmc.ajax',
     'dmc.data',
     'dmc.socket',

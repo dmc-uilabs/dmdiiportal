@@ -16,14 +16,12 @@ angular.module('dmc.addDmdiiContent').
                 $scope.isValid = false;
                 $scope.isSaved = false;
                 $scope.fieldName = 'Description';
-                
-                $scope.$watch('isValid', function() {
-                    console.log($scope.isValid)
-                });
 
                 var eventCallback = function(response) {
                     toastModel.showToast('success', 'Member Event Saved!');
-                    $setTimeout($window.location.reload, 500);
+                    $timeout(function() {
+                        $window.location.reload();    
+                    }, 500);
                 };
 
                 var convertToMarkdown = function(input) {
@@ -60,7 +58,7 @@ angular.module('dmc.addDmdiiContent').
                         $scope.noDateSelected = true;
                     }
 
-                    if ($scope.noTitle || $scope.noDateSelected) {
+                    if ($scope.noTitle || $scope.noDateSelected || !$scope.isValid) {
                         return;
                     }
 

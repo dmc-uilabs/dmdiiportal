@@ -53,9 +53,22 @@ angular.module('dmc.edit-member')
             $scope.date = {};
 
             $scope.descriptionLimit = 5000;
-            $scope.isValid = false;
             $scope.isSaved = false;
-            $scope.fieldName = 'Description'
+            $scope.fieldName = 'Description';
+            $scope.isValid = false;
+
+            $scope.$watch('isValid', function() {
+            	console.log('memb', $scope.isValid)
+            })
+            $scope.company = {
+                dmdiiType: {
+                    dmdiiTypeCategory: {}
+                },
+                contacts: [],
+                organization: {
+                    description: ''
+                }
+            };
 
             var getOrganizations = function() {
                 if (!$stateParams.memberId) {
@@ -63,12 +76,7 @@ angular.module('dmc.edit-member')
                     ajax.get(dataFactory.getNonDmdiiMembers(), {}, function(response) {
                         $scope.organizations = response.data;
                     });
-                    $scope.company = {
-                        dmdiiType: {
-                            dmdiiTypeCategory: {}
-                        },
-                        contacts: []
-                    };
+
                 } else {
                     return;
                 }
@@ -421,7 +429,7 @@ angular.module('dmc.edit-member')
 
             $scope.saveChanges = function() {
                 $scope.isSaved = true;
-
+console.log($scope.isValid, $scope.isSaved)
                 if (!$scope.isValid) {
                     return;
                 }
