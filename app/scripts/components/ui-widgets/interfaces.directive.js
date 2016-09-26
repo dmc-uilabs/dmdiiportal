@@ -49,7 +49,7 @@ angular.module('dmc.widgets.interfaces',[
                                 }
                             }
                             if(isThis){
-                                if($scope.interfaces[i].type == 'folder' || ($scope.interfaces[i].type == 'model' && $scope.interfaces[i].modelId == $scope.currentInterface.interFace.modelId)) {
+                                if($scope.interfaces[i].type == 'project' || $scope.interfaces[i].type == 'folder' || ($scope.interfaces[i].type == 'model' && $scope.interfaces[i].modelId == $scope.currentInterface.interFace.modelId)) {
                                     getNextInterface($scope.interfaces[i], i, false);
                                     break;
                                 }
@@ -183,7 +183,7 @@ angular.module('dmc.widgets.interfaces',[
 
                 $scope.selectInterface = function(item,index,event){
                     event.stopPropagation();
-                    if(item.type == 'folder' || item.type == 'model') {
+                    if(item.type == 'project' || item.type == 'folder' || item.type == 'model') {
                         $scope.getInterfaces(item, index, false);
                     }else{
                         $scope.getModel(item, index);

@@ -222,6 +222,9 @@ angular.module('dmc.data',[])
             runModel: function(){
                 return localhost + 'model_run';
             },
+            runModelWithFile: function(){
+                return localhost + 'model_run_file';
+            },
             pollModel: function(id) {
                 return localhost + 'model_poll/'+id;
             },
@@ -1082,8 +1085,8 @@ angular.module('dmc.data',[])
             getTimeFormat: function(){
                 return 'hh:mm:ss A';
             },
-            getDateTimeFormat: function(){
-                return getDateFormat() + ' ' + getTimeFormat();
+            getDateAndTimeFormat: function(){
+                return this.getDateFormat() + ' ' + this.getTimeFormat();
             }
         };
     }

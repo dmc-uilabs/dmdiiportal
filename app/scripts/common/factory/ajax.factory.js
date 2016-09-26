@@ -38,6 +38,27 @@ angular.module('dmc.ajax',[
                 return $http(config).then(successFunction, (errorFunction ? errorFunction : errorCallback));
             };
 
+            var multipartRequest = function(urlAddress, dataObject, successFunction, errorFunction, method) {
+                 var fileObject = _.find(dataObject.inParams, _.matchesProperty("type", "File"));
+
+                 var serviceData = JSON.stringify(dataObject);
+                 var fd = new FormData();
+                 fd.append('file', fileObject.value);
+                 fd.append('service', serviceData);
+
+                 var config = {
+                    url: urlAddress,
+                    method: method,
+                    transformRequest: angular.identity,
+                    headers: {
+                        "Content-Type": undefined
+                    },
+                    data: fd
+                };
+
+                return $http(config).then(successFunction, (errorFunction ? errorFunction : errorCallback));
+            }
+
             return {
                 on: function(urlAddress,dataObject,successFunction,errorFunction, method){
                     $.ajax({
@@ -68,6 +89,9 @@ angular.module('dmc.ajax',[
                 },
                 put: function(urlAddress,dataObject,successFunction,errorFunction){
                     return request(urlAddress,dataObject,successFunction,errorFunction,"PUT");
+                },
+                multipart: function(urlAddress, dataObject, successFunction, errorFunction){
+                    return multipartRequest(urlAddress,dataObject,successFunction,errorFunction,"POST");
                 },
                 loadProjects: function(){
                     this.get(

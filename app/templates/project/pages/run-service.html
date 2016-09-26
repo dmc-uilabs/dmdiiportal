@@ -63,7 +63,8 @@
 						<div flex="50" class="left">
 							<md-input-container>
 							<label>{{item.name}}</label>
-							<input maxlength="20" ng-change="changedValue()" ng-model="item.value">
+                <input maxlength="20" ng-change="changedValue()" ng-model="item.value" ng-if="item.type != 'File'">
+							 <input type="file" file-upload-model="item.value" ng-if="item.type == 'File'">
 							</md-input-container>
 						</div>
 						<div flex="50" class="right">

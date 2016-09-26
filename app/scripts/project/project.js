@@ -40,7 +40,8 @@ angular.module('dmc.project', [
     'dmc.model.fileUpload',
     'dmc.model.services',
     'dmc.widgets.project-tags',
-    'dmc.sub-nav-menu'
+    'dmc.sub-nav-menu',
+    'dmc.input-file.directive'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
