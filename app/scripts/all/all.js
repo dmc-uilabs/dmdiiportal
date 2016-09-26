@@ -17,15 +17,15 @@ angular.module('dmc.view-all', [
 	"dmc.ajax",
 	"dmc.data",
     'dmc.model.project',
-    'dmc.model.user', 
+    'dmc.model.user',
 	'dmc.model.toast-model'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
-    var resolve = {
-        projectData: ['DMCProjectModel', '$stateParams',
-            function(DMCProjectModel, $stateParams) {
-                return DMCProjectModel.getModel($stateParams.projectId);
-            }]
-    };
+  var resolve = {
+      projectData: ['DMCProjectModel', '$stateParams',
+          function(DMCProjectModel, $stateParams) {
+              return DMCProjectModel.getModel($stateParams.projectId);
+          }]
+  };
 	$stateProvider
         .state('tasks', {
     		url: '/tasks/:projectId?text?type',

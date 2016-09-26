@@ -124,7 +124,14 @@ gulp.task('serve', ['styles'], () => {
             routes: { '/bower_components': 'bower_components' },
             middleware: function (req, res, next) {
                 const url = req.url;
-                if (!url.match(/^\/(styles|fonts|bower_components)\//)) {
+                if (url.match(/^\/rest\//)) {
+                    req.headers["AJP_eppn"]="test1"; //test user eppn
+                    req.headers["AJP_givenName"]= "abc";
+                    req.headers["AJP_sn"]= "abc";
+                    req.headers["AJP_displayName"]= "abc";
+                    req.headers["AJP_mail"]= "abc";
+                    proxy.web(req, res, { target: 'http://127.0.0.1:8080' });
+                } else if (!url.match(/^\/(styles|fonts|bower_components)\//)) {
                     proxy.web(req, res, { target: 'http://127.0.0.1:9001' });
                 } else {
                     next();
