@@ -33,9 +33,14 @@ angular.module('dmc.company')
 
         $scope.companyData = companyData ;
 
-        ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.companyData.id, fileTypeId: 1, limit: 1}, function(response) {
-            if (response.data.length > 0) {
-                $scope.companyData.logoImage = response.data[0];
+        ajax.get(dataFactory.documentsURL().getList, {
+            parentType: 'ORGANIZATION',
+            parentId: $scope.companyData.id,
+            docClass: 'LOGO',
+            recent: 1
+        }, function(response) {
+            if (response.data.data.length > 0) {
+                $scope.companyData.logoImage = response.data.data[0];
             };
         });
 

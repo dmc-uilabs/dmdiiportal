@@ -6,13 +6,13 @@ angular.module('dmc.notifications')
         'ajax',
         'notificationsStatistic',
         'notificationsModel',
-        'notficationsMessages',
+        'notificationsMessages',
         'DMCUserModel',
         function ($scope,
                   ajax,
                   notificationsStatistic,
                   notificationsModel,
-                  notficationsMessages,
+                  notificationsMessages,
                   DMCUserModel) {
             $scope.user = false;
             $scope.filterFlag = false;
@@ -39,7 +39,7 @@ angular.module('dmc.notifications')
             )
 
             $scope.getItemDetails = function(item) {
-                return notficationsMessages.getLinkDetails(item);
+                return notificationsMessages.getLinkDetails(item);
             };
 
             $scope.reset = function() {

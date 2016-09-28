@@ -20,16 +20,17 @@ angular.module('dmc.profile')
             ajax.get(dataFactory.getProfileCompanyJoinRequest($scope.profile.id),{
             },function(response){
                 $scope.profile.companyJoinRequest = response.data.length > 0 && response.data[0].id > 0 ? response.data[0] : null;
-                if($scope.profile.companyJoinRequest) $scope.profile.companyId = $scope.profile.companyJoinRequest.companyId;
-                console.log($scope.profile);
+                if($scope.profile.companyJoinRequest) {
+                    $scope.profile.companyId = $scope.profile.companyJoinRequest.companyId;
+                }
                 apply();
             });
         }
 
         function loadCompanies(){
             ajax.get(dataFactory.companyURL().all,{
-                _order: "ASC",
-                _sort: "name"
+                _order: 'ASC',
+                _sort: 'name'
             },function(response){
                 $scope.companies = response.data;
                 apply();
@@ -38,18 +39,18 @@ angular.module('dmc.profile')
 
         $scope.goRequestToJoin = function(companyId){
             ajax.create(dataFactory.addCompanyJoinRequest(), {
-                "profileId": $scope.profile.id,
-                "companyId": companyId
+                'profileId': $scope.profile.id,
+                'companyId': companyId
             },function(response){
                 $scope.profile.companyJoinRequest = response.data;
-                toastModel.showToast("success", "Request to join successfully sent");
+                toastModel.showToast('success', 'Request to join successfully sent');
                 apply();
             });
         };
 
         $scope.$on('$stateChangeStart', function (event, next) {
             if(!$scope.save && $scope.isChange){
-                var answer = confirm("Are you sure you want to leave this page without saving?");
+                var answer = confirm('Are you sure you want to leave this page without saving?');
                 if (!answer) {
                     event.preventDefault();
                 }
@@ -57,8 +58,8 @@ angular.module('dmc.profile')
         });
 
         $(window).bind('beforeunload', function () {
-            if($state.current.name == "edit" && $scope.isChange)
-                return "Are you sure you want to leave this page without saving?";
+            if($state.current.name == 'edit' && $scope.isChange)
+                return 'Are you sure you want to leave this page without saving?';
         });
 
         function apply(){
@@ -89,7 +90,7 @@ angular.module('dmc.profile')
             $scope.editFlag = true;
             // auto focus for edit Display Name
             $timeout(function () {
-                $("#editDisplayNameProfile").focus();
+                $('#editDisplayNameProfile').focus();
             });
         };
 
@@ -104,7 +105,7 @@ angular.module('dmc.profile')
         //remove skill
         $scope.deleteSkill = function (index,ev) {
             questionToastModel.show({
-                question : "Do you want to delete the skill?",
+                question : 'Do you want to delete the skill?',
                 buttons: {
                     ok: function(){
                         $scope.isChange = true;
@@ -117,6 +118,20 @@ angular.module('dmc.profile')
 
         //save edit profile
         $scope.saveEdit = function () {
+            if ($scope.file != '') {
+                fileUpload.uploadFileToUrl($scope.file.files[0].file, {id: $scope.profile.id}, 'profile', function(response) {
+                    var doc = {
+                        documentUrl: response.file.name,
+                        documentName: response.key,
+                        ownerId: $scope.profile.id,
+                        parentType: 'USER',
+                        parentId: $scope.profile.id,
+                        accessLevel: $scope.documents[i].accessLevel
+                    }
+
+                    ajax.create(dataFactory.documentsURL().save, doc, callback);
+                });
+            }
             profileModel.edit_profile($scope.profile.id,
                 {
                     displayName: $scope.profile.displayName,
@@ -128,27 +143,24 @@ angular.module('dmc.profile')
                 function(data){
                     $scope.save = true;
                     $scope.isChangingPicture = false;
-                    $state.go("profile",{profileId: $scope.profile.id})
+                    $state.go('profile',{profileId: $scope.profile.id})
                 }
             );
-            if ($scope.file != '') {
-                fileUpload.uploadFileToUrl($scope.file.files[0].file, {id: $scope.profile.id}, 'profile', callbackUploadPicture);
-            }
         };
 
         $scope.cancelEdit = function(){
             $scope.save = true;
             $scope.isChangingPicture = false;
-            $state.go("profile",{profileId: $scope.profile.id})
+            $state.go('profile',{profileId: $scope.profile.id})
         };
 
         $scope.removeMainPicture = function(ev){
             questionToastModel.show({
-                question : "Do you want to delete the picture?",
+                question : 'Do you want to delete the picture?',
                 buttons: {
                     ok: function(){
                         $scope.isChange = true;
-                        $scope.profile.image = "";
+                        $scope.profile.image = '';
                         apply();
                     },
                     cancel: function(){}
@@ -157,7 +169,7 @@ angular.module('dmc.profile')
         };
 
 //upload profile photo
-        //button "Change photo"
+        //button 'Change photo'
         $scope.changePicture = function () {
             $scope.isChangingPicture = true;
         };
@@ -170,11 +182,6 @@ angular.module('dmc.profile')
         $scope.cancelChangePicture = function (flow) {
             flow.files = [];
             $scope.isChangingPicture = false;
-        };
-
-        //success upload photo
-        var callbackUploadPicture = function (data) {
-            $scope.profile.image = data.file.name;
         };
 
         //Drag & Drop enter
@@ -205,10 +212,8 @@ angular.module('dmc.profile')
         var callback = function (success, data) {
             if (success) {
                 $scope.isChange = true;
-                $scope.profile.location = data.city + ", " + data.region;
+                $scope.profile.location = data.city + ', ' + data.region;
             }
         };
 
     });
-
-

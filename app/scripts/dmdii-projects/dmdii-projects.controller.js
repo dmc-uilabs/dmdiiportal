@@ -105,12 +105,18 @@ angular.module('dmc.dmdiiProjects')
             }
 
             $scope.getProjectStaticImages = function() {
-                ajax.get(dataFactory.getDMDIIDocuments().overview, {}, function(response)  {
-                    $scope.projectOverview = response.data;
+                ajax.get(dataFactory.documentsURL().getList, {
+                    docClass: 'OVERVIEW',
+                    recent: 1
+                }, function(response)  {
+                    $scope.projectOverview = response.data.data;
                 });
 
-                ajax.get(dataFactory.getDMDIIDocuments().status, {}, function(response)  {
-                    $scope.projectStatus = response.data;
+                ajax.get(dataFactory.documentsURL().getList, {
+                    docClass: 'STATUS',
+                    recent: 1
+                }, function(response)  {
+                    $scope.projectStatus = response.data.data;
                 });
             }
             $scope.getProjectStaticImages();

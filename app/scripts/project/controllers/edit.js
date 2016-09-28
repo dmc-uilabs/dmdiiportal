@@ -1,15 +1,15 @@
 angular.module('dmc.project')
     .controller('EditProjectCtrl',[
-        "$scope",
-        "$rootScope",
-        "$stateParams",
-        "$mdDialog",
-        "dataFactory",
-        "ajax",
-        "projectModel",
-        "questionToastModel",
-        "toastModel",
-        "projectData",
+        '$scope',
+        '$rootScope',
+        '$stateParams',
+        '$mdDialog',
+        'dataFactory',
+        'ajax',
+        'projectModel',
+        'questionToastModel',
+        'toastModel',
+        'projectData',
         function ($scope,
                   $rootScope,
                   $stateParams,
@@ -70,7 +70,7 @@ angular.module('dmc.project')
             // get project documents
             $scope.getDocuments = function(){
                 ajax.get(dataFactory.getProjectDocuments(projectCtrl.currentProjectId),{
-                    "project-documentId" : 0
+                    'project-documentId' : 0
                 },function(response){
                     $scope.documents = response.data;
                     apply();
@@ -89,7 +89,7 @@ angular.module('dmc.project')
                 if(!$scope.goSaveProject) {
                     event.preventDefault();
                     questionToastModel.show({
-                        question: "Are you sure you want to leave this page?",
+                        question: 'Are you sure you want to leave this page?',
                         buttons: {
                             ok: function(){
                                 $(window).unbind('beforeunload');
@@ -104,7 +104,7 @@ angular.module('dmc.project')
 
             $(window).unbind('beforeunload');
             $(window).bind('beforeunload', function(){
-                return "";
+                return '';
             });
 
             $scope.updateProject = function(data) {
@@ -118,11 +118,11 @@ angular.module('dmc.project')
                 }
                 newProject.documents = $scope.documents;
                 projectModel.update_project(projectCtrl.currentProjectId,newProject, data, currentMembers, function(data){
-                    document.location.href = "project.php#/"+projectCtrl.currentProjectId+"/home";
+                    document.location.href = 'project.php#/'+projectCtrl.currentProjectId+'/home';
                 });
             };
 
-            $("md-tabs").on("click","md-tab-item",function(){
+            $('md-tabs').on('click','md-tab-item',function(){
                 $scope.enableNext($(this).index()+2);
             });
 
@@ -156,7 +156,7 @@ angular.module('dmc.project')
 
             $scope.deleteProject = function(ev){
                 questionToastModel.show({
-                    question : "Do you want to delete the project?",
+                    question : 'Do you want to delete the project?',
                     buttons: {
                         ok: function(){
                             deleteProject();
@@ -168,8 +168,8 @@ angular.module('dmc.project')
 
             function deleteProject(){
                 ajax.delete(dataFactory.deleteProject(projectCtrl.currentProjectId),{},function(){
-                    toastModel.showToast("success","Project successfully deleted");
-                    document.location.href = "my-projects.php";
+                    toastModel.showToast('success','Project successfully deleted');
+                    document.location.href = 'my-projects.php';
                 });
             }
 

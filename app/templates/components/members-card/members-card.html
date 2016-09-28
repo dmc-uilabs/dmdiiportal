@@ -20,6 +20,7 @@
 		<h4>{{cardSource.userContactInfo.userPublicContactInfo.email}}</h4>
 		<a href="" ng-if="(userData.isDmdiiAdmin || userData.isAdmin) && cardSource.isVerified && cardSource.id !== userData.accountId" ng-click="removeMember()">Remove from Organization</a>
 		<a href="" ng-if="cardSource.isVerified && cardSource.id === userData.accountId" ng-click="removeMember()">Leave Organization</a>
+		<a href="" ng-if="!cardSource.isVerified && cardSource.id === userData.accountId" ng-click="resendNotification()">Resend Notification</a>
 
 	</div>
 

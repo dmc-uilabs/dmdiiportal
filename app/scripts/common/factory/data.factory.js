@@ -3,7 +3,7 @@
 angular.module('dmc.data',[])
     .factory('dataFactory', function ($window,$location) {
         var baseServer = $window.apiUrl ? $window.apiUrl : '/static/?p=';
-        var localhost = ($location.$$absUrl.indexOf("http://localhost") != -1  || $location.$$absUrl.indexOf(':9000') != -1 ? "http://localhost:9000/rest/" : "http://ge-dmc-01.thecreativeadvantage.net:3000/");
+        var localhost = ($location.$$absUrl.indexOf('http://localhost') != -1  || $location.$$absUrl.indexOf(':9000') != -1 ? 'http://localhost:9000/rest/' : 'http://ge-dmc-01.thecreativeadvantage.net:3000/');
         localhost = $window.apiUrl ? $window.apiUrl + '/' : localhost;
         var urlSocketServer = 'http://localhost:8080/';
         var appendId = function(id){
@@ -23,7 +23,7 @@ angular.module('dmc.data',[])
         var convertParams = function(params){
             return $.map(params,function(item,key){
                return key+'='+item;
-            }).join("&");
+            }).join('&');
         };
 
         return {
@@ -45,7 +45,7 @@ angular.module('dmc.data',[])
                 var obj = {}
                 if ($window.apiUrl) {
                     obj = _.transform(source, function(result, value, key) {
-                      if (value && key != "projectId" && key != "profileId" && key != "companyId"){
+                      if (value && key != 'projectId' && key != 'profileId' && key != 'companyId'){
                         result['_'+key] = value;
                       }
                     });
@@ -493,12 +493,6 @@ angular.module('dmc.data',[])
                     byType: localhost + 'documents/organization'
                 }
             },
-            deleteDocument: function(id) {
-                return localhost + 'document/' + id;
-            },
-            saveDocument: function() {
-                return localhost + 'document'
-            },
             getDMDIIMember: function(id) {
                 return {
                     get: localhost + 'dmdiiMember/' + id,
@@ -561,8 +555,14 @@ angular.module('dmc.data',[])
                     projectDocument: localhost + 'dmdiidocument/filetype'
                 };
             },
-            saveDMDIIDocument: function() {
-                return localhost + 'dmdiidocument';
+            documentsURL: function(id) {
+                return  {
+                    getSingle: localhost + 'documents/' + id,
+                    getList: localhost + 'documents',
+                    save: localhost + 'documents',
+                    update: localhost + 'documents/' + id,
+                    delete: localhost + 'documents/' + id,
+                }
             },
             getDocumentTags: function() {
                 return localhost + 'dmdiidocuments/getAllTags';
@@ -711,7 +711,7 @@ angular.module('dmc.data',[])
 
             /// services -----------------
             services : function(id) {
-                var name = "services";
+                var name = 'services';
                 return {
                     get : localhost + name + '/' + id,
                     add : localhost + name,
@@ -971,6 +971,12 @@ angular.module('dmc.data',[])
             updateUserAccountNotification: function(id){
                 return localhost+'account-notification-settings/'+id;
             },
+            markAllNotificationsRead: function(id) {
+                return localhost + 'users/' + id + '/notifications?action=markAllRead';
+            },
+            requestVerification: function() {
+                return localhost + 'notifications?action=requestVerification';
+            },
             getNotificationsUser: function(){
                 return localhost+'notifications-user';
             },
@@ -1056,7 +1062,7 @@ angular.module('dmc.data',[])
 			      },
 
             searchMembers: function (text) {
-                console.log("data.factory.searchMembers: text=" + text);
+                console.log('data.factory.searchMembers: text=' + text);
                 return localhost + 'searchMembers/' + text;
             },
 
@@ -1070,7 +1076,7 @@ angular.module('dmc.data',[])
                 // type - services, members
                 var name = 'compare_'+type;
                 return {
-                    userCompares : localhost + "profiles/"+id+'/'+name,
+                    userCompares : localhost + 'profiles/'+id+'/'+name,
                     get : localhost + name + '/' + id,
                     delete : localhost + name + '/' + id,
                     add : localhost + name

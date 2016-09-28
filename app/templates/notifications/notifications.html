@@ -63,7 +63,7 @@
 			<h2>{{typeNotifications}}</h2>
 		</div>
 		<md-list>
-			<md-list-item ng-repeat="item in notificationsData | filter: filterBy">
+			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy">
 				<div flex="100" layout="row" layout-align="center center" >
 					<div class="logo-event" ng-switch on="item.event">
 						<!--<img ng-src="{{item.image}}">-->
