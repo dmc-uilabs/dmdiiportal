@@ -3,11 +3,11 @@ angular.module('dmc.account')
     .controller('NotificationsAccountCtr', [
         '$stateParams',
         '$state',
-        "$scope",
-        "accountData",
-        "ajax",
-        "dataFactory",
-        "questionToastModel",
+        '$scope',
+        'accountData',
+        'ajax',
+        'dataFactory',
+        'questionToastModel',
         function ($stateParams,
                   $state,
                   $scope,
@@ -52,16 +52,16 @@ angular.module('dmc.account')
             // get all notification categories
             $scope.getNotifications = function(){
                 ajax.get(dataFactory.getAccountNotifications(),{
-                        _sort : "position",
-                        _order : "ASC"
+                        _sort : 'position',
+                        _order : 'ASC'
                     }, function(response){
                         $scope.notificationCategories = response.data;
                         ajax.get(dataFactory.getAccountNotificationCategoryItems(),{},function(res){
                             for(var i in res.data){
                                 for(var j in $scope.notificationCategories){
-                                    if(res.data[i]["account-notification-categoryId"] == $scope.notificationCategories[j].id) {
-                                        if (!$scope.notificationCategories[j]["account-notification-category-items"]) $scope.notificationCategories[j]["account-notification-category-items"] = [];
-                                        $scope.notificationCategories[j]["account-notification-category-items"].push(res.data[i]);
+                                    if(res.data[i]['account-notification-categoryId'] == $scope.notificationCategories[j].id) {
+                                        if (!$scope.notificationCategories[j]['account-notification-category-items']) $scope.notificationCategories[j]['account-notification-category-items'] = [];
+                                        $scope.notificationCategories[j]['account-notification-category-items'].push(res.data[i]);
                                     }
                                 }
                             }
@@ -157,10 +157,10 @@ angular.module('dmc.account')
             };
 
             $scope.$on('$locationChangeStart', function (event, next, current) {
-                if ($scope.changedItems.length > 0 && current.match("\/notifications")) {
+                if ($scope.changedItems.length > 0 && current.match('\/notifications')) {
                     event.preventDefault();
                     questionToastModel.show({
-                        question: "Are you sure you want to leave this page without saving?",
+                        question: 'Are you sure you want to leave this page without saving?',
                         buttons: {
                             ok: function(){
                                 $scope.changedItems = [];
@@ -175,7 +175,7 @@ angular.module('dmc.account')
 
             $(window).unbind('beforeunload');
             $(window).bind('beforeunload', function(){
-                if($scope.changedItems.length > 0) return "";
+                if($scope.changedItems.length > 0) return '';
             });
 
 

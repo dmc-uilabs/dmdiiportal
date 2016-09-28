@@ -5,11 +5,11 @@ angular.module('dmc.add-project-doc').
             restrict: 'A',
             templateUrl: 'templates/add-dmdii-project-doc/tabs/tab-project-financials.html',
             scope: {
-                source: "=",
-                project: "=",
-                user: "="
+                source: '=',
+                project: '=',
+                user: '='
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $q, fileUpload, $window) {
-                $element.addClass("tab-projectFinancials");
+                $element.addClass('tab-projectFinancials');
                 $scope.doc = [];
                 $scope.document = {};
 
@@ -38,14 +38,17 @@ angular.module('dmc.add-project-doc').
 
                     //send to s3, save returned link to document table
                     fileUpload.uploadFileToUrl($scope.doc[0].file, {}, 'projectFinancials', function(response) {
-                        $scope.document.documentUrl = response.file.name;
-                        $scope.document.documentName = 'projectFinancials';
-                        $scope.document.fileType = 3;
-                        $scope.document.ownerId = $scope.user.accountId;
-                        $scope.document.dmdiiProjectId = $scope.project.id;
-                        $scope.document.accessLevel = $scope.doc[0].accessLevel;
+                        $scope.document = {
+                            documentUrl: response.file.name,
+                            documentName: 'projectFinancials',
+                            ownerId: $scope.user.accountId,
+                            parentType: 'DMDII',
+                            parentId: $scope.project.id,
+                            docClass: 'FINANCIAL',
+                            accessLevel: $scope.doc[0].accessLevel
+                        };
 
-                        ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);
+                        ajax.create(dataFactory.documentsURL().save, $scope.document, callback);
                     });
                 };
             }

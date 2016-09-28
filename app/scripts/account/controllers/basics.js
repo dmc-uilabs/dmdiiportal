@@ -72,6 +72,11 @@ angular.module('dmc.account')
                     location.get(callback);
                 };
 
+                $scope.resendNotification = function() {
+                    ajax.create(dataFactory.requestVerification(), {}, function(response) {
+                        console.log(response)
+                    });
+                }
                 // auto focus for First Name input
                 $timeout(function () {
                     $('input').each(function(){

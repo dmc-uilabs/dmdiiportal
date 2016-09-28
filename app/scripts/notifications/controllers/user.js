@@ -6,17 +6,17 @@ angular.module('dmc.notifications')
         'ajax',
         'notificationsStatistic',
         'notificationsModel',
-        'notficationsMessages',
+        'notificationsMessages',
         'DMCUserModel',
         function ($scope,
                   ajax,
                   notificationsStatistic,
                   notificationsModel,
-                  notficationsMessages,
+                  notificationsMessages,
                   DMCUserModel) {
             $scope.user = true;
             $scope.filterFlag = false;
-            $scope.typeNotifications = "Today";
+            $scope.typeNotifications = 'Today';
             $scope.userData = DMCUserModel.getUserData();
             $scope.userData.then(function(res){
                 $scope.userData = res;
@@ -28,11 +28,11 @@ angular.module('dmc.notifications')
 
             notificationsModel.get_notifications_user(
                 {
-                    "period": "today"
+                    'period': 'today'
                 },
                 function(data){
                     for(var i in data){
-                        data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A")
+                        data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A')
                     }
                     $scope.notificationsData = data;
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -40,19 +40,19 @@ angular.module('dmc.notifications')
             )
 
             $scope.getItemDetails = function(item) {
-                return notficationsMessages.getLinkDetails(item);
+                return notificationsMessages.getLinkDetails(item);
             }
 
             $scope.reset = function() {
-                $scope.typeNotifications = "Today";
+                $scope.typeNotifications = 'Today';
                 $scope.filterFlag = false;
                 notificationsModel.get_notifications_user(
                     {
-                        "period": "today"
+                        'period': 'today'
                     },
                     function(data){
                         for(var i in data){
-                            data[i].date = moment().format("MM/DD/YYYY hh:mm A")
+                            data[i].date = moment().format('MM/DD/YYYY hh:mm A')
                         }
                         $scope.notificationsData = data;
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -61,22 +61,22 @@ angular.module('dmc.notifications')
             }
 
             $scope.filtered = function(time, events, name){
-                var period = "";
-                if(time == "today"){
-                    period = "today";
-                }else if (time == "week"){
-                    period = ["today","week"];
+                var period = '';
+                if(time == 'today'){
+                    period = 'today';
+                }else if (time == 'week'){
+                    period = ['today','week'];
                 }else{
-                    period = ["today","week","month"];
+                    period = ['today','week','month'];
                 }
                 notificationsModel.get_notifications_user(
                     {
-                        "period": period,
-                        "event": events
+                        'period': period,
+                        'event': events
                     },
                     function(data){
                         for(var i in data){
-                            data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A")
+                            data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A')
                         }
                         $scope.notificationsData = data;
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();

@@ -16,9 +16,7 @@
                             <div><img ng-src="{{companyData.logoImage.documentUrl}}" alt=""/></div>
                         </div>
                         <div layout="column" flex="70">
-                            <h2 class="md-title" layout="row" layout-align="start center">
-                                <a style="margin-left: 15px;" class="company-buttons link-button uppercase" ng-href="/company-profile.php#/profile/{{companyData.id}}">{{companyData.name}}</a>
-                            </h2>
+                            <a layout="row" layout-align="start center" style="margin-left: 15px;" class="company-buttons link-button uppercase" ng-href="/company-profile.php#/profile/{{companyData.id}}"><h2 class="md-title">{{companyData.name}}</h2></a>
                             <p>
                                 <div markdown-to-html="companyData.description"></div>
                             </p>

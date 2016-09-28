@@ -8,7 +8,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
 .config(function($animateProvider) {
     $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
 })
-.directive('dmcTopHeader', ['$window', 'DMCUserModel', '$mdMenu', '$rootScope', 'notficationsMessages', function($window, userModel, $mdMenu, $rootScope, notficationsMessages){
+.directive('dmcTopHeader', ['$window', 'DMCUserModel', '$mdMenu', '$rootScope', 'notificationsMessages', function($window, userModel, $mdMenu, $rootScope, notificationsMessages){
   return {
     restrict: 'A',
     scope: {
@@ -48,8 +48,14 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
           }
 
           if ($scope.userData.notifications) {
-              $scope.notificationsList = getExtendedNotifications($scope.userData.notifications.items);
-              $scope.notification_alert = $scope.userData.notifications.total;
+              $scope.notification_alert = 0;
+
+              angular.forEach($scope.userData.notifications, function(item) {
+                  item.created = new Date(item.created);
+                  if (item.unread === true) {
+                      $scope.notification_alert++;
+                  }
+              });
           }
             apply();
         };
@@ -73,31 +79,17 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
           $mdMenu.cancel();
         };
 
-        var getExtendedNotifications = function(items) {
-          var extendItems = items.map(function(item){
-            return angular.extend(item, {
-              'title': notficationsMessages.getLinkDetails(item).title,
-              'link': notficationsMessages.getLinkDetails(item).link
-            })
-          })
-
-          return extendItems;
-        };
-
         function markRead(callback){
             var user = $.extend(true,{},$scope.userData);
-            for(var i in user.notifications.items){
-                user.notifications.items[i].read = true;
+            for(var i in user.notifications){
+                user.notifications[i].read = true;
             }
             ajax.update(dataFactory.markReadNotifications(),user,callback);
         }
 
         $scope.markAllRead = function(){
-            markRead(function(response){
-                var data = response.data ? response.data : response;
-                if (data.accountId) {
-                    initUserData(data);
-                }
+            ajax.put(dataFactory.markAllNotificationsRead($scope.userData.id), {}, function() {
+                $scope.notification_alert = 0;
             });
         };
 
@@ -110,9 +102,9 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         $scope.clearNotification = function(item,ev){
             ev.preventDefault();
             var user = $.extend(true,{},$scope.userData);
-            for(var i in user.notifications.items){
-                if(user.notifications.items[i].id == item.id) {
-                    user.notifications.items[i].cleared = true;
+            for(var i in user.notifications){
+                if(user.notifications[i].id == item.id) {
+                    user.notifications[i].cleared = true;
                 }
             }
             ajax.update(dataFactory.clearNotification(item.id),user,function(response){

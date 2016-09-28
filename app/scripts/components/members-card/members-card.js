@@ -120,6 +120,13 @@ angular.module('dmc.component.members-card', [
 				toastModel.showToast('success', $scope.cardSource.firstName + ' ' + $scope.cardSource.lastName + ' role updated!');
 				$scope.isMember = true;
 			}
+
+			$scope.resendNotification = function() {
+				ajax.create(dataFactory.requestVerification(), {}, function(response) {
+					console.log(response)
+				});
+			};
+
 			$scope.saveMember = function() {
 				var role = {
 					userId: $scope.cardSource.id,

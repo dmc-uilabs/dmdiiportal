@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('dmc.common.notifications',[])
-    .factory('notficationsMessages', [
+    .factory('notificationsMessages', [
         function(){
 
         var _getItemDetails = function(item) {
           var type = item.type;
           var action = item.event;
           var linkParams = item.linkParams;
-
+          var displayName = item.createdBy.displayName;
           var _link,
               _actionTitle;
 
@@ -16,13 +16,13 @@ angular.module('dmc.common.notifications',[])
             _link = '/profile.php#/'+linkParams.profileId;
             switch (action) {
               case 'REVIEW_USER':
-                _actionTitle = linkParams.displayName + ' gave you a review.';
+                _actionTitle = displayName + ' gave you a review.';
               break;
               case 'REPLY_REVIEW':
-                _actionTitle = linkParams.displayName + ' replied to your review.';
+                _actionTitle = displayName + ' replied to your review.';
               break;
               case 'SUBSCRIBE_SERVICE_TO_YOUR_PROJECT':
-                _actionTitle = linkParams.displayName + ' added your service to a private project.';
+                _actionTitle = displayName + ' added your service to a private project.';
               break;
             }
           }
@@ -31,10 +31,10 @@ angular.module('dmc.common.notifications',[])
             _link = '/company-profile.php#/profile/'+linkParams.companyId;
             switch (action) {
               case 'REVIEW_COMPANY':
-                _actionTitle = linkParams.displayName + ' gave a review to ' + linkParams.companyName + '. ';
+                _actionTitle = displayName + ' gave a review to ' + linkParams.companyName + '. ';
               break;
               case 'REPLY_REVIEW':
-                _actionTitle = linkParams.displayName + ' replied to your review of '+ linkParams.companyName + '.';
+                _actionTitle = displayName + ' replied to your review of '+ linkParams.companyName + '.';
               break;
             }
           }
@@ -43,10 +43,10 @@ angular.module('dmc.common.notifications',[])
             _link = '/individual-discussion.php#/'+linkParams.discussionId;
             switch (action) {
               case 'NEW_DISCUSSION':
-                _actionTitle = linkParams.displayName + ' posted a new discussion.';
+                _actionTitle = displayName + ' posted a new discussion.';
               break;
               case 'REPLY_DISCUSSION':
-                _actionTitle = linkParams.displayName + ' made a comment.';
+                _actionTitle = displayName + ' made a comment.';
               break;
               case 'ANNOUNCEMENT_DMC':
                 _actionTitle = 'DMC announcement.';
@@ -91,19 +91,19 @@ angular.module('dmc.common.notifications',[])
             _link = '/service-marketplace.php#/'+linkParams.serviceId;
             switch (action) {
               case 'FAVORITED_YOUR_SERVICE':
-                _actionTitle = linkParams.displayName + ' has favorited your service.';
+                _actionTitle = displayName + ' has favorited your service.';
               break;
               case 'FAVORITED_SERVICE':
-                _actionTitle = linkParams.serviceTitle + ' was favorited by '+ linkParams.displayName;
+                _actionTitle = linkParams.serviceTitle + ' was favorited by '+ displayName;
               break;
                case 'SERVICE_SHARED':
-                _actionTitle = linkParams.serviceTitle + ' was shared by '+ linkParams.displayName;
+                _actionTitle = linkParams.serviceTitle + ' was shared by '+ displayName;
               break;
               case 'REVIEW_SERVICE':
-                _actionTitle = linkParams.serviceTitle + ' was reviewed by ' + linkParams.displayName + '.';
+                _actionTitle = linkParams.serviceTitle + ' was reviewed by ' + displayName + '.';
               break;
               case 'REPLY_REVIEW':
-                _actionTitle = linkParams.displayName + ' replied to your review of ' + linkParams.serviceTitle + '.';
+                _actionTitle = displayName + ' replied to your review of ' + linkParams.serviceTitle + '.';
               break;
             }
           }
@@ -112,13 +112,13 @@ angular.module('dmc.common.notifications',[])
             _link = '/project.php#/' + linkParams.projectId + '/home'
             switch (action) {
               case 'ACCEPT_INVITATION':
-                _actionTitle = linkParams.displayName + ' accepted your invitation to ' + linkParams.projectTitle + '.';
+                _actionTitle = displayName + ' accepted your invitation to ' + linkParams.projectTitle + '.';
               break;
               case 'UPDATE_PROJECT':
                 _actionTitle = linkParams.projectTitle + ' was updated.';
               break;
               case 'SUBSCRIBE_YOUR_SERVICE_TO_PROJECT':
-                _actionTitle = linkParams.displayName + ' added your service to ' + linkParams.projectTitle + '.';
+                _actionTitle = displayName + ' added your service to ' + linkParams.projectTitle + '.';
               break;
             }
           }
@@ -127,7 +127,7 @@ angular.module('dmc.common.notifications',[])
             _link = '/project.php#/' + linkParams.projectId + '/home?showTask=' + linkParams.taskId;
             switch (action) {
               case 'TASK_ASSIGN':
-                _actionTitle = linkParams.displayName + ' assigned you a task.';
+                _actionTitle = displayName + ' assigned you a task.';
               break;
               case 'TASK_DUE':
                 _actionTitle = 'An assigned task in ' + linkParams.projectTitle +' is due soon.';
