@@ -14,7 +14,7 @@
 <![endif]-->
 
 <!-- Top Header -->
-<div dmc-top-header></div>
+<div dmc-top-header members-only="true" active-page="'members&editDmdiiMember'"></div>
 <div ui-view></div>
 <dmc-footer></dmc-footer>
 

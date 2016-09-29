@@ -12,7 +12,7 @@
     <![endif]-->
 
     <!-- Top Header -->
-    <div dmc-top-header members-only="true" active-page="'addDmdiiContent'"></div>
+    <div dmc-top-header members-only="true" active-page="'members&addDmdiiContent'"></div>
 
     <div ui-view></div>
 

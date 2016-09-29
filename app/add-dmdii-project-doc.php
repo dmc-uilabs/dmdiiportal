@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Add DMDII</title>
+  <title>Add DMDII Project Documents and Updates</title>
 <!--  <base href="/">-->
 </head>
 <body ng-app="dmc.add-project-doc">
@@ -14,7 +14,7 @@
 <![endif]-->
 
 <!-- Top Header -->
-<div dmc-top-header></div>
+<div dmc-top-header members-only="true" active-page="'members&addDmdiiProjectDoc'"></div>
 <div ui-view></div>
 <dmc-footer></dmc-footer>
 
