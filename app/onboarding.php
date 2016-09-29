@@ -51,10 +51,13 @@
 <script src="scripts/onboarding/controllers/basic-informations.js"></script>
 <script src="scripts/onboarding/controllers/terms-conditions.js"></script>
 <!-- endbuild -->
-<script type="text/javascript">
-        <?php
+
+ <?php
           echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
         ?>
+
+<script type="text/javascript">
+       
         window.apiUrl = '';
     </script>
 </body>
