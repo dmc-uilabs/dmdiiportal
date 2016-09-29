@@ -4,10 +4,7 @@ angular.module('dmc.uploadApplication')
         '$stateParams',
         '$scope',
 		'$q',
-<<<<<<< HEAD
 		'$window',
-=======
->>>>>>> uplaod application form
         'ajax',
         'dataFactory',
         '$location',
@@ -18,10 +15,7 @@ angular.module('dmc.uploadApplication')
         function ($stateParams,
             $scope,
 			$q,
-<<<<<<< HEAD
 			$window,
-=======
->>>>>>> uplaod application form
             ajax,
             dataFactory,
             $location,
@@ -35,8 +29,6 @@ angular.module('dmc.uploadApplication')
                 $scope.user = res;
             });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
             $scope.applicationData = {
 				appTags: [],
 				screenShots: [],
@@ -47,30 +39,17 @@ angular.module('dmc.uploadApplication')
 				$scope.usedNames = response.data
 			});
 
-			//-------text input options----------------------------
-			$scope.notUnique = false;
-=======
-            $scope.applicationData = {};
-=======
-            $scope.applicationData = {
-				appTags: []
-			};
->>>>>>> uplaod application form
 
 			//-------text input options----------------------------
->>>>>>> ground work for application upload
 			$scope.titleLimit = 30;
 			$scope.shortDescriptionLimit = 80;
 			$scope.fullDescription = 4000;
 			$scope.releaseNotesLimit = 1500;
 			$scope.licenseLimit = 10000;
-<<<<<<< HEAD
 
 			$scope.checkUnique = function() {
 				$scope.notUnique = $scope.usedNames.includes($scope.applicationData.appName);
 			}
-=======
->>>>>>> ground work for application upload
 			//-------end text input options------------------------
 
 			//-------select box options ---------------------------
@@ -110,25 +89,14 @@ angular.module('dmc.uploadApplication')
 			$scope.application = [];
 			$scope.applicationLimit = 1;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 			$scope.appIcon = [];
 			$scope.appIconLimit = 1;
 
-=======
->>>>>>> ground work for application upload
-=======
-			$scope.appIcon = [];
-			$scope.appIconLimit = 1;
-
->>>>>>> uplaod application form
 			$scope.screenshots = [];
 			$scope.screenshotLimit = 3;
 
 			$scope.appDocs = [];
 			$scope.appDocLimit = 5;
-<<<<<<< HEAD
-<<<<<<< HEAD
 			//--------end doc upload options-------
 
 			//----------autocomplete tags---------
@@ -264,148 +232,3 @@ angular.module('dmc.uploadApplication')
             }
 
 	}]);
-=======
-
-			$scope.appIcon = [];
-			$scope.appIconLimit = 1;
-=======
->>>>>>> uplaod application form
-			//--------end doc upload options-------
-
-			//----------autocomplete tags---------
-			$scope.chipLimit = 7;
-
-			function loadTags() {
-				var tags = [];
-			};
-			//-----------end autocomplete---------
-            var saveCallback = function(response) {
-                $scope.applicationData = {};
-
-                toastModel.showToast('success', 'Application has been Submitted!');
-				$timeout($window.location.reload, 500);
-            };
-
-            $scope.clear = function() {
-                $scope.applicationData = {};
-                $scope.noTitle = false;
-				$scope.noShortDescription = false;
-                $scope.noLink = false;
-                $scope.noDocSelected = false;
-
-            };
-			//validation watch
-            $scope.$watch('applicationData', function() {
-                if ($scope.noTitle && angular.isDefined($scope.applicationData.appTitle) && $scope.applicationData.appTitle.trim().length > 0) {
-                    $scope.noTitle = false;
-                }
-
-                if ($scope.noDocSelected && $scope.application.length > 0) {
-                    $scope.noDocSelected = false;
-                }
-
-				if ($scope.noShortDescription && angular.isDefined($scope.applicationData.shortDescriptionLimit) && $scope.applicationData.shortDescription.length > 0) {
-                    $scope.noShortDescription = false;
-                }
-
-            }, true);
-
-			var uploadScreenshots = function() {
-				angular.forEach($scope.screenshots, function(doc) {
-					return fileUpload.uploadFileToUrl(doc.file, {}, 'applicationScreenshot').then(function(response) {
-						return ajax.create(dataFactory.documentsURL().save,
-							{
-								ownerId: $scope.user.accountId,
-								documentUrl: response.file.name,
-								documentName: 'screenshot',
-								parentType: 'APPSUBMISSION',
-								docClass: 'IMAGE'
-							}, function(response) {
-							$scope.applicationData.doc = response.data;
-						});
-					});
-				});
-			};
-
-			var uploadAppDocs = function() {
-				angular.forEach($scope.appDocs, function(doc) {
-					return fileUpload.uploadFileToUrl(doc.file, {}, 'applicationDoc').then(function(response) {
-						return ajax.create(dataFactory.documentsURL().save,
-						{
-							ownerId: $scope.user.accountId,
-							documentUrl: response.file.name,
-							documentName: 'doc',
-							parentType: 'APPSUBMISSION',
-							docClass: 'SUPPORT'
-						}, function(response) {
-							$scope.applicationData.doc = response.data;
-						});
-					});
-
-				});
-			};
-
-			var uploadAppIcon = function() {
-				return fileUpload.uploadFileToUrl($scope.appIcon[0].file, {}, 'applicationIcon').then(function(response) {
-					return ajax.create(dataFactory.documentsURL().save,
-						{
-							ownerId: $scope.user.accountId,
-							documentUrl: response.file.name,
-							documentName: 'icon',
-							parentType: 'APPSUBMISSION'
-						}, function(response) {
-						$scope.applicationData.appIcon = response.data;
-					});
-				});
-			};
-
-			var uploadApplication = function() {
-				return fileUpload.uploadFileToUrl($scope.application[0].file, {}, 'application').then(function(response) {
-					console.log(response)
-					return ajax.create(dataFactory.documentsURL().save,
-					{
-						ownerId: $scope.user.accountId,
-						documentUrl: response.file.name,
-						documentName: 'application',
-						parentType: 'APPSUBMISSION'
-					}, function(response) {
-						$scope.applicationData.application = response.data;
-					});
-                })
-			};
-            $scope.save = function() {
-
-				if (!$scope.applicationData.appTitle || $scope.applicationData.appTitle.trim().length > 0) {
-					$scope.noTitle = true;
-				};
-
-				if (!$scope.applicationData.shortDescription || $scope.applicationData.shortDescription.trim().length > 0) {
-					$scope.noShortDescription = true;
-				};
-
-				if ($scope.application.length === 0) {
-					$scope.noDocSelected = true;
-				};
-
-				$q.all([
-					uploadApplication(),
-					uploadAppIcon(),
-					uploadAppDocs(),
-					uploadScreenshots(),
-				]).then(function(response) {
-					console.log(response)
-					ajax.create(dataFactory.uploadApplication(), $scope.applicationData, saveCallback);
-				});
-
-            };
-
-            function apply() {
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            }
-<<<<<<< HEAD
-		}]);
->>>>>>> ground work for application upload
-=======
-
-	}]);
->>>>>>> uplaod application form
