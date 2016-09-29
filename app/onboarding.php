@@ -52,12 +52,15 @@
 <script src="scripts/onboarding/controllers/terms-conditions.js"></script>
 <!-- endbuild -->
 
- <?php
-          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+    <script type="text/javascript">
+        <?php
+        if (isset($_SERVER['AJP_givenName'])) {
+            echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+        } else {
+            echo('window.givenName = "";');
+        }
         ?>
 
-<script type="text/javascript">
-       
         window.apiUrl = '';
     </script>
 </body>
