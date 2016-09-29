@@ -1,4 +1,5 @@
 'use strict';
+<<<<<<< HEAD
 angular.module('dmc.uploadApplication')
 	.controller('uploadApplicationController', [
         '$stateParams',
@@ -84,6 +85,7 @@ angular.module('dmc.uploadApplication')
 
 			$scope.appDocs = [];
 			$scope.appDocLimit = 5;
+<<<<<<< HEAD
 			//--------end doc upload options-------
 
 			//----------autocomplete tags---------
@@ -93,6 +95,7 @@ angular.module('dmc.uploadApplication')
 				var tags = [];
 			};
 			//-----------end autocomplete---------
+
             var saveCallback = function(response) {
                 $scope.applicationData = {};
 
@@ -104,7 +107,7 @@ angular.module('dmc.uploadApplication')
                 $scope.applicationData = {};
                 $scope.noTitle = false;
 				$scope.noShortDescription = false;
-                $scope.noLink = false;
+                $scope.document = [];
                 $scope.noDocSelected = false;
 
             };
@@ -175,7 +178,6 @@ angular.module('dmc.uploadApplication')
 
 			var uploadApplication = function() {
 				return fileUpload.uploadFileToUrl($scope.application[0].file, {}, 'application').then(function(response) {
-					console.log(response)
 					return ajax.create(dataFactory.documentsURL().save,
 					{
 						ownerId: $scope.user.accountId,
@@ -187,6 +189,7 @@ angular.module('dmc.uploadApplication')
 					});
                 })
 			};
+
             $scope.save = function() {
 
 				if (!$scope.applicationData.appTitle || $scope.applicationData.appTitle.trim().length > 0) {
@@ -207,7 +210,6 @@ angular.module('dmc.uploadApplication')
 					uploadAppDocs(),
 					uploadScreenshots(),
 				]).then(function(response) {
-					console.log(response)
 					ajax.create(dataFactory.uploadApplication(), $scope.applicationData, saveCallback);
 				});
 
