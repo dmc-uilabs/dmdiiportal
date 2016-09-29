@@ -34,11 +34,16 @@
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/home/home.js"></script>
     <!-- endbuild -->
-    <?php
-          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
-        ?>
+
     <script type="text/javascript">
-      
+        <?php
+            if (isset($_SERVER['AJP_givenName'])) {
+                echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+            } else {
+                echo('window.givenName = "";');
+            }
+        ?>
+
         window.apiUrl = '';
     </script>
   </body>
