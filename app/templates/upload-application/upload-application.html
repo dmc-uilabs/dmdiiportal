@@ -1,0 +1,69 @@
+<div layout="column">
+    <div layout="row">
+        <md-select class="top20 bottom20 width-25" ng-model="linkType">
+            <md-option value="document">Document</md-option>
+            <md-option value="link">Link</md-option>
+            <md-option value="text">Text</md-option>
+        </md-select>
+    </div>
+
+	<div layout="row">
+	    <div layout="column" flex="33">
+	        <md-input-container>
+	            <label>Title</label>
+	            <input ng-model="quicklink.displayName" ng-required="true"/>
+	        </md-input-container>
+			<div ng-show="noTitle">
+	            <p class="slim-margin error">You <b>must</b> enter a title</p>
+	        </div>
+	    </div>
+	</div>
+
+	<div layout="row" flex="100">
+	    <div layout="column" flex="50">
+
+            <div layout="row" flex="100" layout-align="start end" ng-show="linkType === 'link'">
+                <span class="font14 bottom5">
+                    HTTP://
+                </span>
+                <md-input-container class="no-bottom no-pad-bottom" ng-show="linkType === 'link'" ng-required="linkType === 'link'" flex="50">
+                    <label>Link</label>
+                    <input ng-model="quicklink.link" ng-required="linkType === 'link'"/>
+                </md-input-container>
+            </div>
+			<div ng-show="noLink">
+	            <p class="slim-margin error">You <b>must</b> enter a link</p>
+	        </div>
+
+            <div layout="column" flex="50"
+                ui-widget-rich-text
+                field-name="fieldName"
+                is-required="true"
+                model="quicklink.text"
+                limit="descriptionLimit"
+                is-saved="isSaved"
+                is-valid="isValid">
+            </div>
+
+	        <div class="content-column upload-documents top10" layout="column" flex="50" ng-show="linkType === 'document'">
+	            <div class="content-panel"
+	                source="document"
+	                ui-widget-upload-documents
+	                widget-type="'row'"
+	                auto-upload="false"
+	                widget-title="'Upload Document'"
+	                allow-tagging="true"
+	                single-file="true">
+	            </div>
+	        </div>
+			<div ng-show="noDocSelected">
+	            <p class="slim-margin error">You <b>must</b> select a document</p>
+	        </div>
+	    </div>
+	</div>
+
+    <div layout="row" layout-align="end start">
+        <md-button class="md-raised cancel-button" ng-click="clear()">Clear</md-button>
+        <md-button class="md-raised md-primary save-button" ng-click="save()">Save</md-button>
+    </div>
+</div>
