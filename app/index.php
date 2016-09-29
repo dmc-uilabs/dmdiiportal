@@ -34,11 +34,11 @@
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/home/home.js"></script>
     <!-- endbuild -->
-
-    <script type="text/javascript">
-        <?php
+    <?php
           echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
         ?>
+    <script type="text/javascript">
+      
         window.apiUrl = '';
     </script>
   </body>
