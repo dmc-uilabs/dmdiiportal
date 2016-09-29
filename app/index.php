@@ -43,7 +43,7 @@
                 echo('window.givenName = "";');
             }
         ?>
-      
+
         window.apiUrl = '';
     </script>
   </body>
