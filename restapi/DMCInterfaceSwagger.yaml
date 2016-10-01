@@ -375,7 +375,7 @@ paths:
     get:
       tags:
         - account
-        - not implemented
+        - has tests
       description: Get favorite storefronts
       parameters:
         - name: accountID
@@ -530,7 +530,8 @@ paths:
     get:
       tags:
         - project
-        - not implemented
+        - has tests
+        - live
       description: Get all project members
       parameters:
         - name: projectID
@@ -545,33 +546,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ProjectMember'
-  '/project/{projectId}/invite/{projectMemberId}':
-    patch:
-      tags:
-        - project
-      description: Re Invite user to the project from team project page (from removed tab)
-      parameters:
-        - name: projectId
-          in: path
-          type: string
-          description: ID of the project
-          required: true
-        - name: projectMemberId
-          in: path
-          type: string
-          description: ID of the project member
-          required: true
-        - in: body
-          name: Member
-          description: Member to be updated
-          required: false
-          schema:
-            $ref: '#/definitions/ProjectMember'
-      responses:
-        '200':
-          description: return project member
-          schema:
-            $ref: '#/definitions/ProjectMember'
   '/projects/{projectID}/projects_tags':
     get:
       tags:
@@ -716,7 +690,6 @@ paths:
     get:
       tags:
         - project
-        - project.php
         - live
         - has tests
       summary: Get project information by project id
@@ -817,7 +790,8 @@ paths:
       tags:
         - project
         - add member
-        - not implemented
+        - has tests
+        - live
       description: Get members
       parameters:
         - in: query
@@ -865,7 +839,8 @@ paths:
       tags:
         - project
         - add member
-        - blocked
+        - has tests
+        - live
       description: Create a new member
       parameters:
         - in: body
@@ -879,16 +854,16 @@ paths:
           description: New member
           schema:
             $ref: '#/definitions/ProjectMember'
-  '/projects_members/{memberId}':
+  '/projects_members/{invitationId}':
     get:
       tags:
         - project
         - add member
-        - not implemented
-      description: Get member by id
+        - has tests
+      description: Get project membership invitation id
       parameters:
         - in: path
-          name: memberId
+          name: invitationId
           description: member id
           required: true
           type: string
@@ -897,54 +872,40 @@ paths:
           description: return member
           schema:
             $ref: '#/definitions/ProjectMember'
-  '/projects/{projectId}/accept/{memberId}':
+    delete:
+      tags:
+        - project
+        - add member
+        - has tests
+        - live
+      description: Decline project membership invitation
+      parameters:
+        - in: path
+          name: invitationId
+          type: string
+          description: invitation Id
+          required: true
+      responses:
+        '200':
+          description: Ok
+  '/new_members/{invitationId}':
     patch:
       tags:
         - project
         - add member
-        - not implemented
+        - has tests
       description: Accept member inivitation
       parameters:
         - in: path
-          name: memberId
+          name: invitationId
           type: string
           description: Project member id
           required: true
-        - in: path
-          name: projectId
-          type: string
-          description: Project id
-          required: true
-        - in: body
-          name: Member
-          schema:
-            $ref: '#/definitions/ProjectMember'
       responses:
         '200':
           description: Return updated member
           schema:
             $ref: '#/definitions/ProjectMember'
-  '/projects/{projectId}/reject/{memberId}':
-    delete:
-      tags:
-        - project
-        - add member
-        - not implemented
-      description: Decline member inivitation
-      parameters:
-        - in: path
-          name: memberId
-          type: string
-          description: member id
-          required: true
-        - in: path
-          name: projectId
-          type: string
-          description: Project id
-          required: true
-      responses:
-        '200':
-          description: Ok
   /tasks/create:
     post:
       tags:
@@ -1777,7 +1738,8 @@ paths:
       tags:
         - project
         - profile
-        - blocked
+        - has tests
+        - live
       description: Add new join requests of project
       parameters:
         - in: body
@@ -2579,7 +2541,7 @@ paths:
     get:
       tags:
         - discussion
-        - dashboard.php
+        - dashboard
         - not implemented
       description: Get discussion being followed
       responses:
@@ -4462,7 +4424,7 @@ paths:
           description: New service review flagged
           schema:
             $ref: '#/definitions/ProductReviewFlagged'
-  '/service_authors/{autorhId}':
+  '/service_authors/{authorId}':
     delete:
       tags:
         - service
@@ -4471,7 +4433,7 @@ paths:
       description: Remove  with service author
       parameters:
         - in: path
-          name: autorhId
+          name: authorId
           type: integer
           required: true
       responses:
@@ -5638,7 +5600,7 @@ paths:
       tags:
         - account
         - company
-        - not implemented
+        - has tests
       description: Get all following members for account
       parameters:
         - in: path
@@ -5651,42 +5613,9 @@ paths:
           description: Limit items
           type: integer
           required: false
-        - name: _order
+        - name: _start
           in: query
-          description: Order by ASC or DESC
-          type: string
-          collectionFormat: multi
-          required: false
-          enum:
-            - ASC
-            - DESC
-        - name: _sort
-          in: query
-          description: Sort by some parameter
-          type: string
-          required: false
-      responses:
-        '201':
-          description: Return followed members
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/FollowingMemeber'
-  '/profiles/{profileId}/following_members':
-    get:
-      tags:
-        - profile
-        - not implemented
-      description: Get all following members for profile
-      parameters:
-        - in: path
-          name: profileId
-          description: profile id
-          type: string
-          required: true
-        - name: _limit
-          in: query
-          description: Limit items
+          description: Offset of first item
           type: integer
           required: false
         - name: _order
@@ -5709,13 +5638,56 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/FollowingMemeber'
+              $ref: '#/definitions/FollowingMember'
+  '/profiles/{profileId}/following_members':
+    get:
+      tags:
+        - profile
+        - has tests
+      description: Get all following members for profile
+      parameters:
+        - in: path
+          name: profileId
+          description: profile id
+          type: string
+          required: true
+        - name: _limit
+          in: query
+          description: Limit items
+          type: integer
+          required: false
+        - name: _start
+          in: query
+          description: Offset of first item
+          type: integer
+          required: false
+        - name: _order
+          in: query
+          description: Order by ASC or DESC
+          type: string
+          collectionFormat: multi
+          required: false
+          enum:
+            - ASC
+            - DESC
+        - name: _sort
+          in: query
+          description: Sort by some parameter
+          type: string
+          required: false
+      responses:
+        '201':
+          description: Return followed members
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/FollowingMember'
   '/following_members':
     post:
       tags:
         - account
         - company
-        - not implemented
+        - has tests
       description: Add new followed member
       parameters:
         - in: body
@@ -5723,17 +5695,17 @@ paths:
           description: Data for add new followed member
           required: true
           schema:
-            $ref: '#/definitions/PostFollowingMemeber'
+            $ref: '#/definitions/FollowingMember'
       responses:
         '201':
           description: Return followed member
           schema:
-            $ref: '#/definitions/FollowingMemeber'
+            $ref: '#/definitions/FollowingMember'
     get:
       tags:
         - account
         - company
-        - not implemented
+        - has tests
       description: Get all followed member
       parameters:
         - in: query
@@ -5756,6 +5728,11 @@ paths:
           description: Limit items
           type: integer
           required: false
+        - name: _start
+          in: query
+          description: Offset of first item
+          type: integer
+          required: false
         - name: _order
           in: query
           description: Order by ASC or DESC
@@ -5776,12 +5753,12 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/FollowingMemeber'
+              $ref: '#/definitions/FollowingMember'
   '/following_members/{id}':
     get:
       tags:
         - account
-        - not implemented
+        - has tests
       description: Get followed member
       parameters:
         - in: path
@@ -5793,12 +5770,12 @@ paths:
         '201':
           description: Return followed member
           schema:
-            $ref: '#/definitions/FollowingMemeber'
+            $ref: '#/definitions/FollowingMember'
     delete:
       tags:
         - account
         - company
-        - not implemented
+        - has tests
       description: Delete followed member
       parameters:
         - in: path
@@ -6363,18 +6340,11 @@ paths:
                 file:
                   type: string
 definitions:
-  PostFollowingMemeber:
+  FollowingMember:
     type: object
     properties:
       id:
         type: string
-      accountId:
-        type: string
-      profileId:
-        type: string
-  FollowingMemeber:
-    type: object
-    properties:
       accountId:
         type: string
       profileId:
