@@ -1,5 +1,4 @@
 'use strict';
-<<<<<<< HEAD
 angular.module('dmc.uploadApplication')
 	.controller('uploadApplicationController', [
         '$stateParams',
@@ -85,8 +84,6 @@ angular.module('dmc.uploadApplication')
 
 			$scope.appDocs = [];
 			$scope.appDocLimit = 5;
-<<<<<<< HEAD
-			//--------end doc upload options-------
 
 			//----------autocomplete tags---------
 			$scope.chipLimit = 7;
@@ -95,7 +92,6 @@ angular.module('dmc.uploadApplication')
 				var tags = [];
 			};
 			//-----------end autocomplete---------
-
             var saveCallback = function(response) {
                 $scope.applicationData = {};
 
@@ -107,7 +103,6 @@ angular.module('dmc.uploadApplication')
                 $scope.applicationData = {};
                 $scope.noTitle = false;
 				$scope.noShortDescription = false;
-                $scope.document = [];
                 $scope.noDocSelected = false;
 
             };
