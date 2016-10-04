@@ -218,11 +218,6 @@ angular.module('dmc.project')
 
             // run Service
             $scope.run = function(){
-              //var specimenWidth = document.getElementById('SpecimenWidth').value;
-              //console.log("Value:");
-              //var str = JSON.stringify(specimenWidth);
-              //console.log(str);
-                console.log("Running model");
                 runModel();
             };
 
