@@ -3,15 +3,15 @@ angular.module('dmc.account')
     .controller('BasicsAccountCtr', [
         '$stateParams',
         '$state',
-        "$scope",
-        "$timeout",
-        "$q",
-        "$mdDialog",
-        "ajax",
-        "location",
-        "$location",
-        "accountData",
-        "AccountModel",
+        '$scope',
+        '$timeout',
+        '$q',
+        '$mdDialog',
+        'ajax',
+        'location',
+        '$location',
+        'accountData',
+        'AccountModel',
         'questionToastModel',
         '$document',
         'toastModel',
@@ -37,7 +37,7 @@ angular.module('dmc.account')
                 $scope.page = $state.current.name.split('.')[1];
                 $scope.title = pageTitles[$scope.page];
                 $scope.deactivated = $scope.accountData.deactivated;
-                $scope.activatedText = (!$scope.deactivated ? "Deactivate Account?" : "Activate Account?");
+                $scope.activatedText = (!$scope.deactivated ? 'Deactivate Account?' : 'Activate Account?');
                 $scope.user = $.extend(true, {}, accountData);
 
                 var roleCallback = function(response) {
@@ -61,7 +61,7 @@ angular.module('dmc.account')
                 var callback = function (success, data) {
                     if (success) {
                         $scope.user.dataLocation = data;
-                        $scope.user.location = $scope.user.dataLocation.city + ", " + $scope.user.dataLocation.region;
+                        $scope.user.location = $scope.user.dataLocation.city + ', ' + $scope.user.dataLocation.region;
                         $scope.ctrl.searchText = $scope.user.dataLocation.timezone;
                         $scope.user.timezone = $scope.user.dataLocation.timezone;
                     }
@@ -72,13 +72,18 @@ angular.module('dmc.account')
                     location.get(callback);
                 };
 
+                $scope.resendNotification = function() {
+                    ajax.create(dataFactory.requestVerification(), {}, function(response) {
+                        console.log(response)
+                    });
+                }
                 // auto focus for First Name input
                 $timeout(function () {
                     $('input').each(function(){
                         $(this).trigger('blur');
                         //each input event one by one... will be blured
                     })
-                    $("#editFirstName").focus();
+                    $('#editFirstName').focus();
                 }, 500);
 
                 $scope.blurInput = function () {
@@ -86,23 +91,6 @@ angular.module('dmc.account')
                         $scope.user.displayName = $scope.user.displayName = $scope.user.firstName + ' ' + $scope.user.lastName;
                     }
                 };
-
-                $scope.$on('$locationChangeStart', function (event, next, current) {
-                    if (current.match("\/basics")) {
-                        event.preventDefault();
-                        questionToastModel.show({
-                            question: "Are you sure you want to leave this page without saving?",
-                            buttons: {
-                                ok: function(){
-                                    window.location = next;
-                                    $scope.$apply();
-                                },
-                                cancel: function(){}
-                            }
-                        }, event);
-                    }
-                });
-
 
                 $(window).unbind('beforeunload');
                 $(window).bind('beforeunload', function (event) {
@@ -157,33 +145,33 @@ angular.module('dmc.account')
                         $scope.error = '';
                         ajax.put(dataFactory.validateToken($scope.user.id), {token: $scope.token.token}, tokenCallback);
                     } else {
-                        $scope.error = "You MUST enter a token";
+                        $scope.error = 'You MUST enter a token';
                     }
                 }
 
                 $scope.suffixes = [
                     {
                         id: 1,
-                        title: "S1"
+                        title: 'S1'
                     },
                     {
                         id: 2,
-                        title: "S2"
+                        title: 'S2'
                     }
                 ];
 
                 $scope.salutations = [
                     {
                         id: 1,
-                        title: "T1"
+                        title: 'T1'
                     },
                     {
                         id: 2,
-                        title: "T2"
+                        title: 'T2'
                     },
                     {
                         id: 3,
-                        title: "T3"
+                        title: 'T3'
                     }
                 ];
 
@@ -193,12 +181,12 @@ angular.module('dmc.account')
                             deactivated: $scope.accountData.deactivated
                         }, function (response) {
                             if (!$scope.deactivated) {
-                                toastModel.showToast('success', "Account successfully deactivated");
-                                $scope.activatedText = "Activate My Account";
+                                toastModel.showToast('success', 'Account successfully deactivated');
+                                $scope.activatedText = 'Activate My Account';
                                 $scope.deactivated = true;
                             } else {
-                                toastModel.showToast('success', "Account successfully activated");
-                                $scope.activatedText = "Deactivate My Account";
+                                toastModel.showToast('success', 'Account successfully activated');
+                                $scope.activatedText = 'Deactivate My Account';
                                 $scope.deactivated = false;
                             }
                         }
@@ -206,12 +194,12 @@ angular.module('dmc.account')
                 };
 
                 $scope.actionNo = function () {
-                    console.log("No");
+                    console.log('No');
                 };
 
                 $scope.deactivateAccount = function (ev) {
                     questionToastModel.show({
-                        question: (!$scope.deactivated ? "Deactivate Account?" : "Activate Account?"),
+                        question: (!$scope.deactivated ? 'Deactivate Account?' : 'Activate Account?'),
                         buttons: {
                             ok: $scope.actionYes,
                             cancel: $scope.actionNo
@@ -235,7 +223,7 @@ angular.module('dmc.account')
             }
 
             function validateEmail(email) {
-                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                var re = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
             }
 
@@ -256,16 +244,16 @@ angular.module('dmc.account')
                             var time = Math.round((zone.parse(Date.UTC(2012, 1, 1)) / 60));
                             var t = time;
                             if (t > 0) {
-                                if (t < 10) t = "0" + t;
-                                t = "(UTC -" + t + ":00)";
+                                if (t < 10) t = '0' + t;
+                                t = '(UTC -' + t + ':00)';
                             } else if (t < 0) {
                                 t *= -1;
-                                if (t < 10) t = "0" + t;
-                                t = "(UTC +" + t + ":00)";
+                                if (t < 10) t = '0' + t;
+                                t = '(UTC +' + t + ':00)';
                             } else {
-                                t = "(UTC 00:00)";
+                                t = '(UTC 00:00)';
                             }
-                            $scope.zones.push(t + " " + zones[i]);
+                            $scope.zones.push(t + ' ' + zones[i]);
                             //$scope.zones.push(zones[i]);
                         }
                     }

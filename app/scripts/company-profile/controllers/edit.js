@@ -2,20 +2,22 @@
 
 angular.module('dmc.company-profile')
     .controller('EditCompanyProfileController', [
-        "$stateParams",
-        "$scope",
-        "$timeout",
-        "$window",
-        "$showdown",
-        "ajax",
-        "dataFactory",
-        "$location",
-        "toastModel",
-        "questionToastModel",
-        "DMCUserModel",
-        "fileUpload",
+        '$stateParams',
+        '$scope',
+        '$q',
+        '$timeout',
+        '$window',
+        '$showdown',
+        'ajax',
+        'dataFactory',
+        '$location',
+        'toastModel',
+        'questionToastModel',
+        'DMCUserModel',
+        'fileUpload',
         function ($stateParams,
                   $scope,
+                  $q,
                   $timeout,
                   $window,
                   $showdown,
@@ -34,41 +36,67 @@ angular.module('dmc.company-profile')
                     $scope.company = response.data;
 
                     $scope.company.description = $showdown.makeHtml($scope.company.description);
-                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 1, limit: 1}, function(response) {
-                        if (response.data.length > 0) {
-                            $scope.company.logoImage = response.data[0];
+                    ajax.get(dataFactory.documentsURL().getList, {
+                        parentType: 'ORGANIZATION',
+                        parentId: $scope.company.id,
+                        docClass: 'LOGO',
+                        recent: 1
+                    }, function(response) {
+                        if (response.data.data.length > 0) {
+                            $scope.company.logoImage = response.data.data[0];
                         };
                     });
 
-                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 2, limit: $scope.limit}, function(response) {
-                        $scope.company.images = response.data;
+                    ajax.get(dataFactory.documentsURL().getList, {
+                        parentType: 'ORGANIZATION',
+                        parentId: $scope.company.id,
+                        docClass: 'IMAGE',
+                        recent: $scope.limit
+                    }, function(response) {
+                        $scope.company.images = response.data.data;
                     });
 
-                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 3, limit: $scope.limit}, function(response) {
-                        $scope.company.videos = response.data;
+                    ajax.get(dataFactory.documentsURL().getList, {
+                        parentType: 'ORGANIZATION',
+                        parentId: $scope.company.id,
+                        docClass: 'VIDEO',
+                        recent: $scope.limit
+                    }, function(response) {
+                        $scope.company.videos = response.data.data;
                     });
                 });
             };
 
+            $scope.company = {
+                description: '',
+                contacts: [],
+                awards: [],
+                areasOfExpertise: [],
+                desiredAreasOfExpertise: [],
+                address: {}
+            };
+
             if (angular.isDefined($stateParams.companyId)) {
                 getCompany();
-                $scope.title = "Update an Organization";
-                $scope.action = "updated";
+                $scope.title = 'Update an Organization';
+                $scope.action = 'updated';
             } else {
-                $scope.title = "Create an Organization";
-                $scope.action = "created";
-                $scope.company = {
-                    contacts: [],
-                    awards: [],
-                    areasOfExpertise: [],
-                    desiredAreasOfExpertise: [],
-                    address: {}
-                };
+                $scope.title = 'Create an Organization';
+                $scope.action = 'created';
             }
 
             $scope.user = null;
             DMCUserModel.getUserData().then(function(res){
                 $scope.user = res;
+            });
+
+            $scope.descriptionLimit = 5000;
+            $scope.isValid = false;
+            $scope.isSaved = false;
+            $scope.fieldName = 'Description'
+
+            $scope.$on('isValid', function (event, data) {
+                $scope.isValid = data;
             });
 
             $scope.images = [];
@@ -132,14 +160,17 @@ angular.module('dmc.company-profile')
             var uploadLogo = function(companyId){
                 if($scope.newLogo){
                     fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
-                        ajax.create(dataFactory.saveDocument(),
+                        ajax.create(dataFactory.documentsURL().save,
                             {
                                 organizationId: companyId,
                                 ownerId: $scope.user.accountId,
                                 documentUrl: response.file.name,
                                 documentName: 'company-logo',
-                                fileType: 1
+                                parentType: 'ORGANIZATION',
+                                parentId: companyId,
+                                docClass: 'LOGO'
                             }, function(response) {
+                                console.log(response)
                                 if (response.status === 200) {
                                     toastModel.showToast('success', 'Logo uploaded successfully');
                                 }
@@ -149,7 +180,7 @@ angular.module('dmc.company-profile')
             };
 
             var deleteLogo = function(){
-                ajax.delete(dataFactory.deleteDocument($scope.companyLogoId), {}, function(response) {
+                ajax.delete(dataFactory.documentsURL($scope.companyLogoId).delete, {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Logo successfully deleted');
                     }else{
@@ -160,7 +191,7 @@ angular.module('dmc.company-profile')
 
             var deleteImages = function(){
                 angular.forEach($scope.removedImages, function(imageId) {
-                    ajax.delete(dataFactory.deleteDocument(imageId), {}, function(response) {
+                    ajax.delete(dataFactory.documentsURL(imageId), {}, function(response) {
                         if(response.status === 200) {
                             toastModel.showToast('success', 'Image successfully deleted');
                         } else {
@@ -172,7 +203,7 @@ angular.module('dmc.company-profile')
 
             var deleteVideos = function(){
                 angular.forEach($scope.removedVideos, function(videoId) {
-                    ajax.delete(dataFactory.deleteDocument(videoId), {}, function(response) {
+                    ajax.delete(dataFactory.documentUrl(videoId), {}, function(response) {
                         if(response.status === 200) {
                             toastModel.showToast('success', 'Video successfully deleted');
                         }else{
@@ -185,14 +216,17 @@ angular.module('dmc.company-profile')
             var uploadImages = function(companyId){
                 angular.forEach($scope.images, function(image) {
                     fileUpload.uploadFileToUrl(image.file, {id : $scope.company.id}, 'company-image', function(response) {
-                        ajax.create(dataFactory.saveDocument(),
+                        ajax.create(dataFactory.documentsURL().save,
                             {
                                 organizationId: companyId,
                                 ownerId: $scope.user.accountId,
                                 documentUrl: response.file.name,
                                 documentName: image.title,
-                                fileType: 2
+                                parentType: 'ORGANIZATION',
+                                parentId: $scope.company.id,
+                                docClass: 'IMAGE'
                             }, function(response) {
+                                console.log(response)
                                 if (response.status === 200) {
                                     toastModel.showToast('success', 'Image uploaded successfully');
                                 }
@@ -204,13 +238,15 @@ angular.module('dmc.company-profile')
             var uploadVideos = function(companyId){
                 angular.forEach($scope.videos, function(video) {
                     fileUpload.uploadFileToUrl(video.file, {id : $scope.company.id}, 'company-video', function(response) {
-                        ajax.create(dataFactory.saveDocument(),
+                        ajax.create(dataFactory.documentsURL().save,
                             {
                                 organizationId: companyId,
                                 ownerId: $scope.user.accountId,
                                 documentUrl: response.file.name,
                                 documentName: video.title,
-                                fileType: 3
+                                parentType: 'ORGANIZATION',
+                                parentId: $scope.company.id,
+                                docClass: 'VIDEO'
                             }, function(response) {
                                 if (response.status === 200) {
                                     toastModel.showToast('success', 'Video uploaded successfully');
@@ -267,6 +303,11 @@ angular.module('dmc.company-profile')
             };
 
             $scope.saveChanges = function(){
+                $scope.isSaved = true;
+
+                if (!$scope.isValid) {
+                    return;
+                }
                 delete $scope.company.images;
                 delete $scope.company.videos;
                 delete $scope.company.logoImage;
@@ -292,19 +333,19 @@ angular.module('dmc.company-profile')
 
             $scope.sections = {
                 overview : {
-                    title : "Overview"
+                    title : 'Overview'
                 },
                 skills : {
-                    title : "Skills"
+                    title : 'Skills'
                 },
                 projects : {
-                    title : "Projects"
+                    title : 'Projects'
                 },
                 contact : {
-                    title : "Contact"
+                    title : 'Contact'
                 },
                 membership : {
-                    title : "Membership"
+                    title : 'Membership'
                 }
             };
 

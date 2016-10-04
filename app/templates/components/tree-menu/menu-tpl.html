@@ -4,5 +4,5 @@
         <ng-md-icon ng-if="level.categories.length > 0 && !level.opened" icon="arrow_drop_up"></ng-md-icon>
         {{level.title}} <span class="small-text" ng-if="level.items !== undefined">({{level.items}})</span>
     </a>
-    <ul dmc-menu ng-if="level.categories.length > 0" menu-source="level.categories"></ul>
+    <ul dmc-menu ng-if="level.categories.length > 0" menu-source="level.categories" selected="selected"></ul>
 </li>

@@ -24,10 +24,6 @@ angular.module('dmc.model.company', [
                         }
                     );
 
-                    ajax.get(dataFactory.getAccount(id),{},function(res){
-                        data.account = res.data;
-                    });
-
                     return data;
                 },function(response){
                     return response.data;

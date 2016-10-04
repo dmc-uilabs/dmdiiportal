@@ -25,6 +25,7 @@
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
+    <script src="scripts/common/directive/input-fileupload.directive.js"></script>
     <script src="scripts/components/ui-widgets/tasks.directive.js"></script>
     <script src="scripts/components/ui-widgets/services.directive.js"></script>
     <script src="scripts/components/ui-widgets/components.directive.js"></script>
@@ -91,7 +92,11 @@
     <!-- endbuild -->
     <script type="text/javascript">
         <?php
-          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+            if (isset($_SERVER['AJP_givenName'])) {
+                echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+            } else {
+                echo('window.givenName = "";');
+            }
         ?>
         window.apiUrl = '';
     </script>

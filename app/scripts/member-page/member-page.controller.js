@@ -72,9 +72,14 @@ angular.module('dmc.member')
             var callbackFunction = function(response){
                 $scope.member = response.data;
 
-                ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.member.organization.id, fileTypeId: 1, limit: 1}, function(response) {
-                    if (response.data.length > 0) {
-                        $scope.member.organization.logoImage = response.data[0];
+                ajax.get(dataFactory.documentsURL().getList, {
+                    parentType: 'ORGANIZATION',
+                    parentId: $scope.member.organization.id,
+                    docClass: 'LOGO',
+                    recent: 1
+                }, function(response) {
+                    if (response.data.data.length > 0) {
+                        $scope.member.organization.logoImage = response.data.data[0];
                     };
                 });
                 // if (!$scope.member.projects) {

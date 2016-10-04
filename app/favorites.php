@@ -48,9 +48,13 @@
     <script src="scripts/favorites/favorites.controller.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
-        <?php
-          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
-        ?>
+		<?php
+			if (isset($_SERVER['AJP_givenName'])) {
+				echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+			} else {
+				echo('window.givenName = "";');
+			}
+		?>
         window.apiUrl = '';
     </script>
   </body>

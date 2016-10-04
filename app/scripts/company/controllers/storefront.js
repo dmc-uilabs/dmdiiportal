@@ -3,10 +3,11 @@ angular.module('dmc.company')
     .controller('StorefrontCompanyCtr', [
         '$stateParams',
         '$state',
-        "$scope",
-        "$cookies",
-        "ajax",
-        "$location",
+        '$scope',
+        '$cookies',
+        '$showdown',
+        'ajax',
+        '$location',
         'companyData',
         'CompanyModel',
         'toastModel',
@@ -18,6 +19,7 @@ angular.module('dmc.company')
                                $state,
                                $scope,
                                $cookies,
+                               $showdown,
                                ajax,
                                $location,
                                companyData,
@@ -31,9 +33,14 @@ angular.module('dmc.company')
 
         $scope.companyData = companyData ;
 
-        ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.companyData.id, fileTypeId: 1, limit: 1}, function(response) {
-            if (response.data.length > 0) {
-                $scope.companyData.logoImage = response.data[0];
+        ajax.get(dataFactory.documentsURL().getList, {
+            parentType: 'ORGANIZATION',
+            parentId: $scope.companyData.id,
+            docClass: 'LOGO',
+            recent: 1
+        }, function(response) {
+            if (response.data.data.length > 0) {
+                $scope.companyData.logoImage = response.data.data[0];
             };
         });
 
@@ -48,7 +55,7 @@ angular.module('dmc.company')
             $scope.currentUser = DMCUserModel.getUserData().then(function(res){
                 $scope.currentUser = res;
                 getCompanyJoinRequest();
-                CompareModel.get("services",$scope.currentUser);
+                CompareModel.get('services',$scope.currentUser);
             });
             $scope.currentUser = ($scope.currentUser.$$state && $scope.currentUser.$$state.value ? $scope.currentUser.$$state.value : null);
             $scope.owner = $scope.companyData.account;
@@ -72,11 +79,11 @@ angular.module('dmc.company')
 
             $scope.join = function(){
                 ajax.create(dataFactory.addCompanyJoinRequest(), {
-                    "profileId": $scope.currentUser.profileId,
-                    "companyId": $scope.companyId
+                    'profileId': $scope.currentUser.profileId,
+                    'companyId': $scope.companyId
                 },function(response){
                     $scope.companyData.joinRequest = response.data;
-                    toastModel.showToast("success", "Request to join successfully sent");
+                    toastModel.showToast('success', 'Request to join successfully sent');
                     apply();
                 });
             };
@@ -84,18 +91,18 @@ angular.module('dmc.company')
             $scope.productTypes = [
                 //{
                 //    id: 1,
-                //    name: "all",
-                //    title: "All"
+                //    name: 'all',
+                //    title: 'All'
                 //},
                 {
                     id: 2,
-                    name: "services",
-                    title: "Services"
+                    name: 'services',
+                    title: 'Services'
                 }
                 //, {
                 //    id: 3,
-                //    name: "components",
-                //    title: "Components"
+                //    name: 'components',
+                //    title: 'Components'
                 //}
             ];
 
@@ -105,94 +112,98 @@ angular.module('dmc.company')
                 new: {arr: [], count: 0}
             };
 
+            //TODO uncomment and fix when not returning "Not Implemented"
             // get company Featured
-            $scope.getFeatured = function () {
-                ajax.get(dataFactory.getCompanyFeatured($scope.companyId), {
-                        "_order" : "DESC",
-                        "_sort" : "position"
-                    },
-                    function (response) {
-                        var servicesIds = [];
-                        var componentsIds = [];
-                        var featuredData = response.data;
-                        $.each(response.data,function(){
-                            if(this.serviceId){
-                                servicesIds.push(this.serviceId);
-                            }else{
-                                componentsIds.push(this.componentId);
-                            }
-                        });
-                        ajax.get(dataFactory.getServices(), {
-                                id : servicesIds,
-                                companyId : $scope.companyId
-                            },function(res) {
-                            for (var i in featuredData) {
-                                for (var j in res.data) {
-                                    if (featuredData[i].serviceId == res.data[j].id) {
-                                        featuredData[i].service = res.data[j];
-                                        break;
-                                    }
-                                }
-                            }
-                            $scope.carouselData.featured.arr = [];
-                            for(var index in featuredData){
-                                var item_ = null;
-                                if(featuredData[index].service){
-                                    item_ = featuredData[index].service;
-                                    item_.type = "service";
-                                }else if(featuredData[index].component){
-                                    item_ = featuredData[index].component;
-                                    item_.type = "component";
-                                }
-                                if(item_) {
-                                    item_.featureId = featuredData[index].id;
-                                    item_.inFeatured = true;
-                                    item_.position = featuredData[index].position;
-                                    $scope.carouselData.featured.arr.push(item_);
-                                }
-                            }
-                            $scope.carouselData.featured.count = $scope.carouselData.featured.arr.length;
-                            if($scope.carouselData.featured.count == 0) {
-                                ajax.get(dataFactory.getCompanyServices($scope.companyId), {
-                                        published : true,
-                                        "_order" : "DESC",
-                                        "_sort" : "id",
-                                        "_limit" : 2
-                                    }, function (response) {
-                                        $scope.carouselData.featured.arr = response.data;
-                                        $scope.carouselData.featured.count = response.data.length;
-                                        isFavorite.check($scope.carouselData.featured.arr);
-                                        apply();
-                                    }
-                                );
-                            }else{
-                                $scope.carouselData.featured.arr.sort(function (a, b) {
-                                    return a.position > b.position;
-                                });
-                                isFavorite.check($scope.carouselData.featured.arr);
-                                apply();
-                            }
-                        });
-                    }
-                );
-            };
-            if(!$scope.isSearch) $scope.getFeatured();
+            // $scope.getFeatured = function () {
+            //     ajax.get(dataFactory.getCompanyFeatured($scope.companyId), {
+            //             'order' : 'DESC',
+            //             'sort' : 'position'
+            //         },
+            //         function (response) {
+            //             var servicesIds = [];
+            //             var componentsIds = [];
+            //             var featuredData = response.data;
+            //             $.each(response.data,function(){
+            //                 if(this.serviceId){
+            //                     servicesIds.push(this.serviceId);
+            //                 }else{
+            //                     componentsIds.push(this.componentId);
+            //                 }
+            //             });
+            //             ajax.get(dataFactory.getServices(), {
+            //                     id : servicesIds,
+            //                     companyId : $scope.companyId
+            //                 },function(res) {
+            //                 for (var i in featuredData) {
+            //                     for (var j in res.data) {
+            //                         if (featuredData[i].serviceId == res.data[j].id) {
+            //                             featuredData[i].service = res.data[j];
+            //                             break;
+            //                         }
+            //                     }
+            //                 }
+            //                 $scope.carouselData.featured.arr = [];
+            //                 for(var index in featuredData){
+            //                     var item_ = null;
+            //                     if(featuredData[index].service){
+            //                         item_ = featuredData[index].service;
+            //                         item_.type = 'service';
+            //                     }else if(featuredData[index].component){
+            //                         item_ = featuredData[index].component;
+            //                         item_.type = 'component';
+            //                     }
+            //                     if(item_) {
+            //                         item_.featureId = featuredData[index].id;
+            //                         item_.inFeatured = true;
+            //                         item_.position = featuredData[index].position;
+            //                         $scope.carouselData.featured.arr.push(item_);
+            //                     }
+            //                 }
+            //                 $scope.carouselData.featured.count = $scope.carouselData.featured.arr.length;
+            //                 if($scope.carouselData.featured.count == 0) {
+            //                     ajax.get(dataFactory.getCompanyServices($scope.companyId), {
+            //                             published : true,
+            //                             '_order' : 'DESC',
+            //                             '_sort' : 'id',
+            //                             '_limit' : 2
+            //                         }, function (response) {
+            //                             $scope.carouselData.featured.arr = response.data;
+            //                             $scope.carouselData.featured.count = response.data.length;
+            //                             isFavorite.check($scope.carouselData.featured.arr);
+            //                             apply();
+            //                         }
+            //                     );
+            //                 }else{
+            //                     $scope.carouselData.featured.arr.sort(function (a, b) {
+            //                         return a.position > b.position;
+            //                     });
+            //                     isFavorite.check($scope.carouselData.featured.arr);
+            //                     apply();
+            //                 }
+            //             });
+            //         }
+            //     );
+            // };
+            // if(!$scope.isSearch) $scope.getFeatured();
 
+            //TODO uncomment and fix when not returning "Not Implemented"
             // get new services and components for Carousel
-            $scope.getNewCompanyServices = function(){
-                ajax.get(dataFactory.getNewCompanyServices($scope.companyId), {
-                        "_limit" : 10,
-                        "_order" : "DESC",
-                        "_sort" : "id",
-                        published : true
-                    }, function (response) {
-                        $scope.carouselData.new = {arr: response.data, count: response.data.length};
-                        isFavorite.check($scope.carouselData.new.arr);
-                        apply();
-                    }
-                );
-            };
-            if(!$scope.isSearch) $scope.getNewCompanyServices();
+            // $scope.getNewCompanyServices = function(){
+            //     ajax.get(dataFactory.getNewCompanyServices($scope.companyId), {
+            //             'limit' : 10,
+            //             'order' : 'DESC',
+            //             'sort' : 'id',
+            //             published : true
+            //         }, function (response) {
+            //             $scope.carouselData.new = {arr: response.data, count: response.data.length};
+            //             isFavorite.check($scope.carouselData.new.arr);
+            //             apply();
+            //         }
+            //     );
+            // };
+            // if(!$scope.isSearch) {
+            //     $scope.getNewCompanyServices();
+            // }
 
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -215,11 +226,11 @@ angular.module('dmc.company')
                 for(var i in data){
                     totalCountItems.services.total++;
                     totalCountItems.all++;
-                    if (data[i].serviceType == "analytical") {
+                    if (data[i].serviceType == 'analytical') {
                         totalCountItems.services.analytical++;
-                    }else if(data[i].serviceType == "solid"){
+                    }else if(data[i].serviceType == 'solid'){
                         totalCountItems.services.solid++;
-                    }else if(data[i].serviceType == "data"){
+                    }else if(data[i].serviceType == 'data'){
                         totalCountItems.services.data++;
                     }
                 }
@@ -246,7 +257,7 @@ angular.module('dmc.company')
             // callback for services
             var callbackCompanyServices = function(response){
                 for(var index in response.data){
-                    response.data[index].type = "service";
+                    response.data[index].type = 'service';
                 }
                 insertData(response.data);
             };
@@ -254,7 +265,7 @@ angular.module('dmc.company')
             // callback for components
             var callbackCompanyComponents = function(response){
                 for(var index in response.data){
-                    response.data[index].type = "component";
+                    response.data[index].type = 'component';
                 }
                 insertData(response.data);
             };
@@ -334,12 +345,12 @@ angular.module('dmc.company')
                 $state.go('company.search', dataSearch, {reload: true});
             };
 
-            // Function for "Show All" Button
+            // Function for 'Show All' Button
             $scope.showAll = function () {
                 $scope.submit();
             };
 
-            if ($scope.companyData.description.length > 200) {
+            if ($scope.companyData.description && $scope.companyData.description.length > 200) {
                 $scope.companyData.shortDescription = $scope.companyData.description.replace(/<br>/g, '').substring(0, 200) + '...';
             }
 
@@ -382,12 +393,12 @@ angular.module('dmc.company')
                             currentUser: {id: $scope.currentUser.accountId}
                         }
                     }).then(function (answer) {
-                        // $scope.status = 'You said the information was "' + answer + '".';
+                        // $scope.status = 'You said the information was '' + answer + ''.';
                     }, function () {
                         // $scope.status = 'You cancelled the dialog.';
                     });
                 }else{
-                    toastModel.showToast("error","You can't send message");
+                    toastModel.showToast('error','You can\'t send message');
                 }
             };
             // ------------------------------------------

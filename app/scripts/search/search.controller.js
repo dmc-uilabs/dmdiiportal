@@ -67,14 +67,14 @@ angular.module('dmc.search')
 
             $scope.discussionsSubTypes = [
                 {
-                    tag: "members",
-                    name: "Members"
+                    tag: 'members',
+                    name: 'Members'
                 }, {
-                    tag: "companies",
-                    name: "Companies"
+                    tag: 'companies',
+                    name: 'Companies'
                 },{
-                    tag: "discussions",
-                    name: "Discussions"
+                    tag: 'discussions',
+                    name: 'Discussions'
                 }
             ];
             function setFirstInList(array,key,val) {
@@ -88,9 +88,9 @@ angular.module('dmc.search')
                 }
                 if(item) array.unshift(item);
             }
-            setFirstInList($scope.showArray,"val",$scope.totalItemsPerPage);
-            setFirstInList($scope.sortArray,"val",$scope.sortItems);
-            setFirstInList($scope.discussionsSubTypes,"tag",$scope.subTypeModel);
+            setFirstInList($scope.showArray,'val',$scope.totalItemsPerPage);
+            setFirstInList($scope.sortArray,'val',$scope.sortItems);
+            setFirstInList($scope.discussionsSubTypes,'tag',$scope.subTypeModel);
 
             $scope.searchPlaceholder = getPlaceholder();
             $scope.subTypes = getSubTypes();
@@ -102,7 +102,7 @@ angular.module('dmc.search')
             $scope.changePerPage = function(val){
             };
 
-            $scope.$watch("totalItemsPerPage",function(newVal,oldVal){
+            $scope.$watch('totalItemsPerPage',function(newVal,oldVal){
                 if(newVal && newVal != oldVal){
                     var dataSearch = $stateParams;
                     dataSearch.limit = newVal;
@@ -110,7 +110,7 @@ angular.module('dmc.search')
                 }
             });
 
-            $scope.$watch("sortItems",function(newVal, oldVal){
+            $scope.$watch('sortItems',function(newVal, oldVal){
                 if(newVal != oldVal){
                     var dataSearch = $stateParams;
                     dataSearch.sort = newVal;
@@ -118,7 +118,7 @@ angular.module('dmc.search')
                 }
             });
 
-            $scope.$watch("currentPage",function(newVal, oldVal){
+            $scope.$watch('currentPage',function(newVal, oldVal){
                 console.log(newVal);
                 if(newVal && newVal != oldVal){
                     var dataSearch = $stateParams;
@@ -127,7 +127,7 @@ angular.module('dmc.search')
                 }
             });
 
-            $scope.$watch("totalResults",function(newVal,oldVal){
+            $scope.$watch('totalResults',function(newVal,oldVal){
                 if(newVal != oldVal){
                     $scope.pages = [];
                     if(newVal > $scope.totalItemsPerPage) {
@@ -166,13 +166,13 @@ angular.module('dmc.search')
                 console.info('index', id);
                 $(window).scrollTop();
                 $mdDialog.show({
-                    controller: "showMembers",
-                    templateUrl: "templates/components/members-card/show-members.html",
+                    controller: 'showMembers',
+                    templateUrl: 'templates/components/members-card/show-members.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose:true,
                     locals: {
-                        "id" : id
+                        'id' : id
                     }
                 }).then(function() {
                     $(window).scrollTop();
@@ -183,16 +183,16 @@ angular.module('dmc.search')
 
             // Discussions Start ----------------------------------------------------
             $scope.discussions = [];
-            $scope.order = "DESC";
-            $scope.sort = "text";
+            $scope.order = 'DESC';
+            $scope.sort = 'text';
 
             $scope.getDiscussions = function () {
 
                 ajax.get(dataFactory.getIndividualDiscussions(), {
-                    "_order" : $scope.order,
-                    "projectId" : $scope.projectId,
+                    '_order' : $scope.order,
+                    'projectId' : $scope.projectId,
                     title_like: $scope.searchTextModel,
-                    "_sort" : $scope.sort
+                    '_sort' : $scope.sort
                 }, function (response) {
                     totalCountItems.discussions = response.data.length;
                     $scope.treeMenuModel = getMenu();
@@ -203,19 +203,19 @@ angular.module('dmc.search')
                             return x.id;
                         });
                         ajax.get(dataFactory.addCommentIndividualDiscussion(), {
-                            "individual-discussionId": ids,
-                            "_order": "DESC",
-                            "_sort": "id",
-                            "commentId": 0
+                            'individual-discussionId': ids,
+                            '_order': 'DESC',
+                            '_sort': 'id',
+                            'commentId': 0
                         }, function (res) {
                             for (var i in $scope.discussions) {
-                                $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format("MM/DD/YYYY");
+                                $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format('MM/DD/YYYY');
                                 $scope.discussions[i].replies = 0;
                                 for (var j in res.data) {
-                                    if ($scope.discussions[i].id == res.data[j]["individual-discussionId"]) {
+                                    if ($scope.discussions[i].id == res.data[j]['individual-discussionId']) {
                                         $scope.discussions[i].replies++;
                                         $scope.discussions[i].last = res.data[j];
-                                        $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format("MM/DD/YYYY");
+                                        $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format('MM/DD/YYYY');
                                         if ($scope.discussions[i].isPosted == null) {
                                             $scope.discussions[i].isPosted = true;
                                         } else if ($scope.discussions[i].isPosted == true) {
@@ -249,7 +249,7 @@ angular.module('dmc.search')
             $scope.arrayItems = [];
             $scope.getCompanies = function () {
                 ajax.get(dataFactory.companyURL().all, {
-                        _sort: "id",
+                        _sort: 'id',
                         _order: $scope.order,
                         name_like: $scope.searchTextModel,
                         _type: $scope.subTypeModel,
@@ -264,20 +264,25 @@ angular.module('dmc.search')
 
                             angular.forEach($scope.arrayItems, function(company) {
                                 company.isCompany = true;
-                                ajax.get(dataFactory.getDocument().byType, {organizationId: company.id, fileTypeId: 1, limit: 1}, function(response) {
-                                    if (response.data.length > 0) {
-                                        company.logoImage = response.data[0];
+                                ajax.get(dataFactory.documentsURL().getList, {
+                                    parentType: 'ORGANIZATION',
+                                    parentId: company.id,
+                                    docClass: 'LOGO',
+                                    recent: 1
+                                }, function(response) {
+                                    if (response.data.data.length > 0) {
+                                        company.logoImage = response.data.data[0];
                                     };
                                 });
                             });
-                            
+
                             isFollowCompany($.map($scope.arrayItems, function (x) {
                                 return x.id;
                             }));
                         }
                         if($scope.type == 'all'){
                             ajax.get(dataFactory.profiles().all, {
-                                    _sort: "id",
+                                    _sort: 'id',
                                     _order: $scope.order,
                                     displayName_like: $scope.searchTextModel,
                                     _type: $scope.subTypeModel
@@ -315,7 +320,7 @@ angular.module('dmc.search')
             // Members Start ------------------------------------------------------
             $scope.getMembers = function () {
                 ajax.get(dataFactory.profiles().all, {
-                        _sort: "id",
+                        _sort: 'id',
                         _order: $scope.order,
                         displayName_like: $scope.searchTextModel,
                         _type: $scope.subTypeModel
@@ -367,8 +372,8 @@ angular.module('dmc.search')
             $scope.createDiscussion = function(ev){
                 $(window).scrollTop(0);
                 $mdDialog.show({
-                    controller: "ComposeDiscussionController",
-                    templateUrl: "templates/individual-discussion/compose-discussion.html",
+                    controller: 'ComposeDiscussionController',
+                    templateUrl: 'templates/individual-discussion/compose-discussion.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose:true,
@@ -443,16 +448,16 @@ angular.module('dmc.search')
             };
 
             function getPlaceholder(){
-                var placeholder = "Search";
+                var placeholder = 'Search';
                 switch($stateParams.type){
                     case 'members':
-                        placeholder += " Members";
+                        placeholder += ' Members';
                         break;
                     case 'companies':
-                        placeholder += " Companies";
+                        placeholder += ' Companies';
                         break;
                     case 'discussions':
-                        placeholder += " Discussions";
+                        placeholder += ' Discussions';
                         break;
                     default:
                         break;
@@ -462,7 +467,7 @@ angular.module('dmc.search')
 
             function getSubTypes(){
                 return {
-                    placeholder : "Filter",
+                    placeholder : 'Filter',
                     items : $scope.discussionsSubTypes
                 };
             }
@@ -471,7 +476,7 @@ angular.module('dmc.search')
                 var dataSearch = $.extend(true,{},$stateParams);
 
                 var getUrl = function(type){
-                    dataSearch.type = type ? type : "all";
+                    dataSearch.type = type ? type : 'all';
                     return 'search.php'+$state.href('search',dataSearch);
                 };
 

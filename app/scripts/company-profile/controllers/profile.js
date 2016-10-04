@@ -2,25 +2,25 @@
 
 angular.module('dmc.company-profile')
     .controller('CompanyProfileController', [
-        "$stateParams",
-        "$scope",
-        "ajax",
-        "dataFactory",
-        "$showdown",
-        "$mdDialog",
-        "$sce",
-        "fileUpload",
-        "$location",
-        "$anchorScroll",
-        "$mdToast",
-        "toastModel",
-        "$timeout",
-        "$q",
-        "location",
-        "$rootScope",
-        "companyData",
-        "companyProfileModel",
-        "DMCUserModel",
+        '$stateParams',
+        '$scope',
+        'ajax',
+        'dataFactory',
+        '$showdown',
+        '$mdDialog',
+        '$sce',
+        'fileUpload',
+        '$location',
+        '$anchorScroll',
+        '$mdToast',
+        'toastModel',
+        '$timeout',
+        '$q',
+        'location',
+        '$rootScope',
+        'companyData',
+        'companyProfileModel',
+        'DMCUserModel',
         function ($stateParams,
                   $scope,
                   ajax,
@@ -51,18 +51,33 @@ angular.module('dmc.company-profile')
                     $scope.getCompanyMembers();
                     $scope.SortingReviews();
 
-                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 1, limit: 1}, function(response) {
-                        if (response.data.length > 0) {
-                            $scope.company.logoImage = response.data[0];
+                    ajax.get(dataFactory.documentsURL().getList, {
+                        parentType: 'ORGANIZATION',
+                        parentId: $scope.company.id,
+                        docClass: 'LOGO',
+                        recent: 1
+                    }, function(response) {
+                        if (response.data.data.length > 0) {
+                            $scope.company.logoImage = response.data.data[0];
                         };
                     });
 
-                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 2, limit: $scope.limit}, function(response) {
-                        $scope.company.images = response.data;
+                    ajax.get(dataFactory.documentsURL().getList, {
+                        parentType: 'ORGANIZATION',
+                        parentId: $scope.company.id,
+                        docClass: 'IMAGE',
+                        recent: $scope.limit
+                    }, function(response) {
+                        $scope.company.images = response.data.data;
                     });
 
-                    ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.id, fileTypeId: 3, limit: $scope.limit}, function(response) {
-                        $scope.company.videos = response.data;
+                    ajax.get(dataFactory.documentsURL().getList, {
+                        parentType: 'ORGANIZATION',
+                        parentId: $scope.company.id,
+                        docClass: 'VIDEO',
+                        recent: $scope.limit
+                    }, function(response) {
+                        $scope.company.videos = response.data.data;
                     });
                 });
             }
@@ -71,14 +86,14 @@ angular.module('dmc.company-profile')
             $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
             $scope.submit_rating = 0;  //
             $scope.limit_reviews = true;  //limit reviews
-            $scope.sortListModel = 0;  //model for drop down menu "sorting"
+            $scope.sortListModel = 0;  //model for drop down menu 'sorting'
             $scope.showflag = false;
             $scope.followFlag = false;
             $scope.selectSortingStar = 0;
             $scope.index = 0;
             $scope.inviteToProject = false;
             $scope.invate = false;
-            $scope.toProject = "";
+            $scope.toProject = '';
             $scope.projects = [];
             $scope.contactMethods = [];
 
@@ -105,56 +120,56 @@ angular.module('dmc.company-profile')
             $scope.sortList = [
                 {
                     id: 0,
-                    val: "date",
-                    name: "Most recent"
+                    val: 'date',
+                    name: 'Most recent'
                 },
                 {
                     id: 1,
-                    val: "helpful",
-                    name: "Most Helpful"
+                    val: 'helpful',
+                    name: 'Most Helpful'
                 },
                 {
                     id: 2,
-                    val: "leasthelpful",
-                    name: "Least Helpful"
+                    val: 'leasthelpful',
+                    name: 'Least Helpful'
                 },
                 {
                     id: 3,
-                    val: "highest",
-                    name: "Highest to Lowest Rating"
+                    val: 'highest',
+                    name: 'Highest to Lowest Rating'
                 },
                 {
                     id: 4,
-                    val: "lowest",
-                    name: "Lowest to Highest Rating"
+                    val: 'lowest',
+                    name: 'Lowest to Highest Rating'
                 },
                 {
                     id: 5,
-                    val: "verified",
-                    name: "Verified Users"
+                    val: 'verified',
+                    name: 'Verified Users'
                 }
             ];
 
             $scope.history = {
                 leftColumn: {
-                    title: "Public",
-                    viewAllLink: "/all.php#/history/company/"+$stateParams.companyId+"/public",
+                    title: 'Public',
+                    viewAllLink: '/all.php#/history/company/'+$stateParams.companyId+'/public',
                     list: []
                 },
                 rightColumn: {
-                    title: "Mutual",
-                    viewAllLink: "/all.php#/history/company/"+$stateParams.companyId+"/mutual",
+                    title: 'Mutual',
+                    viewAllLink: '/all.php#/history/company/'+$stateParams.companyId+'/mutual',
                     list:[]
                 }
             };
 
             $scope.join = function(){
                 ajax.create(dataFactory.addCompanyJoinRequest(), {
-                    "profileId": $rootScope.userData.profileId,
-                    "companyId": $scope.company.id
+                    'profileId': $rootScope.userData.profileId,
+                    'companyId': $scope.company.id
                 },function(response){
                     $scope.company.joinRequest = response.data;
-                    toastModel.showToast("success", "Request to join successfully sent");
+                    toastModel.showToast('success', 'Request to join successfully sent');
                     apply();
                 });
             };
@@ -167,9 +182,9 @@ angular.module('dmc.company-profile')
             // var initContacts = function(data){
             //     for(var i in data){
             //         if(data[i].type == 1){
-            //             data[i].type = "LEGAL";
+            //             data[i].type = 'LEGAL';
             //         }else if(data[i].type == 2){
-            //             data[i].type = "LEGAL 2";
+            //             data[i].type = 'LEGAL 2';
             //         }
             //     }
             //     $scope.company.contacts = data;
@@ -214,28 +229,28 @@ angular.module('dmc.company-profile')
             // get company history
             var callbackPublicHistory = function(data){
                 for(var i in data){
-                    data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                    data[i].date = moment(data[i].date).format('MM/DD/YYYY h:mm A');
                     switch(data[i].type){
-                        case "completed":
-                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                        case 'completed':
+                            data[i].icon = 'images/ic_done_all_black_24px.svg';
                             break;
-                        case "added":
-                            data[i].icon = "images/ic_group_add_black_24px.svg";
+                        case 'added':
+                            data[i].icon = 'images/ic_group_add_black_24px.svg';
                             break;
-                        case "rated":
-                            data[i].icon = "images/ic_star_black_24px.svg";
+                        case 'rated':
+                            data[i].icon = 'images/ic_star_black_24px.svg';
                             break;
-                        case "worked":
-                            data[i].icon = "images/icon_project.svg";
+                        case 'worked':
+                            data[i].icon = 'images/icon_project.svg';
                             break;
-                        case "favorited":
-                            data[i].icon = "images/ic_favorite_black_24px.svg";
+                        case 'favorited':
+                            data[i].icon = 'images/ic_favorite_black_24px.svg';
                             break;
-                        case "shared":
-                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                        case 'shared':
+                            data[i].icon = 'images/ic_done_all_black_24px.svg';
                             break;
-                        case "discussion":
-                            data[i].icon = "images/ic_forum_black_24px.svg";
+                        case 'discussion':
+                            data[i].icon = 'images/ic_forum_black_24px.svg';
                             break;
                     }
                 }
@@ -244,8 +259,8 @@ angular.module('dmc.company-profile')
             };
             companyProfileModel.getCompanyHistory(
                 {
-                    "_limit": 3,
-                    "section": "public"
+                    '_limit': 3,
+                    'section': 'public'
                 },
                 callbackPublicHistory
             );
@@ -253,28 +268,28 @@ angular.module('dmc.company-profile')
             // get company history
             var callbackMutualHistory = function(data){
                 for(var i in data){
-                    data[i].date = moment(data[i].date).format("MM/DD/YYYY h:mm A");
+                    data[i].date = moment(data[i].date).format('MM/DD/YYYY h:mm A');
                     switch(data[i].type){
-                        case "completed":
-                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                        case 'completed':
+                            data[i].icon = 'images/ic_done_all_black_24px.svg';
                             break;
-                        case "added":
-                            data[i].icon = "images/ic_group_add_black_24px.svg";
+                        case 'added':
+                            data[i].icon = 'images/ic_group_add_black_24px.svg';
                             break;
-                        case "rated":
-                            data[i].icon = "images/ic_star_black_24px.svg";
+                        case 'rated':
+                            data[i].icon = 'images/ic_star_black_24px.svg';
                             break;
-                        case "worked":
-                            data[i].icon = "images/icon_project.svg";
+                        case 'worked':
+                            data[i].icon = 'images/icon_project.svg';
                             break;
-                        case "favorited":
-                            data[i].icon = "images/ic_favorite_black_24px.svg";
+                        case 'favorited':
+                            data[i].icon = 'images/ic_favorite_black_24px.svg';
                             break;
-                        case "shared":
-                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                        case 'shared':
+                            data[i].icon = 'images/ic_done_all_black_24px.svg';
                             break;
-                        case "discussion":
-                            data[i].icon = "images/ic_forum_black_24px.svg";
+                        case 'discussion':
+                            data[i].icon = 'images/ic_forum_black_24px.svg';
                             break;
                     }
                 }
@@ -283,8 +298,8 @@ angular.module('dmc.company-profile')
             };
             companyProfileModel.getCompanyHistory(
                 {
-                    "_limit": 3,
-                    "section": "mutual"
+                    '_limit': 3,
+                    'section': 'mutual'
                 },
                 callbackMutualHistory
             );
@@ -355,7 +370,7 @@ angular.module('dmc.company-profile')
                         comment: NewReview.Comment
                     },
                     function(data){
-                        data.date = moment(data.date).format("MM/DD/YYYY hh:mm A");
+                        data.date = moment(data.date).format('MM/DD/YYYY hh:mm A');
                         if(review.replyReviews){
                             review.replyReviews.unshift(data);
                         }else{
@@ -395,7 +410,7 @@ angular.module('dmc.company-profile')
                 }
             };
 
-            //selected dorp down menu "sorting"
+            //selected dorp down menu 'sorting'
             $scope.selectItemDropDown = function(value){
                 if(value != 0) {
                     var item = $scope.sortList[value];
@@ -411,58 +426,58 @@ angular.module('dmc.company-profile')
                 var params = {};
                 $scope.selectSortingStar = 0;
                 switch(val){
-                    case "date":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case 'date':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         break
-                    case "helpful":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "like";
+                    case 'helpful':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'like';
                         break
-                    case "leasthelpful":
-                        params['_order'] = "ASC";
-                        params['_sort'] = "like";
+                    case 'leasthelpful':
+                        params['_order'] = 'ASC';
+                        params['_sort'] = 'like';
                         break
-                    case "lowest":
-                        params['_order'] = "ASC";
-                        params['_sort'] = "rating";
+                    case 'lowest':
+                        params['_order'] = 'ASC';
+                        params['_sort'] = 'rating';
                         break
-                    case "highest":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "rating";
+                    case 'highest':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'rating';
                         break
-                    case "verified":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case 'verified':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['status'] = true;
                         break
-                    case "1star":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case '1star':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['rating'] = 1;
                         $scope.selectSortingStar = 1;
                         break
-                    case "2star":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case '2star':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['rating'] = 2;
                         $scope.selectSortingStar = 2;
                         break
-                    case "3star":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case '3star':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['rating'] = 3;
                         $scope.selectSortingStar = 3;
                         break
-                    case "4star":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case '4star':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['rating'] = 4;
                         $scope.selectSortingStar = 4;
                         break
-                    case "5star":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case '5star':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['rating'] = 5;
                         $scope.selectSortingStar = 5;
                         break
@@ -502,24 +517,24 @@ angular.module('dmc.company-profile')
             $scope.follow = function(){
                 $scope.followFlag = !$scope.followFlag;
             }
-            $scope.searchText = "";
+            $scope.searchText = '';
             $scope.btnInviteToProject = function () {
                 $scope.inviteToProject = true;
             }
 
             $scope.btnAddToProject = function (index) {
-                console.info("add", $scope.projects[index])
+                console.info('add', $scope.projects[index])
                 $scope.toProject = $scope.projects[index].title;
                 $scope.invate = true;
                 $scope.inviteToProject = false;
                 /*ajax.create(dataFactory.createMembersToProject(),
                  {
-                 "profileId": $stateParams.profileId,
-                 "projectId": $stateParams.projectId,
-                 "fromProfileId": $rootScope.userData.profileId,
-                 "from": $rootScope.userData.displayName,
-                 "date": moment(new Date).format('x'),
-                 "accept": false
+                 'profileId': $stateParams.profileId,
+                 'projectId': $stateParams.projectId,
+                 'fromProfileId': $rootScope.userData.profileId,
+                 'from': $rootScope.userData.displayName,
+                 'date': moment(new Date).format('x'),
+                 'accept': false
                  }
                  );*/
             }
@@ -529,7 +544,7 @@ angular.module('dmc.company-profile')
             }
 
             $scope.btnRemoveOfProject = function () {
-                $scope.toProject = "";
+                $scope.toProject = '';
                 $scope.invate = false;
                 $scope.inviteToProject = false;
             }

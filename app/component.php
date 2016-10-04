@@ -52,9 +52,13 @@
 <script src="scripts/product/controllers/component.js"></script>
 <script src="scripts/product/controllers/edit.js"></script>
 <!-- endbuild -->
-<script type="text/javascript">
+    <script type="text/javascript">
         <?php
-          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+            if (isset($_SERVER['AJP_givenName'])) {
+                echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+            } else {
+                echo('window.givenName = "";');
+            }
         ?>
         window.apiUrl = '';
     </script>

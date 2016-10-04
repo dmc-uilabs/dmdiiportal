@@ -5,11 +5,11 @@ angular.module('dmc.add-project-doc').
             restrict: 'A',
             templateUrl: 'templates/add-dmdii-project-doc/tabs/tab-project-documents.html',
             scope: {
-                source: "=",
-                project: "=",
-				user: "="
+                source: '=',
+                project: '=',
+				user: '='
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $q, fileUpload, $window) {
-                $element.addClass("tab-projectDocuments");
+                $element.addClass('tab-projectDocuments');
 
                 $scope.documents = [];
 
@@ -50,11 +50,12 @@ angular.module('dmc.add-project-doc').
                                 documentUrl: response.file.name,
                                 documentName: response.key,
                                 ownerId: $scope.user.accountId,
-                                dmdiiProjectId: $scope.project.id,
+                                parentType: 'DMDII',
+                                parentId: $scope.project.id,
                                 accessLevel: $scope.documents[i].accessLevel
                             }
 
-                            ajax.create(dataFactory.saveDMDIIDocument(), doc, callback);
+                            ajax.create(dataFactory.documentsURL().save, doc, callback);
 
                         });
                     });

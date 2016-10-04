@@ -184,14 +184,14 @@ angular.module('dmc.members')
                 if (!$scope.showCalendar) {
                     $scope.showCalendar = true;
                 }
-                $(".is-selected").removeClass("is-selected");
+                $('.is-selected').removeClass('is-selected');
 
-                $(".calendar-day-"+event.date).addClass("is-selected");
+                $('.calendar-day-'+event.date).addClass('is-selected');
                 $scope.showEvents([event]);
             }
             $scope.dayClicked = function($event, day) {
-                $(".is-selected").removeClass("is-selected");
-                $($event.target).addClass("is-selected");
+                $('.is-selected').removeClass('is-selected');
+                $($event.target).addClass('is-selected');
                 $scope.showEvents(day.events)
             }
 
@@ -217,9 +217,14 @@ angular.module('dmc.members')
                         $scope.activeProjects[member.id] = response.data.data;
                     });
 
-                    ajax.get(dataFactory.getDocument().byType, {organizationId: member.organization.id, fileTypeId: 1, limit: 1}, function(response) {
-                        if (response.data.length > 0) {
-                            member.organization.logoImage = response.data[0];
+                    ajax.get(dataFactory.documentsURL().getList, {
+                        parentType: 'ORGANIZATION',
+                        parentId: $scope.member.organization.id,
+                        docClass: 'LOGO',
+                        recent: 1
+                    }, function(response) {
+                        if (response.data.data.length > 0) {
+                            $scope.member.organization.logoImage = response.data.data[0];
                         };
                     });
                 });
@@ -266,7 +271,7 @@ angular.module('dmc.members')
                         $scope.mapObject.data[member.state.trim()].members.push('<li>' + member.name + '</li>');
                     } else {
                         $scope.mapObject.data[member.state.trim()] = {
-                            fillKey: "HAS_MEMBER",
+                            fillKey: 'HAS_MEMBER',
                             members: ['<li>' + member.name + '</li>']
                         };
                     }
@@ -434,7 +439,7 @@ angular.module('dmc.members')
                 geographyConfig: {
                     popupTemplate: function(geo, data) {
                         return [
-                            '<div class="hoverinfo"><strong>',
+                            '<div class=\'hoverinfo\'><strong>',
                             'Number Of Members in ' + geo.properties.name,
                             ': ' + data.members.length,
                             '</strong>',

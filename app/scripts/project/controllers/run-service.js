@@ -262,6 +262,11 @@ angular.module('dmc.project')
                 getUpdatedStatus($scope.service.currentStatus.id);
             }
 
+            // stop polling when route changes
+            $scope.$on('$destroy', function() {
+              stopPolling();
+            });
+
             function pollModellCallback(response) {
                 if (response.data.status == 1) {
                     // model done running

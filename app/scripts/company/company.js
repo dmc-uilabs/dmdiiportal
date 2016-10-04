@@ -8,6 +8,7 @@ angular.module('dmc.company', [
     'ngMaterial',
     'ngCookies',
     'ngSanitize',
+    'ng-showdown',
     'ui.sortable',
     'ui.router',
     'md.data.table',
@@ -15,8 +16,8 @@ angular.module('dmc.company', [
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.model.company',
-    "dmc.ajax",
-    "dmc.data",
+    'dmc.ajax',
+    'dmc.data',
     'dmc.component.treemenu',
     'dmc.component.productscard',
     'dmc.component.productcard',
@@ -30,6 +31,7 @@ angular.module('dmc.company', [
     'flow',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
+    'dmc.widgets.rich-text',
     'ng-autofocus'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
     var resolve = {
@@ -62,8 +64,8 @@ angular.module('dmc.company', [
 }).controller('CompanyIdLocatorCtrl', ['$stateParams', '$state', function ( $stateParams, $state) {
 
     var companyId = $stateParams.companyId;
-    if (companyId === "" || !angular.isDefined($stateParams.companyId)) {
-        location.href = "/";
+    if (companyId === '' || !angular.isDefined($stateParams.companyId)) {
+        location.href = '/';
     }
     var hash = window.location.hash;
     if (hash.lastIndexOf('/') == hash.indexOf('/')) {

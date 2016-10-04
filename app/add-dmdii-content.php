@@ -27,6 +27,7 @@
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
     <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
     <script src="scripts/components/ui-widgets/project-tags.directive.js"></script>
+    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/components/sub-nav-menu/sub-nav-menu.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/components/tree-menu/tree-menu.js"></script>
@@ -60,7 +61,11 @@
 
     <script type="text/javascript">
         <?php
-          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+            if (isset($_SERVER['AJP_givenName'])) {
+                echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+            } else {
+                echo('window.givenName = "";');
+            }
         ?>
         window.apiUrl = '';
     </script>

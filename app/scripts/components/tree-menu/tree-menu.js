@@ -7,7 +7,7 @@
 angular.module('dmc.component.treemenu', [
     'RecursionHelper'
 ]).
-  directive('dmcTreeMenu', function(RecursionHelper) {
+  directive('dmcTreeMenu', [ 'RecursionHelper', '$window', function(RecursionHelper, $window) {
     return {
         restrict: 'E',
         transclude: true,
@@ -16,16 +16,17 @@ angular.module('dmc.component.treemenu', [
         },
         templateUrl: 'templates/components/tree-menu/tree-menu-tpl.html',
         controller: function($scope){
-
+            $scope.clearUrl = $window.location.href.split('?')[0];
         }
       };
-    }
+  }]
 )
-.directive('dmcMenu',function(RecursionHelper){
+.directive('dmcMenu', function(RecursionHelper){
     return {
         restrict: 'A',
         scope: {
-            menuSource: '='
+            menuSource: '=',
+            selected: '='
         },
         templateUrl: 'templates/components/tree-menu/menu-tpl.html',
         compile: function(element) {
@@ -36,4 +37,3 @@ angular.module('dmc.component.treemenu', [
         }
     };
 });
-

@@ -2,12 +2,11 @@ angular.module('dmc.onboarding')
 .controller('ProfileController',
 	['$scope', '$state', 'location', 'fileUpload',
 	function ($scope, $state, location, fileUpload) {
-		if($state.current.name == "onboarding.profile"){
+		if($state.current.name == 'onboarding.profile'){
 			$state.go($scope.profile[0].state);
 		}
         $scope.activePage = $state;
         $scope.file = null;
-
 
 //upload file
         $scope.prevPicture = null;
@@ -40,7 +39,7 @@ angular.module('dmc.onboarding')
 
         var callback = function (success, data) {
             if (success) {
-                $scope.profile[0].data.location = data.city + ", " + data.region;
+                $scope.profile[0].data.location = data.city + ', ' + data.region;
             }
         };
 
@@ -58,27 +57,25 @@ angular.module('dmc.onboarding')
         }
 
         $scope.deleteImage = function(){
-            $scope.profile[1].data.image = "";
+            $scope.profile[1].data.image = '';
         }
 
         $scope.next = function(index){
             $scope.storefront[index].done = true;
             if(index == 1 && $scope.file){
-                fileUpload.uploadFileToUrl(
-                    $scope.file.files[0].file,
-										{id:$scope.userData.profileId },
-                   	'profile',
-                    function(data){
-                        $scope.file = null;
-                        if(data.file && data.file.name){
-                            $scope.profile[1].data.image = data.file.name;
-                        }
-                        $scope.saveProfile($scope.profile[index].data, function(){
-                            $(window).scrollTop(0);
-                            $state.go('^' + $scope.profile[index+1].state);
-                        });
-                    }
-                );
+                fileUpload.uploadFileToUrl($scope.file.files[0].file, {id:$scope.userData.profileId }, 'profile', function(data){
+					ajax.create(dataFactory.documentsURL().save, {
+                        documentUrl: response.file.name,
+                        documentName: response.key,
+                        ownerId: $scope.profile.id,
+                        parentType: 'USER',
+                        parentId: $scope.profile.id,
+                        accessLevel: $scope.documents[i].accessLevel
+	            	}, function() {
+						$(window).scrollTop(0);
+						$state.go('^' + $scope.profile[index+1].state);
+					});
+				});
             }else{
                 $scope.saveProfile($scope.profile[index].data, function(){
                     $(window).scrollTop(0);

@@ -2,19 +2,19 @@
 
 angular.module('dmc.edit-member')
     .controller('DMCEditMemberPageController', [
-        "$stateParams",
-        "$scope",
-        "$q",
-        "$timeout",
+        '$stateParams',
+        '$scope',
+        '$q',
+        '$timeout',
         '$showdown',
-        "ajax",
-        "dataFactory",
-        "$location",
-        "toastModel",
-        "questionToastModel",
-        "DMCUserModel",
-        "$window",
-        "fileUpload",
+        'ajax',
+        'dataFactory',
+        '$location',
+        'toastModel',
+        'questionToastModel',
+        'DMCUserModel',
+        '$window',
+        'fileUpload',
         function ($stateParams,
                 $scope,
                 $q,
@@ -52,18 +52,32 @@ angular.module('dmc.edit-member')
 
             $scope.date = {};
 
+            $scope.descriptionLimit = 5000;
+            $scope.isSaved = false;
+            $scope.fieldName = 'Description';
+            $scope.isValid = false;
+
+            $scope.company = {
+                dmdiiType: {
+                    dmdiiTypeCategory: {}
+                },
+                contacts: [],
+                organization: {
+                    description: ''
+                }
+            };
+
+            $scope.$on('isValid', function (event, data) {
+                $scope.isValid = data;
+            });
+
             var getOrganizations = function() {
                 if (!$stateParams.memberId) {
 
                     ajax.get(dataFactory.getNonDmdiiMembers(), {}, function(response) {
                         $scope.organizations = response.data;
                     });
-                    $scope.company = {
-                        dmdiiType: {
-                            dmdiiTypeCategory: {}
-                        },
-                        contacts: []
-                    };
+
                 } else {
                     return;
                 }
@@ -92,9 +106,14 @@ angular.module('dmc.edit-member')
                 var expireDate = $scope.company.expireDate.split('-');
                 $scope.date.expire = new Date(expireDate[1] + '-' + expireDate[2] + '-' + expireDate[0]);
 
-                ajax.get(dataFactory.getDocument().byType, {organizationId: $scope.company.organization.id, fileTypeId: 1, limit: 1}, function(response) {
-                    if (response.data.length > 0) {
-                        $scope.company.organization.logoImage = response.data[0];
+                ajax.get(dataFactory.documentsURL().getList, {
+                    parentType: 'ORGANIZATION',
+                    parentId: $scope.company.organization.id,
+                    docClass: 'LOGO',
+                    recent: 1
+                }, function(response) {
+                    if (response.data.data.length > 0) {
+                        $scope.company.organization.logoImage = response.data.data[0];
                     };
                 });
 
@@ -363,14 +382,15 @@ angular.module('dmc.edit-member')
             var uploadLogo = function(companyId){
                 if($scope.newLogo){
                     fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
-console.log(response)
-                        ajax.create(dataFactory.saveDocument(),
+                        ajax.create(dataFactory.documentsURL().save,
                             {
                                 organizationId: companyId,
                                 ownerId: $scope.userData.accountId,
                                 documentUrl: response.file.name,
                                 documentName: 'company-logo',
-                                fileType: 1
+                                parentType: 'ORGANIZATION',
+                                parentId: companyId,
+                                docClass: 'LOGO'
                             }, function(response) {
                                 console.log(response)
                                 if (response.status === 200) {
@@ -382,7 +402,7 @@ console.log(response)
             };
 
             var deleteLogo = function(){
-                ajax.delete(dataFactory.deleteDocument($scope.companyLogoId), {}, function(response) {
+                ajax.delete(dataFactory.documentsURL($scope.companyLogoId), {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Logo successfully deleted');
                     }else{
@@ -415,8 +435,16 @@ console.log(response)
                 return escaped;
             };
 
-            $scope.saveChanges = function() {
+            $scope.$watch('company.organization.description', function() {
                 console.log($scope.company)
+            })
+            $scope.saveChanges = function() {
+                $scope.isSaved = true;
+console.log($scope.isValid, $scope.isSaved)
+                if (!$scope.isValid) {
+                    return;
+                }
+
                 $scope.setTier();
 
                 var date = new Date($scope.date.start);

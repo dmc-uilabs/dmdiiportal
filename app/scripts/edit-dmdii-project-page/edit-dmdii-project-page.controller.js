@@ -87,6 +87,26 @@ angular.module('dmc.edit-project')
               return data;
             };
 
+            $scope.descriptionLimit = 5000;
+            $scope.isValid = false;
+            $scope.isSaved = false;
+            $scope.fieldName = 'Project Summary'
+
+            $scope.$on('isValid', function (event, data) {
+                $scope.isValid = data;
+            });
+            
+            $scope.project = {
+                contributingCompanyIds: [],
+                primeOrganization: {},
+                primaryPointOfContact: {},
+                principalInvestigator: {},
+                projectStatus: {},
+                projectThrust: {},
+                projectFocusArea: {},
+                projectSummary: ''
+            }
+
             $scope.getDMDIIProject = function(){
                 if ($stateParams.projectId) {
                     $scope.title = 'Edit Project';
@@ -96,15 +116,6 @@ angular.module('dmc.edit-project')
                     $scope.title = 'Create Project';
                     $scope.action = 'Created';
 
-                    $scope.project = {
-                        contributingCompanyIds: [],
-                        primeOrganization: {},
-                        primaryPointOfContact: {},
-                        principalInvestigator: {},
-                        projectStatus: {},
-                        projectThrust: {},
-                        projectFocusArea: {}
-                    }
                 }
             };
             $scope.getDMDIIProject();
@@ -131,8 +142,12 @@ angular.module('dmc.edit-project')
                     name:'Product Lifecycle Management'
                 },
                 {
-                    id: 6,
-                    name:'Other'
+                  id: 6,
+                  name:'Other'
+                },
+                {
+                    id: 7,
+                    name:'Cyber Security'
                 }
             ]
 
@@ -151,7 +166,23 @@ angular.module('dmc.edit-project')
                     id: 3,
                     name:'Advanced Analysis',
                     code: 'AA'
+                },
+                {
+                    id: 4,
+                    name:'Adaptive Vehicle Make',
+                    code: 'AVM'
+                },
+                {
+                    id: 5,
+                    name:'Digital Manufacturing Commons',
+                    code: 'DMC'
+                },
+                {
+                    id: 6,
+                    name:'Cost Systems',
+                    code: 'CS'
                 }
+
             ]
 
             $scope.statuses = [
@@ -197,17 +228,17 @@ angular.module('dmc.edit-project')
                 }
             }
 
-            $scope.$watch('date', function() {
-                console.log($scope.date);
-            }, true)
-
             var convertToMarkdown = function(input) {
                 var escaped = toMarkdown(input);
                 return escaped;
             };
 
             $scope.saveChanges = function() {
+                $scope.isSaved = true;
 
+                if (!$scope.isValid) {
+                    return;
+                }
                 var startDate = new Date($scope.date.awarded);
                 var year = startDate.getFullYear();
                 var month = startDate.getMonth() + 1;

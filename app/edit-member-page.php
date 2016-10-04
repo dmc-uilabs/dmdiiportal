@@ -28,6 +28,7 @@
 <script src="scripts/common/footer/footer.js"></script>
 <script src="scripts/common/factory/location.factory.js"></script>
 <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
+<script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
 <script src="scripts/components/members-card/members-card.js"></script>
 <script src="scripts/components/contacts-card/contacts-card.js"></script>
 <script src="scripts/common/models/previous-page.js"></script>
@@ -44,9 +45,13 @@
 <script src="scripts/edit-member-page/edit-member-page.controller.js"></script>
 
 <!-- endbuild -->
-<script type="text/javascript">
+    <script type="text/javascript">
         <?php
-          echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+            if (isset($_SERVER['AJP_givenName'])) {
+                echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+            } else {
+                echo('window.givenName = "";');
+            }
         ?>
         window.apiUrl = '';
     </script>
