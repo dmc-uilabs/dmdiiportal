@@ -27,6 +27,7 @@ angular.module('dmc.add-project-doc').
                 $scope.fieldName = 'Description'
 
                 $scope.$on('isValid', function(event, data) {
+                    console.log(data)
                     $scope.isValid = data;
                 })
                 var convertToMarkdown = function(input) {
@@ -36,7 +37,6 @@ angular.module('dmc.add-project-doc').
 
 				$scope.saveUpdates = function() {
                     $scope.isSaved = true;
-
                     if (!$scope.isValid) {
                         return;
                     }
@@ -57,6 +57,7 @@ angular.module('dmc.add-project-doc').
                         $scope.noDateSelected = true;
                     }
 
+                    console.log($scope.noTitle, $scope.noDateSelected, $scope.user, $scope.project)
                     if ( $scope.noTitle || $scope.noDateSelected) {
                         return;
                     }
