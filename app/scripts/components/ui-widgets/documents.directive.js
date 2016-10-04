@@ -84,7 +84,7 @@ angular.module('dmc.widgets.documents',[
                 serviceId: "=",
 				product: "=",
 				allowTagging: "=",
-				singleFile: "=",
+				fileLimit: "=",
 				accessLevel: "="
 			},
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
@@ -170,22 +170,16 @@ angular.module('dmc.widgets.documents',[
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
 
-				if ($scope.singleFile === true) {
-					$scope.maxFiles = 1;
-				} else {
-					$scope.maxFiles = null;
-				}
-
 				$scope.dropzoneConfig = {
 					'options': { // passed into the Dropzone constructor
 						'url': dataFactory.getDocumentUpload($scope.projectId),
 						'autoProcessQueue': $scope.autoProcessQueue,
 						'maxFilesize': 10,
 						'addRemoveLinks': true,
-						'maxFiles': $scope.maxFiles,
+						'maxFiles': $scope.fileLimit,
 						'init' : function() {
 							$scope.documentDropZone = this;
-							this.on("addedfile", function(file) {
+							this.on('addedfile', function(file) {
 								if($scope.autoProcessQueue == false) {
 									var file_ = file;
 									var title = file_.name.substring(0,file_.name.lastIndexOf('.'));
