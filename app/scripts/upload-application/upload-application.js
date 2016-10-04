@@ -12,6 +12,7 @@ angular.module('dmc.uploadApplication', [
     'angular-medium-editor',
     'dmc.ajax',
     'dmc.data',
+    'ui.select',
     'dmc.socket',
 	'dmc.widgets.documents',
     'dmc.widgets.rich-text',
@@ -24,11 +25,11 @@ angular.module('dmc.uploadApplication', [
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
         $stateProvider.state('upload-application', {
-            url: '/upload-application',
+            url: '/',
             templateUrl: 'templates/upload-application/upload-application.html',
             controller: 'uploadApplicationController'
         });
 
-        $urlRouterProvider.otherwise('/upload-application');
+        $urlRouterProvider.otherwise('/');
 
     })

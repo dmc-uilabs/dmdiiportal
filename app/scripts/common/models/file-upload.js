@@ -1,17 +1,18 @@
 'use strict';
 
 angular.module('dmc.model.fileUpload', ['dmc.data'])
-    .service('fileUpload', ['$http','dataFactory', 'toastModel', function ($http,dataFactory, toastModel) {
+    .service('fileUpload', ['$http', '$q', 'dataFactory', 'toastModel', function ($http, $q, dataFactory, toastModel) {
         this.uploadFileToUrl = function(file, data, type, callbackUploadPicture){
+            var deferred = $q.defer();
+            var promise = deferred.promise;
 
           //AWS Upload To Get Temp URL
           var S3Upload = function (file){
 
             // james.barkley creds (used for testing)
             //make into ENV vars
-              var creds = {bucket: 'test-temp-verify', access_key: 'AKIAJDE3BJULBHCYEX4Q',secret_key: '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'};
-                // Configure The S3 Object
-
+            var creds = {bucket: 'test-temp-verify', access_key: 'AKIAJDE3BJULBHCYEX4Q',secret_key: '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'};
+            // Configure The S3 Object
             AWS.config.update({ accessKeyId: creds.access_key, secretAccessKey: creds.secret_key });
 
             AWS.config.region = 'us-east-1';
@@ -43,7 +44,7 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
                     if (err) {
                         // There Was An Error With Your S3 Config
                         toastModel.showToast('error',err.message);
-                        callbackUploadPicture(data);
+                        deferred.reject(data);
                     }
                     else {
                         //Testing
@@ -53,7 +54,8 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
                         console.log('Upload Done'); // Success!
                         toastModel.showToast('success','Upload Done!');
                         console.log('final resource at ' + data.Location);  //Testing
-                        callbackUploadPicture(data);
+                        // callbackUploadPicture(data);
+                        deferred.resolve(data);
                     }
                 }).on('httpUploadProgress',function(progress) {
                     // Log Progress Information
@@ -63,12 +65,13 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
             else {
                // No File Selected
                toastModel.showToast('error','No File Selected');
-               callbackUploadPicture(null);
+               deferred.reject(null);
             }
         } //end S3Upload
 
         //Call above function with input file
         var S3url = null;
         S3url = S3Upload(file);
+        return promise;
       }
   }]);

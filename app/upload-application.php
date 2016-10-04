@@ -31,13 +31,14 @@
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
+    <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/file-upload.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/common/models/file-upload.js"></script>
-    <script src="scripts/upload-application/upload-application.controller.js"></script>
     <script src="scripts/upload-application/upload-application.js"></script>
+    <script src="scripts/upload-application/upload-application.controller.js"></script>
 
     <!-- endbuild -->
 
