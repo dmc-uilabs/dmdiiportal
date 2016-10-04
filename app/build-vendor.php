@@ -77,5 +77,6 @@
 <script src="/bower_components/to-markdown/dist/to-markdown.js"></script>
 <script src="/bower_components/showdown/dist/showdown.min.js"></script>
 <script src="/bower_components/ng-showdown/dist/ng-showdown.min.js"></script>
+<script src="/bower_components/handlebars/handlebars.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->

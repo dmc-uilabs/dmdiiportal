@@ -13,6 +13,7 @@ angular.module('dmc.project')
         '$rootScope',
         'domeModel',
         '$state',
+        '$compile',
         function ($scope,
                   $stateParams,
                   projectData,
@@ -25,7 +26,8 @@ angular.module('dmc.project')
                   $interval,
                   $rootScope,
                   domeModel,
-                  $state) {
+                  $state,
+                  $compile) {
 
             $scope.ServiceId = $stateParams.ServiceId;
             $scope.rerun = (angular.isDefined($stateParams.rerun) ? $stateParams.rerun : null);
@@ -34,6 +36,7 @@ angular.module('dmc.project')
             $scope.orderInputs = 'position';
             $scope.isChangedOrder = false;
             $scope.isChangedValues = false;
+            $scope.hasCustomUI = false;
 
             $scope.sortableOptions = {
                 update: function(e, ui) {
@@ -71,6 +74,10 @@ angular.module('dmc.project')
                     for (var key in $scope.service.interfaceModel.outParams) {
                         $scope.service.interfaceModel.outParams[key].value = null;
                     }
+                    if($scope.service.interfaceModel.hasCustomUI){
+                      updateCustomUIForInputs();
+                      $scope.hasCustomUI = true;
+                    }
                 }
                     updatePositionInputs();
                     // get current status
@@ -81,6 +88,56 @@ angular.module('dmc.project')
                     apply();
 
             });
+
+            function updateCustomUIForInputs() {
+              // Define our data object
+              var context = {};
+              var options;
+              var templateText;
+
+              for(var key in $scope.service.interfaceModel.inParams){
+                    context[key] = $scope.service.interfaceModel.inParams[key].value;
+              }
+              if($scope.service.interfaceModel.inParams['inputTemplate'].value){
+                templateText = $scope.service.interfaceModel.inParams['inputTemplate'].value;
+              }else{
+                templateText = "";
+                $scope.hasCustomUI = false;
+              }
+              var compiledTemplate = Handlebars.compile(templateText);
+              var handleBarHtml = compiledTemplate(context);
+              var compiledHtml = $compile(handleBarHtml)($scope);
+
+              // Add the compiled html to the page
+              $('.content-placeholder').html(compiledHtml);
+            }
+
+            function updateCustomUIForOutputs() {
+              var context = {};
+              var options;
+              var templateText;
+
+              for(var inKey in $scope.service.interfaceModel.inParams){
+                context[inKey] = $scope.service.interfaceModel.inParams[inKey].value;
+              }
+              for (var outKey in $scope.service.interfaceModel.outParams){
+                context[outKey] = $scope.service.interfaceModel.outParams[outKey].value;
+              }
+
+              if($scope.service.interfaceModel.outParams['outputTemplate'].value){
+                templateText = $scope.service.interfaceModel.outParams['outputTemplate'].value;
+              }else{
+                templateText = "";
+                $scope.hasCustomUI = false;
+              }
+
+              var compiledTemplate = Handlebars.compile(templateText);
+              var handleBarHtml = compiledTemplate(context);
+              var compiledHtml = $compile(handleBarHtml)($scope);
+
+              // Add the compiled html to the page
+              $('.content-placeholder').html(compiledHtml);
+            }
 
             function updatePositionInputs(){
                 if( $scope.service.position_inputs ) {
@@ -161,8 +218,14 @@ angular.module('dmc.project')
 
             // run Service
             $scope.run = function(){
+              //var specimenWidth = document.getElementById('SpecimenWidth').value;
+              //console.log("Value:");
+              //var str = JSON.stringify(specimenWidth);
+              //console.log(str);
+                console.log("Running model");
                 runModel();
             };
+
 
             function getStatus(status){
                 switch(status){
@@ -209,6 +272,9 @@ angular.module('dmc.project')
                     // model done running
                     stopPolling();
                     $scope.service.interfaceModel.outParams = response.data.outParams;
+                    if($scope.hasCustomUI){
+                      updateCustomUIForOutputs();
+                    }
                 } else {
                     // model still running
                 }
@@ -233,11 +299,24 @@ angular.module('dmc.project')
                     }
                 }
                 if($scope.service.interface && $scope.service.interface.domeServer) {
-                    domeModel.runModel({
+                  if($scope.hasCustomUI){
+                    for (var key in $scope.service.interfaceModel.inParams){
+                      var domeName = $scope.service.interfaceModel.inParams[key].name;
+                      if(document.getElementById(domeName)){
+                        var domeValue = document.getElementById(domeName).value;
+                        if(domeValue){
+                          $scope.service.interfaceModel.inParams[key].value = domeValue;
+                        }
+                      }else{
+                        $scope.service.interfaceModel.inParams[key].value = $scope.service.interfaceModel.inParams[key].defaultValue;
+                      }
+                    }
+                  }
+                    domeModel.runModel(JSON.parse(JSON.stringify({
                         serviceId : $scope.service.id.toString(),
                         inParams: $scope.service.interfaceModel.inParams,
                         outParams: $scope.service.interfaceModel.outParams
-                    }, runModelCallback, runModelErrorCallback);
+                    })), runModelCallback, runModelErrorCallback);
                 }else{
                     toastModel.showToast("error", "Dome server is not found!");
                 }
