@@ -35,10 +35,10 @@
 	            <p class="slim-margin error">You <b>must</b> enter a link</p>
 	        </div>
 
-            <div layout="column" flex="50"
+            <div layout="column" flex="50" ng-show="linkType === 'text'"
                 ui-widget-rich-text
                 field-name="fieldName"
-                is-required="true"
+                is-required="linkType === 'text'"
                 model="quicklink.text"
                 limit="descriptionLimit"
                 is-saved="isSaved"
