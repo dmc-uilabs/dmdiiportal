@@ -142,8 +142,12 @@ angular.module('dmc.edit-project')
                     name:'Product Lifecycle Management'
                 },
                 {
-                    id: 6,
-                    name:'Other'
+                  id: 6,
+                  name:'Other'
+                },
+                {
+                    id: 7,
+                    name:'Cyber Security'
                 }
             ]
 
@@ -162,7 +166,23 @@ angular.module('dmc.edit-project')
                     id: 3,
                     name:'Advanced Analysis',
                     code: 'AA'
+                },
+                {
+                    id: 4,
+                    name:'Adaptive Vehicle Make',
+                    code: 'AVM'
+                },
+                {
+                    id: 5,
+                    name:'Digital Manufacturing Commons',
+                    code: 'DMC'
+                },
+                {
+                    id: 6,
+                    name:'Cost Systems',
+                    code: 'CS'
                 }
+
             ]
 
             $scope.statuses = [
