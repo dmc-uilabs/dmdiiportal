@@ -58,19 +58,6 @@ angular.module('dmc.account')
 
                 ajax.get(dataFactory.userAccount($scope.accountId).get, {}, roleCallback);
 
-                var callback = function (success, data) {
-                    if (success) {
-                        $scope.user.dataLocation = data;
-                        $scope.user.location = $scope.user.dataLocation.city + ', ' + $scope.user.dataLocation.region;
-                        $scope.ctrl.searchText = $scope.user.dataLocation.timezone;
-                        $scope.user.timezone = $scope.user.dataLocation.timezone;
-                    }
-
-                };
-
-                $scope.getLocation = function () {
-                    location.get(callback);
-                };
 
                 $scope.resendNotification = function() {
                     ajax.create(dataFactory.requestVerification(), {}, function(response) {
