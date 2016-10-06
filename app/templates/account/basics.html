@@ -39,25 +39,15 @@
                                    ng-disabled="isVerified">
                         </md-input-container>
                     </div>
-                    <div class="inputs-container" layout="row" layout-align="end end" >
-                        <md-input-container flex="30">
+                    <div class="inputs-container" layout="row" layout-align="start end" >
+                        <md-input-container flex="45">
                             <label>Display Name</label>
                             <input ng-blur="blurInput()"
                                    autofocus
                                    ng-model="user.displayName">
                         </md-input-container>
-                        <div flex="30">
-                        <md-input-container class="md-icon-float title-input-left">
-                            <label>Location</label>
-                            <md-icon class="location-gps" ng-click="getLocation()">
-                                <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
-                            </md-icon>
-                            <input ng-model="user.location"
-                                   type="text"
-                                   ng-blur="blurInput()">
-                        </md-input-container>
-                        </div>
-                        <div flex="40" layout="column" class="autocomplete-block">
+
+                        <div flex="45" layout="column" class="autocomplete-block">
                             <md-autocomplete
                                 md-floating-label="Time Zone"
                                 ng-disabled="ctrl.isDisabled"
@@ -108,7 +98,7 @@
                             <md-button class="md-raised md-primary" ng-show="!isVerified" ng-click="resendNotification()">Resend Notification</md-button>
                         </div>
                         <div>
-                            <md-button class="md-raised md-primary" href="/company-profile.php#/create">Create New Organization</md-button>
+                            <md-button class="md-raised md-primary" ng-show="!isVerified" href="/company-profile.php#/create">Create New Organization</md-button>
                         </div>
                     </div>
                     <div layout="row" ng-if="!isVerified">

@@ -955,8 +955,7 @@ angular.module('dmc.data',[])
             },
             userAccount: function(id){
                 return {
-                    get: localhost + 'user/' + id,
-                    save: localhost + 'user/save'
+                    get: localhost + 'user/' + id
                 }
             },
             getOnboardingBasicInfoUrl: function() {

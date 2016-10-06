@@ -23,7 +23,7 @@ angular.module('dmc.account')
                   questionToastModel,
 			  	  ajax,
 			  	  dataFactory) {
-            // $scope.accountData = accountData;
+
             $scope.accountId = $stateParams.accountId;
             $scope.page = $state.current.name.split('.')[1];
             $scope.title = pageTitles[$scope.page];
@@ -124,32 +124,9 @@ angular.module('dmc.account')
 				toastModel.showToast('success', 'Successfully saved User!')
 			}
             $scope.saveChanges = function(){
-				ajax.update(dataFactory.userAccount().save, $scope.userBasics, userCallback);
-                // AccountModel.update($scope.userBasics);
+				ajax.update(dataFactory.updateUser(), $scope.userBasics, userCallback);
                 $scope.changedValues = null;
             };
-
-            $scope.$on('$locationChangeStart', function (event, next, current) {
-                if ($scope.changedValues && current.match('\/privacy')) {
-                    event.preventDefault();
-                    questionToastModel.show({
-                        question: 'Are you sure you want to leave this page without saving?',
-                        buttons: {
-                            ok: function(){
-                                $scope.changedValues = null;
-                                window.location = next;
-                                $scope.$apply();
-                            },
-                            cancel: function(){}
-                        }
-                    }, event);
-                }
-            });
-
-            $(window).unbind('beforeunload');
-            $(window).bind('beforeunload', function(){
-                if($scope.changedValues) return '';
-            });
 
             $scope.keyDown = function(type, container, $event){
                 return false;
