@@ -11,6 +11,7 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
             } else {
                 hasCallback = true;
             }
+
           //AWS Upload To Get Temp URL
           var S3Upload = function (file){
 
@@ -18,6 +19,7 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
             //make into ENV vars
             var creds = {bucket: 'test-temp-verify', access_key: 'AKIAJDE3BJULBHCYEX4Q',secret_key: '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'};
             // Configure The S3 Object
+
             AWS.config.update({ accessKeyId: creds.access_key, secretAccessKey: creds.secret_key });
 
             AWS.config.region = 'us-east-1';
