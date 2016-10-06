@@ -270,7 +270,7 @@ angular.module('dmc.search')
                                     docClass: 'LOGO',
                                     recent: 1
                                 }, function(response) {
-                                    if (response.data.data.length > 0) {
+                                    if (response.data && response.data.data && response.data.data !== null && response.data.data.length > 0) {
                                         company.logoImage = response.data.data[0];
                                     };
                                 });
