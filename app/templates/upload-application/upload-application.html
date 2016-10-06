@@ -5,7 +5,21 @@
             <div layout="row" flex="40">
                 <div layout="column" flex>
                     <md-input-container>
-                        <label>Title*</label>
+                        <label>Application Name*</label>
+                        <input ng-model="applicationData.appName" ng-blur="checkUnique()" ng-required="true"/>
+                    </md-input-container>
+                    <div ng-show="notUnique">
+                        <p class="slim-margin error">Application name <b>must</b> be unique</p>
+                    </div>
+                </div>
+            </div>
+
+            <span flex="3"></span>
+
+            <div layout="row" flex="40">
+                <div layout="column" flex>
+                    <md-input-container>
+                        <label>Marketplace Title*</label>
                         <input ng-model="applicationData.appTitle" maxlength="{{titleLimit}}" ng-required="true"/>
                     </md-input-container>
                     <div ng-show="noTitle">
@@ -14,9 +28,16 @@
                 </div>
             </div>
 
-            <span flex></span>
+            <span flex="3"></span>
 
+            <div layout="row" flex="7">
+                <md-input-container>
+                    <label>Version</label>
+                    <input ng-model="applicationData.appVersion" ng-required="true"/>
+                </md-input-container>
+            </div>
         </div>
+
 
         <div layout="row">
             <div flex="20">
@@ -101,8 +122,8 @@
             </div>
         </div>
         <div layout="row">
-            <div layout="column">
-                <label>Tags</label>
+            <div layout="column" flex="50">
+                <label>Tags (Limit {{chipLimit}})</label>
                 <ui-select
                     multiple
                     tagging
@@ -110,7 +131,7 @@
                     tagging-label="false"
                     append-to-body="true"
                     ng-model="applicationData.appTags"
-                    theme="select2" flex>
+                    theme="select2">
                     <ui-select-match placeholder="Tags">{{$item.name || $item}}</ui-select-match>
                     <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.name || tag}}</ui-select-choices>
                 </ui-select>
