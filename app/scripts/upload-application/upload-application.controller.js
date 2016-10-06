@@ -39,8 +39,8 @@ angular.module('dmc.uploadApplication')
 				$scope.usedNames = response.data
 			});
 
-
 			//-------text input options----------------------------
+			$scope.notUnique = false;
 			$scope.titleLimit = 30;
 			$scope.shortDescriptionLimit = 80;
 			$scope.fullDescription = 4000;
