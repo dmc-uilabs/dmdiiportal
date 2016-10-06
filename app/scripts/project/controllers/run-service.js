@@ -74,9 +74,8 @@ angular.module('dmc.project')
                     for (var key in $scope.service.interfaceModel.outParams) {
                         $scope.service.interfaceModel.outParams[key].value = null;
                     }
-                    if($scope.service.interfaceModel.hasCustomUI){
+                    if('inputTemplate' in $scope.service.interfaceModel.inParams){
                       updateCustomUIForInputs();
-                      $scope.hasCustomUI = true;
                     }
                 }
                     updatePositionInputs();
@@ -94,28 +93,34 @@ angular.module('dmc.project')
               var context = {};
               var options;
               var templateText;
+              var compiledTemplate;
+              var handleBarHtml;
+              var compiledHtml;
 
               for(var key in $scope.service.interfaceModel.inParams){
                     context[key] = $scope.service.interfaceModel.inParams[key].value;
               }
               if($scope.service.interfaceModel.inParams['inputTemplate'].value){
                 templateText = $scope.service.interfaceModel.inParams['inputTemplate'].value;
+                compiledTemplate = Handlebars.compile(templateText);
+                handleBarHtml = compiledTemplate(context);
+                compiledHtml = $compile(handleBarHtml)($scope);
+
+                // Add the compiled html to the page
+                $('.content-placeholder').html(compiledHtml);
+                $scope.hasCustomUI = true;
               }else{
-                templateText = "";
                 $scope.hasCustomUI = false;
               }
-              var compiledTemplate = Handlebars.compile(templateText);
-              var handleBarHtml = compiledTemplate(context);
-              var compiledHtml = $compile(handleBarHtml)($scope);
-
-              // Add the compiled html to the page
-              $('.content-placeholder').html(compiledHtml);
             }
 
             function updateCustomUIForOutputs() {
               var context = {};
               var options;
               var templateText;
+              var compiledTemplate;
+              var handleBarHtml;
+              var compiledHtml;
 
               for(var inKey in $scope.service.interfaceModel.inParams){
                 context[inKey] = $scope.service.interfaceModel.inParams[inKey].value;
@@ -126,17 +131,16 @@ angular.module('dmc.project')
 
               if($scope.service.interfaceModel.outParams['outputTemplate'].value){
                 templateText = $scope.service.interfaceModel.outParams['outputTemplate'].value;
+                compiledTemplate = Handlebars.compile(templateText);
+                handleBarHtml = compiledTemplate(context);
+                compiledHtml = $compile(handleBarHtml)($scope);
+
+                // Add the compiled html to the page
+                $('.content-placeholder').html(compiledHtml);
+                $scope.hasCustomUI = true;
               }else{
-                templateText = "";
                 $scope.hasCustomUI = false;
               }
-
-              var compiledTemplate = Handlebars.compile(templateText);
-              var handleBarHtml = compiledTemplate(context);
-              var compiledHtml = $compile(handleBarHtml)($scope);
-
-              // Add the compiled html to the page
-              $('.content-placeholder').html(compiledHtml);
             }
 
             function updatePositionInputs(){
@@ -272,7 +276,7 @@ angular.module('dmc.project')
                     // model done running
                     stopPolling();
                     $scope.service.interfaceModel.outParams = response.data.outParams;
-                    if($scope.hasCustomUI){
+                    if('outputTemplate' in $scope.service.interfaceModel.outParams){
                       updateCustomUIForOutputs();
                     }
                 } else {
