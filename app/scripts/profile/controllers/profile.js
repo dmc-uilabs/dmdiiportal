@@ -4,7 +4,6 @@ angular.module('dmc.profile')
     	function (profileData, profileModel, $stateParams, $scope, $location, $anchorScroll, ajax, dataFactory, $state) {
 
         $scope.profile = profileData;  //profile
-            console.log($scope.profile);
         $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
         $scope.submit_rating = 0;  //
         $scope.limit_reviews = true;  //limit reviews
@@ -403,5 +402,3 @@ angular.module('dmc.profile')
 
         $scope.SortingReviews($scope.sortList[0].val);
     }]);
-
-
