@@ -5,10 +5,10 @@ angular.module('dmc.addDmdiiContent').
             restrict: 'A',
             templateUrl: 'templates/add-dmdii-content/tabs/tab-project-news.html',
             scope: {
-                source : "=",
-                projects: "="
+                source : '=',
+                projects: '='
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, $window) {
-                $element.addClass("tab-projectNews");
+                $element.addClass('tab-projectNews');
 
                 var eventCallback = function(response) {
                     toastModel.showToast('success', 'Project News Saved!');
