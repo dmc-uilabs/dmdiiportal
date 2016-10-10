@@ -130,22 +130,6 @@ angular.module('dmc.uploadApplication')
 
             }, true);
 
-			//validation watch
-            $scope.$watch('application', function() {
-                if ($scope.noDocSelected && $scope.application.length > 0) {
-                    $scope.noDocSelected = false;
-                }
-
-            }, true);
-
-			//validation watch
-			$scope.$watch('appIcon', function() {
-				if ($scope.noIconSelected && $scope.appIcon.length > 0) {
-					$scope.noIconSelected = false;
-				}
-
-			}, true);
-
 			var uploadScreenshots = function() {
 				angular.forEach($scope.screenshots, function(doc) {
 					return fileUpload.uploadFileToUrl(doc.file, {}, 'applicationScreenshot').then(function(response) {
