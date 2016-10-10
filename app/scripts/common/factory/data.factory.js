@@ -466,6 +466,12 @@ angular.module('dmc.data',[])
             declineMember: function(id) {
                 return localhost + 'users/' + id + '?action=decline';
             },
+            uploadApplication: function() {
+                return localhost + 'appSubmission';
+            },
+            getApplicationNames: function() {
+                return localhost + 'appSubmission/appName';
+            },
             getDmdiiMemberTags: function(){
                 return localhost + 'tags/dmdiiMember';
             },
@@ -566,6 +572,9 @@ angular.module('dmc.data',[])
                     update: localhost + 'documents/' + id,
                     delete: localhost + 'documents/' + id,
                 }
+            },
+            getApplicationTags: function() {
+                    return localhost + 'applicationTag'
             },
             getDocumentTags: function() {
                 return localhost + 'dmdiidocuments/getAllTags';

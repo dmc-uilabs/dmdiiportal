@@ -29,6 +29,7 @@ angular.module('dmc.add-project-doc').
                 $scope.fieldName = 'Description'
 
                 $scope.$on('isValid', function(event, data) {
+                    console.log(data)
                     $scope.isValid = data;
                 })
                 var convertToMarkdown = function(input) {
@@ -38,8 +39,16 @@ angular.module('dmc.add-project-doc').
 
 				$scope.saveUpdates = function() {
                     $scope.isSaved = true;
+<<<<<<< HEAD
 
 					var startDate = new Date($scope.date.created);
+=======
+                    if (!$scope.isValid) {
+                        return;
+                    }
+
+					var startDate = new Date($scope.update.created);
+>>>>>>> master
 					var year = startDate.getFullYear();
 					var month = startDate.getMonth() + 1;
 					month = (month < 10) ? '0' + month : month;
@@ -55,7 +64,12 @@ angular.module('dmc.add-project-doc').
                         $scope.noDateSelected = true;
                     }
 
+<<<<<<< HEAD
                     if ( $scope.noTitle || $scope.noDateSelected || !$scope.isValid) {
+=======
+                    console.log($scope.noTitle, $scope.noDateSelected, $scope.user, $scope.project)
+                    if ( $scope.noTitle || $scope.noDateSelected) {
+>>>>>>> master
                         return;
                     }
 
