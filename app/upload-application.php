@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add DMDII Content</title>
+    <title>Upload Application</title>
   </head>
-  <body ng-app="dmc.addDmdiiContent">
+  <body ng-app="dmc.uploadApplication">
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Top Header -->
-    <div dmc-top-header members-only="true" active-page="'members&addDmdiiContent'"></div>
+    <div dmc-top-header active-page="'upload-application'"></div>
 
     <div ui-view></div>
 
@@ -20,43 +20,26 @@
 
     <?php include 'build-vendor.php' ?>
 
-    <!-- build:js scripts/add-dmdii-content/index.js -->
+    <!-- build:js scripts/upload-application/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
-    <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
-    <script src="scripts/components/ui-widgets/project-tags.directive.js"></script>
     <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/components/sub-nav-menu/sub-nav-menu.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
-    <script src="scripts/components/tree-menu/tree-menu.js"></script>
-    <script src="scripts/common/factory/location.factory.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
+    <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/file-upload.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
-    <script src="scripts/common/models/toast-model.js"></script>
-    <script src="scripts/common/models/member-model.js"></script>
-    <script src="scripts/common/models/zipcode-model.js"></script>
-    <script src="scripts/components/compare/compare.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
-    <script src="scripts/common/models/question-toast-model.js"></script>
-    <script src="scripts/components/add-project/add-project.directive.js"></script>
-    <script src="scripts/components/members-card/members-card.js"></script>
-    <script src="scripts/community/controllers/compose-discussion.js"></script>
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/common/models/file-upload.js"></script>
-    <script src="scripts/add-dmdii-content/add-dmdii-content.js"></script>
-    <script src="scripts/add-dmdii-content/add-dmdii-content.controller.js"></script>
-    <script src="scripts/add-dmdii-content/directives/quicklinks.js"></script>
-    <script src="scripts/add-dmdii-content/directives/memberEvents.js"></script>
-    <script src="scripts/add-dmdii-content/directives/memberNews.js"></script>
-    <script src="scripts/add-dmdii-content/directives/projectEvents.js"></script>
-    <script src="scripts/add-dmdii-content/directives/projectNews.js"></script>
-    <script src="scripts/add-dmdii-content/directives/projectStatus.js"></script>
-    <script src="scripts/add-dmdii-content/directives/projectsOverview.js"></script>
+    <script src="scripts/upload-application/upload-application.js"></script>
+    <script src="scripts/upload-application/upload-application.controller.js"></script>
+
     <!-- endbuild -->
 
     <script type="text/javascript">
