@@ -20,6 +20,8 @@ angular.module('dmc.add-project-doc').
 				$scope.update = {
                     description: ''
                 };
+                $scope.date = {};
+
 				$scope.projectUpdates = [];
                 $scope.descriptionLimit = 5000;
                 $scope.isValid = false;
@@ -37,11 +39,16 @@ angular.module('dmc.add-project-doc').
 
 				$scope.saveUpdates = function() {
                     $scope.isSaved = true;
+<<<<<<< HEAD
+
+					var startDate = new Date($scope.date.created);
+=======
                     if (!$scope.isValid) {
                         return;
                     }
 
 					var startDate = new Date($scope.update.created);
+>>>>>>> master
 					var year = startDate.getFullYear();
 					var month = startDate.getMonth() + 1;
 					month = (month < 10) ? '0' + month : month;
@@ -50,15 +57,19 @@ angular.module('dmc.add-project-doc').
 
 					$scope.update.created = year + '-' + month + '-' + day;
 
-                    if (!$scope.update.name) {
+                    if (!$scope.update.title) {
                         $scope.noTitle = true;
                     }
                     if (!$scope.update.created) {
                         $scope.noDateSelected = true;
                     }
 
+<<<<<<< HEAD
+                    if ( $scope.noTitle || $scope.noDateSelected || !$scope.isValid) {
+=======
                     console.log($scope.noTitle, $scope.noDateSelected, $scope.user, $scope.project)
                     if ( $scope.noTitle || $scope.noDateSelected) {
+>>>>>>> master
                         return;
                     }
 

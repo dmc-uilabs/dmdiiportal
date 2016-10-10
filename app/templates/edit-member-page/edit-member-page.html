@@ -93,11 +93,11 @@
 
                     <div layout="row">
                         <md-input-container flex="35" class="company-industry">
-                            <label>Category and Tier (Required)<
+                            <label>Category and Tier (Required)</label>
                             <md-select ng-model="companyTier.data"
                             ng-model-options="{trackBy: '$value.id'}"
                             ng-disabled="!userData.isDmdiiAdmin"
-                            ng-required>
+                            ng-required="true">
                             <md-option ng-value="type" ng-repeat="type in types">{{categories[type.category] + type.tier}}</md-option>
                         </md-input-container>
                     </div>

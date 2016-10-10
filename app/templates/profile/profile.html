@@ -39,7 +39,7 @@
             <md-button class="md-raised" ng-click="follow()">
               {{(followFlag) ? 'Unfollow' : 'Follow'}}
             </md-button>
-            <md-button class="md-raised" ng-if="!invate" ng-click="btnInviteToProject()">
+            <md-button class="md-raised" ng-if="!invate && profile.id !== $root.userData.accountId" ng-click="btnInviteToProject()">
               Invite to Project
             </md-button>
             <md-button class="md-raised cancelProject" ng-if="invate" ng-click="btnRemoveOfProject()">

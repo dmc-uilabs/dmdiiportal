@@ -46,19 +46,6 @@ angular.module('dmc.addDmdiiContent').
                     };
                 };
 
-                $scope.querySearch = function(query) {
-                    var results = query ? $scope.projects.filter( createFilterFor(query) ) : $scope.projects,
-                        deferred;
-                    return results;
-                }
-
-                function createFilterFor(query) {
-                    var lowercaseQuery = angular.lowercase(query);
-                    return function filterFn(project) {
-                        return (project.projectTitle.toLowerCase().indexOf(lowercaseQuery) === 0);
-                    };
-                }
-
                 $scope.save = function() {
                     $scope.isSaved = true;
 
