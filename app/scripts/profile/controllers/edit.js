@@ -67,7 +67,6 @@ angular.module('dmc.profile')
         }
 
         $scope.change = function(){
-            console.info('c', $scope.changes)
             $scope.isChange = false;
             for(var key in $scope.changes){
                 if($scope.changes[key] != $scope.profile[key]){
@@ -115,37 +114,42 @@ angular.module('dmc.profile')
                 }
             },ev);
         };
+        var saveImage = function(image) {
+            return fileUpload.uploadFileToUrl(image, {id: $scope.profile.id}, 'profile').then(function(response) {
+                var doc = {
+                    documentUrl: response.file.name,
+                    documentName: response.key,
+                    ownerId: $scope.$root.userData.accountId,
+                    parentType: 'USER',
+                    docClass: 'IMAGE',
+                    parentId: $scope.profile.id,
+                }
 
+                return ajax.create(dataFactory.documentsURL().save, doc);
+            });
+        }
         //save edit profile
         $scope.saveEdit = function () {
+            var promises = [];
             if ($scope.file != '') {
-                fileUpload.uploadFileToUrl($scope.file.files[0].file, {id: $scope.profile.id}, 'profile', function(response) {
-                    var doc = {
-                        documentUrl: response.file.name,
-                        documentName: response.key,
-                        ownerId: $scope.profile.id,
-                        parentType: 'USER',
-                        parentId: $scope.profile.id,
-                        accessLevel: $scope.documents[i].accessLevel
-                    }
-
-                    ajax.create(dataFactory.documentsURL().save, doc, callback);
-                });
+                promises.push(saveImage($scope.file.files[0].file))
             }
-            profileModel.edit_profile($scope.profile.id,
-                {
-                    displayName: $scope.profile.displayName,
-                    jobTitle: $scope.profile.jobTitle,
-                    location: $scope.profile.location,
-                    skills: $scope.profile.skills,
-                    description: $scope.profile.description
-                },
-                function(data){
-                    $scope.save = true;
-                    $scope.isChangingPicture = false;
-                    $state.go('profile',{profileId: $scope.profile.id})
-                }
-            );
+            $q.all(promises).then(function(response) {
+                profileModel.edit_profile($scope.profile.id,
+                    {
+                        displayName: $scope.profile.displayName,
+                        jobTitle: $scope.profile.jobTitle,
+                        location: $scope.profile.location,
+                        skills: $scope.profile.skills,
+                        description: $scope.profile.description
+                    },
+                    function(data){
+                        $scope.save = true;
+                        $scope.isChangingPicture = false;
+                        $state.go('profile',{profileId: $scope.profile.id})
+                    }
+                );
+            })
         };
 
         $scope.cancelEdit = function(){

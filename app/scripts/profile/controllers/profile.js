@@ -4,73 +4,79 @@ angular.module('dmc.profile')
     	function (profileData, profileModel, $stateParams, $scope, $location, $anchorScroll, ajax, dataFactory, $state) {
 
         $scope.profile = profileData;  //profile
-            console.log($scope.profile);
+
+        ajax.get(dataFactory.documentsURL().getList, {recent: 1, parentType: 'USER', parentId: $scope.profile.id, docClass: 'IMAGE'}, function(response) {
+            if (response.data && response.data.data) {
+                $scope.profile.image = response.data.data[0].documentUrl;
+            }
+        });
+
         $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
         $scope.submit_rating = 0;  //
         $scope.limit_reviews = true;  //limit reviews
-        $scope.sortListModel = 0;  //model for drop down menu "sorting"
+        $scope.sortListModel = 0;  //model for drop down menu 'sorting'
 
         $scope.showflag = false;
         $scope.followFlag = false;
         $scope.inviteToProject = false;
         $scope.invate = false;
-        $scope.toProject = "";
+        $scope.toProject = '';
         $scope.selectSortingStar = 0;
         $scope.projects = [];
         $scope.toProjectId = null;
 
             $scope.privacyInfo = {
                 email : {
-                    title : "Email",
-                    icon : "email"
+                    title : 'Email',
+                    icon : 'email'
                 },
                 phone : {
-                    title : "Phone",
-                    icon : "phone"
+                    title : 'Phone',
+                    icon : 'phone'
                 },
                 location : {
-                    title : "Location",
-                    icon : "gps_fixed"
+                    title : 'Location',
+                    icon : 'gps_fixed'
                 }
             };
 
         $scope.sortList = [
             {
                 id: 0,
-                val: "date",
-                name: "Most recent"
+                val: 'date',
+                name: 'Most recent'
             },
             {
                 id: 1,
-                val: "helpful",
-                name: "Most Helpful"
+                val: 'helpful',
+                name: 'Most Helpful'
             },
             {
                 id: 2,
-                val: "highest",
-                name: "Highest to Lowest Rating"
+                val: 'highest',
+                name: 'Highest to Lowest Rating'
             },
             {
                 id: 3,
-                val: "lowest",
-                name: "Lowest to Highest Rating"
+                val: 'lowest',
+                name: 'Lowest to Highest Rating'
             },
             {
                 id: 4,
-                val: "verified",
-                name: "Verified Users"
+                val: 'verified',
+                name: 'Verified Users'
             }
         ];
 
         $scope.history = {
             leftColumn: {
-                title: "Public",
-                viewAllLink: "/all.php#/history/profile/"+$stateParams.profileId+"/public",
+                title: 'Public',
+                viewAllLink: '/all.php#/history/profile/'+$stateParams.profileId+'/public',
                 list: []
             },
             rightColumn: {
-                title: "Mutual",
-                viewAllLink: "/all.php#/history/profile/"+$stateParams.profileId+"/mutual",
+                title: 'Mutual',
+                viewAllLink: '/all.php#/history/profile/'+$stateParams.profileId+'/mutual',
                 list:[]
             }
         }
@@ -78,33 +84,33 @@ angular.module('dmc.profile')
         // get profile history
         profileModel.getProfileHistory(
             {
-                "_limit": 3,
-                "section": "public"
+                '_limit': 3,
+                'section': 'public'
             },
             function(data){
                 for(var i in data){
-                    data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
+                    data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
                     switch(data[i].type){
-                        case "completed":
-                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                        case 'completed':
+                            data[i].icon = 'images/ic_done_all_black_24px.svg';
                             break;
-                        case "added":
-                            data[i].icon = "images/ic_group_add_black_24px.svg";
+                        case 'added':
+                            data[i].icon = 'images/ic_group_add_black_24px.svg';
                             break;
-                        case "rated":
-                            data[i].icon = "images/ic_star_black_24px.svg";
+                        case 'rated':
+                            data[i].icon = 'images/ic_star_black_24px.svg';
                             break;
-                        case "worked":
-                            data[i].icon = "images/icon_project.svg";
+                        case 'worked':
+                            data[i].icon = 'images/icon_project.svg';
                             break;
-                        case "favorited":
-                            data[i].icon = "images/ic_favorite_black_24px.svg";
+                        case 'favorited':
+                            data[i].icon = 'images/ic_favorite_black_24px.svg';
                             break;
-                        case "shared":
-                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                        case 'shared':
+                            data[i].icon = 'images/ic_done_all_black_24px.svg';
                             break;
-                        case "discussion":
-                            data[i].icon = "images/ic_forum_black_24px.svg";
+                        case 'discussion':
+                            data[i].icon = 'images/ic_forum_black_24px.svg';
                             break;
                     }
                 }
@@ -116,33 +122,33 @@ angular.module('dmc.profile')
         // get Profile history
         profileModel.getProfileHistory(
             {
-                "_limit": 3,
-                "section": "mutual"
+                '_limit': 3,
+                'section': 'mutual'
             },
             function(data){
                 for(var i in data){
-                    data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
+                    data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
                     switch(data[i].type){
-                        case "completed":
-                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                        case 'completed':
+                            data[i].icon = 'images/ic_done_all_black_24px.svg';
                             break;
-                        case "added":
-                            data[i].icon = "images/ic_group_add_black_24px.svg";
+                        case 'added':
+                            data[i].icon = 'images/ic_group_add_black_24px.svg';
                             break;
-                        case "rated":
-                            data[i].icon = "images/ic_star_black_24px.svg";
+                        case 'rated':
+                            data[i].icon = 'images/ic_star_black_24px.svg';
                             break;
-                        case "worked":
-                            data[i].icon = "images/icon_project.svg";
+                        case 'worked':
+                            data[i].icon = 'images/icon_project.svg';
                             break;
-                        case "favorited":
-                            data[i].icon = "images/ic_favorite_black_24px.svg";
+                        case 'favorited':
+                            data[i].icon = 'images/ic_favorite_black_24px.svg';
                             break;
-                        case "shared":
-                            data[i].icon = "images/ic_done_all_black_24px.svg";
+                        case 'shared':
+                            data[i].icon = 'images/ic_done_all_black_24px.svg';
                             break;
-                        case "discussion":
-                            data[i].icon = "images/ic_forum_black_24px.svg";
+                        case 'discussion':
+                            data[i].icon = 'images/ic_forum_black_24px.svg';
                             break;
                     }
                 }
@@ -217,7 +223,7 @@ angular.module('dmc.profile')
                     comment: NewReview.Comment
                 },
                 function(data){
-                    data.date = moment(data.date).format("MM/DD/YYYY hh:mm A");
+                    data.date = moment(data.date).format('MM/DD/YYYY hh:mm A');
                     if(review.replyReviews){
                         review.replyReviews.unshift(data);
                     }else{
@@ -257,7 +263,7 @@ angular.module('dmc.profile')
             profileModel.add_flagged(NewReview.id);
         }
 
-        //selected dorp down menu "sorting"
+        //selected dorp down menu 'sorting'
         $scope.selectItemDropDown = function (value) {
             if (value != 0) {
                 var item = $scope.sortList[value];
@@ -277,54 +283,54 @@ angular.module('dmc.profile')
 
             $scope.selectSortingStar = 0;
             switch (val) {
-                case "date":
-                	params['_order'] = "DESC";
-                	params['_sort'] = "date";
+                case 'date':
+                	params['_order'] = 'DESC';
+                	params['_sort'] = 'date';
                     break
-                case "helpful":
-                	params['_order'] = "DESC";
-                	params['_sort'] = "like";
+                case 'helpful':
+                	params['_order'] = 'DESC';
+                	params['_sort'] = 'like';
                     break
-                case "lowest":
-                	params['_order'] = "ASC";
-                	params['_sort'] = "rating";
+                case 'lowest':
+                	params['_order'] = 'ASC';
+                	params['_sort'] = 'rating';
                     break
-                case "highest":
-                	params['_order'] = "DESC";
-                	params['_sort'] = "rating";
+                case 'highest':
+                	params['_order'] = 'DESC';
+                	params['_sort'] = 'rating';
                     break
-                case "verified":
-                	params['_order'] = "DESC";
-                	params['_sort'] = "date";
+                case 'verified':
+                	params['_order'] = 'DESC';
+                	params['_sort'] = 'date';
                 	params['status'] = true;
                     break
-                case "1star":
-                	params['_order'] = "DESC";
-                	params['_sort'] = "date";
+                case '1star':
+                	params['_order'] = 'DESC';
+                	params['_sort'] = 'date';
                 	params['rating'] = 1;
                     $scope.selectSortingStar = 1;
                     break
-                case "2star":
-                	params['_order'] = "DESC";
-                	params['_sort'] = "date";
+                case '2star':
+                	params['_order'] = 'DESC';
+                	params['_sort'] = 'date';
                 	params['rating'] = 2;
                     $scope.selectSortingStar = 2;
                     break
-                case "3star":
-                	params['_order'] = "DESC";
-                	params['_sort'] = "date";
+                case '3star':
+                	params['_order'] = 'DESC';
+                	params['_sort'] = 'date';
                 	params['rating'] = 3;
                     $scope.selectSortingStar = 3;
                     break
-                case "4star":
-                	params['_order'] = "DESC";
-                	params['_sort'] = "date";
+                case '4star':
+                	params['_order'] = 'DESC';
+                	params['_sort'] = 'date';
                 	params['rating'] = 4;
                     $scope.selectSortingStar = 4;
                     break
-                case "5star":
-                	params['_order'] = "DESC";
-                	params['_sort'] = "date";
+                case '5star':
+                	params['_order'] = 'DESC';
+                	params['_sort'] = 'date';
                 	params['rating'] = 5;
                     $scope.selectSortingStar = 5;
                     break
@@ -366,25 +372,25 @@ angular.module('dmc.profile')
         }
 
 
-        $scope.searchText = "";
+        $scope.searchText = '';
         $scope.btnInviteToProject = function () {
             $scope.inviteToProject = true;
         }
 
         $scope.btnAddToProject = function (index) {
-            console.info("add", $scope.projects[index])
+            console.info('add', $scope.projects[index])
             $scope.toProject = $scope.projects[index].title;
             $scope.toProjectId = $scope.projects[index].id;
             $scope.invate = true;
             $scope.inviteToProject = false;
             ajax.create(dataFactory.createMembersToProject(),
                 {
-                    "profileId": $stateParams.profileId,
-                    "projectId": $scope.toProjectId,
-                    "fromProfileId": $scope.$root.userData.profileId,
-                    "from": $scope.$root.userData.displayName,
-                    "date": moment(new Date).format('x'),
-                    "accept": false
+                    'profileId': $stateParams.profileId,
+                    'projectId': $scope.toProjectId,
+                    'fromProfileId': $scope.$root.userData.profileId,
+                    'from': $scope.$root.userData.displayName,
+                    'date': moment(new Date).format('x'),
+                    'accept': false
                 },
                 function(response){
                 }
@@ -396,12 +402,10 @@ angular.module('dmc.profile')
         }
 
         $scope.btnRemoveOfProject = function () {
-            $scope.toProject = "";
+            $scope.toProject = '';
             $scope.invate = false;
             $scope.inviteToProject = false;
         }
 
         $scope.SortingReviews($scope.sortList[0].val);
     }]);
-
-
