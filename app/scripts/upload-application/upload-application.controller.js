@@ -189,6 +189,7 @@ angular.module('dmc.uploadApplication')
 					});
                 })
 			};
+
             $scope.save = function() {
 				if (!$scope.applicationData.appTitle || $scope.applicationData.appTitle.trim().length <= 0) {
 					$scope.noTitle = true;
@@ -207,6 +208,7 @@ angular.module('dmc.uploadApplication')
 				};
 
 				if ($scope.notUnique || $scope.noDocSelected || $scope.noShortDescription || $scope.noTitle || $scope.noIconSelected) {
+
 					return;
 				}
 
