@@ -119,6 +119,7 @@ angular.module('dmc.company-profile')
                 $scope.changingLogo = false;
             };
 
+
             $scope.removeLogo = function() {
                 $scope.logoIsDeleted = true;
                 $scope.companyLogoId = $scope.company.logoImage.id;
