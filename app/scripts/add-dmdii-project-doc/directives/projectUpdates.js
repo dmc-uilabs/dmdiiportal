@@ -40,7 +40,8 @@ angular.module('dmc.add-project-doc').
 				$scope.saveUpdates = function() {
                     $scope.isSaved = true;
 
-					var startDate = new Date($scope.update.created);
+					var startDate = new Date($scope.date.created);
+
 					var year = startDate.getFullYear();
 					var month = startDate.getMonth() + 1;
 					month = (month < 10) ? '0' + month : month;
