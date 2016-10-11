@@ -29,6 +29,7 @@ angular.module('dmc.company-profile')
                   DMCUserModel,
                   fileUpload) {
 
+            $scope.newLogo = [];
             //limit of images and videos a company can have
             $scope.limit = 3;
             var getCompany = function() {
@@ -116,25 +117,6 @@ angular.module('dmc.company-profile')
 
             $scope.cancelChangingLogo = function(){
                 $scope.changingLogo = false;
-            };
-
-            $scope.newLogo = undefined;
-            $scope.pictureDragEnter = function(flow){
-                $scope.newLogo = flow.files[0];
-                flow.files = [];
-            };
-
-            $scope.pictureDragLeave = function(flow){
-                //$scope.newLogo = null;
-            };
-
-            $scope.addedNewFile = function(file,event,flow){
-                $scope.newLogo = file;
-                flow.files.shift();
-            };
-
-            $scope.removePicture = function(flow){
-                flow.files = [];
             };
 
             $scope.saveLogo = function() {
