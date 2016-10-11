@@ -95,7 +95,7 @@ angular.module('dmc.edit-project')
             $scope.$on('isValid', function (event, data) {
                 $scope.isValid = data;
             });
-            
+
             $scope.project = {
                 contributingCompanyIds: [],
                 primeOrganization: {},
@@ -239,23 +239,26 @@ angular.module('dmc.edit-project')
                 if (!$scope.isValid) {
                     return;
                 }
-                var startDate = new Date($scope.date.awarded);
-                var year = startDate.getFullYear();
-                var month = startDate.getMonth() + 1;
-                month = (month < 10) ? '0' + month : month;
-                var day = startDate.getDate();
-                day = (day < 10) ? '0' + day : day;
 
-                $scope.project.awardedDate = year + '-' + month + '-' + day;
+                if ($scope.project.projectStatus.id != 1) {
+                    var startDate = new Date($scope.date.awarded);
+                    var year = startDate.getFullYear();
+                    var month = startDate.getMonth() + 1;
+                    month = (month < 10) ? '0' + month : month;
+                    var day = startDate.getDate();
+                    day = (day < 10) ? '0' + day : day;
 
-                var endDate = new Date($scope.date.end);
-                year = endDate.getFullYear();
-                month = endDate.getMonth() + 1;
-                month = (month < 10) ? '0' + month : month;
-                day = endDate.getDate();
-                day = (day < 10) ? '0' + day : day;
+                    $scope.project.awardedDate = year + '-' + month + '-' + day;
 
-                $scope.project.endDate = year + '-' + month + '-' + day;
+                    var endDate = new Date($scope.date.end);
+                    year = endDate.getFullYear();
+                    month = endDate.getMonth() + 1;
+                    month = (month < 10) ? '0' + month : month;
+                    day = endDate.getDate();
+                    day = (day < 10) ? '0' + day : day;
+
+                    $scope.project.endDate = year + '-' + month + '-' + day;
+                }
 
                 $scope.project.projectSummary = convertToMarkdown($scope.project.projectSummary);
 
