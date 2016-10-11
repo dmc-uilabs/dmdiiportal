@@ -31,4 +31,4 @@ angular.module('dmc.uploadApplication', [
         });
 
         $urlRouterProvider.otherwise('/');
-    })
+    });

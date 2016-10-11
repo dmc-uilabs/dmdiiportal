@@ -47,7 +47,6 @@ angular.module('dmc.uploadApplication')
 			$scope.releaseNotesLimit = 1500;
 			$scope.licenseLimit = 10000;
 
-
 			$scope.checkUnique = function() {
 				$scope.notUnique = $scope.usedNames.includes($scope.applicationData.appName);
 			}
@@ -98,6 +97,7 @@ angular.module('dmc.uploadApplication')
 
 			$scope.appDocs = [];
 			$scope.appDocLimit = 5;
+			//--------end doc upload options-------
 
 			//----------autocomplete tags---------
 			$scope.chipLimit = 7;
@@ -207,7 +207,8 @@ angular.module('dmc.uploadApplication')
 					$scope.noIconSelected = true;
 				};
 
-				if ($scope.notUnique || $scope.noDocSelected || $scope.noShortDescription || $scope.noTitle) {
+				if ($scope.notUnique || $scope.noDocSelected || $scope.noShortDescription || $scope.noTitle || $scope.noIconSelected) {
+
 					return;
 				}
 

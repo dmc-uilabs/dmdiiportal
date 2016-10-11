@@ -11,6 +11,7 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
             } else {
                 hasCallback = true;
             }
+
           //AWS Upload To Get Temp URL
           var S3Upload = function (file){
 
