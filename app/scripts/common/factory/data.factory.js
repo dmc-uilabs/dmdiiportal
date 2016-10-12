@@ -948,7 +948,7 @@ angular.module('dmc.data',[])
                 return localhost+'favorite_products';
             },
             getFavoriteService: function(id){
-                return localhost+'account/'+id+'/favorite_products';
+                return localhost+'accounts/'+id+'/favorite_products';
             },
             getFavorite: function(){
                 return localhost+'favorite_products';
