@@ -17,7 +17,7 @@
 	    <div layout="row" class="tabs-content" layout-wrap>
 	      	<md-chips ng-repeat="skill in profile[2].data.skills track by $index">
 		        <md-chip class="tags-chip">
-			        {{skill}}
+			        {{skill.skillName}}
 			        <md-button aria-label="close" ng-click="deleteSkill($index)" class="md-icon-button">
 			            <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
 			        </md-button>
@@ -25,8 +25,8 @@
 	     	</md-chips>
 	    </div>
 	    <md-input-container>
-	    	<label>Skills Description</label>
-	    	<textarea ng-model="profile[2].data.description" md-maxlength="3000"></textarea>
+	    	<label>Personal Description</label>
+	    	<textarea ng-model="profile[2].data.aboutMe" md-maxlength="3000"></textarea>
 	    </md-input-container>
   	</div>
 	<div layout="row" layout-align="end center" class="onboarding-foter">
