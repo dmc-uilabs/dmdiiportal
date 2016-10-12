@@ -3,29 +3,25 @@ angular.module('dmc.profile')
 
         $scope.profile = profileData;  //profile
         $scope.isChangingPicture = false;  //change profile photo
-        $scope.prevPicture = null;  //
-        $scope.file = '';  //file picture
+        $scope.file = [];  //file picture
         $scope.save = false;
         $scope.isChange = false;
         $scope.changes = {};
         $scope.changesSkills = $scope.profile.skills.length;
         $scope.companies = [];
 
-        if(!$scope.profile.companyId){
-            loadCompanies();
-            getJoinRequest();
+        if ($scope.profile && $scope.profile.roles[$scope.profile.companyId]) {
+            $scope.role = response.data.roles[$scope.profile.companyId];
+            $scope.isVerified = true;
+        } else {
+            $scope.role = null;
+            $scope.isVerified = false;
         }
 
-        function getJoinRequest(){
-            ajax.get(dataFactory.getProfileCompanyJoinRequest($scope.profile.id),{
-            },function(response){
-                $scope.profile.companyJoinRequest = response.data.length > 0 && response.data[0].id > 0 ? response.data[0] : null;
-                if($scope.profile.companyJoinRequest) {
-                    $scope.profile.companyId = $scope.profile.companyJoinRequest.companyId;
-                }
-                apply();
-            });
+        if(!$scope.isVerified){
+            loadCompanies();
         }
+
 
         function loadCompanies(){
             ajax.get(dataFactory.companyURL().all,{
@@ -36,17 +32,6 @@ angular.module('dmc.profile')
                 apply();
             });
         }
-
-        $scope.goRequestToJoin = function(companyId){
-            ajax.create(dataFactory.addCompanyJoinRequest(), {
-                'profileId': $scope.profile.id,
-                'companyId': companyId
-            },function(response){
-                $scope.profile.companyJoinRequest = response.data;
-                toastModel.showToast('success', 'Request to join successfully sent');
-                apply();
-            });
-        };
 
         $scope.$on('$stateChangeStart', function (event, next) {
             if(!$scope.save && $scope.isChange){
@@ -61,6 +46,12 @@ angular.module('dmc.profile')
             if($state.current.name == 'edit' && $scope.isChange)
                 return 'Are you sure you want to leave this page without saving?';
         });
+
+        $scope.resendNotification = function() {
+            ajax.create(dataFactory.requestVerification(), {}, function(response) {
+                console.log(response)
+            });
+        }
 
         function apply(){
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -96,6 +87,13 @@ angular.module('dmc.profile')
         //add skill to profile
         $scope.addSkill = function (inputSkill) {
             if (!inputSkill)return;
+
+            if (!angular.isObject(inputSkill)) {
+                inputSkill = {
+                    skillName: inputSkill,
+                    experienceLevel: 1
+                }
+            }
             $scope.isChange = true;
             $scope.profile.skills.push(inputSkill);
             this.inputSkill = null;
@@ -132,14 +130,14 @@ angular.module('dmc.profile')
         $scope.saveEdit = function () {
             var promises = [];
             if ($scope.file != '') {
-                promises.push(saveImage($scope.file.files[0].file))
+                promises.push(saveImage($scope.file[0].file));
             }
             $q.all(promises).then(function(response) {
                 profileModel.edit_profile($scope.profile.id,
                     {
                         displayName: $scope.profile.displayName,
                         jobTitle: $scope.profile.jobTitle,
-                        location: $scope.profile.location,
+                        address: $scope.profile.address,
                         skills: $scope.profile.skills,
                         description: $scope.profile.description
                     },
@@ -178,36 +176,6 @@ angular.module('dmc.profile')
             $scope.isChangingPicture = true;
         };
 
-        $scope.removePicture = function (flow) {
-            flow.files = [];
-        };
-
-        //cancel Change photo
-        $scope.cancelChangePicture = function (flow) {
-            flow.files = [];
-            $scope.isChangingPicture = false;
-        };
-
-        //Drag & Drop enter
-        $scope.pictureDragEnter = function (flow) {
-            $scope.prevPicture = flow.files[0];
-            flow.files = [];
-        };
-
-        //Drag & Drop leave
-        $scope.pictureDragLeave = function (flow) {
-            if (flow.files.length == 0 && $scope.prevPicture != null) {
-                flow.files = [$scope.prevPicture];
-                $scope.prevPicture = null;
-            }
-        };
-
-        //file added
-        $scope.addedNewFile = function (file, event, flow) {
-            flow.files.shift();
-            $scope.file = flow;
-            $scope.isChange = true;
-        };
 
         $scope.getLocation = function () {
             location.get(callback);
@@ -216,7 +184,7 @@ angular.module('dmc.profile')
         var callback = function (success, data) {
             if (success) {
                 $scope.isChange = true;
-                $scope.profile.location = data.city + ', ' + data.region;
+                $scope.profile.address = data.city + ', ' + data.region;
             }
         };
 

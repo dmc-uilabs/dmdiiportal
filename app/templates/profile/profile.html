@@ -11,7 +11,7 @@
           <div layout="column">
             <h2>{{profile.displayName}} <span>{{profile.jobTitle}}</span></h2>
             <h3><a href="/company-profile.php#/profile/{{profile.companyId}}" class="link-button">{{profile.company}}</a></h3>
-            <h3>{{profile.location}}</h3>
+            <h3>{{profile.address}}</h3>
           </div>
           <div layout="row">
             <md-button aria-label="group_add" class="md-icon-button" ng-if="version1">
@@ -68,7 +68,7 @@
     <md-divider></md-divider>
 
     <div class="profile-description">
-      {{(showflag) ? profile.descriptionSmall : profile.description}} <a ng-click="showMore()" ng-if="showflag" href="">Read More</a>
+     {{profile.aboutMe}}
     </div>
 
     <md-tabs md-dynamic-height md-border-bottom>
@@ -81,7 +81,7 @@
           <div layout="row" class="tabs-content" layout-wrap>
             <md-chips ng-repeat="skill in profile.skills track by $index">
               <md-chip>
-                <a ng-href="{{'search.php#/members?text='+skill}}">{{skill}}</a>
+                <a ng-href="{{'search.php#/members?text='+skill}}">{{skill.skillName}}</a>
               </md-chip>
             </md-chips>
           </div>

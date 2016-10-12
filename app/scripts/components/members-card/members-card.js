@@ -348,7 +348,7 @@ angular.module('dmc.component.members-card', [
         }
     );
 
-    ajax.get(dataFactory.profiles(id).get,{},function(response){
+    ajax.get(dataFactory.userAccount(id).get,{},function(response){
         var profile = response.data;
         $scope.profile = profile;
     })
