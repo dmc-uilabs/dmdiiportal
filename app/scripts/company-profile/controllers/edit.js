@@ -119,6 +119,18 @@ angular.module('dmc.company-profile')
                 $scope.changingLogo = false;
             };
 
+<<<<<<< HEAD
+=======
+            $scope.saveLogo = function() {
+                $scope.cancelChangingLogo();
+                var fileReader = new FileReader();
+                fileReader.onload = function (event) {
+                    $scope.newLogoUri = event.target.result;
+                };
+                fileReader.readAsDataURL($scope.newLogo.file);
+            };
+
+>>>>>>> 75c82e75b02f41da2e1f77e81dc11c8541964a2e
             $scope.removeLogo = function() {
                 $scope.logoIsDeleted = true;
                 $scope.companyLogoId = $scope.company.logoImage.id;
