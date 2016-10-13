@@ -6,46 +6,33 @@
             <md-button class="md-raised md-primary save-button" ng-click="saveChanges()">Save</md-button>
         </div>
         <div layout="row">
-            <div layout="column" class="logo-column" ng-show="!changingLogo">
-                <div class="profile-logo">
-                    <img ng-src="{{company.logoImage.documentUrl}}" class="logo" alt="{{company.name}}" ng-if="company.logoImage && !newLogo"/>
-                    <img ng-src="{{newLogo ? newLogoUri : 'images/icon-company-lg.svg'}}" class="logo" alt="{{company.name}}" ng-if="!company.logoImage"/>
-
+            <div flex="20">
+                <div class="logo-column" ng-show="!changingLogo">
+                    <img ng-src="{{company.logoImage.documentUrl}}" class="logo" alt="{{company.name}}"/>
                     <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
-                               ng-if="company.logoImage && !newLogo"
+                               ng-if="changingLogo"
                                ng-click="removeLogo($event)"
                                aria-label="Delete Image">
                         <ng-md-icon icon="delete" size="18"></ng-md-icon>
                     </md-button>
-
-                    <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
-                               ng-if="newLogo && !company.logoImage"
-                               ng-click="removeAddedLogo($event)"
-                               aria-label="Delete Image">
-                        <ng-md-icon icon="delete" size="18"></ng-md-icon>
-                    </md-button>
                 </div>
-                <md-button style="width: auto;" flex class="md-raised change-logo" ng-click="changeLogo()">Change Logo</md-button>
-            </div>
-            <div ng-if="changingLogo">
-                <div>
-                    <div class="content-column upload-documents top10" layout="column" flex="30">
-        	            <div class="content-panel"
-        	                source="newLogo"
-        	                ui-widget-upload-documents
-        	                widget-type="'row'"
-        	                auto-upload="false"
-        	                widget-title="'Upload Logo'"
-        	                allow-tagging="true"
-        	                file-limit="1">
-        	            </div>
-        	        </div>
-                </div>
-                <div layout="row" layout-aling="space-between start">
-                    <md-button flex class="md-raised md-primary upload-logo" ng-disabled="!newLogo" ng-click="saveLogo()">Upload</md-button>
+                <div layout="column" class="logo-column" ng-if="changingLogo || !company.logoImage">
+    	            <div class="content-panel"
+    	                source="newLogo"
+    	                ui-widget-upload-documents
+    	                widget-type="'row'"
+    	                auto-upload="false"
+    	                widget-title="'Upload Logo'"
+    	                allow-tagging="true"
+    	                file-limit="1">
+    	            </div>
                     <md-button flex class="md-raised cancel-change-logo" ng-click="cancelChangingLogo()">Cancel</md-button>
+                    <div>
+                        <md-button style="width: auto;" flex class="md-raised change-logo" ng-show="!changingLogo && company.logoImage" ng-click="changeLogo()">Change Logo</md-button>
+                    </div>
                 </div>
             </div>
+
             <div layout="column" flex class="inputs-top">
                 <div layout="row">
                     <md-input-container flex="35" class="company-name">
