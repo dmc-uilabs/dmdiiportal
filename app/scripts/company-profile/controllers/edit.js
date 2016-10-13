@@ -119,15 +119,6 @@ angular.module('dmc.company-profile')
                 $scope.changingLogo = false;
             };
 
-            $scope.saveLogo = function() {
-                $scope.cancelChangingLogo();
-                var fileReader = new FileReader();
-                fileReader.onload = function (event) {
-                    $scope.newLogoUri = event.target.result;
-                };
-                fileReader.readAsDataURL($scope.newLogo.file);
-            };
-
             $scope.removeLogo = function() {
                 $scope.logoIsDeleted = true;
                 $scope.companyLogoId = $scope.company.logoImage.id;
@@ -141,10 +132,9 @@ angular.module('dmc.company-profile')
 
             var uploadLogo = function(companyId){
                 if($scope.newLogo){
-                    fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
-                        ajax.create(dataFactory.documentsURL().save,
+                    return fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo').then(function(response) {
+                        return ajax.create(dataFactory.documentsURL().save,
                             {
-                                organizationId: companyId,
                                 ownerId: $scope.user.accountId,
                                 documentUrl: response.file.name,
                                 documentName: 'company-logo',
@@ -152,7 +142,6 @@ angular.module('dmc.company-profile')
                                 parentId: companyId,
                                 docClass: 'LOGO'
                             }, function(response) {
-                                console.log(response)
                                 if (response.status === 200) {
                                     toastModel.showToast('success', 'Logo uploaded successfully');
                                 }
@@ -162,7 +151,7 @@ angular.module('dmc.company-profile')
             };
 
             var deleteLogo = function(){
-                ajax.delete(dataFactory.documentsURL($scope.companyLogoId).delete, {}, function(response) {
+                return ajax.delete(dataFactory.documentsURL($scope.companyLogoId).delete, {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Logo successfully deleted');
                     }else{
@@ -171,79 +160,61 @@ angular.module('dmc.company-profile')
                 });
             };
 
-            var deleteImages = function(){
-                angular.forEach($scope.removedImages, function(imageId) {
-                    ajax.delete(dataFactory.documentsURL(imageId), {}, function(response) {
-                        if(response.status === 200) {
-                            toastModel.showToast('success', 'Image successfully deleted');
-                        } else {
-                            toastModel.showToast('error', 'Unable to delete image');
-                        }
-                    });
+            var deleteImage = function(imageId){
+                return ajax.delete(dataFactory.documentsURL(imageId).delete, {}, function(response) {
+                    if(response.status === 200) {
+                        toastModel.showToast('success', 'Image successfully deleted');
+                    } else {
+                        toastModel.showToast('error', 'Unable to delete image');
+                    }
                 });
             };
 
-            var deleteVideos = function(){
-                angular.forEach($scope.removedVideos, function(videoId) {
-                    ajax.delete(dataFactory.documentUrl(videoId), {}, function(response) {
-                        if(response.status === 200) {
-                            toastModel.showToast('success', 'Video successfully deleted');
-                        }else{
-                            toastModel.showToast('error', 'Unable to delete video');
-                        }
-                    });
+            var deleteVideo = function(videoId){
+                return ajax.delete(dataFactory.documentsURL(videoId).delete, {}, function(response) {
+                    if(response.status === 200) {
+                        toastModel.showToast('success', 'Video successfully deleted');
+                    }else{
+                        toastModel.showToast('error', 'Unable to delete video');
+                    }
                 });
             };
 
-            var uploadImages = function(companyId){
-                angular.forEach($scope.images, function(image) {
-                    fileUpload.uploadFileToUrl(image.file, {id : $scope.company.id}, 'company-image', function(response) {
-                        ajax.create(dataFactory.documentsURL().save,
-                            {
-                                organizationId: companyId,
-                                ownerId: $scope.user.accountId,
-                                documentUrl: response.file.name,
-                                documentName: image.title,
-                                parentType: 'ORGANIZATION',
-                                parentId: $scope.company.id,
-                                docClass: 'IMAGE'
-                            }, function(response) {
-                                console.log(response)
-                                if (response.status === 200) {
-                                    toastModel.showToast('success', 'Image uploaded successfully');
-                                }
-                            });
-                    });
-                });
-            };
-
-            var uploadVideos = function(companyId){
-                angular.forEach($scope.videos, function(video) {
-                    fileUpload.uploadFileToUrl(video.file, {id : $scope.company.id}, 'company-video', function(response) {
-                        ajax.create(dataFactory.documentsURL().save,
-                            {
-                                organizationId: companyId,
-                                ownerId: $scope.user.accountId,
-                                documentUrl: response.file.name,
-                                documentName: video.title,
-                                parentType: 'ORGANIZATION',
-                                parentId: $scope.company.id,
-                                docClass: 'VIDEO'
-                            }, function(response) {
-                                if (response.status === 200) {
-                                    toastModel.showToast('success', 'Video uploaded successfully');
-                                }
-                            });
+            var uploadImage = function(image, companyId){
+                fileUpload.uploadFileToUrl(image.file, {id : companyId}, 'company-image').then(function(response) {
+                    ajax.create(dataFactory.documentsURL().save,
+                        {
+                            ownerId: $scope.user.accountId,
+                            documentUrl: response.file.name,
+                            documentName: image.title,
+                            parentType: 'ORGANIZATION',
+                            parentId: companyId,
+                            docClass: 'IMAGE'
+                        }, function(response) {
+                            if (response.status === 200) {
+                                toastModel.showToast('success', 'Image uploaded successfully');
+                            }
                         });
                 });
-
             };
-            var callbackUploadPicture = function(data){
-                if(!data.error) {
-                    toastModel.showToast('success', 'Image successfully added');
-                }else{
-                    toastModel.showToast('error', 'Unable to add image');
-                }
+
+            var uploadVideo = function(video, companyId){
+                return fileUpload.uploadFileToUrl(video.file, {id : companyId}, 'company-video').then(function(response) {
+                    return ajax.create(dataFactory.documentsURL().save,
+                        {
+                            ownerId: $scope.user.accountId,
+                            documentUrl: response.file.name,
+                            documentName: video.title,
+                            parentType: 'ORGANIZATION',
+                            parentId: companyId,
+                            docClass: 'VIDEO'
+                        }, function(response) {
+                            if (response.status === 200) {
+                                toastModel.showToast('success', 'Video uploaded successfully');
+                            }
+                        });
+                    });
+
             };
             // --------------------------------------------------------------------
 
@@ -251,29 +222,35 @@ angular.module('dmc.company-profile')
                 if(response.status === 200) {
                     toastModel.showToast('success', 'Organization successfully ' + $scope.action);
                     var companyId = response.data.id;
+                    var promises = [];
 
-                    if ($scope.newLogo) {
-                        uploadLogo(companyId);
+                    if ($scope.newLogo && $scope.newLogo.length > 0) {
+                        promises.push(uploadLogo(companyId));
+                        $scope.logoIsDeleted = true;
                     }
                     if ($scope.logoIsDeleted) {
-                        deleteLogo();
+                        promises.push(deleteLogo());
                     }
-                    if ($scope.images.length > 0) {
-                        uploadImages(companyId);
-                    }
-                    if ($scope.removedImages.length > 0) {
-                        deleteImages();
-                    }
-                    if ($scope.videos.length > 0) {
-                        uploadVideos(companyId);
-                    }
-                    if ($scope.removedVideos.length > 0) {
-                        deleteVideos();
-                    }
+                    angular.forEach($scope.images, function(image) {
+                        promises.push(uploadImage(image, companyId));
+                    });
 
-                    $timeout(function() {
+                    angular.forEach($scope.removedImages, function(imageId) {
+                        promises.push(deleteImage(imageId));
+                    });
+
+                    angular.forEach($scope.videos, function(video) {
+                        promises.push(uploadVideo(video, companyId));
+                    });
+
+                    angular.forEach($scope.removedVideos, function(videoId) {
+                        promises.push(deleteVideo(videoId));
+                    });
+
+                    $q.all(promises).then(function() {
                         $window.location.href = '/company-profile.php#/profile/' + response.data.id;
-                    }, 500);
+                    });
+
                 }else{
                     toastModel.showToast('error', 'Organization could not be ' + $scope.action);
                 }
