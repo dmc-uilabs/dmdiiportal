@@ -9,14 +9,14 @@ angular.module('dmc.company-profile').
             restrict: 'A',
             templateUrl: 'templates/company-profile/tabs/tab-overview.html',
             scope: {
-                source : "=",
-                imgs: "=",
-                videos: "=",
-                removedImages: "=",
-                removedVideos: "=",
-                limit: "="
+                source : '=',
+                imgs: '=',
+                videos: '=',
+                removedImages: '=',
+                removedVideos: '=',
+                limit: '='
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, companyProfileModel, fileUpload, questionToastModel) {
-                $element.addClass("tab-overview");
+                $element.addClass('tab-overview');
 
                 $scope.isAddingVideo = false;
 
@@ -30,28 +30,14 @@ angular.module('dmc.company-profile').
                     $scope.isAddingVideo = false;
                 };
 
-                // save new video
-                $scope.saveVideo = function(newVideo){
-                    newVideo.companyId = $scope.source.id;
-                    if(!$scope.videos) {
-                        $scope.videos = [];
-                    }
-                    $scope.videos.unshift({file: $scope.newAddedVideo.file, title: newVideo.title});
-                    $scope.videos.splice($scope.limit);
-
-                    $scope.cancelAddVideo();
-                    apply();
-                };
-
-
                 $scope.trustVideoSrc = function(src) {
                     return $sce.trustAsResourceUrl(src);
                 };
-                
+
                 // delete video
                 $scope.deleteVideo = function(video, ev){
                     questionToastModel.show({
-                        question : "Do you want to delete this video?",
+                        question : 'Do you want to delete this video?',
                         buttons: {
                             ok: function(){
                                 if(!$scope.removedVideos) {
@@ -66,49 +52,9 @@ angular.module('dmc.company-profile').
                     },ev);
                 };
 
-                $scope.deleteVideoToAdd = function(index, ev) {
-                    questionToastModel.show({
-                        question : "Do you want to cancel adding this video?",
-                        buttons: {
-                            ok: function(){
-                                $scope.videos.splice(index);
-                                apply();
-                            },
-                            cancel: function(){}
-                        }
-                    },ev);
-                }
-
                 // image drop box
                 $scope.prevPicture = null;
                 $scope.newAddedImage = null;
-                $scope.pictureDragEnter = function(flow){
-                    $scope.prevPicture = flow.files[0];
-                    flow.files = [];
-                };
-
-                $scope.pictureDragLeave = function(flow){
-                    if(flow.files.length == 0 && $scope.prevPicture != null) {
-                        flow.files = [$scope.prevPicture];
-                        $scope.prevPicture = null;
-                    }
-                };
-
-                $scope.addedNewFile = function(file,event,flow){
-                    $scope.newAddedImage = file;
-                    flow.files.shift();
-                };
-
-                $scope.addedNewVideo = function(file,event,flow){
-                    console.log(file, event, flow)
-                    $scope.newAddedVideo = file;
-                    flow.files.shift();
-                };
-
-                $scope.removePicture = function(flow){
-                    flow.files = [];
-                    $scope.newAddedImage = null;
-                };
 
                 $scope.addNewImage = function(){
                     $scope.isAddingImage = true;
@@ -118,31 +64,9 @@ angular.module('dmc.company-profile').
                     $scope.isAddingImage = false;
                 };
 
-                $scope.saveImage = function(newImage){
-                    if(newImage && $scope.newAddedImage.file) {
-                        $scope.imgs.unshift({ file: $scope.newAddedImage.file, title: newImage.title});
-                        $scope.imgs.splice($scope.limit);
-
-                        $scope.cancelAddImage();
-
-                        $scope.imageStrings = [];
-                        angular.forEach($scope.imgs, function(fileObject, i){
-                            var fileReader = new FileReader();
-                            fileReader.onload = function (event) {
-                                var uri = event.target.result;
-                                $scope.imageStrings[i] = uri;
-                                $scope.imageStrings.splice($scope.limit);
-                            };
-                            fileReader.readAsDataURL(fileObject.file);
-                        });
-                        // fileUpload.uploadFileToUrl($scope.newAddedImage.file,{id : $scope.source.id, title : newImage.title},'company-profile',callbackUploadPicture);
-                        $scope.cancelAddImage();
-                    }
-                };
-
                 $scope.deleteImage = function(img, ev){
                     questionToastModel.show({
-                        question : "Do you want to delete this image?",
+                        question : 'Do you want to delete this image?',
                         buttons: {
                             ok: function(){
                                 if(!$scope.removedImages) {
@@ -150,19 +74,6 @@ angular.module('dmc.company-profile').
                                 }
                                 $scope.removedImages.push(img.id);
                                 img.hide = true;
-                                apply();
-                            },
-                            cancel: function(){}
-                        }
-                    },ev);
-                };
-
-                $scope.deleteImageToAdd = function(index, ev){
-                    questionToastModel.show({
-                        question : "Do you want to cancel adding this image?",
-                        buttons: {
-                            ok: function(){
-                                $scope.imageStrings.splice(index, 1);
                                 apply();
                             },
                             cancel: function(){}
