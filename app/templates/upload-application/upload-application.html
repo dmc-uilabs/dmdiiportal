@@ -84,7 +84,7 @@
             <div flex="25">
                 <md-input-container>
                     <label>Contact Phone*</label>
-                    <input ng-model="applicationData.contactPhone"/>
+                    <input ng-model="applicationData.contactPhone" phone-input/>
                 </md-input-container>
             </div>
         </div>
@@ -168,7 +168,7 @@
             <div flex="60">
                 <md-input-container>
                     <label>Price*</label>
-                    <input ng-model="applicationData.appCost" ng-required="true"/>
+                    <input ng-model="applicationData.appCost" ng-required="true" type="number"/>
                 </md-input-container>
             </div>
         </div>

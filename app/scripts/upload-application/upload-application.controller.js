@@ -212,6 +212,12 @@ angular.module('dmc.uploadApplication')
 					return;
 				}
 
+				angular.forEach(applicationData.appTags, function(tag) {
+					if (!angular.isObject(tag)) {
+						tag = { name: tag };
+					};
+				});
+
 				var promises = [
 					uploadApplication(),
 					uploadAppIcon()
