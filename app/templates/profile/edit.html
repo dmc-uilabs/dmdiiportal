@@ -2,7 +2,7 @@
     <md-content class="profile-padding">
         <div layout="row">
             <div flex="20">
-                <div class="image-profile-box">
+                <div class="image-profile-box" ng-show="!isChangingPicture">
                     <img ng-show="profile.image" ng-init="changes.image = profile.image" class="profile-image" ng-show="!isChangingPicture" ng-src="{{profile.image}}">
                     <md-button ng-show="profile.image" ng-click="removeMainPicture($event)" class="md-fab md-mini md-warn remove-picture" aria-label="Remove Picture">
                         <ng-md-icon icon="delete" size="18"></ng-md-icon>
@@ -10,18 +10,15 @@
                 </div>
 
                 <div layout="column" ng-show="isChangingPicture || !profile.image">
-                        <!-- <div class="content-column upload-documents top10" layout="column" flex="30"> -->
     	            <div class="content-panel"
-    	                source="document"
+    	                source="file"
     	                ui-widget-upload-documents
     	                widget-type="'row'"
     	                auto-upload="false"
-    	                widget-title="'Upload Document'"
+    	                widget-title="'Upload Image'"
     	                allow-tagging="true"
     	                file-limit="1">
     	            </div>
-        	        <!-- </div> -->
-                        <!-- </div> -->
                     <md-button ng-click="cancelChangePicture()">Cancel</md-button>
                 </div>
 

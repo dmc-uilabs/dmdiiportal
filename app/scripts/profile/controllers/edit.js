@@ -10,7 +10,7 @@ angular.module('dmc.profile')
         $scope.changesSkills = $scope.profile.skills.length;
         $scope.companies = [];
 
-        if ($scope.profile && $scope.profile.roles[$scope.profile.companyId]) {
+        if ($scope.profile && $scope.profile.roles && $scope.profile.roles[$scope.profile.companyId]) {
             $scope.role = response.data.roles[$scope.profile.companyId];
             $scope.isVerified = true;
         } else {
@@ -22,6 +22,14 @@ angular.module('dmc.profile')
             loadCompanies();
         }
 
+        var profileImageDoc = {};
+        var removeImageFlag = false;
+
+        ajax.get(dataFactory.documentsURL().getList, { recent: 1, parentType: 'USER', parentId: $scope.profile.id, docClass: 'IMAGE'}, function(response) {
+            if (response.data && response.data.data && response.data.data.length > 0) {
+                profileImageDoc = response.data.data[0];
+            }
+        });
 
         function loadCompanies(){
             ajax.get(dataFactory.companyURL().all,{
@@ -48,9 +56,7 @@ angular.module('dmc.profile')
         });
 
         $scope.resendNotification = function() {
-            ajax.create(dataFactory.requestVerification(), {}, function(response) {
-                console.log(response)
-            });
+            ajax.create(dataFactory.requestVerification(), {})
         }
 
         function apply(){
@@ -126,12 +132,23 @@ angular.module('dmc.profile')
                 return ajax.create(dataFactory.documentsURL().save, doc);
             });
         }
+
+        var removeImage = function() {
+            console.log(profileImageDoc)
+            return ajax.delete(dataFactory.documentsURL(profileImageDoc.id).delete, {});
+        }
         //save edit profile
         $scope.saveEdit = function () {
             var promises = [];
-            if ($scope.file != '') {
+            if ($scope.file && $scope.file.length > 0) {
                 promises.push(saveImage($scope.file[0].file));
+                removeImageFlag = true;
             }
+
+            if (removeImageFlag === true) {
+                promises.push(removeImage());
+            }
+
             $q.all(promises).then(function(response) {
                 profileModel.edit_profile($scope.profile.id,
                     {
@@ -162,6 +179,7 @@ angular.module('dmc.profile')
                 buttons: {
                     ok: function(){
                         $scope.isChange = true;
+                        removeImageFlag = true;
                         $scope.profile.image = '';
                         apply();
                     },
