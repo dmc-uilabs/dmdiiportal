@@ -126,11 +126,12 @@
                 <label>Tags (Limit {{chipLimit}})</label>
                 <ui-select
                     multiple
-                    tagging
+                    tagging="transformTag"
                     limit="{{chipLimit}}"
                     tagging-label="false"
                     append-to-body="true"
                     ng-model="applicationData.appTags"
+                    close-on-select="false"
                     theme="select2">
                     <ui-select-match placeholder="Tags">{{$item.name || $item}}</ui-select-match>
                     <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.name || tag}}</ui-select-choices>

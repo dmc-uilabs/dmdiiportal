@@ -190,6 +190,13 @@ angular.module('dmc.uploadApplication')
                 })
 			};
 
+			$scope.transformTag = function(tag) {
+				console.log(tag)
+				if (tag && !angular.isObject(tag)) {
+					tag = { name: tag }
+				};
+				return tag;
+			}
             $scope.save = function() {
 				if (!$scope.applicationData.appTitle || $scope.applicationData.appTitle.trim().length <= 0) {
 					$scope.noTitle = true;
@@ -212,11 +219,11 @@ angular.module('dmc.uploadApplication')
 					return;
 				}
 
-				angular.forEach(applicationData.appTags, function(tag) {
-					if (!angular.isObject(tag)) {
-						tag = { name: tag };
-					};
-				});
+				// angular.forEach(applicationData.appTags, function(tag) {
+				// 	if (!angular.isObject(tag)) {
+				// 		tag = { name: tag };
+				// 	};
+				// });
 
 				var promises = [
 					uploadApplication(),
