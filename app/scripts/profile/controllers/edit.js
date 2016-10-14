@@ -134,7 +134,6 @@ angular.module('dmc.profile')
         }
 
         var removeImage = function() {
-            console.log(profileImageDoc)
             return ajax.delete(dataFactory.documentsURL(profileImageDoc.id).delete, {});
         }
         //save edit profile
@@ -153,10 +152,10 @@ angular.module('dmc.profile')
                 profileModel.edit_profile($scope.profile.id,
                     {
                         displayName: $scope.profile.displayName,
-                        jobTitle: $scope.profile.jobTitle,
+                        title: $scope.profile.title,
                         address: $scope.profile.address,
                         skills: $scope.profile.skills,
-                        description: $scope.profile.description
+                        aboutMe: $scope.profile.aboutMe
                     },
                     function(data){
                         $scope.save = true;

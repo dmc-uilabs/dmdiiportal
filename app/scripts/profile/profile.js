@@ -261,13 +261,12 @@ angular.module('dmc.profile', [
             ajax.get(dataFactory.userAccount(id).get,
                 {},
                 function(response){
-                    console.info(response.data);
                     var profile = response.data;
-                    profile['description'] = params['description'];
+                    profile['aboutMe'] = params['aboutMe'];
                     profile['displayName'] = params['displayName'];
-                    profile['jobTitle'] = params['jobTitle'];
+                    profile['title'] = params['title'];
                     profile['skills'] = params['skills'];
-                    profile['location'] = params['location'];
+                    profile['address'] = params['address'];
 
                     return ajax.update(dataFactory.updateUser(),
                         profile,
