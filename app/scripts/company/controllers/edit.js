@@ -373,7 +373,6 @@ angular.module('dmc.company')
                     if (!$scope.isValid) {
                         return;
                     }
-                    //TODO add promises and $q.all
                     var promises = [];
 
                     if ($scope.newLogo && $scope.newLogo.length > 0) {
