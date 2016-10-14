@@ -15,26 +15,7 @@
                                aria-label="Delete Image">
                         <ng-md-icon icon="delete" size="18"></ng-md-icon>
                     </md-button>
-<<<<<<< HEAD
-                </div>
 
-                <md-button style="width: auto;" flex class="md-raised change-logo" ng-click="changeLogo()">Change Logo</md-button>
-            </div>
-            <div ng-if="changingLogo">
-                <div>
-                    <div class="content-column upload-documents top10" layout="column" flex="30">
-        	            <div class="content-panel"
-        	                source="newLogo"
-        	                ui-widget-upload-documents
-        	                widget-type="'row'"
-        	                auto-upload="false"
-        	                widget-title="'Upload Logo'"
-        	                allow-tagging="true"
-        	                file-limit="1">
-        	            </div>
-        	        </div>
-=======
->>>>>>> removed flow file upload in favor of dropzone on company profile
                 </div>
                 <div layout="column" class="logo-column" ng-if="changingLogo || !company.logoImage">
     	            <div class="content-panel"
@@ -47,12 +28,6 @@
     	                file-limit="1">
     	            </div>
                     <md-button flex class="md-raised cancel-change-logo" ng-click="cancelChangingLogo()">Cancel</md-button>
-                </div>
-                <div>
-                    <md-button style="width: auto;" flex class="md-raised change-logo" ng-show="!changingLogo && company.logoImage" ng-click="changeLogo()">Change Logo</md-button>
-                </div>
-                <div>
-                    <md-button style="width: auto;" flex class="md-raised change-logo" ng-show="!changingLogo && company.logoImage" ng-click="changeLogo()">Change Logo</md-button>
                 </div>
                 <div>
                     <md-button style="width: auto;" flex class="md-raised change-logo" ng-show="!changingLogo && company.logoImage" ng-click="changeLogo()">Change Logo</md-button>
