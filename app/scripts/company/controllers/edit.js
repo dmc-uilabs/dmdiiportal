@@ -9,6 +9,7 @@ angular.module('dmc.company')
         '$state',
         '$scope',
         '$cookies',
+        '$q',
         'ajax',
         'companyData',
         'CompanyModel',
@@ -22,6 +23,7 @@ angular.module('dmc.company')
                               $state,
                               $scope,
                               $cookies,
+                              $q,
                               ajax,
                               companyData,
                               CompanyModel,
@@ -59,6 +61,19 @@ angular.module('dmc.company')
                     },ev);
                 };
 
+                var featureImage = null;
+                var logo = nulll
+                ajax.get(dataFactory.documentsURL().getList, { recent: 1, parentType: 'ORGANIZATION', parentId: $scope.companyData.id, docClass: 'FEATURE_IMAGE' }, function(response) {
+                    if (response.data && response.data.data && response.data.data.length > 0) {
+                        featureImage = response.data.data[0].documentUrl;
+                    };
+                });
+
+                ajax.get(dataFactory.documentsURL().getList, { recent: 1, parentType: 'ORGANIZATION', parentId: $scope.companyData.id, docClass: 'LOGO' }, function(response) {
+                    if (response.data && response.data.data && response.data.data.length > 0) {
+                        logo = response.data.data[0].documentUrl;
+                    };
+                });
 
 
                 // auto focus for First Name input
@@ -78,7 +93,7 @@ angular.module('dmc.company')
 
                 $scope.companyData.description = htmlToInput($scope.companyData.description);
                 $scope.companyPicture = {
-                    'background-image' : (companyData.featureImage && companyData.featureImage.large ? 'url('+companyData.featureImage.large+')' : null)
+                    'background-image' : (featureImage ? 'url('+featureImage+')' : null)
                 };
 
                 $scope.companyId = $stateParams.companyId;
@@ -125,7 +140,7 @@ angular.module('dmc.company')
                     $scope.isChangingLogo = false;
                 };
 
-                $scope.isChangingPicture = (!$scope.companyData.featureImage.large ? true : false);
+                $scope.isChangingPicture = (!featureImage ? true : false);
                 $scope.currentPicture = null;
 
                 var uploadFile = function(companyId) {
@@ -136,7 +151,7 @@ angular.module('dmc.company')
                             documentName: 'feature-image',
                             parentType: 'ORGANIZATION',
                             parentId: companyId,
-                            docClass: 'IMAGE'
+                            docClass: 'FEATURE_IMAGE'
                         }, function(response) {
                             $scope.cancelChangePicture();
                         });
@@ -358,7 +373,6 @@ angular.module('dmc.company')
                     if (!$scope.isValid) {
                         return;
                     }
-                    //TODO add promises and $q.all
                     var promises = [];
 
                     if ($scope.newLogo && $scope.newLogo.length > 0) {
@@ -389,10 +403,8 @@ angular.module('dmc.company')
                         }
 
                         // save changed description
-                        var description = inputToHtml($scope.companyData.description);
-                        ajax.update(dataFactory.updateCompany($scope.companyId),{
-                            description : description
-                        },function(response){
+                        $scope.companyData.description = inputToHtml($scope.companyData.description);
+                        ajax.update(dataFactory.updateOrganization($scope.companyId), $scope.companyData, function(response){
                             toastModel.showToast('success','Data successfully changed');
                             $scope.changedData = {};
                             $location.path('/'+$scope.companyId+'/storefront').search({
