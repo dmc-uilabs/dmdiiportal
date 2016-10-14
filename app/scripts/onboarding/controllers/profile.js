@@ -39,13 +39,20 @@ angular.module('dmc.onboarding')
 
         var callback = function (success, data) {
             if (success) {
-                $scope.profile[0].data.location = data.city + ', ' + data.region;
+                $scope.profile[0].data.address = data.city + ', ' + data.region;
             }
         };
 
         //add skill to profile
         $scope.addSkill = function (inputSkill) {
             if (!inputSkill)return;
+
+			if (!angular.isObject(inputSkill)) {
+				inputSkill = {
+					skillName: inputSkill,
+					experienceLevel: 1
+				}
+			}
             $scope.profile[2].data.skills.push(inputSkill);
             this.inputSkill = null;
         }
