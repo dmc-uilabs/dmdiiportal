@@ -126,12 +126,11 @@
                 <label>Tags (Limit {{chipLimit}})</label>
                 <ui-select
                     multiple
-                    tagging="transformTag"
+                    tagging
                     limit="{{chipLimit}}"
                     tagging-label="false"
                     append-to-body="true"
                     ng-model="applicationData.appTags"
-                    close-on-select="false"
                     theme="select2">
                     <ui-select-match placeholder="Tags">{{$item.name || $item}}</ui-select-match>
                     <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.name || tag}}</ui-select-choices>
@@ -168,8 +167,8 @@
 
             <div flex="60">
                 <md-input-container>
-                    <label>Price*</label>
-                    <input ng-model="applicationData.appCost" ng-required="true" type="number"/>
+                    <label>Price* (In Dollars $)</label>
+                    <input ng-model="applicationData.appCost" ng-disabled="applicationData.appPricingStructure === 'FREE'" ng-required="true" type="number"/>
                 </md-input-container>
             </div>
         </div>
@@ -202,7 +201,7 @@
             <div flex>
                 <md-input-container>
                     <label>License*</label>
-                    <textarea ng-model="applicationData.appLicense" maxlength="licenseLimit" ng-required="true"></textarea>
+                    <textarea ng-model="applicationData.appLicense" maxlength="licenseLimit" ng-disabled="applicationData.standardLicenseTerms" ng-required="!applicationData.standardLicenseTerms"></textarea>
                 </md-input-container>
             </div>
 

@@ -120,9 +120,14 @@ angular.module('dmc.uploadApplication')
 
 			//validation watch
             $scope.$watch('applicationData', function() {
+				console.log($scope.applicationData)
                 if ($scope.noTitle && angular.isDefined($scope.applicationData.appTitle) && $scope.applicationData.appTitle.trim().length > 0) {
                     $scope.noTitle = false;
                 }
+
+				if ($scope.applicationData.appPricingStructure === 'FREE') {
+					$scope.applicationData.appCost = 0;
+				}
 
 				if ($scope.noShortDescription && angular.isDefined($scope.applicationData.shortDescription) && $scope.applicationData.shortDescription.length > 0) {
                     $scope.noShortDescription = false;
@@ -191,7 +196,6 @@ angular.module('dmc.uploadApplication')
 			};
 
 			$scope.transformTag = function(tag) {
-				console.log(tag)
 				if (tag && !angular.isObject(tag)) {
 					tag = { name: tag }
 				};
@@ -215,7 +219,6 @@ angular.module('dmc.uploadApplication')
 				};
 
 				if ($scope.notUnique || $scope.noDocSelected || $scope.noShortDescription || $scope.noTitle || $scope.noIconSelected) {
-
 					return;
 				}
 
