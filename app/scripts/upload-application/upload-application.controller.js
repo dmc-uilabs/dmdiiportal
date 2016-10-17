@@ -111,7 +111,7 @@ angular.module('dmc.uploadApplication')
             var saveCallback = function(response) {
 				if (response.status === 200) {
 					toastModel.showToast('success', 'Application has been Submitted!');
-					$scope.applicationData = {};
+					// $scope.applicationData = {};
 					$timeout($window.location.reload, 500);
 				} else {
 					toastModel.showToast('error', 'Error: ' + response.data.message)
@@ -194,13 +194,13 @@ angular.module('dmc.uploadApplication')
 					});
                 })
 			};
-
-			$scope.transformTag = function(tag) {
-				if (tag && !angular.isObject(tag)) {
-					tag = { name: tag }
-				};
-				return tag;
-			}
+			//
+			// $scope.transformTag = function(tag) {
+			// 	if (tag && !angular.isObject(tag)) {
+			// 		tag = { name: tag }
+			// 	};
+			// 	return tag;
+			// }
             $scope.save = function() {
 				if (!$scope.applicationData.appTitle || $scope.applicationData.appTitle.trim().length <= 0) {
 					$scope.noTitle = true;
@@ -212,21 +212,26 @@ angular.module('dmc.uploadApplication')
 
 				if ($scope.application.length === 0) {
 					$scope.noDocSelected = true;
+				} else {
+					$scope.noDocSelected = false;
 				};
 
 				if ($scope.appIcon.length === 0) {
 					$scope.noIconSelected = true;
+				} else {
+					$scope.noIconSelected = false;
 				};
 
 				if ($scope.notUnique || $scope.noDocSelected || $scope.noShortDescription || $scope.noTitle || $scope.noIconSelected) {
 					return;
 				}
 
-				// angular.forEach(applicationData.appTags, function(tag) {
-				// 	if (!angular.isObject(tag)) {
-				// 		tag = { name: tag };
-				// 	};
-				// });
+				angular.forEach($scope.applicationData.appTags, function(tag, index) {
+					console.log(tag, angular.isObject(tag), index)
+					if (!angular.isObject(tag)) {
+						$scope.applicationData.appTags[index] = { tagName: tag };
+					};
+				});
 
 				var promises = [
 					uploadApplication(),
