@@ -21,6 +21,16 @@
             <img ng-src="{{item}}" alt=""/>
       	</div>
     </div>
+	<div>
+		<div class="content-panel"
+			source="images"
+			ui-widget-upload-documents
+			widget-type="'row'"
+			auto-upload="false"
+			widget-title="'Upload Images'"
+			allow-tagging="true">
+		</div>
+	</div>
     <div class="flow-box"
          flow-init
          flow-drag-enter="pictureDragEnter($flow)"
