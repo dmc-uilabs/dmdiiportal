@@ -179,6 +179,7 @@ angular.module('dmc.account')
 
                     ajax.create(dataFactory.serverURL().create, data,
                         function (response) {
+                            response.data.public=data.isPub;
                             $scope.servers.unshift(response.data);
                             $scope.cancelAdding();
                             toastModel.showToast("success", "New server successfully added!");
