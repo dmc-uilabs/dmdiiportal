@@ -62,14 +62,14 @@ angular.module('dmc.service-marketplace')
             });
 
             $scope.serviceTypes = [{
-                tag : "analytical",
-                name : "Analytical"
+                tag : 'analytical',
+                name : 'Analytical'
             }, {
-                tag: "data",
-                name : "Data"
+                tag: 'data',
+                name : 'Data'
             },{
-                tag : "solid",
-                name : "Solid"
+                tag : 'solid',
+                name : 'Solid'
             }];
 
             $scope.currentImage = 1;
@@ -79,7 +79,7 @@ angular.module('dmc.service-marketplace')
 
             $scope.$on('$stateChangeStart', function (event, next) {
                 if(!$scope.save && $scope.isChange){
-                    var answer = confirm("Are you sure you want to leave this page without saving?");
+                    var answer = confirm('Are you sure you want to leave this page without saving?');
                     if (!answer) {
                         event.preventDefault();
                     }
@@ -87,8 +87,8 @@ angular.module('dmc.service-marketplace')
             });
 
             $(window).bind('beforeunload', function () {
-                if($state.current.name == "service-marketplace-edit" && $scope.isChange)
-                    return "Are you sure you want to leave this page without saving?";
+                if($state.current.name == 'service-marketplace-edit' && $scope.isChange)
+                    return 'Are you sure you want to leave this page without saving?';
             });
 
             $scope.change = function(){
@@ -140,7 +140,7 @@ angular.module('dmc.service-marketplace')
             var userData = null;
             DMCUserModel.getUserData().then(function(res){
                 userData = res;
-                CompareModel.get("services",userData);
+                CompareModel.get('services',userData);
                 getFavoriteCount();
             });
 
@@ -162,7 +162,7 @@ angular.module('dmc.service-marketplace')
                 },
                 deleteImage: function(index,ev){
                     questionToastModel.show({
-                        question : "Do you want to delete the image?",
+                        question : 'Do you want to delete the image?',
                         buttons: {
                             ok: function(){
                                 $scope.isChange = true;
@@ -206,7 +206,7 @@ angular.module('dmc.service-marketplace')
             $scope.editPage = function () {
                 // auto focus for edit product's title
                 $timeout(function() {
-                    $("#editTitleProduct").focus();
+                    $('#editTitleProduct').focus();
                 });
             };
 
@@ -228,14 +228,14 @@ angular.module('dmc.service-marketplace')
                 }
                 $scope.arrAddSpecifications.push({
                     specification: item.name,
-                    data: "",
+                    data: '',
                     specificationId: item.id
                 });
 
                 this.$$childHead.$mdAutocompleteCtrl.clear();
-                
+
                 $timeout(function() {
-                    $("input[name='data']").focus();
+                    $('input[name=\'data\']').focus();
                 })
             };
 
@@ -271,7 +271,7 @@ angular.module('dmc.service-marketplace')
             //remove specifications
             $scope.deleteSpecifications = function(index,ev){
                 questionToastModel.show({
-                    question : "Do you want to delete the specification?",
+                    question : 'Do you want to delete the specification?',
                     buttons: {
                         ok: function(){
                             $scope.arraySpecifications.push({
@@ -289,15 +289,15 @@ angular.module('dmc.service-marketplace')
             //add bew sepecifications to system
             $scope.addNewSpecifications = function(text){
                 this.$$childHead.$mdAutocompleteCtrl.clear();
-                serviceModel.add_array_specifications(text, 
+                serviceModel.add_array_specifications(text,
                     function(data){
                         $scope.arrAddSpecifications.push({
                         specification: data.name,
-                        data: "",
+                        data: '',
                         specificationId: data.id
                     });
                     $timeout(function() {
-                        $("input[name='data']").focus();
+                        $('input[name=\'data\']').focus();
                     });
                 });
             }
@@ -314,7 +314,7 @@ angular.module('dmc.service-marketplace')
             //remove tag
             $scope.deleteTag = function(index, id,ev){
                 questionToastModel.show({
-                    question : "Do you want to delete the tag?",
+                    question : 'Do you want to delete the tag?',
                     buttons: {
                         ok: function(){
                             $scope.isChange = true;
@@ -329,7 +329,7 @@ angular.module('dmc.service-marketplace')
             //remove athors
             $scope.deleteAthors = function(index, id,ev){
                 questionToastModel.show({
-                    question : "Do you want to delete the author?",
+                    question : 'Do you want to delete the author?',
                     buttons: {
                         ok: function(){
                             $scope.isChange = true;
@@ -377,7 +377,7 @@ angular.module('dmc.service-marketplace')
             $scope.cancelEdit = function(){
                 $scope.save = true;
                 $scope.isChangingPicture = false;
-                $state.go("service-marketplace",{serviceId: $scope.product.id})
+                $state.go('service-marketplace',{serviceId: $scope.product.id})
             }
         }
     ]
