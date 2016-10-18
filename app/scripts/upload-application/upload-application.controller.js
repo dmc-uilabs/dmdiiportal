@@ -108,15 +108,7 @@ angular.module('dmc.uploadApplication')
 				})
 			};
 			//-----------end autocomplete---------
-            var saveCallback = function(response) {
-				if (response.status === 200) {
-					toastModel.showToast('success', 'Application has been Submitted!');
-					// $scope.applicationData = {};
-					$timeout($window.location.reload, 500);
-				} else {
-					toastModel.showToast('error', 'Error: ' + response.data.message)
-				}
-            };
+
 
 			//validation watch
             $scope.$watch('applicationData', function() {
@@ -135,7 +127,8 @@ angular.module('dmc.uploadApplication')
 
             }, true);
 
-			var uploadScreenshots = function() {
+			var docsToUpdate = [];
+			var uploadScreenshots = function(id) {
 				angular.forEach($scope.screenshots, function(doc) {
 					return fileUpload.uploadFileToUrl(doc.file, {}, 'applicationScreenshot').then(function(response) {
 						return ajax.create(dataFactory.documentsURL().save,
@@ -147,12 +140,13 @@ angular.module('dmc.uploadApplication')
 								docClass: 'IMAGE'
 							}, function(response) {
 							$scope.applicationData.screenShots.push(response.data);
+							docsToUpdate.push(response.data);
 						});
 					});
 				});
 			};
 
-			var uploadAppDocs = function(doc) {
+			var uploadAppDocs = function(doc, id) {
 				return fileUpload.uploadFileToUrl(doc.file, {}, 'applicationDoc').then(function(response) {
 					return ajax.create(dataFactory.documentsURL().save,
 					{
@@ -163,11 +157,12 @@ angular.module('dmc.uploadApplication')
 						docClass: 'SUPPORT'
 					}, function(response) {
 						$scope.applicationData.appDocuments.push(response.data);
+						docsToUpdate.push(response.data);
 					});
 				});
 			};
 
-			var uploadAppIcon = function() {
+			var uploadAppIcon = function(id) {
 				return fileUpload.uploadFileToUrl($scope.appIcon[0].file, {}, 'applicationIcon').then(function(response) {
 					return ajax.create(dataFactory.documentsURL().save,
 						{
@@ -177,11 +172,12 @@ angular.module('dmc.uploadApplication')
 							parentType: 'APPSUBMISSION'
 						}, function(response) {
 						$scope.applicationData.appIcon = response.data;
+						docsToUpdate.push(response.data);
 					});
 				});
 			};
 
-			var uploadApplication = function() {
+			var uploadApplication = function(id) {
 				return fileUpload.uploadFileToUrl($scope.application[0].file, {}, 'application').then(function(response) {
 					return ajax.create(dataFactory.documentsURL().save,
 					{
@@ -191,8 +187,9 @@ angular.module('dmc.uploadApplication')
 						parentType: 'APPSUBMISSION'
 					}, function(response) {
 						$scope.applicationData.application = response.data;
+						docsToUpdate.push(response.data);
 					});
-                })
+                });
 			};
 			//
 			// $scope.transformTag = function(tag) {
@@ -227,7 +224,6 @@ angular.module('dmc.uploadApplication')
 				}
 
 				angular.forEach($scope.applicationData.appTags, function(tag, index) {
-					console.log(tag, angular.isObject(tag), index)
 					if (!angular.isObject(tag)) {
 						$scope.applicationData.appTags[index] = { tagName: tag };
 					};
@@ -245,9 +241,26 @@ angular.module('dmc.uploadApplication')
 				});
 
 				$q.all(promises).then(function(response) {
-					ajax.create(dataFactory.uploadApplication(), $scope.applicationData, saveCallback);
-				});
+					ajax.create(dataFactory.uploadApplication(), $scope.applicationData, function(response) {
+						var updatePromises = [];
+						angular.forEach(docsToUpdate, function(file) {
+							file.parentId = response.data.id;
+							updatePromises.push(ajax.update(dataFactory.documentsURL(file.id).update, file));
+						});
 
+						if (response.status === 200) {
+							$q.all(updatePromises).then(function(response) {
+									toastModel.showToast('success', 'Application has been Submitted!');
+									// $scope.applicationData = {};
+									$timeout(function() {
+										$window.location.reload();
+									}, 500);
+							});
+						} else {
+							toastModel.showToast('error', 'Error: ' + response.data.message)
+						}
+					});
+				});
             };
 
             function apply() {
