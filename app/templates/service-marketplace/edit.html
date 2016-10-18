@@ -37,30 +37,30 @@
 					<div class="product-image" layout="column">
 						<md-button
 							class="md-fab md-mini md-warn md-raised delete-image"
-							ng-if="product.service_images.length"
+							ng-if="service_images.length"
 							ng-click="carouselFunctions.deleteImage(indexImages,$event)"
 							aria-label="delete">
 							<ng-md-icon icon="delete" style="fill: #fff" size="25"></ng-md-icon>
 						</md-button>
-						<img class="main-image" ng-if="product.service_images.length" ng-src="{{product.service_images[indexImages].url}}">
-						<div class="no-image" ng-if="!product.service_images.length" layout layout-align="center center">
+						<img class="main-image" ng-if="service_images.length" ng-src="{{service_images[indexImages].documentUrl}}">
+						<div class="no-image" ng-if="!service_images.length" layout layout-align="center center">
 							<h2>No Images</h2>
 						</div>
 						<md-button dmc-upload-image-modal
-						images="product.service_images"
-                        serviceId="product.id"
-						cancel-function="updateImage">
+						images="service_images"
+                        service-id="product.id"
+                        new-images="newImages"
+                        removed-images="removedImages">
 							<ng-md-icon icon="camera_alt" style="fill: #65AF3F;" size="25"></ng-md-icon>
-							Manage photos
+							Add photos
 						</md-button>
 						<div dmc-carousel
 								functions="carouselFunctions"
 								name-carousel="'carouselImages'"
 								type-carousel="'images'"
-								carouselSource="product.service_images"
 								max-items="10"
 								show-items="4"
-								carousel-source="product.service_images"
+								carousel-source="service_images"
 								edit="true">
 						</div>
 					</div>
