@@ -12,49 +12,27 @@
     		<md-button ng-click="deleteImage($index, item.id)" aria-label="delete">
           		<ng-md-icon icon="highlight_remove" size="32"></ng-md-icon>
         	</md-button>
-            <div class="img"><img ng-src="{{item.url}}" alt=""/></div>
+            <div class="img"><img ng-src="{{item.documentUrl}}" alt=""/></div>
     	</div>
       	<div class="image-box" flex="20" ng-repeat="item in newImages track by $index">
 	        <md-button ng-click="deleteNewImage($index)" aria-label="delete">
 	          	<ng-md-icon icon="highlight_remove" size="32"></ng-md-icon>
 	        </md-button>
-            <img ng-src="{{item}}" alt=""/>
+            <img ng-src="{{item.documentUrl}}" alt=""/>
       	</div>
     </div>
 	<div>
 		<div class="content-panel"
-			source="images"
+			source="newImages"
 			ui-widget-upload-documents
 			widget-type="'row'"
 			auto-upload="false"
 			widget-title="'Upload Images'"
 			allow-tagging="true">
 		</div>
+		<div layout="column">
+			<md-button class="md-raised md-primary dmc-button" ng-click="uploadFile()">Save</md-button>
+		</div>
 	</div>
-    <div class="flow-box"
-         flow-init
-         flow-drag-enter="pictureDragEnter($flow)"
-         flow-drag-leave="pictureDragLeave($flow)"
-         flow-file-success="$file.msg = $message"
-         flow-file-added="addedNewFile($file, $event, $flow )"
-         layout="column">
-        <div layout class="alert" flow-drop flow-drop-enabled="true">
-          	<div class="inner-box" layout="row" layout-align="center center" style="min-width: 100%;">
-	            <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-	              <img flow-img="$flow.files[0]" />
-	            </div>
-	            <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
-	                Drag And Drop your picture here<br>
-	                600 x 600 px (max 2 MB)
-	                <br>or<br>
-	                <strong>Click here</strong>
-	            </div>
-	            <div layout="column">
-		            <md-button class="md-raised dmc-button" ng-if="$flow.files.length != 0" ng-click="cancelFile($flow)">Cancel</md-button>
-		            <md-button class="md-raised md-primary dmc-button" ng-if="$flow.files.length != 0" ng-click="uploadFile($flow)">Save</md-button>
-		        </div>
-          	</div>
-        </div>
-    </div>
     </md-content>
 </md-dialog>

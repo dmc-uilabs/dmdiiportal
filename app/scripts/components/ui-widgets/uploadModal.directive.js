@@ -4,21 +4,19 @@ angular.module('dmc.widgets.uploadModal',[
     'dmc.model.toast-model',
     'dmc.configs.ngmaterial',
     'dmc.model.fileUpload',
-    'ngMaterial',
-    'flow'
+    'ngMaterial'
 ])
 .directive('dmcUploadImageModal', function() {
     return {
         restrict: 'A',
         scope: {
         	images: '=',
-        	cancelFunction: '='
+            serviceId: '=',
+            newImages: '=',
+            removedImages: '='
         },
 		controller: ['$scope', '$element', '$attrs', '$mdDialog',
 		function($scope, $element, $attrs, $mdDialog) {
-
-			$scope.newImages = [];
-			$scope.removedImages = [];
 
         	$element.on('click', function(ev){
                 $mdDialog.show({
@@ -30,38 +28,29 @@ angular.module('dmc.widgets.uploadModal',[
                     locals: {
                         images: $scope.images,
                         newImages: $scope.newImages,
-                        removedImages: $scope.removedImages
+                        removedImages: $scope.removedImages,
+                        serviceId: $scope.serviceId
                     },
                     clickOutsideToClose:true
-                })
-                .then(function() {
-                }, function() {
-                	if($scope.cancelFunction){
-	                	$scope.cancelFunction($scope.newImages, $scope.removedImages);
-	                }
                 });
-        	})
+        	});
         }]
 	}
 })
-.controller('UploadController',['images', 'newImages', 'removedImages', '$scope', '$mdDialog', 'fileUpload', 'dataFactory',
-	function(images, newImages, removedImages,  $scope, $mdDialog, fileUpload, dataFactory){
+.controller('UploadController',['images', 'newImages', 'removedImages', 'serviceId', '$scope', 'ajax', '$mdDialog', 'fileUpload', 'dataFactory',
+	function(images, newImages, removedImages, serviceId, $scope, ajax, $mdDialog, fileUpload, dataFactory){
 	$scope.images = images;
 	$scope.file = null;
 	$scope.newImages = newImages;
 	$scope.removedImages = removedImages;
-    $scope.imagesToAdd = [];
+
 	$scope.cancel = function(){
+        $scope.newImages = [];
 		$mdDialog.cancel();
 	}
 
     $scope.uploadFile = function(){
-        angular.forEach($scope.imagesToAdd, function(image) {
-            fileUpload.uploadFileToUrl(image.file, {},'service').then(function(data){
-                $scope.newImages.push(data.result);
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            });
-        });
+        $mdDialog.hide();
     };
 
     $scope.deleteImage = function(index, id){
