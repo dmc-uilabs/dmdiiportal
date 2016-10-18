@@ -48,10 +48,26 @@ angular.module('dmc.service-marketplace')
             if(!$scope.product) return false;
 
             $scope.changes = {};
-            $scope.changesSpecifications = $scope.product && $scope.product.specifications && $scope.product.specifications.length > 0 ? $scope.product.specifications[0].special.length : 0;
+            $scope.changesSpecifications = $scope.product && $scope.product.specifications && $scope.product.specifications.length > 0 && $scope.product.specifications[0].special ? $scope.product.specifications[0].special.length : 0;
+
+            $scope.newImages = [];
+            $scope.removedImages = [];
+            $scope.service_images = [];
+            ajax.get(dataFactory.documentsURL().getList, { recent: 10, parentType: 'SERVICE', parentId: $scope.product.id, docClass: 'IMAGE' }, function(response) {
+                if (response.data && response.data.data && response.data.data.length) {
+                    $scope.service_images = response.data.data;
+                    angular.forEach($scope.service_images, function(image, index) {
+                        $scope.service_images[index].url = image.documentUrl;
+                    });
+                    console.log($scope.service_images)
+                }
+            });
 
             serviceModel.get_array_specifications(function(data){
                 $scope.arraySpecifications = data;
+                if (!$scope.product || !$scope.product.specifications || $scope.product.specifications.length === 0) {
+                    return;
+                }
                 for(var i in $scope.product.specifications[0].special){
                     for(var j in $scope.arraySpecifications){
                         if($scope.arraySpecifications[j].id == $scope.product.specifications[0].special[i].specificationId){
@@ -60,7 +76,6 @@ angular.module('dmc.service-marketplace')
                     }
                 }
             });
-
             $scope.serviceTypes = [{
                 tag : 'analytical',
                 name : 'Analytical'
@@ -95,7 +110,6 @@ angular.module('dmc.service-marketplace')
                 $scope.isChange = false;
                 for(var key in $scope.changes){
                     if($scope.changes[key] != $scope.product[key]){
-                        console.info(key);
                         $scope.isChange = true;
                         return;
                     }
@@ -126,8 +140,7 @@ angular.module('dmc.service-marketplace')
                     $scope.isChange = true;
                     return;
                 }
-                if($scope.product.specifications[0].special.length != $scope.changesSpecifications){
-                        console.info($scope.product.specifications[0].special.length, $scope.changesSpecifications);
+                if($scope.product && $scope.product.specifications && $scope.product.specifications.length > 0 && $scope.product.specifications[0].special && $scope.product.specifications[0].special.length != $scope.changesSpecifications){
                     $scope.isChange = true;
                     return;
                 }
@@ -166,8 +179,8 @@ angular.module('dmc.service-marketplace')
                         buttons: {
                             ok: function(){
                                 $scope.isChange = true;
-                                $scope.removeImages.push($scope.product.service_images[index].id);
-                                $scope.product.service_images.splice(index, 1);
+                                $scope.removedImages.push($scope.service_images[index].id);
+                                $scope.service_images.splice(index, 1);
                                 if ($scope.indexImages == index){
                                     $scope.indexImages = 0;
                                 }
@@ -341,38 +354,63 @@ angular.module('dmc.service-marketplace')
                 },ev);
             };
 
+            var uploadImage = function(image) {
+                fileUpload.uploadFileToUrl(image.file, {},'service').then(function(data){
+                    var doc = {
+                        documentUrl: data.file.name,
+                        documentName: data.key,
+                        ownerId: $scope.$root.userData.accountId,
+                        parentType: 'SERVICE',
+                        docClass: 'IMAGE',
+                        parentId: $scope.product.id,
+                        accessLevel: image.accessLevel
+                    }
+                    ajax.create(dataFactory.documentsURL().save, doc);
+                });
+            };
+
+            var removeImage = function(imageId) {
+                ajax.delete(dataFactory.documentsURL(imageId).delete, {});
+            };
+
             //save edit product
             $scope.saveEdit = function(){
-                for(var i in $scope.product.specifications[0].special){
-                    delete $scope.product.specifications[0].special[i]['$$hasKey'];
+                if ($scope.product.specifications && $scope.product.specifications.length > 0) {
+                    for(var i in $scope.product.specifications[0].special){
+                        delete $scope.product.specifications[0].special[i]['$$hasKey'];
+                    }
                 }
 
+                var promises = [];
+                angular.forEach($scope.newImages, function(image) {
+                    promises.push(uploadImage(image));
+                });
+
+                angular.forEach($scope.removedImages, function(imageId) {
+                    promises.push(removeImage(imageId));
+                });
+
                 serviceModel.remove_services_tags($scope.removeTags);
-                serviceModel.remove_services_images($scope.removeImages);
                 serviceModel.add_services_tags($scope.addTags);
-                serviceModel.add_services_images($scope.addImages);
                 serviceModel.remove_services_authors($scope.removeAuthors);
 
-                serviceModel.edit_service({
-                        title: $scope.product.title,
-                        description: $scope.product.description,
-                        serviceType: $scope.product.serviceType,
-                        specification: $scope.product.specifications[0]
-                    },
+                var service = {
+                    title: $scope.product.title,
+                    description: $scope.product.description,
+                    serviceType: $scope.product.serviceType
+                }
+
+                if ($scope.product.specifications && $scope.product.specifications.length) {
+                    service.specification = $scope.product.specifications[0];
+                }
+
+                serviceModel.edit_service(service,
                     function(data){
                         $scope.save = true;
                         $scope.isChangingPicture = false;
                         $state.go('service-marketplace', {serviceId: $scope.product.id});
                     });
             };
-
-            $scope.updateImage = function(newImages, removedImages){
-                for(var i in removedImages){
-                    $scope.removeImages.push(removedImages[i]);
-                }
-                $scope.addImages = newImages;
-                $scope.change();
-            }
 
             $scope.cancelEdit = function(){
                 $scope.save = true;

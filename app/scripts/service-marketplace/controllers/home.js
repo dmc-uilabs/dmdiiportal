@@ -38,21 +38,27 @@ angular.module('dmc.service-marketplace')
             $scope.products_card = [];  //products card
             $scope.limit_reviews = true;  //limit reviews
             $scope.allServices = [];
-            $scope.UserLogin = "DMC Member";
+            $scope.UserLogin = 'DMC Member';
             $scope.adding_to_project = false;
             $scope.selectSortingStar = 0;
             $scope.invate = false;
             $scope.documents = [];
 
             $scope.previousPage = previousPage.get();
-            if($scope.previousPage.tag != "marketplace"){
+            if($scope.previousPage.tag != 'marketplace'){
                 $scope.previousPage = {
-                    tag : "marketplace",
-                    subPage : "home",
-                    title: "BACK TO MARKETPLACE HOME",
-                    url: "/marketplace.php#/home"
+                    tag : 'marketplace',
+                    subPage : 'home',
+                    title: 'BACK TO MARKETPLACE HOME',
+                    url: '/marketplace.php#/home'
                 };
             }
+            $scope.service_images = [];
+            ajax.get(dataFactory.documentsURL().getList, { recent: 10, parentType: 'SERVICE', parentId: $scope.product.id, docClass: 'IMAGE' }, function(response) {
+                if (response.data && response.data.data && response.data.data.length) {
+                    $scope.service_images = response.data.data;
+                }
+            });
 
             // check if service is favorite for current user
             isFavorite.check([$scope.product]);
@@ -63,56 +69,56 @@ angular.module('dmc.service-marketplace')
 
             $scope.history = {
                 rightColumn: {
-                    title: "Your Projects",
-                    viewAllLink: "/all.php#/history/service/"+$stateParams.serviceId+"/project",
+                    title: 'Your Projects',
+                    viewAllLink: '/all.php#/history/service/'+$stateParams.serviceId+'/project',
                     list: []
                 },
                 leftColumn: {
-                    title: "Marketplace",
-                    viewAllLink: "/all.php#/history/service/"+$stateParams.serviceId+"/marketplace",
+                    title: 'Marketplace',
+                    viewAllLink: '/all.php#/history/service/'+$stateParams.serviceId+'/marketplace',
                     list:[]
                 }
             };
 
             serviceModel.get_service_hystory(
                 {
-                    "period": "today",
-                    "section": "marketplace"
+                    'period': 'today',
+                    'section': 'marketplace'
                 },
                 function(data){
                     for(var i in data){
-                        data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
+                        data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
                         switch(data[i].type){
-                            case "completed":
-                            case "successful_runs":
-                                data[i].icon = "images/ic_done_all_black_24px.svg";
+                            case 'completed':
+                            case 'successful_runs':
+                                data[i].icon = 'images/ic_done_all_black_24px.svg';
                                 break;
-                            case "added":
-                                data[i].icon = "images/ic_group_add_black_24px.svg";
+                            case 'added':
+                                data[i].icon = 'images/ic_group_add_black_24px.svg';
                                 break;
-                            case "rated":
-                                data[i].icon = "images/ic_star_black_24px.svg";
+                            case 'rated':
+                                data[i].icon = 'images/ic_star_black_24px.svg';
                                 break;
-                            case "worked":
-                                data[i].icon = "images/icon_project.svg";
+                            case 'worked':
+                                data[i].icon = 'images/icon_project.svg';
                                 break;
-                            case "favorited":
-                                data[i].icon = "images/ic_favorite_black_24px.svg";
+                            case 'favorited':
+                                data[i].icon = 'images/ic_favorite_black_24px.svg';
                                 break;
-                            case "shared":
-                                data[i].icon = "images/ic_done_all_black_24px.svg";
+                            case 'shared':
+                                data[i].icon = 'images/ic_done_all_black_24px.svg';
                                 break;
-                            case "discussion":
-                                data[i].icon = "images/ic_forum_black_24px.svg";
+                            case 'discussion':
+                                data[i].icon = 'images/ic_forum_black_24px.svg';
                                 break;
-                            case "edited":
-                                data[i].icon = "images/ic_create_black_24px.svg";
+                            case 'edited':
+                                data[i].icon = 'images/ic_create_black_24px.svg';
                                 break;
-                            case "unavailable_runs":
-                                data[i].icon = "images/ic_block_black_24px.svg";
+                            case 'unavailable_runs':
+                                data[i].icon = 'images/ic_block_black_24px.svg';
                                 break;
-                            case "incomplete_runs":
-                                data[i].icon = "images/ic_file_download_black_24px.svg";
+                            case 'incomplete_runs':
+                                data[i].icon = 'images/ic_file_download_black_24px.svg';
                                 break;
                         }
 
@@ -122,43 +128,43 @@ angular.module('dmc.service-marketplace')
             );
             serviceModel.get_service_hystory(
                 {
-                    "period": "today",
-                    "section": "project"
+                    'period': 'today',
+                    'section': 'project'
                 },
                 function(data){
                     for(var i in data){
-                        data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
+                        data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
                         switch(data[i].type){
-                            case "completed":
-                            case "successful_runs":
-                                data[i].icon = "images/ic_done_all_black_24px.svg";
+                            case 'completed':
+                            case 'successful_runs':
+                                data[i].icon = 'images/ic_done_all_black_24px.svg';
                                 break;
-                            case "added":
-                                data[i].icon = "images/ic_group_add_black_24px.svg";
+                            case 'added':
+                                data[i].icon = 'images/ic_group_add_black_24px.svg';
                                 break;
-                            case "rated":
-                                data[i].icon = "images/ic_star_black_24px.svg";
+                            case 'rated':
+                                data[i].icon = 'images/ic_star_black_24px.svg';
                                 break;
-                            case "worked":
-                                data[i].icon = "images/icon_project.svg";
+                            case 'worked':
+                                data[i].icon = 'images/icon_project.svg';
                                 break;
-                            case "favorited":
-                                data[i].icon = "images/ic_favorite_black_24px.svg";
+                            case 'favorited':
+                                data[i].icon = 'images/ic_favorite_black_24px.svg';
                                 break;
-                            case "shared":
-                                data[i].icon = "images/ic_done_all_black_24px.svg";
+                            case 'shared':
+                                data[i].icon = 'images/ic_done_all_black_24px.svg';
                                 break;
-                            case "discussion":
-                                data[i].icon = "images/ic_forum_black_24px.svg";
+                            case 'discussion':
+                                data[i].icon = 'images/ic_forum_black_24px.svg';
                                 break;
-                            case "edited":
-                                data[i].icon = "images/ic_create_black_24px.svg";
+                            case 'edited':
+                                data[i].icon = 'images/ic_create_black_24px.svg';
                                 break;
-                            case "unavailable_runs":
-                                data[i].icon = "images/ic_block_black_24px.svg";
+                            case 'unavailable_runs':
+                                data[i].icon = 'images/ic_block_black_24px.svg';
                                 break;
-                            case "incomplete_runs":
-                                data[i].icon = "images/ic_file_download_black_24px.svg";
+                            case 'incomplete_runs':
+                                data[i].icon = 'images/ic_file_download_black_24px.svg';
                                 break;
                         }
                     }
@@ -167,19 +173,19 @@ angular.module('dmc.service-marketplace')
             );
 
             $scope.getHistory = function(type, time){
-                var period = "";
-                var params = {"section": "project"};
-                if(time == "today"){
-                    period = "today";
-                }else if (time == "week"){
-                    period = ["today","week"];
+                var period = '';
+                var params = {'section': 'project'};
+                if(time == 'today'){
+                    period = 'today';
+                }else if (time == 'week'){
+                    period = ['today','week'];
                 }else{
-                    period = ["today","week","all"];
+                    period = ['today','week','all'];
                 }
 
                 params['period'] = period;
 
-                if(type != "runs_by_users"){
+                if(type != 'runs_by_users'){
                     params['type'] = type;
                 }
 
@@ -187,13 +193,13 @@ angular.module('dmc.service-marketplace')
                     params,
                     function(data){
                         for(var i in data){
-                            data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
-                            if(data[i].type == "successful_runs"){
-                                data[i].icon = "done_all";
-                            }else if(data[i].type == "unavailable_runs"){
-                                data[i].icon = "block";
-                            }else if(data[i].type == "incomplete_runs"){
-                                data[i].icon = "file_upload";
+                            data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
+                            if(data[i].type == 'successful_runs'){
+                                data[i].icon = 'done_all';
+                            }else if(data[i].type == 'unavailable_runs'){
+                                data[i].icon = 'block';
+                            }else if(data[i].type == 'incomplete_runs'){
+                                data[i].icon = 'file_upload';
                             };
                         }
                         $scope.history.leftColumn.list = data;
@@ -210,7 +216,7 @@ angular.module('dmc.service-marketplace')
             var userData = null;
             DMCUserModel.getUserData().then(function(res){
                 userData = res;
-                CompareModel.get("services",userData);
+                CompareModel.get('services',userData);
                 getFavoriteCount();
             });
 
@@ -227,8 +233,8 @@ angular.module('dmc.service-marketplace')
 
             $scope.share = function(ev){
               $mdDialog.show({
-                  controller: "ShareProductCtrl",
-                  templateUrl: "templates/components/product-card/share-product.html",
+                  controller: 'ShareProductCtrl',
+                  templateUrl: 'templates/components/product-card/share-product.html',
                   parent: angular.element(document.body),
                   targetEvent: ev,
                   clickOutsideToClose:true,
@@ -243,33 +249,33 @@ angular.module('dmc.service-marketplace')
             $scope.sortList = [
                 {
                     id: 0,
-                    val: "date",
-                    name: "Most Recent"
+                    val: 'date',
+                    name: 'Most Recent'
                 },
                 {
                     id: 1,
-                    val: "helpful",
-                    name: "Most Helpful"
+                    val: 'helpful',
+                    name: 'Most Helpful'
                 },
                 {
                     id: 2,
-                    val: "leasthelpful",
-                    name: "Least Helpful"
+                    val: 'leasthelpful',
+                    name: 'Least Helpful'
                 },
                 {
                     id: 3,
-                    val: "highest",
-                    name: "Highest to Lowest Rating"
+                    val: 'highest',
+                    name: 'Highest to Lowest Rating'
                 },
                 {
                     id: 4,
-                    val: "lowest",
-                    name: "Lowest to Highest Rating"
+                    val: 'lowest',
+                    name: 'Lowest to Highest Rating'
                 },
                 {
                     id: 5,
-                    val: "verified",
-                    name: "Verified Users"
+                    val: 'verified',
+                    name: 'Verified Users'
                 }
             ];
 
@@ -303,7 +309,7 @@ angular.module('dmc.service-marketplace')
 //load data
 
             //get similar product
-            serviceModel.get_all_service({"_limit": 4}, function(data){
+            serviceModel.get_all_service({'_limit': 4}, function(data){
                 $scope.products_card = data;
                 isFavorite.check($scope.products_card);
                 apply();
@@ -367,7 +373,7 @@ angular.module('dmc.service-marketplace')
                         comment: NewReview.Comment
                     },
                     function(data){
-                        data.date = moment(data.date).format("MM/DD/YYYY hh:mm A");
+                        data.date = moment(data.date).format('MM/DD/YYYY hh:mm A');
                         if(review.replyReviews){
                             review.replyReviews.unshift(data);
                         }else{
@@ -412,58 +418,58 @@ angular.module('dmc.service-marketplace')
                 var params = {};
                 $scope.selectSortingStar = 0;
                 switch(val){
-                    case "date":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case 'date':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         break;
-                    case "helpful":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "like";
+                    case 'helpful':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'like';
                         break;
-                    case "leasthelpful":
-                        params['_order'] = "ASC";
-                        params['_sort'] = "like";
+                    case 'leasthelpful':
+                        params['_order'] = 'ASC';
+                        params['_sort'] = 'like';
                         break;
-                    case "lowest":
-                        params['_order'] = "ASC";
-                        params['_sort'] = "rating";
+                    case 'lowest':
+                        params['_order'] = 'ASC';
+                        params['_sort'] = 'rating';
                         break;
-                    case "highest":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "rating";
+                    case 'highest':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'rating';
                         break;
-                    case "verified":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case 'verified':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['status'] = true;
                         break;
-                    case "1star":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case '1star':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['rating'] = 1;
                         $scope.selectSortingStar = 1;
                         break;
-                    case "2star":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case '2star':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['rating'] = 2;
                         $scope.selectSortingStar = 2;
                         break;
-                    case "3star":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case '3star':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['rating'] = 3;
                         $scope.selectSortingStar = 3;
                         break;
-                    case "4star":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case '4star':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['rating'] = 4;
                         $scope.selectSortingStar = 4;
                         break;
-                    case "5star":
-                        params['_order'] = "DESC";
-                        params['_sort'] = "date";
+                    case '5star':
+                        params['_order'] = 'DESC';
+                        params['_sort'] = 'date';
                         params['rating'] = 5;
                         $scope.selectSortingStar = 5;
                         break;
@@ -554,18 +560,18 @@ angular.module('dmc.service-marketplace')
                 updatedItem.currentStatus = {
                         project: {
                             id: 0,
-                            title: ""
+                            title: ''
                         }
                     };
                 updatedItem.projectId = 0;
                 ajax.update(dataFactory.addServiceToProject($scope.product.id), updatedItem, function (response) {
                     $scope.product.projectId = 0;
                     $scope.product.currentStatus.project.id = 0;
-                    $scope.product.currentStatus.project.title = "";
+                    $scope.product.currentStatus.project.title = '';
                     $scope.invate = false;
                     $scope.adding_to_project = false;
                 }, function (response) {
-                    toastModel.showToast("error", "Failed Add To Project");
+                    toastModel.showToast('error', 'Failed Add To Project');
                 }
             );
             }
@@ -599,9 +605,9 @@ angular.module('dmc.service-marketplace')
                                 $scope.invate = false;
                                 apply();
                             }, 20000);
-                            toastModel.showToast("success", "Service added to " + response.data.currentStatus.project.title);
+                            toastModel.showToast('success', 'Service added to ' + response.data.currentStatus.project.title);
                         }, function (response) {
-                            toastModel.showToast("error", "Failed Add To Project");
+                            toastModel.showToast('error', 'Failed Add To Project');
                         }
                     );
                 }
@@ -620,11 +626,11 @@ angular.module('dmc.service-marketplace')
             });
 
             $scope.removeFromCompare = function(){
-                CompareModel.delete("services",$scope.product.id);
+                CompareModel.delete('services',$scope.product.id);
             };
 
             $scope.addToCompare = function(){
-                CompareModel.add("services",{
+                CompareModel.add('services',{
                     profileId : userData.profileId,
                     serviceId : $scope.product.id
                 });
