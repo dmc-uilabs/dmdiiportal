@@ -18,9 +18,6 @@ angular.module('dmc.widgets.uploadModal',[
 		controller: ['$scope', '$element', '$attrs', '$mdDialog',
 		function($scope, $element, $attrs, $mdDialog) {
 
-			$scope.newImages = [];
-			$scope.removedImages = [];
-
         	$element.on('click', function(ev){
                 $mdDialog.show({
                     controller: 'UploadController',
@@ -35,12 +32,6 @@ angular.module('dmc.widgets.uploadModal',[
                         serviceId: $scope.serviceId
                     },
                     clickOutsideToClose:true
-                })
-                .then(function() {
-                }, function() {
-                	if($scope.cancelFunction){
-	                	$scope.cancelFunction($scope.newImages, $scope.removedImages);
-	                }
                 });
         	});
         }]
@@ -52,6 +43,7 @@ angular.module('dmc.widgets.uploadModal',[
 	$scope.file = null;
 	$scope.newImages = newImages;
 	$scope.removedImages = removedImages;
+
 	$scope.cancel = function(){
         $scope.newImages = [];
 		$mdDialog.cancel();
