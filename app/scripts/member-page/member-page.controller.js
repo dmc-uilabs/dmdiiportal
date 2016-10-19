@@ -90,6 +90,7 @@ angular.module('dmc.member')
                 //         $scope.member.projects = response.data.data;
                 //     });
                 // }
+
                 $scope.getCompanyMembers($scope.member.id);
 
                 $scope.getProjects($scope.member.id);
