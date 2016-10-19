@@ -19,8 +19,7 @@ angular.module('dmc.onboarding', [
     'dmc.model.fileUpload',
     'dmc.model.profile',
     'dmc.model.user',
-    'dmc.phone-format',
-    'flow'
+    'dmc.phone-format'
 ])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider

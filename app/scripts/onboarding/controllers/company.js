@@ -1,8 +1,8 @@
 angular.module('dmc.onboarding')
-.controller('CompanyController', 
+.controller('CompanyController',
 	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory', 'fileUpload','questionToastModel',
 	function ($scope, $rootScope, $state, ajax, dataFactory, fileUpload, questionToastModel) {
-		if($state.current.name == "onboarding.company"){
+		if($state.current.name == 'onboarding.company'){
 			$state.go($scope.company[0].state);
 		}
         $scope.activePage = $state;
@@ -43,7 +43,7 @@ angular.module('dmc.onboarding')
 
         $scope.deleteContactMethod = function(item,ev,index){
             questionToastModel.show({
-                question : "Do you want to delete the contact method?",
+                question : 'Do you want to delete the contact method?',
                 buttons: {
                     ok: function(){
                         ajax.delete(dataFactory.companyURL(item.id).delete_contact_method,{},function(response){
@@ -67,70 +67,70 @@ angular.module('dmc.onboarding')
         $scope.keyContactTypes = [
             {
                 id : 1,
-                name : "LEGAL"
+                name : 'LEGAL'
             }, {
                 id : 2,
-                name : "LEGAL 2"
+                name : 'LEGAL 2'
             }
         ];
 
         $scope.states = [
-            "AL|Alabama",
-            "AK|Alaska",
-            "AZ|Arizona",
-            "AR|Arkansas",
-            "CA|California",
-            "CO|Colorado",
-            "CT|Connecticut",
-            "DE|Delaware",
-            "FL|Florida",
-            "GA|Georgia",
-            "HI|Hawaii",
-            "ID|Idaho",
-            "IL|Illinois",
-            "IN|Indiana",
-            "IA|Iowa",
-            "KS|Kansas",
-            "KY|Kentucky",
-            "LA|Louisiana",
-            "ME|Maine",
-            "MD|Maryland",
-            "MA|Massachusetts",
-            "MI|Michigan",
-            "MN|Minnesota",
-            "MS|Mississippi",
-            "MO|Missouri",
-            "MT|Montana",
-            "NE|Nebraska",
-            "NV|Nevada",
-            "NH|New Hampshire",
-            "NJ|New Jersey",
-            "NM|New Mexico",
-            "NY|New York",
-            "NC|North Carolina",
-            "ND|North Dakota",
-            "OH|Ohio",
-            "OK|Oklahoma",
-            "OR|Oregon",
-            "PA|Pennsylvania",
-            "RI|Rhode Island",
-            "SC|South Carolina",
-            "SD|South Dakota",
-            "TN|Tennessee",
-            "TX|Texas",
-            "UT|Utah",
-            "VT|Vermont",
-            "VA|Virginia",
-            "WA|Washington",
-            "WV|West Virginia",
-            "WI|Wisconsin",
-            "WY|Wyoming"
+            'AL|Alabama',
+            'AK|Alaska',
+            'AZ|Arizona',
+            'AR|Arkansas',
+            'CA|California',
+            'CO|Colorado',
+            'CT|Connecticut',
+            'DE|Delaware',
+            'FL|Florida',
+            'GA|Georgia',
+            'HI|Hawaii',
+            'ID|Idaho',
+            'IL|Illinois',
+            'IN|Indiana',
+            'IA|Iowa',
+            'KS|Kansas',
+            'KY|Kentucky',
+            'LA|Louisiana',
+            'ME|Maine',
+            'MD|Maryland',
+            'MA|Massachusetts',
+            'MI|Michigan',
+            'MN|Minnesota',
+            'MS|Mississippi',
+            'MO|Missouri',
+            'MT|Montana',
+            'NE|Nebraska',
+            'NV|Nevada',
+            'NH|New Hampshire',
+            'NJ|New Jersey',
+            'NM|New Mexico',
+            'NY|New York',
+            'NC|North Carolina',
+            'ND|North Dakota',
+            'OH|Ohio',
+            'OK|Oklahoma',
+            'OR|Oregon',
+            'PA|Pennsylvania',
+            'RI|Rhode Island',
+            'SC|South Carolina',
+            'SD|South Dakota',
+            'TN|Tennessee',
+            'TX|Texas',
+            'UT|Utah',
+            'VT|Vermont',
+            'VA|Virginia',
+            'WA|Washington',
+            'WV|West Virginia',
+            'WI|Wisconsin',
+            'WY|Wyoming'
         ];
 
         $scope.categoriesTiers = [
             {
                 id : 1,
-                title : "Tier 4 Academic / Nonprofit"
+                title : 'Tier 4 Academic / Nonprofit'
             }
         ];
 
@@ -146,16 +146,16 @@ angular.module('dmc.onboarding')
         $scope.preferredMethods = [
             {
                 id : 1,
-                name : "Email"
+                name : 'Email'
             }, {
                 id : 2,
-                name : "Phone"
+                name : 'Phone'
             }
         ];
-        
+
         $scope.deleteCover = function(){
-            $scope.company[1].data.featureImage.thumbnail = "";
-            $scope.company[1].data.featureImage.large = "";
+            $scope.company[1].data.featureImage.thumbnail = '';
+            $scope.company[1].data.featureImage.large = '';
         }
 
 //skills
@@ -223,30 +223,12 @@ angular.module('dmc.onboarding')
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }
             );
-        };  
-
-//upload file
-        $scope.prevPicture = null;
-        $scope.pictureDragEnter = function(flow){
-            $scope.prevPicture = flow.files[0];
-            flow.files = [];
         };
 
-        $scope.pictureDragLeave = function(flow){
-            if(flow.files.length == 0 && $scope.prevPicture != null) {
-                flow.files = [$scope.prevPicture];
-                $scope.prevPicture = null;
-            }
-        };
-
-        $scope.addedNewFile = function(file,event,flow){
-            flow.files.shift();
-            $scope.file = flow;
-        };
-
+//upload file;
+		$scope.logo = [];
         $scope.removePicture = function(flow){
-            flow.files = [];
-            $scope.file = null;
+            $scope.logo = [];
         };
 
 //videos
@@ -266,7 +248,7 @@ angular.module('dmc.onboarding')
             ajax.create(
                 dataFactory.addCompanyVideo(),
                 newVideo,
-                function(response){               
+                function(response){
                     $scope.company[4].data.videos.unshift(response.data);
                     $scope.cancelAddVideo();
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -299,7 +281,7 @@ angular.module('dmc.onboarding')
             /*fileUpload.uploadFileToUrl(
                 $scope.file.files[0].file,
                 {
-                    id : 1, 
+                    id : 1,
                     title : newImage.title
                 },
                 'company-profile',
@@ -319,7 +301,7 @@ angular.module('dmc.onboarding')
             );
         };
 
-//images        
+//images
         $scope.addNewImage = function(){
             $scope.isAddingImage = true;
         };
@@ -332,7 +314,7 @@ angular.module('dmc.onboarding')
             /*fileUpload.uploadFileToUrl(
                 $scope.file.files[0].file,
                 {
-                    id : 1, 
+                    id : 1,
                     title : newImage.title
                 },
                 'company-profile',
@@ -352,9 +334,6 @@ angular.module('dmc.onboarding')
             );
         };
 
-
-
-
         $scope.scrollTop = function(){
         	$(window).scrollTop(0);
         }
@@ -367,7 +346,7 @@ angular.module('dmc.onboarding')
                         fileUpload.uploadFileToUrl(
                             $scope.file.files[0].file,
                             {id: $scope.userData.companyId},
-                            'company', 
+                            'company',
                             function(data){
                                 $scope.file = null;
                                 if(data.file && data.file.name){
@@ -422,7 +401,7 @@ angular.module('dmc.onboarding')
                         {
                             technicalExpertise: $scope.company[5].data.technicalExpertise,
                             toolsSoftwareEquipmentMachines: $scope.company[5].data.toolsSoftwareEquipmentMachines
-                        }, 
+                        },
                         function(){
                         $(window).scrollTop(0);
                         $state.go('^' + $scope.company[index+1].state);
@@ -463,7 +442,7 @@ angular.module('dmc.onboarding')
                         $(window).scrollTop(0);
                         $state.go('^' + $scope.company[index+1].state);
                     });
-            };            
+            };
         }
 
         $scope.finish = function(index){
