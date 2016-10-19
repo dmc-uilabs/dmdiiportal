@@ -25,7 +25,7 @@ angular.module('dmc.project')
             };
             $scope.documents = [];
             $scope.images = [];
-            
+
             $scope.addTags = [];
             $scope.removeTags = [];
 
@@ -151,8 +151,8 @@ angular.module('dmc.project')
                     projectId: projectData.id,
                     projectTitle: projectData.title,
                     parent: $scope.NewService.parentComponent,
-                    images: images,
-                    documents: documents
+                    images: $scope.images,
+                    documents: $scope.documents
                 },$scope.addTags,newDomeInterface);
             }
 
