@@ -109,17 +109,26 @@ angular.module('dmc.uploadApplication')
 			};
 			//-----------end autocomplete---------
 
-
-			//validation watch
-            $scope.$watch('applicationData', function() {
-				console.log($scope.applicationData)
-                if ($scope.noTitle && angular.isDefined($scope.applicationData.appTitle) && $scope.applicationData.appTitle.trim().length > 0) {
-                    $scope.noTitle = false;
-                }
-
+			//-----------change functions---------
+			$scope.updatePrice = function() {
 				if ($scope.applicationData.appPricingStructure === 'FREE') {
 					$scope.applicationData.appCost = 0;
 				}
+			}
+
+			$scope.updateTerms = function() {
+				if ($scope.applicationData.standardLicenseTerms === true) {
+					$scope.applicationData.appLicense = 'Standard DMC License';
+				} else {
+					$scope.applicationData.appLicense = ''
+				}
+			}
+			//---------end change functions--------
+			//validation watch
+            $scope.$watch('applicationData', function() {
+                if ($scope.noTitle && angular.isDefined($scope.applicationData.appTitle) && $scope.applicationData.appTitle.trim().length > 0) {
+                    $scope.noTitle = false;
+                }
 
 				if ($scope.noShortDescription && angular.isDefined($scope.applicationData.shortDescription) && $scope.applicationData.shortDescription.length > 0) {
                     $scope.noShortDescription = false;

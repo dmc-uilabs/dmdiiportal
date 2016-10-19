@@ -159,7 +159,7 @@
             <div flex="20">
                 <md-input-container>
                     <label>Pricing Structure*</label>
-                    <md-select ng-model="applicationData.appPricingStructure" ng-required="true">
+                    <md-select ng-model="applicationData.appPricingStructure" ng-required="true" ng-change="updatePrice()">
                         <md-option ng-repeat="(value, key) in pricingStructures" value="{{value}}">{{key}}</md-option>
                     </md-select>
                 </md-input-container>
@@ -193,7 +193,7 @@
 
         <div layout="row">
             <div flex="15">
-                <md-checkbox class="no-bottom" ng-model="applicationData.standardLicenseTerms">
+                <md-checkbox class="no-bottom" ng-model="applicationData.standardLicenseTerms" ng-change="updateTerms()">
                     Standard License Terms
                 </md-checkbox>
             </div>
