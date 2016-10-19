@@ -15,7 +15,6 @@
                                aria-label="Delete Image">
                         <ng-md-icon icon="delete" size="18"></ng-md-icon>
                     </md-button>
-<<<<<<< HEAD
                 </div>
 
                 <div layout="column" class="logo-column" ng-if="changingLogo || !company.logoImage">
@@ -29,23 +28,6 @@
     	                file-limit="1">
     	            </div>
                     <md-button flex class="md-raised cancel-change-logo" ng-click="cancelChangingLogo()">Cancel</md-button>
-                </div>
-                <div>
-                    <md-button style="width: auto;" flex class="md-raised change-logo" ng-show="!changingLogo && company.logoImage" ng-click="changeLogo()">Change Logo</md-button>
-=======
-                </div>
-                <div layout="column" class="logo-column" ng-if="changingLogo || !company.logoImage">
-    	            <div class="content-panel"
-    	                source="newLogo"
-    	                ui-widget-upload-documents
-    	                widget-type="'row'"
-    	                auto-upload="false"
-    	                widget-title="'Upload Logo'"
-    	                allow-tagging="true"
-    	                file-limit="1">
-    	            </div>
-                    <md-button flex class="md-raised cancel-change-logo" ng-click="cancelChangingLogo()">Cancel</md-button>
->>>>>>> 3bef038e9cc5c51f79285ab376b60a9a9dd9d575
                 </div>
                 <div>
                     <md-button style="width: auto;" flex class="md-raised change-logo" ng-show="!changingLogo && company.logoImage" ng-click="changeLogo()">Change Logo</md-button>
