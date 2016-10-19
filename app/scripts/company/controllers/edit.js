@@ -383,7 +383,6 @@ angular.module('dmc.company')
 
                     if (removeLogo) {
                         promises.push(deleteLogo());
-
                     }
 
                     if ($scope.featureImage && $scope.featureImage.length > 0) {
