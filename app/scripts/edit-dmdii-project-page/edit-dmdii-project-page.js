@@ -32,8 +32,7 @@ angular.module('dmc.edit-project', [
     'dmc.model.company',
     'dmc.phone-format',
     'dmc.zip-code-format',
-    'dmc.model.account',
-    'flow'
+    'dmc.model.account'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('edit-project-page', {

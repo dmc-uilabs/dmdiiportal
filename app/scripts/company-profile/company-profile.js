@@ -31,8 +31,7 @@ angular.module('dmc.company-profile', [
     'dmc.model.company',
     'dmc.phone-format',
     'dmc.zip-code-format',
-    'dmc.model.account',
-    'flow'
+    'dmc.model.account'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
         var resolve = {

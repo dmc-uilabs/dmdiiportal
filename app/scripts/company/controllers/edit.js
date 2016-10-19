@@ -579,7 +579,6 @@ angular.module('dmc.company')
                         'background-image' : null
                     };
                     $scope.isChangingPicture = true;
-                    $scope.flowBoxStyle = null;
                     apply();
                 });
             }
