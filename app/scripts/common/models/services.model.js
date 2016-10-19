@@ -9,53 +9,53 @@ angular.module('dmc.model.services', [
 
 	this.create  = function(params) {
 		$http({
-			method: "GET",
+			method: 'GET',
 			url: dataFactory.getService(),
 			params: {
-				"_limit" : 1,
-				"_order" : "DESC",
-				"_sort" : "id"
+				'_limit' : 1,
+				'_order' : 'DESC',
+				'_sort' : 'id'
 			}
 		}).then(
 			function(response){
 				var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
 				$http(
 				{
-					method: 'POST', 
+					method: 'POST',
 					url: dataFactory.getService(),
 					data: {
-						"id": lastId,
-						"title": params.title,
-						"description": params.description,
-						"owner": "M.Dawson",
-						"releaseDate": "25/08/2015",
-						"serviceType": "analytical",
-						"tags": params.tags,
-						"specifications": "/services/3/specifications",
-						"featureImage": {
-							"thumbnail": "images/marketplace-card-image-1.jpg",
-							"large": "images/marketplace-card-image-1.jpg"
+						'id': lastId,
+						'title': params.title,
+						'description': params.description,
+						'owner': 'M.Dawson',
+						'releaseDate': '25/08/2015',
+						'serviceType': 'analytical',
+						'tags': params.tags,
+						'specifications': '/services/3/specifications',
+						'featureImage': {
+							'thumbnail': 'images/marketplace-card-image-1.jpg',
+							'large': 'images/marketplace-card-image-1.jpg'
 						},
-						"currentStatus": {
-							"percentCompleted": 0,
-							"startDate": "20/09/2015",
-							"startTime": "11:15:33",
-							"project": {
-								"id": params.pojectId,
-								"title": params.pojectTitle
+						'currentStatus': {
+							'percentCompleted': 0,
+							'startDate': '20/09/2015',
+							'startTime': '11:15:33',
+							'project': {
+								'id': params.projectId,
+								'title': params.projectTitle
 							}
 						},
-						"projectId": params.pojectId,
-						"from": params.from           
+						'projectId': params.projectId,
+						'from': params.from
 					}
 				}
 				).then(function(response){
-					toastModel.showToast("success", "Service Was Created");
+					toastModel.showToast('success', 'Service Was Created');
 					deffered.resolve(lastId);
 				})
 			},
 			function(){
-				toastModel.showToast("error", "Fail Create Server");
+				toastModel.showToast('error', 'Fail Create Server');
 				deffered.reject();
 			}
 		)
@@ -64,11 +64,11 @@ angular.module('dmc.model.services', [
 
 	this.list  = function() {
 		$http({
-			method: "GET",
+			method: 'GET',
 			url: dataFactory.getService(),
 			params: {
-				"_order" : "DESC",
-				"_sort" : "title"
+				'_order' : 'DESC',
+				'_sort' : 'title'
 			}
 		}).then(function(response){
 			var result = []
@@ -81,7 +81,7 @@ angular.module('dmc.model.services', [
 			deffered.resolve(result);
 		},
 		function(){
-			toastModel.showToast("error", "Fail Get All Services");
+			toastModel.showToast('error', 'Fail Get All Services');
 			deffered.reject();
 		}
 		)
@@ -90,17 +90,17 @@ angular.module('dmc.model.services', [
 
 	this.favorite = function(id){
 		$http({
-			method: "GET",
+			method: 'GET',
 			url: dataFactory.getFavoriteService(id),
 			params: {
-				"_order" : "DESC",
-				"_sort" : "id"
+				'_order' : 'DESC',
+				'_sort' : 'id'
 			}
 		}).then(function(response){
 			var favorite = []
 			for(var i in response.data){
 				$http({
-					method: "GET",
+					method: 'GET',
 					url: dataFactory.getService()+ response.data[i].productId,
 					params: {}
 				}).then(function(response){
@@ -110,7 +110,7 @@ angular.module('dmc.model.services', [
 			deffered.resolve(favorite, favorite.length);
 		},
 		function(){
-			toastModel.showToast("error", "Fail Get Favorites Services");
+			toastModel.showToast('error', 'Fail Get Favorites Services');
 			deffered.reject();
 		}
 		)
