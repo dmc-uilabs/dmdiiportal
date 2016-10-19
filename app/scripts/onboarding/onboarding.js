@@ -79,7 +79,7 @@ angular.module('dmc.onboarding', [
                 .state('onboarding.company.image', {
                     url: '/company-image',
                     templateUrl: "templates/onboarding/company/image.html"
-                }) 
+                })
                 .state('onboarding.company.focus', {
                     url: '/rd-focus',
                     templateUrl: "templates/onboarding/company/focus.html"
@@ -95,7 +95,7 @@ angular.module('dmc.onboarding', [
                 .state('onboarding.company.tool', {
                     url: '/skills-tools',
                     templateUrl: "templates/onboarding/company/tool.html"
-                }) 
+                })
                 .state('onboarding.company.projects', {
                     url: '/projects',
                     templateUrl: "templates/onboarding/company/projects.html"
@@ -107,11 +107,11 @@ angular.module('dmc.onboarding', [
                 .state('onboarding.company.social', {
                     url: '/social-media',
                     templateUrl: "templates/onboarding/company/social.html"
-                }) 
+                })
                 .state('onboarding.company.key', {
                     url: '/key-conatcts',
                     templateUrl: "templates/onboarding/company/key.html"
-                }) 
+                })
                 .state('onboarding.company.membership', {
                     url: '/membership',
                     templateUrl: "templates/onboarding/company/membership.html"
@@ -130,11 +130,11 @@ angular.module('dmc.onboarding', [
                 .state('onboarding.profile.image', {
                     url: '/profile-image',
                     templateUrl: "templates/onboarding/profile/image.html"
-                }) 
+                })
                 .state('onboarding.profile.skill', {
                     url: '/skills',
                     templateUrl: "templates/onboarding/profile/skill.html"
-                }) 
+                })
 
             .state('onboarding.storefront', {
                 url: '/storefront',
@@ -148,7 +148,7 @@ angular.module('dmc.onboarding', [
                 .state('onboarding.storefront.description', {
                     url: '/description',
                     templateUrl: "templates/onboarding/storefront/description.html"
-                }) 
+                })
                 .state('onboarding.storefront.logo', {
                     url: '/logo',
                     templateUrl: "templates/onboarding/storefront/logo.html"
@@ -157,7 +157,7 @@ angular.module('dmc.onboarding', [
     })
     .service('onboardingModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel',
          function (ajax, dataFactory, $stateParams, toastModel) {
-            this.get_profile = function(profileId, callback){ 
+            this.get_profile = function(profileId, callback){
                 return ajax.get(
                     dataFactory.profiles(profileId).get,
                     {},
@@ -167,7 +167,7 @@ angular.module('dmc.onboarding', [
                 );
             }
 
-            this.update_profile = function(profileId, params, callback){ 
+            this.update_profile = function(profileId, params, callback){
                 ajax.get(
                     dataFactory.profiles(profileId).get,
                     {},
@@ -186,12 +186,12 @@ angular.module('dmc.onboarding', [
                     }
                 );
             }
-
+/*
              // get company skills
             this.getSkills = function(id, callback){
                 return ajax.get(
                     dataFactory.getCompanySkills(id),
-                    {}, 
+                    {},
                     function(response){
                         callback(response.data);
                     }
@@ -202,7 +202,7 @@ angular.module('dmc.onboarding', [
             this.getImages = function(id, callback){
                 return ajax.get(
                     dataFactory.getCompanyImages(id),
-                    {}, 
+                    {},
                     function(response){
                         callback(response.data);
                     }
@@ -243,7 +243,7 @@ angular.module('dmc.onboarding', [
             };
 
 
-            this.get_company = function(companyId, callback){ 
+            this.get_company = function(companyId, callback){
                 return ajax.get(
                     dataFactory.companyURL(companyId).get,
                     {},
@@ -253,7 +253,7 @@ angular.module('dmc.onboarding', [
                 );
             }
 
-            this.update_company = function(companyId, params, callback){ 
+            this.update_company = function(companyId, params, callback){
                 ajax.get(
                     dataFactory.companyURL(companyId).get,
                     {},
@@ -273,8 +273,8 @@ angular.module('dmc.onboarding', [
                 );
             }
 
-
-            this.get_account = function(accountId, callback){ 
+*/
+            this.get_account = function(accountId, callback){
                 return ajax.get(
                     dataFactory.getAccount(accountId),
                     {},
@@ -283,8 +283,8 @@ angular.module('dmc.onboarding', [
                     }
                 );
             }
-
-            this.get_account_notfications = function(accountId, callback){ 
+/*
+            this.get_account_notfications = function(accountId, callback){
                 return ajax.get(
                     dataFactory.getUserAccountNotifications(accountId),
                     {},
@@ -293,7 +293,7 @@ angular.module('dmc.onboarding', [
                     }
                 );
             }
-
+*/
             this.update_account = function(accountId, params, callback){
                 ajax.get(
                     dataFactory.getAccount(accountId),
@@ -309,12 +309,12 @@ angular.module('dmc.onboarding', [
                             function(response){
                                 callback(response.data);
                             }
-                        );                        
+                        );
                     }
                 );
             }
 
-            this.update_notfications = function(notificationId, selected, callback){ 
+            this.update_notfications = function(notificationId, selected, callback){
                 ajax.update(
                     dataFactory.updateUserAccountNotification(notificationId),
                     {
@@ -327,8 +327,8 @@ angular.module('dmc.onboarding', [
             }
 
             this.get_servers = function(accountId, callback){
-                ajax.get(dataFactory.getAccountServersUrl(accountId), 
-                    {}, 
+                ajax.get(dataFactory.getAccountServersUrl(accountId),
+                    {},
                     function (response) {
                         callback(response.data);
                     }

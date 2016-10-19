@@ -48,7 +48,7 @@ angular.module('dmc.onboarding')
     	});
 
     	$scope.saveProfile = function(params, callback){
-    		onboardingModel.update_profile(userData.profileId, params, 
+    		onboardingModel.update_profile(userData.profileId, params,
     			function(data){
     				/*
     				for(var i in $scope.profile){
@@ -359,7 +359,7 @@ angular.module('dmc.onboarding')
     			}
     		}
     	});
-
+/*
     	onboardingModel.get_account_notfications(userData.accountId, function(data){
     		$scope.account[2].done = true
     		$scope.account[3].done = true
@@ -371,7 +371,7 @@ angular.module('dmc.onboarding')
     			}
     		}
     	});
-
+*/
     	onboardingModel.get_servers(userData.accountId, function(data){
     		$scope.account[4].done = true;
     		$scope.account[4].data.servers = data;
@@ -382,7 +382,7 @@ angular.module('dmc.onboarding')
 
     	$scope.saveAccount = function(params, section, callback){
     		if(section == "privacy"){
-	    		onboardingModel.update_account(userData.profileId, params, 
+	    		onboardingModel.update_account(userData.profileId, params,
 	    			function(data){
 	    				/*
 						$scope.account[0].done = true
@@ -526,7 +526,7 @@ angular.module('dmc.onboarding')
         ];
 
     	$scope.saveCompany = function(params, callback){
-    		onboardingModel.update_company(userData.companyId, params, 
+    		onboardingModel.update_company(userData.companyId, params,
     			function(data){
 
     				/*
@@ -547,7 +547,7 @@ angular.module('dmc.onboarding')
 					    			}
 					    		};
 			    				break;
-		    				case '7': 
+		    				case '7':
 		    					for(var item in $scope.company[i].data){
 		    						if(!$scope.company[i].data[item] && item != 'phone' && item != 'email'){
 					    				$scope.company[i].done = false
@@ -600,7 +600,7 @@ angular.module('dmc.onboarding')
         ];
 
     	$scope.saveStorefront = function(params, callback){
-    		onboardingModel.update_company(userData.companyId, params, 
+    		onboardingModel.update_company(userData.companyId, params,
     			function(data){
     				/*
     				for(var i in $scope.storefront){
@@ -621,6 +621,7 @@ angular.module('dmc.onboarding')
     		);
     	};
 
+/*
 		onboardingModel.getImages(userData.companyId, function(data){
         	$scope.company[4].data.images = data;
         	if($scope.company[4].data.images.length && $scope.company[4].data.videos.length){
@@ -629,6 +630,7 @@ angular.module('dmc.onboarding')
         		$scope.company[4].done = false;
         	}
 		});
+
 
 		onboardingModel.getVideos(userData.companyId, function(data){
         	$scope.company[4].data.videos = data;
@@ -686,7 +688,7 @@ angular.module('dmc.onboarding')
 
         	$scope.company[1].data.featureImage.thumbnail = data.featureImage.thumbnail;
     		$scope.company[1].data.featureImage.large = data.featureImage.large;
-    		
+
     		$scope.company[2].data.RDFocus = data.RDFocus;
 
         	$scope.company[3].data.customers = data.customers;
@@ -707,7 +709,7 @@ angular.module('dmc.onboarding')
         	$scope.company[7].data.methodCommunication = data.methodCommunication;
         	$scope.company[7].data.email = data.email;
         	$scope.company[7].data.phone = data.phone;
-        			
+
 
         	$scope.company[8].data.twitter = data.twitter;
         	$scope.company[8].data.linkedIn = data.linkedIn;
@@ -734,7 +736,7 @@ angular.module('dmc.onboarding')
 			    			}
 			    		};
 	    				break;
-    				case '7': 
+    				case '7':
     					for(var item in $scope.company[i].data){
     						if(!$scope.company[i].data[item] && item != 'phone' && item != 'email'){
 			    				$scope.company[i].done = false
@@ -750,7 +752,7 @@ angular.module('dmc.onboarding')
     			}
 	    	}
     	});
-
+*/
 
 
         $scope.saveFinish = function(section){

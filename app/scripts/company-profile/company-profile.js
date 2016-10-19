@@ -207,6 +207,7 @@ angular.module('dmc.company-profile', [
                     var company = extractData(responses.company);
                     company.company_members = extractData(responses.company_members);
                     company.company_reviews = extractData(responses.company_reviews);
+                    /*
                     DMCUserModel.getUserData().then(function(res){
                         ajax.get(dataFactory.getProfileCompanyJoinRequest(res.profileId),{
                             companyId : company.id
@@ -214,6 +215,7 @@ angular.module('dmc.company-profile', [
                             company.joinRequest = data.data && data.data.length > 0 ? data.data[0] : null;
                         });
                     });
+                    */
                     company.rating = company.company_reviews.map(function(value, index){
                         return value.rating;
                     });

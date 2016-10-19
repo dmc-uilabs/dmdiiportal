@@ -41,11 +41,12 @@ angular.module('dmc.company-profile')
                   companyProfileModel,
                   DMCUserModel) {
 
-            // $scope.company = companyData;
+            $scope.company = {};
             //limit of images and videos a company can have
             $scope.limit = 3;
             var getCompany = function() {
                 ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
+                    response.data.company_reviews=$scope.company.company_reviews||[];
                     $scope.company = response.data;
 
                     $scope.getCompanyMembers();
