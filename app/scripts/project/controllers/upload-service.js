@@ -24,19 +24,20 @@ angular.module('dmc.project')
                 serviceType: null
             };
             $scope.documents = [];
+            $scope.images = [];
 
             $scope.addTags = [];
             $scope.removeTags = [];
 
             $scope.serviceTypes = [{
-                tag : "analytical",
-                name : "Analytical"
+                tag : 'analytical',
+                name : 'Analytical'
             }, {
-                tag: "data",
-                name : "Data"
+                tag: 'data',
+                name : 'Data'
             },{
-                tag : "solid",
-                name : "Solid"
+                tag : 'solid',
+                name : 'Solid'
             }];
 
             $scope.userData = DMCUserModel.getUserData();
@@ -69,7 +70,7 @@ angular.module('dmc.project')
             // get all services
             serviceModel.get_all_service({}, function(data){
                 $scope.allServices = data;
-                $scope.allServices.unshift({id: 0, title: "None"});
+                $scope.allServices.unshift({id: 0, title: 'None'});
             });
 
             // select server
@@ -93,16 +94,17 @@ angular.module('dmc.project')
 
             // save new server
             $scope.saveServer = function(server){
-                server.ip=server.ip.substr(0,7)=="http://"?server.ip:"http://"+server.ip;
+                server.ip=server.ip.substr(0,7)=='http://'?server.ip:'http://'+server.ip;
                 serviceModel.add_servers({
                     server: {
                       ip: server.port != null ? server.ip + ':' + server.port : server.ip,
                       port: server.port,
                       name: server.name,
                       accountId: $scope.userData.accountId,
-                      status: "offline"
+                      status: 'offline'
                     },
                     isPub:server.public
+
                 }, function(data){
                     $scope.servers.push(data);
                     $scope.flagAddServer = false;
@@ -152,9 +154,11 @@ angular.module('dmc.project')
                     description: $scope.NewService.serviceDescription,
                     serviceType: $scope.NewService.serviceType,
                     from: 'project',
-                    pojectId: projectData.id,
-                    pojectTitle: projectData.title,
-                    parent: $scope.NewService.parentComponent
+                    projectId: projectData.id,
+                    projectTitle: projectData.title,
+                    parent: $scope.NewService.parentComponent,
+                    images: $scope.images,
+                    documents: $scope.documents
                 },$scope.addTags,newDomeInterface);
             }
 

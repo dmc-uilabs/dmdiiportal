@@ -72,6 +72,9 @@ angular.module('dmc.member')
             var callbackFunction = function(response){
                 $scope.member = response.data;
 
+                var startDate = $scope.member.startDate.split('-');
+                $scope.startDate = startDate[1] + '-' + startDate[2] + '-' + startDate[0];
+
                 ajax.get(dataFactory.documentsURL().getList, {
                     parentType: 'ORGANIZATION',
                     parentId: $scope.member.organization.id,

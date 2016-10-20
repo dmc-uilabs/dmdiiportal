@@ -1,8 +1,8 @@
 <div ng-if="!not_found" class="profile">
     <md-content class="profile-padding">
         <div layout="row">
-            <div flex="15">
-                <div class="image-profile-box">
+            <div flex="20">
+                <div class="image-profile-box" ng-show="!isChangingPicture">
                     <img ng-show="profile.image" ng-init="changes.image = profile.image" class="profile-image" ng-show="!isChangingPicture" ng-src="{{profile.image}}">
                     <md-button ng-show="profile.image" ng-click="removeMainPicture($event)" class="md-fab md-mini md-warn remove-picture" aria-label="Remove Picture">
                         <ng-md-icon icon="delete" size="18"></ng-md-icon>
@@ -10,33 +10,16 @@
                 </div>
 
                 <div layout="column" ng-show="isChangingPicture || !profile.image">
-                    <div class="flow-box"
-                         flow-init
-                         flow-drag-enter="pictureDragEnter($flow)"
-                         flow-drag-leave="pictureDragLeave($flow)"
-                         flow-file-success="$file.msg = $message"
-                         flow-file-added="addedNewFile($file, $event, $flow )"
-                         layout="column">
-                        <!-- <div> -->
-                        <div layout class="alert" flow-drop flow-drop-enabled="true">
-                            <div class="inner-box" layout="row" layout-align="center center" style="min-width: 170px;">
-                                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-                                    <img flow-img="$flow.files[0]" />
-                                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
-                                        <ng-md-icon icon="delete" size="21"></ng-md-icon>
-                                    </md-button>
-                                </div>
-                                <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
-                                    Drag And Drop your picture here<br>
-                                    600 x 600 px (max 2 MB)
-                                    <br>or<br>
-                                    <strong>Click here</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- </div> -->
-                        <md-button ng-click="cancelChangePicture($flow)">Cancel</md-button>
-                    </div>
+    	            <div class="content-panel"
+    	                source="file"
+    	                ui-widget-upload-documents
+    	                widget-type="'row'"
+    	                auto-upload="false"
+    	                widget-title="'Upload Image'"
+    	                allow-tagging="true"
+    	                file-limit="1">
+    	            </div>
+                    <md-button ng-click="cancelChangePicture()">Cancel</md-button>
                 </div>
 
                 <md-button flex="100" ng-show="!isChangingPicture && profile.image" class="md-raised" ng-click="changePicture()">
@@ -46,7 +29,7 @@
 
             </div>
 
-            <div class="profile-header" flex="85" layout="row">
+            <div class="profile-header" flex="80" layout="row">
                 <div flex="50" layout="column">
                     <div layout="row">
                         <md-input-container flex="50">
@@ -58,24 +41,23 @@
                         </md-input-container>
                         <md-input-container flex="50">
                             <label>Job Title</label>
-                            <input ng-model="profile.jobTitle"
+                            <input ng-model="profile.title"
                                    ng-change="change()"
                                    ng-init="changes.jobTitle = profile.jobTitle">
                         </md-input-container>
                     </div>
                     <md-input-container>
                         <label>Company</label>
-                        <input ng-model="profile.company" ng-change="change()" disabled ng-if="profile.company">
-                        <md-select ng-model="profile.companyId" required ng-if="!profile.company" ng-disabled="profile.companyJoinRequest">
+                        <md-select ng-model="profile.companyId" required ng-disabled="isVerified">
                             <md-option ng-repeat="company in companies" value="{{company.id}}">
                                 {{company.name}}
                             </md-option>
                         </md-select>
                         <div class="request-to-join">
                             <md-button class="md-raised dmc-button"
-                                       ng-disabled="profile.companyJoinRequest"
-                                       ng-click="goRequestToJoin(profile.companyId)"
-                                       ng-show="profile.companyId && !profile.company">{{profile.companyJoinRequest ? 'Approval Pending' : 'Request to Join'}}</md-button>
+                                       ng-disabled="isVerified"
+                                       ng-click="resendNotification()"
+                                       ng-show="!isVerified && profile.companyId">Resend Notification</md-button>
                         </div>
                     </md-input-container>
 
@@ -84,8 +66,8 @@
                         <md-icon class="location-gps" ng-click="getLocation()">
                             <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
                         </md-icon>
-                        <input ng-model="profile.location"
-                               ng-init="changes.location = profile.location"
+                        <input ng-model="profile.address"
+                               ng-init="changes.address = profile.address"
                                ng-change="change()"
                                type="text">
                     </md-input-container>
@@ -103,10 +85,10 @@
         <div class="profile-description">
             <md-input-container>
                 <label>Description</label>
-                <textarea ng-model="profile.description"
+                <textarea ng-model="profile.aboutMe"
                           columns="1"
                           ng-change="change()"
-                          ng-init="changes.description = profile.description"
+                          ng-init="changes.aboutMe = profile.aboutMe"
                           md-maxlength="3000"></textarea>
             </md-input-container>
         </div>
@@ -125,7 +107,7 @@
                         <div layout="row" class="tabs-content" layout-wrap>
                             <md-chips ng-repeat="skill in profile.skills track by $index">
                                 <md-chip class="skills-chip">
-                                    {{skill}}
+                                    {{skill.skillName}}
                                     <md-button aria-label="close" ng-click="deleteSkill($index,$event)" class="md-icon-button">
                                         <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
                                     </md-button>

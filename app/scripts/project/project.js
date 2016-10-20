@@ -241,7 +241,7 @@ angular.module('dmc.project', [
             $scope.profile = null;
             $scope.userData.then(function(res){
                 $scope.userData = res;
-                ajax.get(dataFactory.profiles(res.profileId).get,{},function(response){
+                ajax.get(dataFactory.userAccount(res.profileId).get,{},function(response){
                     $scope.profile = response.data ? response.data : null;
                 });
                 getInvitation();
@@ -249,9 +249,9 @@ angular.module('dmc.project', [
             function getInvitation(){
                 ajax.get(dataFactory.getMembersToProject(),
                     {
-                        "projectId" : $stateParams.projectId,
-                        "profileId" : $scope.userData.profileId,
-                        "accept" : false
+                        'projectId' : $stateParams.projectId,
+                        'profileId' : $scope.userData.profileId,
+                        'accept' : false
                     },
                     function(response){
                         if(response.data && response.data.length > 0) $scope.invitation = response.data[0];
@@ -262,19 +262,19 @@ angular.module('dmc.project', [
 
             $scope.accept = function(){
                 if($scope.profile) {
-                    toastModel.showToast("success", "Invited to " + projectData.type + " Project by " + $scope.invitation.from);
-                    document.location.href = "project.php#/" + $stateParams.projectId + "/home";
+                    toastModel.showToast('success', 'Invited to ' + projectData.type + ' Project by ' + $scope.invitation.from);
+                    document.location.href = 'project.php#/' + $stateParams.projectId + '/home';
                 }else{
-                    toastModel.showToast("error", "Your Profile does not found");
+                    toastModel.showToast('error', 'Your Profile does not found');
                 }
             };
 
             $scope.decline = function(){
                 ajax.delete(dataFactory.declineProject($stateParams.projectId, $scope.invitation.id), {},
                     function(response){
-                        //toastModel.showToast("success", "You have declined the invitation from " + $scope.invitation.from);
-                        $cookieStore.put("toast", "You have declined the invitation from " + $scope.invitation.from);
-                        document.location.href = "dashboard.php#/";
+                        //toastModel.showToast('success', 'You have declined the invitation from ' + $scope.invitation.from);
+                        $cookieStore.put('toast', 'You have declined the invitation from ' + $scope.invitation.from);
+                        document.location.href = 'dashboard.php#/';
                     }
                 );
             };
@@ -355,134 +355,134 @@ angular.module('dmc.project', [
         var getServices = function() {
             $scope.services = [
                 {
-                    "id": 1,
-                    "title": 'Run #1',
-                    "releaseDate": "01-04-2015",
-                    "currentStatus": {
-                        "percentCompleted": "33"
+                    'id': 1,
+                    'title': 'Run #1',
+                    'releaseDate': '01-04-2015',
+                    'currentStatus': {
+                        'percentCompleted': '33'
                     },
-                    "specificationsData": {
-                        "serviceId": 25,
-                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
-                        "input": 2,
-                        "output": 1,
-                        "usageStats": {
-                            "added": 130,
-                            "members": 20
+                    'specificationsData': {
+                        'serviceId': 25,
+                        'description': 'Estimates Mu for materials with simple structures and known saturation polarization',
+                        'input': 2,
+                        'output': 1,
+                        'usageStats': {
+                            'added': 130,
+                            'members': 20
                         },
-                        "runStats": {
-                            "success": 108,
-                            "fail": 12
+                        'runStats': {
+                            'success': 108,
+                            'fail': 12
                         }
                     }
                 },
                 {
-                    "id": 2,
-                    "title": 'Run #2',
-                    "releaseDate": "10-04-2015",
-                    "currentStatus": {
-                        "percentCompleted": "66"
+                    'id': 2,
+                    'title': 'Run #2',
+                    'releaseDate': '10-04-2015',
+                    'currentStatus': {
+                        'percentCompleted': '66'
                     },
-                    "specificationsData": {
-                        "serviceId": 25,
-                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
-                        "input": 2,
-                        "output": 1,
-                        "usageStats": {
-                            "added": 130,
-                            "members": 20
+                    'specificationsData': {
+                        'serviceId': 25,
+                        'description': 'Estimates Mu for materials with simple structures and known saturation polarization',
+                        'input': 2,
+                        'output': 1,
+                        'usageStats': {
+                            'added': 130,
+                            'members': 20
                         },
-                        "runStats": {
-                            "success": 108,
-                            "fail": 12
+                        'runStats': {
+                            'success': 108,
+                            'fail': 12
                         }
                     }
                 },
                 {
-                    "id": 3,
-                    "title": 'Run #3',
-                    "releaseDate": "12-04-2015",
-                    "currentStatus": {
-                        "percentCompleted": "78"
+                    'id': 3,
+                    'title': 'Run #3',
+                    'releaseDate': '12-04-2015',
+                    'currentStatus': {
+                        'percentCompleted': '78'
                     },
-                    "specificationsData": {
-                        "serviceId": 25,
-                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
-                        "input": 2,
-                        "output": 1,
-                        "usageStats": {
-                            "added": 130,
-                            "members": 20
+                    'specificationsData': {
+                        'serviceId': 25,
+                        'description': 'Estimates Mu for materials with simple structures and known saturation polarization',
+                        'input': 2,
+                        'output': 1,
+                        'usageStats': {
+                            'added': 130,
+                            'members': 20
                         },
-                        "runStats": {
-                            "success": 108,
-                            "fail": 12
+                        'runStats': {
+                            'success': 108,
+                            'fail': 12
                         }
                     }
                 },
                 {
-                    "id": 4,
-                    "title": 'Run #4',
-                    "releaseDate": "06-05-2015",
-                    "currentStatus": {
-                        "percentCompleted": "77"
+                    'id': 4,
+                    'title': 'Run #4',
+                    'releaseDate': '06-05-2015',
+                    'currentStatus': {
+                        'percentCompleted': '77'
                     },
-                    "specificationsData": {
-                        "serviceId": 25,
-                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
-                        "input": 2,
-                        "output": 1,
-                        "usageStats": {
-                            "added": 130,
-                            "members": 20
+                    'specificationsData': {
+                        'serviceId': 25,
+                        'description': 'Estimates Mu for materials with simple structures and known saturation polarization',
+                        'input': 2,
+                        'output': 1,
+                        'usageStats': {
+                            'added': 130,
+                            'members': 20
                         },
-                        "runStats": {
-                            "success": 108,
-                            "fail": 12
+                        'runStats': {
+                            'success': 108,
+                            'fail': 12
                         }
                     }
                 },
                 {
-                    "id": 5,
-                    "title": 'Run #5',
-                    "releaseDate": "08-05-2015",
-                    "currentStatus": {
-                        "percentCompleted": "65"
+                    'id': 5,
+                    'title': 'Run #5',
+                    'releaseDate': '08-05-2015',
+                    'currentStatus': {
+                        'percentCompleted': '65'
                     },
-                    "specificationsData": {
-                        "serviceId": 25,
-                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
-                        "input": 2,
-                        "output": 1,
-                        "usageStats": {
-                            "added": 130,
-                            "members": 20
+                    'specificationsData': {
+                        'serviceId': 25,
+                        'description': 'Estimates Mu for materials with simple structures and known saturation polarization',
+                        'input': 2,
+                        'output': 1,
+                        'usageStats': {
+                            'added': 130,
+                            'members': 20
                         },
-                        "runStats": {
-                            "success": 108,
-                            "fail": 12
+                        'runStats': {
+                            'success': 108,
+                            'fail': 12
                         }
                     }
                 },
                 {
-                    "id": 6,
-                    "title": 'Run #6',
-                    "releaseDate": "10-05-2015",
-                    "currentStatus": {
-                        "percentCompleted": "43"
+                    'id': 6,
+                    'title': 'Run #6',
+                    'releaseDate': '10-05-2015',
+                    'currentStatus': {
+                        'percentCompleted': '43'
                     },
-                    "specificationsData": {
-                        "serviceId": 25,
-                        "description": "Estimates Mu for materials with simple structures and known saturation polarization",
-                        "input": 2,
-                        "output": 1,
-                        "usageStats": {
-                            "added": 130,
-                            "members": 20
+                    'specificationsData': {
+                        'serviceId': 25,
+                        'description': 'Estimates Mu for materials with simple structures and known saturation polarization',
+                        'input': 2,
+                        'output': 1,
+                        'usageStats': {
+                            'added': 130,
+                            'members': 20
                         },
-                        "runStats": {
-                            "success": 108,
-                            "fail": 12
+                        'runStats': {
+                            'success': 108,
+                            'fail': 12
                         }
                     }
                 }
@@ -490,10 +490,10 @@ angular.module('dmc.project', [
         };
         getServices();
 
-        $(".submitServices").on("click",".table-line",function(ev){
+        $('.submitServices').on('click','.table-line',function(ev){
             var tr = $(this);
             var item = null;
-            var id = parseInt($(this).find(".idItem").val());
+            var id = parseInt($(this).find('.idItem').val());
             for(var i in $scope.services){
                 if($scope.services[i].id == id){
                     $scope.services[i].select = true;
@@ -504,13 +504,13 @@ angular.module('dmc.project', [
             for(var i in $scope.services){
                 if($scope.services[i].select && $scope.services[i].id !== item.id) $scope.services[i].select = false;
             }
-            tr.parents(".tableServices").find(".opened").removeClass('opened');
-            $("#inputs-outputs").remove();
+            tr.parents('.tableServices').find('.opened').removeClass('opened');
+            $('#inputs-outputs').remove();
             $scope.isSelect = false;
             if(item.select) {
                 $scope.isSelect = true;
                 tr.addClass('opened');
-                $($compile('<tr id="inputs-outputs" inputs-outputs total-outputs="'+item.specificationsData.output+'" total-inputs="'+item.specificationsData.input+'" service-name="\'' + item.title + '\'"></tr>')($scope)).insertAfter(tr);
+                $($compile('<tr id=\'inputs-outputs\' inputs-outputs total-outputs=\''+item.specificationsData.output+'\' total-inputs=\''+item.specificationsData.input+'\' service-name=\'' + item.title + '\'></tr>')($scope)).insertAfter(tr);
             }
         });
 
@@ -519,14 +519,14 @@ angular.module('dmc.project', [
             for(var i in $scope.services){
                 if($scope.services[i].select && $scope.services[i].id !== item.id) $scope.services[i].select = false;
             }
-            $(ev.target).parents(".tableServices").find(".opened").removeClass('opened');
-            $("#inputs-outputs").remove();
+            $(ev.target).parents('.tableServices').find('.opened').removeClass('opened');
+            $('#inputs-outputs').remove();
             $scope.isSelect = false;
             if(!select) {
                 $scope.isSelect = true;
-                var tr = $(ev.target).parents(".table-line");
+                var tr = $(ev.target).parents('.table-line');
                 tr.addClass('opened');
-                $($compile('<tr id="inputs-outputs" inputs-outputs total-outputs="'+item.specificationsData.output+'" total-inputs="'+item.specificationsData.input+'" service-name="\'' + item.title + '\'"></tr>')($scope)).insertAfter(tr);
+                $($compile('<tr id=\'inputs-outputs\' inputs-outputs total-outputs=\''+item.specificationsData.output+'\' total-inputs=\''+item.specificationsData.input+'\' service-name=\'' + item.title + '\'></tr>')($scope)).insertAfter(tr);
             }
         };
         $scope.onOrderChange = function(){
@@ -555,6 +555,7 @@ angular.module('dmc.project', [
         '$state',
         '$http',
         'DMCUserModel',
+        'fileUpload',
         '$rootScope',
         '$q',
         'domeModel',
@@ -565,33 +566,45 @@ angular.module('dmc.project', [
                   $state,
                   $http,
                   DMCUserModel,
+                  fileUpload,
                   $rootScope,
                   $q,
                   domeModel,
                   toastModel) {
             this.get_service = function(id){
                 var promises = {
-                    "service": $http.get(dataFactory.services(id).get),
-                    "specifications": $http.get(dataFactory.services(id).get_specifications),
-                    "service_authors": $http.get(dataFactory.services(id).get_authors),
-                    // "position_inputs": $http.get(dataFactory.services(id).get_position_inputs),
-                    "service_tags": $http.get(dataFactory.services(id).get_tags),
-                    "services_statistic": $http.get(dataFactory.services(id).get_statistics),
-                    "service_reviews": $http.get(dataFactory.services(id).reviews),
-                    "service_images": $http.get(dataFactory.services(id).get_images),
-                    "interface": $http.get(dataFactory.services(id).get_interface),
-                    "currentStatus": $http({method : "GET", url : dataFactory.runService(), params : {
+                    'service': $http.get(dataFactory.services(id).get),
+                    'specifications': $http.get(dataFactory.services(id).get_specifications),
+                    'service_authors': $http.get(dataFactory.services(id).get_authors),
+                    // 'position_inputs': $http.get(dataFactory.services(id).get_position_inputs),
+                    'service_tags': $http.get(dataFactory.services(id).get_tags),
+                    'services_statistic': $http.get(dataFactory.services(id).get_statistics),
+                    'service_reviews': $http.get(dataFactory.services(id).reviews),
+                    'service_images': $http({method: 'GET', url: dataFactory.documentsURL().getList, params: {
+                        parentType: 'SERVICE',
+                        parentId: id,
+                        docClass: 'IMAGE',
+                        recent: 5
+                    }}),
+                    'service_docs': $http({method: 'GET', url: dataFactory.documentsURL().getList, params: {
+                        parentType: 'SERVICE',
+                        parentId: id,
+                        docClass: 'SUPPORT',
+                        recent: 5
+                    }}),
+                    'interface': $http.get(dataFactory.services(id).get_interface),
+                    'currentStatus': $http({method : 'GET', url : dataFactory.runService(), params : {
                         _limit : 1,
-                        _order : "DESC",
-                        _sort : "id",
+                        _order : 'DESC',
+                        _sort : 'id',
                         // status : 1,
                         serviceId: id,
                         accountId : DMCUserModel.getUserData().accountId
                     }}),
-                    "lastStatus": $http({method : "GET", url : dataFactory.runService(), params : {
+                    'lastStatus': $http({method : 'GET', url : dataFactory.runService(), params : {
                         _limit : 1,
-                        _order : "DESC",
-                        _sort : "id",
+                        _order : 'DESC',
+                        _sort : 'id',
                         serviceId : id,
                         status_ne : 1
                     }})
@@ -599,6 +612,18 @@ angular.module('dmc.project', [
 
                 var extractData = function(response){
                     return response.data ? response.data : response;
+                };
+
+                var extractDocData = function(response){
+                    if (!response.data) {
+                        return response;
+                    }
+
+                    if (response.data.data && response.data.data.length) {
+                        return response.data.data
+                    }
+
+                    return [];
                 };
 
                 return $q.all(promises).then(function(responses){
@@ -620,14 +645,16 @@ angular.module('dmc.project', [
                         service.service_tags = extractData(responses.service_tags);
                         service.services_statistic = extractData(responses.services_statistic);
                         service.service_reviews = extractData(responses.service_reviews);
-                        service.service_images = extractData(responses.service_images);
+                        service.service_images = extractDocData(responses.service_images);
+                        service.service_docs = extractDocData(responses.service_docs);
+
                         service.rating = service.service_reviews.map(function(value, index){
                             return value.rating;
                         });
                         service.number_of_comments = service.service_reviews.length;
 
                         for(var i in service.service_reviews){
-                            service.service_reviews[i].date = moment(service.service_reviews[i].date).format("MM/DD/YYYY hh:mm A")
+                            service.service_reviews[i].date = moment(service.service_reviews[i].date).format('MM/DD/YYYY hh:mm A')
                         }
 
                         if(service.number_of_comments != 0) {
@@ -649,7 +676,7 @@ angular.module('dmc.project', [
                         return service;
                     },
                     function(response){
-                        toastModel.showToast("error", "Error getting service data." + response.statusText);
+                        toastModel.showToast('error', 'Error getting service data.' + response.statusText);
                     }
                 );
             };
@@ -670,53 +697,90 @@ angular.module('dmc.project', [
                 )
             };
 
+            var uploadDoc = function(doc, id) {
+                return fileUpload.uploadFileToUrl(doc.file, {}, 'serviceImage').then(function(response) {
+                    return ajax.create(dataFactory.documentsURL().save,
+                        {
+                            ownerId: $rootScope.userData.accountId,
+                            documentUrl: response.file.name,
+                            documentName: doc.file.name,
+                            parentType: 'SERVICE',
+                            docClass: 'SUPPORT',
+                            parentId: id
+                        });
+                });
+            };
+
+            var uploadImage = function(image, id) {
+                return fileUpload.uploadFileToUrl(image.file, {}, 'serviceImage').then(function(response) {
+                    return ajax.create(dataFactory.documentsURL().save,
+                        {
+                            ownerId: $rootScope.userData.accountId,
+                            documentUrl: response.file.name,
+                            documentName: image.file.name,
+                            parentType: 'SERVICE',
+                            docClass: 'IMAGE',
+                            parentId: id
+                        });
+                });
+            };
+
             this.upload_services = function(params, tags, service_interface){
                 ajax.create(dataFactory.services($stateParams.ServiceId).add,
                     {
-                        "title": params.title,
-                        "description": params.description,
-                        "owner": $rootScope.userData.displayName,
-                        "accountId": $rootScope.userData.accountId,
-                        "releaseDate": moment(new Date).format("YYYY-MM-DD"),
-                        "serviceType": params.serviceType,
-                        "specifications": "/services/3/specifications",
-                        "featureImage": {
-                            "thumbnail": "images/marketplace-card-image-1.jpg",
-                            "large": "images/marketplace-card-image-1.jpg"
+                        'title': params.title,
+                        'description': params.description,
+                        'owner': $rootScope.userData.displayName,
+                        'accountId': $rootScope.userData.accountId,
+                        'releaseDate': moment(new Date).format('YYYY-MM-DD'),
+                        'serviceType': params.serviceType,
+                        'specifications': '/services/3/specifications',
+                        'featureImage': {
+                            'thumbnail': 'images/marketplace-card-image-1.jpg',
+                            'large': 'images/marketplace-card-image-1.jpg'
                         },
-                        "averageRun" : 0,
-                        "interface" : params.interface,
-                        "currentStatus" : {
-                            "project" : {
-                                "id" : params.pojectId,
-                                "name" : params.pojectTitle
+                        'averageRun' : 0,
+                        'interface' : params.interface,
+                        'currentStatus' : {
+                            'project' : {
+                                'id' : params.projectId,
+                                'name' : params.projectTitle
                             }
                         },
-                        "serverIp" : params.serverIp,
-                        "parent_component": params.parent,
-                        "projectId": params.pojectId,
-                        "type" : "service",
-                        "published" : false,
-                        "from": params.from
+                        'serverIp' : params.serverIp,
+                        'parent_component': params.parent,
+                        'projectId': params.projectId,
+                        'type' : 'service',
+                        'published' : false,
+                        'from': params.from
                     },
                     function(response){
                         var id = response.data.id;
                         var promises = {};
                         if(tags && tags.length > 0) {
                             for (var i in tags) {
-                                promises["tag"+i] = $http.post(dataFactory.services(id).add_tags, {
-                                    "serviceId": id, "name": tags[i]
+                                promises['tag'+i] = $http.post(dataFactory.services(id).add_tags, {
+                                    'serviceId': id, 'name': tags[i]
                                 });
                             }
                         }
                         service_interface.serviceId = id;
-                        promises["service_interface"] = $http.post(dataFactory.services().add_interface, service_interface);
+                        promises['service_interface'] = $http.post(dataFactory.services().add_interface, service_interface);
+
+                        angular.forEach(params.documents, function(doc, index) {
+                            promises['doc' + index] = uploadDoc(doc, id);
+                        });
+
+                        angular.forEach(params.images, function(image, index) {
+                            promises['image' + index] = uploadImage(image, id);
+                        });
+
                         $q.all(promises).then(
                             function(responses){
                                 $state.go('project.services-detail', {ServiceId: id});
                             },
                             function(response){
-                                toastModel.showToast("error", "Error." + response.statusText);
+                                toastModel.showToast('error', 'Error.' + response.statusText);
                             }
                         );
                     }
@@ -734,27 +798,27 @@ angular.module('dmc.project', [
             };
 
             this.add_service_reviews = function(params, callback){
-                params["id"] = lastId;
-                params["productId"] = $stateParams.ServiceId;
-                params["productType"] = "service";
-                params["reply"] = false;
-                params["reviewId"] = 0;
-                params["status"] = true;
-                params["date"] = moment().format('MM/DD/YYYY');
-                params["userRatingReview"] = {
-                    "DMC Member": "none"
+                params['id'] = lastId;
+                params['productId'] = $stateParams.ServiceId;
+                params['productType'] = 'service';
+                params['reply'] = false;
+                params['reviewId'] = 0;
+                params['status'] = true;
+                params['date'] = moment().format('MM/DD/YYYY');
+                params['userRatingReview'] = {
+                    'DMC Member': 'none'
                 };
-                params["like"] = 0;
-                params["dislike"] = 0;
+                params['like'] = 0;
+                params['dislike'] = 0;
 
                 return ajax.create(dataFactory.services($stateParams.ServiceId).addReviews,
                     params,
                     function(response){
-                        toastModel.showToast("success", "Review added");
+                        toastModel.showToast('success', 'Review added');
                         if(callback) callback(response.data)
                     },
                     function(response){
-                        toastModel.showToast("error", "Error." + response.statusText);
+                        toastModel.showToast('error', 'Error.' + response.statusText);
                     }
                 )
             };
@@ -777,35 +841,35 @@ angular.module('dmc.project', [
                                     // add new tags
                                     if(newTags && newTags.length > 0) {
                                         for (var i in newTags) {
-                                            promises["tag"+i] = $http.post(dataFactory.services(id).add_tags, {
-                                                "serviceId": id, "name": newTags[i]
+                                            promises['tag'+i] = $http.post(dataFactory.services(id).add_tags, {
+                                                'serviceId': id, 'name': newTags[i]
                                             });
                                         }
                                     }
                                     // delete all removed tags
                                     if(removedTags && removedTags.length > 0) {
                                         for (var i in removedTags) {
-                                            promises["removedTag"+i] = $http.post(dataFactory.services(removedTags[i]).remove_tags)
+                                            promises['removedTag'+i] = $http.post(dataFactory.services(removedTags[i]).remove_tags)
                                         }
                                     }
 
                                     if(!interfaceId) {
                                         service_interface.serviceId = id;
-                                        promises["add_service_interface"] = $http.post(dataFactory.services().add_interface, service_interface);
+                                        promises['add_service_interface'] = $http.post(dataFactory.services().add_interface, service_interface);
                                     }else{
-                                        promises["update_service_interface"] = $http.patch(dataFactory.services(interfaceId).update_interface, service_interface);
+                                        promises['update_service_interface'] = $http.patch(dataFactory.services(interfaceId).update_interface, service_interface);
                                     }
                                     $q.all(promises).then(
                                         function(responses){
                                             $state.go('project.services-detail', {ServiceId: id});
                                         },
                                         function(response){
-                                            toastModel.showToast("error", "Error." + response.statusText);
+                                            toastModel.showToast('error', 'Error.' + response.statusText);
                                         }
                                     );
                                 },
                                 function (response) {
-                                    toastModel.showToast("error", "Error." + response.statusText);
+                                    toastModel.showToast('error', 'Error.' + response.statusText);
                                 }
                             )
                         }
@@ -816,23 +880,23 @@ angular.module('dmc.project', [
             this.add_services_authors = function(array){
                 ajax.get(dataFactory.services($stateParams.ServiceId).get_authors,
                     {
-                        "_limit" : 1,
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_limit' : 1,
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     },
                     function(response){
                         var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
                         for(var i in array){
                             ajax.create(dataFactory.services($stateParams.ServiceId).add_authors,
                                 {
-                                    "id": lastId,
-                                    "includeTo": $stateParams.ServiceId,
-                                    "serviceId": array[i]
+                                    'id': lastId,
+                                    'includeTo': $stateParams.ServiceId,
+                                    'serviceId': array[i]
                                 },
                                 function(response){
                                 },
                                 function(response){
-                                    toastModel.showToast("error", "Error." + response.statusText);
+                                    toastModel.showToast('error', 'Error.' + response.statusText);
                                 }
                             )
                             lastId++;
@@ -865,8 +929,8 @@ angular.module('dmc.project', [
                 for(var i in array){
                     ajax.create(dataFactory.services((id)? id : $stateParams.ServiceId).add_tags,
                         {
-                            "serviceId": (id)? id : $stateParams.ServiceId,
-                            "name": array[i]
+                            'serviceId': (id)? id : $stateParams.ServiceId,
+                            'name': array[i]
                         },
                         function(response){}
                     );
@@ -899,14 +963,14 @@ angular.module('dmc.project', [
                 return ajax.get(dataFactory.services(id).get_run_history,
                     (params)? params : {
                         _sort: 'id',
-                        _order: "DESC",
+                        _order: 'DESC',
                         status_ne : 'running'
                     },
                     function(response){
                         var history = response.data;
                         for(var i in history){
                             history[i].runTime = calcRunTime(history[i]);
-                            history[i].date = moment(new Date(history[i].startDate+' '+history[i].startTime)).format("MM/DD/YYYY hh:mm A");
+                            history[i].date = moment(new Date(history[i].startDate+' '+history[i].startTime)).format('MM/DD/YYYY hh:mm A');
                         }
                         if(callback){
                             callback(history);

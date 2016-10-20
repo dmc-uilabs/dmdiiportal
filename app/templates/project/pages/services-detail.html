@@ -69,7 +69,7 @@
 		<md-tab label="STATISTICS" ng-if="service.from == 'marketplace'">
 			<ui-widget-tabs-statistic data="service.services_statistic[0]" filter="getHistory"></ui-widget-tabs-statistic>
 		</md-tab>
-		
+
 		<md-tab label="HISTORY" ng-if="service.from == 'marketplace'">
 			<ui-widget-tabs-history data="history"></ui-widget-tabs-history>
 		</md-tab>
@@ -88,7 +88,9 @@
 
 		<md-tab label="DOCUMENTS">
 			<md-content class="md-padding">
-                <ui-widget-documents-folder documents-type="'service'" type-id="service.id"></ui-widget-documents-folder>
+                <a ng-repeat="doc in service.service_docs" ng-href="{{doc.documentUrl}}">{{doc.documentName}}</a>
+                <p ng-if="!service.service_docs">This service has no documents</p>
+                <!-- <ui-widget-documents-folder documents-type="'service'" type-id="service.id"></ui-widget-documents-folder> -->
 			</md-content>
 		</md-tab>
 
