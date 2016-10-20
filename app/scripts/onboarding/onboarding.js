@@ -182,38 +182,29 @@ angular.module('dmc.onboarding', [
                 );
             }
 
-             // get company skills
-            this.getSkills = function(id, callback){
-                return ajax.get(
-                    dataFactory.getCompanySkills(id),
-                    {},
-                    function(response){
-                        callback(response.data);
-                    }
-                );
-            };
-
             // get company images
             this.getImages = function(id, callback){
                 return ajax.get(
-                    dataFactory.getCompanyImages(id),
-                    {},
+                    dataFactory.documentsUrl().getList,
+                    {parentType: 'ORGANIZATION', parentId: id, docClass: 'IMAGE', recent: 3},
                     function(response){
-                        callback(response.data);
+                        var images = response.data.data || [];
+                        callback(images);
                     }
                 );
             };
 
-            // get company images
-            this.getSkillsImages = function(id, callback){
+            this.getFeatureImage = function(id, callback){
                 return ajax.get(
-                    dataFactory.getCompanySkillsImages(id),
-                    {},
+                    dataFactory.documentsUrl().getList,
+                    {parentType: 'ORGANIZATION', parentId: id, docClass: 'FEATURE', recent: 1},
                     function(response){
-                        callback(response.data);
+                        var feature = response.data.data || [];
+                        callback(feature);
                     }
                 );
             };
+
 
             // get company videos
             this.getVideos = function(id, callback){
@@ -240,7 +231,7 @@ angular.module('dmc.onboarding', [
 
             this.get_company = function(companyId, callback){
                 return ajax.get(
-                    dataFactory.companyURL(companyId).get,
+                    dataFactory.getOrganization(companyId).get,
                     {},
                     function(response){
                         callback(response.data);
@@ -250,7 +241,7 @@ angular.module('dmc.onboarding', [
 
             this.update_company = function(companyId, params, callback){
                 ajax.get(
-                    dataFactory.companyURL(companyId).get,
+                    dataFactory.getOrganization(companyId),
                     {},
                     function(response){
                         var company = response.data;
@@ -258,7 +249,7 @@ angular.module('dmc.onboarding', [
                            company[item] = params[item];
                         }
                         ajax.update(
-                            dataFactory.companyURL(companyId).update,
+                            dataFactory.updateOrganization(companyId),
                             company,
                             function(response){
                                 callback(response.data);
