@@ -330,7 +330,7 @@ angular.module('dmc.onboarding')
 						var companyId = response.data.id
 						if($scope.featureImage.length > 0){
 							promises.push(uploadFeature(companyId));
-							removeFeatureImage();
+							$scope.removeFeatureImage();
 						}
 
 						if (deleteFeatureImage) {

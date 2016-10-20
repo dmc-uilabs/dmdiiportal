@@ -7,10 +7,11 @@ angular.module('dmc.onboarding')
 		}
         $scope.activePage = $state;
         $scope.newImage = [];
-
+		var currentImage = {};
+		var deleteCurrentImage = false;
 		ajax.get(dataFactory.documentsURL().getList, { parentType: 'USER', parentId: $scope.userData.accountId, docClass: 'IMAGE', recent: 1}, function(response) {
 			if (response.data && response.data.data && response.data.data.length) {
-				var curLogo = response.data.data[0];
+				currentImage = response.data.data[0];
 			}
 		})
 
@@ -47,9 +48,9 @@ angular.module('dmc.onboarding')
 
 //upload and remove image
 		$scope.removeImage = function() {
-			if ($scope.profile[1].data.image.length > 0) {
+			if (currentImage && currentImage.id && $scope.profile[1].data.image) {
 				$scope.profile[1].data.image = '';
-				var deleteImage = true;
+				deleteCurrentImage = true;
 			}
 		}
 
@@ -58,28 +59,29 @@ angular.module('dmc.onboarding')
 				return ajax.create(dataFactory.documentsURL().save, {
 					documentUrl: data.file.name,
 					documentName: data.key,
-					ownerId: $scope.profile.id,
+					ownerId: $scope.userData.profileId,
 					parentType: 'USER',
-					parentId: $scope.profile.id,
+					parentId: $scope.userData.profileId,
 					docClass: 'IMAGE'
 				});
 			});
-		}
+		};
 
-        var deleteImage = function(imageId){
+        var deleteImage = function(imageId) {
 			return ajax.delete(dataFactory.documentsURL(imageId).delete, {});
-        }
+        };
 
         $scope.next = function(index){
             $scope.profile[index].done = true;
+			var promises = [];
 			$scope.saveProfile($scope.profile[index].data, function(){
 				if($scope.newImage.length) {
 					promises.push(uploadImage());
-					removeImage();
+					$scope.removeImage();
 				}
 
-				if (deleteImage) {
-					promises.push(deleteImage(curImage.id));
+				if (deleteCurrentImage) {
+					promises.push(deleteImage(currentImage.id));
 				}
 
 				$q.all(promises).then(function() {
