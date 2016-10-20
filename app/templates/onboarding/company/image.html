@@ -8,9 +8,9 @@
 	<h3>A company image will help users identify your brand.</h3>
 	<div layout="row"  layout-align="center center">
         <div class="img-box" ng-if="feature">
-            <img ng-src="{{feature.documentUrl}}">
+            <img ng-src="{{company[1].data.featureImage[0].documentUrl}}">
             <md-button md-no-ink class="md-fab md-mini md-warn md-raised removed-images"
-                       ng-click="deleteCover()"
+                       ng-click="removeFeatureImage()"
                        aria-label="Delete Image">
                 <ng-md-icon icon="delete" size="18"></ng-md-icon>
             </md-button>
