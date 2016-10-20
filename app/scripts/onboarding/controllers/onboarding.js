@@ -427,10 +427,7 @@ angular.module('dmc.onboarding')
         		name: 'Company Image',
         		done: false,
         		data: {
-        			featureImage: {
-				        thumbnail: '',
-				        large: ''
-			      	}
+        			featureImage: []
         		}
         	},
         	{
