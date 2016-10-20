@@ -25,7 +25,9 @@
                                 <label>Port</label>
                                 <input ng-model="newServer.port" type="number">
                             </md-input-container>
-
+                            <md-checkbox ng-model="newServer.public" aria-label="public" ng-show="userData.isDmdiiAdmin">
+                              public
+                            </md-checkbox>
                             <md-button class="md-raised close-add-server" ng-click="cancelAdding()" ng-show="isAddingServer">
                                 <ng-md-icon icon="cancel" fill="#333" size="21" aria-label="Close Adding"></ng-md-icon>
                                 Cancel
@@ -57,7 +59,7 @@
                                     <tr ng-repeat="item in servers" class="one-server">
                                         <td width="50px">
                                             <md-button class="md-icon-button" ng-show="!item.isChanging" aria-label="Edit"
-                                                       ng-click="editServer(item,$event)">
+                                                       ng-click="editServer(item,$event)" ng-if="userData.id==item.accountId">
                                                 <ng-md-icon icon="edit" size="21" style="fill:#666" aria-label="Edit Server"></ng-md-icon>
                                             </md-button>
                                             <md-button class="md-icon-button" ng-show="item.isChanging" aria-label="Edit"
@@ -76,22 +78,26 @@
                                             <md-input-container md-no-float ng-init="item.changedIp = item.ip" ng-show="item.isChanging">
                                                 <input ng-model="item.changedIp" placeholder="Server Host/IP">
                                             </md-input-container>
+
                                         </td>
                                         <td class="status" ng-class="{'status-online' : item.status == 'online'}">
                                             <div ng-show="!item.isChanging">
                                                 <ng-md-icon icon="lens" size="10" aria-label="Status"></ng-md-icon>
                                                 {{item.status}}
                                             </div>
-                                            <md-button class="md-raised md-primary save-server"
-                                                       ng-if="item.isChanging"
-                                                       ng-disabled="item.name == item.changedName && item.ip == item.changedIp"
-                                                       ng-click="saveChanges(item)">
-                                                Save
-                                            </md-button>
+                                            <md-checkbox ng-model="item.changedPublic" aria-label="public" ng-show="userData.isDmdiiAdmin && item.isChanging" ng-init="item.changedPublic = item.public">
+                                              public
+                                            </md-checkbox>
                                         </td>
                                         <td width="50px">
-                                            <md-button class="md-icon-button" aria-label="Delete" ng-click="deleteServer(item)">
+                                            <md-button ng-show="!item.isChanging" class="md-icon-button" aria-label="Delete" ng-click="deleteServer(item)" ng-if="userData.id==item.accountId">
                                                 <ng-md-icon icon="delete" size="21" style="fill:#666" aria-label="Delete Server"></ng-md-icon>
+                                            </md-button>
+                                            <md-button class="md-raised md-primary save-server"
+                                                       ng-if="item.isChanging"
+                                                       ng-disabled="item.name == item.changedName && item.ip == item.changedIp && item.public==item.changedPublic"
+                                                       ng-click="saveChanges(item)">
+                                                Save
                                             </md-button>
                                         </td>
                                     </tr>

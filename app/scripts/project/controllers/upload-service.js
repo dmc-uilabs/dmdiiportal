@@ -94,11 +94,17 @@ angular.module('dmc.project')
 
             // save new server
             $scope.saveServer = function(server){
+                server.ip=server.ip.substr(0,7)=='http://'?server.ip:'http://'+server.ip;
                 serviceModel.add_servers({
-                    ip: server.port != null ? server.ip + ':' + server.port : server.ip,
-                    name: server.name,
-                    accountId: $scope.userData.accountId,
-                    status: 'offline'
+                    server: {
+                      ip: server.port != null ? server.ip + ':' + server.port : server.ip,
+                      port: server.port,
+                      name: server.name,
+                      accountId: $scope.userData.accountId,
+                      status: 'offline'
+                    },
+                    isPub:server.public
+
                 }, function(data){
                     $scope.servers.push(data);
                     $scope.flagAddServer = false;
