@@ -1,7 +1,7 @@
 angular.module('dmc.onboarding')
 .controller('CompanyController',
-	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory', 'fileUpload','questionToastModel',
-	function ($scope, $rootScope, $state, ajax, dataFactory, fileUpload, questionToastModel) {
+	['$scope', '$rootScope', '$state', '$q', 'ajax', 'dataFactory', 'fileUpload','questionToastModel',
+	function ($scope, $rootScope, $state, $q, ajax, dataFactory, fileUpload, questionToastModel) {
 		if($state.current.name == 'onboarding.company'){
 			$state.go($scope.company[0].state);
 		}
@@ -151,11 +151,6 @@ angular.module('dmc.onboarding')
             }
         ];
 
-        $scope.deleteCover = function(){
-            $scope.company[1].data.featureImage.thumbnail = '';
-            $scope.company[1].data.featureImage.large = '';
-        }
-
 //skills
         //add skill to profile
         $scope.addSkill = function (inputSkill) {
@@ -274,14 +269,14 @@ angular.module('dmc.onboarding')
         };
 
 		$scope.removeFeatureImage = function() {
-			if ($scope.company[1].featureImage && $scope.company[1].featureImage.length > 0 && $scope.company[1].featureImage[0].documentUrl) {
+			if ($scope.company[1].data.featureImage && $scope.company[1].data.featureImage.length > 0 && $scope.company[1].data.featureImage[0].documentUrl) {
 				var deleteFeatureImage = true;
 			}
 		}
 
-        var deleteImage = function(image){
+        var deleteImage = function(imageId){
             ajax.delete(
-                dataFactory.documentsUrl(image.id).delete, {}, function(response){
+                dataFactory.documentsURL(imageId).delete, {}, function(response){
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }
             );
@@ -313,7 +308,7 @@ angular.module('dmc.onboarding')
 					documentName: $scope.featureImage.file.name,
 					parentType: 'ORGANIZATION',
 					parentId: companyId,
-					docClass: 'feature'
+					docClass: 'FEATURE_IMAGE'
 				}
 				return ajax.create(dataFactory.documentsURL().save, doc, function(response) {
 						if (response.status === 200) {
@@ -339,7 +334,7 @@ angular.module('dmc.onboarding')
 						}
 
 						if (deleteFeatureImage) {
-							promises.push(deleteImage($scope.company[1].featureImage[0].id))
+							promises.push(deleteImage($scope.company[1].data.featureImage[0].id))
 						}
 						$q.all(promises).then(function(responses) {
 							$(window).scrollTop(0);

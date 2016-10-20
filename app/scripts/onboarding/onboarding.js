@@ -10,6 +10,7 @@ angular.module('dmc.onboarding', [
     'dmc.data',
     'dmc.socket',
     'dmc.widgets.stars',
+    'dmc.widgets.documents',
     'dmc.widgets.review',
     'dmc.model.question-toast-model',
     'dmc.common.header',
@@ -185,7 +186,7 @@ angular.module('dmc.onboarding', [
             // get company images
             this.getImages = function(id, callback){
                 return ajax.get(
-                    dataFactory.documentsUrl().getList,
+                    dataFactory.documentsURL().getList,
                     {parentType: 'ORGANIZATION', parentId: id, docClass: 'IMAGE', recent: 3},
                     function(response){
                         var images = response.data.data || [];
@@ -196,8 +197,8 @@ angular.module('dmc.onboarding', [
 
             this.getFeatureImage = function(id, callback){
                 return ajax.get(
-                    dataFactory.documentsUrl().getList,
-                    {parentType: 'ORGANIZATION', parentId: id, docClass: 'FEATURE', recent: 1},
+                    dataFactory.documentsURL().getList,
+                    {parentType: 'ORGANIZATION', parentId: id, docClass: 'FEATURE_IMAGE', recent: 1},
                     function(response){
                         var feature = response.data.data || [];
                         callback(feature);
@@ -231,7 +232,7 @@ angular.module('dmc.onboarding', [
 
             this.get_company = function(companyId, callback){
                 return ajax.get(
-                    dataFactory.getOrganization(companyId).get,
+                    dataFactory.getOrganization(companyId),
                     {},
                     function(response){
                         callback(response.data);
