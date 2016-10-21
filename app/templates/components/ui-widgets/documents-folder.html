@@ -10,7 +10,7 @@
             ng-repeat="item in indexfolder track by $index">
             <div layout="row" layout-align="start center">
 			    <ng-md-icon icon="keyboard_arrow_right" size="32"></ng-md-icon>
-                <span>{{item.title }}</span>
+                <span>{{item.title}}</span>
             </div>
 		</div>
 	</div>
@@ -21,27 +21,27 @@
             <tr>
                 <th name="Name" order-by="title"></th>
                 <th name="Owner" order-by="owner"></th>
-                <th name="Size" order-by="size"></th>
-                <th name="Last Modifed" order-by="modifed"></th>
+                <th name="Size" order-by="expires"></th>
+                <th name="Last Modifed" order-by="modified"></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="item in folder track by $index" ng-click="changeItem(item)">
-                <td class="folder" ng-if="!item.file" ng-click="openFolder(item, $index)">
+                <td class="folder" ng-if="!item.documentUrl" ng-click="openFolder(item, $index)">
                     <div layout="row" layout-align="start center">
                         <ng-md-icon icon="folder" style="fill: #666" size="35"></ng-md-icon>
-                        <span>{{item.title}}</span>
+                        <span>{{item.documentName}}</span>
                     </div>
                 </td>
-                <td class="file" ng-if="item.file">
+                <td class="file" ng-if="item.documentUrl">
                     <div layout="row" layout-align="start center">
                         <ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>
-                        <a target="_blank" ng-href="{{item.file}}" ng-if="item.file">{{item.title}}</a>
+                        <a target="_blank" ng-href="{{item.documentUrl}}" ng-if="item.documentUrl">{{item.documentName}}</a>
                     </div>
                 </td>
-                <td><a href="/profile.php#/{{item.ownerId}}">{{item.owner}}</a></td>
-                <td>{{item.size}}</td>
-                <td>{{item.modifedFormat}}</td>
+                <td><a href="/profile.php#/{{item.ownerId}}">{{item.ownerId}}</a></td>
+                <td>{{item.expires}}</td>
+                <td>{{item.modified}}</td>
             </tr>
             <tr ng-show="indexfolder.length > 0 && folder.length == 0">
                 <td class="empty" colspan="4">No Documents Included</td>
