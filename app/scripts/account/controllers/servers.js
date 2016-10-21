@@ -30,7 +30,7 @@ angular.module('dmc.account')
             $scope.isAddingServer = false;
             $scope.isCorrectNewIP = false;
 
-            $scope.newServer = { name : null, ip : null, port: null };
+            $scope.newServer = { name : null, ip : null, port: null, public: false };
 
             $scope.servers = [];
             $scope.sort = 'name';
@@ -44,7 +44,9 @@ angular.module('dmc.account')
                         break;
                     }
                 }
-                if(!$scope.currentEditingServer || ($scope.currentEditingServer.changedIp == $scope.currentEditingServer.ip && $scope.currentEditingServer.changedName == $scope.currentEditingServer.name)) {
+                if(!$scope.currentEditingServer || ($scope.currentEditingServer.changedIp == $scope.currentEditingServer.ip
+                                                        && $scope.currentEditingServer.changedName == $scope.currentEditingServer.name
+                                                        && $scope.currentEditingServer.changedPublic == $scope.currentEditingServer.public)) {
                     if($scope.currentEditingServer) $scope.cancelEditServer();
                     $scope.isAddingServer = true;
                     // auto focus for create Server Alias input
@@ -68,7 +70,7 @@ angular.module('dmc.account')
             };
 
             $scope.cancelAdding = function(){
-                $scope.newServer = { name : null, ip : null, port: null };
+                $scope.newServer = { name : null, ip : null, port: null, public:false };
                 $scope.isCorrectNewIP = false;
                 $scope.isAddingServer = false;
             };
@@ -94,12 +96,15 @@ angular.module('dmc.account')
             $scope.cancelEditServer = function(){
                 $scope.currentEditingServer.changedIp = $scope.currentEditingServer.ip;
                 $scope.currentEditingServer.changedName = $scope.currentEditingServer.name;
+                $scope.currentEditingServer.changedPublic = $scope.currentEditingServer.public;
                 $scope.currentEditingServer.isChanging = false;
                 $scope.currentEditingServer = null;
             };
 
             $scope.editServer = function(item,e){
-                if(!$scope.currentEditingServer || ($scope.currentEditingServer.changedIp == $scope.currentEditingServer.ip && $scope.currentEditingServer.changedName == $scope.currentEditingServer.name)) {
+                if(!$scope.currentEditingServer || ($scope.currentEditingServer.changedIp == $scope.currentEditingServer.ip
+                                                      && $scope.currentEditingServer.changedName == $scope.currentEditingServer.name
+                                                      && $scope.currentEditingServer.changedPublic == $scope.currentEditingServer.public)) {
                     if($scope.currentEditingServer) $scope.cancelEditServer();
 
                     $scope.currentEditingServer = item;
@@ -136,7 +141,10 @@ angular.module('dmc.account')
                         _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1,$scope.sort.length) : $scope.sort),
                         _order : $scope.order
                     }, function (response) {
-                        $scope.servers = response.data;
+                        $scope.servers = response.data;/*.map(function(server){
+                          server.public=server.groups&&server.groups.contains("global");
+                          return server;
+                        });*/
                         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     }, function (response) {
                         toastModel.showToast("error", response.statusText);
@@ -146,19 +154,32 @@ angular.module('dmc.account')
 
             $scope.getServers(); // get servers
 
+            function fixIp(ip){
+              return ip.substr(0,7)=="http://"?ip:"http://"+ip;
+            }
+
             // create new server in DB
             $scope.saveNewServer = function(){
                 if($scope.newServer.ip && $scope.newServer.ip.trim().length > 0 &&
                     $scope.newServer.name != null && $scope.newServer.name.trim().length > 0){
                     // send request
                     var combinedAddress = $scope.newServer.port != null ? ($scope.newServer.ip + ':' + $scope.newServer.port) : $scope.newServer.ip ;
-                    var serverDetails = {name: $scope.newServer.name, ip: combinedAddress};
+                    var serverDetails = {
+                      name: $scope.newServer.name,
+                      ip: fixIp(combinedAddress),
+                      accountId:$scope.accountId,
+                      status: "offline",
+                      port:$scope.newServer.port
+                    };
 
-                    var data = $.extend(true,{},serverDetails);
-                    data.accountId = $scope.accountId;
-                    data.status = "offline";
+                    var data = $.extend(true,{},{
+                      server: serverDetails,
+                      isPub: $scope.newServer.public
+                    });
+
                     ajax.create(dataFactory.serverURL().create, data,
                         function (response) {
+                            response.data.public=data.isPub;
                             $scope.servers.unshift(response.data);
                             $scope.cancelAdding();
                             toastModel.showToast("success", "New server successfully added!");
@@ -178,12 +199,18 @@ angular.module('dmc.account')
             // update changed server
             $scope.saveChanges = function(item, nextForChange, addServer){
                 ajax.update(dataFactory.serverURL(item.id).update, {
+                    server:{
                         name : item.changedName,
-                        ip :  item.changedIp
+                        id: item.id,
+                        ip :  fixIp(item.changedIp),
+                        accountId: item.accountId,
                     },
+                    changePub:item.public != item.changedPublic
+                  },
                     function (response) {
                         item.name = item.changedName;
                         item.ip = item.changedIp;
+                        item.public = item.changedPublic;
                         $scope.cancelEditServer();
                         if(nextForChange) $scope.editServer(nextForChange.item, nextForChange.e);
                         if(addServer) $scope.addServer(addServer);
@@ -238,6 +265,7 @@ angular.module('dmc.account')
                                 }
                                 $scope.newServer.name = null;
                                 $scope.newServer.ip = null;
+                                $scope.newServer.public = false;
                                 window.location = next;
                                 $scope.$apply();
                             },

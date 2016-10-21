@@ -24,7 +24,7 @@
     <div class="content padding-10">
         <h2 flex>All fields are required</h2>
         <div layout="row" ng-show="page1" class="page1">
-            <div flex="50" layout="column">
+            <div flex="70" layout="column">
                 <div layout="row" layout-align="start center" ng-if="!flagAddServer">
                     <md-input-container flex>
                         <label>Server</label>
@@ -62,6 +62,9 @@
                                 <label>Port</label>
                                 <input ng-model="newServerModel.port" name="serverPort" type="number">
                             </md-input-container>
+                            <md-checkbox ng-model="newServerModel.public" aria-label="public" ng-show="userData.isDmdiiAdmin" ng-init="newServerModel.public=false">
+                              public
+                            </md-checkbox>
                             <md-input-container>
                                 <md-button ng-click="cancelServer()" class="md-raised add-server margin-left20">
                                     Cancel
@@ -104,7 +107,7 @@
                     </div>
                 </div>
             </div>
-            <div flex="50" layout="column" class="preview">
+            <div flex="30" layout="column" class="preview">
                 <md-content dmc-interfaces
                             server-ip="selectedServerIp"
                             class="interface"
@@ -176,11 +179,19 @@
 
             <md-content class="md-padding">
                 <div ui-widget-upload-documents
-                     class="content-panel"
-                     product="true"
-                     source="documents"
-                     auto-upload="false"
-                     widget-title="'UPLOAD DOCUMENTS'"></div>
+                    class="content-panel"
+                    product="true"
+                    source="documents"
+                    auto-upload="false"
+                    widget-title="'UPLOAD DOCUMENTS'">
+                </div>
+                <div ui-widget-upload-documents
+                    class="content-panel"
+                    product="true"
+                    source="images"
+                    auto-upload="false"
+                    widget-title="'UPLOAD IMAGES'">
+                </div>
             </md-content>
         </div>
 

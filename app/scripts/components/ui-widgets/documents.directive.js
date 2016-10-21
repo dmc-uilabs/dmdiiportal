@@ -122,13 +122,14 @@ angular.module('dmc.widgets.documents',[
 								apply();
 						});
 				}
-				else if($scope.serviceId){
-            ajax.get(dataFactory.getServiceDocuments($scope.serviceId), requestData,
-                function(response){
-                    $scope.source = response.data;
-                    apply();
-                });
-        }
+				// else if($scope.serviceId){
+								//     ajax.get(dataFactory.getServiceDocuments($scope.serviceId), requestData,
+								//         function(response){
+								//             $scope.source = response.data;
+								//             apply();
+								//         }
+								//     );
+								// }
 
 				$scope.tags = [];
 

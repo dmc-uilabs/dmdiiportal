@@ -29,7 +29,7 @@ angular.module('dmc.faq')
                 }
             );
         };
-        
+
 
         // get categories
         $scope.getFAQCategories = function(){
@@ -103,8 +103,9 @@ angular.module('dmc.faq')
             );
         };
 
-        $scope.getFAQCategories();
-        $scope.getTotalCategories();
+        //not implemented
+        //$scope.getFAQCategories();
+        //$scope.getTotalCategories();
 
         if($scope.articleId > 0) $scope.getArticle();
 

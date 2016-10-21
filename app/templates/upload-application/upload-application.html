@@ -84,7 +84,7 @@
             <div flex="25">
                 <md-input-container>
                     <label>Contact Phone*</label>
-                    <input ng-model="applicationData.contactPhone"/>
+                    <input ng-model="applicationData.contactPhone" phone-input/>
                 </md-input-container>
             </div>
         </div>
@@ -159,7 +159,7 @@
             <div flex="20">
                 <md-input-container>
                     <label>Pricing Structure*</label>
-                    <md-select ng-model="applicationData.appPricingStructure" ng-required="true">
+                    <md-select ng-model="applicationData.appPricingStructure" ng-required="true" ng-change="updatePrice()">
                         <md-option ng-repeat="(value, key) in pricingStructures" value="{{value}}">{{key}}</md-option>
                     </md-select>
                 </md-input-container>
@@ -167,8 +167,8 @@
 
             <div flex="60">
                 <md-input-container>
-                    <label>Price*</label>
-                    <input ng-model="applicationData.appCost" ng-required="true"/>
+                    <label>Price* (In Dollars $)</label>
+                    <input ng-model="applicationData.appCost" ng-disabled="applicationData.appPricingStructure === 'FREE'" ng-required="true" type="number"/>
                 </md-input-container>
             </div>
         </div>
@@ -193,7 +193,7 @@
 
         <div layout="row">
             <div flex="15">
-                <md-checkbox class="no-bottom" ng-model="applicationData.standardLicenseTerms">
+                <md-checkbox class="no-bottom" ng-model="applicationData.standardLicenseTerms" ng-change="updateTerms()">
                     Standard License Terms
                 </md-checkbox>
             </div>
@@ -201,7 +201,7 @@
             <div flex>
                 <md-input-container>
                     <label>License*</label>
-                    <textarea ng-model="applicationData.appLicense" maxlength="licenseLimit" ng-required="true"></textarea>
+                    <textarea ng-model="applicationData.appLicense" maxlength="licenseLimit" ng-disabled="applicationData.standardLicenseTerms" ng-required="!applicationData.standardLicenseTerms"></textarea>
                 </md-input-container>
             </div>
 
