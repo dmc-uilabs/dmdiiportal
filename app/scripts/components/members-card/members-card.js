@@ -161,6 +161,7 @@ angular.module('dmc.component.members-card', [
 
 			var tokenCallback = function(response) {
 				$scope.token = response.data.token;
+                $scope.userId = response.data.userId;
 
 				$mdDialog.show({
 					controller: 'DisplayTokenController',
@@ -175,6 +176,9 @@ angular.module('dmc.component.members-card', [
 			$scope.generateToken = function() {
 				ajax.create(dataFactory.generateToken($scope.cardSource.id), {}, tokenCallback)
 			}
+			$scope.emailToken = function() {
+			    ajax.create(dataFactory.emailToken($scope.userId, $scope.token));
+            }
             $scope.showMembers = function(id, ev){
                 $(window).scrollTop();
                   $mdDialog.show({

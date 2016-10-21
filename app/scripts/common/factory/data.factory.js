@@ -457,6 +457,9 @@ angular.module('dmc.data',[])
             generateToken: function(id) {
                 return localhost + 'user/createtoken?userId=' + id;
             },
+            emailToken: function(id, token){
+                return localhost + 'user/' + id + '/email?token=' + token;
+            },
             validateToken: function(id, token) {
                 return localhost + 'users/' + id + '?action=verify'
             },
