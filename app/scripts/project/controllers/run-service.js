@@ -96,9 +96,12 @@ angular.module('dmc.project')
               var compiledTemplate;
               var handleBarHtml;
               var compiledHtml;
-
               for(var key in $scope.service.interfaceModel.inParams){
-                    context[key] = $scope.service.interfaceModel.inParams[key].value;
+                    try{
+                      context[key] = JSON.parse($scope.service.interfaceModel.inParams[key].value);
+                    }catch(e){
+                      context[key] = $scope.service.interfaceModel.inParams[key].value;
+                    }
               }
               if($scope.service.interfaceModel.inParams['inputTemplate'].value){
                 templateText = $scope.service.interfaceModel.inParams['inputTemplate'].value;
