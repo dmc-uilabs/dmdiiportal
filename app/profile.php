@@ -27,10 +27,12 @@
 <script src="scripts/common/header/header.js"></script>
 <script src="scripts/common/factory/notifications.factory.js"></script>
 <script src="scripts/common/footer/footer.js"></script>
+<script src="scripts/components/ui-widgets/documents.directive.js"></script>
 <script src="scripts/common/factory/location.factory.js"></script>
 <script src="scripts/components/ui-widgets/stars.directive.js"></script>
 <script src="scripts/components/ui-widgets/review.directive.js"></script>
 <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
+<script src="scripts/components/dropzone/dropzone.directive.js"></script>
 <script src="scripts/common/factory/socket.factory.js"></script>
 <script src="scripts/common/factory/ajax.factory.js"></script>
 <script src="scripts/common/factory/data.factory.js"></script>

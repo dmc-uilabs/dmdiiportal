@@ -9,6 +9,7 @@ angular.module('dmc.add_project', [
     'md.data.table',
     'dmc.widgets.documents',
     'dmc.component.members-card',
+    'dmc.model.fileUpload',
     'dmc.common.header',
     'dmc.common.footer'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider, $mdDateLocaleProvider){
@@ -27,8 +28,8 @@ angular.module('dmc.add_project', [
     };
 })
     .service('projectModel', [
-        'ajax', 'dataFactory', '$stateParams', '$http', '$q', 'toastModel', '$rootScope','DMCUserModel',
-        function (ajax, dataFactory, $stateParams, $http, $q, toastModel, $rootScope, DMCUserModel ) {
+        'ajax', 'fileUpload', 'dataFactory', '$stateParams', '$http', '$q', 'toastModel', '$rootScope','DMCUserModel',
+        function (ajax, fileUpload, dataFactory, $stateParams, $http, $q, toastModel, $rootScope, DMCUserModel ) {
 
             function addTagsToPromises(promises,tags,id){
                 if(tags) {
@@ -59,6 +60,24 @@ angular.module('dmc.add_project', [
                             promises["deletedDocument" + i] = $http.delete(dataFactory.deleteProjectDocument(documents[i].id));
                         }
                     }else{
+                        (function(doc){
+                            promises[doc.title] = fileUpload.uploadFileToUrl(doc.file, {}, doc.title + doc.type).then(function(response) {
+                                var docData = {
+                                    parentId:id,
+                                    parentType:"PROJECT",
+                                    documentUrl: response.file.name,
+                                    documentName: doc.title + doc.type,
+                                    ownerId: $rootScope.userData.accountId,
+                                    docClass: 'SUPPORT',
+                                    accessLevel: doc.accessLevel
+                                };
+
+                                return ajax.create(dataFactory.documentsURL().save, docData, function(resp){});
+                            });
+                        })(documents[i]);
+
+
+                        /*
                         var fd = new FormData();
                         fd.append('file', documents[i].file);
                         fd.append('projectId', id);
@@ -69,6 +88,7 @@ angular.module('dmc.add_project', [
                             transformRequest: angular.identity,
                             headers: {'Content-Type': undefined}
                         });
+                        */
                     }
                 }
             }

@@ -114,7 +114,7 @@
                                aria-label="Open Latest Services Menu"
                                ng-click="closeMenu(); $mdOpenMenu($event)">
                         <ng-md-icon icon="person" size="20"></ng-md-icon>
-                        Hi, {{userName}}
+                        Hi, {{userData.displayName}}
                     </md-button>
                     <md-menu-content class="header-menu-content">
                         <md-menu-item>
@@ -128,6 +128,9 @@
                         </md-menu-item>
                         <md-menu-item ng-if="version1">
                             <md-button href="#">My Submissions</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button href="/upload-application.php">Submit an App</md-button>
                         </md-menu-item>
                         <md-menu-item ng-if="userData.isDmdiiAdmin">
                             <md-button href="/add-dmdii-content.php">Add DMDII Content</md-button>

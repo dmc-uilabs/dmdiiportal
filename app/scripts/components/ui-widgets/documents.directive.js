@@ -24,6 +24,18 @@ angular.module('dmc.widgets.documents',[
 
 				// function for get all requirement documents
 				$scope.getDocuments = function(){
+					ajax.get(dataFactory.documentsURL().getList, {
+							parentType: 'PROJECT',
+							parentId: $scope.projectId,
+							docClass: 'SUPPORT',
+							recent: 5
+					}, function(response) {
+							$scope.documents = response.data.data||[];
+							$scope.total = $scope.documents.length;
+							if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+					});
+
+					/*
 					ajax.get(dataFactory.getProjectDocuments($scope.projectId),{
 						sort : $scope.sort,
 						order : $scope.order,
@@ -34,6 +46,7 @@ angular.module('dmc.widgets.documents',[
 						$scope.total = response.data.length;
 						if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 					});
+					*/
 				};
 
 				// get all requirement documents (first request)
@@ -54,15 +67,15 @@ angular.module('dmc.widgets.documents',[
 
 				// function for get all requirement documents
 				$scope.getDocuments = function(){
-					ajax.get(dataFactory.getProjectDocuments($scope.projectId),{
-						sort : $scope.sort,
-						order : $scope.order,
-						limit : 5,
-						offset : 0
-					},function(response){
-                        $scope.documents = response.data;
-                        $scope.total = response.data.length;
-						if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+					ajax.get(dataFactory.documentsURL().getList, {
+							parentType: 'PROJECT',
+							parentId: $scope.projectId,
+							docClass: 'SUPPORT',
+							recent: 5
+					}, function(response) {
+							$scope.documents = response.data.data||[];
+							$scope.total = $scope.documents.length;
+							if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 					});
 				};
 
@@ -84,34 +97,39 @@ angular.module('dmc.widgets.documents',[
                 serviceId: "=",
 				product: "=",
 				allowTagging: "=",
-				singleFile: "=",
+				fileLimit: "=",
 				accessLevel: "="
 			},
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
-                $scope.documentDropZone;
+        $scope.documentDropZone;
 				$scope.autoProcessQueue = ($scope.autoUpload != null ? $scope.autoUpload : true);
+
 				if(!$scope.source) $scope.source = [];
 
-                var requestData = {
-                    _sort : 'name',
-                    _order : 'DESC'
-                };
+        var requestData = {
+						_sort : 'name',
+						_order : 'DESC'
+        };
 
 				if($scope.projectId){
-					ajax.get(dataFactory.getProjectDocuments($scope.projectId), requestData,
-                        function(response){
-						    $scope.source = response.data;
-                            apply();
-					    }
-                    );
-				} else if($scope.serviceId){
-                    ajax.get(dataFactory.getServiceDocuments($scope.serviceId), requestData,
-                        function(response){
-                            $scope.source = response.data;
-                            apply();
-                        }
-                    );
-                }
+						ajax.get(dataFactory.documentsURL().getList, {
+								parentType: 'PROJECT',
+								parentId: $scope.projectId,
+								docClass: 'SUPPORT',
+								recent: 5
+							}, function(response) {
+								$scope.source = response.data.data||[];
+								apply();
+						});
+				}
+				// else if($scope.serviceId){
+								//     ajax.get(dataFactory.getServiceDocuments($scope.serviceId), requestData,
+								//         function(response){
+								//             $scope.source = response.data;
+								//             apply();
+								//         }
+								//     );
+								// }
 
 				$scope.tags = [];
 
@@ -170,22 +188,16 @@ angular.module('dmc.widgets.documents',[
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
 
-				if ($scope.singleFile === true) {
-					$scope.maxFiles = 1;
-				} else {
-					$scope.maxFiles = null;
-				}
-
 				$scope.dropzoneConfig = {
 					'options': { // passed into the Dropzone constructor
 						'url': dataFactory.getDocumentUpload($scope.projectId),
 						'autoProcessQueue': $scope.autoProcessQueue,
 						'maxFilesize': 10,
 						'addRemoveLinks': true,
-						'maxFiles': $scope.maxFiles,
+						'maxFiles': $scope.fileLimit,
 						'init' : function() {
 							$scope.documentDropZone = this;
-							this.on("addedfile", function(file) {
+							this.on('addedfile', function(file) {
 								if($scope.autoProcessQueue == false) {
 									var file_ = file;
 									var title = file_.name.substring(0,file_.name.lastIndexOf('.'));
@@ -274,12 +286,17 @@ angular.module('dmc.widgets.documents',[
                         url = dataFactory.getServiceDocuments($scope.typeId);
                         requestData["service-documentId"] = $scope.serviceDocumentId;
                     }else if($scope.documentsType == "project"){
-                        url = dataFactory.getProjectDocuments($scope.typeId);
-                        requestData["project-documentId"] = $scope.serviceDocumentId;
+                        url = dataFactory.documentsURL().getList;
+                        requestData = {
+														parentType: 'PROJECT',
+														parentId: $scope.typeId,
+														docClass: 'SUPPORT',
+														recent: 5
+													};
                     }
                     ajax.get(url, requestData,
                         function (response) {
-                            $scope.documents = response.data;
+                            $scope.documents = response.data.data||[];
                             $scope.total = $scope.documents.length;
                             $scope.folder = $scope.documents;
                             for(var i in $scope.folder){

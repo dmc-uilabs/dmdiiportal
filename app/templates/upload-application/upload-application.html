@@ -1,0 +1,321 @@
+<div ng-if="!not_found" class="edit-project-page">
+    <md-content class="project-profile-padding">
+
+        <div layout="row">
+            <div layout="row" flex="40">
+                <div layout="column" flex>
+                    <md-input-container>
+                        <label>Application Name*</label>
+                        <input ng-model="applicationData.appName" ng-blur="checkUnique()" ng-required="true"/>
+                    </md-input-container>
+                    <div ng-show="notUnique">
+                        <p class="slim-margin error">Application name <b>must</b> be unique</p>
+                    </div>
+                </div>
+            </div>
+
+            <span flex="3"></span>
+
+            <div layout="row" flex="40">
+                <div layout="column" flex>
+                    <md-input-container>
+                        <label>Marketplace Title*</label>
+                        <input ng-model="applicationData.appTitle" maxlength="{{titleLimit}}" ng-required="true"/>
+                    </md-input-container>
+                    <div ng-show="noTitle">
+                        <p class="slim-margin error">You <b>must</b> enter a title</p>
+                    </div>
+                </div>
+            </div>
+
+            <span flex="3"></span>
+
+            <div layout="row" flex="7">
+                <md-input-container>
+                    <label>Version</label>
+                    <input ng-model="applicationData.appVersion" ng-required="true"/>
+                </md-input-container>
+            </div>
+        </div>
+
+
+        <div layout="row">
+            <div flex="20">
+                <md-input-container>
+                    <label>Category*</label>
+                    <md-select ng-model="applicationData.appCategory" ng-required="true">
+                        <md-option ng-repeat="(value, key) in categories" value="{{value}}">{{key}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+            <div flex="40">
+                <md-input-container>
+                    <label>Subcategory*</label>
+                    <md-select ng-model="applicationData.appSubcategory" ng-required="true">
+                        <md-option ng-repeat="(value, key) in subcategories" value="{{value}}">{{key}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div flex="10">
+                <md-input-container>
+                    <label>Developer Id*</label>
+                    <input ng-model="applicationData.developerId"/>
+                </md-input-container>
+            </div>
+
+            <div flex="25">
+                <md-input-container>
+                    <label>Contact Name*</label>
+                    <input ng-model="applicationData.contactName"/>
+                </md-input-container>
+            </div>
+
+            <div flex="25">
+                <md-input-container>
+                    <label>Contact Email*</label>
+                    <input ng-model="applicationData.contactEmail"/>
+                </md-input-container>
+            </div>
+
+            <div flex="25">
+                <md-input-container>
+                    <label>Contact Phone*</label>
+                    <input ng-model="applicationData.contactPhone" phone-input/>
+                </md-input-container>
+            </div>
+        </div>
+
+        <div layout="row" flex>
+        	<div layout="row" flex="33" layout-align="start end">
+                <span class="font14 bottom28">
+                    HTTP://
+                </span>
+                <md-input-container flex>
+                    <label>Website</label>
+                    <input ng-model="applicationData.websiteUrl"/>
+                </md-input-container>
+        	</div>
+        </div>
+
+        <div layout="row">
+            <div layout="column" flex>
+                <md-input-container>
+                    <label>Short Description*</label>
+                    <textarea ng-model="applicationData.shortDescription" maxlength="{{shortDescriptionLimit}}" ng-required="true"></textarea>
+                </md-input-container>
+                <div ng-show="noShortDescription">
+                    <p class="slim-margin error">You <b>must</b> enter a short description</p>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div layout="column" flex>
+                <md-input-container>
+                    <label>Full Description</label>
+                    <textarea ng-model="applicationData.fullDescription" maxlength="{{fullDescriptionLimit}}"></textarea>
+                </md-input-container>
+            </div>
+        </div>
+        <div layout="row">
+            <div layout="column" flex="50">
+                <label>Tags (Limit {{chipLimit}})</label>
+                <ui-select
+                    multiple
+                    tagging
+                    limit="{{chipLimit}}"
+                    tagging-label="false"
+                    append-to-body="true"
+                    ng-model="applicationData.appTags"
+                    theme="select2">
+                    <ui-select-match placeholder="Tags">{{$item.name || $item}}</ui-select-match>
+                    <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.name || tag}}</ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div layout="row">
+            <div flex="20">
+                <md-input-container>
+                    <label>Hosting Method*</label>
+                    <md-select ng-model="applicationData.appHostingMethod" ng-required="true">
+                        <md-option ng-repeat="(value, key) in hostingMethods" value="{{value}}">{{key}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+            <div flex="60">
+                <md-input-container>
+                    <label>Hosting Notes</label>
+                    <textarea ng-model="applicationData.appHostingMethodNotes"></textarea>
+                </md-input-container>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div flex="20">
+                <md-input-container>
+                    <label>Pricing Structure*</label>
+                    <md-select ng-model="applicationData.appPricingStructure" ng-required="true" ng-change="updatePrice()">
+                        <md-option ng-repeat="(value, key) in pricingStructures" value="{{value}}">{{key}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+            <div flex="60">
+                <md-input-container>
+                    <label>Price* (In Dollars $)</label>
+                    <input ng-model="applicationData.appCost" ng-disabled="applicationData.appPricingStructure === 'FREE'" ng-required="true" type="number"/>
+                </md-input-container>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div layout="column" flex>
+                <md-input-container>
+                    <label>Release Notes</label>
+                    <textarea ng-model="applicationData.releaseNotes" maxlength="{{releaseNotesLimit}}"></textarea>
+                </md-input-container>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div flex>
+                <md-input-container>
+                    <label>System Requirements</label>
+                    <textarea ng-model="applicationData.systemRequirements"></textarea>
+                </md-input-container>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div flex="15">
+                <md-checkbox class="no-bottom" ng-model="applicationData.standardLicenseTerms" ng-change="updateTerms()">
+                    Standard License Terms
+                </md-checkbox>
+            </div>
+
+            <div flex>
+                <md-input-container>
+                    <label>License*</label>
+                    <textarea ng-model="applicationData.appLicense" maxlength="licenseLimit" ng-disabled="applicationData.standardLicenseTerms" ng-required="!applicationData.standardLicenseTerms"></textarea>
+                </md-input-container>
+            </div>
+
+        </div>
+
+        <div layout="row">
+            <div flex="50">
+                <md-input-container>
+                    <label>Support Email*</label>
+                    <input ng-model="applicationData.supportEmail" ng-required="true"/>
+                </md-input-container>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div flex>
+                <md-input-container>
+                    <label>Privacy Policy*</label>
+                    <textarea ng-model="applicationData.privacyPolicy" ng-required="true"></textarea>
+                </md-input-container>
+            </div>
+        </div>
+
+
+        <div layout="row">
+            <div flex>
+                <md-input-container>
+                    <label>Submission Notes</label>
+                    <input ng-model="applicationData.submissionNotes"/>
+                </md-input-container>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div flex>
+                <md-input-container>
+                    <label>Copyright* (copyright symbol will be added automatically)</label>
+                    <textarea ng-model="applicationData.copyright" ng-required="true"></textarea>
+                </md-input-container>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div layout="row" flex="45" layout-align="center">
+                <div class="content-column upload-documents top10" layout="column" flex>
+                    <div class="content-panel"
+                    source="application"
+                    ui-widget-upload-documents
+                    widget-type="'row'"
+                    auto-upload="false"
+                    widget-title="'Application*'"
+                    allow-tagging="true"
+                    file-limit="applicationLimit">
+                    </div>
+                    <div ng-show="noDocSelected">
+                        <p class="slim-margin error">You <b>must</b> select an application to upload</p>
+                    </div>
+                </div>
+            </div>
+
+            <span flex></span>
+
+            <div layout="row" flex="45" layout-align="center">
+                <div class="content-column upload-documents top10" layout="column" flex>
+                    <div class="content-panel"
+                    source="appIcon"
+                    ui-widget-upload-documents
+                    widget-type="'row'"
+                    auto-upload="false"
+                    widget-title="'Application Icon*'"
+                    allow-tagging="true"
+                    file-limit="appIconLimit">
+                    </div>
+                    <div ng-show="noIconSelected">
+                        <p class="slim-margin error">You <b>must</b> select an application icon to upload</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div layout="row" flex="45" layout-align="center">
+                <div class="content-column upload-documents top10" layout="column" flex>
+                    <div class="content-panel"
+                    source="screenshots"
+                    ui-widget-upload-documents
+                    widget-type="'row'"
+                    auto-upload="false"
+                    widget-title="'Application Screenshots'"
+                    allow-tagging="true"
+                    file-limit="screenshotLimit">
+                    </div>
+                </div>
+            </div>
+
+            <span flex></span>
+
+            <div layout="row" flex="45" layout-align="center">
+                <div class="content-column upload-documents top10" layout="column" flex>
+                    <div class="content-panel"
+                    source="appDocs"
+                    ui-widget-upload-documents
+                    widget-type="'row'"
+                    auto-upload="false"
+                    widget-title="'Application Documents'"
+                    allow-tagging="true"
+                    file-limit="appDocLimit">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row" layout-align="end start">
+            <md-button class="md-raised md-primary save-button" ng-click="save()">Save</md-button>
+        </div>
+    </md-content>
+</div>

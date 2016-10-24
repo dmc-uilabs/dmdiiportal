@@ -466,6 +466,12 @@ angular.module('dmc.data',[])
             declineMember: function(id) {
                 return localhost + 'users/' + id + '?action=decline';
             },
+            uploadApplication: function() {
+                return localhost + 'appSubmission';
+            },
+            getApplicationNames: function() {
+                return localhost + 'appSubmission/appName';
+            },
             getDmdiiMemberTags: function(){
                 return localhost + 'tags/dmdiiMember';
             },
@@ -566,6 +572,9 @@ angular.module('dmc.data',[])
                     update: localhost + 'documents/' + id,
                     delete: localhost + 'documents/' + id,
                 }
+            },
+            getApplicationTags: function() {
+                    return localhost + 'applicationTag'
             },
             getDocumentTags: function() {
                 return localhost + 'dmdiidocuments/getAllTags';
@@ -939,7 +948,7 @@ angular.module('dmc.data',[])
                 return localhost+'favorite_products';
             },
             getFavoriteService: function(id){
-                return localhost+'account/'+id+'/favorite_products';
+                return localhost+'accounts/'+id+'/favorite_products';
             },
             getFavorite: function(){
                 return localhost+'favorite_products';
@@ -955,8 +964,7 @@ angular.module('dmc.data',[])
             },
             userAccount: function(id){
                 return {
-                    get: localhost + 'user/' + id,
-                    save: localhost + 'user/save'
+                    get: localhost + 'user/' + id
                 }
             },
             getOnboardingBasicInfoUrl: function() {
