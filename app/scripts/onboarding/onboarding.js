@@ -27,7 +27,7 @@ angular.module('dmc.onboarding', [
             .state('onboarding',{
                 url: '',
                 abstract: true,
-                template: "<ui-view></ui-view>",
+                template: '<ui-view></ui-view>',
                 controller: 'onboardingController',
                 resolve: {
                     userData: ['DMCUserModel',
@@ -74,47 +74,47 @@ angular.module('dmc.onboarding', [
             })
                 .state('onboarding.company.describe', {
                     url: '/company',
-                    templateUrl: "templates/onboarding/company/describe.html"
+                    templateUrl: 'templates/onboarding/company/describe.html'
                 })
                 .state('onboarding.company.image', {
                     url: '/company-image',
-                    templateUrl: "templates/onboarding/company/image.html"
+                    templateUrl: 'templates/onboarding/company/image.html'
                 })
                 .state('onboarding.company.focus', {
                     url: '/rd-focus',
-                    templateUrl: "templates/onboarding/company/focus.html"
+                    templateUrl: 'templates/onboarding/company/focus.html'
                 })
                 .state('onboarding.company.accomplishments', {
                     url: '/accomplishments',
-                    templateUrl: "templates/onboarding/company/accomplishments.html"
+                    templateUrl: 'templates/onboarding/company/accomplishments.html'
                 })
                 .state('onboarding.company.media', {
                     url: '/media',
-                    templateUrl: "templates/onboarding/company/media.html"
+                    templateUrl: 'templates/onboarding/company/media.html'
                 })
                 .state('onboarding.company.tool', {
                     url: '/skills-tools',
-                    templateUrl: "templates/onboarding/company/tool.html"
+                    templateUrl: 'templates/onboarding/company/tool.html'
                 })
                 .state('onboarding.company.projects', {
                     url: '/projects',
-                    templateUrl: "templates/onboarding/company/projects.html"
+                    templateUrl: 'templates/onboarding/company/projects.html'
                 })
                 .state('onboarding.company.contact', {
                     url: '/contact',
-                    templateUrl: "templates/onboarding/company/contact.html"
+                    templateUrl: 'templates/onboarding/company/contact.html'
                 })
                 .state('onboarding.company.social', {
                     url: '/social-media',
-                    templateUrl: "templates/onboarding/company/social.html"
+                    templateUrl: 'templates/onboarding/company/social.html'
                 })
                 .state('onboarding.company.key', {
                     url: '/key-conatcts',
-                    templateUrl: "templates/onboarding/company/key.html"
+                    templateUrl: 'templates/onboarding/company/key.html'
                 })
                 .state('onboarding.company.membership', {
                     url: '/membership',
-                    templateUrl: "templates/onboarding/company/membership.html"
+                    templateUrl: 'templates/onboarding/company/membership.html'
                 })
 
 
@@ -125,15 +125,16 @@ angular.module('dmc.onboarding', [
             })
                 .state('onboarding.profile.basic', {
                     url: '/basic-information',
-                    templateUrl: "templates/onboarding/profile/basic.html"
+                    templateUrl: 'templates/onboarding/profile/basic.html'
                 })
                 .state('onboarding.profile.image', {
                     url: '/profile-image',
-                    templateUrl: "templates/onboarding/profile/image.html"
+
+                    templateUrl: 'templates/onboarding/profile/image.html'
                 })
                 .state('onboarding.profile.skill', {
                     url: '/skills',
-                    templateUrl: "templates/onboarding/profile/skill.html"
+                    templateUrl: 'templates/onboarding/profile/skill.html'
                 })
 
             .state('onboarding.storefront', {
@@ -143,23 +144,23 @@ angular.module('dmc.onboarding', [
             })
                 .state('onboarding.storefront.cover', {
                     url: '/cover-image',
-                    templateUrl: "templates/onboarding/storefront/cover.html"
+                    templateUrl: 'templates/onboarding/storefront/cover.html'
                 })
                 .state('onboarding.storefront.description', {
                     url: '/description',
-                    templateUrl: "templates/onboarding/storefront/description.html"
+                    templateUrl: 'templates/onboarding/storefront/description.html'
                 })
                 .state('onboarding.storefront.logo', {
                     url: '/logo',
-                    templateUrl: "templates/onboarding/storefront/logo.html"
+                    templateUrl: 'templates/onboarding/storefront/logo.html'
                 });
         $urlRouterProvider.otherwise('/home');
     })
-    .service('onboardingModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel',
-         function (ajax, dataFactory, $stateParams, toastModel) {
+    .service('onboardingModel', ['ajax', 'dataFactory', '$stateParams', 'toastModel', 'DMCUserModel',
+         function (ajax, dataFactory, $stateParams, toastModel, DMCUserModel) {
             this.get_profile = function(profileId, callback){
                 return ajax.get(
-                    dataFactory.profiles(profileId).get,
+                    dataFactory.userAccount(profileId).get,
                     {},
                     function(response){
                         callback(response.data);
@@ -169,20 +170,16 @@ angular.module('dmc.onboarding', [
 
             this.update_profile = function(profileId, params, callback){
                 ajax.get(
-                    dataFactory.profiles(profileId).get,
+                    dataFactory.userAccount(profileId).get,
                     {},
                     function(response){
                         var profile = response.data;
                         for(var item in params){
                            profile[item] = params[item];
                         }
-                        ajax.update(
-                            dataFactory.profiles(profileId).update,
-                            profile,
-                            function(response){
-                                callback(response.data);
-                            }
-                        );
+                        DMCUserModel.UpdateUserData(profile).then(function(response) {
+                            callback(response.data);
+                        });
                     }
                 );
             }
@@ -273,7 +270,6 @@ angular.module('dmc.onboarding', [
                 );
             }
 
-*/
             this.get_account = function(accountId, callback){
                 return ajax.get(
                     dataFactory.getAccount(accountId),
@@ -283,7 +279,7 @@ angular.module('dmc.onboarding', [
                     }
                 );
             }
-/*
+
             this.get_account_notfications = function(accountId, callback){
                 return ajax.get(
                     dataFactory.getUserAccountNotifications(accountId),
@@ -318,7 +314,7 @@ angular.module('dmc.onboarding', [
                 ajax.update(
                     dataFactory.updateUserAccountNotification(notificationId),
                     {
-                        "selected": selected
+                        'selected': selected
                     },
                     function(response){
                         callback(response.data);

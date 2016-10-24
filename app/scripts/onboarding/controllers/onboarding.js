@@ -4,40 +4,40 @@ angular.module('dmc.onboarding')
 //profile
         $scope.profile = [
         	{
-        		state: ".basic",
-        		name: "Basic Information",
+        		state: '.basic',
+        		name: 'Basic Information',
         		done: true,
         		data: {
-        			displayName: "",
-        			jobTitle: "",
-        			location: ""
+        			displayName: '',
+        			title: '',
+        			address: ''
         		}
         	},
         	{
-        		state: ".image",
-        		name: "Profile Image",
+        		state: '.image',
+        		name: 'Profile Image',
         		done: true,
         		data: {
-        			image: ""
+        			image: ''
         		}
         	},
         	{
-        		state: ".skill",
-        		name: "Skills",
+        		state: '.skill',
+        		name: 'Skills',
         		done: true,
         		data: {
         			skills: [],
-        			description: ""
+        			aboutMe: ''
         		}
         	}
         ];
     	onboardingModel.get_profile(userData.profileId, function(data){
     		$scope.profile[0].data.displayName = data.displayName;
-    		$scope.profile[0].data.jobTitle = data.jobTitle;
-    		$scope.profile[0].data.location = data.location;
+    		$scope.profile[0].data.title = data.title;
+    		$scope.profile[0].data.address = data.address;
     		$scope.profile[1].data.image = data.image;
     		$scope.profile[2].data.skills = data.skills;
-    		$scope.profile[2].data.description = data.description;
+    		$scope.profile[2].data.aboutMe = data.aboutMe;
     		for(var i in $scope.profile){
 	    		for(var item in $scope.profile[i].data){
 	    			if(!$scope.profile[i].data[item] || !$scope.profile[i].data[item].length){
@@ -69,274 +69,274 @@ angular.module('dmc.onboarding')
 //account
         $scope.account = [
         	{
-        		state: ".public",
-        		name: "Public Information",
+        		state: '.public',
+        		name: 'Public Information',
         		done: false,
         		data: {
         			public:{
 						email: {
 							enable: true,
-							value: ""
+							value: ''
 						},
 						phone: {
 							enable: true,
-							value: ""
+							value: ''
 						},
 						location: {
 							enable: true,
-							value: ""
+							value: ''
 						}
 					}
         		}
         	},
         	{
-        		state: ".private",
-        		name: "Private Information",
+        		state: '.private',
+        		name: 'Private Information',
         		done: false,
         		data: {
         			private:{
 						email: {
 							enable: true,
-							value: ""
+							value: ''
 						},
 						phone: {
 							enable: true,
-							value: ""
+							value: ''
 						},
 						location: {
 							enable: true,
-							value: ""
+							value: ''
 						}
 					}
         		}
         	},
         	{
-        		state: ".web",
-        		name: "Web Notifications",
+        		state: '.web',
+        		name: 'Web Notifications',
         		done: true,
         		data: {
 					1: {
-						section: "website",
-						"account-notification-category-itemId": 1,
+						section: 'website',
+						'account-notification-category-itemId': 1,
 						selected: false
 					},
 					2: {
-						section: "website",
-						"account-notification-category-itemId": 2,
+						section: 'website',
+						'account-notification-category-itemId': 2,
 						selected: false
 					},
 					3: {
-						section: "website",
-						"account-notification-category-itemId": 3,
+						section: 'website',
+						'account-notification-category-itemId': 3,
 						selected: false
 					},
 					4: {
-						section: "website",
-						"account-notification-category-itemId": 4,
+						section: 'website',
+						'account-notification-category-itemId': 4,
 						selected: false
 					},
 					5: {
-						section: "website",
-						"account-notification-category-itemId": 5,
+						section: 'website',
+						'account-notification-category-itemId': 5,
 						selected: false
 					},
 					6: {
-						section: "website",
-						"account-notification-category-itemId": 6,
+						section: 'website',
+						'account-notification-category-itemId': 6,
 						selected: false
 					},
 					7: {
-						section: "website",
-						"account-notification-category-itemId": 7,
+						section: 'website',
+						'account-notification-category-itemId': 7,
 						selected: false
 					},
 					8: {
-						section: "website",
-						"account-notification-category-itemId": 8,
+						section: 'website',
+						'account-notification-category-itemId': 8,
 						selected: false
 					},
 					9: {
-						section: "website",
-						"account-notification-category-itemId": 9,
+						section: 'website',
+						'account-notification-category-itemId': 9,
 						selected: false
 					},
 					10: {
-						section: "website",
-						"account-notification-category-itemId": 10,
+						section: 'website',
+						'account-notification-category-itemId': 10,
 						selected: false
 					},
 					11: {
-						section: "website",
-						"account-notification-category-itemId": 11,
+						section: 'website',
+						'account-notification-category-itemId': 11,
 						selected: false
 					},
 					12: {
-						section: "website",
-						"account-notification-category-itemId": 12,
+						section: 'website',
+						'account-notification-category-itemId': 12,
 						selected: false
 					},
 					13: {
-						section: "website",
-						"account-notification-category-itemId": 13,
+						section: 'website',
+						'account-notification-category-itemId': 13,
 						selected: false
 					},
 					14: {
-						section: "website",
-						"account-notification-category-itemId": 14,
+						section: 'website',
+						'account-notification-category-itemId': 14,
 						selected: false
 					},
 					15: {
-						section: "website",
-						"account-notification-category-itemId": 15,
+						section: 'website',
+						'account-notification-category-itemId': 15,
 						selected: false
 					},
 					16: {
-						section: "website",
-						"account-notification-category-itemId": 16,
+						section: 'website',
+						'account-notification-category-itemId': 16,
 						selected: false
 					},
 					17: {
-						section: "website",
-						"account-notification-category-itemId": 17,
+						section: 'website',
+						'account-notification-category-itemId': 17,
 						selected: false
 					},
 					18: {
-						section: "website",
-						"account-notification-category-itemId": 18,
+						section: 'website',
+						'account-notification-category-itemId': 18,
 						selected: false
 					},
 					19: {
-						section: "website",
-						"account-notification-category-itemId": 19,
+						section: 'website',
+						'account-notification-category-itemId': 19,
 						selected: false
 					},
 					20: {
-						section: "website",
-						"account-notification-category-itemId": 20,
+						section: 'website',
+						'account-notification-category-itemId': 20,
 						selected: false
 					},
 					21: {
-						section: "website",
-						"account-notification-category-itemId": 21,
+						section: 'website',
+						'account-notification-category-itemId': 21,
 						selected: false
 					}
         		}
         	},
         	{
-        		state: ".email",
-        		name: "Email Notifications",
+        		state: '.email',
+        		name: 'Email Notifications',
         		done: true,
         		data: {
 					1: {
-						section: "email",
-						"account-notification-category-itemId": 1,
+						section: 'email',
+						'account-notification-category-itemId': 1,
 						selected: false
 					},
 					2: {
-						section: "email",
-						"account-notification-category-itemId": 2,
+						section: 'email',
+						'account-notification-category-itemId': 2,
 						selected: false
 					},
 					3: {
-						section: "email",
-						"account-notification-category-itemId": 3,
+						section: 'email',
+						'account-notification-category-itemId': 3,
 						selected: false
 					},
 					4: {
-						section: "email",
-						"account-notification-category-itemId": 4,
+						section: 'email',
+						'account-notification-category-itemId': 4,
 						selected: false
 					},
 					5: {
-						section: "email",
-						"account-notification-category-itemId": 5,
+						section: 'email',
+						'account-notification-category-itemId': 5,
 						selected: false
 					},
 					6: {
-						section: "email",
-						"account-notification-category-itemId": 6,
+						section: 'email',
+						'account-notification-category-itemId': 6,
 						selected: false
 					},
 					7: {
-						section: "email",
-						"account-notification-category-itemId": 7,
+						section: 'email',
+						'account-notification-category-itemId': 7,
 						selected: false
 					},
 					8: {
-						section: "email",
-						"account-notification-category-itemId": 8,
+						section: 'email',
+						'account-notification-category-itemId': 8,
 						selected: false
 					},
 					9: {
-						section: "email",
-						"account-notification-category-itemId": 9,
+						section: 'email',
+						'account-notification-category-itemId': 9,
 						selected: false
 					},
 					10: {
-						section: "email",
-						"account-notification-category-itemId": 10,
+						section: 'email',
+						'account-notification-category-itemId': 10,
 						selected: false
 					},
 					11: {
-						section: "email",
-						"account-notification-category-itemId": 11,
+						section: 'email',
+						'account-notification-category-itemId': 11,
 						selected: false
 					},
 					12: {
-						section: "email",
-						"account-notification-category-itemId": 12,
+						section: 'email',
+						'account-notification-category-itemId': 12,
 						selected: false
 					},
 					13: {
-						section: "email",
-						"account-notification-category-itemId": 13,
+						section: 'email',
+						'account-notification-category-itemId': 13,
 						selected: false
 					},
 					14: {
-						section: "email",
-						"account-notification-category-itemId": 14,
+						section: 'email',
+						'account-notification-category-itemId': 14,
 						selected: false
 					},
 					15: {
-						section: "email",
-						"account-notification-category-itemId": 15,
+						section: 'email',
+						'account-notification-category-itemId': 15,
 						selected: false
 					},
 					16: {
-						section: "email",
-						"account-notification-category-itemId": 16,
+						section: 'email',
+						'account-notification-category-itemId': 16,
 						selected: false
 					},
 					17: {
-						section: "email",
-						"account-notification-category-itemId": 17,
+						section: 'email',
+						'account-notification-category-itemId': 17,
 						selected: false
 					},
 					18: {
-						section: "email",
-						"account-notification-category-itemId": 18,
+						section: 'email',
+						'account-notification-category-itemId': 18,
 						selected: false
 					},
 					19: {
-						section: "email",
-						"account-notification-category-itemId": 19,
+						section: 'email',
+						'account-notification-category-itemId': 19,
 						selected: false
 					},
 					20: {
-						section: "email",
-						"account-notification-category-itemId": 20,
+						section: 'email',
+						'account-notification-category-itemId': 20,
 						selected: false
 					},
 					21: {
-						section: "email",
-						"account-notification-category-itemId": 21,
+						section: 'email',
+						'account-notification-category-itemId': 21,
 						selected: false
 					}
 				}
         	},
         	{
-        		state: ".servers",
-        		name: "Servers",
+        		state: '.servers',
+        		name: 'Servers',
         		done: false,
         		data: {
         			servers: []
@@ -364,7 +364,7 @@ angular.module('dmc.onboarding')
     		$scope.account[2].done = true
     		$scope.account[3].done = true
     		for(var i in data){
-    			if(data[i].section == "website"){
+    			if(data[i].section == 'website'){
     				$scope.account[2].data[data[i]['account-notification-category-itemId']] = data[i];
     			}else{
     				$scope.account[3].data[data[i]['account-notification-category-itemId']] = data[i];
@@ -381,7 +381,7 @@ angular.module('dmc.onboarding')
     	})
 
     	$scope.saveAccount = function(params, section, callback){
-    		if(section == "privacy"){
+    		if(section == 'privacy'){
 	    		onboardingModel.update_account(userData.profileId, params,
 	    			function(data){
 	    				/*
@@ -401,7 +401,7 @@ angular.module('dmc.onboarding')
 				    	callback();
 	    			}
 	    		);
-	    	}else if(section == "notifications"){
+	    	}else if(section == 'notifications'){
 	    		for(var i in params){
 	    			onboardingModel.update_notfications(params[i].id, params[i].selected, callback);
 	    		}
@@ -411,48 +411,48 @@ angular.module('dmc.onboarding')
 //company
         $scope.company = [
         	{
-        		state: ".describe",
-        		name: "Company",
+        		state: '.describe',
+        		name: 'Company',
         		done: false,
         		data: {
-        			name: "",
-        			division: "",
-        			industry: "",
-        			NAICSCode: "",
-        			description: ""
+        			name: '',
+        			division: '',
+        			industry: '',
+        			NAICSCode: '',
+        			description: ''
         		}
         	},
         	{
-        		state: ".image",
-        		name: "Company Image",
+        		state: '.image',
+        		name: 'Company Image',
         		done: false,
         		data: {
         			featureImage: {
-				        thumbnail: "",
-				        large: ""
+				        thumbnail: '',
+				        large: ''
 			      	}
         		}
         	},
         	{
-        		state: ".focus",
-        		name: "R&D Focus",
+        		state: '.focus',
+        		name: 'R&D Focus',
         		done: false,
         		data: {
-        			RDFocus: ""
+        			RDFocus: ''
         		}
         	},
         	{
-        		state: ".accomplishments",
-        		name: "Accomplishments",
+        		state: '.accomplishments',
+        		name: 'Accomplishments',
         		done: false,
         		data: {
-        			customers: "",
-        			awardsReceived: ""
+        			customers: '',
+        			awardsReceived: ''
         		}
         	},
         	{
-        		state: ".media",
-        		name: "Media",
+        		state: '.media',
+        		name: 'Media',
         		done: false,
         		data: {
         			images: [],
@@ -460,67 +460,67 @@ angular.module('dmc.onboarding')
         		}
         	},
         	{
-        		state: ".tool",
-        		name: "Skills & Tools",
+        		state: '.tool',
+        		name: 'Skills & Tools',
         		done: false,
         		data: {
-        			technicalExpertise: "",
-        			toolsSoftwareEquipmentMachines: "",
+        			technicalExpertise: '',
+        			toolsSoftwareEquipmentMachines: '',
         			skills: [],
         			skillsImages: []
         		}
         	},
         	{
-        		state: ".projects",
-        		name: "Projects",
+        		state: '.projects',
+        		name: 'Projects',
         		done: false,
         		data: {
-        			pastCollaborations: "",
-					pastProjects: "",
-        			collaborationInterests: "",
-        			upcomingProjectInterests: ""
+        			pastCollaborations: '',
+					pastProjects: '',
+        			collaborationInterests: '',
+        			upcomingProjectInterests: ''
         		}
         	},
         	{
-        		state: ".contact",
-        		name: "Contact",
+        		state: '.contact',
+        		name: 'Contact',
         		done: false,
         		data: {
-        			address: "",
-        			city: "",
-        			state: "",
-        			zipCode: "",
-        			methodCommunication: "",
-        			email: "",
-        			phone: ""
+        			address: '',
+        			city: '',
+        			state: '',
+        			zipCode: '',
+        			methodCommunication: '',
+        			email: '',
+        			phone: ''
         		}
         	},
         	{
-        		state: ".social",
-        		name: "Social Media",
+        		state: '.social',
+        		name: 'Social Media',
         		done: false,
         		data: {
-        			twitter: "",
-        			linkedIn: "",
-        			website: ""
+        			twitter: '',
+        			linkedIn: '',
+        			website: ''
         		}
         	},
         	{
-        		state: ".key",
-        		name: "Key Contacts",
+        		state: '.key',
+        		name: 'Key Contacts',
         		done: false,
         		data: {
         			keyContacts: []
         		}
         	},
         	{
-        		state: ".membership",
-        		name: "Membership",
+        		state: '.membership',
+        		name: 'Membership',
         		done: false,
         		data: {
-        			categoryTier: "",
-        			dateJoined: "",
-        			reasonJoining: ""
+        			categoryTier: '',
+        			dateJoined: '',
+        			reasonJoining: ''
         		}
         	}
         ];
@@ -571,30 +571,30 @@ angular.module('dmc.onboarding')
 //storefront
         $scope.storefront = [
         	{
-        		state: ".cover",
-        		name: "Cover Image",
+        		state: '.cover',
+        		name: 'Cover Image',
         		done: true,
         		data: {
         			featureImage: {
-				        thumbnail: "",
-				        large: ""
+				        thumbnail: '',
+				        large: ''
 			      	}
         		}
         	},
         	{
-        		state: ".description",
-        		name: "Description",
+        		state: '.description',
+        		name: 'Description',
         		done: true,
         		data: {
-        			description: ""
+        			description: ''
         		},
         	},
         	{
-        		state: ".logo",
-        		name: "Logo",
+        		state: '.logo',
+        		name: 'Logo',
         		done: true,
         		data: {
-        			logoImage: ""
+        			logoImage: ''
         		}
         	}
         ];
@@ -765,6 +765,7 @@ angular.module('dmc.onboarding')
         	}
         	DMCUserModel.getUserData().then(function(result){
 		      	$rootScope.userData.onboarding[section] = allDone;
+                console.log($rootScope.userData)
 		      	DMCUserModel.UpdateUserData($rootScope.userData);
 			});
         }

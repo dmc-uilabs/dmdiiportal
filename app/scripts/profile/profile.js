@@ -10,6 +10,7 @@ angular.module('dmc.profile', [
     'dmc.ajax',
     'dmc.data',
     'dmc.socket',
+    'dmc.widgets.documents',
     'dmc.widgets.stars',
     'dmc.widgets.review',
     'dmc.widgets.tabs',
@@ -21,8 +22,7 @@ angular.module('dmc.profile', [
     'dmc.model.question-toast-model',
     'dmc.model.profile',
     'dmc.phone-format',
-    'dmc.model.previous-page',
-    'flow'
+    'dmc.model.previous-page'
 ])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
@@ -52,8 +52,8 @@ angular.module('dmc.profile', [
                             function (ajax,$q,$http, dataFactory, $stateParams, toastModel, $rootScope, DMCUserModel) {
         this.get_profile = function(id){
             var promises = {
-                "profile" : $http.get(dataFactory.profiles(id).get),
-                "profile_reviews": $http.get(dataFactory.profiles(id).reviews)
+                'profile' : $http.get(dataFactory.userAccount(id).get),
+                'profile_reviews': $http.get(dataFactory.profiles(id).reviews)
             };
 
             var extractData = function(response){
@@ -95,7 +95,7 @@ angular.module('dmc.profile', [
                 }
                 return profile;
             },function(response){
-                toastModel.showToast("error", "Error." + response.statusText);
+                toastModel.showToast('error', 'Error.' + response.statusText);
             });
 
         };
@@ -103,15 +103,15 @@ angular.module('dmc.profile', [
         var get_reply = function(review){
             ajax.get(dataFactory.profiles(review.id).getReply,
                 {
-                    '_order': "DESC",
-                    '_sort': "date"
+                    '_order': 'DESC',
+                    '_sort': 'date'
                 },
                 function(response){
                     for(var i in response.data){
-                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
+                        response.data[i].date = moment(response.data[i].date).format('MM/DD/YYYY hh:mm A');
                         get_helpful(response.data[i]);
                         get_flagged(response.data[i]);
-                    }                        
+                    }
                     review['replyReviews'] = response.data;
                 }
             )
@@ -160,7 +160,7 @@ angular.module('dmc.profile', [
                 params,
                 function(response){
                     for(var i in response.data){
-                        response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
+                        response.data[i].date = moment(response.data[i].date).format('MM/DD/YYYY hh:mm A');
                         get_helpful(response.data[i]);
                         get_flagged(response.data[i]);
                         if(response.data[i].reply){
@@ -170,44 +170,44 @@ angular.module('dmc.profile', [
                     callback(response.data)
                 },
                 function(response){
-                    toastModel.showToast("error", "Error." + response.statusText);
+                    toastModel.showToast('error', 'Error.' + response.statusText);
                 }
             )
         }
 
         this.add_profile_reviews = function(id, params, callback){
             console.info('add', dataFactory.profiles(id).addReviews, params)
-            ajax.get(dataFactory.profiles(id).addReviews, 
+            ajax.get(dataFactory.profiles(id).addReviews,
                 {
-                    "_limit" : 1,
-                    "_order" : "DESC",
-                    "_sort" : "id"
-                }, 
-                function(response){  
-                    var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1); 
-                    params["id"] = lastId;
-                    params["profileId"] = id;
-                    params["reply"] = false;
-                    params["status"] = true;
-                    params["date"] = moment().format('x');
-                    params["like"] = 0;
-                    params["dislike"] = 0;
+                    '_limit' : 1,
+                    '_order' : 'DESC',
+                    '_sort' : 'id'
+                },
+                function(response){
+                    var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
+                    params['id'] = lastId;
+                    params['profileId'] = id;
+                    params['reply'] = false;
+                    params['status'] = true;
+                    params['date'] = moment().format('x');
+                    params['like'] = 0;
+                    params['dislike'] = 0;
 
                     return ajax.create(dataFactory.profiles(id).addReviews,
                         params,
                         function(response){
-                            toastModel.showToast("success", "Review added");
+                            toastModel.showToast('success', 'Review added');
                             if(callback) callback(response.data)
                         },
                         function(response){
-                            toastModel.showToast("error", "Error." + response.statusText);
+                            toastModel.showToast('error', 'Error.' + response.statusText);
                         }
                     )
                 },
                 function(response){
-                    toastModel.showToast("error", "Error." + response.statusText);
+                    toastModel.showToast('error', 'Error.' + response.statusText);
                 }
-            )  
+            )
         }
 
         this.update_profile_reviews = function(id, params, callback){
@@ -226,7 +226,7 @@ angular.module('dmc.profile', [
                         review,
                         function(response){
                             if(params.reply){
-                                toastModel.showToast("success", "reply added");
+                                toastModel.showToast('success', 'reply added');
                             }
                             if(callback) callback(response.data)
                         }
@@ -246,8 +246,8 @@ angular.module('dmc.profile', [
                     callback(response.data);
                 }
             )
-                
-            
+
+
         };
 
         this.update_helful = function(id, helpful){
@@ -258,29 +258,28 @@ angular.module('dmc.profile', [
         };
 
         this.edit_profile = function(id, params, callback){
-            ajax.get(dataFactory.profiles(id).get,
+            ajax.get(dataFactory.userAccount(id).get,
                 {},
                 function(response){
-                    console.info(response.data);
                     var profile = response.data;
-                    profile['description'] = params['description'];
+                    profile['aboutMe'] = params['aboutMe'];
                     profile['displayName'] = params['displayName'];
-                    profile['jobTitle'] = params['jobTitle'];
+                    profile['title'] = params['title'];
                     profile['skills'] = params['skills'];
-                    profile['location'] = params['location'];
+                    profile['address'] = params['address'];
 
-                    return ajax.update(dataFactory.profiles(id).update,
+                    return ajax.update(dataFactory.updateUser(),
                         profile,
                         function(response){
                             callback(response.data)
                         },
                         function(response){
-                            toastModel.showToast("error", "Error." + response.statusText);
+                            toastModel.showToast('error', 'Error.' + response.statusText);
                         }
                     )
                 },
                 function(response){
-                    toastModel.showToast("error", "Error." + response.statusText);
+                    toastModel.showToast('error', 'Error.' + response.statusText);
                 }
             )
         }

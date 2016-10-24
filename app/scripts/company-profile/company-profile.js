@@ -163,7 +163,7 @@ angular.module('dmc.company-profile', [
                     function(response){
                         var members = [];
                         for(var i in response.data){
-                            ajax.get(dataFactory.profiles(id).get,{},
+                            ajax.get(dataFactory.userAccount(id).get,{},
                                 function(response){
                                     var member = response.data;
                                     ajax.get(dataFactory.getAccountFollowedMembers(member.id),{},

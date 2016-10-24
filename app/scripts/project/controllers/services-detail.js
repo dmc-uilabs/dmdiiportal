@@ -6,59 +6,59 @@ angular.module('dmc.project')
 	$scope.service = serviceData;
 	$scope.followFlag = false;
     $scope.selectedTab = 0;
-
+console.log($scope.service)
 	$scope.history = {
 		leftColumn: {
-			title: "Project",
-			viewAllLink: "",
+			title: 'Project',
+			viewAllLink: '',
 			list:[]
 		},
 		rightColumn: {
-			title: "Marketplace",
-			viewAllLink: "",
+			title: 'Marketplace',
+			viewAllLink: '',
 			list:[]
 		}
 	}
 
     serviceModel.get_service_hystory(
         {
-            "period": "today",
-            "section": "project"
+            'period': 'today',
+            'section': 'project'
         },
         function(data){
             for(var i in data){
-                data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
+                data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
                 switch(data[i].type){
-                    case "completed":
-                    case "successful_runs":
-                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                    case 'completed':
+                    case 'successful_runs':
+                        data[i].icon = 'images/ic_done_all_black_24px.svg';
                         break;
-                    case "added":
-                        data[i].icon = "images/ic_group_add_black_24px.svg";
+                    case 'added':
+                        data[i].icon = 'images/ic_group_add_black_24px.svg';
                         break;
-                    case "rated":
-                        data[i].icon = "images/ic_star_black_24px.svg";
+                    case 'rated':
+                        data[i].icon = 'images/ic_star_black_24px.svg';
                         break;
-                    case "worked":
-                        data[i].icon = "images/icon_project.svg";
+                    case 'worked':
+                        data[i].icon = 'images/icon_project.svg';
                         break;
-                    case "favorited":
-                        data[i].icon = "images/ic_favorite_black_24px.svg";
+                    case 'favorited':
+                        data[i].icon = 'images/ic_favorite_black_24px.svg';
                         break;
-                    case "shared":
-                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                    case 'shared':
+                        data[i].icon = 'images/ic_done_all_black_24px.svg';
                         break;
-                    case "discussion":
-                        data[i].icon = "images/ic_forum_black_24px.svg";
+                    case 'discussion':
+                        data[i].icon = 'images/ic_forum_black_24px.svg';
                         break;
-                    case "edited":
-                        data[i].icon = "images/ic_create_black_24px.svg";
+                    case 'edited':
+                        data[i].icon = 'images/ic_create_black_24px.svg';
                         break;
-                    case "unavailable_runs":
-                        data[i].icon = "images/ic_block_black_24px.svg";
+                    case 'unavailable_runs':
+                        data[i].icon = 'images/ic_block_black_24px.svg';
                         break;
-                    case "incomplete_runs":
-                        data[i].icon = "images/ic_file_download_black_24px.svg";
+                    case 'incomplete_runs':
+                        data[i].icon = 'images/ic_file_download_black_24px.svg';
                         break;
                 }
             }
@@ -67,43 +67,43 @@ angular.module('dmc.project')
     );
     serviceModel.get_service_hystory(
         {
-            "period": "today",
-            "section": "marketplace"
+            'period': 'today',
+            'section': 'marketplace'
         },
         function(data){
             for(var i in data){
-                data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
+                data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
                 switch(data[i].type){
-                    case "completed":
-                    case "successful_runs":
-                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                    case 'completed':
+                    case 'successful_runs':
+                        data[i].icon = 'images/ic_done_all_black_24px.svg';
                         break;
-                    case "added":
-                        data[i].icon = "images/ic_group_add_black_24px.svg";
+                    case 'added':
+                        data[i].icon = 'images/ic_group_add_black_24px.svg';
                         break;
-                    case "rated":
-                        data[i].icon = "images/ic_star_black_24px.svg";
+                    case 'rated':
+                        data[i].icon = 'images/ic_star_black_24px.svg';
                         break;
-                    case "worked":
-                        data[i].icon = "images/icon_project.svg";
+                    case 'worked':
+                        data[i].icon = 'images/icon_project.svg';
                         break;
-                    case "favorited":
-                        data[i].icon = "images/ic_favorite_black_24px.svg";
+                    case 'favorited':
+                        data[i].icon = 'images/ic_favorite_black_24px.svg';
                         break;
-                    case "shared":
-                        data[i].icon = "images/ic_done_all_black_24px.svg";
+                    case 'shared':
+                        data[i].icon = 'images/ic_done_all_black_24px.svg';
                         break;
-                    case "discussion":
-                        data[i].icon = "images/ic_forum_black_24px.svg";
+                    case 'discussion':
+                        data[i].icon = 'images/ic_forum_black_24px.svg';
                         break;
-                    case "edited":
-                        data[i].icon = "images/ic_create_black_24px.svg";
+                    case 'edited':
+                        data[i].icon = 'images/ic_create_black_24px.svg';
                         break;
-                    case "unavailable_runs":
-                        data[i].icon = "images/ic_block_black_24px.svg";
+                    case 'unavailable_runs':
+                        data[i].icon = 'images/ic_block_black_24px.svg';
                         break;
-                    case "incomplete_runs":
-                        data[i].icon = "images/ic_file_download_black_24px.svg";
+                    case 'incomplete_runs':
+                        data[i].icon = 'images/ic_file_download_black_24px.svg';
                         break;
                 }
             }
@@ -112,19 +112,19 @@ angular.module('dmc.project')
     );
 
     $scope.getHistory = function(type, time){
-        var period = "";
-        var params = {"section": "project"};
-        if(time == "today"){
-            period = "today";
-        }else if (time == "week"){
-            period = ["today","week"];
+        var period = '';
+        var params = {'section': 'project'};
+        if(time == 'today'){
+            period = 'today';
+        }else if (time == 'week'){
+            period = ['today','week'];
         }else{
-            period = ["today","week","all"];
+            period = ['today','week','all'];
         };
 
         params['period'] = period;
 
-        if(type != "runs_by_users"){
+        if(type != 'runs_by_users'){
             params['type'] = type;
         };
 
@@ -132,13 +132,13 @@ angular.module('dmc.project')
             params,
             function(data){
                 for(var i in data){
-                    data[i].date = moment(data[i].date).format("MM/DD/YYYY hh:mm A");
-                    if(data[i].type == "successful_runs"){
-                        data[i].icon = "done_all";
-                    }else if(data[i].type == "unavailable_runs"){
-                        data[i].icon = "block";
-                    }else if(data[i].type == "incomplete_runs"){
-                        data[i].icon = "file_upload";
+                    data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
+                    if(data[i].type == 'successful_runs'){
+                        data[i].icon = 'done_all';
+                    }else if(data[i].type == 'unavailable_runs'){
+                        data[i].icon = 'block';
+                    }else if(data[i].type == 'incomplete_runs'){
+                        data[i].icon = 'file_upload';
                     };
                 }
                 $scope.history.leftColumn.list = data;
@@ -150,8 +150,8 @@ angular.module('dmc.project')
 
     $scope.share = function(ev){
       $mdDialog.show({
-          controller: "ShareProductCtrl",
-          templateUrl: "templates/components/product-card/share-product.html",
+          controller: 'ShareProductCtrl',
+          templateUrl: 'templates/components/product-card/share-product.html',
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose:true,
@@ -169,256 +169,256 @@ angular.module('dmc.project')
 
 	$scope.runHistory = [
 		{
-			runDate: "10/15/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '10/15/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "10/19/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '10/19/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/10/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/10/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/11/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/11/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/11/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/11/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/15/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/15/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "10/19/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '10/19/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/10/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/10/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/11/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/11/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "10/19/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '10/19/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/10/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/10/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/11/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/11/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "10/19/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '10/19/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/10/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/10/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/11/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/11/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "10/19/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '10/19/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/10/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/10/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/11/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/11/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "10/19/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '10/19/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/10/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/10/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/11/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/11/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "10/19/2015",
-			runTimeService: "12:22 AM",
-			runBy: "Forge Admin",
+			runDate: '10/19/2015',
+			runTimeService: '12:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/10/2015",
-			runTimeService: "12:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/10/2015',
+			runTimeService: '12:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/11/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/11/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "10/19/2015",
-			runTimeService: "09:22 AM",
-			runBy: "Forge Admin",
+			runDate: '10/19/2015',
+			runTimeService: '09:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/10/2015",
-			runTimeService: "09:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/10/2015',
+			runTimeService: '09:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/09/2015",
-			runTimeService: "09:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/09/2015',
+			runTimeService: '09:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "10/19/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '10/19/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/10/2015",
-			runTimeService: "11:22 AM",
-			runBy: "Forge Admin",
+			runDate: '12/10/2015',
+			runTimeService: '11:22 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/11/2015",
-			runTimeService: "11:35 AM",
-			runBy: "Forge Admin",
+			runDate: '12/11/2015',
+			runTimeService: '11:35 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "10/19/2015",
-			runTimeService: "11:35 AM",
-			runBy: "Forge Admin",
+			runDate: '10/19/2015',
+			runTimeService: '11:35 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/10/2015",
-			runTimeService: "11:35 AM",
-			runBy: "Forge Admin",
+			runDate: '12/10/2015',
+			runTimeService: '11:35 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/11/2015",
-			runTimeService: "11:35 AM",
-			runBy: "Forge Admin",
+			runDate: '12/11/2015',
+			runTimeService: '11:35 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "10/19/2015",
-			runTimeService: "11:35 AM",
-			runBy: "Forge Admin",
+			runDate: '10/19/2015',
+			runTimeService: '11:35 AM',
+			runBy: 'Forge Admin',
 			runTime: 3.0,
-			results: "Fail",
+			results: 'Fail',
 		},
 		{
-			runDate: "12/10/2015",
-			runTimeService: "11:35 AM",
-			runBy: "Forge Admin",
+			runDate: '12/10/2015',
+			runTimeService: '11:35 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Success",
+			results: 'Success',
 		},
 		{
-			runDate: "12/11/2015",
-			runTimeService: "11:35 AM",
-			runBy: "Forge Admin",
+			runDate: '12/11/2015',
+			runTimeService: '11:35 AM',
+			runBy: 'Forge Admin',
 			runTime: 2.9,
-			results: "Fail",
+			results: 'Fail',
 		},
 	];
 
