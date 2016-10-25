@@ -323,7 +323,6 @@ angular.module('dmc.project')
                       for (var key in $scope.service.interfaceModel.inParams) {
                           // Escape double quotes since values will be passed as JSON strings
                           $scope.service.interfaceModel.inParams[key].value = $scope.service.interfaceModel.inParams[key].value.replace(/"/g, '\\"');
-                          $scope.service.interfaceModel.inParams[key].value = $scope.service.interfaceModel.inParams[key].value.replace(/'/g, "\\'");
                       }
                   }
                     domeModel.runModel({
