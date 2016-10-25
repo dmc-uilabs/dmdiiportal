@@ -319,11 +319,18 @@ angular.module('dmc.project')
                       }
                     }
                   }
-                    domeModel.runModel(JSON.parse(JSON.stringify({
+                  if($scope.service.interfaceModel && $scope.service.interfaceModel.inParams) {
+                      for (var key in $scope.service.interfaceModel.inParams) {
+                          // Escape double quotes since values will be passed as JSON strings
+                          $scope.service.interfaceModel.inParams[key].value = $scope.service.interfaceModel.inParams[key].value.replace(/"/g, '\\"');
+                          $scope.service.interfaceModel.inParams[key].value = $scope.service.interfaceModel.inParams[key].value.replace(/'/g, "\\'");
+                      }
+                  }
+                    domeModel.runModel({
                         serviceId : $scope.service.id.toString(),
                         inParams: $scope.service.interfaceModel.inParams,
                         outParams: $scope.service.interfaceModel.outParams
-                    })), runModelCallback, runModelErrorCallback);
+                    }, runModelCallback, runModelErrorCallback);
                 }else{
                     toastModel.showToast("error", "Dome server is not found!");
                 }
