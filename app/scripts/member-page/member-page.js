@@ -22,7 +22,7 @@ angular.module('dmc.member', [
 	'dmc.component.productscard',
 	'dmc.component.carousel',
     'dmc.widgets.tasks',
-    'dmc.widgets.tabs',
+    'dmc.widgets.tabs'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('member_page', {

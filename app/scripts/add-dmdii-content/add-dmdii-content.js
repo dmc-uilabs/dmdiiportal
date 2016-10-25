@@ -23,7 +23,7 @@ angular.module('dmc.addDmdiiContent', [
     'dmc.model.user',
     'dmc.model.toast-model',
     'dmc.model.fileUpload',
-    'dmc.zip-code-format',
+    'dmc.zip-code-format'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
         $stateProvider.state('add-dmdii-content', {
