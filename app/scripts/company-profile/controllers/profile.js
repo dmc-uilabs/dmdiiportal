@@ -44,6 +44,9 @@ angular.module('dmc.company-profile')
             // $scope.company = companyData;
             //limit of images and videos a company can have
             $scope.limit = 3;
+            $scope.verifiedLimit = 15;
+            $scope.unverifiedLimit = 15;
+
             var getCompany = function() {
                 ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
                     $scope.company = response.data;
@@ -210,6 +213,22 @@ angular.module('dmc.company-profile')
                 // $scope.company.members = data;
                 apply();
             };
+
+            $scope.viewAllVerified = function() {
+                $scope.verifiedLimit = null;
+            }
+
+            $scope.viewLessVerified = function() {
+                $scope.verifiedLimit = 15;
+            }
+
+            $scope.viewAllUnverified = function() {
+                $scope.unverifiedLimit = null;
+            }
+
+            $scope.viewLessUnverified = function() {
+                $scope.unverifiedLimit = 15;
+            }
 
             $scope.deleteOrganization = function() {
                 ajax.delete(dataFactory.deleteOrganization(id), {}, function(response) {
