@@ -71,7 +71,7 @@ angular.module('dmc.onboarding')
             $scope.storefront[index].done = true;
             if(index == 1 && $scope.file){
                 fileUpload.uploadFileToUrl($scope.file.files[0].file, {id:$scope.userData.profileId }, 'profile', function(data){
-					ajax.create(dataFactory.documentsURL().save, {
+					ajax.create(dataFactory.documentsUrl().save, {
                         documentUrl: response.file.name,
                         documentName: response.key,
                         ownerId: $scope.profile.id,

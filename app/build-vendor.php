@@ -70,7 +70,7 @@
 <script src="/bower_components/ng-autofocus/dist/ng-autofocus.js"></script>
 <script src="/bower_components/angular-route/angular-route.min.js"></script>
 <script src="/bower_components/angular-clndr/angular-clndr.js"></script>
-<script src="/bower_components/angular-horizontal-timeline/angular-horizontal-timeline.js"></script>
+<script src="/scripts/components/ui-widgets/angular-horizontal-timeline.js"></script>
 <script src="/bower_components/aws-sdk/dist/aws-sdk.min.js"></script>
 <script src="/bower_components/medium-editor/dist/js/medium-editor.min.js"></script>
 <script src="/bower_components/angular-medium-editor/dist/angular-medium-editor.min.js"></script>

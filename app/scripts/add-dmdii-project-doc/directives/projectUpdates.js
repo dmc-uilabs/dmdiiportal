@@ -29,7 +29,6 @@ angular.module('dmc.add-project-doc').
                 $scope.fieldName = 'Description'
 
                 $scope.$on('isValid', function(event, data) {
-                    console.log(data)
                     $scope.isValid = data;
                 })
                 var convertToMarkdown = function(input) {
@@ -66,7 +65,7 @@ angular.module('dmc.add-project-doc').
 
                     $scope.update.description = convertToMarkdown($scope.update.description);
 
-					ajax.create(dataFactory.saveDMDIIProject().update, $scope.update, function(response) {
+					ajax.create(dataFactory.dmdiiProjectUpdateUrl().save, $scope.update, function(response) {
 						$scope.update = {};
 						toastModel.showToast('success', 'Project Update Saved!');
                         $window.location.reload();

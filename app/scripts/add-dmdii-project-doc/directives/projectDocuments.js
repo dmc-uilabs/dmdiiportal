@@ -55,7 +55,7 @@ angular.module('dmc.add-project-doc').
                                 accessLevel: $scope.documents[i].accessLevel
                             }
 
-                            ajax.create(dataFactory.documentsURL().save, doc, callback);
+                            ajax.create(dataFactory.documentsUrl().save, doc, callback);
 
                         });
                     });

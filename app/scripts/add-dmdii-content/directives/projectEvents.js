@@ -62,7 +62,7 @@ angular.module('dmc.addDmdiiContent').
 
                     $scope.event.eventDescription = convertToMarkdown($scope.event.eventDescription);
 
-                    ajax.create(dataFactory.saveDMDIIProject().events, $scope.event, eventCallback);
+                    ajax.create(dataFactory.dmdiiProjectEventUrl().save, $scope.event, eventCallback);
                 };
 
                 function apply(){

@@ -51,7 +51,7 @@ angular.module('dmc.company-profile')
                     $scope.getCompanyMembers();
                     $scope.SortingReviews();
 
-                    ajax.get(dataFactory.documentsURL().getList, {
+                    ajax.get(dataFactory.documentsUrl().getList, {
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'LOGO',
@@ -62,7 +62,7 @@ angular.module('dmc.company-profile')
                         };
                     });
 
-                    ajax.get(dataFactory.documentsURL().getList, {
+                    ajax.get(dataFactory.documentsUrl().getList, {
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'IMAGE',
@@ -71,7 +71,7 @@ angular.module('dmc.company-profile')
                         $scope.company.images = response.data.data;
                     });
 
-                    ajax.get(dataFactory.documentsURL().getList, {
+                    ajax.get(dataFactory.documentsUrl().getList, {
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'VIDEO',

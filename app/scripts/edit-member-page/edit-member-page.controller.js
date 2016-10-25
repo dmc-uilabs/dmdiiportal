@@ -106,7 +106,7 @@ angular.module('dmc.edit-member')
                 var expireDate = $scope.company.expireDate.split('-');
                 $scope.date.expire = new Date(expireDate[1] + '-' + expireDate[2] + '-' + expireDate[0]);
 
-                ajax.get(dataFactory.documentsURL().getList, {
+                ajax.get(dataFactory.documentsUrl().getList, {
                     parentType: 'ORGANIZATION',
                     parentId: $scope.company.organization.id,
                     docClass: 'LOGO',
@@ -382,7 +382,7 @@ angular.module('dmc.edit-member')
             var uploadLogo = function(companyId){
                 if($scope.newLogo){
                     fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
-                        ajax.create(dataFactory.documentsURL().save,
+                        ajax.create(dataFactory.documentsUrl().save,
                             {
                                 organizationId: companyId,
                                 ownerId: $scope.userData.accountId,
@@ -402,7 +402,7 @@ angular.module('dmc.edit-member')
             };
 
             var deleteLogo = function(){
-                ajax.delete(dataFactory.documentsURL($scope.companyLogoId), {}, function(response) {
+                ajax.delete(dataFactory.documentsUrl($scope.companyLogoId), {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Logo successfully deleted');
                     }else{
