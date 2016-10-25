@@ -73,10 +73,6 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
 			return ( (monthsWidth * diff) + (((ixOfWeek * curWeekWidth) + (curDOfMPercent / 100 * curWeekWidth)) / 100 * monthsWidth) );
 		};
 
-
-$scope.$watchCollection('selectedEvent', function() {
-    console.log($scope.selectedEvent, $scope.events)
-});
         $scope.deselectEvent = function(index) {
             $timeout(function() {
                 $scope.selectedEvent[index] = false;
