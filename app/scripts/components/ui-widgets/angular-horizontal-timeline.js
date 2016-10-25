@@ -20,14 +20,15 @@ var template =
 '	<ul class="timeline-events">'+
 '		<li class="timeline-event" ng-repeat="event in events"'+
 '			ng-click="selectedEvent[$index]=true"'+
-'			ng-blur="selectedEvent[$index]=false"'+
+'			ng-blur="deselectEvent($index)"'+
 '			event-date="event.date"'+
 '			title="{{event.date}}"'+
 '			timeline-event-marker><span></span>'+
 '			<div class="timeline-event-box"'+
 '				ng-show="selectedEvent[$index]"'+
-'				ng-hide="!selectedEvent[$index]"'+
-'				ng-bind-html="event.content | unsafe">'+
+'				ng-hide="!selectedEvent[$index]">'+
+'               <div ng-bind-html="event.content | unsafe"></div>'+
+'               <a class="delete-btn" href ng-click="deleteEvent($index, event.id)" ng-if="user.isDmdiiAdmin">delete</a>'+
 '			</div>'+
 '		</li>'+
 '	</ul>'+
@@ -56,11 +57,11 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
     };
 })
 
-.directive('horizontalTimeline', [ '$timeout', function($timeout) {
+.directive('horizontalTimeline', [ 'ajax', 'dataFactory', '$timeout', function(ajax, dataFactory, $timeout) {
 	function controller($scope){
 		$scope.selectedEvent = [];
 		$scope.months= [];
-
+        $scope.userData = $scope.$root.userData;
 		$scope.getPosition = function(date){
 			date = moment(date);
 			var diff = date.diff(moment($scope.startDate), 'months');
@@ -71,6 +72,22 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
 
 			return ( (monthsWidth * diff) + (((ixOfWeek * curWeekWidth) + (curDOfMPercent / 100 * curWeekWidth)) / 100 * monthsWidth) );
 		};
+
+
+$scope.$watchCollection('selectedEvent', function() {
+    console.log($scope.selectedEvent, $scope.events)
+});
+        $scope.deselectEvent = function(index) {
+            $timeout(function() {
+                $scope.selectedEvent[index] = false;
+            }, 500)
+        }
+        $scope.deleteEvent = function(index, id) {
+            console.log('test', index, id)
+            ajax.delete(dataFactory.dmdiiProjectEventUrl(id).delete, {}, function() {
+                $scope.events.splice(index, 1);
+            });
+        };
 
 		var range  = moment().range(moment($scope.startDate), moment($scope.endDate));
 		range.by('months', function(month) {
@@ -94,7 +111,8 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
 		scope: {
 			startDate: '@',
 			endDate: '@',
-			events: '='
+			events: '=',
+            user: '='
 		},
 		template:template
 	};

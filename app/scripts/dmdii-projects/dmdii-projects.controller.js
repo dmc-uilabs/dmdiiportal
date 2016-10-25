@@ -167,6 +167,7 @@ angular.module('dmc.dmdiiProjects')
                 $scope.events = [];
                 angular.forEach(response.data, function(event) {
                     var e = {
+                        id: event.id,
                         date: event.eventDate,
                         content: '<h3>' + event.eventName + '</h3>' +
                             $showdown.makeHtml(event.eventDescription)
@@ -345,12 +346,6 @@ angular.module('dmc.dmdiiProjects')
             $scope.deleteNews = function(index, id) {
                 ajax.delete(dataFactory.dmdiiProjectNewsUrl(id).delete, {}, function() {
                     $scope.news.splice(index, 1);
-                });
-            };
-
-            $scope.deleteEvent = function(index, id) {
-                ajax.delete(dataFactory.dmdiiProjectEventUrl(id).delete, {}, function() {
-                    $scope.events.splice(index, 1);
                 });
             };
 

@@ -561,8 +561,7 @@ angular.module('dmc.data',[])
                 return {
                     get: localhost + 'dmdiiProject/events',
                     save: localhost + 'dmdiiProject/events',
-                    delete: localhost + 'dmdiiProject/events/' + id,
-
+                    delete: localhost + 'dmdiiProject/events/' + id
                 }
             },
             dmdiiProjectNewsUrl: function(id) {
