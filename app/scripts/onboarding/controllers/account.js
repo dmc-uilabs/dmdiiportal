@@ -50,7 +50,7 @@ angular.module('dmc.onboarding')
                 }
             );
         };
-        $scope.getNotifications();
+        //$scope.getNotifications();
 
         $scope.clickOnTitle = function(item){
             item.selected = !item.selected;

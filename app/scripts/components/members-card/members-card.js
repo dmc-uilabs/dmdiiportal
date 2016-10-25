@@ -269,7 +269,7 @@ angular.module('dmc.component.members-card', [
             list:[]
         }
     }
-
+/*
     // get profile history
     ajax.get(dataFactory.profiles(id).history,
         {
@@ -347,7 +347,7 @@ angular.module('dmc.component.members-card', [
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         }
     );
-
+*/
     ajax.get(dataFactory.userAccount(id).get,{},function(response){
         var profile = response.data;
         $scope.profile = profile;

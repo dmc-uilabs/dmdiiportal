@@ -109,14 +109,14 @@ angular.module('dmc.dmdiiProjects')
                     docClass: 'OVERVIEW',
                     recent: 1
                 }, function(response)  {
-                    $scope.projectOverview = response.data.data[0];
+                    $scope.projectOverview = response.data.count>0 ? response.data.data[0]:{};
                 });
 
                 ajax.get(dataFactory.documentsURL().getList, {
                     docClass: 'STATUS',
                     recent: 1
                 }, function(response)  {
-                    $scope.projectStatus = response.data.data[0];
+                    $scope.projectStatus = response.data.count>0 ? response.data.data[0]:{};
                 });
             }
             $scope.getProjectStaticImages();

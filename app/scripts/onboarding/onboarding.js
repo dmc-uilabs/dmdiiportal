@@ -269,7 +269,7 @@ angular.module('dmc.onboarding', [
                     }
                 );
             }
-
+*/
             this.get_account = function(accountId, callback){
                 return ajax.get(
                     dataFactory.getAccount(accountId),
@@ -279,7 +279,7 @@ angular.module('dmc.onboarding', [
                     }
                 );
             }
-
+/*
             this.get_account_notfications = function(accountId, callback){
                 return ajax.get(
                     dataFactory.getUserAccountNotifications(accountId),
