@@ -73,8 +73,10 @@
 				                        </tbody>
 				                    </table>
 				                </md-data-table-container>
-								<img ng-src="{{projectFinancials.documentUrl}}" flex="50"></img>
-								<a class="delete-btn" href ng-click="deleteDocument(projectFinancials.id, 'projectFinancials')">delete</a>
+								<div ng-if="projectFinancials && projectFinancials.documentUrl" flex="50">
+									<img ng-src="{{projectFinancials.documentUrl}}"></img>
+									<a class="delete-btn" href ng-click="deleteDocument(projectFinancials.id, 'projectFinancials')">delete</a>
+								</div>
 				            </div>
 						</div>
 						<span flex></span>

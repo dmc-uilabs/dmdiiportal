@@ -129,7 +129,7 @@ angular.module('dmc.dmdiiProj')
             $scope.getDMDIIProject();
 
             $scope.deleteUpdate = function(index, id) {
-                ajax.delete(dataFactory.dmdiiProjectUpdateUrl(id), {}, function() {
+                ajax.delete(dataFactory.dmdiiProjectUpdateUrl(id).delete, {}, function() {
                     $scope.updates.splice(index, 1);
                 });
             };
