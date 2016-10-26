@@ -72,21 +72,20 @@ angular.module('dmc.onboarding')
         };
 
         $scope.next = function(index){
-            $scope.profile[index].done = true;
-			var promises = [];
-			$scope.saveProfile($scope.profile[index].data, function(){
-				if($scope.newImage.length) {
-					promises.push(uploadImage());
-					$scope.removeImage();
-				}
-
-				if (deleteCurrentImage) {
-					promises.push(deleteImage(currentImage.id));
-				}
-
-				$q.all(promises).then(function() {
-					$(window).scrollTop(0);
-					$state.go('^' + $scope.profile[index+1].state);
+            $scope.storefront[index].done = true;
+            if(index == 1 && $scope.file){
+                fileUpload.uploadFileToUrl($scope.file.files[0].file, {id:$scope.userData.profileId }, 'profile', function(data){
+					ajax.create(dataFactory.documentsUrl().save, {
+                        documentUrl: response.file.name,
+                        documentName: response.key,
+                        ownerId: $scope.profile.id,
+                        parentType: 'USER',
+                        parentId: $scope.profile.id,
+                        accessLevel: $scope.documents[i].accessLevel
+	            	}, function() {
+						$(window).scrollTop(0);
+						$state.go('^' + $scope.profile[index+1].state);
+					});
 				});
 			});
 		}

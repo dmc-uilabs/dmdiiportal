@@ -580,13 +580,13 @@ angular.module('dmc.project', [
                     'service_tags': $http.get(dataFactory.services(id).get_tags),
                     'services_statistic': $http.get(dataFactory.services(id).get_statistics),
                     'service_reviews': $http.get(dataFactory.services(id).reviews),
-                    'service_images': $http({method: 'GET', url: dataFactory.documentsURL().getList, params: {
+                    'service_images': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
                         parentType: 'SERVICE',
                         parentId: id,
                         docClass: 'IMAGE',
                         recent: 5
                     }}),
-                    'service_docs': $http({method: 'GET', url: dataFactory.documentsURL().getList, params: {
+                    'service_docs': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
                         parentType: 'SERVICE',
                         parentId: id,
                         docClass: 'SUPPORT',
@@ -699,7 +699,7 @@ angular.module('dmc.project', [
 
             var uploadDoc = function(doc, id) {
                 return fileUpload.uploadFileToUrl(doc.file, {}, 'serviceImage').then(function(response) {
-                    return ajax.create(dataFactory.documentsURL().save,
+                    return ajax.create(dataFactory.documentsUrl().save,
                         {
                             ownerId: $rootScope.userData.accountId,
                             documentUrl: response.file.name,
@@ -713,7 +713,7 @@ angular.module('dmc.project', [
 
             var uploadImage = function(image, id) {
                 return fileUpload.uploadFileToUrl(image.file, {}, 'serviceImage').then(function(response) {
-                    return ajax.create(dataFactory.documentsURL().save,
+                    return ajax.create(dataFactory.documentsUrl().save,
                         {
                             ownerId: $rootScope.userData.accountId,
                             documentUrl: response.file.name,

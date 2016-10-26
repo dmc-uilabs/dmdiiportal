@@ -106,7 +106,7 @@ angular.module('dmc.edit-member')
                 var expireDate = $scope.company.expireDate.split('-');
                 $scope.date.expire = new Date(expireDate[1] + '-' + expireDate[2] + '-' + expireDate[0]);
 
-                ajax.get(dataFactory.documentsURL().getList, {
+                ajax.get(dataFactory.documentsUrl().getList, {
                     parentType: 'ORGANIZATION',
                     parentId: $scope.company.organization.id,
                     docClass: 'LOGO',
@@ -356,27 +356,39 @@ angular.module('dmc.edit-member')
                 $scope.newLogo = undefined;
             };
 
-            var uploadLogo = function(){
-                return fileUpload.uploadFileToUrl($scope.logo[0].file, {id : $scope.company.organization.id}, 'company-logo').then(function(response) {
-                    var doc = {
-                        ownerId: $scope.userData.accountId,
-                        documentUrl: response.file.name,
-                        documentName: 'company-logo',
-                        parentType: 'ORGANIZATION',
-                        parentId: $scope.company.organization.id,
-                        docClass: 'LOGO'
-                    };
-                    return ajax.create(dataFactory.documentsURL().save, doc, function(response) {
-                            if (response.status === 200) {
-                                toastModel.showToast('success', 'Logo uploaded successfully');
-                            }
-                        });
+            $scope.saveLogo = function() {
+                $scope.cancelChangingLogo();
+                var fileReader = new FileReader();
+                fileReader.onload = function (event) {
+                    $scope.newLogoUri = event.target.result;
+                };
+                fileReader.readAsDataURL($scope.newLogo.file);
+            };
+
+            var uploadLogo = function(companyId){
+                if($scope.newLogo){
+                    fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
+                        ajax.create(dataFactory.documentsUrl().save,
+                            {
+                                organizationId: companyId,
+                                ownerId: $scope.userData.accountId,
+                                documentUrl: response.file.name,
+                                documentName: 'company-logo',
+                                parentType: 'ORGANIZATION',
+                                parentId: companyId,
+                                docClass: 'LOGO'
+                            }, function(response) {
+                                console.log(response)
+                                if (response.status === 200) {
+                                    toastModel.showToast('success', 'Logo uploaded successfully');
+                                }
+                            });
                     });
             };
 
 
             var deleteLogo = function(){
-                return ajax.delete(dataFactory.documentsURL($scope.companyLogoId).delete, {}).then(function(response) {
+                ajax.delete(dataFactory.documentsUrl($scope.companyLogoId), {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Logo successfully deleted');
                     }else{

@@ -24,7 +24,7 @@ angular.module('dmc.widgets.documents',[
 
 				// function for get all requirement documents
 				$scope.getDocuments = function(){
-					ajax.get(dataFactory.documentsURL().getList, {
+					ajax.get(dataFactory.documentsUrl().getList, {
 							parentType: 'PROJECT',
 							parentId: $scope.projectId,
 							docClass: 'SUPPORT',
@@ -67,7 +67,7 @@ angular.module('dmc.widgets.documents',[
 
 				// function for get all requirement documents
 				$scope.getDocuments = function(){
-					ajax.get(dataFactory.documentsURL().getList, {
+					ajax.get(dataFactory.documentsUrl().getList, {
 							parentType: 'PROJECT',
 							parentId: $scope.projectId,
 							docClass: 'SUPPORT',
@@ -112,7 +112,7 @@ angular.module('dmc.widgets.documents',[
         };
 
 				if($scope.projectId){
-						ajax.get(dataFactory.documentsURL().getList, {
+						ajax.get(dataFactory.documentsUrl().getList, {
 								parentType: 'PROJECT',
 								parentId: $scope.projectId,
 								docClass: 'SUPPORT',
@@ -286,7 +286,7 @@ angular.module('dmc.widgets.documents',[
                         url = dataFactory.getServiceDocuments($scope.typeId);
                         requestData["service-documentId"] = $scope.serviceDocumentId;
                     }else if($scope.documentsType == "project"){
-                        url = dataFactory.documentsURL().getList;
+                        url = dataFactory.documentsUrl().getList;
                         requestData = {
 														parentType: 'PROJECT',
 														parentId: $scope.typeId,

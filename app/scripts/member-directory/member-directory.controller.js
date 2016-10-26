@@ -160,7 +160,7 @@ angular.module('dmc.members')
                 $scope.events = response.data;
             }
             $scope.getEvents = function(){
-                ajax.get(dataFactory.getDMDIIMember().events, {limit: 3}, eventsCallbackFunction);
+                ajax.get(dataFactory.dmdiiMemberEventUrl().get, {limit: 3}, eventsCallbackFunction);
             };
             $scope.getEvents();
 
@@ -168,7 +168,7 @@ angular.module('dmc.members')
                 $scope.news = response.data;
             }
             $scope.getNews = function(){
-                ajax.get(dataFactory.getDMDIIMember().news, {limit: 3}, newsCallbackFunction);
+                ajax.get(dataFactory.dmdiiMemberNewsUrl().get, {limit: 3}, newsCallbackFunction);
             };
             $scope.getNews();
 
@@ -217,7 +217,7 @@ angular.module('dmc.members')
                         $scope.activeProjects[member.id] = response.data.data;
                     });
 
-                    ajax.get(dataFactory.documentsURL().getList, {
+                    ajax.get(dataFactory.documentsUrl().getList, {
                         parentType: 'ORGANIZATION',
                         parentId: $scope.member.organization.id,
                         docClass: 'LOGO',
@@ -297,6 +297,22 @@ angular.module('dmc.members')
                 var dataSearch = $.extend(true, {}, $stateParams);
                 dataSearch[cat] = subcat;
                 return 'member-directory.php' + $state.href('member_directory', dataSearch);
+            };
+
+            $scope.deleteNews = function(index, id) {
+                ajax.delete(dataFactory.dmdiiMemberNewsUrl(id).delete, {}, function() {
+                    $scope.news.splice(index, 1);
+                });
+            };
+
+            $scope.deleteEvent = function(index, id) {
+                ajax.delete(dataFactory.dmdiiMemberEventUrl(id).delete, {}, function() {
+                    angular.forEach($scope.events, function(event, index) {
+                        if (event.id === id) {
+                            $scope.events.splice(index, 1);
+                        };
+                    });
+                });
             };
 
             var getMenu = function(){

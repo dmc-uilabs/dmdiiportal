@@ -72,7 +72,7 @@ angular.module('dmc.add_project', [
                                     accessLevel: doc.accessLevel
                                 };
 
-                                return ajax.create(dataFactory.documentsURL().save, docData, function(resp){});
+                                return ajax.create(dataFactory.documentsUrl().save, docData, function(resp){});
                             });
                         })(documents[i]);
 

@@ -11,19 +11,31 @@
                 <div class=" slim-margin">
                     <p class="news">Recent News</p>
                     <div class="slim-margin" ng-repeat="item in news">
-                        <h3 class="no-top no-bottom ">{{item.dateCreated}}</h3>
-                        <h2 class="no-top no-bottom green">{{item.title}}</h2>
-                        <p class="no-top no-bottom ">{{item.content}}</p>
+                        <div layout="row" flex="75">
+                            <div layout="column">
+                                <h3 class="no-top no-bottom ">{{item.dateCreated}}</h3>
+                                <h2 class="no-top no-bottom green">{{item.title}}</h2>
+                                <p class="no-top no-bottom ">{{item.content}}</p>
+                            </div>
+                            <span flex></span>
+                            <a class="delete-btn" flex="10"href ng-click="deleteNews($index, item.id)">delete</a>
+                        </div>
                         <md-divider></md-divider>
                     </div>
                 </div>
 
                 <div class="events slim-margin">
                     <h2 class="news">Upcoming Events</h2>
-                    <div class="slim-margin" ng-repeat="event in events | limitTo:3" ng-click="eventClicked(event)">
-                        <h3  class="no-top no-bottom" >{{event.date}}</h3>
-                        <h2 class="no-top no-bottom green">{{event.name}}</h2>
-                        <p class="no-top no-bottom">{{plainText(event.description)}}</p>
+                    <div class="slim-margin" ng-repeat="event in events | limitTo:3">
+                        <div layout="row" flex="75" ng-click="eventClicked(event)">
+                            <div layout="column">
+                                <h3  class="no-top no-bottom" >{{event.date}}</h3>
+                                <h2 class="no-top no-bottom green">{{event.name}}</h2>
+                                <p class="no-top no-bottom">{{plainText(event.description)}}</p>
+                            </div>
+                            <span flex></span>
+                            <a class="delete-btn" flex="10" href ng-click="deleteEvent($index, event.id)">delete</a>
+                        </div>
                         <md-divider></md-divider>
                     </div>
                 </div>
@@ -74,6 +86,7 @@
                     <md-divider></md-divider>
                     <span ng-repeat="event in dayEvents">
                         <h3>{{event.title}}</h3>
+                        <a layout="row" class="delete-btn" href ng-click="deleteEvent($index, event.id)" flex="10">delete</a>
                         <p markdown-to-html="event.description"></p>
                     </span>
                 </div>

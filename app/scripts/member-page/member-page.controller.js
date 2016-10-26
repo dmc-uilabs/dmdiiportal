@@ -75,7 +75,7 @@ angular.module('dmc.member')
                 var startDate = $scope.member.startDate.split('-');
                 $scope.startDate = startDate[1] + '-' + startDate[2] + '-' + startDate[0];
 
-                ajax.get(dataFactory.documentsURL().getList, {
+                ajax.get(dataFactory.documentsUrl().getList, {
                     parentType: 'ORGANIZATION',
                     parentId: $scope.member.organization.id,
                     docClass: 'LOGO',

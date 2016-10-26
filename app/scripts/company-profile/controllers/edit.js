@@ -37,7 +37,7 @@ angular.module('dmc.company-profile')
                     $scope.company = response.data;
 
                     $scope.company.description = $showdown.makeHtml($scope.company.description);
-                    ajax.get(dataFactory.documentsURL().getList, {
+                    ajax.get(dataFactory.documentsUrl().getList, {
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'LOGO',
@@ -48,7 +48,7 @@ angular.module('dmc.company-profile')
                         };
                     });
 
-                    ajax.get(dataFactory.documentsURL().getList, {
+                    ajax.get(dataFactory.documentsUrl().getList, {
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'IMAGE',
@@ -57,7 +57,7 @@ angular.module('dmc.company-profile')
                         $scope.company.images = response.data.data;
                     });
 
-                    ajax.get(dataFactory.documentsURL().getList, {
+                    ajax.get(dataFactory.documentsUrl().getList, {
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'VIDEO',
@@ -132,8 +132,8 @@ angular.module('dmc.company-profile')
 
             var uploadLogo = function(companyId){
                 if($scope.newLogo){
-                    return fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo').then(function(response) {
-                        return ajax.create(dataFactory.documentsURL().save,
+                    fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
+                        ajax.create(dataFactory.documentsUrl().save,
                             {
                                 ownerId: $scope.user.accountId,
                                 documentUrl: response.file.name,
@@ -151,7 +151,7 @@ angular.module('dmc.company-profile')
             };
 
             var deleteLogo = function(){
-                return ajax.delete(dataFactory.documentsURL($scope.companyLogoId).delete, {}, function(response) {
+                ajax.delete(dataFactory.documentsUrl($scope.companyLogoId).delete, {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Logo successfully deleted');
                     }else{
@@ -160,13 +160,15 @@ angular.module('dmc.company-profile')
                 });
             };
 
-            var deleteImage = function(imageId){
-                return ajax.delete(dataFactory.documentsURL(imageId).delete, {}, function(response) {
-                    if(response.status === 200) {
-                        toastModel.showToast('success', 'Image successfully deleted');
-                    } else {
-                        toastModel.showToast('error', 'Unable to delete image');
-                    }
+            var deleteImages = function(){
+                angular.forEach($scope.removedImages, function(imageId) {
+                    ajax.delete(dataFactory.documentsUrl(imageId), {}, function(response) {
+                        if(response.status === 200) {
+                            toastModel.showToast('success', 'Image successfully deleted');
+                        } else {
+                            toastModel.showToast('error', 'Unable to delete image');
+                        }
+                    });
                 });
             };
 
@@ -180,38 +182,45 @@ angular.module('dmc.company-profile')
                 });
             };
 
-            var uploadImage = function(image, companyId){
-                fileUpload.uploadFileToUrl(image.file, {id : companyId}, 'company-image').then(function(response) {
-                    ajax.create(dataFactory.documentsURL().save,
-                        {
-                            ownerId: $scope.user.accountId,
-                            documentUrl: response.file.name,
-                            documentName: image.title,
-                            parentType: 'ORGANIZATION',
-                            parentId: companyId,
-                            docClass: 'IMAGE'
-                        }, function(response) {
-                            if (response.status === 200) {
-                                toastModel.showToast('success', 'Image uploaded successfully');
-                            }
-                        });
+            var uploadImages = function(companyId){
+                angular.forEach($scope.images, function(image) {
+                    fileUpload.uploadFileToUrl(image.file, {id : $scope.company.id}, 'company-image', function(response) {
+                        ajax.create(dataFactory.documentsUrl().save,
+                            {
+                                organizationId: companyId,
+                                ownerId: $scope.user.accountId,
+                                documentUrl: response.file.name,
+                                documentName: image.title,
+                                parentType: 'ORGANIZATION',
+                                parentId: $scope.company.id,
+                                docClass: 'IMAGE'
+                            }, function(response) {
+                                console.log(response)
+                                if (response.status === 200) {
+                                    toastModel.showToast('success', 'Image uploaded successfully');
+                                }
+                            });
+                    });
                 });
             };
 
-            var uploadVideo = function(video, companyId){
-                return fileUpload.uploadFileToUrl(video.file, {id : companyId}, 'company-video').then(function(response) {
-                    return ajax.create(dataFactory.documentsURL().save,
-                        {
-                            ownerId: $scope.user.accountId,
-                            documentUrl: response.file.name,
-                            documentName: video.title,
-                            parentType: 'ORGANIZATION',
-                            parentId: companyId,
-                            docClass: 'VIDEO'
-                        }, function(response) {
-                            if (response.status === 200) {
-                                toastModel.showToast('success', 'Video uploaded successfully');
-                            }
+            var uploadVideos = function(companyId){
+                angular.forEach($scope.videos, function(video) {
+                    fileUpload.uploadFileToUrl(video.file, {id : $scope.company.id}, 'company-video', function(response) {
+                        ajax.create(dataFactory.documentsUrl().save,
+                            {
+                                organizationId: companyId,
+                                ownerId: $scope.user.accountId,
+                                documentUrl: response.file.name,
+                                documentName: video.title,
+                                parentType: 'ORGANIZATION',
+                                parentId: $scope.company.id,
+                                docClass: 'VIDEO'
+                            }, function(response) {
+                                if (response.status === 200) {
+                                    toastModel.showToast('success', 'Video uploaded successfully');
+                                }
+                            });
                         });
                     });
 

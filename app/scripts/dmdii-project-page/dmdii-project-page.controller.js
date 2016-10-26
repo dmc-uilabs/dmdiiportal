@@ -73,7 +73,7 @@ angular.module('dmc.dmdiiProj')
                     $scope.projectLoading = false;
                 });
 
-                ajax.get(dataFactory.getDMDIIProject().updates, {limit: 5, projectId: $scope.project.id}, function(response) {
+                ajax.get(dataFactory.dmdiiProjectUpdateUrl().get, {limit: 5, projectId: $scope.project.id}, function(response) {
                     $scope.updates = response.data;
                     angular.forEach($scope.updates, function(update, index) {
                         var date = new Date(update.created);
@@ -87,7 +87,7 @@ angular.module('dmc.dmdiiProj')
                     $scope.projectLoading = false;
                 });
 
-                ajax.get(dataFactory.documentsURL().getList, {
+                ajax.get(dataFactory.documentsUrl().getList, {
                     recent: 15,
                     page: null,
                     pageSize: null,
@@ -97,7 +97,7 @@ angular.module('dmc.dmdiiProj')
                     $scope.documents = response.data.data;
                 });
 
-                ajax.get(dataFactory.documentsURL().getList, {
+                ajax.get(dataFactory.documentsUrl().getList, {
                     docClass: 'FINANCIAL',
                     parentType: 'DMDII',
                     parentId: $scope.project.id,
@@ -106,7 +106,7 @@ angular.module('dmc.dmdiiProj')
                     $scope.projectFinancials = response.data.data[0];
                 });
 
-                ajax.get(dataFactory.documentsURL().getList, {
+                ajax.get(dataFactory.documentsUrl().getList, {
                     docClass: 'SCHEDULE',
                     parentType: 'DMDII',
                     parentId: $scope.project.id,
@@ -127,6 +127,22 @@ angular.module('dmc.dmdiiProj')
                 ajax.get(dataFactory.getDMDIIProject($stateParams.projectId).get, responseData(), callbackFunction);
             };
             $scope.getDMDIIProject();
+
+            $scope.deleteUpdate = function(index, id) {
+                ajax.delete(dataFactory.dmdiiProjectUpdateUrl(id).delete, {}, function() {
+                    $scope.updates.splice(index, 1);
+                });
+            };
+
+            $scope.deleteDocument = function(id, type, index) {
+                ajax.delete(dataFactory.documentsUrl(id).delete, {}, function() {
+                    if (type != 'doc') {
+                        delete $scope[type];
+                    } else {
+                        $scope.documents.splice(index, 1);
+                    }
+                });
+            };
 		}
     ]
 ).filter('numberFixedLen', function () {

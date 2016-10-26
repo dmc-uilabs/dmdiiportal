@@ -33,7 +33,7 @@ angular.module('dmc.company')
 
         $scope.companyData = companyData ;
 
-        ajax.get(dataFactory.documentsURL().getList, {
+        ajax.get(dataFactory.documentsUrl().getList, {
             parentType: 'ORGANIZATION',
             parentId: $scope.companyData.id,
             docClass: 'LOGO',

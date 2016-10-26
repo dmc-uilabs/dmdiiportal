@@ -10,9 +10,15 @@
                 <div class=" slim-margin">
                       <p class="news">Recent News</p>
                     <div ng-repeat="item in news">
-                      <h3 class="no-top no-bottom ">{{item.dateCreated}}</h3>
-                      <h2 class="no-top no-bottom green">{{item.title}}</h2>
-                      <p class="no-top no-bottom ">{{item.content}}</p>
+                        <div layout="row" flex="75">
+                            <div layout="column">
+                                <h3 class="no-top no-bottom ">{{item.dateCreated}}</h3>
+                                <h2 class="no-top no-bottom green">{{item.title}}</h2>
+                                <p class="no-top no-bottom ">{{item.content}}</p>
+                            </div>
+                            <span flex></span>
+                            <a class="delete-btn" flex="10" href ng-click="deleteNews($index, item.id)" ng-show="userData.isDmdiiAdmin">delete</a>
+                        </div>
                         <md-divider></md-divider>
                     </div>
                 </div>
@@ -20,21 +26,30 @@
 
             <div layout="column" layout-padding layout-align="start">
                 <div layout="row" layout-padding layout-align="center stretch">
-                    <div flex="33" layout-align="center">
+                    <div flex="33" ng-if="projectOverview" layout-align="center">
                         <h3>Projects Overview</h3>
-                        <img style="border:1px solid;width:100% " src="{{projectOverview.documentUrl}}"></img>
+                        <a class="delete-btn" href ng-click="deleteDocument(projectOverview.id, 'projectOverview')" ng-show="userData.isDmdiiAdmin">delete</a>
+
+                        <img style="border:1px solid;width:100% " ng-src="{{projectOverview.documentUrl}}"></img>
 
                     </div>
 
-                    <div layout-align="center center" flex="33">
+                    <div layout-align="center center" ng-if="projectStatus" flex="33">
                         <h3>Projects Status</h3>
-                        <img style="border:1px solid; height:76%" src="{{projectStatus.documentUrl}}"></img>
+                        <a class="delete-btn" href ng-click="deleteDocument(projectStatus.id, 'projectStatus')" ng-show="userData.isDmdiiAdmin">delete</a>
+
+                        <img style="border:1px solid; height:76%" ng-src="{{projectStatus.documentUrl}}"></img>
 
                     </div>
                     <div layout-align="end start" flex="33">
                         <h3>Quick Links</h3>
                           <ul>
-                            <li ng-repeat="doc in docs track by $index" ng-click="quickLinkAction(doc)"><a>{{doc.displayName}}</a></li> <br>
+                            <li layout="row" ng-repeat="doc in docs track by $index">
+                                <a flex="75" href ng-click="quickLinkAction(doc)">{{doc.displayName}}</a>
+                                <span flex></span>
+                                <a class="delete-btn" flex="10" href ng-click="deleteQuicklink($index, doc.id)" ng-show="userData.isDmdiiAdmin">delete</a>
+                            </li>
+                            <br>
                          </ul>
                     </div>
                 </div>
@@ -43,7 +58,8 @@
                 <horizontal-timeline
                     start-date="{{startDate}}"
                     end-date="{{endDate}}"
-                    events="events">
+                    events="events"
+                    user="userData">
                 </horizontal-timeline>
             </div>
 
