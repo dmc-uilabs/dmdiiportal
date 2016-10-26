@@ -128,7 +128,8 @@ angular.module('dmc.addDmdiiContent').
                                 {
                                     ownerId: $scope.user.accountId,
                                     documentUrl: $scope.quicklink.doc,
-                                    documentName: $scope.quicklink.displayName
+                                    documentName: $scope.quicklink.displayName,
+                                    docClass: 'QUICKLINK'
                                 }, function(response) {
                                 $scope.quicklink.doc = response.data;
                                 ajax.create(dataFactory.saveQuicklink(), $scope.quicklink, quicklinkCallback);

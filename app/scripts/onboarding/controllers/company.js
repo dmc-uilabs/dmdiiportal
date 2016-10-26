@@ -1,8 +1,8 @@
 angular.module('dmc.onboarding')
-.controller('CompanyController', 
-	['$scope', '$rootScope', '$state', 'ajax', 'dataFactory', 'fileUpload','questionToastModel',
-	function ($scope, $rootScope, $state, ajax, dataFactory, fileUpload, questionToastModel) {
-		if($state.current.name == "onboarding.company"){
+.controller('CompanyController',
+	['$scope', '$rootScope', '$state', '$q', 'ajax', 'dataFactory', 'fileUpload','questionToastModel',
+	function ($scope, $rootScope, $state, $q, ajax, dataFactory, fileUpload, questionToastModel) {
+		if($state.current.name == 'onboarding.company'){
 			$state.go($scope.company[0].state);
 		}
         $scope.activePage = $state;
@@ -10,8 +10,6 @@ angular.module('dmc.onboarding')
         $scope.isAddingContact = false;
         $scope.isAddingVideo = false;
         $scope.isAddingImage = false;
-        $scope.isAddingSkillsImage = false;
-        $scope.file = null;
 
         $scope.contactMethods = [];
         $scope.isAddingContactMethod = false;
@@ -43,7 +41,7 @@ angular.module('dmc.onboarding')
 
         $scope.deleteContactMethod = function(item,ev,index){
             questionToastModel.show({
-                question : "Do you want to delete the contact method?",
+                question : 'Do you want to delete the contact method?',
                 buttons: {
                     ok: function(){
                         ajax.delete(dataFactory.companyURL(item.id).delete_contact_method,{},function(response){
@@ -67,70 +65,70 @@ angular.module('dmc.onboarding')
         $scope.keyContactTypes = [
             {
                 id : 1,
-                name : "LEGAL"
+                name : 'LEGAL'
             }, {
                 id : 2,
-                name : "LEGAL 2"
+                name : 'LEGAL 2'
             }
         ];
 
         $scope.states = [
-            "AL|Alabama",
-            "AK|Alaska",
-            "AZ|Arizona",
-            "AR|Arkansas",
-            "CA|California",
-            "CO|Colorado",
-            "CT|Connecticut",
-            "DE|Delaware",
-            "FL|Florida",
-            "GA|Georgia",
-            "HI|Hawaii",
-            "ID|Idaho",
-            "IL|Illinois",
-            "IN|Indiana",
-            "IA|Iowa",
-            "KS|Kansas",
-            "KY|Kentucky",
-            "LA|Louisiana",
-            "ME|Maine",
-            "MD|Maryland",
-            "MA|Massachusetts",
-            "MI|Michigan",
-            "MN|Minnesota",
-            "MS|Mississippi",
-            "MO|Missouri",
-            "MT|Montana",
-            "NE|Nebraska",
-            "NV|Nevada",
-            "NH|New Hampshire",
-            "NJ|New Jersey",
-            "NM|New Mexico",
-            "NY|New York",
-            "NC|North Carolina",
-            "ND|North Dakota",
-            "OH|Ohio",
-            "OK|Oklahoma",
-            "OR|Oregon",
-            "PA|Pennsylvania",
-            "RI|Rhode Island",
-            "SC|South Carolina",
-            "SD|South Dakota",
-            "TN|Tennessee",
-            "TX|Texas",
-            "UT|Utah",
-            "VT|Vermont",
-            "VA|Virginia",
-            "WA|Washington",
-            "WV|West Virginia",
-            "WI|Wisconsin",
-            "WY|Wyoming"
+            'AL|Alabama',
+            'AK|Alaska',
+            'AZ|Arizona',
+            'AR|Arkansas',
+            'CA|California',
+            'CO|Colorado',
+            'CT|Connecticut',
+            'DE|Delaware',
+            'FL|Florida',
+            'GA|Georgia',
+            'HI|Hawaii',
+            'ID|Idaho',
+            'IL|Illinois',
+            'IN|Indiana',
+            'IA|Iowa',
+            'KS|Kansas',
+            'KY|Kentucky',
+            'LA|Louisiana',
+            'ME|Maine',
+            'MD|Maryland',
+            'MA|Massachusetts',
+            'MI|Michigan',
+            'MN|Minnesota',
+            'MS|Mississippi',
+            'MO|Missouri',
+            'MT|Montana',
+            'NE|Nebraska',
+            'NV|Nevada',
+            'NH|New Hampshire',
+            'NJ|New Jersey',
+            'NM|New Mexico',
+            'NY|New York',
+            'NC|North Carolina',
+            'ND|North Dakota',
+            'OH|Ohio',
+            'OK|Oklahoma',
+            'OR|Oregon',
+            'PA|Pennsylvania',
+            'RI|Rhode Island',
+            'SC|South Carolina',
+            'SD|South Dakota',
+            'TN|Tennessee',
+            'TX|Texas',
+            'UT|Utah',
+            'VT|Vermont',
+            'VA|Virginia',
+            'WA|Washington',
+            'WV|West Virginia',
+            'WI|Wisconsin',
+            'WY|Wyoming'
         ];
 
         $scope.categoriesTiers = [
             {
                 id : 1,
-                title : "Tier 4 Academic / Nonprofit"
+                title : 'Tier 4 Academic / Nonprofit'
             }
         ];
 
@@ -146,17 +144,12 @@ angular.module('dmc.onboarding')
         $scope.preferredMethods = [
             {
                 id : 1,
-                name : "Email"
+                name : 'Email'
             }, {
                 id : 2,
-                name : "Phone"
+                name : 'Phone'
             }
         ];
-        
-        $scope.deleteCover = function(){
-            $scope.company[1].data.featureImage.thumbnail = "";
-            $scope.company[1].data.featureImage.large = "";
-        }
 
 //skills
         //add skill to profile
@@ -223,31 +216,10 @@ angular.module('dmc.onboarding')
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }
             );
-        };  
-
-//upload file
-        $scope.prevPicture = null;
-        $scope.pictureDragEnter = function(flow){
-            $scope.prevPicture = flow.files[0];
-            flow.files = [];
         };
 
-        $scope.pictureDragLeave = function(flow){
-            if(flow.files.length == 0 && $scope.prevPicture != null) {
-                flow.files = [$scope.prevPicture];
-                $scope.prevPicture = null;
-            }
-        };
-
-        $scope.addedNewFile = function(file,event,flow){
-            flow.files.shift();
-            $scope.file = flow;
-        };
-
-        $scope.removePicture = function(flow){
-            flow.files = [];
-            $scope.file = null;
-        };
+//upload feature Image;
+		$scope.featureImage = [];
 
 //videos
         // open form for add video
@@ -266,7 +238,7 @@ angular.module('dmc.onboarding')
             ajax.create(
                 dataFactory.addCompanyVideo(),
                 newVideo,
-                function(response){               
+                function(response){
                     $scope.company[4].data.videos.unshift(response.data);
                     $scope.cancelAddVideo();
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -286,40 +258,8 @@ angular.module('dmc.onboarding')
             );
         };
 
-//SkillsImage
-        $scope.addNewSkillsImage = function(){
-            $scope.isAddingSkillsImage = true;
-        };
-
-        $scope.cancelAddSkillsImage = function(){
-            $scope.isAddingSkillsImage = false;
-        };
-
-        $scope.saveSkillsImage = function(newImage){
-            /*fileUpload.uploadFileToUrl(
-                $scope.file.files[0].file,
-                {
-                    id : 1, 
-                    title : newImage.title
-                },
-                'company-profile',
-                callbackUploadPicture
-            );*/
-            $scope.cancelAddSkillsImage();
-        };
-
-        $scope.deleteSkillsImage = function(index){
-            ajax.delete(
-                dataFactory.deleteCompanySkillsImage($scope.company[5].data.skillsImages[index].id),
-                {},
-                function(response){
-                    $scope.company[5].data.skillsImages.splice(index, 1);
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                }
-            );
-        };
-
-//images        
+//images
+		$scope.newImages = [];
         $scope.addNewImage = function(){
             $scope.isAddingImage = true;
         };
@@ -328,32 +268,55 @@ angular.module('dmc.onboarding')
             $scope.isAddingImage = false;
         };
 
-        $scope.saveImage = function(newImage){
-            /*fileUpload.uploadFileToUrl(
-                $scope.file.files[0].file,
-                {
-                    id : 1, 
-                    title : newImage.title
-                },
-                'company-profile',
-                callbackUploadPicture
-            );*/
-            $scope.cancelAddImage();
-        };
+		$scope.removeFeatureImage = function() {
+			if ($scope.company[1].data.featureImage && $scope.company[1].data.featureImage.length > 0 && $scope.company[1].data.featureImage[0].documentUrl) {
+				var deleteFeatureImage = true;
+			}
+		}
 
-        $scope.deleteImage = function(index){
+        var deleteImage = function(imageId){
             ajax.delete(
-                dataFactory.deleteCompanyImage($scope.company[4].data.images[index].id),
-                {},
-                function(response){
-                    $scope.company[4].data.images.splice(index, 1);
+                dataFactory.documentsURL(imageId).delete, {}, function(response){
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }
             );
         };
 
+		var uploadImage = function(image, companyId) {
+			return fileUpload.uploadFileToUrl(image.file, {id: companyId}, 'company-image').then(function(data) {
+				var image = {
+					ownerId: $scope.userData.accountId,
+					documentUrl: data.file.name,
+					documentName: image.file.name,
+					parentType: 'ORGANIZATION',
+					parentId: companyId,
+					docClass: 'IMAGE'
+				}
+				return ajax.create(dataFactory.documentsURL().save, doc, function(response) {
+						if (response.status === 200) {
+							toastModel.showToast('success', 'Image uploaded successfully');
+						}
+					});
+				});
+		}
 
-
+		var uploadFeature = function(companyId) {
+			return fileUpload.uploadFileToUrl($scope.featureImage[0].file, {id: companyId}, 'company-feature').then(function(data){
+				var feature = {
+					ownerId: $scope.userData.accountId,
+					documentUrl: data.file.name,
+					documentName: $scope.featureImage.file.name,
+					parentType: 'ORGANIZATION',
+					parentId: companyId,
+					docClass: 'FEATURE_IMAGE'
+				}
+				return ajax.create(dataFactory.documentsURL().save, doc, function(response) {
+						if (response.status === 200) {
+							toastModel.showToast('success', 'Feature image uploaded successfully');
+						}
+					});
+				});
+		}
 
         $scope.scrollTop = function(){
         	$(window).scrollTop(0);
@@ -363,39 +326,24 @@ angular.module('dmc.onboarding')
             $scope.company[index].done = true;
             switch(index){
                 case 1:
-                    if($scope.file){
-                        fileUpload.uploadFileToUrl(
-                            $scope.file.files[0].file,
-                            {id: $scope.userData.companyId},
-                            'company', 
-                            function(data){
-                                $scope.file = null;
-                                if(data.file && data.file.name){
-                                    $scope.company[1].data.featureImage.thumbnail = data.file.name;
-                                    $scope.company[1].data.featureImage.large = data.file.name;
-                                }
-                                $scope.saveCompany($scope.company[index].data, function(){
-                                    $(window).scrollTop(0);
-                                    $state.go('^' + $scope.company[index+1].state);
-                                });
-                            }
-                        );
-                    }else{
-                        $scope.saveCompany($scope.company[index].data, function(){
-                            $(window).scrollTop(0);
-                            $state.go('^' + $scope.company[index+1].state);
-                        });
-                    };
+					$scope.saveCompany($scope.company[index].data, function(response){
+						var companyId = response.data.id
+						if($scope.featureImage.length > 0){
+							promises.push(uploadFeature(companyId));
+							$scope.removeFeatureImage();
+						}
+
+						if (deleteFeatureImage) {
+							promises.push(deleteImage($scope.company[1].data.featureImage[0].id))
+						}
+						$q.all(promises).then(function(responses) {
+							$(window).scrollTop(0);
+							$state.go('^' + $scope.company[index+1].state);
+						});
+					});
                     break;
                 case 4:
-                    for(var i in $scope.company[4].data.images){
-                        delete $scope.company[4].data.images[i]['$$hashKey'];
-                        ajax.update(
-                            dataFactory.updateCompanyImage($scope.company[4].data.images[i].id),
-                            $scope.company[4].data.images[i],
-                            function(response){}
-                        );
-                    };
+					var promises = [];
                     for(var i in $scope.company[4].data.videos){
                         delete $scope.company[4].data.videos[i]['$$hashKey'];
                         ajax.update(
@@ -404,28 +352,16 @@ angular.module('dmc.onboarding')
                             function(response){}
                         );
                     };
-                    $scope.saveCompany({}, function(){
-                        $(window).scrollTop(0);
-                        $state.go('^' + $scope.company[index+1].state);
-                    });
-                    break;
-                case 5:
-                    for(var i in $scope.company[5].data.skillsImages){
-                        delete $scope.company[5].data.skillsImages[i]['$$hashKey'];
-                        ajax.update(
-                            dataFactory.updateCompanySkillsImage($scope.company[5].data.skillsImages[i].id),
-                            $scope.company[5].data.skillsImages[i],
-                            function(response){}
-                        );
-                    };
-                    $scope.saveCompany(
-                        {
-                            technicalExpertise: $scope.company[5].data.technicalExpertise,
-                            toolsSoftwareEquipmentMachines: $scope.company[5].data.toolsSoftwareEquipmentMachines
-                        }, 
-                        function(){
-                        $(window).scrollTop(0);
-                        $state.go('^' + $scope.company[index+1].state);
+                    $scope.saveCompany({}, function(response){
+						var companyId = response.data.id;
+						angular.forEach($scope.newImages, function(image) {
+							promises.push(uploadImage(image, companyId));
+
+							$q.all(promises).then(function(response) {
+								$(window).scrollTop(0);
+								$state.go('^' + $scope.company[index+1].state);
+							});
+						});
                     });
                     break;
                 case 8:
@@ -463,7 +399,7 @@ angular.module('dmc.onboarding')
                         $(window).scrollTop(0);
                         $state.go('^' + $scope.company[index+1].state);
                     });
-            };            
+            };
         }
 
         $scope.finish = function(index){

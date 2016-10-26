@@ -19,6 +19,7 @@ angular.module('dmc.edit-member', [
     'dmc.model.question-toast-model',
     'dmc.widgets.tabs',
     'dmc.widgets.rich-text',
+    'dmc.widgets.documents',
     'dmc.component.contacts-card',
     'dmc.common.header',
     'dmc.common.footer',
@@ -27,8 +28,7 @@ angular.module('dmc.edit-member', [
     'dmc.model.toast-model',
     'dmc.model.fileUpload',
     'dmc.phone-format',
-    'dmc.zip-code-format',
-    'flow'
+    'dmc.zip-code-format'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('edit-member-page', {

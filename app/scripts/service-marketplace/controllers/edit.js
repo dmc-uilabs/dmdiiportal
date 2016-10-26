@@ -48,10 +48,26 @@ angular.module('dmc.service-marketplace')
             if(!$scope.product) return false;
 
             $scope.changes = {};
-            $scope.changesSpecifications = $scope.product && $scope.product.specifications && $scope.product.specifications.length > 0 ? $scope.product.specifications[0].special.length : 0;
+            $scope.changesSpecifications = $scope.product && $scope.product.specifications && $scope.product.specifications.length > 0 && $scope.product.specifications[0].special ? $scope.product.specifications[0].special.length : 0;
+
+            $scope.newImages = [];
+            $scope.removedImages = [];
+            $scope.service_images = [];
+            ajax.get(dataFactory.documentsURL().getList, { recent: 10, parentType: 'SERVICE', parentId: $scope.product.id, docClass: 'IMAGE' }, function(response) {
+                if (response.data && response.data.data && response.data.data.length) {
+                    $scope.service_images = response.data.data;
+                    angular.forEach($scope.service_images, function(image, index) {
+                        $scope.service_images[index].url = image.documentUrl;
+                    });
+                    console.log($scope.service_images)
+                }
+            });
 
             serviceModel.get_array_specifications(function(data){
                 $scope.arraySpecifications = data;
+                if (!$scope.product || !$scope.product.specifications || $scope.product.specifications.length === 0) {
+                    return;
+                }
                 for(var i in $scope.product.specifications[0].special){
                     for(var j in $scope.arraySpecifications){
                         if($scope.arraySpecifications[j].id == $scope.product.specifications[0].special[i].specificationId){
@@ -60,16 +76,15 @@ angular.module('dmc.service-marketplace')
                     }
                 }
             });
-
             $scope.serviceTypes = [{
-                tag : "analytical",
-                name : "Analytical"
+                tag : 'analytical',
+                name : 'Analytical'
             }, {
-                tag: "data",
-                name : "Data"
+                tag: 'data',
+                name : 'Data'
             },{
-                tag : "solid",
-                name : "Solid"
+                tag : 'solid',
+                name : 'Solid'
             }];
 
             $scope.currentImage = 1;
@@ -79,7 +94,7 @@ angular.module('dmc.service-marketplace')
 
             $scope.$on('$stateChangeStart', function (event, next) {
                 if(!$scope.save && $scope.isChange){
-                    var answer = confirm("Are you sure you want to leave this page without saving?");
+                    var answer = confirm('Are you sure you want to leave this page without saving?');
                     if (!answer) {
                         event.preventDefault();
                     }
@@ -87,15 +102,14 @@ angular.module('dmc.service-marketplace')
             });
 
             $(window).bind('beforeunload', function () {
-                if($state.current.name == "service-marketplace-edit" && $scope.isChange)
-                    return "Are you sure you want to leave this page without saving?";
+                if($state.current.name == 'service-marketplace-edit' && $scope.isChange)
+                    return 'Are you sure you want to leave this page without saving?';
             });
 
             $scope.change = function(){
                 $scope.isChange = false;
                 for(var key in $scope.changes){
                     if($scope.changes[key] != $scope.product[key]){
-                        console.info(key);
                         $scope.isChange = true;
                         return;
                     }
@@ -126,8 +140,7 @@ angular.module('dmc.service-marketplace')
                     $scope.isChange = true;
                     return;
                 }
-                if($scope.product.specifications[0].special.length != $scope.changesSpecifications){
-                        console.info($scope.product.specifications[0].special.length, $scope.changesSpecifications);
+                if($scope.product && $scope.product.specifications && $scope.product.specifications.length > 0 && $scope.product.specifications[0].special && $scope.product.specifications[0].special.length != $scope.changesSpecifications){
                     $scope.isChange = true;
                     return;
                 }
@@ -140,7 +153,7 @@ angular.module('dmc.service-marketplace')
             var userData = null;
             DMCUserModel.getUserData().then(function(res){
                 userData = res;
-                CompareModel.get("services",userData);
+                CompareModel.get('services',userData);
                 getFavoriteCount();
             });
 
@@ -162,12 +175,12 @@ angular.module('dmc.service-marketplace')
                 },
                 deleteImage: function(index,ev){
                     questionToastModel.show({
-                        question : "Do you want to delete the image?",
+                        question : 'Do you want to delete the image?',
                         buttons: {
                             ok: function(){
                                 $scope.isChange = true;
-                                $scope.removeImages.push($scope.product.service_images[index].id);
-                                $scope.product.service_images.splice(index, 1);
+                                $scope.removedImages.push($scope.service_images[index].id);
+                                $scope.service_images.splice(index, 1);
                                 if ($scope.indexImages == index){
                                     $scope.indexImages = 0;
                                 }
@@ -206,7 +219,7 @@ angular.module('dmc.service-marketplace')
             $scope.editPage = function () {
                 // auto focus for edit product's title
                 $timeout(function() {
-                    $("#editTitleProduct").focus();
+                    $('#editTitleProduct').focus();
                 });
             };
 
@@ -228,14 +241,14 @@ angular.module('dmc.service-marketplace')
                 }
                 $scope.arrAddSpecifications.push({
                     specification: item.name,
-                    data: "",
+                    data: '',
                     specificationId: item.id
                 });
 
                 this.$$childHead.$mdAutocompleteCtrl.clear();
-                
+
                 $timeout(function() {
-                    $("input[name='data']").focus();
+                    $('input[name=\'data\']').focus();
                 })
             };
 
@@ -271,7 +284,7 @@ angular.module('dmc.service-marketplace')
             //remove specifications
             $scope.deleteSpecifications = function(index,ev){
                 questionToastModel.show({
-                    question : "Do you want to delete the specification?",
+                    question : 'Do you want to delete the specification?',
                     buttons: {
                         ok: function(){
                             $scope.arraySpecifications.push({
@@ -289,15 +302,15 @@ angular.module('dmc.service-marketplace')
             //add bew sepecifications to system
             $scope.addNewSpecifications = function(text){
                 this.$$childHead.$mdAutocompleteCtrl.clear();
-                serviceModel.add_array_specifications(text, 
+                serviceModel.add_array_specifications(text,
                     function(data){
                         $scope.arrAddSpecifications.push({
                         specification: data.name,
-                        data: "",
+                        data: '',
                         specificationId: data.id
                     });
                     $timeout(function() {
-                        $("input[name='data']").focus();
+                        $('input[name=\'data\']').focus();
                     });
                 });
             }
@@ -314,7 +327,7 @@ angular.module('dmc.service-marketplace')
             //remove tag
             $scope.deleteTag = function(index, id,ev){
                 questionToastModel.show({
-                    question : "Do you want to delete the tag?",
+                    question : 'Do you want to delete the tag?',
                     buttons: {
                         ok: function(){
                             $scope.isChange = true;
@@ -329,7 +342,7 @@ angular.module('dmc.service-marketplace')
             //remove athors
             $scope.deleteAthors = function(index, id,ev){
                 questionToastModel.show({
-                    question : "Do you want to delete the author?",
+                    question : 'Do you want to delete the author?',
                     buttons: {
                         ok: function(){
                             $scope.isChange = true;
@@ -341,24 +354,57 @@ angular.module('dmc.service-marketplace')
                 },ev);
             };
 
+            var uploadImage = function(image) {
+                fileUpload.uploadFileToUrl(image.file, {},'service').then(function(data){
+                    var doc = {
+                        documentUrl: data.file.name,
+                        documentName: data.key,
+                        ownerId: $scope.$root.userData.accountId,
+                        parentType: 'SERVICE',
+                        docClass: 'IMAGE',
+                        parentId: $scope.product.id,
+                        accessLevel: image.accessLevel
+                    }
+                    ajax.create(dataFactory.documentsURL().save, doc);
+                });
+            };
+
+            var removeImage = function(imageId) {
+                ajax.delete(dataFactory.documentsURL(imageId).delete, {});
+            };
+
             //save edit product
             $scope.saveEdit = function(){
-                for(var i in $scope.product.specifications[0].special){
-                    delete $scope.product.specifications[0].special[i]['$$hasKey'];
+                if ($scope.product.specifications && $scope.product.specifications.length > 0) {
+                    for(var i in $scope.product.specifications[0].special){
+                        delete $scope.product.specifications[0].special[i]['$$hasKey'];
+                    }
                 }
 
+                var promises = [];
+                angular.forEach($scope.newImages, function(image) {
+                    promises.push(uploadImage(image));
+                });
+
+                angular.forEach($scope.removedImages, function(imageId) {
+                    promises.push(removeImage(imageId));
+                });
+
                 serviceModel.remove_services_tags($scope.removeTags);
-                serviceModel.remove_services_images($scope.removeImages);
                 serviceModel.add_services_tags($scope.addTags);
-                serviceModel.add_services_images($scope.addImages);
                 serviceModel.remove_services_authors($scope.removeAuthors);
 
-                serviceModel.edit_service({
-                        title: $scope.product.title,
-                        description: $scope.product.description,
-                        serviceType: $scope.product.serviceType,
-                        specification: $scope.product.specifications[0]
-                    },
+                var service = {
+                    title: $scope.product.title,
+                    description: $scope.product.description,
+                    serviceType: $scope.product.serviceType
+                }
+
+                if ($scope.product.specifications && $scope.product.specifications.length) {
+                    service.specification = $scope.product.specifications[0];
+                }
+
+                serviceModel.edit_service(service,
                     function(data){
                         $scope.save = true;
                         $scope.isChangingPicture = false;
@@ -366,18 +412,10 @@ angular.module('dmc.service-marketplace')
                     });
             };
 
-            $scope.updateImage = function(newImages, removedImages){
-                for(var i in removedImages){
-                    $scope.removeImages.push(removedImages[i]);
-                }
-                $scope.addImages = newImages;
-                $scope.change();
-            }
-
             $scope.cancelEdit = function(){
                 $scope.save = true;
                 $scope.isChangingPicture = false;
-                $state.go("service-marketplace",{serviceId: $scope.product.id})
+                $state.go('service-marketplace',{serviceId: $scope.product.id})
             }
         }
     ]

@@ -18,87 +18,48 @@
                                 </md-button>
                             </div>
                         </div>
-                        <div ng-if="isChangingPicture"
-                             ng-style="flowBoxStyle"
+                        <div layout="column" ng-if="isChangingPicture || company.featureImage"
                              flex>
-                            <div class="flow-box"
-                                 flow-init
-                                 flow-drag-enter="pictureDragEnter($flow)"
-                                 flow-drag-leave="pictureDragLeave($flow)"
-                                 flow-file-success="$file.msg = $message"
-                                 flow-file-added="addedNewFile($file, $event, $flow )"
-                                 layout="row" layout-align="start start">
-                                <div class="alert" flow-drop flow-drop-enabled="true" flex>
-                                    <div class="inner-box" layout="row" layout-align="center center" flex>
-                                        <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-                                            <img id="flowImage" flow-img="$flow.files[0]" />
-                                            <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
-                                                <ng-md-icon icon="close" size="18"></ng-md-icon>
-                                            </md-button>
-                                        </div>
-                                        <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
-                                            Drag And Drop your picture here<br>
-                                            600 x 600 px (max 2 MB)
-                                            <br>or<br>
-                                            <strong>Click here</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <md-button class="md-raised cancel-button" ng-if="companyData.featureImage.large" ng-click="cancelChangePicture($flow)">Cancel</md-button>
-                                    <md-button class="md-raised md-primary" ng-disabled="$flow.files.length == 0" ng-click="uploadFile($flow)">Save</md-button>
-                                </div>
-                            </div>
+                             <div class="content-panel"
+             	                source="featureImage"
+             	                ui-widget-upload-documents
+             	                widget-type="'row'"
+             	                auto-upload="false"
+             	                widget-title="'Upload Feature Image'"
+             	                allow-tagging="true"
+             	                file-limit="1">
+             	            </div>
+                            <md-button class="md-raised cancel-button" ng-click="cancelChangePicture()">Cancel</md-button>
                         </div>
                     </div>
                     <div layout="row" layout-padding layout-align="start start" class="company-title">
-                        <div layout="column" class="logo-storefront-edit" layout-align="start start">
+                        <div layout="column" flex="25" layout-align="start start">
                             <div class="storefront-logo-box" ng-show="!isChangingLogo && companyData.logoImage">
                                 <img ng-src="{{companyData.logoImage}}" class="main-image" alt="" />
                                 <md-button ng-click="deleteLogo($event)" class="md-fab md-mini md-warn md-raised delete-logo" aria-label="Delete logo">
                                     <ng-md-icon icon="delete" size="18"></ng-md-icon>
                                 </md-button>
                             </div>
-                            <md-button class="md-raised change-logo" ng-click="changeLogo()" ng-show="!isChangingLogo && companyData.logoImage">
+                            <div flex layout="column" ng-show="isChangingLogo || !companyData.logoImage">
+                                <div class="content-panel"
+                                    source="newLogo"
+                                    ui-widget-upload-documents
+                                    widget-type="'row'"
+                                    auto-upload="false"
+                                    widget-title="'Upload Logo'"
+                                    allow-tagging="true"
+                                    file-limit="1">
+                                </div>
+                                <md-button class="md-raised cancel-change-logo" flex ng-click="cancelChangeLogo()">
+                                    Cancel
+                                </md-button>
+                            </div>
+                            <md-button class="md-raised change-logo" ng-click="changeLogo()" flex ng-show="!isChangingLogo && companyData.logoImage">
                                 <ng-md-icon icon="camera_alt" size="18"></ng-md-icon>
                                 Change Logo
                             </md-button>
-                            <div class="flow-box flow-box-logo" ng-if="isChangingLogo || !companyData.logoImage"
-                                 flow-init
-                                 flow-drag-enter="pictureDragEnter($flow)"
-                                 flow-drag-leave="pictureDragLeave($flow)"
-                                 flow-file-success="$file.msg = $message"
-                                 flow-file-added="addedNewLogo($file, $event, $flow )"
-                                 layout="row" layout-align="start start">
-                                <div class="alert" flow-drop flow-drop-enabled="true" flex>
-                                    <div class="inner-box" layout="row" layout-align="center center" flex>
-                                        <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-                                            <img id="flowLogo" flow-img="$flow.files[0]" />
-                                            <md-button ng-click="removeLogo($flow)" class="md-fab md-mini remove-picture" aria-label="Remove logo">
-                                                <ng-md-icon icon="close" size="18"></ng-md-icon>
-                                            </md-button>
-                                        </div>
-                                        <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
-                                            Drag And Drop your logo here<br>
-                                            150 x 150 px<br>(max 2 MB)
-                                            <br>or<br>
-                                            <strong>Click here</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div layout="row"
-                                 layout-align="space-between center"
-                                 class="buttons-logo-upload"
-                                 ng-show="isChangingLogo || !companyData.logoImage">
-                                <md-button class="md-raised cancel-change-logo" ng-click="cancelChangeLogo()">
-                                    Cancel
-                                </md-button>
-                                <md-button class="md-raised md-primary upload-logo"
-                                       ng-disabled="!flowLogo"
-                                       ng-click="uploadLogo()">Upload</md-button>
-                            </div>
                         </div>
+
                         <div layout="column" flex layout-wrap>
                             <div layout="row" flex>
                                 <md-input-container class="title-input-edit" flex="60">
@@ -120,6 +81,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div layout-padding>
                         <md-tabs md-dynamic-height
                                  md-border-bottom

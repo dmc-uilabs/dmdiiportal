@@ -71,7 +71,7 @@ angular.module('dmc.company-profile')
                         docClass: 'IMAGE',
                         recent: $scope.limit
                     }, function(response) {
-                        $scope.company.images = response.data.data;
+                        $scope.company.images = response.data.data || [];
                     });
 
                     ajax.get(dataFactory.documentsURL().getList, {
@@ -80,7 +80,7 @@ angular.module('dmc.company-profile')
                         docClass: 'VIDEO',
                         recent: $scope.limit
                     }, function(response) {
-                        $scope.company.videos = response.data.data;
+                        $scope.company.videos = response.data.data || [];
                     });
                 });
             }
