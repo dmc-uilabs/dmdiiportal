@@ -352,43 +352,31 @@ angular.module('dmc.edit-member')
                 }
             };
 
-            $scope.removeAddedLogo = function() {
-                $scope.newLogo = undefined;
-            };
-
             $scope.saveLogo = function() {
                 $scope.cancelChangingLogo();
-                var fileReader = new FileReader();
-                fileReader.onload = function (event) {
-                    $scope.newLogoUri = event.target.result;
-                };
-                fileReader.readAsDataURL($scope.newLogo.file);
             };
 
             var uploadLogo = function(companyId){
-                if($scope.newLogo){
-                    fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
-                        ajax.create(dataFactory.documentsUrl().save,
-                            {
-                                organizationId: companyId,
-                                ownerId: $scope.userData.accountId,
-                                documentUrl: response.file.name,
-                                documentName: 'company-logo',
-                                parentType: 'ORGANIZATION',
-                                parentId: companyId,
-                                docClass: 'LOGO'
-                            }, function(response) {
-                                console.log(response)
-                                if (response.status === 200) {
-                                    toastModel.showToast('success', 'Logo uploaded successfully');
-                                }
-                            });
-                    });
+                return fileUpload.uploadFileToUrl($scope.logo[0].file, {id : companyId}, 'company-logo').then(function(response) {
+                    return ajax.create(dataFactory.documentsUrl().save,
+                        {
+                            ownerId: $scope.userData.accountId,
+                            documentUrl: response.file.name,
+                            documentName: 'company-logo',
+                            parentType: 'ORGANIZATION',
+                            parentId: companyId,
+                            docClass: 'LOGO'
+                        }, function(response) {
+                            if (response.status === 200) {
+                                toastModel.showToast('success', 'Logo uploaded successfully');
+                            }
+                        });
+                });
             };
 
 
             var deleteLogo = function(){
-                ajax.delete(dataFactory.documentsUrl($scope.companyLogoId), {}, function(response) {
+                return ajax.delete(dataFactory.documentsUrl($scope.companyLogoId), {}).then(function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Logo successfully deleted');
                     }else{
@@ -406,7 +394,7 @@ angular.module('dmc.edit-member')
                     var promises = [];
 
                     if ($scope.logo.length) {
-                        promises.push(uploadLogo());
+                        promises.push(uploadLogo(companyId));
                         $scope.removeLogo();
                     };
 
@@ -433,6 +421,7 @@ angular.module('dmc.edit-member')
                 $scope.isSaved = true;
 
                 if (!$scope.isValid) {
+                    toastModel.showToast('error', 'Form is not valid!');
                     return;
                 }
 
@@ -473,6 +462,5 @@ angular.module('dmc.edit-member')
 
             function apply(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            }
-        };
+            };
     }]);
