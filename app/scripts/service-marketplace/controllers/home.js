@@ -54,7 +54,7 @@ angular.module('dmc.service-marketplace')
                 };
             }
             $scope.service_images = [];
-            ajax.get(dataFactory.documentsURL().getList, { recent: 10, parentType: 'SERVICE', parentId: $scope.product.id, docClass: 'IMAGE' }, function(response) {
+            ajax.get(dataFactory.documentsUrl().getList, { recent: 10, parentType: 'SERVICE', parentId: $scope.product.id, docClass: 'IMAGE' }, function(response) {
                 if (response.data && response.data.data && response.data.data.length) {
                     $scope.service_images = response.data.data;
                 }

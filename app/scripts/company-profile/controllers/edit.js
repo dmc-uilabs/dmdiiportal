@@ -173,7 +173,7 @@ angular.module('dmc.company-profile')
             };
 
             var deleteVideo = function(videoId){
-                return ajax.delete(dataFactory.documentsURL(videoId).delete, {}, function(response) {
+                return ajax.delete(dataFactory.documentsUrl(videoId).delete, {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Video successfully deleted');
                     }else{

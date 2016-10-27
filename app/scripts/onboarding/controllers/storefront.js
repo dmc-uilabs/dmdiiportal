@@ -38,7 +38,7 @@ angular.module('dmc.onboarding')
 
 		var deleteImage = function(imageId){
             ajax.delete(
-                dataFactory.documentsURL(imageId).delete, {}, function(response){
+                dataFactory.documentsUrl(imageId).delete, {}, function(response){
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }
             );

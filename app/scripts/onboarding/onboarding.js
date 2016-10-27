@@ -186,7 +186,7 @@ angular.module('dmc.onboarding', [
             // get company images
             this.getImages = function(id, callback){
                 return ajax.get(
-                    dataFactory.documentsURL().getList,
+                    dataFactory.documentsUrl().getList,
                     {parentType: 'ORGANIZATION', parentId: id, docClass: 'IMAGE', recent: 3},
                     function(response){
                         var images = response.data.data || [];
@@ -197,7 +197,7 @@ angular.module('dmc.onboarding', [
 
             this.getFeatureImage = function(id, callback){
                 return ajax.get(
-                    dataFactory.documentsURL().getList,
+                    dataFactory.documentsUrl().getList,
                     {parentType: 'ORGANIZATION', parentId: id, docClass: 'FEATURE_IMAGE', recent: 1},
                     function(response){
                         var feature = response.data.data || [];
