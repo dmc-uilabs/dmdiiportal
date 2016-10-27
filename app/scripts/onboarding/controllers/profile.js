@@ -9,7 +9,7 @@ angular.module('dmc.onboarding')
         $scope.newImage = [];
 		var currentImage = {};
 		var deleteCurrentImage = false;
-		ajax.get(dataFactory.documentsURL().getList, { parentType: 'USER', parentId: $scope.userData.accountId, docClass: 'IMAGE', recent: 1}, function(response) {
+		ajax.get(dataFactory.documentsUrl().getList, { parentType: 'USER', parentId: $scope.userData.accountId, docClass: 'IMAGE', recent: 1}, function(response) {
 			if (response.data && response.data.data && response.data.data.length) {
 				currentImage = response.data.data[0];
 			}
@@ -56,7 +56,7 @@ angular.module('dmc.onboarding')
 
 		var uploadImage = function() {
 			return fileUpload.uploadFileToUrl($scope.newImage[0].file, {id:$scope.userData.profileId }, 'profile').then(function(data){
-				return ajax.create(dataFactory.documentsURL().save, {
+				return ajax.create(dataFactory.documentsUrl().save, {
 					documentUrl: data.file.name,
 					documentName: data.key,
 					ownerId: $scope.userData.profileId,
@@ -68,7 +68,7 @@ angular.module('dmc.onboarding')
 		};
 
         var deleteImage = function(imageId) {
-			return ajax.delete(dataFactory.documentsURL(imageId).delete, {});
+			return ajax.delete(dataFactory.documentsUrl(imageId).delete, {});
         };
 
         $scope.next = function(index){

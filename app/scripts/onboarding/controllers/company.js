@@ -276,7 +276,7 @@ angular.module('dmc.onboarding')
 
         var deleteImage = function(imageId){
             ajax.delete(
-                dataFactory.documentsURL(imageId).delete, {}, function(response){
+                dataFactory.documentsUrl(imageId).delete, {}, function(response){
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }
             );
@@ -292,7 +292,7 @@ angular.module('dmc.onboarding')
 					parentId: companyId,
 					docClass: 'IMAGE'
 				}
-				return ajax.create(dataFactory.documentsURL().save, doc, function(response) {
+				return ajax.create(dataFactory.documentsUrl().save, doc, function(response) {
 						if (response.status === 200) {
 							toastModel.showToast('success', 'Image uploaded successfully');
 						}
@@ -310,7 +310,7 @@ angular.module('dmc.onboarding')
 					parentId: companyId,
 					docClass: 'FEATURE_IMAGE'
 				}
-				return ajax.create(dataFactory.documentsURL().save, doc, function(response) {
+				return ajax.create(dataFactory.documentsUrl().save, doc, function(response) {
 						if (response.status === 200) {
 							toastModel.showToast('success', 'Feature image uploaded successfully');
 						}

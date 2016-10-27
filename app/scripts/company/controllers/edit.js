@@ -63,13 +63,13 @@ angular.module('dmc.company')
 
                 var featureImage = null;
                 var logo = nulll
-                ajax.get(dataFactory.documentsURL().getList, { recent: 1, parentType: 'ORGANIZATION', parentId: $scope.companyData.id, docClass: 'FEATURE_IMAGE' }, function(response) {
+                ajax.get(dataFactory.documentsUrl().getList, { recent: 1, parentType: 'ORGANIZATION', parentId: $scope.companyData.id, docClass: 'FEATURE_IMAGE' }, function(response) {
                     if (response.data && response.data.data && response.data.data.length > 0) {
                         featureImage = response.data.data[0].documentUrl;
                     };
                 });
 
-                ajax.get(dataFactory.documentsURL().getList, { recent: 1, parentType: 'ORGANIZATION', parentId: $scope.companyData.id, docClass: 'LOGO' }, function(response) {
+                ajax.get(dataFactory.documentsUrl().getList, { recent: 1, parentType: 'ORGANIZATION', parentId: $scope.companyData.id, docClass: 'LOGO' }, function(response) {
                     if (response.data && response.data.data && response.data.data.length > 0) {
                         logo = response.data.data[0].documentUrl;
                     };
@@ -145,7 +145,7 @@ angular.module('dmc.company')
 
                 var uploadFile = function(companyId) {
                     return fileUpload.uploadFileToUrl($scope.featureImage[0].file,{ id: companyId },'feature-image').then(function(response) {
-                        return ajax.create(dataFactory.documentsURL().save, {
+                        return ajax.create(dataFactory.documentsUrl().save, {
                             ownerId: $scope.user.accountId,
                             documentUrl: response.file.name,
                             documentName: 'feature-image',
@@ -160,7 +160,7 @@ angular.module('dmc.company')
 
                 var uploadLogo = function(companyId) {
                     fileUpload.uploadFileToUrl($scope.newLogo[0].file, { id: companyId },'company-logo').then(function(response) {
-                        return ajax.create(dataFactory.documentsURL().save, {
+                        return ajax.create(dataFactory.documentsUrl().save, {
                             ownerId: $scope.user.accountId,
                             documentUrl: response.file.name,
                             documentName: 'feature-image',
