@@ -370,7 +370,6 @@ angular.module('dmc.edit-member')
                     fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
                         ajax.create(dataFactory.documentsUrl().save,
                             {
-                                organizationId: companyId,
                                 ownerId: $scope.userData.accountId,
                                 documentUrl: response.file.name,
                                 documentName: 'company-logo',
@@ -384,6 +383,7 @@ angular.module('dmc.edit-member')
                                 }
                             });
                     });
+                };
             };
 
 
@@ -433,6 +433,7 @@ angular.module('dmc.edit-member')
                 $scope.isSaved = true;
 
                 if (!$scope.isValid) {
+                    toastModel.showToast('error', 'Form is not valid!');
                     return;
                 }
 
@@ -473,6 +474,5 @@ angular.module('dmc.edit-member')
 
             function apply(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            }
-        };
+            };
     }]);
