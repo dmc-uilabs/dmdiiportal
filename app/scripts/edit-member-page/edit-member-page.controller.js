@@ -474,5 +474,5 @@ angular.module('dmc.edit-member')
             function apply(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }
-
-        }]);
+        };
+    }]);

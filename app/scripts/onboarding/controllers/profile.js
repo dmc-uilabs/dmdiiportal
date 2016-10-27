@@ -87,7 +87,7 @@ angular.module('dmc.onboarding')
 						$state.go('^' + $scope.profile[index+1].state);
 					});
 				});
-			});
+			};
 		}
 
         $scope.finish = function(index){
