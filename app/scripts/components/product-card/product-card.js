@@ -39,14 +39,14 @@ angular.module('dmc.component.productcard', [
           DMCUserModel.getUserData().then(function(res){
               userData = res;
               // get compared services
-              CompareModel.get("services",userData);
+              CompareModel.get('services',userData);
           });
 
           $scope.previousPage = previousPage;
 
           //$scope.hideButtons = [];
           $scope.compareStyle = {
-              "font-size" : ($scope.hideButtons && $scope.hideButtons.indexOf("compare") != -1 ? "11px" : "13px")
+              'font-size' : ($scope.hideButtons && $scope.hideButtons.indexOf('compare') != -1 ? '11px' : '13px')
           };
 
           $scope.projects = [];
@@ -55,7 +55,7 @@ angular.module('dmc.component.productcard', [
           // success callback for add to favorites
           var addToFavoriteCallback = function(response){
               $scope.cardSource.favorite = response.data;
-              $rootScope.$broadcast("UpdateFavorite");
+              $rootScope.$broadcast('UpdateFavorite');
               if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
               apply();
           };
@@ -63,7 +63,7 @@ angular.module('dmc.component.productcard', [
           // success callback for remove from favorites
           var removeFromFavoritesCallback = function(response){
               $scope.cardSource.favorite = false;
-              $rootScope.$broadcast("UpdateFavorite");
+              $rootScope.$broadcast('UpdateFavorite');
               if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
               apply();
           };
@@ -71,10 +71,10 @@ angular.module('dmc.component.productcard', [
           $scope.addToFavorite = function(){
             if(!$scope.cardSource.favorite){
                 // add to favorites
-                var requestData = { "accountId": $scope.$root.userData.accountId };
-                if($scope.cardSource.type == "service"){
+                var requestData = { 'accountId': $scope.$root.userData.accountId };
+                if($scope.cardSource.type == 'service'){
                     requestData.serviceId = $scope.cardSource.id;
-                }else if($scope.cardSource.type == "component"){
+                }else if($scope.cardSource.type == 'component'){
                     requestData.componentId = $scope.cardSource.id;
                 }
                 ajax.create(dataFactory.addFavorite(), requestData, addToFavoriteCallback );
@@ -155,14 +155,14 @@ angular.module('dmc.component.productcard', [
           // remove service from compare
           $scope.removeFromCompare = function(){
               if($scope.typeProduct == 'service') {
-                  CompareModel.delete("services",$scope.cardSource.id);
+                  CompareModel.delete('services',$scope.cardSource.id);
               }
           };
 
           // get service to compare
           $scope.addToCompare = function(){
               if($scope.typeProduct == 'service'){
-                  CompareModel.add("services",{
+                  CompareModel.add('services',{
                       profileId : userData.profileId,
                       serviceId : $scope.cardSource.id
                   });
@@ -179,8 +179,8 @@ angular.module('dmc.component.productcard', [
 
           $scope.share = function(ev){
               $mdDialog.show({
-                  controller: "ShareProductCtrl",
-                  templateUrl: "templates/components/product-card/share-product.html",
+                  controller: 'ShareProductCtrl',
+                  templateUrl: 'templates/components/product-card/share-product.html',
                   parent: angular.element(document.body),
                   targetEvent: ev,
                   clickOutsideToClose:true,
@@ -198,8 +198,8 @@ angular.module('dmc.component.productcard', [
           $scope.show = function(ev){
               scrollPosition = $(window).scrollTop();
               $mdDialog.show({
-                  controller: "ShowProductCtrl",
-                  templateUrl: "templates/components/product-card/show-product.html",
+                  controller: 'ShowProductCtrl',
+                  templateUrl: 'templates/components/product-card/show-product.html',
                   parent: angular.element(document.body),
                   targetEvent: ev,
                   clickOutsideToClose:true,
@@ -248,8 +248,8 @@ angular.module('dmc.component.productcard', [
 
         $scope.share = function(ev){
             var share = $mdDialog.show({
-                controller: "ShareProductCtrl",
-                templateUrl: "templates/components/product-card/share-product.html",
+                controller: 'ShareProductCtrl',
+                templateUrl: 'templates/components/product-card/share-product.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true,
@@ -271,69 +271,69 @@ angular.module('dmc.component.productcard', [
 
         $scope.statistics = [
             {
-                title: "Project",
-                "SuccessfulRuns": {
-                    "Today": 8,
-                    "Week": 10,
-                    "AllTime": 12
+                title: 'Project',
+                'SuccessfulRuns': {
+                    'Today': 8,
+                    'Week': 10,
+                    'AllTime': 12
                 },
-                "IncompleteRuns": {
-                    "Today": 1,
-                    "Week": 3,
-                    "Month": 3
+                'IncompleteRuns': {
+                    'Today': 1,
+                    'Week': 3,
+                    'Month': 3
                 },
-                "UnavailableRuns": {
-                    "Today": 1,
-                    "Week": 2,
-                    "Month": 2
+                'UnavailableRuns': {
+                    'Today': 1,
+                    'Week': 2,
+                    'Month': 2
                 },
-                "RunsByUsers": {
-                    "Today": 10,
-                    "Week": 15,
-                    "AllTime": 17
+                'RunsByUsers': {
+                    'Today': 10,
+                    'Week': 15,
+                    'AllTime': 17
                 },
-                "UniqueUsers": {
-                    "Today": 10,
-                    "Week": 2,
-                    "Month": 5
+                'UniqueUsers': {
+                    'Today': 10,
+                    'Week': 2,
+                    'Month': 5
                 },
-                "AverageTime": {
-                    "Today": 10.1,
-                    "Week": 11,
-                    "Month": 22.2
+                'AverageTime': {
+                    'Today': 10.1,
+                    'Week': 11,
+                    'Month': 22.2
                 }
             },
             {
-                title: "Marketplace",
-                "SuccessfulRuns": {
-                    "Today": 8,
-                    "Week": 10,
-                    "AllTime": 12
+                title: 'Marketplace',
+                'SuccessfulRuns': {
+                    'Today': 8,
+                    'Week': 10,
+                    'AllTime': 12
                 },
-                "IncompleteRuns": {
-                    "Today": 1,
-                    "Week": 3,
-                    "Month": 3
+                'IncompleteRuns': {
+                    'Today': 1,
+                    'Week': 3,
+                    'Month': 3
                 },
-                "UnavailableRuns": {
-                    "Today": 1,
-                    "Week": 2,
-                    "Month": 2
+                'UnavailableRuns': {
+                    'Today': 1,
+                    'Week': 2,
+                    'Month': 2
                 },
-                "RunsByUsers": {
-                    "Today": 10,
-                    "Week": 15,
-                    "AllTime": 17
+                'RunsByUsers': {
+                    'Today': 10,
+                    'Week': 15,
+                    'AllTime': 17
                 },
-                "UniqueUsers": {
-                    "Today": 10,
-                    "Week": 2,
-                    "Month": 5
+                'UniqueUsers': {
+                    'Today': 10,
+                    'Week': 2,
+                    'Month': 5
                 },
-                "AverageTime": {
-                    "Today": 10.1,
-                    "Week": 11,
-                    "Month": 22.2
+                'AverageTime': {
+                    'Today': 10.1,
+                    'Week': 11,
+                    'Month': 22.2
                 }
             }
         ]
@@ -357,8 +357,8 @@ angular.module('dmc.component.productcard', [
                     for (var i in items) {
                         items[i].favorite = false;
                         for (var j in data) {
-                            if ((data[j].serviceId && items[i].type == "service" && items[i].id == data[j].serviceId) ||
-                                (data[j].componentId && items[i].type == "component" && items[i].id == data[j].componentId)) {
+                            if ((data[j].serviceId && items[i].type == 'service' && items[i].id == data[j].serviceId) ||
+                                (data[j].componentId && items[i].type == 'component' && items[i].id == data[j].componentId)) {
                                 items[i].favorite = data[j];
                                 break;
                             }
@@ -408,7 +408,7 @@ angular.module('dmc.component.productcard', [
 
         $(window).unbind('beforeunload');
         $(window).bind('beforeunload', function(val){
-            return "";
+            return '';
         });
 
         function getAllUser(){
@@ -442,7 +442,7 @@ angular.module('dmc.component.productcard', [
                 profileId :  id,
                 serviceId : serviceId
             },function(response){
-                toastModel.showToast("success","Service successfully shared");
+                toastModel.showToast('success','Service successfully shared');
                 $scope.cancel();
             });
         };

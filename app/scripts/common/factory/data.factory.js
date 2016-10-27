@@ -518,15 +518,15 @@ angular.module('dmc.data',[])
                 return {
                     get: localhost + 'dmdiiMember/news',
                     save: localhost + 'dmdiiMember/news',
-                    delete: localhost + 'dmdiiMember/news/' + id,
-                };
+                    delete: localhost + 'dmdiiMember/news/' + id
+                }
             },
             dmdiiMemberEventUrl: function(id) {
                 return {
                     get: localhost + 'dmdiiMember/events',
                     save: localhost + 'dmdiiMember/events',
-                    delete: localhost + 'dmdiiMember/events/' + id,
-                };
+                    delete: localhost + 'dmdiiMember/events/' + id
+                }
             },
             getDMDIIMemberProjects: function() {
                 return {
@@ -596,8 +596,8 @@ angular.module('dmc.data',[])
                     getList: localhost + 'documents',
                     save: localhost + 'documents',
                     update: localhost + 'documents/' + id,
-                    delete: localhost + 'documents/' + id,
-                }
+                    delete: localhost + 'documents/' + id
+                };
             },
             getApplicationTags: function() {
                     return localhost + 'applicationTag'

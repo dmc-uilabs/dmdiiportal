@@ -103,7 +103,6 @@ angular.module('dmc.component.members-card', [
 			if ($scope.cardSource.roles && angular.isDefined($scope.cardSource.roles[$scope.companyId])) {
 				$scope.cardSource.isVerified = true;
 				$scope.role = $scope.cardSource.roles[$scope.companyId];
-				console.log($scope.role, $scope.cardSource.roles[$scope.companyId])
 			} else {
 				$scope.cardSource.isVerified = false;
 			}
@@ -122,9 +121,7 @@ angular.module('dmc.component.members-card', [
 			}
 
 			$scope.resendNotification = function() {
-				ajax.create(dataFactory.requestVerification(), {}, function(response) {
-					console.log(response)
-				});
+				ajax.create(dataFactory.requestVerification(), {});
 			};
 
 			$scope.saveMember = function() {
@@ -259,7 +256,6 @@ angular.module('dmc.component.members-card', [
     }
 })
 .controller('showMembers', ['ajax', 'dataFactory', '$scope', '$mdDialog', 'id', function(ajax, dataFactory, $scope, $mdDialog, id){
-    console.info('showMembers', id);
     $scope.profile = [];
 
     $scope.history = {
@@ -379,12 +375,9 @@ angular.module('dmc.component.members-card', [
     }
 
     var promises = {
-        'company': $http.get(dataFactory.companyURL(id).get),
-        'videos': $http.get(dataFactory.getCompanyVideos(id)),
-        'images': $http.get(dataFactory.getCompanyImages(id)),
-        'skillsImages': $http.get(dataFactory.getCompanySkillsImages(id)),
-        'skills': $http.get(dataFactory.getCompanySkills(id)),
-        'keyContacts': $http.get(dataFactory.getCompanyKeyContacts(id)),
+        'company': $http.get(dataFactory.getOrganization(id)),
+        'videos': $http.get(dataFactory.documentsUrl(), {parentType: 'ORGANIZATION', parentId: id, docClass: 'VIDEO', recent: 3}),
+        'images': $http.get(dataFactory.documentsUrl(), {parentType: 'ORGANIZATION', parentId: id, docClass: 'IMAGE', recent: 3}),
         'public_history': $http.get(dataFactory.companyURL(id).history,{params: {
             '_limit': 3,
             'section': 'public'
@@ -397,19 +390,8 @@ angular.module('dmc.component.members-card', [
 
     $q.all(promises).then(function(responses){
         $scope.company = responses.company.data;
-        $scope.company['videos'] = responses.videos.data;
-        $scope.company['images'] = responses.images.data;
-        $scope.company['skillsImages'] = responses.skillsImages.data;
-        $scope.company['skills'] = responses.skills.data;
-        $scope.company['keyContacts'] = responses.keyContacts.data;
-
-        for(var i in $scope.company['keyContacts']){
-            if($scope.company['keyContacts'][i].type == 1){
-                $scope.company['keyContacts'][i].type = 'LEGAL';
-            }else if($scope.company['keyContacts'][i].type == 2){
-                $scope.company['keyContacts'][i].type = 'LEGAL 2';
-            }
-        };
+        $scope.company['videos'] = responses.videos.data.data;
+        $scope.company['images'] = responses.images.data.data;
 
         var data = responses.public_history.data;
         for(var i in data){
