@@ -53,7 +53,7 @@ angular.module('dmc.service-marketplace')
             $scope.newImages = [];
             $scope.removedImages = [];
             $scope.service_images = [];
-            ajax.get(dataFactory.documentsURL().getList, { recent: 10, parentType: 'SERVICE', parentId: $scope.product.id, docClass: 'IMAGE' }, function(response) {
+            ajax.get(dataFactory.documentsUrl().getList, { recent: 10, parentType: 'SERVICE', parentId: $scope.product.id, docClass: 'IMAGE' }, function(response) {
                 if (response.data && response.data.data && response.data.data.length) {
                     $scope.service_images = response.data.data;
                     angular.forEach($scope.service_images, function(image, index) {
@@ -365,12 +365,12 @@ angular.module('dmc.service-marketplace')
                         parentId: $scope.product.id,
                         accessLevel: image.accessLevel
                     }
-                    ajax.create(dataFactory.documentsURL().save, doc);
+                    ajax.create(dataFactory.documentsUrl().save, doc);
                 });
             };
 
             var removeImage = function(imageId) {
-                ajax.delete(dataFactory.documentsURL(imageId).delete, {});
+                ajax.delete(dataFactory.documentsUrl(imageId).delete, {});
             };
 
             //save edit product
