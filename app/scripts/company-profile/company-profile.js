@@ -46,8 +46,7 @@ angular.module('dmc.company-profile', [
             controller: 'CompanyProfileController',
             resolve: {
                 companyData: ['companyProfileModel', '$stateParams', function(companyProfileModel,$stateParams){
-                    data = companyProfileModel.get_company($stateParams.companyId);
-                    return data;
+                    return companyProfileModel.get_company($stateParams.companyId);
                 }]
             }
         }).state('company-profile-edit', {

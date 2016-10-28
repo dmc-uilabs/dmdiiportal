@@ -222,7 +222,7 @@ angular.module('dmc.account')
             };
 
             // delete server
-            $scope.deleteServer = function(item){
+            $scope.deleteServer = function(item, event){
                 questionToastModel.show({
                     question: "Are you sure you want to remove this server?",
                     buttons: {
