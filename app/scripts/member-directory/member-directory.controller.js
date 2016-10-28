@@ -212,21 +212,11 @@ angular.module('dmc.members')
                 }
                 $scope.activeProjects = {};
 
-                angular.forEach($scope.members.arr, function(member) {
+                angular.forEach($scope.members.arr, function(member, index) {
                     ajax.get(dataFactory.getDMDIIProject().active, {dmdiiMemberId: member.id, page: 0, pageSize: 15}, function(response) {
                         $scope.activeProjects[member.id] = response.data.data;
                     });
 
-                    ajax.get(dataFactory.documentsUrl().getList, {
-                        parentType: 'ORGANIZATION',
-                        parentId: $scope.member.organization.id,
-                        docClass: 'LOGO',
-                        recent: 1
-                    }, function(response) {
-                        if (response.data.count > 0) {
-                            $scope.member.organization.logoImage = response.data.data[0];
-                        };
-                    });
                 });
             };
 

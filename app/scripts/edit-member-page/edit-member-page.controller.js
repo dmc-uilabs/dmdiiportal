@@ -346,7 +346,6 @@ angular.module('dmc.edit-member')
             $scope.removeLogo = function() {
                 if ($scope.logoId) {
                     $scope.logoIsDeleted = true;
-                    $scope.companyLogoId = $scope.logoId;
                     delete $scope.company.organization.logoImage;
                 }
             };
@@ -375,7 +374,7 @@ angular.module('dmc.edit-member')
 
 
             var deleteLogo = function(){
-                return ajax.delete(dataFactory.documentsUrl($scope.companyLogoId), {}).then(function(response) {
+                return ajax.delete(dataFactory.documentsUrl($scope.logoId), {}).then(function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Logo successfully deleted');
                     }else{
@@ -397,7 +396,7 @@ angular.module('dmc.edit-member')
                         $scope.removeLogo();
                     };
 
-                    if ($scope.logoIsDeleted) {
+                    if ($scope.logoIsDeleted === true) {
                         promises.push(deleteLogo());
                     };
 
