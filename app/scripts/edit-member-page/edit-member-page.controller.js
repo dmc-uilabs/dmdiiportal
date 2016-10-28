@@ -101,10 +101,9 @@ angular.module('dmc.edit-member')
 
                 $scope.company.organization.description = $showdown.makeHtml($scope.company.organization.description);
                 var startDate = $scope.company.startDate.split('-');
-                $scope.date.start = new Date(startDate[1] + '-' + startDate[2] + '-' + startDate[0]);
-
+                $scope.date.start = new Date(startDate[0], startDate[1]-1, startDate[2], 0);
                 var expireDate = $scope.company.expireDate.split('-');
-                $scope.date.expire = new Date(expireDate[1] + '-' + expireDate[2] + '-' + expireDate[0]);
+                $scope.date.expire = new Date(expireDate[0], expireDate[1]-1, expireDate[2], 0);
 
                 ajax.get(dataFactory.documentsUrl().getList, {
                     parentType: 'ORGANIZATION',

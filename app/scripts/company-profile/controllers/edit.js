@@ -43,7 +43,7 @@ angular.module('dmc.company-profile')
                         docClass: 'LOGO',
                         recent: 1
                     }, function(response) {
-                        if (response.data.data.length > 0) {
+                        if (response.data.count > 0) {
                             $scope.company.logoImage = response.data.data[0];
                         };
                     });
@@ -335,8 +335,8 @@ angular.module('dmc.company-profile')
             getCurrentSection();
 
             $scope.onSectionSelected = function(key){
-                if($scope.company.id) {
-                    $location.path('edit/' + $scope.company.id + '/' +key);
+                if($stateParams.companyId) {
+                    $location.path('edit/' + $stateParams.companyId + '/' +key);
                     getCurrentSection();
                 } else {
                     $location.path('create/' + key);
