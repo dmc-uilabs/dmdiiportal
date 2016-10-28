@@ -70,11 +70,11 @@
 
                 <div layout="row">
                     <div layout="column">
-                        <md-datepicker class="no-bottom no-pad-bottom top10" name="awardDate" ng-model="date.awarded" ng-disabled="project.projectStatus.id === 1" ng-required="project.projectStatus.id !== 1" md-placeholder="Award Date"></md-datepicker>
+                        <md-datepicker class="no-bottom no-pad-bottom top10" name="awardDate" ng-model="date.awarded"  ng-required="project.projectStatus.id !== 1" md-placeholder="Award Date"></md-datepicker>
                     </div>
 
                     <div layout="column">
-                        <md-datepicker class="no-bottom no-pad-bottom top10" name="endDate" ng-model="date.end" ng-disabled="project.projectStatus.id === 1" ng-required="project.projectStatus.id !== 1" md-placeholder="End Date"></md-datepicker>
+                        <md-datepicker class="no-bottom no-pad-bottom top10" name="endDate" ng-model="date.end"  ng-required="project.projectStatus.id !== 1" md-placeholder="End Date"></md-datepicker>
                     </div>
                 </div>
             </div>
