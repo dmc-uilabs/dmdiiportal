@@ -374,7 +374,7 @@ angular.module('dmc.edit-member')
 
 
             var deleteLogo = function(){
-                return ajax.delete(dataFactory.documentsUrl($scope.logoId), {}).then(function(response) {
+                return ajax.delete(dataFactory.documentsUrl($scope.logoId).delete, {}).then(function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Logo successfully deleted');
                     }else{
@@ -401,6 +401,7 @@ angular.module('dmc.edit-member')
                     };
 
                     $q.all(promises).then(function(response) {
+                        console.log(response)
                         $timeout(function() {
                             $window.location.href = '/member-page.php#/' + companyId;
                         }, 500);
@@ -443,7 +444,7 @@ angular.module('dmc.edit-member')
 
                 $scope.company.expireDate = year + '-' + month + '-' + day;
 
-                delete $scope.company.organization.logoImage;
+                // delete $scope.company.organization.logoImage;
 
                 $scope.company.organization.description = convertToMarkdown($scope.company.organization.description);
 
