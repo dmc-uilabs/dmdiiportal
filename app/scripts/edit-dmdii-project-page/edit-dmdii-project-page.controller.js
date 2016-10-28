@@ -64,10 +64,10 @@ angular.module('dmc.edit-project')
                 $scope.project.projectSummary = $showdown.makeHtml($scope.project.projectSummary);
 
                 var awardedDate = $scope.project.awardedDate.split('-');
-                $scope.date.awarded = new Date(awardedDate[1] + '-' + awardedDate[2] + '-' + awardedDate[0]);
+                $scope.date.awarded = new Date(awardedDate[0], awardedDate[1]-1, awardedDate[2], 0);
 
                 var endDate = $scope.project.endDate.split('-');
-                $scope.date.end = new Date(endDate[1] + '-' + endDate[2] + '-' + endDate[0]);
+                $scope.date.end = new Date(endDate[0], endDate[1]-1, endDate[2], 0);
 
                 $scope.contributors = [];
                 ajax.get(dataFactory.getDMDIIProject().contributors, {projectId: $scope.project.id}, function(response) {

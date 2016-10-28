@@ -74,22 +74,13 @@ angular.module('dmc.member')
 
                 var startDate = $scope.member.startDate.split('-');
                 $scope.startDate = startDate[1] + '-' + startDate[2] + '-' + startDate[0];
-
-                ajax.get(dataFactory.documentsURL().getList, {
-                    parentType: 'ORGANIZATION',
-                    parentId: $scope.member.organization.id,
-                    docClass: 'LOGO',
-                    recent: 1
-                }, function(response) {
-                    if (response.data.data.length > 0) {
-                        $scope.member.organization.logoImage = response.data.data[0];
-                    };
-                });
+                
                 // if (!$scope.member.projects) {
                 //     ajax.get(dataFactory.getDMDIIMemberProjects(), { page: 0, pageSize: 50, dmdiiMemberId: $scope.member.id }, function(response) {
                 //         $scope.member.projects = response.data.data;
                 //     });
                 // }
+
                 $scope.getCompanyMembers($scope.member.id);
 
                 $scope.getProjects($scope.member.id);

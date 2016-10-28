@@ -13,10 +13,10 @@ angular.module('dmc.widgets.discussions',[
             restrict: 'A',
             templateUrl: 'templates/components/ui-widgets/discussions.html',
             scope: {
-                widgetTitle: "=",
-                projectId: "=",
-                widgetDataType: "=",
-                limit : "="
+                widgetTitle: '=',
+                projectId: '=',
+                widgetDataType: '=',
+                limit : '='
             },
             controller: function($scope, $element, $attrs, $mdDialog, socketFactory, dataFactory, ajax, toastModel,previousPage) {
                 $scope.previousPage = previousPage;
@@ -26,26 +26,26 @@ angular.module('dmc.widgets.discussions',[
                 // function for get all discussions from DB
                 $scope.getDiscussions = function(){
                     ajax.get(dataFactory.getDiscussions($scope.projectId,$scope.widgetDataType), {
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     }, function (response) {
                         $scope.total = response.data.length;
                         $scope.discussions = response.data;
                         var ids = $.map($scope.discussions,function(x){ return x.id; });
                         ajax.get(dataFactory.addCommentIndividualDiscussion(),{
-                            "individual-discussionId" : ids,
-                            "_order" : "DESC",
-                            "_sort" : "id",
-                            "commentId": 0
+                            'individual-discussionId' : ids,
+                            '_order' : 'DESC',
+                            '_sort' : 'id',
+                            'commentId': 0
                         },function(res){
                             for(var i in $scope.discussions){
-                                $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format("MM/DD/YYYY hh:mm A");
+                                $scope.discussions[i].created_at_format = moment(new Date($scope.discussions[i].created_at)).format('MM/DD/YYYY hh:mm A');
                                 $scope.discussions[i].replies = 0;
                                 for(var j in res.data){
-                                    if($scope.discussions[i].id == res.data[j]["individual-discussionId"]){
+                                    if($scope.discussions[i].id == res.data[j]['individual-discussionId']){
                                         $scope.discussions[i].replies++;
                                         $scope.discussions[i].last = res.data[j];
-                                        $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format("MM/DD/YYYY hh:mm A");
+                                        $scope.discussions[i].last.created_at_format = moment(new Date($scope.discussions[i].last.created_at)).format('MM/DD/YYYY hh:mm A');
                                         if($scope.discussions[i].isPosted == null){
                                             $scope.discussions[i].isPosted = true;
                                         }else if($scope.discussions[i].isPosted == true){
@@ -76,8 +76,8 @@ angular.module('dmc.widgets.discussions',[
                 $scope.newDiscussion = function(ev){
                     $(window).scrollTop(0);
                     $mdDialog.show({
-                        controller: "ComposeDiscussionController",
-                        templateUrl: "templates/individual-discussion/compose-discussion.html",
+                        controller: 'ComposeDiscussionController',
+                        templateUrl: 'templates/individual-discussion/compose-discussion.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
                         locals: {
@@ -96,13 +96,13 @@ angular.module('dmc.widgets.discussions',[
             restrict: 'A',
             templateUrl: 'templates/components/ui-widgets/project-discussions.html',
             scope:{
-                projectId: "=",
-                widgetTitle: "=",
-                withAvatar: "=",
-                totalItems: "=",
-                widgetFormat: "=",
-                widgetDataType: "=",
-                limit : "="
+                projectId: '=',
+                widgetTitle: '=',
+                withAvatar: '=',
+                totalItems: '=',
+                widgetFormat: '=',
+                widgetDataType: '=',
+                limit : '='
             },
             controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel,previousPage) {
                 $scope.previousPage = previousPage;
@@ -115,26 +115,26 @@ angular.module('dmc.widgets.discussions',[
 
                 $scope.getProjectDiscussions = function(){
                     ajax.get(dataFactory.getDiscussions($scope.projectId,$scope.widgetDataType), {
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     }, function (response) {
                         $scope.totalItems = response.data.length;
                         $scope.projectDiscussions = response.data;
                         var ids = $.map($scope.projectDiscussions,function(x){ return x.id; });
                         ajax.get(dataFactory.addCommentIndividualDiscussion(),{
-                            "individual-discussionId" : ids,
-                            "_order" : "DESC",
-                            "_sort" : "id",
-                            "commentId": 0
+                            'individual-discussionId' : ids,
+                            '_order' : 'DESC',
+                            '_sort' : 'id',
+                            'commentId': 0
                         },function(res){
                             for(var i in $scope.projectDiscussions){
-                                $scope.projectDiscussions[i].created_at_format = moment(new Date($scope.projectDiscussions[i].created_at)).format("MM/DD/YYYY hh:mm A");
+                                $scope.projectDiscussions[i].created_at_format = moment(new Date($scope.projectDiscussions[i].created_at)).format('MM/DD/YYYY hh:mm A');
                                 $scope.projectDiscussions[i].replies = 0;
                                 for(var j in res.data){
-                                    if($scope.projectDiscussions[i].id == res.data[j]["individual-discussionId"]){
+                                    if($scope.projectDiscussions[i].id == res.data[j]['individual-discussionId']){
                                         $scope.projectDiscussions[i].replies++;
                                         $scope.projectDiscussions[i].last = res.data[j];
-                                        $scope.projectDiscussions[i].last.created_at_format = moment(new Date($scope.projectDiscussions[i].last.created_at)).format("MM/DD/YYYY hh:mm A");
+                                        $scope.projectDiscussions[i].last.created_at_format = moment(new Date($scope.projectDiscussions[i].last.created_at)).format('MM/DD/YYYY hh:mm A');
                                         if($scope.projectDiscussions[i].isPosted == null){
                                             $scope.projectDiscussions[i].isPosted = true;
                                         }else if($scope.projectDiscussions[i].isPosted == true){

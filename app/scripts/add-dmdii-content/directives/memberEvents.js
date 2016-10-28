@@ -20,7 +20,7 @@ angular.module('dmc.addDmdiiContent').
                 var eventCallback = function(response) {
                     toastModel.showToast('success', 'Member Event Saved!');
                     $timeout(function() {
-                        $window.location.reload();    
+                        $window.location.reload();
                     }, 500);
                 };
 
@@ -63,7 +63,7 @@ angular.module('dmc.addDmdiiContent').
                     }
 
                     $scope.event.description = convertToMarkdown($scope.event.description);
-                    ajax.create(dataFactory.saveDMDIIMember().events, $scope.event, eventCallback);
+                    ajax.create(dataFactory.dmdiiMemberEventUrl().save, $scope.event, eventCallback);
                 };
 
                 function apply(){

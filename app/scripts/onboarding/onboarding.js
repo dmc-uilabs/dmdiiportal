@@ -10,6 +10,7 @@ angular.module('dmc.onboarding', [
     'dmc.data',
     'dmc.socket',
     'dmc.widgets.stars',
+    'dmc.widgets.documents',
     'dmc.widgets.review',
     'dmc.model.question-toast-model',
     'dmc.common.header',
@@ -19,8 +20,7 @@ angular.module('dmc.onboarding', [
     'dmc.model.fileUpload',
     'dmc.model.profile',
     'dmc.model.user',
-    'dmc.phone-format',
-    'flow'
+    'dmc.phone-format'
 ])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
@@ -183,7 +183,8 @@ angular.module('dmc.onboarding', [
                     }
                 );
             }
-/*
+
+/* uncomment when fixed/implemented
              // get company skills
             this.getSkills = function(id, callback){
                 return ajax.get(
@@ -198,24 +199,26 @@ angular.module('dmc.onboarding', [
             // get company images
             this.getImages = function(id, callback){
                 return ajax.get(
-                    dataFactory.getCompanyImages(id),
-                    {},
+                    dataFactory.documentsUrl().getList,
+                    {parentType: 'ORGANIZATION', parentId: id, docClass: 'IMAGE', recent: 3},
                     function(response){
-                        callback(response.data);
+                        var images = response.data.data || [];
+                        callback(images);
                     }
                 );
             };
 
-            // get company images
-            this.getSkillsImages = function(id, callback){
+            this.getFeatureImage = function(id, callback){
                 return ajax.get(
-                    dataFactory.getCompanySkillsImages(id),
-                    {},
+                    dataFactory.documentsUrl().getList,
+                    {parentType: 'ORGANIZATION', parentId: id, docClass: 'FEATURE_IMAGE', recent: 1},
                     function(response){
-                        callback(response.data);
+                        var feature = response.data.data || [];
+                        callback(feature);
                     }
                 );
             };
+
 
             // get company videos
             this.getVideos = function(id, callback){
@@ -242,7 +245,7 @@ angular.module('dmc.onboarding', [
 
             this.get_company = function(companyId, callback){
                 return ajax.get(
-                    dataFactory.companyURL(companyId).get,
+                    dataFactory.getOrganization(companyId),
                     {},
                     function(response){
                         callback(response.data);
@@ -252,7 +255,7 @@ angular.module('dmc.onboarding', [
 
             this.update_company = function(companyId, params, callback){
                 ajax.get(
-                    dataFactory.companyURL(companyId).get,
+                    dataFactory.getOrganization(companyId),
                     {},
                     function(response){
                         var company = response.data;
@@ -260,7 +263,7 @@ angular.module('dmc.onboarding', [
                            company[item] = params[item];
                         }
                         ajax.update(
-                            dataFactory.companyURL(companyId).update,
+                            dataFactory.updateOrganization(companyId),
                             company,
                             function(response){
                                 callback(response.data);

@@ -12,7 +12,7 @@ angular.module('dmc.model.company', [
                 userData = res;
             });
             this.get = function(id) {
-                return ajax.get(dataFactory.companyURL(id).get,{},function(response){
+                return ajax.get(dataFactory.getOrganization(id),{},function(response){
                     var data = response.data ? response.data : response;
                     if(data.accountId == userData.accountId) data.isOwner = true;
                     /*
@@ -55,7 +55,7 @@ angular.module('dmc.model.company', [
             };
 
             this.getMenu = function(totalCountItems){
-                var searchPage = ($location.$$path.indexOf("/edit") != -1 ? "edit" : "search");
+                var searchPage = ($location.$$path.indexOf('/edit') != -1 ? 'edit' : 'search');
 
                 var getUrl = function(product,type){
                     var dataSearch = $.extend(true,{},$stateParams);

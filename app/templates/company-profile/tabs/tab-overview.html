@@ -89,7 +89,7 @@
 <div layout="row">
     <div class="list-videos" flex="100">
         <div layout="row" layout-align="space-between center">
-            <div class="title">Images</div>
+            <div class="title">Current Images</div>
             <md-button class="md-raised md-primary add-new-image"
                        ng-show="!isAddingImage"
                        ng-click="addNewImage()"
@@ -97,60 +97,6 @@
                 Add New Image
             </md-button>
         </div>
-        <div layout="row"
-             class="boxForAddImage"
-             layout-align="start start"
-             ng-if="isAddingImage">
-            <form name="formAddImage" layout="column">
-                <div layout="row" flex>
-                    <md-input-container md-no-float flex="100">
-                        <input required
-                               name="title"
-                               ng-model="newImage.title"
-                               type="text"
-                               placeholder="Image Title">
-                    </md-input-container>
-                </div>
-                <div layout="row" flex>
-                    <div class="flow-box"
-                         flow-init
-                         flow-drag-enter="pictureDragEnter($flow)"
-                         flow-drag-leave="pictureDragLeave($flow)"
-                         flow-file-success="$file.msg = $message"
-                         flow-file-added="addedNewFile($file, $event, $flow )"
-                         layout="row" flex layout-align="start start">
-                        <div class="alert" flow-drop flow-drop-enabled="true" flex="40">
-                            <div class="inner-box" layout="row" layout-align="center center" flex>
-                                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-                                    <img id="flowImage" flow-img="$flow.files[0]" />
-                                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
-                                        <ng-md-icon icon="close" size="21"></ng-md-icon>
-                                    </md-button>
-                                </div>
-                                <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
-                                    Drag And Drop your picture here<br>
-                                    600 x 600 px (max 2 MB)
-                                    <br>or<br>
-                                    <strong>Click here</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div layout="column" layout-align="start start" flex>
-                <md-button class="md-raised" type="button" ng-click="cancelAddImage()">
-                    Cancel
-                </md-button>
-                <md-button class="md-raised md-primary"
-                           ng-click="saveImage(newImage)"
-                           ng-disabled="!formAddImage.$valid || !newAddedImage">
-                    Save
-                </md-button>
-            </div>
-        </div>
-        <h4>Current Images</h4>
-
         <div layout="row"
              layout-wrap
              layout-align="start start"
@@ -170,32 +116,31 @@
                 </md-button>
             </div>
         </div>
-        <h4>Images to be Added</h4>
         <div layout="row"
-             layout-wrap
-             layout-align="start start"
-             flex ng-if="imgs.length > 0">
-            <div class="list-images-item" ng-repeat="image in imgs track by $index" ng-show="!image.hide">
-                <div class="img"><img ng-src="{{imageStrings[$index]}}"/></div>
-                <md-input-container md-no-float>
-                    <input ng-model="image.title"
-                           type="text"
-                           placeholder="Image Title">
-                </md-input-container>
-                <md-button md-no-ink class="md-fab md-mini md-warn md-raised delete-image"
-                           ng-click="deleteImage(image,$event)"
-                           aria-label="Delete Image">
-                    <ng-md-icon icon="delete" size="21"></ng-md-icon>
-                </md-button>
+            layout-align="start start"
+            ng-if="isAddingImage">
+            <div layout="column" flex>
+                <div class="content-panel"
+                    source="imgs"
+                    ui-widget-upload-documents
+                    widget-type="'row'"
+                    auto-upload="false"
+                    widget-title="'Add New Image'"
+                    file-limit="3">
+                </div>
+                <div layout="column" layout-align="center start">
+                    <md-button class="md-raised" type="button" ng-click="cancelAddImage()">
+                        Cancel
+                    </md-button>
+                </div>
             </div>
         </div>
-        <div layout="row" ng-if="imgs.length == 0 && !isAddingImage">No images to be added</div>
     </div>
 </div>
 <div layout="row">
     <div class="list-videos" flex="100">
         <div layout="row" class="title-list-videos" layout-align="space-between center">
-            <div class="title">Videos</div>
+            <div class="title">Current Videos</div>
             <md-button class="md-raised md-primary add-new-video"
                        ng-click="addNewVideo()"
                        ng-show="!isAddingVideo"
@@ -203,59 +148,36 @@
                 Add New Video
             </md-button>
         </div>
+        <h4>Current Videos</h4>
+        <div ng-repeat="video in source.videos track by $index">
+            <video width="320" height="240" controls>
+                Your browser does not support HTML5 video playback
+                <source src="{{trustVideoSrc(video.documentUrl)}}" type="video/mp4">
+            </video>
+            <md-button md-no-ink
+                ng-click="deleteVideo(video,$event)"
+                class="md-icon-button delete-video"
+                aria-label="Delete Video">
+            <ng-md-icon icon="delete" size="32"></ng-md-icon>
+            </md-button>
+        </div>
         <div layout="row"
-             class="boxForAddVideo"
              layout-align="start start"
              ng-if="isAddingVideo">
-            <form name="formAddVideo" layout="column">
-                <div layout="row" flex>
-                    <md-input-container md-no-float flex="100">
-                        <input required
-                               name="title"
-                               ng-model="newVideo.title"
-                               type="text"
-                               placeholder="Video Title">
-                    </md-input-container>
+            <div layout="column" flex>
+                <div class="content-panel"
+                    source="videos"
+                    ui-widget-upload-documents
+                    widget-type="'row'"
+                    auto-upload="false"
+                    widget-title="'Add New Video'"
+                    file-limit="3">
                 </div>
-                <div layout="row" flex>
-                    <div class="flow-box"
-                         flow-init
-                         flow-drag-enter="pictureDragEnter($flow)"
-                         flow-drag-leave="pictureDragLeave($flow)"
-                         flow-file-success="$file.msg = $message"
-                         flow-file-added="addedNewVideo($file, $event, $flow )"
-                         flow-file-error="error( $file, $message, $flow )"
-                         flow-error="error( $file, $message, $flow )"
-                         layout="row" flex layout-align="start start">
-                        <div class="alert" flow-drop flow-drop-enabled="true" flex="40">
-                            <div class="inner-box" layout="row" layout-align="center center" flex>
-                                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-                                    <img id="flowVideo" flow-img="$flow.files[0]" />
-                                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini remove-picture" aria-label="Remove picture">
-                                        <ng-md-icon icon="close" size="21"></ng-md-icon>
-                                    </md-button>
-                                </div>
-                                <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
-                                    Drag And Drop your Video here<br>
-                                    600 x 600 px (max 10 MB)
-                                    <br>or<br>
-                                    <strong>Click here</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div layout="column" layout-align="start start" flex>
+                    <md-button class="md-raised" type="button" ng-click="cancelAddVideo()">
+                        Cancel
+                    </md-button>
                 </div>
-            </form>
-
-            <div layout="column" layout-align="start start" flex>
-                <md-button class="md-raised" type="button" ng-click="cancelAddVideo()">
-                    Cancel
-                </md-button>
-                <md-button class="md-raised md-primary"
-                           ng-click="saveVideo(newVideo)"
-                           ng-disabled="!formAddVideo.$valid || !newAddedVideo">
-                    Save
-                </md-button>
             </div>
         </div>
         <!--keep for external video links -->
@@ -283,19 +205,6 @@
                 </div>
             </form>
         </div> -->
-        <h4>Current Videos</h4>
-        <div ng-repeat="video in source.videos track by $index">
-            <video width="320" height="240" controls>
-                Your browser does not support HTML5 video playback
-                <source ng-src="trustVideoSrc(video.documentUrl)" type="video/mp4">
-            </video>
-            <md-button md-no-ink
-                ng-click="deleteVideo(video,$event)"
-                class="md-icon-button delete-video"
-                aria-label="Delete Video">
-            <ng-md-icon icon="delete" size="32"></ng-md-icon>
-            </md-button>
-        </div>
         <!--keep for external video links -->
         <!-- <div layout="row"
              layout-align="start center"
@@ -317,18 +226,6 @@
                 <ng-md-icon icon="delete" size="32"></ng-md-icon>
             </md-button>
         </div> -->
-        <div layout="row" ng-if="source.videos.length == 0 && !isAddingVideo">No videos</div>
-
-        <h4>Videos to be added</h4>
-        <div ng-repeat="video in videos">
-            <a>{{video.title}}</a>
-            <md-button md-no-ink
-                ng-click="deleteVideo(video,$event)"
-                class="md-icon-button delete-video"
-                aria-label="Delete Video">
-            <ng-md-icon icon="delete" size="32"></ng-md-icon>
-            </md-button>
-        </div>
         <!--keep for external video links -->
         <!-- <div layout="row"
              layout-align="start center"
@@ -349,6 +246,5 @@
                 <ng-md-icon icon="delete" size="32"></ng-md-icon>
             </md-button>
         </div> -->
-        <div layout="row" ng-if="videos.length == 0 && !isAddingVideo">No videos to be added</div>
     </div>
 </div>

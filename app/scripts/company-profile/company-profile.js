@@ -19,6 +19,7 @@ angular.module('dmc.company-profile', [
     'dmc.model.question-toast-model',
     'dmc.widgets.review',
     'dmc.widgets.tabs',
+    'dmc.widgets.documents',
     'dmc.component.members-card',
     'dmc.component.contacts-card',
     'dmc.common.header',
@@ -30,8 +31,7 @@ angular.module('dmc.company-profile', [
     'dmc.model.company',
     'dmc.phone-format',
     'dmc.zip-code-format',
-    'dmc.model.account',
-    'flow'
+    'dmc.model.account'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
         var resolve = {

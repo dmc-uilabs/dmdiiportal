@@ -7,38 +7,25 @@
 	</div>
 	<h3>Include your logo to help users identify your brand. </h3>
     <div layout="row"  layout-align="center center">
-        <div class="img-box" ng-if="storefront[2].data.logoImage">
-            <img ng-src="{{storefront[2].data.logoImage}}">
+        <div class="img-box" ng-if="storefront[2].data.logoImage.documentUrl">
+            <img ng-src="{{storefront[2].data.logoImage.documentUrl}}">
             <md-button md-no-ink class="md-fab md-mini md-warn md-raised removed-images"
-                       ng-click="deleteLogo()"
-                       aria-label="Delete Image">
+                       ng-click="removeLogo()"
+                       aria-label="Delete Logo">
                 <ng-md-icon icon="delete" size="18"></ng-md-icon>
             </md-button>
         </div>
-    	<div class="flow-box"
-             flow-init
-             flow-drag-enter="pictureDragEnter($flow)"
-             flow-drag-leave="pictureDragLeave($flow)"
-             flow-file-success="$file.msg = $message"
-             flow-file-added="addedNewFile($file, $event, $flow )"
-             layout="column">
-            <div layout class="alert" flow-drop flow-drop-enabled="true">
-              <div class="inner-box" layout="row" layout-align="center center" style="min-width: 100%;">
-                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-                  <img flow-img="$flow.files[0]" />
-                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini md-warn md-raised remove-picture" aria-label="Remove picture">
-                        <ng-md-icon icon="delete" size="18"></ng-md-icon>
-                    </md-button>
-                </div>
-                <div flow-btn class="text" flex="90" ng-if="$flow.files.length == 0">
-                    Drag And Drop your picture here<br>
-                    600 x 600 px (max 2 MB)
-                    <br>or<br>
-                    <strong>Click here</strong>
-                </div>
-              </div>
-            </div>
-        </div>
+		<div class="content-column upload-documents top10" layout="column" flex>
+			<div class="content-panel"
+			source="newLogo"
+			ui-widget-upload-documents
+			widget-type="'row'"
+			auto-upload="false"
+			widget-title="'Upload Logo'"
+			allow-tagging="true"
+			file-limit="1">
+			</div>
+		</div>
     </div>
 	<div layout="row" layout-align="end center" class="onboarding-foter">
 		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.description">
