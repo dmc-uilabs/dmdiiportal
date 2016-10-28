@@ -64,7 +64,7 @@ angular.module('dmc.widgets.discussions',[
                 };
 
                 // get all discussions (first request)
-                $scope.getDiscussions();
+                //$scope.getDiscussions();
 
                 // Socket listeners -------------------------------------------------
 

@@ -41,7 +41,7 @@ angular.module('dmc.company-profile')
                   companyProfileModel,
                   DMCUserModel) {
 
-            // $scope.company = companyData;
+            $scope.company = {};
             //limit of images and videos a company can have
             $scope.limit = 3;
             $scope.verifiedLimit = 15;
@@ -49,6 +49,7 @@ angular.module('dmc.company-profile')
 
             var getCompany = function() {
                 ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
+                    response.data.company_reviews=$scope.company.company_reviews||[];
                     $scope.company = response.data;
 
                     $scope.getCompanyMembers();
@@ -276,6 +277,8 @@ angular.module('dmc.company-profile')
                 $scope.history.leftColumn.list = data;
                 apply();
             };
+
+            /* uncomment when implemented/fixed
             companyProfileModel.getCompanyHistory(
                 {
                     '_limit': 3,
@@ -283,6 +286,7 @@ angular.module('dmc.company-profile')
                 },
                 callbackPublicHistory
             );
+            */
 
             // get company history
             var callbackMutualHistory = function(data){
@@ -315,6 +319,8 @@ angular.module('dmc.company-profile')
                 $scope.history.rightColumn.list = data;
                 apply();
             };
+
+            /* uncomment when implemented/fixed
             companyProfileModel.getCompanyHistory(
                 {
                     '_limit': 3,
@@ -322,6 +328,7 @@ angular.module('dmc.company-profile')
                 },
                 callbackMutualHistory
             );
+            */
 
             ajax.get(
                 dataFactory.getProjects(),

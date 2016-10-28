@@ -359,7 +359,7 @@ angular.module('dmc.onboarding')
     			}
     		}
     	});
-
+/*
     	onboardingModel.get_account_notfications(userData.accountId, function(data){
     		$scope.account[2].done = true
     		$scope.account[3].done = true
@@ -371,7 +371,7 @@ angular.module('dmc.onboarding')
     			}
     		}
     	});
-
+*/
     	onboardingModel.get_servers(userData.accountId, function(data){
     		$scope.account[4].done = true;
     		$scope.account[4].data.servers = data;
@@ -615,6 +615,7 @@ angular.module('dmc.onboarding')
     		);
     	};
 
+/* uncomment when fixed/implemented
 		onboardingModel.getImages(userData.companyId, function(data){
         	$scope.company[4].data.images = data;
         	if($scope.company[4].data.images.length && $scope.company[4].data.videos.length){
@@ -737,7 +738,7 @@ angular.module('dmc.onboarding')
     			}
 	    	}
     	});
-
+*/
 
 
         $scope.saveFinish = function(section){

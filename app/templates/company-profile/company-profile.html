@@ -138,7 +138,7 @@
                 <div ng-repeat="video in company.videos">
                     <video width="320" height="240" controls>
                         Your browser does not support HTML5 video playback
-                        <source ng-src="{{trustVideoSrc(video.documentUrl)}}">
+                        <source ng-src="trustVideoSrc(video.documentUrl)">
                     </video>
                 </div>
 

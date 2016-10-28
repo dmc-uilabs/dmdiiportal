@@ -216,6 +216,7 @@ angular.module('dmc.members')
                     ajax.get(dataFactory.getDMDIIProject().active, {dmdiiMemberId: member.id, page: 0, pageSize: 15}, function(response) {
                         $scope.activeProjects[member.id] = response.data.data;
                     });
+
                 });
             };
 

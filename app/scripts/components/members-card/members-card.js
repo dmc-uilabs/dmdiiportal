@@ -274,7 +274,7 @@ angular.module('dmc.component.members-card', [
             list:[]
         }
     }
-
+/*
     // get profile history
     ajax.get(dataFactory.profiles(id).history,
         {
@@ -352,7 +352,7 @@ angular.module('dmc.component.members-card', [
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         }
     );
-
+*/
     ajax.get(dataFactory.userAccount(id).get,{},function(response){
         var profile = response.data;
         $scope.profile = profile;
@@ -384,15 +384,16 @@ angular.module('dmc.component.members-card', [
         'images': $http.get(dataFactory.getCompanyImages(id)),
         'skillsImages': $http.get(dataFactory.getCompanySkillsImages(id)),
         'skills': $http.get(dataFactory.getCompanySkills(id)),
-        'keyContacts': $http.get(dataFactory.getCompanyKeyContacts(id)),
-        'public_history': $http.get(dataFactory.companyURL(id).history,{params: {
+        'keyContacts': $http.get(dataFactory.getCompanyKeyContacts(id))
+				/* uncomment when implemented/fixed
+				,'public_history': $http.get(dataFactory.companyURL(id).history,{params: {
             '_limit': 3,
             'section': 'public'
         }}),
         'private_history': $http.get(dataFactory.companyURL(id).history,{params: {
             '_limit': 3,
             'section': 'mutual'
-        }})
+        }})*/
     }
 
     $q.all(promises).then(function(responses){
