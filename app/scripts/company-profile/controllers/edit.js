@@ -42,7 +42,7 @@ angular.module('dmc.company-profile')
                         docClass: 'LOGO',
                         recent: 1
                     }, function(response) {
-                        if (response.data.data.length > 0) {
+                        if (response.data.count > 0) {
                             $scope.company.logoImage = response.data.data[0];
                         };
                     });

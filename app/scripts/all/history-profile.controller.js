@@ -70,7 +70,8 @@ angular.module('dmc.view-all')
 	                }
 	            )
             };
-            $scope.getHistory();
+            //uncomment when fixed/implemented
+            //$scope.getHistory();
 
             $scope.onOrderChange = function (order) {
                 $scope.sort = order;

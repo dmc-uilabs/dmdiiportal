@@ -58,7 +58,7 @@ angular.module('dmc.company-profile')
                         docClass: 'LOGO',
                         recent: 1
                     }, function(response) {
-                        if (response.data.data.length > 0) {
+                        if (response.data.count > 0) {
                             $scope.company.logoImage = response.data.data[0];
                         };
                     });
@@ -258,6 +258,8 @@ angular.module('dmc.company-profile')
                 $scope.history.leftColumn.list = data;
                 apply();
             };
+
+            /* uncomment when implemented/fixed
             companyProfileModel.getCompanyHistory(
                 {
                     '_limit': 3,
@@ -265,6 +267,7 @@ angular.module('dmc.company-profile')
                 },
                 callbackPublicHistory
             );
+            */
 
             // get company history
             var callbackMutualHistory = function(data){
@@ -297,6 +300,8 @@ angular.module('dmc.company-profile')
                 $scope.history.rightColumn.list = data;
                 apply();
             };
+
+            /* uncomment when implemented/fixed
             companyProfileModel.getCompanyHistory(
                 {
                     '_limit': 3,
@@ -304,6 +309,7 @@ angular.module('dmc.company-profile')
                 },
                 callbackMutualHistory
             );
+            */
 
             ajax.get(
                 dataFactory.getProjects(),

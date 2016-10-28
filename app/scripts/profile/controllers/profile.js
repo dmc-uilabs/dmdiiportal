@@ -81,6 +81,7 @@ angular.module('dmc.profile')
             }
         }
 
+        /* uncomment when fixed/implemented
         // get profile history
         profileModel.getProfileHistory(
             {
@@ -156,6 +157,7 @@ angular.module('dmc.profile')
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }
         );
+        */
 
         ajax.get(
             dataFactory.getProjects(),
