@@ -103,7 +103,7 @@ angular.module('dmc.dmdiiProj')
                     parentId: $scope.project.id,
                     recent: 1
                 }, function(response) {
-                    $scope.projectFinancials = response.data.data[0];
+                    $scope.projectFinancials = response.data.count>0?response.data.data[0]:{};
                 });
 
                 ajax.get(dataFactory.documentsUrl().getList, {
@@ -112,7 +112,7 @@ angular.module('dmc.dmdiiProj')
                     parentId: $scope.project.id,
                     recent: 1
                 }, function(response) {
-                    $scope.projectSchedule = response.data.data[0];
+                    $scope.projectSchedule = response.data.count>0?response.data.data[0]:{};
                 });
 
             };

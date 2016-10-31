@@ -157,7 +157,7 @@
                         <tbody>
                         <tr ng-repeat="member in members.arr">
                             <td class="profile-logo">
-                                <img ng-src="{{member.organization.logoImage.documentUrl}}" ng-if="member.organization.logoImage">
+                                <img ng-src="{{member.organization.logoImage}}" ng-if="member.organization.logoImage">
                             </td>
                             <td class="title-member">
                                 <h3><a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a></h3>

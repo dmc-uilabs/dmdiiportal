@@ -15,7 +15,7 @@ angular.module('dmc.model.company', [
                 return ajax.get(dataFactory.getOrganization(id),{},function(response){
                     var data = response.data ? response.data : response;
                     if(data.accountId == userData.accountId) data.isOwner = true;
-
+                    /*
                     ajax.get(dataFactory.followCompany(),{
                             accountId : userData.accountId,
                             companyId : data.id
@@ -23,7 +23,7 @@ angular.module('dmc.model.company', [
                             if(res.data.length > 0) data.follow = res.data[0];
                         }
                     );
-
+                    */
                     return data;
                 },function(response){
                     return response.data;

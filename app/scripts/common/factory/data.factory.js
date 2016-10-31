@@ -894,6 +894,7 @@ angular.module('dmc.data',[])
             addDiscussion : function(){
                 return localhost+'individual-discussion'
             },
+            /*
             getCompanyImages : function(id){
                 return localhost+'companies/'+id+'/company_images'
             },
@@ -906,6 +907,7 @@ angular.module('dmc.data',[])
             getCompanySkills : function(id){
                 return localhost+'companies/'+id+'/company_skills'
             },
+            */
             getCompanyMembers : function(id){
                 return localhost+'companies/'+id+'/company_members'
             },

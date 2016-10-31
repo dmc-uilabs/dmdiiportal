@@ -129,6 +129,7 @@ angular.module('dmc.onboarding', [
                 })
                 .state('onboarding.profile.image', {
                     url: '/profile-image',
+
                     templateUrl: 'templates/onboarding/profile/image.html'
                 })
                 .state('onboarding.profile.skill', {
@@ -182,6 +183,18 @@ angular.module('dmc.onboarding', [
                     }
                 );
             }
+
+/* uncomment when fixed/implemented
+             // get company skills
+            this.getSkills = function(id, callback){
+                return ajax.get(
+                    dataFactory.getCompanySkills(id),
+                    {},
+                    function(response){
+                        callback(response.data);
+                    }
+                );
+            };
 
             // get company images
             this.getImages = function(id, callback){
@@ -259,8 +272,7 @@ angular.module('dmc.onboarding', [
                     }
                 );
             }
-
-
+*/
             this.get_account = function(accountId, callback){
                 return ajax.get(
                     dataFactory.getAccount(accountId),
@@ -270,7 +282,7 @@ angular.module('dmc.onboarding', [
                     }
                 );
             }
-
+/*
             this.get_account_notfications = function(accountId, callback){
                 return ajax.get(
                     dataFactory.getUserAccountNotifications(accountId),
@@ -280,7 +292,7 @@ angular.module('dmc.onboarding', [
                     }
                 );
             }
-
+*/
             this.update_account = function(accountId, params, callback){
                 ajax.get(
                     dataFactory.getAccount(accountId),

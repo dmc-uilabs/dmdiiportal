@@ -418,8 +418,8 @@ angular.module('dmc.company')
                 var lastPosition = 0;
                 $scope.getFeatured = function () {
                     ajax.get(dataFactory.getCompanyFeatured($scope.companyId), {
-                            '_order' : 'DESC',
-                            '_sort' : 'position'
+                            'order' : 'DESC',
+                            'sort' : 'position'
                         },
                         function (response) {
                             var servicesIds = [];
@@ -473,7 +473,8 @@ angular.module('dmc.company')
                         }
                     );
                 };
-                $scope.getFeatured();
+                //uncomment when fixed/implemented
+                //$scope.getFeatured();
 
 
 

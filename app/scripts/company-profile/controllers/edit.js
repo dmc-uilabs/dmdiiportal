@@ -131,8 +131,8 @@ angular.module('dmc.company-profile')
             };
 
             var uploadLogo = function(companyId){
-                if($scope.newLogo){
-                    fileUpload.uploadFileToUrl($scope.newLogo.file, {id : companyId}, 'company-logo', function(response) {
+                if($scope.newLogo.length){
+                    fileUpload.uploadFileToUrl($scope.newLogo[0].file, {id : companyId}, 'company-logo', function(response) {
                         ajax.create(dataFactory.documentsUrl().save,
                             {
                                 ownerId: $scope.user.accountId,
@@ -162,7 +162,7 @@ angular.module('dmc.company-profile')
 
             var deleteImages = function(){
                 angular.forEach($scope.removedImages, function(imageId) {
-                    ajax.delete(dataFactory.documentsUrl(imageId), {}, function(response) {
+                    ajax.delete(dataFactory.documentsUrl(imageId).delete, {}, function(response) {
                         if(response.status === 200) {
                             toastModel.showToast('success', 'Image successfully deleted');
                         } else {
