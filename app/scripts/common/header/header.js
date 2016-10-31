@@ -4,6 +4,7 @@
 *
 * Global Header
 */
+angular.module('dmc', ['angulartics', 'angulartics.google.analytics']);
 angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.notifications'])
 .config(function($animateProvider) {
     $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
