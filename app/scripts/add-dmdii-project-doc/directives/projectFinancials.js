@@ -42,13 +42,12 @@ angular.module('dmc.add-project-doc').
                             documentUrl: response.file.name,
                             documentName: 'projectFinancials',
                             ownerId: $scope.user.accountId,
-                            parentType: 'DMDII',
-                            parentId: $scope.project.id,
-                            docClass: 'FINANCIAL',
+                            dmdiiProjectId: $scope.project.id,
+                            fileType: 3,
                             accessLevel: $scope.doc[0].accessLevel
                         };
 
-                        ajax.create(dataFactory.documentsURL().save, $scope.document, callback);
+                        ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);
                     });
                 };
             }

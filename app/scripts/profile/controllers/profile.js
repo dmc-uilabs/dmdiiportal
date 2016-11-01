@@ -5,7 +5,7 @@ angular.module('dmc.profile')
 
         $scope.profile = profileData;  //profile
 
-        ajax.get(dataFactory.documentsURL().getList, {recent: 1, parentType: 'USER', parentId: $scope.profile.id, docClass: 'IMAGE'}, function(response) {
+        ajax.get(dataFactory.documentsURL().getList, {page: 0, pageSize: 1, parentType: 'USER', parentId: $scope.profile.id, docClass: 'IMAGE'}, function(response) {
             if (response.data && response.data.data) {
                 $scope.profile.image = response.data.data[0].documentUrl;
             }

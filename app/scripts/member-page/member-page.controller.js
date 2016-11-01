@@ -76,7 +76,7 @@ angular.module('dmc.member')
                     parentType: 'ORGANIZATION',
                     parentId: $scope.member.organization.id,
                     docClass: 'LOGO',
-                    recent: 1
+                    page: 0, pageSize: 1
                 }, function(response) {
                     if (response.data.data.length > 0) {
                         $scope.member.organization.logoImage = response.data.data[0];

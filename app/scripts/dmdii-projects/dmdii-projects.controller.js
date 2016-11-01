@@ -105,18 +105,12 @@ angular.module('dmc.dmdiiProjects')
             }
 
             $scope.getProjectStaticImages = function() {
-                ajax.get(dataFactory.documentsURL().getList, {
-                    docClass: 'OVERVIEW',
-                    recent: 1
-                }, function(response)  {
-                    $scope.projectOverview = response.data.data[0];
+                ajax.get(dataFactory.getDMDIIDocuments().overview, {}, function(response)  {
+                    $scope.projectOverview = response.data;
                 });
 
-                ajax.get(dataFactory.documentsURL().getList, {
-                    docClass: 'STATUS',
-                    recent: 1
-                }, function(response)  {
-                    $scope.projectStatus = response.data.data[0];
+                ajax.get(dataFactory.getDMDIIDocuments().status, {}, function(response)  {
+                    $scope.projectStatus = response.data;
                 });
             }
             $scope.getProjectStaticImages();
@@ -346,6 +340,24 @@ angular.module('dmc.dmdiiProjects')
                     })
                 }
             }
+
+            $scope.deleteNews = function(index, id) {
+                ajax.delete(dataFactory.dmdiiProjectNewsUrl(id).delete, {}, function() {
+                    $scope.news.splice(index, 1);
+                });
+            };
+
+            $scope.deleteQuicklink = function(index, id) {
+                ajax.delete(dataFactory.quicklinkUrl(id).delete, {}, function() {
+                    $scope.docs.splice(index, 1);
+                });
+            };
+
+            $scope.deleteDocument = function(id, type) {
+                ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
+                    delete $scope[type];
+                });
+            };
 
             var getMenu = function(){
 

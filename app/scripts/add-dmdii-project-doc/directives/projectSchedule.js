@@ -41,13 +41,12 @@ angular.module('dmc.add-project-doc').
                             documentUrl: response.file.name,
                             documentName: 'projectSchedule',
                             ownerId: $scope.user.accountId,
-                            parentType: 'DMDII',
-                            parentId: $scope.project.id,
-                            docClass: 'SCHEDULE',
+                            dmdiiProjectId: $scope.project.id,
+                            fileType: 4,
                             accessLevel: $scope.doc[0].accessLevel
                         };
 
-                        ajax.create(dataFactory.documentsURL().save, $scope.document, callback);
+                        ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);
                     });
                 };
 

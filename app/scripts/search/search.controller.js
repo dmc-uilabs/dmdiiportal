@@ -268,7 +268,7 @@ angular.module('dmc.search')
                                     parentType: 'ORGANIZATION',
                                     parentId: company.id,
                                     docClass: 'LOGO',
-                                    recent: 1
+                                    page: 0, pageSize: 1
                                 }, function(response) {
                                     if (response.data && response.data.data && response.data.data !== null && response.data.data.length > 0) {
                                         company.logoImage = response.data.data[0];

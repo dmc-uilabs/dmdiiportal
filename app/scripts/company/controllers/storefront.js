@@ -37,7 +37,7 @@ angular.module('dmc.company')
             parentType: 'ORGANIZATION',
             parentId: $scope.companyData.id,
             docClass: 'LOGO',
-            recent: 1
+            page: 0, pageSize: 1
         }, function(response) {
             if (response.data.data.length > 0) {
                 $scope.companyData.logoImage = response.data.data[0];

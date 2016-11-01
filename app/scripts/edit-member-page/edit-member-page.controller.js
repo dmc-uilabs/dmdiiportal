@@ -110,7 +110,7 @@ angular.module('dmc.edit-member')
                     parentType: 'ORGANIZATION',
                     parentId: $scope.company.organization.id,
                     docClass: 'LOGO',
-                    recent: 1
+                    page: 0, pageSize: 1
                 }, function(response) {
                     if (response.data && response.data.data && response.data.data.length > 0) {
                         $scope.company.organization.logoImage = response.data.data[0];

@@ -35,11 +35,11 @@ angular.module('dmc.addDmdiiContent').
                             documentUrl: response.file.name,
                             documentName: 'projectOverview',
                             ownerId: $scope.user.accountId,
-                            docClass: 'OVERVIEW',
+                            fileype: 1,
                             accessLevel: $scope.doc[0].accessLevel
                         };
 
-                        ajax.create(dataFactory.documentsURL().save, $scope.document, callback);
+                        ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);
                     });
                 };
 

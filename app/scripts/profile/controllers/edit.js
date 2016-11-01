@@ -25,7 +25,7 @@ angular.module('dmc.profile')
         var profileImageDoc = {};
         var removeImageFlag = false;
 
-        ajax.get(dataFactory.documentsURL().getList, { recent: 1, parentType: 'USER', parentId: $scope.profile.id, docClass: 'IMAGE'}, function(response) {
+        ajax.get(dataFactory.documentsURL().getList, { page: 0, pageSize: 1, parentType: 'USER', parentId: $scope.profile.id, docClass: 'IMAGE'}, function(response) {
             if (response.data && response.data.data && response.data.data.length > 0) {
                 profileImageDoc = response.data.data[0];
             }
