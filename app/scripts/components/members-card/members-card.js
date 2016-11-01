@@ -376,8 +376,8 @@ angular.module('dmc.component.members-card', [
 
     var promises = {
         'company': $http.get(dataFactory.getOrganization(id)),
-        'videos': $http.get(dataFactory.documentsUrl(), {parentType: 'ORGANIZATION', parentId: id, docClass: 'VIDEO', recent: 3}),
-        'images': $http.get(dataFactory.documentsUrl(), {parentType: 'ORGANIZATION', parentId: id, docClass: 'IMAGE', recent: 3}),
+        'videos': $http.get(dataFactory.documentsUrl().getList, { params: { parentType: 'ORGANIZATION', parentId: id, docClass: 'VIDEO', recent: 3}}),
+        'images': $http.get(dataFactory.documentsUrl().getList, { params: { parentType: 'ORGANIZATION', parentId: id, docClass: 'IMAGE', recent: 3}}),
 
 				/* uncomment when implemented/fixed
 				,'public_history': $http.get(dataFactory.companyURL(id).history,{params: {
@@ -392,8 +392,8 @@ angular.module('dmc.component.members-card', [
 
     $q.all(promises).then(function(responses){
         $scope.company = responses.company.data;
-        $scope.company['videos'] = responses.videos.data.data;
-        $scope.company['images'] = responses.images.data.data;
+        $scope.company['videos'] = responses.videos.data.data || [];
+        $scope.company['images'] = responses.images.data.data || [];
 
         var data = responses.public_history.data;
         for(var i in data){

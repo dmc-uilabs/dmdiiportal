@@ -56,6 +56,7 @@ angular.module('dmc.search_v2')
                 $scope.currentPage = newPage;
                 $scope.getResults();
             }
+
             $scope.showMembers = function(id, ev){
                 $(window).scrollTop();
                 $mdDialog.show({
@@ -81,7 +82,7 @@ angular.module('dmc.search_v2')
 
             $scope.getCompanies = function () {
                 ajax.get(dataFactory.getOrganizationList(), {
-                    page: $scope.currentPage,
+                    page: $scope.currentPage - 1,
                     pageSize: $scope.totalItemsPerPage,
                     name: $scope.searchTextModel
                 }, function (response) {
@@ -91,6 +92,7 @@ angular.module('dmc.search_v2')
                     $scope.totalPages = response.data.totalPages;
                     $scope.isFirst = response.data.first;
                     $scope.isLast = response.data.last;
+
                     isFollowCompany($.map($scope.arrayItems, function (x) {
                         return x.id;
                     }));
@@ -102,10 +104,9 @@ angular.module('dmc.search_v2')
             // Members Start ------------------------------------------------------
             $scope.getMembers = function () {
                 ajax.get(dataFactory.getUserList(), {
-                    page: $scope.currentPage,
+                    page: $scope.currentPage - 1,
                     pageSize: $scope.totalItemsPerPage,
-                    firstName: $scope.searchTextModel,
-                    lastName: $scope.searchTextModel
+                    userName: $scope.searchTextModel
                 }, function (response) {
                     $scope.totalFollowing = 0;
                     $scope.arrayItems = response.data.content;

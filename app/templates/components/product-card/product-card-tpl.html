@@ -28,12 +28,12 @@
         </div>
     </md-toolbar>
     <div class="product-card__image_small" ng-if="cardStyle == 'small'">
-        <img ng-src="{{cardSource.featureImage.thumbnail}}" alt="{{cardSource.title}}">
+        <img ng-src="{{images[0].documentUrl}}" alt="{{cardSource.title}}">
     </div>
     <div class="product-card__header" layout="column"
          ng-class="cardStyle == 'small' ? 'title-without-spaces' : ''">
         <a ng-href="{{'/service-marketplace.php#/'+cardSource.id}}" ng-click="previousPage.save($event)"><h3>{{cardSource.title}}</h3></a>
-        <a ng-href="{{'/company.php#/'+(cardSource.companyId ? cardSource.companyId : 1)+'/storefront?product=services'}}"><span class="user-name">{{cardSource.owner}}</span></a>
+        <a ng-href="{{'/company.php#/'+(cardSource.companyId ? cardSource.companyId: 1)+'/storefront?product=services'}}"><span class="user-name">{{ownerName}}</span></a>
     </div>
     <div class="product-card__content" layout="row"  ng-if="cardStyle != 'included'">
         <div class="product-card__content__column" flex="28" layout="column">

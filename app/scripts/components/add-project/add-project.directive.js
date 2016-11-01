@@ -231,8 +231,8 @@ angular.module('dmc.add_project.directive', [
             controller: function ($scope, ajax, dataFactory) {
                 DMCMemberModel.getMembers().then(
                     function(data){
-                        $scope.allMembers = data.content;
-                        $scope.foundMembers = data.content;
+                        $scope.allMembers = data;
+                        $scope.foundMembers = data;
                         isInvite();
                     },
                     function(data){
@@ -306,18 +306,13 @@ angular.module('dmc.add_project.directive', [
                 var prevMember;
 
                 $scope.searchMembers = function(){
-                    console.log('add-project.directive.searchMembers:');
-                    console.log('add-project.directive.searchMembers:' + $scope.searchModel);
-                    ajax.get(dataFactory.searchMembers($scope.searchModel), {}, function (response) {
-                            console.log('searchMembers: response=' + response);
-                            console.log('searchMembers: response=' + response.data);
-                            $scope.foundMembers = response.data;
+                    ajax.get(dataFactory.getUserList(), {page: 0, pageSize: 100, userName: $scope.searchModel}, function (response) {
+                            $scope.foundMembers = response.data.content || [];
                             isInvite();
                         });
                 };
 
                 $scope.resetMembers = function(){
-                    console.log('add-project.directive.resetMembers:');
                     $scope.foundMembers = $scope.allMembers;
                     $scope.searchModel = '';
                     isInvite();
@@ -621,12 +616,13 @@ angular.module('dmc.add_project.directive', [
                         }
                     }
                     if(project){
-                        ajax.get(dataFactory.getCompanyMembers($scope.cardSource.id),{},
+                        ajax.get(dataFactory.getUsersByOrganization($scope.cardSource.id),{},
                             function(response){
                                 var ids = $.map(response.data,function(x){ return x.id; });
                                 var count = ids.length;
-                                function callbackAddUser(response){
-                                    if(i == count-1) {
+                                function callbackAddUser(response, i){
+                                    console.log(response, i, count)
+                                    if(i === count-1) {
                                         $scope.cancelAddToProject();
 
                                         if (!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
@@ -648,18 +644,19 @@ angular.module('dmc.add_project.directive', [
                                     }
                                 }
                                 if(count > 0) {
+                                    var index = 0
                                     for (var i in ids) {
                                         ajax.create(dataFactory.createMembersToProject(),
                                             {
                                                 'profileId': ids[i],
                                                 'projectId': projectId,
-                                                'fromProfileId': $rootScope.userData.accountId,
+                                                'fromProfileId': $rootScope.userData.id,
                                                 'from': $rootScope.userData.displayName,
                                                 'date': Date.parse(new Date()),
                                                 'accept': true
                                             }, function(response){
-
-                                                rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
+                                                index++;
+                                                $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
                                                 $rootScope.userData.messages.items.unshift({
                                                     'user_name': $rootScope.userData.displayName,
                                                     'image': '/uploads/profile/1/20151222084711000000.jpg',
@@ -667,14 +664,13 @@ angular.module('dmc.add_project.directive', [
                                                     'link': '/project.php#/preview/' + projectId,
                                                     'created_at': moment().format('hh:mm A')
                                                 });
-                                                callbackAddUser(response,i);
+                                                callbackAddUser(response, index);
                                             }
                                         );
                                     }
                                 }
                             }
                         );
-
                     }else{
                         toastModel.showToast('error', 'Project not found');
                     }

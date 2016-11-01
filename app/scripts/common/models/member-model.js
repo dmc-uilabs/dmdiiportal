@@ -6,9 +6,9 @@ angular.module('dmc.model.member', ['dmc.data'])
     this.getMembers = function() {
         var userData = DMCUserModel.getUserData();
         return userData.then(function(res){
-            return $http.get(dataFactory.getUserList(), {page: 0, pageSize: 100}).then(
+            return $http.get(dataFactory.getUserList(), { params: { page: 0, pageSize: 100 } }).then(
                 function(response) {
-                    var data = response.data ? response.data : response;
+                    var data = response.data ? response.data.content : response;
                     for(var i in data){
                         if(data[i].id === res.accountId){
                             data.splice(i,1);

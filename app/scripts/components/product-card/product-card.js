@@ -43,6 +43,20 @@ angular.module('dmc.component.productcard', [
           });
 
           $scope.previousPage = previousPage;
+          $scope.images = [];
+
+          if ($scope.cardSource.published) {
+              ajax.get(dataFactory.documentsUrl().getList, {parentType: 'SERVICE', parentId: $scope.cardSource.id, docClass: 'IMAGE', recent: 5}, function(response) {
+                  if(response.data && response.data.data && response.data.data.length) {
+                      $scope.images = response.data.data;
+                  }
+              });
+
+              ajax.get(dataFactory.userAccount($scope.cardSource.owner).get, {}, function(response) {
+                  $scope.ownerName = response.data.displayName;
+              });
+
+          }
 
           //$scope.hideButtons = [];
           $scope.compareStyle = {
@@ -104,49 +118,73 @@ angular.module('dmc.component.productcard', [
           };
 
           // add service to project
-          $scope.saveToProject = function(projectId){
-              var project = null;
-              for(var i in $scope.projects){
-                  if($scope.projects[i].id == projectId){
-                      project = $scope.projects[i];
-                      break;
-                  }
-              }
-              if(project) {
-                  var updatedItem = $.extend(true, {}, $scope.cardSource);
-                  if (updatedItem.hasOwnProperty('$$hashKey')) {
-                     delete updatedItem['$$hashKey'];
-                  }
-                  updatedItem.currentStatus = {
-                              project: {
-                                  id: project.id,
-                                  title: project.title
-                              }
-                          };
-                  updatedItem.projectId = project.id;
-                  updatedItem.from = 'marketplace';
-                  ajax.update(dataFactory.addServiceToProject($scope.cardSource.id), updatedItem, function (response) {
-                          $scope.cancelAddToProject();
-                          if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
-                          if(!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
-                          $scope.cardSource.currentStatus.project.id = projectId;
-                          $scope.cardSource.currentStatus.project.title = project.title;
-                          $scope.cardSource.projectId = projectId;
-                          $scope.cardSource.added = true;
+            $scope.saveToProject = function(projectId){
+                var project = null;
+                for(var i in $scope.projects){
+                    if($scope.projects[i].id == projectId){
+                        project = $scope.projects[i];
+                        break;
+                    }
+                }
 
-                          $scope.cardSource.lastProject = {
-                              title: project.title,
-                              href: '/project.php#/' + project.id + '/home'
-                          };
-                          $scope.addedTimeout = setTimeout(function () {
-                              $scope.cardSource.added = false;
-                              apply();
-                          }, 20000);
-                          apply();
-                      }
-                  );
-              }
-          };
+                if(project) {
+                    var updatedItem = $.extend(true, {}, $scope.cardSource);
+                    if (updatedItem.hasOwnProperty('$$hashKey')) {
+                        delete updatedItem['$$hashKey'];
+                    }
+                    updatedItem.currentStatus = {
+                        project: {
+                            id: project.id,
+                            title: project.title
+                        }
+                    };
+                    updatedItem.owner = userData.accountId;
+                    updatedItem.projectId = project.id;
+                    updatedItem.from = 'marketplace';
+                    updatedItem.published = false;
+                    ajax.create(dataFactory.services().add, updatedItem, function (response) {
+                        var id = response.data.id;
+                        $scope.cancelAddToProject();
+                        ajax.get(dataFactory.services($scope.cardSource.id).get_tags, {}, function(response) {
+                            var newTags = response.data;
+                            angular.forEach(newTags, function(tag) {
+                                delete tag.id;
+                                tag.serviceId = id;
+                                ajax.create(dataFactory.services(id).add_tags, tag);
+                            })
+                        });
+                        if ($scope.images.length) {
+                            angular.forEach($scope.images, function(image) {
+                                delete image.id;
+                                image.ownerId = userData.accountId;
+                                image.parentId = id;
+                                ajax.create(dataFactory.documentsUrl().save, image)
+                            });
+                        };
+                        ajax.get(dataFactory.services($scope.cardSource.id).get_interface, {}, function(response) {
+                            var newInterface = response.data;
+                            newInterface.serviceId = id;
+                            ajax.create(dataFactory.services().add_interface, newInterface);
+                        })
+                        if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
+                        if(!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
+                        $scope.cardSource.currentStatus.project.id = projectId;
+                        $scope.cardSource.currentStatus.project.title = project.title;
+                        $scope.cardSource.projectId = projectId;
+                        $scope.cardSource.added = true;
+
+                        $scope.cardSource.lastProject = {
+                            title: project.title,
+                            href: '/project.php#/' + project.id + '/home'
+                        };
+                        $scope.addedTimeout = setTimeout(function () {
+                            $scope.cardSource.added = false;
+                            apply();
+                        }, 20000);
+                        apply();
+                    });
+                }
+            };
 
           $scope.loadProjects = function() {
               $scope.projects = $scope.$root.projects;

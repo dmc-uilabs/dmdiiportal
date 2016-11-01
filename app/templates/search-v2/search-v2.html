@@ -1,6 +1,6 @@
 <div class="container marketplace-box" layout="row" >
     <!-- Left Content Column -->
-    <div class="search-content" layout="column" flex="80">
+    <div class="search-content" layout="column" flex>
         <md-content class="container-view-all" layout="row" layout-align="center center">
             <div layout="column" flex="100">
                 <div layout="row" flex layout-align="start center" class="search-content">
@@ -42,8 +42,10 @@
                     <div flex ng-if="type === 'companies'">
                         <div layout="row" layout-wrap>
                             <div dmc-company-card
-                                 flex="25"
+                                 flex="20"
                                  dir-paginate="item in arrayItems | itemsPerPage: totalItemsPerPage"
+                                 total-items="totalResults"
+                                 current-page="currentPage"
                                  add-to-project="addCompanyToProject"
                                  card-source="item">
                             </div>
@@ -52,8 +54,10 @@
                     <div flex ng-if="type === 'members'">
                         <div layout="row" layout-wrap>
                             <div dmc-member-card
-                                flex="25"
+                                flex="20"
                                 dir-paginate="item in arrayItems | itemsPerPage: totalItemsPerPage"
+                                total-items="totalResults"
+                                current-page="currentPage"
                                 all-buttons="true"
                                 card-source="item"
                                 class="member-card">
