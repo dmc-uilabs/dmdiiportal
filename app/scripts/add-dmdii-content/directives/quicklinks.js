@@ -129,14 +129,14 @@ angular.module('dmc.addDmdiiContent').
                                     ownerId: $scope.user.accountId,
                                     documentUrl: $scope.quicklink.doc,
                                     documentName: $scope.quicklink.displayName,
-                                    docClass: 'QUICKLINK'
+                                    docClass: 'QUICK_LINK'
                                 }, function(response) {
                                 $scope.quicklink.doc = response.data;
-                                ajax.create(dataFactory.quicklinkUrl().save(), $scope.quicklink, quicklinkCallback);
+                                ajax.create(dataFactory.quicklinkUrl().save, $scope.quicklink, quicklinkCallback);
                             });
                         });
                     } else {
-                        ajax.create(dataFactory.quicklinkUrl().save(), $scope.quicklink, quicklinkCallback);
+                        ajax.create(dataFactory.quicklinkUrl().save, $scope.quicklink, quicklinkCallback);
                     }
                 };
                 function apply() {
