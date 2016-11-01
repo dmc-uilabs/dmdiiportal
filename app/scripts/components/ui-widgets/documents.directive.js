@@ -28,7 +28,7 @@ angular.module('dmc.widgets.documents',[
 							parentType: 'PROJECT',
 							parentId: $scope.projectId,
 							docClass: 'SUPPORT',
-							recent: 5
+							recent: 20
 					}, function(response) {
 							$scope.documents = response.data.data||[];
 							$scope.total = $scope.documents.length;
@@ -71,7 +71,7 @@ angular.module('dmc.widgets.documents',[
 							parentType: 'PROJECT',
 							parentId: $scope.projectId,
 							docClass: 'SUPPORT',
-							recent: 5
+							recent: 20
 					}, function(response) {
 							$scope.documents = response.data.data||[];
 							$scope.total = $scope.documents.length;
@@ -116,7 +116,7 @@ angular.module('dmc.widgets.documents',[
 								parentType: 'PROJECT',
 								parentId: $scope.projectId,
 								docClass: 'SUPPORT',
-								recent: 5
+								recent: 20
 							}, function(response) {
 								$scope.source = response.data.data||[];
 								apply();
@@ -177,6 +177,7 @@ angular.module('dmc.widgets.documents',[
 				};
 
 				$scope.saveEdit = function(item){
+					//TODO: actually make a service call? no that will be handled at end...
 					if(item.title.trim().length == 0) item.title = item.oldTitle;
 					item.editing = false;
 					if(item.file.title){
@@ -188,6 +189,7 @@ angular.module('dmc.widgets.documents',[
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
 
+				//TODO: need to fix the config so it makes files look the way we expect
 				$scope.dropzoneConfig = {
 					'options': { // passed into the Dropzone constructor
 						'url': dataFactory.getDocumentUpload($scope.projectId),
@@ -291,7 +293,7 @@ angular.module('dmc.widgets.documents',[
 														parentType: 'PROJECT',
 														parentId: $scope.typeId,
 														docClass: 'SUPPORT',
-														recent: 5
+														recent: 20
 													};
                     }
                     ajax.get(url, requestData,
