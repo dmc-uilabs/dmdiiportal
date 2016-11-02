@@ -94,6 +94,7 @@ angular.module('dmc.project')
 
             $scope.getMembers = function () {
                 $scope.loading = true;
+                $scope.companyNameList = {};
                 ajax.get(dataFactory.projectMembers(projectCtrl.currentProjectId), {}, function (response) {
                     var profileIds = $.map(response.data, function (x) {
                         return x.profileId;
@@ -106,6 +107,14 @@ angular.module('dmc.project')
                     }, function (res) {
                         $scope.loading = false;
                         for(var i in $scope.members){
+                            if ($scope.members[i].company && !$scope.companyNameList[$scope.members[i].company]) {
+                                ajax.get(dataFactory.getOrganization([$scope.members[i].company]), {}, function(response) {
+                                    if (response.data && response.data.name) {
+                                        $scope.companyNameList[$scope.members[i].company] = response.data.name;
+                                    }
+                                });
+                            }
+                            
                             for(var j in res.data){
                                 if($scope.members[i].profileId == res.data[j].id){
                                     $scope.members[i].member = res.data[j];

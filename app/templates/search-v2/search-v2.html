@@ -1,35 +1,33 @@
 <div class="container marketplace-box" layout="row" >
     <!-- Left Content Column -->
-    <div class="search-content" layout="column" flex>
-        <md-content class="container-view-all" layout="row" layout-align="center center">
+    <div class="search-content" layout="column" flex="100">
+        <md-content class="container-view-all md-padding" layout-padding>
             <div layout="column" flex="100">
-                <div layout="row" flex layout-align="start center" class="search-content">
-                    <form ng-submit="submit(searchTextModel)" class="view-all-search-field global-search-form" flex>
-                        <div layout="column">
-                            <div layout="row">
-                                <div layout="column" flex>
-                                    <md-input-container md-no-float>
-                                        <md-icon>
-                                            <ng-md-icon icon="search"></ng-md-icon>
-                                        </md-icon>
-                                        <input type="text" placeholder="{{searchPlaceholder}}" ng-model="searchTextModel">
-                                    </md-input-container>
-                                </div>
-                                <div layout="column">
-                                    <md-input-container>
-                                        <md-button type="submit" class="search-button">Search</md-button>
-                                    </md-input-container>
-                                </div>
+                <div layout="row" layout-align="start center" class="search-content">
+                    <form ng-submit="submit(searchTextModel)" flex class="view-all-search-field global-search-form" >
+                        <div layout="row" flex>
+                            <div layout="column" flex>
+                                <md-input-container md-no-float>
+                                    <md-icon>
+                                        <ng-md-icon icon="search"></ng-md-icon>
+                                    </md-icon>
+                                    <input type="text" placeholder="{{searchPlaceholder}}" ng-model="searchTextModel">
+                                </md-input-container>
+                            </div>
+                            <div layout="column">
+                                <md-input-container>
+                                    <md-button type="submit" class="search-button">Search</md-button>
+                                </md-input-container>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div layout="row" flex class="title-result" layout-align="start center">
+                <div layout="row" class="title-result" layout-align="start center">
                     <div class="title">
                         {{totalResults}} Results
                     </div>
                     <span flex></span>
-                    <md-input-container>
+                    <md-input-container flex="10">
                         <label>Show</label>
                         <md-select ng-model="totalItemsPerPage" ng-change="getResults()">
                             <md-option ng-repeat="item in showArray track by $index" ng-value="item.val" >
@@ -38,7 +36,7 @@
                         </md-select>
                     </md-input-container>
                 </div>
-                <div layout="results" flex>
+                <div layout="results">
                     <div flex ng-if="type === 'companies'">
                         <div layout="row" layout-wrap>
                             <div dmc-company-card

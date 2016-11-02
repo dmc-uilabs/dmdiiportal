@@ -1,7 +1,7 @@
 <md-dialog aria-label="View" class="view-all-included">
 	<md-dialog-content class="component">
 		<div layout="row" layout-align="end center">
-            
+
             <md-button md-no-ink class="md-icon-button" ng-click="cancel()">
                 <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
             </md-button>
@@ -22,7 +22,7 @@
 
                     <!--product description-->
                     <div class="product-description">
-                        {{profile.description}}
+                        {{profile.aboutMe}}
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                         <div layout="row" class="tabs-content" layout-wrap>
                             <md-chips ng-repeat="skill in profile.skills track by $index">
                                 <md-chip>
-                                    <a ng-href="{{'search.php#/members?text='+skill}}">{{skill}}</a>
+                                    <a ng-href="{{'search.php#/members?text='+skill.skillName}}">{{skill.skillName}}</a>
                                 </md-chip>
                             </md-chips>
                         </div>
