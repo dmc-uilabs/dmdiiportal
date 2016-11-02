@@ -11,8 +11,8 @@ angular.module('dmc.widgets.documents',[
 			restrict: 'A',
 			templateUrl: 'templates/components/ui-widgets/documents.html',
 			scope: {
-				widgetTitle: "=",
-				projectId: "="
+				widgetTitle: '=',
+				projectId: '='
 			},
 			link: function (scope, iElement, iAttrs) {
 			},
@@ -76,16 +76,17 @@ angular.module('dmc.widgets.documents',[
 			restrict: 'EA',
 			templateUrl: 'templates/components/ui-widgets/upload-documents.html',
 			scope: {
-                source : "=",
-				widgetTitle: "=",
-				projectId: "=",
-                widgetType: "=",
-				autoUpload: "=",
-                serviceId: "=",
-				product: "=",
-				allowTagging: "=",
-				fileLimit: "=",
-				accessLevel: "="
+                source : '=',
+				widgetTitle: '=',
+				projectId: '=',
+                widgetType: '=',
+				autoUpload: '=',
+                serviceId: '=',
+				product: '=',
+				allowTagging: '=',
+				fileLimit: '=',
+				isDmdii: '=',
+				accessLevel: '='
 			},
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
                 $scope.documentDropZone;
@@ -120,7 +121,11 @@ angular.module('dmc.widgets.documents',[
 				}
 
 				var getTags = function(){
-					ajax.get(dataFactory.getDocumentTags(), null, callbackTagFunction);
+					if (isDmdii === 'true') {
+						ajax.get(dataFactory.getDmdiiDocumentTags(), null, callbackTagFunction);
+					} else {
+						ajax.get(dataFactory.getDocumentTags(), null, callbackTagFunction);
+					}
 				}
 				getTags();
 
@@ -243,8 +248,8 @@ angular.module('dmc.widgets.documents',[
 		return {
 			restrict: 'E',
 			scope:{
-                documentsType : "=",
-                typeId : "="
+                documentsType : '=',
+                typeId : '='
             },
 			templateUrl: 'templates/components/ui-widgets/documents-folder.html',
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
@@ -264,12 +269,12 @@ angular.module('dmc.widgets.documents',[
                         _order : $scope.order,
                         _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort)
                     };
-                    if($scope.documentsType == "service"){
+                    if($scope.documentsType == 'service'){
                         url = dataFactory.getServiceDocuments($scope.typeId);
-                        requestData["service-documentId"] = $scope.serviceDocumentId;
-                    }else if($scope.documentsType == "project"){
+                        requestData['service-documentId'] = $scope.serviceDocumentId;
+                    }else if($scope.documentsType == 'project'){
                         url = dataFactory.getProjectDocuments($scope.typeId);
-                        requestData["project-documentId"] = $scope.serviceDocumentId;
+                        requestData['project-documentId'] = $scope.serviceDocumentId;
                     }
                     ajax.get(url, requestData,
                         function (response) {
