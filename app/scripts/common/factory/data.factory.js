@@ -585,10 +585,17 @@ angular.module('dmc.data',[])
                 return {
                     all: localhost + 'dmdiidocuments',
                     single: localhost + 'dmdiidocument/' + id,
+                    project: localhost + 'dmdiidocuments/dmdiiProjectId',
                     overview: localhost + 'staticdocument/1',
                     status: localhost + 'staticdocument/2',
                     projectDocument: localhost + 'dmdiidocument/filetype'
                 };
+            },
+            saveDMDIIDocument: function() {
+                return localhost + 'dmdiidocument';
+            },
+            deleteDMDIIDocument: function(id) {
+                return localhost + 'dmdiidocument/' + id;
             },
             documentsUrl: function(id) {
                 return  {

@@ -124,12 +124,11 @@ angular.module('dmc.addDmdiiContent').
                     if ($scope.linkType === 'document') {
                         fileUpload.uploadFileToUrl($scope.document[0].file, {}, 'quickdoc', function(response) {
                             $scope.quicklink.doc = response.file.name;
-                            ajax.create(dataFactory.documentsUrl().save,
+                            ajax.create(dataFactory.saveDMDIIDocument(),
                                 {
                                     ownerId: $scope.user.accountId,
                                     documentUrl: $scope.quicklink.doc,
-                                    documentName: $scope.quicklink.displayName,
-                                    docClass: 'QUICK_LINK'
+                                    documentName: $scope.quicklink.displayName
                                 }, function(response) {
                                 $scope.quicklink.doc = response.data;
                                 ajax.create(dataFactory.quicklinkUrl().save, $scope.quicklink, quicklinkCallback);
