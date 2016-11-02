@@ -644,7 +644,7 @@ angular.module('dmc.add_project.directive', [
                                     }
                                 }
                                 if(count > 0) {
-                                    var index = 0
+                                    var index = 0;
                                     for (var i in ids) {
                                         ajax.create(dataFactory.createMembersToProject(),
                                             {
