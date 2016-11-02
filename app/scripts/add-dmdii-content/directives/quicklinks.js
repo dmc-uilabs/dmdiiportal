@@ -124,18 +124,19 @@ angular.module('dmc.addDmdiiContent').
                     if ($scope.linkType === 'document') {
                         fileUpload.uploadFileToUrl($scope.document[0].file, {}, 'quickdoc', function(response) {
                             $scope.quicklink.doc = response.file.name;
-                            ajax.create(dataFactory.documentsURL().save,
+                            ajax.create(dataFactory.documentsUrl().save,
                                 {
                                     ownerId: $scope.user.accountId,
                                     documentUrl: $scope.quicklink.doc,
-                                    documentName: $scope.quicklink.displayName
+                                    documentName: $scope.quicklink.displayName,
+                                    docClass: 'QUICKLINK'
                                 }, function(response) {
                                 $scope.quicklink.doc = response.data;
-                                ajax.create(dataFactory.saveQuicklink(), $scope.quicklink, quicklinkCallback);
+                                ajax.create(dataFactory.quicklinkUrl().save(), $scope.quicklink, quicklinkCallback);
                             });
                         });
                     } else {
-                        ajax.create(dataFactory.saveQuicklink(), $scope.quicklink, quicklinkCallback);
+                        ajax.create(dataFactory.quicklinkUrl().save(), $scope.quicklink, quicklinkCallback);
                     }
                 };
                 function apply() {

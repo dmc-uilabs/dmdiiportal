@@ -22,59 +22,26 @@
              class="boxForAddImage"
              layout-align="start start"
              ng-if="isAddingImage">
-            <form name="formAddImage" layout="column">
                 <div layout="row" flex>
-                    <md-input-container md-no-float flex="100">
-                        <input name="title"
-                               ng-model="newImage.title"
-                               type="text"
-                               placeholder="Image Title">
-                    </md-input-container>
+					<div class="content-column upload-documents top10" layout="column" flex>
+						<div class="content-panel"
+						source="newImages"
+						ui-widget-upload-documents
+						widget-type="'row'"
+						auto-upload="false"
+						widget-title="'Upload Images'"
+						allow-tagging="true"
+						file-limit="3">
+						</div>
+					</div>
                 </div>
-                <div layout="row" flex>
-                    <div class="flow-box"
-                         flow-init
-                         flow-drag-enter="pictureDragEnter($flow)"
-                         flow-drag-leave="pictureDragLeave($flow)"
-                         flow-file-success="$file.msg = $message"
-                         flow-file-added="addedNewFile($file, $event, $flow )"
-                         layout="row" flex layout-align="start start">
-                        <div class="alert" flow-drop flow-drop-enabled="true" flex="40">
-                            <div class="inner-box" layout="row" layout-align="center center" flex>
-                                <div ng-if="$flow.files.length > 0" class="uploaded-picture" flex="90">
-                                    <img id="flowImage" flow-img="$flow.files[0]" />
-                                    <md-button ng-click="removePicture($flow)" class="md-fab md-mini md-warn md-raised remove-picture" aria-label="Remove picture">
-                                        <ng-md-icon icon="delete" size="18"></ng-md-icon>
-                                    </md-button>
-                                </div>
-                                <div flow-btn class="text" flex="80" ng-if="$flow.files.length == 0">
-                                    Drag And Drop your picture here<br>
-                                    600 x 600 px (max 2 MB)
-                                    <br>or<br>
-                                    <strong>Click here</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div layout="column" layout-align="start start" flex>
-                <md-button class="md-raised dmc-button" type="button" ng-click="cancelAddImage()">
-                    Cancel
-                </md-button>
-                <md-button class="md-raised md-primary dmc-button"
-                           ng-click="saveImage(newImage)"
-                           ng-disabled="!file">
-                    Save
-                </md-button>
-            </div>
         </div>
         <div layout="row"
              layout-wrap
              layout-align="start start"
              flex ng-if="company[4].data.images.length > 0">
             <div class="list-images-item" ng-repeat="image in company[4].data.images">
-                <div class="img"><img ng-src="{{image.url}}"/></div>
+                <div class="img"><img ng-src="{{image.documentUrl}}"/></div>
                 <md-input-container md-no-float>
                     <input type="text"
                            ng-model="image.title"

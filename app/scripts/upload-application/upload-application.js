@@ -21,8 +21,7 @@ angular.module('dmc.uploadApplication', [
     'dmc.model.user',
     'dmc.model.toast-model',
     'dmc.model.fileUpload',
-    'dmc.phone-format',
-    'flow'
+    'dmc.phone-format'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
         $stateProvider.state('upload-application', {

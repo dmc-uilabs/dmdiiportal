@@ -457,6 +457,9 @@ angular.module('dmc.data',[])
             generateToken: function(id) {
                 return localhost + 'user/createtoken?userId=' + id;
             },
+            emailToken: function(id, token){
+                return localhost + 'users/' + id + '/email?token=' + token;
+            },
             validateToken: function(id, token) {
                 return localhost + 'users/' + id + '?action=verify'
             },
@@ -508,10 +511,22 @@ angular.module('dmc.data',[])
                     all: localhost + 'dmdiiMember',
                     full: localhost + 'dmdiiMember/all',
                     search: localhost + 'dmdiiMember/search',
-                    events: localhost + 'dmdiiMember/events',
-                    news: localhost + 'dmdiiMember/news',
                     map: localhost  +  'dmdiiMember/mapEntry'
                 }
+            },
+            dmdiiMemberNewsUrl: function(id) {
+                return {
+                    get: localhost + 'dmdiiMember/news',
+                    save: localhost + 'dmdiiMember/news',
+                    delete: localhost + 'dmdiiMember/news/' + id,
+                };
+            },
+            dmdiiMemberEventUrl: function(id) {
+                return {
+                    get: localhost + 'dmdiiMember/events',
+                    save: localhost + 'dmdiiMember/events',
+                    delete: localhost + 'dmdiiMember/events/' + id,
+                };
             },
             getDMDIIMemberProjects: function() {
                 return {
@@ -521,9 +536,7 @@ angular.module('dmc.data',[])
             },
             saveDMDIIMember: function() {
                 return {
-                    member: localhost + 'dmdiiMember/save',
-                    events: localhost + 'dmdiiMember/events',
-                    news: localhost + 'dmdiiMember/news'
+                    member: localhost + 'dmdiiMember/save'
                 }
             },
             getDMDIIProject: function(id) {
@@ -531,40 +544,53 @@ angular.module('dmc.data',[])
                     get: localhost+'dmdiiProject/' + id,
                     all: localhost+'dmdiiprojects',
                     active: localhost + 'dmdiiprojects/member/active',
-                    events: localhost+'dmdiiProject/events',
-                    news: localhost+'dmdiiProject/news',
                     contributors: localhost + 'dmdiiproject/contributingcompanies',
-                    updates: localhost + 'dmdiiProjectUpdate',
                     search: localhost + 'dmdiiprojects/search'
                 }
             },
             saveDMDIIProject: function() {
                 return {
-                    project: localhost + 'dmdiiProject/save',
-                    events: localhost + 'dmdiiProject/events',
-                    news: localhost + 'dmdiiProject/news',
-                    update: localhost + 'dmdiiProjectUpdate'
+                    project: localhost + 'dmdiiProject/save'
                 }
             },
-            getQuickLinks: function() {
+            dmdiiProjectUpdateUrl: function(id) {
                 return {
-                    all: localhost + 'dmdiiquicklink'
+                    get: localhost + 'dmdiiProjectUpdate',
+                    save: localhost + 'dmdiiProjectUpdate',
+                    delete: localhost + 'dmdiiProjectUpdate/' + id
+                }
+            },
+            dmdiiProjectEventUrl: function(id) {
+                return {
+                    get: localhost + 'dmdiiProject/events',
+                    save: localhost + 'dmdiiProject/events',
+                    delete: localhost + 'dmdiiProject/events/' + id
+                }
+            },
+            dmdiiProjectNewsUrl: function(id) {
+                return {
+                    get: localhost + 'dmdiiProject/news',
+                    save: localhost + 'dmdiiProject/news',
+                    delete: localhost + 'dmdiiProject/news/' + id
                 };
             },
-            saveQuicklink: function() {
-                return localhost + 'dmdiiquicklink';
+            quicklinkUrl: function(id) {
+                return {
+                    get: localhost + 'dmdiiquicklink',
+                    save: localhost + 'dmdiiquicklink',
+                    delete: localhost + 'dmdiiquicklink/' + id
+                };
             },
             getDMDIIDocuments: function(id) {
                 return {
                     all: localhost + 'dmdiidocuments',
                     single: localhost + 'dmdiidocument/' + id,
-                    project: localhost + 'dmdiidocuments/dmdiiProjectId',
                     overview: localhost + 'staticdocument/1',
                     status: localhost + 'staticdocument/2',
                     projectDocument: localhost + 'dmdiidocument/filetype'
                 };
             },
-            documentsURL: function(id) {
+            documentsUrl: function(id) {
                 return  {
                     getSingle: localhost + 'documents/' + id,
                     getList: localhost + 'documents',
@@ -872,6 +898,7 @@ angular.module('dmc.data',[])
             addDiscussion : function(){
                 return localhost+'individual-discussion'
             },
+            /*
             getCompanyImages : function(id){
                 return localhost+'companies/'+id+'/company_images'
             },
@@ -884,6 +911,7 @@ angular.module('dmc.data',[])
             getCompanySkills : function(id){
                 return localhost+'companies/'+id+'/company_skills'
             },
+            */
             getCompanyMembers : function(id){
                 return localhost+'companies/'+id+'/company_members'
             },

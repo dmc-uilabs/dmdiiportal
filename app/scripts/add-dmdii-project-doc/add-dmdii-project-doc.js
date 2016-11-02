@@ -32,8 +32,7 @@ angular.module('dmc.add-project-doc', [
     'dmc.model.company',
     'dmc.phone-format',
     'dmc.zip-code-format',
-    'dmc.model.account',
-    'flow'
+    'dmc.model.account'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('add-doc', {

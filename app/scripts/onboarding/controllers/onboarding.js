@@ -359,7 +359,7 @@ angular.module('dmc.onboarding')
     			}
     		}
     	});
-
+/*
     	onboardingModel.get_account_notfications(userData.accountId, function(data){
     		$scope.account[2].done = true
     		$scope.account[3].done = true
@@ -371,7 +371,7 @@ angular.module('dmc.onboarding')
     			}
     		}
     	});
-
+*/
     	onboardingModel.get_servers(userData.accountId, function(data){
     		$scope.account[4].done = true;
     		$scope.account[4].data.servers = data;
@@ -427,10 +427,7 @@ angular.module('dmc.onboarding')
         		name: 'Company Image',
         		done: false,
         		data: {
-        			featureImage: {
-				        thumbnail: '',
-				        large: ''
-			      	}
+        			featureImage: []
         		}
         	},
         	{
@@ -575,10 +572,7 @@ angular.module('dmc.onboarding')
         		name: 'Cover Image',
         		done: true,
         		data: {
-        			featureImage: {
-				        thumbnail: '',
-				        large: ''
-			      	}
+        			featureImage: []
         		}
         	},
         	{
@@ -594,7 +588,7 @@ angular.module('dmc.onboarding')
         		name: 'Logo',
         		done: true,
         		data: {
-        			logoImage: ''
+        			logoImage: []
         		}
         	}
         ];
@@ -621,12 +615,22 @@ angular.module('dmc.onboarding')
     		);
     	};
 
+/* uncomment when fixed/implemented
 		onboardingModel.getImages(userData.companyId, function(data){
         	$scope.company[4].data.images = data;
         	if($scope.company[4].data.images.length && $scope.company[4].data.videos.length){
         		$scope.company[4].done = true;
         	}else{
         		$scope.company[4].done = false;
+        	}
+		});
+
+        onboardingModel.getFeatureImage(userData.companyId, function(data){
+        	$scope.company[1].data.fetureImage = data;
+        	if($scope.company[1].data.featureImage.length){
+        		$scope.company[1].done = true;
+        	}else{
+        		$scope.company[1].done = false;
         	}
 		});
 
@@ -639,20 +643,6 @@ angular.module('dmc.onboarding')
         	}
 		});
 
-		onboardingModel.getSkills(userData.companyId, function(data){
-        	$scope.company[5].data.skills = data;
-        	if($scope.company[5].data.skills.length){
-        		$scope.company[5].done = true;
-        	}
-		});
-
-		onboardingModel.getSkillsImages(userData.companyId, function(data){
-        	$scope.company[5].data.skillsImages = data;
-        	if(!$scope.company[5].data.skillsImages.length){
-        		$scope.company[5].done = false;
-        	}
-		});
-
 		onboardingModel.getKeyContacts(userData.companyId, function(data){
         	$scope.company[9].data.keyContacts = data;
         	if(!$scope.company[9].data.keyContacts.length){
@@ -661,8 +651,7 @@ angular.module('dmc.onboarding')
 		});
 
         onboardingModel.get_company(userData.companyId, function(data){
-    		$scope.storefront[0].data.featureImage.thumbnail = data.featureImage.thumbnail;
-    		$scope.storefront[0].data.featureImage.large = data.featureImage.large;
+    		$scope.storefront[0].data.featureImage = data.featureImage;
     		$scope.storefront[1].data.description = data.description;
     		$scope.storefront[2].data.logoImage = data.logoImage;
     		for(var i in $scope.storefront){
@@ -670,8 +659,8 @@ angular.module('dmc.onboarding')
 	    		for(var item in $scope.storefront[i].data){
 	    			if(!$scope.storefront[i].data[item]){
 	    				$scope.storefront[i].done = false
-	    			}else if($scope.storefront[i].data.featureImage){
-	    				if(!$scope.storefront[i].data.featureImage.thumbnail || !$scope.storefront[i].data.featureImage.large){
+	    			}else if($scope.storefront[i].data.featureImage && $scope.storefront[i].data.featureImage.length){
+	    				if(!$scope.storefront[i].data.featureImage[0].documentUrl){
 							$scope.storefront[i].done = false
 	    				}
 	    			}
@@ -684,8 +673,7 @@ angular.module('dmc.onboarding')
         	$scope.company[0].data.NAICSCode = data.NAICSCode;
         	$scope.company[0].data.description = data.description;
 
-        	$scope.company[1].data.featureImage.thumbnail = data.featureImage.thumbnail;
-    		$scope.company[1].data.featureImage.large = data.featureImage.large;
+    		$scope.company[1].data.featureImage = data.featureImage;
 
     		$scope.company[2].data.RDFocus = data.RDFocus;
 
@@ -721,7 +709,7 @@ angular.module('dmc.onboarding')
     			$scope.company[i].done = true;
     			switch(i){
     				case '1':
-	    				if(!$scope.company[i].data.featureImage.thumbnail || !$scope.company[i].data.featureImage.large){
+	    				if(!$scope.company[i].data.featureImage || !$scope.company[i].data.featureImage.length){
 							$scope.company[i].done = false
 	    				};
 	    				break;
@@ -750,7 +738,7 @@ angular.module('dmc.onboarding')
     			}
 	    	}
     	});
-
+*/
 
 
         $scope.saveFinish = function(section){

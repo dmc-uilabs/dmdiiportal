@@ -140,7 +140,7 @@ angular.module('dmc.uploadApplication')
 			var uploadScreenshots = function(id) {
 				angular.forEach($scope.screenshots, function(doc) {
 					return fileUpload.uploadFileToUrl(doc.file, {}, 'applicationScreenshot').then(function(response) {
-						return ajax.create(dataFactory.documentsURL().save,
+						return ajax.create(dataFactory.documentsUrl().save,
 							{
 								ownerId: $scope.user.accountId,
 								documentUrl: response.file.name,
@@ -157,7 +157,7 @@ angular.module('dmc.uploadApplication')
 
 			var uploadAppDocs = function(doc, id) {
 				return fileUpload.uploadFileToUrl(doc.file, {}, 'applicationDoc').then(function(response) {
-					return ajax.create(dataFactory.documentsURL().save,
+					return ajax.create(dataFactory.documentsUrl().save,
 					{
 						ownerId: $scope.user.accountId,
 						documentUrl: response.file.name,
@@ -173,7 +173,7 @@ angular.module('dmc.uploadApplication')
 
 			var uploadAppIcon = function(id) {
 				return fileUpload.uploadFileToUrl($scope.appIcon[0].file, {}, 'applicationIcon').then(function(response) {
-					return ajax.create(dataFactory.documentsURL().save,
+					return ajax.create(dataFactory.documentsUrl().save,
 						{
 							ownerId: $scope.user.accountId,
 							documentUrl: response.file.name,
@@ -188,7 +188,7 @@ angular.module('dmc.uploadApplication')
 
 			var uploadApplication = function(id) {
 				return fileUpload.uploadFileToUrl($scope.application[0].file, {}, 'application').then(function(response) {
-					return ajax.create(dataFactory.documentsURL().save,
+					return ajax.create(dataFactory.documentsUrl().save,
 					{
 						ownerId: $scope.user.accountId,
 						documentUrl: response.file.name,
@@ -254,7 +254,7 @@ angular.module('dmc.uploadApplication')
 						var updatePromises = [];
 						angular.forEach(docsToUpdate, function(file) {
 							file.parentId = response.data.id;
-							updatePromises.push(ajax.update(dataFactory.documentsURL(file.id).update, file));
+							updatePromises.push(ajax.update(dataFactory.documentsUrl(file.id).update, file));
 						});
 
 						if (response.status === 200) {

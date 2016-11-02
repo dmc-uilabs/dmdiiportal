@@ -161,13 +161,14 @@ angular.module('dmc.component.members-card', [
 
 			var tokenCallback = function(response) {
 				$scope.token = response.data.token;
+                $scope.userId = response.data.userId;
 
 				$mdDialog.show({
 					controller: 'DisplayTokenController',
 					templateUrl: 'templates/components/token-modal/token-modal.html',
 					parent: angular.element(document.body),
 					locals: {
-					   token: $scope.token
+					   token: $scope.token, userId: $scope.userId
 					},
 					clickOutsideToClose: true
 				});
@@ -216,12 +217,16 @@ angular.module('dmc.component.members-card', [
 	}
 })
 .controller('DisplayTokenController',
-	['$scope', '$rootScope', '$mdDialog', 'token',
-	function ($scope, $rootScope, $mdDialog, token) {
+	['$scope', '$rootScope', '$mdDialog', 'ajax', 'dataFactory', 'token', 'userId',
+	function ($scope, $rootScope, $mdDialog, ajax, dataFactory, token, userId) {
         $scope.token = token;
+        $scope.userId = userId;
 		$scope.cancel = function(){
             $mdDialog.hide();
 		}
+        $scope.emailToken = function() {
+            ajax.create(dataFactory.emailToken(userId, token), {});
+        }
 }])
 .directive('dmcAddMembersCard', function () {
     return {
@@ -269,7 +274,7 @@ angular.module('dmc.component.members-card', [
             list:[]
         }
     }
-
+/*
     // get profile history
     ajax.get(dataFactory.profiles(id).history,
         {
@@ -347,7 +352,7 @@ angular.module('dmc.component.members-card', [
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         }
     );
-
+*/
     ajax.get(dataFactory.userAccount(id).get,{},function(response){
         var profile = response.data;
         $scope.profile = profile;
@@ -379,15 +384,16 @@ angular.module('dmc.component.members-card', [
         'images': $http.get(dataFactory.getCompanyImages(id)),
         'skillsImages': $http.get(dataFactory.getCompanySkillsImages(id)),
         'skills': $http.get(dataFactory.getCompanySkills(id)),
-        'keyContacts': $http.get(dataFactory.getCompanyKeyContacts(id)),
-        'public_history': $http.get(dataFactory.companyURL(id).history,{params: {
+        'keyContacts': $http.get(dataFactory.getCompanyKeyContacts(id))
+				/* uncomment when implemented/fixed
+				,'public_history': $http.get(dataFactory.companyURL(id).history,{params: {
             '_limit': 3,
             'section': 'public'
         }}),
         'private_history': $http.get(dataFactory.companyURL(id).history,{params: {
             '_limit': 3,
             'section': 'mutual'
-        }})
+        }})*/
     }
 
     $q.all(promises).then(function(responses){

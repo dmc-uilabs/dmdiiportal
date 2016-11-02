@@ -15,10 +15,9 @@ angular.module('dmc.individual-discussion')
                   toastModel,
                   questionToastModel ) {
             $scope.followFlag = false;
-            $scope.userlogin = "DMC Member";
-            $scope.NewComment = "";
+            $scope.NewComment = '';
             $scope.discussion = null;
-            $scope.accountId = 1;
+            $scope.accountId = $scope.$root.userData.accountId;
 
             function apply(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -27,7 +26,7 @@ angular.module('dmc.individual-discussion')
             // delete comment
             $scope.deleteComment = function(comment,ev){
                 questionToastModel.show({
-                    question : "Do you want to delete comment?",
+                    question : 'Do you want to delete comment?',
                     buttons: {
                         ok: function(){
                             ajax.delete(dataFactory.deleteDiscussionComment(comment.id), {
@@ -59,7 +58,7 @@ angular.module('dmc.individual-discussion')
             // delete discussion tag
             $scope.deleteTag = function(tag,ev){
                 questionToastModel.show({
-                    question : "Do you want to delete tag?",
+                    question : 'Do you want to delete tag?',
                     buttons: {
                         ok: function(){
                             ajax.delete(dataFactory.deleteDiscussionTag(tag.id), {
@@ -91,15 +90,15 @@ angular.module('dmc.individual-discussion')
             // add discussion tag
             $scope.addTag = function(){
                 ajax.create(dataFactory.addDiscussionTag(), {
-                    "name" : $scope.newTag,
-                    "individual-discussionId": $stateParams.discussionId
+                    'name' : $scope.newTag,
+                    'individual-discussionId': $stateParams.discussionId
                 }, function(response){
                     var data = response.data ? response.data : response;
                     $scope.newTag = null;
                     $scope.discussion.tags.unshift(data);
                     apply();
                 }, function(){
-                    toastModel.showToast("error", "Unable to add a tag");
+                    toastModel.showToast('error', 'Unable to add a tag');
                 });
             };
 
@@ -118,8 +117,8 @@ angular.module('dmc.individual-discussion')
             // load tags
             $scope.loadTags = function(){
                 ajax.get(dataFactory.getDiscussionTags($stateParams.discussionId), {
-                    "_order" : "DESC",
-                    "_sort" : "id"
+                    '_order' : 'DESC',
+                    '_sort' : 'id'
                 }, function(response){
                     $scope.discussion.tags = response.data;
                     apply();
@@ -129,8 +128,8 @@ angular.module('dmc.individual-discussion')
             // load comments
             $scope.loadComments = function(){
                 ajax.get(dataFactory.getDiscussionComments($scope.discussion.id), {
-                    "_order" : "DESC",
-                    "_sort" : "created_at"
+                    '_order' : 'DESC',
+                    '_sort' : 'created_at'
                 }, function(response){
                     $scope.discussion.comments = {};
                     $scope.discussion.comments.items = response.data.reverse();
@@ -144,7 +143,7 @@ angular.module('dmc.individual-discussion')
 
             //load realted Disscussion
             ajax.get(dataFactory.getIndividualDiscussions(),{
-                    "_limit" : 5
+                    '_limit' : 5
                 }, function(response){
                     $scope.realtedDiscussions = response.data;
                     apply();
@@ -157,16 +156,16 @@ angular.module('dmc.individual-discussion')
                 ajax.create(
                     dataFactory.addCommentIndividualDiscussion(),
                     {
-                        "individual-discussionId": $stateParams.discussionId,
-                        "full_name": "DMC Member",
-                        "accountId": $scope.accountId,
-                        "avatar": "/images/carbone.png",
-                        "reply": false,
-                        "commentId": 0,
-                        "text": $scope.newComment,
-                        "created_at": moment(new Date).format("x"),
-                        "like": 0,
-                        "dislike": 0
+                        'individual-discussionId': $stateParams.discussionId,
+                        'full_name': $scope.$root.userData.displayName,
+                        'accountId': $scope.$root.userData.accountId,
+                        'avatar': $cope.$root.userData.image,
+                        'reply': false,
+                        'commentId': 0,
+                        'text': $scope.newComment,
+                        'created_at': moment(new Date).format('x'),
+                        'like': 0,
+                        'dislike': 0
                     },
                     function(response){
                         var data = response.data ? response.data : response;
@@ -177,7 +176,7 @@ angular.module('dmc.individual-discussion')
                         apply();
                     },
                     function(){
-                        toastModel.showToast("error", "Fail add comment");
+                        toastModel.showToast('error', 'Fail add comment');
                     }
                 );
             };

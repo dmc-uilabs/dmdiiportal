@@ -138,7 +138,7 @@
                 <div ng-repeat="video in company.videos">
                     <video width="320" height="240" controls>
                         Your browser does not support HTML5 video playback
-                        <source ng-src="{{trustVideoSrc(video.documentUrl)}}">
+                        <source ng-src="trustVideoSrc(video.documentUrl)">
                     </video>
                 </div>
 
@@ -292,11 +292,12 @@
             <h3>VERIFIED MEMBERS</h3>
             <h4>{{company.verifiedMembers.length}} total</h4>
         </div>
-        <a class="viewAll" ng-href="{{'search.php#/members'}}">View All</a>
+        <a class="viewAll" ng-show="verifiedLimit" href ng-click="viewAllVerified()">View All</a>
+        <a class="viewAll" ng-show="!verifiedLimit" href ng-click="viewLessVerified()">View Less</a>
     </div>
     <md-divider></md-divider>
-    <div layout="row">
-        <div flex="20" class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: 5">
+    <div layout="row" layout-wrap>
+        <div flex="20" class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: verifiedLimit">
             <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
         </div>
     </div>
@@ -307,11 +308,13 @@
             <h3>UNVERIFIED MEMBERS</h3>
             <h4>{{company.unverifiedMembers.length}} total</h4>
         </div>
-        <a class="viewAll" ng-href="{{'search.php#/members'}}">View All</a>
+        <a class="viewAll" ng-show="unverifiedLimit" href ng-click="viewAllUnverified()">View All</a>
+        <a class="viewAll" ng-show="!unverifiedLimit" href ng-click="viewLessUnverified()">View Less</a>
+
     </div>
     <md-divider></md-divider>
-    <div layout="row">
-        <div flex="20" class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: 5">
+    <div layout="row" layout-wrap>
+        <div flex="20" class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: unverifiedLimit">
             <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
         </div>
     </div>

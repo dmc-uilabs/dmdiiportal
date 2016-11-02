@@ -47,49 +47,60 @@ angular.module('dmc.add_project', [
             }
 
             function addDocumentsToPromises(promises,documents,id){
-                console.log(documents);
+                /*
+                var fd = new FormData();
+                fd.append('file', documents[i].file);
+                fd.append('projectId', id);
+                fd.append('title', documents[i].title);
+                fd.append('type', documents[i].type);
+
+                promises["newDocument"+i] = $http.post(dataFactory.documentUpload(), fd, {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type': undefined}
+                });
+                */
+
                 for(var i in documents){
-                    if(documents[i].id && documents[i].projectId == id){
-                        if(!documents[i].deleted) {
-                            if(!documents[i].oldTitle || (documents[i].oldTitle && documents[i].title != documents[i].oldTitle)) {
-                                promises["updatedDocument" + i] = $http.patch(dataFactory.updateProjectDocument(documents[i].id), {
-                                    title: documents[i].title
+                  (function(doc){
+                    if(doc.id && doc.projectId == id){
+                        if(!doc.deleted) {
+                            if(!doc.oldTitle || (doc.oldTitle && doc.title != doc.oldTitle)) {
+                                promises[doc.title] = $http.patch(dataFactory.updateProjectDocument(doc.id), {
+                                    title: doc.title
+                                });
+                                promises[doc.title] = fileUpload.uploadFileToUrl(doc.file, {}, doc.title + doc.type).then(function(response) {
+                                    var docData = {
+                                        parentId:id,
+                                        parentType:"PROJECT",
+                                        documentUrl: response.file.name,
+                                        documentName: doc.title + doc.type,
+                                        ownerId: $rootScope.userData.accountId,
+                                        docClass: 'SUPPORT',
+                                        accessLevel: doc.accessLevel
+                                    };
+
+                                    return ajax.create(dataFactory.documentsUrl().save, docData, function(resp){});
                                 });
                             }
                         }else{
-                            promises["deletedDocument" + i] = $http.delete(dataFactory.deleteProjectDocument(documents[i].id));
+                            promises[doc.title] = $http.delete(dataFactory.deleteProjectDocument(doc.id));
                         }
                     }else{
-                        (function(doc){
-                            promises[doc.title] = fileUpload.uploadFileToUrl(doc.file, {}, doc.title + doc.type).then(function(response) {
-                                var docData = {
-                                    parentId:id,
-                                    parentType:"PROJECT",
-                                    documentUrl: response.file.name,
-                                    documentName: doc.title + doc.type,
-                                    ownerId: $rootScope.userData.accountId,
-                                    docClass: 'SUPPORT',
-                                    accessLevel: doc.accessLevel
-                                };
+                        promises[doc.title] = fileUpload.uploadFileToUrl(doc.file, {}, doc.title + doc.type).then(function(response) {
+                            var docData = {
+                                parentId:id,
+                                parentType:"PROJECT",
+                                documentUrl: response.file.name,
+                                documentName: doc.title + doc.type,
+                                ownerId: $rootScope.userData.accountId,
+                                docClass: 'SUPPORT',
+                                accessLevel: doc.accessLevel
+                            };
 
-                                return ajax.create(dataFactory.documentsURL().save, docData, function(resp){});
-                            });
-                        })(documents[i]);
-
-
-                        /*
-                        var fd = new FormData();
-                        fd.append('file', documents[i].file);
-                        fd.append('projectId', id);
-                        fd.append('title', documents[i].title);
-                        fd.append('type', documents[i].type);
-
-                        promises["newDocument"+i] = $http.post(dataFactory.documentUpload(), fd, {
-                            transformRequest: angular.identity,
-                            headers: {'Content-Type': undefined}
+                            return ajax.create(dataFactory.documentsUrl().save, docData, function(resp){});
                         });
-                        */
                     }
+                  })(documents[i]);
                 }
             }
 

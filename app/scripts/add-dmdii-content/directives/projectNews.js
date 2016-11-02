@@ -43,7 +43,7 @@ angular.module('dmc.addDmdiiContent').
                         return;
                     }
 
-                    ajax.create(dataFactory.saveDMDIIProject().news, $scope.news, eventCallback);
+                    ajax.create(dataFactory.dmdiiProjectNewsUrl().save, $scope.news, eventCallback);
                 };
 
                 function apply(){

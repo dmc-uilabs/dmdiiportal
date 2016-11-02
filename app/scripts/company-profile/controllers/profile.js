@@ -41,43 +41,47 @@ angular.module('dmc.company-profile')
                   companyProfileModel,
                   DMCUserModel) {
 
-            // $scope.company = companyData;
+            $scope.company = {};
             //limit of images and videos a company can have
             $scope.limit = 3;
+            $scope.verifiedLimit = 15;
+            $scope.unverifiedLimit = 15;
+
             var getCompany = function() {
                 ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
+                    response.data.company_reviews=$scope.company.company_reviews||[];
                     $scope.company = response.data;
 
                     $scope.getCompanyMembers();
                     $scope.SortingReviews();
 
-                    ajax.get(dataFactory.documentsURL().getList, {
+                    ajax.get(dataFactory.documentsUrl().getList, {
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'LOGO',
                         recent: 1
                     }, function(response) {
-                        if (response.data.data.length > 0) {
+                        if (response.data.count > 0) {
                             $scope.company.logoImage = response.data.data[0];
                         };
                     });
 
-                    ajax.get(dataFactory.documentsURL().getList, {
+                    ajax.get(dataFactory.documentsUrl().getList, {
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'IMAGE',
                         recent: $scope.limit
                     }, function(response) {
-                        $scope.company.images = response.data.data;
+                        $scope.company.images = response.data.data || [];
                     });
 
-                    ajax.get(dataFactory.documentsURL().getList, {
+                    ajax.get(dataFactory.documentsUrl().getList, {
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'VIDEO',
                         recent: $scope.limit
                     }, function(response) {
-                        $scope.company.videos = response.data.data;
+                        $scope.company.videos = response.data.data || [];
                     });
                 });
             }
@@ -211,6 +215,22 @@ angular.module('dmc.company-profile')
                 apply();
             };
 
+            $scope.viewAllVerified = function() {
+                $scope.verifiedLimit = null;
+            }
+
+            $scope.viewLessVerified = function() {
+                $scope.verifiedLimit = 15;
+            }
+
+            $scope.viewAllUnverified = function() {
+                $scope.unverifiedLimit = null;
+            }
+
+            $scope.viewLessUnverified = function() {
+                $scope.unverifiedLimit = 15;
+            }
+
             $scope.deleteOrganization = function() {
                 ajax.delete(dataFactory.deleteOrganization(id), {}, function(response) {
                     if(response.status === 200) {
@@ -257,6 +277,8 @@ angular.module('dmc.company-profile')
                 $scope.history.leftColumn.list = data;
                 apply();
             };
+
+            /* uncomment when implemented/fixed
             companyProfileModel.getCompanyHistory(
                 {
                     '_limit': 3,
@@ -264,6 +286,7 @@ angular.module('dmc.company-profile')
                 },
                 callbackPublicHistory
             );
+            */
 
             // get company history
             var callbackMutualHistory = function(data){
@@ -296,6 +319,8 @@ angular.module('dmc.company-profile')
                 $scope.history.rightColumn.list = data;
                 apply();
             };
+
+            /* uncomment when implemented/fixed
             companyProfileModel.getCompanyHistory(
                 {
                     '_limit': 3,
@@ -303,6 +328,7 @@ angular.module('dmc.company-profile')
                 },
                 callbackMutualHistory
             );
+            */
 
             ajax.get(
                 dataFactory.getProjects(),

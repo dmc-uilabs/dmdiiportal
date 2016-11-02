@@ -1,9 +1,4 @@
 'use strict';
-/**
-* dmc.dashboard Module
-*
-* Dashboard
-*/
 
 angular.module('dmc.dmdiiProjects')
     .controller('DMCDmdiiProjectsController',[
@@ -105,18 +100,18 @@ angular.module('dmc.dmdiiProjects')
             }
 
             $scope.getProjectStaticImages = function() {
-                ajax.get(dataFactory.documentsURL().getList, {
+                ajax.get(dataFactory.documentsUrl().getList, {
                     docClass: 'OVERVIEW',
                     recent: 1
                 }, function(response)  {
-                    $scope.projectOverview = response.data.data[0];
+                    $scope.projectOverview = response.data.count>0 ? response.data.data[0]:{};
                 });
 
-                ajax.get(dataFactory.documentsURL().getList, {
+                ajax.get(dataFactory.documentsUrl().getList, {
                     docClass: 'STATUS',
                     recent: 1
                 }, function(response)  {
-                    $scope.projectStatus = response.data.data[0];
+                    $scope.projectStatus = response.data.count>0 ? response.data.data[0]:{};
                 });
             }
             $scope.getProjectStaticImages();
@@ -172,6 +167,7 @@ angular.module('dmc.dmdiiProjects')
                 $scope.events = [];
                 angular.forEach(response.data, function(event) {
                     var e = {
+                        id: event.id,
                         date: event.eventDate,
                         content: '<h3>' + event.eventName + '</h3>' +
                             $showdown.makeHtml(event.eventDescription)
@@ -180,7 +176,7 @@ angular.module('dmc.dmdiiProjects')
                 });
             }
             $scope.getEvents = function(){
-                ajax.get(dataFactory.getDMDIIProject().events, {limit: 3}, eventsCallbackFunction);
+                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 3}, eventsCallbackFunction);
             };
             $scope.getEvents();
 
@@ -189,7 +185,7 @@ angular.module('dmc.dmdiiProjects')
             }
 
             $scope.getNews = function(){
-                ajax.get(dataFactory.getDMDIIProject().news, {limit: 3}, newsCallbackFunction);
+                ajax.get(dataFactory.dmdiiProjectNewsUrl().get, {limit: 3}, newsCallbackFunction);
             };
             $scope.getNews();
 
@@ -317,7 +313,7 @@ angular.module('dmc.dmdiiProjects')
             }
 
             $scope.getQuickLinks = function() {
-                ajax.get(dataFactory.getQuickLinks().all, {limit: 7}, callbackLinksFunction)
+                ajax.get(dataFactory.quicklinkUrl().get, {limit: 7}, callbackLinksFunction)
             }
             $scope.getQuickLinks();
 
@@ -346,6 +342,24 @@ angular.module('dmc.dmdiiProjects')
                     })
                 }
             }
+
+            $scope.deleteNews = function(index, id) {
+                ajax.delete(dataFactory.dmdiiProjectNewsUrl(id).delete, {}, function() {
+                    $scope.news.splice(index, 1);
+                });
+            };
+
+            $scope.deleteQuicklink = function(index, id) {
+                ajax.delete(dataFactory.quicklinkUrl(id).delete, {}, function() {
+                    $scope.docs.splice(index, 1);
+                });
+            };
+
+            $scope.deleteDocument = function(id, type) {
+                ajax.delete(dataFactory.documentsUrl(id).delete, {}, function() {
+                    delete $scope[type];
+                });
+            };
 
             var getMenu = function(){
 
