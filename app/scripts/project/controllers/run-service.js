@@ -129,7 +129,11 @@ angular.module('dmc.project')
                 context[inKey] = $scope.service.interfaceModel.inParams[inKey].value;
               }
               for (var outKey in $scope.service.interfaceModel.outParams){
-                context[outKey] = $scope.service.interfaceModel.outParams[outKey].value;
+		try{
+	             context[outKey] = JSON.parse($scope.service.interfaceModel.outParams[outKey].value);
+		}catch(e){
+		  context[outKey] = $scope.service.interfaceModel.outParams[outKey].value;
+		}
               }
 
               if($scope.service.interfaceModel.outParams['outputTemplate'].value){
