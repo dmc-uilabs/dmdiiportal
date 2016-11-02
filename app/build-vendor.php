@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="/bower_components/select2/select2.css" />
 <link rel="stylesheet" href="/bower_components/medium-editor/dist/css/medium-editor.min.css" />
 <link rel="stylesheet" href="/bower_components/medium-editor/dist/css/themes/beagle.css" />
-<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -78,6 +77,5 @@
 <script src="/bower_components/showdown/dist/showdown.min.js"></script>
 <script src="/bower_components/ng-showdown/dist/ng-showdown.min.js"></script>
 <script src="/bower_components/handlebars/handlebars.min.js"></script>
-<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->

@@ -44,8 +44,7 @@
     "medium-editor": "^5.22.0",
     "to-markdown": "^3.0.1",
     "ng-showdown": "^1.1.0",
-    "handlebars": "^4.0.5",
-    "bootstrap": "^3.3.7"
+    "handlebars": "^4.0.5"
   },
   "devDependencies": {
     "angular": "~1.4.4",
