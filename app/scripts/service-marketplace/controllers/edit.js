@@ -9,6 +9,7 @@ angular.module('dmc.service-marketplace')
         '$scope',
         'ajax',
         'dataFactory',
+        'fileUpload',
         '$mdDialog',
         '$timeout',
         'questionToastModel',
@@ -22,6 +23,7 @@ angular.module('dmc.service-marketplace')
                   $scope,
                   ajax,
                   dataFactory,
+                  fileUpload,
                   $mdDialog,
                   $timeout,
                   questionToastModel,
@@ -355,7 +357,7 @@ angular.module('dmc.service-marketplace')
             };
 
             var uploadImage = function(image) {
-                fileUpload.uploadFileToUrl(image.file, {},'service').then(function(data){
+                return fileUpload.uploadFileToUrl(image.file, {},'service').then(function(data){
                     var doc = {
                         documentUrl: data.file.name,
                         documentName: data.key,
@@ -365,7 +367,7 @@ angular.module('dmc.service-marketplace')
                         parentId: $scope.product.id,
                         accessLevel: image.accessLevel
                     }
-                    ajax.create(dataFactory.documentsUrl().save, doc);
+                    return ajax.create(dataFactory.documentsUrl().save, doc);
                 });
             };
 

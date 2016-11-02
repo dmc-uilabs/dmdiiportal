@@ -485,8 +485,11 @@ angular.module('dmc.data',[])
                 return localhost + 'user/organization/' + id
                     //add paged and filtered
             },
+            getOrganizationList: function() {
+                return localhost + 'organizations';
+            },
             getOrganization: function(id) {
-                return localhost + 'organizations/' + id
+                return localhost + 'organizations/' + id;
             },
             updateOrganization: function(id) {
                 return localhost + 'organizations/' + id;
@@ -496,9 +499,6 @@ angular.module('dmc.data',[])
             },
             deleteOrganization: function(id) {
                 return localhost + 'organizations/' + id;
-            },
-            changeUsersOrganization: function(id) {
-                return 'not implemented'
             },
             getDocument: function() {
                 return {
@@ -518,15 +518,15 @@ angular.module('dmc.data',[])
                 return {
                     get: localhost + 'dmdiiMember/news',
                     save: localhost + 'dmdiiMember/news',
-                    delete: localhost + 'dmdiiMember/news/' + id,
-                };
+                    delete: localhost + 'dmdiiMember/news/' + id
+                }
             },
             dmdiiMemberEventUrl: function(id) {
                 return {
                     get: localhost + 'dmdiiMember/events',
                     save: localhost + 'dmdiiMember/events',
-                    delete: localhost + 'dmdiiMember/events/' + id,
-                };
+                    delete: localhost + 'dmdiiMember/events/' + id
+                }
             },
             getDMDIIMemberProjects: function() {
                 return {
@@ -596,8 +596,8 @@ angular.module('dmc.data',[])
                     getList: localhost + 'documents',
                     save: localhost + 'documents',
                     update: localhost + 'documents/' + id,
-                    delete: localhost + 'documents/' + id,
-                }
+                    delete: localhost + 'documents/' + id
+                };
             },
             getApplicationTags: function() {
                     return localhost + 'applicationTag'
@@ -777,15 +777,11 @@ angular.module('dmc.data',[])
                     get_run_history : localhost + 'service_runs' + '?serviceId=' + id,
                     get_servers : localhost + 'account_servers',
                     add_servers : localhost + 'services_servers',
-                    get_images : localhost + name + '/' + id + '/service_images',
-                    add_images : localhost + 'service_images',
-                    remove_images : localhost + 'service_images/' + id,
                     get_array_specifications: localhost + 'array_specifications',
                     add_array_specifications: localhost + 'array_specifications',
                     get_specifications: localhost + name + '/' + id + '/specifications',
-                    edit_specifications: localhost + 'specifications/' + id,
-                    add_specifications:  localhost + 'specifications',
-                    update_specifications:  localhost + 'specifications/'+id,
+                    add_specifications:  localhost + name + '/' + id + 'specifications',
+                    update_specifications:  localhost + '/specifications/' + id,
                     get_statistics: localhost + name + '/' + id + '/services_statistic',
                     add_interface: localhost + 'dome-interfaces',
                     get_interface: localhost + name + '/' + id + '/dome-interfaces',
@@ -986,6 +982,9 @@ angular.module('dmc.data',[])
             },
             deleteFavorite: function(id){
                 return localhost+'favorite_products/'+id;
+            },
+            getUserList: function(){
+                return localhost + 'users';
             },
             getUserUrl: function(){
                 return localhost+'user';

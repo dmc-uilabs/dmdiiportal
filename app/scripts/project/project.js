@@ -726,7 +726,7 @@ angular.module('dmc.project', [
             };
 
             this.upload_services = function(params, tags, service_interface){
-                ajax.create(dataFactory.services($stateParams.ServiceId).add,
+                ajax.create(dataFactory.services().add,
                     {
                         'title': params.title,
                         'description': params.description,

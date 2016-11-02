@@ -286,10 +286,9 @@ angular.module('dmc.service-marketplace', [
             };
 
 
-
             this.edit_service = function(params, callback){
                 if (params['specification']) {
-                    ajax.update(dataFactory.services( params['specification'].id).edit_specifications,
+                    ajax.update(dataFactory.services( params['specification'].id).update_specifications,
                     params['specification'],
                     function(response){
                     })
