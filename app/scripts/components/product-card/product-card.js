@@ -142,6 +142,7 @@ angular.module('dmc.component.productcard', [
                     updatedItem.projectId = project.id;
                     updatedItem.from = 'marketplace';
                     updatedItem.published = false;
+
                     ajax.create(dataFactory.services().add, updatedItem, function (response) {
                         var id = response.data.id;
                         $scope.cancelAddToProject();
@@ -162,10 +163,13 @@ angular.module('dmc.component.productcard', [
                             });
                         };
                         ajax.get(dataFactory.services($scope.cardSource.id).get_interface, {}, function(response) {
-                            var newInterface = response.data;
-                            newInterface.serviceId = id;
-                            ajax.create(dataFactory.services().add_interface, newInterface);
-                        })
+                            angular.forEach(response.data, function(newDomeInterface) {
+                                delete newDomeInterface.id;
+                                newDomeInterface.serviceId = id;
+                                ajax.create(dataFactory.services().add_interface, newDomeInterface);
+                            });
+                        });
+
                         if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
                         if(!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
                         $scope.cardSource.currentStatus.project.id = projectId;
