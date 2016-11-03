@@ -76,5 +76,9 @@
 <script src="/bower_components/to-markdown/dist/to-markdown.js"></script>
 <script src="/bower_components/showdown/dist/showdown.min.js"></script>
 <script src="/bower_components/ng-showdown/dist/ng-showdown.min.js"></script>
+<script src="/bower_components/angulartics/dist/angulartics.min.js"></script>
+<script src="/bower_components/angulartics-google-analytics/dist/angulartics-ga.min.js"></script>
+<script src="/bower_components/angulartics-google-analytics/dist/angulartics-ga.min.js"></script>
+<script src="/scripts/common/analytics/analytics.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
