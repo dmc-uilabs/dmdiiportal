@@ -357,6 +357,16 @@ angular.module('dmc.service-marketplace')
             };
 
             var uploadImage = function(image) {
+                if (image.tags) {
+                    image.tags.push({tagName: $scope.product.title + ' picture'});
+                    angular.forEach(image.tags, function(tag, index) {
+                        if (!angular.isObject(tag)) {
+                            image.tags[index] = {tagName: tag}
+                        }
+                    });
+                } else {
+                    image.tags = [{tagName: $scope.product.title + ' picture'}];
+                }
                 return fileUpload.uploadFileToUrl(image.file, {},'service').then(function(data){
                     var doc = {
                         documentUrl: data.file.name,
@@ -365,14 +375,43 @@ angular.module('dmc.service-marketplace')
                         parentType: 'SERVICE',
                         docClass: 'IMAGE',
                         parentId: $scope.product.id,
-                        accessLevel: image.accessLevel
+                        accessLevel: 'MEMBER',
+                        tags: image.tags
                     }
+
                     return ajax.create(dataFactory.documentsUrl().save, doc);
                 });
             };
 
             var removeImage = function(imageId) {
                 ajax.delete(dataFactory.documentsUrl(imageId).delete, {});
+            };
+
+            var uploadDocument = function(doc) {
+                if (doc.tags) {
+                    doc.tags.push({tagName: $scope.product.title + ' document'});
+                    angular.forEach(doc.tags, function(tag, index) {
+                        if (!angular.isObject(tag)) {
+                            doc.tags[index] = {tagName: tag}
+                        }
+                    });
+                } else {
+                    doc.tags = [{tagName: $scope.product.title + ' document'}];
+                }
+                return fileUpload.uploadFileToUrl(doc.file, {},'service').then(function(data){
+                    var doc = {
+                        documentUrl: data.file.name,
+                        documentName: data.key,
+                        ownerId: $scope.$root.userData.accountId,
+                        parentType: 'SERVICE',
+                        docClass: 'SUPPORT',
+                        parentId: $scope.product.id,
+                        accessLevel: 'MEMBER',
+                        tags: doc.tags
+                    }
+
+                    return ajax.create(dataFactory.documentsUrl().save, doc);
+                });
             };
 
             //save edit product
@@ -390,6 +429,10 @@ angular.module('dmc.service-marketplace')
 
                 angular.forEach($scope.removedImages, function(imageId) {
                     promises.push(removeImage(imageId));
+                });
+
+                angular.forEach($scope.documents, function(doc) {
+                    promises.push(uploadDocument(doc));
                 });
 
                 serviceModel.remove_services_tags($scope.removeTags);

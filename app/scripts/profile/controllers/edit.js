@@ -127,6 +127,8 @@ angular.module('dmc.profile')
                     parentType: 'USER',
                     docClass: 'IMAGE',
                     parentId: $scope.profile.id,
+                    tags: [{tag_name: $scope.profile.displayName + ' profile-picture'}],
+                    accessLevel: 'PUBLIC'
                 }
 
                 return ajax.create(dataFactory.documentsUrl().save, doc);

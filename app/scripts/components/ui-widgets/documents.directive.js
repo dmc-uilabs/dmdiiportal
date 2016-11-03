@@ -98,8 +98,8 @@ angular.module('dmc.widgets.documents',[
 				product: '=',
 				allowTagging: '=',
 				fileLimit: '=',
-				isDmdii: '=',
-				accessLevel: '='
+				accessLevel: '=',
+				isDmdii: '='
 			},
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
         $scope.documentDropZone;
@@ -107,21 +107,21 @@ angular.module('dmc.widgets.documents',[
 
 				if(!$scope.source) $scope.source = [];
 
-        var requestData = {
-						_sort : 'name',
-						_order : 'DESC'
-        };
+		        var requestData = {
+					_sort : 'name',
+					_order : 'DESC'
+		        };
 
 				if($scope.projectId){
-						ajax.get(dataFactory.documentsUrl().getList, {
-								parentType: 'PROJECT',
-								parentId: $scope.projectId,
-								docClass: 'SUPPORT',
-								recent: 20
-							}, function(response) {
-								$scope.source = response.data.data||[];
-								apply();
-						});
+					ajax.get(dataFactory.documentsUrl().getList, {
+							parentType: 'PROJECT',
+							parentId: $scope.projectId,
+							docClass: 'SUPPORT',
+							recent: 20
+						}, function(response) {
+							$scope.source = response.data.data||[];
+							apply();
+					});
 				}
 				// else if($scope.serviceId){
 								//     ajax.get(dataFactory.getServiceDocuments($scope.serviceId), requestData,
@@ -135,14 +135,15 @@ angular.module('dmc.widgets.documents',[
 				$scope.tags = [];
 
 				var callbackTagFunction = function(response) {
-					$scope.tags = response.data
+					$scope.tags = response.data;
 				}
 
 				var getTags = function(){
-					if (isDmdii === 'true') {
+					if ($scope.isDmdii) {
 						ajax.get(dataFactory.getDmdiiDocumentTags(), null, callbackTagFunction);
 					} else {
 						ajax.get(dataFactory.getDocumentTags(), null, callbackTagFunction);
+
 					}
 				}
 				getTags();
@@ -205,6 +206,10 @@ angular.module('dmc.widgets.documents',[
 						'init' : function() {
 							$scope.documentDropZone = this;
 							this.on('addedfile', function(file) {
+								if ($scope.accessLevel) {
+									file.accessLevel = $scope.accessLevel[Object.keys($scope.accessLevel)[0]];
+								}
+
 								if($scope.autoProcessQueue == false) {
 									var file_ = file;
 									var title = file_.name.substring(0,file_.name.lastIndexOf('.'));
@@ -215,7 +220,8 @@ angular.module('dmc.widgets.documents',[
 										file : file_,
 										editing : false,
 										type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length),
-										accessLevel: file_.accessLevel
+										accessLevel: file_.accessLevel,
+										tags: file_.tags
 									});
                                     $scope.$apply();
 								}
@@ -293,8 +299,13 @@ angular.module('dmc.widgets.documents',[
                         url = dataFactory.getServiceDocuments($scope.typeId);
                         requestData['service-documentId'] = $scope.serviceDocumentId;
                     }else if($scope.documentsType == 'project'){
-                        url = dataFactory.getProjectDocuments($scope.typeId);
-                        requestData['project-documentId'] = $scope.serviceDocumentId;
+                        url = dataFactory.documentsUrl().getList;
+                        requestData = {
+														parentType: 'PROJECT',
+														parentId: $scope.typeId,
+														docClass: 'SUPPORT',
+														recent: 20
+													};
                     }
                     ajax.get(url, requestData,
                         function (response) {

@@ -69,14 +69,25 @@ angular.module('dmc.add_project', [
                                     title: doc.title
                                 });
                                 promises[doc.title] = fileUpload.uploadFileToUrl(doc.file, {}, doc.title + doc.type).then(function(response) {
+                                    if (doc.tags) {
+                                        doc.tags.push({tagName: $scope.product.title + ' document'});
+                                        angular.forEach(doc.tags, function(tag, index) {
+                                            if (!angular.isObject(tag)) {
+                                                doc.tags[index] = {tagName: tag}
+                                            }
+                                        });
+                                    } else {
+                                        doc.tags = [{tagName: $scope.product.title + ' document'}];
+                                    }
                                     var docData = {
-                                        parentId:id,
-                                        parentType:"PROJECT",
+                                        parentId: id,
+                                        parentType: 'PROJECT',
                                         documentUrl: response.file.name,
                                         documentName: doc.title + doc.type,
                                         ownerId: $rootScope.userData.accountId,
                                         docClass: 'SUPPORT',
-                                        accessLevel: doc.accessLevel
+                                        accessLevel: doc.accessLevel,
+                                        tags: doc.tags
                                     };
 
                                     return ajax.create(dataFactory.documentsUrl().save, docData, function(resp){});
@@ -87,14 +98,25 @@ angular.module('dmc.add_project', [
                         }
                     }else{
                         promises[doc.title] = fileUpload.uploadFileToUrl(doc.file, {}, doc.title + doc.type).then(function(response) {
+                            if (doc.tags) {
+                                doc.tags.push({tagName: $scope.product.title + ' document'});
+                                angular.forEach(doc.tags, function(tag, index) {
+                                    if (!angular.isObject(tag)) {
+                                        doc.tags[index] = {tagName: tag}
+                                    }
+                                });
+                            } else {
+                                doc.tags = [{tagName: $scope.product.title + ' document'}];
+                            }
                             var docData = {
-                                parentId:id,
-                                parentType:"PROJECT",
+                                parentId: id,
+                                parentType: 'PROJECT',
                                 documentUrl: response.file.name,
                                 documentName: doc.title + doc.type,
                                 ownerId: $rootScope.userData.accountId,
                                 docClass: 'SUPPORT',
-                                accessLevel: doc.accessLevel
+                                accessLevel: doc.accessLevel,
+                                tags: doc.tags
                             };
 
                             return ajax.create(dataFactory.documentsUrl().save, docData, function(resp){});

@@ -14,24 +14,39 @@ angular.module('dmc.project')
         }
 
         $scope.comeBack = function(){
-            $state.go("project.documents");
+            $state.go('project.documents');
         };
 
+        $scope.accessLevels = {
+            'Public': 'PUBLIC',
+            'Members': 'MEMBER',
+            'Admin': 'ADMIN'
+        }
         $scope.uploadDocuments = function(){
             var promises = {};
-            console.log($scope.documents);
 
             for(var i in $scope.documents){
               (function(doc){
+                if (doc.tags) {
+                    doc.tags.push({tagName: projectCtrl.projectData.title + ' document'});
+                    angular.forEach(doc.tags, function(tag, index) {
+                        if (!angular.isObject(tag)) {
+                            doc.tags[index] = {tagName: tag}
+                        }
+                    });
+                } else {
+                    doc.tags = [{tagName: projectCtrl.projectData.title + ' document'}];
+                }
                 promises[doc.title] = fileUpload.uploadFileToUrl(doc.file, {}, doc.title + doc.type).then(function(response) {
                     var docData = {
-                        parentId:projectCtrl.currentProjectId,
-                        parentType:"PROJECT",
+                        parentId: projectCtrl.currentProjectId,
+                        parentType: 'PROJECT',
                         documentUrl: response.file.name,
                         documentName: doc.title + doc.type,
                         ownerId: $rootScope.userData.accountId,
                         docClass: 'SUPPORT',
-                        accessLevel: doc.accessLevel
+                        accessLevel: doc.accessLevel,
+                        tags: doc.tags
                     };
 
                     return ajax.create(dataFactory.documentsUrl().save, docData, function(resp){});
