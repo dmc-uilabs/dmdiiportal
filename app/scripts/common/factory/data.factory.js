@@ -585,6 +585,7 @@ angular.module('dmc.data',[])
                 return {
                     all: localhost + 'dmdiidocuments',
                     single: localhost + 'dmdiidocument/' + id,
+                    project: localhost + 'dmdiidocuments/dmdiiProjectId',
                     overview: localhost + 'staticdocument/1',
                     status: localhost + 'staticdocument/2',
                     projectDocument: localhost + 'dmdiidocument/filetype'
