@@ -598,8 +598,8 @@ angular.module('dmc.service-marketplace')
 
                     ajax.create(dataFactory.services().add, updatedItem, function (response) {
                         var id = response.data.id;
-                        $scope.cancelAddToProject();
-                        ajax.get(dataFactory.services($scope.cardSource.id).get_tags, {}, function(response) {
+                        $scope.btnCanselToProject();
+                        ajax.get(dataFactory.services($scope.product.id).get_tags, {}, function(response) {
                             var newTags = response.data;
                             angular.forEach(newTags, function(tag) {
                                 delete tag.id;
@@ -615,17 +615,13 @@ angular.module('dmc.service-marketplace')
                                 ajax.create(dataFactory.documentsUrl().save, image)
                             });
                         };
-                        ajax.get(dataFactory.services($scope.cardSource.id).get_interface, {}, function(response) {
+                        ajax.get(dataFactory.services($scope.product.id).get_interface, {}, function(response) {
                             angular.forEach(response.data, function(newDomeInterface) {
                                 delete newDomeInterface.id;
                                 newDomeInterface.serviceId = id;
                                 ajax.create(dataFactory.services().add_interface, newDomeInterface);
                             });
                         });
-                        setTimeout(function () {
-                            $scope.invate = false;
-                            apply();
-                        }, 20000);
                         toastModel.showToast('success', 'Service added to ' + response.data.currentStatus.project.title);
                     }, function (response) {
                         toastModel.showToast('error', 'Failed Add To Project');
