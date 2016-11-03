@@ -1,9 +1,4 @@
 'use strict';
-/**
-* dmc.dashboard Module
-*
-* Dashboard
-*/
 
 angular.module('dmc.dmdiiProjects')
     .controller('DMCDmdiiProjectsController',[
@@ -166,6 +161,7 @@ angular.module('dmc.dmdiiProjects')
                 $scope.events = [];
                 angular.forEach(response.data, function(event) {
                     var e = {
+                        id: event.id,
                         date: event.eventDate,
                         content: '<h3>' + event.eventName + '</h3>' +
                             $showdown.makeHtml(event.eventDescription)
@@ -174,7 +170,7 @@ angular.module('dmc.dmdiiProjects')
                 });
             }
             $scope.getEvents = function(){
-                ajax.get(dataFactory.getDMDIIProject().events, {limit: 3}, eventsCallbackFunction);
+                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 3}, eventsCallbackFunction);
             };
             $scope.getEvents();
 
@@ -183,7 +179,7 @@ angular.module('dmc.dmdiiProjects')
             }
 
             $scope.getNews = function(){
-                ajax.get(dataFactory.getDMDIIProject().news, {limit: 3}, newsCallbackFunction);
+                ajax.get(dataFactory.dmdiiProjectNewsUrl().get, {limit: 3}, newsCallbackFunction);
             };
             $scope.getNews();
 
@@ -311,7 +307,7 @@ angular.module('dmc.dmdiiProjects')
             }
 
             $scope.getQuickLinks = function() {
-                ajax.get(dataFactory.getQuickLinks().all, {limit: 7}, callbackLinksFunction)
+                ajax.get(dataFactory.quicklinkUrl().get, {limit: 7}, callbackLinksFunction)
             }
             $scope.getQuickLinks();
 

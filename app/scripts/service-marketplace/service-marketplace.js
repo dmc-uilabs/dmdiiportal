@@ -66,14 +66,13 @@ angular.module('dmc.service-marketplace', [
                   $rootScope) {
             this.get_service = function(id){
                 var promises = {
-                    "service": $http.get(dataFactory.services(id).get),
-                    "specifications": $http.get(dataFactory.services(id).get_specifications),
-                    "service_authors": $http.get(dataFactory.services(id).get_authors),
-                    "service_tags": $http.get(dataFactory.services(id).get_tags),
-                    "services_statistic": $http.get(dataFactory.services(id).get_statistics),
-                    "service_reviews": $http.get(dataFactory.services(id).reviews),
-                    "service_images": $http.get(dataFactory.services(id).get_images),
-                    "interface": $http.get(dataFactory.services(id).get_interface)
+                    'service': $http.get(dataFactory.services(id).get),
+                    'specifications': $http.get(dataFactory.services(id).get_specifications),
+                    'service_authors': $http.get(dataFactory.services(id).get_authors),
+                    'service_tags': $http.get(dataFactory.services(id).get_tags),
+                    'services_statistic': $http.get(dataFactory.services(id).get_statistics),
+                    'service_reviews': $http.get(dataFactory.services(id).reviews),
+                    'interface': $http.get(dataFactory.services(id).get_interface)
                 };
 
                 var extractData = function(response){
@@ -96,7 +95,6 @@ angular.module('dmc.service-marketplace', [
                         service.service_tags = extractData(responses.service_tags);
                         service.services_statistic = extractData(responses.services_statistic);
                         service.service_reviews = extractData(responses.service_reviews);
-                        service.service_images = extractData(responses.service_images);
 
                         service.rating = service.service_reviews.map(function(value, index){
                             return value.rating;
@@ -116,14 +114,14 @@ angular.module('dmc.service-marketplace', [
                                 service.precentage_stars[i] = Math.round(service.precentage_stars[i]);
                             }
                         }
-                        for(var i in service["service_reviews"]){
-                            service["service_reviews"][i]['replyReviews'] = [];
+                        for(var i in service['service_reviews']){
+                            service['service_reviews'][i]['replyReviews'] = [];
                         }
                         return service;
 
                     },
                     function(response){
-                        toastModel.showToast("error", "Error." + response.statusText);
+                        toastModel.showToast('error', 'Error.' + response.statusText);
                     }
                 );
             };
@@ -139,12 +137,12 @@ angular.module('dmc.service-marketplace', [
             var get_reply = function(review){
                 ajax.get(dataFactory.services(review.id).getReply,
                     {
-                        '_order': "DESC",
-                        '_sort': "date"
+                        '_order': 'DESC',
+                        '_sort': 'date'
                     },
                     function(response){
                         for(var i in response.data){
-                            response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
+                            response.data[i].date = moment(response.data[i].date).format('MM/DD/YYYY hh:mm A');
                             get_helpful(response.data[i]);
                             get_flagged(response.data[i]);
                         }
@@ -196,7 +194,7 @@ angular.module('dmc.service-marketplace', [
                     params,
                     function(response){
                         for(var i in response.data){
-                            response.data[i].date = moment(response.data[i].date).format("MM/DD/YYYY hh:mm A");
+                            response.data[i].date = moment(response.data[i].date).format('MM/DD/YYYY hh:mm A');
                             get_helpful(response.data[i]);
                             get_flagged(response.data[i]);
                             if(response.data[i].reply){
@@ -211,29 +209,29 @@ angular.module('dmc.service-marketplace', [
             this.add_service_reviews = function(params, callback){
                 ajax.get(dataFactory.services($stateParams.serviceId).addReviews,
                     {
-                        "_limit" : 1,
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_limit' : 1,
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     },
                     function(response){
                         var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
-                        params["id"] = lastId;
-                        params["productId"] = $stateParams.serviceId;
-                        params["productType"] = "service";
-                        params["reply"] = false;
-                        params["status"] = true;
-                        params["date"] = moment().format('x');
-                        params["like"] = 0;
-                        params["dislike"] = 0;
+                        params['id'] = lastId;
+                        params['productId'] = $stateParams.serviceId;
+                        params['productType'] = 'service';
+                        params['reply'] = false;
+                        params['status'] = true;
+                        params['date'] = moment().format('x');
+                        params['like'] = 0;
+                        params['dislike'] = 0;
 
                         return ajax.create(dataFactory.services($stateParams.serviceId).addReviews,
                             params,
                             function(response){
-                                toastModel.showToast("success", "Review added");
+                                toastModel.showToast('success', 'Review added');
                                 if(callback) callback(response.data)
                             },
                             function(response){
-                                toastModel.showToast("error", "Error." + response.statusText);
+                                toastModel.showToast('error', 'Error.' + response.statusText);
                             }
                         )
                     }
@@ -256,7 +254,7 @@ angular.module('dmc.service-marketplace', [
                             review,
                             function(response){
                                 if(params.reply){
-                                    toastModel.showToast("success", "reply added");
+                                    toastModel.showToast('success', 'reply added');
                                 }
                                 if(callback) callback(response.data)
                             }
@@ -288,13 +286,14 @@ angular.module('dmc.service-marketplace', [
             };
 
 
-
             this.edit_service = function(params, callback){
-                ajax.update(dataFactory.services( params["specification"].id).edit_specifications,
-                    params["specification"],
+                if (params['specification']) {
+                    ajax.update(dataFactory.services( params['specification'].id).update_specifications,
+                    params['specification'],
                     function(response){
-                    }
-                )
+                    })
+                }
+
                 ajax.get(dataFactory.services($stateParams.serviceId).get,
                     {},
                     function(response){
@@ -309,7 +308,7 @@ angular.module('dmc.service-marketplace', [
                                 callback(response.data)
                             },
                             function(response){
-                                toastModel.showToast("error", "Error." + response.statusText);
+                                toastModel.showToast('error', 'Error.' + response.statusText);
                             }
                         )
                     }
@@ -319,23 +318,23 @@ angular.module('dmc.service-marketplace', [
             this.add_services_authors = function(array){
                 ajax.get(dataFactory.services($stateParams.serviceId).get_authors,
                     {
-                        "_limit" : 1,
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_limit' : 1,
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     },
                     function(response){
                         var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
                         for(var i in array){
                             ajax.create(dataFactory.services($stateParams.servicetId).add_authors,
                                 {
-                                    "id": lastId,
-                                    "includeTo": $stateParams.productId,
-                                    "serviceId": array[i]
+                                    'id': lastId,
+                                    'includeTo': $stateParams.productId,
+                                    'serviceId': array[i]
                                 },
                                 function(response){
                                 },
                                 function(response){
-                                    toastModel.showToast("error", "Error." + response.statusText);
+                                    toastModel.showToast('error', 'Error.' + response.statusText);
                                 }
                             )
                             lastId++;
@@ -355,18 +354,18 @@ angular.module('dmc.service-marketplace', [
             this.add_services_tags = function(array){
                 ajax.get(dataFactory.services($stateParams.serviceId).get_tags,
                     {
-                        "_limit" : 1,
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_limit' : 1,
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     },
                     function(response){
                         var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
                         for(var i in array){
                             ajax.create(dataFactory.services($stateParams.serviceId).add_tags,
                                 {
-                                    "id": lastId,
-                                    "serviceId": $stateParams.serviceId,
-                                    "name": array[i]
+                                    'id': lastId,
+                                    'serviceId': $stateParams.serviceId,
+                                    'name': array[i]
                                 },
                                 function(response){}
                             );
@@ -387,18 +386,18 @@ angular.module('dmc.service-marketplace', [
             this.add_services_images = function(array){
                 ajax.get(dataFactory.services($stateParams.serviceId).get_images,
                     {
-                        "_limit" : 1,
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_limit' : 1,
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     },
                     function(response){
                         var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
                         for(var i in array){
                             ajax.create(dataFactory.services($stateParams.serviceId).add_images,
                                 {
-                                    "id": lastId,
-                                    "serviceId": $stateParams.serviceId,
-                                    "url": array[i]
+                                    'id': lastId,
+                                    'serviceId': $stateParams.serviceId,
+                                    'url': array[i]
                                 },
                                 function(response){}
                             );
@@ -437,16 +436,16 @@ angular.module('dmc.service-marketplace', [
             this.add_array_specifications = function(name, callback){
                 ajax.get(dataFactory.services($stateParams.serviceId).get_array_specifications,
                     {
-                        "_limit" : 1,
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_limit' : 1,
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     },
                     function(response){
                         var lastId = (response.data.length == 0 ? 1 : parseInt(response.data[0].id)+1);
                         ajax.create(dataFactory.services($stateParams.serviceId).add_array_specifications,
                             {
-                                "id": lastId,
-                                "name": name
+                                'id': lastId,
+                                'name': name
                             },
                             function(response){
                                 callback(response.data)

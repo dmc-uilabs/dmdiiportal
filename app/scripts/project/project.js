@@ -555,6 +555,7 @@ angular.module('dmc.project', [
         '$state',
         '$http',
         'DMCUserModel',
+        'fileUpload',
         '$rootScope',
         '$q',
         'domeModel',
@@ -565,6 +566,7 @@ angular.module('dmc.project', [
                   $state,
                   $http,
                   DMCUserModel,
+                  fileUpload,
                   $rootScope,
                   $q,
                   domeModel,
@@ -578,7 +580,18 @@ angular.module('dmc.project', [
                     'service_tags': $http.get(dataFactory.services(id).get_tags),
                     'services_statistic': $http.get(dataFactory.services(id).get_statistics),
                     'service_reviews': $http.get(dataFactory.services(id).reviews),
-                    'service_images': $http.get(dataFactory.services(id).get_images),
+                    'service_images': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
+                        parentType: 'SERVICE',
+                        parentId: id,
+                        docClass: 'IMAGE',
+                        recent: 5
+                    }}),
+                    'service_docs': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
+                        parentType: 'SERVICE',
+                        parentId: id,
+                        docClass: 'SUPPORT',
+                        recent: 5
+                    }}),
                     'interface': $http.get(dataFactory.services(id).get_interface),
                     'currentStatus': $http({method : 'GET', url : dataFactory.runService(), params : {
                         _limit : 1,
@@ -601,6 +614,18 @@ angular.module('dmc.project', [
                     return response.data ? response.data : response;
                 };
 
+                var extractDocData = function(response){
+                    if (!response.data) {
+                        return response;
+                    }
+
+                    if (response.data.data && response.data.data.length) {
+                        return response.data.data
+                    }
+
+                    return [];
+                };
+
                 return $q.all(promises).then(function(responses){
                         var service = extractData(responses.service);
                         service.__serviceData = $.extend(true, {}, service);
@@ -620,7 +645,9 @@ angular.module('dmc.project', [
                         service.service_tags = extractData(responses.service_tags);
                         service.services_statistic = extractData(responses.services_statistic);
                         service.service_reviews = extractData(responses.service_reviews);
-                        service.service_images = extractData(responses.service_images);
+                        service.service_images = extractDocData(responses.service_images);
+                        service.service_docs = extractDocData(responses.service_docs);
+
                         service.rating = service.service_reviews.map(function(value, index){
                             return value.rating;
                         });
@@ -670,8 +697,36 @@ angular.module('dmc.project', [
                 )
             };
 
+            var uploadDoc = function(doc, id) {
+                return fileUpload.uploadFileToUrl(doc.file, {}, 'serviceImage').then(function(response) {
+                    return ajax.create(dataFactory.documentsUrl().save,
+                        {
+                            ownerId: $rootScope.userData.accountId,
+                            documentUrl: response.file.name,
+                            documentName: doc.file.name,
+                            parentType: 'SERVICE',
+                            docClass: 'SUPPORT',
+                            parentId: id
+                        });
+                });
+            };
+
+            var uploadImage = function(image, id) {
+                return fileUpload.uploadFileToUrl(image.file, {}, 'serviceImage').then(function(response) {
+                    return ajax.create(dataFactory.documentsUrl().save,
+                        {
+                            ownerId: $rootScope.userData.accountId,
+                            documentUrl: response.file.name,
+                            documentName: image.file.name,
+                            parentType: 'SERVICE',
+                            docClass: 'IMAGE',
+                            parentId: id
+                        });
+                });
+            };
+
             this.upload_services = function(params, tags, service_interface){
-                ajax.create(dataFactory.services($stateParams.ServiceId).add,
+                ajax.create(dataFactory.services().add,
                     {
                         'title': params.title,
                         'description': params.description,
@@ -688,13 +743,13 @@ angular.module('dmc.project', [
                         'interface' : params.interface,
                         'currentStatus' : {
                             'project' : {
-                                'id' : params.pojectId,
-                                'name' : params.pojectTitle
+                                'id' : params.projectId,
+                                'name' : params.projectTitle
                             }
                         },
                         'serverIp' : params.serverIp,
                         'parent_component': params.parent,
-                        'projectId': params.pojectId,
+                        'projectId': params.projectId,
                         'type' : 'service',
                         'published' : false,
                         'from': params.from
@@ -711,6 +766,15 @@ angular.module('dmc.project', [
                         }
                         service_interface.serviceId = id;
                         promises['service_interface'] = $http.post(dataFactory.services().add_interface, service_interface);
+
+                        angular.forEach(params.documents, function(doc, index) {
+                            promises['doc' + index] = uploadDoc(doc, id);
+                        });
+
+                        angular.forEach(params.images, function(image, index) {
+                            promises['image' + index] = uploadImage(image, id);
+                        });
+
                         $q.all(promises).then(
                             function(responses){
                                 $state.go('project.services-detail', {ServiceId: id});

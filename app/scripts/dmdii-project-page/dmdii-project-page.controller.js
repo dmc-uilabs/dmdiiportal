@@ -49,18 +49,41 @@ angular.module('dmc.dmdiiProj')
                 $scope.downloadData = start;
             };
 
-
             // callback for project
             var callbackFunction = function(response){
                 $scope.project = response.data;
+                var awardDate = new Date($scope.project.awardedDate);
+                var year = awardDate.getFullYear();
+                var month = awardDate.getMonth() + 1;
+                month = (month < 10) ? '0' + month : month;
+                var day = awardDate.getDate();
+
+                $scope.project.awardedDate = month + '-' + day + '-' + year;
+
+                var endDate = new Date($scope.project.endDate);
+                var year = endDate.getFullYear();
+                var month = endDate.getMonth() + 1;
+                month = (month < 10) ? '0' + month : month;
+                var day = endDate.getDate();
+
+                $scope.project.endDate = month + '-' + day + '-' + year;
 
                 ajax.get(dataFactory.getDMDIIProject().contributors, {projectId: $scope.project.id}, function(response) {
                     $scope.project.contributingCompanies = response.data;
                     $scope.projectLoading = false;
                 });
 
-                ajax.get(dataFactory.getDMDIIProject().updates, {limit: 5, projectId: $scope.project.id}, function(response) {
+                ajax.get(dataFactory.dmdiiProjectUpdateUrl().get, {limit: 5, projectId: $scope.project.id}, function(response) {
                     $scope.updates = response.data;
+                    angular.forEach($scope.updates, function(update, index) {
+                        var date = new Date(update.created);
+                        var year = date.getFullYear();
+                        var month = date.getMonth() + 1;
+                        month = (month < 10) ? '0' + month : month;
+                        var day = date.getDate();
+
+                        $scope.updates[index].created = month + '-' + day + '-' + year;
+                    })
                     $scope.projectLoading = false;
                 });
 

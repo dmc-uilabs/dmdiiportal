@@ -61,8 +61,8 @@ angular.module('dmc.component.members-card', [
                     if($scope.projects[i].id == projectId){
                         project = $scope.projects[i];
                         break;
-                    }
-                }
+                    };
+                };
                 if(project) {
                     ajax.create(dataFactory.createMembersToProject(),
                         {
@@ -91,22 +91,21 @@ angular.module('dmc.component.members-card', [
                             };
                         }
                     );
-                }
+                };
             };
 
 			$scope.roles = [
 				'ADMIN',
 				'VIP',
 				'MEMBER'
-			]
+			];
 
 			if ($scope.cardSource.roles && angular.isDefined($scope.cardSource.roles[$scope.companyId])) {
 				$scope.cardSource.isVerified = true;
 				$scope.role = $scope.cardSource.roles[$scope.companyId];
-				console.log($scope.role, $scope.cardSource.roles[$scope.companyId])
 			} else {
 				$scope.cardSource.isVerified = false;
-			}
+			};
 
 			$scope.setRole = function() {
                 $scope.settingRole = true;
@@ -119,12 +118,10 @@ angular.module('dmc.component.members-card', [
 			var setRoleCallback = function(response) {
 				toastModel.showToast('success', $scope.cardSource.firstName + ' ' + $scope.cardSource.lastName + ' role updated!');
 				$scope.isMember = true;
-			}
+			};
 
 			$scope.resendNotification = function() {
-				ajax.create(dataFactory.requestVerification(), {}, function(response) {
-					console.log(response)
-				});
+				ajax.create(dataFactory.requestVerification(), {});
 			};
 
 			$scope.saveMember = function() {
@@ -135,7 +132,7 @@ angular.module('dmc.component.members-card', [
 				}
 				$scope.settingRole = false;
 				ajax.put(dataFactory.userRole(), role, setRoleCallback);
-			}
+			};
 
 			$scope.removeMember = function() {
 				ajax.put(dataFactory.unverify($scope.cardSource.id), {}, function(response) {
@@ -144,9 +141,9 @@ angular.module('dmc.component.members-card', [
 						$scope.isRemoved = true;
 					} else {
 						toastModel.showToast('error', response.data)
-					}
-				})
-			}
+					};
+				});
+			};
 
 			$scope.declineMember = function() {
 				ajax.put(dataFactory.declineMember($scope.cardSource.id), {}, function(response) {
@@ -155,26 +152,29 @@ angular.module('dmc.component.members-card', [
 						$scope.isRemoved = true;
 					} else {
 						toastModel.showToast('error', response.data)
-					}
+					};
 				});
 			};
 
 			var tokenCallback = function(response) {
 				$scope.token = response.data.token;
+                $scope.userId = response.data.userId;
 
 				$mdDialog.show({
 					controller: 'DisplayTokenController',
 					templateUrl: 'templates/components/token-modal/token-modal.html',
 					parent: angular.element(document.body),
 					locals: {
-					   token: $scope.token
+					   token: $scope.token, userId: $scope.userId
 					},
 					clickOutsideToClose: true
 				});
-			}
+			};
+
 			$scope.generateToken = function() {
 				ajax.create(dataFactory.generateToken($scope.cardSource.id), {}, tokenCallback)
-			}
+			};
+
             $scope.showMembers = function(id, ev){
                 $(window).scrollTop();
                   $mdDialog.show({
@@ -209,19 +209,24 @@ angular.module('dmc.component.members-card', [
                                 $scope.cardSource.follow = null;
                             }
                         );
-                    }
-                }
+                    };
+                };
             };
 		}]
-	}
+	};
 })
 .controller('DisplayTokenController',
-	['$scope', '$rootScope', '$mdDialog', 'token',
-	function ($scope, $rootScope, $mdDialog, token) {
+	['$scope', '$rootScope', '$mdDialog', 'ajax', 'dataFactory', 'token', 'userId',
+	function ($scope, $rootScope, $mdDialog, ajax, dataFactory, token, userId) {
         $scope.token = token;
+        $scope.userId = userId;
 		$scope.cancel = function(){
             $mdDialog.hide();
-		}
+		};
+
+        $scope.emailToken = function() {
+            ajax.create(dataFactory.emailToken(userId, token), {});
+        };
 }])
 .directive('dmcAddMembersCard', function () {
     return {
@@ -251,10 +256,9 @@ angular.module('dmc.component.members-card', [
             };
 
         }
-    }
+    };
 })
 .controller('showMembers', ['ajax', 'dataFactory', '$scope', '$mdDialog', 'id', function(ajax, dataFactory, $scope, $mdDialog, id){
-    console.info('showMembers', id);
     $scope.profile = [];
 
     $scope.history = {
@@ -268,8 +272,8 @@ angular.module('dmc.component.members-card', [
             viewAllLink: '/all.php#/history/profile/'+id+'/mutual',
             list:[]
         }
-    }
-
+    };
+/*
     // get profile history
     ajax.get(dataFactory.profiles(id).history,
         {
@@ -347,14 +351,15 @@ angular.module('dmc.component.members-card', [
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         }
     );
-
+*/
     ajax.get(dataFactory.userAccount(id).get,{},function(response){
         var profile = response.data;
         $scope.profile = profile;
-    })
+    });
+
     $scope.cancel = function(){
         $mdDialog.hide();
-    }
+    };
 }])
 .controller('showCompany', ['$http', '$q', 'dataFactory', '$scope', '$mdDialog', 'id', function($http, $q, dataFactory, $scope, $mdDialog, id){
     console.info('showCompany', id);
@@ -371,40 +376,28 @@ angular.module('dmc.component.members-card', [
             viewAllLink: '/all.php#/history/company/'+id+'/mutual',
             list:[]
         }
-    }
+    };
 
     var promises = {
-        'company': $http.get(dataFactory.companyURL(id).get),
-        'videos': $http.get(dataFactory.getCompanyVideos(id)),
-        'images': $http.get(dataFactory.getCompanyImages(id)),
-        'skillsImages': $http.get(dataFactory.getCompanySkillsImages(id)),
-        'skills': $http.get(dataFactory.getCompanySkills(id)),
-        'keyContacts': $http.get(dataFactory.getCompanyKeyContacts(id)),
-        'public_history': $http.get(dataFactory.companyURL(id).history,{params: {
+        'company': $http.get(dataFactory.getOrganization(id)),
+        'videos': $http.get(dataFactory.documentsUrl().getList, { params: { parentType: 'ORGANIZATION', parentId: id, docClass: 'VIDEO', recent: 3}}),
+        'images': $http.get(dataFactory.documentsUrl().getList, { params: { parentType: 'ORGANIZATION', parentId: id, docClass: 'IMAGE', recent: 3}})
+
+				/* uncomment when implemented/fixed
+				,'public_history': $http.get(dataFactory.companyURL(id).history,{params: {
             '_limit': 3,
             'section': 'public'
         }}),
         'private_history': $http.get(dataFactory.companyURL(id).history,{params: {
             '_limit': 3,
             'section': 'mutual'
-        }})
-    }
+        }})*/
+    };
 
     $q.all(promises).then(function(responses){
         $scope.company = responses.company.data;
-        $scope.company['videos'] = responses.videos.data;
-        $scope.company['images'] = responses.images.data;
-        $scope.company['skillsImages'] = responses.skillsImages.data;
-        $scope.company['skills'] = responses.skills.data;
-        $scope.company['keyContacts'] = responses.keyContacts.data;
-
-        for(var i in $scope.company['keyContacts']){
-            if($scope.company['keyContacts'][i].type == 1){
-                $scope.company['keyContacts'][i].type = 'LEGAL';
-            }else if($scope.company['keyContacts'][i].type == 2){
-                $scope.company['keyContacts'][i].type = 'LEGAL 2';
-            }
-        };
+        $scope.company['videos'] = responses.videos.data.data || [];
+        $scope.company['images'] = responses.images.data.data || [];
 
         var data = responses.public_history.data;
         for(var i in data){
@@ -431,8 +424,9 @@ angular.module('dmc.component.members-card', [
                 case 'discussion':
                     data[i].icon = 'images/ic_forum_black_24px.svg';
                     break;
-            }
-        }
+            };
+        };
+
         $scope.history.leftColumn.list = data;
 
         var data = responses.private_history.data;
@@ -460,14 +454,14 @@ angular.module('dmc.component.members-card', [
                 case 'discussion':
                     data[i].icon = 'images/ic_forum_black_24px.svg';
                     break;
-            }
-        }
+            };
+        };
         $scope.history.rightColumn.list = data;
-    })
+    });
 
     $scope.cancel = function(){
         $mdDialog.hide();
-    }
+    };
 }])
 .directive('shareMembersCard', function () {
     return {
@@ -496,7 +490,7 @@ angular.module('dmc.component.members-card', [
                     $scope.cardSource.favorite = (response.data.length > 0 ? response.data[0] : null);
                     apply();
                 });
-            }
+            };
 
             $scope.addToFavorite = function(){
                 if($scope.userData) {
@@ -514,9 +508,9 @@ angular.module('dmc.component.members-card', [
                                 $scope.cardSource.favorite = null;
                             }
                         );
-                    }
-                }
+                    };
+                };
             };
         }
-    }
+    };
 });

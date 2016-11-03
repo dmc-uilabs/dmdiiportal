@@ -7,20 +7,20 @@
 
 angular.module('dmc.marketplace')
     .controller('DMCMarketplaceController',[
-        "$state",
-        "$stateParams",
-        "$scope",
-        "$rootScope",
-        "$cookies",
-        "ajax",
-        "dataFactory",
-        "socketFactory",
-        "$location",
-        "is_search",
-        "DMCUserModel",
-        "$window",
-        "CompareModel",
-        "isFavorite",
+        '$state',
+        '$stateParams',
+        '$scope',
+        '$rootScope',
+        '$cookies',
+        'ajax',
+        'dataFactory',
+        'socketFactory',
+        '$location',
+        'is_search',
+        'DMCUserModel',
+        '$window',
+        'CompareModel',
+        'isFavorite',
         function($state,
                  $stateParams,
                  $scope,
@@ -58,7 +58,8 @@ angular.module('dmc.marketplace')
             DMCUserModel.getUserData().then(function(res){
                 userData = res;
                 getFavoriteCount();
-                CompareModel.get("services",userData);
+                $scope.getFollowCompanies(userData.accountId);
+                CompareModel.get('services',userData);
             });
 
             $scope.favoritesCount = 0;
@@ -72,7 +73,7 @@ angular.module('dmc.marketplace')
             }
 
 
-            $scope.$on("UpdateFavorite", function(){
+            $scope.$on('UpdateFavorite', function(){
                 getFavoriteCount();
             });
 
@@ -111,8 +112,8 @@ angular.module('dmc.marketplace')
             var responseDataForCarousel = {
                 published : true,
                 _limit : 10,
-                _sort : "id",
-                _order : "DESC"
+                _sort : 'id',
+                _order : 'DESC'
             };
             // function for get Popular marketplace services
             $scope.getPopularServices = function(){
@@ -165,18 +166,18 @@ angular.module('dmc.marketplace')
 				console.log('insertData: $scope.currentProduct: ' + $scope.currentProduct)
 				console.log('insertData: $scope.currentProductType: ' + $scope.currentProductType)
 				console.log('insertData: $location.$$path: ' + $location.$$path)
-				
+
                 totalCountItems = {
                     all : 0, services : { total : 0, analytical : 0, solid : 0, data : 0 }, components : 0
                 };
                 for(var i in data){
                     totalCountItems.services.total++;
                     totalCountItems.all++;
-                    if (data[i].serviceType == "analytical") {
+                    if (data[i].serviceType == 'analytical') {
                         totalCountItems.services.analytical++;
-                    }else if(data[i].serviceType == "solid"){
+                    }else if(data[i].serviceType == 'solid'){
                         totalCountItems.services.solid++;
-                    }else if(data[i].serviceType == "data"){
+                    }else if(data[i].serviceType == 'data'){
                         totalCountItems.services.data++;
                     }
                 }
@@ -208,9 +209,9 @@ angular.module('dmc.marketplace')
             var callbackServices = function(response){
 				console.log('callbackServices: $scope.currentProduct: ' + $scope.currentProduct)
 				console.log('callbackServices: $scope.currentProductType: ' + $scope.currentProductType)
-				
+
                 for(var index in response.data){
-                    response.data[index].type = "service";
+                    response.data[index].type = 'service';
                 }
                 insertData(response.data);
             };
@@ -218,7 +219,7 @@ angular.module('dmc.marketplace')
             // callback for components
             var callbackComponents = function(response){
                 for(var index in response.data){
-                    response.data[index].type = "component";
+                    response.data[index].type = 'component';
                 }
                 insertData(response.data);
             };
@@ -261,16 +262,17 @@ angular.module('dmc.marketplace')
             };
 
             // get all follow companies
-            $scope.getFollowCompanies = function(){
-                var accountId = ($rootScope.userData)? $rootScope.userData.accountId:1;
-                ajax.get(dataFactory.getFollowCompanies(accountId), {},
-                    function(response){
-                        if(response.data.length > 0){
-                            var companies = $.map( response.data, function( x ) { return x.companyId; });
-                            $scope.getFollowCompaniesServices(companies);
+            $scope.getFollowCompanies = function(id){
+                if (userData.accountId) {
+                    ajax.get(dataFactory.getFollowCompanies(id), {},
+                        function(response){
+                            if(response.data.length > 0){
+                                var companies = $.map( response.data, function( x ) { return x.companyId; });
+                                $scope.getFollowCompaniesServices(companies);
+                            }
                         }
-                    }
-                );
+                    );
+                }
             };
 
             // get all services from follow companies
@@ -306,7 +308,6 @@ angular.module('dmc.marketplace')
                         default:
                     }
                 }else{
-                    $scope.getFollowCompanies();
                     $scope.getServices();
                 }
             };

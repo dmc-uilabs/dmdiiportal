@@ -457,6 +457,9 @@ angular.module('dmc.data',[])
             generateToken: function(id) {
                 return localhost + 'user/createtoken?userId=' + id;
             },
+            emailToken: function(id, token){
+                return localhost + 'users/' + id + '/email?token=' + token;
+            },
             validateToken: function(id, token) {
                 return localhost + 'users/' + id + '?action=verify'
             },
@@ -482,8 +485,11 @@ angular.module('dmc.data',[])
                 return localhost + 'user/organization/' + id
                     //add paged and filtered
             },
+            getOrganizationList: function() {
+                return localhost + 'organizations';
+            },
             getOrganization: function(id) {
-                return localhost + 'organizations/' + id
+                return localhost + 'organizations/' + id;
             },
             updateOrganization: function(id) {
                 return localhost + 'organizations/' + id;
@@ -493,9 +499,6 @@ angular.module('dmc.data',[])
             },
             deleteOrganization: function(id) {
                 return localhost + 'organizations/' + id;
-            },
-            changeUsersOrganization: function(id) {
-                return 'not implemented'
             },
             getDocument: function() {
                 return {
@@ -508,9 +511,21 @@ angular.module('dmc.data',[])
                     all: localhost + 'dmdiiMember',
                     full: localhost + 'dmdiiMember/all',
                     search: localhost + 'dmdiiMember/search',
-                    events: localhost + 'dmdiiMember/events',
-                    news: localhost + 'dmdiiMember/news',
                     map: localhost  +  'dmdiiMember/mapEntry'
+                }
+            },
+            dmdiiMemberNewsUrl: function(id) {
+                return {
+                    get: localhost + 'dmdiiMember/news',
+                    save: localhost + 'dmdiiMember/news',
+                    delete: localhost + 'dmdiiMember/news/' + id
+                }
+            },
+            dmdiiMemberEventUrl: function(id) {
+                return {
+                    get: localhost + 'dmdiiMember/events',
+                    save: localhost + 'dmdiiMember/events',
+                    delete: localhost + 'dmdiiMember/events/' + id
                 }
             },
             getDMDIIMemberProjects: function() {
@@ -521,9 +536,7 @@ angular.module('dmc.data',[])
             },
             saveDMDIIMember: function() {
                 return {
-                    member: localhost + 'dmdiiMember/save',
-                    events: localhost + 'dmdiiMember/events',
-                    news: localhost + 'dmdiiMember/news'
+                    member: localhost + 'dmdiiMember/save'
                 }
             },
             getDMDIIProject: function(id) {
@@ -531,34 +544,47 @@ angular.module('dmc.data',[])
                     get: localhost+'dmdiiProject/' + id,
                     all: localhost+'dmdiiprojects',
                     active: localhost + 'dmdiiprojects/member/active',
-                    events: localhost+'dmdiiProject/events',
-                    news: localhost+'dmdiiProject/news',
                     contributors: localhost + 'dmdiiproject/contributingcompanies',
-                    updates: localhost + 'dmdiiProjectUpdate',
                     search: localhost + 'dmdiiprojects/search'
                 }
             },
             saveDMDIIProject: function() {
                 return {
-                    project: localhost + 'dmdiiProject/save',
-                    events: localhost + 'dmdiiProject/events',
-                    news: localhost + 'dmdiiProject/news',
-                    update: localhost + 'dmdiiProjectUpdate'
+                    project: localhost + 'dmdiiProject/save'
                 }
             },
-            getQuickLinks: function() {
+            dmdiiProjectUpdateUrl: function(id) {
                 return {
-                    all: localhost + 'dmdiiquicklink'
+                    get: localhost + 'dmdiiProjectUpdate',
+                    save: localhost + 'dmdiiProjectUpdate',
+                    delete: localhost + 'dmdiiProjectUpdate/' + id
+                }
+            },
+            dmdiiProjectEventUrl: function(id) {
+                return {
+                    get: localhost + 'dmdiiProject/events',
+                    save: localhost + 'dmdiiProject/events',
+                    delete: localhost + 'dmdiiProject/events/' + id
+                }
+            },
+            dmdiiProjectNewsUrl: function(id) {
+                return {
+                    get: localhost + 'dmdiiProject/news',
+                    save: localhost + 'dmdiiProject/news',
+                    delete: localhost + 'dmdiiProject/news/' + id
                 };
             },
-            saveQuicklink: function() {
-                return localhost + 'dmdiiquicklink';
+            quicklinkUrl: function(id) {
+                return {
+                    get: localhost + 'dmdiiquicklink',
+                    save: localhost + 'dmdiiquicklink',
+                    delete: localhost + 'dmdiiquicklink/' + id
+                };
             },
             getDMDIIDocuments: function(id) {
                 return {
                     all: localhost + 'dmdiidocuments',
                     single: localhost + 'dmdiidocument/' + id,
-                    project: localhost + 'dmdiidocuments/dmdiiProjectId',
                     overview: localhost + 'staticdocument/1',
                     status: localhost + 'staticdocument/2',
                     projectDocument: localhost + 'dmdiidocument/filetype'
@@ -576,8 +602,8 @@ angular.module('dmc.data',[])
                     getList: localhost + 'documents',
                     save: localhost + 'documents',
                     update: localhost + 'documents/' + id,
-                    delete: localhost + 'documents/' + id,
-                }
+                    delete: localhost + 'documents/' + id
+                };
             },
             getApplicationTags: function() {
                     return localhost + 'applicationTag'
@@ -760,15 +786,11 @@ angular.module('dmc.data',[])
                     get_run_history : localhost + 'service_runs' + '?serviceId=' + id,
                     get_servers : localhost + 'account_servers',
                     add_servers : localhost + 'services_servers',
-                    get_images : localhost + name + '/' + id + '/service_images',
-                    add_images : localhost + 'service_images',
-                    remove_images : localhost + 'service_images/' + id,
                     get_array_specifications: localhost + 'array_specifications',
                     add_array_specifications: localhost + 'array_specifications',
                     get_specifications: localhost + name + '/' + id + '/specifications',
-                    edit_specifications: localhost + 'specifications/' + id,
-                    add_specifications:  localhost + 'specifications',
-                    update_specifications:  localhost + 'specifications/'+id,
+                    add_specifications:  localhost + name + '/' + id + 'specifications',
+                    update_specifications:  localhost + '/specifications/' + id,
                     get_statistics: localhost + name + '/' + id + '/services_statistic',
                     add_interface: localhost + 'dome-interfaces',
                     get_interface: localhost + name + '/' + id + '/dome-interfaces',
@@ -881,6 +903,7 @@ angular.module('dmc.data',[])
             addDiscussion : function(){
                 return localhost+'individual-discussion'
             },
+            /*
             getCompanyImages : function(id){
                 return localhost+'companies/'+id+'/company_images'
             },
@@ -893,6 +916,7 @@ angular.module('dmc.data',[])
             getCompanySkills : function(id){
                 return localhost+'companies/'+id+'/company_skills'
             },
+            */
             getCompanyMembers : function(id){
                 return localhost+'companies/'+id+'/company_members'
             },
@@ -967,6 +991,9 @@ angular.module('dmc.data',[])
             },
             deleteFavorite: function(id){
                 return localhost+'favorite_products/'+id;
+            },
+            getUserList: function(){
+                return localhost + 'users';
             },
             getUserUrl: function(){
                 return localhost+'user';

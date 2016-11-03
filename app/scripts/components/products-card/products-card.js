@@ -15,18 +15,18 @@ angular.module('dmc.component.productscard', [
       restrict: 'E',
       transclude: true,
       scope: {
-          cardSource : "=",
-          totalSize : "=",
-          pageSize : "=",
-          currentPage : "=",
-          titleCard: "=",
-          cardLoading: "=",
-          searchCard: "=",
-          updatePageSize : "=",
-          addFeatured : "=",
-          removeFeatured : "=",
-          hideButtons : "=",
-          viewAllLink: "="
+          cardSource : '=',
+          totalSize : '=',
+          pageSize : '=',
+          currentPage : '=',
+          titleCard: '=',
+          cardLoading: '=',
+          searchCard: '=',
+          updatePageSize : '=',
+          addFeatured : '=',
+          removeFeatured : '=',
+          hideButtons : '=',
+          viewAllLink: '='
       },
       templateUrl: 'templates/components/products-card/products-card-tpl.html',
       controller: function($scope,$cookies){
@@ -42,10 +42,10 @@ angular.module('dmc.component.productscard', [
 
           $scope.filterItems = [{
               id : 1,
-              name : "Analytical Services"
+              name : 'Analytical Services'
           },{
               id : 2,
-              name : "4 Stars & Up"
+              name : '4 Stars & Up'
           }];
 
           $scope.showArray = [
@@ -76,7 +76,7 @@ angular.module('dmc.component.productscard', [
 
 
           $scope.selectItemDropDown = function(type){
-              if(type == "show"){
+              if(type == 'show'){
                   if($scope.sizeModule != 0) {
                       var item = $scope.showArray[$scope.sizeModule];
                       $scope.pageSize = item.val;

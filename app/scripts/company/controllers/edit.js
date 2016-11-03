@@ -9,6 +9,7 @@ angular.module('dmc.company')
         '$state',
         '$scope',
         '$cookies',
+        '$q',
         'ajax',
         'companyData',
         'CompanyModel',
@@ -22,6 +23,7 @@ angular.module('dmc.company')
                               $state,
                               $scope,
                               $cookies,
+                              $q,
                               ajax,
                               companyData,
                               CompanyModel,
@@ -39,6 +41,9 @@ angular.module('dmc.company')
                 selectedIndexTab = tab;
             };
 
+            var removeMainPicture = false;
+            var removeLogo = false;
+
             if($scope.companyData && $scope.companyData.id){
                 $scope.owner = $scope.companyData.account;
 
@@ -48,13 +53,27 @@ angular.module('dmc.company')
                         question : 'Do you want to delete the picture?',
                         buttons: {
                             ok: function(){
-                                deletePicture();
+                                removeMainPicture = true;
+                                delete $scope.company.featureImage;
                             },
                             cancel: function(){}
                         }
                     },ev);
                 };
 
+                var featureImage = null;
+                var logo = nulll
+                ajax.get(dataFactory.documentsUrl().getList, { recent: 1, parentType: 'ORGANIZATION', parentId: $scope.companyData.id, docClass: 'FEATURE_IMAGE' }, function(response) {
+                    if (response.data && response.data.data && response.data.data.length > 0) {
+                        featureImage = response.data.data[0].documentUrl;
+                    };
+                });
+
+                ajax.get(dataFactory.documentsUrl().getList, { recent: 1, parentType: 'ORGANIZATION', parentId: $scope.companyData.id, docClass: 'LOGO' }, function(response) {
+                    if (response.data && response.data.data && response.data.data.length > 0) {
+                        logo = response.data.data[0].documentUrl;
+                    };
+                });
 
 
                 // auto focus for First Name input
@@ -74,7 +93,7 @@ angular.module('dmc.company')
 
                 $scope.companyData.description = htmlToInput($scope.companyData.description);
                 $scope.companyPicture = {
-                    'background-image' : (companyData.featureImage && companyData.featureImage.large ? 'url('+companyData.featureImage.large+')' : null)
+                    'background-image' : (featureImage ? 'url('+featureImage+')' : null)
                 };
 
                 $scope.companyId = $stateParams.companyId;
@@ -97,7 +116,7 @@ angular.module('dmc.company')
                 $scope.$on('isValid', function (event, data) {
                     $scope.isValid = data;
                 });
-                
+
                 $scope.productTypes = [
                     //{
                     //    name : 'all',
@@ -119,46 +138,39 @@ angular.module('dmc.company')
 
                 $scope.cancelChangeLogo = function(){
                     $scope.isChangingLogo = false;
-                    $scope.flowLogo = null;
                 };
 
-                $scope.isChangingPicture = (!$scope.companyData.featureImage.large ? true : false);
+                $scope.isChangingPicture = (!featureImage ? true : false);
                 $scope.currentPicture = null;
-                var callbackUploadPicture = function(data){
-                    if(!data.error) {
-                        $scope.companyData.featureImage.large = data.file.name;
-                        if ($scope.companyPicture['background-image']) {
-                            toastModel.showToast('success', 'Picture successfully changed');
-                        } else {
-                            toastModel.showToast('success', 'Picture successfully uploaded');
-                        }
-                        $scope.companyPicture['background-image'] = 'url(' + companyData.featureImage.large + ')';
-                    }else{
-                        toastModel.showToast('error', 'Unable upload picture');
-                    }
-                };
 
-                var callbackUploadLogo = function(data){
-                    if(!data.error) {
-                        $scope.companyData.logoImage = data.file.name;
-                        toastModel.showToast('success', 'Logo successfully uploaded');
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    }else{
-                        toastModel.showToast('error', 'Unable upload logo');
-                    }
-                };
+                var uploadFile = function(companyId) {
+                    return fileUpload.uploadFileToUrl($scope.featureImage[0].file,{ id: companyId },'feature-image').then(function(response) {
+                        return ajax.create(dataFactory.documentsUrl().save, {
+                            ownerId: $scope.user.accountId,
+                            documentUrl: response.file.name,
+                            documentName: 'feature-image',
+                            parentType: 'ORGANIZATION',
+                            parentId: companyId,
+                            docClass: 'FEATURE_IMAGE'
+                        }, function(response) {
+                            $scope.cancelChangePicture();
+                        });
+                    });
+                }
 
-                $scope.uploadFile = function(flow){
-                    $scope.file = flow.files[0].file;
-                    fileUpload.uploadFileToUrl($scope.file,{id : $scope.companyId},'company',callbackUploadPicture);
-                    $scope.cancelChangePicture(flow);
-                };
-
-                $scope.flowLogo = null;
-                $scope.uploadLogo = function(){
-                    $scope.file = $scope.flowLogo.files[0].file;
-                    fileUpload.uploadFileToUrl($scope.file,{id : $scope.companyId},'company-logo',callbackUploadLogo);
-                    $scope.cancelChangeLogo();
+                var uploadLogo = function(companyId) {
+                    fileUpload.uploadFileToUrl($scope.newLogo[0].file, { id: companyId },'company-logo').then(function(response) {
+                        return ajax.create(dataFactory.documentsUrl().save, {
+                            ownerId: $scope.user.accountId,
+                            documentUrl: response.file.name,
+                            documentName: 'feature-image',
+                            parentType: 'ORGANIZATION',
+                            parentId: companyId,
+                            docClass: 'LOGO'
+                        }, function(response) {
+                            $scope.cancelChangeLogo();
+                        });
+                    });
                 };
 
                 $scope.deleteLogo = function(ev){
@@ -166,13 +178,8 @@ angular.module('dmc.company')
                         question : 'Do you want to delete the logo?',
                         buttons: {
                             ok: function(){
-                                ajax.update(dataFactory.deleteCompanyLogo($scope.companyId), {
-                                        logoImage : null
-                                    }, function(){
-                                        $scope.companyData.logoImage = null;
-                                        apply();
-                                    }
-                                );
+                                removeLogo = true;
+                                delete $scope.company.logoImage;
                             },
                             cancel: function(){}
                         }
@@ -185,59 +192,16 @@ angular.module('dmc.company')
                     apply();
                 };
 
-                $scope.cancelChangePicture = function(flow){
-                    flow.files = [];
-                    if($scope.currentPicture) $scope.companyPicture['background-image'] = $scope.currentPicture;
+                $scope.cancelChangePicture = function(){
                     $scope.isChangingPicture = false;
                 };
 
-                $scope.prevPicture = null;
-                $scope.pictureDragEnter = function(flow){
-                    $scope.prevPicture = flow.files[0];
-                    flow.files = [];
-                };
 
-                $scope.pictureDragLeave = function(flow){
-                    if(flow.files.length == 0 && $scope.prevPicture != null) {
-                        flow.files = [$scope.prevPicture];
-                        $scope.prevPicture = null;
-                    }
-                };
-
-                $scope.addedNewFile = function(file,event,flow){
-                    $scope.flowBoxStyle = {'max-width' : 560};
-                    flow.files.shift();
-                };
-
-                $scope.addedNewLogo = function(file,event,flow){
-                    $scope.flowLogo = flow;
-                    flow.files.shift();
-                };
-
-                $scope.$watch(function(){
-                    return $('#flowImage').attr('src');
-                },function(newVal,oldVal){
-                    if(newVal && newVal != oldVal){
-                        $scope.currentPicture = $scope.companyPicture['background-image'];
-                        $scope.companyPicture['background-image'] = 'url(' + newVal + ')';
-                    }
-                });
-
-                $scope.removePicture = function(flow){
-                    flow.files = [];
-                    $scope.flowBoxStyle = null;
-                    if($scope.currentPicture) $scope.companyPicture['background-image'] = $scope.currentPicture;
-                };
-
-                $scope.removeLogo = function(flow){
-                    flow.files = [];
-                    $scope.flowLogo = null;
+                $scope.removeLogo = function(){
                 };
 
                 $scope.featuredItems = [];
                 $scope.storefrontItems = {arr : [],count : 0};
-
-
 
                 // callback for services
                 var callbackCompanyServices = function(response){
@@ -409,24 +373,43 @@ angular.module('dmc.company')
                     if (!$scope.isValid) {
                         return;
                     }
+                    var promises = [];
 
-                    if(changedPositions){
-                        for(var index in changedPositions){
-                            ajax.update(dataFactory.updateCompanyFeaturedPosition(changedPositions[index].id),{
-                                position : changedPositions[index].position
-                            },function(response){});
-                        }
+                    if ($scope.newLogo && $scope.newLogo.length > 0) {
+                        promises.push(uploadLogo());
+                        removeLogo = true;
                     }
 
-                    // save changed description
-                    var description = inputToHtml($scope.companyData.description);
-                    ajax.update(dataFactory.updateCompany($scope.companyId),{
-                        description : description
-                    },function(response){
-                        toastModel.showToast('success','Data successfully changed');
-                        $scope.changedData = {};
-                        $location.path('/'+$scope.companyId+'/storefront').search({
-                            product : 'services'
+                    if (removeLogo) {
+                        promises.push(deleteLogo());
+                    }
+
+                    if ($scope.featureImage && $scope.featureImage.length > 0) {
+                        promises.push(uploadImage());
+                        removeMainPicture = true;
+                    }
+
+                    if (removeMainPicture) {
+                        promises.push(deleteImage());
+                    }
+
+                    $q.all(promises).then(function(response) {
+                        if(changedPositions){
+                            for(var index in changedPositions){
+                                ajax.update(dataFactory.updateCompanyFeaturedPosition(changedPositions[index].id),{
+                                    position : changedPositions[index].position
+                                },function(response){});
+                            }
+                        }
+
+                        // save changed description
+                        $scope.companyData.description = inputToHtml($scope.companyData.description);
+                        ajax.update(dataFactory.updateOrganization($scope.companyId), $scope.companyData, function(response){
+                            toastModel.showToast('success','Data successfully changed');
+                            $scope.changedData = {};
+                            $location.path('/'+$scope.companyId+'/storefront').search({
+                                product : 'services'
+                            });
                         });
                     });
                 };
@@ -435,8 +418,8 @@ angular.module('dmc.company')
                 var lastPosition = 0;
                 $scope.getFeatured = function () {
                     ajax.get(dataFactory.getCompanyFeatured($scope.companyId), {
-                            '_order' : 'DESC',
-                            '_sort' : 'position'
+                            'order' : 'DESC',
+                            'sort' : 'position'
                         },
                         function (response) {
                             var servicesIds = [];
@@ -490,7 +473,8 @@ angular.module('dmc.company')
                         }
                     );
                 };
-                $scope.getFeatured();
+                //uncomment when fixed/implemented
+                //$scope.getFeatured();
 
 
 
@@ -596,7 +580,6 @@ angular.module('dmc.company')
                         'background-image' : null
                     };
                     $scope.isChangingPicture = true;
-                    $scope.flowBoxStyle = null;
                     apply();
                 });
             }

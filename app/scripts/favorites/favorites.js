@@ -22,7 +22,6 @@ angular.module('dmc.all-favorites', [
 	'dmc.component.products-filter',
   'dmc.model.previous-page',
 	'dmc.model.services',
-	'flow',
 	'ng-autofocus'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider){

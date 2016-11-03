@@ -131,11 +131,11 @@ angular.module('dmc.addDmdiiContent').
                                     documentName: $scope.quicklink.displayName
                                 }, function(response) {
                                 $scope.quicklink.doc = response.data;
-                                ajax.create(dataFactory.saveQuicklink(), $scope.quicklink, quicklinkCallback);
+                                ajax.create(dataFactory.quicklinkUrl().save(), $scope.quicklink, quicklinkCallback);
                             });
                         });
                     } else {
-                        ajax.create(dataFactory.saveQuicklink(), $scope.quicklink, quicklinkCallback);
+                        ajax.create(dataFactory.quicklinkUrl().save(), $scope.quicklink, quicklinkCallback);
                     }
                 };
                 function apply() {

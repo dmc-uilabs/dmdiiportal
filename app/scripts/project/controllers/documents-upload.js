@@ -1,6 +1,6 @@
 angular.module('dmc.project')
 .controller('DocumentsUploadCtrl',
-    function ($scope, $rootScope, $state, $stateParams, $mdDialog, $q, $http, projectData, dataFactory, toastModel, fileUpload) {
+    function ($scope, $rootScope, $state, $stateParams, $mdDialog, $q, $http, projectData, dataFactory, toastModel, fileUpload, ajax) {
         var projectCtrl = this;
         projectCtrl.currentProjectId = angular.isDefined($stateParams.projectId) ? $stateParams.projectId : 1;
         projectCtrl.projectData = projectData;
@@ -22,9 +22,24 @@ angular.module('dmc.project')
             console.log($scope.documents);
 
             for(var i in $scope.documents){
+              (function(doc){
+                promises[doc.title] = fileUpload.uploadFileToUrl(doc.file, {}, doc.title + doc.type).then(function(response) {
+                    var docData = {
+                        parentId:projectCtrl.currentProjectId,
+                        parentType:"PROJECT",
+                        documentUrl: response.file.name,
+                        documentName: doc.title + doc.type,
+                        ownerId: $rootScope.userData.accountId,
+                        docClass: 'SUPPORT',
+                        accessLevel: doc.accessLevel
+                    };
 
+                    return ajax.create(dataFactory.documentsUrl().save, docData, function(resp){});
+                });
+              })($scope.documents[i]);
+            }
 
-
+/*
               fileUpload.uploadFileToUrl(
                   $scope.documents[i].file,
                   {id:projectCtrl.currentProjectId },
@@ -55,6 +70,7 @@ angular.module('dmc.project')
                       }
                   }
               );
+*/
               /*
                 console.log($scope.userData);
                 var fd = {
@@ -80,7 +96,7 @@ angular.module('dmc.project')
                     transformRequest: angular.identity,
                     headers: {'Content-Type': undefined}
                 });*/
-            }
+
 
             $q.all(promises).then(function(){
                     $state.go("project.documents");

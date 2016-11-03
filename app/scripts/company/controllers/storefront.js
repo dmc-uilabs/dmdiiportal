@@ -33,13 +33,13 @@ angular.module('dmc.company')
 
         $scope.companyData = companyData ;
 
-        ajax.get(dataFactory.documentsURL().getList, {
+        ajax.get(dataFactory.documentsUrl().getList, {
             parentType: 'ORGANIZATION',
             parentId: $scope.companyData.id,
             docClass: 'LOGO',
             page: 0, pageSize: 1
         }, function(response) {
-            if (response.data.data.length > 0) {
+            if (response.data.count > 0) {
                 $scope.companyData.logoImage = response.data.data[0];
             };
         });
@@ -54,7 +54,7 @@ angular.module('dmc.company')
         if($scope.companyData && $scope.companyData.id) {
             $scope.currentUser = DMCUserModel.getUserData().then(function(res){
                 $scope.currentUser = res;
-                getCompanyJoinRequest();
+                //getCompanyJoinRequest();
                 CompareModel.get('services',$scope.currentUser);
             });
             $scope.currentUser = ($scope.currentUser.$$state && $scope.currentUser.$$state.value ? $scope.currentUser.$$state.value : null);

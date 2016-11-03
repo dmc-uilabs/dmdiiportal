@@ -69,12 +69,27 @@ angular.module('dmc.project')
 
             // get project documents
             $scope.getDocuments = function(){
+                ajax.get(dataFactory.documentsUrl().getList, {
+                    parentType: 'PROJECT',
+                    parentId: projectCtrl.currentProjectId,
+                    docClass: 'SUPPORT',
+                    recent: 20
+                }, function(response) {
+                    $scope.documents = $.map(response.data.data||[], function(proj){
+                      proj.title = proj.documentName;
+                      return proj;
+                    });
+                    apply();
+                });
+
+                /*
                 ajax.get(dataFactory.getProjectDocuments(projectCtrl.currentProjectId),{
                     'project-documentId' : 0
                 },function(response){
                     $scope.documents = response.data;
                     apply();
                 });
+                */
             };
             $scope.getDocuments();
 

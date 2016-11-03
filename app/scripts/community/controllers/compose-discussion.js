@@ -1,5 +1,5 @@
 angular.module('dmc.compose-discussion',[])
-    .controller("ComposeDiscussionController", [
+    .controller('ComposeDiscussionController', [
         '$scope',
         'ajax',
         'dataFactory',
@@ -7,11 +7,11 @@ angular.module('dmc.compose-discussion',[])
         '$window',
         '$location',
         '$mdDialog',
-        "$mdToast",
-        "previousPage",
-        "project_id",
-        "$timeout",
-        "toastModel",
+        '$mdToast',
+        'previousPage',
+        'project_id',
+        '$timeout',
+        'toastModel',
         function ($scope,
                   ajax,
                   dataFactory,
@@ -26,20 +26,20 @@ angular.module('dmc.compose-discussion',[])
                   toastModel) {
 
             $timeout(function(){
-                $("#subject-compose-discussion").focus();
+                $('#subject-compose-discussion').focus();
             },800);
             $scope.NewDiscussion = {
-                subject: "",
+                subject: '',
                 tags: [],
-                message: ""
+                message: ''
             };
 
 
             $scope.cancel = function(){
                 $scope.NewDiscussion = {
-                    subject: "",
+                    subject: '',
                     tags: [],
-                    message: ""
+                    message: ''
                 };
                 $mdDialog.hide();
             };
@@ -60,11 +60,11 @@ angular.module('dmc.compose-discussion',[])
             $scope.save = function(message, subject){
                 ajax.create(
                     dataFactory.addDiscussion(), {
-                        "title": subject,
-                        "projectId" : $scope.projectId,
-                        "accountId" : $rootScope.userData.accountId,
-                        "created_by" : $rootScope.userData.displayName,
-                        "created_at": Date.parse(new Date())
+                        'title': subject,
+                        'projectId' : $scope.projectId,
+                        'accountId' : $rootScope.userData.accountId,
+                        'created_by' : $rootScope.userData.displayName,
+                        'created_at': Date.parse(new Date())
                     },
                     function(response){
                         createMessage(response.data.id,message);
@@ -78,22 +78,22 @@ angular.module('dmc.compose-discussion',[])
                 }else{
                     previousPage.set(location.origin + '/community.php');
                 }
-                toastModel.showToast("success", "Discussion created");
+                toastModel.showToast('success', 'Discussion created');
                 $mdDialog.hide();
                 $window.location.href = '/individual-discussion.php#/' + id;
             }
 
             function followDiscussion(id){
                 ajax.create(dataFactory.followDiscussion(),{
-                    "accountId" : $rootScope.userData.accountId,
-                    "individual-discussionId": id
+                    'accountId' : $rootScope.userData.accountId,
+                    'individual-discussionId': id
                 },function(response){
                     if ($scope.NewDiscussion.tags.length > 0) {
                         for (var i in $scope.NewDiscussion.tags) {
                             ajax.create(
                                 dataFactory.addDiscussionTag(), {
-                                    "name": $scope.NewDiscussion.tags[i],
-                                    "individual-discussionId": id
+                                    'name': $scope.NewDiscussion.tags[i],
+                                    'individual-discussionId': id
                                 }, function (data) {
                                 }
                             );
@@ -108,16 +108,16 @@ angular.module('dmc.compose-discussion',[])
             function createMessage(id,message){
                 ajax.create(
                     dataFactory.addCommentIndividualDiscussion(), {
-                        "individual-discussionId": id,
-                        "full_name": $rootScope.userData.displayName,
-                        "accountId": $rootScope.userData.accountId,
-                        "commentId" : 0,
-                        "avatar": "/images/carbone.png",
-                        "text": message,
-                        "created_at": moment(new Date).format("x"),
-                        "like": 0,
-                        "dislike": 0,
-                        "reply": false
+                        'individual-discussionId': id,
+                        'full_name': $rootScope.userData.displayName,
+                        'accountId': $rootScope.userData.accountId,
+                        'commentId' : 0,
+                        'avatar': $rootScope.userData.image,
+                        'text': message,
+                        'created_at': moment(new Date).format('x'),
+                        'like': 0,
+                        'dislike': 0,
+                        'reply': false
                     },
                     function(response){
                         followDiscussion(id);

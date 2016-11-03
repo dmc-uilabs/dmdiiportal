@@ -19,6 +19,7 @@ angular.module('dmc.company-profile', [
     'dmc.model.question-toast-model',
     'dmc.widgets.review',
     'dmc.widgets.tabs',
+    'dmc.widgets.documents',
     'dmc.component.members-card',
     'dmc.component.contacts-card',
     'dmc.common.header',
@@ -30,8 +31,7 @@ angular.module('dmc.company-profile', [
     'dmc.model.company',
     'dmc.phone-format',
     'dmc.zip-code-format',
-    'dmc.model.account',
-    'flow'
+    'dmc.model.account'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
         var resolve = {
@@ -46,8 +46,7 @@ angular.module('dmc.company-profile', [
             controller: 'CompanyProfileController',
             resolve: {
                 companyData: ['companyProfileModel', '$stateParams', function(companyProfileModel,$stateParams){
-                    data = companyProfileModel.get_company($stateParams.companyId);
-                    return data;
+                    return companyProfileModel.get_company($stateParams.companyId);
                 }]
             }
         }).state('company-profile-edit', {
@@ -207,6 +206,7 @@ angular.module('dmc.company-profile', [
                     var company = extractData(responses.company);
                     company.company_members = extractData(responses.company_members);
                     company.company_reviews = extractData(responses.company_reviews);
+                    /*
                     DMCUserModel.getUserData().then(function(res){
                         ajax.get(dataFactory.getProfileCompanyJoinRequest(res.profileId),{
                             companyId : company.id
@@ -214,6 +214,7 @@ angular.module('dmc.company-profile', [
                             company.joinRequest = data.data && data.data.length > 0 ? data.data[0] : null;
                         });
                     });
+                    */
                     company.rating = company.company_reviews.map(function(value, index){
                         return value.rating;
                     });

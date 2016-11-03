@@ -108,16 +108,22 @@ angular.module('dmc.uploadApplication')
 				})
 			};
 			//-----------end autocomplete---------
-            var saveCallback = function(response) {
-				if (response.status === 200) {
-					toastModel.showToast('success', 'Application has been Submitted!');
-					$scope.applicationData = {};
-					$timeout($window.location.reload, 500);
-				} else {
-					toastModel.showToast('error', 'Error: ' + response.data.message)
-				}
-            };
 
+			//-----------change functions---------
+			$scope.updatePrice = function() {
+				if ($scope.applicationData.appPricingStructure === 'FREE') {
+					$scope.applicationData.appCost = 0;
+				}
+			}
+
+			$scope.updateTerms = function() {
+				if ($scope.applicationData.standardLicenseTerms === true) {
+					$scope.applicationData.appLicense = 'Standard DMC License';
+				} else {
+					$scope.applicationData.appLicense = ''
+				}
+			}
+			//---------end change functions--------
 			//validation watch
             $scope.$watch('applicationData', function() {
                 if ($scope.noTitle && angular.isDefined($scope.applicationData.appTitle) && $scope.applicationData.appTitle.trim().length > 0) {
@@ -130,10 +136,11 @@ angular.module('dmc.uploadApplication')
 
             }, true);
 
-			var uploadScreenshots = function() {
+			var docsToUpdate = [];
+			var uploadScreenshots = function(id) {
 				angular.forEach($scope.screenshots, function(doc) {
 					return fileUpload.uploadFileToUrl(doc.file, {}, 'applicationScreenshot').then(function(response) {
-						return ajax.create(dataFactory.documentsURL().save,
+						return ajax.create(dataFactory.documentsUrl().save,
 							{
 								ownerId: $scope.user.accountId,
 								documentUrl: response.file.name,
@@ -142,14 +149,15 @@ angular.module('dmc.uploadApplication')
 								docClass: 'IMAGE'
 							}, function(response) {
 							$scope.applicationData.screenShots.push(response.data);
+							docsToUpdate.push(response.data);
 						});
 					});
 				});
 			};
 
-			var uploadAppDocs = function(doc) {
+			var uploadAppDocs = function(doc, id) {
 				return fileUpload.uploadFileToUrl(doc.file, {}, 'applicationDoc').then(function(response) {
-					return ajax.create(dataFactory.documentsURL().save,
+					return ajax.create(dataFactory.documentsUrl().save,
 					{
 						ownerId: $scope.user.accountId,
 						documentUrl: response.file.name,
@@ -158,13 +166,14 @@ angular.module('dmc.uploadApplication')
 						docClass: 'SUPPORT'
 					}, function(response) {
 						$scope.applicationData.appDocuments.push(response.data);
+						docsToUpdate.push(response.data);
 					});
 				});
 			};
 
-			var uploadAppIcon = function() {
+			var uploadAppIcon = function(id) {
 				return fileUpload.uploadFileToUrl($scope.appIcon[0].file, {}, 'applicationIcon').then(function(response) {
-					return ajax.create(dataFactory.documentsURL().save,
+					return ajax.create(dataFactory.documentsUrl().save,
 						{
 							ownerId: $scope.user.accountId,
 							documentUrl: response.file.name,
@@ -172,13 +181,14 @@ angular.module('dmc.uploadApplication')
 							parentType: 'APPSUBMISSION'
 						}, function(response) {
 						$scope.applicationData.appIcon = response.data;
+						docsToUpdate.push(response.data);
 					});
 				});
 			};
 
-			var uploadApplication = function() {
+			var uploadApplication = function(id) {
 				return fileUpload.uploadFileToUrl($scope.application[0].file, {}, 'application').then(function(response) {
-					return ajax.create(dataFactory.documentsURL().save,
+					return ajax.create(dataFactory.documentsUrl().save,
 					{
 						ownerId: $scope.user.accountId,
 						documentUrl: response.file.name,
@@ -186,10 +196,17 @@ angular.module('dmc.uploadApplication')
 						parentType: 'APPSUBMISSION'
 					}, function(response) {
 						$scope.applicationData.application = response.data;
+						docsToUpdate.push(response.data);
 					});
-                })
+                });
 			};
-
+			//
+			// $scope.transformTag = function(tag) {
+			// 	if (tag && !angular.isObject(tag)) {
+			// 		tag = { name: tag }
+			// 	};
+			// 	return tag;
+			// }
             $scope.save = function() {
 				if (!$scope.applicationData.appTitle || $scope.applicationData.appTitle.trim().length <= 0) {
 					$scope.noTitle = true;
@@ -201,16 +218,25 @@ angular.module('dmc.uploadApplication')
 
 				if ($scope.application.length === 0) {
 					$scope.noDocSelected = true;
+				} else {
+					$scope.noDocSelected = false;
 				};
 
 				if ($scope.appIcon.length === 0) {
 					$scope.noIconSelected = true;
+				} else {
+					$scope.noIconSelected = false;
 				};
 
 				if ($scope.notUnique || $scope.noDocSelected || $scope.noShortDescription || $scope.noTitle || $scope.noIconSelected) {
-
 					return;
 				}
+
+				angular.forEach($scope.applicationData.appTags, function(tag, index) {
+					if (!angular.isObject(tag)) {
+						$scope.applicationData.appTags[index] = { tagName: tag };
+					};
+				});
 
 				var promises = [
 					uploadApplication(),
@@ -224,9 +250,26 @@ angular.module('dmc.uploadApplication')
 				});
 
 				$q.all(promises).then(function(response) {
-					ajax.create(dataFactory.uploadApplication(), $scope.applicationData, saveCallback);
-				});
+					ajax.create(dataFactory.uploadApplication(), $scope.applicationData, function(response) {
+						var updatePromises = [];
+						angular.forEach(docsToUpdate, function(file) {
+							file.parentId = response.data.id;
+							updatePromises.push(ajax.update(dataFactory.documentsUrl(file.id).update, file));
+						});
 
+						if (response.status === 200) {
+							$q.all(updatePromises).then(function(response) {
+									toastModel.showToast('success', 'Application has been Submitted!');
+									// $scope.applicationData = {};
+									$timeout(function() {
+										$window.location.reload();
+									}, 500);
+							});
+						} else {
+							toastModel.showToast('error', 'Error: ' + response.data.message)
+						}
+					});
+				});
             };
 
             function apply() {

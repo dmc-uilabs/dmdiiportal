@@ -1,0 +1,74 @@
+<div class="container marketplace-box" layout="row" >
+    <!-- Left Content Column -->
+    <div class="search-content" layout="column" flex="100">
+        <md-content class="container-view-all md-padding" layout-padding>
+            <div layout="column" flex="100">
+                <div layout="row" layout-align="start center" class="search-content">
+                    <form ng-submit="submit(searchTextModel)" flex class="view-all-search-field global-search-form" >
+                        <div layout="row" flex>
+                            <div layout="column" flex>
+                                <md-input-container md-no-float>
+                                    <md-icon>
+                                        <ng-md-icon icon="search"></ng-md-icon>
+                                    </md-icon>
+                                    <input type="text" placeholder="{{searchPlaceholder}}" ng-model="searchTextModel">
+                                </md-input-container>
+                            </div>
+                            <div layout="column">
+                                <md-input-container>
+                                    <md-button type="submit" class="search-button">Search</md-button>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div layout="row" class="title-result" layout-align="start center">
+                    <div class="title">
+                        {{totalResults}} Results
+                    </div>
+                    <span flex></span>
+                    <md-input-container flex="10">
+                        <label>Show</label>
+                        <md-select ng-model="totalItemsPerPage" ng-change="getResults()">
+                            <md-option ng-repeat="item in showArray track by $index" ng-value="item.val" >
+                                {{item.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout="results">
+                    <div flex ng-if="type === 'companies'">
+                        <div layout="row" layout-wrap>
+                            <div dmc-company-card
+                                 flex="20"
+                                 dir-paginate="item in arrayItems | itemsPerPage: totalItemsPerPage"
+                                 total-items="totalResults"
+                                 current-page="currentPage"
+                                 add-to-project="addCompanyToProject"
+                                 card-source="item">
+                            </div>
+                        </div>
+                    </div>
+                    <div flex ng-if="type === 'members'">
+                        <div layout="row" layout-wrap>
+                            <div dmc-member-card
+                                flex="20"
+                                dir-paginate="item in arrayItems | itemsPerPage: totalItemsPerPage"
+                                total-items="totalResults"
+                                current-page="currentPage"
+                                all-buttons="true"
+                                card-source="item"
+                                class="member-card">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-panel-footer storefront-results-footer">
+                    <div class="text-center">
+                        <dir-pagination-controls on-page-change="getPage(newPageNumber)"></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </md-content>
+    </div>
+</div>

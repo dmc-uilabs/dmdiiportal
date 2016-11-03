@@ -264,7 +264,7 @@ angular.module('dmc.search')
 
                             angular.forEach($scope.arrayItems, function(company) {
                                 company.isCompany = true;
-                                ajax.get(dataFactory.documentsURL().getList, {
+                                ajax.get(dataFactory.documentsUrl().getList, {
                                     parentType: 'ORGANIZATION',
                                     parentId: company.id,
                                     docClass: 'LOGO',

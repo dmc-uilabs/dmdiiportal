@@ -4,7 +4,14 @@ angular.module('dmc.ajax',[
     'dmc.model.toast-model'
 ])
 .config(function($httpProvider){
-  $httpProvider.interceptors.push('logoutInterceptor');
+    $httpProvider.interceptors.push('logoutInterceptor');
+
+    if (!$httpProvider.defaults.headers.get) {
+        $httpProvider.defaults.headers.get = {};
+    }
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
+    $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+    $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 })
     .factory('ajax', [
         '$http',

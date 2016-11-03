@@ -28,7 +28,7 @@ angular.module('dmc.company', [
     'dmc.model.fileUpload',
     'dmc.model.toast-model',
     'dmc.component.products-filter',
-    'flow',
+    'dmc.widgets.documents',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
     'dmc.widgets.rich-text',

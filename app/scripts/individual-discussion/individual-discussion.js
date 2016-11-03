@@ -51,22 +51,22 @@ angular.module('dmc.individual-discussion', [
 
             // comeback to the previous page
             $scope.previousPage = previousPage.get();
-            if($scope.previousPage.tag == "dashboard"){
+            if($scope.previousPage.tag == 'dashboard'){
                 $scope.previousPage = {
-                    tag : "community",
-                    title: "Back to Community",
+                    tag : 'community',
+                    title: 'Back to Community',
                     url: location.origin+'/community.php'
                 }
             }
 
-            if($scope.previousPage.tag == "project" || $scope.previousPage.tag == "my-projects" || $scope.previousPage.tag == "all-projects"){
-                $(".bottom-header .active-page").removeClass("active-page");
-                $(".projects-header-button").addClass("active-page");
+            if($scope.previousPage.tag == 'project' || $scope.previousPage.tag == 'my-projects' || $scope.previousPage.tag == 'all-projects'){
+                $('.bottom-header .active-page').removeClass('active-page');
+                $('.projects-header-button').addClass('active-page');
             }
 
             $scope.followFlag = null;
             $scope.userData = $rootScope.userData;
-            $scope.NewComment = "";
+            $scope.NewComment = '';
             $scope.discussion = null;
             $scope.flagReviewFlag = false;
             $scope.replyReviewFlag = false;
@@ -96,8 +96,8 @@ angular.module('dmc.individual-discussion', [
                 // load tags
                 $scope.loadTags = function(){
                     ajax.get(dataFactory.getDiscussionTags($stateParams.discussionId), {
-                        "_order" : "DESC",
-                        "_sort" : "id"
+                        '_order' : 'DESC',
+                        '_sort' : 'id'
                     }, function(response){
                         $scope.discussion.tags = response.data;
                         apply();
@@ -121,12 +121,12 @@ angular.module('dmc.individual-discussion', [
                 $scope.get_reply = function(comment){
                     ajax.get(dataFactory.getDiscussionsReply(comment.id),
                         {
-                            '_order': "DESC",
-                            '_sort': "date"
+                            '_order': 'DESC',
+                            '_sort': 'date'
                         },
                         function(response){
                             for(var i in response.data){
-                                response.data[i].created_at = moment(response.data[i].created_at).format("MM/DD/YYYY hh:mm A");
+                                response.data[i].created_at = moment(response.data[i].created_at).format('MM/DD/YYYY hh:mm A');
                                 $scope.get_helpful(response.data[i]);
                             }
                             comment['replyReviews'] = response.data;
@@ -153,8 +153,8 @@ angular.module('dmc.individual-discussion', [
                 // load comments
                 $scope.loadComments = function(){
                     ajax.get(dataFactory.getDiscussionComments($stateParams.discussionId), {
-                        "_order" : "DESC",
-                        "_sort" : "created_at"
+                        '_order' : 'DESC',
+                        '_sort' : 'created_at'
                     }, function(response){
                         $scope.discussion.comments = {};
                         $scope.discussion.comments.items = response.data.reverse();
@@ -173,7 +173,7 @@ angular.module('dmc.individual-discussion', [
                 $scope.getRealtedDisscussion = function() {
                     ajax.get(
                         dataFactory.getIndividualDiscussions(), {
-                            "_limit": 5
+                            '_limit': 5
                         }, function (response) {
                             $scope.realtedDiscussions = response.data;
                             apply();
@@ -186,8 +186,8 @@ angular.module('dmc.individual-discussion', [
                 $scope.follow = function(){
                     if(!$scope.followFlag) {
                         ajax.create(dataFactory.followDiscussion(), {
-                            "accountId": $scope.userData.accountId,
-                            "individual-discussionId": $scope.discussion.id
+                            'accountId': $scope.userData.accountId,
+                            'individual-discussionId': $scope.discussion.id
                         }, function (response) {
                             $scope.followFlag = response.data;
                             apply();
@@ -292,19 +292,19 @@ angular.module('dmc.individual-discussion', [
                 $scope.Submit = function(){
                     ajax.create(
                         dataFactory.addCommentIndividualDiscussion(), {
-                            "individual-discussionId": $stateParams.discussionId,
-                            "full_name": $scope.userData.displayName,
-                            "accountId": $scope.userData.accountId,
-                            "avatar": "/images/carbone.png",
-                            "reply": false,
-                            "commentId": 0,
-                            "text": $scope.newComment,
-                            "created_at": moment(new Date).format("x"),
-                            "like": 0,
-                            "dislike": 0
+                            'individual-discussionId': $stateParams.discussionId,
+                            'full_name': $scope.userData.displayName,
+                            'accountId': $scope.userData.accountId,
+                            'avatar': $scope.userData.image,
+                            'reply': false,
+                            'commentId': 0,
+                            'text': $scope.newComment,
+                            'created_at': moment(new Date).format('x'),
+                            'like': 0,
+                            'dislike': 0
                         },
                         function(response){
-                            $scope.newComment = "";
+                            $scope.newComment = '';
                             response.data.created_at = moment(response.data.created_at).format('MM/DD/YYYY hh:mm A');
                             response.data.isOwner = true;
                             $scope.discussion.comments.items.push(response.data);
@@ -316,18 +316,18 @@ angular.module('dmc.individual-discussion', [
 
                 //Submit reply comment
                 $scope.SubmitReply = function(NewComment, id, index){
-                    console.info("n", NewComment);
+                    console.info('n', NewComment);
                     ajax.create(dataFactory.addCommentIndividualDiscussion(), {
-                            "individual-discussionId": $stateParams.discussionId,
-                            "full_name": $scope.userData.displayName,
-                            "accountId": $scope.userData.accountId,
-                            "avatar": "/images/carbone.png",
-                            "reply": false,
-                            "commentId": id,
-                            "text": NewComment.Comment,
-                            "created_at": moment(new Date).format("x"),
-                            "like": 0,
-                            "dislike": 0
+                            'individual-discussionId': $stateParams.discussionId,
+                            'full_name': $scope.userData.displayName,
+                            'accountId': $scope.userData.accountId,
+                            'avatar': $scope.userData.image,
+                            'reply': false,
+                            'commentId': id,
+                            'text': NewComment.Comment,
+                            'created_at': moment(new Date).format('x'),
+                            'like': 0,
+                            'dislike': 0
                         },
                         function(response){
                             ajax.get(dataFactory.saveChangedDiscussionComment(id),
@@ -342,7 +342,7 @@ angular.module('dmc.individual-discussion', [
                             )
                             $scope.discussion.comments.items[index].reply = true;
                             $scope.showReplyFlag = index;
-                            response.data.created_at = moment(response.data.created_at).format("MM/DD/YYYY hh:mm A");
+                            response.data.created_at = moment(response.data.created_at).format('MM/DD/YYYY hh:mm A');
                             if($scope.discussion.comments.items[index].replyReviews){
                                 $scope.discussion.comments.items[index].replyReviews.unshift(response.data);
                             }else{
@@ -393,8 +393,8 @@ angular.module('dmc.individual-discussion', [
                 $scope.createDiscussion = function(ev){
                     $(window).scrollTop(0);
                     $mdDialog.show({
-                        controller: "ComposeDiscussionController",
-                        templateUrl: "templates/individual-discussion/compose-discussion.html",
+                        controller: 'ComposeDiscussionController',
+                        templateUrl: 'templates/individual-discussion/compose-discussion.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
                         locals: {
@@ -411,7 +411,7 @@ angular.module('dmc.individual-discussion', [
 
             function isFollowed(){
                 ajax.get(dataFactory.isUserFollowedDiscussion($scope.userData.accountId),{
-                    "individual-discussionId": $scope.discussion.id
+                    'individual-discussionId': $scope.discussion.id
                 },function(response){
                     $scope.followFlag = (response.data && response.data.length > 0 && response.data[0].id ? response.data[0] : null);
                     apply();

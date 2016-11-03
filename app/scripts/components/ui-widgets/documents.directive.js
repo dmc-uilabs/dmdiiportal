@@ -24,6 +24,18 @@ angular.module('dmc.widgets.documents',[
 
 				// function for get all requirement documents
 				$scope.getDocuments = function(){
+					ajax.get(dataFactory.documentsUrl().getList, {
+							parentType: 'PROJECT',
+							parentId: $scope.projectId,
+							docClass: 'SUPPORT',
+							recent: 20
+					}, function(response) {
+							$scope.documents = response.data.data||[];
+							$scope.total = $scope.documents.length;
+							if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+					});
+
+					/*
 					ajax.get(dataFactory.getProjectDocuments($scope.projectId),{
 						sort : $scope.sort,
 						order : $scope.order,
@@ -34,6 +46,7 @@ angular.module('dmc.widgets.documents',[
 						$scope.total = response.data.length;
 						if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 					});
+					*/
 				};
 
 				// get all requirement documents (first request)
@@ -54,15 +67,15 @@ angular.module('dmc.widgets.documents',[
 
 				// function for get all requirement documents
 				$scope.getDocuments = function(){
-					ajax.get(dataFactory.getProjectDocuments($scope.projectId),{
-						sort : $scope.sort,
-						order : $scope.order,
-						limit : 5,
-						offset : 0
-					},function(response){
-                        $scope.documents = response.data;
-                        $scope.total = response.data.length;
-						if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+					ajax.get(dataFactory.documentsUrl().getList, {
+							parentType: 'PROJECT',
+							parentId: $scope.projectId,
+							docClass: 'SUPPORT',
+							recent: 20
+					}, function(response) {
+							$scope.documents = response.data.data||[];
+							$scope.total = $scope.documents.length;
+							if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 					});
 				};
 
@@ -89,30 +102,35 @@ angular.module('dmc.widgets.documents',[
 				accessLevel: '='
 			},
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
-                $scope.documentDropZone;
+        $scope.documentDropZone;
 				$scope.autoProcessQueue = ($scope.autoUpload != null ? $scope.autoUpload : true);
+
 				if(!$scope.source) $scope.source = [];
 
-                var requestData = {
-                    _sort : 'name',
-                    _order : 'DESC'
-                };
+        var requestData = {
+						_sort : 'name',
+						_order : 'DESC'
+        };
 
 				if($scope.projectId){
-					ajax.get(dataFactory.getProjectDocuments($scope.projectId), requestData,
-                        function(response){
-						    $scope.source = response.data;
-                            apply();
-					    }
-                    );
-				} else if($scope.serviceId){
-                    ajax.get(dataFactory.getServiceDocuments($scope.serviceId), requestData,
-                        function(response){
-                            $scope.source = response.data;
-                            apply();
-                        }
-                    );
-                }
+						ajax.get(dataFactory.documentsUrl().getList, {
+								parentType: 'PROJECT',
+								parentId: $scope.projectId,
+								docClass: 'SUPPORT',
+								recent: 20
+							}, function(response) {
+								$scope.source = response.data.data||[];
+								apply();
+						});
+				}
+				// else if($scope.serviceId){
+								//     ajax.get(dataFactory.getServiceDocuments($scope.serviceId), requestData,
+								//         function(response){
+								//             $scope.source = response.data;
+								//             apply();
+								//         }
+								//     );
+								// }
 
 				$scope.tags = [];
 
@@ -164,6 +182,7 @@ angular.module('dmc.widgets.documents',[
 				};
 
 				$scope.saveEdit = function(item){
+					//TODO: actually make a service call? no that will be handled at end...
 					if(item.title.trim().length == 0) item.title = item.oldTitle;
 					item.editing = false;
 					if(item.file.title){
@@ -175,6 +194,7 @@ angular.module('dmc.widgets.documents',[
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
 
+				//TODO: need to fix the config so it makes files look the way we expect
 				$scope.dropzoneConfig = {
 					'options': { // passed into the Dropzone constructor
 						'url': dataFactory.getDocumentUpload($scope.projectId),
@@ -278,7 +298,7 @@ angular.module('dmc.widgets.documents',[
                     }
                     ajax.get(url, requestData,
                         function (response) {
-                            $scope.documents = response.data;
+                            $scope.documents = response.data.data||[];
                             $scope.total = $scope.documents.length;
                             $scope.folder = $scope.documents;
                             for(var i in $scope.folder){

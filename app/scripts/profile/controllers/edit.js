@@ -25,7 +25,7 @@ angular.module('dmc.profile')
         var profileImageDoc = {};
         var removeImageFlag = false;
 
-        ajax.get(dataFactory.documentsURL().getList, { page: 0, pageSize: 1, parentType: 'USER', parentId: $scope.profile.id, docClass: 'IMAGE'}, function(response) {
+        ajax.get(dataFactory.documentsUrl().getList, { page: 0, pageSize: 1, parentType: 'USER', parentId: $scope.profile.id, docClass: 'IMAGE'}, function(response) {
             if (response.data && response.data.data && response.data.data.length > 0) {
                 profileImageDoc = response.data.data[0];
             }
@@ -129,12 +129,12 @@ angular.module('dmc.profile')
                     parentId: $scope.profile.id,
                 }
 
-                return ajax.create(dataFactory.documentsURL().save, doc);
+                return ajax.create(dataFactory.documentsUrl().save, doc);
             });
         }
 
         var removeImage = function() {
-            return ajax.delete(dataFactory.documentsURL(profileImageDoc.id).delete, {});
+            return ajax.delete(dataFactory.documentsUrl(profileImageDoc.id).delete, {});
         }
         //save edit profile
         $scope.saveEdit = function () {
