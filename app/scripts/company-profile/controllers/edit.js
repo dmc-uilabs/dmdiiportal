@@ -229,7 +229,6 @@ angular.module('dmc.company-profile')
                 }
                 return fileUpload.uploadFileToUrl(video.file, {id : $scope.company.id}, 'company-video').then(function(response) {
                     var doc = {
-                        organizationId: companyId,
                         ownerId: $scope.user.accountId,
                         documentUrl: response.file.name,
                         documentName: video.title,

@@ -1,4 +1,4 @@
-<md-dialog layout="column" class="upload-images-widget">
+<md-dialog layout="column" class="upload-images-widget" flex="75">
 	<md-content>
 	<div layout="row" layout-align="space-between center">
 		<h2>MANAGE IMAGES</h2>
@@ -14,12 +14,6 @@
         	</md-button>
             <div class="img"><img ng-src="{{item.documentUrl}}" alt=""/></div>
     	</div>
-      	<div class="image-box" flex="20" ng-repeat="item in newImages track by $index">
-	        <md-button ng-click="deleteNewImage($index)" aria-label="delete">
-	          	<ng-md-icon icon="highlight_remove" size="32"></ng-md-icon>
-	        </md-button>
-            <img ng-src="{{item.documentUrl}}" alt=""/>
-      	</div>
     </div>
 	<div>
 		<div class="content-panel"

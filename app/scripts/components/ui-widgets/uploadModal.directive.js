@@ -51,12 +51,6 @@ angular.module('dmc.widgets.uploadModal',[
 
     $scope.uploadFile = function(){
         $mdDialog.hide();
-        angular.forEach($scope.newImages, function(image) {
-            fileUpload.uploadFileToUrl(image.file, {},'service').then(function(data){
-                $scope.newImages.push(data.result);
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            });
-        });
     };
 
     $scope.deleteImage = function(index, id){

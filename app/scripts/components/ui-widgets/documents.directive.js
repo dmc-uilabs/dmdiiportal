@@ -296,16 +296,21 @@ angular.module('dmc.widgets.documents',[
                         _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort)
                     };
                     if($scope.documentsType == 'service'){
-                        url = dataFactory.getServiceDocuments($scope.typeId);
-                        requestData['service-documentId'] = $scope.serviceDocumentId;
+						url = dataFactory.documentsUrl().getList;
+						requestData = {
+							parentType: 'SERVICE',
+							parentId: $scope.typeId,
+							docClass: 'SUPPORT',
+							recent: 5
+						};
                     }else if($scope.documentsType == 'project'){
                         url = dataFactory.documentsUrl().getList;
                         requestData = {
-														parentType: 'PROJECT',
-														parentId: $scope.typeId,
-														docClass: 'SUPPORT',
-														recent: 20
-													};
+							parentType: 'PROJECT',
+							parentId: $scope.typeId,
+							docClass: 'SUPPORT',
+							recent: 20
+						};
                     }
                     ajax.get(url, requestData,
                         function (response) {

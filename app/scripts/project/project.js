@@ -697,7 +697,17 @@ angular.module('dmc.project', [
                 )
             };
 
-            var uploadDoc = function(doc, id) {
+            var uploadDoc = function(doc, id, title) {
+                if (doc.tags) {
+                    doc.tags.push({tagName: title + ' document'});
+                    angular.forEach(doc.tags, function(tag, index) {
+                        if (!angular.isObject(tag)) {
+                            doc.tags[index] = {tagName: tag}
+                        }
+                    });
+                } else {
+                    doc.tags = [{tagName: title + ' document'}];
+                }
                 return fileUpload.uploadFileToUrl(doc.file, {}, 'serviceImage').then(function(response) {
                     return ajax.create(dataFactory.documentsUrl().save,
                         {
@@ -706,12 +716,24 @@ angular.module('dmc.project', [
                             documentName: doc.file.name,
                             parentType: 'SERVICE',
                             docClass: 'SUPPORT',
-                            parentId: id
+                            parentId: id,
+                            accessLevel: 'MEMBER',
+                            tags: doc.tags
                         });
                 });
             };
 
-            var uploadImage = function(image, id) {
+            var uploadImage = function(image, id, title) {
+                if (image.tags) {
+                    image.tags.push({tagName: title + ' picture'});
+                    angular.forEach(image.tags, function(tag, index) {
+                        if (!angular.isObject(tag)) {
+                            image.tags[index] = {tagName: tag}
+                        }
+                    });
+                } else {
+                    image.tags = [{tagName: title + ' document'}];
+                }
                 return fileUpload.uploadFileToUrl(image.file, {}, 'serviceImage').then(function(response) {
                     return ajax.create(dataFactory.documentsUrl().save,
                         {
@@ -720,7 +742,9 @@ angular.module('dmc.project', [
                             documentName: image.file.name,
                             parentType: 'SERVICE',
                             docClass: 'IMAGE',
-                            parentId: id
+                            parentId: id,
+                            accessLevel: 'PUBLIC',
+                            tags: image.tags
                         });
                 });
             };
@@ -756,6 +780,7 @@ angular.module('dmc.project', [
                     },
                     function(response){
                         var id = response.data.id;
+
                         var promises = {};
                         if(tags && tags.length > 0) {
                             for (var i in tags) {
@@ -768,11 +793,11 @@ angular.module('dmc.project', [
                         promises['service_interface'] = $http.post(dataFactory.services().add_interface, service_interface);
 
                         angular.forEach(params.documents, function(doc, index) {
-                            promises['doc' + index] = uploadDoc(doc, id);
+                            promises['doc' + index] = uploadDoc(doc, id, params.title);
                         });
 
                         angular.forEach(params.images, function(image, index) {
-                            promises['image' + index] = uploadImage(image, id);
+                            promises['image' + index] = uploadImage(image, id, params.title);
                         });
 
                         $q.all(promises).then(

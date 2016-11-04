@@ -21,14 +21,14 @@
             <div layout="row">
                 <!--product image-->
                 <div class="product-image-modal" flex="30">
-                    <img class="main-image" ng-src="{{product.featureImage.thumbnail}}">
+                    <img class="main-image" ng-src="{{product.images[0].documentUrl}}">
                 </div>
                 <div flex>
                     <!--product header-->
                     <div class="product-header">
                         <h2>
                             <a ng-href="{{'/service-marketplace.php#/'+product.id}}">{{product.title}}</a>
-                            <span>By <a ng-href="{{'/company.php#/'+(product.companyId ? product.companyId : 1)}}">{{product.owner}}</a></span>
+                            <span>By <a ng-href="{{'/company.php#/'+(product.companyId ? product.companyId : 1)}}">{{product.ownerName}}</a></span>
                         </h2>
                         <ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>
                     </div>
