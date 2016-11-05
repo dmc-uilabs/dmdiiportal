@@ -46,7 +46,7 @@ angular.module('dmc.add_project', [
                 }
             }
 
-            function addDocumentsToPromises(promises,documents,id){
+            function addDocumentsToPromises(promises, documents, title, id){
                 /*
                 var fd = new FormData();
                 fd.append('file', documents[i].file);
@@ -70,14 +70,14 @@ angular.module('dmc.add_project', [
                                 });
                                 promises[doc.title] = fileUpload.uploadFileToUrl(doc.file, {}, doc.title + doc.type).then(function(response) {
                                     if (doc.tags) {
-                                        doc.tags.push({tagName: $scope.product.title + ' document'});
+                                        doc.tags.push({tagName: title + ' document'});
                                         angular.forEach(doc.tags, function(tag, index) {
                                             if (!angular.isObject(tag)) {
                                                 doc.tags[index] = {tagName: tag}
                                             }
                                         });
                                     } else {
-                                        doc.tags = [{tagName: $scope.product.title + ' document'}];
+                                        doc.tags = [{tagName: title + ' document'}];
                                     }
                                     var docData = {
                                         parentId: id,
@@ -99,14 +99,14 @@ angular.module('dmc.add_project', [
                     }else{
                         promises[doc.title] = fileUpload.uploadFileToUrl(doc.file, {}, doc.title + doc.type).then(function(response) {
                             if (doc.tags) {
-                                doc.tags.push({tagName: $scope.product.title + ' document'});
+                                doc.tags.push({tagName: title + ' document'});
                                 angular.forEach(doc.tags, function(tag, index) {
                                     if (!angular.isObject(tag)) {
                                         doc.tags[index] = {tagName: tag}
                                     }
                                 });
                             } else {
-                                doc.tags = [{tagName: $scope.product.title + ' document'}];
+                                doc.tags = [{tagName: title + ' document'}];
                             }
                             var docData = {
                                 parentId: id,
@@ -126,7 +126,7 @@ angular.module('dmc.add_project', [
                 }
             }
 
-            this.update_project = function(id,params, array, currentMembers, callback){
+            this.update_project = function(id, params, array, currentMembers, callback){
                 ajax.update(dataFactory.updateProject(id),{
                     title : params.title,
                     type : params.type,
@@ -140,7 +140,8 @@ angular.module('dmc.add_project', [
                     addTagsToPromises(promises,params.tags,id);
 
                     // add documents to request
-                    addDocumentsToPromises(promises,params.documents,id);
+                    console.log(params)
+                    addDocumentsToPromises(promises, params.documents, params.title, id);
 
                     for(var i in array){
                         var isFound = false;
@@ -246,7 +247,8 @@ angular.module('dmc.add_project', [
                         addTagsToPromises(promises,params.tags,response.data.id);
 
                         // add documents to request
-                        addDocumentsToPromises(promises,params.documents,response.data.id);
+                        console.log(params.title)
+                        addDocumentsToPromises(promises, params.documents, params.title, response.data.id);
 
                         $q.all(promises).then(function(){
                                 callback(response.data.id);

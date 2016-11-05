@@ -19,7 +19,6 @@ angular.module('dmc.member')
         'is_search',
         'DMCUserModel',
         '$window',
-        'CompareModel',
         'isFavorite',
         function($state,
                  $stateParams,
@@ -33,7 +32,6 @@ angular.module('dmc.member')
                  is_search,
                  DMCUserModel,
                  $window,
-                 CompareModel,
                  isFavorite){
 
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
@@ -45,7 +43,6 @@ angular.module('dmc.member')
             $scope.userData = null;
             DMCUserModel.getUserData().then(function(res){
                 $scope.userData = res;
-                // CompareModel.get('services', $scope.userData);
 
                 if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
                     $scope.userData.isVerified = true;
@@ -71,17 +68,6 @@ angular.module('dmc.member')
             // callback for member
             var callbackFunction = function(response){
                 $scope.member = response.data;
-
-                ajax.get(dataFactory.documentsUrl().getList, {
-                    parentType: 'ORGANIZATION',
-                    parentId: $scope.member.organization.id,
-                    docClass: 'LOGO',
-                    page: 0, pageSize: 1
-                }, function(response) {
-                    if (response.data.data.length > 0) {
-                        $scope.member.organization.logoImage = response.data.data[0];
-                    };
-                });
 
                 var startDate = $scope.member.startDate.split('-');
                 $scope.startDate = startDate[1] + '-' + startDate[2] + '-' + startDate[0];

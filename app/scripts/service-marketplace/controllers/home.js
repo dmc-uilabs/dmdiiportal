@@ -67,7 +67,7 @@ angular.module('dmc.service-marketplace')
                 }
             });
 
-            ajax.get(dataFactory.userAccount($scope.service.owner).get, {}, function(response) {
+            ajax.get(dataFactory.userAccount($scope.product.owner).get, {}, function(response) {
                 $scope.owner_name = response.data.displayName
             })
 

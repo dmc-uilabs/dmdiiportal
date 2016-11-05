@@ -54,24 +54,35 @@ angular.module('dmc.company')
                         buttons: {
                             ok: function(){
                                 removeMainPicture = true;
-                                delete $scope.company.featureImage;
+                                delete $scope.companyData.featureImage;
                             },
                             cancel: function(){}
                         }
                     },ev);
                 };
 
-                var featureImage = null;
-                var logo = nulll
+                $scope.isChangingPicture = false;
+                $scope.companyPicture = { 'background-image': null };
+                $scope.featureImage = [];
+                $scope.newLogo = [];
+                var featureImage;
+                var logo;
+
                 ajax.get(dataFactory.documentsUrl().getList, { recent: 1, parentType: 'ORGANIZATION', parentId: $scope.companyData.id, docClass: 'FEATURE_IMAGE' }, function(response) {
                     if (response.data && response.data.data && response.data.data.length > 0) {
-                        featureImage = response.data.data[0].documentUrl;
+                        $scope.companyData.featureImage = response.data.data[0].documentUrl;
+                        featureImage = response.data.data[0];
+                        $scope.isChangingPicture = (!featureImage ? true : false);
+                        $scope.companyPicture = {
+                            'background-image' : ($scope.companyData.featureImage ? 'url('+$scope.companyData.featureImage+')' : null)
+                        };
                     };
                 });
 
                 ajax.get(dataFactory.documentsUrl().getList, { recent: 1, parentType: 'ORGANIZATION', parentId: $scope.companyData.id, docClass: 'LOGO' }, function(response) {
                     if (response.data && response.data.data && response.data.data.length > 0) {
-                        logo = response.data.data[0].documentUrl;
+                        $scope.companyData.logo = response.data.data[0].documentUrl
+                        logo = response.data.data[0];
                     };
                 });
 
@@ -92,9 +103,6 @@ angular.module('dmc.company')
                 };
 
                 $scope.companyData.description = htmlToInput($scope.companyData.description);
-                $scope.companyPicture = {
-                    'background-image' : (featureImage ? 'url('+featureImage+')' : null)
-                };
 
                 $scope.companyId = $stateParams.companyId;
                 $scope.page = $state.current.name.split('.')[1];
@@ -140,18 +148,19 @@ angular.module('dmc.company')
                     $scope.isChangingLogo = false;
                 };
 
-                $scope.isChangingPicture = (!featureImage ? true : false);
                 $scope.currentPicture = null;
 
                 var uploadFile = function(companyId) {
                     return fileUpload.uploadFileToUrl($scope.featureImage[0].file,{ id: companyId },'feature-image').then(function(response) {
                         return ajax.create(dataFactory.documentsUrl().save, {
-                            ownerId: $scope.user.accountId,
+                            ownerId: $scope.$root.userData.accountId,
                             documentUrl: response.file.name,
                             documentName: 'feature-image',
                             parentType: 'ORGANIZATION',
                             parentId: companyId,
-                            docClass: 'FEATURE_IMAGE'
+                            docClass: 'FEATURE_IMAGE',
+                            accessLevel: 'PUBLIC',
+                            tags: [{tagName: $scope.companyData.name + ' feature-image'}]
                         }, function(response) {
                             $scope.cancelChangePicture();
                         });
@@ -161,16 +170,22 @@ angular.module('dmc.company')
                 var uploadLogo = function(companyId) {
                     fileUpload.uploadFileToUrl($scope.newLogo[0].file, { id: companyId },'company-logo').then(function(response) {
                         return ajax.create(dataFactory.documentsUrl().save, {
-                            ownerId: $scope.user.accountId,
+                            ownerId: $scope.$root.userData.accountId,
                             documentUrl: response.file.name,
-                            documentName: 'feature-image',
+                            documentName: 'logo-image',
                             parentType: 'ORGANIZATION',
                             parentId: companyId,
-                            docClass: 'LOGO'
+                            docClass: 'LOGO',
+                            accessLevel: 'PUBLIC',
+                            tags: [{tagName: $scope.companyData.name + ' logo'}]
                         }, function(response) {
                             $scope.cancelChangeLogo();
                         });
                     });
+                };
+
+                var deleteImage = function(imageId){
+                    return ajax.delete(dataFactory.documentsUrl(imageId).delete, {})
                 };
 
                 $scope.deleteLogo = function(ev){
@@ -179,7 +194,7 @@ angular.module('dmc.company')
                         buttons: {
                             ok: function(){
                                 removeLogo = true;
-                                delete $scope.company.logoImage;
+                                delete $scope.companyData.logoImage;
                             },
                             cancel: function(){}
                         }
@@ -194,10 +209,6 @@ angular.module('dmc.company')
 
                 $scope.cancelChangePicture = function(){
                     $scope.isChangingPicture = false;
-                };
-
-
-                $scope.removeLogo = function(){
                 };
 
                 $scope.featuredItems = [];
@@ -376,21 +387,21 @@ angular.module('dmc.company')
                     var promises = [];
 
                     if ($scope.newLogo && $scope.newLogo.length > 0) {
-                        promises.push(uploadLogo());
+                        promises.push(uploadLogo($scope.companyId));
                         removeLogo = true;
                     }
 
-                    if (removeLogo) {
-                        promises.push(deleteLogo());
+                    if (removeLogo && logo) {
+                        promises.push(deleteImage(logo.id));
                     }
 
                     if ($scope.featureImage && $scope.featureImage.length > 0) {
-                        promises.push(uploadImage());
+                        promises.push(uploadFile($scope.companyId));
                         removeMainPicture = true;
                     }
 
-                    if (removeMainPicture) {
-                        promises.push(deleteImage());
+                    if (removeMainPicture && featureImage) {
+                        promises.push(deleteImage(featureImage.id));
                     }
 
                     $q.all(promises).then(function(response) {
@@ -404,7 +415,9 @@ angular.module('dmc.company')
 
                         // save changed description
                         $scope.companyData.description = inputToHtml($scope.companyData.description);
-                        ajax.update(dataFactory.updateOrganization($scope.companyId), $scope.companyData, function(response){
+                        delete $scope.companyData.featureImage;
+                        delete $scope.companyData.logoImage;
+                        ajax.put(dataFactory.updateOrganization($scope.companyId), $scope.companyData, function(response){
                             toastModel.showToast('success','Data successfully changed');
                             $scope.changedData = {};
                             $location.path('/'+$scope.companyId+'/storefront').search({
