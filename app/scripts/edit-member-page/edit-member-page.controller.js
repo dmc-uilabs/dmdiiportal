@@ -363,7 +363,9 @@ angular.module('dmc.edit-member')
                             documentName: 'company-logo',
                             parentType: 'ORGANIZATION',
                             parentId: companyId,
-                            docClass: 'LOGO'
+                            docClass: 'LOGO',
+                            accessLevel: 'PUBLIC',
+                            tags: [{tagName: $scope.company.organization.name + ' logo'}]
                         }, function(response) {
                             if (response.status === 200) {
                                 toastModel.showToast('success', 'Logo uploaded successfully');

@@ -36,13 +36,17 @@ angular.module('dmc.add-project-doc').
 
                     angular.forEach($scope.documents, function(doc, i) {
                         $scope.docCount = $scope.documents.length;
-                        angular.forEach(doc.tag, function(tag, index) {
-                            if (!angular.isObject(tag)) {
-                                ajax.create(dataFactory.createDocumentTag(), tag, function(response) {
-                                    doc.tag[index] = response.data;
-                                });
-                            }
-                        });
+                        if (doc.tags) {
+                            angular.forEach(doc.tags, function(tag, index) {
+                                if (!angular.isObject(tag)) {
+                                    $scope.documents[i].tags[index] = {tagName: tag}
+                                }
+                            });
+                            $scope.documents[i].tags.push({tagName: $scope.project.projectTitle + ' document'});
+                        } else {
+                            $scope.documents[i].tags = [{tagName: $scope.project.projectTitle + ' document'}];
+                        }
+                        $scope.documents[i].tags.push({tagName: doc.file.name});
 
                         //send to s3, save returned link to document table
                         fileUpload.uploadFileToUrl(doc.file, {}, 'projectDocument', function(response) {
@@ -51,9 +55,9 @@ angular.module('dmc.add-project-doc').
                                 documentName: response.key,
                                 ownerId: $scope.user.accountId,
                                 dmdiiProjectId: $scope.project.id,
-                                accessLevel: $scope.documents[i].accessLevel
+                                accessLevel: $scope.documents[i].accessLevel,
+                                tags: $scope.documents[i].tags
                             }
-
                             ajax.create(dataFactory.saveDMDIIDocument(), doc, callback);
 
                         });

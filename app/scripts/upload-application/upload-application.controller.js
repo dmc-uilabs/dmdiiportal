@@ -146,7 +146,8 @@ angular.module('dmc.uploadApplication')
 								documentUrl: response.file.name,
 								documentName: 'screenshot',
 								parentType: 'APPSUBMISSION',
-								docClass: 'IMAGE'
+								docClass: 'IMAGE',
+								accessLevel: 'PUBLIC'
 							}, function(response) {
 							$scope.applicationData.screenShots.push(response.data);
 							docsToUpdate.push(response.data);
@@ -163,7 +164,8 @@ angular.module('dmc.uploadApplication')
 						documentUrl: response.file.name,
 						documentName: 'doc',
 						parentType: 'APPSUBMISSION',
-						docClass: 'SUPPORT'
+						docClass: 'SUPPORT',
+						accessLevel: 'PUBLIC'
 					}, function(response) {
 						$scope.applicationData.appDocuments.push(response.data);
 						docsToUpdate.push(response.data);
@@ -178,7 +180,8 @@ angular.module('dmc.uploadApplication')
 							ownerId: $scope.user.accountId,
 							documentUrl: response.file.name,
 							documentName: 'icon',
-							parentType: 'APPSUBMISSION'
+							parentType: 'APPSUBMISSION',
+							accessLevel: 'PUBLIC'
 						}, function(response) {
 						$scope.applicationData.appIcon = response.data;
 						docsToUpdate.push(response.data);
@@ -193,7 +196,8 @@ angular.module('dmc.uploadApplication')
 						ownerId: $scope.user.accountId,
 						documentUrl: response.file.name,
 						documentName: 'application',
-						parentType: 'APPSUBMISSION'
+						parentType: 'APPSUBMISSION',
+						accessLevel: 'PUBLIC'
 					}, function(response) {
 						$scope.applicationData.application = response.data;
 						docsToUpdate.push(response.data);

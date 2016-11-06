@@ -145,7 +145,7 @@ angular.module('dmc.company-profile')
                                 parentId: companyId,
                                 docClass: 'LOGO',
                                 tags: [{tagName: $scope.company.name + ' logo'}],
-                                accessLevel: true
+                                accessLevel: 'PUBLIC'
                             }, function(response) {
                                 if (response.status === 200) {
                                     toastModel.showToast('success', 'Logo uploaded successfully');

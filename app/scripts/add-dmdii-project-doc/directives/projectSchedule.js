@@ -13,12 +13,6 @@ angular.module('dmc.add-project-doc').
                 $scope.doc = [];
                 $scope.document = {};
 
-                $scope.docAccessLevels = {
-                    'All Members': 'ALL_MEMBERS',
-                    'Project Participants': 'PROJECT_PARTICIPANTS',
-                    'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
-                }
-
                 $scope.$watchCollection('doc', function() {
                     if ($scope.noDocSelected && $scope.doc.length > 0) {
                         $scope.noDocSelected = false;
@@ -43,7 +37,8 @@ angular.module('dmc.add-project-doc').
                             ownerId: $scope.user.accountId,
                             dmdiiProjectId: $scope.project.id,
                             fileType: 4,
-                            accessLevel: $scope.doc[0].accessLevel
+                            accessLevel: 'ALL_MEMBERS',
+                            tags: [{tagName: $scope.project.projectTitle + ' project financials'}]
                         };
 
                         ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);
