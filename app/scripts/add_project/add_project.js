@@ -123,7 +123,7 @@ angular.module('dmc.add_project', [
                     for(var i in array){
                         var isFound = false;
                         for(var j in currentMembers){
-                            if(array[i].profileId == currentMembers[j].profileId){
+                            if(array[i].id === +currentMembers[j].profileId){
                                 currentMembers.splice(j,1);
                                 isFound = true;
                                 break;

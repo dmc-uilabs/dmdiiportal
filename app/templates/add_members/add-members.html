@@ -8,56 +8,58 @@
                         <md-toolbar class="add-members-header">
                             <h2>Search for Members to Invite</h2>
                         </md-toolbar>
-                        <md-content layout="row" layout-padding layout-fill layout-align="center center">
-                            <form ng-submit="searchMembers()" class="dmc-search global-search-form" flex>
-                                <div layout="column">
-                                    <div layout="row">
-                                        <div layout="column" flex>
-                                            <md-input-container md-no-float>
-                                                <md-icon>
-                                                    <ng-md-icon icon="search"></ng-md-icon>
-                                                </md-icon>
-                                                <input type="text" placeholder="Search Members" ng-model="searchModel">
-                                            </md-input-container>
-                                        </div>
+                        <md-content class="md-padding" layout-padding layout-fill layout-align="center center">
+                            <div layout="column">
+                                <div layout="row" flex>
+                                    <form ng-submit="searchMembers()" class="dmc-search global-search-form" flex="75">
                                         <div layout="column">
-                                            <md-input-container>
-                                                <md-button type="submit" class="search-button">Search</md-button>
-                                            </md-input-container>
+                                            <div layout="row">
+                                                <div layout="column" flex>
+                                                    <md-input-container md-no-float>
+                                                        <md-icon>
+                                                            <ng-md-icon icon="search"></ng-md-icon>
+                                                        </md-icon>
+                                                        <input type="text" placeholder="Search Members" ng-model="searchModel">
+                                                    </md-input-container>
+                                                </div>
+                                                <div layout="column">
+                                                    <md-input-container>
+                                                        <md-button type="submit" class="search-button">Search</md-button>
+                                                    </md-input-container>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
+                                    <span flex></span>
+                                    <md-button class="md-raised dmc-button" ng-click="showFavorites()" ng-disabled="favorites.length == 0 && !showFavoritesFlag">
+                                        {{(showFavoritesFlag == false) ? 'Favorites(' + favorites.length + ')' : 'All'}}
+                                    </md-button>
                                 </div>
-                            </form>
-                          <md-button class="md-raised dmc-button" ng-click="showFavorites()" ng-disabled="favorites.length == 0 && !showFavoritesFlag">
-                              {{(showFavoritesFlag == false) ? 'Favorites(' + favorites.length + ')' : 'All'}}     
-                          </md-button>
-                          <!--<md-button class="md-raised" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button>-->
-                        </md-content>
+                              <!--<md-button class="md-raised" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button>-->
+                                <div class="content-column">
+                                    <div class="content-panel rfp-three">
 
-                        <md-content class="md-padding top-content" layout="row">
-                            <div class="content-column" layout="column" flex="100">
-                                <div class="content-panel rfp-three">
-                                    
-                                    <md-divider ></md-divider>
-                                    <div class="content-panel-body">
-                                        <md-content layout="row" layout-wrap>
-                                            <div flex="33" ng-if="!showFavoritesFlag" class="container-member-card" ng-repeat="item in foundMembers">
-                                                <dmc-add-members-card
-                                                        invite-member="addToInvitation"
-                                                        favorite-member="addToFavorite"
-                                                        card-source="item"
-                                                        class="member-card">
-                                                </dmc-add-members-card>
+                                        <md-divider ></md-divider>
+                                        <div class="content-panel-body">
+                                            <div layout="row" layout-wrap>
+                                                <div flex="33" ng-if="!showFavoritesFlag" class="container-member-card" ng-repeat="item in foundMembers">
+                                                    <dmc-add-members-card
+                                                            invite-member="addToInvitation"
+                                                            favorite-member="addToFavorite"
+                                                            card-source="item"
+                                                            class="member-card">
+                                                    </dmc-add-members-card>
+                                                </div>
+                                                <div flex="33" ng-if="showFavoritesFlag" class="container-member-card" ng-repeat="item in favorites">
+                                                    <dmc-add-members-card
+                                                            invite-member="addToInvitation"
+                                                            favorite-member="addToFavorite"
+                                                            card-source="item"
+                                                            class="member-card">
+                                                    </dmc-add-members-card>
+                                                </div>
                                             </div>
-                                            <div flex="33" ng-if="showFavoritesFlag" class="container-member-card" ng-repeat="item in favorites">
-                                                <dmc-add-members-card
-                                                        invite-member="addToInvitation"
-                                                        favorite-member="addToFavorite"
-                                                        card-source="item"
-                                                        class="member-card">
-                                                </dmc-add-members-card>
-                                            </div>
-                                          </md-content>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +68,7 @@
                   <!-- Right Content Column -->
                     <div class="content-column" layout="column" flex="29">
                         <div dmc-selected-invitees class="content-panel invitees" invitees="invitees"></div>
-                        
+
                     </div>
               	</div>
                 <div layout="row" layout-align="end center">

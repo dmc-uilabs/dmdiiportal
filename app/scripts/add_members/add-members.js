@@ -75,13 +75,14 @@ angular.module('dmc.add_members', [
                 for(var i in array){
                     var isFound = false;
                     for(var j in currentMembers){
-                        if(array[i].profileId == currentMembers[j].profileId){
+                        if(array[i].id === +currentMembers[j].profileId){
                             currentMembers.splice(j,1);
                             isFound = true;
                             break;
                         }
                     }
                     if(!isFound){
+
                         promises["addMember"+i] = $http.post(dataFactory.createMembersToProject(), {
                                 "profileId": array[i].id,
                                 "projectId": $stateParams.projectId,
@@ -93,6 +94,7 @@ angular.module('dmc.add_members', [
                         );
                     }
                 }
+
                 if(currentMembers.length > 0) {
                     for (var i in currentMembers) {
                         promises["deleteMember"+i] = $http.delete(dataFactory.deleteProjectMember(currentMembers[i].id));
