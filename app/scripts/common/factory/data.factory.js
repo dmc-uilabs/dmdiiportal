@@ -485,6 +485,9 @@ angular.module('dmc.data',[])
                 return localhost + 'user/organization/' + id
                     //add paged and filtered
             },
+            changeUserOrganization: function(id) {
+                return localhost + 'users/' + id + '/organizations';
+            },
             getOrganizationList: function() {
                 return localhost + 'organizations';
             },
