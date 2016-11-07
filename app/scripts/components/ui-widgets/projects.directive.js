@@ -24,7 +24,8 @@ angular.module('dmc.widgets.projects',[
                 $scope.order = 'ASC';
                 $scope.filterTag = null;
                 $scope.userCompany = null;
-                var limit = ($scope.limit ? $scope.limit : ($scope.widgetShowAllBlocks == true ? null : 2));
+
+                var limit = ($scope.limit ? $scope.limit : ($scope.widgetShowAllBlocks === true ? null : 2));
 
                 $scope.flexBox = ($scope.widgetShowAllBlocks == true ? 28 : 60);
                 $scope.flexDetails = ($scope.widgetShowAllBlocks == true ? 20 : 40);
@@ -51,6 +52,8 @@ angular.module('dmc.widgets.projects',[
                             if($scope.widgetFormat == 'all-projects'){
                                 if($scope.projects[i].type != "public" && $scope.projects[i].projectManagerId != $rootScope.userData.accountId){
                                     if($scope.projects[i].companyId != $rootScope.userData.companyId) {
+                                        console.log($scope.projects[i])
+                                        console.log('splicing for not public or not manager and not company');
                                         $scope.projects.splice(i, 1);
                                         continue;
                                     }
@@ -129,9 +132,11 @@ angular.module('dmc.widgets.projects',[
                                 if ($scope.projects[i].type != "public" &&
                                     $scope.projects[i].projectManagerId != $rootScope.userData.profileId &&
                                     !$scope.projects[i].isMember) {
+                                        console.log('splicing ' + $scope.projects[i], ' is not public, manager, or member');
                                     isRemove = true;
                                 }
                             }else if($scope.projects[i].projectManagerId != $rootScope.userData.profileId && (!$scope.projects[i].isMember || ($scope.projects[i].isMember && !$scope.projects[i].isMember.accept))){
+                                console.log('splicing ' + $scope.projects[i], ' is not manager, or accepted member');
                                 isRemove = true;
                             }
                             if($scope.projects[i].companyId != $rootScope.userData.companyId) {

@@ -285,6 +285,9 @@ angular.module('dmc.data',[])
             declineProject: function(projectId, memberId){
                 return localhost+'projects/'+projectId+'/reject/'+memberId;
             },
+            getProjectMembers: function(id) {
+                return localhost+'projects_members';
+            },
             getMembersToProjectById: function(id) {
                 return localhost+'projects_members/'+id;
             },
@@ -297,8 +300,17 @@ angular.module('dmc.data',[])
             removeMembersToProject: function(id) {
                 return localhost+'projects_members/'+id;
             },
-            addProjectJoinRequest: function(){
+            joinProject: function(){
                 return localhost+'projects_join_requests';
+            },
+            joinProjectRequests: function(id) {
+                return localhost + 'projects/' + id + '/joinApprovalRequests';
+            },
+            manageJoinRequests: function(id) {
+                return {
+                    accept: localhost + 'projectJoinApprovalRequests/' + id + '?action=approve',
+                    decline: localhost + 'projectJoinApprovalRequests/' + id + '?action=decline'
+                };
             },
             getProjectsJoinRequests: function(){
                 return localhost+'projects_join_requests';

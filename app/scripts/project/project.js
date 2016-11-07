@@ -130,6 +130,10 @@ angular.module('dmc.project', [
             url: '/add-task',
             controller: 'AddTaskCtrl as projectCtrl',
             templateUrl: 'templates/project/pages/add-task.html'
+        }).state('project.requests', {
+            url: '/requests',
+            controller: 'ManageRequestsCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/manage-requests.html'
         }).state('project.team', {
             url: '/team?text?type',
             controller: 'TeamCtrl as projectCtrl',
@@ -259,6 +263,26 @@ angular.module('dmc.project', [
                     }
                 );
             }
+
+            $scope.requestJoinProject = function() {
+                ajax.create(dataFactory.joinProjectRequests(projectData.id), {}, function(response) {
+                    //TODO remove log
+                    console.log(response.data)
+                    if (response.status === 200) {
+                        toastModel.showToast('success', 'Request to join ' + projectData.title + 'sent!')
+                    }
+                });
+            };
+
+            $scope.joinProject = function() {
+                ajax.create(dataFactory.joinProject(), {projectId: projectData.id, profileId: $scope.userData.accountId}, function(response) {
+                    //TODO remove log
+                    console.log(response.data)
+                    if (response.status === 200) {
+                        toastModel.showToast('success', 'Joined ' + projectData.title + '!')
+                    }
+                });
+            };
 
             $scope.accept = function(){
                 if($scope.profile) {
