@@ -47,25 +47,19 @@
                class="link-button uppercase invite-button margin-left20">
                 <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
             </a>
-            {{projectCtrl}}
-            {{$root.userData.accountId === projectCtrl.projectData.projectManagerId}}
-            {{projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin}}
             <md-button ng-if="!isPreview && projectCtrl.projectData.isPublic && !projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId !== projectCtrl.projectData.projectManagerId"
                        ng-click="joinProject()"
                        class="md-raised md-primary dmc-button" >
-                <ng-md-icon icon="done" style="fill: #fff;" size="18"></ng-md-icon>
                 Join Project
             </md-button>
             <md-button ng-if="!isPreview && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId !== projectCtrl.projectData.projectManagerId"
                        ng-click="requestJoinProject()"
                        class="md-raised md-primary dmc-button" >
-                <ng-md-icon icon="done" style="fill: #fff;" size="18"></ng-md-icon>
                 Request to Join Project
             </md-button>
             <md-button ng-if="!isPreview && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId === projectCtrl.projectData.projectManagerId"
                        ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/requests'}}"
                        class="md-raised md-primary dmc-button" >
-                <ng-md-icon icon="done" style="fill: #fff;" size="18"></ng-md-icon>
                 Manage Join Requests
             </md-button>
             <!--<md-menu  ng-if="!isPreview"> -->

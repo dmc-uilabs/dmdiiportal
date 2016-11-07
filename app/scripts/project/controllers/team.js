@@ -52,26 +52,35 @@ angular.module('dmc.project')
             ];
 
 
-            if(projectCtrl.projectData.type == 'public' && projectCtrl.projectData.approvalOption == 'admin') loadRequests();
-            $scope.joinRequests = [];
-            function loadRequests(){
-                ajax.get(dataFactory.getProjectJoinRequests(projectCtrl.projectData.id), {}, function (response) {
-                    $scope.joinRequests = response.data;
-                    ajax.get(dataFactory.profiles().all, {
-                        id : $.map(response.data,function(x){ return x.profileId;})
-                    }, function (res) {
-                        for(var i in $scope.joinRequests){
-                            for(var j in res.data) {
-                                if ($scope.joinRequests[i].profileId == res.data[j].id) {
-                                    $scope.joinRequests[i].member = res.data[j];
-                                    break;
-                                }
-                            }
-                        }
-                        apply();
-                    });
-                });
-            }
+            // if(projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin) {
+            //     loadRequests();
+            // };
+
+            $scope.acceptedRequests = [];
+            $scope.pendingRequests = [];
+            $scope.declinedRequests = [];
+
+            // function loadRequests(){
+            //     ajax.get(dataFactory.getProjectJoinRequests(projectCtrl.projectData.id), {}, function (response) {
+            //         var requests = response.data;
+            //         ajax.get(dataFactory.profiles().all, {
+            //             id : $.map(response.data,function(x){ return x.profileId;})
+            //         }, function (res) {
+            //             console.log(requests)
+            //             for(var i in requests){
+            //                 for(var j in res.data) {
+            //                     if (requests[i].profileId == res.data[j].id) {
+            //                         requests[i].member = res.data[j];
+            //                         console.log(requests[i].accept, requests[i].rejected)
+            //
+            //                         break;
+            //                     }
+            //                 }
+            //             }
+            //             apply();
+            //         });
+            //     });
+            // }
 
             $scope.submit = function (text) {
                 $scope.searchModel = text;
@@ -110,6 +119,13 @@ angular.module('dmc.project')
                             for(var j in res.data){
                                 if($scope.members[i].profileId == res.data[j].id){
                                     $scope.members[i].member = res.data[j];
+                                    if ($scope.members[i].accept) {
+                                        $scope.acceptedRequests.push($scope.members[i]);
+                                    } else if  (!$scope.members[i].accept && !$scope.members[i].rejected) {
+                                        $scope.pendingRequests.push($scope.members[i]);
+                                    } else if ($scope.members[i].rejected) {
+                                        $scope.declinedRequests.push($scope.members[i]);
+                                    }
                                     break;
                                 }
                             }
