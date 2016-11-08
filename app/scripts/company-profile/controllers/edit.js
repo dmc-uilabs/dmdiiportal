@@ -345,7 +345,6 @@ angular.module('dmc.company-profile')
             };
 
             $scope.cancelChanges = function(){
-                console.log($scope.company.id)
                 $location.path('profile/' + $scope.company.id);
             };
 
