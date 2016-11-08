@@ -113,6 +113,17 @@ angular.module('dmc.compare',[
                         $scope.products.arr = $.merge($scope.products.arr, response.data);
                         getTags($.map($scope.products.arr,function(x){ return x.id; }));
                         isFavorite.check($scope.products.arr);
+                        angular.forEach($scope.products.arr, function(product, index) {
+                            ajax.get(dataFactory.documentsUrl().getList, {parentType: 'SERVICE', parentId: product.id, docClass: 'IMAGE', recent: 5}, function(response) {
+                                if(response.data && response.data.data && response.data.data.length) {
+                                    $scope.products.arr[index].images = response.data.data;
+                                }
+                            });
+
+                            ajax.get(dataFactory.userAccount(product.owner).get, {}, function(response) {
+                                $scope.products.arr[index].ownerName = response.data.displayName;
+                            });
+                        });
                         $scope.products.count += response.data.length;
                         if (response.data.length > 0) $scope.switchProductType('service');
                         $scope.itemClass = $scope.getItemClass();
