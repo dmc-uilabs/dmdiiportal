@@ -238,7 +238,6 @@ angular.module('dmc.compare',[
         };
 
         $scope.saveToProject = function(projectId, item, index){
-            console.log(index)
             var project = null;
             for(var i in $scope.projects){
                 if($scope.projects[i].id == projectId){
