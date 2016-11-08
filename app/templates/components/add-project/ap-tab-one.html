@@ -33,6 +33,7 @@
                                   <label>Type</label>
                                   <md-select ng-model="projectDetails.type"
                                              ng-change="changed('type')"
+                                             ng-disabled="isUpdate"
                                              ng-init="projectDetails.type_old = projectDetails.type"
                                              class="type-select" aria-label="Types" required>
                                       <md-option value="public">Public</md-option>
@@ -43,6 +44,7 @@
                                     <label>Approval Options</label>
                                     <md-select ng-model="projectDetails.approvalOption"
                                                ng-change="changed('approvalOption')"
+                                               ng-disabled="isUpdate"
                                                ng-init="projectDetails.approvalOption = !projectDetails.approvalOption ? 'all' : projectDetails.approvalOption; projectDetails.approvalOption_old = projectDetails.approvalOption"
                                                class="type-select" aria-label="Approval Options" required>
                                         <md-option value="all">All members can join</md-option>
