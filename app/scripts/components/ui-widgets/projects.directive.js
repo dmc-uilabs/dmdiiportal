@@ -50,7 +50,7 @@ angular.module('dmc.widgets.projects',[
                         for(var i in $scope.projects) {
 
                             if($scope.widgetFormat == 'all-projects'){
-                                if($scope.projects[i].type != "public" && $scope.projects[i].projectManagerId != $rootScope.userData.accountId){
+                                if(!$scope.projects[i].isPublic && $scope.projects[i].projectManagerId != $rootScope.userData.accountId){
                                     if($scope.projects[i].companyId != $rootScope.userData.companyId) {
                                         console.log($scope.projects[i])
                                         console.log('splicing for not public or not manager and not company');
@@ -129,7 +129,7 @@ angular.module('dmc.widgets.projects',[
                             // remove project from $scope.projects if project type dose not public,
                             // current user is not member of project and current user not project Manager of project
                             if($scope.widgetFormat == 'all-projects') {
-                                if ($scope.projects[i].type != "public" &&
+                                if (!$scope.projects[i].isPublic &&
                                     $scope.projects[i].projectManagerId != $rootScope.userData.profileId &&
                                     !$scope.projects[i].isMember) {
                                         console.log('splicing ' + $scope.projects[i], ' is not public, manager, or member');
@@ -209,7 +209,7 @@ angular.module('dmc.widgets.projects',[
                                 "accept": true
                         },function(response){
                             item.isMember = response.data;
-                            toastModel.showToast("success", "You are successfully become a member of the project");
+                            toastModel.showToast("success", "You have successfully become a member of the project");
                             document.location.href = "project.php#/"+item.id+"/home";
                             apply();
                         });

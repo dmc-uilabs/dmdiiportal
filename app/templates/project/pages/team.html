@@ -64,6 +64,9 @@
                                         <div class="name" flex layout-align="start center">
                                             <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a></h4>
                                         </div>
+                                        <div class="company-name" flex>
+                                            <a href="/company.php#/{{item.member.companyId}}">{{item.member.company}}</a>
+                                        </div>
                                     </div>
                                     <div class="buttons">
                                         <md-button class="md-raised" ng-click="follow(item.member)">{{item.member.isFollow ? 'Unfollow' : 'Follow'}}</md-button>
@@ -80,7 +83,6 @@
                 </md-tab>
                 <md-tab label="Pending">
                     <md-content class="md-padding">
-
                         <div layout="row" flex layout-align="space-between start" layout-wrap>
                             <div flex="45" class="one-member" ng-repeat="item in pendingRequests track by $index">
                                 <div layout="row" flex="100" layout-align="start center">
@@ -90,6 +92,9 @@
                                     <div class="info" flex>
                                         <div class="name" flex layout-align="start center">
                                             <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a></h4>
+                                        </div>
+                                        <div class="company-name" flex>
+                                            <a href="/company.php#/{{item.member.companyId}}">{{item.member.company}}</a>
                                         </div>
                                     </div>
                                     <!-- <div class="buttons" ng-if="projectCtrl.projectData.isPublic">
@@ -116,6 +121,9 @@
                                     <div class="info" flex>
                                         <div class="name" flex layout-align="start center">
                                             <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a></h4>
+                                        </div>
+                                        <div class="company-name" flex>
+                                            <a href="/company.php#/{{item.member.companyId}}">{{item.member.company}}</a>
                                         </div>
                                     </div>
                                     <div class="buttons">

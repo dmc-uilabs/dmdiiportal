@@ -116,6 +116,14 @@ angular.module('dmc.project')
                     }, function (res) {
                         $scope.loading = false;
                         for(var i in $scope.members){
+                            if ($scope.members[i].company && !$scope.companyNameList[$scope.members[i].company]) {
+                                ajax.get(dataFactory.getOrganization([$scope.members[i].company]), {}, function(response) {
+                                    if (response.data && response.data.name) {
+                                        $scope.companyNameList[$scope.members[i].company] = response.data.name;
+                                    }
+                                });
+                            }
+
                             for(var j in res.data){
                                 if($scope.members[i].profileId == res.data[j].id){
                                     $scope.members[i].member = res.data[j];
@@ -153,22 +161,17 @@ angular.module('dmc.project')
                 }
             };
 
-            $scope.delete = function(event,member){
+            $scope.delete = function(event, member, index){
                 questionToastModel.show({
                     question: 'Are you sure you want to delete '+member.member.displayName+' from team?',
                     buttons: {
                         ok: function () {
-                            ajax.update(dataFactory.updateMembersToProject(member.id), {
-                                removed : true,
-                                accept : false
-                            }, function (response) {
-                                for(var i in $scope.members){
-                                    if($scope.members[i].id == response.data.id){
-                                        $scope.members[i] = response.data;
-                                        $scope.members[i].member = member.member;
-                                        break;
-                                    }
-                                }
+                            ajax.delete(dataFactory.updateMembersToProject(member.id), {}, function (response) {
+                                toastModel.showToast('success', 'Member removed from project!')
+                                $scope.acceptedRequests.splice(index, 1);
+                                member.accept = false;
+                                member.reject = true;
+                                $scope.pend
                                 apply();
                             });
                         },
