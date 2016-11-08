@@ -46,50 +46,57 @@
 
                     <div layout="column">
                         <h2>Images</h2>
-                        <div layout="row" class="images-carousel" layout-align="space-between center">
-                            <div class="arrow-left">
-                            <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1" ng-hide="company.skillsImages.length <= 5 || index == 0">
-                              <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
-                            </md-button>
-                          </div>
+						<div layout="row" class="images-carousel" layout-align="start start">
+			                <div class="arrow-left" ng-hide="company.images.length <= 5 || index == 0">
+			                    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1">
+			                        <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
+			                    </md-button>
+			                </div>
 
-                            <div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">
-                                <div class="one-image">
-                                    <img ng-src="{{company.images[item+index].url}}">
-                                </div>
-                                <h2>{{company.images[item].title}}</h2>
-                            </div>
+			                <div layout="column" flex="15" class="image" ng-repeat="image in company.images">
+			                    <div class="one-image">
+			                        <img ng-src="{{image.documentUrl}}">
+			                    </div>
+			                    <h2>{{image.documentTitle}}</h2>
+			                </div>
 
-                          <div class="arrow-right">
-                            <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1" ng-hide="company.images.length <= 5 || index <= company.skillsImages.length - 5">
-                              <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
-                            </md-button>
-                          </div>
-                        </div>
+			                <div class="arrow-right" ng-hide="company.images.length <= 5 || index <= company.images.length - 5">
+			                    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1">
+			                        <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
+			                    </md-button>
+			                </div>
+			            </div>
                     </div>
 
                     <div layout="column">
                         <h2>Videos</h2>
-                        <div layout="row" class="images-carousel" layout-align="space-between center">
-                            <div class="arrow-left">
-                            <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1" ng-hide="company.images.length <= 5 || index == 0">
-                              <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
-                            </md-button>
-                          </div>
+						<div layout="row" class="images-carousel" layout-align="start start">
+			                <div class="arrow-left" ng-hide="company.video.length <= 5 || index == 0">
+			                    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1">
+			                        <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
+			                    </md-button>
+			                </div>
 
-                            <div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">
-                                <div class="one-image">
-                                    <a ng-href="{{company.videos[item+index].link}}">{{company.videos[item+index].title}}</a>
-                                </div>
-                            </div>
+			                <div ng-repeat="video in company.videos">
+			                    <video width="320" height="240" controls>
+			                        Your browser does not support HTML5 video playback
+			                        <source ng-src="trustVideoSrc(video.documentUrl)">
+			                    </video>
+			                </div>
 
-                          <div class="arrow-right">
-                            <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1" ng-hide="company.skillsImages.length <= 5 || index <= company.skillsImages.length - 5">
-                              <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
-                            </md-button>
-                          </div>
-                        </div>
-                    </div>
+			                <!-- <div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">
+			                    <div class="one-image">
+			                        <a ng-href="https://youtu.be/1S6g4qpEfks">video</a>
+			                    </div>
+			                </div> -->
+
+			                <div class="arrow-right" ng-hide="company.videos.length <= 5 || index <= company.videos.length - 5">
+			                    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1">
+			                        <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
+			                    </md-button>
+			                </div>
+			            </div>
+			        </div>
                 </md-content>
             </md-tab>
 
