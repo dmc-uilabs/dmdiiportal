@@ -116,17 +116,19 @@ angular.module('dmc.project')
                     }, function (res) {
                         $scope.loading = false;
                         for(var i in $scope.members){
-                            if ($scope.members[i].company && !$scope.companyNameList[$scope.members[i].company]) {
-                                ajax.get(dataFactory.getOrganization([$scope.members[i].company]), {}, function(response) {
-                                    if (response.data && response.data.name) {
-                                        $scope.companyNameList[$scope.members[i].company] = response.data.name;
-                                    }
-                                });
-                            }
 
                             for(var j in res.data){
                                 if($scope.members[i].profileId == res.data[j].id){
                                     $scope.members[i].member = res.data[j];
+                                    if ($scope.members[i].member.company && !$scope.companyNameList[$scope.members[i].member.company]) {
+                                        ajax.get(dataFactory.getOrganization([$scope.members[i].member.company]), {}, function(response) {
+                                            if (response.data && response.data.name) {
+                                                console.log(response.data)
+                                                $scope.companyNameList[$scope.members[i].member.company] = response.data.name;
+                                            }
+                                        });
+                                    }
+                                    console.log($scope.companyNameList)
                                     if ($scope.members[i].accept) {
                                         $scope.acceptedRequests.push($scope.members[i]);
                                     } else if  (!$scope.members[i].accept && !$scope.members[i].rejected) {
@@ -171,7 +173,7 @@ angular.module('dmc.project')
                                 $scope.acceptedRequests.splice(index, 1);
                                 member.accept = false;
                                 member.reject = true;
-                                $scope.pend
+                                $scope.declinedRequests.push(member);
                                 apply();
                             });
                         },
