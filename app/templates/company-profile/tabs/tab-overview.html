@@ -128,7 +128,8 @@
                     allow-tagging="true"
                     widget-title="'Add New Image'"
                     access-level='accessLevels'
-                    file-limit="limit">
+                    file-limit="limit"
+                    allow-vip="true">
                 </div>
                 <div layout="column" layout-align="center start">
                     <md-button class="md-raised" type="button" ng-click="cancelAddImage()">
@@ -174,8 +175,9 @@
                     auto-upload="false"
                     allow-tagging="true"
                     widget-title="'Add New Video'"
-                    access-level='accessLevels'
-                    file-limit="limit">
+                    access-level="accessLevels"
+                    file-limit="limit"
+                    allow-vip="true">
                 </div>
                 <div layout="column" layout-align="start start" flex>
                     <md-button class="md-raised" type="button" ng-click="cancelAddVideo()">

@@ -54,7 +54,7 @@ angular.module('dmc.company-profile')
                         parentId: $scope.company.id,
                         docClass: 'IMAGE',
                         page: 0,
-                        pageSize: $scope.limit
+                        pageSize: $scope.limit,
                     }, function(response) {
                         $scope.company.images = response.data.data;
                     });
@@ -206,6 +206,7 @@ angular.module('dmc.company-profile')
                         parentId: $scope.company.id,
                         docClass: 'IMAGE',
                         tags: image.tags,
+                        vips: image.vips,
                         accessLevel: image.accessLevel
                     }
                     return ajax.create(dataFactory.documentsUrl().save, doc, function(response) {
@@ -236,6 +237,7 @@ angular.module('dmc.company-profile')
                         parentId: $scope.company.id,
                         docClass: 'VIDEO',
                         tags: video.tags,
+                        vips: video.vips,
                         accessLevel: video.accessLevel
                     };
                     return ajax.create(dataFactory.documentsUrl().save, doc, function(response) {

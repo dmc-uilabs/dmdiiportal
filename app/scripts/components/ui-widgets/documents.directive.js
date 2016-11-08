@@ -84,7 +84,7 @@ angular.module('dmc.widgets.documents',[
 			}
 		};
 	}]).
-	directive('uiWidgetUploadDocuments', ['$parse', function ($parse) {
+	directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function ($parse, $q, toastModel) {
 		return {
 			restrict: 'EA',
 			templateUrl: 'templates/components/ui-widgets/upload-documents.html',
@@ -99,7 +99,8 @@ angular.module('dmc.widgets.documents',[
 				allowTagging: '=',
 				fileLimit: '=',
 				accessLevel: '=',
-				isDmdii: '='
+				isDmdii: '=',
+				allowVip: '='
 			},
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
         $scope.documentDropZone;
@@ -195,6 +196,45 @@ angular.module('dmc.widgets.documents',[
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
 
+				$scope.users = [];
+				$scope.selectedVips = {};
+				$scope.selectedVipIds = {};
+				$scope.searchText = '';
+
+				$scope.updateSearchItems = function(text) {
+					// var deferred = $q.defer();
+					return ajax.get(dataFactory.getUserList(), {
+						page: 0,
+						pageSize: 500,
+						displayName: text
+					}).then(function(response) {
+						return response.data.content;
+					});
+				}
+
+				$scope.addVip = function(user, itemId) {
+					if (!$scope.selectedVips[itemId]) {
+						$scope.selectedVips[itemId] = [user];
+
+					} else {
+						$scope.selectedVips[itemId].push(user);
+					}
+
+					if (!$scope.selectedVipIds[itemId]) {
+						$scope.selectedVipIds[itemId] = [user.id];
+					} else {
+						$scope.selectedVipIds[itemId].push(user.id);
+					}
+
+					toastModel.showToast('success', user.displayName + ' added to VIP list');
+				}
+
+				$scope.removeVip = function($index, itemId) {
+					$scope.selectedVips[itemId].splice($index, 1);
+					$scope.selectedVipIds[itemId].splice($index, 1);
+					toastModel.showToast('success', user.displayName + ' removed from VIP list');
+				}
+
 				//TODO: need to fix the config so it makes files look the way we expect
 				$scope.dropzoneConfig = {
 					'options': { // passed into the Dropzone constructor
@@ -221,6 +261,7 @@ angular.module('dmc.widgets.documents',[
 										editing : false,
 										type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length),
 										accessLevel: file_.accessLevel,
+										vips: $scope.selectedVipIds[file_.id],
 										tags: file_.tags
 									});
                                     $scope.$apply();
