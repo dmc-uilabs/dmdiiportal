@@ -213,7 +213,7 @@ angular.module('dmc.project')
                     serviceType: $scope.NewService.serviceType,
                     parent: $scope.NewService.parentComponent,
                     documents: $scope.documents,
-                    image: $scope.images
+                    images: $scope.images
                 },$scope.removeTags,$scope.addTags,newDomeInterface, interfaceId);
             };
 

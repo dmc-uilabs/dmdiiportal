@@ -6987,7 +6987,7 @@ definitions:
         type: string
       toolsSoftwareEquipmentMachines:
         type: string
-      pastCollaborations:
+      postCollaboration:
         type: string
       collaborationInterests:
         type: string
