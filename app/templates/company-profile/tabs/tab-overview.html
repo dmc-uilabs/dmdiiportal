@@ -152,10 +152,10 @@
             </md-button>
         </div>
         <h4>Current Videos</h4>
-        <div ng-repeat="video in source.videos track by $index">
+        <div ng-if="source.videos" ng-repeat="video in source.videos track by $index">
             <video width="320" height="240" controls>
                 Your browser does not support HTML5 video playback
-                <source src="{{trustVideoSrc(video.documentUrl)}}" type="video/mp4">
+                <source ng-src="{{trustVideoSrc(video.documentUrl)}}" type="video/mp4">
             </video>
             <md-button md-no-ink
                 ng-click="deleteVideo(video,$event)"

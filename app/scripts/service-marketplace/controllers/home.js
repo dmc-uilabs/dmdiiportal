@@ -606,17 +606,16 @@ angular.module('dmc.service-marketplace')
                         };
                     updatedItem.projectId = id;
                     updatedItem.from = 'marketplace';
-
+                    console.log(updatedItem)
+                    delete updatedItem.tags;
                     ajax.create(dataFactory.services().add, updatedItem, function (response) {
                         var id = response.data.id;
                         $scope.btnCanselToProject();
-                        ajax.get(dataFactory.services($scope.product.id).get_tags, {}, function(response) {
-                            var newTags = response.data;
-                            angular.forEach(newTags, function(tag) {
-                                delete tag.id;
-                                tag.serviceId = id;
-                                ajax.create(dataFactory.services(id).add_tags, tag);
-                            })
+
+                        angular.forEach($scope.product.__serviceData.service_tags, function(tag) {
+                            delete tag.id;
+                            tag.serviceId = id;
+                            ajax.create(dataFactory.services(id).add_tags, tag);
                         });
                         if ($scope.service_images.length) {
                             angular.forEach($scope.service_images, function(image) {

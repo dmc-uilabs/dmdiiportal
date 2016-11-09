@@ -48,7 +48,7 @@ angular.module('dmc.add_project.directive', [
                 'Members': 'MEMBER',
                 'Admin': 'ADMIN'
             }
-            
+
             $scope.$on('$locationChangeStart', function (event, next, current) {
                 if(!$scope.goSaveProject) {
                     event.preventDefault();
@@ -312,7 +312,7 @@ angular.module('dmc.add_project.directive', [
                 var prevMember;
 
                 $scope.searchMembers = function(){
-                    ajax.get(dataFactory.getUserList(), {page: 0, pageSize: 100, userName: $scope.searchModel}, function (response) {
+                    ajax.get(dataFactory.getUserList(), {page: 0, pageSize: 100, displayName: $scope.searchModel}, function (response) {
                             $scope.foundMembers = response.data.content || [];
                             isInvite();
                         });

@@ -147,7 +147,7 @@ angular.module('dmc.add_members')
                 ajax.get(dataFactory.getUserList(), {
                     page: 0,
                     pageSize: 100,
-                    userName: $scope.searchModel
+                    displayName: $scope.searchModel
                 }, function(response) {
                     $scope.foundMembers = response.data.content;
                     isInvite();

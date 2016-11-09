@@ -265,6 +265,7 @@ angular.module('dmc.project', [
             }
 
             $scope.requestJoinProject = function() {
+                console.log('request')
                 ajax.create(dataFactory.joinProjectRequests(projectData.id), {}, function(response) {
                     //TODO remove log
                     console.log(response.data)
@@ -275,6 +276,7 @@ angular.module('dmc.project', [
             };
 
             $scope.joinProject = function() {
+                console.log('join')
                 ajax.create(dataFactory.joinProject(), {projectId: projectData.id, profileId: $scope.userData.accountId}, function(response) {
                     //TODO remove log
                     console.log(response.data)

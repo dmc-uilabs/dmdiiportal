@@ -5,7 +5,6 @@
                 <a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a>
             </div>
             <span ng-if="projectCtrl.projectData.dueDate"
-                  ng-show="!isPreview || (isPreview && invitation)"
                   class="small-text due-date-project small-text--grey">
                 Due in {{projectCtrl.projectData.dueDate}}
             </span>
@@ -24,7 +23,7 @@
                 Accept Invitation
             </md-button>
         </h1>
-        <div class="md-toolbar-tools" ng-if="!isPreview || (isPreview && invitation)">
+        <div class="md-toolbar-tools">
             <div layout="column" flex="65" class="margin-right12-5">
                 <div layout="row" ng-if="!isPreview" class="name-project" flex>
                     <div sub-nav-menu-button current-page="1"></div>
@@ -47,12 +46,12 @@
                class="link-button uppercase invite-button margin-left20">
                 <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
             </a>
-            <md-button ng-if="!isPreview && projectCtrl.projectData.isPublic && !projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId !== projectCtrl.projectData.projectManagerId"
+            <md-button ng-if="isPreview && !invitation && projectCtrl.projectData.isPublic && !projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId !== projectCtrl.projectData.projectManagerId"
                        ng-click="joinProject()"
                        class="md-raised md-primary dmc-button" >
                 Join Project
             </md-button>
-            <md-button ng-if="!isPreview && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId !== projectCtrl.projectData.projectManagerId"
+            <md-button ng-if="isPreview && !invitation && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId !== projectCtrl.projectData.projectManagerId"
                        ng-click="requestJoinProject()"
                        class="md-raised md-primary dmc-button" >
                 Request to Join Project
@@ -76,8 +75,7 @@
         </div>
     </md-toolbar>
 </div>
-<div ng-if="isPreview && !invitation">No invitations for current project</div>
-<div class="container project-page-container" ng-if="!isPreview || (isPreview && invitation)">
+<div class="container project-page-container">
     <div layout="row" >
         <!-- Left Content Column -->
         <div class="content-column" layout="column" flex="65">

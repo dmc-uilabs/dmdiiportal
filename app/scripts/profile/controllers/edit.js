@@ -11,7 +11,7 @@ angular.module('dmc.profile')
         $scope.companies = [];
 
         if ($scope.profile && $scope.profile.roles && $scope.profile.roles[$scope.profile.companyId]) {
-            $scope.role = response.data.roles[$scope.profile.companyId];
+            $scope.role = $scope.profile.roles[$scope.profile.companyId];
             $scope.isVerified = true;
         } else {
             $scope.role = null;
@@ -127,7 +127,7 @@ angular.module('dmc.profile')
                     parentType: 'USER',
                     docClass: 'IMAGE',
                     parentId: $scope.profile.id,
-                    tags: [{tag_name: $scope.profile.displayName + ' profile-picture'}],
+                    tags: [{tagName: $scope.profile.displayName + ' profile-picture'}],
                     accessLevel: 'PUBLIC'
                 }
 
@@ -143,7 +143,9 @@ angular.module('dmc.profile')
             var promises = [];
             if ($scope.file && $scope.file.length > 0) {
                 promises.push(saveImage($scope.file[0].file));
-                removeImageFlag = true;
+                if (profileImageDoc.id) {
+                    removeImageFlag = true;
+                }
             }
 
             if (removeImageFlag === true) {

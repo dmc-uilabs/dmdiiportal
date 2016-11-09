@@ -261,7 +261,8 @@ angular.module('dmc.compare',[
                 updatedItem.projectId = project.id;
                 updatedItem.from = 'marketplace';
                 updatedItem.published = false;
-
+                delete updatedItem.tags;
+                
                 ajax.create(dataFactory.services().add, updatedItem, function (response) {
                     var id = response.data.id;
                     $scope.cancelAddToProject(item);

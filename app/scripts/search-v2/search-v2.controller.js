@@ -106,7 +106,7 @@ angular.module('dmc.search_v2')
                 ajax.get(dataFactory.getUserList(), {
                     page: $scope.currentPage - 1,
                     pageSize: $scope.totalItemsPerPage,
-                    userName: $scope.searchTextModel
+                    displayName: $scope.searchTextModel
                 }, function (response) {
                     $scope.totalFollowing = 0;
                     $scope.arrayItems = response.data.content;

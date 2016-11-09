@@ -145,17 +145,17 @@ angular.module('dmc.component.productcard', [
                     updatedItem.projectId = project.id;
                     updatedItem.from = 'marketplace';
                     updatedItem.published = false;
-
+                    delete updatedItem.tags;
                     ajax.create(dataFactory.services().add, updatedItem, function (response) {
                         var id = response.data.id;
                         $scope.cancelAddToProject();
+
                         ajax.get(dataFactory.services($scope.cardSource.id).get_tags, {}, function(response) {
-                            var newTags = response.data;
-                            angular.forEach(newTags, function(tag) {
+                            angular.forEach(response.data, function(tag) {
                                 delete tag.id;
                                 tag.serviceId = id;
                                 ajax.create(dataFactory.services(id).add_tags, tag);
-                            })
+                            });
                         });
                         if ($scope.images.length) {
                             angular.forEach($scope.images, function(image) {
