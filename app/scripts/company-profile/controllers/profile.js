@@ -59,7 +59,7 @@ angular.module('dmc.company-profile')
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'LOGO',
-                        recent: 1
+                        page: 0, pageSize: 1
                     }, function(response) {
                         if (response.data.count > 0) {
                             $scope.company.logoImage = response.data.data[0];
@@ -70,7 +70,7 @@ angular.module('dmc.company-profile')
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'IMAGE',
-                        recent: $scope.limit
+                        page: 0, pageSize: $scope.limit
                     }, function(response) {
                         $scope.company.images = response.data.data || [];
                     });
@@ -79,7 +79,7 @@ angular.module('dmc.company-profile')
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'VIDEO',
-                        recent: $scope.limit
+                        page: 0, pageSize: $scope.limit
                     }, function(response) {
                         $scope.company.videos = response.data.data || [];
                     });

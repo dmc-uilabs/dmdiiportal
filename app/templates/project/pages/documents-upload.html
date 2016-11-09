@@ -21,7 +21,14 @@
 <div class="container container-view-all all-project-documents">
     <div class="content-panel-body">
         <md-content>
-            <div class="content-panel" source="documents" ui-widget-upload-documents auto-upload="false" widget-title="'UPLOAD DOCUMENTS'" allow-tagging="true"></div>
+            <div class="content-panel"
+                ui-widget-upload-documents
+                source="documents"
+                auto-upload="false"
+                widget-title="'UPLOAD DOCUMENTS'"
+                access-level="accessLevels"
+                allow-tagging="true">
+            </div>
             <div layout="row" layout-align="end center" layout-margin flex>
                 <md-button class="md-raised dmc-button margin-right15" ng-click="comeBack($event)">
                     Cancel

@@ -624,8 +624,11 @@ angular.module('dmc.data',[])
             getApplicationTags: function() {
                     return localhost + 'applicationTag'
             },
-            getDocumentTags: function() {
+            getDmdiiDocumentTags: function() {
                 return localhost + 'dmdiidocuments/getAllTags';
+            },
+            getDocumentTags: function() {
+                return localhost + 'documents/tags';
             },
             createDocumentTag: function() {
                 return localhost + 'dmdiidocuments/saveDocumentTag';

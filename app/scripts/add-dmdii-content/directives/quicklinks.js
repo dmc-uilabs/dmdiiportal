@@ -21,13 +21,6 @@ angular.module('dmc.addDmdiiContent').
                 $scope.isSaved = false;
                 $scope.fieldName = 'Description'
 
-                $scope.docAccessLevels = {
-                    'All Members': 'ALL_MEMBERS',
-                    'Project Participants': 'PROJECT_PARTICIPANTS',
-                    'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
-                    'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
-                }
-
                 var convertToMarkdown = function(input) {
                     var escaped = toMarkdown(input);
                     return escaped;
@@ -131,7 +124,8 @@ angular.module('dmc.addDmdiiContent').
                                 {
                                     ownerId: $scope.user.accountId,
                                     documentUrl: $scope.quicklink.doc,
-                                    documentName: $scope.quicklink.displayName
+                                    documentName: $scope.quicklink.displayName,
+                                    accessLevel: 'ALL_MEMBERS'
                                 }, function(response) {
                                 $scope.quicklink.doc = response.data;
                                 ajax.create(dataFactory.quicklinkUrl().save, $scope.quicklink, quicklinkCallback);

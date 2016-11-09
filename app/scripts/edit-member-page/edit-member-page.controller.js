@@ -109,7 +109,7 @@ angular.module('dmc.edit-member')
                     parentType: 'ORGANIZATION',
                     parentId: $scope.company.organization.id,
                     docClass: 'LOGO',
-                    recent: 1
+                    page: 0, pageSize: 1
                 }, function(response) {
                     if (response.data && response.data.data && response.data.data.length > 0) {
                         $scope.logoId = response.data.data[0].id;
@@ -363,7 +363,9 @@ angular.module('dmc.edit-member')
                             documentName: 'company-logo',
                             parentType: 'ORGANIZATION',
                             parentId: companyId,
-                            docClass: 'LOGO'
+                            docClass: 'LOGO',
+                            accessLevel: 'PUBLIC',
+                            tags: [{tagName: $scope.company.organization.name + ' logo'}]
                         }, function(response) {
                             if (response.status === 200) {
                                 toastModel.showToast('success', 'Logo uploaded successfully');

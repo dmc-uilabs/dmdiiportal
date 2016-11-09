@@ -13,12 +13,6 @@ angular.module('dmc.add-project-doc').
                 $scope.doc = [];
                 $scope.document = {};
 
-                $scope.docAccessLevels = {
-                    'All Members': 'ALL_MEMBERS',
-                    'Project Participants': 'PROJECT_PARTICIPANTS',
-                    'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
-                }
-
                 $scope.$watchCollection('doc', function() {
                     if ($scope.noDocSelected && $scope.doc.length > 0) {
                         $scope.noDocSelected = false;
@@ -42,13 +36,13 @@ angular.module('dmc.add-project-doc').
                             documentUrl: response.file.name,
                             documentName: 'projectFinancials',
                             ownerId: $scope.user.accountId,
-                            parentType: 'DMDII',
-                            parentId: $scope.project.id,
-                            docClass: 'FINANCIAL',
-                            accessLevel: $scope.doc[0].accessLevel
+                            dmdiiProjectId: $scope.project.id,
+                            fileType: 3,
+                            accessLevel: 'ALL_MEMBERS',
+                            tags: [{tagName: $scope.project.projectTitle + ' project financials'}]
                         };
 
-                        ajax.create(dataFactory.documentsUrl().save, $scope.document, callback);
+                        ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);
                     });
                 };
             }

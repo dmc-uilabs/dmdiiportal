@@ -11,8 +11,8 @@ angular.module('dmc.widgets.documents',[
 			restrict: 'A',
 			templateUrl: 'templates/components/ui-widgets/documents.html',
 			scope: {
-				widgetTitle: "=",
-				projectId: "="
+				widgetTitle: '=',
+				projectId: '='
 			},
 			link: function (scope, iElement, iAttrs) {
 			},
@@ -84,21 +84,23 @@ angular.module('dmc.widgets.documents',[
 			}
 		};
 	}]).
-	directive('uiWidgetUploadDocuments', ['$parse', function ($parse) {
+	directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function ($parse, $q, toastModel) {
 		return {
 			restrict: 'EA',
 			templateUrl: 'templates/components/ui-widgets/upload-documents.html',
 			scope: {
-                source : "=",
-				widgetTitle: "=",
-				projectId: "=",
-                widgetType: "=",
-				autoUpload: "=",
-                serviceId: "=",
-				product: "=",
-				allowTagging: "=",
-				fileLimit: "=",
-				accessLevel: "="
+                source : '=',
+				widgetTitle: '=',
+				projectId: '=',
+                widgetType: '=',
+				autoUpload: '=',
+                serviceId: '=',
+				product: '=',
+				allowTagging: '=',
+				fileLimit: '=',
+				accessLevel: '=',
+				isDmdii: '=',
+				allowVip: '='
 			},
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
         $scope.documentDropZone;
@@ -106,21 +108,21 @@ angular.module('dmc.widgets.documents',[
 
 				if(!$scope.source) $scope.source = [];
 
-        var requestData = {
-						_sort : 'name',
-						_order : 'DESC'
-        };
+		        var requestData = {
+					_sort : 'name',
+					_order : 'DESC'
+		        };
 
 				if($scope.projectId){
-						ajax.get(dataFactory.documentsUrl().getList, {
-								parentType: 'PROJECT',
-								parentId: $scope.projectId,
-								docClass: 'SUPPORT',
-								recent: 20
-							}, function(response) {
-								$scope.source = response.data.data||[];
-								apply();
-						});
+					ajax.get(dataFactory.documentsUrl().getList, {
+							parentType: 'PROJECT',
+							parentId: $scope.projectId,
+							docClass: 'SUPPORT',
+							recent: 20
+						}, function(response) {
+							$scope.source = response.data.data||[];
+							apply();
+					});
 				}
 				// else if($scope.serviceId){
 								//     ajax.get(dataFactory.getServiceDocuments($scope.serviceId), requestData,
@@ -134,11 +136,16 @@ angular.module('dmc.widgets.documents',[
 				$scope.tags = [];
 
 				var callbackTagFunction = function(response) {
-					$scope.tags = response.data
+					$scope.tags = response.data;
 				}
 
 				var getTags = function(){
-					ajax.get(dataFactory.getDocumentTags(), null, callbackTagFunction);
+					if ($scope.isDmdii) {
+						ajax.get(dataFactory.getDmdiiDocumentTags(), null, callbackTagFunction);
+					} else {
+						ajax.get(dataFactory.getDocumentTags(), null, callbackTagFunction);
+
+					}
 				}
 				getTags();
 
@@ -189,6 +196,45 @@ angular.module('dmc.widgets.documents',[
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 };
 
+				$scope.users = [];
+				$scope.selectedVips = {};
+				$scope.selectedVipIds = {};
+				$scope.searchText = '';
+
+				$scope.updateSearchItems = function(text) {
+					// var deferred = $q.defer();
+					return ajax.get(dataFactory.getUserList(), {
+						page: 0,
+						pageSize: 500,
+						displayName: text
+					}).then(function(response) {
+						return response.data.content;
+					});
+				}
+
+				$scope.addVip = function(user, itemId) {
+					if (!$scope.selectedVips[itemId]) {
+						$scope.selectedVips[itemId] = [user];
+
+					} else {
+						$scope.selectedVips[itemId].push(user);
+					}
+
+					if (!$scope.selectedVipIds[itemId]) {
+						$scope.selectedVipIds[itemId] = [user.id];
+					} else {
+						$scope.selectedVipIds[itemId].push(user.id);
+					}
+
+					toastModel.showToast('success', user.displayName + ' added to VIP list');
+				}
+
+				$scope.removeVip = function($index, itemId) {
+					$scope.selectedVips[itemId].splice($index, 1);
+					$scope.selectedVipIds[itemId].splice($index, 1);
+					toastModel.showToast('success', user.displayName + ' removed from VIP list');
+				}
+
 				//TODO: need to fix the config so it makes files look the way we expect
 				$scope.dropzoneConfig = {
 					'options': { // passed into the Dropzone constructor
@@ -200,6 +246,10 @@ angular.module('dmc.widgets.documents',[
 						'init' : function() {
 							$scope.documentDropZone = this;
 							this.on('addedfile', function(file) {
+								if ($scope.accessLevel) {
+									file.accessLevel = $scope.accessLevel[Object.keys($scope.accessLevel)[0]];
+								}
+
 								if($scope.autoProcessQueue == false) {
 									var file_ = file;
 									var title = file_.name.substring(0,file_.name.lastIndexOf('.'));
@@ -210,7 +260,9 @@ angular.module('dmc.widgets.documents',[
 										file : file_,
 										editing : false,
 										type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length),
-										accessLevel: file_.accessLevel
+										accessLevel: file_.accessLevel,
+										vips: $scope.selectedVipIds[file_.id],
+										tags: file_.tags
 									});
                                     $scope.$apply();
 								}
@@ -263,8 +315,8 @@ angular.module('dmc.widgets.documents',[
 		return {
 			restrict: 'E',
 			scope:{
-                documentsType : "=",
-                typeId : "="
+                documentsType : '=',
+                typeId : '='
             },
 			templateUrl: 'templates/components/ui-widgets/documents-folder.html',
 			controller: function($scope, $element, $attrs, dataFactory, ajax) {
@@ -284,17 +336,22 @@ angular.module('dmc.widgets.documents',[
                         _order : $scope.order,
                         _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort)
                     };
-                    if($scope.documentsType == "service"){
-                        url = dataFactory.getServiceDocuments($scope.typeId);
-                        requestData["service-documentId"] = $scope.serviceDocumentId;
-                    }else if($scope.documentsType == "project"){
+                    if($scope.documentsType == 'service'){
+						url = dataFactory.documentsUrl().getList;
+						requestData = {
+							parentType: 'SERVICE',
+							parentId: $scope.typeId,
+							docClass: 'SUPPORT',
+							recent: 5
+						};
+                    }else if($scope.documentsType == 'project'){
                         url = dataFactory.documentsUrl().getList;
                         requestData = {
-														parentType: 'PROJECT',
-														parentId: $scope.typeId,
-														docClass: 'SUPPORT',
-														recent: 20
-													};
+							parentType: 'PROJECT',
+							parentId: $scope.typeId,
+							docClass: 'SUPPORT',
+							recent: 20
+						};
                     }
                     ajax.get(url, requestData,
                         function (response) {

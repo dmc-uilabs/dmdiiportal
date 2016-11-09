@@ -20,6 +20,11 @@ angular.module('dmc.company-profile').
 
                 $scope.isAddingVideo = false;
 
+                $scope.accessLevels = {
+                    'Public': 'PUBLIC',
+                    'Members': 'MEMBER',
+                    'Admins': 'ADMIN'
+                }
                 // open form for add video
                 $scope.addNewVideo = function(){
                     $scope.isAddingVideo = true;

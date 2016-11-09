@@ -43,6 +43,12 @@ angular.module('dmc.add_project.directive', [
 
             $scope.goSaveProject = false;
 
+            $scope.accessLevels = {
+                'Public': 'PUBLIC',
+                'Members': 'MEMBER',
+                'Admin': 'ADMIN'
+            }
+            
             $scope.$on('$locationChangeStart', function (event, next, current) {
                 if(!$scope.goSaveProject) {
                     event.preventDefault();

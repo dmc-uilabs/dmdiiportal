@@ -60,6 +60,17 @@ angular.module('dmc.service-marketplace')
                 }
             });
 
+            $scope.service_docs = [];
+            ajax.get(dataFactory.documentsUrl().getList, { recent: 10, parentType: 'SERVICE', parentId: $scope.product.id, docClass: 'SUPPORT' }, function(response) {
+                if (response.data && response.data.data && response.data.data.length) {
+                    $scope.service_docs = response.data.data;
+                }
+            });
+
+            ajax.get(dataFactory.userAccount($scope.product.owner).get, {}, function(response) {
+                $scope.owner_name = response.data.displayName
+            })
+
             // check if service is favorite for current user
             isFavorite.check([$scope.product]);
 

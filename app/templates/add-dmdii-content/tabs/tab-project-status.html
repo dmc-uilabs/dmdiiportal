@@ -8,7 +8,7 @@
                 widget-type="'row'"
                 auto-upload="false"
                 widget-title="'Upload Project Status Image'"
-                allow-tagging="true"
+                is-dmdii="true"
                 file-limit="1">
             </div>
             <div class="slim-margin error" ng-show="noDocSelected">
@@ -17,7 +17,7 @@
         </div>
 
     </div>
-    
+
     <div layout="row" layout-align="end start">
         <md-button class="md-raised cancel-button" ng-click="clear()">Clear</md-button>
         <md-button class="md-raised md-primary save-button" ng-click="save()">Save</md-button>

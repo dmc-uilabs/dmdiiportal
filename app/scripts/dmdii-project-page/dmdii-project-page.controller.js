@@ -87,32 +87,16 @@ angular.module('dmc.dmdiiProj')
                     $scope.projectLoading = false;
                 });
 
-                ajax.get(dataFactory.documentsUrl().getList, {
-                    recent: 15,
-                    page: null,
-                    pageSize: null,
-                    parentType: 'DMDII',
-                    parentId: $scope.project.id
-                }, function(response) {
-                    $scope.documents = response.data.data;
+                ajax.get(dataFactory.getDMDIIDocuments().project, {page: 0, pageSize: 15, dmdiiProjectId: $scope.project.id}, function(response) {
+                    $scope.documents = response.data;
                 });
 
-                ajax.get(dataFactory.documentsUrl().getList, {
-                    docClass: 'FINANCIAL',
-                    parentType: 'DMDII',
-                    parentId: $scope.project.id,
-                    recent: 1
-                }, function(response) {
-                    $scope.projectFinancials = response.data.count>0?response.data.data[0]:{};
+                ajax.get(dataFactory.getDMDIIDocuments().projectDocument, {fileTypeId: 3, dmdiiProjectId: $scope.project.id}, function(response) {
+                    $scope.projectFinancials = response.data;
                 });
 
-                ajax.get(dataFactory.documentsUrl().getList, {
-                    docClass: 'SCHEDULE',
-                    parentType: 'DMDII',
-                    parentId: $scope.project.id,
-                    recent: 1
-                }, function(response) {
-                    $scope.projectSchedule = response.data.count>0?response.data.data[0]:{};
+                ajax.get(dataFactory.getDMDIIDocuments().projectDocument, {fileTypeId: 4, dmdiiProjectId: $scope.project.id}, function(response) {
+                    $scope.projectSchedule = response.data;
                 });
 
             };
@@ -135,7 +119,7 @@ angular.module('dmc.dmdiiProj')
             };
 
             $scope.deleteDocument = function(id, type, index) {
-                ajax.delete(dataFactory.documentsUrl(id).delete, {}, function() {
+                ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
                     if (type != 'doc') {
                         delete $scope[type];
                     } else {

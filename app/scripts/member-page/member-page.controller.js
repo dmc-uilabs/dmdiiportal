@@ -19,7 +19,6 @@ angular.module('dmc.member')
         'is_search',
         'DMCUserModel',
         '$window',
-        'CompareModel',
         'isFavorite',
         function($state,
                  $stateParams,
@@ -33,7 +32,6 @@ angular.module('dmc.member')
                  is_search,
                  DMCUserModel,
                  $window,
-                 CompareModel,
                  isFavorite){
 
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
@@ -45,7 +43,6 @@ angular.module('dmc.member')
             $scope.userData = null;
             DMCUserModel.getUserData().then(function(res){
                 $scope.userData = res;
-                // CompareModel.get('services', $scope.userData);
 
                 if ($scope.userData.roles && angular.isDefined($scope.userData.roles[$stateParams.memberId])) {
                     $scope.userData.isVerified = true;
@@ -74,7 +71,7 @@ angular.module('dmc.member')
 
                 var startDate = $scope.member.startDate.split('-');
                 $scope.startDate = startDate[1] + '-' + startDate[2] + '-' + startDate[0];
-                
+
                 // if (!$scope.member.projects) {
                 //     ajax.get(dataFactory.getDMDIIMemberProjects(), { page: 0, pageSize: 50, dmdiiMemberId: $scope.member.id }, function(response) {
                 //         $scope.member.projects = response.data.data;

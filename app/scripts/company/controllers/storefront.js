@@ -37,10 +37,23 @@ angular.module('dmc.company')
             parentType: 'ORGANIZATION',
             parentId: $scope.companyData.id,
             docClass: 'LOGO',
-            recent: 1
+            page: 0,
+            pageSize: 1
         }, function(response) {
             if (response.data.count > 0) {
-                $scope.companyData.logoImage = response.data.data[0];
+                $scope.companyData.logoImage = response.data.data[0].documentUrl;
+            };
+        });
+
+        ajax.get(dataFactory.documentsUrl().getList, {
+            parentType: 'ORGANIZATION',
+            parentId: $scope.companyData.id,
+            docClass: 'FEATURE_IMAGE',
+            page: 0,
+            pageSize: 1
+        }, function(response) {
+            if (response.data.count > 0) {
+                $scope.companyData.featureImage = response.data.data[0].documentUrl;
             };
         });
 

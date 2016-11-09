@@ -62,7 +62,9 @@ angular.module('dmc.onboarding')
 					ownerId: $scope.userData.profileId,
 					parentType: 'USER',
 					parentId: $scope.userData.profileId,
-					docClass: 'IMAGE'
+					docClass: 'IMAGE',
+					accessLevel: 'PUBLIC',
+					tags: [{tagName: $scope.userData.displayName + ' profile-picture'}]
 				});
 			});
 		};
@@ -73,21 +75,16 @@ angular.module('dmc.onboarding')
 
         $scope.next = function(index){
             $scope.storefront[index].done = true;
-            if(index == 1 && $scope.file){
-                fileUpload.uploadFileToUrl($scope.file.files[0].file, {id:$scope.userData.profileId }, 'profile', function(data){
-					ajax.create(dataFactory.documentsUrl().save, {
-                        documentUrl: response.file.name,
-                        documentName: response.key,
-                        ownerId: $scope.profile.id,
-                        parentType: 'USER',
-                        parentId: $scope.profile.id,
-                        accessLevel: $scope.documents[i].accessLevel
-	            	}, function() {
-						$(window).scrollTop(0);
-						$state.go('^' + $scope.profile[index+1].state);
-					});
-				});
+            if(index == 1 && $scope.newImage.length) {
+                var promises = [];
+				promises.push(uploadImage());
+				promises.push(deleteImage(currentImage.id));
 			};
+
+			$q.all(promises).then(function(response) {
+				$(window).scrollTop(0);
+				$state.go('^' + $scope.profile[index+1].state);
+			});
 		}
 
         $scope.finish = function(index){

@@ -46,16 +46,20 @@ angular.module('dmc.component.productcard', [
           $scope.images = [];
 
           if ($scope.cardSource.published) {
-              ajax.get(dataFactory.documentsUrl().getList, {parentType: 'SERVICE', parentId: $scope.cardSource.id, docClass: 'IMAGE', recent: 5}, function(response) {
-                  if(response.data && response.data.data && response.data.data.length) {
-                      $scope.images = response.data.data;
-                  }
-              });
+              if (!angular.isDefined($scope.cardSource.images)) {
+                  ajax.get(dataFactory.documentsUrl().getList, {parentType: 'SERVICE', parentId: $scope.cardSource.id, docClass: 'IMAGE', recent: 5}, function(response) {
+                      if(response.data && response.data.data && response.data.data.length) {
+                          $scope.cardSource.images = response.data.data;
+                      }
+                  });
 
-              ajax.get(dataFactory.userAccount($scope.cardSource.owner).get, {}, function(response) {
-                  $scope.ownerName = response.data.displayName;
-              });
+              }
 
+              if (!angular.isDefined($scope.cardSource.ownerName)) {
+                  ajax.get(dataFactory.userAccount($scope.cardSource.owner).get, {}, function(response) {
+                      $scope.cardSource.ownerName = response.data.displayName;
+                  });
+              }
           }
 
           //$scope.hideButtons = [];
