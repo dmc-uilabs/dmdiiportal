@@ -247,7 +247,6 @@ angular.module('dmc.add_project', [
                         addTagsToPromises(promises,params.tags,response.data.id);
 
                         // add documents to request
-                        console.log(params.title)
                         addDocumentsToPromises(promises, params.documents, params.title, response.data.id);
 
                         $q.all(promises).then(function(){

@@ -20,20 +20,21 @@ angular.module('dmc.project')
                 serviceDescription_old: serviceData.description
             };
             $scope.documents = [];
+            $scope.images = [];
 
             $scope.selectedInterface = null;
             $scope.addTags=[];
             $scope.removeTags = [];
 
             $scope.serviceTypes = [{
-                tag : "analytical",
-                name : "Analytical"
+                tag : 'analytical',
+                name : 'Analytical'
             }, {
-                tag: "data",
-                name : "Data"
+                tag: 'data',
+                name : 'Data'
             },{
-                tag : "solid",
-                name : "Solid"
+                tag : 'solid',
+                name : 'Solid'
             }];
 
             $scope.userData = DMCUserModel.getUserData();
@@ -61,7 +62,7 @@ angular.module('dmc.project')
 
                 serviceModel.get_all_service({}, function(data){
                     $scope.allServices = data;
-                    $scope.allServices.unshift({id: 0, title: "None"});
+                    $scope.allServices.unshift({id: 0, title: 'None'});
                 });
             });
 
@@ -101,9 +102,9 @@ angular.module('dmc.project')
             };
 
             $scope.changeValue = function(name){
-                if($scope.NewService[name] != $scope.NewService[name+"_old"]){
+                if($scope.NewService[name] != $scope.NewService[name+'_old']){
                     changedValues[name] = $scope.NewService[name];
-                }else if($scope.NewService[name] == $scope.NewService[name+"_old"] && changedValues[name]){
+                }else if($scope.NewService[name] == $scope.NewService[name+'_old'] && changedValues[name]){
                     delete changedValues[name];
                 }
                 isChangedPage = Object.keys(changedValues).length > 0 ? true : false;
@@ -126,12 +127,13 @@ angular.module('dmc.project')
             };
 
             $scope.saveServer = function(server){
-
+                server.ip=server.ip.substr(0,7)=='http://'?server.ip:'http://'+server.ip;
                 serviceModel.add_servers({
                     ip: server.port != null ? server.ip + ':' + server.port : server.ip,
+                    port: server.port,
                     name: server.name,
                     accountId: $scope.userData.accountId,
-                    status: "offline"
+                    status: 'offline'
                 }, function(data){
                     $scope.servers.push(data);
                     $scope.flagAddServer = false;
@@ -209,26 +211,10 @@ angular.module('dmc.project')
                     title: $scope.NewService.serviceName,
                     description: $scope.NewService.serviceDescription,
                     serviceType: $scope.NewService.serviceType,
-                    parent: $scope.NewService.parentComponent
+                    parent: $scope.NewService.parentComponent,
+                    documents: $scope.documents,
+                    image: $scope.images
                 },$scope.removeTags,$scope.addTags,newDomeInterface, interfaceId);
             };
-
-            $scope.$on('$locationChangeStart', function (event, next, current) {
-                //console.log(current);
-                var answer = confirm("Are you sure you want to leave this page without saving?");
-                if ((isInterfaceChanged || isChangedPage || $scope.addTags.length > 0 || $scope.removeTags.length > 0) && current.match("\/edit")) {
-                    var answer = confirm("Are you sure you want to leave this page without saving?");
-                    if (!answer){
-                        event.preventDefault();
-                    }
-                }
-            });
-
-            $(window).unbind('beforeunload');
-            $(window).bind('beforeunload', function(){
-                if(isInterfaceChanged || isChangedPage || $scope.addTags.length > 0 || $scope.removeTags.length > 0) {
-                    return "Are you sure you want to leave this page without saving?";
-                }
-            });
 
         }])

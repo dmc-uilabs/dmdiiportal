@@ -198,7 +198,6 @@ angular.module('dmc.widgets.documents',[
 
 				$scope.users = [];
 				$scope.selectedVips = {};
-				$scope.selectedVipIds = {};
 				$scope.searchText = '';
 
 				$scope.updateSearchItems = function(text) {
@@ -220,18 +219,11 @@ angular.module('dmc.widgets.documents',[
 						$scope.selectedVips[itemId].push(user);
 					}
 
-					if (!$scope.selectedVipIds[itemId]) {
-						$scope.selectedVipIds[itemId] = [user.id];
-					} else {
-						$scope.selectedVipIds[itemId].push(user.id);
-					}
-
 					toastModel.showToast('success', user.displayName + ' added to VIP list');
 				}
 
 				$scope.removeVip = function($index, itemId) {
 					$scope.selectedVips[itemId].splice($index, 1);
-					$scope.selectedVipIds[itemId].splice($index, 1);
 					toastModel.showToast('success', user.displayName + ' removed from VIP list');
 				}
 
@@ -261,7 +253,7 @@ angular.module('dmc.widgets.documents',[
 										editing : false,
 										type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length),
 										accessLevel: file_.accessLevel,
-										vips: $scope.selectedVipIds[file_.id],
+										vips: $scope.selectedVips[file_.id],
 										tags: file_.tags
 									});
                                     $scope.$apply();

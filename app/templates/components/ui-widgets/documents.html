@@ -9,9 +9,9 @@
   <md-content class="documents">
     <md-list>
       <md-list-item ng-repeat="item in documents">
-        <p>{{item.title}}</p>
-        <md-button class="md-icon-button download" href="{{item.file}}" download aria-label="Download"><ng-md-icon icon="file_download" style="fill: #666" size="18"></ng-md-icon></md-button>
-        <md-button class="md-raised view" target="_blank" href="{{item.file}}">View</md-button>
+        <p>{{item.documentName}}</p>
+        <md-button class="md-icon-button download" href="{{item.documentUrl}}" download aria-label="Download"><ng-md-icon icon="file_download" style="fill: #666" size="18"></ng-md-icon></md-button>
+        <md-button class="md-raised view" target="_blank" href="{{item.documentUrl}}">View</md-button>
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
     </md-list>

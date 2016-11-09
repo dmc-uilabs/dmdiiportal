@@ -52,17 +52,12 @@
                                 <div layout="row" flex="100" layout-align="start center">
                                     <div class="info" flex>
                                         <div class="name" flex layout-align="start center">
-                                            <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a></h4>
-											<span>{{item.member.email}}</span>
+                                            <h4><a href="/profile.php#/{{item.user.id}}">{{item.user.displayName}}</a></h4>
+											<span>{{item.user.email}}</span>
                                         </div>
                                     </div>
                                     <div class="buttons">
-                                        <md-button class="md-raised" ng-click="follow(item.member)">{{item.member.isFollow ? 'Unfollow' : 'Follow'}}</md-button>
-                                        <md-button md-no-ink class="md-icon-button delete"
-                                                   ng-click="delete($event,item)"
-                                                   aria-label="Delete">
-                                            <ng-md-icon icon="delete" size="25"></ng-md-icon>
-                                        </md-button>
+                                        <md-button class="md-raised" ng-click="follow(item.user)">{{item.user.isFollow ? 'Unfollow' : 'Follow'}}</md-button>
                                     </div>
                                 </div>
                             </div>
@@ -76,15 +71,15 @@
                                 <div layout="row" flex="100" layout-align="start center">
                                     <div class="info" flex>
                                         <div class="name" flex layout-align="start center">
-											<h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a></h4>
-											<span>{{item.member.email}}</span>
+											<h4><a href="/profile.php#/{{item.user.id}}">{{item.user.displayName}}</a></h4>
+											<span>{{item.user.email}}</span>
 										</div>
                                     </div>
-                                    <div class="buttons" ng-if="projectCtrl.projectData.type == 'public'">
-                                        <md-button class="md-raised decline" ng-click="decline(item)">
+                                    <div class="buttons" ng-if="projectCtrl.projectData.isPublic && userData.accountId === projectCtrl.projectData.projectManagerId">
+                                        <md-button class="md-raised decline" ng-click="decline(item, $index)">
                                             Decline
                                         </md-button>
-                                        <md-button class="md-raised approve" ng-click="approve(item)">
+                                        <md-button class="md-raised approve" ng-click="approve(item, $index)">
                                             Approve
                                         </md-button>
                                     </div>
@@ -100,16 +95,9 @@
                                 <div layout="row" flex="100" layout-align="start center">
                                     <div class="info" flex>
                                         <div class="name" flex layout-align="start center">
-											<h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a></h4>
-											<span>{{item.member.email}}</span>
+											<h4><a href="/profile.php#/{{item.user.id}}">{{item.user.displayName}}</a></h4>
+											<span>{{item.user.email}}</span>
 			                        	</div>
-                                    </div>
-                                    <div class="buttons">
-                                        <md-button md-no-ink class="md-icon-button add"
-                                                   ng-click="invite($event,item)"
-                                                   aria-label="Invite to project">
-                                            <ng-md-icon icon="group_add" size="25"></ng-md-icon>
-                                        </md-button>
                                     </div>
                                 </div>
                             </div>

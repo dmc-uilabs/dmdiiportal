@@ -606,7 +606,7 @@ angular.module('dmc.service-marketplace')
                         };
                     updatedItem.projectId = id;
                     updatedItem.from = 'marketplace';
-                    console.log(updatedItem)
+
                     delete updatedItem.tags;
                     ajax.create(dataFactory.services().add, updatedItem, function (response) {
                         var id = response.data.id;

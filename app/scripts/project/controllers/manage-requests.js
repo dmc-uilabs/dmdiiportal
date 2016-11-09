@@ -93,7 +93,6 @@ angular.module('dmc.project')
             });
 
             $scope.getMembers = function () {
-				console.log('here', projectCtrl.currentProjectId);
                 $scope.loading = true;
                 $scope.companyNameList = {};
                 ajax.get(dataFactory.joinProjectRequests(projectCtrl.currentProjectId), {}, function (response) {
@@ -114,6 +113,7 @@ angular.module('dmc.project')
 					isFollowed($scope.acceptedRequests);
 					isFollowed($scope.pendingRequests);
 					isFollowed($scope.declinedRequests);
+                    $scope.loading = false;
                     apply();
                 });
             };
@@ -135,25 +135,29 @@ angular.module('dmc.project')
                 }
             };
 
-            $scope.approve = function(item){
+            $scope.approve = function(item, index){
 				ajax.put(dataFactory.manageJoinRequests(item.id).accept, {}, function(response) {
 					if (response.status === 200) {
-						toastModel.showToast('success', 'Member accepted!')
+						toastModel.showToast('success', 'Member accepted!');
+                        $scope.pendingRequests.splice($index, 1);
+                        $scope.acceptedRequests.push(item);
 					}
 				});
             };
 
-            $scope.decline = function(item){
+            $scope.decline = function(item, index){
 				ajax.put(dataFactory.manageJoinRequests(item.id).decline, {}, function(response) {
 					if (response.status === 200) {
-						toastModel.showToast('success', 'Member declined!')
+						toastModel.showToast('success', 'Member declined!');
+                        $scope.pendingRequests.splice($index, 1);
+                        $scope.declinedRequests.push(item);
 					}
 				});
             };
 
             function isFollowed(data) {
                 var ids = $.map(data, function (user) {
-                    return user.member.id;
+                    return user.user.id;
                 });
                 ajax.get(dataFactory.getAccountFollowedMembers($scope.userData.accountId), {}, function (response) {
                     for (var i in data) {

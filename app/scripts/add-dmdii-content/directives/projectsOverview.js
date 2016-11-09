@@ -35,9 +35,9 @@ angular.module('dmc.addDmdiiContent').
                             documentUrl: response.file.name,
                             documentName: 'projectOverview',
                             ownerId: $scope.user.accountId,
-                            fileype: 1,
+                            fileType: 1,
                             accessLevel: 'ALL_MEMBERS',
-                            tags: [{tagName: 'projects-stats'}]
+                            tags: [{tagName: 'projects-overview'}]
                         };
 
                         ajax.create(dataFactory.saveDMDIIDocument(), $scope.document, callback);

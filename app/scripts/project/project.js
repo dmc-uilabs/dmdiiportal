@@ -904,6 +904,14 @@ angular.module('dmc.project', [
                                         }
                                     }
 
+                                    angular.forEach(params.documents, function(doc, index) {
+                                        promises['doc' + index] = uploadDoc(doc, id, params.title);
+                                    });
+
+                                    angular.forEach(params.images, function(image, index) {
+                                        promises['image' + index] = uploadImage(image, id, params.title);
+                                    });
+                                    
                                     if(!interfaceId) {
                                         service_interface.serviceId = id;
                                         promises['add_service_interface'] = $http.post(dataFactory.services().add_interface, service_interface);
