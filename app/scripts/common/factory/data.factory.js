@@ -243,9 +243,6 @@ angular.module('dmc.data',[])
             createPublishService: function(){
                 return localhost + 'publish-services';
             },
-            getAuthors: function(){
-                return localhost + 'authors';
-            },
             getFollowCompanies: function(id){
                 return localhost+'accounts/'+id+'/following_companies';
             },
@@ -776,7 +773,7 @@ angular.module('dmc.data',[])
                     updateHelpful : localhost + 'product_reviews_helpful/' + id,
                     getFlagged : localhost + 'product_reviews_flagged',
                     addFlagged : localhost + 'product_reviews_flagged',
-                    get_authors : localhost + name + '/' + id + '/service_authors',
+                    get_authors : localhost + 'services/' + id + '/service_authors',
                     remove_authors : localhost + 'service_authors/' + id,
                     add_authors : localhost + 'service_authors',
                     get_tags : localhost + name + '/' + id + '/service_tags',
@@ -790,7 +787,7 @@ angular.module('dmc.data',[])
                     get_array_specifications: localhost + 'array_specifications',
                     add_array_specifications: localhost + 'array_specifications',
                     get_specifications: localhost + name + '/' + id + '/specifications',
-                    add_specifications:  localhost + name + '/' + id + 'specifications',
+                    add_specifications:  localhost + 'service/' + id + '/specifications',
                     update_specifications:  localhost + '/specifications/' + id,
                     get_statistics: localhost + name + '/' + id + '/services_statistic',
                     add_interface: localhost + 'dome-interfaces',
