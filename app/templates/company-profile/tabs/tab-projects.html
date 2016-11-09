@@ -1,10 +1,12 @@
 <div layout="row" class="line-block" layout-align="start start">
     <md-input-container flex class="company-postCollaborations right-space" >
         <label>Past Collaborations</label>
-        <textarea ng-model="source.pastCollaborations"
+        <textarea ng-model="source.postCollaborations"
                   columns="1"></textarea>
     </md-input-container>
-    <md-autocomplete flex="45"
+</div>
+<div layout="row">
+    <md-autocomplete flex="100"
         md-input-name="desiredCollab"
         md-items="tag in querySkillSearch(searchSkill)"
         md-search-text="searchSkill"
