@@ -26,6 +26,16 @@ angular.module('dmc.project')
 
             $scope.projectData = projectData;
 
+            if ($scope.projectData.isPublic) {
+                $scope.projectData.type = 'public';
+                if ($scope.projectData.requiresAdminApprovalToJoin) {
+                    $scope.projectData.approvalOption = 'admin';
+                } else {
+                    $scope.projectData.approvalOption = 'all';
+                }
+            } else {
+                $scope.projectData.type = 'private';
+            }
             $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
 
             $scope.data = {
@@ -132,6 +142,7 @@ angular.module('dmc.project')
                     newProject.dueDate = Date.parse(new Date());
                 }
                 newProject.documents = $scope.documents;
+
                 projectModel.update_project(projectCtrl.currentProjectId,newProject, data, currentMembers, function(data){
                     document.location.href = 'project.php#/'+projectCtrl.currentProjectId+'/home';
                 });
