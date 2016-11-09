@@ -61,7 +61,6 @@ angular.module('dmc.component.productcard', [
                   });
               }
           }
-
           //$scope.hideButtons = [];
           $scope.compareStyle = {
               'font-size' : ($scope.hideButtons && $scope.hideButtons.indexOf('compare') != -1 ? '11px' : '13px')
