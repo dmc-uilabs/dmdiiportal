@@ -264,16 +264,6 @@ angular.module('dmc.search')
 
                             angular.forEach($scope.arrayItems, function(company) {
                                 company.isCompany = true;
-                                ajax.get(dataFactory.documentsUrl().getList, {
-                                    parentType: 'ORGANIZATION',
-                                    parentId: company.id,
-                                    docClass: 'LOGO',
-                                    page: 0, pageSize: 1
-                                }, function(response) {
-                                    if (response.data && response.data.data && response.data.data !== null && response.data.data.length > 0) {
-                                        company.logoImage = response.data.data[0];
-                                    };
-                                });
                             });
 
                             isFollowCompany($.map($scope.arrayItems, function (x) {
