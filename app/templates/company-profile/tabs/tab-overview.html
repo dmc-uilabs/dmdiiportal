@@ -152,7 +152,7 @@
             </md-button>
         </div>
         <h4>Current Videos</h4>
-        <div ng-if="source.videos" ng-repeat="video in source.videos track by $index">
+        <div ng-if="source.videos" ng-repeat="video in source.videos track by $index" ng-hide="video.hide">
             <video width="320" height="240" controls>
                 Your browser does not support HTML5 video playback
                 <source ng-src="{{trustVideoSrc(video.documentUrl)}}" type="video/mp4">

@@ -24,13 +24,13 @@
 
                         <span flex></span>
 
-                        <md-button ng-if="currentUser.profileId && !companyData.isOwner && !currentUser.isDmdiiAdmin"
+                        <md-button ng-if="currentUser.profileId && !currentUser.isAdmin && !companyData.isOwner && !currentUser.isDmdiiAdmin"
                                    ng-click="join()"
                                    ng-disabled="companyData.joinRequest"
                                    class="md-raised dmc-button margin-right15">
                             {{ !companyData.joinRequest ? 'Request to Join' : 'Pending Approval' }}
                         </md-button>
-                        <md-button ng-if="!companyData.isOwner && !currentUser.isDmdiiAdmin"
+                        <md-button ng-if="!companyData.isOwner && !currentUser.isAdmin && !currentUser.isDmdiiAdmin"
                                    class="md-raised dmc-button"
                                    ng-click="followCompany()">
                             {{(companyData.follow ? 'Unfollow' : 'Follow')}}
@@ -42,7 +42,7 @@
                             <!--<ng-md-icon icon="email" size="32"></ng-md-icon>-->
                         <!--</md-button>-->
 
-                        <md-button ng-if="companyData.isOwner || currentUser.isDmdiiAdmin"
+                        <md-button ng-if="companyData.isOwner || currentUser.isAdmin || currentUser.isDmdiiAdmin"
                                    class="md-raised dmc-button"
                                    ng-href="/company.php#/{{companyId}}/edit?product=services">
                             Edit Storefront

@@ -67,6 +67,20 @@ angular.module('dmc.company')
         if($scope.companyData && $scope.companyData.id) {
             $scope.currentUser = DMCUserModel.getUserData().then(function(res){
                 $scope.currentUser = res;
+                if ($scope.currentUser.roles && angular.isDefined($scope.currentUser.roles[$stateParams.companyId])) {
+                    $scope.currentUser.isVerified = true;
+                    switch ($scope.currentUser.roles[$stateParams.companyId]) {
+                        case 'ADMIN':
+                            $scope.currentUser.isAdmin = true;
+                            break;
+                        case 'VIP':
+                            $scope.currentUser.isVIP = true;
+                            break;
+                        case 'MEMBER':
+                            $scope.currentUser.isMember = true;
+                            break;
+                    }
+                }
                 //getCompanyJoinRequest();
                 CompareModel.get('services',$scope.currentUser);
             });

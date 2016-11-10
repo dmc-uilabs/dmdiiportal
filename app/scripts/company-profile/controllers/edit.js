@@ -165,7 +165,7 @@ angular.module('dmc.company-profile')
                 });
             };
 
-            var deleteImages = function(imageId){
+            var deleteImage = function(imageId){
                 return ajax.delete(dataFactory.documentsUrl(imageId).delete, {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Image successfully deleted');
