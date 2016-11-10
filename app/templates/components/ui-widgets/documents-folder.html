@@ -66,14 +66,8 @@
 								<md-checkbox ng-model="selectedFiles[file.id]" aria-label="toggle-selections">
 								</md-checkbox>
 							</td>
-              <td ng-click="downloadFile(file, $event)" ng-if="file.hasVersions">
+              <td ng-click="downloadFile(file, $event)">
 									<a href>
-	                    <ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>
-											<span>{{file.documentName}}</span>
-									</a>
-              </td>
-							<td ng-if="!file.hasVersions">
-									<a target="_blank" ng-href="{{file.documentUrl}}">
 	                    <ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>
 											<span>{{file.documentName}}</span>
 									</a>
