@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/bower_components/select2/select2.css" />
 <link rel="stylesheet" href="/bower_components/medium-editor/dist/css/medium-editor.min.css" />
 <link rel="stylesheet" href="/bower_components/medium-editor/dist/css/themes/beagle.css" />
+<link rel="stylesheet" href="/bower_components/angular-tree-control/css/tree-control-attribute.css" />
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -80,5 +81,6 @@
 <script src="/bower_components/angulartics-google-analytics/dist/angulartics-ga.min.js"></script>
 <script src="/bower_components/angulartics-google-analytics/dist/angulartics-ga.min.js"></script>
 <script src="/scripts/common/analytics/analytics.js"></script>
+<script src="/bower_components/angular-tree-control/angular-tree-control.js"></script>
 <!-- endbower -->
 <!-- endbuild -->

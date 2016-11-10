@@ -1,0 +1,23 @@
+<md-dialog>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Move</h2>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <section>
+        <div treecontrol class="tree-classic"
+           tree-model="directories"
+           options="opts"
+           selected-node="selectedFolder"
+           filter-expression="filter">
+           {{node.name}}
+        </div>
+        <div>
+          <md-button class="md-raised md-primary" ng-click="move()" ng-disabled="!selectedFolder" aria-label="move">Move</md-button>
+          <md-button class="md-warn" ng-click="cancel()" aria-label="cancel">Cancel</md-button>
+        </div>
+      </section>
+  </md-content>
+</md-dialog>

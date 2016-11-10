@@ -609,14 +609,27 @@ angular.module('dmc.data',[])
             deleteDMDIIDocument: function(id) {
                 return localhost + 'dmdiidocument/' + id;
             },
-            documentsUrl: function(id) {
+            documentsUrl: function(id, userid) {
                 return  {
                     getSingle: localhost + 'documents/' + id,
                     getList: localhost + 'documents',
                     save: localhost + 'documents',
                     update: localhost + 'documents/' + id,
-                    delete: localhost + 'documents/' + id
-                };
+                    delete: localhost + 'documents/' + id,
+                    versioned: localhost + 'documents/versions/' + id,
+                    share: localhost + 'documents/'+id+'/user/'+userid
+                }
+            },
+            directoriesUrl: function(id) {
+                var endpoint = 'directories/';
+                return  {
+                    get: localhost + endpoint + id,
+                    list: localhost + endpoint,
+                    save: localhost + endpoint,
+                    update: localhost + endpoint + id,
+                    delete: localhost + endpoint + id,
+                    files: localhost + 'documents/' + endpoint + id
+                }
             },
             getApplicationTags: function() {
                     return localhost + 'applicationTag'
