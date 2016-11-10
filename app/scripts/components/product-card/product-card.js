@@ -276,6 +276,16 @@ angular.module('dmc.component.productcard', [
         }
         getTags();
 
+        function getDocs(){
+            ajax.get(dataFactory.documentsUrl($scope.product.id).getList,{page: 0, pageSize: 5, parentType: 'SERVICE', parentId: $scope.product.id, docClass: 'SUPPORT'},function(response){
+                if (response.data && response.data.data) {
+                    $scope.productDocuments = response.data.data;
+                }
+                apply();
+            })
+        }
+        getDocs();
+
         $scope.searchByTag = function(e){
             $scope.cancel();
         };

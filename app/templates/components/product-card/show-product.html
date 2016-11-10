@@ -69,7 +69,11 @@
                 </md-tab>
                 <md-tab label="Documents">
                     <md-content class="md-padding">
-                        <ui-widget-documents-folder documents-type="'service'" type-id="product.id"></ui-widget-documents-folder>
+						<div layout="column">
+							<div layout="row" ng-repeat="doc in productDocuments">
+		                        <a class="slim-margin" ng-href="{{doc.documentUrl}}">{{doc.documentName}}</a>
+		                    </div>
+						</div>
                     </md-content>
                 </md-tab>
             </md-tabs>
