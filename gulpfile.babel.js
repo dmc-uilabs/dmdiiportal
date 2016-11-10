@@ -67,7 +67,7 @@ gulp.task('php', ['styles'], () => {
 });
 
 gulp.task('images', () => {
-  return gulp.src('app/images/**/*')
+  return gulp.src(['app/images/**/*','bower_components/angular-tree-control/images/*'])
     .pipe($.if($.if.isFile, $.cache($.imagemin({
       progressive: true,
       interlaced: true,
