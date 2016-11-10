@@ -132,11 +132,9 @@ angular.module('dmc.widgets.projects',[
                                 if (!$scope.projects[i].isPublic &&
                                     $scope.projects[i].projectManagerId != $rootScope.userData.profileId &&
                                     !$scope.projects[i].isMember) {
-                                        console.log('splicing ' + $scope.projects[i], ' is not public, manager, or member');
                                     isRemove = true;
                                 }
                             }else if($scope.projects[i].projectManagerId != $rootScope.userData.profileId && (!$scope.projects[i].isMember || ($scope.projects[i].isMember && !$scope.projects[i].isMember.accept))){
-                                console.log('splicing ' + $scope.projects[i], ' is not manager, or accepted member');
                                 isRemove = true;
                             }
                             if($scope.projects[i].companyId != $rootScope.userData.companyId) {

@@ -25,6 +25,10 @@ angular.module('dmc.widgets.discussions',[
                 var limit = $scope.limit ? $scope.limit : 4;
                 // function for get all discussions from DB
                 $scope.getDiscussions = function(){
+                    //TODO remove when following discussion endpoint has been implemented
+                    if ($scope.widgetDataType === 'following') {
+                        return;
+                    };
                     ajax.get(dataFactory.getDiscussions($scope.projectId, $scope.widgetDataType), {
                         '_order' : 'DESC',
                         '_sort' : 'id'
