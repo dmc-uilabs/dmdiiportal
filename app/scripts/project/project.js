@@ -113,7 +113,8 @@ angular.module('dmc.project', [
         }).state('project.documents', {
             url: '/documents',
             controller: 'DocumentsCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/documents.html'
+            templateUrl: 'templates/project/pages/documents.html',
+            resolve: resolve
         }).state('project.documents-upload', {
             url: '/documents/upload',
             controller: 'DocumentsUploadCtrl as projectCtrl',
@@ -121,7 +122,8 @@ angular.module('dmc.project', [
         }).state('project.tasks', {
             url: '/tasks?text?type',
             controller: 'TasksCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/tasks.html'
+            templateUrl: 'templates/project/pages/tasks.html',
+            resolve: resolve
         }).state('project.task', {
             url: '/task/:taskId',
             controller: 'TaskCtrl as projectCtrl',
@@ -137,11 +139,13 @@ angular.module('dmc.project', [
         }).state('project.team', {
             url: '/team?text?type',
             controller: 'TeamCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/team.html'
+            templateUrl: 'templates/project/pages/team.html',
+            resolve: resolve
         }).state('project.discussions', {
             url: '/discussions?text?type',
             controller: 'DiscussionsCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/discussions.html'
+            templateUrl: 'templates/project/pages/discussions.html',
+            resolve: resolve
         }).state('project.rfp-home', {
             url: '/rfp-home',
             controller: 'RfpHomeCtrl as projectCtrl',
@@ -171,7 +175,11 @@ angular.module('dmc.project', [
                 resolve: {
                     serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
                         return serviceModel.get_project_services($stateParams.projectId);
-                    }]
+                    }],
+                    projectData: ['DMCProjectModel', '$stateParams',
+                        function(DMCProjectModel, $stateParams) {
+                            return DMCProjectModel.getModel($stateParams.projectId);
+                        }]
                 }
             }).state('project.upload-services', {
                 url: '/upload-service',
@@ -911,7 +919,7 @@ angular.module('dmc.project', [
                                     angular.forEach(params.images, function(image, index) {
                                         promises['image' + index] = uploadImage(image, id, params.title);
                                     });
-                                    
+
                                     if(!interfaceId) {
                                         service_interface.serviceId = id;
                                         promises['add_service_interface'] = $http.post(dataFactory.services().add_interface, service_interface);
