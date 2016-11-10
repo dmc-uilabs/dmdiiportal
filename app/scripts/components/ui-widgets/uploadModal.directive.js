@@ -24,7 +24,6 @@ angular.module('dmc.widgets.uploadModal',[
                     templateUrl: 'templates/components/ui-widgets/upload-image-modal.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
-
                     locals: {
                         images: $scope.images,
                         newImages: $scope.newImages,

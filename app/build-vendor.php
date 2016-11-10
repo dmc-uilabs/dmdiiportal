@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/bower_components/select2/select2.css" />
 <link rel="stylesheet" href="/bower_components/medium-editor/dist/css/medium-editor.min.css" />
 <link rel="stylesheet" href="/bower_components/medium-editor/dist/css/themes/beagle.css" />
+<link rel="stylesheet" href="/bower_components/angular-tree-control/css/tree-control-attribute.css" />
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -76,5 +77,6 @@
 <script src="/bower_components/to-markdown/dist/to-markdown.js"></script>
 <script src="/bower_components/showdown/dist/showdown.min.js"></script>
 <script src="/bower_components/ng-showdown/dist/ng-showdown.min.js"></script>
+<script src="/bower_components/angular-tree-control/angular-tree-control.js"></script>
 <!-- endbower -->
 <!-- endbuild -->

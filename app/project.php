@@ -67,7 +67,6 @@
     <script src="scripts/project/controllers/id-locator.js"></script>
     <script src="scripts/project/controllers/discussions.js"></script>
     <script src="scripts/project/controllers/documents.js"></script>
-    <script src="scripts/project/controllers/documents-upload.js"></script>
     <script src="scripts/project/controllers/home.js"></script>
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/project/controllers/tasks.js"></script>

@@ -69,6 +69,7 @@ angular.module('dmc.project')
 
             // get project documents
             $scope.getDocuments = function(){
+              /*
                 ajax.get(dataFactory.documentsUrl().getList, {
                     parentType: 'PROJECT',
                     parentId: projectCtrl.currentProjectId,
@@ -82,7 +83,6 @@ angular.module('dmc.project')
                     apply();
                 });
 
-                /*
                 ajax.get(dataFactory.getProjectDocuments(projectCtrl.currentProjectId),{
                     'project-documentId' : 0
                 },function(response){
@@ -132,7 +132,7 @@ angular.module('dmc.project')
                     newProject.dueDate = Date.parse(new Date());
                 }
                 newProject.documents = $scope.documents;
-                projectModel.update_project(projectCtrl.currentProjectId,newProject, data, currentMembers, function(data){
+                projectModel.update_project(projectCtrl.currentProjectId, projectCtrl.projectData.directoryId, newProject, data, currentMembers, function(data){
                     document.location.href = 'project.php#/'+projectCtrl.currentProjectId+'/home';
                 });
             };

@@ -46,7 +46,7 @@ angular.module('dmc.add_project', [
                 }
             }
 
-            function addDocumentsToPromises(promises,documents,id){
+            function addDocumentsToPromises(promises,documents,id,directoryId){
                 /*
                 var fd = new FormData();
                 fd.append('file', documents[i].file);
@@ -76,7 +76,8 @@ angular.module('dmc.add_project', [
                                         documentName: doc.title + doc.type,
                                         ownerId: $rootScope.userData.accountId,
                                         docClass: 'SUPPORT',
-                                        accessLevel: doc.accessLevel
+                                        accessLevel: doc.accessLevel||"MEMBER",
+                                        directoryId: directoryId
                                     };
 
                                     return ajax.create(dataFactory.documentsUrl().save, docData, function(resp){});
@@ -94,7 +95,8 @@ angular.module('dmc.add_project', [
                                 documentName: doc.title + doc.type,
                                 ownerId: $rootScope.userData.accountId,
                                 docClass: 'SUPPORT',
-                                accessLevel: doc.accessLevel
+                                accessLevel: doc.accessLevel||"MEMBER",
+                                directoryId: directoryId
                             };
 
                             return ajax.create(dataFactory.documentsUrl().save, docData, function(resp){});
@@ -104,7 +106,7 @@ angular.module('dmc.add_project', [
                 }
             }
 
-            this.update_project = function(id,params, array, currentMembers, callback){
+            this.update_project = function(id, directoryId, params, array, currentMembers, callback){
                 ajax.update(dataFactory.updateProject(id),{
                     title : params.title,
                     type : params.type,
@@ -118,7 +120,7 @@ angular.module('dmc.add_project', [
                     addTagsToPromises(promises,params.tags,id);
 
                     // add documents to request
-                    addDocumentsToPromises(promises,params.documents,id);
+                    addDocumentsToPromises(promises, params.documents, id, directoryId);
 
                     for(var i in array){
                         var isFound = false;
@@ -176,30 +178,30 @@ angular.module('dmc.add_project', [
                         "description": params.description
                     },
                     function(response){
-
+                      ajax.get(dataFactory.getProject(response.data.id), {}, function(resp){
                         var promises = {
-                            "update": $http.patch(dataFactory.updateProject(response.data.id),{
+                            "update": $http.patch(dataFactory.updateProject(resp.data.id),{
                                 "tasks": {
                                     "totalItems": 0,
-                                    "link": "/projects/"+response.data.id+"/tasks"
+                                    "link": "/projects/"+resp.data.id+"/tasks"
                                 },
                                 "discussions": {
                                     "totalItems": 0,
-                                    "link": "/projects/"+response.data.id+"/discussions"
+                                    "link": "/projects/"+resp.data.id+"/discussions"
                                 },
                                 "services": {
                                     "totalItems": 0,
-                                    "link": "/projects/"+response.data.id+"/services"
+                                    "link": "/projects/"+resp.data.id+"/services"
                                 },
                                 "tags": {
                                     "totalItems": 0,
-                                    "link": "/projects/"+response.data.id+"/projects_tags"
+                                    "link": "/projects/"+resp.data.id+"/projects_tags"
                                 }
                             }),
                             "addCurrentMemberToTheProject" : $http.post(dataFactory.createMembersToProject(),
                                 {
                                     "profileId": $rootScope.userData.profileId,
-                                    "projectId": response.data.id,
+                                    "projectId": resp.data.id,
                                     "fromProfileId": $rootScope.userData.profileId,
                                     "from": $rootScope.userData.displayName,
                                     "date": moment(new Date).format('x'),
@@ -212,7 +214,7 @@ angular.module('dmc.add_project', [
                             promises["addMember"+i] = $http.post(dataFactory.createMembersToProject(),
                                 {
                                     "profileId": array[i].id,
-                                    "projectId": response.data.id,
+                                    "projectId": resp.data.id,
                                     "fromProfileId": $rootScope.userData.profileId,
                                     "from": $rootScope.userData.displayName,
                                     "date": moment(new Date).format('x'),
@@ -221,18 +223,18 @@ angular.module('dmc.add_project', [
                         }
 
                         // add tags to request
-                        addTagsToPromises(promises,params.tags,response.data.id);
+                        addTagsToPromises(promises,params.tags,resp.data.id);
 
                         // add documents to request
-                        addDocumentsToPromises(promises,params.documents,response.data.id);
+                        addDocumentsToPromises(promises, params.documents, resp.data.id, resp.data.directoryId);
 
                         $q.all(promises).then(function(){
-                                callback(response.data.id);
+                                callback(resp.data.id);
                             }, function(res){
                                 toastModel.showToast("error", "Error." + res.statusText);
                             }
                         );
-
+                      });
                     }
                 );
             };
