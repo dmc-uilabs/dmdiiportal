@@ -362,7 +362,6 @@ angular.module('dmc.component.members-card', [
     };
 }])
 .controller('showCompany', ['$http', '$q', 'dataFactory', '$scope', '$mdDialog', 'id', function($http, $q, dataFactory, $scope, $mdDialog, id){
-    console.info('showCompany', id);
     $scope.company = [];
 
     $scope.history = {

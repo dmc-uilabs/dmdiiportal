@@ -211,22 +211,24 @@ angular.module('dmc.widgets.documents',[
 					});
 				}
 
-				$scope.addVip = function(user, itemId) {
-					if (!$scope.selectedVips[itemId]) {
-						$scope.selectedVips[itemId] = [user];
+				$scope.addVip = function(user, item) {
+					if (!item.vips) {
+						item.vips = [user];
 
 					} else {
-						$scope.selectedVips[itemId].push(user);
+						item.vips.push(user);
 					}
 
 					toastModel.showToast('success', user.displayName + ' added to VIP list');
 				}
 
-				$scope.removeVip = function($index, itemId) {
-					$scope.selectedVips[itemId].splice($index, 1);
+				$scope.removeVip = function($index, item) {
+					item.vips.splice($index, 1);
 					toastModel.showToast('success', user.displayName + ' removed from VIP list');
 				}
-
+$scope.$watchCollection('selectedVips', function() {
+	console.log($scope.selectedVips)
+})
 				$scope.dropzoneConfig = {
 					'options': { // passed into the Dropzone constructor
 						'url': dataFactory.getDocumentUpload($scope.projectId),

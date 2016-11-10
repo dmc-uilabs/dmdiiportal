@@ -43,7 +43,7 @@ angular.module('dmc.company-profile')
 
             $scope.company = {};
             //limit of images and videos a company can have
-            $scope.limit = 3;
+            $scope.limit = 5;
             $scope.verifiedLimit = 15;
             $scope.unverifiedLimit = 15;
 

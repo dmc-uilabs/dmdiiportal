@@ -62,7 +62,7 @@
                         <md-autocomplete flex ng-if="item.editing && allowVip && item.accessLevel !== 'PUBLIC'"
                                 md-selected-item="selectedItem"
                                 md-search-text="searchText"
-                                md-selected-item-change="addVip(user, item.id)"
+                                md-selected-item-change="addVip(user, item)"
                                 md-items="user in updateSearchItems(searchText)"
                                 simulate-query="true"
                                 md-no-cache="true"
@@ -80,8 +80,8 @@
                         <div layout="row" layout-wrap flex ng-if="!item.editing && allowVip && item.accessLevel !== 'PUBLIC'">
                             <span class="no-bottom" flex>Selected VIPs(Click tag to remove)</span>
                             <div layout="row" layout-wrap>
-                                <md-chips ng-repeat="vip in selectedVips[item.id] track by $index">
-                                    <md-chip ng-click="removeVip($index, item.id)">
+                                <md-chips ng-repeat="vip in item.vips track by $index">
+                                    <md-chip ng-click="removeVip($index, item)">
                                         <span>{{vip.displayName}} :: {{vip.email || 'no email'}}</span>
                                     </md-chip>
                                 </md-chips>

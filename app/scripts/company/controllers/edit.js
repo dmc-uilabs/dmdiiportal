@@ -168,7 +168,7 @@ angular.module('dmc.company')
                 }
 
                 var uploadLogo = function(companyId) {
-                    fileUpload.uploadFileToUrl($scope.newLogo[0].file, { id: companyId },'company-logo').then(function(response) {
+                    return fileUpload.uploadFileToUrl($scope.newLogo[0].file, { id: companyId },'company-logo').then(function(response) {
                         return ajax.create(dataFactory.documentsUrl().save, {
                             ownerId: $scope.$root.userData.accountId,
                             documentUrl: response.file.name,

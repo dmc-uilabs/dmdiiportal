@@ -210,9 +210,9 @@
 
                     <div layout="row" flex="60" layout-wrap>
 						<div flex="50" class="contact" ng-repeat="contact in company.contacts">
-			                <h2>{{contact.contactType.type}}</h2>
-			                <div layout="row" layout-align="start center" layout-align="start center" ng-show="contact.firstName && contact.firstName.length > 0">
-			                    <h4>{{contact.firstName + ' ' + contact.lastName}}</h4>
+			                <h2>{{contact.contactType.contactType}}</h2>
+			                <div layout="row" layout-align="start center" layout-align="start center">
+			                    <h3>{{contact.name}}</h3>
 			                </div>
 			                <div layout="row" layout-align="start center" ng-show="contact.title && contact.title.length > 0">
 			                    <h3>{{contact.title}}</h3>
