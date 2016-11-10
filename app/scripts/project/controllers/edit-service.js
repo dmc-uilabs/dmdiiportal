@@ -19,6 +19,11 @@ angular.module('dmc.project')
                 serviceDescription: serviceData.description,
                 serviceDescription_old: serviceData.description
             };
+            $scope.existingDocuments = serviceData.service_docs;
+            $scope.existingImages = serviceData.service_images;
+
+            $scope.docsToDelete = [];
+
             $scope.documents = [];
             $scope.images = [];
 
@@ -184,6 +189,10 @@ angular.module('dmc.project')
                 $scope.service_tags.splice(index,1);
             };
 
+            $scope.deleteDoc = function(doc) {
+                $scope.docsToDelete.push(doc.id);
+                doc.hide = true;
+            }
             $scope.next = function(){
                 $scope.page1 = false;
             };
@@ -218,7 +227,8 @@ angular.module('dmc.project')
                     serviceType: $scope.NewService.serviceType,
                     parent: $scope.NewService.parentComponent,
                     documents: $scope.documents,
-                    images: $scope.images
+                    images: $scope.images,
+                    docsToDelete: $scope.docsToDelete
                 },$scope.removeTags,$scope.addTags,newDomeInterface, interfaceId);
             };
 

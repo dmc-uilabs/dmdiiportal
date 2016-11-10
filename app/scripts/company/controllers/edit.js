@@ -55,6 +55,9 @@ angular.module('dmc.company')
                             ok: function(){
                                 removeMainPicture = true;
                                 delete $scope.companyData.featureImage;
+                                $scope.companyPicture = {
+                                    'background-image' : null
+                                };
                             },
                             cancel: function(){}
                         }
@@ -204,11 +207,19 @@ angular.module('dmc.company')
 
                 $scope.changePicture = function(){
                     $scope.isChangingPicture = true;
+                    $scope.companyPicture = {
+                        'background-image' : null
+                    };
                     apply();
                 };
 
                 $scope.cancelChangePicture = function(){
+                    console.log('here')
                     $scope.isChangingPicture = false;
+                    $scope.companyPicture = {
+                        'background-image' : ($scope.companyData.featureImage ? 'url('+$scope.companyData.featureImage+')' : null)
+                    };
+                    apply();
                 };
 
                 $scope.featuredItems = [];

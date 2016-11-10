@@ -783,6 +783,10 @@ angular.module('dmc.project', [
                 });
             };
 
+            var deleteDoc = function(docId) {
+                return ajax.delete(dataFactory.documentsUrl(docId).delete, {});
+            }
+
             this.upload_services = function(params, tags, service_interface){
                 ajax.create(dataFactory.services().add,
                     {
@@ -918,6 +922,10 @@ angular.module('dmc.project', [
 
                                     angular.forEach(params.images, function(image, index) {
                                         promises['image' + index] = uploadImage(image, id, params.title);
+                                    });
+
+                                    angular.forEach(params.docsToDelete, function(docId, index) {
+                                        promises['delete' + index] = deleteDoc(docId);
                                     });
 
                                     if(!interfaceId) {

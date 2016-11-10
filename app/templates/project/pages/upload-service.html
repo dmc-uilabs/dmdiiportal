@@ -178,6 +178,13 @@
             <md-divider></md-divider>
 
             <md-content class="md-padding">
+                <div layout="column" class="project-documents" ng-show="existingDocuments.length > 0">
+                    <h3>Service Documents</h3>
+                    <div layout="row" ng-repeat="doc in existingDocuments" ng-show="!doc.hide">
+                        <a class="slim-margin" ng-href="{{doc.documentUrl}}">{{doc.documentName}}</a>
+                        <a class="delete-btn" href ng-click="deleteDoc(doc)">delete</a>
+                    </div>
+                </div>
                 <div ui-widget-upload-documents
                     class="content-panel"
                     source="documents"
@@ -185,6 +192,15 @@
                     widget-title="'UPLOAD DOCUMENTS'"
                     widget-type="'row'"
                     allow-tagging="true">
+                </div>
+                <div layout="column" class="project-documents" ng-show="existingImages.length > 0">
+                    <h3>Service Images</h3>
+                    <div layout="row">
+                        <div layout="row" ng-repeat="doc in existingImages" ng-show="!doc.hide">
+                            <img class="slim-margin" ng-src="{{doc.documentUrl}}">{{doc.documentName}}</img>
+                            <a class="delete-btn" href ng-click="deleteDoc(doc)">delete</a>
+                        </div>
+                    </div>
                 </div>
                 <div ui-widget-upload-documents
                     class="content-panel"
