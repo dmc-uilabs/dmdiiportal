@@ -27,7 +27,7 @@
       </md-button>
         </div>
     </md-toolbar>
-    <div class="product-card__image_small" ng-if="cardStyle == 'small'">
+    <div class="product-card__image_small">
         <img ng-src="{{cardSource.images[0].documentUrl}}" alt="{{cardSource.title}}">
     </div>
     <div class="product-card__header" layout="column"
@@ -69,11 +69,6 @@
                     successful runs</p>
 
                 <p class="release">Release <strong>{{cardSource.releaseDate|timeago}}</strong> ({{cardSource.releaseDate}})</p>
-            </div>
-        </div>
-        <div class="product-card__content__column" flex ng-if="cardStyle != 'small'">
-            <div class="product-card__image">
-                <img ng-src="{{cardSource.featureImage.thumbnail}}" alt="{{cardSource.title}}">
             </div>
         </div>
     </div>
