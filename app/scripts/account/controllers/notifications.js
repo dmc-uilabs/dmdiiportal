@@ -70,7 +70,8 @@ angular.module('dmc.account')
                     }
                 );
             };
-            $scope.getNotifications();
+            //TODO uncomment when implemented or fixed
+            //$scope.getNotifications();
 
             // get notifications for current account
             $scope.getUserNotifications = function(){
