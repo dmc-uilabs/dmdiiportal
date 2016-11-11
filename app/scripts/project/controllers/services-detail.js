@@ -6,7 +6,7 @@ angular.module('dmc.project')
 	$scope.service = serviceData;
 	$scope.followFlag = false;
     $scope.selectedTab = 0;
-console.log($scope.service)
+
 	$scope.history = {
 		leftColumn: {
 			title: 'Project',

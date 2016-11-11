@@ -747,7 +747,7 @@ angular.module('dmc.project', [
                         {
                             ownerId: $rootScope.userData.accountId,
                             documentUrl: response.file.name,
-                            documentName: doc.title,
+                            documentName: doc.title + doc.type,
                             parentType: 'SERVICE',
                             docClass: 'SUPPORT',
                             parentId: id,
@@ -773,7 +773,7 @@ angular.module('dmc.project', [
                         {
                             ownerId: $rootScope.userData.accountId,
                             documentUrl: response.file.name,
-                            documentName: image.title,
+                            documentName: image.title + image.type,
                             parentType: 'SERVICE',
                             docClass: 'IMAGE',
                             parentId: id,

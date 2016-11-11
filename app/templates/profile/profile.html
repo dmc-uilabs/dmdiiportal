@@ -93,7 +93,7 @@
                      layout-align="start end"
                      class="tabs-content contact"
                      ng-repeat="(key,item) in profile.userContactInfo.userPublicContactInfo"
-                     ng-if="key!=='id'">
+                     ng-if="item && key !== 'id'">
                     <md-icon class="{{key}}">
                         <ng-md-icon icon="{{ privacyInfo[key].icon }}" size="26"></ng-md-icon>
                     </md-icon>

@@ -46,9 +46,9 @@
                                    ng-init="changes.title = profile.title">
                         </md-input-container>
                     </div>
-                    <md-input-container>
+                    <md-input-container ng-if="!isVerified">
                         <label>Company</label>
-                        <md-select ng-model="profile.companyId" required ng-disabled="isVerified">
+                        <md-select ng-model="profile.companyId" ng-required="!isVerified" ng-disabled="isVerified">
                             <md-option ng-repeat="company in companies" value="{{company.id}}">
                                 {{company.name}}
                             </md-option>
@@ -59,6 +59,11 @@
                                        ng-click="resendNotification()"
                                        ng-show="!isVerified && profile.companyId">Resend Notification</md-button>
                         </div>
+                    </md-input-container>
+
+                    <md-input-container ng-if="isVerified">
+                        <label>Company</label>
+                        <input ng-model="profile.companyName" ng-disabled="isVerified"></input>
                     </md-input-container>
 
                     <md-input-container class="md-icon-float title-input-left">
