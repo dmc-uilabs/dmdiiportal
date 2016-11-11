@@ -442,7 +442,7 @@ $scope.$watchCollection('selectedVips', function() {
                 folderId : "=",
                 projectId : "="
           	},
-			templateUrl: 'templates/components/ui-widgets/documents-folder.html',
+			templateUrl: 'templates/components/ui-widgets/documents-workspace.html',
 			controller: function($scope, $element, $attrs, dataFactory, ajax, $mdDialog, $q, fileUpload, $rootScope, toastModel) {
 
 				$scope.selectedDirs = {};
@@ -744,6 +744,88 @@ $scope.$watchCollection('selectedVips', function() {
 						$scope.dirFiles = docResp.data||[];
 					});
 				}
+			}
+		};
+	}])
+	.directive('uiWidgetDocumentsFolder', ['$parse', function ($parse) {
+		return {
+			restrict: 'E',
+			scope:{
+                documentsType : '=',
+                typeId : '='
+            },
+			templateUrl: 'templates/components/ui-widgets/documents-folder.html',
+			controller: function($scope, $element, $attrs, dataFactory, ajax) {
+				$scope.documents = [];
+				$scope.total = 0;
+				$scope.sort = 'title';
+				$scope.order = 'DESC';
+				$scope.folder = [];
+				$scope.indexfolder = [];
+				$scope.folderName = '';
+
+                // function for get all requirement documents
+                $scope.serviceDocumentId = 0;
+                $scope.getDocuments = function() {
+                    var url = null;
+                    var requestData = {
+                        _order : $scope.order,
+                        _sort : ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort)
+                    };
+                    if($scope.documentsType == 'service'){
+						url = dataFactory.documentsUrl().getList;
+						requestData = {
+							parentType: 'SERVICE',
+							parentId: $scope.typeId,
+							docClass: 'SUPPORT',
+							recent: 5
+						};
+                    }else if($scope.documentsType == 'project'){
+                        url = dataFactory.documentsUrl().getList;
+                        requestData = {
+							parentType: 'PROJECT',
+							parentId: $scope.typeId,
+							docClass: 'SUPPORT',
+							recent: 20
+						};
+                    }
+                    ajax.get(url, requestData,
+                        function (response) {
+                            $scope.documents = response.data.data||[];
+                            $scope.total = $scope.documents.length;
+                            $scope.folder = $scope.documents;
+                            for(var i in $scope.folder){
+                                $scope.folder[i].modifedFormat = $scope.folder[i].modifed;
+                                $scope.folder[i].modifed = Date.parse($scope.folder[i].modifed);
+                            }
+                            apply();
+                        }
+                    );
+                };
+                $scope.getDocuments();
+
+                $scope.onOrderChange = function (order) {
+                    $scope.sort = order;
+                    $scope.order = ($scope.order == 'DESC' ? 'ASC' : 'DESC');
+                    $scope.getDocuments();
+                };
+
+                var apply = function(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                };
+
+				$scope.openFolder = function(item, index){
+					$scope.indexfolder.push({id: item.id, title: item.title});
+                    $scope.serviceDocumentId = item.id;
+                    $scope.getDocuments();
+				};
+
+				$scope.exitFolder = function(id,index){
+                    $scope.indexfolder.splice(index+1,$scope.indexfolder.length);
+                    $scope.serviceDocumentId = id;
+                    $scope.getDocuments();
+				};
+
 			}
 		};
 	}]);
