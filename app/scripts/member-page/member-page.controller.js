@@ -80,6 +80,8 @@ angular.module('dmc.member')
 
                 $scope.getCompanyMembers($scope.member.id);
 
+                $scope.getDMDIIMemberStorefront($scope.member.id);
+
                 $scope.getProjects($scope.member.id);
                 $scope.memberLoading = false;
             };
@@ -129,16 +131,19 @@ angular.module('dmc.member')
 
 			var responseStorefrontData = function(){
 				var data = {
-					_limit : 12,
-					_start : 0
+					_limit: 12,
+					_start: 0,
+                    published: true
 				};
 				return data;
 			};
 
-			$scope.getDMDIIMemberStorefront = function() {
-				ajax.get(dataFactory.getServices(), responseStorefrontData(), callbackStorefrontFunction);
-			}
-			$scope.getDMDIIMemberStorefront();
+            $scope.getDMDIIMemberStorefront = function(id){
+                ajax.get(dataFactory.getCompanyServices(id), responseStorefrontData(), callbackStorefrontFunction);
+            };
+			// $scope.getDMDIIMemberStorefront = function() {
+			// 	ajax.get(dataFactory.getServices(), responseStorefrontData(), callbackStorefrontFunction);
+			// }
         }
     ]
 ).filter('numberFixedLen', function () {

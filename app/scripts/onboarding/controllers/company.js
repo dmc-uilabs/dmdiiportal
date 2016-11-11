@@ -287,7 +287,7 @@ angular.module('dmc.onboarding')
 				var image = {
 					ownerId: $scope.userData.accountId,
 					documentUrl: data.file.name,
-					documentName: image.file.name,
+					documentName: image.title,
 					parentType: 'ORGANIZATION',
 					parentId: companyId,
 					docClass: 'IMAGE'
@@ -305,7 +305,7 @@ angular.module('dmc.onboarding')
 				var feature = {
 					ownerId: $scope.userData.accountId,
 					documentUrl: data.file.name,
-					documentName: $scope.featureImage.file.name,
+					documentName: $scope.featureImage.title,
 					parentType: 'ORGANIZATION',
 					parentId: companyId,
 					docClass: 'FEATURE_IMAGE'

@@ -232,7 +232,7 @@ angular.module('dmc.company-profile')
             }
 
             $scope.deleteOrganization = function() {
-                ajax.delete(dataFactory.deleteOrganization(id), {}, function(response) {
+                ajax.delete(dataFactory.deleteOrganization($scope.company.id), {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Organization successfully deleted!');
                         $window.location.href = '/';
