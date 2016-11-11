@@ -25,7 +25,7 @@
 					Return to Services
 				</a>
 			</div>
-			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By <a ng-href="{{'profile.php#/'+service.profileId}}">{{service.owner}}</a></span></h2>
+			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By <a ng-href="{{'profile.php#/'+service.profileId}}">{{service.ownerName}}</a></span></h2>
 			<div class="margin-top8 margin-bottom8">
 				<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/detail/run-history'}}" class="link">
 					Run History

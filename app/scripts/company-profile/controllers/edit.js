@@ -201,7 +201,7 @@ angular.module('dmc.company-profile')
                         organizationId: companyId,
                         ownerId: $scope.user.accountId,
                         documentUrl: response.file.name,
-                        documentName: image.title,
+                        documentName: image.title + image.type,
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'IMAGE',
@@ -232,7 +232,7 @@ angular.module('dmc.company-profile')
                     var doc = {
                         ownerId: $scope.user.accountId,
                         documentUrl: response.file.name,
-                        documentName: video.title,
+                        documentName: video.title + video.type,
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'VIDEO',

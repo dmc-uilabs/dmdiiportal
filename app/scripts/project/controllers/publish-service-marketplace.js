@@ -266,7 +266,7 @@ angular.module('dmc.project')
                         {
                             ownerId: $scope.$root.userData.accountId,
                             documentUrl: response.file.name,
-                            documentName: doc.title,
+                            documentName: doc.title + doc.type,
                             parentType: 'SERVICE',
                             parentId: $scope.serviceData.id,
                             docClass: 'SUPPORT',

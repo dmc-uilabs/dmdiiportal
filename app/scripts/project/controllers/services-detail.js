@@ -111,6 +111,12 @@ angular.module('dmc.project')
         }
     );
 
+	if (!angular.isDefined($scope.service.ownerName)) {
+		ajax.get(dataFactory.userAccount($scope.service.owner).get, {}, function(response) {
+			$scope.service.ownerName = response.data.displayName;
+		});
+	}
+
     $scope.getHistory = function(type, time){
         var period = '';
         var params = {'section': 'project'};

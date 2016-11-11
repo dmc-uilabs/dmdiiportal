@@ -370,7 +370,7 @@ angular.module('dmc.service-marketplace')
                 return fileUpload.uploadFileToUrl(image.file, {},'service').then(function(data){
                     var doc = {
                         documentUrl: data.file.name,
-                        documentName: image.title,
+                        documentName: image.title + image.type,
                         ownerId: userData.accountId,
                         parentType: 'SERVICE',
                         docClass: 'IMAGE',
@@ -401,7 +401,7 @@ angular.module('dmc.service-marketplace')
                 return fileUpload.uploadFileToUrl(doc.file, {},'service').then(function(data){
                     var newDoc = {
                         documentUrl: data.file.name,
-                        documentName: doc.title,
+                        documentName: doc.title + doc.type,
                         ownerId: userData.accountId,
                         parentType: 'SERVICE',
                         docClass: 'SUPPORT',

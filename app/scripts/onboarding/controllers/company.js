@@ -287,7 +287,7 @@ angular.module('dmc.onboarding')
 				var image = {
 					ownerId: $scope.userData.accountId,
 					documentUrl: data.file.name,
-					documentName: image.title,
+					documentName: image.title + image.type,
 					parentType: 'ORGANIZATION',
 					parentId: companyId,
 					docClass: 'IMAGE'
