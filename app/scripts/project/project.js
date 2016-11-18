@@ -113,7 +113,8 @@ angular.module('dmc.project', [
         }).state('project.documents', {
             url: '/documents',
             controller: 'DocumentsCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/documents.html'
+            templateUrl: 'templates/project/pages/documents.html',
+            resolve: resolve
         }).state('project.documents-upload', {
             url: '/documents/upload',
             controller: 'DocumentsUploadCtrl as projectCtrl',
@@ -121,7 +122,8 @@ angular.module('dmc.project', [
         }).state('project.tasks', {
             url: '/tasks?text?type',
             controller: 'TasksCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/tasks.html'
+            templateUrl: 'templates/project/pages/tasks.html',
+            resolve: resolve
         }).state('project.task', {
             url: '/task/:taskId',
             controller: 'TaskCtrl as projectCtrl',
@@ -130,14 +132,20 @@ angular.module('dmc.project', [
             url: '/add-task',
             controller: 'AddTaskCtrl as projectCtrl',
             templateUrl: 'templates/project/pages/add-task.html'
+        }).state('project.requests', {
+            url: '/requests',
+            controller: 'ManageRequestsCtrl as projectCtrl',
+            templateUrl: 'templates/project/pages/manage-requests.html'
         }).state('project.team', {
             url: '/team?text?type',
             controller: 'TeamCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/team.html'
+            templateUrl: 'templates/project/pages/team.html',
+            resolve: resolve
         }).state('project.discussions', {
             url: '/discussions?text?type',
             controller: 'DiscussionsCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/discussions.html'
+            templateUrl: 'templates/project/pages/discussions.html',
+            resolve: resolve
         }).state('project.rfp-home', {
             url: '/rfp-home',
             controller: 'RfpHomeCtrl as projectCtrl',
@@ -167,7 +175,11 @@ angular.module('dmc.project', [
                 resolve: {
                     serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
                         return serviceModel.get_project_services($stateParams.projectId);
-                    }]
+                    }],
+                    projectData: ['DMCProjectModel', '$stateParams',
+                        function(DMCProjectModel, $stateParams) {
+                            return DMCProjectModel.getModel($stateParams.projectId);
+                        }]
                 }
             }).state('project.upload-services', {
                 url: '/upload-service',
@@ -259,6 +271,28 @@ angular.module('dmc.project', [
                     }
                 );
             }
+
+            $scope.requestJoinProject = function() {
+                console.log('request')
+                ajax.create(dataFactory.joinProjectRequests(projectData.id), {}, function(response) {
+                    //TODO remove log
+                    console.log(response.data)
+                    if (response.status === 200) {
+                        toastModel.showToast('success', 'Request to join ' + projectData.title + 'sent!')
+                    }
+                });
+            };
+
+            $scope.joinProject = function() {
+                console.log('join')
+                ajax.create(dataFactory.joinProject(), {projectId: projectData.id, profileId: $scope.userData.accountId}, function(response) {
+                    //TODO remove log
+                    console.log(response.data)
+                    if (response.status === 200) {
+                        toastModel.showToast('success', 'Joined ' + projectData.title + '!')
+                    }
+                });
+            };
 
             $scope.accept = function(){
                 if($scope.profile) {
@@ -697,36 +731,64 @@ angular.module('dmc.project', [
                 )
             };
 
-            var uploadDoc = function(doc, id) {
+            var uploadDoc = function(doc, id, title) {
+                if (doc.tags) {
+                    doc.tags.push({tagName: title + ' document'});
+                    angular.forEach(doc.tags, function(tag, index) {
+                        if (!angular.isObject(tag)) {
+                            doc.tags[index] = {tagName: tag}
+                        }
+                    });
+                } else {
+                    doc.tags = [{tagName: title + ' document'}];
+                }
                 return fileUpload.uploadFileToUrl(doc.file, {}, 'serviceImage').then(function(response) {
                     return ajax.create(dataFactory.documentsUrl().save,
                         {
                             ownerId: $rootScope.userData.accountId,
                             documentUrl: response.file.name,
-                            documentName: doc.file.name,
+                            documentName: doc.title + doc.type,
                             parentType: 'SERVICE',
                             docClass: 'SUPPORT',
-                            parentId: id
+                            parentId: id,
+                            accessLevel: 'MEMBER',
+                            tags: doc.tags
                         });
                 });
             };
 
-            var uploadImage = function(image, id) {
+            var uploadImage = function(image, id, title) {
+                if (image.tags) {
+                    image.tags.push({tagName: title + ' picture'});
+                    angular.forEach(image.tags, function(tag, index) {
+                        if (!angular.isObject(tag)) {
+                            image.tags[index] = {tagName: tag}
+                        }
+                    });
+                } else {
+                    image.tags = [{tagName: title + ' document'}];
+                }
                 return fileUpload.uploadFileToUrl(image.file, {}, 'serviceImage').then(function(response) {
                     return ajax.create(dataFactory.documentsUrl().save,
                         {
                             ownerId: $rootScope.userData.accountId,
                             documentUrl: response.file.name,
-                            documentName: image.file.name,
+                            documentName: image.title + image.type,
                             parentType: 'SERVICE',
                             docClass: 'IMAGE',
-                            parentId: id
+                            parentId: id,
+                            accessLevel: 'PUBLIC',
+                            tags: image.tags
                         });
                 });
             };
 
+            var deleteDoc = function(docId) {
+                return ajax.delete(dataFactory.documentsUrl(docId).delete, {});
+            }
+
             this.upload_services = function(params, tags, service_interface){
-                ajax.create(dataFactory.services($stateParams.ServiceId).add,
+                ajax.create(dataFactory.services().add,
                     {
                         'title': params.title,
                         'description': params.description,
@@ -756,6 +818,7 @@ angular.module('dmc.project', [
                     },
                     function(response){
                         var id = response.data.id;
+
                         var promises = {};
                         if(tags && tags.length > 0) {
                             for (var i in tags) {
@@ -768,11 +831,11 @@ angular.module('dmc.project', [
                         promises['service_interface'] = $http.post(dataFactory.services().add_interface, service_interface);
 
                         angular.forEach(params.documents, function(doc, index) {
-                            promises['doc' + index] = uploadDoc(doc, id);
+                            promises['doc' + index] = uploadDoc(doc, id, params.title);
                         });
 
                         angular.forEach(params.images, function(image, index) {
-                            promises['image' + index] = uploadImage(image, id);
+                            promises['image' + index] = uploadImage(image, id, params.title);
                         });
 
                         $q.all(promises).then(
@@ -852,6 +915,18 @@ angular.module('dmc.project', [
                                             promises['removedTag'+i] = $http.post(dataFactory.services(removedTags[i]).remove_tags)
                                         }
                                     }
+
+                                    angular.forEach(params.documents, function(doc, index) {
+                                        promises['doc' + index] = uploadDoc(doc, id, params.title);
+                                    });
+
+                                    angular.forEach(params.images, function(image, index) {
+                                        promises['image' + index] = uploadImage(image, id, params.title);
+                                    });
+
+                                    angular.forEach(params.docsToDelete, function(docId, index) {
+                                        promises['delete' + index] = deleteDoc(docId);
+                                    });
 
                                     if(!interfaceId) {
                                         service_interface.serviceId = id;

@@ -10,13 +10,13 @@ angular.module('dmc.widgets.projects',[
             restrict: 'A',
             templateUrl: '/templates/components/ui-widgets/projects.html',
             scope:{
-                searchText: "=",
-                widgetTitle: "=",
-                widgetShowAllBlocks: "=",
-                showImage : "=",
-                widgetFormat: "=",
-                sortProjects: "=",
-                limit : "="
+                searchText: '=',
+                widgetTitle: '=',
+                widgetShowAllBlocks: '=',
+                showImage : '=',
+                widgetFormat: '=',
+                sortProjects: '=',
+                limit : '='
             },
             controller: function($scope, $rootScope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, DMCUserModel) {
                 $scope.projects = [];
@@ -24,7 +24,8 @@ angular.module('dmc.widgets.projects',[
                 $scope.order = 'ASC';
                 $scope.filterTag = null;
                 $scope.userCompany = null;
-                var limit = ($scope.limit ? $scope.limit : ($scope.widgetShowAllBlocks == true ? null : 2));
+
+                var limit = ($scope.limit ? $scope.limit : ($scope.widgetShowAllBlocks === true ? null : 2));
 
                 $scope.flexBox = ($scope.widgetShowAllBlocks == true ? 28 : 60);
                 $scope.flexDetails = ($scope.widgetShowAllBlocks == true ? 20 : 40);
@@ -42,15 +43,17 @@ angular.module('dmc.widgets.projects',[
                         title_like: $scope.searchText,
                         _start : 0
                     };
-                    if($scope.filterTag == "from_company") requestData.companyId = $rootScope.userData.companyId;
+                    if($scope.filterTag == 'from_company') requestData.companyId = $rootScope.userData.companyId;
                     ajax.get(dataFactory.getProjects($scope.widgetFormat),requestData,function(response){
                         $scope.projects = response.data;
                         var ids = [];
                         for(var i in $scope.projects) {
 
                             if($scope.widgetFormat == 'all-projects'){
-                                if($scope.projects[i].type != "public" && $scope.projects[i].projectManagerId != $rootScope.userData.accountId){
+                                if(!$scope.projects[i].isPublic && $scope.projects[i].projectManagerId != $rootScope.userData.accountId){
                                     if($scope.projects[i].companyId != $rootScope.userData.companyId) {
+                                        console.log($scope.projects[i])
+                                        console.log('splicing for not public or not manager and not company');
                                         $scope.projects.splice(i, 1);
                                         continue;
                                     }
@@ -62,9 +65,9 @@ angular.module('dmc.widgets.projects',[
                                 var day = 86400000;
                                 $scope.projects[i].dueDate = (new Date() - new Date($scope.projects[i].dueDate));
                                 if ($scope.projects[i].dueDate <= day) {
-                                    $scope.projects[i].dueDate = moment(new Date()).format("MM/DD/YYYY");
+                                    $scope.projects[i].dueDate = moment(new Date()).format('MM/DD/YYYY');
                                 } else {
-                                    $scope.projects[i].dueDate = Math.floor($scope.projects[i].dueDate / day) + " days";
+                                    $scope.projects[i].dueDate = Math.floor($scope.projects[i].dueDate / day) + ' days';
                                 }
                             }
                         }
@@ -75,7 +78,7 @@ angular.module('dmc.widgets.projects',[
                         }
                         apply();
                     },function(response){
-                        toastModel.showToast("error", "Ajax faild: getProjects");
+                        toastModel.showToast('error', 'Ajax faild: getProjects');
                     });
                 };
 
@@ -126,7 +129,7 @@ angular.module('dmc.widgets.projects',[
                             // remove project from $scope.projects if project type dose not public,
                             // current user is not member of project and current user not project Manager of project
                             if($scope.widgetFormat == 'all-projects') {
-                                if ($scope.projects[i].type != "public" &&
+                                if (!$scope.projects[i].isPublic &&
                                     $scope.projects[i].projectManagerId != $rootScope.userData.profileId &&
                                     !$scope.projects[i].isMember) {
                                     isRemove = true;
@@ -166,17 +169,17 @@ angular.module('dmc.widgets.projects',[
 
                 $rootScope.sortMAProjects = function(sortTag){
                     switch(sortTag) {
-                        case "id":
+                        case 'id':
                             $scope.projects.sort(function (a, b) {
                                 return a.id - b.id;
                             });
                             break;
-                        case "title":
+                        case 'title':
                             $scope.projects.sort(function (a, b) {
                                 return a.title > b.title;
                             });
                             break;
-                        case "most_recent":
+                        case 'most_recent':
                             $scope.projects.sort(function (a, b) {
                                 return b.id - a.id;
                             });
@@ -196,25 +199,25 @@ angular.module('dmc.widgets.projects',[
                 $scope.join = function(item){
                     if(item.approvalOption == 'all'){
                         ajax.create(dataFactory.createMembersToProject(), {
-                                "profileId": $rootScope.userData.profileId,
-                                "projectId": item.id,
-                                "fromProfileId": $rootScope.userData.profileId,
-                                "from": $rootScope.userData.displayName,
-                                "date": moment(new Date).format('x'),
-                                "accept": true
+                                'profileId': $rootScope.userData.profileId,
+                                'projectId': item.id,
+                                'fromProfileId': $rootScope.userData.profileId,
+                                'from': $rootScope.userData.displayName,
+                                'date': moment(new Date).format('x'),
+                                'accept': true
                         },function(response){
                             item.isMember = response.data;
-                            toastModel.showToast("success", "You are successfully become a member of the project");
-                            document.location.href = "project.php#/"+item.id+"/home";
+                            toastModel.showToast('success', 'You have successfully become a member of the project');
+                            document.location.href = 'project.php#/'+item.id+'/home';
                             apply();
                         });
                     }else if(item.approvalOption == 'admin'){
                         ajax.create(dataFactory.addProjectJoinRequest(), {
-                            "profileId": $rootScope.userData.profileId,
-                            "projectId": item.id
+                            'profileId': $rootScope.userData.profileId,
+                            'projectId': item.id
                         },function(response){
                             item.joinRequest = response.data;
-                            toastModel.showToast("success", "Request to join successfully sent");
+                            toastModel.showToast('success', 'Request to join successfully sent');
                             apply();
                         });
                     }
@@ -222,10 +225,10 @@ angular.module('dmc.widgets.projects',[
 
                 $scope.accept = function(item){
                     ajax.update(dataFactory.updateMembersToProject(item.isMember.id), {
-                        "accept": true
+                        'accept': true
                     },function(response){
                         item.isMember = response.data;
-                        toastModel.showToast("success", "You successfully joined to the project");
+                        toastModel.showToast('success', 'You successfully joined to the project');
                         apply();
                     });
                 };

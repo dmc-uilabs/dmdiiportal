@@ -1,5 +1,5 @@
 <div layout="row" class="add-skill-block">
-    <div layout="column" flex="40">
+    <div layout="column" flex="50">
         <md-autocomplete
             md-input-name="skill"
             md-items="tag in querySkillSearch(searchSkill)"
@@ -11,10 +11,18 @@
             <md-item-template>
               <span md-highlight-text="searchSkill">{{tag.name}}</span>
             </md-item-template>
-            <md-not-found>
-              <span ng-click="addNewSkill(searchSkill)">No skills matching "{{searchSkill}}" were found. Click here to create it!</span>
+            <md-not-found  ng-click="addNewSkill(searchSkill)">
+              <span>No skills matching "{{searchSkill}}" were found. Click here to create it!</span>
             </md-not-found>
         </md-autocomplete>
+    </div>
+
+    <md-input-container style="padding-bottom: 26px;">
+        <label>Add New Skill</label>
+        <input type="text" ng-model="newSkill"></input>
+    </md-input-container>
+    <div style="padding-top: 15px;">
+        <md-button class="md-raised md-primary" ng-click="addNewSkill(newSkill)">Save Skill</md-button>
     </div>
 </div>
 <div layout="row" class="list-skills-block" layout-wrap>

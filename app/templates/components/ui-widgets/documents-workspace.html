@@ -1,0 +1,90 @@
+<div class="page-header">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <div layout="row" layout-align="start center" flex>
+								<md-checkbox ng-checked="allSelected()" ng-click="toggle()" aria-label="toggle-selections">
+								</md-checkbox>
+								<md-button class="md-icon-button" ng-click="moveIt($event)" ng-disabled="!itemsSelected()" aria-label="move">
+									<ng-md-icon icon="unarchive" size="22"></ng-md-icon>
+								</md-button>
+								<md-button class="md-icon-button" ng-click="delete($event)" ng-disabled="!itemsSelected()" aria-label="delete">
+									<ng-md-icon icon="delete_sweep" size="22"></ng-md-icon>
+								</md-button>
+								<span flex></span>
+								<div class="search" flex="60">
+										<span>Location: </span>
+										<span ng-repeat="section in path"> / <a href ng-click="changeDir(section.id)">{{section.name}}</a></span>
+                </div>
+                <span flex></span>
+								<md-button class="md-icon-button" ng-click="addDir($event)" aria-label="add-directory">
+									<ng-md-icon icon="create_new_folder" size="22"></ng-md-icon>
+								</md-button>
+								<md-button class="md-icon-button" ng-click="addFile($event)" aria-label="add-file">
+									<ng-md-icon icon="note_add" size="22"></ng-md-icon>
+								</md-button>
+            </div>
+        </div>
+    </md-toolbar>
+</div>
+
+<div class="documents-folder" flex>
+
+  <md-data-table-container layout="row" flex="100" ng-hide="indexfolder.length == 0 && folder.length == 0">
+      <table md-data-table>
+          <thead md-order="sort" md-trigger="onOrderChange" ng-hide="indexfolder.length > 0 && folder.length == 0">
+          <tr>
+							<th></th>
+              <th name="Name"></th>
+              <th name="Owner"></th>
+              <th name="Expires"></th>
+              <th name="Last Modifed"></th>
+          </tr>
+          </thead>
+          <tbody>
+						<tr ng-repeat="directory in currentDir.children track by $index">
+								<td>
+									<md-checkbox ng-model="selectedDirs[directory.id]" aria-label="toggle-selections">
+									</md-checkbox>
+								</td>
+								<td class="folder" ng-click="changeDir(directory.id)">
+										<div layout="row" layout-align="start center">
+												<ng-md-icon icon="folder" style="fill: #666" size="35"></ng-md-icon>
+												<span>{{directory.name}}</span>
+										</div>
+								</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>
+									<md-button class="md-icon-button" ng-click="editDir(directory, $event)" aria-label="edit-directory">
+										<ng-md-icon icon="mode_edit" size="22"></ng-md-icon>
+									</md-button>
+							</td>
+						</tr>
+					<tr ng-repeat="file in dirFiles track by $index">
+							<td>
+								<md-checkbox ng-model="selectedFiles[file.id]" aria-label="toggle-selections">
+								</md-checkbox>
+							</td>
+              <td ng-click="downloadFile(file, $event)">
+									<a href>
+	                    <ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>
+											<span>{{file.documentName}}</span>
+									</a>
+              </td>
+              <td><a href="/profile.php#/{{file.ownerId}}">{{file.ownerDisplayName}}</a></td>
+              <td>{{file.expires|date}}</td>
+              <td>{{file.modified|date}}</td>
+							<td>
+								<md-button class="md-icon-button" ng-click="editFile(file, $event)" aria-label="edit-file">
+									<ng-md-icon icon="mode_edit" size="22"></ng-md-icon>
+								</md-button>
+								<md-button class="md-icon-button" ng-click="shareFile(file, $event)" aria-label="share-file">
+									<ng-md-icon icon="share" size="22"></ng-md-icon>
+								</md-button>
+							</td>
+          </tr>
+          </tbody>
+      </table>
+  </md-data-table-container>
+</div>

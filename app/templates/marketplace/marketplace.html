@@ -1,7 +1,6 @@
 <div class="container marketplace-box" layout="row" >
   <div class="content-column" layout="column" flex='20'>
     <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
-    <dmc-products-filter state-name="'marketplace_search'" ng-if="isSearch"></dmc-products-filter>
   </div>
   <!-- Left Content Column -->
   <div class="marketplace" layout="column" flex>
@@ -47,7 +46,7 @@
         <md-content class="carousel-padding">
           <div dmc-carousel
               name-carousel="'carouselPopular'"
-              max-items="10"
+              max-items="24"
               show-items="2"
               carousel-source="carouselData.popular.arr"
               run-carousel="true"
@@ -60,7 +59,7 @@
         <md-content class="carousel-padding">
           <div dmc-carousel
               name-carousel="'carouselNew'"
-              max-items="10"
+              max-items="24"
               show-items="3"
               carousel-source="carouselData.new.arr"
               run-carousel="true"

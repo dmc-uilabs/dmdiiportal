@@ -31,7 +31,7 @@ angular.module('dmc.company-profile')
 
             $scope.newLogo = [];
             //limit of images and videos a company can have
-            $scope.limit = 3;
+            $scope.limit = 5;
             var getCompany = function() {
                 ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
                     $scope.company = response.data;
@@ -41,7 +41,8 @@ angular.module('dmc.company-profile')
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'LOGO',
-                        recent: 1
+                        page: 0,
+                        pageSize: 1
                     }, function(response) {
                         if (response.data.count > 0) {
                             $scope.company.logoImage = response.data.data[0];
@@ -52,7 +53,8 @@ angular.module('dmc.company-profile')
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'IMAGE',
-                        recent: $scope.limit
+                        page: 0,
+                        pageSize: $scope.limit,
                     }, function(response) {
                         $scope.company.images = response.data.data;
                     });
@@ -61,7 +63,8 @@ angular.module('dmc.company-profile')
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'VIDEO',
-                        recent: $scope.limit
+                        page: 0,
+                        pageSize: $scope.limit
                     }, function(response) {
                         $scope.company.videos = response.data.data;
                     });
@@ -140,7 +143,9 @@ angular.module('dmc.company-profile')
                                 documentName: 'company-logo',
                                 parentType: 'ORGANIZATION',
                                 parentId: companyId,
-                                docClass: 'LOGO'
+                                docClass: 'LOGO',
+                                tags: [{tagName: $scope.company.name + ' logo'}],
+                                accessLevel: 'PUBLIC'
                             }, function(response) {
                                 if (response.status === 200) {
                                     toastModel.showToast('success', 'Logo uploaded successfully');
@@ -160,15 +165,13 @@ angular.module('dmc.company-profile')
                 });
             };
 
-            var deleteImages = function(){
-                angular.forEach($scope.removedImages, function(imageId) {
-                    ajax.delete(dataFactory.documentsUrl(imageId).delete, {}, function(response) {
-                        if(response.status === 200) {
-                            toastModel.showToast('success', 'Image successfully deleted');
-                        } else {
-                            toastModel.showToast('error', 'Unable to delete image');
-                        }
-                    });
+            var deleteImage = function(imageId){
+                return ajax.delete(dataFactory.documentsUrl(imageId).delete, {}, function(response) {
+                    if(response.status === 200) {
+                        toastModel.showToast('success', 'Image successfully deleted');
+                    } else {
+                        toastModel.showToast('error', 'Unable to delete image');
+                    }
                 });
             };
 
@@ -182,48 +185,67 @@ angular.module('dmc.company-profile')
                 });
             };
 
-            var uploadImages = function(companyId){
-                angular.forEach($scope.images, function(image) {
-                    fileUpload.uploadFileToUrl(image.file, {id : $scope.company.id}, 'company-image', function(response) {
-                        ajax.create(dataFactory.documentsUrl().save,
-                            {
-                                organizationId: companyId,
-                                ownerId: $scope.user.accountId,
-                                documentUrl: response.file.name,
-                                documentName: image.title,
-                                parentType: 'ORGANIZATION',
-                                parentId: $scope.company.id,
-                                docClass: 'IMAGE'
-                            }, function(response) {
-                                console.log(response)
-                                if (response.status === 200) {
-                                    toastModel.showToast('success', 'Image uploaded successfully');
-                                }
-                            });
+            var uploadImage = function(image, companyId){
+                if (image.tags) {
+                    image.tags.push({tagName: $scope.company.name + ' picture'});
+                    angular.forEach(image.tags, function(tag, index) {
+                        if (!angular.isObject(tag)) {
+                            image.tags[index] = {tagName: tag}
+                        }
                     });
-                });
-            };
-
-            var uploadVideos = function(companyId){
-                angular.forEach($scope.videos, function(video) {
-                    fileUpload.uploadFileToUrl(video.file, {id : $scope.company.id}, 'company-video', function(response) {
-                        ajax.create(dataFactory.documentsUrl().save,
-                            {
-                                organizationId: companyId,
-                                ownerId: $scope.user.accountId,
-                                documentUrl: response.file.name,
-                                documentName: video.title,
-                                parentType: 'ORGANIZATION',
-                                parentId: $scope.company.id,
-                                docClass: 'VIDEO'
-                            }, function(response) {
-                                if (response.status === 200) {
-                                    toastModel.showToast('success', 'Video uploaded successfully');
-                                }
-                            });
+                } else {
+                    image.tags = [{tagName: $scope.company.name + ' picture'}];
+                }
+                return fileUpload.uploadFileToUrl(image.file, {id : $scope.company.id}, 'company-image').then(function(response) {
+                    var doc = {
+                        organizationId: companyId,
+                        ownerId: $scope.user.accountId,
+                        documentUrl: response.file.name,
+                        documentName: image.title + image.type,
+                        parentType: 'ORGANIZATION',
+                        parentId: $scope.company.id,
+                        docClass: 'IMAGE',
+                        tags: image.tags,
+                        vips: image.vips,
+                        accessLevel: image.accessLevel
+                    }
+                    return ajax.create(dataFactory.documentsUrl().save, doc, function(response) {
+                            if (response.status === 200) {
+                                toastModel.showToast('success', 'Image uploaded successfully');
+                            }
                         });
                     });
+            };
 
+            var uploadVideo = function(video, companyId){
+                if (video.tags) {
+                    video.tags.push({tagName: $scope.company.name + ' video'});
+                    angular.forEach(video.tags, function(tag, index) {
+                        if (!angular.isObject(tag)) {
+                            video.tags[index] = {tagName: tag}
+                        }
+                    });
+                } else {
+                    video.tags = [{tagName: $scope.company.name + ' video'}];
+                }
+                return fileUpload.uploadFileToUrl(video.file, {id : $scope.company.id}, 'company-video').then(function(response) {
+                    var doc = {
+                        ownerId: $scope.user.accountId,
+                        documentUrl: response.file.name,
+                        documentName: video.title + video.type,
+                        parentType: 'ORGANIZATION',
+                        parentId: $scope.company.id,
+                        docClass: 'VIDEO',
+                        tags: video.tags,
+                        vips: video.vips,
+                        accessLevel: video.accessLevel
+                    };
+                    return ajax.create(dataFactory.documentsUrl().save, doc, function(response) {
+                            if (response.status === 200) {
+                                toastModel.showToast('success', 'Video uploaded successfully');
+                            }
+                        });
+                    });
             };
             // --------------------------------------------------------------------
 
@@ -345,7 +367,7 @@ angular.module('dmc.company-profile')
             };
 
             $scope.cancelChanges = function(){
-                $location.path('/'+$scope.company.id).search();
+                $location.path('profile/' + $scope.company.id);
             };
 
             function apply(){

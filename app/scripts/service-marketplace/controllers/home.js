@@ -60,6 +60,17 @@ angular.module('dmc.service-marketplace')
                 }
             });
 
+            $scope.service_docs = [];
+            ajax.get(dataFactory.documentsUrl().getList, { recent: 10, parentType: 'SERVICE', parentId: $scope.product.id, docClass: 'SUPPORT' }, function(response) {
+                if (response.data && response.data.data && response.data.data.length) {
+                    $scope.service_docs = response.data.data;
+                }
+            });
+
+            ajax.get(dataFactory.userAccount($scope.product.owner).get, {}, function(response) {
+                $scope.owner_name = response.data.displayName
+            })
+
             // check if service is favorite for current user
             isFavorite.check([$scope.product]);
 
@@ -595,22 +606,37 @@ angular.module('dmc.service-marketplace')
                         };
                     updatedItem.projectId = id;
                     updatedItem.from = 'marketplace';
-                    ajax.update(dataFactory.addServiceToProject($scope.product.id), updatedItem, function (response) {
-                            $scope.product.projectId = id;
-                            $scope.product.currentStatus.project.id = id;
-                            $scope.product.currentStatus.project.title = project.title;
-                            $scope.invate = true;
-                            $scope.adding_to_project = false;
-                            setTimeout(function () {
-                                $scope.invate = false;
-                                apply();
-                            }, 20000);
-                            toastModel.showToast('success', 'Service added to ' + response.data.currentStatus.project.title);
-                        }, function (response) {
-                            toastModel.showToast('error', 'Failed Add To Project');
-                        }
-                    );
-                }
+
+                    delete updatedItem.tags;
+                    ajax.create(dataFactory.services().add, updatedItem, function (response) {
+                        var id = response.data.id;
+                        $scope.btnCanselToProject();
+
+                        angular.forEach($scope.product.__serviceData.service_tags, function(tag) {
+                            delete tag.id;
+                            tag.serviceId = id;
+                            ajax.create(dataFactory.services(id).add_tags, tag);
+                        });
+                        if ($scope.service_images.length) {
+                            angular.forEach($scope.service_images, function(image) {
+                                delete image.id;
+                                image.ownerId = userData.accountId;
+                                image.parentId = id;
+                                ajax.create(dataFactory.documentsUrl().save, image)
+                            });
+                        };
+                        ajax.get(dataFactory.services($scope.product.id).get_interface, {}, function(response) {
+                            angular.forEach(response.data, function(newDomeInterface) {
+                                delete newDomeInterface.id;
+                                newDomeInterface.serviceId = id;
+                                ajax.create(dataFactory.services().add_interface, newDomeInterface);
+                            });
+                        });
+                        toastModel.showToast('success', 'Service added to ' + response.data.currentStatus.project.title);
+                    }, function (response) {
+                        toastModel.showToast('error', 'Failed Add To Project');
+                    });
+                };
             };
 
 //compare

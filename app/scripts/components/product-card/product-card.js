@@ -39,14 +39,31 @@ angular.module('dmc.component.productcard', [
           DMCUserModel.getUserData().then(function(res){
               userData = res;
               // get compared services
-              CompareModel.get("services",userData);
+              CompareModel.get('services',userData);
           });
 
           $scope.previousPage = previousPage;
+          $scope.images = [];
 
+          if ($scope.cardSource.published) {
+              if (!angular.isDefined($scope.cardSource.images)) {
+                  ajax.get(dataFactory.documentsUrl().getList, {parentType: 'SERVICE', parentId: $scope.cardSource.id, docClass: 'IMAGE', recent: 5}, function(response) {
+                      if(response.data && response.data.data && response.data.data.length) {
+                          $scope.cardSource.images = response.data.data;
+                      }
+                  });
+
+              }
+
+              if (!angular.isDefined($scope.cardSource.ownerName)) {
+                  ajax.get(dataFactory.userAccount($scope.cardSource.owner).get, {}, function(response) {
+                      $scope.cardSource.ownerName = response.data.displayName;
+                  });
+              }
+          }
           //$scope.hideButtons = [];
           $scope.compareStyle = {
-              "font-size" : ($scope.hideButtons && $scope.hideButtons.indexOf("compare") != -1 ? "11px" : "13px")
+              'font-size' : ($scope.hideButtons && $scope.hideButtons.indexOf('compare') != -1 ? '11px' : '13px')
           };
 
           $scope.projects = [];
@@ -55,7 +72,7 @@ angular.module('dmc.component.productcard', [
           // success callback for add to favorites
           var addToFavoriteCallback = function(response){
               $scope.cardSource.favorite = response.data;
-              $rootScope.$broadcast("UpdateFavorite");
+              $rootScope.$broadcast('UpdateFavorite');
               if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
               apply();
           };
@@ -63,7 +80,7 @@ angular.module('dmc.component.productcard', [
           // success callback for remove from favorites
           var removeFromFavoritesCallback = function(response){
               $scope.cardSource.favorite = false;
-              $rootScope.$broadcast("UpdateFavorite");
+              $rootScope.$broadcast('UpdateFavorite');
               if(updateFavoriteInShowProductCtrl) updateFavoriteInShowProductCtrl($scope.cardSource);
               apply();
           };
@@ -71,10 +88,10 @@ angular.module('dmc.component.productcard', [
           $scope.addToFavorite = function(){
             if(!$scope.cardSource.favorite){
                 // add to favorites
-                var requestData = { "accountId": $scope.$root.userData.accountId };
-                if($scope.cardSource.type == "service"){
+                var requestData = { 'accountId': $scope.$root.userData.accountId };
+                if($scope.cardSource.type == 'service'){
                     requestData.serviceId = $scope.cardSource.id;
-                }else if($scope.cardSource.type == "component"){
+                }else if($scope.cardSource.type == 'component'){
                     requestData.componentId = $scope.cardSource.id;
                 }
                 ajax.create(dataFactory.addFavorite(), requestData, addToFavoriteCallback );
@@ -104,49 +121,77 @@ angular.module('dmc.component.productcard', [
           };
 
           // add service to project
-          $scope.saveToProject = function(projectId){
-              var project = null;
-              for(var i in $scope.projects){
-                  if($scope.projects[i].id == projectId){
-                      project = $scope.projects[i];
-                      break;
-                  }
-              }
-              if(project) {
-                  var updatedItem = $.extend(true, {}, $scope.cardSource);
-                  if (updatedItem.hasOwnProperty('$$hashKey')) {
-                     delete updatedItem['$$hashKey'];
-                  }
-                  updatedItem.currentStatus = {
-                              project: {
-                                  id: project.id,
-                                  title: project.title
-                              }
-                          };
-                  updatedItem.projectId = project.id;
-                  updatedItem.from = 'marketplace';
-                  ajax.update(dataFactory.addServiceToProject($scope.cardSource.id), updatedItem, function (response) {
-                          $scope.cancelAddToProject();
-                          if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
-                          if(!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
-                          $scope.cardSource.currentStatus.project.id = projectId;
-                          $scope.cardSource.currentStatus.project.title = project.title;
-                          $scope.cardSource.projectId = projectId;
-                          $scope.cardSource.added = true;
+            $scope.saveToProject = function(projectId){
+                var project = null;
+                for(var i in $scope.projects){
+                    if($scope.projects[i].id == projectId){
+                        project = $scope.projects[i];
+                        break;
+                    }
+                }
 
-                          $scope.cardSource.lastProject = {
-                              title: project.title,
-                              href: '/project.php#/' + project.id + '/home'
-                          };
-                          $scope.addedTimeout = setTimeout(function () {
-                              $scope.cardSource.added = false;
-                              apply();
-                          }, 20000);
-                          apply();
-                      }
-                  );
-              }
-          };
+                if(project) {
+                    var updatedItem = $.extend(true, {}, $scope.cardSource);
+                    if (updatedItem.hasOwnProperty('$$hashKey')) {
+                        delete updatedItem['$$hashKey'];
+                    }
+                    updatedItem.currentStatus = {
+                        project: {
+                            id: project.id,
+                            title: project.title
+                        }
+                    };
+                    updatedItem.owner = userData.accountId;
+                    updatedItem.projectId = project.id;
+                    updatedItem.from = 'marketplace';
+                    updatedItem.published = false;
+                    delete updatedItem.tags;
+                    ajax.create(dataFactory.services().add, updatedItem, function (response) {
+                        var id = response.data.id;
+                        $scope.cancelAddToProject();
+
+                        ajax.get(dataFactory.services($scope.cardSource.id).get_tags, {}, function(response) {
+                            angular.forEach(response.data, function(tag) {
+                                delete tag.id;
+                                tag.serviceId = id;
+                                ajax.create(dataFactory.services(id).add_tags, tag);
+                            });
+                        });
+                        if ($scope.images.length) {
+                            angular.forEach($scope.images, function(image) {
+                                delete image.id;
+                                image.ownerId = userData.accountId;
+                                image.parentId = id;
+                                ajax.create(dataFactory.documentsUrl().save, image)
+                            });
+                        };
+                        ajax.get(dataFactory.services($scope.cardSource.id).get_interface, {}, function(response) {
+                            angular.forEach(response.data, function(newDomeInterface) {
+                                delete newDomeInterface.id;
+                                newDomeInterface.serviceId = id;
+                                ajax.create(dataFactory.services().add_interface, newDomeInterface);
+                            });
+                        });
+
+                        if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
+                        if(!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
+                        $scope.cardSource.currentStatus.project.id = projectId;
+                        $scope.cardSource.currentStatus.project.title = project.title;
+                        $scope.cardSource.projectId = projectId;
+                        $scope.cardSource.added = true;
+
+                        $scope.cardSource.lastProject = {
+                            title: project.title,
+                            href: '/project.php#/' + project.id + '/home'
+                        };
+                        $scope.addedTimeout = setTimeout(function () {
+                            $scope.cardSource.added = false;
+                            apply();
+                        }, 20000);
+                        apply();
+                    });
+                }
+            };
 
           $scope.loadProjects = function() {
               $scope.projects = $scope.$root.projects;
@@ -155,14 +200,14 @@ angular.module('dmc.component.productcard', [
           // remove service from compare
           $scope.removeFromCompare = function(){
               if($scope.typeProduct == 'service') {
-                  CompareModel.delete("services",$scope.cardSource.id);
+                  CompareModel.delete('services',$scope.cardSource.id);
               }
           };
 
           // get service to compare
           $scope.addToCompare = function(){
               if($scope.typeProduct == 'service'){
-                  CompareModel.add("services",{
+                  CompareModel.add('services',{
                       profileId : userData.profileId,
                       serviceId : $scope.cardSource.id
                   });
@@ -179,8 +224,8 @@ angular.module('dmc.component.productcard', [
 
           $scope.share = function(ev){
               $mdDialog.show({
-                  controller: "ShareProductCtrl",
-                  templateUrl: "templates/components/product-card/share-product.html",
+                  controller: 'ShareProductCtrl',
+                  templateUrl: 'templates/components/product-card/share-product.html',
                   parent: angular.element(document.body),
                   targetEvent: ev,
                   clickOutsideToClose:true,
@@ -198,8 +243,8 @@ angular.module('dmc.component.productcard', [
           $scope.show = function(ev){
               scrollPosition = $(window).scrollTop();
               $mdDialog.show({
-                  controller: "ShowProductCtrl",
-                  templateUrl: "templates/components/product-card/show-product.html",
+                  controller: 'ShowProductCtrl',
+                  templateUrl: 'templates/components/product-card/show-product.html',
                   parent: angular.element(document.body),
                   targetEvent: ev,
                   clickOutsideToClose:true,
@@ -231,6 +276,16 @@ angular.module('dmc.component.productcard', [
         }
         getTags();
 
+        function getDocs(){
+            ajax.get(dataFactory.documentsUrl($scope.product.id).getList,{page: 0, pageSize: 5, parentType: 'SERVICE', parentId: $scope.product.id, docClass: 'SUPPORT'},function(response){
+                if (response.data && response.data.data) {
+                    $scope.productDocuments = response.data.data;
+                }
+                apply();
+            })
+        }
+        getDocs();
+
         $scope.searchByTag = function(e){
             $scope.cancel();
         };
@@ -248,8 +303,8 @@ angular.module('dmc.component.productcard', [
 
         $scope.share = function(ev){
             var share = $mdDialog.show({
-                controller: "ShareProductCtrl",
-                templateUrl: "templates/components/product-card/share-product.html",
+                controller: 'ShareProductCtrl',
+                templateUrl: 'templates/components/product-card/share-product.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true,
@@ -271,69 +326,69 @@ angular.module('dmc.component.productcard', [
 
         $scope.statistics = [
             {
-                title: "Project",
-                "SuccessfulRuns": {
-                    "Today": 8,
-                    "Week": 10,
-                    "AllTime": 12
+                title: 'Project',
+                'SuccessfulRuns': {
+                    'Today': 8,
+                    'Week': 10,
+                    'AllTime': 12
                 },
-                "IncompleteRuns": {
-                    "Today": 1,
-                    "Week": 3,
-                    "Month": 3
+                'IncompleteRuns': {
+                    'Today': 1,
+                    'Week': 3,
+                    'Month': 3
                 },
-                "UnavailableRuns": {
-                    "Today": 1,
-                    "Week": 2,
-                    "Month": 2
+                'UnavailableRuns': {
+                    'Today': 1,
+                    'Week': 2,
+                    'Month': 2
                 },
-                "RunsByUsers": {
-                    "Today": 10,
-                    "Week": 15,
-                    "AllTime": 17
+                'RunsByUsers': {
+                    'Today': 10,
+                    'Week': 15,
+                    'AllTime': 17
                 },
-                "UniqueUsers": {
-                    "Today": 10,
-                    "Week": 2,
-                    "Month": 5
+                'UniqueUsers': {
+                    'Today': 10,
+                    'Week': 2,
+                    'Month': 5
                 },
-                "AverageTime": {
-                    "Today": 10.1,
-                    "Week": 11,
-                    "Month": 22.2
+                'AverageTime': {
+                    'Today': 10.1,
+                    'Week': 11,
+                    'Month': 22.2
                 }
             },
             {
-                title: "Marketplace",
-                "SuccessfulRuns": {
-                    "Today": 8,
-                    "Week": 10,
-                    "AllTime": 12
+                title: 'Marketplace',
+                'SuccessfulRuns': {
+                    'Today': 8,
+                    'Week': 10,
+                    'AllTime': 12
                 },
-                "IncompleteRuns": {
-                    "Today": 1,
-                    "Week": 3,
-                    "Month": 3
+                'IncompleteRuns': {
+                    'Today': 1,
+                    'Week': 3,
+                    'Month': 3
                 },
-                "UnavailableRuns": {
-                    "Today": 1,
-                    "Week": 2,
-                    "Month": 2
+                'UnavailableRuns': {
+                    'Today': 1,
+                    'Week': 2,
+                    'Month': 2
                 },
-                "RunsByUsers": {
-                    "Today": 10,
-                    "Week": 15,
-                    "AllTime": 17
+                'RunsByUsers': {
+                    'Today': 10,
+                    'Week': 15,
+                    'AllTime': 17
                 },
-                "UniqueUsers": {
-                    "Today": 10,
-                    "Week": 2,
-                    "Month": 5
+                'UniqueUsers': {
+                    'Today': 10,
+                    'Week': 2,
+                    'Month': 5
                 },
-                "AverageTime": {
-                    "Today": 10.1,
-                    "Week": 11,
-                    "Month": 22.2
+                'AverageTime': {
+                    'Today': 10.1,
+                    'Week': 11,
+                    'Month': 22.2
                 }
             }
         ]
@@ -357,8 +412,8 @@ angular.module('dmc.component.productcard', [
                     for (var i in items) {
                         items[i].favorite = false;
                         for (var j in data) {
-                            if ((data[j].serviceId && items[i].type == "service" && items[i].id == data[j].serviceId) ||
-                                (data[j].componentId && items[i].type == "component" && items[i].id == data[j].componentId)) {
+                            if ((data[j].serviceId && items[i].type == 'service' && items[i].id == data[j].serviceId) ||
+                                (data[j].componentId && items[i].type == 'component' && items[i].id == data[j].componentId)) {
                                 items[i].favorite = data[j];
                                 break;
                             }
@@ -408,7 +463,7 @@ angular.module('dmc.component.productcard', [
 
         $(window).unbind('beforeunload');
         $(window).bind('beforeunload', function(val){
-            return "";
+            return '';
         });
 
         function getAllUser(){
@@ -442,7 +497,7 @@ angular.module('dmc.component.productcard', [
                 profileId :  id,
                 serviceId : serviceId
             },function(response){
-                toastModel.showToast("success","Service successfully shared");
+                toastModel.showToast('success','Service successfully shared');
                 $scope.cancel();
             });
         };

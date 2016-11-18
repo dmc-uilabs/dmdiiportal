@@ -58,6 +58,7 @@ angular.module('dmc.account')
 
                 ajax.get(dataFactory.userAccount($scope.accountId).get, {}, roleCallback);
 
+                var hasCompanyChange = false;
 
                 $scope.resendNotification = function() {
                     ajax.create(dataFactory.requestVerification(), {}, function(response) {
@@ -102,7 +103,16 @@ angular.module('dmc.account')
                     if (!validateEmail($scope.user.email)) {
                         $scope.user.email = $scope.accountData.email;
                     }
+
+                    if (hasCompanyChange) {
+                        var newOrgId = $scope.user.companyId;
+                        delete $scope.user.companyId;
+                    };
+
                     ajax.update(dataFactory.updateUser(), $scope.user, function(response) {
+                        if (hasCompanyChange) {
+                            ajax.put(dataFactory.changeUserOrganization($scope.user.id), { userId: $scope.accountData.id, organizationId: newOrgId });
+                        }
                         toastModel.showToast('success', 'User updated successfully!');
                     });
                     // AccountModel.update($scope.user);
@@ -270,6 +280,7 @@ angular.module('dmc.account')
 
             function setCompany(company) {
                 $scope.user.companyId = company.id;
+                hasCompanyChange = true;
             }
 
             function querySearch(query) {

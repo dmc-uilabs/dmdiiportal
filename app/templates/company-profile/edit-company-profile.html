@@ -10,7 +10,7 @@
                 <div class="logo-column" ng-show="!changingLogo">
                     <img ng-src="{{company.logoImage.documentUrl}}" class="logo" alt="{{company.name}}"/>
                     <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
-                               ng-if="changingLogo"
+                               ng-if="!changingLogo"
                                ng-click="removeLogo($event)"
                                aria-label="Delete Image">
                         <ng-md-icon icon="delete" size="18"></ng-md-icon>

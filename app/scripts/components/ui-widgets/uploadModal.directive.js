@@ -24,7 +24,6 @@ angular.module('dmc.widgets.uploadModal',[
                     templateUrl: 'templates/components/ui-widgets/upload-image-modal.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
-
                     locals: {
                         images: $scope.images,
                         newImages: $scope.newImages,
@@ -51,12 +50,6 @@ angular.module('dmc.widgets.uploadModal',[
 
     $scope.uploadFile = function(){
         $mdDialog.hide();
-        angular.forEach($scope.newImages, function(image) {
-            fileUpload.uploadFileToUrl(image.file, {},'service').then(function(data){
-                $scope.newImages.push(data.result);
-                if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            });
-        });
     };
 
     $scope.deleteImage = function(index, id){

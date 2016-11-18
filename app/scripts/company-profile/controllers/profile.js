@@ -43,7 +43,7 @@ angular.module('dmc.company-profile')
 
             $scope.company = {};
             //limit of images and videos a company can have
-            $scope.limit = 3;
+            $scope.limit = 5;
             $scope.verifiedLimit = 15;
             $scope.unverifiedLimit = 15;
 
@@ -59,7 +59,7 @@ angular.module('dmc.company-profile')
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'LOGO',
-                        recent: 1
+                        page: 0, pageSize: 1
                     }, function(response) {
                         if (response.data.count > 0) {
                             $scope.company.logoImage = response.data.data[0];
@@ -70,7 +70,7 @@ angular.module('dmc.company-profile')
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'IMAGE',
-                        recent: $scope.limit
+                        page: 0, pageSize: $scope.limit
                     }, function(response) {
                         $scope.company.images = response.data.data || [];
                     });
@@ -79,7 +79,7 @@ angular.module('dmc.company-profile')
                         parentType: 'ORGANIZATION',
                         parentId: $scope.company.id,
                         docClass: 'VIDEO',
-                        recent: $scope.limit
+                        page: 0, pageSize: $scope.limit
                     }, function(response) {
                         $scope.company.videos = response.data.data || [];
                     });
@@ -232,10 +232,10 @@ angular.module('dmc.company-profile')
             }
 
             $scope.deleteOrganization = function() {
-                ajax.delete(dataFactory.deleteOrganization(id), {}, function(response) {
+                ajax.delete(dataFactory.deleteOrganization($scope.company.id), {}, function(response) {
                     if(response.status === 200) {
                         toastModel.showToast('success', 'Organization successfully deleted!');
-                        $window.location.href = '/';
+                        $location.path = '/';
                     } else {
                         toastModel.showToast('error', response.data);
                     }

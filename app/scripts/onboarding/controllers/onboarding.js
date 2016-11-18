@@ -472,7 +472,7 @@ angular.module('dmc.onboarding')
         		name: 'Projects',
         		done: false,
         		data: {
-        			pastCollaborations: '',
+        			postCollaboration: '',
 					pastProjects: '',
         			collaborationInterests: '',
         			upcomingProjectInterests: ''
@@ -683,7 +683,7 @@ angular.module('dmc.onboarding')
         	$scope.company[5].data.technicalExpertise = data.technicalExpertise;
         	$scope.company[5].data.toolsSoftwareEquipmentMachines = data.toolsSoftwareEquipmentMachines;
 
-        	$scope.company[6].data.pastCollaborations = data.pastCollaborations;
+        	$scope.company[6].data.postCollaboration = data.postCollaboration;
 			$scope.company[6].data.pastProjects = data.pastProjects;
         	$scope.company[6].data.collaborationInterests = data.collaborationInterests;
         	$scope.company[6].data.upcomingProjectInterests = data.upcomingProjectInterests;

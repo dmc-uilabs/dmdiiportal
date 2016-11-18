@@ -1,16 +1,16 @@
 angular.module('dmc.project')
     .controller('TeamCtrl',[
-        "$scope",
-        "$state",
-        "$rootScope",
-        "$stateParams",
-        "$mdDialog",
-        "ajax",
-        "dataFactory",
-        "DMCUserModel",
-        "questionToastModel",
-        "toastModel",
-        "projectData",
+        '$scope',
+        '$state',
+        '$rootScope',
+        '$stateParams',
+        '$mdDialog',
+        'ajax',
+        'dataFactory',
+        'DMCUserModel',
+        'questionToastModel',
+        'toastModel',
+        'projectData',
         function ($scope,
                   $state,
                   $rootScope,
@@ -31,47 +31,56 @@ angular.module('dmc.project')
 
             $scope.loading = false;
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
-            $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : "people";
+            $scope.typeModel = angular.isDefined($stateParams.type) ? $stateParams.type : 'people';
             $scope.members = [];
             $scope.types = [
                 {
                     id : 1,
-                    name : "All",
-                    tag : "all"
+                    name : 'All',
+                    tag : 'all'
                 },
                 {
                     id : 2,
-                    name : "People",
-                    tag : "people"
+                    name : 'People',
+                    tag : 'people'
                 },
                 {
                     id : 3,
-                    name : "Companies",
-                    tag : "companies"
+                    name : 'Companies',
+                    tag : 'companies'
                 }
             ];
 
 
-            if(projectCtrl.projectData.type == 'public' && projectCtrl.projectData.approvalOption == 'admin') loadRequests();
-            $scope.joinRequests = [];
-            function loadRequests(){
-                ajax.get(dataFactory.getProjectJoinRequests(projectCtrl.projectData.id), {}, function (response) {
-                    $scope.joinRequests = response.data;
-                    ajax.get(dataFactory.profiles().all, {
-                        id : $.map(response.data,function(x){ return x.profileId;})
-                    }, function (res) {
-                        for(var i in $scope.joinRequests){
-                            for(var j in res.data) {
-                                if ($scope.joinRequests[i].profileId == res.data[j].id) {
-                                    $scope.joinRequests[i].member = res.data[j];
-                                    break;
-                                }
-                            }
-                        }
-                        apply();
-                    });
-                });
-            }
+            // if(projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin) {
+            //     loadRequests();
+            // };
+
+            $scope.acceptedRequests = [];
+            $scope.pendingRequests = [];
+            $scope.declinedRequests = [];
+
+            // function loadRequests(){
+            //     ajax.get(dataFactory.getProjectJoinRequests(projectCtrl.projectData.id), {}, function (response) {
+            //         var requests = response.data;
+            //         ajax.get(dataFactory.profiles().all, {
+            //             id : $.map(response.data,function(x){ return x.profileId;})
+            //         }, function (res) {
+            //             console.log(requests)
+            //             for(var i in requests){
+            //                 for(var j in res.data) {
+            //                     if (requests[i].profileId == res.data[j].id) {
+            //                         requests[i].member = res.data[j];
+            //                         console.log(requests[i].accept, requests[i].rejected)
+            //
+            //                         break;
+            //                     }
+            //                 }
+            //             }
+            //             apply();
+            //         });
+            //     });
+            // }
 
             $scope.submit = function (text) {
                 $scope.searchModel = text;
@@ -94,7 +103,8 @@ angular.module('dmc.project')
 
             $scope.getMembers = function () {
                 $scope.loading = true;
-                ajax.get(dataFactory.projectMembers(projectCtrl.currentProjectId), {}, function (response) {
+                $scope.companyNameList = {};
+                ajax.get(dataFactory.getProjectMembers(), {projectId: projectCtrl.currentProjectId}, function (response) {
                     var profileIds = $.map(response.data, function (x) {
                         return x.profileId;
                     });
@@ -106,9 +116,26 @@ angular.module('dmc.project')
                     }, function (res) {
                         $scope.loading = false;
                         for(var i in $scope.members){
+
                             for(var j in res.data){
                                 if($scope.members[i].profileId == res.data[j].id){
                                     $scope.members[i].member = res.data[j];
+                                    if ($scope.members[i].member.company && !$scope.companyNameList[$scope.members[i].member.company]) {
+                                        ajax.get(dataFactory.getOrganization([$scope.members[i].member.company]), {}, function(response) {
+                                            if (response.data && response.data.name) {
+                                                console.log(response.data)
+                                                $scope.companyNameList[$scope.members[i].member.company] = response.data.name;
+                                            }
+                                        });
+                                    }
+                                    console.log($scope.companyNameList)
+                                    if ($scope.members[i].accept) {
+                                        $scope.acceptedRequests.push($scope.members[i]);
+                                    } else if  (!$scope.members[i].accept && !$scope.members[i].rejected) {
+                                        $scope.pendingRequests.push($scope.members[i]);
+                                    } else if ($scope.members[i].rejected) {
+                                        $scope.declinedRequests.push($scope.members[i]);
+                                    }
                                     break;
                                 }
                             }
@@ -136,22 +163,17 @@ angular.module('dmc.project')
                 }
             };
 
-            $scope.delete = function(event,member){
+            $scope.delete = function(event, member, index){
                 questionToastModel.show({
-                    question: "Are you sure you want to delete "+member.member.displayName+" from team?",
+                    question: 'Are you sure you want to delete '+member.member.displayName+' from team?',
                     buttons: {
                         ok: function () {
-                            ajax.update(dataFactory.updateMembersToProject(member.id), {
-                                removed : true,
-                                accept : false
-                            }, function (response) {
-                                for(var i in $scope.members){
-                                    if($scope.members[i].id == response.data.id){
-                                        $scope.members[i] = response.data;
-                                        $scope.members[i].member = member.member;
-                                        break;
-                                    }
-                                }
+                            ajax.delete(dataFactory.updateMembersToProject(member.id), {}, function (response) {
+                                toastModel.showToast('success', 'Member removed from project!')
+                                $scope.acceptedRequests.splice(index, 1);
+                                member.accept = false;
+                                member.reject = true;
+                                $scope.declinedRequests.push(member);
                                 apply();
                             });
                         },
@@ -172,7 +194,7 @@ angular.module('dmc.project')
                         }
                     }
                     apply();
-                    toastModel.showToast("success", "User successfully invited to the project");
+                    toastModel.showToast('success', 'User successfully invited to the project');
                 });
             };
 
@@ -180,12 +202,12 @@ angular.module('dmc.project')
                 ajax.delete(dataFactory.deleteProjectJoinRequests(item.id), {
                 }, function (response) {
                     ajax.create(dataFactory.createMembersToProject(), {
-                        "profileId": item.member.id,
-                        "projectId": projectCtrl.currentProjectId,
-                        "fromProfileId": $rootScope.userData.profileId,
-                        "from": $rootScope.userData.displayName,
-                        "date": Date.parse(new Date()),
-                        "accept": true
+                        'profileId': item.member.id,
+                        'projectId': projectCtrl.currentProjectId,
+                        'fromProfileId': $rootScope.userData.profileId,
+                        'from': $rootScope.userData.displayName,
+                        'date': Date.parse(new Date()),
+                        'accept': true
                     }, function (response) {
                         for(var i in $scope.joinRequests){
                             if($scope.joinRequests[i].id == item.id){

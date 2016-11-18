@@ -67,12 +67,13 @@
     <script src="scripts/project/controllers/id-locator.js"></script>
     <script src="scripts/project/controllers/discussions.js"></script>
     <script src="scripts/project/controllers/documents.js"></script>
-    <script src="scripts/project/controllers/documents-upload.js"></script>
     <script src="scripts/project/controllers/home.js"></script>
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/project/controllers/tasks.js"></script>
     <script src="scripts/project/controllers/task.js"></script>
     <script src="scripts/project/controllers/team.js"></script>
+    <script src="scripts/project/controllers/manage-requests.js"></script>
+
     <script src="scripts/project/controllers/workspace.js"></script>
     <script src="scripts/project/controllers/rfp-home.js"></script>
     <script src="scripts/project/controllers/rfp-submissions.js"></script>

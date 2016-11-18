@@ -11,7 +11,7 @@
         </a>
     </div>
     <div class="member-card__image">
-        <img ng-src="{{cardSource.logoImage ? cardSource.logoImage.documentUrl : 'images/icon-company-lg.svg'}}" alt="{{cardSource.name}}">
+        <img ng-src="{{cardSource.logoImage ? cardSource.logoImage : 'images/icon-company-lg.svg'}}" alt="{{cardSource.name}}">
     </div>
     <div class="member-card__header" layout="column" layout-padding layout-margin>
         <h3 class="member-name"><a href="/company-profile.php#/profile/{{cardSource.id}}">{{cardSource.name}}</a></h3>
@@ -33,52 +33,6 @@
             </div>
             <div class="member-card__details">
                 <p class="description">{{cardSource.description}}</p>
-            </div>
-        </div>
-    </div>
-    <div class="product-card__footer" layout="row">
-        <md-button ng-if="addingToProject == false && !cardSource.added"
-                   aria-label="Add to Project"
-                   class="add-to-project"
-                   flex ng-click="addToProject()">
-            Add to Project
-        </md-button>
-
-        <!-- After add -->
-        <md-button aria-label="Back to Add"
-                   class="back-to-add"
-                   ng-click="backToAdd()"
-                   ng-show="addingToProject == false && cardSource.added">
-            <ng-md-icon icon="close" size="17"></ng-md-icon>
-        </md-button>
-        <md-button aria-label="Project Link"
-                   flex
-                   class="page-href"
-                   ng-show="addingToProject == false && cardSource.added"
-                   href="{{cardSource.lastProject.href}}">
-        <span flex>
-            Added to {{cardSource.lastProject.title}}
-        </span>
-            <ng-md-icon icon="keyboard_arrow_right" style="fill: #fff" size="32"></ng-md-icon>
-        </md-button>
-        <!--  --------  -->
-
-        <div class="adding-to-project" ng-if="addingToProject">
-            <div layout="row" layout-align="center center" class="inner-add-to-project">
-                <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">
-                    <ng-md-icon icon="close" size="17"></ng-md-icon>
-                </md-button>
-                <div layout="column" class="select-block" flex>
-                    <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
-                        <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
-                    </md-select>
-                </div>
-                <md-button aria-label="Add"
-                           layout="column"
-                           ng-disabled="!projectModel"
-                           class="md-raised add"
-                           ng-click="inviteUserToProject(projectModel)">Add
-                </md-button>
             </div>
         </div>
     </div>

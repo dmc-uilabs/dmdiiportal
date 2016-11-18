@@ -1,0 +1,62 @@
+<md-dialog flex="30">
+  <div ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Document</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <md-content>
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Details">
+          <md-content class="md-padding">
+            <md-input-container class="md-icon-float md-block">
+              <label>Document Name</label>
+              <input ng-model="file.documentName" type="text">
+            </md-input-container>
+            <md-chips ng-model="file.tags" placeholder="+Tag"
+              secondary-placeholder="Add Tag" md-on-append="addTag($chip)">
+              <md-chip-template>
+                <span>{{$chip.tagName}}</span>
+              </md-chip-template>
+            </md-chips>
+          </md-content>
+        </md-tab>
+        <md-tab label="Access">
+          <md-content class="md-padding">
+            <md-select ng-model="file.accessLevel" placeholder="Access" class="md-no-underline">
+              <md-option ng-repeat="(key, value) in accessLevels" value="{{value}}">{{key}}</md-option>
+            </md-select>
+            <md-autocomplete flex
+                md-input-name="autocompleteField"
+                md-no-cache="true"
+                md-selected-item-change="selectVip(item)"
+                md-search-text="query"
+                md-items="item in search(query)"
+                md-item-text="item.displayName"
+                md-floating-label="Add VIP">
+              <md-item-template>
+                <span md-highlight-text="searchText">{{item.displayName}}</span>
+              </md-item-template>
+            </md-autocomplete>
+            <md-chips ng-model="file.vips" readonly="true">
+                <md-chip-template>
+                  <span>{{$chip.displayName}}</span>
+                  <ng-md-icon md-chip-remove icon="close" size="16"></ng-md-icon>
+                </md-chip-template>
+            </md-chips>
+          </md-content>
+        </md-tab>
+        <md-tab label="Version">
+          <md-content class="md-padding">
+            <div class="content-panel" source="newVersion" ui-widget-upload-documents auto-upload="false" file-limit="1" widget-title="'UPLOAD NEW VERSION'" allow-tagging="true"></div>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-content>
+    <div>
+      <md-button class="md-raised md-primary" ng-click="save()" ng-disabled="clean()" aria-label="save">Save</md-button>
+      <md-button class="md-warn" ng-click="cancel()" aria-label="cancel">Cancel</md-button>
+    </div>
+  </div>
+</md-dialog>

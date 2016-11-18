@@ -25,7 +25,7 @@
 					Return to Services
 				</a>
 			</div>
-			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By <a ng-href="{{'profile.php#/'+service.profileId}}">{{service.owner}}</a></span></h2>
+			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By <a ng-href="{{'profile.php#/'+service.profileId}}">{{service.ownerName}}</a></span></h2>
 			<div class="margin-top8 margin-bottom8">
 				<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/detail/run-history'}}" class="link">
 					Run History
@@ -88,8 +88,10 @@
 
 		<md-tab label="DOCUMENTS">
 			<md-content class="md-padding">
-                <a ng-repeat="doc in service.service_docs" ng-href="{{doc.documentUrl}}">{{doc.documentName}}</a>
-                <p ng-if="!service.service_docs">This service has no documents</p>
+                <div layout="column">
+                    <a ng-repeat="doc in service.service_docs" ng-href="{{doc.documentUrl}}">{{doc.documentName}}</a>
+                    <p ng-if="!service.service_docs">This service has no documents</p>
+                </div>
                 <!-- <ui-widget-documents-folder documents-type="'service'" type-id="service.id"></ui-widget-documents-folder> -->
 			</md-content>
 		</md-tab>

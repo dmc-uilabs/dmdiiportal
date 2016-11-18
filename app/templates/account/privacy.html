@@ -22,6 +22,7 @@
                                     <md-checkbox
                                         ng-init="enabled.public[key] = userBasics.userContactInfo.userPublicContactInfo[key] != null"
                                         ng-model="enabled.public[key]"
+                                        ng-change="changedCheckbox('userPublicContactInfo', key)"
                                         aria-label="{{item.title}}">{{item.title}}</md-checkbox>
                                 </div>
                             </div>
@@ -47,6 +48,7 @@
                                     <md-checkbox
                                         ng-init="enabled.memberPortal[key] = userBasics.userContactInfo.userMemberPortalContactInfo[key] != null"
                                         ng-model="enabled.memberPortal[key]"
+                                        ng-change="changedCheckbox('userMemberPortalContactInfo', key)"
                                         aria-label="{{item.title}}">{{item.title}}</md-checkbox>
                                 </div>
                             </div>

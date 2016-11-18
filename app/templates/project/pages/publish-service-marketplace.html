@@ -174,7 +174,7 @@
                         </div>
                         <div class="info">
                             <div class="name" flex layout-align="start center">
-                                <h4>{{item.display_name}}<span>{{item.jobTitle}}</span></h4>
+                                <h4>{{item.display_name}}<span>{{item.title}}</span></h4>
                             </div>
                             <div class="company-name" flex>
                                 {{item.company}}
@@ -195,7 +195,13 @@
                         <h3>Documents</h3>
                     </div>
                     <div layout="row" flex>
-                        <div ui-widget-upload-documents class="content-panel" product="false" service-id="serviceData.id" source="publishService2.documents" auto-upload="false" flex></div>
+                        <div ui-widget-upload-documents class="content-panel"
+                            product="false"
+                            service-id="serviceData.id"
+                            source="publishService2.documents"
+                            auto-upload="false"
+                            allow-tagging="true"
+                            flex></div>
                     </div>
                 </div>
             </div>

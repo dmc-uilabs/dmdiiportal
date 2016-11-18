@@ -9,7 +9,7 @@ function ($rootScope, $scope, $stateParams,$mdDialog, projectData, toastModel, $
 	    toastModel.showToast("success", $cookieStore.get("toast"));
 	    $cookieStore.remove("toast");
     }
-
+console.log(projectCtrl)
     if(projectCtrl.projectData.description.length > 1000){
         projectCtrl.projectData.description = projectCtrl.projectData.description.substring(0,1000)+'...';
     }

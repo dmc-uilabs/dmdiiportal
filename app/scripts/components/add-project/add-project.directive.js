@@ -16,8 +16,8 @@ angular.module('dmc.add_project.directive', [
         controller: ['$scope', 'projectModel', function ($scope, projectModel,questionToastModel) {
             // Specify a list of font-icons with ligatures and color overrides
             var iconData = [
-                {name: 'accessibility', color: "#777"},
-                {name: 'question_answer', color: "rgb(89, 226, 168)"}
+                {name: 'accessibility', color: '#777'},
+                {name: 'question_answer', color: 'rgb(89, 226, 168)'}
             ];
 
             $scope.projectData = {
@@ -26,7 +26,7 @@ angular.module('dmc.add_project.directive', [
             $scope.fonts = [].concat(iconData);
             // Create a set of sizes...
             $scope.sizes = [
-                {size: "md-18", padding: 0}
+                {size: 'md-18', padding: 0}
             ];
 
 
@@ -43,11 +43,17 @@ angular.module('dmc.add_project.directive', [
 
             $scope.goSaveProject = false;
 
+            $scope.accessLevels = {
+                'Public': 'PUBLIC',
+                'Members': 'MEMBER',
+                'Admin': 'ADMIN'
+            }
+
             $scope.$on('$locationChangeStart', function (event, next, current) {
                 if(!$scope.goSaveProject) {
                     event.preventDefault();
                     questionToastModel.show({
-                        question: "Are you sure you want to leave this page?",
+                        question: 'Are you sure you want to leave this page?',
                         buttons: {
                             ok: function(){
                                 $(window).unbind('beforeunload');
@@ -61,23 +67,23 @@ angular.module('dmc.add_project.directive', [
             });
             $(window).unbind('beforeunload');
             $(window).bind('beforeunload', function(){
-                return "";
+                return '';
             });
 
             $scope.createNewProject = function(data) {
                 $scope.goSaveProject = true;
 
                 if(newProject.dueDate){
-                    newProject.dueDate = moment(newProject.dueDate).format("x");
+                    newProject.dueDate = moment(newProject.dueDate).format('x');
                 }else{
-                    newProject.dueDate = "";
+                    newProject.dueDate = '';
                 }
 
                 $(window).unbind('beforeunload')
                 newProject.documents = $scope.documents;
-                
+
                 projectModel.add_project(newProject, data, function(data){
-                    document.location.href = "project.php#/"+data+"/home";
+                    document.location.href = 'project.php#/'+data+'/home';
                 });
             };
 
@@ -109,7 +115,7 @@ angular.module('dmc.add_project.directive', [
                 }
             };
 
-            $("md-tabs").on("click","md-tab-item",function(){
+            $('md-tabs').on('click','md-tab-item',function(){
                 $scope.enableNext($(this).index()+2);
             });
 
@@ -128,8 +134,8 @@ angular.module('dmc.add_project.directive', [
             $scope.documents = [];
 
             // Invitees
-            $scope.subject = "Pat has invited you to join the project.";
-            $scope.message = "We seek a power transformer with improved heat losses relative to a standard iron core transformer. Cost and time to delivery are also critical. The attached documents give detailed specs and the attached Evaluator Service encompasses how we will value the trade-offs among heat loss, cost, and delivery time.";
+            $scope.subject = 'Pat has invited you to join the project.';
+            $scope.message = 'We seek a power transformer with improved heat losses relative to a standard iron core transformer. Cost and time to delivery are also critical. The attached documents give detailed specs and the attached Evaluator Service encompasses how we will value the trade-offs among heat loss, cost, and delivery time.';
             $scope.invitees = [];
         }]
     };
@@ -157,15 +163,15 @@ angular.module('dmc.add_project.directive', [
                 });
 
                 $scope.cancelEdit = function(){
-                    document.location.href = "project.php#/"+$scope.projectDetails.id+"/home";
+                    document.location.href = 'project.php#/'+$scope.projectDetails.id+'/home';
                 };
 
                 $scope.isChanges = false;
                 var changedValues = {};
                 $scope.changed = function(name){
-                    if($scope.projectDetails[name] != $scope.projectDetails[name+"_old"]){
+                    if($scope.projectDetails[name] != $scope.projectDetails[name+'_old']){
                         changedValues[name] = $scope.projectDetails[name];
-                    }else if($scope.projectDetails[name] == $scope.projectDetails[name+"_old"] && changedValues[name]){
+                    }else if($scope.projectDetails[name] == $scope.projectDetails[name+'_old'] && changedValues[name]){
                         delete changedValues[name];
                     }
                     $scope.isChanges = Object.keys(changedValues).length == 0 ? false : true;
@@ -174,7 +180,7 @@ angular.module('dmc.add_project.directive', [
                 //$scope.cancelChanges = function(){
                 //    if($scope.isUpdate && $scope.isChanges) {
                 //        for (var key in changedValues) {
-                //            if ($scope.projectDetails[key]) $scope.projectDetails[key] = $scope.projectDetails[key + "_old"];
+                //            if ($scope.projectDetails[key]) $scope.projectDetails[key] = $scope.projectDetails[key + '_old'];
                 //        }
                 //        $scope.isChanges = false;
                 //        changedValues = {};
@@ -197,7 +203,7 @@ angular.module('dmc.add_project.directive', [
                 };
 
                 $scope.$watch(function(){
-                    return $(".md-datepicker-calendar-pane.md-pane-open").size();
+                    return $('.md-datepicker-calendar-pane.md-pane-open').size();
                 },function(newVal,oldVal){
                     if(newVal == null || newVal == 0){
                         $scope.projectDetails.dueDateFocused = false;
@@ -207,8 +213,8 @@ angular.module('dmc.add_project.directive', [
                     apply();
                 });
 
-                $(".dueDatePicker").on("focus","input",function(){
-                    $(".dueDatePicker button").click();
+                $('.dueDatePicker').on('focus','input',function(){
+                    $('.dueDatePicker button').click();
                 });
 
                 function apply() {
@@ -255,7 +261,7 @@ angular.module('dmc.add_project.directive', [
                     for(var i in $scope.foundMembers){
                         var found = false;
                         for(var j in $scope.invitees){
-                            if(($scope.invitees[j].profileId && $scope.foundMembers[i].id == $scope.invitees[j].profileId) || (!$scope.invitees[j].profileId && $scope.foundMembers[i].id == $scope.invitees[j].id)){
+                            if(($scope.invitees[j].id && $scope.foundMembers[i].id === $scope.invitees[j].id) || (!$scope.invitees[j].id && $scope.foundMembers[i].id == $scope.invitees[j].id)){
                                 found = true;
                                 break;
                             }
@@ -306,20 +312,15 @@ angular.module('dmc.add_project.directive', [
                 var prevMember;
 
                 $scope.searchMembers = function(){
-                    console.log("add-project.directive.searchMembers:");
-                    console.log("add-project.directive.searchMembers:" + $scope.searchModel);
-                    ajax.get(dataFactory.searchMembers($scope.searchModel), {}, function (response) {
-                            console.log("searchMembers: response=" + response);
-                            console.log("searchMembers: response=" + response.data);
-                            $scope.foundMembers = response.data;
+                    ajax.get(dataFactory.getUserList(), {page: 0, pageSize: 100, displayName: $scope.searchModel}, function (response) {
+                            $scope.foundMembers = response.data.content || [];
                             isInvite();
                         });
                 };
 
                 $scope.resetMembers = function(){
-                    console.log("add-project.directive.resetMembers:");
                     $scope.foundMembers = $scope.allMembers;
-                    $scope.searchModel = "";
+                    $scope.searchModel = '';
                     isInvite();
                 };
 
@@ -367,7 +368,7 @@ angular.module('dmc.add_project.directive', [
             },
             controller: function ($scope) {
                 $scope.$watchCollection(
-                    "invitees",
+                    'invitees',
                     function( newValue, oldValue ) {
 
                     }
@@ -425,7 +426,6 @@ angular.module('dmc.add_project.directive', [
                 cardSource: '=',
                 inviteMember: '=',
                 favoriteMember: '=',
-                addToProject: '=',
                 allButtons: '='
             },
             controller: function ($scope,$mdDialog,DMCUserModel,ajax,dataFactory,$rootScope) {
@@ -456,21 +456,21 @@ angular.module('dmc.add_project.directive', [
                     if(project){
                         ajax.create(dataFactory.createMembersToProject(),
                             {
-                                "profileId": $scope.cardSource.id,
-                                "projectId": projectId,
-                                "fromProfileId": $rootScope.userData.profileId,
-                                "from": $rootScope.userData.displayName,
-                                "date": Date.parse(new Date()),
-                                "accept": true
+                                'profileId': $scope.cardSource.id,
+                                'projectId': projectId,
+                                'fromProfileId': $rootScope.userData.id,
+                                'from': $rootScope.userData.displayName,
+                                'date': Date.parse(new Date()),
+                                'accept': true
                             }, function(response){
 
                                 $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
                                 $rootScope.userData.messages.items.unshift({
-                                    "user_name": $rootScope.userData.displayName,
-                                    "image": "/uploads/profile/1/20151222084711000000.jpg",
-                                    "text": "Invited you to a project",
-                                    "link": "/project.php#/preview/" + projectId,
-                                    "created_at": moment().format("hh:mm A")
+                                    'user_name': $rootScope.userData.displayName,
+                                    'image': '/uploads/profile/1/20151222084711000000.jpg',
+                                    'text': 'Invited you to a project',
+                                    'link': '/project.php#/preview/' + projectId,
+                                    'created_at': moment().format('hh:mm A')
                                 });
 
 
@@ -495,7 +495,7 @@ angular.module('dmc.add_project.directive', [
                             }
                         );
                     }else{
-                        toastModel.showToast("error", "Project not found");
+                        toastModel.showToast('error', 'Project not found');
                     }
                 };
 
@@ -511,13 +511,13 @@ angular.module('dmc.add_project.directive', [
                 $scope.showMembers = function(id, ev){
                     $(window).scrollTop();
                     $mdDialog.show({
-                        controller: "showMembers",
-                        templateUrl: "templates/components/members-card/show-members.html",
+                        controller: 'showMembers',
+                        templateUrl: 'templates/components/members-card/show-members.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
                         clickOutsideToClose:true,
                         locals: {
-                            "id" : id
+                            'id' : id
                         }
                     }).then(function() {
                         $(window).scrollTop();
@@ -574,8 +574,7 @@ angular.module('dmc.add_project.directive', [
                 compareCompany: '=',
                 cardSource: '=',
                 inviteCompany: '=',
-                favoriteCompany: '=',
-                addToProject: '='
+                favoriteCompany: '='
             },
             controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
 
@@ -599,13 +598,13 @@ angular.module('dmc.add_project.directive', [
                 $scope.showCompany = function(id, ev){
                     $(window).scrollTop();
                     $mdDialog.show({
-                        controller: "showCompany",
-                        templateUrl: "templates/components/members-card/show-company.html",
+                        controller: 'showCompany',
+                        templateUrl: 'templates/components/members-card/show-company.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
                         clickOutsideToClose:true,
                         locals: {
-                            "id" : $scope.cardSource.id
+                            'id' : $scope.cardSource.id
                         }
                     }).then(function() {
                         $(window).scrollTop();
@@ -623,12 +622,13 @@ angular.module('dmc.add_project.directive', [
                         }
                     }
                     if(project){
-                        ajax.get(dataFactory.getCompanyMembers($scope.cardSource.id),{},
+                        ajax.get(dataFactory.getUsersByOrganization($scope.cardSource.id),{},
                             function(response){
-                                var ids = $.map(response.data,function(x){ return x.profileId; });
+                                var ids = $.map(response.data,function(x){ return x.id; });
                                 var count = ids.length;
-                                function callbackAddUser(response){
-                                    if(i == count-1) {
+                                function callbackAddUser(response, i){
+                                    console.log(response, i, count)
+                                    if(i === count-1) {
                                         $scope.cancelAddToProject();
 
                                         if (!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
@@ -650,35 +650,35 @@ angular.module('dmc.add_project.directive', [
                                     }
                                 }
                                 if(count > 0) {
+                                    var index = 0;
                                     for (var i in ids) {
                                         ajax.create(dataFactory.createMembersToProject(),
                                             {
-                                                "profileId": ids[i],
-                                                "projectId": projectId,
-                                                "fromProfileId": $rootScope.userData.profileId,
-                                                "from": $rootScope.userData.displayName,
-                                                "date": Date.parse(new Date()),
-                                                "accept": true
+                                                'profileId': ids[i],
+                                                'projectId': projectId,
+                                                'fromProfileId': $rootScope.userData.id,
+                                                'from': $rootScope.userData.displayName,
+                                                'date': Date.parse(new Date()),
+                                                'accept': true
                                             }, function(response){
-
-                                                rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
+                                                index++;
+                                                $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
                                                 $rootScope.userData.messages.items.unshift({
-                                                    "user_name": $rootScope.userData.displayName,
-                                                    "image": "/uploads/profile/1/20151222084711000000.jpg",
-                                                    "text": "Invited you to a project",
-                                                    "link": "/project.php#/preview/" + projectId,
-                                                    "created_at": moment().format("hh:mm A")
+                                                    'user_name': $rootScope.userData.displayName,
+                                                    'image': '/uploads/profile/1/20151222084711000000.jpg',
+                                                    'text': 'Invited you to a project',
+                                                    'link': '/project.php#/preview/' + projectId,
+                                                    'created_at': moment().format('hh:mm A')
                                                 });
-                                                callbackAddUser(response,i);
+                                                callbackAddUser(response, index);
                                             }
                                         );
                                     }
                                 }
                             }
                         );
-
                     }else{
-                        toastModel.showToast("error", "Project not found");
+                        toastModel.showToast('error', 'Project not found');
                     }
                 };
 

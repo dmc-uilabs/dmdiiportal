@@ -11,7 +11,7 @@ angular.module('dmc.profile')
         $scope.companies = [];
 
         if ($scope.profile && $scope.profile.roles && $scope.profile.roles[$scope.profile.companyId]) {
-            $scope.role = response.data.roles[$scope.profile.companyId];
+            $scope.role = $scope.profile.roles[$scope.profile.companyId];
             $scope.isVerified = true;
         } else {
             $scope.role = null;
@@ -25,7 +25,7 @@ angular.module('dmc.profile')
         var profileImageDoc = {};
         var removeImageFlag = false;
 
-        ajax.get(dataFactory.documentsUrl().getList, { recent: 1, parentType: 'USER', parentId: $scope.profile.id, docClass: 'IMAGE'}, function(response) {
+        ajax.get(dataFactory.documentsUrl().getList, { page: 0, pageSize: 1, parentType: 'USER', parentId: $scope.profile.id, docClass: 'IMAGE'}, function(response) {
             if (response.data && response.data.data && response.data.data.length > 0) {
                 profileImageDoc = response.data.data[0];
             }
@@ -127,6 +127,8 @@ angular.module('dmc.profile')
                     parentType: 'USER',
                     docClass: 'IMAGE',
                     parentId: $scope.profile.id,
+                    tags: [{tagName: $scope.profile.displayName + ' profile-picture'}],
+                    accessLevel: 'PUBLIC'
                 }
 
                 return ajax.create(dataFactory.documentsUrl().save, doc);
@@ -141,7 +143,9 @@ angular.module('dmc.profile')
             var promises = [];
             if ($scope.file && $scope.file.length > 0) {
                 promises.push(saveImage($scope.file[0].file));
-                removeImageFlag = true;
+                if (profileImageDoc.id) {
+                    removeImageFlag = true;
+                }
             }
 
             if (removeImageFlag === true) {

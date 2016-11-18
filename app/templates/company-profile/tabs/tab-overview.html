@@ -125,8 +125,11 @@
                     ui-widget-upload-documents
                     widget-type="'row'"
                     auto-upload="false"
+                    allow-tagging="true"
                     widget-title="'Add New Image'"
-                    file-limit="3">
+                    access-level='accessLevels'
+                    file-limit="limit"
+                    allow-vip="true">
                 </div>
                 <div layout="column" layout-align="center start">
                     <md-button class="md-raised" type="button" ng-click="cancelAddImage()">
@@ -149,10 +152,10 @@
             </md-button>
         </div>
         <h4>Current Videos</h4>
-        <div ng-repeat="video in source.videos track by $index">
+        <div ng-if="source.videos" ng-repeat="video in source.videos track by $index" ng-hide="video.hide">
             <video width="320" height="240" controls>
                 Your browser does not support HTML5 video playback
-                <source src="{{trustVideoSrc(video.documentUrl)}}" type="video/mp4">
+                <source ng-src="{{trustVideoSrc(video.documentUrl)}}" type="video/mp4">
             </video>
             <md-button md-no-ink
                 ng-click="deleteVideo(video,$event)"
@@ -170,8 +173,11 @@
                     ui-widget-upload-documents
                     widget-type="'row'"
                     auto-upload="false"
+                    allow-tagging="true"
                     widget-title="'Add New Video'"
-                    file-limit="3">
+                    access-level="accessLevels"
+                    file-limit="limit"
+                    allow-vip="true">
                 </div>
                 <div layout="column" layout-align="start start" flex>
                     <md-button class="md-raised" type="button" ng-click="cancelAddVideo()">

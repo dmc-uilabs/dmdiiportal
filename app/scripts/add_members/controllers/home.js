@@ -50,7 +50,7 @@ angular.module('dmc.add_members')
                 if(askLeave) {
                     event.preventDefault();
                     questionToastModel.show({
-                        question: "Are you sure you want to leave this page?",
+                        question: 'Are you sure you want to leave this page?',
                         buttons: {
                             ok: function () {
                                 askLeave = false;
@@ -66,7 +66,7 @@ angular.module('dmc.add_members')
 
             $(window).unbind('beforeunload');
             $(window).bind('beforeunload', function(){
-                return "";
+                return '';
             });
 
             $scope.$watchCollection('invitees',function(newArray,oldArray){
@@ -144,7 +144,14 @@ angular.module('dmc.add_members')
 
 
             $scope.searchMembers = function(){
-
+                ajax.get(dataFactory.getUserList(), {
+                    page: 0,
+                    pageSize: 100,
+                    displayName: $scope.searchModel
+                }, function(response) {
+                    $scope.foundMembers = response.data.content;
+                    isInvite();
+                })
             };
 
             $scope.NextTab = function(){
@@ -187,10 +194,10 @@ angular.module('dmc.add_members')
 
             $scope.send = function(){
                 projectModel.add_members_to_project($scope.invitees,currentMembers, function(){
-                    $cookieStore.put("toast", "Invitations Sent");
+                    $cookieStore.put('toast', 'Invitations Sent');
                     $(window).unbind('beforeunload');
                     $scope.$on('$locationChangeStart', function (event, next, current) {});
-                    document.location.href = "project.php#/"+$stateParams.projectId+"/home";
+                    document.location.href = 'project.php#/'+$stateParams.projectId+'/home';
                 })
             }
         }])

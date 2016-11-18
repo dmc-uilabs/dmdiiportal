@@ -1,4 +1,4 @@
-<div class="documents-folder" layout="column" flex>
+<div class="documents-folder" flex>
 	<div layout="row" class="header" layout-wrap layout-align="start center" flex="100" ng-if="folder.length == 0 || indexfolder.length > 0">
 		<div class="root" layout="column"  ng-click="exitFolder(0,-1)">
             <span>{{ indexfolder.length == 0 && folder.length == 0 ? 'No Documents Included' : 'All Documents' }}</span>
@@ -19,10 +19,10 @@
         <table md-data-table>
             <thead md-order="sort" md-trigger="onOrderChange" ng-hide="indexfolder.length > 0 && folder.length == 0">
             <tr>
-                <th name="Name" order-by="title"></th>
-                <th name="Owner" order-by="owner"></th>
-                <th name="Size" order-by="expires"></th>
-                <th name="Last Modifed" order-by="modified"></th>
+                <th name="Name"></th>
+                <th name="Owner"></th>
+                <th name="Expires"></th>
+                <th name="Last Modifed"></th>
             </tr>
             </thead>
             <tbody>
@@ -39,9 +39,9 @@
                         <a target="_blank" ng-href="{{item.documentUrl}}" ng-if="item.documentUrl">{{item.documentName}}</a>
                     </div>
                 </td>
-                <td><a href="/profile.php#/{{item.ownerId}}">{{item.ownerId}}</a></td>
-                <td>{{item.expires}}</td>
-                <td>{{item.modified}}</td>
+                <td><a href="/profile.php#/{{item.ownerId}}">{{item.ownerDisplayName}}</a></td>
+                <td>{{item.expires|date}}</td>
+                <td>{{item.modified|date}}</td>
             </tr>
             <tr ng-show="indexfolder.length > 0 && folder.length == 0">
                 <td class="empty" colspan="4">No Documents Included</td>

@@ -36,26 +36,30 @@ angular.module('dmc.add-project-doc').
 
                     angular.forEach($scope.documents, function(doc, i) {
                         $scope.docCount = $scope.documents.length;
-                        angular.forEach(doc.tag, function(tag, index) {
-                            if (!angular.isObject(tag)) {
-                                ajax.create(dataFactory.createDocumentTag(), tag, function(response) {
-                                    doc.tag[index] = response.data;
-                                });
-                            }
-                        });
-
+                        if (doc.tags) {
+                            angular.forEach(doc.tags, function(tag, index) {
+                                if (!angular.isObject(tag)) {
+                                    $scope.documents[i].tags[index] = {tagName: tag}
+                                }
+                            });
+                            $scope.documents[i].tags.push({tagName: $scope.project.projectTitle + ' document'});
+                        } else {
+                            $scope.documents[i].tags = [{tagName: $scope.project.projectTitle + ' document'}];
+                        }
+                        $scope.documents[i].tags.push({tagName: doc.file.name});
+                        console.log(doc)
                         //send to s3, save returned link to document table
                         fileUpload.uploadFileToUrl(doc.file, {}, 'projectDocument', function(response) {
+                            console.log(response)
                             var doc = {
                                 documentUrl: response.file.name,
-                                documentName: response.key,
+                                documentName: $scope.documents[i].title + $scope.documents[i].type,
                                 ownerId: $scope.user.accountId,
-                                parentType: 'DMDII',
-                                parentId: $scope.project.id,
-                                accessLevel: $scope.documents[i].accessLevel
+                                dmdiiProjectId: $scope.project.id,
+                                accessLevel: $scope.documents[i].accessLevel,
+                                tags: $scope.documents[i].tags
                             }
-
-                            ajax.create(dataFactory.documentsUrl().save, doc, callback);
+                            ajax.create(dataFactory.saveDMDIIDocument(), doc, callback);
 
                         });
                     });

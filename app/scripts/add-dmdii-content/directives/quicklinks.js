@@ -1,6 +1,6 @@
 'use strict';
 angular.module('dmc.addDmdiiContent').
-    directive('tabQuicklinks', ['$parse', function ($parse) {
+    directive('tabQuicklinks', ['$parse', '$timeout', function ($parse, $timeout) {
         return {
             restrict: 'A',
             templateUrl: 'templates/add-dmdii-content/tabs/tab-quicklinks.html',
@@ -21,31 +21,28 @@ angular.module('dmc.addDmdiiContent').
                 $scope.isSaved = false;
                 $scope.fieldName = 'Description'
 
-                $scope.docAccessLevels = {
-                    'All Members': 'ALL_MEMBERS',
-                    'Project Participants': 'PROJECT_PARTICIPANTS',
-                    'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
-                    'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
-                }
-
                 var convertToMarkdown = function(input) {
                     var escaped = toMarkdown(input);
                     return escaped;
                 };
 
                 var quicklinkCallback = function(response) {
-                    $scope.quicklink = {};
+                    // $scope.quicklink = {};
                     $scope.noTitle = false;
                     $scope.noDescription = false;
                     $scope.noLink = false;
                     $scope.noDocSelected = false;
                     $scope.descriptionOverLimit = false;
                     toastModel.showToast('success', 'Quicklink Saved!');
-                    $window.location.reload();
+                    $timeout(function() {
+                        $window.location.reload();
+                    }, 1000);
                 };
 
                 $scope.clear = function() {
-                    $scope.quicklink = {};
+                    $scope.quicklink = {
+                        text: ''
+                    };
                     $scope.document = [];
                     $scope.noTitle = false;
                     $scope.noLink = false;
@@ -81,7 +78,7 @@ angular.module('dmc.addDmdiiContent').
                         $scope.quicklink.text = convertToMarkdown($scope.quicklink.text);
 
                         delete $scope.quicklink.link;
-                        delete $scope.quicklink.path;
+                        delete $scope.quicklink.doc;
 
                         if ($scope.noTitle || !$scope.isValid) {
                             return;
@@ -95,7 +92,7 @@ angular.module('dmc.addDmdiiContent').
                         $scope.quicklink.link = 'HTTP://' + $scope.quicklink.link;
 
                         delete $scope.quicklink.text;
-                        delete $scope.quicklink.path;
+                        delete $scope.quicklink.doc;
 
                         if ($scope.noTitle || $scope.noLink) {
                             return;
@@ -104,9 +101,6 @@ angular.module('dmc.addDmdiiContent').
                         if ($scope.document.length === 0) {
                             $scope.noDocSelected = true;
                         }
-
-                        delete $scope.quicklink.text;
-                        delete $scope.quicklink.link;
 
                         if ($scope.noTitle || $scope.noDocSelected) {
                             return;
@@ -122,21 +116,23 @@ angular.module('dmc.addDmdiiContent').
                     $scope.quicklink.created = year + '-' + month + '-' + day;
 
                     if ($scope.linkType === 'document') {
+                        $scope.quicklink.text = null;
+                        $scope.quicklink.link = null;
                         fileUpload.uploadFileToUrl($scope.document[0].file, {}, 'quickdoc', function(response) {
                             $scope.quicklink.doc = response.file.name;
-                            ajax.create(dataFactory.documentsUrl().save,
+                            ajax.create(dataFactory.saveDMDIIDocument(),
                                 {
                                     ownerId: $scope.user.accountId,
                                     documentUrl: $scope.quicklink.doc,
                                     documentName: $scope.quicklink.displayName,
-                                    docClass: 'QUICKLINK'
+                                    accessLevel: 'ALL_MEMBERS'
                                 }, function(response) {
                                 $scope.quicklink.doc = response.data;
-                                ajax.create(dataFactory.quicklinkUrl().save(), $scope.quicklink, quicklinkCallback);
+                                ajax.create(dataFactory.quicklinkUrl().save, $scope.quicklink, quicklinkCallback);
                             });
                         });
                     } else {
-                        ajax.create(dataFactory.quicklinkUrl().save(), $scope.quicklink, quicklinkCallback);
+                        ajax.create(dataFactory.quicklinkUrl().save, $scope.quicklink, quicklinkCallback);
                     }
                 };
                 function apply() {

@@ -9,6 +9,7 @@ angular.module('dmc.service-marketplace')
         '$scope',
         'ajax',
         'dataFactory',
+        'fileUpload',
         '$mdDialog',
         '$timeout',
         'questionToastModel',
@@ -22,6 +23,7 @@ angular.module('dmc.service-marketplace')
                   $scope,
                   ajax,
                   dataFactory,
+                  fileUpload,
                   $mdDialog,
                   $timeout,
                   questionToastModel,
@@ -161,7 +163,7 @@ angular.module('dmc.service-marketplace')
             $scope.favoritesCount = 0;
             var getFavoriteCount = function(){
                 ajax.get(dataFactory.getFavoriteProducts(),{
-                    accountId : $scope.$root.userData.accountId
+                    accountId : userData.accountId
                 },function(response){
                     $scope.favoritesCount = response.data.length;
                     apply();
@@ -355,22 +357,60 @@ angular.module('dmc.service-marketplace')
             };
 
             var uploadImage = function(image) {
-                fileUpload.uploadFileToUrl(image.file, {},'service').then(function(data){
+                if (image.tags) {
+                    image.tags.push({tagName: $scope.product.title + ' picture'});
+                    angular.forEach(image.tags, function(tag, index) {
+                        if (!angular.isObject(tag)) {
+                            image.tags[index] = {tagName: tag}
+                        }
+                    });
+                } else {
+                    image.tags = [{tagName: $scope.product.title + ' picture'}];
+                }
+                return fileUpload.uploadFileToUrl(image.file, {},'service').then(function(data){
                     var doc = {
                         documentUrl: data.file.name,
-                        documentName: data.key,
-                        ownerId: $scope.$root.userData.accountId,
+                        documentName: image.title + image.type,
+                        ownerId: userData.accountId,
                         parentType: 'SERVICE',
                         docClass: 'IMAGE',
                         parentId: $scope.product.id,
-                        accessLevel: image.accessLevel
+                        accessLevel: 'MEMBER',
+                        tags: image.tags
                     }
-                    ajax.create(dataFactory.documentsUrl().save, doc);
+
+                    return ajax.create(dataFactory.documentsUrl().save, doc);
                 });
             };
 
             var removeImage = function(imageId) {
                 ajax.delete(dataFactory.documentsUrl(imageId).delete, {});
+            };
+
+            var uploadDocument = function(doc) {
+                if (doc.tags) {
+                    doc.tags.push({tagName: $scope.product.title + ' document'});
+                    angular.forEach(doc.tags, function(tag, index) {
+                        if (!angular.isObject(tag)) {
+                            doc.tags[index] = {tagName: tag}
+                        }
+                    });
+                } else {
+                    doc.tags = [{tagName: $scope.product.title + ' document'}];
+                }
+                return fileUpload.uploadFileToUrl(doc.file, {},'service').then(function(data){
+                    var newDoc = {
+                        documentUrl: data.file.name,
+                        documentName: doc.title + doc.type,
+                        ownerId: userData.accountId,
+                        parentType: 'SERVICE',
+                        docClass: 'SUPPORT',
+                        parentId: $scope.product.id,
+                        accessLevel: 'MEMBER',
+                        tags: doc.tags
+                    }
+                    return ajax.create(dataFactory.documentsUrl().save, newDoc);
+                });
             };
 
             //save edit product
@@ -388,6 +428,10 @@ angular.module('dmc.service-marketplace')
 
                 angular.forEach($scope.removedImages, function(imageId) {
                     promises.push(removeImage(imageId));
+                });
+
+                angular.forEach($scope.documents, function(doc) {
+                    promises.push(uploadDocument(doc));
                 });
 
                 serviceModel.remove_services_tags($scope.removeTags);

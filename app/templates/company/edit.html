@@ -7,8 +7,8 @@
         <div class="content-panel">
             <div class="content-panel-body">
                 <md-content class="company-content">
-                    <div layout="row" layout-align="end center" ng-style="companyPicture" class="company-image">
-                        <div layout="column" ng-show="!isChangingPicture" style="right: 15px; top: 15px;  position: absolute;">
+                    <div layout="row" layout-align="start center" ng-style="companyPicture" class="company-image">
+                        <div layout="column" ng-show="!isChangingPicture && companyData.featureImage" style="right: 15px; top: 15px;  position: absolute;">
                             <div layout="row">
                                 <md-button class="md-fab md-mini company-buttons company-edit-picture" ng-click="changePicture()">
                                     <ng-md-icon icon="mode_edit" size="18"></ng-md-icon>
@@ -18,18 +18,16 @@
                                 </md-button>
                             </div>
                         </div>
-                        <div layout="column" ng-if="isChangingPicture || company.featureImage"
-                             flex>
+                        <div layout="column" ng-show="isChangingPicture || !companyData.featureImage" flex>
                              <div class="content-panel"
              	                source="featureImage"
              	                ui-widget-upload-documents
              	                widget-type="'row'"
              	                auto-upload="false"
              	                widget-title="'Upload Feature Image'"
-             	                allow-tagging="true"
              	                file-limit="1">
              	            </div>
-                            <md-button class="md-raised cancel-button" ng-click="cancelChangePicture()">Cancel</md-button>
+                            <md-button class="md-raised cancel-button" ng-show="companyData.featureImage" ng-click="cancelChangePicture()">Cancel</md-button>
                         </div>
                     </div>
                     <div layout="row" layout-padding layout-align="start start" class="company-title">
@@ -47,10 +45,9 @@
                                     widget-type="'row'"
                                     auto-upload="false"
                                     widget-title="'Upload Logo'"
-                                    allow-tagging="true"
                                     file-limit="1">
                                 </div>
-                                <md-button class="md-raised cancel-change-logo" flex ng-click="cancelChangeLogo()">
+                                <md-button class="md-raised cancel-change-logo" flex ng-show="companyData.logoImage" ng-click="cancelChangeLogo()">
                                     Cancel
                                 </md-button>
                             </div>

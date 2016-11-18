@@ -32,16 +32,17 @@ angular.module('dmc.company-profile').
                 };
 
                 $scope.addNewSkill = function(skill) {
-                    if ($scope.searchSkill.trim().length > 0 && !angular.isDefined($scope.source.areasOfExpertise)) {
+                    console.log(skill)
+                    if (skill.trim().length > 0 && !angular.isDefined($scope.source.areasOfExpertise)) {
                         $scope.source.areasOfExpertise = [{
-                            name: $scope.searchSkill,
+                            name: skill,
                             isDmdii: false,
                             description: null,
                             link: null
                         }];
-                    } else if ($scope.searchSkill.trim().length > 0) {
+                    } else if (skill.trim().length > 0) {
                         $scope.source.areasOfExpertise.push({
-                            name: $scope.searchSkill,
+                            name: skill,
                             isDmdii: false,
                             description: null,
                             link: null

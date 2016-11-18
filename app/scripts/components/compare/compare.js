@@ -25,7 +25,7 @@ angular.module('dmc.compare',[
             if($rootScope.comparedServicesIds.services.indexOf(data.serviceId) == -1) {
                 ajax.create(dataFactory.compare(null, type).add, data, function (response) {
                     $rootScope.comparedServices.services.push(response.data);
-                    $rootScope.comparedServicesIds.services.push(response.data.serviceId);
+                    $rootScope.comparedServicesIds.services.push(+response.data.serviceId);
                 });
             }
         };
@@ -113,6 +113,17 @@ angular.module('dmc.compare',[
                         $scope.products.arr = $.merge($scope.products.arr, response.data);
                         getTags($.map($scope.products.arr,function(x){ return x.id; }));
                         isFavorite.check($scope.products.arr);
+                        angular.forEach($scope.products.arr, function(product, index) {
+                            ajax.get(dataFactory.documentsUrl().getList, {parentType: 'SERVICE', parentId: product.id, docClass: 'IMAGE', recent: 5}, function(response) {
+                                if(response.data && response.data.data && response.data.data.length) {
+                                    $scope.products.arr[index].images = response.data.data;
+                                }
+                            });
+
+                            ajax.get(dataFactory.userAccount(product.owner).get, {}, function(response) {
+                                $scope.products.arr[index].ownerName = response.data.displayName;
+                            });
+                        });
                         $scope.products.count += response.data.length;
                         if (response.data.length > 0) $scope.switchProductType('service');
                         $scope.itemClass = $scope.getItemClass();
@@ -226,7 +237,7 @@ angular.module('dmc.compare',[
             apply();
         };
 
-        $scope.saveToProject = function(projectId,item){
+        $scope.saveToProject = function(projectId, item, index){
             var project = null;
             for(var i in $scope.projects){
                 if($scope.projects[i].id == projectId){
@@ -234,36 +245,65 @@ angular.module('dmc.compare',[
                     break;
                 }
             }
+
             if(project) {
-                var updatedItem = $.extend(true, {}, item.__serviceData);
-                updatedItem.currentStatus =  {
-                            project: {
-                                id: project.id,
-                                title: project.title
-                            }
-                        };
+                var updatedItem = $.extend(true, {}, $scope.products.arr[index]);
+                if (updatedItem.hasOwnProperty('$$hashKey')) {
+                    delete updatedItem['$$hashKey'];
+                }
+                updatedItem.currentStatus = {
+                    project: {
+                        id: project.id,
+                        title: project.title
+                    }
+                };
+                updatedItem.owner = userData.accountId;
                 updatedItem.projectId = project.id;
                 updatedItem.from = 'marketplace';
-                ajax.update(dataFactory.addServiceToProject(item.id), updatedItem, function (response) {
-                        $scope.cancelAddToProject(item);
-                        if(!item.currentStatus) item.currentStatus = {};
-                        if(!item.currentStatus.project) item.currentStatus.project = {};
-                        item.currentStatus.project.id = projectId;
-                        item.currentStatus.project.title = project.title;
-                        item.projectId = projectId;
-                        item.added = true;
+                updatedItem.published = false;
+                delete updatedItem.tags;
+                
+                ajax.create(dataFactory.services().add, updatedItem, function (response) {
+                    var id = response.data.id;
+                    $scope.cancelAddToProject(item);
+                    angular.forEach($scope.products.arr[index].tags, function(tag) {
+                        delete tag.id;
+                        tag.serviceId = id;
+                        ajax.create(dataFactory.services(id).add_tags, tag);
+                    });
+                    if ($scope.products.arr[index].images && $scope.products.arr[index].images.length) {
+                        angular.forEach($scope.products.arr[index].images, function(image) {
+                            delete image.id;
+                            image.ownerId = userData.accountId;
+                            image.parentId = id;
+                            ajax.create(dataFactory.documentsUrl().save, image)
+                        });
+                    };
+                    ajax.get(dataFactory.services(item.id).get_interface, {}, function(response) {
+                        angular.forEach(response.data, function(newDomeInterface) {
+                            delete newDomeInterface.id;
+                            newDomeInterface.serviceId = id;
+                            ajax.create(dataFactory.services().add_interface, newDomeInterface);
+                        });
+                    });
 
-                        item.lastProject = {
-                            title: project.title,
-                            href: '/project.php#/' + project.id + '/home'
-                        };
-                        $scope.addedTimeout = setTimeout(function () {
-                            item.added = false;
-                            apply();
-                        }, 20000);
+                    if(!$scope.products.arr[index].currentStatus) $scope.products.arr[index].currentStatus = {};
+                    if(!$scope.products.arr[index].currentStatus.project) $scope.products.arr[index].currentStatus.project = {};
+                    $scope.products.arr[index].currentStatus.project.id = projectId;
+                    $scope.products.arr[index].currentStatus.project.title = project.title;
+                    $scope.products.arr[index].projectId = projectId;
+                    $scope.products.arr[index].added = true;
+
+                    $scope.products.arr[index].lastProject = {
+                        title: project.title,
+                        href: '/project.php#/' + project.id + '/home'
+                    };
+                    $scope.addedTimeout = setTimeout(function () {
+                        $scope.products.arr[index].added = false;
                         apply();
-                    }
-                );
+                    }, 20000);
+                    apply();
+                });
             }
         };
 

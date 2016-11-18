@@ -30,7 +30,7 @@
                     <div layout="column" class="column"
                          ng-class="itemClass"
                          ng-show="currentProductType == 'all' || currentProductType == item.type"
-                         ng-repeat="item in products.arr">
+                         ng-repeat="item in products.arr track by $index">
                         <div layout="row">
                             <md-button aria-label="Favorite"
                                        ng-click="addToFavorite(item)"
@@ -44,12 +44,12 @@
                                 <ng-md-icon icon="delete" style="fill: grey;" size="23"></ng-md-icon>
                             </md-button>
                         </div>
-                        <div class="product-image"><img src="{{item.featureImage.thumbnail}}" alt="{{item.title}}"></div>
+                        <div class="product-image"><img src="{{item.images[0].documentUrl}}" alt="{{item.title}}"></div>
                         <!-- <div class="product-card__header" layout="column"
                             > -->
-        
+
                             <h2><a ng-href="{{'/component.php#/'+item.type+'s/'+item.id}}">{{item.title}}</a></h2>
-                            <h3><a ng-href="{{'/company.php#/'+item.companyId+'/storefront?product=services'}}">{{item.owner}}</a></h3>
+                            <h3><a ng-href="{{'/company.php#/'+item.companyId+'/storefront?product=services'}}">{{item.ownerName}}</a></h3>
                         <!-- </div> -->
                         <div class="star-rating">
                             <div class="star-rating__buttons">
@@ -77,7 +77,7 @@
                                        href=""
                                        ng-disabled="!item.projectModel"
                                        class="md-raised add"
-                                       ng-click="saveToProject(item.projectModel,item)">Add
+                                       ng-click="saveToProject(item.projectModel, item, $index)">Add
                             </md-button>
                         </div>
                         <div class="block-buttons" layout="row">
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-                <div layout="row" class="row description">
+                <div layout="row" class="row compare-description">
                     <div layout="column" class="column title"><h4>Description</h4></div>
                     <div layout="column" class="column"
                          ng-class="itemClass"

@@ -37,10 +37,23 @@ angular.module('dmc.company')
             parentType: 'ORGANIZATION',
             parentId: $scope.companyData.id,
             docClass: 'LOGO',
-            recent: 1
+            page: 0,
+            pageSize: 1
         }, function(response) {
             if (response.data.count > 0) {
-                $scope.companyData.logoImage = response.data.data[0];
+                $scope.companyData.logoImage = response.data.data[0].documentUrl;
+            };
+        });
+
+        ajax.get(dataFactory.documentsUrl().getList, {
+            parentType: 'ORGANIZATION',
+            parentId: $scope.companyData.id,
+            docClass: 'FEATURE_IMAGE',
+            page: 0,
+            pageSize: 1
+        }, function(response) {
+            if (response.data.count > 0) {
+                $scope.companyData.featureImage = response.data.data[0].documentUrl;
             };
         });
 
@@ -54,6 +67,20 @@ angular.module('dmc.company')
         if($scope.companyData && $scope.companyData.id) {
             $scope.currentUser = DMCUserModel.getUserData().then(function(res){
                 $scope.currentUser = res;
+                if ($scope.currentUser.roles && angular.isDefined($scope.currentUser.roles[$stateParams.companyId])) {
+                    $scope.currentUser.isVerified = true;
+                    switch ($scope.currentUser.roles[$stateParams.companyId]) {
+                        case 'ADMIN':
+                            $scope.currentUser.isAdmin = true;
+                            break;
+                        case 'VIP':
+                            $scope.currentUser.isVIP = true;
+                            break;
+                        case 'MEMBER':
+                            $scope.currentUser.isMember = true;
+                            break;
+                    }
+                }
                 //getCompanyJoinRequest();
                 CompareModel.get('services',$scope.currentUser);
             });

@@ -37,17 +37,17 @@ angular.module('dmc.view-all')
         	}
 
         	var getProfile = function(invitation){
-        		ajax.get(dataFactory.profiles(invitation.profileId).get,{},
+        		ajax.get(dataFactory.profiles(invitation.fromProfileId).get,{},
         			function(response){
         				invitation["profileImage"] = response.data.image;
         			}
         		);
         	}
-        	ajax.get(dataFactory.getMembersToProject(), 
+        	ajax.get(dataFactory.getMembersToProject(),
 	            {
 	                "profileId" : $scope.userData.profileId,
 	                "accept" : false,
-	            }, 
+	            },
 	            function(response){
 	            	$scope.invitations = response.data;
 	            	for(var i in $scope.invitations){
@@ -72,7 +72,7 @@ angular.module('dmc.view-all')
                         );
                     }
                 )
-	            
+
 			}
 			$scope.decline = function(index){
 	            ajax.delete(dataFactory.removeMembersToProject($scope.invitations[index].id),

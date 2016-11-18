@@ -42,7 +42,6 @@
     <script src="scripts/account/controllers/basics.js"></script>
     <script src="scripts/account/controllers/privacy.js"></script>
     <script src="scripts/account/controllers/notifications.js"></script>
-    <script src="scripts/account/controllers/profile.js"></script>
     <script src="scripts/account/controllers/servers.js"></script>
     <script src="scripts/common/models/phone-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
