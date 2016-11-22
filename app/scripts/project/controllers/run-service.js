@@ -13,6 +13,7 @@ angular.module('dmc.project')
         '$rootScope',
         'domeModel',
         '$state',
+        '$compile',
         function ($scope,
                   $stateParams,
                   projectData,
@@ -25,7 +26,8 @@ angular.module('dmc.project')
                   $interval,
                   $rootScope,
                   domeModel,
-                  $state) {
+                  $state,
+                  $compile) {
 
             $scope.ServiceId = $stateParams.ServiceId;
             $scope.rerun = (angular.isDefined($stateParams.rerun) ? $stateParams.rerun : null);
@@ -34,6 +36,7 @@ angular.module('dmc.project')
             $scope.orderInputs = 'position';
             $scope.isChangedOrder = false;
             $scope.isChangedValues = false;
+            $scope.hasCustomUI = false;
 
             $scope.sortableOptions = {
                 update: function(e, ui) {
@@ -71,6 +74,9 @@ angular.module('dmc.project')
                     for (var key in $scope.service.interfaceModel.outParams) {
                         $scope.service.interfaceModel.outParams[key].value = null;
                     }
+                    if('inputTemplate' in $scope.service.interfaceModel.inParams){
+                      updateCustomUIForInputs();
+                    }
                 }
                     updatePositionInputs();
                     // get current status
@@ -81,6 +87,68 @@ angular.module('dmc.project')
                     apply();
 
             });
+
+            function updateCustomUIForInputs() {
+              // Define our data object
+              var context = {};
+              var options;
+              var templateText;
+              var compiledTemplate;
+              var handleBarHtml;
+              var compiledHtml;
+              for(var key in $scope.service.interfaceModel.inParams){
+                    try{
+                      context[key] = JSON.parse($scope.service.interfaceModel.inParams[key].value);
+                    }catch(e){
+                      context[key] = $scope.service.interfaceModel.inParams[key].value;
+                    }
+              }
+              if($scope.service.interfaceModel.inParams['inputTemplate'].value){
+                templateText = $scope.service.interfaceModel.inParams['inputTemplate'].value;
+                compiledTemplate = Handlebars.compile(templateText);
+                handleBarHtml = compiledTemplate(context);
+                compiledHtml = $compile(handleBarHtml)($scope);
+
+                // Add the compiled html to the page
+                $('.content-placeholder').html(compiledHtml);
+                $scope.hasCustomUI = true;
+              }else{
+                $scope.hasCustomUI = false;
+              }
+            }
+
+            function updateCustomUIForOutputs() {
+              var context = {};
+              var options;
+              var templateText;
+              var compiledTemplate;
+              var handleBarHtml;
+              var compiledHtml;
+
+              for(var inKey in $scope.service.interfaceModel.inParams){
+                context[inKey] = $scope.service.interfaceModel.inParams[inKey].value;
+              }
+              for (var outKey in $scope.service.interfaceModel.outParams){
+		try{
+	             context[outKey] = JSON.parse($scope.service.interfaceModel.outParams[outKey].value);
+		}catch(e){
+		  context[outKey] = $scope.service.interfaceModel.outParams[outKey].value;
+		}
+              }
+
+              if($scope.service.interfaceModel.outParams['outputTemplate'].value){
+                templateText = $scope.service.interfaceModel.outParams['outputTemplate'].value;
+                compiledTemplate = Handlebars.compile(templateText);
+                handleBarHtml = compiledTemplate(context);
+                compiledHtml = $compile(handleBarHtml)($scope);
+
+                // Add the compiled html to the page
+                $('.content-placeholder').html(compiledHtml);
+                $scope.hasCustomUI = true;
+              }else{
+                $scope.hasCustomUI = false;
+              }
+            }
 
             function updatePositionInputs(){
                 if( $scope.service.position_inputs ) {
@@ -164,6 +232,7 @@ angular.module('dmc.project')
                 runModel();
             };
 
+
             function getStatus(status){
                 switch(status){
                     case 0:
@@ -214,6 +283,9 @@ angular.module('dmc.project')
                     // model done running
                     stopPolling();
                     $scope.service.interfaceModel.outParams = response.data.outParams;
+                    if('outputTemplate' in $scope.service.interfaceModel.outParams){
+                      updateCustomUIForOutputs();
+                    }
                 } else {
                     // model still running
                 }
@@ -238,6 +310,25 @@ angular.module('dmc.project')
                     }
                 }
                 if($scope.service.interface && $scope.service.interface.domeServer) {
+                  if($scope.hasCustomUI){
+                    for (var key in $scope.service.interfaceModel.inParams){
+                      var domeName = $scope.service.interfaceModel.inParams[key].name;
+                      if(document.getElementById(domeName)){
+                        var domeValue = document.getElementById(domeName).value;
+                        if(domeValue){
+                          $scope.service.interfaceModel.inParams[key].value = domeValue;
+                        }
+                      }else{
+                        $scope.service.interfaceModel.inParams[key].value = $scope.service.interfaceModel.inParams[key].defaultValue;
+                      }
+                    }
+                  }
+                  if($scope.service.interfaceModel && $scope.service.interfaceModel.inParams) {
+                      for (var key in $scope.service.interfaceModel.inParams) {
+                          // Escape double quotes since values will be passed as JSON strings
+                          $scope.service.interfaceModel.inParams[key].value = $scope.service.interfaceModel.inParams[key].value.replace(/"/g, '\\"');
+                      }
+                  }
                     domeModel.runModel({
                         serviceId : $scope.service.id.toString(),
                         inParams: $scope.service.interfaceModel.inParams,
