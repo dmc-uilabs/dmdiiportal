@@ -41,11 +41,11 @@
                class="link-button uppercase edit-button margin-left20">
                 <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
             </a>
-            <a ng-if="!isPreview && ($root.userData.accountId === projectCtrl.projectData.projectManagerId || $root.userData.isDmdiiAdmin)"
+            <!-- <a ng-if="!isPreview && ($root.userData.accountId === projectCtrl.projectData.projectManagerId || $root.userData.isDmdiiAdmin)"
                ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
                class="link-button uppercase invite-button margin-left20">
                 <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
-            </a>
+            </a> -->
             <md-button ng-if="isPreview && !invitation && projectCtrl.projectData.isPublic && !projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId !== projectCtrl.projectData.projectManagerId"
                        ng-click="joinProject()"
                        class="md-raised md-primary dmc-button" >

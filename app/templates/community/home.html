@@ -2,7 +2,7 @@
     <md-toolbar>
         <div class="md-toolbar-tools">
             <div layout="row" layout-align="start center" flex>
-                <md-input-container class="filterBox">
+                <!-- <md-input-container class="filterBox">
                     <label>Filter</label>
                     <md-select ng-model="searchTypeModel" ng-change="selectItemDropDown(searchTypeModel)">
                         <md-option ng-repeat="p in searchTypes" value="{{p.tag}}">{{p.name}}</md-option>
@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
                 <span flex></span>
                 <md-button class="md-raised dmc-button" ng-click="createDiscussion()">
@@ -52,16 +52,16 @@
         <!-- Left Content Column -->
         <div class="content-column" layout="column" flex="60">
             <!-- Discussions you follow -->
-            <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'following'" widget-title="'Discussions you follow'"></div>
+            <!-- <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'following'" widget-title="'Discussions you follow'"></div>
             <!-- Discussions from people you follow -->
-            <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'follow-people'" widget-title="'Discussions from people you follow'"></div>
+<!--            <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'follow-people'" widget-title="'Discussions from people you follow'"></div> -->
             <!-- Popular discussions -->
             <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'popular'" widget-title="'Popular discussions'"></div>
         </div>
         <!-- Right Content Column -->
         <div class="content-column" layout="column" flex>
             <!-- DMC Announcements-->
-            <div class="content-panel project dmc-announcements-content-panel margin-left12-5 margin-top-25" dmc-announcements widget-title="'DMC Announcements'"></div>
+            <!-- <div class="content-panel project dmc-announcements-content-panel margin-left12-5 margin-top-25" dmc-announcements widget-title="'DMC Announcements'"></div> -->
 
             <!-- DMC Events-->
             <div class="content-panel project dmc-events-content-panel margin-left12-5 margin-top-25" dmc-events widget-title="'Events'"></div>

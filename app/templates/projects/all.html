@@ -1,13 +1,13 @@
 <div class="page-header">
     <md-toolbar>
         <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="start end">
-            <md-input-container class="filterBox">
+            <!-- <md-input-container class="filterBox">
                 <label>Filter</label>
                 <md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')">
                     <md-option ng-click="updateFilter()" ng-repeat="f in filterList track by $index" ng-value="$index">{{f.name}}</md-option>
                 </md-select>
-            </md-input-container>
-            <div class="search" flex>
+            </md-input-container> -->
+            <!-- <div class="search" flex>
                 <form ng-submit="submit(searchText)" class="dmc-search global-search-form">
                     <div layout="column">
                         <div layout="row">
@@ -27,11 +27,11 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div> -->
             <md-button class="link-button add-project-button" md-no-ink
                        href="/add-project.php">
-                Add Project
-                <ng-md-icon icon="add" size="22"></ng-md-icon>
+              <span style="border:solid 1px green; padding: 10px">Add Workspace
+                <ng-md-icon icon="add" size="22"></ng-md-icon></span>
             </md-button>
             <!-- fill up the space between left and right area -->
             <div laout="column" flex="33">

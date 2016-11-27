@@ -26,8 +26,8 @@
         </div>
         <span flex></span>
         <div layout="row" layout-align="center center">
-            <ui-widget-stars-static size="15" ng-click="goToReview()" value="{{company.average_rating}}" text="({{company.average_rating}})"></ui-widget-stars-static>
-            <a ng-href="company.php#/{{company.id}}/storefront?product=services">View Storefront</a>
+            <!-- <ui-widget-stars-static size="15" ng-click="goToReview()" value="{{company.average_rating}}" text="({{company.average_rating}})"></ui-widget-stars-static>
+            <a ng-href="company.php#/{{company.id}}/storefront?product=services">View Storefront</a> -->
             <span flex></span>
             <div layout="column">
                 <div layout="row" flex="50">
@@ -55,9 +55,9 @@
                                ng-click="join()">
                         {{ !company.joinRequest ? 'Request to Join' : 'Pending Approval' }}
                     </md-button>
-                    <md-button ng-if="!userData.isAdmin" class="md-raised dmc-button" ng-click="follow()">
+                    <!-- <md-button ng-if="!userData.isAdmin" class="md-raised dmc-button" ng-click="follow()">
                         {{(followFlag) ? 'Unfollow' : 'Follow'}}
-                    </md-button>
+                    </md-button> -->
 
                 </div>
             </div>
@@ -257,11 +257,11 @@
 <md-tab label="Membership">
     <md-content class="tab-projects" layout="row">
         <div layout="column" flex="33" class="padding-left8" ng-if="company.dmdiiMemberId">
-            <h2>Dmdii Profile</h2>
+            <h2>DMDII Profile</h2>
             <a href="{{'member-page.php#/' + company.dmdiiMemberId}}">{{company.name}}</a>
         </div>
         <div layout="column" flex="33" class="padding-left8">
-            <h2>Reason for Joinig DMDll</h2>
+            <h2>Reason for Joining DMDll</h2>
             <p>{{company.reasonJoining}}</p>
         </div>
     </md-content>
@@ -305,18 +305,18 @@
 </div>
 
 <!--Reviews-->
-<div id="review" layout="row" class="reviews" layout-margin layout-fill>
+<!-- <div id="review" layout="row" class="reviews" layout-margin layout-fill>
     <!--left column-->
-    <div flex class="reviews-rating">
+  <!--  <div flex class="reviews-rating">
         <!--Rating header-->
-        <div layout="row" class="md-toolbar-tools reviews-rating-header">
+      <!--  <div layout="row" class="md-toolbar-tools reviews-rating-header">
             <h2>Reviews</h2>
             <ui-widget-stars-static size="15" value="{{company.average_rating}}" text="({{company.average_rating}})"></ui-widget-stars-static>
             <span flex></span>
             <md-button class="viewAll md-raised" ng-click="ViewAllReview()">View All({{company.number_of_comments}})</md-button>
         </div>
         <!--Rating-->
-        <div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
+      <!--  <div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
             <p>5 STAR</p>
             <md-progress-linear md-mode="determinate" value="{{company.precentage_stars[4]}}" flex></md-progress-linear>
             <p flex="5">{{company.precentage_stars[4]}}%</p>
@@ -343,7 +343,7 @@
         </div>
     </div>
     <!--right column-->
-    <div flex layout layout-align="center center">
+    <!--<div flex layout layout-align="center center">
         <md-button class="md-raised" ng-click="LeaveAReview()">Leave a Review</md-button>
         <span flex></span>
         <md-input-container>
@@ -356,7 +356,7 @@
 </div>
 
 <!--new review-->
-<div flex class="new-review" ng-if="LeaveFlag">
+<!--<div flex class="new-review" ng-if="LeaveFlag">
     <form name="CommentForm">
         <h2>Rating</h2>
         <ui-widget-stars-active size="20" select-star="stars(star)"></ui-widget-stars-active>
@@ -376,6 +376,6 @@
 <div ng-repeat="review in company.company_reviews">
     <ui-widget-review review="review" helpful-function="updateHelpful" reply-function="addReply" flagged-function="addFlagged"></ui-widget-review>
     <md-divider></md-divider>
-</div>
+</div> -->
 </md-content>
 </div>
