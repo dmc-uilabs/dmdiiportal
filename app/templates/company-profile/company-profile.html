@@ -281,7 +281,7 @@
     </div>
     <md-divider></md-divider>
     <div layout="row" layout-wrap>
-        <div flex="20" class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: verifiedLimit">
+        <div flex="20" class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: verifiedLimit | orderBy:'displayName'">
             <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
         </div>
     </div>
@@ -298,7 +298,7 @@
     </div>
     <md-divider></md-divider>
     <div layout="row" layout-wrap>
-        <div flex="20" class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: unverifiedLimit">
+        <div flex="20" class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: unverifiedLimit | orderBy:'displayName'">
             <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
         </div>
     </div>
