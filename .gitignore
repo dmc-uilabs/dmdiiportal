@@ -2,6 +2,7 @@
 .idea
 node_modules
 dist
+gziped
 bower_components
 test/bower_components
 
@@ -26,5 +27,6 @@ log/
 
 # Ignore cloud foundry files
 manifest.yml
+
 
 
