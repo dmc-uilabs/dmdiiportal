@@ -1,127 +1,99 @@
 {
-	"displayName": "Thomas Smith",
-	"accountId": 1,
-	"profileId": 1,
-	"companyId": 1,
-	"role": 1,
-	"roles": {
-		"0": "SUPERADMIN"
-	},
-	"termsConditions": true,
-	"notifications": {
-		"total": 3,
-		"items": [
-			{
-				"id": 24,
-				"image": "/uploads/profile/1/20151222084711000000.jpg",
-				"period": "today",
-				"type": "task",
-				"event": "TASK_ASSIGN",
-				"linkParams": {
-					"projectId": 5,
-					"projectTitle": "LOW HEAT LOSS TRANSFORMER",
-					"taskId": 18,
-					"displayName": "Thomas"
-				},
-				"date": "02/02/2016 11:10 AM",
-				"title": "Thomas assigned you a task.",
-				"link": "/project.php#/5/home?showTask=18",
-				"read": false,
-				"cleared": false
-			},
-			{
-				"id": 6,
-				"image": "/uploads/profile/1/20151222084711000000.jpg",
-				"period": "today",
-				"type": "company",
-				"event": "REPLY_REVIEW",
-				"linkParams": {
-					"companyId": 1,
-					"companyName": "GE",
-					"displayName": "Thomas"
-				},
-				"date": "02/02/2016 11:10 AM",
-				"title": "Thomas replied to your review of GE.",
-				"link": "/company-profile.php#/profile/1",
-				"read": true,
-				"cleared": false
-			},
-			{
-				"id": 17,
-				"image": "/uploads/profile/1/20151222084711000000.jpg",
-				"period": "today",
-				"type": "marketplace",
-				"event": "FAVORITED_SERVICE",
-				"linkParams": {
-					"serviceId": 2,
-					"serviceTitle": "Fan failure mode analysis",
-					"displayName": "Thomas"
-				},
-				"date": "02/02/2016 11:10 AM",
-				"title": "Fan failure mode analysis was favorited by Thomas",
-				"link": "/service-marketplace.php#/2",
-				"read": false,
-				"cleared": false
-			}
-		]
-	},
-	"runningServices": {
-		"total": 2,
-		"items": [
-			{
-				"title": "Capacitor Bank For Ldr Mining Co",
-				"serviceId": 3,
-				"projectId": 2,
-				"currentStatus": {
-					"percentCompleted": "25",
-					"startDate": "09/20/2015",
-					"startTime": "11:15 AM"
-				},
-				"$$hashKey": "object:38"
-			},
-			{
-				"title": "Incoming Compartment For Ldr Mining",
-				"serviceId": 1,
-				"projectId": 4,
-				"currentStatus": {
-					"percentCompleted": "55",
-					"startDate": "09/22/2015",
-					"startTime": "11:15 AM"
-				},
-				"$$hashKey": "object:39"
-			}
-		]
-	},
-	"messages": {
-		"total": 3,
-		"items": [
-			{
-				"user_name": "Thomas Smith",
-				"image": "/uploads/profile/1/20151222084711000000.jpg",
-				"text": "Invited you to a project",
-				"link": "/project.php#/preview/1",
-				"created_at": "01:18 AM"
-			},
-			{
-				"user_name": "Thomas Smith",
-				"image": "/uploads/profile/1/20151222084711000000.jpg",
-				"text": "Invited you to a project",
-				"link": "/project.php#/preview/1",
-				"created_at": "01:06 AM"
-			},
-			{
-				"user_name": "Thomas Smith",
-				"image": "/uploads/profile/1/20151222084711000000.jpg",
-				"text": "Invited you to a project",
-				"link": "/project.php#/preview/6",
-				"created_at": "04:12 PM"
-			}
-		]
-	},
-	"onboarding": {
-		"profile": true,
-		"account": false,
-		"company": true,
-		"storefront": true
-	}
+   "id":1,
+   "displayName":"Thomas Smith",
+   "accountId":1,
+   "profileId":1,
+   "companyId":1,
+   "companyName":"GE",
+   "role":1,
+   "realname":"Thomas Smith",
+   "title":"EVP",
+   "termsConditions":true,
+   "firstName":"Thomas",
+   "lastName":"Smith",
+   "email":"thomas.smith@ge.com",
+   "address":null,
+   "phone":null,
+   "image":null,
+   "runningServices":{
+      "items":[
+  			{
+  				"title": "Capacitor Bank For Ldr Mining Co",
+  				"serviceId": 3,
+  				"projectId": 2,
+  				"currentStatus": {
+  					"percentCompleted": "25",
+  					"startDate": "09/20/2015",
+  					"startTime": "11:15 AM"
+  				},
+  				"$$hashKey": "object:38"
+  			},
+  			{
+  				"title": "Incoming Compartment For Ldr Mining",
+  				"serviceId": 1,
+  				"projectId": 4,
+  				"currentStatus": {
+  					"percentCompleted": "55",
+  					"startDate": "09/22/2015",
+  					"startTime": "11:15 AM"
+  				},
+  				"$$hashKey": "object:39"
+  			}
+      ],
+      "totalItems":2
+   },
+   "messages":{
+      "items":[
+        {
+          "user_name": "Thomas Smith",
+          "image": "/uploads/profile/1/20151222084711000000.jpg",
+          "text": "Invited you to a project",
+          "link": "/project.php#/preview/1",
+          "created_at": "01:18 AM"
+        },
+        {
+          "user_name": "Thomas Smith",
+          "image": "/uploads/profile/1/20151222084711000000.jpg",
+          "text": "Invited you to a project",
+          "link": "/project.php#/preview/1",
+          "created_at": "01:06 AM"
+        },
+        {
+          "user_name": "Thomas Smith",
+          "image": "/uploads/profile/1/20151222084711000000.jpg",
+          "text": "Invited you to a project",
+          "link": "/project.php#/preview/6",
+          "created_at": "04:12 PM"
+        }
+      ],
+      "totalItems":3
+   },
+   "onboarding":{
+      "id":1,
+      "profile":true,
+      "account":false,
+      "company":true,
+      "storefront":true
+   },
+   "skills":[
+
+   ],
+   "roles": {
+    "0": "SUPERADMIN"
+   },
+   "isDMDIIMember":false,
+   "userContactInfo":{
+      "id":1,
+      "userPrivateContactInfo":null,
+      "userPublicContactInfo":null,
+      "userMemberPortalContactInfo":null
+   },
+   "aboutMe":null,
+   "resume":"",
+   "account":0,
+   "notifications":[
+
+   ],
+   "hasUnreadNotifications":false,
+   "timezone":null
 }
