@@ -7,6 +7,8 @@ import httpProxy from 'http-proxy';
 import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
+var gzip = require('gulp-gzip');
+var tar = require('gulp-tar');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -205,6 +207,10 @@ gulp.task('wiredep', () => {
 
 gulp.task('build', ['lint', 'php', 'images', 'ngtemplates', 'phpservice', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+});
+
+gulp.task('buildTarGZ', ['lint', 'php', 'images', 'ngtemplates', 'phpservice', 'extras'], () => {
+  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true})).pipe(tar('dist.tar')).pipe(gzip()).pipe(gulp.dest('./gziped'));
 });
 
 gulp.task('default', ['clean'], () => {
