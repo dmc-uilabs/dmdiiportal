@@ -210,7 +210,8 @@ gulp.task('build', ['lint', 'php', 'images', 'ngtemplates', 'phpservice', 'extra
 });
 
 gulp.task('buildTarGZ', ['lint', 'php', 'images', 'ngtemplates', 'phpservice', 'extras'], () => {
-  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true})).pipe(tar('dist.tar')).pipe(gzip()).pipe(gulp.dest('./gziped'));
+  var d = new Date();
+  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true})).pipe(tar('dist'+d.getFullYear()+(d.getMonth()+1)+d.getDate()+d.getHours()+d.getMinutes()+'.tar')).pipe(gzip()).pipe(gulp.dest('./gziped'));
 });
 
 gulp.task('default', ['clean'], () => {
