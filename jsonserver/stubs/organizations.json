@@ -1,14 +1,14 @@
 [
    {
       "id":1,
-      "name":"UI LABS",
+      "name":"EG LABS",
       "location":null,
-      "description":"UI LABZ",
+      "description":"EG LABZ",
       "division ":"InnovationEngine ",
       "industry ":"Digital Manufacturing ",
       "naicsCode ":"01010101 ",
-      "email ":"dmdii @uilabs.org ",
-      "phone ":"1.312.281.6911",
+      "email ":"email@email.com",
+      "phone ":"1.222.333.4444",
       "website":"http://www.uilabs.org/#about",
       "socialMediaLinkedin":null,
       "socialMediaTwitter":null,
@@ -25,7 +25,7 @@
       },
       "    reasonJoining ":"To transform American Manufacturing.",
       "featureImage":null,
-      "logoImage":"https://test-final-verify.s3.amazonaws.com / ORGANIZATION / cuid - 78 f627b8 - 412 c - 40 fb - 93e0 - ec7e1652e2b2 % 40 uilabs.idp.cirrusidentity.com /Documents / 1480383134--73126 - sanitized - uilabs ? AWSAccessKeyId = AKIAJSBNYLJTBCUKUEDA & Expires = 1482975134 &Signature = CJv8crQbZrCDp26gD4o7TokTZlo % 3 D ",
+      "logoImage":"http://cdn3-www.cattime.com/assets/uploads/gallery/25-funny-cat-memes/01_FUNNY-CAT-MEME.jpg",
       "    awards ":[
          {
             "    id ":3,
@@ -47,10 +47,10 @@
                "id":5,
                "contactType":"SUPPORT"
             },
-            "name":"Samir Shallwani",
+            "name":"J Doh",
             "phoneNumber":null,
             "title":null,
-            "email":"samir.shallwani@uilabs.org"
+            "email":"j.doh@email.org"
          }
       ],
       "areasOfExpertise":[
