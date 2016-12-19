@@ -1,76 +1,59 @@
-[
-	{
-		"id": 1,
-		"accountId": 1,
-		"name": "The Turbine Company",
-		"location": "Berkeley, California",
-		"description": "An American multinational conglomerate corporation incorporated in New York, and headquartered in Fairfield, Connecticut. As of 2016, the company operates through the following segments: Oil and Gas, Aviation, Healthcare, Transportation and Capital which cater to the needs of Financial services, Medical devices, Life Sciences, Pharmaceutical, Automotive, Software Development and Engineering industries.",
-		"division": "The Helicopter Company",
-		"industry": "The Helicopter Company",
-		"NAICSCode": 11111111111,
-		"RDFocus": "The Helicopter Company",
-		"customers": "General Electric",
-		"awardsReceived": "Best Company in USA",
-		"technicalExpertise": "Lorem Ipsum is simply dummy text",
-		"toolsSoftwareEquipmentMachines": "Lorem Ipsum is simply dummy text",
-		"postCollaboration": "Lorem Ipsum is simply dummy text",
-		"collaborationInterests": "Lorem Ipsum is simply dummy text",
-		"pastProjects": "Lorem Ipsum is simply dummy text",
-		"upcomingProjectInterests": "Lorem Ipsum is simply dummy text",
-		"address": "Martin Luther King Blvd",
-		"city": "Berkeley",
-		"state": 1,
-		"zipCode": "11111-1111",
-		"twitter": "https://twitter.com/thehelicoptercompany",
-		"linkedIn": "https://www.linkedin.com/in/thehelicoptercompany",
-		"website": "http://www.google.com",
-		"methodCommunication": 1,
-		"email": "thehelicoptercompany@gmail.com",
-		"phone": "",
-		"categoryTier": 1,
-		"dateJoined": "01/01/2016",
-		"reasonJoining": "Lorem Ipsum is simply dummy text",
-		"featureImage": {
-			"thumbnail": "/uploads/company/picture/1/20160315182723000000.jpg",
-			"large": "/uploads/company/picture/1/20160315182723000000.jpg"
-		},
-		"logoImage": "/uploads/company/logo/1/20160315182711000000.png"
-	},
-	{
-		"id": 2,
-		"accountId": 2,
-		"name": "The Turbine Company 2",
-		"location": "Berkeley, California",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariaturd",
-		"division": "The Helicopter Company",
-		"industry": "The Helicopter Company",
-		"NAICSCode": 11111111111,
-		"RDFocus": "The Helicopter Company",
-		"customers": "General Electric",
-		"awardsReceived": "Best Company in USA",
-		"technicalExpertise": "Lorem Ipsum is simply dummy text",
-		"toolsSoftwareEquipmentMachines": "Lorem Ipsum is simply dummy text",
-		"postCollaboration": "Lorem Ipsum is simply dummy text",
-		"collaborationInterests": "Lorem Ipsum is simply dummy text",
-		"pastProjects": "Lorem Ipsum is simply dummy text",
-		"upcomingProjectInterests": "Lorem Ipsum is simply dummy text",
-		"address": "Martin Luther King Blvd",
-		"city": "Berkeley",
-		"state": 1,
-		"zipCode": "11111-1111",
-		"twitter": "https://twitter.com/thehelicoptercompany",
-		"linkedIn": "https://www.linkedin.com/in/thehelicoptercompany",
-		"website": "http://www.google.com",
-		"methodCommunication": 1,
-		"email": "thehelicoptercompany@gmail.com",
-		"phone": "",
-		"categoryTier": 1,
-		"dateJoined": "01/01/2016",
-		"reasonJoining": "Lorem Ipsum is simply dummy text",
-		"featureImage": {
-			"thumbnail": "/uploads/company/picture/2/20151223085045000000.jpg",
-			"large": "/uploads/company/picture/2/20151223085045000000.jpg"
-		},
-		"logoImage": null
-	}
-]
+[{
+    "id": "1",
+    "accountId": "0",
+    "name": "UI LABZ",
+    "location": null,
+    "description": "UI LABZ solves large-scale
+    challenges by bringing University + Industry together with startups and government to accelerate the
+    deployment of emerging technologies through collaboration.UI LABZ is developing a portfolio of applied
+    research and commercialization Labs that lead to a
+    return on investment
+    for its partners,
+    improve local,
+    regional and national competitiveness,
+    and transform entire industries.Across its current Labs,
+    UI
+    LABZ has more than 200 members from industry,
+    academic and research institutions,
+    states and cities,
+    and community organizations.
+    ",
+		"division ":"Innovation Engine ",
+		"industry ":"Digital Manufacturing ",
+		"customers ": null,
+    "awardsReceived": null,
+    "technicalExpertise": null,
+    "toolsSoftwareEquipmentMachines": null,
+    "pastCollaborations": "DMDII and City Digital",
+    "collaborationInterests": null,
+    "pastProjects": "",
+    "upcomingProjectInterests": "Project 15-16-08",
+    "address": "1415 N Cherry, ",
+    "city": "Chicago",
+    "state": 0,
+    "zipCode": "60642",
+    "twitter": null,
+    "linkedIn": null,
+    "website": "http://www.uilabs.org/#about",
+    "methodCommunication": "1",
+    "email": "dmdii
+    @uilabs.org ","
+    phone ":"
+    1.312 .281 .6911 ","
+    categoryTier ":0,"
+    dateJoined ":null,"
+    reasonJoining ":"
+    To transform
+    American Manufacturing.
+    ","
+    featureImage ":{"
+    thumbnail ":"","
+    large ":""},"
+    logoImage ":"","
+    follow ":false,"
+    favoritesCount ":0,"
+    isOwner ":false,"
+    owner ": null,
+    "NAICSCode": "01010101",
+    "RDFocus": null
+}]
