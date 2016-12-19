@@ -1,7 +1,7 @@
 [{
     "id": 56,
-    "title": "Tony's Project",
-    "projectManager": "Tony Wamsley",
+    "title": "Title of a project",
+    "projectManager": "J Doe",
     "projectManagerId": 28,
     "comapanyId": "",
     "featureImage": {
@@ -9,7 +9,7 @@
         "large": ""
     },
     "images": "",
-    "description": "Overview",
+    "description": "Description of a project",
     "dueDate": 1479272400000,
     "requiresAdminApprovalToJoin": false,
     "isPublic": true,
@@ -32,8 +32,8 @@
     }
 }, {
     "id": 59,
-    "title": "add service from marketplace",
-    "projectManager": "Alex Maties",
+    "title": "Title of a project",
+    "projectManager": "J Doe",
     "projectManagerId": 2,
     "comapanyId": "",
     "featureImage": {
@@ -41,7 +41,7 @@
         "large": ""
     },
     "images": "",
-    "description": "public project to add a service from marketplace",
+    "description": "Description of a project",
     "dueDate": 1479794400000,
     "requiresAdminApprovalToJoin": false,
     "isPublic": true,
@@ -64,8 +64,8 @@
     }
 }, {
     "id": 63,
-    "title": "public project pub server",
-    "projectManager": "Alex Maties",
+    "title": "Title of a project",
+    "projectManager": "J Doe",
     "projectManagerId": 2,
     "comapanyId": "",
     "featureImage": {
@@ -73,7 +73,7 @@
         "large": ""
     },
     "images": "",
-    "description": "ss",
+    "description": "Description of a project",
     "dueDate": 1479276000000,
     "requiresAdminApprovalToJoin": true,
     "isPublic": true,
@@ -96,8 +96,8 @@
     }
 }, {
     "id": 64,
-    "title": "public server for real now",
-    "projectManager": "Samir Shallwani",
+    "title": "Title of a project",
+    "projectManager": "J Doe",
     "projectManagerId": 7,
     "comapanyId": "",
     "featureImage": {
@@ -105,7 +105,7 @@
         "large": ""
     },
     "images": "",
-    "description": "sdfsds",
+    "description": "Description of a project",
     "dueDate": 1481263200000,
     "requiresAdminApprovalToJoin": false,
     "isPublic": true,
@@ -128,8 +128,8 @@
     }
 }, {
     "id": 74,
-    "title": "Project Showcase",
-    "projectManager": "alex dmc",
+    "title": "Title of a project",
+    "projectManager": "J Doe",
     "projectManagerId": 93,
     "comapanyId": "",
     "featureImage": {
@@ -137,7 +137,7 @@
         "large": ""
     },
     "images": "",
-    "description": "Welcome to the Project Showcase",
+    "description": "Description of a project",
     "dueDate": 1479362400000,
     "requiresAdminApprovalToJoin": false,
     "isPublic": true,
@@ -160,8 +160,8 @@
     }
 }, {
     "id": 75,
-    "title": "DOME_NCSU",
-    "projectManager": "Shaurabh Kumar Singh",
+    "title": "Title of a project",
+    "projectManager": "J Doe",
     "projectManagerId": 90,
     "comapanyId": "",
     "featureImage": {
@@ -169,7 +169,7 @@
         "large": ""
     },
     "images": "",
-    "description": "Machine data Analysis",
+    "description": "Description of a project",
     "dueDate": 1490932800000,
     "requiresAdminApprovalToJoin": false,
     "isPublic": true,
@@ -192,8 +192,8 @@
     }
 }, {
     "id": 76,
-    "title": "NC State",
-    "projectManager": "alex dmc",
+    "title": "Title of a project",
+    "projectManager": "J Doe",
     "projectManagerId": 93,
     "comapanyId": "",
     "featureImage": {
@@ -201,7 +201,7 @@
         "large": ""
     },
     "images": "",
-    "description": "This is for collaboration around DMDII project 15-16-08",
+    "description": "Description of a project",
     "dueDate": 1497416400000,
     "requiresAdminApprovalToJoin": false,
     "isPublic": true,
@@ -224,8 +224,8 @@
     }
 }, {
     "id": 77,
-    "title": "Single Shear Joint",
-    "projectManager": "Andy Berberich",
+    "title": "Title of a project",
+    "projectManager": "J Doe",
     "projectManagerId": 20,
     "comapanyId": "",
     "featureImage": {
@@ -233,7 +233,7 @@
         "large": ""
     },
     "images": "",
-    "description": "Tool to calculate margin of safety for a single shear joint between two parts with a shim and fastener.",
+    "description": "Description of a project",
     "dueDate": 1480485600000,
     "requiresAdminApprovalToJoin": true,
     "isPublic": true,
@@ -256,8 +256,8 @@
     }
 }, {
     "id": 79,
-    "title": "DMC usecases",
-    "projectManager": "Alex Maties",
+    "title": "Title of a project",
+    "projectManager": "J Doe",
     "projectManagerId": 2,
     "comapanyId": "",
     "featureImage": {
@@ -265,7 +265,7 @@
         "large": ""
     },
     "images": "",
-    "description": "Use Cases to be shown.",
+    "description": "Description of a project",
     "dueDate": 0,
     "requiresAdminApprovalToJoin": false,
     "isPublic": true,
@@ -288,8 +288,8 @@
     }
 }, {
     "id": 80,
-    "title": "Digital Manufacturing Commons at the Defense Manufacturing Conference",
-    "projectManager": "Alex Maties",
+    "title": "Title of a project",
+    "projectManager": "J Doe",
     "projectManagerId": 2,
     "comapanyId": "",
     "featureImage": {
@@ -297,7 +297,7 @@
         "large": ""
     },
     "images": "",
-    "description": "DMC demos for Defense Manufacturing Conference",
+    "description": "Description of a project",
     "dueDate": 1481263200000,
     "requiresAdminApprovalToJoin": false,
     "isPublic": true,
@@ -320,8 +320,8 @@
     }
 }, {
     "id": 87,
-    "title": "MRA01",
-    "projectManager": "Joe Mazrimas",
+    "title": "Title of a project",
+    "projectManager": "J Doe",
     "projectManagerId": 179,
     "comapanyId": "",
     "featureImage": {
@@ -329,7 +329,7 @@
         "large": ""
     },
     "images": "",
-    "description": "MRA01",
+    "description": "Description of a project",
     "dueDate": 1483164000000,
     "requiresAdminApprovalToJoin": true,
     "isPublic": false,
