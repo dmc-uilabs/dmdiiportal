@@ -1,154 +1,156 @@
 [
-  {
-    "id": 1,
-    "name": "UI LABS",
-    "location": null,
-    "description": "UI LABS solves large-scale challenges by bringing
-    University + Industry together with startups and government to accelerate the deployment of emerging
-    technologies through collaboration.UI LABS is developing a portfolio of applied research and commercialization
-    Labs that lead to a
-    return on investment
-    for its partners,
-    improve local,
-    regional and national competitiveness,
-    and transform entire industries.Across its current Labs,
-    UI LABS has more than 200 members from industry,
-    academic and research institutions,
-    states and cities,
-    and community organizations.
-    ","
-    division ":"
-    Innovation
-    Engine ","
-    industry ":"
-    Digital Manufacturing ","
-    naicsCode ":"
-    01010101 ","
-    email ":"
-    dmdii @uilabs.org ","
-    phone ": "1.312.281.6911",
-    "website": "http://www.uilabs.org/#about",
-    "socialMediaLinkedin": null,
-    "socialMediaTwitter": null,
-    "socialMediaInthenews": null,
-    "perferedCommMethod": "1",
-    "address": {
-        "id": 1,
-        "streetAddress1": "1415 N
-        Cherry ","
-        streetAddress2 ":"
-        ","
-        city ":"
-        Chicago ","
-        state ":"
-        IL ","
-        country ":"
-        US ","
-        zip ":"
-        60642 "},"
-        reasonJoining ": "To transform American Manufacturing.",
-        "featureImage": null,
-        "logoImage": "","
-        awards ":[{"
-        id ":3,"
-        name ":"
-        Design of the Year ","
-        description ": "UI LABS' facility was recognized as the \"Design of the Year\" by the Chicago chapter of the American
-        Institute of Architects.
-        ","
-        link ":"
-        http: //www.google.com"},{"id":4,"name":"Project of the Year","description"
-            : "UI LABS' facility was recognized as \"Project of the Year\" by Core Net Chicago.",
-        "link": null
-    }], "contacts": [{
-    "id": 3,
-    "contactType": {
-        "id": 5,
-        "contactType": "SUPPORT"
-    },
-    "name": "Jane Doe",
-    "phoneNumber": null,
-    "title": null,
-    "email": "jane.Doe@uilabs.org"
-}], "areasOfExpertise": [{
-    "id": 9,
-    "name": "Business Process
-    Management ","
-    description ":null,"
-    link ":null,"
-    isDmdii ":true},{"
-    id ":16,"
-    name ":"
-    Consumer - driven innovation ",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}, {
-    "id": 19,
-    "name": "Cybersecurity Technology",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}, {
-    "id": 28,
-    "name": "Digital Value Chain",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}, {
-    "id": 28,
-    "name": "Digital Value Chain",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}, {
-    "id": 47,
-    "name": "Information Assurance",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}, {
-    "id": 48,
-    "name": "Innovation and Product Development",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}, {
-    "id": 60,
-    "name": "Manufacturing Process Design and Development",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}, {
-    "id": 81,
-    "name": "Operational Quality Assurance",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}, {
-    "id": 85,
-    "name": "Product Life Cycle Excellence",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}, {
-    "id": 88,
-    "name": "R&D",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}], "desiredAreasOfExpertise": [{
-    "id": 7,
-    "name": "Big Data",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}, {
-    "id": 41,
-    "name": "Green Building Practices",
-    "description": null,
-    "link": null,
-    "isDmdii": true
-}], "dmdiiMemberId": 1, "postCollaboration": "DMDII and City Digital", "upcomingProjectInterests": "Project 15-16-08", "pastProjects": ""
-}
+   {
+      "id":1,
+      "name":"UI LABS",
+      "location":null,
+      "description":"UI LABZ",
+      "division ":"InnovationEngine ",
+      "industry ":"Digital Manufacturing ",
+      "naicsCode ":"01010101 ",
+      "email ":"dmdii @uilabs.org ",
+      "phone ":"1.312.281.6911",
+      "website":"http://www.uilabs.org/#about",
+      "socialMediaLinkedin":null,
+      "socialMediaTwitter":null,
+      "socialMediaInthenews":null,
+      "perferedCommMethod":"1",
+      "address":{
+         "id":1,
+         "streetAddress1":"1415 N    Cherry ",
+         "    streetAddress2 ":"    ",
+         "    city ":"    Chicago ",
+         "    state ":"    IL ",
+         "    country ":"    US ",
+         "    zip ":"    60642 "
+      },
+      "    reasonJoining ":"To transform American Manufacturing.",
+      "featureImage":null,
+      "logoImage":"https://test-final-verify.s3.amazonaws.com / ORGANIZATION / cuid - 78 f627b8 - 412 c - 40 fb - 93e0 - ec7e1652e2b2 % 40 uilabs.idp.cirrusidentity.com /Documents / 1480383134--73126 - sanitized - uilabs ? AWSAccessKeyId = AKIAJSBNYLJTBCUKUEDA & Expires = 1482975134 &Signature = CJv8crQbZrCDp26gD4o7TokTZlo % 3 D ",
+      "    awards ":[
+         {
+            "    id ":3,
+            "    name ":"    Design of the Year ",
+            "    description ":"UI LABS' facility was recognized as the \"Design of the Year\" by the Chicago chapter of the American    Institute of Architects.    ",
+            "    link ":"    http: //www.google.com"
+         },
+         {
+            "id":4,
+            "name":"Project of the Year",
+            "description":"UI LABS' facility was recognized as \"Project of the Year\" by Core Net Chicago.",
+            "link":null
+         }
+      ],
+      "contacts":[
+         {
+            "id":3,
+            "contactType":{
+               "id":5,
+               "contactType":"SUPPORT"
+            },
+            "name":"Samir Shallwani",
+            "phoneNumber":null,
+            "title":null,
+            "email":"samir.shallwani@uilabs.org"
+         }
+      ],
+      "areasOfExpertise":[
+         {
+            "id":9,
+            "name":"Business ProcessManagement ",
+            "description ":null,
+            "link ":null,
+            "isDmdii ":true
+         },
+         {
+            "id ":16,
+            "name ":"Consumer - driven innovation ",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":19,
+            "name":"Cybersecurity Technology",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":28,
+            "name":"Digital Value Chain",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":28,
+            "name":"Digital Value Chain",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":47,
+            "name":"Information Assurance",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":48,
+            "name":"Innovation and Product Development",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":60,
+            "name":"Manufacturing Process Design and Development",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":81,
+            "name":"Operational Quality Assurance",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":85,
+            "name":"Product Life Cycle Excellence",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":88,
+            "name":"R&D",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         }
+      ],
+      "desiredAreasOfExpertise":[
+         {
+            "id":7,
+            "name":"Big Data",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":41,
+            "name":"Green Building Practices",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         }
+      ],
+      "dmdiiMemberId":1,
+      "postCollaboration":"DMDII and City Digital",
+      "upcomingProjectInterests":"Project 15-16-08",
+      "pastProjects":""
+   }
 ]

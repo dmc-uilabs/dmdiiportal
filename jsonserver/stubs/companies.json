@@ -1,59 +1,43 @@
-[{
-    "id": "1",
-    "accountId": "0",
-    "name": "UI LABZ",
-    "location": null,
-    "description": "UI LABZ solves large-scale
-    challenges by bringing University + Industry together with startups and government to accelerate the
-    deployment of emerging technologies through collaboration.UI LABZ is developing a portfolio of applied
-    research and commercialization Labs that lead to a
-    return on investment
-    for its partners,
-    improve local,
-    regional and national competitiveness,
-    and transform entire industries.Across its current Labs,
-    UI
-    LABZ has more than 200 members from industry,
-    academic and research institutions,
-    states and cities,
-    and community organizations.
-    ",
-		"division ":"Innovation Engine ",
-		"industry ":"Digital Manufacturing ",
-		"customers ": null,
-    "awardsReceived": null,
-    "technicalExpertise": null,
-    "toolsSoftwareEquipmentMachines": null,
-    "pastCollaborations": "DMDII and City Digital",
-    "collaborationInterests": null,
-    "pastProjects": "",
-    "upcomingProjectInterests": "Project 15-16-08",
-    "address": "1415 N Cherry, ",
-    "city": "Chicago",
-    "state": 0,
-    "zipCode": "60642",
-    "twitter": null,
-    "linkedIn": null,
-    "website": "http://www.uilabs.org/#about",
-    "methodCommunication": "1",
-    "email": "dmdii
-    @uilabs.org ","
-    phone ":"
-    1.312 .281 .6911 ","
-    categoryTier ":0,"
-    dateJoined ":null,"
-    reasonJoining ":"
-    To transform
-    American Manufacturing.
-    ","
-    featureImage ":{"
-    thumbnail ":"","
-    large ":""},"
-    logoImage ":"","
-    follow ":false,"
-    favoritesCount ":0,"
-    isOwner ":false,"
-    owner ": null,
-    "NAICSCode": "01010101",
-    "RDFocus": null
-}]
+[
+   {
+      "id":"1",
+      "accountId":"0",
+      "name":"UI LABS",
+      "location":null,
+      "description":"UI LABZ",
+      "division ":"Innovation Engine ",
+      "industry ":"Digital Manufacturing ",
+      "customers ":null,
+      "awardsReceived":null,
+      "technicalExpertise":null,
+      "toolsSoftwareEquipmentMachines":null,
+      "pastCollaborations":"DMDII and City Digital",
+      "collaborationInterests":null,
+      "pastProjects":"",
+      "upcomingProjectInterests":"Project 15-16-08",
+      "address":"1415 N Cherry, ",
+      "city":"Chicago",
+      "state":0,
+      "zipCode":"60642",
+      "twitter":null,
+      "linkedIn":null,
+      "website":"http://www.uilabs.org/#about",
+      "methodCommunication":"1",
+      "email":"dmdii@uilabs.org ",
+      "phone ":"1.312 .281 .6911 ",
+      "categoryTier ":0,
+      "dateJoined ":null,
+      "reasonJoining ":"",
+      "featureImage ":{
+         "thumbnail ":"",
+         "large ":""
+      },
+      "logoImage ":"",
+      "follow ":false,
+      "favoritesCount ":0,
+      "isOwner ":false,
+      "owner ":null,
+      "NAICSCode":"01010101",
+      "RDFocus":null
+   }
+]
