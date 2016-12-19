@@ -15,12 +15,14 @@ angular.module('dmc.component.members-card', [
 		controller: ['$scope', '$mdDialog', 'ajax', 'dataFactory', 'DMCUserModel', 'toastModel', function($scope, $mdDialog, ajax, dataFactory, DMCUserModel, toastModel){
             $scope.projects = [];
             $scope.addingToProject = false;
-            ajax.get(
-                dataFactory.getProjects(), {},
-                function(response){
-                    $scope.projects = response.data;
-                }
-            );
+						var addProjectsToScope = function() {
+							ajax.get(
+								dataFactory.getProjects(), {},
+								function(response){
+									$scope.projects = response.data;
+								}
+							);
+						};
 
 			$scope.userData = null;
 			DMCUserModel.getUserData().then(function(res){
@@ -57,6 +59,7 @@ angular.module('dmc.component.members-card', [
             // add member to project
             $scope.saveToProject = function(projectId){
                 var project = null;
+								addProjectsToScope();
                 for(var i in $scope.projects){
                     if($scope.projects[i].id == projectId){
                         project = $scope.projects[i];
