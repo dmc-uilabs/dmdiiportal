@@ -1,18 +1,18 @@
 [
    {
       "id":25,
-      "displayName":"Thomas McDermott",
+      "displayName":"J Doe",
       "accountId":25,
       "profileId":25,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Thomas McDermott",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Thomas",
-      "lastName":"McDermott",
-      "email":"thomas.mcdermott@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -59,18 +59,18 @@
    },
    {
       "id":19,
-      "displayName":"Rachel Seamon",
+      "displayName":"J Doe",
       "accountId":19,
       "profileId":19,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Rachel Seamon",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Rachel",
-      "lastName":"Seamon",
-      "email":"rachel.m.seamon@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -117,18 +117,18 @@
    },
    {
       "id":11,
-      "displayName":"Katie Tillery-Merk",
+      "displayName":"J Doe",
       "accountId":11,
       "profileId":11,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Katie Tillery-Merk",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Katie",
-      "lastName":"Tillery-Merk",
-      "email":"usingdmc02@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -164,14 +164,14 @@
          "userPrivateContactInfo":null,
          "userPublicContactInfo":{
             "id":8,
-            "email":"Katie.Tillery-Merk@uilabs.org",
-            "phone":"3122816831",
+            "email":"J.Doe@email.com",
+            "phone":"111222444",
             "location":"Chicago, IL"
          },
          "userMemberPortalContactInfo":{
             "id":6,
-            "email":"Katie.Tillery-Merk@uilabs.org",
-            "phone":"3122816831",
+            "email":"J.Doe@email.com",
+            "phone":"111222444",
             "location":"Chicago, IL"
          }
       },
@@ -186,18 +186,18 @@
    },
    {
       "id":22,
-      "displayName":"Mary Kate Love",
+      "displayName":"J Doe",
       "accountId":22,
       "profileId":22,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Mary Kate Love",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Mary Kate",
-      "lastName":"Love",
-      "email":"marykatelove23@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -244,18 +244,18 @@
    },
    {
       "id":5,
-      "displayName":"Amanda Needham",
+      "displayName":"J Doe",
       "accountId":5,
       "profileId":5,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Amanda Needham",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Amanda",
-      "lastName":"Needham",
-      "email":"dmdii.su.023@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -303,18 +303,18 @@
    },
    {
       "id":30,
-      "displayName":"alex maties",
+      "displayName":"J Doe",
       "accountId":30,
       "profileId":30,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"alex maties",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"alex",
-      "lastName":"maties",
-      "email":"alex.maties@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -361,18 +361,18 @@
    },
    {
       "id":32,
-      "displayName":"Khai Waterman",
+      "displayName":"J Doe",
       "accountId":32,
       "profileId":32,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Khai Waterman",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"KhaiDMC",
-      "lastName":"WatermanDMC",
-      "email":"kpwaterman@yahoo.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -419,18 +419,18 @@
    },
    {
       "id":6,
-      "displayName":"DMDII SU024",
+      "displayName":"J Doe",
       "accountId":6,
       "profileId":6,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"DMDII SU024",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"DMDII",
-      "lastName":"SU024",
-      "email":"dmdii.su.024@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -478,18 +478,18 @@
    },
    {
       "id":39,
-      "displayName":"Erin Connell",
+      "displayName":"J Doe",
       "accountId":39,
       "profileId":39,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Erin Connell",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Erin",
-      "lastName":"Connell",
-      "email":"erin.connell@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -536,18 +536,18 @@
    },
    {
       "id":13,
-      "displayName":"Reg User",
+      "displayName":"J Doe",
       "accountId":13,
       "profileId":13,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Reg User",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"RegUser",
-      "lastName":"Marcin",
-      "email":"timex56@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -594,18 +594,18 @@
    },
    {
       "id":38,
-      "displayName":"Sean Bridwell",
+      "displayName":"J Doe",
       "accountId":38,
       "profileId":38,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Sean Bridwell",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Sean",
-      "lastName":"Bridwell",
-      "email":"seanbridwell@austin.rr.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -650,18 +650,18 @@
    },
    {
       "id":47,
-      "displayName":"Emily O'Keeffe",
+      "displayName":"J Doe",
       "accountId":47,
       "profileId":47,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Emily O'Keeffe",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Emily",
-      "lastName":"O'Keeffe",
-      "email":"emily.okeeffe@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -706,18 +706,18 @@
    },
    {
       "id":58,
-      "displayName":"Sathya Iyer",
+      "displayName":"J Doe",
       "accountId":58,
       "profileId":58,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Sathya Iyer",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Sathya",
-      "lastName":"Iyer",
-      "email":"sathya.iyer@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -764,18 +764,18 @@
    },
    {
       "id":9,
-      "displayName":"Lizabeth Stuck",
+      "displayName":"J Doe",
       "accountId":9,
       "profileId":9,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Lizabeth Stuck",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Lizabeth",
-      "lastName":"Stuck",
-      "email":"dmdii.su.027@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -823,18 +823,18 @@
    },
    {
       "id":88,
-      "displayName":"Joelle Hong",
+      "displayName":"J Doe",
       "accountId":88,
       "profileId":88,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Joelle Hong",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Joelle",
-      "lastName":"Hong",
-      "email":"jhong@perkinscoie.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -879,18 +879,18 @@
    },
    {
       "id":7,
-      "displayName":"Samir Shallwani",
+      "displayName":"J Doe",
       "accountId":7,
       "profileId":7,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Samir Shallwani",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Samir",
-      "lastName":"Shallwani",
-      "email":"DMDII.su.025@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -941,16 +941,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":6,
-               "email":"dmdii.su.024@gmail.com",
-               "displayName":"DMDII SU024"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478880733442,
-            "message":"DMDII SU024 has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -958,16 +958,16 @@
             "type":"USER_REQUESTS_VERIFICATION",
             "createdBy":{
                "id":75,
-               "email":"michael.howard@uilabs.org",
-               "displayName":"Michael Howard"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478538336988,
-            "message":"Michael Howard has requested to be verified as a member of your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -975,16 +975,16 @@
             "type":"USER_REQUESTS_VERIFICATION",
             "createdBy":{
                "id":32,
-               "email":"kpwaterman@yahoo.com",
-               "displayName":"Khai Waterman"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478535059855,
-            "message":"KhaiDMC WatermanDMC has requested to be verified as a member of your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -992,16 +992,16 @@
             "type":"USER_REQUESTS_VERIFICATION",
             "createdBy":{
                "id":32,
-               "email":"kpwaterman@yahoo.com",
-               "displayName":"Khai Waterman"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478535059409,
-            "message":"KhaiDMC WatermanDMC has requested to be verified as a member of your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1009,16 +1009,16 @@
             "type":"USER_REQUESTS_VERIFICATION",
             "createdBy":{
                "id":32,
-               "email":"kpwaterman@yahoo.com",
-               "displayName":"Khai Waterman"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478535058854,
-            "message":"KhaiDMC WatermanDMC has requested to be verified as a member of your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1026,16 +1026,16 @@
             "type":"USER_REQUESTS_VERIFICATION",
             "createdBy":{
                "id":32,
-               "email":"kpwaterman@yahoo.com",
-               "displayName":"Khai Waterman"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478535057427,
-            "message":"KhaiDMC WatermanDMC has requested to be verified as a member of your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1043,16 +1043,16 @@
             "type":"USER_REQUESTS_VERIFICATION",
             "createdBy":{
                "id":32,
-               "email":"kpwaterman@yahoo.com",
-               "displayName":"Khai Waterman"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478535036145,
-            "message":"KhaiDMC WatermanDMC has requested to be verified as a member of your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1060,16 +1060,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":32,
-               "email":"kpwaterman@yahoo.com",
-               "displayName":"Khai Waterman"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478535030734,
-            "message":"KhaiDMC WatermanDMC has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1077,16 +1077,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":75,
-               "email":"michael.howard@uilabs.org",
-               "displayName":"Michael Howard"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478294501752,
-            "message":"Michael Howard has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1094,16 +1094,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":73,
-               "email":"jerryv@omnicoagv.com",
-               "displayName":"Jerry Vanneste"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478277610519,
-            "message":"Jerry Vanneste has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1111,16 +1111,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":71,
-               "email":"avoll@sibleymachine.com",
-               "displayName":"Ann Voll"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478269797397,
-            "message":"Ann Voll has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1128,16 +1128,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":70,
-               "email":"testingdmc02@gmail.com",
-               "displayName":"testing02 DMC"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478215056150,
-            "message":"testing02 DMC has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1145,16 +1145,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":10,
-               "email":"dmdii.su.028@gmail.com",
-               "displayName":"DMDII SU028"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478192760290,
-            "message":"DMDII SU028 has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1162,16 +1162,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":58,
-               "email":"sathya.iyer@uilabs.org",
-               "displayName":"Sathya Iyer"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478095482468,
-            "message":"Sathya Iyer has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1179,16 +1179,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":12,
-               "email":"james.barkley@gmail.com",
-               "displayName":"James Barkley"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1478040097387,
-            "message":"James Barkley has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1196,16 +1196,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":47,
-               "email":"emily.okeeffe@uilabs.org",
-               "displayName":"Emily O'Keeffe"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1477678416019,
-            "message":"Emily O'Keeffe has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1213,16 +1213,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1476375620836,
-            "message":"DMDII SU025 has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1230,16 +1230,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":25,
-               "email":"thomas.mcdermott@uilabs.org",
-               "displayName":"Thomas McDermott"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1476314641449,
-            "message":"Thomas McDermott has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1247,16 +1247,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":11,
-               "email":"usingdmc02@gmail.com",
-               "displayName":"Katie Tillery-Merk"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1476217936166,
-            "message":"using DMC has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1264,16 +1264,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":22,
-               "email":"marykatelove23@gmail.com",
-               "displayName":"Mary Kate Love"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1476201033992,
-            "message":"Mary Kate Love has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -1281,16 +1281,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":19,
-               "email":"rachel.m.seamon@gmail.com",
-               "displayName":"Rachel Seamon"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":7,
-               "email":"DMDII.su.025@gmail.com",
-               "displayName":"Samir Shallwani"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1476193799385,
-            "message":"Rachel Seamon has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          }
       ],
@@ -1299,21 +1299,21 @@
    },
    {
       "id":70,
-      "displayName":"testing02 DMC",
+      "displayName":"J Doe",
       "accountId":70,
       "profileId":70,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"testing02 DMC",
+      "realname":"J Doe",
       "title":"QA engineer",
       "termsConditions":true,
-      "firstName":"testing02",
-      "lastName":"DMC",
-      "email":"testingdmc02@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":"Chicago",
       "phone":null,
-      "image":"https://test-final-verify.s3.amazonaws.com/USER/113336368065995799190%40google.com/Documents/1481306179-410854-sanitized-logo.png?AWSAccessKeyId=AKIAJSBNYLJTBCUKUEDA&Expires=1483984579&Signature=kwK1ziYrpy8%2F3u3TD5Kh%2FqccarM%3D",
+      "image":"http://www.thefamouspeople.com/profiles/images/jean-claude-van-damme-3.jpg",
       "runningServices":{
          "items":[
 
@@ -1359,18 +1359,18 @@
    },
    {
       "id":91,
-      "displayName":"Sean Bridwell",
+      "displayName":"J Doe",
       "accountId":91,
       "profileId":91,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Sean Bridwell",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Sean",
-      "lastName":"Bridwell",
-      "email":"thevideogamedoctor@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -1415,18 +1415,18 @@
    },
    {
       "id":94,
-      "displayName":"Song Zhao",
+      "displayName":"J Doe",
       "accountId":94,
       "profileId":94,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Song Zhao",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Song",
-      "lastName":"Zhao",
-      "email":"song.zhao@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -1473,18 +1473,18 @@
    },
    {
       "id":3,
-      "displayName":"Michael Howard",
+      "displayName":"J Doe",
       "accountId":3,
       "profileId":3,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Michael Howard",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Michael",
-      "lastName":"Howard",
-      "email":"DMDII.su.021@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -1532,18 +1532,18 @@
    },
    {
       "id":102,
-      "displayName":"George Barnych",
+      "displayName":"J Doe",
       "accountId":102,
       "profileId":102,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"George Barnych",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"George",
-      "lastName":"Barnych",
-      "email":"b3technicalservices@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -1590,18 +1590,18 @@
    },
    {
       "id":112,
-      "displayName":"Katie Mulligan",
+      "displayName":"J Doe",
       "accountId":112,
       "profileId":112,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Katie Mulligan",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Katie",
-      "lastName":"Mulligan",
-      "email":"mulligan.katiem@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -1648,18 +1648,18 @@
    },
    {
       "id":140,
-      "displayName":"Shaun Glassman",
+      "displayName":"J Doe",
       "accountId":140,
       "profileId":140,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Shaun Glassman",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Shaun",
-      "lastName":"Glassman",
-      "email":"Shaun.Glassman@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -1706,18 +1706,18 @@
    },
    {
       "id":169,
-      "displayName":"Bryan Audia",
+      "displayName":"J Doe",
       "accountId":169,
       "profileId":169,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Bryan Audia",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Bryan",
-      "lastName":"Audia",
-      "email":"bryanaudia@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -1764,21 +1764,21 @@
    },
    {
       "id":119,
-      "displayName":"Yolanda Dunn",
+      "displayName":"J Doe",
       "accountId":119,
       "profileId":119,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Yolanda Dunn",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Yolanda",
-      "lastName":"Dunn",
-      "email":"yolandadunn1@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":"https://test-final-verify.s3.amazonaws.com/USER/115365433836081374117%40google.com/Documents/1479851680-47769-sanitized-20160920_230303834.jpeg?AWSAccessKeyId=AKIAJSBNYLJTBCUKUEDA&Expires=1482443680&Signature=YWLHEitW47dTAKbcd97%2BzatcacY%3D",
+      "image":"http://www.thefamouspeople.com/profiles/images/jean-claude-van-damme-3.jpg",
       "runningServices":{
          "items":[
 
@@ -1822,18 +1822,18 @@
    },
    {
       "id":125,
-      "displayName":"Bison Desk",
+      "displayName":"J Doe",
       "accountId":125,
       "profileId":125,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Bison Desk",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Bison",
-      "lastName":"Desk",
-      "email":"mydeskatbison@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -1878,21 +1878,21 @@
    },
    {
       "id":159,
-      "displayName":"Sammy Sosa",
+      "displayName":"J Doe",
       "accountId":159,
       "profileId":159,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Sammy Sosa",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Sammy",
-      "lastName":"Sosa",
-      "email":"samshall786@yahoo.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":"https://test-final-verify.s3.amazonaws.com/USER/cuid-dcd534d4-c18d-4030-8ba7-0376f4b1c5ed%40uilabs.idp.cirrusidentity.com/Documents/1480609361-513235-sanitized-sammy_sosa.0.jpg?AWSAccessKeyId=AKIAJSBNYLJTBCUKUEDA&Expires=1483287762&Signature=KIGUJ9wbVQbdlI05fYfXwkP4HSw%3D",
+      "image":"http://www.thefamouspeople.com/profiles/images/jean-claude-van-damme-3.jpg",
       "runningServices":{
          "items":[
 
@@ -1934,18 +1934,18 @@
    },
    {
       "id":179,
-      "displayName":"Joe Mazrimas",
+      "displayName":"J Doe",
       "accountId":179,
       "profileId":179,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Joe Mazrimas",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Joe",
-      "lastName":"Mazrimas",
-      "email":"joe.mazrimas@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -1992,18 +1992,18 @@
    },
    {
       "id":118,
-      "displayName":"Aileen Nolan",
+      "displayName":"J Doe",
       "accountId":118,
       "profileId":118,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Aileen Nolan",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Aileen",
-      "lastName":"Nolan",
-      "email":"aileen.nolan@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -2048,21 +2048,21 @@
    },
    {
       "id":116,
-      "displayName":"Kristen Preble",
+      "displayName":"J Doe",
       "accountId":116,
       "profileId":116,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Kristen Preble",
+      "realname":"J Doe",
       "title":"Program Operations Manager",
       "termsConditions":true,
-      "firstName":"Kristen",
-      "lastName":"Preble",
-      "email":"kristen.preble@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":"https://test-final-verify.s3.amazonaws.com/USER/114593631032978448100%40google.com/Documents/1479750796-503901-sanitized-UI-LABS0506.jpg?AWSAccessKeyId=AKIAJSBNYLJTBCUKUEDA&Expires=1482342797&Signature=YQSB2VFoIBQ42uLwTXbHg7eWJ94%3D",
+      "image":"http://www.thefamouspeople.com/profiles/images/jean-claude-van-damme-3.jpg",
       "runningServices":{
          "items":[
 
@@ -2106,21 +2106,21 @@
    },
    {
       "id":27,
-      "displayName":"Trinity Patton",
+      "displayName":"J Doe",
       "accountId":27,
       "profileId":27,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Trinity Patton",
+      "realname":"J Doe",
       "title":"HR Associate",
       "termsConditions":true,
-      "firstName":"Trinity",
-      "lastName":"Patton",
-      "email":"trinityrpatton@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":"https://test-final-verify.s3.amazonaws.com/USER/111624717370398348609%40google.com/Documents/1479917571-542305-sanitized-Grad.jpg?AWSAccessKeyId=AKIAJSBNYLJTBCUKUEDA&Expires=1482509572&Signature=sM6LdE2%2F05HIZZu6rZxosz%2B50QM%3D",
+      "image":"http://www.thefamouspeople.com/profiles/images/jean-claude-van-damme-3.jpg",
       "runningServices":{
          "items":[
 
@@ -2173,18 +2173,18 @@
    },
    {
       "id":120,
-      "displayName":"Caralynn Nowinski Collens",
+      "displayName":"J Doe",
       "accountId":120,
       "profileId":120,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Caralynn Nowinski Collens",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Caralynn",
-      "lastName":"Nowinski Collens",
-      "email":"caralynn.collens@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -2229,21 +2229,21 @@
    },
    {
       "id":31,
-      "displayName":"Marcin Welninski",
+      "displayName":"J Doe",
       "accountId":31,
       "profileId":31,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Marcin Welninski",
+      "realname":"J Doe",
       "title":"Technical Associate, Digital Manufacturing Commons",
       "termsConditions":true,
-      "firstName":"Marcin",
-      "lastName":"Welninski",
-      "email":"marcin.welninski@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":"Chicago",
       "phone":null,
-      "image":"https://test-final-verify.s3.amazonaws.com/USER/cuid-78f627b8-412c-40fb-93e0-ec7e1652e2b2%40uilabs.idp.cirrusidentity.com/Documents/1479922827-87097-sanitized-Marcin-Welninski-2.png?AWSAccessKeyId=AKIAJSBNYLJTBCUKUEDA&Expires=1482514828&Signature=ZFIGP%2BTnga2BMPYHspkTrnP4jSc%3D",
+      "image":"http://www.thefamouspeople.com/profiles/images/jean-claude-van-damme-3.jpg",
       "runningServices":{
          "items":[
 
@@ -2284,7 +2284,7 @@
          "userPrivateContactInfo":null,
          "userPublicContactInfo":{
             "id":6,
-            "email":"marcin.welninski@uilabs.org",
+            "email":"J.Doe@email.com",
             "phone":null,
             "location":null
          },
@@ -2299,16 +2299,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":171,
-               "email":"joe.mazrimas@gmail.com",
-               "displayName":"Joseph Mazrimas"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":31,
-               "email":"marcin.welninski@uilabs.org",
-               "displayName":"Marcin Welninski"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1481901375966,
-            "message":"Joseph Mazrimas has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":true
          },
          {
@@ -2316,16 +2316,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":185,
-               "email":"craig.hancock@uptake.com",
-               "displayName":"Craig Hancock"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":31,
-               "email":"marcin.welninski@uilabs.org",
-               "displayName":"Marcin Welninski"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1481750635557,
-            "message":"Craig Hancock has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":true
          },
          {
@@ -2333,16 +2333,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":13,
-               "email":"timex56@gmail.com",
-               "displayName":"Reg User"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":31,
-               "email":"marcin.welninski@uilabs.org",
-               "displayName":"Marcin Welninski"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1481217992041,
-            "message":"Reg User Marcin has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":true
          },
          {
@@ -2350,16 +2350,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":179,
-               "email":"joe.mazrimas@uilabs.org",
-               "displayName":"Joe Mazrimas"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":31,
-               "email":"marcin.welninski@uilabs.org",
-               "displayName":"Marcin Welninski"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1481141455881,
-            "message":"Joe Mazrimas has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":true
          },
          {
@@ -2367,16 +2367,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":169,
-               "email":"bryanaudia@gmail.com",
-               "displayName":"Bryan Audia"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":31,
-               "email":"marcin.welninski@uilabs.org",
-               "displayName":"Marcin Welninski"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1480979061765,
-            "message":"Bryan Audia has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":true
          },
          {
@@ -2384,16 +2384,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":169,
-               "email":"bryanaudia@gmail.com",
-               "displayName":"Bryan Audia"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":31,
-               "email":"marcin.welninski@uilabs.org",
-               "displayName":"Marcin Welninski"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1480979060926,
-            "message":"Bryan Audia has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":true
          },
          {
@@ -2401,16 +2401,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":159,
-               "email":"samshall786@yahoo.com",
-               "displayName":"Sammy Sosa"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":31,
-               "email":"marcin.welninski@uilabs.org",
-               "displayName":"Marcin Welninski"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1480609275372,
-            "message":"Sammy Sosa has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":true
          },
          {
@@ -2418,16 +2418,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":140,
-               "email":"Shaun.Glassman@uilabs.org",
-               "displayName":"Shaun Glassman"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":31,
-               "email":"marcin.welninski@uilabs.org",
-               "displayName":"Marcin Welninski"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1480455790963,
-            "message":"Shaun Glassman has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":true
          },
          {
@@ -2435,16 +2435,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":131,
-               "email":"testUserEmail",
-               "displayName":"testUserFullName"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":31,
-               "email":"marcin.welninski@uilabs.org",
-               "displayName":"Marcin Welninski"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1480387347741,
-            "message":"testUserFullName has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":true
          },
          {
@@ -2452,16 +2452,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":125,
-               "email":"mydeskatbison@gmail.com",
-               "displayName":"Bison Desk"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":31,
-               "email":"marcin.welninski@uilabs.org",
-               "displayName":"Marcin Welninski"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1480208833143,
-            "message":"Bison Desk has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":true
          }
       ],
@@ -2470,21 +2470,21 @@
    },
    {
       "id":12,
-      "displayName":"James Barkley",
+      "displayName":"J Doe",
       "accountId":12,
       "profileId":12,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"James Barkley",
+      "realname":"J Doe",
       "title":"Master of Disaster!",
       "termsConditions":true,
-      "firstName":"James",
-      "lastName":"Barkley",
-      "email":"james.barkley@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":"Illinois",
       "phone":null,
-      "image":"https://test-final-verify.s3.amazonaws.com/USER/108190840208818900387%40google.com/Documents/1481748636-179215-sanitized-20161207_170420.jpg?AWSAccessKeyId=AKIAJSBNYLJTBCUKUEDA&Expires=1484427036&Signature=ljqrLie4hmwH%2Fi0vS2M1gmp3Mcg%3D",
+      "image":"http://www.thefamouspeople.com/profiles/images/jean-claude-van-damme-3.jpg",
       "runningServices":{
          "items":[
 
@@ -2547,18 +2547,18 @@
    },
    {
       "id":185,
-      "displayName":"Craig Hancock",
+      "displayName":"J Doe",
       "accountId":185,
       "profileId":185,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Craig Hancock",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Craig",
-      "lastName":"Hancock",
-      "email":"craig.hancock@uptake.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -2605,18 +2605,18 @@
    },
    {
       "id":171,
-      "displayName":"Joseph Mazrimas",
+      "displayName":"J Doe",
       "accountId":171,
       "profileId":171,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Joseph Mazrimas",
+      "realname":"J Doe",
       "title":null,
       "termsConditions":true,
-      "firstName":"Joseph",
-      "lastName":"Mazrimas",
-      "email":"joe.mazrimas@gmail.com",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
       "image":null,
@@ -2661,21 +2661,21 @@
    },
    {
       "id":2,
-      "displayName":"Alex Maties",
+      "displayName":"J Doe",
       "accountId":2,
       "profileId":2,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
-      "realname":"Alex Maties",
+      "realname":"J Doe",
       "title":"Developer",
       "termsConditions":true,
-      "firstName":"Alex",
-      "lastName":"Maties",
-      "email":"alex.maties@uilabs.org",
+      "firstName":"JJ",
+      "lastName":"Doe",
+      "email":"J.Doe@email.com",
       "address":"Chicago",
       "phone":null,
-      "image":"https://test-final-verify.s3.amazonaws.com/USER/113336368065995799190%2540google.com/Documents/1479314220--321292-sanitized-avatar.PNG?AWSAccessKeyId=AKIAJSBNYLJTBCUKUEDA&Expires=1484614860&Signature=NG4g3aZxvQjd1C5uj5aeAYVsT%2Fo%3D",
+      "image":"http://www.thefamouspeople.com/profiles/images/jean-claude-van-damme-3.jpg",
       "runningServices":{
          "items":[
 
@@ -2712,7 +2712,7 @@
          "userPrivateContactInfo":null,
          "userPublicContactInfo":{
             "id":4,
-            "email":"alex.maties@uilabs.org",
+            "email":"J.Doe@email.com",
             "phone":null,
             "location":"Chicago"
          },
@@ -2727,16 +2727,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":94,
-               "email":"song.zhao@uilabs.org",
-               "displayName":"Song Zhao"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":2,
-               "email":"alex.maties@uilabs.org",
-               "displayName":"Alex Maties"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1479399987496,
-            "message":"Song Zhao has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -2744,16 +2744,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":91,
-               "email":"thevideogamedoctor@gmail.com",
-               "displayName":"Sean Bridwell"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":2,
-               "email":"alex.maties@uilabs.org",
-               "displayName":"Alex Maties"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1479398115828,
-            "message":"Sean Bridwell has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -2761,16 +2761,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":91,
-               "email":"thevideogamedoctor@gmail.com",
-               "displayName":"Sean Bridwell"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":2,
-               "email":"alex.maties@uilabs.org",
-               "displayName":"Alex Maties"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1479398115828,
-            "message":"Sean Bridwell has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -2778,16 +2778,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":88,
-               "email":"jhong@perkinscoie.com",
-               "displayName":"Joelle Hong"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":2,
-               "email":"alex.maties@uilabs.org",
-               "displayName":"Alex Maties"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1479249218519,
-            "message":"Joelle Hong has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          },
          {
@@ -2795,16 +2795,16 @@
             "type":"NEW_USER_JOINED_ORGANIZATION",
             "createdBy":{
                "id":4,
-               "email":"dmdii.su.022@gmail.com",
-               "displayName":"DMDII SU022"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "createdFor":{
                "id":2,
-               "email":"alex.maties@uilabs.org",
-               "displayName":"Alex Maties"
+               "email":"J.Doe@email.com",
+               "displayName":"J Doe"
             },
             "created":1479244809787,
-            "message":"DMDII SU022 has requested to join your organization",
+            "message":"This is the content of a message.",
             "unread":false
          }
       ],
