@@ -52,6 +52,13 @@ angular.module('dmc.dmdiiProj')
             // callback for project
             var callbackFunction = function(response){
                 $scope.project = response.data;
+
+                if(($scope.project.dmdiiFunding == 5983) && ($scope.project.costShare == 8395)){
+                  $scope.project.kind="dmdiiEvent"
+                }else{
+                  $scope.project.kind="dmdiiProject"
+                }
+
                 var awardDate = new Date($scope.project.awardedDate);
                 var year = awardDate.getFullYear();
                 var month = awardDate.getMonth() + 1;

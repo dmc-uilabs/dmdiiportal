@@ -3,7 +3,7 @@
 angular.module('dmc.data',[])
     .factory('dataFactory', function ($window,$location) {
         var baseServer = $window.apiUrl ? $window.apiUrl : '/static/?p=';
-        var localhost = ($location.$$absUrl.indexOf('http://localhost') != -1  || $location.$$absUrl.indexOf(':9000') != -1 ? 'http://localhost:9000/rest/' : '');
+        var localhost = ($location.$$absUrl.indexOf('http://localhost') != -1  || $location.$$absUrl.indexOf(':9000') != -1 ? 'http://localhost:3000/' : '');
         localhost = $window.apiUrl ? $window.apiUrl + '/' : localhost;
         var urlSocketServer = 'http://localhost:8080/';
         var appendId = function(id){
