@@ -88,6 +88,17 @@ $lines-to-show-title: 2;
     }
   }
 
+  &__owner {
+    padding: 0 8px;
+    height: 30px;
+    max-height: 30px;
+    min-height: 30px;
+    overflow: hidden;
+    &__column{
+      padding: 0 8px;
+    }
+  }
+
   &__header {
     padding: 0 16px;
     a {
