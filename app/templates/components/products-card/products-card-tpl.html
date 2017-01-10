@@ -37,15 +37,26 @@
         </div>
     </div>
     <md-progress-linear md-mode="indeterminate" ng-show="cardLoading"></md-progress-linear>
+
     <div class="content-panel-body">
         <md-content>
-            <div class="list-items" layout="row" layout-wrap>
-                <div class="one-item"
+            <div class="list-items product-container" layout="row" layout-wrap>
+                <!-- <div class="one-item"
                      flex-sm="100"
                      flex-md="50"
                      flex-lg="33"
                      flex-gt-lg="25"
-                     dir-paginate="item in itemsArray | itemsPerPage: pageSize track by $index">
+                     dir-paginate="item in itemsArray | itemsPerPage: pageSize track by $index"> -->
+                    <!-- <dmc-product-card card-style="'small'" ng-show="item.id"
+                                      type-product="item.type"
+                                      add-featured="addFeatured"
+                                      remove-featured="removeFeatured"
+                                      hide-buttons="hideButtons"
+                                      card-source="item">
+                    </dmc-product-card> -->
+                <!-- </div> -->
+
+                <div dir-paginate="item in itemsArray | itemsPerPage: pageSize track by $index">
                     <dmc-product-card card-style="'small'" ng-show="item.id"
                                       type-product="item.type"
                                       add-featured="addFeatured"
@@ -57,6 +68,10 @@
             </div>
         </md-content>
     </div>
+
+
+
+
     <div class="content-panel-footer storefront-results-footer">
         <!--<div class="total-items">-->
             <!--{{(currentPage-1)*pageSize+1}}-{{currentPage*pageSize > totalSize ? totalSize : currentPage*pageSize}} of {{totalSize}}-->
