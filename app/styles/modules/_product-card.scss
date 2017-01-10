@@ -55,6 +55,8 @@ $lines-to-show-title: 2;
     text-overflow: ellipsis;
     a{
       font-size: 1.5em;
+      color: map-get($colors, secondary);
+      font-weight: bold;
     }
   }
   &__description{
