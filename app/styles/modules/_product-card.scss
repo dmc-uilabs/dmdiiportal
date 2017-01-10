@@ -61,11 +61,14 @@ $lines-to-show-title: 2;
   }
   &__description{
     line-height: 1.2em;
-    font-size: .9em;
     height: 9.6em;
     width: 175px;
     margin-right: 5px;
-    overflow: hidden;
+    .product-text{
+      font-size: .9em;
+      overflow: hidden;
+      height: 8.2em;
+    }
   }
   &__image{
     text-align: center;

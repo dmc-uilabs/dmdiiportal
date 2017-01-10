@@ -35,7 +35,9 @@
       <div class="product-card-container">
         <!-- <div class="product-card__info"> -->
           <div class="product-card__description">
-            {{cardSource.description}}
+            <div class="product-text">{{cardSource.description}}</div>
+            <!-- current rest endpoint not returning cardSource.average_rating, need to update -->
+            <ui-widget-stars-static class="review-stars" size="10" value="4.8" text="(4.8)"></ui-widget-stars-static>
           </div>
 
           <div class="product-card__image_small">
@@ -46,31 +48,6 @@
         <!-- </div> -->
       </div>
 
-
-    <div class="product-card-container">
-      <div class="star-rating">
-          <div class="star-rating__buttons">
-              <md-button aria-label="Star" md-no-ink class="md-icon-button">
-                  <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon>
-              </md-button>
-              <md-button aria-label="Star" md-no-ink class="md-icon-button">
-                  <ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon>
-              </md-button>
-              <md-button aria-label="Star" md-no-ink class="md-icon-button">
-                  <ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon>
-              </md-button>
-              <md-button aria-label="Star" md-no-ink class="md-icon-button">
-                  <ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon>
-              </md-button>
-              <md-button aria-label="Star" md-no-ink class="md-icon-button">
-                  <ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon>
-              </md-button>
-          </div>
-          <div class="star-rating__value">
-              <span class="small-text">(3.4)</span>
-          </div>
-      </div>
-    </div>
 
     <!-- <div class="product-card__image_small">
         <img ng-src="{{cardSource.images[0].documentUrl}}" alt="{{cardSource.title}}">
