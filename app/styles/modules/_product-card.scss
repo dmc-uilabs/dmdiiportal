@@ -61,19 +61,20 @@ $lines-to-show-title: 2;
   }
   &__description{
     line-height: 1.2em;
-    height: 9.6em;
+    // height: 9.6em;
     width: 175px;
     margin-right: 5px;
     .product-text{
-      font-size: .9em;
-      overflow: hidden;
-      height: 8.2em;
+      // font-size: .9em;
+      // overflow: hidden;
+      min-height: 8.2em;
     }
   }
   &__image{
     text-align: center;
     //padding: 0 18px;
     &_small{
+      margin-bottom: 5px;
       box-sizing: border-box;
       height: 108px;
       width: 108px;

@@ -35,9 +35,15 @@
       <div class="product-card-container">
         <!-- <div class="product-card__info"> -->
           <div class="product-card__description">
-            <div class="product-text">{{cardSource.description}}</div>
-            <!-- current rest endpoint not returning cardSource.average_rating, need to update -->
-            <ui-widget-stars-static class="review-stars" size="10" value="4.8" text="(4.8)"></ui-widget-stars-static>
+            <div class="product-card-container" ng-init="limit= 140">
+              <div class="product-text">{{cardSource.description | limitTo:limit}}
+                <span ng-if="cardSource.description.length > limit"><a href>more</a></span>
+              </div>
+            </div>
+            <div class="product-card-container">
+              <!-- current rest endpoint not returning cardSource.average_rating, need to update -->
+              <ui-widget-stars-static class="review-stars" size="10" value="4.8" text="(4.8)"></ui-widget-stars-static>
+            </div>
           </div>
 
           <div class="product-card__image_small">
