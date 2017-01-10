@@ -10,7 +10,7 @@ $lines-to-show-title: 2;
   fill : #64B045;
 }
 // generic flexbox container
-.container {
+.product-card-container {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -46,22 +46,34 @@ $lines-to-show-title: 2;
     }
   }
   &__info{
-    min-height: 108px;
-    width: 180px;
   }
   &__title{
-    font-size: 1.5em;
+    width: 100%;
+    height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    a{
+      font-size: 1.5em;
+    }
   }
   &__description{
-    font-size: .8em;
+    line-height: 1.2em;
+    font-size: .9em;
+    height: 9.6em;
+    width: 175px;
+    margin-right: 5px;
+    overflow: hidden;
   }
   &__image{
     text-align: center;
     //padding: 0 18px;
     &_small{
+      box-sizing: border-box;
       height: 108px;
       width: 108px;
       overflow: hidden;
+      border-radius: 5px;
       }
   }
   .star-rating{

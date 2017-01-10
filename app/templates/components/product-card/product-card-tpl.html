@@ -28,24 +28,26 @@
         <!-- </div> -->
     <!-- </md-toolbar> -->
 
-    <div class="container">
-      <div class="product-card__info">
-        <div class="product-card__title">
-          <a ng-href="{{'/service-marketplace.php#/'+cardSource.id}}" ng-click="previousPage.save($event)"><h3>{{cardSource.title}}</h3></a>
-        </div>
-
-        <div class="product-card__description">
-          {{cardSource.description}}
-        </div>
+      <div class="product-card__title">
+        <a ng-href="{{'/service-marketplace.php#/'+cardSource.id}}" ng-click="previousPage.save($event)">{{cardSource.title}}</a>
       </div>
 
-      <div class="product-card__image_small">
-        <img src="http://relab.dk/wp-content/uploads/2016/09/rhall_ico1-1.png">
-        <!-- <img ng-src="{{cardSource.images[0].documentUrl}}" alt="{{cardSource.title}}"> -->
-      </div>
-    </div>
+      <div class="product-card-container">
+        <!-- <div class="product-card__info"> -->
+          <div class="product-card__description">
+            {{cardSource.description}}
+          </div>
 
-    <div class="container">
+          <div class="product-card__image_small">
+            <!-- <img src="http://relab.dk/wp-content/uploads/2016/09/rhall_ico1-1.png"> -->
+            <img src="https://cs.adelaide.edu.au/~paulc/physics/small-0.0.gif">
+            <!-- <img ng-src="{{cardSource.images[0].documentUrl}}" alt="{{cardSource.title}}"> -->
+          </div>
+        <!-- </div> -->
+      </div>
+
+
+    <div class="product-card-container">
       <div class="star-rating">
           <div class="star-rating__buttons">
               <md-button aria-label="Star" md-no-ink class="md-icon-button">
