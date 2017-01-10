@@ -125,7 +125,9 @@
         </div>
     </div> -->
     <!-- added in empty footer for aesthetics, should be removed if additional buttons re-introduced -->
-    <div class="product-card__footer" layout="row">
+    <!-- <div class="product-card__footer" layout="row"> -->
+
+
     <!-- <div class="product-card__footer" layout="row" ng-if="removeFeatured || addFeatured">
         <div layout="row" class="remove-from-featured" flex layout-align="center center" ng-show="cardSource.inFeatured && removeFeatured">
             <md-button aria-label="Remove from Featured" layout="column" flex ng-click="removeFromFeatured($event)">
@@ -139,7 +141,8 @@
         </div>
     </div> -->
     <!-- <div class="product-card__footer" layout="row" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured"> -->
-        <!-- <div class="adding-to-project" ng-show="addingToProject">
+    <div class="product-card-container product-card__footer" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured">
+        <div class="adding-to-project" ng-show="addingToProject">
             <div layout="row" layout-align="center center" class="inner-add-to-project" flex>
                 <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">
                     <ng-md-icon icon="close" size="17"></ng-md-icon>
@@ -156,16 +159,16 @@
                            ng-click="saveToProject(projectModel)">Add
                 </md-button>
             </div>
-        </div> -->
+        </div>
 
-        <!-- <md-button aria-label="Back to Add"
+        <md-button aria-label="Back to Add"
                    class="back-to-add"
                    ng-click="backToAdd()"
                    ng-show="addingToProject == false && cardSource.added">
             <ng-md-icon icon="close" size="17"></ng-md-icon>
-        </md-button> -->
+        </md-button>
 
-        <!-- <md-button aria-label="Project Link"
+        <md-button aria-label="Project Link"
                    flex
                    class="page-href"
                    ng-style="compareStyle"
@@ -175,19 +178,19 @@
             Added to {{cardSource.lastProject.title}}
         </span>
             <ng-md-icon icon="keyboard_arrow_right" style="fill: #fff" size="32"></ng-md-icon>
-        </md-button> -->
+        </md-button>
 
-        <!-- <md-button aria-label="Add to Project"
+        <md-button aria-label="Add to Project"
                    flex
                    ng-style="compareStyle"
                    class="white-button"
                    ng-click="addToProject()"
                    ng-hide="addingToProject || cardSource.added">
             Add to Project
-        </md-button> -->
+        </md-button>
 
         <!-- buttons for compare -->
-        <!-- <md-button aria-label="Add to Compare"
+        <md-button aria-label="Add to Compare"
                    flex
                    class="white-button"
                    ng-click="addToCompare()"
@@ -201,7 +204,7 @@
                    ng-hide="cardSource.added || addingToProject == true || !$root.comparedServicesIds || (typeProduct == 'service' && $root.comparedServicesIds.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && $root.comparedServicesIds.components.indexOf(cardSource.id) == -1)">
             <ng-md-icon icon="close" size="17"></ng-md-icon>
             Compare
-        </md-button> -->
+        </md-button>
 
     </div>
 </div>
