@@ -670,16 +670,17 @@ angular.module('dmc.service-marketplace')
 
             ////////adding the below as part of pre-beta changes to limit calls
             $scope.adHocData = function(dataToGet) {
-                var id = $scope.product.id;
 
+              if (!$scope.product[dataToGet]) {
+                var id = $scope.product.id;
                 var endpoints = {
-                    'service_tags': dataFactory.services(id).get_tags,
-                    'service_reviews': dataFactory.services(id).reviews,
-                    'interfaceModel': dataFactory.services(id).get_interface
+                  'service_tags': dataFactory.services(id).get_tags,
+                  'service_reviews': dataFactory.services(id).reviews,
+                  'interfaceModel': dataFactory.services(id).get_interface
                 };
 
                 var extractData = function(response){
-                    return response.data ? response.data : response;
+                  return response.data ? response.data : response;
                 };
 
                 $http.get(endpoints[dataToGet]).then(function(response){
@@ -689,7 +690,8 @@ angular.module('dmc.service-marketplace')
                     $scope.product[dataToGet] = extractData(response);
                   };
 
-                });
+                });  
+              };
 
             };
 
