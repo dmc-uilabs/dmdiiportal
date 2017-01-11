@@ -60,14 +60,14 @@ $lines-to-show-title: 2;
     }
   }
   &__description{
+    margin: 5px 0;
+    flex-direction: column;
+    justify-content: space-between;
     line-height: 1.2em;
-    // height: 9.6em;
     width: 175px;
     margin-right: 5px;
     .product-text{
-      // font-size: .9em;
-      // overflow: hidden;
-      min-height: 7em;
+      // min-height: 7em;
     }
   }
   &__image{
