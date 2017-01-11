@@ -199,6 +199,38 @@ angular.module('dmc.marketplace')
                 checkFavorites();
             };
 
+
+            // add function to group marketplace items by serviceType
+            // var groupServicesByType = function(data) {
+            //   var serviceTypes = [];
+            //   var servicesGroupedByType = [];
+            //
+            //   for (var i in data) {
+            //     var types = data[i].serviceType;
+            //
+            //     for (var j in types) {
+            //       if (!serviceTypes[types[j]]) {
+            //         serviceTypes[types[j]] = [];
+            //       };
+            //
+            //       serviceTypes[types[j]].push(data[i]);
+            //     };
+            //   };
+            //
+            //   for (var k in serviceTypes) {
+            //     var groupedServices = {};
+            //
+            //     groupedServices['serviceType'] = k;
+            //     groupedServices['services'] = serviceTypes[k];
+            //
+            //     servicesGroupedByType.push(groupedServices);
+            //   };
+            //
+            //   return servicesGroupedByType;
+            //
+            // };
+
+
             var checkFavorites = function(){
                 isFavorite.check($scope.marketplaceItems.arr);
                 loadingData(false);
