@@ -154,8 +154,15 @@
             <div ng-if="!product.interfaceModel" layout-padding layout-margin>
               Inputs & Outputs does not exist
             </div>
-            <div layout="row" class="preview" layout-align="space-between center" ng-if="product.interfaceModel">
-              <div flex="45">
+
+            <div layout="row" class="preview" layout-align="center center" ng-if="product.interfaceModel">
+              <div layout-padding layout-margin flex="76">
+                  <h2>{{product.interfaceModel.name}}, Version {{product.interfaceModel.version}}</h2>
+              </div>
+            </div>
+
+            <div layout="row" class="preview" layout-align="center center" ng-if="product.interfaceModel">
+              <div flex="33">
                 <h2>Inputs</h2>
                 <md-divider></md-divider>
                 <md-content layout-margin>
@@ -166,7 +173,22 @@
                   </md-list>
                 </md-content>
               </div>
-              <div flex="45">
+
+              <div>
+                <h2>Type</h2>
+                <md-divider></md-divider>
+                <md-content layout-margin>
+                  <md-list>
+                    <md-list-item ng-repeat="(key,item) in product.interfaceModel.inParams track by $index">
+                      {{item.type}}
+                    </md-list-item>
+                  </md-list>
+                </md-content>
+              </div>
+
+              <div flex="10"></div>
+
+              <div flex="33">
                 <h2>Outputs</h2>
                 <md-divider></md-divider>
                 <md-content layout-margin>
@@ -177,6 +199,19 @@
                   </md-list>
                 </md-content>
               </div>
+
+              <div>
+                <h2>Type</h2>
+                <md-divider></md-divider>
+                <md-content layout-margin>
+                  <md-list>
+                    <md-list-item ng-repeat="(key,item) in product.interfaceModel.outParams track by $index">
+                      {{item.type}}
+                    </md-list-item>
+                  </md-list>
+                </md-content>
+              </div>
+
             </div>
           </md-tab>
 
