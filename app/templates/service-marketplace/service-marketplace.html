@@ -6,9 +6,9 @@
 	<div class="content-column" flex='100'>
 		<div ng-if="!not_found">
 			<!-- Search toolbar -->
-			<md-content class="marketplace-search" layout="row" layout-align="center center">
+			<md-content class="marketplace-search" layout="row" layout-align="space-between center">
 				<a class="link margin-right16" ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
-				<form ng-submit="submitSearch(searchModel)" class="dmc-search global-search-form" flex>
+				<!-- <form ng-submit="submitSearch(searchModel)" class="dmc-search global-search-form" flex>
 				    <div layout="column">
 				        <div layout="row">
 				            <div layout="column" flex>
@@ -26,13 +26,13 @@
 				            </div>
 				        </div>
 				    </div>
-				</form>
+				</form> -->
 
 				<div class="marketplace-search-button" layout="row" layout-align="center center">
-					<md-button href="/favorites.php" class="link-button">
+					<!-- <md-button href="/favorites.php" class="link-button">
 						<ng-md-icon icon="favorite" size="14"></ng-md-icon>
 						Favorites ({{favoritesCount}})
-					</md-button>
+					</md-button> -->
                     <md-button class="md-raised dmc-button margin-left20"
                                ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
                                compare-button>
