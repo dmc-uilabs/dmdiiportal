@@ -672,21 +672,17 @@ angular.module('dmc.service-marketplace')
             $scope.adHocData = function() {
                 var id = $scope.product.id;
 
-                var promises = {
-                    // 'service': $http.get(dataFactory.services(id).get),
-                    // 'specifications': $http.get(dataFactory.services(id).get_specifications),
-                    // 'service_authors': $http.get(dataFactory.services(id).get_authors),
+                var endpoints = {
                     // 'service_tags': $http.get(dataFactory.services(id).get_tags),
-                    // 'services_statistic': $http.get(dataFactory.services(id).get_statistics),
                     'service_reviews': $http.get(dataFactory.services(id).reviews)
-                    // 'interface': $http.get(dataFactory.services(id).get_interface)
+                    'interface': $http.get(dataFactory.services(id).get_interface)
                 };
 
                 var extractData = function(response){
                     return response.data ? response.data : response;
                 };
 
-                promises['service_reviews'].then(function(response){
+                endpoints['service_reviews'].then(function(response){
                   $scope.product.service_reviews = extractData(response);
                 });
 
