@@ -24,7 +24,7 @@ $lines-to-show-title: 2;
 .product-card {
   width: 300px;
   margin: 10px;
-  padding: 5px;
+  padding: 15px;
   border: 1px solid #666;
   @include borderRadius(3px);
   // display: inline-block;
@@ -64,7 +64,8 @@ $lines-to-show-title: 2;
     flex-direction: column;
     justify-content: space-between;
     line-height: 1.2em;
-    width: 175px;
+    flex-grow: 1;
+    width: 100px;
     margin-right: 5px;
     .product-text{
       // min-height: 7em;
