@@ -64,21 +64,22 @@
 						<!--product header-->
 						<div class="product-header">
 							<div layout="row">
-								<h2>{{product.title}} <span>By <a ng-href="{{'/company.php#/'+product.profileId+'/storefront?product=services'}}" class="link-button">{{owner_name}}</a></span></h2>
+								<h2>{{product.title}}</h2>
+                  <span>By <a ng-href="{{'/company.php#/'+product.profileId+'/storefront?product=services'}}" class="link-button">{{owner_name}}</a></span>
 								<span flex></span>
-								<md-button aria-label="favorite" ng-click="addToFavorite()" class="md-icon-button header-icon">
+								<!-- <md-button aria-label="favorite" ng-click="addToFavorite()" class="md-icon-button header-icon">
                                     <ng-md-icon icon="favorite_outline" style="fill: grey" size="25" ng-show="!product.favorite"></ng-md-icon>
                                     <ng-md-icon icon="favorite" style="fill: #65AF3F;" size="25" ng-show="product.favorite"></ng-md-icon>
 								</md-button>
 								<md-button aria-label="share" ng-click="share()" class="md-icon-button header-icon">
 									<ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
-								</md-button>
+								</md-button> -->
 							</div>
 							<div layout="row">
 								<ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>
 								<span flex></span>
 								<div ng-if="!adding_to_project" layout="row" layout-align="center center">
-									<md-button ui-sref="service-marketplace-edit({serviceId: product.id})" ng-if="!invate" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
+									<md-button ui-sref="service-marketplace-edit({serviceId: product.id})" ng-if="!invate && $scope.userData.isDmdiiAdmin" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
 									<md-button ng-click="toProject()" ng-if="!invate" class="md-raised add dmc-button margin-left20">Add to Project</md-button>
 
 						            <md-button class="md-raised dmc-button cancelProject margin-left20" ng-if="invate" ng-click="btnRemoveOfProject()">
@@ -152,7 +153,7 @@
 
           <md-tab ng-click="adHocData('interfaceModel')" label="Inputs & outputs">
             <div ng-if="!product.interfaceModel" layout-padding layout-margin>
-              
+
             </div>
 
             <div layout="row" class="preview" layout-align="center center" ng-if="product.interfaceModel">
