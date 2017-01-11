@@ -669,29 +669,29 @@ angular.module('dmc.service-marketplace')
             $scope.SortingReviews($scope.sortList[0].val);
 
             ////////adding the below as part of pre-beta changes to limit calls
-            $scope.adHocData = function() {
+            $scope.adHocData = function(dataToGet) {
                 var id = $scope.product.id;
 
                 var endpoints = {
-                    // 'service_tags': $http.get(dataFactory.services(id).get_tags),
-                    'service_reviews': $http.get(dataFactory.services(id).reviews)
-                    'interface': $http.get(dataFactory.services(id).get_interface)
+                    'service_tags': dataFactory.services(id).get_tags,
+                    'service_reviews': dataFactory.services(id).reviews,
+                    'interfaceModel': dataFactory.services(id).get_interface
                 };
 
                 var extractData = function(response){
                     return response.data ? response.data : response;
                 };
 
-                endpoints['service_reviews'].then(function(response){
-                  $scope.product.service_reviews = extractData(response);
+                $http.get(endpoints[dataToGet]).then(function(response){
+                  if (dataToGet == 'interfaceModel') {
+                    $scope.product[dataToGet] = (response.data && response.data.length > 0 ? response.data[0] : null);
+                  } else {
+                    $scope.product[dataToGet] = extractData(response);
+                  };
+
                 });
 
             };
-
-            $scope.getReviews = function() {
-              $scope.adHocData();
-            };
-
 
         }
     ]

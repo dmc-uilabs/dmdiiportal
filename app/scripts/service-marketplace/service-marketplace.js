@@ -67,13 +67,13 @@ angular.module('dmc.service-marketplace', [
 
             this.get_service = function(id){
                 var promises = {
-                    'service': $http.get(dataFactory.services(id).get),
-                    'specifications': $http.get(dataFactory.services(id).get_specifications),
-                    'service_authors': $http.get(dataFactory.services(id).get_authors),
-                    'service_tags': $http.get(dataFactory.services(id).get_tags),
-                    'services_statistic': $http.get(dataFactory.services(id).get_statistics),
+                    'service': $http.get(dataFactory.services(id).get)
+                    // 'specifications': $http.get(dataFactory.services(id).get_specifications),
+                    // 'service_authors': $http.get(dataFactory.services(id).get_authors),
+                    // 'service_tags': $http.get(dataFactory.services(id).get_tags),
+                    // 'services_statistic': $http.get(dataFactory.services(id).get_statistics)
                     // 'service_reviews': $http.get(dataFactory.services(id).reviews),
-                    'interface': $http.get(dataFactory.services(id).get_interface)
+                    // 'interface': $http.get(dataFactory.services(id).get_interface)
                 };
 
                 var extractData = function(response){
@@ -83,18 +83,18 @@ angular.module('dmc.service-marketplace', [
                 return $q.all(promises).then(function(responses){
                         var service = extractData(responses.service);
                         service.__serviceData = $.extend(true, {}, service);
-                        service.interface = (responses.interface.data && responses.interface.data.length > 0 ? responses.interface.data[0] : null);
-                        if(service.interface){
-                            // domeModel.getModel(service.interface,function(response){
-                            //     service.interfaceModel = response.data.pkg;
-                            //     console.log(service.interfaceModel);
-                            // });
-                            service.interfaceModel = service.interface;
-                        }
-                        service.specifications = extractData(responses.specifications);
-                        service.service_authors = extractData(responses.service_authors);
-                        service.service_tags = extractData(responses.service_tags);
-                        service.services_statistic = extractData(responses.services_statistic);
+                        // service.interface = (responses.interface.data && responses.interface.data.length > 0 ? responses.interface.data[0] : null);
+                        // if(service.interface){
+                        //     // domeModel.getModel(service.interface,function(response){
+                        //     //     service.interfaceModel = response.data.pkg;
+                        //     //     console.log(service.interfaceModel);
+                        //     // });
+                        //     service.interfaceModel = service.interface;
+                        // }
+                        // service.specifications = extractData(responses.specifications);
+                        // service.service_authors = extractData(responses.service_authors);
+                        // service.service_tags = extractData(responses.service_tags);
+                        // service.services_statistic = extractData(responses.services_statistic);
                         // service.service_reviews = extractData(responses.service_reviews);
                         //
                         // service.rating = service.service_reviews.map(function(value, index){

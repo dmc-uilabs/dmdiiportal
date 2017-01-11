@@ -150,9 +150,9 @@
 						<ui-widget-tabs-history data="history"></ui-widget-tabs-history>
 					</md-tab> -->
 
-          <md-tab label="Inputs & outputs">
+          <md-tab ng-click="adHocData('interfaceModel')" label="Inputs & outputs">
             <div ng-if="!product.interfaceModel" layout-padding layout-margin>
-              Inputs & Outputs does not exist
+              
             </div>
 
             <div layout="row" class="preview" layout-align="center center" ng-if="product.interfaceModel">
@@ -215,7 +215,7 @@
             </div>
           </md-tab>
 
-					<md-tab label="TAGS">
+					<md-tab ng-click="adHocData('service_tags')" label="TAGS">
 						<md-content class="md-padding">
 							<div layout="row" class="tabs-content" layout-wrap>
 								<md-chips ng-repeat="tag in product.service_tags track by $index">
@@ -237,7 +237,7 @@
 						</md-content>
 					</md-tab>
 
-          <md-tab ng-click="getReviews()" label="REVIEWS">
+          <md-tab ng-click="adHocData('service_reviews')" label="REVIEWS">
             <md-content class="md-padding">
               <div layout="row" class="reviews" layout-margin layout-fill>
                 <!--left column-->
