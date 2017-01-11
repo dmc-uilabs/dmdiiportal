@@ -33,25 +33,16 @@
       </div>
 
       <div class="product-card-container">
-        <!-- <div class="product-card__info"> -->
           <div class="product-card__description product-card-container">
-            <!-- <div class="product-card-container"> -->
               <div class="product-text">{{cardSource.description | limitTo:descriptionLenLimit}}
-                <span ng-if="descriptionTooLong()" ng-click="switchDescriptionLenLimit()">...{{descriptionLenLimitPrompt}}</span>
+                <span ng-if="descriptionTooLong()" ng-click="switchDescriptionLenLimit()"><a style="color: #65AF3F;" href>...{{descriptionLenLimitPrompt}}<a></span>
               </div>
-            <!-- </div> -->
-            <!-- <div class="product-card-container" style="align-self: flex-end;"> -->
-              <!-- current rest endpoint not returning cardSource.average_rating, need to update -->
               <ui-widget-stars-static class="review-stars" size="10" value="4.8" text="(4.8)"></ui-widget-stars-static>
-            <!-- </div> -->
           </div>
 
           <div class="product-card__image_small">
-            <!-- <img src="http://relab.dk/wp-content/uploads/2016/09/rhall_ico1-1.png"> -->
-            <img src="https://cs.adelaide.edu.au/~paulc/physics/small-0.0.gif">
-            <!-- <img ng-src="{{cardSource.images[0].documentUrl}}" alt="{{cardSource.title}}"> -->
+            <img ng-src="{{cardSource.images[0].documentUrl}}" alt="{{cardSource.title}}">
           </div>
-        <!-- </div> -->
       </div>
 
 
