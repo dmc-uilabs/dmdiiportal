@@ -675,8 +675,8 @@ angular.module('dmc.service-marketplace')
                 var id = $scope.product.id;
                 var endpoints = {
                   'service_tags': dataFactory.services(id).get_tags,
-                  'service_reviews': dataFactory.services(id).reviews,
-                  'interfaceModel': dataFactory.services(id).get_interface
+                  'service_reviews': dataFactory.services(id).reviews
+                  // 'interfaceModel': dataFactory.services(id).get_interface
                 };
 
                 var extractData = function(response){
@@ -685,12 +685,12 @@ angular.module('dmc.service-marketplace')
 
                 $http.get(endpoints[dataToGet]).then(function(response){
                   if (dataToGet == 'interfaceModel') {
-                    $scope.product[dataToGet] = (response.data && response.data.length > 0 ? response.data[0] : null);
+                    // $scope.product[dataToGet] = (response.data && response.data.length > 0 ? response.data[0] : null);
                   } else {
                     $scope.product[dataToGet] = extractData(response);
                   };
 
-                });  
+                });
               };
 
             };
