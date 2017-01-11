@@ -64,6 +64,7 @@ angular.module('dmc.service-marketplace', [
                   $http,
                   domeModel,
                   $rootScope) {
+
             this.get_service = function(id){
                 var promises = {
                     'service': $http.get(dataFactory.services(id).get),
@@ -71,7 +72,7 @@ angular.module('dmc.service-marketplace', [
                     'service_authors': $http.get(dataFactory.services(id).get_authors),
                     'service_tags': $http.get(dataFactory.services(id).get_tags),
                     'services_statistic': $http.get(dataFactory.services(id).get_statistics),
-                    'service_reviews': $http.get(dataFactory.services(id).reviews),
+                    // 'service_reviews': $http.get(dataFactory.services(id).reviews),
                     'interface': $http.get(dataFactory.services(id).get_interface)
                 };
 
@@ -94,12 +95,12 @@ angular.module('dmc.service-marketplace', [
                         service.service_authors = extractData(responses.service_authors);
                         service.service_tags = extractData(responses.service_tags);
                         service.services_statistic = extractData(responses.services_statistic);
-                        service.service_reviews = extractData(responses.service_reviews);
-
-                        service.rating = service.service_reviews.map(function(value, index){
-                            return value.rating;
-                        });
-                        service.number_of_comments = service.service_reviews.length;
+                        // service.service_reviews = extractData(responses.service_reviews);
+                        //
+                        // service.rating = service.service_reviews.map(function(value, index){
+                        //     return value.rating;
+                        // });
+                        // service.number_of_comments = service.service_reviews.length;
 
                         service.precentage_stars = [0, 0, 0, 0, 0];
                         service.average_rating = 0;
@@ -114,9 +115,9 @@ angular.module('dmc.service-marketplace', [
                                 service.precentage_stars[i] = Math.round(service.precentage_stars[i]);
                             }
                         }
-                        for(var i in service['service_reviews']){
-                            service['service_reviews'][i]['replyReviews'] = [];
-                        }
+                        // for(var i in service['service_reviews']){
+                        //     service['service_reviews'][i]['replyReviews'] = [];
+                        // }
                         return service;
 
                     },
