@@ -40,6 +40,11 @@
 
     <div class="content-panel-body">
         <md-content>
+          <div dir-paginate="serviceGroup in itemsArray | itemsPerPage: itemsArray.length">
+            <div layout-padding layout-margin flex="76">
+              <h2>Service Type: {{serviceGroup.serviceType | uppercase}}</h2>
+            </div>
+            <md-divider></md-divider>
             <div class="list-items product-container" layout="row" layout-wrap>
                 <!-- <div class="one-item"
                      flex-sm="100"
@@ -56,7 +61,7 @@
                     </dmc-product-card> -->
                 <!-- </div> -->
 
-                <div dir-paginate="item in itemsArray | itemsPerPage: pageSize track by $index">
+                  <div ng-repeat="item in serviceGroup.services">
                     <dmc-product-card card-style="'small'" ng-show="item.id"
                                       type-product="item.type"
                                       add-featured="addFeatured"
@@ -64,6 +69,7 @@
                                       hide-buttons="hideButtons"
                                       card-source="item">
                     </dmc-product-card>
+                  </div>
                 </div>
             </div>
         </md-content>
@@ -76,8 +82,8 @@
         <!--<div class="total-items">-->
             <!--{{(currentPage-1)*pageSize+1}}-{{currentPage*pageSize > totalSize ? totalSize : currentPage*pageSize}} of {{totalSize}}-->
         <!--</div>-->
-        <div class="text-center">
+        <!-- <div class="text-center">
             <dir-pagination-controls on-page-change="pageChangeHandler(currentPage)"></dir-pagination-controls>
-        </div>
+        </div> -->
     </div>
 </div>
