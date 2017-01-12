@@ -48,8 +48,8 @@ angular.module('dmc.onboarding')
 
 		function changeIsDMDIIMember(){
 		  // company 13 is 'other'
-		  if($scope.info.company != 13){
-		    $scope.info.company = 13;
+		  if($scope.info.company != 318){
+		    $scope.info.company = 318;
 				$scope.autocompleteStyle = {'float':'left', 'display': 'none'};
 		  } else {
 				$scope.ctrl.selectedCompany = "";
