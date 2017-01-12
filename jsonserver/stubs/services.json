@@ -24,7 +24,9 @@
 				"id": 8,
 				"title": "Project"
 			}
-		}
+		},
+		"ratingAverage": 4.2393483,
+		"ratingCount": 39
 	},
 	{
 		"id": 5,
@@ -50,7 +52,9 @@
 				"id": 3,
 				"title": "Capacitor Design"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 3,
@@ -69,7 +73,11 @@
 		"projectId": 2,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 3.3,
+		"ratingCount": 2,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 30,
@@ -89,7 +97,9 @@
 		"type": "service",
 		"from": "marketplace",
 		"published": true,
-		"averageRun": 0.5
+		"averageRun": 0.5,
+		"ratingAverage": 1.6,
+		"ratingCount": 1
 	},
 	{
 		"id": 4,
@@ -109,7 +119,9 @@
 		"type": "service",
 		"from": "marketplace",
 		"published": true,
-		"averageRun": 15
+		"averageRun": 15,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 6,
@@ -134,7 +146,9 @@
 				"id": 4,
 				"title": "Incoming Compartment for LDR Mining"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 7,
@@ -153,7 +167,9 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 8,
@@ -172,7 +188,9 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 9,
@@ -191,7 +209,9 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 12,
@@ -210,7 +230,9 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 15,
@@ -229,7 +251,9 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 16,
@@ -248,7 +272,9 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 17,
@@ -267,7 +293,9 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 10,
@@ -292,7 +320,9 @@
 				"id": 4,
 				"title": "Incoming Compartment for LDR Mining"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 11,
@@ -317,7 +347,9 @@
 				"id": 3,
 				"title": "Capacitor Design"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 18,
@@ -336,7 +368,9 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 2,
@@ -355,7 +389,9 @@
 		"projectId": 1,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 13,
@@ -382,7 +418,9 @@
 			}
 		},
 		"averageRun": 0,
-		"parent": 0
+		"parent": 0,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 41,
@@ -409,7 +447,9 @@
 				"id": 3,
 				"title": "Capacitor Design"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 28,
@@ -434,7 +474,9 @@
 				"id": 3,
 				"title": "Capacitor Design"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 29,
@@ -453,7 +495,9 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 14,
@@ -472,7 +516,9 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 31,
@@ -491,7 +537,9 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
-		"from": "marketplace"
+		"from": "marketplace",
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"title": "Alpha",
@@ -519,7 +567,9 @@
 				"title": "Capacitor Bank for LDR Mining Co."
 			}
 		},
-		"parent": 0
+		"parent": 0,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"title": "Velocity1 Model",
@@ -546,7 +596,9 @@
 				"id": 4,
 				"title": "Incoming Compartment for LDR Mining"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"title": "AppliedLoad",
@@ -573,7 +625,9 @@
 				"id": 4,
 				"title": "Incoming Compartment for LDR Mining"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"title": "Velocity1 Model",
@@ -599,7 +653,9 @@
 		"type": "service",
 		"published": true,
 		"from": "project",
-		"id": 45
+		"id": 45,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"title": "Vectors",
@@ -625,7 +681,9 @@
 		"type": "service",
 		"published": true,
 		"from": "project",
-		"id": 46
+		"id": 46,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"title": "AppliedLoad",
@@ -651,6 +709,8 @@
 		"type": "service",
 		"published": false,
 		"from": "project",
-		"id": 49
+		"id": 49,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	}
 ]
