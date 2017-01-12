@@ -41,10 +41,11 @@
     <div class="content-panel-body">
         <md-content>
           <div dir-paginate="serviceGroup in itemsArray | itemsPerPage: itemsArray.length">
-            <div layout-padding layout-margin flex="76">
-              <h2>Service Type: {{serviceGroup.serviceType | uppercase}}</h2>
+            <div class="list-items product-container" layout="row" layout-wrap>
+              <div layout-padding layout-margin flex="76">
+                <h2 style="border-bottom: 1px solid rgba(0, 0, 0, 0.12);">{{serviceGroup.serviceType | uppercase}}</h2>
+              </div>
             </div>
-            <md-divider></md-divider>
             <div class="list-items product-container" layout="row" layout-wrap>
                 <!-- <div class="one-item"
                      flex-sm="100"
