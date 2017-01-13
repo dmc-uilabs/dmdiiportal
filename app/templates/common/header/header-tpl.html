@@ -124,7 +124,7 @@
                             <md-button ng-href='/profile.php#/{{userProfileId}}'>My Profile</md-button>
                         </md-menu-item>
 
-                        <div ng-if="userData.roles && userData.roles[userData.companyId]">
+                        <div ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin">
                           <md-menu-item>
                               <md-button href="my-projects.php">My Projects</md-button>
                           </md-menu-item>
@@ -144,7 +144,7 @@
                               <md-button href="/edit-dmdii-project-page.php">Create DMDII Project</md-button>
                           </md-menu-item>
                         </div>
-                        
+
                         <md-menu-item>
                             <md-button ng-click='logout()'>Logout</md-button>
                         </md-menu-item>
@@ -168,7 +168,7 @@
                         Dashboard
                     </md-button> -->
 
-                    <md-menu md-offset="0 57" class="item" ng-init="dropDownWidth = 136" ng-if="userData.roles && userData.roles[userData.companyId]">
+                    <md-menu md-offset="0 57" class="item" ng-init="dropDownWidth = 136" ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin">
                         <md-button
                                 aria-label="Open Latest Services Menu"
                                 ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"
@@ -190,14 +190,14 @@
                     </md-menu>
 
                     <md-button
-                            ng-if="userData.roles && userData.roles[userData.companyId]"
+                            ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin"
                             href="community.php"
                             class="item community-header-button"
                             ng-class="{'active-page' : activePage.indexOf('community') > -1}">
                         Community
                     </md-button>
 
-                    <md-menu class="item" md-offset="0 57" ng-if="userData.roles && userData.roles[userData.companyId]">
+                    <md-menu class="item" md-offset="0 57" ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin">
                         <md-button aria-label="Open Latest Services Menu"
                                    ng-click="closeMenu(); $mdOpenMenu($event);"
                                    class="projects-header-button"
@@ -215,7 +215,7 @@
                         </md-menu-content>
                     </md-menu>
 
-                    <md-menu class="item" md-offset="0 57" ng-if="version1" ng-if="userData.roles && userData.roles[userData.companyId]">
+                    <md-menu class="item" md-offset="0 57" ng-if="version1" ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin">
                         <md-button
                                 ng-click="closeMenu(); $mdOpenMenu($event)"
                                 ng-class="{'active-page' : activePage.indexOf('challenge') > -1}">
@@ -233,7 +233,7 @@
                     </md-menu>
 
                     <!-- show if user is member  -->
-                    <md-menu class="item" md-offset="0 57" ng-if="userData.roles && userData.roles[userData.companyId]">
+                    <md-menu class="item" md-offset="0 57" ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin">
                         <md-button ng-click="closeMenu(); $mdOpenMenu($event);"
                                    class="members-header-button"
                                    ng-show="userData.isDMDIIMember || userData.isDmdiiAdmin"
@@ -257,7 +257,7 @@
                 </div>
             </div>
 
-            <form ng-submit="submitSearch(searchModel)" class="search" layout="row" layout-align="center center" ng-if="userData.roles && userData.roles[userData.companyId]">
+            <form ng-submit="submitSearch(searchModel)" class="search" layout="row" layout-align="center center" ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin">
                 <md-input-container md-no-float>
                     <input type="text" placeholder="Search" ng-model="searchModel">
                 </md-input-container>
