@@ -80,7 +80,7 @@
 								</md-button> -->
 							</div>
 							<div layout="row">
-								<ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>
+								<ui-widget-stars-static size="15" value="{{product.ratingAverage}}" text="({{product.ratingCount}})"></ui-widget-stars-static>
 								<span flex></span>
 								<div ng-if="!adding_to_project" layout="row" layout-align="center center">
 									<md-button ui-sref="service-marketplace-edit({serviceId: product.id})" ng-if="!invate && $scope.userData.isDmdiiAdmin" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
