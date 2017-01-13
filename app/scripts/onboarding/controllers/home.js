@@ -8,7 +8,8 @@ angular.module('dmc.onboarding')
 			    controller: "BasicInformationsController",
 			    templateUrl: 'templates/onboarding/basic-informations.html',
 			    parent: angular.element(document.body),
-			    clickOutsideToClose: false
+			    clickOutsideToClose: false,
+					escapeToClose: false
 		    })
 		    .then(function(info) {
 		    		$scope.userBasicInformation = info;
@@ -41,5 +42,3 @@ angular.module('dmc.onboarding')
 		});
 
 }]);
-
-
