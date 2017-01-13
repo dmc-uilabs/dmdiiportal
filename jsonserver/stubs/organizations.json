@@ -1,0 +1,156 @@
+[
+   {
+      "id":1,
+      "name":"EG LABS",
+      "location":null,
+      "description":"EG LABZ",
+      "division ":"InnovationEngine ",
+      "industry ":"Digital Manufacturing ",
+      "naicsCode ":"01010101 ",
+      "email ":"email@email.com",
+      "phone ":"1.222.333.4444",
+      "website":"http://www.uilabs.org/#about",
+      "socialMediaLinkedin":null,
+      "socialMediaTwitter":null,
+      "socialMediaInthenews":null,
+      "perferedCommMethod":"1",
+      "address":{
+         "id":1,
+         "streetAddress1":"1415 N    Cherry ",
+         "    streetAddress2 ":"    ",
+         "    city ":"    Chicago ",
+         "    state ":"    IL ",
+         "    country ":"    US ",
+         "    zip ":"    60642 "
+      },
+      "    reasonJoining ":"To transform American Manufacturing.",
+      "featureImage":null,
+      "logoImage":"http://cdn3-www.cattime.com/assets/uploads/gallery/25-funny-cat-memes/01_FUNNY-CAT-MEME.jpg",
+      "    awards ":[
+         {
+            "    id ":3,
+            "    name ":"    Design of the Year ",
+            "    description ":"UI LABS' facility was recognized as the \"Design of the Year\" by the Chicago chapter of the American    Institute of Architects.    ",
+            "    link ":"    http: //www.google.com"
+         },
+         {
+            "id":4,
+            "name":"Project of the Year",
+            "description":"UI LABS' facility was recognized as \"Project of the Year\" by Core Net Chicago.",
+            "link":null
+         }
+      ],
+      "contacts":[
+         {
+            "id":3,
+            "contactType":{
+               "id":5,
+               "contactType":"SUPPORT"
+            },
+            "name":"J Doh",
+            "phoneNumber":null,
+            "title":null,
+            "email":"j.doh@email.org"
+         }
+      ],
+      "areasOfExpertise":[
+         {
+            "id":9,
+            "name":"Business ProcessManagement ",
+            "description ":null,
+            "link ":null,
+            "isDmdii ":true
+         },
+         {
+            "id ":16,
+            "name ":"Consumer - driven innovation ",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":19,
+            "name":"Cybersecurity Technology",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":28,
+            "name":"Digital Value Chain",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":28,
+            "name":"Digital Value Chain",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":47,
+            "name":"Information Assurance",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":48,
+            "name":"Innovation and Product Development",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":60,
+            "name":"Manufacturing Process Design and Development",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":81,
+            "name":"Operational Quality Assurance",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":85,
+            "name":"Product Life Cycle Excellence",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":88,
+            "name":"R&D",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         }
+      ],
+      "desiredAreasOfExpertise":[
+         {
+            "id":7,
+            "name":"Big Data",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         },
+         {
+            "id":41,
+            "name":"Green Building Practices",
+            "description":null,
+            "link":null,
+            "isDmdii":true
+         }
+      ],
+      "dmdiiMemberId":1,
+      "postCollaboration":"DMDII and City Digital",
+      "upcomingProjectInterests":"Project 15-16-08",
+      "pastProjects":""
+   }
+]
