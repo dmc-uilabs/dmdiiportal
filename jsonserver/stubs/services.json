@@ -18,7 +18,7 @@
 		"from": "marketplace",
 		"parent": 0,
 		"published": true,
-		"averageRun": 0,
+		"averageRun": 9999,
 		"currentStatus": {
 			"project": {
 				"id": 8,
@@ -53,8 +53,8 @@
 				"title": "Capacitor Design"
 			}
 		},
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingAverage": 3.5,
+		"ratingCount": 3
 	},
 	{
 		"id": 3,
@@ -75,9 +75,7 @@
 		"published": true,
 		"from": "marketplace",
 		"ratingAverage": 3.3,
-		"ratingCount": 2,
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 2
 	},
 	{
 		"id": 30,
@@ -120,7 +118,7 @@
 		"from": "marketplace",
 		"published": true,
 		"averageRun": 15,
-		"ratingAverage": 2,
+		"ratingAverage": 4,
 		"ratingCount": 39
 	},
 	{
@@ -189,7 +187,7 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
+		"ratingAverage": 2.5,
 		"ratingCount": 39
 	},
 	{
