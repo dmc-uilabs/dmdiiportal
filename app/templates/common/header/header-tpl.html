@@ -123,24 +123,28 @@
                         <md-menu-item>
                             <md-button ng-href='/profile.php#/{{userProfileId}}'>My Profile</md-button>
                         </md-menu-item>
-                        <md-menu-item>
-                            <md-button href="my-projects.php">My Projects</md-button>
-                        </md-menu-item>
-                        <md-menu-item ng-if="version1">
-                            <md-button href="#">My Submissions</md-button>
-                        </md-menu-item>
-                        <md-menu-item>
-                            <md-button href="/upload-application.php">Submit an App</md-button>
-                        </md-menu-item>
-                        <md-menu-item ng-if="userData.isDmdiiAdmin">
-                            <md-button href="/add-dmdii-content.php">Add DMDII Content</md-button>
-                        </md-menu-item>
-                        <md-menu-item ng-if="userData.isDmdiiAdmin">
-                            <md-button href="/edit-member-page.php">Create DMDII Member</md-button>
-                        </md-menu-item>
-                        <md-menu-item ng-if="userData.isDmdiiAdmin">
-                            <md-button href="/edit-dmdii-project-page.php">Create DMDII Project</md-button>
-                        </md-menu-item>
+
+                        <div ng-if="userData.roles && userData.roles[userData.companyId]">
+                          <md-menu-item>
+                              <md-button href="my-projects.php">My Projects</md-button>
+                          </md-menu-item>
+                          <md-menu-item ng-if="version1">
+                              <md-button href="#">My Submissions</md-button>
+                          </md-menu-item>
+                          <md-menu-item>
+                              <md-button href="/upload-application.php">Submit an App</md-button>
+                          </md-menu-item>
+                          <md-menu-item ng-if="userData.isDmdiiAdmin">
+                              <md-button href="/add-dmdii-content.php">Add DMDII Content</md-button>
+                          </md-menu-item>
+                          <md-menu-item ng-if="userData.isDmdiiAdmin">
+                              <md-button href="/edit-member-page.php">Create DMDII Member</md-button>
+                          </md-menu-item>
+                          <md-menu-item ng-if="userData.isDmdiiAdmin">
+                              <md-button href="/edit-dmdii-project-page.php">Create DMDII Project</md-button>
+                          </md-menu-item>
+                        </div>
+                        
                         <md-menu-item>
                             <md-button ng-click='logout()'>Logout</md-button>
                         </md-menu-item>
