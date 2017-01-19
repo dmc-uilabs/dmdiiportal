@@ -28,7 +28,7 @@
         <div layout="row" layout-align="center center">
           <ui-widget-stars-static size="15" ng-click="goToReview()" value="{{profile.average_rating}}" text="({{profile.average_rating}})"></ui-widget-stars-static>
 
-          <a class="link margin-left16" ng-href="company.php#/{{profile.companyId}}/storefront?product=services">View Storefront</a>
+          <!-- <a class="link margin-left16" ng-href="company.php#/{{profile.companyId}}/storefront?product=services">View Storefront</a> -->
 
           <span flex></span>
 
@@ -36,9 +36,9 @@
             <md-button class="md-raised" ui-sref="edit({profileId: profile.id})">
               Edit profile
             </md-button>
-            <md-button class="md-raised" ng-click="follow()">
+            <!-- <md-button class="md-raised" ng-click="follow()">
               {{(followFlag) ? 'Unfollow' : 'Follow'}}
-            </md-button>
+            </md-button> -->
             <md-button class="md-raised" ng-if="!invate && profile.id !== $root.userData.accountId" ng-click="btnInviteToProject()">
               Invite to Project
             </md-button>

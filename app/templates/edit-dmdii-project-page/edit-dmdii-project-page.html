@@ -114,7 +114,7 @@
 
         <div layout="column">
             <md-autocomplete flex="33" ng-show="user.isDmdiiAdmin"
-                ng-disabled="project.projectStatus.id === 1"
+
                 ng-required="project.projectStatus.id !== 1"
                 md-input-name="organizations"
                 md-items="org in queryOrgSearch(searchOrg)"
@@ -150,7 +150,7 @@
 
             <div layout="row" ng-show="user.isDmdiiAdmin">
                 <md-autocomplete flex="33"
-                    ng-disabled="project.projectStatus.id === 1"
+
                     ng-required="project.projectStatus.id !== 1"
                     md-input-name="organizations"
                     md-items="org in queryOrgSearch(searchContOrg)"
@@ -191,21 +191,21 @@
                     <md-input-container>
                         <label>First Name</label>
                         <input id="contactFirstName"
-                            ng-disabled="project.projectStatus.id === 1"
+                           
                             ng-required="project.projectStatus.id !== 1"
                             ng-model="project.principalInvestigator.firstName">
                     </md-input-container>
                     <md-input-container>
                         <label>Last Name</label>
                         <input id="contactLastName"
-                            ng-disabled="project.projectStatus.id === 1"
+
                             ng-required="project.projectStatus.id !== 1"
                             ng-model="project.principalInvestigator.lastName">
                     </md-input-container>
                     <md-input-container md-no-float>
                         <label>Email</label>
                         <input id="contactEmail"
-                            ng-disabled="project.projectStatus.id === 1"
+
                             ng-required="project.projectStatus.id !== 1"
                             ng-model="project.principalInvestigator.email">
                     </md-input-container>

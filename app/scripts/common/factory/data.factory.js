@@ -5,7 +5,7 @@ angular.module('dmc.data',[])
         var baseServer = $window.apiUrl ? $window.apiUrl : '/static/?p=';
         var localhost = ($location.$$absUrl.indexOf('http://localhost') != -1  || $location.$$absUrl.indexOf(':9000') != -1 ? 'http://localhost:3000/' : '');
         localhost = $window.apiUrl ? $window.apiUrl + '/' : localhost;
-        var urlSocketServer = 'http://localhost:8080/';
+        var urlSocketServer = 'http://localhost:3000/';
         var appendId = function(id){
             return ($window.apiUrl && id ? '/'+id : '');
         };

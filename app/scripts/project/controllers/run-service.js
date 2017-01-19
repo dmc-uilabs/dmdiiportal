@@ -189,7 +189,7 @@ angular.module('dmc.project')
                             updatePositionInputs();
                             apply();
                         }else{
-                            toastModel.showToast("error", "Rerun history item not found");
+                            toastModel.showToast('error', 'Rerun history item not found');
                         }
                     }
                 );
@@ -212,9 +212,9 @@ angular.module('dmc.project')
             // get last run time
             $scope.lastRunTime = 0;
             // get current status
-            $scope.status = "Not Running";
+            $scope.status = 'Not Running';
             // get last status
-            $scope.lastStatus = "none";
+            $scope.lastStatus = 'none';
 
 
 
@@ -236,13 +236,13 @@ angular.module('dmc.project')
             function getStatus(status){
                 switch(status){
                     case 0:
-                        return "running";
+                        return 'running';
                         break;
                     case 1:
-                        return "success";
+                        return 'success';
                         break;
                     case -1:
-                        return "error";
+                        return 'error';
                         break;
                     default:
                         return status;
@@ -292,7 +292,7 @@ angular.module('dmc.project')
             }
 
             function pollModelErrorCallback(response) {
-                toastModel.showToast("error", "Error poling Dome service");
+                toastModel.showToast('error', 'Error poling Dome service');
             }
 
             function runModelCallback(response){
@@ -300,7 +300,7 @@ angular.module('dmc.project')
             }
 
             function runModelErrorCallback(response){
-                toastModel.showToast("error", "Error running Dome service");
+                toastModel.showToast('error', 'Error running Dome service');
             }
             // run Model
             function runModel(){
@@ -335,7 +335,7 @@ angular.module('dmc.project')
                         outParams: $scope.service.interfaceModel.outParams
                     }, runModelCallback, runModelErrorCallback);
                 }else{
-                    toastModel.showToast("error", "Dome server is not found!");
+                    toastModel.showToast('error', 'Dome server is not found!');
                 }
             }
 
@@ -373,7 +373,7 @@ angular.module('dmc.project')
             function updateAverageRun(){
                 ajax.get(dataFactory.services($scope.service.id).get_run_history, {
                         _sort: 'id',
-                        _order: "DESC",
+                        _order: 'DESC',
                         status_ne : 'running'
                     }, function(response){
                         var history = response.data;
@@ -410,8 +410,8 @@ angular.module('dmc.project')
 
             $scope.save = function(){
                 var dataRequest = {
-                    "serviceId": $scope.service.id,
-                    "positions": []
+                    'serviceId': $scope.service.id,
+                    'positions': []
                 };
                 for(var i=0; i < $scope.service.interfaceModel.inputs.length;i++){
                     dataRequest.positions.push({
@@ -423,7 +423,7 @@ angular.module('dmc.project')
                     ajax.create(dataFactory.services().add_position_inputs, dataRequest,
                         function (response) {
                             $scope.service.position_inputs = response.data;
-                            toastModel.showToast("success", "Order successfully saved");
+                            toastModel.showToast('success', 'Order successfully saved');
                         }
                     );
                 }else{
@@ -432,7 +432,7 @@ angular.module('dmc.project')
                         }, function (response) {
                             $scope.isChangedOrder = false;
                             $scope.service.position_inputs = response.data;
-                            toastModel.showToast("success", "Order successfully changed");
+                            toastModel.showToast('success', 'Order successfully changed');
                         }
                     );
                 }

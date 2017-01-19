@@ -9,12 +9,27 @@ $lines-to-show-title: 2;
 .is-favorite{
   fill : #64B045;
 }
+// generic flexbox container
+.product-card-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
 .product-card {
+  width: 300px;
+  margin: 10px;
+  padding: 15px;
   border: 1px solid #666;
   @include borderRadius(3px);
-  display: inline-block;
+  // display: inline-block;
   background-color: #fff;
-  vertical-align: top;
+  // vertical-align: top;
   overflow: hidden;
   text-align: left;
   .reply{
@@ -30,14 +45,44 @@ $lines-to-show-title: 2;
       margin: 0;
     }
   }
+  &__info{
+  }
+  &__title{
+    width: 100%;
+    height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    a{
+      font-size: 1.5em;
+      color: map-get($colors, secondary);
+      font-weight: bold;
+    }
+  }
+  &__description{
+    margin: 5px 0;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.2em;
+    flex-grow: 1;
+    width: 100px;
+    margin-right: 5px;
+    white-space: normal;
+    .product-text{
+      min-height: 70px;
+    }
+  }
   &__image{
     text-align: center;
     //padding: 0 18px;
     &_small{
-      height: 140px;
+      margin-bottom: 5px;
+      box-sizing: border-box;
+      height: 108px;
+      width: 108px;
       overflow: hidden;
-      padding: 0 18px;
-    }
+      border-radius: 5px;
+      }
   }
   .star-rating{
     button{
@@ -83,6 +128,17 @@ $lines-to-show-title: 2;
     height: 201px;
     max-height: 201px;
     min-height: 201px;
+    &__column{
+      padding: 0 8px;
+    }
+  }
+
+  &__owner {
+    padding: 0 8px;
+    height: 30px;
+    max-height: 30px;
+    min-height: 30px;
+    overflow: hidden;
     &__column{
       padding: 0 8px;
     }

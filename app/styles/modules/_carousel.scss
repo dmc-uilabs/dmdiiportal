@@ -126,9 +126,11 @@
     slide{
        font-size: 12px;
       .slide-item{
+        vertical-align: top;
         display: inline-block;
         .product-card{
           width: 100%;
+          max-width: 300px;
         }
       }
       .slide-item:first-child{

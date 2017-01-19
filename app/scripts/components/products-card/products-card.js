@@ -95,14 +95,52 @@ angular.module('dmc.component.productscard', [
               }
           };
 
+          // add function to group marketplace items by serviceType
+          var groupServicesByType = function(data) {
+            var serviceTypes = {};
+            var servicesGroupedByType = [];
+
+            for (var i in data) {
+              var types = data[i].serviceType;
+
+              for (var j in types) {
+                if (!serviceTypes[types[j]]) {
+                  serviceTypes[types[j]] = [];
+                };
+
+                serviceTypes[types[j]].push(data[i]);
+              };
+            };
+
+            for (var k in serviceTypes) {
+              var groupedServices = {};
+
+              groupedServices['serviceType'] = k;
+              groupedServices['services'] = serviceTypes[k];
+
+              servicesGroupedByType.push(groupedServices);
+            };
+
+            servicesGroupedByType.sort(function(a, b){
+              if(a.serviceType < b.serviceType) return -1;
+              if(a.serviceType > b.serviceType) return 1;
+              return 0;
+            });
+
+            return servicesGroupedByType;
+
+          };
+
           $scope.updateData = function(){
-              $scope.itemsArray = new Array($scope.totalSize);
-              for(var i=0;i<$scope.itemsArray.length;i++) $scope.itemsArray[i] = i;
-              var j = ($scope.currentPage-1)*$scope.pageSize;
-              for(var i=0;i<$scope.cardSource.arr.length;i++){
-                  $scope.itemsArray[j] = $scope.cardSource.arr[i];
-                  j++;
-              }
+              $scope.itemsArray = groupServicesByType($scope.cardSource.arr);
+
+              // $scope.itemsArray = new Array($scope.totalSize);
+              // for(var i=0;i<$scope.itemsArray.length;i++) $scope.itemsArray[i] = i;
+              // var j = ($scope.currentPage-1)*$scope.pageSize;
+              // for(var i=0;i<$scope.cardSource.arr.length;i++){
+              //     $scope.itemsArray[j] = $scope.cardSource.arr[i];
+              //     j++;
+              // }
           };
           $scope.updateData();
 

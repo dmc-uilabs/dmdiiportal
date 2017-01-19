@@ -7,7 +7,7 @@
 		"owner": "L.Mason",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -18,13 +18,18 @@
 		"from": "marketplace",
 		"parent": 0,
 		"published": true,
+		"averageRun": 9999,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"averageRun": 0,
 		"currentStatus": {
 			"project": {
 				"id": 8,
 				"title": "Project"
 			}
-		}
+		},
+		"ratingAverage": 4.2393483,
+		"ratingCount": 39
 	},
 	{
 		"id": 5,
@@ -34,7 +39,7 @@
 		"owner": "P.Ruiz",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -44,13 +49,17 @@
 		"type": "service",
 		"from": "marketplace",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"averageRun": 0,
 		"currentStatus": {
 			"project": {
 				"id": 3,
 				"title": "Capacitor Design"
 			}
-		}
+		},
+		"ratingAverage": 3.5,
+		"ratingCount": 3
 	},
 	{
 		"id": 3,
@@ -60,7 +69,7 @@
 		"owner": "M.Gill",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -69,6 +78,9 @@
 		"projectId": 2,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 2,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -79,7 +91,7 @@
 		"owner": "J.Cole",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -89,6 +101,9 @@
 		"type": "service",
 		"from": "marketplace",
 		"published": true,
+		"averageRun": 0.5,
+		"ratingCount": 1,
+		"ratingAverage": 3.5,
 		"averageRun": 0.5
 	},
 	{
@@ -99,7 +114,7 @@
 		"owner": "J.Sims",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -109,6 +124,9 @@
 		"type": "service",
 		"from": "marketplace",
 		"published": true,
+		"averageRun": 15,
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"averageRun": 15
 	},
 	{
@@ -119,7 +137,7 @@
 		"owner": "E.Fox",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -128,13 +146,17 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
 				"id": 4,
 				"title": "Incoming Compartment for LDR Mining"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 7,
@@ -144,7 +166,7 @@
 		"owner": "G.Baker",
 		"profileId": 1,
 		"releaseDate": "01/08/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -153,6 +175,9 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -163,7 +188,7 @@
 		"owner": "G.Baker",
 		"profileId": 1,
 		"releaseDate": "01/07/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -172,6 +197,9 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -182,7 +210,7 @@
 		"owner": "m.winand",
 		"profileId": 1,
 		"releaseDate": "01/05/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -191,6 +219,9 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -201,7 +232,7 @@
 		"owner": "m.winand",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -210,6 +241,9 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -220,7 +254,7 @@
 		"owner": "V.Sutton",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -229,6 +263,9 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -239,7 +276,7 @@
 		"owner": "R.McCoy",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -248,6 +285,9 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -258,7 +298,7 @@
 		"owner": "R.McCoy",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -267,6 +307,9 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -277,7 +320,7 @@
 		"owner": "p.koudal",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -286,13 +329,17 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
 				"id": 4,
 				"title": "Incoming Compartment for LDR Mining"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 11,
@@ -302,7 +349,7 @@
 		"owner": "p.koudal",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -311,13 +358,17 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
 				"id": 3,
 				"title": "Capacitor Design"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 18,
@@ -327,7 +378,7 @@
 		"owner": "R.McCoy",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -336,6 +387,9 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -346,7 +400,7 @@
 		"owner": "D.Black",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/2/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -355,6 +409,9 @@
 		"projectId": 1,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -365,7 +422,7 @@
 		"owner": "PDM.Co",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -374,6 +431,8 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
@@ -382,7 +441,9 @@
 			}
 		},
 		"averageRun": 0,
-		"parent": 0
+		"parent": 0,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 41,
@@ -392,7 +453,7 @@
 		"owner": "J.Cole",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -403,13 +464,17 @@
 		"from": "marketplace",
 		"averageRun": 11.5,
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"parent": 0,
 		"currentStatus": {
 			"project": {
 				"id": 3,
 				"title": "Capacitor Design"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 28,
@@ -419,7 +484,7 @@
 		"owner": "J.Cole",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -428,13 +493,17 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
 				"id": 3,
 				"title": "Capacitor Design"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"id": 29,
@@ -444,7 +513,7 @@
 		"owner": "J.Cole",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -453,6 +522,9 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -463,7 +535,7 @@
 		"owner": "M.Dawson",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -472,6 +544,9 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -482,7 +557,7 @@
 		"owner": "J.Cole",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -491,6 +566,9 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"from": "marketplace",
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
 		"from": "marketplace"
 	},
 	{
@@ -500,7 +578,7 @@
 		"profileId": 1,
 		"accountId": 1,
 		"releaseDate": "02/13/2016",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -513,13 +591,17 @@
 		"id": 42,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"currentStatus": {
 			"project": {
 				"id": 2,
 				"title": "Capacitor Bank for LDR Mining Co."
 			}
 		},
-		"parent": 0
+		"parent": 0,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"title": "Velocity1 Model",
@@ -528,7 +610,7 @@
 		"profileId": 1,
 		"accountId": 1,
 		"releaseDate": "02/14/2016",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -541,12 +623,16 @@
 		"id": 43,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"currentStatus": {
 			"project": {
 				"id": 4,
 				"title": "Incoming Compartment for LDR Mining"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"title": "AppliedLoad",
@@ -555,7 +641,7 @@
 		"profileId": 1,
 		"accountId": 1,
 		"releaseDate": "02/14/2016",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -568,12 +654,16 @@
 		"id": 44,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"currentStatus": {
 			"project": {
 				"id": 4,
 				"title": "Incoming Compartment for LDR Mining"
 			}
-		}
+		},
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"title": "Velocity1 Model",
@@ -581,7 +671,7 @@
 		"owner": "Thomas Smith",
 		"accountId": 1,
 		"releaseDate": "02/24/2016",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -598,8 +688,12 @@
 		"projectId": 1,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "project",
-		"id": 45
+		"id": 45,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"title": "Vectors",
@@ -607,7 +701,7 @@
 		"owner": "Thomas Smith",
 		"accountId": 1,
 		"releaseDate": "03/08/2016",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -624,8 +718,12 @@
 		"projectId": 1,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "project",
-		"id": 46
+		"id": 46,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	},
 	{
 		"title": "AppliedLoad",
@@ -633,7 +731,7 @@
 		"owner": "Thomas Smith",
 		"accountId": 1,
 		"releaseDate": "03/23/2016",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -650,7 +748,11 @@
 		"projectId": 1,
 		"type": "service",
 		"published": false,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "project",
-		"id": 49
+		"id": 49,
+		"ratingAverage": 2,
+		"ratingCount": 39
 	}
 ]
