@@ -18,6 +18,8 @@
 		"from": "marketplace",
 		"parent": 0,
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"averageRun": 0,
 		"currentStatus": {
 			"project": {
@@ -44,6 +46,8 @@
 		"type": "service",
 		"from": "marketplace",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"averageRun": 0,
 		"currentStatus": {
 			"project": {
@@ -69,6 +73,8 @@
 		"projectId": 2,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -89,6 +95,8 @@
 		"type": "service",
 		"from": "marketplace",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"averageRun": 0.5
 	},
 	{
@@ -109,6 +117,8 @@
 		"type": "service",
 		"from": "marketplace",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"averageRun": 15
 	},
 	{
@@ -128,6 +138,8 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
@@ -153,6 +165,8 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -172,6 +186,8 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -191,6 +207,8 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -210,6 +228,8 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -229,6 +249,8 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -248,6 +270,8 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -267,6 +291,8 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -286,6 +312,8 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
@@ -311,6 +339,8 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
@@ -336,6 +366,8 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -355,6 +387,8 @@
 		"projectId": 1,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -374,6 +408,8 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
@@ -403,6 +439,8 @@
 		"from": "marketplace",
 		"averageRun": 11.5,
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"parent": 0,
 		"currentStatus": {
 			"project": {
@@ -428,6 +466,8 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
@@ -453,6 +493,8 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -472,6 +514,8 @@
 		"projectId": 5,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -491,6 +535,8 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace"
 	},
 	{
@@ -513,6 +559,8 @@
 		"id": 42,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"currentStatus": {
 			"project": {
 				"id": 2,
@@ -541,6 +589,8 @@
 		"id": 43,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"currentStatus": {
 			"project": {
 				"id": 4,
@@ -568,6 +618,8 @@
 		"id": 44,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"currentStatus": {
 			"project": {
 				"id": 4,
@@ -598,6 +650,8 @@
 		"projectId": 1,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "project",
 		"id": 45
 	},
@@ -624,6 +678,8 @@
 		"projectId": 1,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "project",
 		"id": 46
 	},
@@ -650,6 +706,8 @@
 		"projectId": 1,
 		"type": "service",
 		"published": false,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "project",
 		"id": 49
 	}
