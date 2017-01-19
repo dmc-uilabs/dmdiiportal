@@ -108,7 +108,7 @@
             </div>
 
             <div layout="column">
-              <md-button ng-href='https://apps.cirrusidentity.com/console/ds/index?entityID=https://beta.opendmc.org/shibboleth&return=https://portal.opendmc.org/Shibboleth.sso/Login%3Ftarget%3Dhttps%3A%2F%2Fportal.opendmc.org' class="login-button" ng-if="!$root.isLogged">Login</md-button>
+              <md-button ng-href='loginUR' class="login-button" ng-if="!$root.isLogged">Login</md-button>
                 <md-menu md-offset="0 64" ng-if="$root.isLogged">
                     <md-button class="user-button"
                                aria-label="Open Latest Services Menu"
