@@ -1,113 +1,222 @@
 <div class="onboarding-home">
 	<md-content layout layout-align="center center">
-		<div layout="column" flex="70" layout-fill>
-			<div class="section-header" layout="column" layout-align="start start" layout-fill>
+		<div layout="column"  layout-fills>
+			<div class="section-header" layout="column" layout-align="start start" layout-fills>
 				<h2>Welcome to the Digital Manufacturing Commons</h2>
 				<h3>A collaboration community to drive advanced system engineering.</h3>
 			</div>
-			<div class="section-skip" layout="row" layout-align="end center" 
-				 ng-if="!$root.userData.onboarding.account || !$root.userData.onboarding.company || !$root.userData.onboarding.profile || !$root.userData.onboarding.storefront">
-				<a class="link" ng-href="/">skip setup</a>
-			</div>
+
 			<div layout="column" class="background">
-				<div class="section" layout="row" layout-align="center center" layout-fill>
+				<div class="section" layout="row" layout-align="center center" layout-fills>
 					<div class="image">
-						<img ng-src="images/icon-profile-lg.svg">
+						<img ng-src="images/icon-profile-lg.svg"  style="width: 50px">
 					</div>
 					<div layout="column" flex class="text">
-						<h2><a ui-sref="^.profile">Create Your Profile</a></h2>
-						<h3>Let everyone know who you are and what you do.</h3>
+						<h2>What is the DMDII Portal?</h2>
+						<h3>The portal serves as a one-stop communication and collaboration platform within the Digital Manufacturing Commons for DMDII members. It features tools to stay up to date on the latest news from the Institute, shares project updates, and allows collaboration with other members. </h3>
 					</div>
-					<md-button class="md-raised dmc-button complete" 
-							   ng-if="userData.onboarding.profile" 
-							   ui-sref="^.profile"
-							   ng-mousemove="text='Edit'" 
-							   ng-mouseleave="text=false">
-						<md-icon ng-if="!text" md-svg-src="images/icon-complete.svg" aria-label="done"></md-icon>
-						{{(text)? text: 'Complete'}}
-					</md-button>
-					<md-button ui-sref="^.profile" class="md-raised dmc-button" ng-if="!userData.onboarding.profile">
-						Go To
-					</md-button>
+
 				</div>
 
 				<md-divider></md-divider>
 
-				<div class="section" layout="row" layout-align="center center" layout-fill>
+				<div class="section" layout="row" layout-align="center center" layout-fills>
 					<div class="image">
-						<img ng-src="images/icon-settings-lg.svg">
+						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
 					</div>
 					<div layout="column" flex class="text">
-						<h2><a ui-sref="^.account">Manage Your Account</a></h2>
-						<h3>Customize things the way you want them.</h3>
+							<h2>What can I find here?</h2>
+					<h3> On the portal you’ll find news, discussions, information about DMDII members, and details about the Institute’s projects.
+<br /><br />
+					The portal lists DMDII updates, milestones, and events in a single location so you never miss an announcement from the Institute or other members. A member directory hosts profiles of participating organizations—including their skills and interests—to help facilitate networking and project teaming. On the portal’s project page, you’ll find information about ongoing DMDII projects, from news and updates to timelines and events, to help keep you informed about the wide scope of projects underway at DMDII.</h3>
 					</div>
-					<md-button class="md-raised dmc-button complete" 
-							   ng-if="userData.onboarding.account" 
-							   ui-sref="^.account"
-							   ng-mousemove="text='Edit'"
-							   ng-mouseleave="text=false">
-						<md-icon ng-if="!text" md-svg-src="images/icon-complete.svg" aria-label="done"></md-icon>
-						{{(text)? text: 'Complete'}}
-					</md-button>
-					<md-button ui-sref="^.account" class="md-raised dmc-button" ng-if="!userData.onboarding.account">
-						Go To
-					</md-button>
+
+				</div>
+
+
+				<md-divider></md-divider>
+				<div class="section" layout="row" layout-align="center center" layout-fills>
+					<div class="image">
+						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
+					</div>
+					<div layout="column" flex class="text">
+							<h2>How do I use it?</h2>
+					<h3>	Begin by contacting your organization’s administrator for your credentials to access the portal. Once you’ve logged in, you’ll find an easy-to-use, customizable interface. Start by creating your profile to tell other members about you and your organization—who you are, what you do, and the skills you bring to DMDII.
+
+						After your profile is up to date, engage with the DMDII community by following other members and participating in discussions within the forum. Update your projects on the “My Projects” tab, upload documents, and invite other members to engage with you in your work. Check back often for the latest news, discussions, and project updates posted to the portal.</h3>
+					</div>
+
 				</div>
 
 				<md-divider></md-divider>
 
+<style>
 
-				<div ng-if="$root.userData.role == 1" class="section" layout="row" layout-align="center center" layout-fill>
-					<div class="image">
-						<img ng-src="images/icon-company-lg.svg">
-					</div>
-					<div layout="column" flex class="text">
-						<h2><a ui-sref="^.company">Define the Company</a></h2>
-						<h3>Profile the business, its capabilities and accomplishments.</h3>
-					</div>
-					<md-button class="md-raised dmc-button complete" 
-							   ng-if="userData.onboarding.company" 
-							   ui-sref="^.company"
-							   ng-mousemove="text='Edit'" 
-							   ng-mouseleave="text=false">
-						<md-icon ng-if="!text" md-svg-src="images/icon-complete.svg" aria-label="done"></md-icon>
-						{{(text)? text: 'Complete'}}
-					</md-button>
-					<md-button ui-sref="^.company" class="md-raised dmc-button" ng-if="!userData.onboarding.company">
-						Go To
-					</md-button>
-				</div>
+</style>
 
-				<md-divider></md-divider>
+<script>
+function toggle (elements, specifiedDisplay) {
+  var element, index;
+
+  elements = elements.length ? elements : [elements];
+  for (index = 0; index < elements.length; index++) {
+    element = elements[index];
+
+    if (isElementHidden(element)) {
+      element.style.display = '';
+
+      // If the element is still hidden after removing the inline display
+      if (isElementHidden(element)) {
+        element.style.display = specifiedDisplay || 'block';
+      }
+    } else {
+      element.style.display = 'none';
+    }
+  }
+  function isElementHidden (element) {
+    return window.getComputedStyle(element, null).getPropertyValue('display') === 'none';
+  }
+}
 
 
-				<div ng-if="$root.userData.role == 1" class="section" layout="row" layout-align="center center" layout-fill>
-					<div class="image">
-						<img ng-src="images/icon-marketplace-lg.svg">
-					</div>
-					<div layout="column" flex class="text">
-						<h2><a ui-sref="^.storefront">Build Your Storefront</a></h2>
-						<h3>Customize a space to promote and market your offerings.</h3>
-					</div>
-					<md-button class="md-raised dmc-button complete" 
-							   ng-if="userData.onboarding.storefront" 
-							   ui-sref="^.storefront"
-							   ng-mousemove="text='Edit'" 
-							   ng-mouseleave="text=false">
-						<md-icon ng-if="!text" md-svg-src="images/icon-complete.svg" aria-label="done"></md-icon>
-						{{(text)? text: 'Complete'}}
-					</md-button>
-					<md-button ui-sref="^.storefront" class="md-raised dmc-button" ng-if="!userData.onboarding.storefront">
-						Go To
-					</md-button>
-				</div>
-			
-			</div>
-			<div class="section-footer" layout="column" layout-align="center center"
-				 ng-if="$root.userData.onboarding.account && $root.userData.onboarding.company && $root.userData.onboarding.profile && $root.userData.onboarding.storefront">
-				<h2>You have completed the setup.</h2>
-				<a class="link" ng-href="/">go to home</a>
-			</div>
+document.getElementById('toggle-button-1').addEventListener('click', function () {
+  toggle(document.getElementById('toggle-button-1-c'));
+});
+
+document.getElementById('toggle-button-2').addEventListener('click', function () {
+  toggle(document.getElementById('toggle-button-2-c'));
+});
+document.getElementById('toggle-button-3').addEventListener('click', function () {
+  toggle(document.getElementById('toggle-button-3-c'));
+});
+document.getElementById('toggle-button-4').addEventListener('click', function () {
+  toggle(document.getElementById('toggle-button-4-c'));
+});
+
+
+document.getElementById('toggle-button-1m').addEventListener('click', function () {
+  toggle(document.getElementById('toggle-button-1m-c'));
+});
+
+document.getElementById('toggle-button-2m').addEventListener('click', function () {
+  toggle(document.getElementById('toggle-button-2m-c'));
+});
+document.getElementById('toggle-button-3m').addEventListener('click', function () {
+  toggle(document.getElementById('toggle-button-3m-c'));
+});
+document.getElementById('toggle-button-4m').addEventListener('click', function () {
+  toggle(document.getElementById('toggle-button-4m-c'));
+});
+
+
+
+</script>
+
+
+<div class="section" layout="row"  layout-fills>
+	<h2>Organizational Steps</h2>
+</div>
+
+<div class="section" layout="row" layout-align="center center" layout-fills>
+	<div class="ct">
+			<ul class="progressbar">
+					<li class="active" id="toggle-button-1">appoint company admin</li>
+					<li class="active" id="toggle-button-2">communicate selection to UI LABS</li>
+					<li class="active" id="toggle-button-3">company admin create DMC user account</li>
+					<li class="active" id="toggle-button-4">user account is elevated to company admin</li>
+			</ul>
+	</div>
+</div>
+
+<div class="section" layout="row" layout-align="center center" layout-fills>
+	<div class="tbox" style="display:none" id="toggle-button-1-c">
+		<h2>Step 1</h2>
+		<p>
+			UI LABS will contact DMDII members via email to begin the on boarding process by selecting a company administrator.<br />
+			The company administrator will manage the organization's presence on the Portal including profile and user access.
+		</p>
+	</div>
+
+	<div class="tbox" style="display:none" id="toggle-button-2-c">
+		<h2>Step 2</h2>
+	 Once the administrator is selected for the company, this must be communicated to UI LABS via the email invitation.
+	</div>
+
+	<div class="tbox" style="display:none" id="toggle-button-3-c">
+		<h2>Step 3</h2>
+		The designated admin will create a user account on the DMC.
+	</div>
+
+	<div class="tbox" style="display:none" id="toggle-button-4-c">
+		<h2>Step 4</h2>
+		UI LABS will confirm the admin, assigning the “Company Administrator Role” to this person for the organization.
+	</div>
+
+</div>
+
+
+<div class="section" layout="row"  layout-fills>
+	<h2>Organizational Member Steps</h2>
+</div>
+
+<div class="section" layout="row" layout-align="center center" layout-fillss>
+	<div class="ct">
+			<ul class="progressbar">
+					<li class="active" id="toggle-button-1m">create DMC account</li>
+					<li class="active" id="toggle-button-2m">your organization admin will validate you</li>
+					<li class="active" id="toggle-button-3m">user self-elevates to organization member</li>
+					<li class="active" id="toggle-button-4m">enjoy the Portal</li>
+			</ul>
+	</div>
+</div>
+
+<div class="section" layout="row" layout-align="center center" layout-fillss>
+	<div class="tbox" style="display:none" id="toggle-button-1m-c">
+		<h2>Step 1</h2>
+
+			When users begin creating a DMC account, the first step will be to select the organization. A notification will be sent to your company’s administrator who will then validate your access.
+
+	</div>
+
+	<div class="tbox" style="display:none" id="toggle-button-2m-c">
+		<h2>Step 2</h2>
+	  The company administrator will grant access to the user, sending the user a “validation token” via email as confirmation.
+	</div>
+
+	<div class="tbox" style="display:none" id="toggle-button-3m-c">
+		<h2>Step 3</h2>
+	The user will add this “validation token” to their account which will validate their membership.
+	</div>
+
+	<div class="tbox" style="display:none" id="toggle-button-4m-c">
+		<h2>Step 4</h2>
+	 The user will now have access to the company assets on the Portal.
+	</div>
+
+
+
+
+
+	<md-divider></md-divider>
+
+	<div class="section" layout="row" layout-align="center center" layout-fills>
+		<div class="image">
+			<img ng-src="images/icon_reminder.svg"  style="width: 50px">
 		</div>
+		<div layout="column" flex class="text">
+				<h2>Further Aid</h2>
+		<h3>	  In the unlikely event that your on boarding process is not working properly or should you have further questions or concerns, please consult the FAQ section footer of every page or contact us directly.
+			<br />
+			<br />
+			Users will <strong>NOT</strong> be able to access company assets until the organizational steps listed above are completed. It is the responsibility of the organization's admin to grant a individual access to the company assets. If the only menu item visible to you is "About Portal", this signifies that you have not yet been validated as a organizational member. Please contact your organization admin.
+
+
+		</div>
+
+	</div>
+
+	<md-divider></md-divider>
+
+
 	</md-content>
 </div>

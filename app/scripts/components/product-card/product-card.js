@@ -35,6 +35,23 @@ angular.module('dmc.component.productcard', [
       templateUrl: 'templates/components/product-card/product-card-tpl.html',
       controller: function($scope, $rootScope, $cookies,$timeout,ajax,dataFactory, $mdDialog, previousPage,CompareModel,DMCUserModel){
 
+          $scope.descriptionLenLimit=140;
+          $scope.descriptionLenLimitPrompt = 'more';
+
+          $scope.switchDescriptionLenLimit = function() {
+            if ($scope.descriptionLenLimit == $scope.cardSource.description.length) {
+              $scope.descriptionLenLimit = 140
+              $scope.descriptionLenLimitPrompt = 'more';
+            } else {
+              $scope.descriptionLenLimit = $scope.cardSource.description.length;
+              $scope.descriptionLenLimitPrompt = 'less';
+            }
+          }
+
+          $scope.descriptionTooLong = function() {
+            return 140 < $scope.cardSource.description.length;
+          }
+
           var userData = null;
           DMCUserModel.getUserData().then(function(res){
               userData = res;

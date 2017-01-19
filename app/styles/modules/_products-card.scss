@@ -1,3 +1,21 @@
+// changing to flexbox, new styling
+.product-container{
+  padding: 0;
+  margin: 0;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+// 
+
 .content-panel-marketplace {
   .show-filter-input-container{
     margin-right: 30px;

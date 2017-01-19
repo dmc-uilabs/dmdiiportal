@@ -108,7 +108,7 @@
                                 <md-input-container flex>
                                     <label>Assigned To</label>
                                     <md-select ng-model="task.assigneeId">
-                                        <md-option ng-value="user.id" ng-repeat="user in users">{{user.name}}</md-option>
+                                        <md-option ng-value="user.id" ng-repeat="user in users | orderBy:'name'">{{user.name}}</md-option>
                                     </md-select>
                                 </md-input-container>
                             </div>
