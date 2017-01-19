@@ -239,18 +239,25 @@
                     </md-menu> -->
 
 
-                    <!-- <md-button
-                            aria-label="Open Latest Services Menu"
-                            ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"
-                            ng-class="{'active-page' : activePage.indexOf('marketplace') > -1}">
-                        Marketplace
-
-                    </md-button> -->
 
                     <md-menu-item>
                         <md-button ng-click="$mdCloseMenu($event);" href="/company-profile.php#/profile/{{userCompanyId}}">My Organization</md-button>
                     </md-menu-item>
-                    <md-menu-item>
+
+
+
+                <md-menu-item>
+                    <md-button
+                            href="marketplace.php#/home?product=services"
+                            ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"
+                            ng-class="{'active-page' : activePage.indexOf('marketplace') > -1}">
+                        Marketplace
+
+                    </md-button>
+                <md-menu-item>
+
+
+                    <!-- <md-menu-item>
                         <md-button ng-click="$mdCloseMenu($event);" href="/member-directory.php"   ng-show="userData.isDMDIIMember || userData.isDmdiiAdmin"
                                    ng-class="{'active-page' : activePage.indexOf('member') > -1,
                                        	'member-portal': membersOnly}">Member Directory</md-button>
@@ -259,14 +266,15 @@
                         <md-button ng-click="$mdCloseMenu($event);" href="/dmdii-projects.php"  ng-show="userData.isDMDIIMember || userData.isDmdiiAdmin"
                                    ng-class="{'active-page' : activePage.indexOf('member') > -1,
                                        	'member-portal': membersOnly}">Projects Directory</md-button>
-                    </md-menu-item>
+                    </md-menu-item> -->
 
 
-                    <!-- <md-menu md-offset="0 57" class="item" ng-init="dropDownWidth = 200">
+                    <md-menu md-offset="0 57" class="item" ng-init="dropDownWidth = 200">
                         <md-button
+                                ng-show="userData.isDMDIIMember || userData.isDmdiiAdmin"
                                 aria-label="Open Latest Services Menu"
                                 ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"
-                                ng-class="{'active-page' : activePage.indexOf('marketplace') > -1}">
+                                ng-class="{'active-page' : activePage.indexOf('membersOnly') > -1}">
                             DMDII Portal
                             <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
                         </md-button>
@@ -274,14 +282,18 @@
                             <!-- <md-menu-item>
                                 <md-button ng-click="$mdCloseMenu($event);" href="marketplace.php">About DMDII Portal</md-button>
                             </md-menu-item> -->
-                          <!--  <md-menu-item>
-                                <md-button ng-click="$mdCloseMenu($event);" href="/company.php#/{{userCompanyId}}/storefront?product=services">Member Directory</md-button>
-                            </md-menu-item>
                             <md-menu-item>
-                                <md-button ng-click="$mdCloseMenu($event);" href="/favorites.php#/">Projects Directory</md-button>
+                            <md-button ng-click="$mdCloseMenu($event);" href="/member-directory.php"   ng-show="userData.isDMDIIMember || userData.isDmdiiAdmin"
+                                       ng-class="{'active-page' : activePage.indexOf('member') > -1,
+                                           	'member-portal': membersOnly}">Member Directory</md-button>
+                           </md-menu-item>
+                            <md-menu-item>
+                              <md-button ng-click="$mdCloseMenu($event);" href="/dmdii-projects.php"  ng-show="userData.isDMDIIMember || userData.isDmdiiAdmin"
+                                         ng-class="{'active-page' : activePage.indexOf('member') > -1,
+                                             	'member-portal': membersOnly}">Projects Directory</md-button>
                             </md-menu-item>
                         </md-menu-content>
-                    </md-menu> -->
+                    </md-menu>
 
 
 
