@@ -7,7 +7,7 @@
 		"owner": "L.Mason",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -34,7 +34,7 @@
 		"owner": "P.Ruiz",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -60,7 +60,7 @@
 		"owner": "M.Gill",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -79,7 +79,7 @@
 		"owner": "J.Cole",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -99,7 +99,7 @@
 		"owner": "J.Sims",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -119,7 +119,7 @@
 		"owner": "E.Fox",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -144,7 +144,7 @@
 		"owner": "G.Baker",
 		"profileId": 1,
 		"releaseDate": "01/08/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -163,7 +163,7 @@
 		"owner": "G.Baker",
 		"profileId": 1,
 		"releaseDate": "01/07/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -182,7 +182,7 @@
 		"owner": "m.winand",
 		"profileId": 1,
 		"releaseDate": "01/05/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -201,7 +201,7 @@
 		"owner": "m.winand",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -220,7 +220,7 @@
 		"owner": "V.Sutton",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -239,7 +239,7 @@
 		"owner": "R.McCoy",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -258,7 +258,7 @@
 		"owner": "R.McCoy",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -277,7 +277,7 @@
 		"owner": "p.koudal",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -302,7 +302,7 @@
 		"owner": "p.koudal",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -327,7 +327,7 @@
 		"owner": "R.McCoy",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -346,7 +346,7 @@
 		"owner": "D.Black",
 		"profileId": 1,
 		"releaseDate": "08/25/2015",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/2/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -365,7 +365,7 @@
 		"owner": "PDM.Co",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -392,7 +392,7 @@
 		"owner": "J.Cole",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -419,7 +419,7 @@
 		"owner": "J.Cole",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -444,7 +444,7 @@
 		"owner": "J.Cole",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -463,7 +463,7 @@
 		"owner": "M.Dawson",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -482,7 +482,7 @@
 		"owner": "J.Cole",
 		"profileId": 1,
 		"releaseDate": "01/09/2015",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -500,7 +500,7 @@
 		"profileId": 1,
 		"accountId": 1,
 		"releaseDate": "02/13/2016",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -528,7 +528,7 @@
 		"profileId": 1,
 		"accountId": 1,
 		"releaseDate": "02/14/2016",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -555,7 +555,7 @@
 		"profileId": 1,
 		"accountId": 1,
 		"releaseDate": "02/14/2016",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -581,7 +581,7 @@
 		"owner": "Thomas Smith",
 		"accountId": 1,
 		"releaseDate": "02/24/2016",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -607,7 +607,7 @@
 		"owner": "Thomas Smith",
 		"accountId": 1,
 		"releaseDate": "03/08/2016",
-		"serviceType": "solid",
+		"serviceType": ["solid"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
@@ -633,7 +633,7 @@
 		"owner": "Thomas Smith",
 		"accountId": 1,
 		"releaseDate": "03/23/2016",
-		"serviceType": "analytical",
+		"serviceType": ["analytical"],
 		"specifications": "/services/3/specifications",
 		"featureImage": {
 			"thumbnail": "images/marketplace-card-image-1.jpg",
