@@ -45,6 +45,7 @@ angular.module('dmc.service-marketplace')
             $scope.selectSortingStar = 0;
             $scope.invate = false;
             $scope.documents = [];
+            $scope.product.average_rating = $scope.product.ratingAverage || 0;
 
             $scope.previousPage = previousPage.get();
             if($scope.previousPage.tag != 'marketplace'){
