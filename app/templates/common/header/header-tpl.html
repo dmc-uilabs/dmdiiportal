@@ -50,7 +50,7 @@
                             <h3>Notifications</h3>
                             <md-button md-no-ink ng-click="viewAll" class="view-all-link">VIEW ALL</md-button>
                         </div>
-                        <md-menu-item ng-repeat="item in userData.notifications track by $index" ng-if="!item.cleared" ng-class="{'not-read' : !item.read}">
+                        <md-menu-item ng-repeat="item in userData.notifications.items track by $index" ng-if="!item.cleared" ng-class="{'not-read' : !item.read}">
                             <a ng-href='{{item.link}}'>
                                 <!-- profile icon -->
                                 <ng-md-icon icon="group" size="32" ng-if="item.type == 'profile'"></ng-md-icon>
@@ -66,8 +66,8 @@
                                 <md-icon class="service-and-market-icon" ng-if="item.type == 'company'"
                                          md-svg-src="images/icon-company-lg.svg"  ></md-icon>
                                 <span>
-                                    <i>{{item.message}}</i>
-                                    <i>{{item.created}}</i>
+                                    <i>{{item.title}}</i>
+                                    <i>{{item.date}}</i>
                                 </span>
                                 <!-- clear notification -->
                                 <md-button class="md-icon-button clear-notification" md-no-ink ng-click="clearNotification(item,$event);$event.stopPropagation();">

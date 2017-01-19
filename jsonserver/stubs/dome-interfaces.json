@@ -1,16 +1,101 @@
 [
 	{
-		"version": 1,
-		"modelId": "aff647da-d82f-1004-8e7b-5de38b2eeb0f",
-		"interfaceId": "aff647db-d82f-1004-8e7b-5de38b2eeb0f",
-		"type": "interface",
-		"name": "Default Interface",
-		"path": [
-			30
-		],
-		"serviceId": 42,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 1
+		 "id":"1",
+		 "version":1,
+		 "modelId":"aff647e4-d82f-1004-8e7b-5de38b2eeb0f",
+		 "interfaceId":"aff647e5-d82f-1004-8e7b-5de38b2eeb0f",
+		 "type":"interface",
+		 "name":"Default Interface",
+		 "path":[
+				30
+		 ],
+		 "serviceId":1,
+		 "domeServer":"http://54.210.84.168:8080/DOMEApiServicesV7/",
+		 "inParams":{
+				"C3":{
+					 "type":"Real",
+					 "name":"C3",
+					 "unit":"no unit",
+					 "category":"no unit",
+					 "value":"1",
+					 "parameterid":"d9f30f15-d800-1004-8f53-704dbfababa8",
+					 "instancename":null
+				},
+				"C4":{
+					 "type":"Real",
+					 "name":"C4",
+					 "unit":"no unit",
+					 "category":"no unit",
+					 "value":"1",
+					 "parameterid":"d9f30f18-d800-1004-8f53-704dbfababa8",
+					 "instancename":null
+				},
+				"SpecimenWidth":{
+					 "type":"Real",
+					 "name":"SpecimenWidth",
+					 "unit":"meter",
+					 "category":"length",
+					 "value":"1",
+					 "parameterid":"d9f30f09-d800-1004-8f53-704dbfababa8",
+					 "instancename":null
+				},
+				"C5":{
+					 "type":"Real",
+					 "name":"C5",
+					 "unit":"no unit",
+					 "category":"no unit",
+					 "value":"1",
+					 "parameterid":"d9f30f1b-d800-1004-8f53-704dbfababa8",
+					 "instancename":null
+				},
+				"Ux":{
+					 "type":"Real",
+					 "name":"Ux",
+					 "unit":"no unit",
+					 "category":"no unit",
+					 "value":"1",
+					 "parameterid":"d9f30f06-d800-1004-8f53-704dbfababa8",
+					 "instancename":null
+				},
+				"C0":{
+					 "type":"Real",
+					 "name":"C0",
+					 "unit":"no unit",
+					 "category":"no unit",
+					 "value":"1",
+					 "parameterid":"d9f30f0c-d800-1004-8f53-704dbfababa8",
+					 "instancename":null
+				},
+				"C1":{
+					 "type":"Real",
+					 "name":"C1",
+					 "unit":"no unit",
+					 "category":"no unit",
+					 "value":"1",
+					 "parameterid":"d9f30f0f-d800-1004-8f53-704dbfababa8",
+					 "instancename":null
+				},
+				"C2":{
+					 "type":"Real",
+					 "name":"C2",
+					 "unit":"no unit",
+					 "category":"no unit",
+					 "value":"1",
+					 "parameterid":"d9f30f12-d800-1004-8f53-704dbfababa8",
+					 "instancename":null
+				}
+		 },
+		 "outParams":{
+				"CrackLength":{
+					 "type":"Real",
+					 "name":"CrackLength",
+					 "unit":"meter",
+					 "category":"length",
+					 "value":"6",
+					 "parameterid":"d9f30f1e-d800-1004-8f53-704dbfababa8",
+					 "instancename":"CrackLength"
+				}
+		 }
 	},
 	{
 		"version": 1,
