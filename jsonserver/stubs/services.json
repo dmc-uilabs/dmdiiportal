@@ -19,6 +19,9 @@
 		"parent": 0,
 		"published": true,
 		"averageRun": 9999,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
+		"averageRun": 0,
 		"currentStatus": {
 			"project": {
 				"id": 8,
@@ -46,6 +49,8 @@
 		"type": "service",
 		"from": "marketplace",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"averageRun": 0,
 		"currentStatus": {
 			"project": {
@@ -74,8 +79,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 3.3,
-		"ratingCount": 2
+		"ratingCount": 2,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 30,
@@ -96,8 +102,9 @@
 		"from": "marketplace",
 		"published": true,
 		"averageRun": 0.5,
-		"ratingAverage": 1.6,
-		"ratingCount": 1
+		"ratingCount": 1,
+		"ratingAverage": 3.5,
+		"averageRun": 0.5
 	},
 	{
 		"id": 4,
@@ -118,8 +125,9 @@
 		"from": "marketplace",
 		"published": true,
 		"averageRun": 15,
-		"ratingAverage": 4,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"averageRun": 15
 	},
 	{
 		"id": 6,
@@ -138,6 +146,8 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
@@ -166,8 +176,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 8,
@@ -187,8 +198,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2.5,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 9,
@@ -208,8 +220,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 12,
@@ -229,8 +242,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 15,
@@ -250,8 +264,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 16,
@@ -271,8 +286,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 17,
@@ -292,8 +308,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 10,
@@ -312,6 +329,8 @@
 		"projectId": 4,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
@@ -339,6 +358,8 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
@@ -367,8 +388,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 2,
@@ -388,8 +410,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 13,
@@ -408,6 +431,8 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
@@ -439,6 +464,8 @@
 		"from": "marketplace",
 		"averageRun": 11.5,
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"parent": 0,
 		"currentStatus": {
 			"project": {
@@ -466,6 +493,8 @@
 		"projectId": 3,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "marketplace",
 		"currentStatus": {
 			"project": {
@@ -494,8 +523,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 14,
@@ -515,8 +545,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"id": 31,
@@ -536,8 +567,9 @@
 		"type": "service",
 		"published": true,
 		"from": "marketplace",
-		"ratingAverage": 2,
-		"ratingCount": 39
+		"ratingCount": 39,
+		"ratingAverage": 3.5,
+		"from": "marketplace"
 	},
 	{
 		"title": "Alpha",
@@ -559,6 +591,8 @@
 		"id": 42,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"currentStatus": {
 			"project": {
 				"id": 2,
@@ -589,6 +623,8 @@
 		"id": 43,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"currentStatus": {
 			"project": {
 				"id": 4,
@@ -618,6 +654,8 @@
 		"id": 44,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"currentStatus": {
 			"project": {
 				"id": 4,
@@ -650,6 +688,8 @@
 		"projectId": 1,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "project",
 		"id": 45,
 		"ratingAverage": 2,
@@ -678,6 +718,8 @@
 		"projectId": 1,
 		"type": "service",
 		"published": true,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "project",
 		"id": 46,
 		"ratingAverage": 2,
@@ -706,6 +748,8 @@
 		"projectId": 1,
 		"type": "service",
 		"published": false,
+		"ratingAverage": 3.5,
+   	"ratingCount": 3,
 		"from": "project",
 		"id": 49,
 		"ratingAverage": 2,
