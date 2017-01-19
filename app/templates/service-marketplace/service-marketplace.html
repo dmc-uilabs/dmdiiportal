@@ -46,9 +46,10 @@
 					<!--product image-->
 					<div class="product-image" layout="column">
 						<img class="main-image" ng-if="service_images.length" ng-src="{{service_images[indexImages].documentUrl}}">
-						<div class="no-image" ng-if="!service_images.length" layout layout-align="center center">
+            <img class="main-image" style="opacity: 0.3;"ng-if="!service_images.length" ng-src="images/DMCGear.png">
+						<!-- <div class="no-image" ng-if="!service_images.length" layout layout-align="center center">
 							<h2>No Images</h2>
-						</div>
+						</div> -->
 						<div dmc-carousel
 								functions="carouselFunctions"
 								name-carousel="'carouselImages'"
