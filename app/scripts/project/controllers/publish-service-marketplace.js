@@ -37,18 +37,13 @@ angular.module('dmc.project')
             $scope.isDisabledFirstPage = true;
             $scope.isDisabledSecondPage = true;
 
-            $scope.serviceTypes = [
-                {
-                    tag : 'analytical',
-                    name : 'Analytical'
-                }, {
-                    tag: 'data',
-                    name : 'Data'
-                },{
-                    tag : 'solid',
-                    name : 'Solid'
-                }
-            ];
+            $scope.serviceTypes = [{
+                tag : 'Fundamental Calculations',
+                name : 'Fundamental Calculations'
+            }, {
+                tag: 'Supply Chain',
+                name : 'Supply Chain'
+            }];
 
             // First Page
             $scope.publishService = {
