@@ -30,15 +30,12 @@ angular.module('dmc.project')
             $scope.removeTags = [];
 
             $scope.serviceTypes = [{
-                tag : 'analytical',
-                name : 'Analytical'
-            }, {
-                tag: 'data',
-                name : 'Data'
-            },{
-                tag : 'solid',
-                name : 'Solid'
-            }];
+                  tag : 'Fundamental Calculations',
+                  name : 'Fundamental Calculations'
+              }, {
+                  tag: 'Supply Chain',
+                  name : 'Supply Chain'
+              }];
 
             $scope.userData = DMCUserModel.getUserData();
             $scope.userData.then(function(result){
