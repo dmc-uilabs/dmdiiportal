@@ -52,7 +52,7 @@
 				<md-button class="md-raised dmc-button margin-left20" ui-sref="project.run-services({ServiceId : service.id})">
 					Run
 				</md-button>
-				<md-button ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/publish'}}"
+				<md-button ng-if="userData.isDmdiiAdmin" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/publish'}}"
                            class="md-raised dmc-button margin-left20">
 					Publish Service
 				</md-button>

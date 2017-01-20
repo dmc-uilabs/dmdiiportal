@@ -60,7 +60,9 @@ server.use(jsonServer.rewriter({
     '/resource/machine/:id' : '/resource_machines/:id',
     '/user/:id' : '/user-account/:id',
     '/user/save': '/user-account',
-    '/user/organization/:id': '/userByOrganization/:id'
+    // below is not using the :id field, but instead always returning the organization
+    //  info for org 1 (UI Labs)
+    '/user/organization/:id': '/userByOrganization'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 
@@ -87,9 +89,22 @@ server.get('/getChildren', function (req, res) {
         }, function (err, response, body) {
             res.json(body);
         });
+    }
+
+    if(data["domeServer"]) {
+
+        if(data["domeServer"]="http://localhost:8082/DOMEApiServicesV7" && data["name"]){
+          res.json({"status":"success","pkg":{"version":1,"modelId":"aff647da-d82f-1004-8e7b-5de38b2eeb0f","description":"","dateModified":1416699607000,"type":"model","name":"Alpha","path":[30],"children":[{"version":1,"modelId":"aff647da-d82f-1004-8e7b-5de38b2eeb0f","interfaceId":"aff647db-d82f-1004-8e7b-5de38b2eeb0f","type":"interface","name":"Default Interface","path":[30]}]}})
+        }
+
+        if(data["domeServer"]="http://localhost:8082/DOMEApiServicesV7" && !data["name"]) {
+          res.json({"status":"success","pkg":{"type":"folder","name":"Public","path":[28],"children":[{"type":"folder","name":"Fracture-Mechanics","path":[30]},{"type":"folder","name":"File-Utilities","path":[31]},{"type":"folder","name":"Mathematics","path":[32]}]}})
+        }
+
     }else{
         res.json({status : "error", msg : "Wrong url"});
     }
+
 });
 
 server.get('/getModel', function(req, res){
@@ -114,6 +129,9 @@ server.get('/getModel', function(req, res){
         }, function (err, response, body) {
             res.json(body);
         });
+    }
+    if(data["name"] && data["name"] == "Default Interface"){
+        res.json({"status":"success","pkg":{"interFace":{"version":1,"modelId":"aff647da-d82f-1004-8e7b-5de38b2eeb0f","interfaceId":"aff647db-d82f-1004-8e7b-5de38b2eeb0f","type":"interface","name":"Default Interface","path":[30]},"inParams":{"SpecimenWidth":{"name":"SpecimenWidth","type":"Real","unit":"meter","category":"length","value":3.0,"parameterid":"d9f30f3a-d800-1004-8f53-704dbfababa8"},"CrackLength":{"name":"CrackLength","type":"Real","unit":"meter","category":"length","value":1.0,"parameterid":"d9f30f37-d800-1004-8f53-704dbfababa8"}},"outParams":{"Alpha":{"name":"Alpha","type":"Real","unit":"no unit","category":"no unit","value":0.3333333333333333,"parameterid":"d9f30f3d-d800-1004-8f53-704dbfababa8","instancename":"Alpha"}},"modelName":"Default Interface","modelDescription":"","server":{"name":"localhost","port":"7795","user":"ceed","pw":"ceed","space":"USER"}}})
     }else{
         res.json({status : "error", msg : "Wrong url"});
     }
