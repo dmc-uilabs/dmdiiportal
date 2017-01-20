@@ -8,7 +8,7 @@
 <!--  <base href="/">-->
 
 </head>
-<body ng-app="dmc.faq">
+<body ng-app="dmc.about">
 
 <!--[if lt IE 10]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -43,15 +43,8 @@
 <script src="scripts/common/models/question-toast-model.js"></script>
 <script src="scripts/common/models/previous-page.js"></script>
 
-<script src="scripts/onboarding/onboarding.js"></script>
-<script src="scripts/onboarding/controllers/onboarding.js"></script>
-<script src="scripts/onboarding/controllers/home.js"></script>
-<script src="scripts/onboarding/controllers/profile.js"></script>
-<script src="scripts/onboarding/controllers/account.js"></script>
-<script src="scripts/onboarding/controllers/company.js"></script>
-<script src="scripts/onboarding/controllers/storefront.js"></script>
-<script src="scripts/onboarding/controllers/basic-informations.js"></script>
-<script src="scripts/onboarding/controllers/terms-conditions.js"></script>
+<script src="scripts/about/about.js"></script>
+<script src="scripts/about/controllers/about-controller.js"></script>
 <!-- endbuild -->
 
     <script type="text/javascript">

@@ -2,6 +2,6 @@
 
 angular.module('dmc.about')
     .controller('AboutController',['$scope', function($scope){
-
+      $scope.testvar = 'test!!!!'
     }]
 );

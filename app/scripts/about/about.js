@@ -1,21 +1,22 @@
 'use strict';
-
 angular.module('dmc.about', [
-    'dmc.configs.ngmaterial',
     'ngMdIcons',
+    'ngAnimate',
+    'ngMaterial',
+    'ngSanitize',
     'ui.router',
     'md.data.table',
+    'dmc.configs.ngmaterial',
     'dmc.common.header',
     'dmc.common.footer',
-    'dmc.model.user'
-])
-.config(function($stateProvider, $urlRouterProvider){
-  $stateProvider.state('about', {
-      template: '<ui-view />'
-  }).state('home', {
-     url: '/',
-     templateUrl: 'templates/about/about.html',
-     controller: 'AboutController'
+    'dmc.model.toast-model',
+    "dmc.ajax",
+    "dmc.data"
+]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
+    $stateProvider.state('about', {
+        url: '/',
+        controller: 'AboutController',
+        templateUrl: 'templates/about/about.html'
     });
-  $urlRouterProvider.otherwise('/');
-})
+    $urlRouterProvider.otherwise('/');
+});
