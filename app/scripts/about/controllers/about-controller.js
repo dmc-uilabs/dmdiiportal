@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dmc.about')
-    .controller('AboutController',['$scope', function($scope){
-  
+    .controller('AboutController', ['$stateParams', '$state', "$scope", "ajax", "$location","dataFactory","toastModel", function ($stateParams, $state, $scope, ajax, $location, dataFactory, toastModel) {
+
     }]
 );
