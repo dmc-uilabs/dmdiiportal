@@ -22,7 +22,35 @@
 					<label>Email Address</label>
 					<input type="text" ng-model="info.email">
 				</md-input-container>
-				<div flex="50" class="autocomplete-block">
+
+				<div>
+				  <md-checkbox style="float:left; margin-top: 25px;" ng-model="isDMDIIMember">
+				    <span style="font-size: 1.2em" ng-hide="isDMDIIMember">My Organization is a DMDII Member</span>
+				  </md-checkbox>
+				</div>
+
+
+				<div flex="40" ng-style="autocompleteStyle" class="autocomplete-block">
+				    <md-autocomplete
+				      md-floating-label="Organization"
+				      md-selected-item="ctrl.selectedCompany"
+				      md-search-text="ctrl.searchCompany"
+				      md-search-text-change="ctrl.searchCompanyChange(ctrl.searchCompany)"
+				      md-selected-item-change="ctrl.setCompany(item)"
+				      md-items="item in ctrl.queryCompanySearch(ctrl.searchCompany)"
+				      md-item-text="item.name"
+				    >
+				      <md-item-template>
+				        <span md-highlight-text="ctrl.searchCompany" md-highlight-flags="^i">{{item.name}}</span>
+				      </md-item-template>
+				      <md-not-found>
+				        No matches found for "{{ctrl.searchCompany}}".
+				      </md-not-found>
+				    </md-autocomplete>
+				</div>
+
+
+				<!-- <div flex="50" class="autocomplete-block">
 					<md-autocomplete
 						md-floating-label="Organization"
 						md-selected-item="ctrl.selectedCompany"
@@ -39,7 +67,7 @@
 							No matches found for "{{ctrl.searchCompany}}".
 						</md-not-found>
 					</md-autocomplete>
-				</div>
+				</div> -->
 			</div>
 		</form>
 		<div layout="row" layout-align="end center" class="button-aria">
