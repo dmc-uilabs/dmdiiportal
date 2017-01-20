@@ -8,7 +8,7 @@
 <!--  <base href="/">-->
 
 </head>
-<body ng-app="dmc.about">
+<body ng-app="dmc.faq">
 
 <!--[if lt IE 10]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

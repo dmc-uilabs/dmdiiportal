@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('dmc.contact-us')
-    .controller('ContactUsController',['$scope', function($scope){
+angular.module('dmc.about')
+    .controller('AboutController',['$scope', function($scope){
 
     }]
 );

@@ -10,8 +10,9 @@ angular.module('dmc.about', [
     'dmc.model.user'
 ])
 .config(function($stateProvider, $urlRouterProvider){
-  $stateProvider
-    .state('home', {
+  $stateProvider.state('about', {
+      template: '<ui-view />'
+  }).state('home', {
      url: '/',
      templateUrl: 'templates/about/about.html',
      controller: 'AboutController'
