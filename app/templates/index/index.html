@@ -1,4 +1,4 @@
-<div ng-if="($root.isLogged && userData.roles && userData.roles[userData.companyId])" layout="row" layout-align="center center" layout-padding>
+<div ng-if="$root.isLogged && userData.roles && userData.roles[userData.companyId]" layout="row" layout-align="center center" layout-padding>
   	<div class="content-column" layout="column" ng-repeat="p in pages">
     	<a href="{{p.href}}" class="home-feature">
       		<img ng-src="images/{{p.img}}" class="md-card-image" alt="{{p.name}}">
