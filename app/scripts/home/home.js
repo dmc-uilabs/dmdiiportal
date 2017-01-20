@@ -29,14 +29,14 @@ angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 
   $urlRouterProvider.otherwise('/');
 }).controller('HomeCtr',['$scope', 'userData', function($scope, userData){
     $scope.pages = [
-        {
-            name : "Dashboard",
-            text : "Design Solutions",
-            href : "dashboard.php",
-            img : "home-dashboard-icon.png",
-            show: true,
-            more : "A quick overview of everything on the site related to you and your interests, from tasks and projects to discussions and services."
-        },
+        // {
+        //     name : "Dashboard",
+        //     text : "Design Solutions",
+        //     href : "dashboard.php",
+        //     img : "home-dashboard-icon.png",
+        //     show: true,
+        //     more : "A quick overview of everything on the site related to you and your interests, from tasks and projects to discussions and services."
+        // },
         {
             name : "Marketplace",
             text : "Find Solutions",

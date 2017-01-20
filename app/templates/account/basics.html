@@ -97,7 +97,7 @@
                         <div>
                             <md-button class="md-raised md-primary" ng-show="!isVerified" ng-click="resendNotification()">Resend Notification</md-button>
                         </div>
-                        <div>
+                        <div ng-if="userData.isDmdiiAdmin">
                             <md-button class="md-raised md-primary" ng-show="!isVerified" href="/company-profile.php#/create">Create New Organization</md-button>
                         </div>
                     </div>
