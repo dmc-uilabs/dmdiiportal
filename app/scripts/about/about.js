@@ -14,6 +14,8 @@ angular.module('dmc.about', [
     "dmc.data"
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('about', {
+        template: '<ui-view />'
+      }).state('about.home', {
         url: '/',
         controller: 'AboutController',
         templateUrl: 'templates/about/about.html'
