@@ -27,5 +27,21 @@
 			"userPrivateContactInfo": {},
 			"userMemberPortalContactInfo": {}
 		}
+	},
+	{
+   "id":"204",
+   "companyId":"-1",
+   "profileId":"204",
+   "firstName":"max",
+   "lastName":"power",
+   "displayName":"max power",
+   "email":"jmdmctestuser1@gmail.com",
+   "deactivated":false,
+   "location":"",
+   "timezone":null,
+   "privacy":{
+      "private":null,
+      "public":null
+   }
 	}
 ]

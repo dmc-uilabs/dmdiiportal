@@ -1,41 +1,68 @@
 <div class="product-card" layout="column">
     <input class="product-card-featureId" type="hidden" ng-model="cardSource.featureId" value="{{cardSource.featureId}}" ng-if="cardSource.featureId">
     <input class="product-card-position" type="hidden" ng-model="cardSource.position" value="{{cardSource.position}}" ng-if="cardSource.position">
-    <md-toolbar>
-        <div class="md-toolbar-tools" layout-align="end center">
-            <md-button md-no-ink ng-show="!hideButtons || hideButtons.indexOf('favorite') == -1"
+    <!-- <md-toolbar>
+        <div class="md-toolbar-tools" layout-align="end center"> -->
+            <!-- <md-button md-no-ink ng-show="!hideButtons || hideButtons.indexOf('favorite') == -1"
                        ng-click="addToFavorite()"
                        aria-label="Favorite"
                        class="md-icon-button" flex>
                 <ng-md-icon icon="{{ cardSource.favorite ? 'favorite' : 'favorite_outline'}}"
                             ng-class="!cardSource.favorite ? 'not-favorite' : 'is-favorite'"
                             size="25"></ng-md-icon>
-            </md-button>
+            </md-button> -->
 
-      <md-button md-no-ink
+      <!-- <md-button md-no-ink
                  ng-show="!hideButtons || hideButtons.indexOf('share') == -1"
                  ng-click="share()"
                  aria-label="Reply"
                  class="md-icon-button" flex>
         <ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
-      </md-button>
-      <md-button md-no-ink
+      </md-button> -->
+      <!-- <md-button md-no-ink
                  ng-click="show()"
                  aria-label="Open"
                  class="md-icon-button" flex="33">
         <ng-md-icon icon="info_outline" style="fill: grey;" size="25"></ng-md-icon>
-      </md-button>
-        </div>
-    </md-toolbar>
-    <div class="product-card__image_small">
+      </md-button> -->
+        <!-- </div> -->
+    <!-- </md-toolbar> -->
+
+      <div class="product-card__title">
+        <a ng-href="{{'/service-marketplace.php#/'+cardSource.id}}" ng-click="previousPage.save($event)">{{cardSource.title}}</a>
+      </div>
+
+      <div class="product-card-container">
+          <div class="product-card__description product-card-container">
+              <div class="product-text">{{cardSource.description | limitTo:descriptionLenLimit}}
+                <span ng-if="descriptionTooLong()" ng-click="switchDescriptionLenLimit()"><a style="color: #65AF3F;" href>...{{descriptionLenLimitPrompt}}<a></span>
+              </div>
+              <ui-widget-stars-static class="review-stars" size="10" value={{cardSource.ratingAverage}} text=({{cardSource.ratingCount}})></ui-widget-stars-static>
+          </div>
+
+          <div class="product-card__image_small">
+            <img ng-if="cardSource.images[0].documentUrl" ng-src="{{cardSource.images[0].documentUrl}}" alt="{{cardSource.title}}">
+            <img ng-if="!cardSource.images[0].documentUrl" ng-src="images/DMCGear.png" alt="{{cardSource.title}}">
+          </div>
+      </div>
+
+
+    <!-- <div class="product-card__image_small">
         <img ng-src="{{cardSource.images[0].documentUrl}}" alt="{{cardSource.title}}">
-    </div>
-    <div class="product-card__header" layout="column"
+    </div> -->
+    <!-- <div class="product-card__header" layout="column"
          ng-class="cardStyle == 'small' ? 'title-without-spaces' : ''">
         <a ng-href="{{'/service-marketplace.php#/'+cardSource.id}}" ng-click="previousPage.save($event)"><h3>{{cardSource.title}}</h3></a>
         <a ng-href="{{'/company.php#/'+(cardSource.companyId ? cardSource.companyId: 1)+'/storefront?product=services'}}"><span class="user-name">{{cardSource.ownerName}}</span></a>
-    </div>
-    <div class="product-card__content" layout="row"  ng-if="cardStyle != 'included'">
+    </div> -->
+
+    <!-- <div class="product-card__owner" layout="row">
+        <div class="product-card__owner__column">
+          {{cardSource.owner}}
+        </div>
+    </div> -->
+
+    <!-- <div class="product-card__content" layout="row"  ng-if="cardStyle != 'included'">
         <div class="product-card__content__column" flex="28" layout="column">
             <div class="star-rating">
                 <div class="star-rating__buttons">
@@ -71,8 +98,12 @@
                 <p class="release">Release <strong>{{cardSource.releaseDate|timeago}}</strong> ({{cardSource.releaseDate}})</p>
             </div>
         </div>
-    </div>
-    <div class="product-card__footer" layout="row" ng-if="removeFeatured || addFeatured">
+    </div> -->
+    <!-- added in empty footer for aesthetics, should be removed if additional buttons re-introduced -->
+    <!-- <div class="product-card__footer" layout="row"> -->
+
+
+    <!-- <div class="product-card__footer" layout="row" ng-if="removeFeatured || addFeatured">
         <div layout="row" class="remove-from-featured" flex layout-align="center center" ng-show="cardSource.inFeatured && removeFeatured">
             <md-button aria-label="Remove from Featured" layout="column" flex ng-click="removeFromFeatured($event)">
                 Remove from Featured
@@ -83,8 +114,9 @@
                 Add to Featured
             </md-button>
         </div>
-    </div>
-    <div class="product-card__footer" layout="row" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured">
+    </div> -->
+    <!-- <div class="product-card__footer" layout="row" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured"> -->
+    <div class="product-card-container product-card__footer" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured">
         <div class="adding-to-project" ng-show="addingToProject">
             <div layout="row" layout-align="center center" class="inner-add-to-project" flex>
                 <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">

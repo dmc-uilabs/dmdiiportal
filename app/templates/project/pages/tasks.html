@@ -58,6 +58,7 @@
                             <th name="Assigned To" order-by="assignee"></th>
                             <th name="Due Date" order-by="dueDate"></th>
                             <th name="Priority" order-by="priority"></th>
+                            <th name="Status" order-by="status"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -68,6 +69,7 @@
                                 <span ng-bind-html="item.formatedDueDate[1]" class="label" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
                             </td>
                             <td>{{item.priorityName}}</td>
+                            <td>{{item.status}}</td>
                         </tr>
                         <tr ng-if="tasks.length == 0">
                             <td class="empty" colspan="4">No tasks</td>

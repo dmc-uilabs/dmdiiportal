@@ -24,12 +24,13 @@ angular.module('dmc.account').directive('accountMenu', [function () {
                     title : pageTitles.notifications,
                     url : '/account.php#/'+$scope.accountId+'/notifications',
                     selected : ($scope.page == 'notifications' ? true : false)
-                },
-                servers : {
-                    title : pageTitles.servers,
-                    url : '/account.php#/'+$scope.accountId+'/servers',
-                    selected : ($scope.page == 'servers' ? true : false)
                 }
+                // ,
+                // servers : {
+                //     title : pageTitles.servers,
+                //     url : '/account.php#/'+$scope.accountId+'/servers',
+                //     selected : ($scope.page == 'servers' ? true : false)
+                // }
             };
         }
     };

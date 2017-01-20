@@ -45,10 +45,10 @@
     "node-php-server": "^0.1.2",
     "opn": "^4.0.2",
     "orchestrator": "^0.3.7",
+    "require-dir": "^0.3.0",
     "socket.io": "^1.3.6",
     "vinyl-fs": "^2.4.4",
-    "wiredep": "^4.0.0",
-    "require-dir":  "^0.3.0"
+    "wiredep": "^4.0.0"
   },
   "eslintConfig": {
     "env": {

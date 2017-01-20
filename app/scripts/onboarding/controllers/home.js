@@ -5,10 +5,11 @@ angular.module('dmc.onboarding')
 		$scope.userBasicInformation;
 		$scope.showModalBasicInformations = function(){
 			$mdDialog.show({
-			    controller: "BasicInformationsController",
+			    controller: 'BasicInformationsController',
 			    templateUrl: 'templates/onboarding/basic-informations.html',
 			    parent: angular.element(document.body),
-			    clickOutsideToClose: false
+			    clickOutsideToClose: false,
+					escapeToClose: false
 		    })
 		    .then(function(info) {
 		    		$scope.userBasicInformation = info;
@@ -18,7 +19,7 @@ angular.module('dmc.onboarding')
 		}
 		$scope.showModalTermsConditions = function(){
 			$mdDialog.show({
-			    controller: "TermsConditionsController",
+			    controller: 'TermsConditionsController',
 			    templateUrl: 'templates/onboarding/terms-conditions.html',
 			    parent: angular.element(document.body),
 			    locals: {
@@ -41,5 +42,3 @@ angular.module('dmc.onboarding')
 		});
 
 }]);
-
-

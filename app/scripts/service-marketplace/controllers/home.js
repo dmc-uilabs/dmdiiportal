@@ -16,6 +16,7 @@ angular.module('dmc.service-marketplace')
         'previousPage',
         'CompareModel',
         '$location',
+        '$http',
         function (serviceData,
                   serviceModel,
                   $stateParams,
@@ -29,7 +30,8 @@ angular.module('dmc.service-marketplace')
                   DMCUserModel,
                   previousPage,
                   CompareModel,
-                  $location) {
+                  $location,
+                  $http) {
 
             $scope.product = serviceData;  //array product
             $scope.LeaveFlag = false;  //flag for visibility form Leave A Review
@@ -43,6 +45,7 @@ angular.module('dmc.service-marketplace')
             $scope.selectSortingStar = 0;
             $scope.invate = false;
             $scope.documents = [];
+            $scope.product.average_rating = $scope.product.ratingAverage || 0;
 
             $scope.previousPage = previousPage.get();
             if($scope.previousPage.tag != 'marketplace'){
@@ -91,134 +94,135 @@ angular.module('dmc.service-marketplace')
                 }
             };
 
-            serviceModel.get_service_hystory(
-                {
-                    'period': 'today',
-                    'section': 'marketplace'
-                },
-                function(data){
-                    for(var i in data){
-                        data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
-                        switch(data[i].type){
-                            case 'completed':
-                            case 'successful_runs':
-                                data[i].icon = 'images/ic_done_all_black_24px.svg';
-                                break;
-                            case 'added':
-                                data[i].icon = 'images/ic_group_add_black_24px.svg';
-                                break;
-                            case 'rated':
-                                data[i].icon = 'images/ic_star_black_24px.svg';
-                                break;
-                            case 'worked':
-                                data[i].icon = 'images/icon_project.svg';
-                                break;
-                            case 'favorited':
-                                data[i].icon = 'images/ic_favorite_black_24px.svg';
-                                break;
-                            case 'shared':
-                                data[i].icon = 'images/ic_done_all_black_24px.svg';
-                                break;
-                            case 'discussion':
-                                data[i].icon = 'images/ic_forum_black_24px.svg';
-                                break;
-                            case 'edited':
-                                data[i].icon = 'images/ic_create_black_24px.svg';
-                                break;
-                            case 'unavailable_runs':
-                                data[i].icon = 'images/ic_block_black_24px.svg';
-                                break;
-                            case 'incomplete_runs':
-                                data[i].icon = 'images/ic_file_download_black_24px.svg';
-                                break;
-                        }
-
-                    }
-                    $scope.history.leftColumn.list = data;
-                }
-            );
-            serviceModel.get_service_hystory(
-                {
-                    'period': 'today',
-                    'section': 'project'
-                },
-                function(data){
-                    for(var i in data){
-                        data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
-                        switch(data[i].type){
-                            case 'completed':
-                            case 'successful_runs':
-                                data[i].icon = 'images/ic_done_all_black_24px.svg';
-                                break;
-                            case 'added':
-                                data[i].icon = 'images/ic_group_add_black_24px.svg';
-                                break;
-                            case 'rated':
-                                data[i].icon = 'images/ic_star_black_24px.svg';
-                                break;
-                            case 'worked':
-                                data[i].icon = 'images/icon_project.svg';
-                                break;
-                            case 'favorited':
-                                data[i].icon = 'images/ic_favorite_black_24px.svg';
-                                break;
-                            case 'shared':
-                                data[i].icon = 'images/ic_done_all_black_24px.svg';
-                                break;
-                            case 'discussion':
-                                data[i].icon = 'images/ic_forum_black_24px.svg';
-                                break;
-                            case 'edited':
-                                data[i].icon = 'images/ic_create_black_24px.svg';
-                                break;
-                            case 'unavailable_runs':
-                                data[i].icon = 'images/ic_block_black_24px.svg';
-                                break;
-                            case 'incomplete_runs':
-                                data[i].icon = 'images/ic_file_download_black_24px.svg';
-                                break;
-                        }
-                    }
-                    $scope.history.rightColumn.list = data;
-                }
-            );
-
-            $scope.getHistory = function(type, time){
-                var period = '';
-                var params = {'section': 'project'};
-                if(time == 'today'){
-                    period = 'today';
-                }else if (time == 'week'){
-                    period = ['today','week'];
-                }else{
-                    period = ['today','week','all'];
-                }
-
-                params['period'] = period;
-
-                if(type != 'runs_by_users'){
-                    params['type'] = type;
-                }
-
-                serviceModel.get_service_hystory(
-                    params,
-                    function(data){
-                        for(var i in data){
-                            data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
-                            if(data[i].type == 'successful_runs'){
-                                data[i].icon = 'done_all';
-                            }else if(data[i].type == 'unavailable_runs'){
-                                data[i].icon = 'block';
-                            }else if(data[i].type == 'incomplete_runs'){
-                                data[i].icon = 'file_upload';
-                            };
-                        }
-                        $scope.history.leftColumn.list = data;
-                        $scope.selectedTab = 2;
-                        apply();
-                    }
-                );
-            };
+            ///////// commenting out as part of pre-beta sprint
+            // serviceModel.get_service_hystory(
+            //     {
+            //         'period': 'today',
+            //         'section': 'marketplace'
+            //     },
+            //     function(data){
+            //         for(var i in data){
+            //             data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
+            //             switch(data[i].type){
+            //                 case 'completed':
+            //                 case 'successful_runs':
+            //                     data[i].icon = 'images/ic_done_all_black_24px.svg';
+            //                     break;
+            //                 case 'added':
+            //                     data[i].icon = 'images/ic_group_add_black_24px.svg';
+            //                     break;
+            //                 case 'rated':
+            //                     data[i].icon = 'images/ic_star_black_24px.svg';
+            //                     break;
+            //                 case 'worked':
+            //                     data[i].icon = 'images/icon_project.svg';
+            //                     break;
+            //                 case 'favorited':
+            //                     data[i].icon = 'images/ic_favorite_black_24px.svg';
+            //                     break;
+            //                 case 'shared':
+            //                     data[i].icon = 'images/ic_done_all_black_24px.svg';
+            //                     break;
+            //                 case 'discussion':
+            //                     data[i].icon = 'images/ic_forum_black_24px.svg';
+            //                     break;
+            //                 case 'edited':
+            //                     data[i].icon = 'images/ic_create_black_24px.svg';
+            //                     break;
+            //                 case 'unavailable_runs':
+            //                     data[i].icon = 'images/ic_block_black_24px.svg';
+            //                     break;
+            //                 case 'incomplete_runs':
+            //                     data[i].icon = 'images/ic_file_download_black_24px.svg';
+            //                     break;
+            //             }
+            //
+            //         }
+            //         $scope.history.leftColumn.list = data;
+            //     }
+            // );
+            // serviceModel.get_service_hystory(
+            //     {
+            //         'period': 'today',
+            //         'section': 'project'
+            //     },
+            //     function(data){
+            //         for(var i in data){
+            //             data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
+            //             switch(data[i].type){
+            //                 case 'completed':
+            //                 case 'successful_runs':
+            //                     data[i].icon = 'images/ic_done_all_black_24px.svg';
+            //                     break;
+            //                 case 'added':
+            //                     data[i].icon = 'images/ic_group_add_black_24px.svg';
+            //                     break;
+            //                 case 'rated':
+            //                     data[i].icon = 'images/ic_star_black_24px.svg';
+            //                     break;
+            //                 case 'worked':
+            //                     data[i].icon = 'images/icon_project.svg';
+            //                     break;
+            //                 case 'favorited':
+            //                     data[i].icon = 'images/ic_favorite_black_24px.svg';
+            //                     break;
+            //                 case 'shared':
+            //                     data[i].icon = 'images/ic_done_all_black_24px.svg';
+            //                     break;
+            //                 case 'discussion':
+            //                     data[i].icon = 'images/ic_forum_black_24px.svg';
+            //                     break;
+            //                 case 'edited':
+            //                     data[i].icon = 'images/ic_create_black_24px.svg';
+            //                     break;
+            //                 case 'unavailable_runs':
+            //                     data[i].icon = 'images/ic_block_black_24px.svg';
+            //                     break;
+            //                 case 'incomplete_runs':
+            //                     data[i].icon = 'images/ic_file_download_black_24px.svg';
+            //                     break;
+            //             }
+            //         }
+            //         $scope.history.rightColumn.list = data;
+            //     }
+            // );
+            //
+            // $scope.getHistory = function(type, time){
+            //     var period = '';
+            //     var params = {'section': 'project'};
+            //     if(time == 'today'){
+            //         period = 'today';
+            //     }else if (time == 'week'){
+            //         period = ['today','week'];
+            //     }else{
+            //         period = ['today','week','all'];
+            //     }
+            //
+            //     params['period'] = period;
+            //
+            //     if(type != 'runs_by_users'){
+            //         params['type'] = type;
+            //     }
+            //
+            //     serviceModel.get_service_hystory(
+            //         params,
+            //         function(data){
+            //             for(var i in data){
+            //                 data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A');
+            //                 if(data[i].type == 'successful_runs'){
+            //                     data[i].icon = 'done_all';
+            //                 }else if(data[i].type == 'unavailable_runs'){
+            //                     data[i].icon = 'block';
+            //                 }else if(data[i].type == 'incomplete_runs'){
+            //                     data[i].icon = 'file_upload';
+            //                 };
+            //             }
+            //             $scope.history.leftColumn.list = data;
+            //             $scope.selectedTab = 2;
+            //             apply();
+            //         }
+            //     );
+            // };
 
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -231,16 +235,17 @@ angular.module('dmc.service-marketplace')
                 getFavoriteCount();
             });
 
+            ///////// commenting out as part of pre-beta sprint
             // get favorites count ------------------
-            $scope.favoritesCount = 0;
-            var getFavoriteCount = function(){
-                ajax.get(dataFactory.getFavoriteProducts(),{
-                    accountId : $scope.$root.userData.accountId
-                },function(response){
-                    $scope.favoritesCount = response.data.length;
-                    apply();
-                });
-            };
+            // $scope.favoritesCount = 0;
+            // var getFavoriteCount = function(){
+            //     ajax.get(dataFactory.getFavoriteProducts(),{
+            //         accountId : $scope.$root.userData.accountId
+            //     },function(response){
+            //         $scope.favoritesCount = response.data.length;
+            //         apply();
+            //     });
+            // };
 
             $scope.share = function(ev){
               $mdDialog.show({
@@ -488,31 +493,31 @@ angular.module('dmc.service-marketplace')
 
                 if ($scope.limit_reviews && !$scope.selectSortingStar) params['_limit'] = 2;
 
-                serviceModel.get_service_reviews(params, function(data){
-                    $scope.product.service_reviews = data;
-                    if($scope.limit_reviews === false){
-
-                        $scope.product.rating = $scope.product.service_reviews.map(function(value, index){
-                            return value.rating;
-                        });
-                        $scope.product.number_of_comments = $scope.product.service_reviews.length;
-
-                        $scope.product.precentage_stars = [0, 0, 0, 0, 0];
-                        $scope.product.average_rating = 0;
-                        if($scope.product.number_of_comments != 0) {
-                            for (var i in $scope.product.rating) {
-                                $scope.product.precentage_stars[$scope.product.rating[i] - 1] += 100 / $scope.product.number_of_comments;
-                                $scope.product.average_rating += $scope.product.rating[i];
-                            }
-                            $scope.product.average_rating = ($scope.product.average_rating / $scope.product.number_of_comments).toFixed(1);
-
-                            for (var i in $scope.product.precentage_stars) {
-                                $scope.product.precentage_stars[i] = Math.round($scope.product.precentage_stars[i]);
-                            }
-                        }
-                    }
-                    apply();
-                });
+                // serviceModel.get_service_reviews(params, function(data){
+                //     $scope.product.service_reviews = data;
+                //     if($scope.limit_reviews === false){
+                //
+                //         $scope.product.rating = $scope.product.service_reviews.map(function(value, index){
+                //             return value.rating;
+                //         });
+                //         $scope.product.number_of_comments = $scope.product.service_reviews.length;
+                //
+                //         $scope.product.precentage_stars = [0, 0, 0, 0, 0];
+                //         $scope.product.average_rating = 0;
+                //         if($scope.product.number_of_comments != 0) {
+                //             for (var i in $scope.product.rating) {
+                //                 $scope.product.precentage_stars[$scope.product.rating[i] - 1] += 100 / $scope.product.number_of_comments;
+                //                 $scope.product.average_rating += $scope.product.rating[i];
+                //             }
+                //             $scope.product.average_rating = ($scope.product.average_rating / $scope.product.number_of_comments).toFixed(1);
+                //
+                //             for (var i in $scope.product.precentage_stars) {
+                //                 $scope.product.precentage_stars[i] = Math.round($scope.product.precentage_stars[i]);
+                //             }
+                //         }
+                //     }
+                //     apply();
+                // });
             };
 
             //Selected rating
@@ -663,6 +668,34 @@ angular.module('dmc.service-marketplace')
             };
 
             $scope.SortingReviews($scope.sortList[0].val);
+
+            ////////adding the below as part of pre-beta changes to limit calls
+            $scope.adHocData = function(dataToGet) {
+
+              if (!$scope.product[dataToGet]) {
+                var id = $scope.product.id;
+                var endpoints = {
+                  'service_tags': dataFactory.services(id).get_tags,
+                  'service_reviews': dataFactory.services(id).reviews
+                  // 'interfaceModel': dataFactory.services(id).get_interface
+                };
+
+                var extractData = function(response){
+                  return response.data ? response.data : response;
+                };
+
+                $http.get(endpoints[dataToGet]).then(function(response){
+                  if (dataToGet == 'interfaceModel') {
+                    // $scope.product[dataToGet] = (response.data && response.data.length > 0 ? response.data[0] : null);
+                  } else {
+                    $scope.product[dataToGet] = extractData(response);
+                  };
+
+                });
+              };
+
+            };
+
         }
     ]
 );

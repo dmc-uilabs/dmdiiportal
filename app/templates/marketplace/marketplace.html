@@ -1,10 +1,10 @@
 <div class="container marketplace-box" layout="row" >
-  <div class="content-column" layout="column" flex='20'>
+  <!-- <div class="content-column" layout="column" flex='20'>
     <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
-  </div>
+  </div> -->
   <!-- Left Content Column -->
   <div class="marketplace" layout="column" flex>
-    <md-content class="marketplace-search" layout="row" layout-align="center center">
+    <!-- <md-content class="marketplace-search" layout="row" layout-align="center center">
 
       <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
           <div layout="column">
@@ -39,7 +39,7 @@
           Compare ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
         </md-button>
       </div>
-    </md-content>
+    </md-content> -->
 
     <md-tabs md-dynamic-height md-border-bottom ng-if="!isSearch" class="marketplace-carousel-tabs">
       <md-tab label="Popular">
@@ -47,7 +47,7 @@
           <div dmc-carousel
               name-carousel="'carouselPopular'"
               max-items="24"
-              show-items="2"
+              show-items="3"
               carousel-source="carouselData.popular.arr"
               run-carousel="true"
               timeout="5">

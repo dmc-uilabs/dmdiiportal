@@ -17,7 +17,7 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
 
             // james.barkley creds (used for testing)
             //make into ENV vars
-            var creds = {bucket: 'test-temp-verify', access_key: 'AKIAJDE3BJULBHCYEX4Q',secret_key: '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'};
+            var creds = {bucket: 'dmcuptemp', access_key: 'AKIAJDFFWFYJAGI4VZOA',secret_key: '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'};
 
             // Configure The S3 Object
             AWS.config.update({ accessKeyId: creds.access_key, secretAccessKey: creds.secret_key });
