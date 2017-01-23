@@ -718,7 +718,7 @@ angular.module('dmc.data',[])
                 return localhost+'market/new_services';
             },
             getMarketServices : function(){
-                 return localhost+'market/services';
+                 return localhost+'market/new_services';
             },
             getMarketComponents : function(){
                  return localhost+'market/components';

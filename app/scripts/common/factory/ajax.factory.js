@@ -6,6 +6,8 @@ angular.module('dmc.ajax',[
 .config(function($httpProvider){
     $httpProvider.interceptors.push('logoutInterceptor');
 
+
+
     if (!$httpProvider.defaults.headers.get) {
         $httpProvider.defaults.headers.get = {};
     }
@@ -23,7 +25,7 @@ angular.module('dmc.ajax',[
             dataFactory,
             $rootScope,
             toastModel) {
-
+            //  $http.defaults.headers.common['AJP_eppn'] = 'testUser';
             var errorCallback = function(response){
                 toastModel.showToast('error', (response && response.statusText ? response.statusText : 'Unknown error!'));
             };

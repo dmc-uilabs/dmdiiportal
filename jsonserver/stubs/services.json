@@ -1,758 +1,193 @@
-[
-	{
-		"id": 1,
-		"companyId": 2,
-		"title": "Qout-of-balance Testing",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "L.Mason",
-		"profileId": 1,
-		"releaseDate": "08/25/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 8,
-		"type": "service",
-		"from": "marketplace",
-		"parent": 0,
-		"published": true,
-		"averageRun": 9999,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"averageRun": 0,
-		"currentStatus": {
-			"project": {
-				"id": 8,
-				"title": "Project"
-			}
-		},
-		"ratingAverage": 4.2393483,
-		"ratingCount": 39
-	},
-	{
-		"id": 5,
-		"companyId": 2,
-		"title": "Fan failure mode analysis",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "P.Ruiz",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 3,
-		"type": "service",
-		"from": "marketplace",
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"averageRun": 0,
-		"currentStatus": {
-			"project": {
-				"id": 3,
-				"title": "Capacitor Design"
-			}
-		},
-		"ratingAverage": 3.5,
-		"ratingCount": 3
-	},
-	{
-		"id": 3,
-		"companyId": 1,
-		"title": "Project Cost Analyzer",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "M.Gill",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["analytical"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 2,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 2,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 30,
-		"companyId": 1,
-		"title": "Evaluator 4 - heat loss, cost, mfg time",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "J.Cole",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 5,
-		"type": "service",
-		"from": "marketplace",
-		"published": true,
-		"averageRun": 0.5,
-		"ratingCount": 1,
-		"ratingAverage": 3.5,
-		"averageRun": 0.5
-	},
-	{
-		"id": 4,
-		"companyId": 1,
-		"title": "Power Factor Correction Analyzer",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "J.Sims",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 2,
-		"type": "service",
-		"from": "marketplace",
-		"published": true,
-		"averageRun": 15,
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"averageRun": 15
-	},
-	{
-		"id": 6,
-		"companyId": 1,
-		"title": "Capacitor Compartment Layout",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "E.Fox",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 4,
-		"type": "service",
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"from": "marketplace",
-		"currentStatus": {
-			"project": {
-				"id": 4,
-				"title": "Incoming Compartment for LDR Mining"
-			}
-		},
-		"ratingAverage": 2,
-		"ratingCount": 39
-	},
-	{
-		"id": 7,
-		"companyId": 1,
-		"title": "Should-cost estimator",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "G.Baker",
-		"profileId": 1,
-		"releaseDate": "01/08/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 3,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 8,
-		"companyId": 1,
-		"title": "Capacitor Configurator",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "G.Baker",
-		"profileId": 1,
-		"releaseDate": "01/07/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 3,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 9,
-		"companyId": 1,
-		"title": "Transformer Manufacturing Cost Analysis",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "m.winand",
-		"profileId": 1,
-		"releaseDate": "01/05/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 4,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 12,
-		"companyId": 1,
-		"title": "Transformer Heat Loss Model",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "m.winand",
-		"profileId": 1,
-		"releaseDate": "08/25/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 4,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 15,
-		"companyId": 1,
-		"title": "Project Scheduler",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "V.Sutton",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 5,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 16,
-		"companyId": 1,
-		"title": "Cost Relation Model",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "R.McCoy",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 5,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 17,
-		"companyId": 1,
-		"title": "Heat Loss Relation Model",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "R.McCoy",
-		"profileId": 1,
-		"releaseDate": "08/25/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 5,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 10,
-		"companyId": 2,
-		"title": "Cost vs. Heat Loss Trade-off Matrix",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "p.koudal",
-		"profileId": 1,
-		"releaseDate": "08/25/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 4,
-		"type": "service",
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"from": "marketplace",
-		"currentStatus": {
-			"project": {
-				"id": 4,
-				"title": "Incoming Compartment for LDR Mining"
-			}
-		},
-		"ratingAverage": 2,
-		"ratingCount": 39
-	},
-	{
-		"id": 11,
-		"companyId": 2,
-		"title": "Cost vs. Heat Loss Trade-off Matrix",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "p.koudal",
-		"profileId": 1,
-		"releaseDate": "08/25/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 3,
-		"type": "service",
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"from": "marketplace",
-		"currentStatus": {
-			"project": {
-				"id": 3,
-				"title": "Capacitor Design"
-			}
-		},
-		"ratingAverage": 2,
-		"ratingCount": 39
-	},
-	{
-		"id": 18,
-		"companyId": 1,
-		"title": "Time Relation Model",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "R.McCoy",
-		"profileId": 1,
-		"releaseDate": "08/25/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 5,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 2,
-		"companyId": 2,
-		"title": "PLC program verifier",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "D.Black",
-		"profileId": 1,
-		"releaseDate": "08/25/2015",
-		"serviceType": ["analytical"],
-		"specifications": "/services/2/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 1,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 13,
-		"companyId": 2,
-		"title": "AppliedLoad",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "PDM.Co",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 3,
-		"type": "service",
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"from": "marketplace",
-		"currentStatus": {
-			"project": {
-				"id": 3,
-				"title": "Capacitor Design"
-			}
-		},
-		"averageRun": 0,
-		"parent": 0,
-		"ratingAverage": 2,
-		"ratingCount": 39
-	},
-	{
-		"id": 41,
-		"companyId": 2,
-		"title": "Upload File model",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "J.Cole",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 3,
-		"type": "service",
-		"from": "marketplace",
-		"averageRun": 11.5,
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"parent": 0,
-		"currentStatus": {
-			"project": {
-				"id": 3,
-				"title": "Capacitor Design"
-			}
-		},
-		"ratingAverage": 2,
-		"ratingCount": 39
-	},
-	{
-		"id": 28,
-		"companyId": 2,
-		"title": "Evaluator 2 - heat loss, mfg time",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "J.Cole",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 3,
-		"type": "service",
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"from": "marketplace",
-		"currentStatus": {
-			"project": {
-				"id": 3,
-				"title": "Capacitor Design"
-			}
-		},
-		"ratingAverage": 2,
-		"ratingCount": 39
-	},
-	{
-		"id": 29,
-		"companyId": 1,
-		"title": "Evaluator 3 - cost, efficiency",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "J.Cole",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 4,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 14,
-		"companyId": 1,
-		"title": "Transformer Efficiency",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "M.Dawson",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 5,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"id": 31,
-		"companyId": 2,
-		"title": "Evaluator 5 - cost, mfg time",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-		"owner": "J.Cole",
-		"profileId": 1,
-		"releaseDate": "01/09/2015",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"projectId": 3,
-		"type": "service",
-		"published": true,
-		"from": "marketplace",
-		"ratingCount": 39,
-		"ratingAverage": 3.5,
-		"from": "marketplace"
-	},
-	{
-		"title": "Alpha",
-		"description": "Description Alpha",
-		"owner": "Thomas Smith",
-		"profileId": 1,
-		"accountId": 1,
-		"releaseDate": "02/13/2016",
-		"serviceType": ["analytical"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"averageRun": 31,
-		"parent_component": null,
-		"projectId": 2,
-		"from": "marketplace",
-		"id": 42,
-		"type": "service",
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"currentStatus": {
-			"project": {
-				"id": 2,
-				"title": "Capacitor Bank for LDR Mining Co."
-			}
-		},
-		"parent": 0,
-		"ratingAverage": 2,
-		"ratingCount": 39
-	},
-	{
-		"title": "Velocity1 Model",
-		"description": "Velocity1 Model Description",
-		"owner": "Thomas Smith",
-		"profileId": 1,
-		"accountId": 1,
-		"releaseDate": "02/14/2016",
-		"serviceType": ["analytical"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"averageRun": 29,
-		"parent_component": null,
-		"projectId": 4,
-		"from": "marketplace",
-		"id": 43,
-		"type": "service",
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"currentStatus": {
-			"project": {
-				"id": 4,
-				"title": "Incoming Compartment for LDR Mining"
-			}
-		},
-		"ratingAverage": 2,
-		"ratingCount": 39
-	},
-	{
-		"title": "AppliedLoad",
-		"description": "AppliedLoad Description",
-		"owner": "Thomas Smith",
-		"profileId": 1,
-		"accountId": 1,
-		"releaseDate": "02/14/2016",
-		"serviceType": ["analytical"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"averageRun": 10,
-		"parent_component": null,
-		"projectId": 4,
-		"from": "marketplace",
-		"id": 44,
-		"type": "service",
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"currentStatus": {
-			"project": {
-				"id": 4,
-				"title": "Incoming Compartment for LDR Mining"
-			}
-		},
-		"ratingAverage": 2,
-		"ratingCount": 39
-	},
-	{
-		"title": "Velocity1 Model",
-		"description": "Velocity1 Model Description",
-		"owner": "Thomas Smith",
-		"accountId": 1,
-		"releaseDate": "02/24/2016",
-		"serviceType": ["analytical"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"averageRun": 8,
-		"currentStatus": {
-			"project": {
-				"id": 1,
-				"name": "Control Compartment for LDR Mining"
-			}
-		},
-		"parent_component": null,
-		"projectId": 1,
-		"type": "service",
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"from": "project",
-		"id": 45,
-		"ratingAverage": 2,
-		"ratingCount": 39
-	},
-	{
-		"title": "Vectors",
-		"description": "Vectors Description",
-		"owner": "Thomas Smith",
-		"accountId": 1,
-		"releaseDate": "03/08/2016",
-		"serviceType": ["solid"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"averageRun": 0,
-		"currentStatus": {
-			"project": {
-				"id": 1,
-				"name": "Control Compartment for LDR Mining"
-			}
-		},
-		"parent_component": null,
-		"projectId": 1,
-		"type": "service",
-		"published": true,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"from": "project",
-		"id": 46,
-		"ratingAverage": 2,
-		"ratingCount": 39
-	},
-	{
-		"title": "AppliedLoad",
-		"description": "Description",
-		"owner": "Thomas Smith",
-		"accountId": 1,
-		"releaseDate": "03/23/2016",
-		"serviceType": ["analytical"],
-		"specifications": "/services/3/specifications",
-		"featureImage": {
-			"thumbnail": "images/marketplace-card-image-1.jpg",
-			"large": "images/marketplace-card-image-1.jpg"
-		},
-		"averageRun": 0,
-		"currentStatus": {
-			"project": {
-				"id": 1,
-				"name": "Control Compartment for LDR Mining"
-			}
-		},
-		"parent_component": null,
-		"projectId": 1,
-		"type": "service",
-		"published": false,
-		"ratingAverage": 3.5,
-   	"ratingCount": 3,
-		"from": "project",
-		"id": 49,
-		"ratingAverage": 2,
-		"ratingCount": 39
-	}
-]
+
+[{
+        "id": 13,
+        "companyId": "1",
+        "title": "BetaFactor",
+        "description": "Solves for Beta in Fracture Machanics.",
+        "owner": "2",
+        "profileId": "2",
+        "releaseDate": "2017-01-18",
+        "serviceType": "analytical",
+        "tags": [],
+        "specifications": "/services/3/specifications",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "currentStatus": {
+            "percentCompleted": "0",
+            "startDate": "",
+            "startTime": ""
+        },
+        "projectId": "1",
+        "from": "project",
+        "type": "service",
+        "parent": null,
+        "published": true,
+        "averageRun": ""
+    }, {
+        "id": 17,
+        "companyId": "12",
+        "title": "Alphasssssss",
+        "description": "ss",
+        "owner": "1",
+        "profileId": "1",
+        "releaseDate": "2017-01-18",
+        "serviceType": "data",
+        "tags": [],
+        "specifications": "/services/3/specifications",
+				"featureImage ":{
+					"thumbnail ":"",
+					"large ":""},
+				"currentStatus ":{
+					"percentCompleted ":"0",
+        "startDate": "",
+        "startTime": ""
+    }, "projectId": "0", "from": "project", "type": "service", "parent": null, "published": true, "averageRun": ""
+}, {
+    "id": 20,
+    "companyId": "1",
+    "title": "Fractrure Mechanics - Alpha",
+    "description": "The  formula used in this model is Alpha = CrackLength / SpecimenWidth.The inputs are CrackLenght(meter) and SpecimenWidth(meter).The output is Alpha(no unit).    ",
+		"owner ":"  5 ",
+		"profileId ":"5",
+		"releaseDate ": "2017-01-19",
+    "serviceType": "analytical",
+    "tags": [],
+    "specifications": "/services/3/specifications",
+    "featureImage": {
+        "thumbnail": "",
+        "large": ""
+    },
+    "currentStatus": {
+        "percentCompleted": "0",
+        "startDate": "",
+        "startTime": ""
+    },
+    "projectId": "8",
+    "from": "project",
+    "type": "service",
+    "parent": null,
+    "published": true,
+    "averageRun": ""
+}, {
+    "id": 22,
+    "companyId": "1",
+    "title": "Fracture Mechanics - AppliedLoad",
+    "description": "The formula used in this model is AppliedLoad = (K * Thickness * math.sqrt(SpecimenWidth.getValue().There are four inputs required for this model.The inputs are k(pascal square root meter), thickness(meter), SpecimentWidth(meter), and BetaFactor(no unit).The output is the applied load(Newton).",
+		"owner ":"5 ",
+		"profileId ":"5 ",
+		"releaseDate ":"2017 - 01 - 19 ",
+		 "serviceType": "analytical", "tags": [], "specifications": "/services/3/specifications", "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        }, "currentStatus": {
+            "percentCompleted": "0",
+            "startDate": "",
+            "startTime": ""
+        }, "projectId": "8", "from": "project", "type": "service", "parent": null, "published": true, "averageRun": ""
+    }, {
+        "id": 44,
+        "companyId": "15",
+        "title": "Fracture Mechanics - Kmax",
+        "description": "The formula used is Kmax = BetaFactor * AppliedLoad /            (Thickness * math.sqrt(SpecimenWidth.getValue())).The four inputs are BetaFactor(no unit),AppliedLoad(Newton),        SpecimenWidth(meter),        and Thickness(meter).The output is Kmax(pascal square root meter).      ",
+				"owner ":"3 ",
+				"profileId ":"3 ",
+				"releaseDate ":"2017 - 01 - 19 ",
+				"serviceType ":"analytical ",
+				"tags ":[],
+				"specifications ": "/services/3/specifications",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "currentStatus": {
+            "percentCompleted": "0",
+            "startDate": "",
+            "startTime": ""
+        },
+        "projectId": "10",
+        "from": "project",
+        "type": "service",
+        "parent": null,
+        "published": true,
+        "averageRun": ""
+    }, {
+        "id": 45,
+        "companyId": "15",
+        "title": "Ux Again",
+        "description": "The formula        used in this model is Ux = pow(pow(((ElasticModulus * Displacement * Thickness) / AppliedLoad), 0 .5) + 1, -1).The inputs are ElasticModulus(Pascal),Displacement(meter),Thickness(meter),        and AppliedLoad(Newton).The output is Ux(no unit).",
+				"owner ":"3",
+				"profileId ":"3",
+				"releaseDate ":"2017 - 01 - 19 ",
+				"serviceType ": "analytical",
+        "tags": [],
+        "specifications": "/services/3/specifications",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "currentStatus": {
+            "percentCompleted": "0",
+            "startDate": "",
+            "startTime": ""
+        },
+        "projectId": "10",
+        "from": "project",
+        "type": "service",
+        "parent": null,
+        "published": true,
+        "averageRun": ""
+    }, {
+        "id": 46,
+        "companyId": "15",
+        "title": "Torque",
+        "description": "assda",
+        "owner": "3",
+        "profileId": "3",
+        "releaseDate": "2017-01-19",
+        "serviceType": "Fundamental Calculations",
+        "tags": [],
+        "specifications": "/services/3/specifications",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "currentStatus": {
+            "percentCompleted": "0",
+            "startDate": "",
+            "startTime": ""
+        },
+        "projectId": "10",
+        "from": "project",
+        "type": "service",
+        "parent": null,
+        "published": true,
+        "averageRun": ""
+    }, {
+        "id": 47,
+        "companyId": "15",
+        "title": "SigXCrack",
+        "description": "ertert",
+        "owner": "3",
+        "profileId": "3",
+        "releaseDate": "2017-01-19",
+        "serviceType": "Data & Analytics",
+        "tags": [],
+        "specifications": "/services/3/specifications",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "currentStatus": {
+            "percentCompleted": "0",
+            "startDate": "",
+            "startTime": ""
+        },
+        "projectId": "10",
+        "from": "project",
+        "type": "service",
+        "parent": null,
+        "published": true,
+        "averageRun": ""
+    }]

@@ -111,7 +111,7 @@ angular.module('dmc.marketplace')
             };
             var responseDataForCarousel = {
                 published : true,
-                _limit : 10,
+                _limit : 50,
                 _sort : 'id',
                 _order : 'DESC'
             };
