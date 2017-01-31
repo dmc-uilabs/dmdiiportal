@@ -179,12 +179,18 @@
 		 	 <md-tab label="Project Documents">
 		 		 <md-content class="md-padding">
 		 			 <div class="tabs-content" layout="column">
-		 				 <div layout="column" class="project-documents" ng-show="documents.length > 0">
-		 					 <div layout="row" ng-repeat="doc in documents">
-		 						 <a class="slim-margin" ng-href="{{doc.documentUrl}}">{{doc.documentName}}</a>
-		 						 <a class="delete-btn" href ng-click="deleteDocument(doc.id, 'doc', $index)">delete</a>
-		 					 </div>
-		 				 </div>
+						 <div layout="row">
+			 				 <div layout="column" flex="50" class="project-documents" ng-show="documents.length > 0">
+			 					 <div layout="row" ng-repeat="doc in documents">
+			 						 <a class="slim-margin" ng-href="{{doc.documentUrl}}">{{doc.documentName}}</a>
+			 						 <a class="delete-btn" href ng-click="deleteDocument(doc.id, 'doc', $index)">delete</a>
+			 					 </div>
+			 				 </div>
+
+							 <div layout="column" flex="50">
+								 <dmc-document-info></div>
+							 </div>
+						 </div>
 		 				 <span ng-hide="documents.length > 0">This Project has no documents</span>
 		 			 </div>
 		 		 </md-content>
