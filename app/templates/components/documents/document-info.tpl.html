@@ -1,17 +1,35 @@
 <div class="document-info" layout="column">
-  <div>DOCUMENT DETAILS</div>
+  <div class="title">DOCUMENT DETAILS</div>
   <!-- <span>{{selectedDocument}}</span> -->
+  <div class='sub-info'>General</div>
+  <md-divider style="margin-bottom: 10px;"></md-divider>
   <div layout='row'>
     <div layout='column' flex='25'>
-      <div>Name</div>
-      <div>Link</div>
-      <div>Last Modified</div>
+      <div class="attribute">Name</div>
+      <div class="attribute">Location</div>
+      <div class="attribute">Last Modified</div>
     </div>
     <div layout='column' flex='75'>
-      <div>{{selectedDocument.documentName}}</div>
-      <div><a href="{{selectedDocument.documentUrl}}">Link</a></div>
-      <div>{{selectedDocument.modified}}</div>
+      <div class="value">{{selectedDocument.documentName}}</div>
+      <div class="value"><a href="{{selectedDocument.documentUrl}}">Link</a></div>
+      <div class="value">{{selectedDocument.modified}}</div>
     </div>
   </div>
-
+  <div class='sub-info'>Access Controls</div>
+  <md-divider style="margin-bottom: 10px;"></md-divider>
+  <div layout='row'>
+    <div layout='column' flex='25'>
+      <div class="attribute">Accessible By</div>
+    </div>
+    <div layout='column' flex='75'>
+      <div class="value">{{selectedDocument.accessLevel}}</div>
+    </div>
+  </div>
+  <div class='sub-info'>Modify</div>
+  <md-divider style="margin-bottom: 10px;"></md-divider>
+  <div layout='row'>
+    <div layout='column' flex='33'>
+      <a class="delete-btn" href ng-click="deleteDocument(doc.id, 'doc', $index)">delete</a>
+    </div>
+  </div>
 </div>
