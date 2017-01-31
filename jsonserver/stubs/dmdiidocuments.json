@@ -1,0 +1,218 @@
+[
+   {
+      "id":11,
+      "dmdiiProjectId": 101000,
+      "documentName":"DMDII Project and Start-Up Profiles.pdf",
+      "documentUrl":"https://dmcupfinal.s3.amazonaws.com/ProjectOfDMDII/113336368065995799190%40google.com/Documents/1481840066--599879-sanitized-DMDII-Project-and-Start-Up-Profiles.pdf?AWSAccessKeyId=AKIAIEBRKP46ULK3BKQA&Expires=1488063530&Signature=Mpb2heFr%2BK2IehzFWykq7pgYNUg%3D",
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"members-only technology showcase document"
+         },
+         {
+            "id":9,
+            "tagName":"dmdii project and start-up profiles.pdf"
+         }
+      ],
+      "modified":1481840056954,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS",
+      "version":1
+   },
+   {
+      "id":20,
+      "documentName":"RIT Project Presentation.PDF",
+      "documentUrl":"https://dmcupfinal.s3.amazonaws.com/ProjectOfDMDII/113336368065995799190%40google.com/Documents/1481840896-543810-sanitized-RIT-Project-Presentation.PDF?AWSAccessKeyId=AKIAIEBRKP46ULK3BKQA&Expires=1488063530&Signature=JvFxWpcjqnY8zpgleQBcekbqZKQ%3D",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"members-only technology showcase document"
+         },
+         {
+            "id":18,
+            "tagName":"rit project presentation.pdf"
+         }
+      ],
+      "modified":1481840887170,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":22,
+      "documentName":"Tulip Company Pitch.pdf",
+      "documentUrl":"https://dmcupfinal.s3.amazonaws.com/ProjectOfDMDII/113336368065995799190%40google.com/Documents/1481840923-774265-sanitized-Tulip-Company-Pitch.pdf?AWSAccessKeyId=AKIAIEBRKP46ULK3BKQA&Expires=1488063530&Signature=wLG%2BOF1gwMF6xSVYgyIiXbwkkQw%3D",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"members-only technology showcase document"
+         },
+         {
+            "id":20,
+            "tagName":"tulip company pitch.pdf"
+         }
+      ],
+      "modified":1481840914243,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":23,
+      "documentName":"Metamorph Company Pitch.pdf",
+      "documentUrl":"https://dmcupfinal.s3.amazonaws.com/ProjectOfDMDII/113336368065995799190%40google.com/Documents/1481840932--239830-sanitized-Metamorph-Company-Pitch.pdf?AWSAccessKeyId=AKIAIEBRKP46ULK3BKQA&Expires=1488063530&Signature=lHTPsuVugUZrBG6BQG6oRku6WG0%3D",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"members-only technology showcase document"
+         },
+         {
+            "id":21,
+            "tagName":"metamorph company pitch.pdf"
+         }
+      ],
+      "modified":1481840923014,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":24,
+      "documentName":"DMDII Completed Projects.pdf",
+      "documentUrl":"https://dmcupfinal.s3.amazonaws.com/ProjectOfDMDII/113336368065995799190%40google.com/Documents/1481840963-381714-sanitized-DMDII-Completed-Projects.pdf?AWSAccessKeyId=AKIAIEBRKP46ULK3BKQA&Expires=1488063530&Signature=NGOfYY4Kwff25W8Rx7S3DnSG9Q0%3D",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"members-only technology showcase document"
+         },
+         {
+            "id":22,
+            "tagName":"dmdii completed projects.pdf"
+         }
+      ],
+      "modified":1481840953765,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":25,
+      "documentName":"NCSU Project Presentation.pdf",
+      "documentUrl":"https://dmcupfinal.s3.amazonaws.com/ProjectOfDMDII/113336368065995799190%40google.com/Documents/1481841064--760632-sanitized-NCSU-Project-Presentation.pdf?AWSAccessKeyId=AKIAIEBRKP46ULK3BKQA&Expires=1488063530&Signature=CJ%2BnjH5tEw9biBarZ1RdkM%2FYNQM%3D",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"members-only technology showcase document"
+         },
+         {
+            "id":23,
+            "tagName":"ncsu project presentation.pdf"
+         }
+      ],
+      "modified":1481841055133,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":26,
+      "documentName":"APX Labs Company Pitch.pdf",
+      "documentUrl":"https://dmcupfinal.s3.amazonaws.com/ProjectOfDMDII/113336368065995799190%40google.com/Documents/1481841075-660497-sanitized-APX-Labs-Company-Pitch.pdf?AWSAccessKeyId=AKIAIEBRKP46ULK3BKQA&Expires=1488063530&Signature=jA5jsfcjbswNIrShh8gwei5Vn9w%3D",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"members-only technology showcase document"
+         },
+         {
+            "id":24,
+            "tagName":"apx labs company pitch.pdf"
+         }
+      ],
+      "modified":1481841065626,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":21,
+      "documentName":"Green Dynamics Project Presentation.pdf",
+      "documentUrl":"https://dmcupfinal.s3.amazonaws.com/ProjectOfDMDII/113336368065995799190%40google.com/Documents/1481840907--293983-sanitized-Green-Dynamics-Project-Presentation.pdf?AWSAccessKeyId=AKIAIEBRKP46ULK3BKQA&Expires=1488063530&Signature=GW30OJNVEEKBJCCgXa9e%2FpG%2FA%2BY%3D",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"members-only technology showcase document"
+         },
+         {
+            "id":19,
+            "tagName":"green dynamics project presentation.pdf"
+         }
+      ],
+      "modified":1481840897380,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":41,
+      "documentName":"DMDII Technology Showcase Agenda 11.17.16.pdf",
+      "documentUrl":"https://dmcupfinal.s3.amazonaws.com/ProjectOfDMDII/109786682765402507522%40google.com/Documents/1485795982-290067-sanitized-DMDII-Technology-Showcase-Agenda-11.17.16.pdf?AWSAccessKeyId=AKIAIZPP46XXRK6PBF6A&Expires=1488301582&Signature=EhHiVMkJwsf1DOx4hokiGmlsS60%3D",
+      "dmdiiProjectId":1000,
+      "ownerId":11,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"members-only technology showcase document"
+         },
+         {
+            "id":35,
+            "tagName":"dmdii technology showcase agenda 11.17.16.pdf"
+         }
+      ],
+      "modified":1485795974007,
+      "expires":1488387974007,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   }
+]

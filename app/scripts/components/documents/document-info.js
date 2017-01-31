@@ -10,17 +10,10 @@ angular.module('dmc.component.documentinfo', [
       transclude: true,
       replace: true,
       scope: {
+        selectedDocument: '='
       },
-      templateUrl: 'templates/components/documents/document-info.tpl.html'
+      templateUrl: 'templates/components/documents/document-info.tpl.html',
+      controller: function($scope) {
+      }
     }
-})
-.controller('DocumentInfoController', function ($scope, ajax, dataFactory, $mdDialog){
-
-  $scope.logIt = function(){
-    console.log('WTF WTF WTF WTF');
-  };
-
-  $scope.testElement = 'testy test test';
-
-  $scope.logIt();
 })
