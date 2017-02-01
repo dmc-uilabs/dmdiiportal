@@ -176,13 +176,13 @@
 		 		 </md-content>
 		 	 </md-tab>
 
-		 	 <md-tab label="Project Documents">
+		 	 <md-tab ng-click="selectDocument(0)" label="Project Documents">
 		 		 <md-content class="md-padding">
 		 			 <div class="tabs-content" layout="column">
 						 <div layout="row">
 			 				 <div layout="column" flex="50" class="project-documents" ng-show="documents.length > 0">
-			 					 <div class='document' ng-click="selectDocument($index)" ng-class="{'green-background': isSelectedDocument($index), 'document-hover': !isSelectedDocument($index)}" layout="row" ng-repeat="doc in documents">
-			 						 <span class="slim-margin">{{doc.documentName}}</span>
+			 					 <div class='document' ng-class="{'green-background': isSelectedDocument($index), 'document-hover': !isSelectedDocument($index)}" layout="row" ng-repeat="doc in documents">
+			 						 <div ng-click="selectDocument($index)" class="slim-margin">{{doc.documentName}}</div>
 			 						 <!-- <a class="delete-btn" href ng-click="deleteDocument(doc.id, 'doc', $index)">delete</a> -->
 			 					 </div>
 			 				 </div>

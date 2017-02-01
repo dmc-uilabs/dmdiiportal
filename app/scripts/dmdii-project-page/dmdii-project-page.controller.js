@@ -96,6 +96,9 @@ angular.module('dmc.dmdiiProj')
 
                 ajax.get(dataFactory.getDMDIIDocuments().project, {page: 0, pageSize: 15, dmdiiProjectId: $scope.project.id}, function(response) {
                     $scope.documents = response.data;
+                    if ($scope.documents.length > 0) {
+                      selectDocument(0);
+                    }
                 });
 
                 ajax.get(dataFactory.getDMDIIDocuments().projectDocument, {fileTypeId: 3, dmdiiProjectId: $scope.project.id}, function(response) {
@@ -134,8 +137,6 @@ angular.module('dmc.dmdiiProj')
                     }
                 });
             };
-
-            $scope.selectedDocument = null;
 
             $scope.selectDocument = function(index) {
               $scope.selectedDocumentIndex = index;
