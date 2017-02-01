@@ -10,7 +10,8 @@ angular.module('dmc.component.documentinfo', [
       transclude: true,
       replace: true,
       scope: {
-        selectedDocument: '='
+        selectedDocument: '=',
+        project: '='
       },
       templateUrl: 'templates/components/documents/document-info.tpl.html',
       controller: function($scope) {
