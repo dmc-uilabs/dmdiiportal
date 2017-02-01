@@ -134,6 +134,17 @@ angular.module('dmc.dmdiiProj')
                     }
                 });
             };
+
+            $scope.selectedDocument = null;
+
+            $scope.selectDocument = function(index) {
+              $scope.selectedDocumentIndex = index;
+              $scope.selectedDocument = $scope.documents[index];
+            };
+
+            $scope.isSelectedDocument = function(index) {
+              return index == $scope.selectedDocumentIndex;
+            }
 		}
     ]
 ).filter('numberFixedLen', function () {

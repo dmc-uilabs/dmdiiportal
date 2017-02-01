@@ -11,6 +11,10 @@ h5.project-subtitle{
     padding-top: 15px;
 }
 
+.document-hover:hover{
+  background-color: lightgrey;
+}
+
 .po-subtitle{
     color: #666666;
 }
@@ -41,6 +45,10 @@ h5.project-subtitle{
 
 .green{
   color:green;
+}
+
+.green-background{
+  background-color: map-get($colors, secondary);
 }
 
 .close-email{

@@ -181,14 +181,14 @@
 		 			 <div class="tabs-content" layout="column">
 						 <div layout="row">
 			 				 <div layout="column" flex="50" class="project-documents" ng-show="documents.length > 0">
-			 					 <div layout="row" ng-repeat="doc in documents">
-			 						 <a class="slim-margin" ng-href="{{doc.documentUrl}}">{{doc.documentName}}</a>
+			 					 <div class='document' ng-click="selectDocument($index)" ng-class="{'green-background': isSelectedDocument($index), 'document-hover': !isSelectedDocument($index)}" layout="row" ng-repeat="doc in documents">
+			 						 <span class="slim-margin">{{doc.documentName}}</span>
 			 						 <!-- <a class="delete-btn" href ng-click="deleteDocument(doc.id, 'doc', $index)">delete</a> -->
 			 					 </div>
 			 				 </div>
 
 							 <div layout="column" flex="50">
-								 <dmc-document-info selected-document="documents[0]">
+								 <dmc-document-info ng-if="selectedDocument" selected-document="selectedDocument">
 								 </dmc-document-info>
 							 </div>
 						 </div>

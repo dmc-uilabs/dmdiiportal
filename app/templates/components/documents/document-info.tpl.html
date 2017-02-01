@@ -12,7 +12,7 @@
     <div layout='column' flex='75'>
       <div class="value">{{selectedDocument.documentName}}</div>
       <div class="value"><a href="{{selectedDocument.documentUrl}}">Link</a></div>
-      <div class="value">{{selectedDocument.modified}}</div>
+      <div class="value">{{selectedDocument.modified | date:'yyyy-MM-dd HH:mm:ss Z'}}</div>
     </div>
   </div>
   <div class='sub-info'>Access Controls</div>
