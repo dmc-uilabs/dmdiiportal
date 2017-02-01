@@ -4,26 +4,22 @@
   <div class='sub-info'>General</div>
   <md-divider style="margin-bottom: 10px;"></md-divider>
   <div layout='row'>
-    <div layout='column' flex='25'>
-      <div class="attribute">Name</div>
-      <div class="attribute">Location</div>
-      <div class="attribute">Last Modified</div>
-    </div>
-    <div layout='column' flex='75'>
-      <div class="value">{{selectedDocument.documentName}}</div>
-      <div class="value"><a href="{{selectedDocument.documentUrl}}">Link</a></div>
-      <div class="value">{{selectedDocument.modified | date:'yyyy-MM-dd HH:mm:ss Z'}}</div>
-    </div>
+    <div layout='column' flex='25' class="attribute">Name</div>
+    <div layout='column' flex='75' class="value">{{selectedDocument.documentName}}</div>
+  </div>
+  <div layout='row'>
+    <div layout='column' flex='25' class="attribute">Last Modified</div>
+    <div layout='column' flex='75' class="value">{{selectedDocument.modified | date:'yyyy-MM-dd HH:mm Z'}}</div>
+  </div>
+  <div layout='row'>
+    <div layout='column' flex='25' class="attribute">Location</div>
+    <div layout='column' flex='75' class="value"><a href="{{selectedDocument.documentUrl}}">Link</a></div>
   </div>
   <div class='sub-info'>Access Controls</div>
   <md-divider style="margin-bottom: 10px;"></md-divider>
   <div layout='row'>
-    <div layout='column' flex='25'>
-      <div class="attribute">Accessible By</div>
-    </div>
-    <div layout='column' flex='75'>
-      <div class="value">{{selectedDocument.accessLevel}}</div>
-    </div>
+    <div layout='column' flex='25' class="attribute">Accessible By</div>
+    <div layout='column' flex='75' class="value">{{selectedDocument.accessLevel}}</div>
   </div>
   <div class='sub-info'>Modify</div>
   <md-divider style="margin-bottom: 10px;"></md-divider>
