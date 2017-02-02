@@ -43,12 +43,22 @@
         <!-- access level -->
         <div layout='row' class="doc-attr-group">
           <div ng-if="!item.editing">Access Level: {{item.accessLevel}}</div>
-          <md-input-container ng-if="accessLevel && item.editing" flex="40">
+          <md-input-container ng-if="accessLevel && item.editing" flex="50">
               <label>Access Level</label>
               <md-select ng-model="item.accessLevel" ng-if="item.editing">
                   <md-option ng-value="value" ng-repeat="(key, value) in accessLevel">{{key}}</md-option>
               </md-select>
           </md-input-container>
+
+
+          <md-input-container ng-if="item.accessLevel == 'ORGANIZATION_LIST'" flex="50">
+              <label>Choose Members</label>
+              <md-select ng-model="item.accessLevel" ng-if="item.editing">
+                  <md-option ng-value="value" ng-repeat="(key, value) in accessLevel">{{key}}</md-option>
+              </md-select>
+          </md-input-container>
+
+
         </div>
 
         <!-- tags -->
