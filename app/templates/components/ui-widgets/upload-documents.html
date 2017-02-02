@@ -25,7 +25,7 @@
       <div class="upload-list" ng-repeat="item in source | limitTo: maxFiles" ng-show="!item.deleted">
 
         <!-- title and edit controls -->
-        <div layout='row' style="bottom-border: 1px solid grey;">
+        <div layout='row' class="doc-title" layout-align="start center">
           <h2>{{item.title}} <i style="color: grey; size: .6em" ng-show="item.editing">editing</i></h2>
           <!-- delete/ edit buttons -->
           <md-button class="md-icon-button edit" ng-show="!item.editing && !item.delete" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="24"></ng-md-icon></md-button>
@@ -53,21 +53,24 @@
 
         <!-- tags -->
         <div layout='row' class="doc-attr-group">
-          <div flex ng-show="allowTagging">
-              Tags: <span ng-repeat="tag in item.tags track by $index">{{tag.tagName || tag}}{{$last ? '' : ', '}}</span>
+          <div layout="column" ng-show="allowTagging">
+            <div>
+                Tags: <span ng-repeat="tag in item.tags track by $index">{{tag.tagName || tag}}{{$last ? '' : ', '}}</span>
+                <br>
+            </div>
+
+            <!-- <ui-select style="max-width: 100px;" multiple tagging tagging-label="false" append-to-body="true" ng-model="item.tags" theme="select2" flex ng-show="item.editing && allowTagging">
+                <label>Tags</label>
+                <ui-select-match placeholder="Tags">{{$item.tagName || $item}}</ui-select-match>
+                <ui-select-choices repeat="tag in tags | filter:$select.search"></ui-select-choices>
+            </ui-select> -->
+            <div flex="50" flex="nogrow">
+              <ui-select flex ng-show="item.editing && allowTagging" multiple tagging tagging-label="Tags" ng-model="item.tags">
+              <ui-select-match placeholder="add">{{$item.tagName || $item}}</ui-select-match>
+              <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.tagName || tag}}</ui-select-choices>
+              </ui-select>
+            </div>
           </div>
-
-          <!-- <ui-select style="max-width: 100px;" multiple tagging tagging-label="false" append-to-body="true" ng-model="item.tags" theme="select2" flex ng-show="item.editing && allowTagging">
-              <label>Tags</label>
-              <ui-select-match placeholder="Tags">{{$item.tagName || $item}}</ui-select-match>
-              <ui-select-choices repeat="tag in tags | filter:$select.search"></ui-select-choices>
-          </ui-select> -->
-          <ui-select style="max-width: 167px;" flex ng-show="item.editing && allowTagging" multiple tagging tagging-label="Tags" ng-model="item.tags">
-          <ui-select-match placeholder="add">{{$item.tagName || $item}}</ui-select-match>
-          <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.tagName || tag}}</ui-select-choices>
-
-          </ui-select>
-
         </div>
 
         <!-- confirm buttons -->

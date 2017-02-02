@@ -66,16 +66,22 @@
   }
 }
 
-.upload-list .doc-attr-group{
+.upload-list{
+  .doc-attr-group{
   margin-bottom: 15px;
-  margin-left: 15px;
+  margin-left: 15px;}
+  .doc-title{
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 10px;
+  }
 }
 
 .upload-list{
-  margin: 10px 0px 10px 0px;
-  padding-bottom: 10px;
-  border-color: grey;
-  border-style: solid;
-  border-width: 0px 0px 2px 0px;
+  margin: 10px;
+  padding: 10px;
+  // border-color: grey;
+  // border-style: solid;
+  // border-width: 0px 0px 2px 0px;
+  background: #EFECED;
 
 }
