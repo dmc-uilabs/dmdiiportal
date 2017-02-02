@@ -5,31 +5,146 @@
         </div>
     </md-toolbar>
 </div>
-<div class="content-panel-body" layout="row" layout-align="space-between start" layout-wrap>
-    <md-content class="md-padding" flex>
+  <div class="content-panel-body" layout="column" layout-align="space-between start" layout-wrap>
+      <md-content class="md-padding" flex="99">
         <form style="z-index: 8" class="dropzone dropzone-sm dz-clickable" id="documentDropZone" dropzone="dropzoneConfig">
             <div class="dz-default dz-message">
                 <div>
-                    <ng-md-icon icon="cloud_upload" style="fill: #666" size="89"></ng-md-icon>
+                    <ng-md-icon icon="cloud_upload" style="fill: #666" size="84"></ng-md-icon>
                     <span class="main-text"><b>Drop Files</b> here</span>
                     <span class="sub-text">(or click)</span>
                 </div>
             </div>
         </form>
-    </md-content>
-    <md-content class="md-padding upload-documents" ng-if="source.length > 0" flex="{{widgetType == 'row' ? 100 : 50}}">
-        <md-list>
-            <md-list-item ng-repeat="item in source | limitTo: maxFiles" ng-show="!item.deleted">
-                <p ng-show="!item.editing && !item.delete">{{item.title}}</p>
-                <md-input-container ng-show="item.editing" flex>
-                    <label>Document name</label>
-                    <input ng-value="item.title" ng-model="item.title">
-                </md-input-container>
-                <div layout="column" flex="50">
+      </md-content>
+    </div>
+    <!-- <div layout='row' class="md-padding upload-documents" ng-if="source.length > 0" flex="{{widgetType == 'row' ? 100 : 50}}"> -->
+    <div layout='column' flex="99" class="md-padding upload-documents" ng-if="source.length > 0">
+
+      <!-- wrapping div for repeat-->
+      <div class="upload-list" ng-repeat="item in source | limitTo: maxFiles" ng-show="!item.deleted">
+
+        <!-- title and edit controls -->
+        <div layout='row' style="bottom-border: 1px solid grey;">
+          <h2>{{item.title}} <i style="color: grey; size: .6em" ng-show="item.editing">editing</i></h2>
+          <!-- delete/ edit buttons -->
+          <md-button class="md-icon-button edit" ng-show="!item.editing && !item.delete" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="24"></ng-md-icon></md-button>
+          <md-button ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="24"></ng-md-icon></md-button>
+        </div>
+
+        <!-- name editing -->
+        <div layout='row' class="doc-attr-group">
+          <md-input-container ng-show="item.editing" flex>
+              <label>Document name</label>
+              <input ng-value="item.title" ng-model="item.title">
+          </md-input-container>
+        </div>
+
+        <!-- access level -->
+        <div layout='row' class="doc-attr-group">
+          <div ng-if="!item.editing">Access Level: {{item.accessLevel}}</div>
+          <md-input-container ng-if="accessLevel && item.editing" flex="40">
+              <label>Access Level</label>
+              <md-select ng-model="item.accessLevel" ng-if="item.editing">
+                  <md-option ng-value="value" ng-repeat="(key, value) in accessLevel">{{key}}</md-option>
+              </md-select>
+          </md-input-container>
+        </div>
+
+        <!-- tags -->
+        <div layout='row' class="doc-attr-group">
+          <div flex ng-show="allowTagging">
+              Tags: <span ng-repeat="tag in item.tags track by $index">{{tag.tagName || tag}}{{$last ? '' : ', '}}</span>
+          </div>
+
+          <!-- <ui-select style="max-width: 100px;" multiple tagging tagging-label="false" append-to-body="true" ng-model="item.tags" theme="select2" flex ng-show="item.editing && allowTagging">
+              <label>Tags</label>
+              <ui-select-match placeholder="Tags">{{$item.tagName || $item}}</ui-select-match>
+              <ui-select-choices repeat="tag in tags | filter:$select.search"></ui-select-choices>
+          </ui-select> -->
+          <ui-select style="max-width: 167px;" flex ng-show="item.editing && allowTagging" multiple tagging tagging-label="Tags" ng-model="item.tags">
+          <ui-select-match placeholder="add">{{$item.tagName || $item}}</ui-select-match>
+          <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.tagName || tag}}</ui-select-choices>
+
+          </ui-select>
+
+        </div>
+
+        <!-- confirm buttons -->
+        <div layout='row' layout-align="start center">
+
+          <div ng-show="item.editing">
+            <md-button class="md-icon-button" ng-click="cancelEdit(item)" aria-label="delete">
+              <md-tooltip md-direction="top">Cancel</md-tooltip>
+              <ng-md-icon style="color: grey" icon="cancel" size="24"></ng-md-icon>
+            </md-button>
+
+            <md-button class="md-icon-button" ng-click="saveEdit(item)" aria-label="delete">
+              <md-tooltip md-direction="top">Save</md-tooltip>
+              <ng-md-icon style="color: lightgreen" icon="done" size="24"></ng-md-icon>
+            </md-button>
+          </div>
+
+          <!-- <md-input-container ng-show="item.editing">
+              <md-button class="md-raised cancel" ng-click="cancelEdit(item)" aria-label="Cancel">Cancel</md-button>
+          </md-input-container>
+
+          <md-input-container ng-show="item.editing">
+              <md-button class="md-raised save" ng-click="saveEdit(item)" aria-label="Save">Save</md-button>
+          </md-input-container> -->
+
+          <div ng-show="item.delete">
+            <div>Are you sure you want to remove this document?</div>
+            <!-- <md-button class="md-raised cancel" ng-click="cancelConfirm(item)" aria-label="Cancel">Cancel</md-button>
+            <md-button class="md-raised md-warn" ng-click="removeFile(item)" aria-label="Delete">Remove</md-button> -->
+
+            <md-button class="md-icon-button" ng-click="cancelConfirm(item)" aria-label="Cancel">
+              <md-tooltip md-direction="top">Cancel</md-tooltip>
+              <ng-md-icon style="color: grey" icon="cancel" size="24"></ng-md-icon>
+            </md-button>
+
+            <md-button class="md-icon-button" ng-click="removeFile(item)" aria-label="Delete">
+              <md-tooltip md-direction="top">Delete</md-tooltip>
+              <ng-md-icon style="color: red;" icon="delete" size="24"></ng-md-icon>
+            </md-button>
+
+          </div>
+        </div>
+
+      <div>
+
+            <!-- <div layout='row' ng-repeat="item in source | limitTo: maxFiles" ng-show="!item.deleted">
+              <div layout='column'>
+                <div layout='row'>
+                  <h2 ng-show="!item.editing && !item.delete">{{item.title}}</h2>
+                  <md-input-container ng-show="item.editing" flex>
+                      <label>Document name</label>
+                      <input ng-value="item.title" ng-model="item.title">
+                  </md-input-container>
+
+                  <md-input-container ng-show="item.editing" layout-align="end center">
+                      <md-button class="md-raised cancel" ng-click="cancelEdit(item)" aria-label="Cancel">Cancel</md-button>
+                  </md-input-container>
+
+                  <md-input-container ng-show="item.editing" layout-align="end center">
+                      <md-button class="md-raised save" ng-click="saveEdit(item)" aria-label="Save">Save</md-button>
+                  </md-input-container>
+
+                  <md-button layout-align="end center" class="md-icon-button edit" ng-show="!item.editing && !item.delete" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="24"></ng-md-icon></md-button>
+                  <md-button layout-align="end center" ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="24"></ng-md-icon></md-button>
+                  <p ng-show="item.delete">Are you sure you want to remove this document?</p>
+                  <md-button layout-align="end center" ng-show="item.delete" class="md-raised cancel" ng-click="cancelConfirm(item)" aria-label="Cancel">Cancel</md-button>
+                  <md-button layout-align="end center" ng-show="item.delete" class="md-raised md-warn" ng-click="removeFile(item)" aria-label="Delete">Remove</md-button>
+
+                </div>
+
+                <md-divider></md-divider>
+
                     <div layout="row" layout-align="end end">
                         <div flex ng-show="!item.editing && !item.delete && allowTagging">
                             Tags: <span ng-repeat="tag in item.tags track by $index">{{tag.tagName || tag}}{{$last ? '' : ', '}}</span>
                         </div>
+
                         <ui-select multiple tagging tagging-label="false" append-to-body="true" ng-model="item.tags" theme="select2" flex ng-show="item.editing && allowTagging">
                             <ui-select-match placeholder="Tags">{{$item.tagName || $item}}</ui-select-match>
                             <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.tagName || tag}}</ui-select-choices>
@@ -52,8 +167,8 @@
                             <md-button class="md-raised save" ng-click="saveEdit(item)" aria-label="Save">Save</md-button>
                         </md-input-container>
 
-                        <md-button class="md-icon-button edit" ng-show="!item.editing && !item.delete" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="21"></ng-md-icon></md-button>
-                        <md-button ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="21"></ng-md-icon></md-button>
+                        <md-button class="md-icon-button edit" ng-show="!item.editing && !item.delete" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="24"></ng-md-icon></md-button>
+                        <md-button ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="24"></ng-md-icon></md-button>
                         <p ng-show="item.delete">Are you sure you want to remove this document?</p>
                         <md-button ng-show="item.delete" class="md-raised cancel" ng-click="cancelConfirm(item)" aria-label="Cancel">Cancel</md-button>
                         <md-button ng-show="item.delete" class="md-raised md-warn" ng-click="removeFile(item)" aria-label="Delete">Remove</md-button>
@@ -88,8 +203,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </md-list-item>
-        </md-list>
-    </md-content>
+
+            </div>
+            </div> -->
+
+    </div>
 </div>
