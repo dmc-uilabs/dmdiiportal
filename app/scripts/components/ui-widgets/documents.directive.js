@@ -301,10 +301,15 @@ $scope.$watchCollection('selectedVips', function() {
 					}
 				};
 
+				///////////////////////////
+				// Document access logic //
+				///////////////////////////
 
 				$scope.access = {};
 				$scope.access.companies = [];
+				$scope.access.queryCompanySearch = queryCompanySearch;
 				$scope.access.companiesWithAccess = [];
+				$scope.access.companiesWithAccessList = "";
 
 				var getAllCompanies = function() {
 						ajax.get(dataFactory.companyURL().all, {}, function(response){
@@ -315,8 +320,8 @@ $scope.$watchCollection('selectedVips', function() {
 				getAllCompanies();
 
 				$scope.updateCompaniesWithAccess = function() {
-					console.log('update')
 					$scope.access.companiesWithAccess = returnCompaniesWithAccess()
+					updateCompaniesWithAccessList()
 				}
 
 				function returnCompaniesWithAccess() {
@@ -326,6 +331,27 @@ $scope.$watchCollection('selectedVips', function() {
 						}
 					})
 				}
+
+				function updateCompaniesWithAccessList() {
+					$scope.access.companiesWithAccessList = $scope.access.companiesWithAccess.map(function(c){ return c.name }).join(', ');
+				}
+
+
+				var createCompanyFilterFor = function(query) {
+					var lowercaseQuery = angular.lowercase(query);
+					return function filterFn(item) {
+						return (item.name.toLowerCase().indexOf(lowercaseQuery) === 0);
+					};
+				}
+
+				function queryCompanySearch(query) {
+					var results = query ? $scope.access.companies.filter( createCompanyFilterFor(query) ) : $scope.access.companies
+					return results;
+				}
+
+				///////////////////////////
+				// END access logic      //
+				///////////////////////////
 
 			}
 		};

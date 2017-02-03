@@ -73,18 +73,25 @@
   				</div> -->
 
 
-          <label ng-repeat="company in access.companies">
+          <!-- <label ng-repeat="company in access.companies">
             <input ng-change="updateCompaniesWithAccess()" type="checkbox" ng-model="company.selected"> {{company.name}}
           </label>
+
+          <md-divider></md-divider> -->
+
+
+          <div layout="column" style="border: 2px solid black;">
+            <input type="text" ng-model="access.accessCompanySearch"></input>
+            <md-checkbox ng-repeat="company in access.queryCompanySearch(access.accessCompanySearch)" style="float:left;" ng-change="updateCompaniesWithAccess()" ng-model="company.selected">
+              <span style="font-size: 1.2em">{{company.name}}</span>
+            </md-checkbox>
+          </div>
+
+
         </div>
 
         <div style="padding: 30px; border: 2px solid black;" layout='row'>
-          <ul>
-            <li class="company-list" ng-repeat="company in access.companiesWithAccess" ng-show="access.companiesWithAccess">
-              {{company.name}}
-            </li>
-          </ul>
-
+              {{access.companiesWithAccessList}}
         </div>
 
         <!-- name editing -->
