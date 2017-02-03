@@ -309,7 +309,6 @@ $scope.$watchCollection('selectedVips', function() {
 				$scope.access.companies = [];
 				$scope.access.queryCompanySearch = queryCompanySearch;
 				$scope.access.companiesWithAccess = [];
-				$scope.access.companiesWithAccessList = "";
 
 				var getAllCompanies = function() {
 						ajax.get(dataFactory.companyURL().all, {}, function(response){
@@ -321,7 +320,6 @@ $scope.$watchCollection('selectedVips', function() {
 
 				$scope.updateCompaniesWithAccess = function() {
 					$scope.access.companiesWithAccess = returnCompaniesWithAccess()
-					updateCompaniesWithAccessList()
 				}
 
 				function returnCompaniesWithAccess() {
@@ -331,11 +329,6 @@ $scope.$watchCollection('selectedVips', function() {
 						}
 					})
 				}
-
-				function updateCompaniesWithAccessList() {
-					$scope.access.companiesWithAccessList = $scope.access.companiesWithAccess.map(function(c){ return c.name }).join(', ');
-				}
-
 
 				var createCompanyFilterFor = function(query) {
 					var lowercaseQuery = angular.lowercase(query);
@@ -347,6 +340,11 @@ $scope.$watchCollection('selectedVips', function() {
 				function queryCompanySearch(query) {
 					var results = query ? $scope.access.companies.filter( createCompanyFilterFor(query) ) : []
 					return results;
+				}
+
+				$scope.removeCompanyFromAccessList = function(companyToRemove){
+					companyToRemove.selected = false;
+					$scope.updateCompaniesWithAccess();
 				}
 
 				///////////////////////////
