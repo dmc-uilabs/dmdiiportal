@@ -32,94 +32,41 @@
           <md-button ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="24"></ng-md-icon></md-button>
         </div>
 
-        <div style="padding: 30px; border: 2px solid black;" layout='row'>
-          <!-- <md-item-template>
-          <md-autocomplete
-            md-dropdown-position="top"
-            md-floating-label="Organization"
-            md-selected-item="ctrl.selectedCompany"
-            md-search-text="ctrl.searchCompany"
-            md-search-text-change="ctrl.searchCompanyChange(ctrl.searchCompany)"
-            md-selected-item-change="ctrl.addCompany(item)"
-            md-items="item in ctrl.queryCompanySearch(ctrl.searchCompany)"
-            md-item-text="item.name"
-          >
-            <md-item-template>
-              <span md-highlight-text="ctrl.searchCompany" md-highlight-flags="^i">{{item.name}}</span>
-            </md-item-template>
-            <md-not-found>
-              No matches found for "{{ctrl.searchCompany}}".
-            </md-not-found>
-          </md-autocomplete>
-        </md-item-template> -->
-
-          <!-- <div flex="40" class="autocomplete-block">
-  				    <md-autocomplete
-  				      md-floating-label="Organizations"
-  				      md-selected-item="ctrl.selectedCompany"
-  				      md-search-text="ctrl.searchCompany"
-  				      md-search-text-change="ctrl.searchCompanyChange(ctrl.searchCompany)"
-  				      md-selected-item-change="ctrl.addCompany(item)"
-  				      md-items="item in ctrl.queryCompanySearch(ctrl.searchCompany)"
-  				      md-item-text="item.name"
-  				    >
-  				      <md-item-template>
-  				        <span md-highlight-text="ctrl.searchCompany" md-highlight-flags="^i">{{item.name}}</span>
-  				      </md-item-template>
-  				      <md-not-found>
-  				        No matches found for "{{ctrl.searchCompany}}".
-  				      </md-not-found>
-  				    </md-autocomplete>
-  				</div> -->
-
-
-          <!-- <label ng-repeat="company in access.companies">
-            <input ng-change="updateCompaniesWithAccess()" type="checkbox" ng-model="company.selected"> {{company.name}}
-          </label>
-
-          <md-divider></md-divider> -->
-
-
-          <div layout="column" style="border: 2px solid black;">
-            <input type="text" ng-model="access.accessCompanySearch"></input>
-            <md-checkbox ng-repeat="company in access.queryCompanySearch(access.accessCompanySearch)" style="float:left;" ng-change="updateCompaniesWithAccess()" ng-model="company.selected">
-              <span style="font-size: 1.2em">{{company.name}}</span>
-            </md-checkbox>
-          </div>
-
-
-        </div>
-
-        <div style="padding: 30px; border: 2px solid black;" layout='row'>
-              {{access.companiesWithAccessList}}
-        </div>
-
-        <!-- name editing -->
-        <div layout='row' class="doc-attr-group">
-          <md-input-container ng-show="item.editing" flex>
+          <!-- name editing -->
+        <div layout='row' class="doc-attr-group" ng-show="item.editing">
+          <md-input-container flex>
               <label>Document name</label>
               <input ng-value="item.title" ng-model="item.title">
           </md-input-container>
         </div>
 
         <!-- access level -->
-        <div layout='row' class="doc-attr-group">
+        <div layout='row' layout-align="space-between center" class="doc-attr-group">
           <div ng-if="!item.editing">Access Level: {{item.accessLevel}}</div>
-          <md-input-container ng-if="accessLevel && item.editing" flex="50">
+
+          <md-input-container ng-if="accessLevel && item.editing" flex="45">
               <label>Access Level</label>
               <md-select ng-model="item.accessLevel" ng-if="item.editing">
                   <md-option ng-value="value" ng-repeat="(key, value) in accessLevel">{{key}}</md-option>
               </md-select>
           </md-input-container>
 
-
-          <md-input-container ng-if="item.accessLevel == 'ORGANIZATION_LIST'" flex="50">
-              <label>Choose Members</label>
-              <md-select ng-model="item.accessLevel" ng-if="item.editing">
-                  <md-option ng-value="value" ng-repeat="(key, value) in accessLevel">{{key}}</md-option>
-              </md-select>
+          <md-input-container ng-if="item.accessLevel == 'ORGANIZATION_LIST' && item.editing" flex="45">
+              <label>Search Companies</label>
+              <input ng-model="access.accessCompanySearch">
           </md-input-container>
 
+        </div>
+
+        <div layout='row' layout-align="space-between center" ng-if="item.accessLevel == 'ORGANIZATION_LIST'" class="doc-attr-group">
+          <div flex="45">Access List: {{access.companiesWithAccessList}}
+          </div>
+
+          <div layout="column" flex="45" >
+            <md-checkbox ng-show="item.editing" ng-repeat="company in access.queryCompanySearch(access.accessCompanySearch)" style="float:left;" ng-change="updateCompaniesWithAccess()" ng-model="company.selected">
+              <span style="font-size: 1.2em">{{company.name}}</span>
+            </md-checkbox>
+          </div>
         </div>
 
         <!-- tags -->
@@ -130,11 +77,6 @@
                 <br>
             </div>
 
-            <!-- <ui-select style="max-width: 100px;" multiple tagging tagging-label="false" append-to-body="true" ng-model="item.tags" theme="select2" flex ng-show="item.editing && allowTagging">
-                <label>Tags</label>
-                <ui-select-match placeholder="Tags">{{$item.tagName || $item}}</ui-select-match>
-                <ui-select-choices repeat="tag in tags | filter:$select.search"></ui-select-choices>
-            </ui-select> -->
             <div flex="50" flex="nogrow">
               <ui-select flex ng-show="item.editing && allowTagging" multiple tagging tagging-label="Tags" ng-model="item.tags">
               <ui-select-match placeholder="add">{{$item.tagName || $item}}</ui-select-match>
@@ -159,18 +101,8 @@
             </md-button>
           </div>
 
-          <!-- <md-input-container ng-show="item.editing">
-              <md-button class="md-raised cancel" ng-click="cancelEdit(item)" aria-label="Cancel">Cancel</md-button>
-          </md-input-container>
-
-          <md-input-container ng-show="item.editing">
-              <md-button class="md-raised save" ng-click="saveEdit(item)" aria-label="Save">Save</md-button>
-          </md-input-container> -->
-
           <div ng-show="item.delete">
             <div>Are you sure you want to remove this document?</div>
-            <!-- <md-button class="md-raised cancel" ng-click="cancelConfirm(item)" aria-label="Cancel">Cancel</md-button>
-            <md-button class="md-raised md-warn" ng-click="removeFile(item)" aria-label="Delete">Remove</md-button> -->
 
             <md-button class="md-icon-button" ng-click="cancelConfirm(item)" aria-label="Cancel">
               <md-tooltip md-direction="top">Cancel</md-tooltip>
@@ -282,4 +214,4 @@
             </div> -->
 
     </div>
-</div>
+</div>  <!-- repeat wrapping div -->

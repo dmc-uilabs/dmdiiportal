@@ -345,7 +345,7 @@ $scope.$watchCollection('selectedVips', function() {
 				}
 
 				function queryCompanySearch(query) {
-					var results = query ? $scope.access.companies.filter( createCompanyFilterFor(query) ) : $scope.access.companies
+					var results = query ? $scope.access.companies.filter( createCompanyFilterFor(query) ) : []
 					return results;
 				}
 
