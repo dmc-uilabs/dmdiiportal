@@ -79,7 +79,7 @@
 
    ],
    "roles": {
-     "1": "SUPERADMIN"
+     "0": "SUPERADMIN"
    },
    "isDMDIIMember":false,
    "userContactInfo":{

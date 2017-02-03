@@ -301,6 +301,32 @@ $scope.$watchCollection('selectedVips', function() {
 					}
 				};
 
+
+				$scope.access = {};
+				$scope.access.companies = [];
+				$scope.access.companiesWithAccess = [];
+
+				var getAllCompanies = function() {
+						ajax.get(dataFactory.companyURL().all, {}, function(response){
+							$scope.access.companies = response.data;
+						});
+				}
+
+				getAllCompanies();
+
+				$scope.updateCompaniesWithAccess = function() {
+					console.log('update')
+					$scope.access.companiesWithAccess = returnCompaniesWithAccess()
+				}
+
+				function returnCompaniesWithAccess() {
+					return $scope.access.companies.filter(function(company){
+						if (company.selected) {
+							return company;
+						}
+					})
+				}
+
 			}
 		};
 	}])

@@ -32,6 +32,61 @@
           <md-button ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="24"></ng-md-icon></md-button>
         </div>
 
+        <div style="padding: 30px; border: 2px solid black;" layout='row'>
+          <!-- <md-item-template>
+          <md-autocomplete
+            md-dropdown-position="top"
+            md-floating-label="Organization"
+            md-selected-item="ctrl.selectedCompany"
+            md-search-text="ctrl.searchCompany"
+            md-search-text-change="ctrl.searchCompanyChange(ctrl.searchCompany)"
+            md-selected-item-change="ctrl.addCompany(item)"
+            md-items="item in ctrl.queryCompanySearch(ctrl.searchCompany)"
+            md-item-text="item.name"
+          >
+            <md-item-template>
+              <span md-highlight-text="ctrl.searchCompany" md-highlight-flags="^i">{{item.name}}</span>
+            </md-item-template>
+            <md-not-found>
+              No matches found for "{{ctrl.searchCompany}}".
+            </md-not-found>
+          </md-autocomplete>
+        </md-item-template> -->
+
+          <!-- <div flex="40" class="autocomplete-block">
+  				    <md-autocomplete
+  				      md-floating-label="Organizations"
+  				      md-selected-item="ctrl.selectedCompany"
+  				      md-search-text="ctrl.searchCompany"
+  				      md-search-text-change="ctrl.searchCompanyChange(ctrl.searchCompany)"
+  				      md-selected-item-change="ctrl.addCompany(item)"
+  				      md-items="item in ctrl.queryCompanySearch(ctrl.searchCompany)"
+  				      md-item-text="item.name"
+  				    >
+  				      <md-item-template>
+  				        <span md-highlight-text="ctrl.searchCompany" md-highlight-flags="^i">{{item.name}}</span>
+  				      </md-item-template>
+  				      <md-not-found>
+  				        No matches found for "{{ctrl.searchCompany}}".
+  				      </md-not-found>
+  				    </md-autocomplete>
+  				</div> -->
+
+
+          <label ng-repeat="company in access.companies">
+            <input ng-change="updateCompaniesWithAccess()" type="checkbox" ng-model="company.selected"> {{company.name}}
+          </label>
+        </div>
+
+        <div style="padding: 30px; border: 2px solid black;" layout='row'>
+          <ul>
+            <li class="company-list" ng-repeat="company in access.companiesWithAccess" ng-show="access.companiesWithAccess">
+              {{company.name}}
+            </li>
+          </ul>
+
+        </div>
+
         <!-- name editing -->
         <div layout='row' class="doc-attr-group">
           <md-input-container ng-show="item.editing" flex>
@@ -57,7 +112,6 @@
                   <md-option ng-value="value" ng-repeat="(key, value) in accessLevel">{{key}}</md-option>
               </md-select>
           </md-input-container>
-
 
         </div>
 

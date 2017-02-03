@@ -1,8 +1,8 @@
 [{
     "id": 56,
-    "title": "Title of a project",
+    "title": "Title of MY project",
     "projectManager": "J Doe",
-    "projectManagerId": 28,
+    "projectManagerId": 1,
     "comapanyId": "",
     "featureImage": {
         "thumbnail": "",
