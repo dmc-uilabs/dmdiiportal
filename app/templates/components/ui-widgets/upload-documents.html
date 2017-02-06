@@ -62,20 +62,12 @@
           <div flex="45">Access List:
             <ul class="company-access-list">
               <li ng-repeat="company in access.companiesWithAccess">
-
                   <ng-md-icon style="color: grey" icon="cancel" size="12" ng-click="removeCompanyFromAccessList(company)"></ng-md-icon>
                 <span>{{company.name}}</span>
               </li>
             </ul>
-
           </div>
 
-          <!-- <div ng-show="item.editing" flex="45">Access List: {{access.companiesWithAccessList}}</div>
-
-          <md-button class="md-icon-button" ng-click="cancelEdit(item)" aria-label="delete">
-            <md-tooltip md-direction="top">Cancel</md-tooltip>
-            <ng-md-icon style="color: grey" icon="cancel" size="24"></ng-md-icon>
-          </md-button> -->
 
           <div ng-show="item.editing && access.accessCompanySearch && access.accessCompanySearch.length > 0" layout="column" flex="45" class="company-search-results">
             <md-checkbox ng-repeat="company in access.queryCompanySearch(access.accessCompanySearch)" style="margin: 4px; float:left;" ng-change="updateCompaniesWithAccess()" ng-model="company.selected">
@@ -88,7 +80,7 @@
         <div layout='row' class="doc-attr-group">
           <div layout="column" ng-show="allowTagging">
             <div>
-                Tags: <span ng-repeat="tag in item.tags track by $index">{{tag.tagName || tag}}{{$last ? '' : ', '}}</span>
+                Tags: <span ng-if="!item.editing" ng-repeat="tag in item.tags track by $index">{{tag.tagName || tag}}{{$last ? '' : ', '}}</span>
                 <br>
             </div>
 
