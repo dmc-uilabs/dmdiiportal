@@ -61,7 +61,11 @@
         <div layout='row' layout-align="space-between start" ng-if="item.accessLevel == 'ORGANIZATION_LIST'" class="doc-attr-group">
           <div flex="45">Access List:
             <ul class="company-access-list">
-              <li ng-repeat="company in access.companiesWithAccess"><a ng-click="removeCompanyFromAccessList(company)">x</a>{{company.name}}</li>
+              <li ng-repeat="company in access.companiesWithAccess">
+
+                  <ng-md-icon style="color: grey" icon="cancel" size="12" ng-click="removeCompanyFromAccessList(company)"></ng-md-icon>
+                <span>{{company.name}}</span>
+              </li>
             </ul>
 
           </div>
