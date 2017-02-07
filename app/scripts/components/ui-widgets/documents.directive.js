@@ -343,7 +343,7 @@ $scope.$watchCollection('selectedVips', function() {
 						return company.selected
 					})
 
-					item.companiesWithAccess = companies
+					item.companiesWithAccess = companies.map(function(company){return company.id})
 
 					return companies
 				}
