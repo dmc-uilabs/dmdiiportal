@@ -42,7 +42,7 @@
 
         <!-- access level -->
         <div layout='row' layout-align="space-between center" class="doc-attr-group">
-          <div ng-if="!item.editing">Access Level: {{item.accessLevel}}</div>
+          <div ng-if="!item.editing"><b>Access Level:</b> {{item.accessLevel}}</div>
 
           <md-input-container ng-if="accessLevel && item.editing" flex="45">
               <label>Access Level</label>
@@ -59,10 +59,10 @@
         </div>
 
         <div layout='row' layout-align="space-between start" ng-if="item.accessLevel == 'ORGANIZATION_LIST'" class="doc-attr-group">
-          <div flex="45">Access List:
+          <div flex="45"><b>Access List:</b>
             <ul class="company-access-list">
               <li ng-repeat="company in access.companiesWithAccess(item)">
-                  <ng-md-icon style="color: grey" icon="cancel" size="12" ng-click="removeCompanyFromAccessList(company)"></ng-md-icon>
+                  <ng-md-icon ng-if="item.editing" style="color: grey" icon="cancel" size="12" ng-click="removeCompanyFromAccessList(company)"></ng-md-icon>
                 <span>{{company.name}}</span>
               </li>
             </ul>
@@ -80,7 +80,7 @@
         <div layout='row' class="doc-attr-group">
           <div layout="column" ng-show="allowTagging">
             <div>
-                Tags: <span ng-if="!item.editing" ng-repeat="tag in item.tags track by $index">{{tag.tagName || tag}}{{$last ? '' : ', '}}</span>
+                <b>Tags:</b> <span ng-if="!item.editing" ng-repeat="tag in item.tags track by $index">{{tag.tagName || tag}}{{$last ? '' : ', '}}</span>
                 <br>
             </div>
 

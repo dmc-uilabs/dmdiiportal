@@ -156,7 +156,8 @@ angular.module('dmc.widgets.documents',[
 					}
 
 					for(var i in $scope.source) {
-						if ($scope.source[i].id == item.id) {
+						// if ($scope.source[i].id == item.id) {
+						if ($scope.source[i].title == item.title) {
 							$scope.source[i].deleted = true;
 							break;
 						}
