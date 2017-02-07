@@ -73,6 +73,7 @@
   // border-style: solid;
   // border-width: 0px 0px 2px 0px;
   background: #EFECED;
+  border-radius: 3px;
 
   .doc-attr-group{
   margin-bottom: 15px;
@@ -116,5 +117,14 @@
   }
   ul.company-access-list li:last-child:after {
       content: "";
+  }
+
+  .confirm-buttons{
+    border-top: 1px solid lightgrey;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    button{
+      margin-left: -10px;
+    }
   }
 }

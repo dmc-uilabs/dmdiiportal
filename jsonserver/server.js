@@ -67,6 +67,11 @@ server.use(jsonServer.rewriter({
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 
+server.post('/dmdiidocument', function(req,res) {
+  console.log('request',req)
+  res.jsonp(req.query)
+})
+
 server.get('/getChildren', function (req, res) {
 
     var data = (req.query ? req.query : null);

@@ -94,7 +94,7 @@
         </div>
 
         <!-- confirm buttons -->
-        <div layout='row' layout-align="start center">
+        <div ng-show="item.editing || item.delete" class="confirm-buttons" layout='row' layout-align="start center">
 
           <div ng-show="item.editing">
             <md-button class="md-icon-button" ng-click="cancelEdit(item)" aria-label="delete">
