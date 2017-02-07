@@ -51,9 +51,9 @@
               </md-select>
           </md-input-container>
 
-          <md-input-container ng-if="item.accessLevel == 'ORGANIZATION_LIST' && item.editing" flex="45">
+          <md-input-container ng-if="item.accessLevel == 'ORGANIZATION_LIST' && item.editing" flex="45" ng-init="addItemCompanyList(item)">
               <label>Search Companies</label>
-              <input ng-model="access.accessCompanySearch">
+              <input ng-model="item.accessCompanySearch">
           </md-input-container>
 
         </div>
@@ -61,7 +61,7 @@
         <div layout='row' layout-align="space-between start" ng-if="item.accessLevel == 'ORGANIZATION_LIST'" class="doc-attr-group">
           <div flex="45">Access List:
             <ul class="company-access-list">
-              <li ng-repeat="company in access.companiesWithAccess">
+              <li ng-repeat="company in access.companiesWithAccess(item)">
                   <ng-md-icon style="color: grey" icon="cancel" size="12" ng-click="removeCompanyFromAccessList(company)"></ng-md-icon>
                 <span>{{company.name}}</span>
               </li>
@@ -69,8 +69,8 @@
           </div>
 
 
-          <div ng-show="item.editing && access.accessCompanySearch && access.accessCompanySearch.length > 0" layout="column" flex="45" class="company-search-results">
-            <md-checkbox ng-repeat="company in access.queryCompanySearch(access.accessCompanySearch)" style="margin: 4px; float:left;" ng-change="updateCompaniesWithAccess()" ng-model="company.selected">
+          <div ng-show="item.editing && item.accessCompanySearch && item.accessCompanySearch.length > 0" layout="column" flex="45" class="company-search-results">
+            <md-checkbox ng-repeat="company in access.queryCompanySearch(item, item.accessCompanySearch)" style="margin: 4px; float:left;" ng-change="updateCompaniesWithAccess()" ng-model="company.selected">
               <span style="font-size: 1.2em">{{company.name}}</span>
             </md-checkbox>
           </div>

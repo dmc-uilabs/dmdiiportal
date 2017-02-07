@@ -308,7 +308,7 @@ $scope.$watchCollection('selectedVips', function() {
 				$scope.access = {};
 				$scope.access.companies = [];
 				$scope.access.queryCompanySearch = queryCompanySearch;
-				$scope.access.companiesWithAccess = [];
+				// $scope.access.companiesWithAccess = [];
 
 				var getAllCompanies = function() {
 						ajax.get(dataFactory.companyURL().all, {}, function(response){
@@ -318,9 +318,9 @@ $scope.$watchCollection('selectedVips', function() {
 
 				getAllCompanies();
 
-				$scope.updateCompaniesWithAccess = function() {
-					$scope.access.companiesWithAccess = returnCompaniesWithAccess()
-				}
+				// $scope.updateCompaniesWithAccess = function() {
+				// 	$scope.access.companiesWithAccess = returnCompaniesWithAccess()
+				// }
 
 				function returnCompaniesWithAccess() {
 					return $scope.access.companies.filter(function(company){
@@ -337,15 +337,37 @@ $scope.$watchCollection('selectedVips', function() {
 					};
 				}
 
-				function queryCompanySearch(query) {
-					var results = query ? $scope.access.companies.filter( createCompanyFilterFor(query) ) : []
-					return results;
-				}
+				// function queryCompanySearch(query) {
+				// 	var results = query ? $scope.access.companies.filter( createCompanyFilterFor(query) ) : []
+				// 	return results;
+				// }
 
 				$scope.removeCompanyFromAccessList = function(companyToRemove){
 					companyToRemove.selected = false;
-					$scope.updateCompaniesWithAccess();
+					// $scope.updateCompaniesWithAccess();
 				}
+
+				//////////////////////////////////
+				//////////////////////////////////
+				//////////////////////////////////
+
+				$scope.access.companiesWithAccess = function(item){
+					var companies = item.companies.filter(function(company){
+						return company.selected
+					})
+
+					return companies
+				}
+
+				$scope.addItemCompanyList = function(item) {
+					item.companies = JSON.parse(JSON.stringify($scope.access.companies))
+				}
+
+				function queryCompanySearch(item, query) {
+					var results = query ? item.companies.filter( createCompanyFilterFor(query) ) : []
+					return results;
+				}
+
 
 				///////////////////////////
 				// END access logic      //
