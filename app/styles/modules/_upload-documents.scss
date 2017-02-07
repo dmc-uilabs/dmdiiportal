@@ -81,6 +81,14 @@
   .doc-title{
     border-bottom: 1px solid lightgrey;
     margin-bottom: 10px;
+    .title{
+      color: map-get($colors, secondary);
+    }
+    .editing{
+      font-style: italic;
+      font-size: .7em;
+      color: grey;
+    }
   }
   .company-search-results{
     background: white;

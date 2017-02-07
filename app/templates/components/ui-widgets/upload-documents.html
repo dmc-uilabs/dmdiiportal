@@ -6,7 +6,7 @@
     </md-toolbar>
 </div>
   <div class="content-panel-body" layout="column" layout-align="space-between start" layout-wrap>
-      <md-content class="md-padding" flex="99">
+      <md-content class="md-padding" flex="99" style='width: 100%;'>
         <form style="z-index: 8" class="dropzone dropzone-sm dz-clickable" id="documentDropZone" dropzone="dropzoneConfig">
             <div class="dz-default dz-message">
                 <div>
@@ -26,7 +26,7 @@
 
         <!-- title and edit controls -->
         <div layout='row' class="doc-title" layout-align="start center">
-          <h2>{{item.title}} <i style="color: grey; size: .6em" ng-show="item.editing">editing</i></h2>
+          <h2 class="title">{{item.title}} <span class="editing" ng-show="item.editing">editing</span></h2>
           <!-- delete/ edit buttons -->
           <md-button class="md-icon-button edit" ng-show="!item.editing && !item.delete" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="24"></ng-md-icon></md-button>
           <md-button ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="24"></ng-md-icon></md-button>
