@@ -6,21 +6,19 @@ angular.module('dmc.onboarding')
 
 		$scope.ctrl = {};
 		$scope.ctrl.simulateQuery = false;
-		// $scope.ctrl.companies = getAllCompanies();
 		$scope.ctrl.setCompany = setCompany;
 		$scope.ctrl.queryCompanySearch = queryCompanySearch;
 		$scope.ctrl.searchCompanyChange = searchCompanyChange;
 
-		// $scope.isDMDIIMember = false;
 		$scope.isNotDMDIIMember = false;
-		$scope.isNotDMDIIMemberStyle = {'color':'grey'}
-		// $scope.autocompleteStyle = {'float':'left', 'display': 'none'};
+		$scope.isNotDMDIIMemberStyle = {'color':'lightgrey'};
 
-        var getAllCompanies = function() {
-            ajax.get(dataFactory.companyURL().all, {}, function(response){
-                $scope.ctrl.companies = response.data;
-            });
-        }
+    var getAllCompanies = function() {
+        ajax.get(dataFactory.companyURL().all, {}, function(response){
+            $scope.ctrl.companies = response.data;
+        });
+    }
+
 		getAllCompanies();
 
 		var createCompanyFilterFor = function(query) {
@@ -49,19 +47,15 @@ angular.module('dmc.onboarding')
 		});
 
 		function changeIsDMDIIMember(){
-		  // company 13 is 'other'
-		  // if($scope.info.company != 318){
+
 			if($scope.isNotDMDIIMember){
 		    $scope.info.company = 318;
 				$scope.isNotDMDIIMemberStyle = {'color':'black'}
-				// $scope.autocompleteStyle = {'float':'left', 'display': 'none'};
 		  } else {
 				$scope.ctrl.selectedCompany = "";
 				$scope.ctrl.searchCompany = "";
 		    $scope.info.company = null;
-				$scope.isNotDMDIIMemberStyle = {'color':'grey'}
-				// $scope.item.name = "";
-		    // $scope.autocompleteStyle = {'float':'left'};
+				$scope.isNotDMDIIMemberStyle = {'color':'lightgrey'}
 		  }
 
 		}
@@ -76,11 +70,11 @@ angular.module('dmc.onboarding')
 			}
 		}
 
-        $scope.enter = function(){
+    $scope.enter = function(){
 			$mdDialog.hide($scope.info);
 		};
 
-        function apply() {
-            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-        }
+    function apply() {
+        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+    }
 }]);
