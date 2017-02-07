@@ -316,14 +316,6 @@ $scope.$watchCollection('selectedVips', function() {
 
 				getAllCompanies();
 
-				function returnCompaniesWithAccess() {
-					return $scope.access.companies.filter(function(company){
-						if (company.selected) {
-							return company;
-						}
-					})
-				}
-
 				var createCompanyFilterFor = function(query) {
 					var lowercaseQuery = angular.lowercase(query);
 					return function filterFn(item) {
