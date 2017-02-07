@@ -7,6 +7,7 @@
 			</div>
 		</div>
 		<form name="basic" autocomplete="off">
+
 			<div layout="row" flex="100" class="section">
 				<md-input-container flex="50" class="left-input">
 					<label>First Name</label>
@@ -17,20 +18,16 @@
 					<input type="text" ng-model="info.lastName">
 				</md-input-container>
 			</div>
+
 			<div layout="row" flex="100" class="section">
 				<md-input-container flex="50" class="left-input">
 					<label>Email Address</label>
 					<input type="text" ng-model="info.email">
 				</md-input-container>
 
-				<div>
-				  <md-checkbox style="float:left; margin-top: 25px;" ng-model="isDMDIIMember">
-				    <span style="font-size: 1.2em" ng-hide="isDMDIIMember">My Organization is a DMDII Member</span>
-				  </md-checkbox>
-				</div>
 
 
-				<div flex="40" ng-style="autocompleteStyle" class="autocomplete-block">
+					<div flex="50" class="right-input" layout="column">
 				    <md-autocomplete
 				      md-floating-label="Organization"
 				      md-selected-item="ctrl.selectedCompany"
@@ -39,6 +36,8 @@
 				      md-selected-item-change="ctrl.setCompany(item)"
 				      md-items="item in ctrl.queryCompanySearch(ctrl.searchCompany)"
 				      md-item-text="item.name"
+							ng-disabled="isNotDMDIIMember"
+							ng-if="!isNotDMDIIMember"
 				    >
 				      <md-item-template>
 				        <span md-highlight-text="ctrl.searchCompany" md-highlight-flags="^i">{{item.name}}</span>
@@ -47,28 +46,16 @@
 				        No matches found for "{{ctrl.searchCompany}}".
 				      </md-not-found>
 				    </md-autocomplete>
-				</div>
+					</div>
 
-
-				<!-- <div flex="50" class="autocomplete-block">
-					<md-autocomplete
-						md-floating-label="Organization"
-						md-selected-item="ctrl.selectedCompany"
-						md-search-text="ctrl.searchCompany"
-						md-search-text-change="ctrl.searchCompanyChange(ctrl.searchCompany)"
-						md-selected-item-change="ctrl.setCompany(item)"
-						md-items="item in ctrl.queryCompanySearch(ctrl.searchCompany)"
-						md-item-text="item.name"
-					>
-						<md-item-template>
-							<span md-highlight-text="ctrl.searchCompany" md-highlight-flags="^i">{{item.name}}</span>
-						</md-item-template>
-						<md-not-found>
-							No matches found for "{{ctrl.searchCompany}}".
-						</md-not-found>
-					</md-autocomplete>
-				</div> -->
 			</div>
+
+			<div layout="row" flex="100" class="section" layout-align="end center">
+				<md-checkbox flex="45" ng-model="isNotDMDIIMember">
+					<span ng-style="isNotDMDIIMemberStyle" style="font-size: 1.2em">My Organization is not a DMDII Member</span>
+				</md-checkbox>
+			</div>
+
 		</form>
 		<div layout="row" layout-align="end center" class="button-aria">
 			<md-button class="dmc-button md-raised md-primary" ng-click="enter()" ng-disabled="!info.firstName || !info.lastName || !info.email || !info.company">
