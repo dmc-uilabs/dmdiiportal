@@ -13,13 +13,15 @@ angular.module('dmc.add-project-doc').
 
                 $scope.documents = [];
 
-				$scope.docAccessLevels = {
-					'All Members': 'ALL_MEMBERS',
-					'Project Participants': 'PROJECT_PARTICIPANTS',
-					'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
-					'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS',
-          'Choose Organizations': 'ORGANIZATION_LIST'
-				}
+				// $scope.docAccessLevels = {
+				// 	'All Members': 'ALL_MEMBERS',
+				// 	'Project Participants': 'PROJECT_PARTICIPANTS',
+				// 	'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
+				// 	'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS',
+        //   'Choose Organizations': 'ORGANIZATION_LIST'
+				// }
+
+        $scope.docAccessLevels = dataFactory.getDocAccessLevels();
 
 				var callback = function(response) {
 					toastModel.showToast('success', 'Project Document Saved!');

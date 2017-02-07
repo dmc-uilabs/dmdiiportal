@@ -1163,6 +1163,16 @@ angular.module('dmc.data',[])
             },
             getDateAndTimeFormat: function(){
                 return this.getDateFormat() + ' ' + this.getTimeFormat();
+            },
+            // TODO -- make this a REST endpoint
+            getDocAccessLevels: function(){
+              return {
+      					'All Members': 'ALL_MEMBERS',
+      					'Project Participants': 'PROJECT_PARTICIPANTS',
+      					'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
+      					'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS',
+                'Choose Organizations': 'ORGANIZATION_LIST'
+      				}
             }
         };
     }
