@@ -303,9 +303,6 @@ $scope.$watchCollection('selectedVips', function() {
 					}
 				};
 
-				///////////////////////////
-				// Document access logic //
-				///////////////////////////
 
 				$scope.access = {};
 				$scope.access.companies = [];
@@ -336,7 +333,6 @@ $scope.$watchCollection('selectedVips', function() {
 
 				$scope.removeCompanyFromAccessList = function(companyToRemove){
 					companyToRemove.selected = false;
-					// $scope.updateCompaniesWithAccess();
 				}
 
 				$scope.access.companiesWithAccess = function(item){
@@ -357,17 +353,6 @@ $scope.$watchCollection('selectedVips', function() {
 					var results = query ? item.companies.filter( createCompanyFilterFor(query) ) : []
 					return results;
 				}
-
-				function theoryTest(item) {
-					console.log('companies?')
-					console.log(item.companies)
-					return []
-				}
-
-
-				///////////////////////////
-				// END access logic      //
-				///////////////////////////
 
 			}
 		};
