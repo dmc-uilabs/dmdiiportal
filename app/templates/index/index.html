@@ -8,17 +8,17 @@
    		</a>
   	</div>
 </div>
-<div ng-if="!$root.isLogged || ($root.isLogged && !(userData.roles && userData.roles[userData.companyId]))" layout="column">
-	  <!--
-    <div layout="row" layout-align="center center" class="home-header">
+<div ng-if="!$root.isLogged || ($root.isLogged && (userData.displayName == 'testUserFullName' || !(userData.roles && userData.roles[userData.companyId])))" layout="column">
+
+<!--     <div layout="row" layout-align="center center" class="home-header">
 	  	<h2>DMC: Digital Manufacturing Commons</h2>
 	  	<md-button class="dmc-button md-raised md-primary" ng-href="onboarding.php">
 	  		JOIN DMC
 	  	</md-button>
   	</div>
-  	<md-divider></md-divider>
-    -->
-  	<!-- <div layout="row" layout-align="center center" layout-padding>
+  	<md-divider></md-divider> -->
+
+  	<div layout="row" layout-align="center center" layout-padding>
 	  	<div class="content-column" layout="column" ng-repeat="p in pages">
 		    <div class="home-feature" ng-if="p.show">
 		      	<a ng-click="more($index)"><img ng-src="images/{{p.img}}" class="md-card-image" alt="{{p.name}}"></a>
@@ -36,18 +36,8 @@
 		       	<p>{{p.more}}</p>
 		    </div>
 	  	</div>
-	</div> -->
+	</div>
 
-
-	<md-content class="md-default-theme">
-    <div class="layout layout-row" layout="row">
-      <h1 style="color: #65AF3F;">Your account is not yet verified</h1>
-    </div>
-    <md-divider></md-divider>
-    <div class="layout layout-row" layout="row">
-      <h3>You will not be able to access DMC content until you are. The DMC <a style="color: #65AF3F;" ng-href="/faq.php">FAQ</a> has information on how to get verified under the 'Member Portal' section.</h3>
-    </div>
-	</md-content>
 
 
 </div>

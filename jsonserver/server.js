@@ -25,6 +25,7 @@ server.use(jsonServer.rewriter({
     '/popular_discussions' : '/individual-discussion',
     '/projects/:id/following_discussions' : '/projects/:id/individual-discussion',
     '/projects/create' : '/projects',
+    '/projects/:id/services' : '/services',
     '/discussions/create' : '/individual-discussion',
     '/tasks/create' : '/tasks',
     '/members' : '/profiles',
