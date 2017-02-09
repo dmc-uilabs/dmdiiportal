@@ -1,58 +1,60 @@
 [
-	{
-   "id":204,
-   "displayName":"max power",
-   "accountId":204,
-   "profileId":204,
-   "companyId":null,
-   "companyName":null,
-   "role":0,
-   "realname":"max power",
-   "title":null,
-   "termsConditions":false,
-   "firstName":"max",
-   "lastName":"power",
-   "email":"jmdmctestuser1@gmail.com",
-   "address":null,
-   "phone":null,
-   "image":null,
-   "runningServices":{
-      "items":[
+   {
+      "id":1,
+      "displayName":"Thomas Smith",
+      "accountId":1,
+      "profileId":1,
+      "companyId":1,
+      "companyName":"UI LABS",
+      "role":0,
+      "realname":"Thomas Smith",
+      "title":null,
+      "termsConditions":true,
+      "firstName":"Thomas",
+      "lastName":"Smith",
+      "email":"Thomas.Smith@uilabs.org",
+      "address":null,
+      "phone":null,
+      "image":null,
+      "runningServices":{
+         "items":[
+
+         ],
+         "totalItems":0
+      },
+      "messages":{
+         "items":[
+
+         ],
+         "totalItems":0
+      },
+      "onboarding":{
+         "id":1,
+         "profile":false,
+         "account":false,
+         "company":false,
+         "storefront":false
+      },
+      "skills":[
 
       ],
-      "totalItems":0
-   },
-   "messages":{
-      "items":[
+      "roles":{
+         "1":"MEMBER"
+      },
+      "isDMDIIMember":true,
+      "userContactInfo":{
+         "id":1,
+         "userPrivateContactInfo":null,
+         "userPublicContactInfo":null,
+         "userMemberPortalContactInfo":null
+      },
+      "aboutMe":"",
+      "resume":"",
+      "account":0,
+      "notifications":[
 
       ],
-      "totalItems":0
-   },
-   "onboarding":{
-      "id":204,
-      "profile":false,
-      "account":false,
-      "company":false,
-      "storefront":false
-   },
-   "skills":[
-
-   ],
-   "roles":null,
-   "isDMDIIMember":false,
-   "userContactInfo":{
-      "id":840,
-      "userPrivateContactInfo":null,
-      "userPublicContactInfo":null,
-      "userMemberPortalContactInfo":null
-   },
-   "aboutMe":null,
-   "resume":"",
-   "account":0,
-   "notifications":[
-
-   ],
-   "hasUnreadNotifications":false,
-   "timezone":null
-}
+      "hasUnreadNotifications":false,
+      "timezone":null
+   }
 ]
