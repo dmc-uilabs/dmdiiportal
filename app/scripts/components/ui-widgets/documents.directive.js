@@ -156,7 +156,8 @@ angular.module('dmc.widgets.documents',[
 					}
 
 					for(var i in $scope.source) {
-						if ($scope.source[i].id == item.id) {
+						// if ($scope.source[i].id == item.id) {
+						if ($scope.source[i].title == item.title) {
 							$scope.source[i].deleted = true;
 							break;
 						}
@@ -255,7 +256,8 @@ $scope.$watchCollection('selectedVips', function() {
 										type : file_.name.substring(file_.name.lastIndexOf('.'),file_.name.length),
 										accessLevel: file_.accessLevel,
 										vips: $scope.selectedVips[file_.id],
-										tags: file_.tags
+										tags: file_.tags,
+										companiesWithAccess: file_.companiesWithAccess
 									});
                                     $scope.$apply();
 								}
@@ -300,6 +302,49 @@ $scope.$watchCollection('selectedVips', function() {
 						}
 					}
 				};
+
+
+				$scope.access = {};
+				$scope.access.companies = [];
+				$scope.access.queryCompanySearch = queryCompanySearch;
+
+				var getAllCompanies = function() {
+						ajax.get(dataFactory.companyURL().all, {}, function(response){
+							$scope.access.companies = response.data;
+						});
+				}
+
+				getAllCompanies();
+
+				var createCompanyFilterFor = function(query) {
+					var lowercaseQuery = angular.lowercase(query);
+					return function filterFn(item) {
+						return (item.name.toLowerCase().indexOf(lowercaseQuery) === 0);
+					};
+				}
+
+				$scope.removeCompanyFromAccessList = function(companyToRemove){
+					companyToRemove.selected = false;
+				}
+
+				$scope.access.companiesWithAccess = function(item){
+					var companies = item.companies.filter(function(company){
+						return company.selected
+					})
+
+					item.companiesWithAccess = companies.map(function(company){return company.id})
+
+					return companies
+				}
+
+				$scope.addItemCompanyList = function(item) {
+					item.companies = JSON.parse(JSON.stringify($scope.access.companies))
+				}
+
+				function queryCompanySearch(item, query) {
+					var results = query ? item.companies.filter( createCompanyFilterFor(query) ) : []
+					return results;
+				}
 
 			}
 		};

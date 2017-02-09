@@ -5,91 +5,127 @@
         </div>
     </md-toolbar>
 </div>
-<div class="content-panel-body" layout="row" layout-align="space-between start" layout-wrap>
-    <md-content class="md-padding" flex>
+  <div class="content-panel-body" layout="column" layout-align="space-between start" layout-wrap>
+      <md-content class="md-padding" flex="99" style='width: 100%;'>
         <form style="z-index: 8" class="dropzone dropzone-sm dz-clickable" id="documentDropZone" dropzone="dropzoneConfig">
             <div class="dz-default dz-message">
                 <div>
-                    <ng-md-icon icon="cloud_upload" style="fill: #666" size="89"></ng-md-icon>
+                    <ng-md-icon icon="cloud_upload" style="fill: #666" size="84"></ng-md-icon>
                     <span class="main-text"><b>Drop Files</b> here</span>
                     <span class="sub-text">(or click)</span>
                 </div>
             </div>
         </form>
-    </md-content>
-    <md-content class="md-padding upload-documents" ng-if="source.length > 0" flex="{{widgetType == 'row' ? 100 : 50}}">
-        <md-list>
-            <md-list-item ng-repeat="item in source | limitTo: maxFiles" ng-show="!item.deleted">
-                <p ng-show="!item.editing && !item.delete">{{item.title}}</p>
-                <md-input-container ng-show="item.editing" flex>
-                    <label>Document name</label>
-                    <input ng-value="item.title" ng-model="item.title">
-                </md-input-container>
-                <div layout="column" flex="50">
-                    <div layout="row" layout-align="end end">
-                        <div flex ng-show="!item.editing && !item.delete && allowTagging">
-                            Tags: <span ng-repeat="tag in item.tags track by $index">{{tag.tagName || tag}}{{$last ? '' : ', '}}</span>
-                        </div>
-                        <ui-select multiple tagging tagging-label="false" append-to-body="true" ng-model="item.tags" theme="select2" flex ng-show="item.editing && allowTagging">
-                            <ui-select-match placeholder="Tags">{{$item.tagName || $item}}</ui-select-match>
-                            <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.tagName || tag}}</ui-select-choices>
-                        </ui-select>
+      </md-content>
+    </div>
+    <!-- <div layout='row' class="md-padding upload-documents" ng-if="source.length > 0" flex="{{widgetType == 'row' ? 100 : 50}}"> -->
+    <div layout='column' flex="99" class="md-padding upload-documents" ng-if="source.length > 0">
 
-                        <md-input-container ng-if="accessLevel" flex="40">
-                            <label>Access Level</label>
-                            <md-select ng-model="item.accessLevel" ng-disabled="!item.editing">
-                                <md-option ng-value="value" ng-repeat="(key, value) in accessLevel">{{key}}</md-option>
-                            </md-select>
-                        </md-input-container>
+      <!-- wrapping div for repeat-->
+      <div class="upload-list" ng-repeat="item in source | limitTo: maxFiles" ng-show="!item.deleted">
 
-                        <span flex></span>
+        <!-- title and edit controls -->
+        <div layout='row' class="doc-title" layout-align="start center">
+          <h2 class="title">{{item.title}} <span class="editing" ng-show="item.editing">editing</span></h2>
+          <!-- delete/ edit buttons -->
+          <md-button class="md-icon-button edit" ng-show="!item.editing && !item.delete" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="24"></ng-md-icon></md-button>
+          <md-button ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="24"></ng-md-icon></md-button>
+        </div>
 
-                        <md-input-container ng-show="item.editing">
-                            <md-button class="md-raised cancel" ng-click="cancelEdit(item)" aria-label="Cancel">Cancel</md-button>
-                        </md-input-container>
+          <!-- name editing -->
+        <div layout='row' class="doc-attr-group" ng-show="item.editing">
+          <md-input-container flex>
+              <label>Document name</label>
+              <input ng-value="item.title" ng-model="item.title">
+          </md-input-container>
+        </div>
 
-                        <md-input-container ng-show="item.editing">
-                            <md-button class="md-raised save" ng-click="saveEdit(item)" aria-label="Save">Save</md-button>
-                        </md-input-container>
+        <!-- access level -->
+        <div layout='row' layout-align="space-between center" class="doc-attr-group">
+          <div ng-if="!item.editing"><b>Access Level:</b> {{item.accessLevel}}</div>
 
-                        <md-button class="md-icon-button edit" ng-show="!item.editing && !item.delete" ng-click="editFile(item)" aria-label="Edit"><ng-md-icon icon="mode_edit" style="fill: #666" size="21"></ng-md-icon></md-button>
-                        <md-button ng-show="!item.editing && !item.delete" class="md-icon-button remove" ng-click="confirmDeleteFile(item)" aria-label="Remove"><ng-md-icon icon="delete" style="fill: #666" size="21"></ng-md-icon></md-button>
-                        <p ng-show="item.delete">Are you sure you want to remove this document?</p>
-                        <md-button ng-show="item.delete" class="md-raised cancel" ng-click="cancelConfirm(item)" aria-label="Cancel">Cancel</md-button>
-                        <md-button ng-show="item.delete" class="md-raised md-warn" ng-click="removeFile(item)" aria-label="Delete">Remove</md-button>
-                    </div>
-                    <div layout="row">
-                        <md-autocomplete flex ng-if="item.editing && allowVip && item.accessLevel !== 'PUBLIC'"
-                                md-selected-item="selectedItem"
-                                md-search-text="searchText"
-                                md-selected-item-change="addVip(user, item)"
-                                md-items="user in updateSearchItems(searchText)"
-                                simulate-query="true"
-                                md-no-cache="true"
-                                md-item-text="user.displayName"
-                                md-min-length="3"
-                                placeholder="Add VIP">
-                            <md-item-template>
-                                <span md-highlight-text="searchText" md-highlight-flags="^i">{{user.displayName}} :: {{user.email || 'no email'}}</span>
-                            </md-item-template>
-                            <md-not-found>
-                                No users matching "{{searchText}}" were found.
-                            </md-not-found>
-                        </md-autocomplete>
+          <md-input-container ng-if="accessLevel && item.editing" flex="45">
+              <label>Access Level</label>
+              <md-select ng-model="item.accessLevel" ng-if="item.editing">
+                  <md-option ng-value="value" ng-repeat="(key, value) in accessLevel">{{key}}</md-option>
+              </md-select>
+          </md-input-container>
 
-                        <div layout="row" layout-wrap flex ng-if="!item.editing && allowVip && item.accessLevel !== 'PUBLIC'">
-                            <span class="no-bottom" flex>Selected VIPs(Click tag to remove)</span>
-                            <div layout="row" layout-wrap>
-                                <md-chips ng-repeat="vip in item.vips track by $index">
-                                    <md-chip ng-click="removeVip($index, item)">
-                                        <span>{{vip.displayName}} :: {{vip.email || 'no email'}}</span>
-                                    </md-chip>
-                                </md-chips>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </md-list-item>
-        </md-list>
-    </md-content>
-</div>
+          <md-input-container ng-if="item.accessLevel == 'ORGANIZATION_LIST' && item.editing" flex="45" ng-init="addItemCompanyList(item)">
+              <label>Search Companies</label>
+              <input ng-model="item.accessCompanySearch">
+          </md-input-container>
+
+        </div>
+
+        <div layout='row' layout-align="space-between start" ng-if="item.accessLevel == 'ORGANIZATION_LIST'" class="doc-attr-group">
+          <div flex="45"><b>Access List:</b>
+            <ul class="company-access-list">
+              <li ng-repeat="company in access.companiesWithAccess(item)">
+                  <ng-md-icon ng-if="item.editing" style="color: grey" icon="cancel" size="12" ng-click="removeCompanyFromAccessList(company)"></ng-md-icon>
+                <span>{{company.name}}</span>
+              </li>
+            </ul>
+          </div>
+
+
+          <div ng-show="item.editing && item.accessCompanySearch && item.accessCompanySearch.length > 0" layout="column" flex="45" class="company-search-results">
+            <md-checkbox ng-repeat="company in access.queryCompanySearch(item, item.accessCompanySearch)" style="margin: 4px; float:left;" ng-change="updateCompaniesWithAccess()" ng-model="company.selected">
+              <span style="font-size: 1.2em">{{company.name}}</span>
+            </md-checkbox>
+          </div>
+        </div>
+
+        <!-- tags -->
+        <div layout='row' class="doc-attr-group">
+          <div layout="column" ng-show="allowTagging">
+            <div>
+                <b>Tags:</b> <span ng-if="!item.editing" ng-repeat="tag in item.tags track by $index">{{tag.tagName || tag}}{{$last ? '' : ', '}}</span>
+                <br>
+            </div>
+
+            <div flex="50" flex="nogrow">
+              <ui-select flex ng-show="item.editing && allowTagging" multiple tagging tagging-label="Tags" ng-model="item.tags">
+              <ui-select-match placeholder="add">{{$item.tagName || $item}}</ui-select-match>
+              <ui-select-choices repeat="tag in tags | filter:$select.search">{{tag.tagName || tag}}</ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+        </div>
+
+        <!-- confirm buttons -->
+        <div ng-show="item.editing || item.delete" class="confirm-buttons" layout='row' layout-align="start center">
+
+          <div ng-show="item.editing">
+            <md-button class="md-icon-button" ng-click="cancelEdit(item)" aria-label="delete">
+              <md-tooltip md-direction="top">Cancel</md-tooltip>
+              <ng-md-icon style="color: grey" icon="cancel" size="24"></ng-md-icon>
+            </md-button>
+
+            <md-button class="md-icon-button" ng-click="saveEdit(item)" aria-label="delete">
+              <md-tooltip md-direction="top">Save</md-tooltip>
+              <ng-md-icon style="color: lightgreen" icon="done" size="24"></ng-md-icon>
+            </md-button>
+          </div>
+
+          <div ng-show="item.delete">
+            <div>Are you sure you want to remove this document?</div>
+
+            <md-button class="md-icon-button" ng-click="cancelConfirm(item)" aria-label="Cancel">
+              <md-tooltip md-direction="top">Cancel</md-tooltip>
+              <ng-md-icon style="color: grey" icon="cancel" size="24"></ng-md-icon>
+            </md-button>
+
+            <md-button class="md-icon-button" ng-click="removeFile(item)" aria-label="Delete">
+              <md-tooltip md-direction="top">Delete</md-tooltip>
+              <ng-md-icon style="color: red;" icon="delete" size="24"></ng-md-icon>
+            </md-button>
+
+          </div>
+        </div>
+
+      <div>
+
+
+    </div>
+</div>  <!-- repeat wrapping div -->

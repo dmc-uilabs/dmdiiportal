@@ -65,3 +65,66 @@
     padding: 0;
   }
 }
+
+.upload-list{
+  margin: 10px;
+  padding: 3%;
+  // border-color: grey;
+  // border-style: solid;
+  // border-width: 0px 0px 2px 0px;
+  background: #EFECED;
+  border-radius: 3px;
+
+  .doc-attr-group{
+  margin-bottom: 15px;
+  margin-left: 15px;}
+
+  .doc-title{
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 10px;
+    .title{
+      color: map-get($colors, secondary);
+    }
+    .editing{
+      font-style: italic;
+      font-size: .7em;
+      color: grey;
+    }
+  }
+  .company-search-results{
+    background: white;
+    -webkit-transition: display 1s; /* Safari */
+    display: display 1s;
+    padding: 15px;
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(163,163,163,1);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(163,163,163,1);
+    box-shadow: 2px 2px 2px 0px rgba(163,163,163,1);
+  }
+
+  ul.company-access-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  ul.company-access-list li {
+      display: inline;
+  }
+  ul.company-access-list ng-md-icon:hover ~ span {
+      color: map-get($colors, secondary);
+  }
+  ul.company-access-list li:after {
+      content: ",  ";
+  }
+  ul.company-access-list li:last-child:after {
+      content: "";
+  }
+
+  .confirm-buttons{
+    border-top: 1px solid lightgrey;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    button{
+      margin-left: -10px;
+    }
+  }
+}

@@ -13,12 +13,7 @@ angular.module('dmc.add-project-doc').
 
                 $scope.documents = [];
 
-				$scope.docAccessLevels = {
-					'All Members': 'ALL_MEMBERS',
-					'Project Participants': 'PROJECT_PARTICIPANTS',
-					'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
-					'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS'
-				}
+        $scope.docAccessLevels = dataFactory.getDocAccessLevels();
 
 				var callback = function(response) {
 					toastModel.showToast('success', 'Project Document Saved!');
@@ -47,17 +42,16 @@ angular.module('dmc.add-project-doc').
                             $scope.documents[i].tags = [{tagName: $scope.project.projectTitle + ' document'}];
                         }
                         $scope.documents[i].tags.push({tagName: doc.file.name});
-                        console.log(doc)
                         //send to s3, save returned link to document table
                         fileUpload.uploadFileToUrl(doc.file, {}, 'projectDocument', function(response) {
-                            console.log(response)
                             var doc = {
                                 documentUrl: response.file.name,
                                 documentName: $scope.documents[i].title + $scope.documents[i].type,
                                 ownerId: $scope.user.accountId,
                                 dmdiiProjectId: $scope.project.id,
                                 accessLevel: $scope.documents[i].accessLevel,
-                                tags: $scope.documents[i].tags
+                                tags: $scope.documents[i].tags,
+                                companiesWithAccess: $scope.documents[i].companiesWithAccess || []
                             }
                             ajax.create(dataFactory.saveDMDIIDocument(), doc, callback);
 

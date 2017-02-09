@@ -1,0 +1,36 @@
+<div class="document-info" layout="column">
+  <!-- <div class="title">DOCUMENT DETAILS</div> -->
+  <!-- <span>{{selectedDocument}}</span> -->
+  <div class='sub-info'>General</div>
+  <md-divider style="margin-bottom: 10px;"></md-divider>
+  <div layout='row'>
+    <div layout='column' flex='25' class="attribute">Name</div>
+    <div layout='column' flex='75' class="value">{{selectedDocument.documentName}}</div>
+  </div>
+  <div layout='row'>
+    <div layout='column' flex='25' class="attribute">Last Modified</div>
+    <div layout='column' flex='75' class="value">{{selectedDocument.modified | date:'yyyy-MM-dd HH:mm Z'}}</div>
+  </div>
+  <div layout='row'>
+    <div layout='column' flex='25' class="attribute">Location</div>
+    <div layout='column' flex='75' class="value"><a href="{{selectedDocument.documentUrl}}">Link</a></div>
+  </div>
+  <div class='sub-info'>Access Controls</div>
+  <md-divider style="margin-bottom: 10px;"></md-divider>
+  <div layout='row'>
+    <div layout='column' flex='25' class="attribute">Accessible By</div>
+    <div layout='column' flex='75' class="value">{{selectedDocument.accessLevel}}</div>
+  </div>
+  <!-- <div class='sub-info'>Modify</div> -->
+  <md-divider style="margin: 15px 0px 15px 0px;"></md-divider>
+  <div layout='row'>
+    <md-button ng-if="$root.userData.isDmdiiAdmin"  class="md-icon-button" ng-click="deleteDocument(doc.id, 'doc', $index)" aria-label="delete">
+      <md-tooltip md-direction="top">Delete</md-tooltip>
+      <ng-md-icon icon="delete_sweep" size="22"></ng-md-icon>
+    </md-button>
+    <md-button class="md-icon-button" ng-href="{{'/add-dmdii-project-doc.php#/'+project.id+'/projectDocuments'}}" aria-label="change permissions">
+      <md-tooltip md-direction="top">Add New Document</md-tooltip>
+      <ng-md-icon icon="note_add" size="22"></ng-md-icon>
+    </md-button>
+  </div>
+</div>

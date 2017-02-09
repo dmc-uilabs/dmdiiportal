@@ -21,6 +21,7 @@ angular.module('dmc.dmdiiProj', [
     'dmc.common.footer',
 	'dmc.component.productscard',
 	'dmc.component.carousel',
+  'dmc.component.documentinfo',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs'
 ])

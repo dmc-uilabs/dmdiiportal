@@ -1,0 +1,27 @@
+.document-info{
+  height: 100%;
+  border-width: 1px 1px 1px 3px;
+  border-style: solid;
+  border-color: map-get($colors, secondary);
+  padding-bottom: 20px;
+  .layout-column{
+    padding: 0px 10px;
+  }
+  .value{
+    color: map-get($colors, text_grey);
+  }
+  .value, .attribute{
+    margin-top: 5px;
+    // border: 2px solid orange;
+  }
+  .title{
+    padding: 10px;
+    background: map-get($colors, secondary);
+  }
+  .sub-info{
+    font-weight: bold;
+    color: map-get($colors, secondary);
+    margin-top: 15px;
+    padding: 10px;
+  }
+}

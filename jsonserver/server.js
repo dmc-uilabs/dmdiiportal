@@ -50,6 +50,7 @@ server.use(jsonServer.rewriter({
     '/dmdiiProject/:id': '/dmdiiProjects/:id',
     '/dmdiiProject/events': '/dmdiiProjectEvents',
     '/dmdiiProject/news': '/dmdiiProjectNews',
+    '/dmdiidocuments/dmdiiProjectId': '/dmdiidocuments',
     '/documents/tags': '/document_tags',
     '/resource/lab' : '/resource_labs',
     '/resource/lab/:id':'/resource_labs/:id',
@@ -66,6 +67,11 @@ server.use(jsonServer.rewriter({
     '/user/organization/:id': '/userByOrganization'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
+
+server.post('/dmdiidocument', function(req,res) {
+  console.log('request',req)
+  res.jsonp(req.query)
+})
 
 server.get('/getChildren', function (req, res) {
 

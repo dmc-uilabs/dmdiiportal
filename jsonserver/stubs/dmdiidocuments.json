@@ -1,0 +1,218 @@
+[
+   {
+      "id":11,
+      "dmdiiProjectId": 101000,
+      "documentName":"Name of document",
+      "documentUrl":"http://urlofDoc.org",
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"a tag"
+         },
+         {
+            "id":9,
+            "tagName":"a tag"
+         }
+      ],
+      "modified":1481840056954,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS",
+      "version":1
+   },
+   {
+      "id":20,
+      "documentName":"Name of document",
+      "documentUrl":"http://urlofDoc.org",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"a tag"
+         },
+         {
+            "id":18,
+            "tagName":"a tag"
+         }
+      ],
+      "modified":1481840887170,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":22,
+      "documentName":"Name of document",
+      "documentUrl":"http://urlofDoc.org",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"a tag"
+         },
+         {
+            "id":20,
+            "tagName":"a tag"
+         }
+      ],
+      "modified":1481840914243,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":23,
+      "documentName":"Name of document",
+      "documentUrl":"http://urlofDoc.org",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"a tag"
+         },
+         {
+            "id":21,
+            "tagName":"a tag"
+         }
+      ],
+      "modified":1481840923014,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":24,
+      "documentName":"Name of document",
+      "documentUrl":"http://urlofDoc.org",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"a tag"
+         },
+         {
+            "id":22,
+            "tagName":"a tag"
+         }
+      ],
+      "modified":1481840953765,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":25,
+      "documentName":"Name of document",
+      "documentUrl":"http://urlofDoc.org",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"a tag"
+         },
+         {
+            "id":23,
+            "tagName":"a tag"
+         }
+      ],
+      "modified":1481841055133,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":26,
+      "documentName":"Name of document",
+      "documentUrl":"http://urlofDoc.org",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"a tag"
+         },
+         {
+            "id":24,
+            "tagName":"a tag"
+         }
+      ],
+      "modified":1481841065626,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":21,
+      "documentName":"Name of document",
+      "documentUrl":"http://urlofDoc.org",
+      "dmdiiProjectId":1000,
+      "ownerId":2,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"a tag"
+         },
+         {
+            "id":19,
+            "tagName":"a tag"
+         }
+      ],
+      "modified":1481840897380,
+      "expires":1486857600000,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   },
+   {
+      "id":41,
+      "documentName":"Name of document",
+      "documentUrl":"http://urlofDoc.org",
+      "dmdiiProjectId":1000,
+      "ownerId":11,
+      "tags":[
+         {
+            "id":8,
+            "tagName":"a tag"
+         },
+         {
+            "id":35,
+            "tagName":"a tag"
+         }
+      ],
+      "modified":1485795974007,
+      "expires":1488387974007,
+      "isDeleted":false,
+      "fileType":null,
+      "verified":true,
+      "accessLevel":"ALL_MEMBERS",
+      "version":1
+   }
+]
