@@ -1,6 +1,6 @@
 [{
     "id": 56,
-    "title": "Title of MY project",
+    "title": "Project with Manager 1",
     "projectManager": "J Doe",
     "projectManagerId": 1,
     "comapanyId": "",
@@ -23,7 +23,7 @@
         "link": "/projects/56/tasks"
     },
     "services": {
-        "totalItems": 0,
+        "totalItems": 2,
         "link": "/projects/56/services"
     },
     "components": {
