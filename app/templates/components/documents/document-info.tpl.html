@@ -12,8 +12,8 @@
     <div layout='column' flex='75' class="value">{{selectedDocument.modified | date:'yyyy-MM-dd HH:mm Z'}}</div>
   </div>
   <div layout='row'>
-    <div layout='column' flex='25' class="attribute">Location</div>
-    <div layout='column' flex='75' class="value"><a href="{{selectedDocument.documentUrl}}">Link</a></div>
+    <div layout='column' flex='25' class="attribute">Download</div>
+    <div layout='column' flex='75' class="value"><a href="{{selectedDocument.documentUrl}}">here</a></div>
   </div>
   <div class='sub-info'>Access Controls</div>
   <md-divider style="margin-bottom: 10px;"></md-divider>
@@ -24,7 +24,7 @@
   <!-- <div class='sub-info'>Modify</div> -->
   <md-divider ng-if="$root.userData.isDmdiiAdmin" style="margin: 15px 0px 15px 0px;"></md-divider>
   <div ng-if="$root.userData.isDmdiiAdmin" layout='row'>
-    <md-button class="md-icon-button" ng-click="deleteDocument(selectedDocument.id, 'doc', $index)" aria-label="delete">
+    <md-button class="md-icon-button" ng-click="deleteDocument(selectedDocument.id, 'doc', selectedDocumentIndex)" aria-label="delete">
       <md-tooltip md-direction="top">Delete</md-tooltip>
       <ng-md-icon icon="delete_sweep" size="22"></ng-md-icon>
     </md-button>
@@ -32,5 +32,12 @@
       <md-tooltip md-direction="top">Add New Document</md-tooltip>
       <ng-md-icon icon="note_add" size="22"></ng-md-icon>
     </md-button>
+  </div>
+  <div  layout='row'>
+    <md-button class="md-icon-button" ng-href="{{selectedDocument.documentUrl}}" aria-label="download">
+      <md-tooltip md-direction="top">Download Document</md-tooltip>
+      <ng-md-icon icon="file_download" size="22"></ng-md-icon>
+    </md-button>
+
   </div>
 </div>
