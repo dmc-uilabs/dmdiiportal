@@ -339,10 +339,11 @@ angular.module('dmc.profile')
             }
             if ($scope.limit_reviews && !$scope.selectSortingStar) params['_limit'] = 2;
 
-            profileModel.get_profile_reviews($stateParams.profileId, params, function(data){
-            	$scope.profile.reviews = data;
-            	if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            });
+            // TODO remove at a later date
+            // profileModel.get_profile_reviews($stateParams.profileId, params, function(data){
+            // 	$scope.profile.reviews = data;
+            // 	if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            // });
         };
 
         //Selected rating
