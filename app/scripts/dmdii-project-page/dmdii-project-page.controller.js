@@ -135,6 +135,9 @@ angular.module('dmc.dmdiiProj')
                     } else {
                         $scope.documents.splice(index, 1);
                     }
+
+                    $scope.selectDocument(null);
+
                 });
             };
 
