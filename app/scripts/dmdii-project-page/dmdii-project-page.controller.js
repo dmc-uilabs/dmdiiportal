@@ -54,16 +54,16 @@ angular.module('dmc.dmdiiProj')
                 $scope.project = response.data;
 
                 if(($scope.project.dmdiiFunding == 5983) && ($scope.project.costShare == 8395)){
-                  $scope.project.kind="dmdiiEvent"
+                  $scope.project.kind='dmdiiEvent'
                 }else{
-                  $scope.project.kind="dmdiiProject"
+                  $scope.project.kind='dmdiiProject'
                 }
 
                 var awardDate = new Date($scope.project.awardedDate);
                 var year = awardDate.getFullYear();
                 var month = awardDate.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
-                var day = awardDate.getDate();
+                var day = awardDate.getDate()+1;
 
                 $scope.project.awardedDate = month + '-' + day + '-' + year;
 
@@ -71,7 +71,7 @@ angular.module('dmc.dmdiiProj')
                 var year = endDate.getFullYear();
                 var month = endDate.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
-                var day = endDate.getDate();
+                var day = endDate.getDate()+1;
 
                 $scope.project.endDate = month + '-' + day + '-' + year;
 
@@ -87,7 +87,7 @@ angular.module('dmc.dmdiiProj')
                         var year = date.getFullYear();
                         var month = date.getMonth() + 1;
                         month = (month < 10) ? '0' + month : month;
-                        var day = date.getDate();
+                        var day = date.getDate() + 1;
 
                         $scope.updates[index].created = month + '-' + day + '-' + year;
                     })

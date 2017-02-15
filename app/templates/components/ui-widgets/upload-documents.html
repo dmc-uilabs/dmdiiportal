@@ -51,14 +51,14 @@
               </md-select>
           </md-input-container>
 
-          <md-input-container ng-if="item.accessLevel == 'ORGANIZATION_LIST' && item.editing" flex="45" ng-init="addItemCompanyList(item)">
+          <md-input-container ng-if="item.accessLevel == 'ORG' && item.editing" flex="45" ng-init="addItemCompanyList(item)">
               <label>Search Companies</label>
               <input ng-model="item.accessCompanySearch">
           </md-input-container>
 
         </div>
 
-        <div layout='row' layout-align="space-between start" ng-if="item.accessLevel == 'ORGANIZATION_LIST'" class="doc-attr-group">
+        <div layout='row' layout-align="space-between start" ng-if="item.accessLevel == 'ORG'" class="doc-attr-group">
           <div flex="45"><b>Access List:</b>
             <ul class="company-access-list">
               <li ng-repeat="company in access.companiesWithAccess(item)">

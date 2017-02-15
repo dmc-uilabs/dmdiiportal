@@ -1171,7 +1171,7 @@ angular.module('dmc.data',[])
       					'Project Participants': 'PROJECT_PARTICIPANTS',
       					'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
       					'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS',
-                'Choose Organizations': 'ORGANIZATION_LIST'
+                        'Choose Organizations': 'ORG'
       				}
             }
         };

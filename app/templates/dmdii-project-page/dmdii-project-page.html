@@ -245,10 +245,17 @@
 				<md-tab label="Docs & Presentations">
 					<md-content class="md-padding">
 						<div class="tabs-content" layout="column">
-							<div layout="column" class="project-documents" ng-show="documents.length > 0">
-								<div layout="row" ng-repeat="doc in documents">
-									<a class="slim-margin" ng-href="{{doc.documentUrl}}">{{doc.documentName}}</a>
-									<a class="delete-btn" href ng-click="deleteDocument(doc.id, 'doc', $index)">delete</a>
+							<div layout="row">
+								<div layout="column" flex="50" class="project-documents" ng-show="documents.length > 0">
+									<div class='document' ng-class="{'green-background': isSelectedDocument($index), 'document-hover': !isSelectedDocument($index)}" layout="row" ng-repeat="doc in documents">
+										<div ng-click="selectDocument($index)" class="slim-margin">{{doc.documentName}}</div>
+										<!-- <a class="delete-btn" href ng-click="deleteDocument(doc.id, 'doc', $index)">delete</a> -->
+									</div>
+								</div>
+
+								<div layout="column" flex="50">
+									<dmc-document-info ng-show="selectedDocument" selected-document="selectedDocument" project="project">
+									</dmc-document-info>
 								</div>
 							</div>
 							<span ng-hide="documents.length > 0">This Project has no documents</span>

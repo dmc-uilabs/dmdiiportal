@@ -44,15 +44,20 @@ angular.module('dmc.add-project-doc').
                         $scope.documents[i].tags.push({tagName: doc.file.name});
                         //send to s3, save returned link to document table
                         fileUpload.uploadFileToUrl(doc.file, {}, 'projectDocument', function(response) {
+                            if($scope.documents[i].companiesWithAccess == null){
+                              var acc = ''+$scope.documents[i].accessLevel;
+                            }else{
+                              var acc = ''+$scope.documents[i].accessLevel+' '+$scope.documents[i].companiesWithAccess;
+                            }
+                                                    
                             var doc = {
                                 documentUrl: response.file.name,
                                 documentName: $scope.documents[i].title + $scope.documents[i].type,
                                 ownerId: $scope.user.accountId,
                                 dmdiiProjectId: $scope.project.id,
-                                accessLevel: $scope.documents[i].accessLevel,
-                                tags: $scope.documents[i].tags,
-                                companiesWithAccess: $scope.documents[i].companiesWithAccess || []
-                            }
+                                accessLevel: ''+acc.replace(/,/g, ' '),
+                                tags: $scope.documents[i].tags
+                              }
                             ajax.create(dataFactory.saveDMDIIDocument(), doc, callback);
 
                         });
