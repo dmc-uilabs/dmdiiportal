@@ -17,7 +17,7 @@ angular.module('dmc.component.productcard', [
 .run(function(ajax){
         // get all projects and save to $rootScope
         // need for add service to project
-        ajax.loadProjects();
+        // ajax.loadProjects();
 })
 .directive('dmcProductCard', function(){
      return {
@@ -56,7 +56,8 @@ angular.module('dmc.component.productcard', [
           DMCUserModel.getUserData().then(function(res){
               userData = res;
               // get compared services
-              CompareModel.get('services',userData);
+              // below should already be called in the marketplace controller
+              // CompareModel.get('services',userData);
           });
 
           $scope.previousPage = previousPage;
@@ -223,6 +224,8 @@ angular.module('dmc.component.productcard', [
 
           // get service to compare
           $scope.addToCompare = function(){
+              ajax.loadProjects();
+
               if($scope.typeProduct == 'service'){
                   CompareModel.add('services',{
                       profileId : userData.profileId,
