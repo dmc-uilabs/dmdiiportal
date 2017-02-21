@@ -56,7 +56,7 @@ angular.module('dmc.component.productcard', [
           DMCUserModel.getUserData().then(function(res){
               userData = res;
               // get compared services
-              // below should already be called in the marketplace controller
+              // this is already being done in the marketplace controller
               // CompareModel.get('services',userData);
           });
 
@@ -224,8 +224,6 @@ angular.module('dmc.component.productcard', [
 
           // get service to compare
           $scope.addToCompare = function(){
-              ajax.loadProjects();
-
               if($scope.typeProduct == 'service'){
                   CompareModel.add('services',{
                       profileId : userData.profileId,
@@ -235,6 +233,9 @@ angular.module('dmc.component.productcard', [
           };
 
           $scope.addToProject = function(){
+            if (!$rootScope.projects) {
+              ajax.loadProjects();
+            }
               $scope.addingToProject = true;
           };
 
