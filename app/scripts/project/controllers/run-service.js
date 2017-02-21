@@ -262,7 +262,7 @@ angular.module('dmc.project')
                 getUpdatedStatus(data.runId);
                 pollingInterval = $interval( function(){
                     domeModel.pollModel(data, pollModellCallback, pollModelErrorCallback);
-                }, 5000);
+                }, 500);
             }
 
             function stopPolling() {
