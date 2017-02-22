@@ -15,17 +15,25 @@
 		</div>
 	</div>
 	<div layout="column" class="info">
-		<h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{cardSource.firstName + ' ' + cardSource.lastName}}</a></h3>
-		<h4>{{cardSource.jobTitle}}</h4>
-		<h4>{{cardSource.userContactInfo.userPublicContactInfo.email}}</h4>
-		<a href="" ng-if="(userData.isDmdiiAdmin || userData.isAdmin) && cardSource.isVerified && cardSource.id !== userData.accountId" ng-click="removeMember()">Remove from Organization</a>
-		<a href="" ng-if="cardSource.isVerified && cardSource.id === userData.accountId" ng-click="removeMember()">Leave Organization</a>
-		<a href="" ng-if="!cardSource.isVerified && cardSource.id === userData.accountId" ng-click="resendNotification()">Resend Notification</a>
-
+		<div class="name">
+			<!-- <h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{cardSource.firstName + ' ' + cardSource.lastName}}</a></h3> -->
+			<h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{displayName}}</a></h3>
+		</div>
+		<!-- <h4>{{cardSource.jobTitle}}</h4> -->
+		<div class="contact-info">
+			{{cardSource.userContactInfo.userPublicContactInfo.email}}
+		</div>
 	</div>
 
 	<div class="description">
-		{{cardSource.aboutMe}}
+		<span>{{cardSource.aboutMe | limitTo:descriptionLenLimit}}</span>
+		<span ng-if="descriptionTooLong()" ng-click="switchDescriptionLenLimit()"><a style="color: #65AF3F;" href>...{{descriptionLenLimitPrompt}}<a></span>
+	</div>
+
+	<div class="remove-leave" layout="column">
+		<a href="" ng-if="(userData.isDmdiiAdmin || userData.isAdmin) && cardSource.isVerified && cardSource.id !== userData.accountId" ng-click="removeMember()">Remove from Organization</a>
+		<a href="" ng-if="cardSource.isVerified && cardSource.id === userData.accountId" ng-click="removeMember()">Leave Organization</a>
+		<a href="" ng-if="!cardSource.isVerified && cardSource.id === userData.accountId" ng-click="resendNotification()">Resend Notification</a>
 	</div>
 
 	<div class="footer" layout="row" >

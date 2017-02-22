@@ -8,14 +8,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
-      "firstName":"JJ",
-      "lastName":"Doe",
+      "firstName":"Admin",
+      "lastName":"Van Damme",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://s-media-cache-ak0.pinimg.com/originals/4f/e7/1b/4fe71bcb2791f7c8a955ebd4f0e8a037.jpg",
       "runningServices":{
          "items":[
 
@@ -39,6 +39,7 @@
 
       ],
       "roles":{
+        "1":"ADMIN",
          "1":"MEMBER"
       },
       "isDMDIIMember":true,
@@ -58,22 +59,22 @@
       "timezone":"GMT"
    },
    {
-      "id":19,
-      "displayName":"J Doe",
+      "id":1,
+      "displayName":"Thomas Smith",
       "accountId":19,
       "profileId":19,
       "companyId":1,
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
-      "firstName":"JJ",
-      "lastName":"Doe",
+      "firstName":"Thomas",
+      "lastName":"Smith",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://s-media-cache-ak0.pinimg.com/originals/4f/e7/1b/4fe71bcb2791f7c8a955ebd4f0e8a037.jpg",
       "runningServices":{
          "items":[
 
@@ -103,10 +104,10 @@
       "userContactInfo":{
          "id":12,
          "userPrivateContactInfo":null,
-         "userPublicContactInfo":null,
+         "userPublicContactInfo":"public@email.com",
          "userMemberPortalContactInfo":null
       },
-      "aboutMe":null,
+      "aboutMe":"I have a really long description about myself -- if you really want to read more, maybe you should click in to this? Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.",
       "resume":"",
       "account":0,
       "notifications":[
@@ -124,14 +125,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
-      "firstName":"JJ",
-      "lastName":"Doe",
+      "firstName":"Longfirstname",
+      "lastName":"Evenlongersurname",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://s-media-cache-ak0.pinimg.com/originals/4f/e7/1b/4fe71bcb2791f7c8a955ebd4f0e8a037.jpg",
       "runningServices":{
          "items":[
 
@@ -193,14 +194,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
-      "lastName":"Doe",
+      "lastName":"Okhonestlythisnameisjusttoolongwhatwereyourparentsthinking",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://s-media-cache-ak0.pinimg.com/originals/4f/e7/1b/4fe71bcb2791f7c8a955ebd4f0e8a037.jpg",
       "runningServices":{
          "items":[
 
@@ -251,14 +252,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://s-media-cache-ak0.pinimg.com/originals/4f/e7/1b/4fe71bcb2791f7c8a955ebd4f0e8a037.jpg",
       "runningServices":{
          "items":[
 
@@ -310,14 +311,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://vignette2.wikia.nocookie.net/p__/images/0/0c/Jean-claude-van-damme-as-colonel-william.jpg/revision/latest?cb=20160211065908&path-prefix=protagonist",
       "runningServices":{
          "items":[
 
@@ -368,14 +369,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://vignette2.wikia.nocookie.net/p__/images/0/0c/Jean-claude-van-damme-as-colonel-william.jpg/revision/latest?cb=20160211065908&path-prefix=protagonist",
       "runningServices":{
          "items":[
 
@@ -405,7 +406,7 @@
       "userContactInfo":{
          "id":31,
          "userPrivateContactInfo":null,
-         "userPublicContactInfo":null,
+         "userPublicContactInfo":"anotherpublic@email.com",
          "userMemberPortalContactInfo":null
       },
       "aboutMe":null,
@@ -426,14 +427,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://vignette2.wikia.nocookie.net/p__/images/0/0c/Jean-claude-van-damme-as-colonel-william.jpg/revision/latest?cb=20160211065908&path-prefix=protagonist",
       "runningServices":{
          "items":[
 
@@ -485,14 +486,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://vignette2.wikia.nocookie.net/p__/images/0/0c/Jean-claude-van-damme-as-colonel-william.jpg/revision/latest?cb=20160211065908&path-prefix=protagonist",
       "runningServices":{
          "items":[
 
@@ -543,14 +544,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://vignette2.wikia.nocookie.net/p__/images/0/0c/Jean-claude-van-damme-as-colonel-william.jpg/revision/latest?cb=20160211065908&path-prefix=protagonist",
       "runningServices":{
          "items":[
 
@@ -601,14 +602,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://vignette2.wikia.nocookie.net/p__/images/0/0c/Jean-claude-van-damme-as-colonel-william.jpg/revision/latest?cb=20160211065908&path-prefix=protagonist",
       "runningServices":{
          "items":[
 
@@ -657,14 +658,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://vignette2.wikia.nocookie.net/p__/images/0/0c/Jean-claude-van-damme-as-colonel-william.jpg/revision/latest?cb=20160211065908&path-prefix=protagonist",
       "runningServices":{
          "items":[
 
@@ -713,14 +714,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://vignette2.wikia.nocookie.net/p__/images/0/0c/Jean-claude-van-damme-as-colonel-william.jpg/revision/latest?cb=20160211065908&path-prefix=protagonist",
       "runningServices":{
          "items":[
 
@@ -771,14 +772,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://vignette2.wikia.nocookie.net/p__/images/0/0c/Jean-claude-van-damme-as-colonel-william.jpg/revision/latest?cb=20160211065908&path-prefix=protagonist",
       "runningServices":{
          "items":[
 
@@ -830,14 +831,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://vignette2.wikia.nocookie.net/p__/images/0/0c/Jean-claude-van-damme-as-colonel-william.jpg/revision/latest?cb=20160211065908&path-prefix=protagonist",
       "runningServices":{
          "items":[
 
@@ -886,14 +887,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://kingofwallpapers.com/jean-claude-van-damme/jean-claude-van-damme-003.jpg",
       "runningServices":{
          "items":[
 
@@ -932,7 +933,7 @@
          },
          "userMemberPortalContactInfo":null
       },
-      "aboutMe":null,
+      "aboutMe":"I have a really long description about myself -- if you really want to read more, maybe you should click in to this?",
       "resume":"",
       "account":0,
       "notifications":[
@@ -1348,7 +1349,7 @@
          "userPublicContactInfo":null,
          "userMemberPortalContactInfo":null
       },
-      "aboutMe":"Lead QA engineer.",
+      "aboutMe":"About me -- Lead QA engineer.",
       "resume":"",
       "account":0,
       "notifications":[
@@ -1366,14 +1367,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://kingofwallpapers.com/jean-claude-van-damme/jean-claude-van-damme-002.jpg",
       "runningServices":{
          "items":[
 
@@ -1422,14 +1423,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
-      "firstName":"JJ",
+      "firstName":"JJ Admin",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://kingofwallpapers.com/jean-claude-van-damme/jean-claude-van-damme-002.jpg",
       "runningServices":{
          "items":[
 
@@ -1453,6 +1454,7 @@
 
       ],
       "roles":{
+        "1":"ADMIN",
          "1":"MEMBER"
       },
       "isDMDIIMember":true,
@@ -1480,14 +1482,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://kingofwallpapers.com/jean-claude-van-damme/jean-claude-van-damme-002.jpg",
       "runningServices":{
          "items":[
 
@@ -1539,14 +1541,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
-      "firstName":"JJ",
-      "lastName":"Doe",
+      "firstName":"JJ Also Admin",
+      "lastName":"Doedohdoughydouh-LaDough",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://kingofwallpapers.com/jean-claude-van-damme/jean-claude-van-damme-002.jpg",
       "runningServices":{
          "items":[
 
@@ -1570,6 +1572,7 @@
 
       ],
       "roles":{
+        "1":"ADMIN",
          "1":"MEMBER"
       },
       "isDMDIIMember":true,
@@ -1579,7 +1582,7 @@
          "userPublicContactInfo":null,
          "userMemberPortalContactInfo":null
       },
-      "aboutMe":null,
+      "aboutMe":"I have a really long description about myself -- if you really want to read more, maybe you should click in to this?",
       "resume":"",
       "account":0,
       "notifications":[
@@ -1597,14 +1600,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://kingofwallpapers.com/jean-claude-van-damme/jean-claude-van-damme-002.jpg",
       "runningServices":{
          "items":[
 
@@ -1655,14 +1658,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://kingofwallpapers.com/jean-claude-van-damme/jean-claude-van-damme-002.jpg",
       "runningServices":{
          "items":[
 
@@ -1713,14 +1716,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"http://kingofwallpapers.com/jean-claude-van-damme/jean-claude-van-damme-002.jpg",
       "runningServices":{
          "items":[
 
@@ -1771,7 +1774,7 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
@@ -1829,14 +1832,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://s-media-cache-ak0.pinimg.com/originals/4f/e7/1b/4fe71bcb2791f7c8a955ebd4f0e8a037.jpg",
       "runningServices":{
          "items":[
 
@@ -1867,7 +1870,7 @@
          "userPublicContactInfo":null,
          "userMemberPortalContactInfo":null
       },
-      "aboutMe":null,
+      "aboutMe":"I have a really long description about myself -- if you really want to read more, maybe you should click in to this?",
       "resume":"",
       "account":0,
       "notifications":[
@@ -1885,7 +1888,7 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
@@ -1941,14 +1944,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://s-media-cache-ak0.pinimg.com/originals/4f/e7/1b/4fe71bcb2791f7c8a955ebd4f0e8a037.jpg",
       "runningServices":{
          "items":[
 
@@ -1999,14 +2002,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
-      "firstName":"JJ",
-      "lastName":"Doe",
+      "firstName":"John Joseph",
+      "lastName":"Doedohdoughydouh-LaDough",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://s-media-cache-ak0.pinimg.com/originals/4f/e7/1b/4fe71bcb2791f7c8a955ebd4f0e8a037.jpg",
       "runningServices":{
          "items":[
 
@@ -2180,14 +2183,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://s-media-cache-ak0.pinimg.com/originals/4f/e7/1b/4fe71bcb2791f7c8a955ebd4f0e8a037.jpg",
       "runningServices":{
          "items":[
 
@@ -2238,7 +2241,7 @@
       "realname":"J Doe",
       "title":"Technical Associate, Digital Manufacturing Commons",
       "termsConditions":true,
-      "firstName":"JJ",
+      "firstName":"James Joyce",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":"Chicago",
@@ -2554,14 +2557,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://s-media-cache-ak0.pinimg.com/originals/4f/e7/1b/4fe71bcb2791f7c8a955ebd4f0e8a037.jpg",
       "runningServices":{
          "items":[
 
@@ -2612,14 +2615,14 @@
       "companyName":"UI LABS",
       "role":0,
       "realname":"J Doe",
-      "title":null,
+      "title":"This is a job title",
       "termsConditions":true,
       "firstName":"JJ",
       "lastName":"Doe",
       "email":"J.Doe@email.com",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://s-media-cache-ak0.pinimg.com/originals/4f/e7/1b/4fe71bcb2791f7c8a955ebd4f0e8a037.jpg",
       "runningServices":{
          "items":[
 
@@ -2671,7 +2674,7 @@
       "title":"Developer",
       "termsConditions":true,
       "firstName":"JJ",
-      "lastName":"Doe",
+      "lastName":"Doedohdoughydouh-LaDough",
       "email":"J.Doe@email.com",
       "address":"Chicago",
       "phone":null,

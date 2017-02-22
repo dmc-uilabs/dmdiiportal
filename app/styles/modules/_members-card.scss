@@ -12,30 +12,60 @@ $lines-to-show: 4;
     }
   }
 	.info{
-		padding: 0 8px;
-		h4{
+		height: 84px;
+		padding: 0 8px 8px 8px;
+		.name{
 			font-weight: normal;
 			margin: 6px 0;
+			padding-top: 7px;
+			height: 50px;
+			text-overflow: clip;
+			// Below is for wrapping excessively long words
+			/* These are technically the same, but use both */
+			overflow-wrap: break-word;
+			word-wrap: break-word;
+			-ms-word-break: break-all;
+			/* This is the dangerous one in WebKit, as it breaks things wherever */
+			word-break: break-all;
+			/* Instead use this non-standard one: */
+			word-break: break-word;
+			/* Adds a hyphen where the word breaks, if supported (No Blink) */
+			-ms-hyphens: auto;
+			-moz-hyphens: auto;
+			-webkit-hyphens: auto;
+			hyphens: auto;
 		}
     .stars{
       margin: 6px 0;
     }
-    .contact{
-      h4{
-        margin-left: 16px;
-      }
+    .contact-info{
     }
+		border-bottom: 1px solid lightgrey;
+	}
+	.img-container{
+		width: 108px;
+		height: 108px;
+		overflow: hidden;
+		img{
+			margin:auto;
+		}
 	}
 	.description{
 		margin: 8px;
-    white-space: initial;
-    display: block; /* Fallback for non-webkit */
-    display: -webkit-box;
-    -webkit-line-clamp: $lines-to-show;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    // white-space: initial;
+    // display: block; /* Fallback for non-webkit */
+    // display: -webkit-box;
+    // -webkit-line-clamp: $lines-to-show;
+    // -webkit-box-orient: vertical;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+		height: 60px;
+		overflow: hidden;
+		// background: pink;
   }
+	.remove-leave{
+		margin: 8px;
+	}
   .footer{
     background-color: #666;
     .white-button{
