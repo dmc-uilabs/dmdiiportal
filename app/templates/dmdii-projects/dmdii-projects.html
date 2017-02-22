@@ -43,7 +43,7 @@
                     </div>
                     <div layout-align="end start" flex="33">
                         <h3>Quick Links</h3>
-                            <div layout="row" ng-repeat="doc in docs track by $index">
+                            <div layout="row" ng-repeat="doc in docs track by $index" style="padding-bottom: 7px;"
                               <span>--</span>
                                 <a flex="75" href ng-click="quickLinkAction(doc)">{{doc.displayName}}</a>
                                 <span flex></span>
