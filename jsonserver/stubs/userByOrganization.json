@@ -39,8 +39,7 @@
 
       ],
       "roles":{
-        "1":"ADMIN",
-         "1":"MEMBER"
+        "1":"ADMIN"
       },
       "isDMDIIMember":true,
       "userContactInfo":{
@@ -1469,8 +1468,7 @@
 
       ],
       "roles":{
-        "1":"ADMIN",
-         "1":"MEMBER"
+        "1":"ADMIN"
       },
       "isDMDIIMember":true,
       "userContactInfo":{
@@ -1587,8 +1585,7 @@
 
       ],
       "roles":{
-        "1":"ADMIN",
-         "1":"MEMBER"
+        "1":"ADMIN"
       },
       "isDMDIIMember":true,
       "userContactInfo":{

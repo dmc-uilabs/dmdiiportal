@@ -1,4 +1,7 @@
 <div class="members-card" layout="column" ng-hide="isRemoved">
+	<span ng-if="role=='ADMIN'" class="member-type">
+		ADMIN
+	</span>
 	<div class="header" layout="row" layout-align="space-between center">
 		<md-button href="" aria-label="grou_add" class="md-icon-button">
 			<ng-md-icon ng-if="version1" icon="group_add" style="fill: grey;" size="25"></ng-md-icon>

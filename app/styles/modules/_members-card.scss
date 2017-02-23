@@ -6,6 +6,16 @@ $lines-to-show: 4;
 	border: 1px solid grey;
 	border-radius: 3px;
 	padding: 0;
+	.member-type{
+		position: absolute;
+		margin-top: 10px;
+		margin-left: 10px;
+		color: white;
+		font-size: .8em;
+		background: map-get($colors, secondary);
+		padding: 3px;
+		border-radius: 2px;
+	}
   .header{
     a{
       color: inherit;
