@@ -69,10 +69,26 @@
       </md-tab>
     </md-tabs>
 
+
+  <hr />
+  <div class="marketplace-search-button" layout="row" layout-align="center start">
+    <!-- <md-button class="link-button favorites-link" md-no-ink href="/favorites.php">
+      <ng-md-icon icon="favorite" size="14"></ng-md-icon>
+      Favorites ({{favoritesCount}})
+    </md-button> -->
+  <div style="padding:10px">
+    <h3>The DMC marketplace supplies services and applications from across the digital thread to allow one to do business better, cheaper and faster. The above carousel features new services and below you can browse them by category.</h3>
+      <md-button class="md-raised dmc-button"
+                 ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
+                 compare-button>
+         Compare Services ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+      </md-button>
+  </div>
+  </div>
+  <hr />
     <!-- Favorit items -->
-    <!-- <div class="marketplace-storefronts">
+    <!-- <div class="marketplace-storefronts"> -->
       <dmc-products-card
-          title-card="'ITEMS FROM FAVORITE STOREFRONTS'"
           search-card="isSearch"
           card-source="marketplaceItems"
           card-loading="downloadData"
@@ -85,6 +101,6 @@
           view-all-link="'/marketplace.php#/search?product=services'"
           layout-margin>
       </dmc-products-card>
-    </div> -->
+    <!-- </div> -->
   </div>
 </div>

@@ -58,7 +58,8 @@ angular.module('dmc.marketplace')
             DMCUserModel.getUserData().then(function(res){
                 userData = res;
                 getFavoriteCount();
-                $scope.getFollowCompanies(userData.accountId);
+                // not calling getFollowCompanies since we're not using that data
+                // $scope.getFollowCompanies(userData.accountId);
                 CompareModel.get('services',userData);
             });
 
