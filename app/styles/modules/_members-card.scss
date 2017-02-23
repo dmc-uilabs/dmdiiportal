@@ -12,8 +12,8 @@ $lines-to-show: 4;
     }
   }
 	.info{
-		height: 84px;
-		padding: 0 8px 8px 8px;
+		min-height: 84px;
+		padding: 8px;
 		.name{
 			font-weight: normal;
 			margin: 6px 0;
@@ -35,12 +35,13 @@ $lines-to-show: 4;
 			-webkit-hyphens: auto;
 			hyphens: auto;
 		}
+		.detailsToggle{
+			color: map-get($colors, secondary);
+			float: right;
+		}
     .stars{
       margin: 6px 0;
     }
-    .contact-info{
-    }
-		border-bottom: 1px solid lightgrey;
 	}
 	.img-container{
 		width: 108px;
@@ -50,34 +51,30 @@ $lines-to-show: 4;
 			margin:auto;
 		}
 	}
-	.description{
-		margin: 8px;
-    // white-space: initial;
-    // display: block; /* Fallback for non-webkit */
-    // display: -webkit-box;
-    // -webkit-line-clamp: $lines-to-show;
-    // -webkit-box-orient: vertical;
-    // overflow: hidden;
-    // text-overflow: ellipsis;
-		min-height: 45px;
-		overflow: hidden;
-		// background: pink;
-  }
-	.remove-leave{
-		margin: 8px;
+	.details{
+		div{
+			margin: 5px 0px;
+		}
+		.contact-info{
+			font-weight: bold;
+			padding-bottom: 5px;
+			// color: map-get($colors, secondary)
+		}
+		border-top: 1px solid lightgrey;
+		padding: 8px;
+		.footer{
+			background-color: #666;
+			.white-button{
+				background-color: #909090;
+			}
+			.md-button{
+				margin: 6px;
+				height: 47px;
+				min-height: 47px;
+				text-transform: none;
+				font-size: 13px;
+				line-height: 47px;
+			}
+		}
 	}
-  .footer{
-    background-color: #666;
-    .white-button{
-      background-color: #909090;
-    }
-    .md-button{
-      margin: 6px;
-      height: 47px;
-      min-height: 47px;
-      text-transform: none;
-      font-size: 13px;
-      line-height: 47px;
-    }
-  }
 }

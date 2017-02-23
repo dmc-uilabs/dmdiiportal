@@ -20,89 +20,101 @@
 			<h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{displayName}}</a></h3>
 		</div>
 		<!-- <h4>{{cardSource.jobTitle}}</h4> -->
-		<div class="contact-info">
-			{{cardSource.userContactInfo.userPublicContactInfo.email}}
+		<div>
+			<a class="detailsToggle" ng-init="showDetails=false" ng-click="showDetails = !showDetails">
+				Details
+			</a>
 		</div>
 	</div>
 
-	<div class="description">
-		<span>{{cardSource.aboutMe | limitTo:descriptionLenLimit}}</span>
-		<span ng-if="descriptionTooLong()" ng-click="switchDescriptionLenLimit()"><a style="color: #65AF3F;" href>...{{descriptionLenLimitPrompt}}<a></span>
-	</div>
 
-	<div class="remove-leave" layout="column">
-		<a href="" ng-if="(userData.isDmdiiAdmin || userData.isAdmin) && cardSource.isVerified && cardSource.id !== userData.accountId" ng-click="removeMember()">Remove from Organization</a>
-		<a href="" ng-if="cardSource.isVerified && cardSource.id === userData.accountId" ng-click="removeMember()">Leave Organization</a>
-		<a href="" ng-if="!cardSource.isVerified && cardSource.id === userData.accountId" ng-click="resendNotification()">Resend Notification</a>
-	</div>
+	<div ng-show="showDetails" class="details">
 
-	<div class="footer" layout="row" >
+		<div ng-if="cardSource.userContactInfo.userPublicContactInfo.email" class="contact-info">
+			{{cardSource.userContactInfo.userPublicContactInfo.email}}
+		</div>
 
-		<md-button class="white-button" ng-click="setRole()" aria-label="Select Role" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || !cardSource.isVerified || (settingRole || addingToProject)" flex>
-			Select Role
-		</md-button>
+		<div ng-if="cardSource.aboutMe" class="description">
+			<span>{{cardSource.aboutMe | limitTo:descriptionLenLimit}}</span>
+			<span ng-if="descriptionTooLong()" ng-click="switchDescriptionLenLimit()"><a style="color: #65AF3F;" href>...{{descriptionLenLimitPrompt}}<a></span>
+		</div>
 
-    	<md-button ng-click="addToProject()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || !cardSource.isVerified || (addingToProject || cardSource.added || settingRole)" class="white-button" aria-label="Add to Project" flex>
-	        Add to Project
-	    </md-button>
+		<div layout="column">
+			<a href="" ng-if="(userData.isDmdiiAdmin || userData.isAdmin) && cardSource.isVerified && cardSource.id !== userData.accountId" ng-click="removeMember()">Remove from Organization</a>
+			<a href="" ng-if="cardSource.isVerified && cardSource.id === userData.accountId" ng-click="removeMember()">Leave Organization</a>
+			<a href="" ng-if="!cardSource.isVerified && cardSource.id === userData.accountId" ng-click="resendNotification()">Resend Notification</a>
+		</div>
 
-		<md-button ng-click="generateToken()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || cardSource.isVerified" class="white-button" aria-label="Verify" flex>
-	        Verify
-	    </md-button>
+		<div class="footer" layout="row" >
 
-		<md-button ng-click="declineMember()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || cardSource.isVerified" class="white-button" aria-label="Decline" flex>
-	        Decline
-	    </md-button>
+			<md-button class="white-button" ng-click="setRole()" aria-label="Select Role" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || !cardSource.isVerified || (settingRole || addingToProject)" flex>
+				Select Role
+			</md-button>
 
-	    <md-button aria-label="Project Link"
-	               flex
-	               class="page-href"
-	               ng-style="compareStyle"
-	               ng-show="addingToProject == false && cardSource.added"
-	               href="{{cardSource.lastProject.href}}">
-		    <span flex>
-		        Added to {{cardSource.lastProject.title}}
-		    </span>
-	    </md-button>
+	    	<md-button ng-click="addToProject()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || !cardSource.isVerified || (addingToProject || cardSource.added || settingRole)" class="white-button" aria-label="Add to Project" flex>
+		        Add to Project
+		    </md-button>
 
-	    <div class="adding-to-project" ng-show="addingToProject">
-	        <div layout="row" layout-align="center center" class="inner-add-to-project">
-	            <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">
-	                <ng-md-icon icon="close" size="17"></ng-md-icon>
-	            </md-button>
-	            <div layout="column" class="select-block" flex>
-	                <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
-	                    <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
-	                </md-select>
-	            </div>
-	            <md-button aria-label="Add"
-	                       layout="column"
-	                       ng-disabled="!projectModel"
-	                       class="md-raised add"
-	                       ng-click="saveToProject(projectModel)">Add
-	            </md-button>
-	        </div>
-	    </div>
+			<md-button ng-click="generateToken()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || cardSource.isVerified" class="white-button" aria-label="Verify" flex>
+		        Verify
+		    </md-button>
 
-		<div class="adding-to-project" ng-show="settingRole">
-	        <div layout="row" layout-align="center center" class="inner-add-to-project">
-	            <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelSetRole()">
-	                <ng-md-icon icon="close" size="17"></ng-md-icon>
-	            </md-button>
-	            <div layout="column" class="select-block" flex>
-	                <md-select placeholder="Select Role" ng-model="role">
-	                    <md-option ng-repeat="r in roles" ng-value="r">{{r}}</md-option>
-	                </md-select>
-	            </div>
-	            <md-button aria-label="Set"
-	                       layout="column"
-	                       ng-disabled="!role"
-	                       class="md-raised add"
-	                       ng-click="saveMember()">Set
-	            </md-button>
-	        </div>
-	    </div>
+			<md-button ng-click="declineMember()" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || cardSource.isVerified" class="white-button" aria-label="Decline" flex>
+		        Decline
+		    </md-button>
 
+		    <md-button aria-label="Project Link"
+		               flex
+		               class="page-href"
+		               ng-style="compareStyle"
+		               ng-show="addingToProject == false && cardSource.added"
+		               href="{{cardSource.lastProject.href}}">
+			    <span flex>
+			        Added to {{cardSource.lastProject.title}}
+			    </span>
+		    </md-button>
+
+		    <div class="adding-to-project" ng-show="addingToProject">
+		        <div layout="row" layout-align="center center" class="inner-add-to-project">
+		            <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">
+		                <ng-md-icon icon="close" size="17"></ng-md-icon>
+		            </md-button>
+		            <div layout="column" class="select-block" flex>
+		                <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
+		                    <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
+		                </md-select>
+		            </div>
+		            <md-button aria-label="Add"
+		                       layout="column"
+		                       ng-disabled="!projectModel"
+		                       class="md-raised add"
+		                       ng-click="saveToProject(projectModel)">Add
+		            </md-button>
+		        </div>
+		    </div>
+
+			<div class="adding-to-project" ng-show="settingRole">
+		        <div layout="row" layout-align="center center" class="inner-add-to-project">
+		            <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelSetRole()">
+		                <ng-md-icon icon="close" size="17"></ng-md-icon>
+		            </md-button>
+		            <div layout="column" class="select-block" flex>
+		                <md-select placeholder="Select Role" ng-model="role">
+		                    <md-option ng-repeat="r in roles" ng-value="r">{{r}}</md-option>
+		                </md-select>
+		            </div>
+		            <md-button aria-label="Set"
+		                       layout="column"
+		                       ng-disabled="!role"
+		                       class="md-raised add"
+		                       ng-click="saveMember()">Set
+		            </md-button>
+		        </div>
+		    </div>
+
+		</div>
+
+	<!-- close of 'details' -->
 	</div>
 
 </div>
