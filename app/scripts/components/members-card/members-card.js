@@ -227,13 +227,13 @@ angular.module('dmc.component.members-card', [
 
 						buildDisplayName();
 
-						$scope.descriptionLenLimit=50;
+						$scope.descriptionLenLimit=80;
 	          $scope.descriptionLenLimitPrompt = 'more'
 						$scope.cardSource.aboutMe = $scope.cardSource.aboutMe || ""
 
 	          $scope.switchDescriptionLenLimit = function() {
 	            if ($scope.descriptionLenLimit == $scope.cardSource.aboutMe.length) {
-	              $scope.descriptionLenLimit = 140
+	              $scope.descriptionLenLimit = 80
 	              $scope.descriptionLenLimitPrompt = 'more';
 	            } else {
 	              $scope.descriptionLenLimit = $scope.cardSource.aboutMe.length;
@@ -242,7 +242,7 @@ angular.module('dmc.component.members-card', [
 	          }
 
 	          $scope.descriptionTooLong = function() {
-	            return 140 < $scope.cardSource.aboutMe.length;
+	            return 80 < $scope.cardSource.aboutMe.length;
 	          }
 
 		}]
