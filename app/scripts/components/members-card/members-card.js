@@ -218,10 +218,10 @@ angular.module('dmc.component.members-card', [
 
 						var buildDisplayName = function(){
 							var fullName = $scope.cardSource.firstName+" "+$scope.cardSource.lastName
-							if (fullName.length < 39) {
+							if (fullName.length < 37) {
 								$scope.displayName = fullName
 							} else {
-								$scope.displayName = fullName.substring(0,37)+'...'
+								$scope.displayName = fullName.substring(0,35)+'...'
 							}
 						}
 

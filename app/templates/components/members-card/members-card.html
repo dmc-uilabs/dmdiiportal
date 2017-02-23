@@ -1,4 +1,4 @@
-<div class="members-card" layout="column" ng-hide="isRemoved">
+<div class="members-card" layout="column" ng-hide="isRemoved" ng-class="{admin: role=='ADMIN'}">
 	<span ng-if="role=='ADMIN'" class="member-type">
 		ADMIN
 	</span>
