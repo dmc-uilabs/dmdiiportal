@@ -3,51 +3,97 @@ $line-height: 1.1;
 $lines-to-show: 4;
 
 .members-card{
+	width: 216px;
 	border: 1px solid grey;
 	border-radius: 3px;
 	padding: 0;
+	&.admin{
+		border: 1px solid map-get($colors, secondary);
+		-moz-box-shadow:    inset 0 0 3px map-get($colors, secondary);
+		-webkit-box-shadow: inset 0 0 3px map-get($colors, secondary);
+		box-shadow:         inset 0 0 3px map-get($colors, secondary);
+	}
+	.member-type{
+		position: absolute;
+		margin-top: 10px;
+		margin-left: 10px;
+		color: white;
+		font-size: .8em;
+		background: map-get($colors, secondary);
+		padding: 3px;
+		border-radius: 2px;
+	}
   .header{
     a{
       color: inherit;
     }
   }
 	.info{
-		padding: 0 8px;
-		h4{
+		min-height: 84px;
+		padding: 8px;
+		.name{
+			text-align: center;
 			font-weight: normal;
 			margin: 6px 0;
+			padding-top: 7px;
+			height: 50px;
+			text-overflow: clip;
+			// Below is for wrapping excessively long words
+			/* These are technically the same, but use both */
+			overflow-wrap: break-word;
+			word-wrap: break-word;
+			-ms-word-break: break-all;
+			/* This is the dangerous one in WebKit, as it breaks things wherever */
+			word-break: break-all;
+			/* Instead use this non-standard one: */
+			word-break: break-word;
+			/* Adds a hyphen where the word breaks, if supported (No Blink) */
+			-ms-hyphens: auto;
+			-moz-hyphens: auto;
+			-webkit-hyphens: auto;
+			hyphens: auto;
+		}
+		.detailsToggle{
+			color: map-get($colors, secondary);
+			float: right;
 		}
     .stars{
       margin: 6px 0;
     }
-    .contact{
-      h4{
-        margin-left: 16px;
-      }
-    }
 	}
-	.description{
-		margin: 8px;
-    white-space: initial;
-    display: block; /* Fallback for non-webkit */
-    display: -webkit-box;
-    -webkit-line-clamp: $lines-to-show;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .footer{
-    background-color: #666;
-    .white-button{
-      background-color: #909090;
-    }
-    .md-button{
-      margin: 6px;
-      height: 47px;
-      min-height: 47px;
-      text-transform: none;
-      font-size: 13px;
-      line-height: 47px;
-    }
-  }
+	.img-container{
+		border-radius: 4px;
+		width: 108px;
+		height: 108px;
+		overflow: hidden;
+		img{
+			margin:auto;
+		}
+	}
+	.details{
+		div{
+			margin: 5px 0px;
+		}
+		.contact-info{
+			font-weight: bold;
+			padding-bottom: 5px;
+			// color: map-get($colors, secondary)
+		}
+		border-top: 1px solid lightgrey;
+		padding: 8px;
+		.footer{
+			background-color: #666;
+			.white-button{
+				background-color: #909090;
+			}
+			.md-button{
+				margin: 6px;
+				height: 47px;
+				min-height: 47px;
+				text-transform: none;
+				font-size: 13px;
+				line-height: 47px;
+			}
+		}
+	}
 }
