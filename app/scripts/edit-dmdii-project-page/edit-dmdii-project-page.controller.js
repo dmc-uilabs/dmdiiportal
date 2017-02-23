@@ -182,7 +182,26 @@ angular.module('dmc.edit-project')
                     name:'Cost Systems',
                     code: 'CS'
                 }
-
+                {
+                    id: 7,
+                    name:'Design – Process/Product Development – Systems Engineering',
+                    code: 'DPS'
+                }
+                {
+                    id: 8,
+                    name:'Future Factory',
+                    code: 'FF'
+                }
+                {
+                    id: 9,
+                    name:'Agile Resilient Supply Chain',
+                    code: 'ARS'
+                }
+                {
+                    id: 10,
+                    name:'Cyber Security in Manufacturing',
+                    code: 'CSM'
+                }
             ]
 
             $scope.statuses = [
