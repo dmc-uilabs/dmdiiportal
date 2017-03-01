@@ -72,58 +72,22 @@ angular.module('dmc.onboarding')
             }
         ];
 
-        $scope.states = [
-            'AL|Alabama',
-            'AK|Alaska',
-            'AZ|Arizona',
-            'AR|Arkansas',
-            'CA|California',
-            'CO|Colorado',
-            'CT|Connecticut',
-            'DE|Delaware',
-            'FL|Florida',
-            'GA|Georgia',
-            'HI|Hawaii',
-            'ID|Idaho',
-            'IL|Illinois',
-            'IN|Indiana',
-            'IA|Iowa',
-            'KS|Kansas',
-            'KY|Kentucky',
-            'LA|Louisiana',
-            'ME|Maine',
-            'MD|Maryland',
-            'MA|Massachusetts',
-            'MI|Michigan',
-            'MN|Minnesota',
-            'MS|Mississippi',
-            'MO|Missouri',
-            'MT|Montana',
-            'NE|Nebraska',
-            'NV|Nevada',
-            'NH|New Hampshire',
-            'NJ|New Jersey',
-            'NM|New Mexico',
-            'NY|New York',
-            'NC|North Carolina',
-            'ND|North Dakota',
-            'OH|Ohio',
-            'OK|Oklahoma',
-            'OR|Oregon',
-            'PA|Pennsylvania',
-            'RI|Rhode Island',
-            'SC|South Carolina',
-            'SD|South Dakota',
-            'TN|Tennessee',
-            'TX|Texas',
-            'UT|Utah',
-            'VT|Vermont',
-            'VA|Virginia',
-            'WA|Washington',
-            'WV|West Virginia',
-            'WI|Wisconsin',
-            'WY|Wyoming'
-        ];
+
+				var getJ = function() {
+						ajax.get(dataFactory.getStaticJSON('states.js'), {}, function(response){
+
+								$scope.states = $.map(response.data, function( n,index ) {
+										var name = n.split('|');
+										return {
+												id : index+1,
+												abbr : name[0],
+												name : name[1]
+										}
+								});
+
+						});
+				}
+				getJ();
 
         $scope.categoriesTiers = [
             {
@@ -131,15 +95,6 @@ angular.module('dmc.onboarding')
                 title : 'Tier 4 Academic / Nonprofit'
             }
         ];
-
-        $scope.states = $.map($scope.states, function( n,index ) {
-            var name = n.split('|');
-            return {
-                id : index+1,
-                abbr : name[0],
-                name : name[1]
-            }
-        });
 
         $scope.preferredMethods = [
             {

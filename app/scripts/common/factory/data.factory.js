@@ -3,6 +3,7 @@
 angular.module('dmc.data',[])
     .factory('dataFactory', function ($window,$location) {
         var baseServer = $window.apiUrl ? $window.apiUrl : '/static/?p=';
+        var baseServerStatic = $window.apiUrl ? $window.apiUrl : '/static';
         var localhost = ($location.$$absUrl.indexOf('http://localhost') != -1  || $location.$$absUrl.indexOf(':9000') != -1 ? 'http://localhost:3000/' : '');
         localhost = $window.apiUrl ? $window.apiUrl + '/' : localhost;
         var urlSocketServer = 'http://localhost:3000/';
@@ -66,6 +67,9 @@ angular.module('dmc.data',[])
             },
             getUrlChangeService: function(id){
                 return baseServer+'/change_service'+appendId(id);
+            },
+            getStaticJSON: function(id){
+                return baseServerStatic+'/staticJSON.php?title='+id;
             },
             getUrlAllTasks: function(id){
                 // return baseServer+'/tasks'+appendId(id);
