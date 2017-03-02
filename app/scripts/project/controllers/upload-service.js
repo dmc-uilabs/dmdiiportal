@@ -1,15 +1,19 @@
 angular.module('dmc.project')
     .controller('projectUploadServicesCtrl', [
         '$scope',
+        'ajax',
         '$state',
         'projectData',
         'serviceModel',
         'DMCUserModel',
+        'dataFactory',
         function ($scope,
+                  ajax,
                   $state,
                   projectData,
                   serviceModel,
-                  DMCUserModel) {
+                  DMCUserModel,
+                  dataFactory ) {
 
             $scope.projectData = projectData;
             $scope.page1 = true;
@@ -29,43 +33,13 @@ angular.module('dmc.project')
             $scope.addTags = [];
             $scope.removeTags = [];
 
-            $scope.serviceTypes = [{
-                  tag : 'Design Analysis',
-                  name : 'Design Analysis'
-              }, {
-                  tag: 'Cost Analysis',
-                  name : 'Cost Analysis'
-              }, {
-                  tag: 'Manufacturing Analysis',
-                  name : 'Manufacturing Analysis'
-              }, {
-                  tag: 'Supply Chain',
-                  name : 'Supply Chain'
-              }, {
-                  tag: 'Assembly',
-                  name : 'Assembly'
-              }, {
-                  tag: 'Inspection & Qualification',
-                  name : 'Inspection & Qualification'
-              }, {
-                  tag: 'Distribution',
-                  name : 'Distribution'
-              }, {
-                  tag: 'Support & Service',
-                  name : 'Support & Service'
-              }, {
-                  tag: 'Data & Analytics',
-                  name : 'Data & Analytics'
-              }, {
-                  tag: 'IoT/IIoT',
-                  name : 'IoT/IIoT'
-              }, {
-                  tag : 'Fundamental Calculations',
-                  name : 'Fundamental Calculations'
-              }, {
-                  tag: 'Education & Workforce',
-                  name : 'Education & Workforce'
-              }];
+            var getServiceTypes = function() {
+                ajax.get(dataFactory.getStaticJSON('serviceTypes.json'), {}, function(response){
+                    $scope.serviceTypes = response.data;
+
+                });
+            }
+            getServiceTypes();
 
             $scope.userData = DMCUserModel.getUserData();
             $scope.userData.then(function(result){

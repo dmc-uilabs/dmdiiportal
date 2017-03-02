@@ -36,44 +36,13 @@ angular.module('dmc.project')
             $scope.currentPage = 1;
             $scope.isDisabledFirstPage = true;
             $scope.isDisabledSecondPage = true;
+            var getServiceTypes = function() {
+                ajax.get(dataFactory.getStaticJSON('serviceTypes.json'), {}, function(response){
+                    $scope.serviceTypes = response.data;
 
-            $scope.serviceTypes = [{
-                  tag : 'Design Analysis',
-                  name : 'Design Analysis'
-              }, {
-                  tag: 'Cost Analysis',
-                  name : 'Cost Analysis'
-              }, {
-                  tag: 'Manufacturing Analysis',
-                  name : 'Manufacturing Analysis'
-              }, {
-                  tag: 'Supply Chain',
-                  name : 'Supply Chain'
-              }, {
-                  tag: 'Assembly',
-                  name : 'Assembly'
-              }, {
-                  tag: 'Inspection & Qualification',
-                  name : 'Inspection & Qualification'
-              }, {
-                  tag: 'Distribution',
-                  name : 'Distribution'
-              }, {
-                  tag: 'Support & Service',
-                  name : 'Support & Service'
-              }, {
-                  tag: 'Data & Analytics',
-                  name : 'Data & Analytics'
-              }, {
-                  tag: 'IoT/IIoT',
-                  name : 'IoT/IIoT'
-              }, {
-                  tag : 'Fundamental Calculations',
-                  name : 'Fundamental Calculations'
-              }, {
-                  tag: 'Education & Workforce',
-                  name : 'Education & Workforce'
-              }];
+                });
+            }
+            getServiceTypes();
 
             // First Page
             $scope.publishService = {
