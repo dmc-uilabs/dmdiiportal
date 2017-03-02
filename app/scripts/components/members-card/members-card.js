@@ -9,7 +9,8 @@ angular.module('dmc.component.members-card', [
 		replace: true,
 		scope: {
 			cardSource: '=',
-			companyId: '='
+			companyId: '=',
+			fromSearch: '='
 		},
 		templateUrl: 'templates/components/members-card/members-card.html',
 		controller: ['$scope', '$mdDialog', 'ajax', 'dataFactory', 'DMCUserModel', 'toastModel', function($scope, $mdDialog, ajax, dataFactory, DMCUserModel, toastModel){
@@ -218,6 +219,7 @@ angular.module('dmc.component.members-card', [
 
 						var buildDisplayName = function(){
 							var fullName = $scope.cardSource.firstName+" "+$scope.cardSource.lastName
+							// fullName = fullName || $scope.cardSource.displayName
 							if (fullName.length < 37) {
 								$scope.displayName = fullName
 							} else {
