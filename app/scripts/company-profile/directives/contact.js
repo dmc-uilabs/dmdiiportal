@@ -40,7 +40,6 @@ angular.module('dmc.company-profile').
 
                 var getJ = function() {
         						ajax.get(dataFactory.getStaticJSON('states.json'), {}, function(response){
-
                         $scope.states = $.map(response.data, function( n,index ) {
                             var name = n.split('|');
                             return {
@@ -89,16 +88,6 @@ angular.module('dmc.company-profile').
                         }
                     },ev);
                 };
-
-                // $scope.states = $.map($scope.states, function( n,index ) {
-                //     var name = n.split('|');
-                //     return {
-                //         id : index+1,
-                //         abbr : name[0],
-                //         name : name[1]
-                //     }
-                // });
-
                 $scope.preferredMethods = [
                     {
                         id : 1,
