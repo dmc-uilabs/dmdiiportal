@@ -1,15 +1,16 @@
 <div class="container members-box" layout="row" >
 
-    <div class="content-column" layout="column" flex='15'>
+    <!-- <div class="content-column" layout="column" flex='15'>
         <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
         <dmc-products-filter state-name="'members_search'" ng-if="isSearch"></dmc-products-filter>
-    </div>
+    </div> -->
         <!-- Left Content Column -->
     <div class="members" layout="column" flex>
         <md-content layout="row" layout-align="center">
             <div class="newsAndEvents" flex="95" layout="column">
                 <div class=" slim-margin">
                     <p class="news">Recent News</p>
+
                     <div class="slim-margin" ng-repeat="item in news">
                         <div layout="row" flex="75">
                             <div layout="column">
@@ -101,9 +102,24 @@
 
         <md-divider></md-divider>
 
-        <md-content class="members-search" layout="row" layout-align="left center">
+        <div class="search-filter">
 
-            <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
+        <md-content class="dmdii-projects-search" layout="row" layout-align="space-around center">
+          <span flex></span>
+          <md-input-container class="show-filter-input-container">
+            <label>Show</label>
+            <md-select ng-model="sizeModule" ng-change="selectItemDropDown()">
+              <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >
+                {{item.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </md-content>
+
+        <md-content class="members-search" layout="row" layout-align="space-around center">
+
+          <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
+            <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="35">
                 <div layout="column">
                     <div layout="row">
                         <div layout="column" flex>
@@ -122,16 +138,12 @@
                     </div>
                 </div>
             </form>
-            <span flex></span>
-            <md-input-container flex=class="show-filter-input-container">
-                <label>Show</label>
-                <md-select ng-model="sizeModule" ng-change="selectItemDropDown()">
-                    <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >
-                        {{item.name}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
         </md-content>
+
+      </div>
+
+        <!-- <md-content>
+        </md-content> -->
 
         <!-- <span flex></span> -->
         <md-content layout="column">
@@ -156,23 +168,48 @@
                         <tbody>
                         <tr ng-repeat="member in members.arr">
                             <td class="profile-logo">
-                                <img ng-src="{{member.organization.logoImage}}" ng-if="member.organization.logoImage">
+                                <!-- <img ng-src="{{member.organization.logoImage}}" ng-if="member.organization.logoImage"> -->
+                                <img ng-src="{{member.organization.logoImage ? member.organization.logoImage : 'images/icon-company-lg.svg'}}">
                             </td>
                             <td class="title-member">
                                 <h3><a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a></h3>
-                                <p class="description">{{member.organization.description}}</p>
+                                <p class="description" more-less
+                                  element-text="{{member.organization.description}}"
+                                  element-text-limit="140">
+                                </p>
                             </td>
                             <td>{{member.dmdiiType.dmdiiTypeCategory.category}}</td>
                             <td>{{member.dmdiiType.tier}}</td>
                             <td>
-                                <a ng-repeat="project in activeProjects[member.id] track by $index" ng-href="{{'/dmdii-project-page.php#/' + project.id}}">{{project.projectTitle}}{{$last ? '' : ', '}}</a>
+
+                                <div layout="row" ng-repeat="project in activeProjects[member.id] track by $index">
+                                  <b>-</b>
+                                  <a more-less
+                                     element-text ="{{project.projectTitle}}"
+                                     element-text-limit="30"
+                                     ng-href="{{'/dmdii-project-page.php#/' + project.id}}">
+                                      <!-- {{project.projectTitle}} -->
+                                  </a>
+                                </div>
                             </td>
 
                             <td>
-                                <a ng-repeat="tag in member.organization.areasOfExpertise track by $index" ng-href="{{getUrl('expertiseTags', tag.id)}}">{{tag.name}}{{$last ? '' : ', '}}</a>
+                                <div layout="row" ng-repeat="tag in member.organization.areasOfExpertise track by $index">
+                                  <b>-</b>
+                                  <a more-less
+                                     ng-href="{{getUrl('expertiseTags', tag.id)}}"
+                                     element-text="{{tag.name}}"
+                                     element-text-limit="30">
+                                   </a>
                             </td>
                             <td>
-                                <a ng-repeat="tag in member.organization.desiredAreasOfExpertise track by $index" ng-href="{{getUrl('desiredExpertiseTags', tag.id)}}">{{tag.name}}{{$last ? '' : ', '}}</a>
+                                <div layout="row" ng-repeat="tag in member.organization.desiredAreasOfExpertise track by $index">
+                                  <b>-</b>
+                                  <a more-less
+                                     ng-href="{{getUrl('desiredExpertiseTags', tag.id)}}"
+                                     element-text="{{tag.name}}"
+                                     element-text-limit="30">
+                                   </a>
                             </td>
                         </tr>
                         <tr ng-if="members.arr.length == 0">

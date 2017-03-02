@@ -1,0 +1,23 @@
+<div class="horizontal-menu" layout="row">
+  <!-- <h1 ng-hide="treeSource.title == false || treeSource.length == 0">{{treeSource.title}}!</h1> -->
+  <div class="menu-title" layout="column">
+    <div class="title">FILTER BY:</div>
+    <a class="category clear-button" ng-href="{{clearUrl}}">Clear Filters</a>
+  </div>
+  <!-- <ul dmc-horizontal-menu-detail menu-source="treeSource.data" selected="selected"></ul> -->
+
+  <div layout="row">
+
+    <div class="category-column"  layout="column" ng-repeat="level in treeSource.data">
+      <div class="title">
+        {{level.title}}
+      </div>
+
+      <div class="category" ng-repeat="category in level.categories">
+        <a ng-class="{'selected' : category.opened}" ng-href="{{category.href}}">{{category.title}}</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
