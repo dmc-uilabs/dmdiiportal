@@ -2,7 +2,7 @@
 <md-content class="company-profile-padding">
 <div layout="row">
     <div flex="20">
-        <img class="company-profile-image" ng-src="{{company.logoImage.documentUrl}}">
+        <img class="company-profile-image" ng-src="{{company.logoImage.documentUrl ? company.logoImage.documentUrl : 'images/icon-company-lg.svg'}}">
     </div>
     <div flex="80" layout="column" class="company-profile-header">
         <div layout="row" layout-align="center center">
@@ -75,8 +75,8 @@
         <div layout="row" class="text-row">
             <div layout="column" flex="100" class="padding-left8">
                 <h2>Awards Received</h2>
-                <div layout="row" layout-wrap>
-                    <div class="pad-left-10" layout="column" flex="20" ng-repeat="award in company.awards">
+                <div layout="row" layout-align="space-around start" layout-wrap>
+                    <div style="width: 150px;" class="pad-left-10" layout="column"ng-repeat="award in company.awards">
                         <h4><a href="{{award.link}}">{{award.name}}</a></h4>
                         <p>{{award.description}}</p>
                     </div>
