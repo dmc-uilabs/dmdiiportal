@@ -1,7 +1,7 @@
 angular.module('dmc.project')
     .controller('projectEditServicesCtrl', [
-        '$scope', '$state','domeModel','DMCUserModel', 'projectData', 'serviceModel', 'serviceData', '$rootScope',
-        function ($scope, $state, domeModel, DMCUserModel, projectData, serviceModel, serviceData, $rootScope) {
+        '$scope','ajax', '$state','domeModel','DMCUserModel', 'projectData', 'serviceModel', 'serviceData', '$rootScope','dataFactory',
+        function ($scope,ajax, $state, domeModel, DMCUserModel, projectData, serviceModel, serviceData, $rootScope,dataFactory) {
 
             $scope.projectData = projectData;
             $scope.page1 = true;
@@ -30,44 +30,13 @@ angular.module('dmc.project')
             $scope.selectedInterface = null;
             $scope.addTags=[];
             $scope.removeTags = [];
+            var getServiceTypes = function() {
+                ajax.get(dataFactory.getStaticJSON('serviceTypes.json'), {}, function(response){
+                    $scope.serviceTypes = response.data;
 
-            $scope.serviceTypes = [{
-                  tag : 'Design Analysis',
-                  name : 'Design Analysis'
-              }, {
-                  tag: 'Cost Analysis',
-                  name : 'Cost Analysis'
-              }, {
-                  tag: 'Manufacturing Analysis',
-                  name : 'Manufacturing Analysis'
-              }, {
-                  tag: 'Supply Chain',
-                  name : 'Supply Chain'
-              }, {
-                  tag: 'Assembly',
-                  name : 'Assembly'
-              }, {
-                  tag: 'Inspection & Qualification',
-                  name : 'Inspection & Qualification'
-              }, {
-                  tag: 'Distribution',
-                  name : 'Distribution'
-              }, {
-                  tag: 'Support & Service',
-                  name : 'Support & Service'
-              }, {
-                  tag: 'Data & Analytics',
-                  name : 'Data & Analytics'
-              }, {
-                  tag: 'IoT/IIoT',
-                  name : 'IoT/IIoT'
-              }, {
-                  tag : 'Fundamental Calculations',
-                  name : 'Fundamental Calculations'
-              }, {
-                  tag: 'Education & Workforce',
-                  name : 'Education & Workforce'
-              }];
+                });
+            }
+            getServiceTypes();
 
             $scope.userData = DMCUserModel.getUserData();
             $scope.userData.then(function(result){
