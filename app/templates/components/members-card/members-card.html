@@ -14,7 +14,7 @@
 	<div layout layout-align="center center">
 		<div class="img-container" flex="50">
 			<img ng-if="cardSource.image" ng-src="{{cardSource.image}}">
-			<img ng-if="!cardSource.image" ng-src="/uploads/profile/1/20151222084711000000.jpg">
+			<img ng-if="!cardSource.image" ng-src="images/icon-profile-lg.svg">
 		</div>
 	</div>
 	<div layout="column" class="info">
@@ -22,12 +22,12 @@
 			<!-- <h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{cardSource.firstName + ' ' + cardSource.lastName}}</a></h3> -->
 			<h3><a ng-href="{{'profile.php#/'+cardSource.id}}">{{displayName}}</a></h3>
 		</div>
-		<!-- <h4>{{cardSource.jobTitle}}</h4> -->
-		<div>
-			<a class="detailsToggle" ng-init="showDetails=false" ng-click="showDetails = !showDetails">
-				Details
-			</a>
+		<div ng-if="fromSearch" class="companyName">
+			<div>
+				<a ng-href="{{'company-profile.php#/profile/'+cardSource.companyId}}">{{cardSource.companyName}}</a>
+			</div>
 		</div>
+
 	</div>
 
 
@@ -48,7 +48,7 @@
 			<a href="" ng-if="!cardSource.isVerified && cardSource.id === userData.accountId" ng-click="resendNotification()">Resend Notification</a>
 		</div>
 
-		<div class="footer" layout="row" >
+		<div ng-if="!fromSearch" class="footer" layout="row" >
 
 			<md-button class="white-button" ng-click="setRole()" aria-label="Select Role" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || !cardSource.isVerified || (settingRole || addingToProject)" flex>
 				Select Role
