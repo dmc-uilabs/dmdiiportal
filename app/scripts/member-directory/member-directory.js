@@ -22,6 +22,7 @@ angular.module('dmc.members', [
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.component.treemenu',
+    'dmc.component.horizontalmenu',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
     'datamaps'

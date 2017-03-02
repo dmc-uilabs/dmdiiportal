@@ -23,6 +23,7 @@ angular.module('dmc.dmdiiProjects', [
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.component.treemenu',
+    'dmc.component.horizontalmenu',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs'
 ])
