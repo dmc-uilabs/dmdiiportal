@@ -15,9 +15,11 @@
     }
   }
   &__header{
+    text-align: center;
     padding-bottom: 0;
     margin-bottom: 0;
-    height: 55px;
+    height: 5.5em;
+    overflow: hidden;
     .member-name{
       margin: 3px 0;
     }
