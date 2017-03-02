@@ -219,7 +219,6 @@ angular.module('dmc.component.members-card', [
 
 						var buildDisplayName = function(){
 							var fullName = $scope.cardSource.firstName+" "+$scope.cardSource.lastName
-							// fullName = fullName || $scope.cardSource.displayName
 							if (fullName.length < 37) {
 								$scope.displayName = fullName
 							} else {
@@ -246,7 +245,7 @@ angular.module('dmc.component.members-card', [
 	          $scope.descriptionTooLong = function() {
 	            return 80 < $scope.cardSource.aboutMe.length;
 	          }
-						
+
 		}]
 	};
 })
