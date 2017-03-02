@@ -61,8 +61,11 @@ $lines-to-show: 4;
 			hyphens: auto;
 		}
 		.detailsToggle{
-			color: map-get($colors, secondary);
-			float: right;
+			height: 15px;
+			text-align: right;
+			a{
+				color: map-get($colors, secondary);
+			}
 		}
     .stars{
       margin: 6px 0;

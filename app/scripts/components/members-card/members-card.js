@@ -247,6 +247,13 @@ angular.module('dmc.component.members-card', [
 	            return 80 < $scope.cardSource.aboutMe.length;
 	          }
 
+
+						$scope.hasDetails = function() {
+							var hasEmail = $scope.cardSource.userContactInfo.userPublicContactInfo && $scope.cardSource.userContactInfo.userPublicContactInfo.email && $scope.cardSource.userContactInfo.userPublicContactInfo.email.length > 0
+							var hasAboutMe = $scope.cardSource.aboutMe && $scope.cardSource.aboutMe.length > 0
+
+							return hasEmail || hasAboutMe
+						}
 		}]
 	};
 })

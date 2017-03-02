@@ -28,13 +28,14 @@
 			</div>
 		</div>
 
+		<div class="detailsToggle">
+			<a ng-init="showDetails=false" ng-click="showDetails = !showDetails" ng-show="userData.isDmdiiAdmin || userData.isAdmin || hasDetails()">
+				Details
+			</a>
+		</div>
+
 	</div>
 
-	<div>
-		<a class="detailsToggle" ng-init="showDetails=false" ng-click="showDetails = !showDetails">
-			Details
-		</a>
-	</div>
 
 	<div ng-show="showDetails" class="details">
 
