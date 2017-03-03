@@ -262,10 +262,16 @@ div[dmc-top-header]{
 }
 
 .header-banner{
-  padding: 5px 0px;
-  max-width: 1200px;
-  max-width: 80%;
-  margin: auto;
+  background: black;
+  padding: 15px 0px;
+  .banner-msg{
+    color: $membersOnlyHeader;
+    border-left: 4px solid $membersOnlyHeader;
+    padding: 0px 10px;
+    max-width: 1200px;
+    max-width: 80%;
+    margin: auto;
+  }
 }
 
 .header-marquee{

@@ -1,9 +1,18 @@
-<div class="space-header"></div>
+<div class="space-header">
+</div>
+<div class="header-banner" ng-if="showBanner" style="opacity: 0.0;">
+  <div class="banner-msg">
+    {{bannerMessage}}
+  </div>
+</div>
+
 <header class='main-header' layout="column"  ng-click="closeMenu()">
 
 <!-- banner message -->
 <div class="header-banner" ng-if="showBanner" >
-  some other stuff is in here {{bannerMessage}}!!
+  <div class="banner-msg">
+    {{bannerMessage}}
+  </div>
 </div>
 <!-- upper part of header -->
 <div class="top-header header-padding" layout="row">
@@ -13,10 +22,7 @@
                 <a href="index.php"><img ng-src="images/logo.png"></a>
             </div>
 
-            <!-- <span flex></span> -->
-            <div class="header-marquee" flex>
-              <p>Banner Text</p>
-            </div>
+            <span flex></span>
 
             <div layout="row" class="info-button" ng-if="$root.isLogged">
                 <!-- Service alerts -->

@@ -124,8 +124,8 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         }
 
         $scope.bannerMessage = 'Lorem ipsum dolor sit amet, per quod iuvaret eloquentiam in, no has dicta noster. Vitae nonumy melius no qui, justo dicta error no sea. In eos eius insolens principes. Agam falli no duo. Eirmod legimus te mea, in qui diceret offendit, ea cum euripidis prodesset persecuti. Meis possim latine ex mei, mea ex assum inani accumsan.';
-        $scope.showBanner = false
-        // $scope.bannerMessage.length>0;
+        // $scope.showBanner = false
+        $scope.showBanner = $scope.bannerMessage.length>0;
     }
   };
 }]);
