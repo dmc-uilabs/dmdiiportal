@@ -28,7 +28,7 @@
 			</div>
 		</div>
 
-		<div class="detailsToggle">
+		<div ng-hide="fromSearch" class="detailsToggle">
 			<a ng-init="showDetails=false" ng-click="showDetails = !showDetails">
 				Details
 			</a>
@@ -37,7 +37,7 @@
 	</div>
 
 
-	<div ng-show="showDetails" class="details">
+	<div ng-if="showDetails && !fromSearch" class="details">
 
 		<div ng-if="cardSource.userContactInfo.userPublicContactInfo.email" class="contact-info">
 			{{cardSource.userContactInfo.userPublicContactInfo.email}}
