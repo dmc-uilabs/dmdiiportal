@@ -1,8 +1,8 @@
 <div class="container dmdii-projects" layout="row" >
-    <div class="content-column" layout="column" flex='20'>
+    <!-- <div class="content-column" layout="column" flex='20'>
         <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
         <dmc-products-filter state-name="dmdii_projects_search'" ng-if="isSearch"></dmc-products-filter>
-    </div>
+    </div> -->
         <!-- Left Content Column -->
     <div class="members" layout="column" flex>
         <md-content class="md-padding" layout-padding>
@@ -70,9 +70,23 @@
 
         </md-content>
 
-        <md-content class="dmdii-projects-search" layout="row" layout-align="left center">
 
-            <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
+        <md-content class="dmdii-projects-search" layout="row" layout-align="space-around center">
+          <span flex></span>
+          <md-input-container class="show-filter-input-container">
+            <label>Show</label>
+            <md-select ng-model="sizeModule" ng-change="selectItemDropDown()">
+              <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >
+                {{item.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </md-content>
+
+        <md-content class="dmdii-projects-search" layout="row" layout-align="space-around center" layout-wrap>
+          <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
+
+            <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="35">
                 <div layout="column">
                     <div layout="row">
                         <div layout="column" flex>
@@ -91,16 +105,9 @@
                     </div>
                 </div>
             </form>
-            <span flex></span>
-            <md-input-container flex=class="show-filter-input-container">
-                <label>Show</label>
-                <md-select ng-model="sizeModule" ng-change="selectItemDropDown()">
-                    <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >
-                        {{item.name}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
+            <!-- <span flex></span> -->
         </md-content>
+
 
         <!-- <span flex></span> -->
         <md-content layout="column">
