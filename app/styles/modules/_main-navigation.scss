@@ -261,6 +261,20 @@ div[dmc-top-header]{
   }
 }
 
+.header-banner{
+  background: black;
+  padding: 15px 40px;
+  .banner-msg{
+    color: red;
+    font-size: 1.5em;
+    border-left: 4px solid $membersOnlyHeader;
+    padding: 0px 10px;
+    max-width: 1170px;
+    margin: auto;
+  }
+}
+
+
 .header-menu-content.md-default-theme{
   a.md-button {
     line-height: 3.2;

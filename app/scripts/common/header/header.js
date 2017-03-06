@@ -122,6 +122,10 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         function apply() {
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         }
+
+        $scope.bannerMessage = angular.element('#bannerMsg')[0].innerText;
+        $scope.showBanner = $scope.bannerMessage && $scope.bannerMessage != '_';
+
     }
   };
 }]);

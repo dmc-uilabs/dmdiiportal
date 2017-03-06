@@ -1,5 +1,22 @@
-&<div class="space-header"></div>
+<div class="space-header">
+</div>
+
+<div style="display: none;" id="bannerMsg">_</div>
+
+<div class="header-banner" ng-if="showBanner" style="opacity: 0.0;">
+  <div class="banner-msg">
+    {{bannerMessage}}
+  </div>
+</div>
+
 <header class='main-header' layout="column"  ng-click="closeMenu()">
+
+<!-- banner message -->
+<div class="header-banner" ng-if="showBanner" >
+  <div class="banner-msg">
+    {{bannerMessage}}
+  </div>
+</div>
 <!-- upper part of header -->
 <div class="top-header header-padding" layout="row">
     <div class="top-header-inner" layout="column">
