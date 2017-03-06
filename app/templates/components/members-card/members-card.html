@@ -37,7 +37,7 @@
 	</div>
 
 
-	<div ng-if="showDetails && !fromSearch" class="details">
+	<div ng-show="showDetails && !fromSearch" class="details">
 
 		<div ng-if="cardSource.userContactInfo.userPublicContactInfo.email" class="contact-info">
 			{{cardSource.userContactInfo.userPublicContactInfo.email}}
@@ -54,7 +54,7 @@
 			<a href="" ng-if="!cardSource.isVerified && cardSource.id === userData.accountId" ng-click="resendNotification()">Resend Notification</a>
 		</div>
 
-		<div ng-if="!fromSearch" class="footer" layout="row" >
+		<div ng-show="!fromSearch" class="footer" layout="row" >
 
 			<md-button class="white-button" ng-click="setRole()" aria-label="Select Role" ng-hide="(!userData.isDmdiiAdmin && !userData.isAdmin) || !cardSource.isVerified || (settingRole || addingToProject)" flex>
 				Select Role
