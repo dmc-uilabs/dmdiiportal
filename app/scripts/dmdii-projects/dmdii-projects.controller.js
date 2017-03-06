@@ -236,7 +236,13 @@ angular.module('dmc.dmdiiProjects')
                         1: 0,
                         2: 0,
                         3: 0,
-                        4: 0
+                        4: 0,
+                        5: 0,
+                        6: 0,
+                        7: 0,
+                        8: 0,
+                        9: 0,
+                        10: 0
                     }
                 };
 
@@ -486,7 +492,64 @@ angular.module('dmc.dmdiiProjects')
                                     'opened' : isOpened('thrustId', '2'),
                                     'href' : getUrl('thrustId', '2'),
                                     'categories': []
-                                }
+                                },
+                                {
+                                    'id': 34,
+                                    'title': 'Adaptive Vehicle Make',
+                                    'tag' : '4',
+                                    'opened' : isOpened('thrustId', '4'),
+                                    'href' : getUrl('thrustId', '4'),
+                                    'categories': []
+                                 },
+                                 {
+                                    'id': 35,
+                                    'title': 'Digital Manufacturing Commons',
+                                    'tag' : '5',
+                                    'opened' : isOpened('thrustId', '5'),
+                                    'href' : getUrl('thrustId', '5'),
+                                    'categories': []
+                                },
+                                {
+                                    'id': 36,
+                                    'title': 'Cost Systems',
+                                    'tag' : '6',
+                                    'opened' : isOpened('thrustId', '6'),
+                                    'href' : getUrl('thrustId', '6'),
+                                    'categories': []
+                                },
+                                {
+                                   'id': 37,
+                                   'title': 'Design – Process/Product Development – Systems Engineering',
+                                   'tag' : '7',
+                                   'opened' : isOpened('thrustId', '7'),
+                                   'href' : getUrl('thrustId', '7'),
+                                   'categories': []
+                                 },
+                                 {
+                                    'id': 38,
+                                    'title': 'Future Factory',
+                                    'tag' : '8',
+                                    'opened' : isOpened('thrustId', '8'),
+                                    'href' : getUrl('thrustId', '8'),
+                                    'categories': []
+                                 },
+                                 {
+                                    'id': 39,
+                                    'title': 'Agile Resilient Supply Chain',
+                                    'tag' : '9',
+                                    'opened' : isOpened('thrustId', '9'),
+                                    'href' : getUrl('thrustId', '9'),
+                                    'categories': []
+                                 },
+                                 {
+                                    'id': 40,
+                                    'title': 'Cyber Security in Manufacturing',
+                                    'tag' : '10',
+                                    'opened' : isOpened('thrustId', '10'),
+                                    'href' : getUrl('thrustId', '10'),
+                                    'categories': []
+                                  }
+
                             ]
                         }
                     ]
