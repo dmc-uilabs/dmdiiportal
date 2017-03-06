@@ -265,7 +265,8 @@ div[dmc-top-header]{
   background: black;
   padding: 15px 40px;
   .banner-msg{
-    color: $membersOnlyHeader;
+    color: red;
+    font-size: 1.5em;
     border-left: 4px solid $membersOnlyHeader;
     padding: 0px 10px;
     max-width: 1170px;
