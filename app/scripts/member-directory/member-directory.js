@@ -13,6 +13,7 @@ angular.module('dmc.members', [
     'md.data.table',
     'dmc.ajax',
     'dmc.data',
+    'dmc.more-less',
     'dmc.socket',
     'ngtimeago',
     'ngCookies',
