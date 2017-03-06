@@ -13,6 +13,7 @@ angular.module('dmc.members', [
     'md.data.table',
     'dmc.ajax',
     'dmc.data',
+    'dmc.more-less',
     'dmc.socket',
     'ngtimeago',
     'ngCookies',
@@ -22,6 +23,7 @@ angular.module('dmc.members', [
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.component.treemenu',
+    'dmc.component.horizontalmenu',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
     'datamaps'

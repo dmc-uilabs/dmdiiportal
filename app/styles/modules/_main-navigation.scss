@@ -28,7 +28,7 @@ div[dmc-top-header]{
 .space-header{
   position: relative;
   width: 100%;
-  height: 110px;
+  height: 60px;
 }
 
 .message-container{
@@ -67,12 +67,12 @@ div[dmc-top-header]{
 
   .top-header {
     background-color: $topHeader;
-    height: 55px;
+    height: 47px;
     width: 100%;
     &-inner {
       width: 100%;
       .top-header-content {
-        position: relative;
+        // position: relative;
         max-width: 1280px;
         padding: 0 40px;
         margin: 0 auto;
@@ -128,7 +128,7 @@ div[dmc-top-header]{
   }
 
   .bottom-header {
-    height: 55px;
+    height: 44px;
     background-color: $bottomHeader;
     &.member-portal{
         background-color: $membersOnlyHeader;
@@ -141,13 +141,24 @@ div[dmc-top-header]{
       width: 100%;
     }
     .navigation{
+      md-menu-item{
+        min-height: 0px;
+        height: 100%;
+      }
+      md-menu{
+        line-height: 35px;
+      }
       .md-button{
         text-transform: initial;
-        font-size: 16px;
+        font-size: 14px;
         color: $navigation;
         height: 44px;
         min-height: 44px;
         line-height: 44px;
+
+        // height: 35px;
+        // min-height: 35px;
+        // line-height: 35px;
         margin: 0;
         text-transform: uppercase;
         &.active-page{
@@ -215,6 +226,54 @@ div[dmc-top-header]{
     }
   }
 }
+
+#hamburger-menu-content{
+  overflow-y: visible;
+  .md-button, .md-menu{
+    margin: 0px;
+    padding: 0px;
+    align-items: flex-start;
+  }
+  .md-button{
+    width: 100%;
+    text-align: left;
+    margin-left: 12px;
+    &.sub-menu{
+      margin-left: 9px;
+      width: 60%;
+    }
+  }
+  md-menu-item:empty{
+    min-height: 0px;
+    height: 0px;
+  }
+  a{
+    background: transparent;
+  }
+  a:hover{
+    background: transparent;
+  }
+  button:hover{
+    background: transparent;
+  }
+  md-menu:hover, md-menu-item:hover{
+    background: lightgrey;
+  }
+}
+
+.header-banner{
+  background: black;
+  padding: 15px 40px;
+  .banner-msg{
+    color: red;
+    font-size: 1.5em;
+    border-left: 4px solid $membersOnlyHeader;
+    padding: 0px 10px;
+    max-width: 1170px;
+    margin: auto;
+  }
+}
+
 
 .header-menu-content.md-default-theme{
   a.md-button {

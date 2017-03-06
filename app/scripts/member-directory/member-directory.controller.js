@@ -373,7 +373,7 @@ angular.module('dmc.members')
                             'categories': [
                                 {
                                     'id': 21,
-                                    'title': 'Academic',
+                                    'title': 'Academic/Non-Profit',
                                     'tag' : '2',
                                     'opened' : isOpened('type', '2'),
                                     'href' : $scope.getUrl('type', '2'),
@@ -394,15 +394,15 @@ angular.module('dmc.members')
                                     'opened' : isOpened('type', '1'),
                                     'href' : $scope.getUrl('type', '1'),
                                     'categories': []
-                                },
-                                {
-                                    'id': 24,
-                                    'title': 'Non-Profit',
-                                    'tag' : '4',
-                                    'opened' : isOpened('type', '4'),
-                                    'href' : $scope.getUrl('type', '4'),
-                                    'categories': []
                                 }
+                                // ,{
+                                //     'id': 24,
+                                //     'title': 'Non-Profit',
+                                //     'tag' : '4',
+                                //     'opened' : isOpened('type', '4'),
+                                //     'href' : $scope.getUrl('type', '4'),
+                                //     'categories': []
+                                // }
                             ]
                         },
                         {

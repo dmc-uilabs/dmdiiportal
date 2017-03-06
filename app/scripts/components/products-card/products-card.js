@@ -101,25 +101,40 @@ angular.module('dmc.component.productscard', [
             var servicesGroupedByType = [];
 
             for (var i in data) {
-              var types = data[i].serviceType;
+              // var types = data[i].serviceType;
+              //
+              // for (var j in types) {
+              //   if (!serviceTypes[types[j]]) {
+              //     serviceTypes[types[j]] = [];
+              //   };
+              //
+              //   serviceTypes[types[j]].push(data[i]);
+              // };
 
-              for (var j in types) {
-                if (!serviceTypes[types[j]]) {
-                  serviceTypes[types[j]] = [];
-                };
+              if (serviceTypes[data[i].serviceType]) {
+                  for (var j in servicesGroupedByType) {
+                    if (servicesGroupedByType[j]["serviceType"] == data[i].serviceType) {
+                      servicesGroupedByType[j]["services"].push(data[i])
+                    }
+                  }
+              } else {
+                servicesGroupedByType.push({
+                  "serviceType": data[i].serviceType,
+                  "services": [data[i]]
+                });
+                serviceTypes[data[i].serviceType] = true
+              }
 
-                serviceTypes[types[j]].push(data[i]);
-              };
             };
 
-            for (var k in serviceTypes) {
-              var groupedServices = {};
-
-              groupedServices['serviceType'] = k;
-              groupedServices['services'] = serviceTypes[k];
-
-              servicesGroupedByType.push(groupedServices);
-            };
+            // for (var k in serviceTypes) {
+            //   var groupedServices = {};
+            //
+            //   groupedServices['serviceType'] = k;
+            //   groupedServices['services'] = serviceTypes[k];
+            //
+            //   servicesGroupedByType.push(groupedServices);
+            // };
 
             servicesGroupedByType.sort(function(a, b){
               if(a.serviceType < b.serviceType) return -1;

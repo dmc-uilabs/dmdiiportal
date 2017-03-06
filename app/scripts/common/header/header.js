@@ -19,7 +19,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
       //userData: '='
     },
     templateUrl: 'templates/common/header/header-tpl.html',
-    controller : function($scope,ajax,dataFactory,$window){
+    controller : function($scope,ajax,dataFactory,$window,$mdMedia){
         $scope.userData;
         $scope.userName = userModel.getUserName();
         userModel.getUserData().then(
@@ -30,6 +30,10 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
                 }
             }
         );
+
+        $scope.screenSmall = function(){
+          return $mdMedia('(max-width: 768px)');
+        }
 
         var initUserData = function(data) {
           $scope.userData = data;
@@ -118,6 +122,10 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         function apply() {
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
         }
+
+        $scope.bannerMessage = angular.element('#bannerMsg')[0].innerText;
+        $scope.showBanner = $scope.bannerMessage && $scope.bannerMessage != '_';
+
     }
   };
 }]);

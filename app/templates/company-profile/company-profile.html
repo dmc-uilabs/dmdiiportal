@@ -2,7 +2,7 @@
 <md-content class="company-profile-padding">
 <div layout="row">
     <div flex="20">
-        <img class="company-profile-image" ng-src="{{company.logoImage.documentUrl}}">
+        <img class="company-profile-image" ng-src="{{company.logoImage.documentUrl ? company.logoImage.documentUrl : 'images/icon-company-lg.svg'}}">
     </div>
     <div flex="80" layout="column" class="company-profile-header">
         <div layout="row" layout-align="center center">
@@ -75,8 +75,8 @@
         <div layout="row" class="text-row">
             <div layout="column" flex="100" class="padding-left8">
                 <h2>Awards Received</h2>
-                <div layout="row" layout-wrap>
-                    <div class="pad-left-10" layout="column" flex="20" ng-repeat="award in company.awards">
+                <div layout="row" layout-align="space-around start" layout-wrap>
+                    <div style="width: 150px;" class="pad-left-10" layout="column"ng-repeat="award in company.awards">
                         <h4><a href="{{award.link}}">{{award.name}}</a></h4>
                         <p>{{award.description}}</p>
                     </div>
@@ -281,7 +281,7 @@
     </div>
     <md-divider></md-divider>
     <div layout="row" layout-wrap>
-        <div flex="20" class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: verifiedLimit | orderBy:'displayName'">
+        <div class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: verifiedLimit | orderBy:'displayName'">
             <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
         </div>
     </div>
@@ -298,7 +298,7 @@
     </div>
     <md-divider></md-divider>
     <div layout="row" layout-wrap>
-        <div flex="20" class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: unverifiedLimit | orderBy:'displayName'">
+        <div class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: unverifiedLimit | orderBy:'displayName'">
             <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
         </div>
     </div>

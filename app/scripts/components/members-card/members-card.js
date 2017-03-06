@@ -9,7 +9,8 @@ angular.module('dmc.component.members-card', [
 		replace: true,
 		scope: {
 			cardSource: '=',
-			companyId: '='
+			companyId: '=',
+			fromSearch: '='
 		},
 		templateUrl: 'templates/components/members-card/members-card.html',
 		controller: ['$scope', '$mdDialog', 'ajax', 'dataFactory', 'DMCUserModel', 'toastModel', function($scope, $mdDialog, ajax, dataFactory, DMCUserModel, toastModel){
@@ -215,6 +216,36 @@ angular.module('dmc.component.members-card', [
                     };
                 };
             };
+
+						var buildDisplayName = function(){
+							var fullName = $scope.cardSource.firstName+" "+$scope.cardSource.lastName
+							if (fullName.length < 37) {
+								$scope.displayName = fullName
+							} else {
+								$scope.displayName = fullName.substring(0,35)+'...'
+							}
+						}
+
+						buildDisplayName();
+
+						$scope.descriptionLenLimit=80;
+	          $scope.descriptionLenLimitPrompt = 'more'
+						$scope.cardSource.aboutMe = $scope.cardSource.aboutMe || ""
+
+	          $scope.switchDescriptionLenLimit = function() {
+	            if ($scope.descriptionLenLimit == $scope.cardSource.aboutMe.length) {
+	              $scope.descriptionLenLimit = 80
+	              $scope.descriptionLenLimitPrompt = 'more';
+	            } else {
+	              $scope.descriptionLenLimit = $scope.cardSource.aboutMe.length;
+	              $scope.descriptionLenLimitPrompt = 'less';
+	            }
+	          }
+
+	          $scope.descriptionTooLong = function() {
+	            return 80 < $scope.cardSource.aboutMe.length;
+	          }
+
 		}]
 	};
 })
