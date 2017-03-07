@@ -4,6 +4,7 @@
 
       <div flex="15">
         <img class="profile-image" ng-src="{{profile.image}}">
+        <img ng-if="!profile.image" ng-src="images/icon-profile-lg.svg">
       </div>
 
       <div flex="85" layout="column" class="profile-header">
