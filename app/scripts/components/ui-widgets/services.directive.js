@@ -107,7 +107,6 @@ angular.module('dmc.widgets.services',[
                 }
 
                 function returnServicesNotInSuccess(services) {
-
                   var serviceIds = []
                   var notInSuccess = []
 
@@ -119,21 +118,15 @@ angular.module('dmc.widgets.services',[
                   }
 
                   if (serviceIds.length > 0) {
-                    // return serviceIds
                     return notInSuccess
                   } else {
                     return undefined
                   }
+
                 }
 
                 function pollForServiceStatus(svcsToCheck) {
-
-                  // if (!svcsToCheck) {
-                  //   return
-                  // }
-
                   var ids = svcsToCheck.map(function(x) { return x.id })
-
                   if (ids.length < 1) { return }
 
                   var requestData = {
@@ -144,57 +137,43 @@ angular.module('dmc.widgets.services',[
 
                   ajax.get(dataFactory.runService(),requestData,
                       function(response){
-                        for(var i=0;i<response.data.length;i++){
-                          var svcToUpdate = svcsToCheck.filter(function(svc) {return svc.id == response.data[i].serviceId})[0]
-                          svcToUpdate.currentStatus = (svcToUpdate.currentStatus ? $.extend(true,svcToUpdate.currentStatus,response.data[i]) : response.data[i]);
+                        // for(var i=0;i<response.data.length;i++){
+                        //   var svcToUpdate = svcsToCheck.filter(function(svc) {return svc.id == response.data[i].serviceId})[0]
+                        //   svcToUpdate.currentStatus = (svcToUpdate.currentStatus ? $.extend(true,svcToUpdate.currentStatus,response.data[i]) : response.data[i]);
+                        // }
+
+                        console.log('new polling code')
+
+                        for(var i=0;i<svcsToCheck.length;i++){
+                          for(var j=0; j<response.data.length; j++) {
+                            if (svcsToCheck[i].id == response.data[j].serviceId) {
+                              svcsToCheck[i].currentStatus = (svcsToCheck[i].currentStatus ? $.extend(true,svcsToCheck[i].currentStatus,response.data[j]) : response.data[j])
+                              break;
+                            }
+                          }
                         }
 
                         svcsToCheck = returnServicesNotInSuccess(allServices)
-                        // poll For Service Status
+
                         if (svcsToCheck) {
-                          // setTimeout(getLastStatuses.bind(null, svcsToCheck), 5000);
                           setTimeout(pollForServiceStatus.bind(null, svcsToCheck), 5000);
                         }
 
                       }
                     )
+                  }
 
+
+                $scope.returnStatusText = function(statusInt) {
+                  var statuses = {
+                    0: 'Running',
+                    1: 'Success',
+                    2: 'Cancelled'
+                  }
+
+                  return statuses[statusInt] ? statuses[statusInt] : 'Never Run'
                 }
 
-                // get random integer from min to max
-                // function getRandomInt(min, max) {
-                //     return Math.floor(Math.random() * (max - min + 1)) + min;
-                // }
-
-                // function updateStatus(service){
-                //     ajax.update(dataFactory.updateServiceStatus(service.currentStatus.id),{
-                //         status : 0,
-                //         percentCompleted : 100
-                //     },function(response){
-                //         for(var i in $scope.services) {
-                //             if($scope.services[i].id == response.data.serviceId) {
-                //                 $scope.services[i].currentStatus = response.data;
-                //                 apply();
-                //                 break;
-                //             }
-                //         }
-                //     });
-                // }
-
-                // function runService(service) {
-                    // if (service.currentStatus.status == 1) {
-                    //     var countDelay = getRandomInt(200, 500);
-                    //     var upPercent = 100 / countDelay;
-                    //     service.currentStatus.percentCompleted = parseInt(getRandomInt(5, 21));
-                    //     service.currentStatus.interval = $interval(function () {
-                    //         service.currentStatus.percentCompleted += upPercent;
-                    //         if (service.currentStatus.percentCompleted >= 100) {
-                    //             updateStatus(service);
-                    //             $interval.cancel(service.currentStatus.interval);
-                    //         }
-                    //     }, 100);
-                    // }
-                // }
 
                 $scope.deleteService = function(event,item){
                     questionToastModel.show({
