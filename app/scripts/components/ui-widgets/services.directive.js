@@ -139,13 +139,6 @@ angular.module('dmc.widgets.services',[
 
                   ajax.get(dataFactory.runService(),requestData,
                       function(response){
-                        // for(var i=0;i<response.data.length;i++){
-                        //   var svcToUpdate = svcsToCheck.filter(function(svc) {return svc.id == response.data[i].serviceId})[0]
-                        //   svcToUpdate.currentStatus = (svcToUpdate.currentStatus ? $.extend(true,svcToUpdate.currentStatus,response.data[i]) : response.data[i]);
-                        // }
-
-                        console.log('new polling code')
-
                         for(var i=0;i<svcsToCheck.length;i++){
                           for(var j=0; j<response.data.length; j++) {
                             if (svcsToCheck[i].id == response.data[j].serviceId) {
