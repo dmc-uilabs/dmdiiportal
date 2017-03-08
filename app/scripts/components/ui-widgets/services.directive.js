@@ -100,8 +100,8 @@ angular.module('dmc.widgets.services',[
                     // poll For Service Status
                     var svcsToCheck = returnServicesNotInSuccess(allServices)
                     if (svcsToCheck) {
-                      // setTimeout(getLastStatuses.bind(null, svcsToCheck), 2000);
-                      setTimeout(pollForServiceStatus.bind(null, svcsToCheck), 2000);
+                      // setTimeout(getLastStatuses.bind(null, svcsToCheck), 5000);
+                      setTimeout(pollForServiceStatus.bind(null, svcsToCheck), 5000);
                     }
 
                 }
@@ -127,7 +127,14 @@ angular.module('dmc.widgets.services',[
                 }
 
                 function pollForServiceStatus(svcsToCheck) {
+
+                  // if (!svcsToCheck) {
+                  //   return
+                  // }
+
                   var ids = svcsToCheck.map(function(x) { return x.id })
+
+                  if (ids.length < 1) { return }
 
                   var requestData = {
                       serviceId : ids,
@@ -142,15 +149,15 @@ angular.module('dmc.widgets.services',[
                           svcToUpdate.currentStatus = (svcToUpdate.currentStatus ? $.extend(true,svcToUpdate.currentStatus,response.data[i]) : response.data[i]);
                         }
 
+                        svcsToCheck = returnServicesNotInSuccess(allServices)
+                        // poll For Service Status
+                        if (svcsToCheck) {
+                          // setTimeout(getLastStatuses.bind(null, svcsToCheck), 5000);
+                          setTimeout(pollForServiceStatus.bind(null, svcsToCheck), 5000);
+                        }
+
                       }
                     )
-
-                  // poll For Service Status
-                  var svcsToCheck = returnServicesNotInSuccess(allServices)
-                  if (svcsToCheck) {
-                    // setTimeout(getLastStatuses.bind(null, svcsToCheck), 2000);
-                    setTimeout(pollForServiceStatus.bind(null, svcsToCheck), 2000);
-                  }
 
                 }
 
