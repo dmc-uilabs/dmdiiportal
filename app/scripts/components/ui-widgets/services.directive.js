@@ -70,7 +70,6 @@ angular.module('dmc.widgets.services',[
                                             allServices[i].currentStatus.date = new Date(allServices[i].currentStatus.startDate + ' ' + allServices[i].currentStatus.startTime);
                                             allServices[i].currentStatus.startDate = moment(allServices[i].currentStatus.startDate).format("MM/DD/YYYY");
                                             allServices[i].currentStatus.startTime = moment(new Date(allServices[i].currentStatus.startDate + ' ' + allServices[i].currentStatus.startTime)).format("hh:mm A");
-                                            // runService(allServices[i]);
                                         }else {
                                             allServices[i].currentStatus = null;
                                         }
