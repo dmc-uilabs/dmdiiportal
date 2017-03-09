@@ -98,7 +98,7 @@ angular.module('dmc.widgets.services',[
 
                     // poll For Service Status
                     setTimeout(function(){
-                      var svcsToCheck = returnServicesNotInSuccess(allServices)
+                      var svcsToCheck = returnRunningServices(allServices)
                       if (svcsToCheck) {
                         pollForServiceStatus(svcsToCheck)
                       }
@@ -107,12 +107,12 @@ angular.module('dmc.widgets.services',[
 
                 }
 
-                function returnServicesNotInSuccess(services) {
+                function returnRunningServices(services) {
                   var serviceIds = []
                   var notInSuccess = []
 
                   for(var i=0; i<services.length; i++) {
-                    if (!services[i].currentStatus.status || services[i].currentStatus.status == 0) {
+                    if (services[i].currentStatus && services[i].currentStatus.status == 0) {
                       serviceIds.push(services[i].id)
                       notInSuccess.push(services[i])
                     }
@@ -147,7 +147,7 @@ angular.module('dmc.widgets.services',[
                           }
                         }
 
-                        svcsToCheck = returnServicesNotInSuccess(allServices)
+                        svcsToCheck = returnRunningServices(allServices)
 
                         if (svcsToCheck) {
                           setTimeout(pollForServiceStatus.bind(null, svcsToCheck), 5000);
@@ -164,10 +164,6 @@ angular.module('dmc.widgets.services',[
                 }
 
                 getStatusesNames()
-
-                $scope.returnStatusText = function(statusInt) {
-                  return $scope.serviceStatusNames[statusInt] ? $scope.serviceStatusNames[statusInt] : 'Never Run'
-                }
 
                 $scope.deleteService = function(event,item){
                     questionToastModel.show({

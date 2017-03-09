@@ -14,13 +14,14 @@
             <h3>
                 <a href="/project.php#/{{projectId}}/services/{{service.id}}/detail" class="service-title link-button">{{service.title}}</a>
             </h3>
-            <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button" ng-if="service.currentStatus.id">
+            <a href="/project.php#/{{projectId}}/services/{{service.id}}/run" class="link-button">
                 <!-- <md-progress-linear ng-if="service.currentStatus.status == 1"
                                     md-mode="determinate"
                                     value="{{service.currentStatus.percentCompleted}}"></md-progress-linear>
                 <span ng-if="service.currentStatus.status == 1">Estimated - 1:30 of 2:00</span> -->
                 <!-- <span ng-if="service.currentStatus.status != 0">{{service.currentStatus.status == 1 ? 'success' : ( service.currentStatus.status == -1 ? 'error' : '')}}</span> -->
-                <span>{{returnStatusText(item.currentStatus.status)}}</span>
+                <span ng-if="serviceStatusNames[service.currentStatus.status]">{{serviceStatusNames[service.currentStatus.status]}}</span>
+                <span ng-if="!serviceStatusNames[service.currentStatus.status]">Never Run</span>
             </a>
         </div>
     </md-list-item>
@@ -109,7 +110,9 @@
                                                     value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
                                 <span ng-if="item.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span> -->
                                 <!-- <span ng-if="item.currentStatus.status != 0">{{item.currentStatus.status == 1 ? 'success' : ( item.currentStatus.status == -1 ? 'error' : '')}}</span> -->
-                                <span>{{returnStatusText(item.currentStatus.status)}}</span>
+
+                                <span ng-if="serviceStatusNames[item.currentStatus.status]">{{serviceStatusNames[item.currentStatus.status]}}</span>
+                                <span ng-if="!serviceStatusNames[item.currentStatus.status]">Never Run</span>
                             </a>
                         </td>
                         <td ng-show="columns.indexOf('dateAdded') > -1">
