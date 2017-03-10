@@ -47,9 +47,6 @@
 					<div class="product-image" layout="column">
 						<img class="main-image" ng-if="service_images.length" ng-src="{{service_images[indexImages].documentUrl}}">
             <img class="main-image" style="opacity: 0.3;"ng-if="!service_images.length" ng-src="images/DMCGear.png">
-						<!-- <div class="no-image" ng-if="!service_images.length" layout layout-align="center center">
-							<h2>No Images</h2>
-						</div> -->
 						<div dmc-carousel
 								functions="carouselFunctions"
 								name-carousel="'carouselImages'"
@@ -68,20 +65,10 @@
 								<h2>{{product.title}}</h2>	<span flex></span>
               </div>
               <div layout="row">
-                <span>Offered By: <a ng-href="{{'/company.php#/'+product.profileId+'/storefront?product=services'}}" class="link-button">{{owner_name}}</a></span>
+                <span>Offered By <a ng-href="{{'/company.php#/'+product.profileId+'/storefront?product=services'}}" class="link-button">{{owner_name}}</a></span>
               </div>
               <div layout="row">
-                <span>Release Date: {{releaseDate}}</span>
-								<!-- <md-button aria-label="favorite" ng-click="addToFavorite()" class="md-icon-button header-icon">
-                                    <ng-md-icon icon="favorite_outline" style="fill: grey" size="25" ng-show="!product.favorite"></ng-md-icon>
-                                    <ng-md-icon icon="favorite" style="fill: #65AF3F;" size="25" ng-show="product.favorite"></ng-md-icon>
-								</md-button>
-								<md-button aria-label="share" ng-click="share()" class="md-icon-button header-icon">
-									<ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
-								</md-button> -->
-							</div>
-              <div layout="row">
-                <span>Service Type: {{serviceType}}</span>
+                <span>Released {{releaseDate}}</span>
 								<!-- <md-button aria-label="favorite" ng-click="addToFavorite()" class="md-icon-button header-icon">
                                     <ng-md-icon icon="favorite_outline" style="fill: grey" size="25" ng-show="!product.favorite"></ng-md-icon>
                                     <ng-md-icon icon="favorite" style="fill: #65AF3F;" size="25" ng-show="product.favorite"></ng-md-icon>
@@ -158,10 +145,6 @@
 						</md-content>
 					</md-tab> -->
 
-					<!-- <md-tab label="STATISTICS">
-						<ui-widget-tabs-statistic data="product.services_statistic[0]" filter="getHistory"></ui-widget-tabs-statistic>
-					</md-tab> -->
-
 					<!-- <md-tab label="HISTORY">
 						<ui-widget-tabs-history data="history"></ui-widget-tabs-history>
 					</md-tab> -->
@@ -230,6 +213,10 @@
 
             </div>
           </md-tab>
+
+          <md-tab label="METRICS">
+						<ui-widget-tabs-statistic data="product.services_statistic[0]" filter="getHistory"></ui-widget-tabs-statistic>
+					</md-tab>
 
 					<md-tab ng-click="adHocData('service_tags')" label="TAGS">
 						<md-content class="md-padding">

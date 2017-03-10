@@ -26,7 +26,34 @@ angular.module('dmc.widgets.tabs',[
 			scope: {
 				data: "=",
 				filter: "="
-			}
+			},
+      controller: function($scope) {
+        $scope.formatDate = function(date) {
+          if(date){
+            return moment(1000*date).format('MMM D YYYY, h:mm a');
+          }else{
+            return "";
+          }
+        };
+        $scope.formatStatus = function(status_code) {
+          switch (status_code) {
+            case 0:
+              return {status: "Success", color: "green"};
+            case 1:
+              return {status: "Fail", color: "red"};
+          }
+        };
+        $scope.formatRuntime = function(runtime){
+          if(!isNaN(runtime)){
+            return parseFloat(runtime).toFixed(2) + 's';
+          }else{
+            return "";
+          }
+        };
+        $scope.generateGraph = function() {
+          return "/images/statistics_graph.png"
+        };
+      }
 		};
 	}])
 	.directive('uiWidgetTabsAuthor', [ function () {
