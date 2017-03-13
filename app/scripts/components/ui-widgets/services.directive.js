@@ -198,8 +198,12 @@ angular.module('dmc.widgets.services',[
                         question: "Are you sure you want to cancel this service run?",
                         buttons: {
                             ok: function(){
-                              ajax.create(dataFactory.cancelServiceRun, serviceRunId, function(response){
-                                      toastModel.showToast("success", "Service run cancelled");
+                              ajax.create(dataFactory.cancelServiceRun(item.id), {}, function(response){
+                                console.log('SUCCESS!')
+                                  toastModel.showToast("success", "Service run cancelled");
+                              }, function(response){
+                                console.log('FAILURE!')
+                                  toastModel.showToast("error", "Not Authorized");
                               });
 
                                 // ajax.update(dataFactory.services(item.id).update, deleteItem, function(response){
