@@ -69,6 +69,7 @@
                 <table md-data-table>
                     <thead md-order="sort" md-trigger="onOrderChange" ng-if="services.length > 0">
                     <tr>
+                        <th name="Action"></th>
                         <th ng-show="columns.indexOf('run') > -1" name="Run"></th>
                         <th ng-show="columns.indexOf('name') > -1" name="Name" order-by="title"></th>
                         <th ng-show="columns.indexOf('component') > -1" name="Component" order-by="parent_component"></th>
@@ -84,6 +85,9 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in services | orderBy: sort" ng-click="changeItem(item)">
+                        <td>
+                            <md-button class="md-raised run" ng-click="cancelServiceRun($event,item)">Cancel Run</md-button>
+                        </td>
                         <td ng-show="columns.indexOf('run') > -1">
                             <md-button class="md-raised run" ng-href="{{'project.php#/' + item.projectId + '/services/' + item.id + '/run'}}">Run</md-button>
                         </td>

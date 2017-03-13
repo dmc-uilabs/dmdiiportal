@@ -193,6 +193,25 @@ angular.module('dmc.widgets.services',[
 
                 };
 
+                $scope.cancelServiceRun = function(event,item){
+                    questionToastModel.show({
+                        question: "Are you sure you want to cancel this service run?",
+                        buttons: {
+                            ok: function(){
+                              ajax.create(dataFactory.cancelServiceRun, serviceRunId, function(response){
+                                      toastModel.showToast("success", "Service run cancelled");
+                              });
+
+                                // ajax.update(dataFactory.services(item.id).update, deleteItem, function(response){
+                                //         toastModel.showToast("success", "Service run cancelled");
+                                // });
+                            },
+                            cancel: function(){}
+                        }
+                    }, event);
+
+                };
+
                 // Socket listeners -------------------------------------------------
 
                 // get updated service
