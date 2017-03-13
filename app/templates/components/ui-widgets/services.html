@@ -69,7 +69,6 @@
                 <table md-data-table>
                     <thead md-order="sort" md-trigger="onOrderChange" ng-if="services.length > 0">
                     <tr>
-                        <th name="Action"></th>
                         <th ng-show="columns.indexOf('run') > -1" name="Run"></th>
                         <th ng-show="columns.indexOf('name') > -1" name="Name" order-by="title"></th>
                         <th ng-show="columns.indexOf('component') > -1" name="Component" order-by="parent_component"></th>
@@ -81,13 +80,11 @@
                         <th ng-show="columns.indexOf('from') > -1" name="From" order-by="from"></th>
                         <th ng-show="columns.indexOf('edit') > -1" name="Edit"></th>
                         <th ng-show="columns.indexOf('remove') > -1" name="Remove"></th>
+                        <th ng-show="columns.indexOf('cancelRun') > -1" name=""></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in services | orderBy: sort" ng-click="changeItem(item)">
-                        <td>
-                            <md-button class="md-raised run" ng-click="cancelServiceRun($event,item)">Cancel Run</md-button>
-                        </td>
                         <td ng-show="columns.indexOf('run') > -1">
                             <md-button class="md-raised run" ng-href="{{'project.php#/' + item.projectId + '/services/' + item.id + '/run'}}">Run</md-button>
                         </td>
@@ -137,6 +134,9 @@
                             <md-button aria-label="delete" ng-click="deleteService($event,item)" class="delete">
                                 <ng-md-icon icon="delete" style="fill: grey;" size="25"></ng-md-icon>
                             </md-button>
+                        </td>
+                        <td ng-show="columns.indexOf('cancelRun') > -1">
+                          <md-button ng-if="item.currentStatus.status == 0" class="md-raised cancel" ng-click="cancelServiceRun($event,item)">Cancel Run</md-button>
                         </td>
                     </tr>
                     <tr ng-if="services.length == 0">
