@@ -65,7 +65,7 @@ angular.module('dmc.widgets.services',[
                             for(var i=0;i<allServices.length;i++){
                                 for(var j=0;j<response.data.length;j++){
                                     if(allServices[i].id == response.data[j].serviceId){
-                                        allServices[i].currentStatus = (allServices[i].currentStatus ? $.extend(true,allServices[i].currentStatus,response.data[j]) : response.data[j]);
+                                        allServices[i].currentStatus = updateServiceStatus(allServices[i], response.data[j]);
                                         if(allServices[i].projectId && allServices[i].currentStatus.project.id > 0) {
                                             allServices[i].currentStatus.date = new Date(allServices[i].currentStatus.startDate + ' ' + allServices[i].currentStatus.startTime);
                                             allServices[i].currentStatus.startDate = moment(allServices[i].currentStatus.startDate).format("MM/DD/YYYY");
@@ -107,6 +107,10 @@ angular.module('dmc.widgets.services',[
 
                 }
 
+                function updateServiceStatus(service, currentStatus) {
+                  return service.currentStatus ? $.extend(true,service.currentStatus,currentStatus) : currentStatus;
+                }
+
                 function returnRunningServices(services) {
                   var serviceIds = []
                   var notInSuccess = []
@@ -141,7 +145,8 @@ angular.module('dmc.widgets.services',[
                         for(var i=0;i<svcsToCheck.length;i++){
                           for(var j=0; j<response.data.length; j++) {
                             if (svcsToCheck[i].id == response.data[j].serviceId) {
-                              svcsToCheck[i].currentStatus = (svcsToCheck[i].currentStatus ? $.extend(true,svcsToCheck[i].currentStatus,response.data[j]) : response.data[j])
+                              // svcsToCheck[i].currentStatus = (svcsToCheck[i].currentStatus ? $.extend(true,svcsToCheck[i].currentStatus,response.data[j]) : response.data[j])
+                              svcsToCheck[i].currentStatus = updateServiceStatus(svcsToCheck[i], response.data[j]);
                               break;
                             }
                           }
@@ -199,16 +204,10 @@ angular.module('dmc.widgets.services',[
                         buttons: {
                             ok: function(){
                               ajax.create(dataFactory.cancelServiceRun(item.id), {}, function(response){
-                                console.log('SUCCESS!')
                                   toastModel.showToast("success", "Service run cancelled");
                               }, function(response){
-                                console.log('FAILURE!')
                                   toastModel.showToast("error", "Not Authorized");
                               });
-
-                                // ajax.update(dataFactory.services(item.id).update, deleteItem, function(response){
-                                //         toastModel.showToast("success", "Service run cancelled");
-                                // });
                             },
                             cancel: function(){}
                         }
