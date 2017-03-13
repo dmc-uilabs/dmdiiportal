@@ -98,10 +98,7 @@ angular.module('dmc.widgets.services',[
 
                     // poll For Service Status
                     setTimeout(function(){
-                      var svcsToCheck = returnRunningServices(allServices)
-                      if (svcsToCheck) {
-                        pollForServiceStatus(svcsToCheck)
-                      }
+                        pollForServiceStatus()
                     }, 5000)
 
 
@@ -130,7 +127,13 @@ angular.module('dmc.widgets.services',[
 
                 }
 
-                function pollForServiceStatus(svcsToCheck) {
+                function pollForServiceStatus() {
+                  var svcsToCheck = returnRunningServices(allServices)
+
+                  if(!svcsToCheck) {
+                    return;
+                  }
+
                   var ids = svcsToCheck.map(function(x) { return x.id })
                   if (ids.length < 1) { return }
 
@@ -139,6 +142,7 @@ angular.module('dmc.widgets.services',[
                       _sort : "startDate",
                       _order : "DESC"
                   };
+
 
                   ajax.get(dataFactory.runService(),requestData,
                       function(response){
@@ -155,7 +159,7 @@ angular.module('dmc.widgets.services',[
                         svcsToCheck = returnRunningServices(allServices)
 
                         if (svcsToCheck) {
-                          setTimeout(pollForServiceStatus.bind(null, svcsToCheck), 5000);
+                          setTimeout(pollForServiceStatus, 5000);
                         }
 
                       }
@@ -204,6 +208,7 @@ angular.module('dmc.widgets.services',[
                         buttons: {
                             ok: function(){
                               ajax.create(dataFactory.cancelServiceRun(item.id), {}, function(response){
+                                  updateServiceStatus(item, response.data);
                                   toastModel.showToast("success", "Service run cancelled");
                               }, function(response){
                                   toastModel.showToast("error", "Not Authorized");
