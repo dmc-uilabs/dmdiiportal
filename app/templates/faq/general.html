@@ -2,7 +2,12 @@
     <div layout="column" flex class="container-search-faq-inner">
         <div layout="row" layout-align="center center">
             <h3 class="title">Frequently Asked Questions</h3>
+
+
+
+
         </div>
+
         <!-- <div layout="row" layout-align="center center" class="search-block">
             <form ng-submit="submit()" class="dmc-search-large global-search-form" flex="100">
                 <div layout="column">
@@ -28,9 +33,18 @@
 </div>
 
 <div class="container container-faq margin-top-25" layout="row" layout-align="center center" ng-if="categoryId == null">
-    <span>Search returned no results</span>
+    <span>  <p ng-bind-html="question.q | unsafe"></p>
+    </span>
 </div>
 <div class="container container-faq margin-top-25" layout="row" ng-if="categoryId != null">
+
+
+
+
+
+
+
+
 
 
 
@@ -66,6 +80,41 @@
             <div class="content-panel-body">
 
                   <div>
+
+
+
+                    <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="General ">
+                        <md-content >
+                            <div ng-repeat="q in Gfaq" >
+                                      <h4>{{q.q}}</h4>
+                                      <p ng-bind-html="q.a | unsafe" ></p>
+                                  <md-divider></md-divider>
+                            </div>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Memeber Portal ">
+                        <md-content >
+                            <div ng-repeat="q in Gfaq" >
+                                      <h4>{{q.q}}</h4>
+                                      <p ng-bind-html="q.a | unsafe" ></p>
+                                  <md-divider></md-divider>
+                            </div>
+                        </md-content>
+                    </md-tab>
+
+                    </md-tabs>
+
+
+
+
+
+
+
+
+
+
                         <h2>General</h2>
                         <hr/>
                         <div>
