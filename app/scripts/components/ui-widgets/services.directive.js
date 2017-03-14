@@ -146,25 +146,22 @@ angular.module('dmc.widgets.services',[
 
                   ajax.get(dataFactory.runService(),requestData,
                       function(response){
-                        for(var i=0;i<svcsToCheck.length;i++){
-                          for(var j=0; j<response.data.length; j++) {
-                            if (svcsToCheck[i].id == response.data[j].serviceId) {
-                              // svcsToCheck[i].currentStatus = (svcsToCheck[i].currentStatus ? $.extend(true,svcsToCheck[i].currentStatus,response.data[j]) : response.data[j])
-                              svcsToCheck[i].currentStatus = updateServiceStatus(svcsToCheck[i], response.data[j]);
-                              break;
-                            }
-                          }
-                        }
-
-                        svcsToCheck = returnRunningServices(allServices)
-
-                        if (svcsToCheck) {
-                          setTimeout(pollForServiceStatus, 5000);
-                        }
-
+                        updateServicesStatuses(svcsToCheck, response.data)
+                        setTimeout(pollForServiceStatus, 5000);
                       }
                     )
+                }
+
+                function updateServicesStatuses(services, statuses) {
+                  for(var i=0;i<services.length;i++){
+                    for(var j=0; j<statuses.length; j++) {
+                      if (services[i].id == statuses[j].serviceId) {
+                        services[i].currentStatus = updateServiceStatus(services[i], statuses[j]);
+                        break;
+                      }
+                    }
                   }
+                }
 
                 var getStatusesNames = function() {
                   ajax.get(dataFactory.getStaticJSON('serviceStatuses.json'), {}, function(response){
