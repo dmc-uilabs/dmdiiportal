@@ -208,7 +208,8 @@ angular.module('dmc.widgets.services',[
                                   updateServiceStatus(item, response.data);
                                   toastModel.showToast("success", "Service run cancelled");
                               }, function(response){
-                                  toastModel.showToast("error", "Not Authorized");
+                                console.log(response)
+                                toastModel.showToast("error", response.data ? response.data : response.statusText)
                               });
                             },
                             cancel: function(){}
