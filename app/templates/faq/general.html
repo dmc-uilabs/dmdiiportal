@@ -1,12 +1,6 @@
 <div class="container container-search-faq" layout="row">
     <div layout="column" flex class="container-search-faq-inner">
-        <div layout="row" layout-align="center center">
-            <h3 class="title">Frequently Asked Questions</h3>
 
-
-
-
-        </div>
 
         <!-- <div layout="row" layout-align="center center" class="search-block">
             <form ng-submit="submit()" class="dmc-search-large global-search-form" flex="100">
@@ -33,8 +27,7 @@
 </div>
 
 <div class="container container-faq margin-top-25" layout="row" layout-align="center center" ng-if="categoryId == null">
-    <span>  <p ng-bind-html="question.q | unsafe"></p>
-    </span>
+  <h2>Frequently Asked Questions </h2>
 </div>
 <div class="container container-faq margin-top-25" layout="row" ng-if="categoryId != null">
 
@@ -78,15 +71,11 @@
     <div class="content-column right-content margin-left25" layout="column" flex>
         <div class="content-panel">
             <div class="content-panel-body">
-
                   <div>
-
-
-
                     <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab label="General ">
                         <md-content >
-                            <div ng-repeat="q in Gfaq" >
+                            <div ng-repeat="q in gFaq" >
                                       <h4>{{q.q}}</h4>
                                       <p ng-bind-html="q.a | unsafe" ></p>
                                   <md-divider></md-divider>
@@ -96,7 +85,7 @@
 
                     <md-tab label="Memeber Portal ">
                         <md-content >
-                            <div ng-repeat="q in Gfaq" >
+                            <div ng-repeat="q in mpFaq" >
                                       <h4>{{q.q}}</h4>
                                       <p ng-bind-html="q.a | unsafe" ></p>
                                   <md-divider></md-divider>

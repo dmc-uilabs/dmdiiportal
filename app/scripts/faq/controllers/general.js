@@ -5,18 +5,19 @@ var showAllCategories = false;
 angular.module('dmc.faq')
     .controller('GeneralFAQCtr', ['$stateParams', '$state', '$scope', 'ajax', '$location','dataFactory','toastModel', function ($stateParams, $state, $scope, ajax, $location, dataFactory, toastModel) {
 
-
-      $scope.question={'q':' <h2>Question Categories</h2>'}
-
       var getGfaq= function() {
           ajax.get(dataFactory.getStaticJSON('gfaq.json'), {}, function(response){
-
-              $scope.Gfaq = response.data;
-
-
+              $scope.gFaq = response.data;
           });
       }
       getGfaq();
+
+      var getMpfaq= function() {
+          ajax.get(dataFactory.getStaticJSON('mpfaq.json'), {}, function(response){
+              $scope.mpFaq = response.data;
+          });
+      }
+      getMpfaq();
 
 
 
