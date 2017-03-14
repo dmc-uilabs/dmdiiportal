@@ -47,14 +47,31 @@
   .background{
     @include borderRadius(5px);
     background-color: #fff;
-  }
+  }padding: 10px;
+
+
   .section{
     padding: 20px 48px;
-    img{
-      height: auto;
-    }
     .text{
       padding: 0 16px;
+    }
+    .text-center{
+      @extend .text;
+      text-align:center;
+    }
+    .text-right{
+      @extend .text;
+      text-align: right;
+    }
+    .button-view-opportunities{
+      border: 1px solid green;
+      border-radius: 4px;
+      color: green;
+      font-weight: 900;
+      padding: 10px;
+    }
+    md-tabs{
+      width:100%;
     }
     h3{
       font-weight: normal;
@@ -66,7 +83,11 @@
           text-decoration: underline;
         }
       }
+      span{
+        font-weight: 900;
+      }
     }
+
     h2{
       margin: 4px 0;
       a{
@@ -76,7 +97,33 @@
           text-decoration: underline;
         }
       }
+      span{
+        color:green;
+      }
     }
+
+    .h3-span-green{
+      color:green;
+    }
+
+    .button-top-margin{
+      margin-top: 20px;
+    }
+
+
+    .title{
+      font-size:40px;
+      font-weight:lighter;
+      color:green;
+    }
+    .logo{
+      width:350px;
+    }
+    .image{
+      width: 100px;
+    }
+
+
     .md-button.dmc-button{
       text-transform: none;
       width: 125px;
@@ -95,6 +142,8 @@
   }
   }
 }
+
+////////////////////////////////////////////////////////////////
 
 .onboarding-widget{
   .section{
