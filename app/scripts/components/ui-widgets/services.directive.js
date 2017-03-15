@@ -5,7 +5,8 @@ angular.module('dmc.widgets.services',[
         'dmc.data',
         'dmc.socket',
         'dmc.model.question-toast-model',
-        'dmc.model.previous-page'
+        'dmc.model.previous-page',
+        'dmc.model.dome'
     ]).
     directive('uiWidgetServices', ['$parse', function ($parse) {
         return {
@@ -26,7 +27,7 @@ angular.module('dmc.widgets.services',[
             link: function (scope, iElement, iAttrs) {
 
             },
-            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, previousPage, $interval,questionToastModel) {
+            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, previousPage, $interval,questionToastModel, domeModel) {
                 $scope.previousPage = previousPage;
 
                 $scope.services = [];

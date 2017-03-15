@@ -40,6 +40,7 @@
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
+    <script src="scripts/common/models/dome-model.js"></script>
     <script src="scripts/projects/my_projects.js"></script>
     <script src="scripts/projects/create_project.js"></script>
     <!-- endbuild -->
