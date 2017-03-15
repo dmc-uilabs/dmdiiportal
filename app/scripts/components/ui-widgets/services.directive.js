@@ -174,8 +174,10 @@ angular.module('dmc.widgets.services',[
                 function pollSingleServiceRun(runId) {
                   ajax.get(dataFactory.pollModel(runId), {}, function(response) {
 
-                    if (serviceRunComplete(response)) {
+                    if (response.data.status == 1) {
                       pollForServiceStatus();
+                    } else if (serviceHasErrored(response)) {
+                      setServiceToFailed(runId);
                     } else {
                       if (runningPolls[runId]) {
                         clearTimeout(runningPolls[runId])
@@ -198,11 +200,27 @@ angular.module('dmc.widgets.services',[
                   toastModel.showToast('error', 'Error poling Dome service');
                 }
 
-                function serviceRunComplete(response) {
-                  var serviceSuccess = response.data.status == 1;
-                  var serviceFailed = response.data.status == 0 && !response.data.outParams;
+                var serviceErrors = {};
 
-                  return serviceSuccess || serviceFailed
+                function serviceHasErrored(response) {
+                  serviceErrors[response.data.id] = serviceErrors[response.data.id] || 0
+
+                  if (response.data.status == 0 && angular.equals({},response.data.outParams)) {
+                    serviceErrors[response.data.id]++
+                  }
+
+                  return serviceErrors[response.data.id] > 1
+                }
+
+                function setServiceToFailed(runId) {
+                  var serviceInFailure = returnServiceFromRunId(runId)
+                  serviceInFailure.currentStatus.status = 3
+                }
+
+                function returnServiceFromRunId(runId) {
+                  return allServices.find(function(x){
+                    return x.currentStatus.id == runId
+                  })
                 }
 
                 var getStatusesNames = function() {
