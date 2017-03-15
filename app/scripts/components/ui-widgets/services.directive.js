@@ -5,8 +5,7 @@ angular.module('dmc.widgets.services',[
         'dmc.data',
         'dmc.socket',
         'dmc.model.question-toast-model',
-        'dmc.model.previous-page',
-        'dmc.model.dome'
+        'dmc.model.previous-page'
     ]).
     directive('uiWidgetServices', ['$parse', function ($parse) {
         return {
@@ -27,7 +26,7 @@ angular.module('dmc.widgets.services',[
             link: function (scope, iElement, iAttrs) {
 
             },
-            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, previousPage, $interval,questionToastModel, domeModel) {
+            controller: function($scope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, previousPage, $interval,questionToastModel) {
                 $scope.previousPage = previousPage;
 
                 $scope.services = [];
@@ -99,9 +98,8 @@ angular.module('dmc.widgets.services',[
 
                     // poll For Service Status
                     setTimeout(function(){
-                        pollForServiceStatus()
+                        beginServicePolls(allServices)
                     }, 5000)
-
 
                 }
 
@@ -157,15 +155,55 @@ angular.module('dmc.widgets.services',[
                           }
                         }
 
-                        svcsToCheck = returnRunningServices(allServices)
-
-                        if (svcsToCheck) {
-                          setTimeout(pollForServiceStatus, 5000);
-                        }
-
                       }
                     )
                   }
+
+                function beginServicePolls() {
+                  var svcsToCheck = returnRunningServices(allServices)
+
+                  if(!svcsToCheck) { return  }
+
+                  for (var i=0; i<svcsToCheck.length; i++) {
+                    pollSingleServiceRun(svcsToCheck[i].currentStatus.id)
+                  }
+                }
+
+                var runningPolls = {};
+
+                function pollSingleServiceRun(runId) {
+                  ajax.get(dataFactory.pollModel(runId), {}, function(response) {
+
+                    if (serviceRunComplete(response)) {
+                      pollForServiceStatus();
+                    } else {
+                      if (runningPolls[runId]) {
+                        clearTimeout(runningPolls[runId])
+                      }
+                      runningPolls[runId] = (setTimeout(pollSingleServiceRun.bind(null, runId), 5000));
+                    }
+
+                  }, pollSingleServiceRunErrorCallback);
+                }
+
+                function stopPolls() {
+                  for (var key in runningPolls) {
+                    if (runningPolls.hasOwnProperty(key)) {
+                      clearTimeout(runningPolls[key])
+                    }
+                  }
+                }
+
+                function pollSingleServiceRunErrorCallback(response) {
+                  toastModel.showToast('error', 'Error poling Dome service');
+                }
+
+                function serviceRunComplete(response) {
+                  var serviceSuccess = response.data.status == 1;
+                  var serviceFailed = response.data.status == 0 && !response.data.outParams;
+
+                  return serviceSuccess || serviceFailed
+                }
 
                 var getStatusesNames = function() {
                   ajax.get(dataFactory.getStaticJSON('serviceStatuses.json'), {}, function(response){
@@ -231,6 +269,10 @@ angular.module('dmc.widgets.services',[
                 function apply(){
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }
+
+                $scope.$on('$destroy', function() {
+                  stopPolls();
+                });
             }
         };
     }])
