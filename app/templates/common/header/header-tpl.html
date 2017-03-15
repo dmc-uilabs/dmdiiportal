@@ -316,23 +316,33 @@
                     </md-button> -->
 
 
-                    <!-- <md-menu class="item" md-offset="0 57">
-                        <md-button aria-label="Open Latest Services Menu"
+                    <md-menu class="item" md-offset="0 57">
+                      <md-button ng-click="closeMenu(); $mdOpenMenu($event);">
+                        <!-- <md-button aria-label="Open Latest Services Menu"
                                    ng-click="closeMenu(); $mdOpenMenu($event);"
                                    class="projects-header-button"
-                                   ng-class="{'active-page' : activePage.indexOf('project') > -1}">
+                                   ng-class="{'active-page' : activePage.indexOf('project') > -1}"> -->
                             Learn
                             <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
                         </md-button>
                         <md-menu-content class="header-menu-content">
                             <md-menu-item>
-                                <md-button ng-click="$mdCloseMenu($event);" href="my-projects.php">My Projects</md-button>
+                                <md-button ng-click="$mdCloseMenu($event);" href="about-platform.php">About the Platform</md-button>
                             </md-menu-item>
                             <md-menu-item>
-                                <md-button ng-click="$mdCloseMenu($event);" href="all-projects.php">All Projects</md-button>
+                                <md-button ng-click="$mdCloseMenu($event);" href="application-creation.php">Application Creation</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="workforce-development.php">Workforce Development</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="security.php">Security</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="release-notes.php">Realease Notes</md-button>
                             </md-menu-item>
                         </md-menu-content>
-                    </md-menu> -->
+                    </md-menu>
 
                     <!-- <md-menu class="item" md-offset="0 57">
                         <md-button aria-label="Open Latest Services Menu"
