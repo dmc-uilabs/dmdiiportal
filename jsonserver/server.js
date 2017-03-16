@@ -51,6 +51,7 @@ server.use(jsonServer.rewriter({
     '/dmdiiProject/events': '/dmdiiProjectEvents',
     '/dmdiiProject/news': '/dmdiiProjectNews',
     '/dmdiidocuments/dmdiiProjectId': '/dmdiidocuments',
+    '/dmdiidocument/filetype': '/dmdiidocument',
     '/documents/tags': '/document_tags',
     '/resource/lab' : '/resource_labs',
     '/resource/lab/:id':'/resource_labs/:id',

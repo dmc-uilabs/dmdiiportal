@@ -78,7 +78,7 @@
 				                </md-data-table-container>
 								<div ng-if="projectFinancials && projectFinancials.documentUrl" flex="50">
 									<img ng-src="{{projectFinancials.documentUrl}}"></img>
-									<a class="delete-btn" href ng-click="deleteDocument(projectFinancials.id, 'projectFinancials')">delete</a>
+									<a ng-if="userData.isDmdiiAdmin" class="delete-btn" href ng-click="deleteDocument(projectFinancials.id, 'projectFinancials')">delete</a>
 								</div>
 				            </div>
 						</div>
@@ -239,7 +239,7 @@
 
 				<md-tab label="Agenda">
 				  <img style="border:1px solid;width:70%;margin:25px;  padding:20px;" ng-src="{{projectSchedule.documentUrl}}"></img>
-				  <a class="delete-btn" href ng-click="deleteDocument(projectSchedule.id, 'projectSchedule')">delete</a>
+				  <a ng-if="userData.isDmdiiAdmin" class="delete-btn" href ng-click="deleteDocument(projectSchedule.id, 'projectSchedule')">delete</a>
 				</md-tab>
 
 				<md-tab label="Docs & Presentations">
