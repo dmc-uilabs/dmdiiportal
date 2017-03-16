@@ -142,13 +142,11 @@ angular.module('dmc.widgets.services',[
                       _order : "DESC"
                   };
 
-
                   ajax.get(dataFactory.runService(),requestData,
                       function(response){
                         for(var i=0;i<svcsToCheck.length;i++){
                           for(var j=0; j<response.data.length; j++) {
                             if (svcsToCheck[i].id == response.data[j].serviceId) {
-                              // svcsToCheck[i].currentStatus = (svcsToCheck[i].currentStatus ? $.extend(true,svcsToCheck[i].currentStatus,response.data[j]) : response.data[j])
                               svcsToCheck[i].currentStatus = updateServiceStatus(svcsToCheck[i], response.data[j]);
                               break;
                             }
@@ -207,6 +205,8 @@ angular.module('dmc.widgets.services',[
 
                   if (response.data.status == 0 && angular.equals({},response.data.outParams)) {
                     serviceErrors[response.data.id]++
+                  } else {
+                    serviceErrors[response.data.id] = 0
                   }
 
                   return serviceErrors[response.data.id] > 1

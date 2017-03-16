@@ -1,6 +1,5 @@
-[
-  {
-    "id":"5",
+[{
+    "id": "5",
     "outParams": {
         "Alpha": {
             "type": "Real",
@@ -8,14 +7,13 @@
             "unit": "no unit",
             "category": "no unit",
             "value": "0.3333333333333333 ",
-            "parameterid ":"19",
-            "instancename ":null
-          }
+            "parameterid ": "19",
+            "instancename ": null
+        }
     },
-    "status":1
-  },
-  {
-    "id":"7",
+    "status": 0
+}, {
+    "id": "7",
     "outParams": {
         "Alpha": {
             "type": "Real",
@@ -23,10 +21,23 @@
             "unit": "no unit",
             "category": "no unit",
             "value": "0.3333333333333333 ",
-            "parameterid ":"19",
-            "instancename ":null
-          }
+            "parameterid ": "19",
+            "instancename ": null
+        }
     },
-    "status":0
-  }
-]
+    "status": 0
+}, {
+    "id": "702",
+    "outParams": {
+        "Kmax": {
+            "type": "Real",
+            "name": "Kmax",
+            "unit": "pascal square root meter",
+            "category": "fracture toughness",
+            "value": "2.0869967789998034",
+            "parameterid": "3018",
+            "instancename": null
+        }
+    },
+    "status": 0
+}]

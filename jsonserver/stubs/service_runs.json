@@ -1,45 +1,43 @@
-[
-  {
-      "serviceId": "465",
-      "accountId": "0",
-      "runBy": "179",
-      "status": 1,
-      "percentCompleted": 100,
-      "startDate": "2017-03-09",
-      "startTime": null,
-      "project": {
-          "id": "87",
-          "title": "MRA01"
-      },
-      "id": "5",
-      "stopDate": "2017-03-09",
-      "stopTime": null,
-      "interface": {
-          "inParams": {
-              "Alpha": {
-                  "type": "Real",
-                  "name": "Alpha",
-                  "unit": "no unit",
-                  "category": "no unit",
-                  "value": "4",
-                  "parameterid": "d9f30f56-d800-1004-8f53-704dbfababa8",
-                  "instancename": null
-              }
-          },
-          "outParams": {
-              "BetaFactor": {
-                  "type": "Real",
-                  "name": "BetaFactor",
-                  "unit": "no unit",
-                  "category": "no unit",
-                  "value": "1370.3879999999997",
-                  "parameterid": "d9f30f59-d800-1004-8f53-704dbfababa8",
-                  "instancename": "BetaFactor"
-              }
-          }
-      }
-  },
-{
+[{
+    "serviceId": "465",
+    "accountId": "0",
+    "runBy": "179",
+    "status": 0,
+    "percentCompleted": 100,
+    "startDate": "2017-03-09",
+    "startTime": null,
+    "project": {
+        "id": "87",
+        "title": "MRA01"
+    },
+    "id": "5",
+    "stopDate": "2017-03-09",
+    "stopTime": null,
+    "interface": {
+        "inParams": {
+            "Alpha": {
+                "type": "Real",
+                "name": "Alpha",
+                "unit": "no unit",
+                "category": "no unit",
+                "value": "4",
+                "parameterid": "d9f30f56-d800-1004-8f53-704dbfababa8",
+                "instancename": null
+            }
+        },
+        "outParams": {
+            "BetaFactor": {
+                "type": "Real",
+                "name": "BetaFactor",
+                "unit": "no unit",
+                "category": "no unit",
+                "value": "1370.3879999999997",
+                "parameterid": "d9f30f59-d800-1004-8f53-704dbfababa8",
+                "instancename": "BetaFactor"
+            }
+        }
+    }
+}, {
     "serviceId": "466",
     "accountId": "0",
     "runBy": "179",
@@ -78,5 +76,109 @@
             }
         }
     }
-}
-]
+}, {
+    "serviceId": "497",
+    "accountId": "0",
+    "runBy": "179",
+    "status": 2,
+    "percentCompleted": 0,
+    "startDate": "2017-03-16",
+    "startTime": null,
+    "project": {
+        "id": "103",
+        "title": "Project with Gina"
+    },
+    "id": "701",
+    "stopDate": "2017-03-16",
+    "stopTime": null,
+    "interface": {
+        "inParams": {
+            "Alpha": {
+                "type": "Real",
+                "name": "Alpha",
+                "unit": "no unit",
+                "category": "no unit",
+                "value": "4",
+                "parameterid": "d9f30f56-d800-1004-8f53-704dbfababa8",
+                "instancename": null
+            }
+        },
+        "outParams": {
+            "BetaFactor": {
+                "type": "Real",
+                "name": "BetaFactor",
+                "unit": "no unit",
+                "category": "no unit",
+                "value": "1370.3879999999997",
+                "parameterid": "d9f30f59-d800-1004-8f53-704dbfababa8",
+                "instancename": "BetaFactor"
+            }
+        }
+    }
+}, {
+    "serviceId": "498",
+    "accountId": "0",
+    "runBy": "179",
+    "status": 0,
+    "percentCompleted": 0,
+    "startDate": "2017-03-16",
+    "startTime": null,
+    "project": {
+        "id": "103",
+        "title": "Project with Gina"
+    },
+    "id": "702",
+    "stopDate": "2017-03-16",
+    "stopTime": null,
+    "interface": {
+        "inParams": {
+            "Thickness": {
+                "type": "Real",
+                "name": "Thickness",
+                "unit": "meter",
+                "category": "length",
+                "value": "6",
+                "parameterid": "d9f31085-d800-1004-8f53-704dbfababa8",
+                "instancename": null
+            },
+            "SpecimenWidth": {
+                "type": "Real",
+                "name": "SpecimenWidth",
+                "unit": "meter",
+                "category": "length",
+                "value": "5",
+                "parameterid": "d9f31082-d800-1004-8f53-704dbfababa8",
+                "instancename": null
+            },
+            "BetaFactor": {
+                "type": "Real",
+                "name": "BetaFactor",
+                "unit": "no unit",
+                "category": "no unit",
+                "value": "7",
+                "parameterid": "d9f31088-d800-1004-8f53-704dbfababa8",
+                "instancename": null
+            },
+            "AppliedLoad": {
+                "type": "Real",
+                "name": "AppliedLoad",
+                "unit": "Newton",
+                "category": "force",
+                "value": "2",
+                "parameterid": "d9f3107f-d800-1004-8f53-704dbfababa8",
+                "instancename": null
+            }
+        },
+        "outParams": {
+            "Kmax": {
+                "type": "Real",
+                "name": "Kmax",
+                "unit": "pascal square root meter",
+                "category": "fracture toughness",
+                "value": "2.0869967789998034",
+                "parameterid": "d9f3108b-d800-1004-8f53-704dbfababa8",
+                "instancename": "Kmax"
+            }
+        }
+    }
+}]
