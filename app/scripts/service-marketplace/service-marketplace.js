@@ -71,7 +71,7 @@ angular.module('dmc.service-marketplace', [
                     // 'specifications': $http.get(dataFactory.services(id).get_specifications),
                     // 'service_authors': $http.get(dataFactory.services(id).get_authors),
                     // 'service_tags': $http.get(dataFactory.services(id).get_tags),
-                    // 'services_statistic': $http.get(dataFactory.services(id).get_statistics)
+                    'services_statistic': $http.get(dataFactory.services(id).get_statistics),
                     // 'service_reviews': $http.get(dataFactory.services(id).reviews),
                     'interface': $http.get(dataFactory.services(id).get_interface)
                 };
@@ -94,7 +94,7 @@ angular.module('dmc.service-marketplace', [
                         // service.specifications = extractData(responses.specifications);
                         // service.service_authors = extractData(responses.service_authors);
                         // service.service_tags = extractData(responses.service_tags);
-                        // service.services_statistic = extractData(responses.services_statistic);
+                        service.services_statistic = extractData(responses.services_statistic);
                         // service.service_reviews = extractData(responses.service_reviews);
                         //
                         // service.rating = service.service_reviews.map(function(value, index){

@@ -1,1016 +1,392 @@
 [
 	{
-		"id": 1,
 		"serviceId": 1,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 1,
-			"week": 3,
-			"all": 4
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 1,
-			"week": 3,
-			"all": 4
-		},
-		"unavailable_runs": {
-			"today": 1,
-			"week": 3,
-			"all": 4
-		},
-		"runs_by_users": {
-			"today": 3,
-			"week": 6,
-			"all": 12
-		},
-		"unique_users": {
-			"today": 1,
-			"week": 3,
-			"all": 4
-		},
-		"average_time": {
-			"today": 10.1,
-			"week": 11,
-			"all": 22.2
-		}
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 7,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 3
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 5,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 4
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 3,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 5
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 30,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 6
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 4,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 7
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 6,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 8
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 8,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 9
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 9,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 10
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 12,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 11
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 15,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 12
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 16,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 13
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 17,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 14
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 10,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 15
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 11,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 17
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 18,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 18
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 2,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 19
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 13,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 1,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 20
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 41,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 21
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 28,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 22
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 14,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 23
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 31,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 24
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 42,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 25
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 29,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 26
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 44,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 27
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	},
 	{
 		"serviceId": 43,
-		"success_rate": {
-			"success": 50,
-			"incomplete": 30,
-			"failed": 20
+		"last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.3
 		},
-		"successful_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
+		"my_last_run": {
+			"status": 0,
+			"date": 1489091252,
+			"runtime": 5.848423423
 		},
-		"incomplete_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unavailable_runs": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"runs_by_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"unique_users": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"average_time": {
-			"today": 0,
-			"week": 0,
-			"all": 0
-		},
-		"id": 28
+		"total_successful_runs": 10,
+		"average_runtime": 6.3
 	}
 ]

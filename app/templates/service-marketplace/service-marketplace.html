@@ -231,6 +231,10 @@
             </div>
           </md-tab>
 
+          <md-tab label="METRICS">
+						<ui-widget-tabs-statistic data="product.services_statistic[0]" filter="getHistory"></ui-widget-tabs-statistic>
+					</md-tab>
+
 					<md-tab ng-click="adHocData('service_tags')" label="TAGS">
 						<md-content class="md-padding">
 							<div layout="row" class="tabs-content" layout-wrap>
