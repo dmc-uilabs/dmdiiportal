@@ -200,22 +200,25 @@ angular.module('dmc.widgets.services',[
 
                 var serviceErrors = {};
 
-                function serviceHasErrored(response) {
-                  serviceErrors[response.data.id] = serviceErrors[response.data.id] || 0
+                // Removing the logic below to set services to failed, as long-running services
+                //  will incorrectly trigger this response
 
-                  if (response.data.status == 0 && angular.equals({},response.data.outParams)) {
-                    serviceErrors[response.data.id]++
-                  } else {
-                    serviceErrors[response.data.id] = 0
-                  }
+                // function serviceHasErrored(response) {
+                //   serviceErrors[response.data.id] = serviceErrors[response.data.id] || 0
+                //
+                //   if (response.data.status == 0 && angular.equals({},response.data.outParams)) {
+                //     serviceErrors[response.data.id]++
+                //   } else {
+                //     serviceErrors[response.data.id] = 0
+                //   }
+                //
+                //   return serviceErrors[response.data.id] > 1
+                // }
 
-                  return serviceErrors[response.data.id] > 1
-                }
-
-                function setServiceToFailed(runId) {
-                  var serviceInFailure = returnServiceFromRunId(runId)
-                  serviceInFailure.currentStatus.status = 3
-                }
+                // function setServiceToFailed(runId) {
+                //   var serviceInFailure = returnServiceFromRunId(runId)
+                //   serviceInFailure.currentStatus.status = 3
+                // }
 
                 function returnServiceFromRunId(runId) {
                   return allServices.find(function(x){
