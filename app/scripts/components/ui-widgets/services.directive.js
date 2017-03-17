@@ -174,8 +174,8 @@ angular.module('dmc.widgets.services',[
 
                     if (response.data.status == 1) {
                       pollForServiceStatus();
-                    } else if (serviceHasErrored(response)) {
-                      setServiceToFailed(runId);
+                    // } else if (serviceHasErrored(response)) {
+                    //   setServiceToFailed(runId);
                     } else {
                       if (runningPolls[runId]) {
                         clearTimeout(runningPolls[runId])
