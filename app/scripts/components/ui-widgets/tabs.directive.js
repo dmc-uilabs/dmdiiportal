@@ -35,14 +35,6 @@ angular.module('dmc.widgets.tabs',[
             return "";
           }
         };
-        $scope.formatStatus = function(status_code) {
-          switch (status_code) {
-            case 0:
-              return {status: "Success", color: "green"};
-            case 1:
-              return {status: "Fail", color: "red"};
-          }
-        };
         $scope.formatRuntime = function(runtime){
           if(!isNaN(runtime)){
             return parseFloat(runtime).toFixed(2) + 's';
@@ -53,6 +45,15 @@ angular.module('dmc.widgets.tabs',[
         $scope.generateGraph = function() {
           return "/images/statistics_graph.png"
         };
+        function formatData(data) {
+          data.average_runtime = $scope.formatRuntime(data.average_runtime);
+          data.last_run.date = $scope.formatDate(data.last_run.date);
+          data.last_run.runtime = $scope.formatRuntime(data.last_run.runtime);
+          data.my_last_run.date = $scope.formatDate(data.my_last_run.date);
+          data.my_last_run.runtime = $scope.formatRuntime(data.my_last_run.runtime);
+        };
+        formatData($scope.data);
+        $scope.graph = $scope.generateGraph();
       }
 		};
 	}])

@@ -1,59 +1,57 @@
-<div class="tabs-statistic" layout="column">
-	<div layout="row" layout-align="space-between start">
+<div class="tabs-statistic" layout="row" layout-wrap layout-align="center start">
 
-		<div flex="20">
+		<div class="flexbox">
 			<div class="box-element">
 				<div class="box-element__title">Statistics</div>
-					<div layout="row" layout-align="space-between center">
-						<h3>Total successful runs:</h3>
-						<h3>{{data.total_successful_runs}}</h3>
-					</div>
+				<div layout="row" layout-align="space-between center">
+					<h3>Total successful runs:</h3>
+					<h3>{{data.total_successful_runs}}</h3>
+				</div>
 				<div layout="row" layout-align="space-between center">
 					<h3>Average runtime:</h3>
-					<h3>{{formatRuntime(data.average_runtime)}}</h3>
+					<h3>{{data.average_runtime}}</h3>
 				</div>
 			</div>
 		</div>
 
-		<div flex="20" layout="column">
+		<div layout="column" class="flexbox">
 			<div class="box-element">
 				<div class="box-element__title">Last Run</div>
-					<div layout="row" layout-align="space-between center">
-						<h3>Status:</h3>
-						<h3 ng-class="statusObj=formatStatus(data.last_run.status);" ng-style="{color: statusObj['color']}">{{statusObj["status"]}}</h3>
-					</div>
-					<div layout="row" layout-align="space-between center">
-						<h3>Date:</h3>
-						<h4>{{formatDate(data.last_run.date)}}</h4>
-					</div>
-					<div layout="row" layout-align="space-between center">
-						<h3>Runtime:</h3>
-						<h3>{{formatRuntime(data.last_run.runtime)}}</h3>
-					</div>
+				<div layout="row" layout-align="space-between center">
+					<h3>Status:</h3>
+					<h3 ng-init="status=data.last_run.status;" ng-class="{'success': !status, 'fail': status}">{{status ? "Fail" : "Success"}}</h3>
+				</div>
+				<div layout="row" layout-align="space-between center">
+					<h3>Date:</h3>
+					<h4>{{data.last_run.date}}</h4>
+				</div>
+				<div layout="row" layout-align="space-between center">
+					<h3>Runtime:</h3>
+					<h3>{{data.last_run.runtime}}</h3>
+				</div>
 			</div>
 
 			<div class="box-element">
 				<div class="box-element__title">My Last Run</div>
-					<div layout="row" layout-align="space-between center">
-						<h3>Status:</h3>
-						<h3 ng-class="myStatusObj=formatStatus(data.my_last_run.status);" ng-style="{color: myStatusObj['color']}">{{myStatusObj["status"]}}</h3>
-					</div>
-					<div layout="row" layout-align="space-between center">
-						<h3>Date:</h3>
-						<h4>{{formatDate(data.my_last_run.date)}}</h4>
-					</div>
-					<div layout="row" layout-align="space-between center">
-						<h3>Runtime:</h3>
-						<h3>{{formatRuntime(data.my_last_run.runtime)}}</h3>
-					</div>
+				<div layout="row" layout-align="space-between center">
+					<h3>Status:</h3>
+					<h3 ng-init="my_status=data.my_last_run.status;" ng-class="{'success': !my_status, 'fail': my_status}">{{my_status ? "Fail" : "Success"}}</h3>
+				</div>
+				<div layout="row" layout-align="space-between center">
+					<h3>Date:</h3>
+					<h4>{{data.my_last_run.date}}</h4>
+				</div>
+				<div layout="row" layout-align="space-between center">
+					<h3>Runtime:</h3>
+					<h3>{{data.my_last_run.runtime}}</h3>
+				</div>
 			</div>
 		</div>
 
-		<div flex="50">
+		<div flex="grow" class="flexbox">
 			<div class="box-element">
-				<img ng-src="{{generateGraph()}}">
+				<img ng-src="{{graph}}">
 			</div>
 		</div>
 
-	</div>
 </div>
