@@ -70,9 +70,11 @@
       font-weight: 900;
       padding: 10px;
     }
+
     md-tabs{
       width:100%;
     }
+
     h3{
       font-weight: normal;
       margin: 4px 0;
@@ -86,7 +88,12 @@
       span{
         font-weight: 900;
       }
+      .span-green{
+        font-weight: normal;
+        color:green;
+      }
     }
+
 
     h2{
       margin: 4px 0;
@@ -102,25 +109,21 @@
       }
     }
 
-    .h3-span-green{
-      color:green;
-    }
-
-    .button-top-margin{
-      margin-top: 20px;
-    }
 
 
-    .title{
+    h1{
       font-size:40px;
       font-weight:lighter;
       color:green;
+      margin:0px;
     }
-    .logo{
-      width:350px;
-    }
+
+
     .image{
       width: 100px;
+      .logo{
+        width:350px;
+      }
     }
 
 
