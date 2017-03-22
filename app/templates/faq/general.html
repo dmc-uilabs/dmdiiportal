@@ -75,22 +75,52 @@
                     <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab label="General ">
                         <md-content >
-                            <div ng-repeat="q in gFaq" >
+                            <div ng-repeat="q in gFaq" class="faqq">
                                       <h4>{{q.q}}</h4>
                                       <p ng-bind-html="q.a | unsafe" ></p>
-                                  <md-divider></md-divider>
+
                             </div>
                         </md-content>
                     </md-tab>
 
                     <md-tab label="Memeber Portal ">
                         <md-content >
-                            <div ng-repeat="q in mpFaq" >
+                            <div ng-repeat="q in mpFaq" class="faqq">
                                       <h4>{{q.q}}</h4>
                                       <p ng-bind-html="q.a | unsafe" ></p>
-                                  <md-divider></md-divider>
+
                             </div>
                         </md-content>
+                    </md-tab>
+
+                    <md-tab label="Getting Access ">
+                        <md-content >
+                            <div ng-repeat="q in aFaq" class="faqq">
+                                      <h4>{{q.q}}</h4>
+                                      <p ng-bind-html="q.a | unsafe" ></p>
+
+                            </div>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Workspaces ">
+                       <md-content >
+                           <div ng-repeat="q in wFaq" class="faqq">
+                                     <h4>{{q.q}}</h4>
+                                     <p ng-bind-html="q.a | unsafe" ></p>
+
+                           </div>
+                       </md-content>
+                    </md-tab>
+
+                    <md-tab label="Marketplace and Applications ">
+                       <md-content >
+                           <div ng-repeat="q in mFaq" class="faqq">
+                                     <h4>{{q.q}}</h4>
+                                     <p ng-bind-html="q.a | unsafe" ></p>
+                                
+                           </div>
+                       </md-content>
                     </md-tab>
 
                     </md-tabs>

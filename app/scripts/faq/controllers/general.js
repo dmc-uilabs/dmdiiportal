@@ -19,7 +19,26 @@ angular.module('dmc.faq')
       }
       getMpfaq();
 
+      var getMfaq= function() {
+          ajax.get(dataFactory.getStaticJSON('mfaq.json'), {}, function(response){
+              $scope.mFaq = response.data;
+          });
+      }
+      getMfaq();
 
+      var getafaq= function() {
+          ajax.get(dataFactory.getStaticJSON('afaq.json'), {}, function(response){
+              $scope.aFaq = response.data;
+          });
+      }
+      getafaq();
+
+      var getwfaq= function() {
+          ajax.get(dataFactory.getStaticJSON('wfaq.json'), {}, function(response){
+              $scope.wFaq = response.data;
+          });
+      }
+      getwfaq();
 
         // $scope.categoryId = (angular.isDefined($stateParams.categoryId) ? $stateParams.categoryId : 1);
         // $scope.articleId = parseInt($stateParams.articleId);
