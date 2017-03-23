@@ -1,57 +1,12 @@
 [{
-        "id": 13,
-        "companyId": "1",
-        "title": "BetaFactor",
-        "description": "Solves for Beta in Fracture Machanics.",
-        "owner": "2",
-        "profileId": "2",
-        "releaseDate": "2017-01-18",
-        "serviceType": "analytical",
-        "tags": [],
-        "specifications": "/services/3/specifications",
-        "featureImage": {
-            "thumbnail": "",
-            "large": ""
-        },
-        "currentStatus": {
-            "percentCompleted": "0",
-            "startDate": "",
-            "startTime": ""
-        },
-        "projectId": "56",
-        "from": "project",
-        "type": "service",
-        "parent": null,
-        "published": true,
-        "averageRun": ""
-    }, {
-        "id": 17,
-        "companyId": "12",
-        "title": "Alphasssssss",
-        "description": "ss",
-        "owner": "1",
-        "profileId": "1",
-        "releaseDate": "2017-01-18",
-        "serviceType": "data",
-        "tags": [],
-        "specifications": "/services/3/specifications",
-				"featureImage ":{
-					"thumbnail ":"",
-					"large ":""},
-				"currentStatus ":{
-					"percentCompleted ":"0",
-        "startDate": "",
-        "startTime": ""
-    }, "projectId": "0", "from": "project", "type": "service", "parent": null, "published": true, "averageRun": ""
-}, {
-    "id": 20,
+    "id": 465,
     "companyId": "1",
-    "title": "Fractrure Mechanics - Alpha",
-    "description": "The  formula used in this model is Alpha = CrackLength / SpecimenWidth.The inputs are CrackLenght(meter) and SpecimenWidth(meter).The output is Alpha(no unit).    ",
-		"owner ":"  5 ",
-		"profileId ":"5",
-		"releaseDate ": "2017-01-19",
-    "serviceType": "analytical",
+    "title": "Alpha",
+    "description": "The formula used in this model is Alpha = CrackLength / SpecimenWidth. The inputs are CrackLenght (meter) and SpecimenWidth (meter). The output is Alpha (no unit).",
+    "owner": "179",
+    "profileId": "179",
+    "releaseDate": "2017-01-20",
+    "serviceType": "Fundamental Calculations - Fracture Mechanics",
     "tags": [],
     "specifications": "/services/3/specifications",
     "featureImage": {
@@ -63,130 +18,89 @@
         "startDate": "",
         "startTime": ""
     },
-    "projectId": "8",
-    "from": "project",
+    "projectId": "56",
+    "from": "marketplace",
     "type": "service",
     "parent": null,
-    "published": true,
+    "published": false,
     "averageRun": ""
 }, {
-    "id": 22,
+    "id": 466,
     "companyId": "1",
-    "title": "Fracture Mechanics - AppliedLoad",
-    "description": "The formula used in this model is AppliedLoad = (K * Thickness * math.sqrt(SpecimenWidth.getValue().There are four inputs required for this model.The inputs are k(pascal square root meter), thickness(meter), SpecimentWidth(meter), and BetaFactor(no unit).The output is the applied load(Newton).",
-		"owner ":"5 ",
-		"profileId ":"5 ",
-		"releaseDate ":"2017 - 01 - 19 ",
-		 "serviceType": "analytical", "tags": [], "specifications": "/services/3/specifications", "featureImage": {
-            "thumbnail": "",
-            "large": ""
-        }, "currentStatus": {
-            "percentCompleted": "0",
-            "startDate": "",
-            "startTime": ""
-        }, "projectId": "8", "from": "project", "type": "service", "parent": null, "published": true, "averageRun": ""
-    }, {
-        "id": 44,
-        "companyId": "15",
-        "title": "Fracture Mechanics - Kmax",
-        "description": "The formula used is Kmax = BetaFactor * AppliedLoad /            (Thickness * math.sqrt(SpecimenWidth.getValue())).The four inputs are BetaFactor(no unit),AppliedLoad(Newton),        SpecimenWidth(meter),        and Thickness(meter).The output is Kmax(pascal square root meter).      ",
-				"owner ":"3 ",
-				"profileId ":"3 ",
-				"releaseDate ":"2017 - 01 - 19 ",
-				"serviceType ":"analytical ",
-				"tags ":[],
-				"specifications ": "/services/3/specifications",
-        "featureImage": {
-            "thumbnail": "",
-            "large": ""
-        },
-        "currentStatus": {
-            "percentCompleted": "0",
-            "startDate": "",
-            "startTime": ""
-        },
-        "projectId": "10",
-        "from": "project",
-        "type": "service",
-        "parent": null,
-        "published": true,
-        "averageRun": ""
-    }, {
-        "id": 9,
-        "companyId": "15",
-        "title": "Ux Again",
-        "description": "The formula        used in this model is Ux = pow(pow(((ElasticModulus * Displacement * Thickness) / AppliedLoad), 0 .5) + 1, -1).The inputs are ElasticModulus(Pascal),Displacement(meter),Thickness(meter),        and AppliedLoad(Newton).The output is Ux(no unit).",
-				"owner ":"3",
-				"profileId ":"3",
-				"releaseDate ":"2017 - 01 - 19 ",
-				"serviceType ": "analytical",
-        "tags": [],
-        "specifications": "/services/3/specifications",
-        "featureImage": {
-            "thumbnail": "",
-            "large": ""
-        },
-        "currentStatus": {
-            "percentCompleted": "0",
-            "startDate": "",
-            "startTime": ""
-        },
-        "projectId": "10",
-        "from": "project",
-        "type": "service",
-        "parent": null,
-        "published": true,
-        "averageRun": ""
-    }, {
-        "id": 15,
-        "companyId": "15",
-        "title": "Torque",
-        "description": "assda",
-        "owner": "3",
-        "profileId": "3",
-        "releaseDate": "2017-01-19",
-        "serviceType": "Fundamental Calculations",
-        "tags": [],
-        "specifications": "/services/3/specifications",
-        "featureImage": {
-            "thumbnail": "",
-            "large": ""
-        },
-        "currentStatus": {
-            "percentCompleted": "0",
-            "startDate": "",
-            "startTime": ""
-        },
-        "projectId": "10",
-        "from": "project",
-        "type": "service",
-        "parent": null,
-        "published": true,
-        "averageRun": ""
-    }, {
-        "id": 4,
-        "companyId": "15",
-        "title": "SigXCrack",
-        "description": "ertert",
-        "owner": "3",
-        "profileId": "3",
-        "releaseDate": "2017-01-19",
-        "serviceType": "Data & Analytics",
-        "tags": [],
-        "specifications": "/services/3/specifications",
-        "featureImage": {
-            "thumbnail": "",
-            "large": ""
-        },
-        "currentStatus": {
-            "percentCompleted": "0",
-            "startDate": "",
-            "startTime": ""
-        },
-        "projectId": "10",
-        "from": "project",
-        "type": "service",
-        "parent": null,
-        "published": true,
-        "averageRun": ""
-    }]
+    "title": "Alpha",
+    "description": "The formula used in this model is Alpha = CrackLength / SpecimenWidth. The inputs are CrackLenght (meter) and SpecimenWidth (meter). The output is Alpha (no unit).",
+    "owner": "179",
+    "profileId": "179",
+    "releaseDate": "2017-01-20",
+    "serviceType": "Fundamental Calculations - Fracture Mechanics",
+    "tags": [],
+    "specifications": "/services/3/specifications",
+    "featureImage": {
+        "thumbnail": "",
+        "large": ""
+    },
+    "currentStatus": {
+        "percentCompleted": "0",
+        "startDate": "",
+        "startTime": ""
+    },
+    "projectId": "56",
+    "from": "marketplace",
+    "type": "service",
+    "parent": null,
+    "published": false,
+    "averageRun": ""
+}, {
+    "id": 497,
+    "companyId": "1",
+    "title": "Beta Factor",
+    "description": "The input is Alpha (no unit) and the output is BetaFactor (no unit). Below is some of the code used in\nthis model.\nTerm1 = 2 + Alpha\nTerm2 = pow((1 - Alpha), (3 / 2))\nTerm3 = 0.886 + 4.64 * Alpha - 13.32 * pow(Alpha, 2) + 14.72 * pow(Alpha, 3) - 5.6 * pow(Alpha, 4)\nBetaFactor = (Term1 / Term2) * Term3)",
+    "owner": "179",
+    "profileId": "179",
+    "releaseDate": "2017-01-20",
+    "serviceType": "Fundamental Calculations - Fracture Mechanics",
+    "tags": [],
+    "specifications": "/services/3/specifications",
+    "featureImage": {
+        "thumbnail": "",
+        "large": ""
+    },
+    "currentStatus": {
+        "percentCompleted": "0",
+        "startDate": "",
+        "startTime": ""
+    },
+    "projectId": "103",
+    "from": "marketplace",
+    "type": "service",
+    "parent": null,
+    "published": false,
+    "averageRun": ""
+},
+{
+    "id": 498,
+    "companyId": "1",
+    "title": "K Max",
+    "description": "The formula used is Kmax = BetaFactor * AppliedLoad / (Thickness * math.sqrt(SpecimenWidth.getValue())). The four inputs are BetaFactor (no unit), AppliedLoad (Newton), SpecimenWidth (meter), and Thickness (meter). The output is Kmax (pascal square root meter).",
+    "owner": "179",
+    "profileId": "179",
+    "releaseDate": "2017-01-21",
+    "serviceType": "Fundamental Calculations - Fracture Mechanics",
+    "tags": [],
+    "specifications": "/services/3/specifications",
+    "featureImage": {
+        "thumbnail": "",
+        "large": ""
+    },
+    "currentStatus": {
+        "percentCompleted": "0",
+        "startDate": "",
+        "startTime": ""
+    },
+    "projectId": "103",
+    "from": "marketplace",
+    "type": "service",
+    "parent": null,
+    "published": false,
+    "averageRun": ""
+}]

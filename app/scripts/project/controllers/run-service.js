@@ -38,6 +38,14 @@ angular.module('dmc.project')
             $scope.isChangedValues = false;
             $scope.hasCustomUI = false;
 
+            var getStatusesNames = function() {
+              ajax.get(dataFactory.getStaticJSON('serviceStatuses.json'), {}, function(response){
+                $scope.serviceStatusNames = response.data
+              });
+            }
+
+            getStatusesNames()
+
             $scope.sortableOptions = {
                 update: function(e, ui) {
                     $scope.isChangedOrder = true;
@@ -216,14 +224,13 @@ angular.module('dmc.project')
             // get last status
             $scope.lastStatus = 'none';
 
-
-
-            // get last status
-            if($scope.service.lastStatus){
-                // $scope.lastRunTime = $scope.calcRunTime($scope.service.lastStatus);
-                $scope.lastStatus = getStatus($scope.service.lastStatus.status);
-                apply();
-            }
+            // TODO add logic to get the most recent (prior) status
+            // // get last status
+            // if($scope.service.lastStatus){
+            //     // $scope.lastRunTime = $scope.calcRunTime($scope.service.lastStatus);
+            //     $scope.lastStatus = getStatus($scope.service.lastStatus.status);
+            //     apply();
+            // }
 
             $scope.averageRun = ($scope.service.averageRun ? $scope.service.averageRun.toFixed(2) : 0);
 
@@ -232,23 +239,23 @@ angular.module('dmc.project')
                 runModel();
             };
 
-
-            function getStatus(status){
-                switch(status){
-                    case 0:
-                        return 'running';
-                        break;
-                    case 1:
-                        return 'success';
-                        break;
-                    case -1:
-                        return 'error';
-                        break;
-                    default:
-                        return status;
-                        break;
-                }
-            }
+            // TODO add logic to get the most recent (prior) status
+            // function getStatus(status){
+            //     switch(status){
+            //         case 0:
+            //             return 'running';
+            //             break;
+            //         case 1:
+            //             return 'success';
+            //             break;
+            //         case -1:
+            //             return 'error';
+            //             break;
+            //         default:
+            //             return status;
+            //             break;
+            //     }
+            // }
 
             $scope.isRunning = function() {
                 return angular.isDefined(pollingInterval) ? true : false;
@@ -358,7 +365,7 @@ angular.module('dmc.project')
                 $scope.service.interfaceModel.inputs = [];
                 for (var key in $scope.service.interfaceModel.inParams) {
                     $scope.service.interfaceModel.inParams[key].defaultValue = $scope.service.interfaceModel.inParams[key].value;
-                    $scope.service.interfaceModel.inParams[key].value = $scope.service.currentStatus.interface.inParams[key].value;
+                    // $scope.service.interfaceModel.inParams[key].value = $scope.service.currentStatus.interface.inParams[key].value;
                     $scope.service.interfaceModel.inputs.push($scope.service.interfaceModel.inParams[key]);
                 }
                 for (var key in $scope.service.interfaceModel.outParams) {
