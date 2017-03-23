@@ -43,8 +43,11 @@
 			</md-button>
 		</div>
 	</div>
-	<h3>Status: {{status}}</h3>
-	<h3>Last Run Status: {{lastStatus}}</h3>
+	<h3>Status:
+    <span ng-if="serviceStatusNames[service.currentStatus.status]">{{serviceStatusNames[service.lastStatus.status]}}</span>
+  </h3>
+	<h3>Last Run Status: {{lastStatus}}
+  </h3>
 	<h3>Your Run Time: {{runTime}} s.</h3>
 	<h3>Last Run Time: {{lastRunTime}} s.</h3>
 	<h3>Average Run: {{averageRun}} s.</h3>
