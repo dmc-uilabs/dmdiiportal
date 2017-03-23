@@ -78,7 +78,7 @@
 				                </md-data-table-container>
 								<div ng-if="projectFinancials && projectFinancials.documentUrl" flex="50">
 									<img ng-src="{{projectFinancials.documentUrl}}"></img>
-									<a class="delete-btn" href ng-click="deleteDocument(projectFinancials.id, 'projectFinancials')">delete</a>
+									<a ng-if="userData.isDmdiiAdmin" class="delete-btn" href ng-click="deleteDocument(projectFinancials.id, 'projectFinancials')">delete</a>
 								</div>
 				            </div>
 						</div>
@@ -155,7 +155,7 @@
 
 		 	 <md-tab label="Project Schedule">
 		 		 <img style="border:1px solid;width:70%;margin:25px;  padding:20px;" ng-src="{{projectSchedule.documentUrl}}"></img>
-		 		 <a class="delete-btn" href ng-click="deleteDocument(projectSchedule.id, 'projectSchedule')">delete</a>
+		 		 <a ng-if="userData.isDmdiiAdmin" class="delete-btn" href ng-click="deleteDocument(projectSchedule.id, 'projectSchedule')">delete</a>
 		 	 </md-tab>
 
 		 	 <md-tab label="Project Updates">
@@ -166,7 +166,7 @@
 		 						 <div class="slim-side-margin no-bottom" layout="row">
 		 							 <h2 class="margin-top-25 no-bottom green">{{update.title}}</h4>
 		 							 <p class="superset">{{update.created}}</p>
-		 							 <a class="delete-btn" href ng-click="deleteUpdate($index, update.id)">delete</a>
+		 							 <a ng-if="userData.isDmdiiAdmin" class="delete-btn" href ng-click="deleteUpdate($index, update.id)">delete</a>
 		 						 </div>
 		 						 <p class="slim-margin" markdown-to-html="update.description"></p>
 		 					 </div>
@@ -239,7 +239,7 @@
 
 				<md-tab label="Agenda">
 				  <img style="border:1px solid;width:70%;margin:25px;  padding:20px;" ng-src="{{projectSchedule.documentUrl}}"></img>
-				  <a class="delete-btn" href ng-click="deleteDocument(projectSchedule.id, 'projectSchedule')">delete</a>
+				  <a ng-if="userData.isDmdiiAdmin" class="delete-btn" href ng-click="deleteDocument(projectSchedule.id, 'projectSchedule')">delete</a>
 				</md-tab>
 
 				<md-tab label="Docs & Presentations">
