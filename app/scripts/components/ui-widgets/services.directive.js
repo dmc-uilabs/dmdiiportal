@@ -98,9 +98,8 @@ angular.module('dmc.widgets.services',[
 
                     // poll For Service Status
                     setTimeout(function(){
-                        pollForServiceStatus()
+                        beginServicePolls(allServices)
                     }, 5000)
-
 
                 }
 
@@ -143,7 +142,6 @@ angular.module('dmc.widgets.services',[
                       _order : "DESC"
                   };
 
-
                   ajax.get(dataFactory.runService(),requestData,
                       function(response){
                         updateServicesStatuses(svcsToCheck, response.data)
@@ -162,6 +160,89 @@ angular.module('dmc.widgets.services',[
                     }
                   }
                 }
+
+                function serviceRunStillActive(runId) {
+                  var stillActive = true;
+                  var svcsToCheck = returnRunningServices(allServices)
+
+                  for (var i=0; i<svcsToCheck.length; i++) {
+                    if (svcsToCheck[i].currentStatus.id == runId && svcsToCheck[i].currentStatus.status != 0) {
+                      stillActive = false;
+                    }
+                  }
+
+                  return stillActive;
+                }
+
+                function beginServicePolls() {
+                  var svcsToCheck = returnRunningServices(allServices)
+
+                  if(!svcsToCheck) { return  }
+
+                  for (var i=0; i<svcsToCheck.length; i++) {
+                    pollSingleServiceRun(svcsToCheck[i].currentStatus.id)
+                  }
+                }
+
+                var runningPolls = {};
+
+                function pollSingleServiceRun(runId) {
+                  ajax.get(dataFactory.pollModel(runId), {}, function(response) {
+
+                    if (response.data.status == 1) {
+                      pollForServiceStatus();
+                    // } else if (serviceHasErrored(response)) {
+                    //   setServiceToFailed(runId);
+                    } else if (serviceRunStillActive(runId)) {
+                      if (runningPolls[runId]) {
+                        clearTimeout(runningPolls[runId])
+                      }
+                      runningPolls[runId] = (setTimeout(pollSingleServiceRun.bind(null, runId), 5000));
+                    }
+
+                  }, pollSingleServiceRunErrorCallback);
+                }
+
+                function stopPolls() {
+                  for (var key in runningPolls) {
+                    if (runningPolls.hasOwnProperty(key)) {
+                      clearTimeout(runningPolls[key])
+                    }
+                  }
+                }
+
+                function pollSingleServiceRunErrorCallback(response) {
+                  toastModel.showToast('error', 'Error poling Dome service');
+                }
+
+                var serviceErrors = {};
+
+                // Removing the logic below to set services to failed, as long-running services
+                //  will incorrectly trigger this response
+
+                // function serviceHasErrored(response) {
+                //   serviceErrors[response.data.id] = serviceErrors[response.data.id] || 0
+                //
+                //   if (response.data.status == 0 && angular.equals({},response.data.outParams)) {
+                //     serviceErrors[response.data.id]++
+                //   } else {
+                //     serviceErrors[response.data.id] = 0
+                //   }
+                //
+                //   return serviceErrors[response.data.id] > 1
+                // }
+
+                // function setServiceToFailed(runId) {
+                //   var serviceInFailure = returnServiceFromRunId(runId)
+                //   serviceInFailure.currentStatus.status = 3
+                // }
+
+                function returnServiceFromRunId(runId) {
+                  return allServices.find(function(x){
+                    return x.currentStatus.id == runId
+                  })
+                }
+
 
                 var getStatusesNames = function() {
                   ajax.get(dataFactory.getStaticJSON('serviceStatuses.json'), {}, function(response){
@@ -228,6 +309,10 @@ angular.module('dmc.widgets.services',[
                 function apply(){
                     if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                 }
+
+                $scope.$on('$destroy', function() {
+                  stopPolls();
+                });
             }
         };
     }])
