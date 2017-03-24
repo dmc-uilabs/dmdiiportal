@@ -162,13 +162,14 @@ angular.module('dmc.widgets.services',[
                 }
 
                 function serviceRunStillActive(runId) {
-                  var stillActive = true;
+                  var stillActive = false;
                   var svcsToCheck = returnRunningServices(allServices)
 
                   for (var i=0; i<svcsToCheck.length; i++) {
-                    if (svcsToCheck[i].currentStatus.id == runId && svcsToCheck[i].currentStatus.status != 0) {
-                      stillActive = false;
+                    if (svcsToCheck[i].currentStatus.id == runId && svcsToCheck[i].currentStatus.status == 0) {
+                      stillActive = true;
                     }
+
                   }
 
                   return stillActive;
@@ -285,7 +286,7 @@ angular.module('dmc.widgets.services',[
                         question: "Are you sure you want to cancel this service run?",
                         buttons: {
                             ok: function(){
-                              ajax.create(dataFactory.cancelServiceRun(item.id), {}, function(response){
+                              ajax.create(dataFactory.cancelServiceRun(item.currentStatus.id), {}, function(response){
                                   updateServiceStatus(item, response.data);
                                   toastModel.showToast("success", "Service run cancelled");
                               }, function(response){
