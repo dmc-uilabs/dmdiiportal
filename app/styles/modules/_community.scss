@@ -1,7 +1,41 @@
+.community{
+  background: white;
+	padding: 40px;
+  padding-top: 0px;
+}
+
+.flexrow{
+  &-left{
+    min-width: 500px;
+    // padding: 0px 30px;
+    //padding-right: 60px;
+  }
+  &-right{
+    // padding: 0px 30px;
+    min-width: 300px;
+  }
+}
+
+.news{
+  &-header{
+    color: map-get($colors, secondary);
+    font-size: 24px;
+  }
+  &-title{
+    font-weight: bold;
+    font-family:inherit;
+    font-size:16px;
+  }
+  &-description{
+    white-space: pre-wrap;
+    font-weight: normal;
+  }
+}
+
 .content-panel.project {
   .md-toolbar-tools.widget-toolbar-title {
     h2{
-
+      color: map-get($colors, secondary);
       text-transform: capitalize;
     }
   }

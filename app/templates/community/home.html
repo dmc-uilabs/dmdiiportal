@@ -1,7 +1,7 @@
-<div class="page-header">
+<!-- <div class="page-header">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <div layout="row" layout-align="start center" flex>
+            <div layout="row" layout-align="start center" flex> -->
                 <!-- <md-input-container class="filterBox">
                     <label>Filter</label>
                     <md-select ng-model="searchTypeModel" ng-change="selectItemDropDown(searchTypeModel)">
@@ -28,12 +28,12 @@
                             </div>
                         </div>
                     </form> -->
-                </div>
+                <!-- </div>
                 <span flex></span>
                 <md-button class="md-raised dmc-button" ng-click="createDiscussion()">
                     <span>Add New Discussion</span>
                     <ng-md-icon icon="add" size="22"></ng-md-icon>
-                </md-button>
+                </md-button> -->
                 <!--<md-input-container layout="row" layout-wrap layout-align="start center" class="top-10">-->
                     <!---->
                     <!--&lt;!&ndash;<a class="following-btn link-button uppercase margin-left20">Following (15)</a>&ndash;&gt;-->
@@ -42,29 +42,89 @@
                         <!--Contacts-->
                     <!--</md-button>-->
                 <!--</md-input-container>-->
-            </div>
+            <!-- </div>
         </div>
     </md-toolbar>
 </div>
 <div class="container community-container" >
 
-    <div layout="row" >
+    <div layout="row" > -->
         <!-- Left Content Column -->
-        <div class="content-column" layout="column" flex="60">
+        <!-- <div class="content-column" layout="column" flex="60"> -->
             <!-- Discussions you follow -->
             <!-- <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'following'" widget-title="'Discussions you follow'"></div>
             <!-- Discussions from people you follow -->
 <!--            <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'follow-people'" widget-title="'Discussions from people you follow'"></div> -->
             <!-- Popular discussions -->
-            <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'popular'" widget-title="'Popular discussions'"></div>
-        </div>
+            <!-- <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'popular'" widget-title="'Popular discussions'"></div>
+        </div> -->
         <!-- Right Content Column -->
-        <div class="content-column" layout="column" flex>
+        <!-- <div class="content-column" layout="column" flex> -->
             <!-- DMC Announcements-->
             <!-- <div class="content-panel project dmc-announcements-content-panel margin-left12-5 margin-top-25" dmc-announcements widget-title="'DMC Announcements'"></div> -->
 
             <!-- DMC Events-->
-            <div class="content-panel project dmc-events-content-panel margin-left12-5 margin-top-25" dmc-events widget-title="'Events'"></div>
+            <!-- <div class="content-panel project dmc-events-content-panel margin-left12-5 margin-top-25" dmc-events widget-title="'Events'"></div>
         </div>
     </div>
+</div> -->
+<div class="community" layout="column" flex>
+
+  <!-- Header -->
+  <h2 style="border-bottom: 1px solid rgba(0, 0, 0, 0.12);">ACTIVITIES</h2>
+
+  <!-- Social feeds -->
+  <div layout-wrap layout-align="space-between start" layout="row">
+    <!-- Youtube -->
+    <div class="flexrow-left" flex="60">
+      <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%" height="500">
+      </ng-youtube-embed>
+    </div>
+    <!-- Twitter -->
+    <div class="flexrow-right" flex="35">
+      <twitter-timeline>
+        <a class="twitter-timeline" data-chrome="noscrollbar noheader nofooter" data-height="500" href="https://twitter.com/DMDII_">Tweets from DMDII</a>
+      </twitter-timeline>
+      <div layout="row" layout-align="center center" style="padding-top: 10px;">
+        <div style="padding-right: 10px;">
+          <a class="twitter-follow-button" href="https://twitter.com/DMDII_" data-size="large" data-show-count="false">Follow @DMDII</a>
+        </div>
+        <a class="twitter-follow-button" href="https://twitter.com/UILABS_" data-size="large" data-show-count="false">Follow @UILABS</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Middle section -->
+  <div layout="row" layout-align="center center" style="padding-bottom: 40px;">
+    <!-- Icon -->
+    <div >
+      <img class="image" ng-src="images/home-community-icon.png"  style="width: 180px">
+    </div>
+    <!-- News -->
+    <div class="flex-60" style="padding: 30px;">
+      <h2 class="news-header">DMC in the News</h2>
+      <a class="news-title" target="_blank" href="{{news[0].link}}">{{news[0].title}}</a>
+      <h3 class="news-description">{{news[0].description}}</h3>
+    </div>
+    <!-- Follow buttons -->
+    <!-- <div layout="column">
+      <div style="padding-bottom: 10px;">
+        <a class="twitter-follow-button" href="https://twitter.com/DMDII_" data-size="large" data-show-count="false">Follow @DMDII</a>
+      </div>
+      <a class="twitter-follow-button" href="https://twitter.com/UILABS_" data-size="large" data-show-count="false">Follow @UILABS</a>
+    </div> -->
+  </div>
+
+  <!-- Discussions and events -->
+  <div layout-wrap layout-align="space between start" layout="row" >
+      <!-- Popular discussions -->
+      <div class="flexrow-left" flex="60">
+          <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'popular'" widget-title="'Popular discussions'"></div>
+      </div>
+      <!-- DMC Events-->
+      <div class="flexrow-right" flex="35">
+          <div class="content-panel project dmc-events-content-panel margin-left12-5 margin-top-25" dmc-events widget-title="'Events'"></div>
+      </div>
+  </div>
+
 </div>

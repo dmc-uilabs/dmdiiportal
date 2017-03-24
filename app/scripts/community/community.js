@@ -17,7 +17,9 @@ angular.module('dmc.community', [
     'dmc.community.discussions',
     'dmc.community.dmc-events',
     'dmc.community.dmc-announcements',
-    'dmc.model.toast-model'
+    'dmc.model.toast-model',
+    'ngtweet',
+    'ngYoutubeEmbed'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('community', {
         template: '<ui-view />'

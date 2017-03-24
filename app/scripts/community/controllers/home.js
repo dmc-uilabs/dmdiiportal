@@ -6,6 +6,12 @@ angular.module('dmc.community')
             '$stateParams', '$state', "$scope", "ajax", "$location","dataFactory","toastModel", "$mdDialog",
             function ($stateParams, $state, $scope, ajax, $location, dataFactory, toastModel, $mdDialog) {
 
+                var getNews= function() {
+                    ajax.get(dataFactory.getStaticJSON('news.json'), {}, function(response){
+                        $scope.news = response.data;
+                    });
+                }
+                getNews();
 
                 $scope.searchTypes = [
                     {
@@ -43,7 +49,7 @@ angular.module('dmc.community')
                         $scope.peoples.unshift(item);
                     }
                 };
-                
+
 
                 $scope.createDiscussion = function(ev){
                     $(window).scrollTop(0);
