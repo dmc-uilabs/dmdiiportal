@@ -144,18 +144,36 @@ angular.module('dmc.widgets.services',[
 
                   ajax.get(dataFactory.runService(),requestData,
                       function(response){
-                        for(var i=0;i<svcsToCheck.length;i++){
-                          for(var j=0; j<response.data.length; j++) {
-                            if (svcsToCheck[i].id == response.data[j].serviceId) {
-                              svcsToCheck[i].currentStatus = updateServiceStatus(svcsToCheck[i], response.data[j]);
-                              break;
-                            }
-                          }
-                        }
-
+                        updateServicesStatuses(svcsToCheck, response.data)
+                        setTimeout(pollForServiceStatus, 5000);
                       }
                     )
+                }
+
+                function updateServicesStatuses(services, statuses) {
+                  for(var i=0;i<services.length;i++){
+                    for(var j=0; j<statuses.length; j++) {
+                      if (services[i].id == statuses[j].serviceId) {
+                        services[i].currentStatus = updateServiceStatus(services[i], statuses[j]);
+                        break;
+                      }
+                    }
                   }
+                }
+
+                function serviceRunStillActive(runId) {
+                  var stillActive = false;
+                  var svcsToCheck = returnRunningServices(allServices)
+
+                  for (var i=0; i<svcsToCheck.length; i++) {
+                    if (svcsToCheck[i].currentStatus.id == runId && svcsToCheck[i].currentStatus.status == 0) {
+                      stillActive = true;
+                    }
+
+                  }
+
+                  return stillActive;
+                }
 
                 function beginServicePolls() {
                   var svcsToCheck = returnRunningServices(allServices)
@@ -176,7 +194,7 @@ angular.module('dmc.widgets.services',[
                       pollForServiceStatus();
                     // } else if (serviceHasErrored(response)) {
                     //   setServiceToFailed(runId);
-                    } else {
+                    } else if (serviceRunStillActive(runId)) {
                       if (runningPolls[runId]) {
                         clearTimeout(runningPolls[runId])
                       }
@@ -226,6 +244,7 @@ angular.module('dmc.widgets.services',[
                   })
                 }
 
+
                 var getStatusesNames = function() {
                   ajax.get(dataFactory.getStaticJSON('serviceStatuses.json'), {}, function(response){
                     $scope.serviceStatusNames = response.data
@@ -267,11 +286,12 @@ angular.module('dmc.widgets.services',[
                         question: "Are you sure you want to cancel this service run?",
                         buttons: {
                             ok: function(){
-                              ajax.create(dataFactory.cancelServiceRun(item.id), {}, function(response){
+                              ajax.create(dataFactory.cancelServiceRun(item.currentStatus.id), {}, function(response){
                                   updateServiceStatus(item, response.data);
                                   toastModel.showToast("success", "Service run cancelled");
                               }, function(response){
-                                  toastModel.showToast("error", "Not Authorized");
+                                console.log(response)
+                                toastModel.showToast("error", response.data ? response.data : response.statusText)
                               });
                             },
                             cancel: function(){}

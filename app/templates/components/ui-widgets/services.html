@@ -80,7 +80,6 @@
                         <th ng-show="columns.indexOf('from') > -1" name="From" order-by="from"></th>
                         <th ng-show="columns.indexOf('edit') > -1" name="Edit"></th>
                         <th ng-show="columns.indexOf('remove') > -1" name="Remove"></th>
-                        <th ng-show="columns.indexOf('cancelRun') > -1" name=""></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -104,17 +103,13 @@
                             {{item.currentStatus.startDate}}
                             <span class="services-time-info">{{item.currentStatus.startTime}}</span>
                         </td>
-                        <td ng-show="columns.indexOf('status') > -1">
-                            <a href="/project.php#/{{item.projectId}}/services/{{item.id}}/run" class="link-button" ng-if="item.projectId">
-                                <!-- <md-progress-linear ng-if="item.currentStatus.status == 1"
-                                                    md-mode="determinate"
-                                                    value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
-                                <span ng-if="item.currentStatus.status == 1" class="service-progress-info">1:30 of 2:00</span> -->
-                                <!-- <span ng-if="item.currentStatus.status != 0">{{item.currentStatus.status == 1 ? 'success' : ( item.currentStatus.status == -1 ? 'error' : '')}}</span> -->
-
-                                <span ng-if="serviceStatusNames[item.currentStatus.status]">{{serviceStatusNames[item.currentStatus.status]}}</span>
-                                <span ng-if="!serviceStatusNames[item.currentStatus.status]">Never Run</span>
-                            </a>
+                        <td class="service-status" ng-show="columns.indexOf('status') > -1">
+                            <span ng-if="serviceStatusNames[item.currentStatus.status]">{{serviceStatusNames[item.currentStatus.status]}}
+                              <md-button ng-if="item.currentStatus.status == 0 && columns.indexOf('cancelRun') > -1" ng-click="cancelServiceRun($event,item)">
+                                <ng-md-icon icon="cancel" style="fill: #F44B2F;" size="15"></ng-md-icon>
+                              </md-button>
+                            </span>
+                            <span ng-if="!serviceStatusNames[item.currentStatus.status]">Never Run</span>
                         </td>
                         <td ng-show="columns.indexOf('dateAdded') > -1">
                             {{item.releaseDateFormat}}
@@ -134,9 +129,6 @@
                             <md-button aria-label="delete" ng-click="deleteService($event,item)" class="delete">
                                 <ng-md-icon icon="delete" style="fill: grey;" size="25"></ng-md-icon>
                             </md-button>
-                        </td>
-                        <td ng-show="columns.indexOf('cancelRun') > -1">
-                          <md-button ng-if="item.currentStatus.status == 0" class="md-raised cancel" ng-click="cancelServiceRun($event,item)">Cancel Run</md-button>
                         </td>
                     </tr>
                     <tr ng-if="services.length == 0">
