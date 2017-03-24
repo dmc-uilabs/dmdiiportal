@@ -198,7 +198,7 @@ angular.module('dmc.widgets.services',[
                       if (runningPolls[runId]) {
                         clearTimeout(runningPolls[runId])
                       }
-                      runningPolls[runId] = (setTimeout(pollSingleServiceRun.bind(null, runId), 5000));
+                      runningPolls[runId] = (setTimeout(pollSingleServiceRun.bind(null, runId), 10000));
                     }
 
                   }, pollSingleServiceRunErrorCallback);
