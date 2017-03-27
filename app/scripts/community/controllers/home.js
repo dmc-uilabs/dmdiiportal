@@ -3,8 +3,8 @@
 angular.module('dmc.community')
     .controller(
         'HomeCommunityCtr', [
-            '$stateParams', '$state', "$scope", "ajax", "$location","dataFactory","toastModel", "$mdDialog",
-            function ($stateParams, $state, $scope, ajax, $location, dataFactory, toastModel, $mdDialog) {
+            '$stateParams', '$state', "$scope", "ajax", "$location","dataFactory","toastModel",
+            function ($stateParams, $state, $scope, ajax, $location, dataFactory, toastModel) {
 
                 var getNews= function() {
                     ajax.get(dataFactory.getStaticJSON('news.json'), {}, function(response){
@@ -49,24 +49,6 @@ angular.module('dmc.community')
                         $scope.peoples.unshift(item);
                     }
                 };
-
-
-                $scope.createDiscussion = function(ev){
-                    $(window).scrollTop(0);
-                        $mdDialog.show({
-                            controller: "ComposeDiscussionController",
-                            templateUrl: "templates/individual-discussion/compose-discussion.html",
-                            parent: angular.element(document.body),
-                            targetEvent: ev,
-                            locals: {
-                                 project_id: null
-                            },
-                            clickOutsideToClose:true
-                        })
-                        .then(function() {
-                        }, function() {
-                        });
-                }
 
                 $scope.selectItemDropDown = function(type){
                     $scope.searchTypeModel = type;

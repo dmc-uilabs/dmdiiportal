@@ -71,26 +71,28 @@
 <div class="community" layout="column" flex>
 
   <!-- Header -->
-  <h2 style="border-bottom: 1px solid rgba(0, 0, 0, 0.12);">ACTIVITIES</h2>
+  <!-- <h2 style="border-bottom: 1px solid rgba(0, 0, 0, 0.12);">ACTIVITIES</h2> -->
 
   <!-- Social feeds -->
   <div layout-wrap layout-align="space-between start" layout="row">
     <!-- Youtube -->
     <div class="flexrow-left" flex="60">
+      <h2 class="flexrow-header">Videos from DMDII</h2>
       <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%" height="500">
       </ng-youtube-embed>
     </div>
     <!-- Twitter -->
     <div class="flexrow-right" flex="35">
+      <h2 class="flexrow-header">Tweets from DMDII</h2>
       <twitter-timeline>
-        <a class="twitter-timeline" data-chrome="noscrollbar noheader nofooter" data-height="500" href="https://twitter.com/DMDII_">Tweets from DMDII</a>
+        <a class="twitter-timeline" data-chrome="noheader nofooter" data-height="500" href="https://twitter.com/DMDII_">Tweets from DMDII</a>
       </twitter-timeline>
-      <div layout="row" layout-align="center center" style="padding-top: 10px;">
+      <!-- <div layout="row" layout-align="center center" style="padding-top: 10px;">
         <div style="padding-right: 10px;">
           <a class="twitter-follow-button" href="https://twitter.com/DMDII_" data-size="large" data-show-count="false">Follow @DMDII</a>
         </div>
         <a class="twitter-follow-button" href="https://twitter.com/UILABS_" data-size="large" data-show-count="false">Follow @UILABS</a>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -107,12 +109,12 @@
       <h3 class="news-description">{{news[0].description}}</h3>
     </div>
     <!-- Follow buttons -->
-    <!-- <div layout="column">
+    <div layout="column">
       <div style="padding-bottom: 10px;">
         <a class="twitter-follow-button" href="https://twitter.com/DMDII_" data-size="large" data-show-count="false">Follow @DMDII</a>
       </div>
       <a class="twitter-follow-button" href="https://twitter.com/UILABS_" data-size="large" data-show-count="false">Follow @UILABS</a>
-    </div> -->
+    </div>
   </div>
 
   <!-- Discussions and events -->

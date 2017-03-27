@@ -5,6 +5,10 @@
 }
 
 .flexrow{
+  &-header{
+    color: map-get($colors, secondary);
+    font-weight: normal;
+  }
   &-left{
     min-width: 500px;
     // padding: 0px 30px;
@@ -115,14 +119,18 @@ a.following-btn{
           outline: none;
           cursor: pointer;
         }
+        .arrow-item{
+          fill: map-get($colors, secondary);
+        }
         .date-item{
           text-align: center;
           font-size: 15px;
           min-width: 80px;
           padding-right: 13px;
           div{
-            border: 1px solid #333;
+            border: 1px solid map-get($colors, secondary);
             padding: 3px 8px;
+            color: map-get($colors, secondary);
           }
           span{
             display: block;
