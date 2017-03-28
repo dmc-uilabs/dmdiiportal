@@ -36,11 +36,22 @@
   }
 }
 
+.follow-button{
+  display: block;
+  width: 40px;
+  padding-right: 5px;
+}
+
+.add_discussion_button:hover{
+  cursor: pointer;
+}
+
 .content-panel.project {
   .md-toolbar-tools.widget-toolbar-title {
     h2{
       color: map-get($colors, secondary);
       text-transform: capitalize;
+      line-height: 60px;
     }
   }
 }

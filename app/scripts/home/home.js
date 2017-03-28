@@ -20,15 +20,15 @@ angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 
     ]};
   $stateProvider
     .state('home', {
-      onEnter: function(){
-        window.location = '/community.php#/home';
+      onEnter: function($rootScope){
+        if($rootScope.isLogged && $rootScope.userData.roles && $rootScope.userData.roles[$rootScope.userData.companyId]){
+          window.location = '/community.php#/home';
+        }
       },
      url: '/',
-    //  templateUrl: 'templates/index/index.html',
-    //  templateUrl: 'templates/community/home.html',
+      templateUrl: 'templates/index/index.html',
      resolve: resolver,
-    //  controller: 'HomeCtr'
-    //  controller: 'HomeCommunityCtr'
+      controller: 'HomeCtr'
     });
   $urlRouterProvider.otherwise('/');
 }).controller('HomeCtr',['$scope', 'userData', function($scope, userData){

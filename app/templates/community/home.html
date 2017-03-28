@@ -1,77 +1,4 @@
-<!-- <div class="page-header">
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <div layout="row" layout-align="start center" flex> -->
-                <!-- <md-input-container class="filterBox">
-                    <label>Filter</label>
-                    <md-select ng-model="searchTypeModel" ng-change="selectItemDropDown(searchTypeModel)">
-                        <md-option ng-repeat="p in searchTypes" value="{{p.tag}}">{{p.name}}</md-option>
-                    </md-select>
-                </md-input-container>
-                <div class="search" flex="60">
-                    <form ng-submit="submit()" class="dmc-search global-search-form">
-                        <div layout="column">
-                            <div layout="row">
-                                <div layout="column" flex>
-                                    <md-input-container md-no-float>
-                                        <md-icon>
-                                            <ng-md-icon icon="search"></ng-md-icon>
-                                        </md-icon>
-                                        <input type="text" placeholder="Search Community" ng-model="searchModel">
-                                    </md-input-container>
-                                </div>
-                                <div layout="column">
-                                    <md-input-container>
-                                        <md-button type="submit" class="search-button">Search</md-button>
-                                    </md-input-container>
-                                </div>
-                            </div>
-                        </div>
-                    </form> -->
-                <!-- </div>
-                <span flex></span>
-                <md-button class="md-raised dmc-button" ng-click="createDiscussion()">
-                    <span>Add New Discussion</span>
-                    <ng-md-icon icon="add" size="22"></ng-md-icon>
-                </md-button> -->
-                <!--<md-input-container layout="row" layout-wrap layout-align="start center" class="top-10">-->
-                    <!---->
-                    <!--&lt;!&ndash;<a class="following-btn link-button uppercase margin-left20">Following (15)</a>&ndash;&gt;-->
-                    <!--<md-button md-no-ink class="contacts-btn link-button" href="" style="display:none">-->
-                        <!--<ng-md-icon icon="account_circle" style="fill: #333" size="18"></ng-md-icon>-->
-                        <!--Contacts-->
-                    <!--</md-button>-->
-                <!--</md-input-container>-->
-            <!-- </div>
-        </div>
-    </md-toolbar>
-</div>
-<div class="container community-container" >
-
-    <div layout="row" > -->
-        <!-- Left Content Column -->
-        <!-- <div class="content-column" layout="column" flex="60"> -->
-            <!-- Discussions you follow -->
-            <!-- <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'following'" widget-title="'Discussions you follow'"></div>
-            <!-- Discussions from people you follow -->
-<!--            <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'follow-people'" widget-title="'Discussions from people you follow'"></div> -->
-            <!-- Popular discussions -->
-            <!-- <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'popular'" widget-title="'Popular discussions'"></div>
-        </div> -->
-        <!-- Right Content Column -->
-        <!-- <div class="content-column" layout="column" flex> -->
-            <!-- DMC Announcements-->
-            <!-- <div class="content-panel project dmc-announcements-content-panel margin-left12-5 margin-top-25" dmc-announcements widget-title="'DMC Announcements'"></div> -->
-
-            <!-- DMC Events-->
-            <!-- <div class="content-panel project dmc-events-content-panel margin-left12-5 margin-top-25" dmc-events widget-title="'Events'"></div>
-        </div>
-    </div>
-</div> -->
 <div class="community" layout="column" flex>
-
-  <!-- Header -->
-  <!-- <h2 style="border-bottom: 1px solid rgba(0, 0, 0, 0.12);">ACTIVITIES</h2> -->
 
   <!-- Social feeds -->
   <div layout-wrap layout-align="space-between start" layout="row">
@@ -87,12 +14,6 @@
       <twitter-timeline>
         <a class="twitter-timeline" data-chrome="noheader nofooter" data-height="500" href="https://twitter.com/DMDII_">Tweets from DMDII</a>
       </twitter-timeline>
-      <!-- <div layout="row" layout-align="center center" style="padding-top: 10px;">
-        <div style="padding-right: 10px;">
-          <a class="twitter-follow-button" href="https://twitter.com/DMDII_" data-size="large" data-show-count="false">Follow @DMDII</a>
-        </div>
-        <a class="twitter-follow-button" href="https://twitter.com/UILABS_" data-size="large" data-show-count="false">Follow @UILABS</a>
-      </div> -->
     </div>
   </div>
 
@@ -103,17 +24,26 @@
       <img class="image" ng-src="images/home-community-icon.png"  style="width: 180px">
     </div>
     <!-- News -->
-    <div class="flex-60" style="padding: 30px;">
+    <div class="flex-50" style="padding: 30px;">
       <h2 class="news-header">DMC in the News</h2>
       <a class="news-title" target="_blank" href="{{news[0].link}}">{{news[0].title}}</a>
       <h3 class="news-description">{{news[0].description}}</h3>
     </div>
     <!-- Follow buttons -->
-    <div layout="column">
-      <div style="padding-bottom: 10px;">
-        <a class="twitter-follow-button" href="https://twitter.com/DMDII_" data-size="large" data-show-count="false">Follow @DMDII</a>
+    <div>
+      <h2 align="center">Follow Us!</h2>
+      <div layout="row" style="padding-bottom: 10px;">
+          <h3 style="padding-right: 32px;">DMDII:</h3>
+          <a class="follow-button" href="http://www.uilabs.org/news-blog/blog/" target="_blank"><img src="images/comment-text-outline.svg" title="DMDII Blog"></a>
+          <a class="follow-button" href="https://twitter.com/DMDII_" target="_blank"><img src="images/twitter.svg" title="DMDII Twitter"></a>
       </div>
-      <a class="twitter-follow-button" href="https://twitter.com/UILABS_" data-size="large" data-show-count="false">Follow @UILABS</a>
+      <div layout="row">
+        <h3 style="padding-right: 20px;">UI LABS:</h3>
+        <a class="follow-button" href="https://www.linkedin.com/company/ui-labs" target="_blank"><img src="images/linkedin-box.svg" title="UI Labs LinkedIn"></a>
+        <a class="follow-button" href="https://www.instagram.com/uilabs_/" target="_blank"><img src="images/instagram.svg" title="UI Labs Instagram"></a>
+        <a class="follow-button" href="http://www.uilabs.org/news-blog/blog/" target="_blank"><img src="images/comment-text-outline.svg" title="UI Labs Blog"></a>
+        <a class="follow-button" href="https://twitter.com/UILABS_" target="_blank"><img src="images/twitter.svg" title="UI Labs Twitter"></a>
+      </div>
     </div>
   </div>
 
