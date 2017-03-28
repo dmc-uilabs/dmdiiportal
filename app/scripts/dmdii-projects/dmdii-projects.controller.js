@@ -254,12 +254,21 @@ angular.module('dmc.dmdiiProjects')
                 if (angular.isDefined(response.data.count)) {
                     $scope.projects.arr = response.data.data;
                     $scope.projects.count = response.data.count;
+                    var numberProjects=$scope.projects.arr.length;
+                    $scope.randProjectId = Math.floor(Math.random()*numberProjects);
+                    $scope.randProject = $scope.projects.arr[$scope.randProjectId];
+                    
                 } else {
                     $scope.projects.arr = response.data;
+                    var numberProjects =$scope.projects.arr.length;
+                    $scope.randProjectId = Math.floor(Math.random()*numberProjects);
+                    $scope.randProject = $scope.projects.arr[$scope.randProjectId];
                 }
                 $scope.dmdiiProjectsLoading = false;
                 // insertData(response.data);
             };
+
+
 
             var responseData = function(){
                 var data = {
@@ -278,6 +287,7 @@ angular.module('dmc.dmdiiProjects')
                 return data;
             };
 
+
             $scope.getDmdiiProjects = function(){
                 loadingData(true);
 
@@ -288,6 +298,7 @@ angular.module('dmc.dmdiiProjects')
                 }
             };
             $scope.getDmdiiProjects();
+
 
             $scope.submit = function(text){
                 $scope.dmdiiProjectCurrentPage = 0;
@@ -328,6 +339,7 @@ angular.module('dmc.dmdiiProjects')
                     clickOutsideToClose: true
                 });
             }
+
 
             $scope.quickLinkAction = function(doc) {
                 if (angular.isDefined(doc.text) && doc.text !== null) {

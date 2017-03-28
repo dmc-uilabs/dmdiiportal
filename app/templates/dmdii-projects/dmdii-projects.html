@@ -70,6 +70,46 @@
 
         </md-content>
 
+        <div style="border:3px solid green">
+          <h2 align="center" class="news"> Featured Project </h2>
+
+          <div class="projects-list">
+              <md-data-table-container>
+                  <table md-data-table>
+                      <thead>
+                      <tr>
+                          <th name="Name" class="title"/>
+                          <th name="Status"/>
+                          <th name="Focus Area"/>
+                          <th name="Thrust Area"/>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        <td class="title-project">
+                            <h4>{{randProject.rootNumber | numberFixedLen:2}}-{{randProject.callNumber | numberFixedLen:2}}-{{randProject.projectNumber | numberFixedLen:2}}</h4>
+                            <a class="no-bottom no-top" ng-href="{{'/dmdii-project-page.php#/'+randProject.id}}"><h3 class="no-bottom no-top">{{randProject.projectTitle}}</h3></a>
+                            <a class="no-bottom no-top" ng-href="{{'member-page.php#/'+randProject.primeOrganization.id}}"><h5 class="project-lead no-bottom no-top">{{randProject.primeOrganization.name}}</h5></a>
+                        </td>
+                        <td>{{randProject.projectStatus.name}}</td>
+                        <td>
+                            {{randProject.projectFocusArea.name}}
+                        </td>
+                        <td>
+                            {{randProject.projectThrust.name}}
+                        </td>
+
+                      </tbody>
+                  </table>
+              </md-data-table-container>
+          </div>
+        </div>
+
+
+
+
+
+        <md-divider></md-divider>
+
 
         <md-content class="dmdii-projects-search" layout="row" layout-align="space-around center">
           <span flex></span>
