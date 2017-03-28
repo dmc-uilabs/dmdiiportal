@@ -43,7 +43,6 @@
 
     <script src="scripts/dashboard/dashboard.js"></script>
     <script src="scripts/dashboard/dashboard.controller.js"></script>
-
     <!-- endbuild -->
     <script type="text/javascript">
         <?php
