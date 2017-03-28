@@ -44,10 +44,6 @@
     <script src="scripts/dashboard/dashboard.js"></script>
     <script src="scripts/dashboard/dashboard.controller.js"></script>
 
-    <!-- for social media feeds -->
-    <script src="bower_components/ngtweet/dist/ngtweet.min.js"></script>
-    <script src="bower_components/ng-youtube-embed/build/ng-youtube-embed.min.js"></script>
-
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

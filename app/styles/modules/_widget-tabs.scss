@@ -60,42 +60,113 @@
 
 .tabs-statistic{
 	margin-bottom: 15px;
-	padding: 8px 35px 0;
-	.flexbox{
-		padding: 15px;
+	h2{
+		margin-top: 24px;
 	}
-	.box-element{
-		padding:15px;
-		margin-bottom: 10px;
-		border: 1px solid #666;
-    border-radius: 3px;
-		min-width: 215px;
-		&__title{
-	    width: 100%;
-	    height: 50px;
-	    white-space: nowrap;
-	    overflow: hidden;
-	    text-overflow: ellipsis;
-      font-size: 1.5em;
-      color: map-get($colors, secondary);
-      font-weight: bold;
-	  }
+	.rate{
+		padding: 8px 35px 0;
+		position: relative;
+		.rate_box{
+			height: 110px;
+		}
 		h3{
-			font-size: 13px;
+			font-size: 16px;
+			border: 1px solid #000;
 			margin: 0;
+			padding: 16px 16px 4px;
 			height: 30px;
 		}
 		h4{
-			font-size: 12px;
-			margin: 0;
-			height: 30px;
+			position: absolute;
+			left: 100%;
+			margin-left: -32px;
+			visibility: hidden;
+		}
+		.cell1{
+			border: 1px solid #000;
+			border-top: none;
+			background-color: #65AF3F;
+			&:hover{
+				h4{
+					visibility: visible;
+				}
+			}
+		}
+		.cell2{
+			border: 1px solid #000;
+			border-top: none;
+			background-color: yellow;
+			&:hover{
+				h4{
+					visibility: visible;
+				}
+			}
+		}
+		.cell3{
+			border: 1px solid #000;
+			border-top: none;
+			background-color: red;
+			&:hover{
+				h4{
+					visibility: visible;
+				}
+			}
 		}
 	}
-	.success{
-		color: map-get($colors, secondary);
-	}
-	.fail{
-		color: red;
+
+	.section{
+		padding: 8px 35px 0;
+		&.none-cliks{
+			h3, h4{
+				cursor: default;
+				&:hover{
+					text-decoration: none;
+				}
+			}
+		}
+		h3{
+			font-size: 14px;
+			border: 1px solid #000;
+			border-bottom: none;
+			margin: 0;
+			padding: 16px 16px 4px;
+			cursor: pointer;
+			height: 30px;
+			&:focus{
+				outline: none;
+			}
+		}
+		h4{
+			font-size: 14px;
+			margin: 4px 0;
+			font-weight: normal;
+			cursor: pointer;
+			&:focus{
+				outline: none;
+			}
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+		h5{
+			font-size: 18px;
+			margin: 0;
+		}
+		.cell1{
+			border: 1px solid #000;
+			border-top: none;
+			padding: 36px 16px 0;
+		}
+		.cell2{
+			border: 1px solid #000;
+			border-top: none;
+			padding: 0px 16px;
+		}
+		.cell3{
+			border: 1px solid #000;
+			border-top: none;
+			padding: 0px 16px;
+		}
 	}
 }
 

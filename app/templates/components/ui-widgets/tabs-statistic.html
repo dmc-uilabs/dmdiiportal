@@ -1,57 +1,123 @@
-<div class="tabs-statistic" layout="row" layout-wrap layout-align="center start">
-
-		<div class="flexbox">
-			<div class="box-element">
-				<div class="box-element__title">Statistics</div>
-				<div layout="row" layout-align="space-between center">
-					<h3>Total successful runs:</h3>
-					<h3>{{data.total_successful_runs}}</h3>
+<div class="tabs-statistic" layout="column">
+	<md-divider ng-if="!$first"></md-divider>
+	<h2 ng-if="item.title">{{item.title}}</h2>
+	<div layout="row" layout-align="space-between start">
+		<div flex="20">
+			<div class="rate">
+				<h3>Success Rate</h3>
+				<div class="rate_box">
+				<div class="cell1" ng-style="{'height': data.success_rate.success+ '%'}">
+					<h4>{{data.success_rate.success}}% Success</h4>
 				</div>
-				<div layout="row" layout-align="space-between center">
-					<h3>Average runtime:</h3>
-					<h3>{{data.average_runtime}}</h3>
+				<div class="cell2" ng-style="{'height': data.success_rate.incomplete+ '%'}">
+					<h4>{{data.success_rate.incomplete}}% Incomplete</h4>
 				</div>
-			</div>
-		</div>
-
-		<div layout="column" class="flexbox">
-			<div class="box-element">
-				<div class="box-element__title">Last Run</div>
-				<div layout="row" layout-align="space-between center">
-					<h3>Status:</h3>
-					<h3 ng-init="status=data.last_run.status;" ng-class="{'success': !status, 'fail': status}">{{status ? "Fail" : "Success"}}</h3>
+				<div class="cell3" ng-style="{'height': data.success_rate.failed+ '%'}">
+					<h4>{{data.success_rate.failed}}% Failed</h4>
 				</div>
-				<div layout="row" layout-align="space-between center">
-					<h3>Date:</h3>
-					<h4>{{data.last_run.date}}</h4>
-				</div>
-				<div layout="row" layout-align="space-between center">
-					<h3>Runtime:</h3>
-					<h3>{{data.last_run.runtime}}</h3>
-				</div>
-			</div>
-
-			<div class="box-element">
-				<div class="box-element__title">My Last Run</div>
-				<div layout="row" layout-align="space-between center">
-					<h3>Status:</h3>
-					<h3 ng-init="my_status=data.my_last_run.status;" ng-class="{'success': !my_status, 'fail': my_status}">{{my_status ? "Fail" : "Success"}}</h3>
-				</div>
-				<div layout="row" layout-align="space-between center">
-					<h3>Date:</h3>
-					<h4>{{data.my_last_run.date}}</h4>
-				</div>
-				<div layout="row" layout-align="space-between center">
-					<h3>Runtime:</h3>
-					<h3>{{data.my_last_run.runtime}}</h3>
 				</div>
 			</div>
 		</div>
+		<div flex="20">
+			<div class="section">
+				<h3 ng-click="filter('successful_runs', 'all')">Successful Runs</h3>
+				<div class="cell1" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('successful_runs', 'today')">Today</h4>
+					<h5>{{data.successful_runs.today}}</h5>
+				</div>
+				<div class="cell2" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('successful_runs', 'week')">Week</h4>
+					<h5>{{data.successful_runs.week}}</h5>
+				</div>
+				<div class="cell3" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('successful_runs', 'all')">All-time</h4>
+					<h5>{{data.successful_runs.all}}</h5>
+				</div>
+			</div>
 
-		<div flex="grow" class="flexbox">
-			<div class="box-element">
-				<img ng-src="{{graph}}">
+			<div class="section none-cliks">
+				<h3>Unique Users</h3>
+				<div class="cell1" layout="row" layout-align="space-between center">
+					<h4>Today</h4>
+					<h5>{{data.unique_users.today}}</h5>
+				</div>
+				<div class="cell2" layout="row" layout-align="space-between center">
+					<h4>Week</h4>
+					<h5>{{data.unique_users.week}}</h5>
+				</div>
+				<div class="cell3" layout="row" layout-align="space-between center">
+					<h4>All-time</h4>
+					<h5>{{data.unique_users.all}}</h5>
+				</div>
 			</div>
 		</div>
+		<div flex="20">
+			<div class="section">
+				<h3 ng-click="filter('incomplete_runs', 'all','Incomplete Runs')">Incomplete Runs</h3>
+				<div class="cell1" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('incomplete_runs', 'today')">Today</h4>
+					<h5>{{data.incomplete_runs.today}}</h5>
+				</div>
+				<div class="cell2" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('incomplete_runs', 'week')">Week</h4>
+					<h5>{{data.incomplete_runs.week}}</h5>
+				</div>
+				<div class="cell3" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('incomplete_runs', 'all')">All-time</h4>
+					<h5>{{data.incomplete_runs.all}}</h5>
+				</div>
+			</div>
 
+			<div class="section none-cliks">
+				<h3>Average Time (min)</h3>
+				<div class="cell1" layout="row" layout-align="space-between center">
+					<h4>Today</h4>
+					<h5>{{data.average_time.today}}</h5>
+				</div>
+				<div class="cell2" layout="row" layout-align="space-between center">
+					<h4>Week</h4>
+					<h5>{{data.average_time.week}}</h5>
+				</div>
+				<div class="cell3" layout="row" layout-align="space-between center">
+					<h4>All-time</h4>
+					<h5>{{data.average_time.all}}</h5>
+				</div>
+			</div>
+		</div>
+		<div flex="20">
+			<div class="section">
+				<h3 ng-click="filter('unavailable_runs', 'all')">Unavailable Runs</h3>
+				<div class="cell1" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('unavailable_runs', 'today')">Today</h4>
+					<h5>{{data.unavailable_runs.today}}</h5>
+				</div>
+				<div class="cell2" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('unavailable_runs', 'week')">Week</h4>
+					<h5>{{data.unavailable_runs.week}}</h5>
+				</div>
+				<div class="cell3" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('unavailable_runs', 'all')">All-time</h4>
+					<h5>{{data.unavailable_runs.all}}</h5>
+				</div>
+			</div>
+
+		</div>
+		<div flex="20">
+			<div class="section">
+				<h3 ng-click="filter('runs_by_users', 'all')">Runs By Users</h3>
+				<div class="cell1" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('runs_by_users', 'today')">Today</h4>
+					<h5>{{data.runs_by_users.today}}</h5>
+				</div>
+				<div class="cell2" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('runs_by_users', 'week')">Week</h4>
+					<h5>{{data.runs_by_users.week}}</h5>
+				</div>
+				<div class="cell3" layout="row" layout-align="space-between center">
+					<h4 ng-click="filter('runs_by_users', 'all')">All-time</h4>
+					<h5>{{data.runs_by_users.all}}</h5>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

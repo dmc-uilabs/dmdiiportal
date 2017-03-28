@@ -18,9 +18,7 @@ angular.module('dmc.dashboard', [
         'ui.router',
         'md.data.table',
         'dmc.common.header',
-        'dmc.common.footer',
-        'ngtweet',
-        'ngYoutubeEmbed'
+        'dmc.common.footer'
 ])
     .config(function($stateProvider, $urlRouterProvider){
         $stateProvider
