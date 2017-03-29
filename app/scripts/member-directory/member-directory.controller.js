@@ -141,7 +141,7 @@ angular.module('dmc.members')
             var insertData = function(data){
                 $scope.membersByState = {};
                 angular.forEach(data, function(member) {
-                    member.organization.description = $showdown.stripHtml($showdown.makeHtml(member.organization.description));
+                    member.organization.description = htmlspecialchars($showdown.stripHtml($showdown.makeHtml(member.organization.description)));
                     if (!$scope.membersByState[member.organization.address.state]) {
                         $scope.membersByState[member.organization.address.state] =  [{name: member.organization.name, id: member.organization.id}];
                     } else {
