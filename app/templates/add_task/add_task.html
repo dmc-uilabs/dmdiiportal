@@ -58,7 +58,7 @@
                             <md-input-container>
                                 <label>Assigned To</label>
                                 <md-select ng-model="task.assigneeId">
-                                    <md-option value="{{user.id}}" ng-repeat="user in users">{{user.member.displayName}}</md-option>
+                                    <md-option value="{{user.id}}" ng-repeat="user in users | orderBy:'user.member.displayName'">{{user.member.displayName}}</md-option>
                                 </md-select>
                             </md-input-container>
                         </div>

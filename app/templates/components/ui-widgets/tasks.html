@@ -19,17 +19,21 @@
                 <thead md-order="sort" md-trigger="onOrderChange" ng-if="tasks.length > 0">
                 <tr>
                     <th class="title" ng-show="columns.indexOf('title') > -1" name="Task" order-by="title"></th>
+                    <th  name="Status" order-by="status"></th>
                     <th ng-show="columns.indexOf('project') > -1" name="Project" order-by="project"></th>
                     <th ng-show="columns.indexOf('assignee') > -1" name="Assigned To" order-by="assignee"></th>
                     <th ng-show="columns.indexOf('priority') > -1" name="Priority" order-by="priority"></th>
                     <th ng-show="columns.indexOf('dueDate') > -1" name="Due Date" order-by="dueDate"></th>
-                    <th  name="Status" order-by="status"></th>
+
                 </tr>
                 </thead>
                 <tbody>
                 <tr md-auto-select ng-repeat="item in tasks | orderBy: sort" class="one-task">
                     <td class="title" ng-show="columns.indexOf('title') > -1">
                         <a class="link-button" href="/project.php#/{{item.project.id}}/task/{{item.id}}">{{item.title}}</a>
+                    </td>
+                    <td >
+                        {{item.status}}
                     </td>
                     <td class="assignee" ng-show="columns.indexOf('assignee') > -1">
                         <a href="/profile.php#/1" class="link-button">{{item.assignee}}</a>
@@ -43,9 +47,7 @@
                     <td class="dueDate" ng-show="columns.indexOf('dueDate') > -1">
                         <span ng-bind-html="item.formatedDueDate[1]" class="label border-radius-2" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
                     </td>
-                    <td >
-                        {{item.status}}
-                    </td>
+
                 </tr>
                 <tr ng-if="tasks.length == 0">
                    <td class="empty" colspan="{{columns.length}}">No tasks</td>
