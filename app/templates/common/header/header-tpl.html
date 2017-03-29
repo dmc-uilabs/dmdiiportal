@@ -62,34 +62,25 @@
                         <ng-md-icon icon="notifications" size="25"></ng-md-icon>
                         <span class="count-message" ng-show="notification_alert > 0">{{notification_alert}}</span>
                     </md-button>
-                    <md-menu-content class="header-menu-content notifications-list">
+                    <md-menu-content class="message-container header-menu-content notifications-list">
                         <div class="zone-top" layout="row" layout-align="space-between center">
                             <h3>Notifications</h3>
-                            <md-button md-no-ink ng-click="viewAll" class="view-all-link">VIEW ALL</md-button>
+                            <md-button md-no-ink href="/notifications.php#/user" ng-click="viewAll" class="view-all-link">VIEW ALL</md-button>
                         </div>
-                        <md-menu-item ng-repeat="item in userData.notifications.items track by $index" ng-if="!item.cleared" ng-class="{'not-read' : !item.read}">
-                            <a ng-href='{{item.link}}'>
-                                <!-- profile icon -->
-                                <ng-md-icon icon="group" size="32" ng-if="item.type == 'profile'"></ng-md-icon>
-                                <!-- discussion and community icon -->
-                                <ng-md-icon icon="forum" size="32" ng-if="item.type == 'discussion' || item.type == 'community'"></ng-md-icon>
-                                <!-- task icon -->
-                                <ng-md-icon icon="list" size="32" ng-if="item.type == 'task'"></ng-md-icon>
-                                <!-- project icon -->
-                                <ng-md-icon icon="notifications" size="32" ng-if="item.type == 'project'"></ng-md-icon>
-                                <!-- service and market icon -->
-                                <md-icon class="service-and-market-icon" ng-if="item.type == 'service' || item.type == 'marketplace'" md-svg-src="images/icon_service.svg"  ></md-icon>
-                                <!-- service and market icon -->
-                                <md-icon class="service-and-market-icon" ng-if="item.type == 'company'"
-                                         md-svg-src="images/icon-company-lg.svg"  ></md-icon>
-                                <span>
-                                    <i>{{item.title}}</i>
-                                    <i>{{item.date}}</i>
-                                </span>
+                        <md-menu-item ng-repeat="item in userData.notifications track by $index" ng-if="!item.cleared" ng-class="{'not-read' : item.unread}">
+                            <a ng-href='/company-profile.php#/profile/{{userData.companyId}}'">
+                              <div layout="row" layout-align="space-between center">
+                                <ng-md-icon icon="person_add" size="30" ng-if="item.type == 'NEW_USER_JOINED_ORGANIZATION'"></ng-md-icon>
+                                <ng-md-icon icon="check_circle" size="30" ng-if="item.type == 'USER_REQUESTS_VERIFICATION'"></ng-md-icon>
+                                <div layout="column" layout-align="start">
+                                    <i class="user-name">{{item.createdBy.displayName}}</i>
+                                    <i class="notifications-text">{{item.message | limitTo: 55}}</i>
+                                </div>
                                 <!-- clear notification -->
-                                <md-button class="md-icon-button clear-notification" md-no-ink ng-click="clearNotification(item,$event);$event.stopPropagation();">
+                                <md-button class="md-icon-button clear-notification" aria-label="Clear" md-no-ink ng-click="clearNotification(item,$event);$event.stopPropagation();">
                                     <ng-md-icon icon="close" size="18"></ng-md-icon>
                                 </md-button>
+                              </div>
                             </a>
                         </md-menu-item>
                         <md-menu-item class="all-link">
@@ -193,6 +184,8 @@
                         <md-menu-item><md-button ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" ng-click="$mdCloseMenu($event);" href="marketplace.php#/home?product=services">MARKETPLACE</md-button></md-menu-item>
 
                         <md-menu-item><md-menu ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" style="padding: 0px;" ng-init="dropDownWidth = 200"><md-button class="sub-menu" ng-click="closeSubMenus(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"><ng-md-icon icon="chevron_right" size="20"></ng-md-icon>Explore</md-button><md-menu-content class="sub-menu-content" ng-style="{width:dropDownWidth+'px'}"><md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/search-v2.php#/members">Individuals</md-button></md-menu-item><md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/search-v2.php#/companies">Organizations</md-button></md-menu-item><md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/community.php#/home">Activities</md-button></md-menu-item><md-menu-item><md-button ng-click="$mdCloseMenu($event);" href="/all-projects.php">All Workspaces</md-button></md-menu-item></md-menu-content></md-menu></md-menu-item>
+
+                        <!-- <md-menu-item><md-menu ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" style="padding: 0px;" ng-init="dropDownWidth = 200"><md-button class="sub-menu" ng-click="closeSubMenus(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"><ng-md-icon icon="chevron_right" size="20"></ng-md-icon>Learn</md-button><md-menu-content class="sub-menu-content" ng-style="{width:dropDownWidth+'px'}"><md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/about-platform.php">About DMC Platform</md-button></md-menu-item><md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/application-creation.php">Application Creation</md-button></md-menu-item><md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/workforce-development.php">Workforce Development</md-button></md-menu-item><md-menu-item><md-button ng-click="$mdCloseMenu($event);" href="/security.php">Security</md-button></md-menu-item><md-menu-item><md-button ng-click="$mdCloseMenu($event);" href="/release-notes.php">Release Notes</md-button></md-menu-item></md-menu-content></md-menu></md-menu-item> -->
 
                         <md-menu-item><md-menu ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" style="padding: 0px;" ng-init="dropDownWidth = 200"><md-button class="sub-menu" ng-click="$mdOpenMenu($event); setDropDown($event,dropDownWidth);"><ng-md-icon icon="chevron_right" size="20"></ng-md-icon>DMDII Portal</md-button><md-menu-content class="sub-menu-content" ng-style="{width:dropDownWidth+'px'}"><md-menu-item><md-button ng-click="$mdCloseMenu($event);" href="/about.php">About DMDII Portal</md-button></md-menu-item><md-menu-item><md-button ng-click="$mdCloseMenu($event);" href="/member-directory.php">Member Directory</md-button></md-menu-item><md-menu-item><md-button ng-click="$mdCloseMenu($event);" href="/dmdii-projects.php">Projects Directory</md-button></md-menu-item></md-menu-content></md-menu></md-menu-item>
 
@@ -307,6 +300,30 @@
                         </md-menu-content>
                     </md-menu>
 
+                    <!-- <md-menu ng-hide="screenSmall()" md-offset="0 57" class="item" ng-init="dropDownWidth = 136" ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin">
+                      <md-button ng-click="closeMenu(); $mdOpenMenu($event);">
+                            Learn
+                            <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                        </md-button>
+                        <md-menu-content class="header-menu-content">
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="/about-platform.php">About the Platform</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="/application-creation.php">Application Creation</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="/workforce-development.php">Workforce Development</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="/security.php">Security</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="/release-notes.php">Realease Notes</md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu> -->
+
 
                     <!-- <md-button
                             href="community.php"
@@ -316,23 +333,6 @@
                     </md-button> -->
 
 
-                    <!-- <md-menu class="item" md-offset="0 57">
-                        <md-button aria-label="Open Latest Services Menu"
-                                   ng-click="closeMenu(); $mdOpenMenu($event);"
-                                   class="projects-header-button"
-                                   ng-class="{'active-page' : activePage.indexOf('project') > -1}">
-                            Learn
-                            <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
-                        </md-button>
-                        <md-menu-content class="header-menu-content">
-                            <md-menu-item>
-                                <md-button ng-click="$mdCloseMenu($event);" href="my-projects.php">My Projects</md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="$mdCloseMenu($event);" href="all-projects.php">All Projects</md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu> -->
 
                     <!-- <md-menu class="item" md-offset="0 57">
                         <md-button aria-label="Open Latest Services Menu"
@@ -427,6 +427,7 @@
                             </md-menu-item>
                         </md-menu-content>
                     </md-menu>
+
 
                     <!-- show if user is member  -->
 

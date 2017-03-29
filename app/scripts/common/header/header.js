@@ -55,8 +55,8 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
           if ($scope.userData.notifications) {
               $scope.notification_alert = 0;
 
-              angular.forEach($scope.userData.notifications.items, function(item) {
-                  if (item.read === false) {
+              angular.forEach($scope.userData.notifications, function(item) {
+                  if (item.unread === true && !item.cleared){
                       $scope.notification_alert++;
                   }
               });

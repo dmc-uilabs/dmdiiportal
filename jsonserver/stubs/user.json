@@ -93,8 +93,40 @@
    "resume":"",
    "account":0,
    "notifications":[
-
+     {
+       "id":1,
+       "type":"NEW_USER_JOINED_ORGANIZATION",
+       "createdBy":{
+         "id":235,
+         "email":"jmdmctestuser1@gmail.com",
+         "displayName":"max power"
+         },
+        "createdFor":{
+          "id":1,
+          "email":"thomas.smith@eg.com",
+          "displayName":"Thomas Smith"
+        },
+      "created":1490108463632,
+      "message":"max power has requested to join your organization",
+      "unread":true
+    },
+    {
+      "id":2,
+      "type":"USER_REQUESTS_VERIFICATION",
+      "createdBy":{
+        "id":385,
+        "email":"testingdmc01@gmail.com",
+        "displayName":"DMC Development Account"
+      },
+      "createdFor":{
+        "id":1,
+        "email":"thomas.smith@eg.com",
+        "displayName":"Thomas Smith"
+        },
+        "created":1489777359931,
+        "message":"test DMC has requested to be verified as a member of your organization",
+        "unread":true}
    ],
-   "hasUnreadNotifications":false,
+  "hasUnreadNotifications":true,
    "timezone":null
 }

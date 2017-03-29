@@ -282,6 +282,9 @@ div[dmc-top-header]{
   &.messages-list{
     width: 350px;
   }
+  &.notifications-list{
+    width: 400px;
+  }
   &.service-status-list{
     width: 250px;
   }
@@ -367,6 +370,9 @@ div[dmc-top-header]{
       }
       .text{
         max-width: 250px;
+      }
+      .notifications-text{
+        max-width: 300px;
       }
     }
     md-menu-item:last-child{
