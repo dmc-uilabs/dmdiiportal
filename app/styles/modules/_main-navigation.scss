@@ -167,6 +167,19 @@ div[dmc-top-header]{
               color: $membersOnlyNavigationActive;
           }
         }
+        .count-message{
+          color: $countMessageText;
+          font-weight: bold;
+          font-size: 10px;
+          background-color: $countMessageBackground;
+          border-radius: 50%;
+          height: 15px;
+          width: 15px;
+          line-height: 16px;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
 
         ng-md-icon {
           margin: -4px -13px 0;
