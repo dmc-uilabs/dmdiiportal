@@ -73,8 +73,8 @@ angular.module('dmc.onboarding')
         ];
 
 
-				var getJ = function() {
-						ajax.get(dataFactory.getStaticJSON('states.js'), {}, function(response){
+				var getStates = function() {
+						ajax.get(dataFactory.getStaticJSON('states.json'), {}, function(response){
 
 								$scope.states = $.map(response.data, function( n,index ) {
 										var name = n.split('|');
@@ -87,7 +87,7 @@ angular.module('dmc.onboarding')
 
 						});
 				}
-				getJ();
+				getStates();
 
         $scope.categoriesTiers = [
             {
