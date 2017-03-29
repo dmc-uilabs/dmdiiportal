@@ -62,6 +62,10 @@
     <script src="scripts/search-v2/search-v2.js"></script>
     <script src="scripts/search-v2/search-v2.controller.js"></script>
 
+    <!-- for social media feeds -->
+    <script src="bower_components/ngtweet/dist/ngtweet.min.js"></script>
+    <script src="bower_components/ng-youtube-embed/build/ng-youtube-embed.min.js"></script>
+
 
     <!-- endbuild -->
     <script type="text/javascript">
