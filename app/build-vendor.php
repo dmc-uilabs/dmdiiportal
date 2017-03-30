@@ -20,8 +20,17 @@
 <!-- endbuild -->
 
 <!-- build:css styles/main.css -->
-<link rel="stylesheet" href="styles/main.css">
+<!-- <link rel="stylesheet" href="styles/main.css"> -->
 <!-- endbuild -->
+
+<?php
+    $requested_page = $_SERVER['REQUEST_URI'];
+    if (strpos($requested_page, 'member-directory')) {
+      echo '<link rel="stylesheet" href="styles/main-rh.css">';
+    } else {
+      echo '<link rel="stylesheet" href="styles/main.css">';
+    }
+?>
 
 <!-- build:js scripts/vendor/modernizr.js -->
 <script src="/bower_components/modernizr/modernizr.js"></script>

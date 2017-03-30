@@ -1,0 +1,156 @@
+@import 'variables';
+// @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap.scss";
+@import 'timeline';
+@import 'calendar';
+@import 'header';
+@import 'footer';
+@import 'projectdetail';
+@import 'projects';
+@import 'members';
+
+body {
+	font-family:'Roboto', sans-serif;}
+
+main {
+	background:$white;
+	padding-top:60px;
+}
+
+.gray {
+	background: $gray-lighter;
+	padding: 50px 0;
+}
+
+h1 {
+	font-weight:300;
+	font-size: 36px;
+
+}
+h2 {
+	font-size:32px;
+	font-weight:300;
+}
+
+h4 {
+	text-transform:uppercase;
+	font-weight:bold;
+	font-size:12px;
+}
+
+time {
+	font-weight:bold;
+
+}
+.filter-container {
+	border-top:1px solid $border-color;
+	border-bottom:1px solid $border-color;
+
+}
+.content-row {
+	padding:30px 0;
+
+}
+
+
+.recent-news article{
+
+    color: $color-dark;
+
+    h3 {
+			font-weight:light;
+			font-size:24px;
+    }
+    time {font-weight:bold; font-size:12px;margin:30px 0;display:block;}
+    p{font-size:15px;}
+}
+
+div.progress {
+	background-image: linear-gradient(-45deg, $color-dark 30%, transparent 30%, transparent 50%, $color-dark 50%, $color-dark 80%, transparent 80%, transparent);
+	background-size:10px 10px;
+	background-color:#626262;
+	font-weight:bold;
+}
+
+.nav-tabs>li{
+	&.tab-label {
+		line-height:35px;
+		padding-bottom:5px;
+		margin-right:10px;
+		text-transform:uppercase;
+		font-weight:bold;
+	}
+	&>a {
+		color:$gray;
+		border:none;
+		border-bottom:5px solid transparent;
+		font-size:15px;
+		transition: color .4s, border-color .8s;
+
+	}
+
+}
+
+.nav-tabs.event-tabs{
+	margin-bottom:30px;
+	&>li {
+	font-size:12px;
+ &>a {
+ 	text-transform:uppercase;
+ 	font-size:12px;
+
+ }
+}
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus , .nav-tabs>li>a:hover{
+	background:transparent;
+	border:none;
+	border-bottom:5px solid $brand-primary;
+	color: $brand-primary;
+	// font-weight:bold;
+
+}
+
+
+.members-table, .projects-table
+{
+	.table>thead>tr>th, .table>thead>tr>td, .table>tbody>tr>th, .table>tbody>tr>td, .table>tfoot>tr>th, .table>tfoot>tr>td {
+		padding-top:20px;
+		padding-bottom:20px;
+	}
+    padding-bottom:60px;
+     td {
+        font-size:15px;
+        color: $gray;
+        a, time, .sublabel {
+            display:block;
+        }
+
+        a {
+            font-weight:bold;
+
+        }
+        time {
+            font-weight:bold;
+            font-size:12px;
+        }
+
+    }
+}
+
+
+.toggle-control {
+	text-decoration:none;
+	&:hover, &:focus, &:active {
+		text-decoration:none;
+	}
+	.caret {
+		transition: transform .4s;
+		transform: rotate(-180deg);
+	}
+	&.collapsed {
+		.caret{
+		transform: rotate(0deg);
+	}
+}
+}

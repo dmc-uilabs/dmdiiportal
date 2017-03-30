@@ -1,0 +1,339 @@
+// All timeline css except for the bootstrap overrides comes from the existing code.
+.timeline {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    -x-system-font: none;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: linear-gradient(to right, #eeeeee 0%, #fcfcfc 35%, #f7f7f7 68%, #eeeeee 100%, #eeeeee 100%);
+    background-origin: padding-box;
+    background-position-x: 0;
+    background-position-y: 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    border-bottom-color: #eee;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color: #eee;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #eee;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: #eee;
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: 0 2px 2px #d2d2d2;
+    display: inline-block;
+    font-family: Roboto;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-language-override: normal;
+    font-size: 9px;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-synthesis: weight style;
+    font-variant-alternates: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-variant-position: normal;
+    font-weight: bold;
+    height: 60px;
+    line-height: 20px;
+    width: 100%;
+}
+.front {
+    z-index: 1;
+}
+.timeline-left {
+    float: left;
+    height: 100%;
+    text-align: center;
+    width: 5%;
+}
+.timeline-center {
+    float: left;
+    height: 100%;
+    padding-top: 20px;
+    width: 90%;
+}
+.timeline-right {
+    float: left;
+    height: 100%;
+    text-align: center;
+    width: 5%;
+}
+.timeline-events {
+    background-color: silver;
+    list-style-type: none;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    position: relative;
+    top: 0;
+    z-index: 1;
+}
+.timeline-event {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #00ba26;
+    background-image: none;
+    background-origin: padding-box;
+    background-position-x: 0;
+    background-position-y: 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    cursor: pointer;
+    height: 28px;
+    position: absolute;
+    top: -20px;
+    width: 2px;
+}
+.timeline-event span {
+    border-bottom-color: transparent;
+    border-bottom-style: solid;
+    border-bottom-width: 0;
+    border-left-color: transparent;
+    border-left-style: solid;
+    border-left-width: 5px;
+    border-right-color: transparent;
+    border-right-style: solid;
+    border-right-width: 5px;
+    border-top-color: #00ba26;
+    border-top-style: solid;
+    border-top-width: 12px;
+    height: 0;
+    left: -4px;
+    position: absolute;
+    top: -10px;
+    width: 0;
+}
+
+
+.timeline-bg {
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    position: relative;
+    top: -22px;
+}
+.timeline-month {
+    display: inline-block;
+    height: 13px;
+    position: relative;
+    top: 0;
+}
+.timeline-month span {
+    color: white;
+    font-size: 10px;
+    height: 100%;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 0;
+    position: relative;
+    text-align: left;
+    top: -4px;
+}
+.timeline-day {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #ededed;
+    background-image: none;
+    background-origin: padding-box;
+    background-position-x: 0;
+    background-position-y: 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    display: inline-block;
+    height: 13px;
+    position: absolute;
+    top: 0;
+    width: 1px;
+}
+.timeline-day span {
+    color: #bab9c9;
+    font-size: 10px;
+    left: -5px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    position: relative;
+}
+.timeline-day span i {
+    border-bottom-color: #bab9c9;
+    border-bottom-style: solid;
+    border-bottom-width: 5px;
+    border-left-color: transparent;
+    border-left-style: solid;
+    border-left-width: 5px;
+    border-right-color: transparent;
+    border-right-style: solid;
+    border-right-width: 5px;
+    display: inline-block;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    position: relative;
+    top: 10px;
+}
+.timeline-event-box {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #ffffff;
+    background-image: none;
+    background-origin: padding-box;
+    background-position-x: 0;
+    background-position-y: 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    border-bottom-color: #c7c7c7;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color: #c7c7c7;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #c7c7c7;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: #c7c7c7;
+    border-top-style: solid;
+    border-top-width: 1px;
+    font-size: 1.2em;
+    left: -20px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    position: relative;
+    top: 30px;
+    width: 200px;
+}
+.timeline-event-box::after, .timeline-event-box::before {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-bottom-color: transparent;
+    border-bottom-style: solid;
+    border-bottom-width: medium;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color: transparent;
+    border-left-style: solid;
+    border-left-width: medium;
+    border-right-color: transparent;
+    border-right-style: solid;
+    border-right-width: medium;
+    border-top-color: transparent;
+    border-top-style: solid;
+    border-top-width: medium;
+    bottom: 100%;
+    content: " ";
+    height: 0;
+    left: 10%;
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+}
+.timeline-event-box::after {
+    border-bottom-color: #ffffff;
+    border-bottom-width: 8px;
+    border-left-color: rgba(255, 255, 255, 0);
+    border-left-width: 8px;
+    border-right-color: rgba(255, 255, 255, 0);
+    border-right-width: 8px;
+    border-top-color: rgba(255, 255, 255, 0);
+    border-top-width: 8px;
+    margin-left: -8px;
+}
+.timeline-event-box::before {
+    border-bottom-color: #c7c7c7;
+    border-bottom-width: 9px;
+    border-left-color: rgba(199, 199, 199, 0);
+    border-left-width: 9px;
+    border-right-color: rgba(199, 199, 199, 0);
+    border-right-width: 9px;
+    border-top-color: rgba(199, 199, 199, 0);
+    border-top-width: 9px;
+    margin-left: -9px;
+}
+
+.timeline-event {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #5e5e5e;
+    background-image: none;
+    background-origin: padding-box;
+    background-position-x: 0;
+    background-position-y: 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+}
+.timeline-event span {
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: #5e5e5e;
+}
+
+.timeline-event {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #5e5e5e;
+    background-image: none;
+    background-origin: padding-box;
+    background-position-x: 0;
+    background-position-y: 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+}
+.timeline-event span {
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: #5e5e5e;
+}

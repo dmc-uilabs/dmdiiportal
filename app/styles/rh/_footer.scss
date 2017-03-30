@@ -1,0 +1,41 @@
+// footer {
+// 	text-align:center;
+//
+// 	background: $color-dark;
+// 	color:$white;
+// 	padding: 10px 0;
+// 	.img-responsive {
+// 		display:block;
+// 		margin:15px auto 25px auto;
+// 		max-width:300px;
+// 	}
+// 	.nav li {
+// 		display:inline-block;
+// 		position:relative;
+//
+// 		&:after {
+// 			display:block;
+// 			position:absolute;;
+// 			right:-2px;
+// 			top:50%;
+// 			margin-top:-10px;
+// 			height:20px;
+// 			content: "";
+// 			width:1px;
+// 			background:$gray;
+// 		}
+//
+// 		&:last-child:after{
+// 			display:none;
+// 		}
+// 		a {
+// 			color:$gray;
+// 			transition: color 0.5s;
+// 			&:hover, &:focus, &:active{
+// 				background:none;
+// 				color: $white;
+// 			}
+//
+// 		}
+// 	}
+// }
