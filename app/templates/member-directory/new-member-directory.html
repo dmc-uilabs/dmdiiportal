@@ -1,164 +1,187 @@
 <main>
-		<section class="container">
+	<section class="container">
 		<h2>Membership Directory</h2>
 		<div class="row content-row">
-		<div class="col-lg-7">
+			<div class="col-lg-7">
 
 
 
-					<?php // Desktop controls ?>
-						  <!-- Nav tabs -->
-						  <ul class="nav nav-tabs event-tabs" role="tablist">
-						  		<li class="hidden-xs tab-label">Events:</li>
-						    <li role="presentation" class="active hidden-xs"><a href="#contributors" aria-controls="contributors" role="tab" data-toggle="tab">Calendar</a></li>
-						    <li role="presentation" class="hidden-xs"><a href="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">List</a></li>
+				<!-- Desktop controls -->
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs event-tabs" role="tablist">
+					<li class="hidden-xs tab-label">Events</li>
+					<!-- <li role="presentation" class="active hidden-xs"><a href="#contributors" aria-controls="contributors" role="tab" data-toggle="tab">Calendar</a></li>
+					<li role="presentation" class="hidden-xs"><a href="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">List</a></li> -->
 
 
 
-						    	<?php // Mobile controls ?>
-						     		<li role="presentation" class="dropdown xs-tab-control visible-xs">
-						     			<a href="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false"><span class="tab-section-label">Section</span> <span class="caret"></span></a> <ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents"> <li class=""><a href="#contributors" role="tab"  data-toggle="tab" aria-controls="dropdown1" aria-expanded="false">Calendar</a></li>
-						     <li class="">
-						     	<a href="#schedule" role="tab"  data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">List</a></li>
-						     	</ul>
+					<!-- Mobile controls -->
+					<!-- <li role="presentation" class="dropdown xs-tab-control visible-xs">
+						<a href="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false"><span class="tab-section-label">Section</span> <span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="myTabDrop1"
+										id="myTabDrop1-contents">
+							<li class=""><a href="#contributors" role="tab" data-toggle="tab" aria-controls="dropdown1" aria-expanded="false">Calendar</a></li>
+							<li class="">
+								<a href="#schedule" role="tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">List</a></li>
+						</ul>
 
-			</li>
-						  </ul>
+					</li> -->
+				</ul>
 
 
 
-					  <!-- Tab panes -->
-						  <div class="tab-content">
-						    <div role="tabpanel" class="tab-pane fade in active" id="contributors">
-									<?php require(dirname(__FILE__).'/components/tab-events-calendar.php');?>
-						    </div>
-						    <div role="tabpanel" class="tab-pane fade " id="schedule">
-						    	<?php require(dirname(__FILE__).'/components/tab-events-list.php');?>
-						    </div>
-						  </div>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<!-- <div role="tabpanel" class="tab-pane fade in active" id="contributors">
+						<?php require(dirname(__FILE__).'/components/tab-events-calendar.php');?>
+
+					</div> -->
+					<div role="tabpanel" class="tab-pane fade in active" id="schedule">
+						<?php require(dirname(__FILE__).'/components/tab-events-list.php');?>
+						<div class="event-list" ng-repeat="event in events | limitTo:3">
+
+						<div class="event-block">
+						<div class="row">
+							<h2 class="col-sm-6">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
+						</div>
+							<p>{{plainText(event.description)}}</p>
+						</div>
+						<?php } ?>
+
+						</div>
+
+					</div>
+				</div>
 			</div>
 
-		<div class="col-lg-5  hidden-xs">
-		<h4 class="col-label">Membership Map</h4>
-		<div class="map-col text-center">
-		<?php
-	require(dirname(__FILE__).'/components/map.php');
-	?>
-		</div>
-		</div>
-		</div>
-			</section>
-
-			<section class="container">
-			<div class="filter-container">
-				<div class="row content-row">
-					<div class="col-sm-6">
-						<a class="toggle-control collapsed" data-toggle="collapse" href="#member-filters">Filters <span class="caret"></span></a>
-					</div>
-					<div class="col-sm-6 text-right">
-						<a href="#">Clear Filters</a>
-					</div>
-
+			<div class="col-lg-5  hidden-xs">
+				<h4 class="col-label">Membership Map</h4>
+				<div class="map-col text-center">
+					<datamap
+						map="mapObject"
+						>
+					</datamap>
 				</div>
-				<div class="collapse" id="member-filters">
+			</div>
+		</div>
+	</section>
+
+	<section class="container">
+		<div class="filter-container">
+			<div class="row content-row">
+				<div class="col-sm-6">
+					<a class="toggle-control collapsed" data-toggle="collapse" href="#member-filters">Filters <span class="caret"></span></a>
+				</div>
+				<div class="col-sm-6 text-right">
+					<a href="#">Clear Filters</a>
+				</div>
+
+			</div>
+			<div class="collapse" id="member-filters">
 				<div class="row">
 					<div class="col-sm-4">
 						<h4>Tier</h4>
 						<?php foreach ($tierItems as $item){?>
 						<div class="checkbox">
-						  <label>
+							<label>
 						    <input type="checkbox" value="">
 						    <?=$item;?>
 						  </label>
 						</div>
 						<?php } ?>
-						</div>
-						<div class="col-sm-4">
-							<h4>Type</h4>
-							<?php foreach ($typeItems as $item){?>
-							<div class="checkbox">
-							  <label>
+					</div>
+					<div class="col-sm-4">
+						<h4>Type</h4>
+						<?php foreach ($typeItems as $item){?>
+						<div class="checkbox">
+							<label>
 							    <input type="checkbox" value="">
 							    <?=$item;?>
 							  </label>
-							</div>
-							<?php } ?>
-							</div>
-							<div class="col-sm-4">
-								<h4>Active Projects</h4>
-								<?php foreach ($activeProjectItems as $item){?>
-								<div class="checkbox">
-								  <label>
+						</div>
+						<?php } ?>
+					</div>
+					<div class="col-sm-4">
+						<h4>Active Projects</h4>
+						<?php foreach ($activeProjectItems as $item){?>
+						<div class="checkbox">
+							<label>
 								    <input type="checkbox" value="">
 								    <?=$item;?>
 								  </label>
-								</div>
-								<?php } ?>
-								</div>
-</div></div></div>
-
-					<div class="row content-row">
-						<div class="col-xs-4">
-							<div class="form-group has-feedback">
-							      <input type="text" class="form-control " placeholder="Search Members"><span class="glyphicon glyphicon-search form-control-feedback"></span>
-							  </div><!-- /input-group -->
 						</div>
-						<div class="col-xs-4 col-xs-offset-4 ">
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+		</div>
 
-						<div class="dropdown pull-right">
-		 	 				<button class="btn btn-default dropdown-toggle" type="button" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		<div class="row content-row">
+			<div class="col-xs-4">
+				<div class="form-group has-feedback">
+					<input type="text" class="form-control " placeholder="Search Members"><span class="glyphicon glyphicon-search form-control-feedback"></span>
+				</div>
+				<!-- /input-group -->
+			</div>
+			<div class="col-xs-4 col-xs-offset-4 ">
+
+				<div class="dropdown pull-right">
+					<button class="btn btn-default dropdown-toggle" type="button" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 		    			Show 12 Items <span class="caret"></span>
 		  				</button>
-		  <ul class="dropdown-menu" aria-labelledby="itemstoshowdropdown">
-		    <li><a href="#">Show 12 Items</a></li>
-		    <li><a href="#">Show 24 Items</a></li>
-		    <li><a href="#">Show 36 Items</a></li>
-		  </ul>
+					<ul class="dropdown-menu" aria-labelledby="itemstoshowdropdown">
+						<li><a href="#">Show 12 Items</a></li>
+						<li><a href="#">Show 24 Items</a></li>
+						<li><a href="#">Show 36 Items</a></li>
+					</ul>
 
-		</div></div></div>
-					<div class="members-table">
-					<div class="table-responsive ">
-					<table class="table">
-						<thead>
-							<tr>
-								<th></th>
-								<th>Name</th>
-								<th>Tier</th>
-								<th>Type</th>
-								<th>Active Projects</th>
-								<th>Core Capabilities</th>
-								<th>Seeking Collaboration</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php for ($i = 0; $i<12; $i++){?>
-							<tr>
-								<td><img src="http://placehold.it/150x150" class="img-responsive" alt=""></td>
-								<td>
-									<a href="#">Company Name</a>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores laudantium aspernatur minus, ad id reiciendis non voluptate itaque illo assumenda nisi provident. Cupiditate incidunt numquam, corporis quod quos. Velit, perspiciatis!</p>
-									<a href="#">More...</a>
-								</td>
-
-								<td>1</td>
-								<td>Academic</td>
-								<td>
-									<ul class="active-projects">
-										<li>Adaptive Marketing Toolkit</li>
-										<li>Elastic Cloud Based Make</li>
-										<li><a href="#">More...</a></li>
-									</ul>
-								</td>
-								<td></td><td></td>
-							</tr>
-							<?php } ?>
-						</tbody>
-					</table>
 				</div>
-					<button class="btn btn-next">Next</button>
-					</div>
-				</section>
-			<?php
+			</div>
+		</div>
+		<div class="members-table">
+			<div class="table-responsive ">
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Name</th>
+							<th>Tier</th>
+							<th>Type</th>
+							<th>Active Projects</th>
+							<th>Core Capabilities</th>
+							<th>Seeking Collaboration</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php for ($i = 0; $i<12; $i++){?>
+						<tr>
+							<td><img src="http://placehold.it/150x150" class="img-responsive" alt=""></td>
+							<td>
+								<a href="#">Company Name</a>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores laudantium aspernatur minus, ad id reiciendis non voluptate itaque illo assumenda nisi provident. Cupiditate incidunt numquam, corporis quod quos. Velit, perspiciatis!</p>
+								<a href="#">More...</a>
+							</td>
+
+							<td>1</td>
+							<td>Academic</td>
+							<td>
+								<ul class="active-projects">
+									<li>Adaptive Marketing Toolkit</li>
+									<li>Elastic Cloud Based Make</li>
+									<li><a href="#">More...</a></li>
+								</ul>
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
+			<button class="btn btn-next">Next</button>
+		</div>
+	</section>
+	<?php
 			// Get the proper header
 			require(dirname(__FILE__).'/components/recent-news.php');?>
-	</main>
+</main>
