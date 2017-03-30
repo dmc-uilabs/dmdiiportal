@@ -6,7 +6,7 @@
 			<div class="images-box">
 				<img ng-src="{{invitation.profileImage}}">
 			</div>
-			<h4><a ng-href="{{'profile.php#/'+invitation.profileId}}">{{invitation.from}}</a> has invited you to join <a ng-href="{{'project.php#/preview/'+invitation.projectId}}">{{invitation.projectTitle}}.</a></h4>
+			<h4><a ng-href="{{'profile.php#/'+invitation.profileId}}">{{invitation.from}}</a> has invited you to join <a ng-href="{{'project.php#/preview/'+invitation.projectId}}">{{invitation.projectTitle || "a project"}}.</a></h4>
 			<span flex></span>
 			<md-button class="md-raised dmc-button" ng-click="decline($index)">
 				Decline

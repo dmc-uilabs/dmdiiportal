@@ -110,14 +110,11 @@
                             <h3>Invitations</h3>
                             <md-button md-no-ink href="/all.php#/invitations" class="view-all-link">View All</md-button>
                         </div>
-                        <md-menu-item ng-repeat="item in messagesList track by $index">
-                            <a ng-href='{{item.link}}'>
-                                <img ng-src="{{item.image}}" alt="{{item.user_name}}"/>
-                                <span>
-                                    <i class="user-name">{{item.user_name}}</i>
-                                    <i class="text">{{item.text}}</i>
-                                    <i>{{item.created_at}}</i>
-                                </span>
+                        <md-menu-item ng-repeat="item in invitations track by $index">
+                            <a ng-href="{{'project.php#/preview/'+item.projectId}}">
+                                <img ng-src="{{item.profileImage}}" alt="{{item.from}}"/>
+                                <i class="user-name">{{item.from}}</i>
+                                <i class="text">Invited you to {{item.projectTitle || "a project"}}</i>
                             </a>
                         </md-menu-item>
                     </md-menu-content>
@@ -257,18 +254,16 @@
                             <h3>Invitations</h3>
                             <md-button md-no-ink href="/all.php#/invitations" class="view-all-link">View All</md-button>
                         </div>
-                        <md-menu-item ng-repeat="item in messagesList track by $index">
-                            <a ng-href='{{item.link}}'>
-                                <img ng-src="{{item.image}}" alt="{{item.user_name}}"/>
-                                <span>
-                                    <i class="user-name">{{item.user_name}}</i>
-                                    <i class="text">{{item.text}}</i>
-                                    <i>{{item.created_at}}</i>
-                                </span>
-                            </a>
+                        <md-menu-item ng-repeat="item in invitations track by $index">
+                          <a ng-href="{{'project.php#/preview/'+item.projectId}}">
+                              <img ng-src="{{item.profileImage}}" alt="{{item.from}}"/>
+                              <i class="user-name">{{item.from}}</i>
+                              <i class="text">Invited you to {{item.projectTitle || "a project"}}</i>
+                          </a>
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>
+
 
             </div>
 
