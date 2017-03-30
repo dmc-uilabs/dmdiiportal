@@ -1,15 +1,15 @@
 angular.module('dmc.project')
     .controller('TaskCtrl', [
-        "$scope",
-        "$rootScope",
-        "$state",
-        "ajax",
-        "dataFactory",
-        "$stateParams",
-        "$mdDialog",
-        "projectData",
-        "toastModel",
-        "questionToastModel",
+        '$scope',
+        '$rootScope',
+        '$state',
+        'ajax',
+        'dataFactory',
+        '$stateParams',
+        '$mdDialog',
+        'projectData',
+        'toastModel',
+        'questionToastModel',
         function ($scope,
                   $rootScope,
                   $state,
@@ -59,17 +59,17 @@ angular.module('dmc.project')
             $scope.setStatus = function(){
                 var newStatus = null;
                 switch($scope.task.status){
-                    case "Completed":
-                        newStatus = "InProgress";
+                    case 'Completed':
+                        newStatus = 'InProgress';
                         break;
-                    case "Open":
-                        newStatus = "InProgress";
+                    case 'Open':
+                        newStatus = 'InProgress';
                         break;
-                    case "InProgress":
-                        newStatus = "Completed";
+                    case 'InProgress':
+                        newStatus = 'Completed';
                         break;
-                    case "Closed":
-                        newStatus = "Open";
+                    case 'Closed':
+                        newStatus = 'Open';
                         break;
                     default:
                         break;
@@ -84,11 +84,11 @@ angular.module('dmc.project')
 
             $scope.deleteTask = function(ev){
                 questionToastModel.show({
-                    question: "Delete task?",
+                    question: 'Delete task?',
                     buttons: {
                         ok: function(){
                             ajax.delete(dataFactory.deleteTask($scope.task.id),{},function(){
-                                $state.go("project.tasks");
+                                $state.go('project.tasks');
                             });
                         },
                         cancel: function(){}
@@ -120,13 +120,13 @@ angular.module('dmc.project')
                     setPriority($scope.task);
                     convertDueDate($scope.task);
                     apply();
-                    toastModel.showToast("success", "Task successfully updated");
+                    toastModel.showToast('success', 'Task successfully updated');
                     $scope.cancelEditTask();
                 });
             };
 
             $scope.$watch(function(){
-                return $(".md-datepicker-calendar-pane.md-pane-open").size();
+                return $('.md-datepicker-calendar-pane.md-pane-open').size();
             },function(newVal,oldVal){
                 if($scope.task) {
                     if (newVal == null || newVal == 0) {
@@ -139,52 +139,79 @@ angular.module('dmc.project')
             });
 
             $scope.setDatePickerFocus = function(){
-                $( ".dueDatePicker input").unbind( "focus" );
-                $(".dueDatePicker").on("focus","input",function(){
-                    $(".dueDatePicker button").click();
+                $( '.dueDatePicker input').unbind( 'focus' );
+                $('.dueDatePicker').on('focus','input',function(){
+                    $('.dueDatePicker button').click();
                 });
             };
 
             $scope.priorities = [
                 {
                     id : 4,
-                    name : "Low"
+                    name : 'Low'
                 }, {
                     id : 3,
-                    name : "Medium"
+                    name : 'Medium'
                 }, {
                     id : 2,
-                    name : "High"
+                    name : 'High'
                 }, {
                     id : 1,
-                    name : "Critical"
+                    name : 'Critical'
                 }
             ];
 
             $scope.users = [];
-            $scope.loadUsers = function() {
-                ajax.get(dataFactory.getAssignUsers(),{},
-                    function(response){
-                        $scope.users = response.data;
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                    }
-                );
+            $scope.getMembers = function () {
+                $scope.loading = true;
+                $scope.companyNameList = {};
+                ajax.get(dataFactory.getProjectMembers(), {projectId: $scope.selectedProject}, function (response) {
+                    var profileIds = $.map(response.data, function (x) {
+                        return x.profileId;
+                    });
+                    $scope.users = response.data;
+                    ajax.get(dataFactory.profiles().all, {
+                        id: profileIds,
+                        displayName_like: $scope.searchModel,
+                        _type: $scope.typeModel
+                    }, function (res) {
+                        $scope.loading = false;
+                        for(var i in $scope.users){
+
+                            for(var j in res.data){
+                                if($scope.users[i].profileId == res.data[j].id){
+                                    $scope.users[i].member = res.data[j];
+
+
+                                    //break;
+                                }
+                            }
+                        }
+
+                        apply();
+                    });
+                });
             };
-            $scope.loadUsers();
+
+
+            $scope.getMembers();
+
+
+
 
             var setPriority = function(task){
                 switch(task.priority){
                     case 1:
-                        task.priorityName = "Critical";
+                        task.priorityName = 'Critical';
                         break;
                     case 2:
-                        task.priorityName = "High";
+                        task.priorityName = 'High';
                         break;
                     case 3:
-                        task.priorityName = "Medium";
+                        task.priorityName = 'Medium';
                         break;
                     case 4:
-                        task.priorityName = "Low";
+                        task.priorityName = 'Low';
                         break;
                     default:
                         break;
@@ -193,14 +220,14 @@ angular.module('dmc.project')
 
             var convertDueDate = function(task){
                 var oneDay = 86400000;
-                task.dueDateForEdit = new Date(moment(task.dueDate).format("MM/DD/YYYY"));
-                var difference = Math.floor(new Date(task.dueDate) - new Date(moment(new Date()).format("MM/DD/YYYY")));
+                task.dueDateForEdit = new Date(moment(task.dueDate).format('MM/DD/YYYY'));
+                var difference = Math.floor(new Date(task.dueDate) - new Date(moment(new Date()).format('MM/DD/YYYY')));
                 if(difference == 0) {
                     task.formatedDueDate = ['today','Today'];
                 } else if(difference == oneDay) {
                     task.formatedDueDate = ['tomorrow','Tomorrow'];
                 }else if(difference > oneDay){
-                    task.formatedDueDate = ['date',moment(new Date(task.dueDate)).format("MM/DD/YYYY")];
+                    task.formatedDueDate = ['date',moment(new Date(task.dueDate)).format('MM/DD/YYYY')];
                 }else if(difference < 0){
                     var name_d = (difference == (-1*oneDay) ? 'day' : 'days');
                     task.formatedDueDate = ['after', 'Due ' + (-1 * Math.floor(difference / oneDay)) + ' ' + name_d + ' ago'];
