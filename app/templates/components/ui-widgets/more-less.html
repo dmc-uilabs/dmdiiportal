@@ -1,2 +1,6 @@
 {{elementText | limitTo:textLimitFilter}}
-<span ng-if="elementTextTooLong()" ng-click="switchLenLimit()"><a style="color: #65AF3F;" href>...{{elementTextLimitPrompt}}<a></span>
+<span ng-if="elementTextTooLong()" ng-click="switchLenLimit()">
+  <a style="color: #65AF3F; display: inline; font-weight: normal;" href>
+    <span>...{{elementTextLimitPrompt}}</span>
+  <a>
+</span>

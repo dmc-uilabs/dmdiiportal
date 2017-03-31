@@ -128,7 +128,10 @@ div.progress {
 
         a {
             font-weight:bold;
-
+						&.gray-link {
+							font-weight:normal;
+							color: $gray;
+						}
         }
         time {
             font-weight:bold;

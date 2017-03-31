@@ -107,28 +107,46 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php for ($i = 0; $i<12; $i++){?>
-						<tr>
-							<td><img src="http://placehold.it/150x150" class="img-responsive" alt=""></td>
+
+						<tr ng-repeat="member in members.arr">
+							<td><img ng-src="{{member.organization.logoImage ? member.organization.logoImage : 'images/icon-company-lg.svg'}}" class="img-responsive" alt=""></td>
 							<td>
-								<a href="#">Company Name</a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores laudantium aspernatur minus, ad id reiciendis non voluptate itaque illo assumenda nisi provident. Cupiditate incidunt numquam, corporis quod quos. Velit, perspiciatis!</p>
-								<a href="#">More...</a>
+								<a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a>
+								<p class="description" more-less
+									element-text="{{member.organization.description}}"
+									element-text-limit="140">
+								</p>
 							</td>
 
-							<td>1</td>
-							<td>Academic</td>
+							<td>{{member.dmdiiType.tier}}</td>
+							<td>{{member.dmdiiType.dmdiiTypeCategory.category}}</td>
 							<td>
 								<ul class="active-projects">
-									<li>Adaptive Marketing Toolkit</li>
-									<li>Elastic Cloud Based Make</li>
-									<li><a href="#">More...</a></li>
+									<li ng-repeat="project in activeProjects[member.id] track by $index">
+										<a class="gray-link" ng-href="{{'/dmdii-project-page.php#/' + project.id}}">
+											<span class="gray-link"
+													more-less
+												 element-text ="{{project.projectTitle}}"
+												 element-text-limit="30">
+											 </span>
+										</a>
+									</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="active-projects">
+									<li ng-repeat="tag in member.organization.areasOfExpertise track by $index">
+										<a more-less
+											 ng-href="{{getUrl('expertiseTags', tag.id)}}"
+											 element-text="{{tag.name}}"
+											 element-text-limit="30">
+										 </a>
+									</li>
 								</ul>
 							</td>
 							<td></td>
-							<td></td>
 						</tr>
-						<?php } ?>
+
 					</tbody>
 				</table>
 			</div>
