@@ -42,6 +42,7 @@ angular.module('dmc.dmdiiProj', [
         restrict: 'E',
         templateUrl: 'templates/dmdii-project-page/tab-contributors.html',
         scope:{
+          project: '='
         },
         controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
 
@@ -53,6 +54,7 @@ angular.module('dmc.dmdiiProj', [
           restrict: 'E',
           templateUrl: 'templates/dmdii-project-page/tab-schedule.html',
           scope:{
+            projectSchedule: '='
           },
           controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
 
@@ -64,6 +66,7 @@ angular.module('dmc.dmdiiProj', [
           restrict: 'E',
           templateUrl: 'templates/dmdii-project-page/tab-updates.html',
           scope:{
+            updates: '='
           },
           controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
 
@@ -75,6 +78,7 @@ angular.module('dmc.dmdiiProj', [
           restrict: 'E',
           templateUrl: 'templates/dmdii-project-page/tab-documents.html',
           scope:{
+            documents: '='
           },
           controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
 

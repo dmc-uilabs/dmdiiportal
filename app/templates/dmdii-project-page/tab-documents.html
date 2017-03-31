@@ -1,40 +1,37 @@
 <div id="document-list" role="tablist" aria-multiselectable="true" class="panel-group">
-<?php for($i=0; $i<3; $i++){?>
-<div class=" panel default-panel">
+
+<div class=" panel default-panel" ng-repeat="doc in documents track by $index">
 
 		<div class="panel-label">
-		<a class="collapsed" data-parent="#document-list" data-toggle="collapse" href="#document<?=$i;?>" aria-expanded="false">Item label</a>
+		<a class="collapsed" data-parent="#document-list" data-toggle="collapse" data-target="#document{{$index}}" aria-expanded="false">{{doc.documentName}}</a>
 		</div>
 
-	<div id="document<?=$i;?>" class="panel-collapse collapse">
+	<div id="document{{$index}}" class="panel-collapse collapse">
 	<div class="panel-content">
 	<div class="document-section">
 	<h4>General</h4>
 	<dl class="dl-inline">
 		<dt>Name</dt>
-		<dd>AR Functional Requirements - Hardware rev1.pdf</dd>
+		<dd>{{doc.documentName}}</dd>
 		<dt>Last Modified</dt>
-		<dd><time datetime="2011-01-12">Fri Mar 17 2017 15:58:38 GMT-0500 (CDT)1</time>
+		<dd><time>{{doc.modified | date:'yyyy-MM-dd HH:mm Z'}}</time>
 		<dt>Download</dt>
-		<dd><a href="#">Here</a></dd>
+		<dd><a href="{{doc.documentUrl}}">Download</a></dd>
 	</dl>
 	</div>
 	<div class="document-section">
 	<h4>Access Controls</h4>
 	<dl class="dl-inline">
 		<dt>Accessible By</dt>
-		<dd>All Users</dd>
+		<dd>{{doc.accessLevel}}</dd>
 	</dl>
 	</div>
 	<div class="icon-list">
-		<a href="#"><span class="glyphicon glyphicon-trash"></span></a>
-		<a href="#"><span class="glyphicon glyphicon glyphicon-file"></span></a>
-
-		<a href="#"><span class="glyphicon glyphicon glyphicon-download-alt"></span></a>
-
+		<a href ng-click="deleteDocument(doc.id, 'doc', docIndex)"><span class="glyphicon glyphicon-trash"></span></a>
+		<a ng-href="{{'/add-dmdii-project-doc.php#/'+project.id+'/projectDocuments'}}"><span class="glyphicon glyphicon glyphicon-file"></span></a>
+		<a ng-href="{{doc.documentUrl}}"><span class="glyphicon glyphicon glyphicon-download-alt"></span></a>
 	</div>
 	</div>
 	</div>
 	</div>
-<?php } ?>
 </div>

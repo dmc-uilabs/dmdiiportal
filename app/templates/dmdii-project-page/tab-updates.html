@@ -1,6 +1,5 @@
-<div class="well">
-	<time datetime="2011-01-12">January 12th, 2011</time> <span class="pull-right">	<a class="delete-button" href="#"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+<div class="well" ng-repeat="update in updates">
+	<time>{{update.created}}</time> <span class="pull-right">	<a ng-if="userData.isDmdiiAdmin" class="delete-button" href ng-click="deleteUpdate($index, update.id)"><span class="glyphicon glyphicon-trash"></span> Delete</a>
 				</span>
-	<p>The next 00-00-00 QTR is scheduled for February 24 from 10am-12pm CST.</p>
-	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+	<p>{{update.title}}</p>
 </div>

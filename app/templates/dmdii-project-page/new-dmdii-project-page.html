@@ -1,4 +1,4 @@
-<header class="under-header">
+<header class="under-header" ng-if="userData.isDmdiiAdmin">
     <div class="container">
         <div class="row hidden-xs">
             <div class="col-sm-4"><a href="#"><span class="glyphicon glyphicon-plus-sign"></span>Add documents &amp; updates</a></div>
@@ -9,12 +9,12 @@
         <div class="dropdown visible-xs">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project Options<span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span>Add documents &amp; updates</a></a>
+                <li><a href="add-dmdii-project-doc.php#/{{project.id}}/projectUpdates"><span class="glyphicon glyphicon-plus-sign"></span>Add documents &amp; updates</a></a>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Edit Project</a></li>
+                <li><a href="edit-dmdii-project-page.php#/{{project.id}}/edit"><span class="glyphicon glyphicon-pencil"></span> Edit Project</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#"><span class="glyphicon glyphicon-trash"></span> Delete Project </a></li>
+                <li><a ng-click="deleteProject()"><span class="glyphicon glyphicon-trash"></span> Delete Project </a></li>
 
             </ul>
         </div>
@@ -26,11 +26,11 @@
     <section class="container">
         <div class="row">
             <div class="col-md-6 project-main">
-                <div class="status status-complete">Completed</div>
-                <h1>Integration of AVM iFAB Tools for Industrial Use</h1>
-                <time datetime="2011-01-12">January 12th, 2011</time>
+                <div class="status status-complete" ng-if="project.kind == 'dmdiiProject'">{{project.projectStatus.name}}</div>
+                <h1>{{project.projectTitle}}</h1>
+                <time>{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</time>
 
-                <a href="#">Model-based Design/Enterprise</a> <a href="#">Adaptive Vehicle Make</a>
+                <span href="#">{{project.projectFocusArea.name }}</span> <span href="#">{{project.projectThrust.name}}</span>
             </div>
             <div class="col-md-6">
                 <div class="row">
@@ -39,9 +39,9 @@
                         <h4>Project Financials</h4>
                         <dl class="project-stats">
                             <dt>DMDII Funding</dt>
-                            <dd>$1,234,567,890</dd>
+                            <dd>{{project.dmdiiFunding | currency}}</dd>
                             <dt>Cost Share</dt>
-                            <dd>$1,234,567,890</dd>
+                            <dd>{{project.costShare | currency}}</dd>
                         </dl>
                     </div>
                     <div class="col-xs-6">
@@ -49,39 +49,32 @@
                         <h4>Key Dates</h4>
                         <dl class="project-stats">
                             <dt>Awarded On</dt>
-                            <dd><time datetime="2016-3-2">3-2-2017</time></dd>
+                            <dd><time>{{project.awardedDate}}</time></dd>
                             <dt>Completed</dt>
-                            <dd><time datetime="2016-3-2">3-2-2017</time></dd>
+                            <dd><time>{{project.endDate}}</time></dd>
                         </dl>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-sm-6">
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: 60%;">60%</div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="project-summary-container">
             <div class="row ">
                 <div class="col-xs-12">
                     <h4>Summary</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                    <h5>Example of a headline.</h5>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class="slim-margin" markdown-to-html="project.projectSummary"></div>
                 </div>
             </div>
 
         </div>
 
 
-        <?php // Desktop controls ?>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active hidden-xs"><a data-target="#contributors" aria-controls="contributors" role="tab" data-toggle="tab">Contributors</a></li>
@@ -90,7 +83,6 @@
             <li role="presentation" class="hidden-xs"><a data-target="#documents" aria-controls="documents" role="tab" data-toggle="tab">Documents</a></li>
 
 
-            <?php // Mobile controls ?>
             <li role="presentation" class="dropdown xs-tab-control visible-xs">
                 <a data-target="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false">
                   <span class="tab-section-label">Section</span>
@@ -122,16 +114,16 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="contributors">
-                  <tab-contributors></tab-contributors>
+                  <tab-contributors project="project"></tab-contributors>
                 </div>
                 <div role="tabpanel" class="tab-pane fade " id="schedule">
-                  <tab-schedule></tab-schedule>
+                  <tab-schedule projectSchedule="projectSchedule"></tab-schedule>
                 </div>
                 <div role="tabpanel" class="tab-pane fade " id="updates">
-                  <tab-updates></tab-updates>
+                  <tab-updates updates="updates"></tab-updates>
                 </div>
                 <div role="tabpanel" class="tab-pane fade " id="documents">
-                  <tab-documents></tab-documents>
+                  <tab-documents documents="documents"></tab-documents>
                 </div>
             </div>
         </div>

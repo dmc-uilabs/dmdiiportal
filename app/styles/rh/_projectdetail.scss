@@ -16,7 +16,7 @@
 
 #document-list{
 	.collapse {
-		
+
 	}
 }
 
@@ -50,7 +50,7 @@
 		}
 
 	}
-	
+
 	.panel-content {
 		background: $white;
 		padding:30px;
@@ -58,6 +58,8 @@
 }
 
 .under-header {
+	margin-top: 32px;
+	padding: 5px 0px;
 	font-size:15px;
 	.glyphicon {
 		margin-right:5px;
@@ -108,11 +110,11 @@
 
 .project-summary-container {
 	border-top:1px solid $border-color;
-	
+
 	border-bottom:1px solid $border-color;
 	padding:50px 0;
 	margin:20px 0;
-	
+
 
 	h5 {
 		font-weight:bold;
@@ -197,9 +199,9 @@
 		margin-bottom:20px;
 	}
 }
-@media (min-width: $screen-xs-max){ 
+@media (min-width: $screen-xs-max){
 	.dl-inline {
-		
+
 		&:after {
 			clear:both;
 			content: "";
@@ -216,6 +218,6 @@
 			float:left;
 		}
 
-	
+
 	}
 }
