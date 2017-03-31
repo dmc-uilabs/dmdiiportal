@@ -6,7 +6,8 @@
 		"from": "Thomas Smith",
 		"date": 1458245164499,
 		"accept": false,
-		"id": 1
+		"id": 1,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -15,7 +16,8 @@
 		"from": "Timmy Thomas",
 		"date": 1458295505214,
 		"accept": false,
-		"id": 7
+		"id": 7,
+		"title": "Project 1"
 	},
 	{
 		"profileId": 2,
@@ -24,7 +26,8 @@
 		"from": "Thomas Smith",
 		"date": 1459371296185,
 		"accept": false,
-		"id": 8
+		"id": 8,
+		"title": "Project 5"
 	},
 	{
 		"profileId": 2,
@@ -33,7 +36,8 @@
 		"from": "Thomas Smith",
 		"date": 1459436606440,
 		"accept": false,
-		"id": 9
+		"id": 9,
+		"title": "Project 4"
 	},
 	{
 		"profileId": 1,
@@ -43,7 +47,8 @@
 		"date": 1459436606440,
 		"accept": false,
 		"id": 10,
-		"removed": false
+		"removed": false,
+		"title": "Project 4"
 	},
 	{
 		"profileId": 2,
@@ -53,7 +58,8 @@
 		"date": 1459757448000,
 		"accept": false,
 		"id": 11,
-		"removed": true
+		"removed": true,
+		"title": "Project 3"
 	},
 	{
 		"profileId": 1,
@@ -62,7 +68,8 @@
 		"from": "Thomas Smith",
 		"date": 1459758478599,
 		"accept": true,
-		"id": 12
+		"id": 12,
+		"title": "Project 3"
 	},
 	{
 		"profileId": 1,
@@ -71,7 +78,8 @@
 		"from": "Thomas Smith",
 		"date": 1459758478599,
 		"accept": true,
-		"id": 13
+		"id": 13,
+		"title": "Project 1"
 	},
 	{
 		"profileId": 2,
@@ -81,7 +89,8 @@
 		"date": 1459758478599,
 		"accept": false,
 		"id": 14,
-		"removed": true
+		"removed": true,
+		"title": "Project 1"
 	},
 	{
 		"profileId": 3,
@@ -90,7 +99,8 @@
 		"from": "Thomas Smith",
 		"date": 1459758478599,
 		"accept": false,
-		"id": 15
+		"id": 15,
+		"title": "Project 1"
 	},
 	{
 		"profileId": 4,
@@ -99,7 +109,8 @@
 		"from": "Thomas Smith",
 		"date": 1459758478599,
 		"accept": true,
-		"id": 16
+		"id": 16,
+		"title": "Project 1"
 	},
 	{
 		"profileId": 1,
@@ -108,7 +119,8 @@
 		"from": "Thomas Smith",
 		"date": 1464215628125,
 		"accept": false,
-		"id": 17
+		"id": 17,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -117,7 +129,8 @@
 		"from": "Thomas Smith",
 		"date": 1464215818725,
 		"accept": false,
-		"id": 18
+		"id": 18,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -126,7 +139,8 @@
 		"from": "Thomas Smith",
 		"date": 1464215839516,
 		"accept": false,
-		"id": 19
+		"id": 19,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -135,7 +149,8 @@
 		"from": "Thomas Smith",
 		"date": 1464289746224,
 		"accept": false,
-		"id": 20
+		"id": 20,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -144,7 +159,8 @@
 		"from": "Thomas Smith",
 		"date": 1464290293966,
 		"accept": false,
-		"id": 21
+		"id": 21,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -153,7 +169,8 @@
 		"from": "Thomas Smith",
 		"date": 1464290420992,
 		"accept": false,
-		"id": 22
+		"id": 22,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -162,7 +179,8 @@
 		"from": "Thomas Smith",
 		"date": 1464290589785,
 		"accept": false,
-		"id": 23
+		"id": 23,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -171,7 +189,8 @@
 		"from": "Thomas Smith",
 		"date": 1464290664482,
 		"accept": false,
-		"id": 24
+		"id": 24,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -180,7 +199,8 @@
 		"from": "Thomas Smith",
 		"date": 1464292026860,
 		"accept": false,
-		"id": 25
+		"id": 25,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -189,7 +209,8 @@
 		"from": "Thomas Smith",
 		"date": 1464292133840,
 		"accept": false,
-		"id": 26
+		"id": 26,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -198,7 +219,8 @@
 		"from": "Thomas Smith",
 		"date": 1464292354037,
 		"accept": false,
-		"id": 27
+		"id": 27,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -207,7 +229,8 @@
 		"from": "Thomas Smith",
 		"date": 1464292432189,
 		"accept": false,
-		"id": 28
+		"id": 28,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -216,7 +239,8 @@
 		"from": "Thomas Smith",
 		"date": 1464293165970,
 		"accept": false,
-		"id": 29
+		"id": 29,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -225,7 +249,8 @@
 		"from": "Thomas Smith",
 		"date": 1464293286524,
 		"accept": false,
-		"id": 30
+		"id": 30,
+		"title": "Project 2"
 	},
 	{
 		"profileId": 1,
@@ -234,6 +259,7 @@
 		"from": "Thomas Smith",
 		"date": 1464293431461,
 		"accept": false,
-		"id": 31
+		"id": 31,
+		"title": "Project 2"
 	}
 ]

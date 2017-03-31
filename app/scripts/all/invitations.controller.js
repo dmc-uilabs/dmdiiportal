@@ -27,15 +27,6 @@ angular.module('dmc.view-all')
         	$scope.userData = DMCUserModel.getUserData();
         	$scope.invitations = []
 
-
-        	var getProject = function(invitation){
-        		ajax.get(dataFactory.getProject(invitation.projectId),{},
-        			function(response){
-        				invitation["projectTitle"] = response.data.title;
-        			}
-        		);
-        	}
-
         	var getProfile = function(invitation){
         		ajax.get(dataFactory.profiles(invitation.fromProfileId).get,{},
         			function(response){
@@ -53,7 +44,6 @@ angular.module('dmc.view-all')
 	            	for(var i in $scope.invitations){
 	            		$scope.invitations[i].date = moment($scope.invitations[i].date).format('MM/DD/YYYY, hh:mm A');
 	            		getProfile($scope.invitations[i]);
-	            		getProject($scope.invitations[i]);
 	            	}
 
 	            }

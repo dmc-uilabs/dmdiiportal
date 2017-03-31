@@ -114,7 +114,7 @@
                             <a ng-href="{{'project.php#/preview/'+item.projectId}}">
                                 <img ng-src="{{item.profileImage}}" alt="{{item.from}}"/>
                                 <i class="user-name">{{item.from}}</i>
-                                <i class="text">Invited you to {{item.projectTitle || "a project"}}</i>
+                                <i class="text">Invited you to {{item.title || "a project"}}</i>
                             </a>
                         </md-menu-item>
                     </md-menu-content>
@@ -258,7 +258,7 @@
                           <a ng-href="{{'project.php#/preview/'+item.projectId}}">
                               <img ng-src="{{item.profileImage}}" alt="{{item.from}}"/>
                               <i class="user-name">{{item.from}}</i>
-                              <i class="text">Invited you to {{item.projectTitle || "a project"}}</i>
+                              <i class="text">Invited you to {{item.title || "a project"}}</i>
                           </a>
                         </md-menu-item>
                     </md-menu-content>
