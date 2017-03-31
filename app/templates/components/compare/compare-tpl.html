@@ -81,7 +81,7 @@
                             </md-button>
                         </div>
                         <div class="block-buttons" layout="row">
-                            <!-- buttons for add to project -->
+                            <!-- buttons for add to workspace -->
                             <md-button aria-label="Back to Add"
                                        class="back-to-add"
                                        ng-click="backToAdd(item)"
@@ -97,12 +97,12 @@
                                 Added to {{item.lastProject.title}}
                             </md-button>
 
-                            <md-button aria-label="Add to Project"
+                            <md-button aria-label="Add to Workspace"
                                        flex
                                        href="" class="white-button"
                                        ng-click="addToProject(item)"
                                        ng-hide="item.addingToProject || item.added">
-                                Add to Project
+                                Add to Workspace
                             </md-button>
                         </div>
                     </div>
