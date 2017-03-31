@@ -7,8 +7,7 @@ function recentNewsFunc() {
   return{
     restrict: 'E',
     scope: {
-        elementText: '@',
-        elementTextLimit: '@'
+        news: '='
     },
     templateUrl: 'templates/components/ui-widgets/recent-news.html',
     controller: recentNewsController
