@@ -10,13 +10,13 @@
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs event-tabs" role="tablist">
 					<li class="hidden-xs tab-label">Events</li>
-					<!-- <li role="presentation" class="active hidden-xs"><a href="#contributors" aria-controls="contributors" role="tab" data-toggle="tab">Calendar</a></li>
-					<li role="presentation" class="hidden-xs"><a href="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">List</a></li> -->
+					<li role="presentation" class="active hidden-xs"><a data-target="#contributors" aria-controls="contributors" role="tab" data-toggle="tab">Calendar</a></li>
+					<li role="presentation" class="hidden-xs"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">List</a></li>
 
 
 
 					<!-- Mobile controls -->
-					<!-- <li role="presentation" class="dropdown xs-tab-control visible-xs">
+					<li role="presentation" class="dropdown xs-tab-control visible-xs">
 						<a href="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false"><span class="tab-section-label">Section</span> <span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="myTabDrop1"
 										id="myTabDrop1-contents">
@@ -25,19 +25,19 @@
 								<a href="#schedule" role="tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">List</a></li>
 						</ul>
 
-					</li> -->
+					</li>
 				</ul>
 
 
 
 				<!-- Tab panes -->
 				<div class="tab-content">
-					<!-- <div role="tabpanel" class="tab-pane fade in active" id="contributors">
-						<?php require(dirname(__FILE__).'/components/tab-events-calendar.php');?>
+					<div role="tabpanel" class="tab-pane fade in active" id="contributors">
+						PLACEHOLDER
 
-					</div> -->
-					<div role="tabpanel" class="tab-pane fade in active" id="schedule">
-						<?php require(dirname(__FILE__).'/components/tab-events-list.php');?>
+					</div>
+					<div role="tabpanel" class="tab-pane fade " id="schedule">
+
 						<div class="event-list" ng-repeat="event in events | limitTo:3">
 
 						<div class="event-block">
@@ -46,7 +46,7 @@
 						</div>
 							<p>{{plainText(event.description)}}</p>
 						</div>
-						<?php } ?>
+
 
 						</div>
 
@@ -70,7 +70,7 @@
 		<div class="filter-container">
 			<div class="row content-row">
 				<div class="col-sm-6">
-					<a class="toggle-control collapsed" data-toggle="collapse" href="#member-filters">Filters <span class="caret"></span></a>
+					<a class="toggle-control collapsed" data-toggle="collapse" data-target="#member-filters">Filters <span class="caret"></span></a>
 				</div>
 				<div class="col-sm-6 text-right">
 					<a href="#">Clear Filters</a>
