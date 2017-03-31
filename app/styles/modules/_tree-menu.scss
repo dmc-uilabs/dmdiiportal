@@ -51,7 +51,8 @@
     }
     li{
       .selected{
-        color: map-get($colors, link_color);
+        // color: map-get($colors, link_color);
+        font-weight: bold;
       }
     }
     .opened{
