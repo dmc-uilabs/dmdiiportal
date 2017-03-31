@@ -66,6 +66,7 @@
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/member-directory/member-directory.js"></script>
     <script src="scripts/member-directory/member-directory.controller.js"></script>
+    <script src="scripts/common/directive/recent-news.directive.js"></script>
 
     <!-- endbuild -->
     <script type="text/javascript">

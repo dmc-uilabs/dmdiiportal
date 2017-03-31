@@ -25,7 +25,8 @@ angular.module('dmc.dmdiiProjects', [
     'dmc.component.treemenu',
     'dmc.component.horizontalmenu',
     'dmc.widgets.tasks',
-    'dmc.widgets.tabs'
+    'dmc.widgets.tabs',
+    'dmc.recent-news'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('dmdii_projects', {
@@ -57,15 +58,4 @@ angular.module('dmc.dmdiiProjects', [
         }
     });
     $urlRouterProvider.otherwise('/dmdii_projects');
-}).directive('dmdiiProjectsNews', function () {
-    return {
-        restrict: 'E',
-        templateUrl: 'templates/dmdii-projects/dmdii-projects-news.html',
-        scope:{
-        },
-        controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
-
-        }
-      }
-    }
-);
+});

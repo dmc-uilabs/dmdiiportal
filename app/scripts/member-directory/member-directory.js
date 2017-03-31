@@ -14,6 +14,7 @@ angular.module('dmc.members', [
     'dmc.ajax',
     'dmc.data',
     'dmc.more-less',
+    'dmc.recent-news',
     'dmc.socket',
     'ngtimeago',
     'ngCookies',
