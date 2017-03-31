@@ -254,17 +254,15 @@ angular.module('dmc.dmdiiProjects')
                 if (angular.isDefined(response.data.count)) {
                     $scope.projects.arr = response.data.data;
                     $scope.projects.count = response.data.count;
-                    var numberProjects=$scope.projects.arr.length;
-                    $scope.randProjectId = Math.floor(Math.random()*numberProjects);
-                    $scope.randProject = $scope.projects.arr[$scope.randProjectId];
-                    
+
                 } else {
                     $scope.projects.arr = response.data;
-                    var numberProjects =$scope.projects.arr.length;
-                    $scope.randProjectId = Math.floor(Math.random()*numberProjects);
-                    $scope.randProject = $scope.projects.arr[$scope.randProjectId];
                 }
                 $scope.dmdiiProjectsLoading = false;
+                var numberProjects=$scope.projects.arr.length;
+                $scope.randProjectId = Math.floor(Math.random()*numberProjects);
+                $scope.randProject = $scope.projects.arr[$scope.randProjectId];
+
                 // insertData(response.data);
             };
 
