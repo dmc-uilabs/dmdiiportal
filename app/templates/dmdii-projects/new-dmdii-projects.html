@@ -1,0 +1,92 @@
+<main>
+		<section class="container projects-head">
+			<h2>Projects</h2>
+			<div class="row status-row">
+				<div class="col-sm-4">
+					<h4>Projects Overview</h4>
+					<img src="http://placehold.it/570x291" class="img-responsive">
+					<a class="delete-button" href="#"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+				</div>
+
+				<div class="col-sm-4">
+					<h4>Projects Status</h4>
+					<img src="http://placehold.it/570x291" class="img-responsive">
+				<a class="delete-button" href="#"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+				</div>
+				<div class="col-sm-4">
+					<h4>Quick Links</h4>
+					<ul class="quick-links">
+						<?php for($i = 0; $i<4; $i++){?>
+						<li><a href="#">Partner Innovation Projects - Overview</a> <a href="#" class="delete-icon"><span class="glyphicon glyphicon-trash"></span></a></li>
+						<?php } ?>
+					</ul>
+			</div>
+			</div>
+			<div class="row timeline-row">
+			<div class="col-xs-12">
+				<?php
+				// Get the proper header
+				require(dirname(__FILE__).'/components/timeline.php');?>
+
+			</div>
+			</div>
+
+		</section>
+
+		<section class="container">
+      <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
+      
+			<div class="row content-row">
+				<div class="col-xs-4">
+					<div class="form-group has-feedback">
+					      <input type="text" class="form-control " placeholder="Search Partner Projects"><span class="glyphicon glyphicon-search form-control-feedback"></span>
+					  </div><!-- /input-group -->
+				</div>
+				<div class="col-xs-4 col-xs-offset-4 ">
+
+				<div class="dropdown">
+ 	 				<button class="btn btn-default dropdown-toggle" type="button" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			Show 12 Items <span class="caret"></span>
+  				</button>
+  <ul class="dropdown-menu" aria-labelledby="itemstoshowdropdown">
+    <li><a href="#">Show 12 Items</a></li>
+    <li><a href="#">Show 24 Items</a></li>
+    <li><a href="#">Show 36 Items</a></li>
+  </ul>
+
+</div></div>
+			</div>
+			<div class="projects-table">			<div class="table-responsive ">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Status</th>
+						<th>Focus</th>
+						<th>Thrust Area</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php for ($i = 0; $i<12; $i++){?>
+					<tr>
+						<td>
+							<a href="#">Techonology Showcase - Febuary 28, 2017</a>
+							<time datetime="2011-01-12">January 12th, 2011</time>
+							<div class="sublabel">UI Labs</div>
+						</td>
+
+						<td>Completed</td>
+						<td>Other</td>
+						<td>Digital Manufacturing Commons</td>
+					</tr>
+					<?php } ?>
+				</tbody>
+			</table>
+			</div>
+			<button class="btn btn-next">Next</button>
+			</div>
+		</section>
+	<?php
+	// Get the proper header
+	require(dirname(__FILE__).'/components/recent-news.php');?>
+</main>
