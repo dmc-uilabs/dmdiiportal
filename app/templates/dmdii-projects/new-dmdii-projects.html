@@ -100,7 +100,21 @@
 				</tbody>
 			</table>
 			</div>
-			<button class="btn btn-next">Next</button>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<button id="prevPage" ng-if="hasPrev()" class="btn btn-next pull-right" ng-click="getPrev()">
+										PREV
+								</button>
+							</div>
+
+							<div class="col-xs-6">
+								<button id="nextPage" ng-if="hasNext()" class="btn btn-next pull-left" ng-click="getNext()">
+										NEXT
+								</button>
+							</div>
+						</div>
+
 			</div>
 		</section>
 
