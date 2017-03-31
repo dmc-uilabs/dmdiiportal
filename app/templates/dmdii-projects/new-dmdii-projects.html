@@ -4,21 +4,24 @@
 			<div class="row status-row">
 				<div class="col-sm-4">
 					<h4>Projects Overview</h4>
-					<img src="http://placehold.it/570x291" class="img-responsive">
-					<a class="delete-button" href="#"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+					<img ng-src="{{projectOverview.documentUrl}}" class="img-responsive">
+					<a class="delete-button" href ng-click="deleteDocument(projectOverview.id, 'projectOverview')" ng-show="userData.isDmdiiAdmin"><span class="glyphicon glyphicon-trash"></span> Delete</a>
 				</div>
 
 				<div class="col-sm-4">
 					<h4>Projects Status</h4>
-					<img src="http://placehold.it/570x291" class="img-responsive">
-				<a class="delete-button" href="#"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+					<img ng-src="{{projectStatus.documentUrl}}" class="img-responsive">
+				<a class="delete-button" href ng-click="deleteDocument(projectStatus.id, 'projectStatus')" ng-show="userData.isDmdiiAdmin"><span class="glyphicon glyphicon-trash"></span> Delete</a>
 				</div>
 				<div class="col-sm-4">
 					<h4>Quick Links</h4>
 					<ul class="quick-links">
-						<?php for($i = 0; $i<4; $i++){?>
-						<li><a href="#">Partner Innovation Projects - Overview</a> <a href="#" class="delete-icon"><span class="glyphicon glyphicon-trash"></span></a></li>
-						<?php } ?>
+
+						<li ng-repeat="doc in docs track by $index">
+							<a href ng-click="quickLinkAction(doc)">{{doc.displayName}}</a>
+							<a href ng-click="deleteQuicklink($index, doc.id)" ng-show="userData.isDmdiiAdmin" class="delete-icon"><span class="glyphicon glyphicon-trash"></span></a>
+						</li>
+
 					</ul>
 			</div>
 			</div>
