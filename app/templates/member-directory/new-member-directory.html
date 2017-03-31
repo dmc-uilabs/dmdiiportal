@@ -73,7 +73,8 @@
 		<div class="row content-row">
 			<div class="col-xs-4">
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control " placeholder="Search Members"><span class="glyphicon glyphicon-search form-control-feedback"></span>
+					<input ng-model="searchModel" type="text" class="form-control " placeholder="Search Members">
+					<span ng-click="submit(searchModel)" class="glyphicon glyphicon-search form-control-feedback"></span>
 				</div>
 				<!-- /input-group -->
 			</div>

@@ -34,14 +34,6 @@
     <div class="row">
       <div class="col-sm-4" ng-repeat="level in treeSource.data">
         <h4>{{level.title}}</h4>
-
-        <!-- <div class="checkbox" ng-repeat="category in level.categories">
-          <label>
-            <input type="checkbox" value="" on-click="alert('yo')">
-            {{category.title}}
-          </label>
-        </div> -->
-
         <div ng-repeat="category in level.categories">
           <a ng-class="{'selected' : category.opened}" ng-href="{{category.href}}">{{category.title}}</a>
         </div>

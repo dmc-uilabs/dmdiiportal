@@ -45,8 +45,11 @@
 			<div class="row content-row">
 				<div class="col-xs-4">
 					<div class="form-group has-feedback">
-					      <input type="text" class="form-control " placeholder="Search Partner Projects"><span class="glyphicon glyphicon-search form-control-feedback"></span>
-					  </div><!-- /input-group -->
+						<form ng-submit="submit(searchModel)">
+							<input ng-model="searchModel" type="text" class="form-control " placeholder="Search Members">
+							<span onclick="submit(searchModel)" class="glyphicon glyphicon-search form-control-feedback"></span>
+						</form>
+					</div>
 				</div>
 				<div class="col-xs-4 col-xs-offset-4 ">
 
