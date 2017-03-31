@@ -171,7 +171,7 @@
 </div>
 
 <!-- lower part of the header -->
-<div class="bottom-header header-padding" layout="row" ng-class="{'member-portal': membersOnly}" ng-if="$root.isLogged">
+<div class="bottom-header header-padding" layout="row" ng-if="$root.isLogged">
     <div layout="column" flex>
         <div layout="row" class="bottom-header-content" flex layout-align="space-between center">
 
@@ -291,7 +291,7 @@
                                 ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"
                                 ng-class="{'active-page' : activePage.indexOf('explore') > -1}">
                             Explore
-                            <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                            <ng-md-icon icon="arrow_drop_down" size="43" </ng-md-icon>
                         </md-button>
                         <md-menu-content class="header-menu-content" ng-style="{width:dropDownWidth+'px'}">
                             <md-menu-item>
@@ -312,7 +312,7 @@
                     <!-- <md-menu ng-hide="screenSmall()" md-offset="0 57" class="item" ng-init="dropDownWidth = 136" ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin">
                       <md-button ng-click="closeMenu(); $mdOpenMenu($event);">
                             Learn
-                            <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                            <ng-md-icon icon="arrow_drop_down" size="43" </ng-md-icon>
                         </md-button>
                         <md-menu-content class="header-menu-content">
                             <md-menu-item>
@@ -349,7 +349,7 @@
                                    class="projects-header-button"
                                    ng-class="{'active-page' : activePage.indexOf('project') > -1}">
                             Make
-                            <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                            <ng-md-icon icon="arrow_drop_down" size="43" </ng-md-icon>
                         </md-button>
                         <md-menu-content class="header-menu-content">
                             <md-menu-item>
@@ -401,7 +401,7 @@
                                 ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"
                                 ng-class="{'active-page' : activePage.indexOf('membersOnly') > -1}">
                             DMDII Portal
-                            <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                            <ng-md-icon icon="arrow_drop_down" size="43" </ng-md-icon>
                         </md-button>
                         <md-menu-content class="header-menu-content" ng-style="{width:dropDownWidth+'px'}">
                             <md-menu-item>
@@ -409,13 +409,11 @@
                             </md-menu-item>
                             <md-menu-item ng-if="userData.isDMDIIMember || userData.isDmdiiAdmin">
                             <md-button ng-click="$mdCloseMenu($event);" href="/member-directory.php"
-                                       ng-class="{'active-page' : activePage.indexOf('member') > -1,
-                                           	'member-portal': membersOnly}">Member Directory</md-button>
+                                       ng-class="{'active-page' : activePage.indexOf('member') > -1}">Member Directory</md-button>
                            </md-menu-item>
                             <md-menu-item ng-if="userData.isDMDIIMember || userData.isDmdiiAdmin">
                               <md-button ng-click="$mdCloseMenu($event);" href="/dmdii-projects.php"
-                                         ng-class="{'active-page' : activePage.indexOf('member') > -1,
-                                             	'member-portal': membersOnly}">Projects Directory</md-button>
+                                         ng-class="{'active-page' : activePage.indexOf('member') > -1}">Projects Directory</md-button>
                             </md-menu-item>
                         </md-menu-content>
                     </md-menu>
@@ -447,7 +445,7 @@
                                    ng-class="{'active-page' : activePage.indexOf('member') > -1,
                                         'member-portal': membersOnly}">
                             Members
-                            <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                            <ng-md-icon icon="arrow_drop_down" size="43" </ng-md-icon>
                         </md-button>
                         <md-menu-content class="header-menu-content">
                             <md-menu-item>
@@ -468,7 +466,7 @@
                 <md-input-container md-no-float>
                     <input type="text" placeholder="Search" ng-model="searchModel">
                 </md-input-container>
-                <md-button class="md-raised" type="submit" aria-label="Search" ng-class="{'member-portal': membersOnly}">
+                <md-button class="md-raised" type="submit" aria-label="Search"
                     <ng-md-icon icon="search" size="21"></ng-md-icon>
                 </md-button>
             </form> -->
