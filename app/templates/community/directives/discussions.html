@@ -4,8 +4,12 @@
             <h2>{{widgetTitle}}</h2>
             <span flex></span>
             <a ng-href="{{'/all.php#/discussions'+(widgetType ? '?type='+widgetType : '')}}"
-                       ng-click="previousPage.save($event)"
-                       class="link-button uppercase">View All ({{totalDiscussions}})</a>
+               ng-click="previousPage.save($event)"
+               class="link-button uppercase"
+               style="padding-right: 10px;">
+               View All ({{totalDiscussions}})
+            </a>
+            <img class="add_discussion_button" style="width:60px;" ng-click="createDiscussion()" src="images/icon_add_discussion.svg" title="Add new discussion">
         </div>
     </md-toolbar>
 </div>
