@@ -37,4 +37,48 @@ angular.module('dmc.dmdiiProj', [
         }
     });
     $urlRouterProvider.otherwise('/project_page');
-});
+}).directive('tabContributors', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/dmdii-project-page/tab-contributors.html',
+        scope:{
+        },
+        controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+        }
+      }
+    }
+  ).directive('tabSchedule', function () {
+      return {
+          restrict: 'E',
+          templateUrl: 'templates/dmdii-project-page/tab-schedule.html',
+          scope:{
+          },
+          controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+          }
+        }
+      }
+  ).directive('tabUpdates', function () {
+      return {
+          restrict: 'E',
+          templateUrl: 'templates/dmdii-project-page/tab-updates.html',
+          scope:{
+          },
+          controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+          }
+        }
+      }
+  ).directive('tabDocuments', function () {
+      return {
+          restrict: 'E',
+          templateUrl: 'templates/dmdii-project-page/tab-documents.html',
+          scope:{
+          },
+          controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+          }
+        }
+      }
+  )
