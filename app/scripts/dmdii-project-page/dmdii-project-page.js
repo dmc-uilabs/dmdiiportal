@@ -28,7 +28,7 @@ angular.module('dmc.dmdiiProj', [
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('project_page', {
         url: '/:projectId',
-        templateUrl: 'templates/dmdii-project-page/dmdii-project-page.html',
+        templateUrl: 'templates/dmdii-project-page/new-dmdii-project-page.html',
         controller: 'DMCDmdiiProjectPageController',
         resolve: {
             is_search: function() {
