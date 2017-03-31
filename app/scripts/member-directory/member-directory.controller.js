@@ -81,7 +81,10 @@ angular.module('dmc.members')
                 }
             }
 
-            $scope.selectItemDropDown = function(){
+            $scope.selectItemDropDown = function(showIndex){
+                if (showIndex) {
+                  $scope.sizeModule = showIndex;
+                }
                 if($scope.sizeModule != 0) {
                     var item = $scope.showArray[$scope.sizeModule];
                     $scope.updatePageSize(item.val);

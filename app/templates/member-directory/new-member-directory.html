@@ -81,14 +81,13 @@
 
 				<div class="dropdown pull-right">
 					<button class="btn btn-default dropdown-toggle" type="button" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-		    			Show 12 Items <span class="caret"></span>
+		    			{{showArray[0].name}}<span class="caret"></span>
 		  				</button>
 					<ul class="dropdown-menu" aria-labelledby="itemstoshowdropdown">
-						<li><a href="#">Show 12 Items</a></li>
-						<li><a href="#">Show 24 Items</a></li>
-						<li><a href="#">Show 36 Items</a></li>
+						<li ng-repeat="item in showArray track by $index">
+							<a ng-click="selectItemDropDown($index)">{{item.name}}</a>
+						</li>
 					</ul>
-
 				</div>
 			</div>
 		</div>
