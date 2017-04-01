@@ -88,7 +88,8 @@ angular.module('dmc.dmdiiProj', [
           templateUrl: 'templates/dmdii-project-page/tab-documents.html',
           scope:{
             documents: '=',
-            userData: '='
+            userData: '=',
+            project: '='
           },
           controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
 
