@@ -42,7 +42,8 @@ angular.module('dmc.dmdiiProj', [
         restrict: 'E',
         templateUrl: 'templates/dmdii-project-page/tab-contributors.html',
         scope:{
-          project: '='
+          project: '=',
+          userData: '='
         },
         controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
 
@@ -54,7 +55,8 @@ angular.module('dmc.dmdiiProj', [
           restrict: 'E',
           templateUrl: 'templates/dmdii-project-page/tab-schedule.html',
           scope:{
-            projectSchedule: '='
+            projectSchedule: '=',
+            userData: '='
           },
           controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
 
@@ -66,9 +68,16 @@ angular.module('dmc.dmdiiProj', [
           restrict: 'E',
           templateUrl: 'templates/dmdii-project-page/tab-updates.html',
           scope:{
-            updates: '='
+            updates: '=',
+            userData: '='
           },
           controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+            $scope.deleteUpdate = function(index, id) {
+                ajax.delete(dataFactory.dmdiiProjectUpdateUrl(id).delete, {}, function() {
+                    $scope.updates.splice(index, 1);
+                });
+            };
 
           }
         }
@@ -78,9 +87,19 @@ angular.module('dmc.dmdiiProj', [
           restrict: 'E',
           templateUrl: 'templates/dmdii-project-page/tab-documents.html',
           scope:{
-            documents: '='
+            documents: '=',
+            userData: '='
           },
           controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+            $scope.deleteDocument = function(id, type, index) {
+                ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
+                    if (type != 'doc') {
+                    } else {
+                        $scope.documents.splice(index, 1);
+                    }
+                });
+            };
 
           }
         }

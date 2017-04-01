@@ -122,24 +122,24 @@ angular.module('dmc.dmdiiProj')
             };
             $scope.getDMDIIProject();
 
-            $scope.deleteUpdate = function(index, id) {
-                ajax.delete(dataFactory.dmdiiProjectUpdateUrl(id).delete, {}, function() {
-                    $scope.updates.splice(index, 1);
-                });
-            };
+            // $scope.deleteUpdate = function(index, id) {
+            //     ajax.delete(dataFactory.dmdiiProjectUpdateUrl(id).delete, {}, function() {
+            //         $scope.updates.splice(index, 1);
+            //     });
+            // };
 
-            $scope.deleteDocument = function(id, type, index) {
-                ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
-                    if (type != 'doc') {
-                        delete $scope[type];
-                    } else {
-                        $scope.documents.splice(index, 1);
-                    }
-
-                    // $scope.selectDocument(null);
-
-                });
-            };
+            // $scope.deleteDocument = function(id, type, index) {
+            //     ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
+            //         if (type != 'doc') {
+            //             delete $scope[type];
+            //         } else {
+            //             $scope.documents.splice(index, 1);
+            //         }
+            //
+            //         // $scope.selectDocument(null);
+            //
+            //     });
+            // };
 
             // $scope.selectDocument = function(index) {
             //   $scope.selectedDocumentIndex = index;
