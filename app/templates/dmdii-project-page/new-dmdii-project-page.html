@@ -1,9 +1,9 @@
 <header class="under-header" ng-if="userData.isDmdiiAdmin">
     <div class="container">
         <div class="row hidden-xs">
-            <div class="col-sm-4"><a href="#"><span class="glyphicon glyphicon-plus-sign"></span>Add documents &amp; updates</a></div>
-            <div class="col-sm-6 pull-right text-right"><a href="#"><span class="glyphicon glyphicon-pencil"></span> Edit Project</a>
-                <a href="#"> <span class="glyphicon glyphicon-trash"></span> Delete Project </a>
+            <div class="col-sm-4"><a href="add-dmdii-project-doc.php#/{{project.id}}/projectUpdates"><span class="glyphicon glyphicon-plus-sign"></span>Add documents &amp; updates</a></div>
+            <div class="col-sm-6 pull-right text-right"><a href="edit-dmdii-project-page.php#/{{project.id}}/edit"><span class="glyphicon glyphicon-pencil"></span> Edit Project</a>
+                <a ng-click="deleteProject()"> <span class="glyphicon glyphicon-trash"></span> Delete Project </a>
             </div>
         </div>
         <div class="dropdown visible-xs">
@@ -13,8 +13,9 @@
                 </li>
                 <li role="separator" class="divider"></li>
                 <li><a href="edit-dmdii-project-page.php#/{{project.id}}/edit"><span class="glyphicon glyphicon-pencil"></span> Edit Project</a></li>
+                <!-- Delete doesn't currently match a defined function
                 <li role="separator" class="divider"></li>
-                <li><a ng-click="deleteProject()"><span class="glyphicon glyphicon-trash"></span> Delete Project </a></li>
+                <li><a href ng-click="deleteProject()"><span class="glyphicon glyphicon-trash"></span> Delete Project </a></li> -->
 
             </ul>
         </div>

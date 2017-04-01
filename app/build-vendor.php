@@ -25,7 +25,14 @@
 
 <?php
     $requested_page = $_SERVER['REQUEST_URI'];
-    if (strpos($requested_page, 'member-directory') || strpos($requested_page, 'dmdii-projects') || strpos($requested_page, 'dmdii-project-page')) {
+    if (
+          (strpos($requested_page, 'member-directory') ||
+          strpos($requested_page, 'dmdii-projects') ||
+          strpos($requested_page, 'dmdii-project-page')
+        )
+        && !strpos($requested_page, 'edit-dmdii-project-page')
+      )
+    {
       echo '<link rel="stylesheet" href="styles/main-rh.css">';
     } else {
       echo '<link rel="stylesheet" href="styles/main.css">';
