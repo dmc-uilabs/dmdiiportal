@@ -27,7 +27,7 @@ var template =
 '			<div class="timeline-event-box"'+
 '				ng-show="selectedEvent[$index]"'+
 '				ng-hide="!selectedEvent[$index]">'+
-'               <div ng-bind-html="event.content | unsafe"></div>'+
+'               {{event.date}}<div ng-bind-html="event.content | unsafe"></div>'+
 '               <a class="delete-btn" href ng-click="deleteEvent($index, event.id)" ng-if="user.isDmdiiAdmin">delete</a>'+
 '			</div>'+
 '		</li>'+
