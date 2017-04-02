@@ -1,8 +1,57 @@
+.community{
+  background: white;
+	padding: 40px;
+  padding-top: 0px;
+}
+
+.flexrow{
+  &-header{
+    color: map-get($colors, secondary);
+    font-weight: normal;
+  }
+  &-left{
+    min-width: 500px;
+    // padding: 0px 30px;
+    //padding-right: 60px;
+  }
+  &-right{
+    // padding: 0px 30px;
+    min-width: 300px;
+  }
+}
+
+.news{
+  &-header{
+    color: map-get($colors, secondary);
+    font-size: 24px;
+  }
+  &-title{
+    font-weight: bold;
+    font-family:inherit;
+    font-size:16px;
+  }
+  &-description{
+    white-space: pre-wrap;
+    font-weight: normal;
+  }
+}
+
+.follow-button{
+  display: block;
+  width: 40px;
+  padding-right: 5px;
+}
+
+.add_discussion_button:hover{
+  cursor: pointer;
+}
+
 .content-panel.project {
   .md-toolbar-tools.widget-toolbar-title {
     h2{
-
+      color: map-get($colors, secondary);
       text-transform: capitalize;
+      line-height: 60px;
     }
   }
 }
@@ -81,14 +130,18 @@ a.following-btn{
           outline: none;
           cursor: pointer;
         }
+        .arrow-item{
+          fill: map-get($colors, secondary);
+        }
         .date-item{
           text-align: center;
           font-size: 15px;
           min-width: 80px;
           padding-right: 13px;
           div{
-            border: 1px solid #333;
+            border: 1px solid map-get($colors, secondary);
             padding: 3px 8px;
+            color: map-get($colors, secondary);
           }
           span{
             display: block;

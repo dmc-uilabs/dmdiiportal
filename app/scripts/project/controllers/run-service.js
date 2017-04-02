@@ -133,8 +133,12 @@ angular.module('dmc.project')
               var handleBarHtml;
               var compiledHtml;
 
-              for(var inKey in $scope.service.interfaceModel.inParams){
-                context[inKey] = $scope.service.interfaceModel.inParams[inKey].value;
+              for(var key in $scope.service.interfaceModel.inParams){
+                try{
+                  context[key] = JSON.parse($scope.service.interfaceModel.inParams[key].value);
+                }catch(e){
+                  context[key] = $scope.service.interfaceModel.inParams[key].value;
+                }
               }
               for (var outKey in $scope.service.interfaceModel.outParams){
 		try{
