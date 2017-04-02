@@ -66,7 +66,7 @@ angular.module('dmc.dmdiiProjects')
             $scope.startDate = year + '-' + month + '-' + day;
 
             $scope.endDate = new Date();
-            $scope.endDate.setMonth($scope.endDate.getMonth()+4);
+            $scope.endDate.setMonth($scope.endDate.getMonth()+8);
 
             var year = $scope.endDate.getFullYear();
             var month = $scope.endDate.getMonth() + 1;
@@ -160,6 +160,9 @@ angular.module('dmc.dmdiiProjects')
             var eventsCallbackFunction = function(response) {
                 $scope.events = [];
                 angular.forEach(response.data, function(event) {
+                    if(moment(event.eventDate).isBefore(moment($scope.startDate)) || moment(event.eventDate).isAfter(moment($scope.endDate))){
+                        return;
+                    }
                     var e = {
                         id: event.id,
                         date: event.eventDate,
@@ -170,7 +173,7 @@ angular.module('dmc.dmdiiProjects')
                 });
             }
             $scope.getEvents = function(){
-                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 3}, eventsCallbackFunction);
+                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 10}, eventsCallbackFunction);
             };
             $scope.getEvents();
 

@@ -22,7 +22,7 @@
     "from": "marketplace",
     "type": "service",
     "parent": null,
-    "published": false,
+    "published": true,
     "averageRun": ""
 }, {
     "id": 466,
@@ -48,7 +48,7 @@
     "from": "marketplace",
     "type": "service",
     "parent": null,
-    "published": false,
+    "published": true,
     "averageRun": ""
 }, {
     "id": 497,
@@ -74,7 +74,7 @@
     "from": "marketplace",
     "type": "service",
     "parent": null,
-    "published": false,
+    "published": true,
     "averageRun": ""
 },
 {
@@ -101,6 +101,6 @@
     "from": "marketplace",
     "type": "service",
     "parent": null,
-    "published": false,
+    "published": true,
     "averageRun": ""
 }]
