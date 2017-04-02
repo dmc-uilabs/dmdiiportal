@@ -517,7 +517,7 @@ angular.module('dmc.product')
                         $scope.invate = false;
                         $scope.adding_to_project = false;
                     }, function (response) {
-                        toastModel.showToast("error", "Failed Add To Project");
+                        toastModel.showToast("error", "Failed Add To Workspace");
                     }
                 );
             };
@@ -553,7 +553,7 @@ angular.module('dmc.product')
                             }, 210000);
                             toastModel.showToast("success", "Service added to " + response.data.currentStatus.project.title);
                         }, function (response) {
-                            toastModel.showToast("error", "Failed Add To Project");
+                            toastModel.showToast("error", "Failed Add To Workspace");
                         }
                     );
                 }

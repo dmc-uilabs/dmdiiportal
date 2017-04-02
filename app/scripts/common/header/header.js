@@ -33,7 +33,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         );
 
         $scope.screenSmall = function(){
-          return $mdMedia('(max-width: 768px)');
+          return $mdMedia('(max-width: 868px)');
         }
 
         var initUserData = function(data) {
