@@ -10,6 +10,7 @@
 	padding:20px;
 	position:relative;
 	min-height:345px;
+	max-height: 345px;
 	margin-left:30px;
 	&:before {
 		content: "";
@@ -23,6 +24,10 @@
 		border-bottom: 15px solid transparent;
 		border-right:15px solid $brand-primary;;
 	}
+}
+div.list-wrapper {
+	max-height: 300px;
+	overflow-y: scroll;
 }
 
 /* Calendar overrides */

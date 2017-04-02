@@ -9,8 +9,9 @@
 				<!-- Desktop controls -->
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs event-tabs" role="tablist">
-					<li class="hidden-xs tab-label">Events</li>
-					<li role="presentation" class="active hidden-xs"><a data-target="#calendar" aria-controls="calendar" role="tab" data-toggle="tab">Calendar</a></li>
+					<!-- <li class="hidden-xs tab-label">Events</li> -->
+					<li role="presentation" class="active hidden-xs"><a data-target="#news" aria-controls="news" role="tab" data-toggle="tab">News</a></li>
+					<li role="presentation" class="hidden-xs"><a data-target="#calendar" aria-controls="calendar" role="tab" data-toggle="tab">Calendar</a></li>
 					<li role="presentation" class="hidden-xs"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">List</a></li>
 
 
@@ -20,9 +21,10 @@
 						<a href="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false"><span class="tab-section-label">Section</span> <span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="myTabDrop1"
 										id="myTabDrop1-contents">
-							<li class=""><a href="#calendar" role="tab" data-toggle="tab" aria-controls="dropdown1" aria-expanded="false">Calendar</a></li>
+							<li class=""><a href="#news" role="tab" data-toggle="tab" aria-controls="dropdown1" aria-expanded="false">News</a></li>
+							<li class=""><a href="#calendar" role="tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">Calendar</a></li>
 							<li class="">
-								<a href="#schedule" role="tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">List</a></li>
+								<a href="#schedule" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">List</a></li>
 						</ul>
 
 					</li>
@@ -32,7 +34,18 @@
 
 				<!-- Tab panes -->
 				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane fade in active" id="calendar">
+					<div role="tabpanel" class="tab-pane fade in active" id="news">
+						<div class="event-list" ng-repeat="item in news | limitTo:3">
+						<div class="event-block">
+						<div class="row">
+							<h2 class="col-sm-6">{{item.title}}</h2><time class="col-sm-6 text-right">{{item.dateCreated}}</time>
+						</div>
+							<p>{{plainText(item.content)}}</p>
+						</div>
+						</div>
+					</div>
+
+					<div role="tabpanel" class="tab-pane fade" id="calendar">
 
 						<div class="col-sm-6">
 								<tien-clndr class="clndr" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
@@ -65,10 +78,12 @@
 
 							<div class="col-sm-6" style="">
 								<div ng-if="dayEvents.length" class="event-details">
-									<div ng-repeat="event in dayEvents">
-										<h2>{{event.title}}</h2>
-										<time datetime="2011-01-12">January 12th, 2011</time>
-										<p markdown-to-html="event.description"></p>
+									<div class="list-wrapper">
+										<div ng-repeat="event in dayEvents">
+											<h2>{{event.title}}</h2>
+											<time datetime="2011-01-12">January 12th, 2011</time>
+											<p markdown-to-html="event.description"></p>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -205,5 +220,5 @@
 			</div>
 		</div>
 	</section>
-	<recent-news news="news">	</recent-news>
+	<!-- <recent-news news="news">	</recent-news> -->
 </main>
