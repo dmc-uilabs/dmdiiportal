@@ -26,9 +26,12 @@
 }
 
 /* Calendar overrides */
+.clndr .day {
+	border-radius: 50%;
+}
+
 .clndr .day.event {
 	background: $brand-primary;
-	border-radius: 50%;
 	color:white;
 }
 

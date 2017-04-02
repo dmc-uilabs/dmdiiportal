@@ -63,8 +63,15 @@
 								</tien-clndr>
 							</div>
 
-
-
+							<div class="col-sm-6" style="">
+								<div ng-if="dayEvents.length" class="event-details">
+									<div ng-repeat="event in dayEvents">
+										<h2>{{event.title}}</h2>
+										<time datetime="2011-01-12">January 12th, 2011</time>
+										<p markdown-to-html="event.description"></p>
+									</div>
+								</div>
+							</div>
 
 					</div>
 					<div role="tabpanel" class="tab-pane fade " id="schedule">
@@ -73,7 +80,7 @@
 
 						<div class="event-block">
 						<div class="row">
-							<h2 class="col-sm-6">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
+							<h2 class="col-sm-6">{{event.title}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
 						</div>
 							<p>{{plainText(event.description)}}</p>
 						</div>

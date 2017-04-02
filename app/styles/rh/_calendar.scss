@@ -56,6 +56,13 @@
     text-align: center;
     width: 14.2857%;
 }
+.clndr .days .day.is-selected {
+    // background-color: $gray-dark !important;
+    // color: $white;
+    -webkit-box-shadow:inset 0px 0px 0px 2px $gray-dark;
+    -moz-box-shadow:inset 0px 0px 0px 2px $gray-dark;
+    box-shadow:inset 0px 0px 0px 2px $gray-dark;
+}
 .clndr .days .day.today, .clndr .days .empty.today {
     background-color: #ccc;
 }
