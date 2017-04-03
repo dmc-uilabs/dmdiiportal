@@ -24,6 +24,10 @@
 		border-bottom: 15px solid transparent;
 		border-right:15px solid $brand-primary;;
 	}
+	a{
+		color: $white;
+		text-decoration: underline;
+	}
 }
 div.list-wrapper {
 	max-height: 300px;
@@ -37,7 +41,7 @@ div.list-wrapper {
 
 .clndr .day.event {
 	background: $brand-primary;
-	color:white;
+	color: $white;
 }
 
 .clndr .days .day .event-indicator, .clndr .days .empty .event-indicator  {
