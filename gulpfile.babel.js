@@ -14,22 +14,7 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 gulp.task('styles', () => {
-  return gulp.src('app/styles/main.scss')
-    .pipe($.plumber())
-    .pipe($.sourcemaps.init())
-    .pipe($.sass.sync({
-      outputStyle: 'expanded',
-      precision: 10,
-      includePaths: ['.']
-    }).on('error', $.sass.logError))
-    .pipe($.autoprefixer({browsers: ['last 1 version']}))
-    .pipe($.sourcemaps.write())
-    .pipe(gulp.dest('.tmp/styles'))
-    .pipe(reload({stream: true}));
-});
-
-gulp.task('styles-rh', () => {
-  return gulp.src('app/styles/main-rh.scss')
+  return gulp.src('app/styles/*.scss')
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.sass.sync({
@@ -70,7 +55,7 @@ const uglifyOptions = {
 gulp.task('lint', lint('app/scripts/**/*.js', lintOptions));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
-gulp.task('php', ['styles-rh','styles'], () => {
+gulp.task('php', ['styles'], () => {
   const assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
   return gulp.src('app/**/*.php')
@@ -122,7 +107,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles','styles-rh'], () => {
+gulp.task('serve', ['styles'], () => {
     connect.server({
         port: 9001,
         base: 'app',
@@ -166,7 +151,7 @@ gulp.task('serve', ['styles','styles-rh'], () => {
         'app/images/**/*',
         '.tmp/fonts/**/*'
     ]).on('change', reload);
-    gulp.watch('app/styles/**/*.scss', ['styles','styles-rh']);
+    gulp.watch('app/styles/**/*.scss', ['styles']);
     gulp.watch('app/fonts/**/*', ['fonts']);
     gulp.watch('bower.json', ['wiredep','fonts']);
 });
