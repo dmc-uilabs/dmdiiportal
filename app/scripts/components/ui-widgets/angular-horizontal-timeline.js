@@ -22,15 +22,15 @@ var template =
 '			ng-click="selectedEvent[$index]=true"'+
 '			ng-blur="deselectEvent($index)"'+
 '			event-date="event.date"'+
-'			title="{{event.date}}"'+
+'			title="{{event.content.date}}"'+
 '			timeline-event-marker><span></span>'+
 '			<div class="timeline-event-box"'+
 '				ng-show="selectedEvent[$index]"'+
 '				ng-hide="!selectedEvent[$index]">'+
 '               <div class="timeline-event-box-content">'+
 '                 <h4>{{event.content.date}}</h4>'+
-'                 <h3>{{event.content.name}}</h3>'+
-'                 <h4 ng-bind-html="event.content.description | unsafe"></h4></div>'+
+'                 <h3 class="timeline-event-box-content-title">{{event.content.name}}</h3>'+
+'                 <p markdown-to-html="event.content.description"></p>'+
 '               <a class="delete-btn" href ng-click="deleteEvent($index, event.id)" ng-if="user.isDmdiiAdmin">delete</a>'+
 '			</div>'+
 '		</li>'+
@@ -75,7 +75,7 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
 
 			return ( (monthsWidth * diff) + (((ixOfWeek * curWeekWidth) + (curDOfMPercent / 100 * curWeekWidth)) / 100 * monthsWidth) );
 		};
-
+        
         $scope.deselectEvent = function(index) {
             $timeout(function() {
                 $scope.selectedEvent[index] = false;
