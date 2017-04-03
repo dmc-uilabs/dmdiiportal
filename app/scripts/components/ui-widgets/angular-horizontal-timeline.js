@@ -67,8 +67,7 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
         $scope.userData = $scope.$root.userData;
 		$scope.getPosition = function(date){
 			date = moment(date);
-			var diff = date.diff(moment($scope.startDate), 'months', true);
-      var diff = Math.round(diff);
+			var diff = date.diff(moment($scope.startDate), 'months');
 			var curWeekWidth = 100/$scope.months[diff].days.length;
 			var monthsWidth = 100/$scope.months.length;
 			var ixOfWeek = Math.ceil(date.format('D')/7) - 1;
