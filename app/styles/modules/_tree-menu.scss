@@ -86,8 +86,13 @@
     }
   }
   .selected{
+    font-weight: bold;
     color: map-get($colors, secondary);
   }
+}
+.selected{
+  font-weight: bold;
+  color: map-get($colors, secondary);
 }
 
 .search-filter{
