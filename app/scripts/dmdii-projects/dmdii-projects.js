@@ -47,15 +47,6 @@ angular.module('dmc.dmdiiProjects', [
                 return true;
             }
         }
-    }).state('test_dmdii_projects', {
-		url: '/test',
-        templateUrl: 'templates/dmdii-projects/new-dmdii-projects.html',
-        controller: 'DMCDmdiiProjectsController',
-        resolve: {
-            is_search: function() {
-                return true;
-            }
-        }
     });
     $urlRouterProvider.otherwise('/dmdii_projects');
 });

@@ -1,5 +1,6 @@
 @import 'variables';
-@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap.scss";
+@import 'bs';
+@import 'bootstrap';
 @import 'timeline';
 @import 'calendar';
 @import 'header';
@@ -19,6 +20,10 @@ main {
 .gray {
 	background: $gray-lighter;
 	padding: 50px 0;
+}
+
+a {
+	color: $brand-accent;
 }
 
 h1 {

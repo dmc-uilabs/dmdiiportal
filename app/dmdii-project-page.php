@@ -19,7 +19,7 @@
 
     <dmc-footer></dmc-footer>
 
-    <?php include 'build-vendor.php' ?>
+    <?php include 'build-vendor-rh.php' ?>
 
     <!-- build:js scripts/dmdii-project-page/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>

@@ -48,15 +48,6 @@ angular.module('dmc.members', [
                 return true;
             }
         }
-    }).state('test_member_directory', {
-        url: '/test',
-        templateUrl: 'templates/member-directory/new-member-directory.html',
-        controller: 'DMCMemberDirectoryController',
-        resolve: {
-            is_search: function() {
-                return true;
-            }
-        }
     });
     $urlRouterProvider.otherwise('/member_directory');
 });
