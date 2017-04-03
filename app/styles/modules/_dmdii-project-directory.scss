@@ -29,3 +29,22 @@
 .timeline-event span{
     border-color: #5e5e5e transparent transparent transparent;
 }
+.timeline-event-box{
+  cursor: default;
+  &-content{
+    overflow-wrap: break-word;
+    &-title{
+      margin: 0px;
+      padding-bottom: 5px;
+      color: map-get($colors, secondary);
+      font-size: 18px;
+    }
+    h4{
+      margin: 0px;
+      padding-bottom: 5px;
+    }
+  }
+}
+.timeline-month{
+  text-align: center;
+}

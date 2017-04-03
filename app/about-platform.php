@@ -21,8 +21,7 @@
     <dmc-footer></dmc-footer>
 
     <?php include 'build-vendor.php' ?>
-
-    <!-- build:js scripts/projects/my.js -->
+    <!-- build:js scripts/about-platform/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/factory/notifications.factory.js"></script>

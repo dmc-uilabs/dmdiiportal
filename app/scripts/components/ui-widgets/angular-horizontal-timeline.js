@@ -12,7 +12,7 @@
 var template =
 '<div class="timeline">'+
 '<div class="timeline-left">'+
-'	<label>{{startDate}}</label>'+
+'	<label>{{startLabel}}</label>'+
 '</div>'+
 '<div class="timeline-center">'+
 '<div class="progress">'+
@@ -22,30 +22,33 @@ var template =
 '			ng-click="selectedEvent[$index]=true"'+
 '			ng-blur="deselectEvent($index)"'+
 '			event-date="event.date"'+
-'			title="{{event.date}}"'+
+'			title="{{event.content.date}}"'+
 '			timeline-event-marker><span></span>'+
 '			<div class="timeline-event-box"'+
 '				ng-show="selectedEvent[$index]"'+
 '				ng-hide="!selectedEvent[$index]">'+
-'               <div ng-bind-html="event.content | unsafe"></div>'+
+'               <div class="timeline-event-box-content">'+
+'                 <h4>{{event.content.date}}</h4>'+
+'                 <h3 class="timeline-event-box-content-title">{{event.content.name}}</h3>'+
+'                 <p markdown-to-html="event.content.description"></p>'+
 '               <a class="delete-btn" href ng-click="deleteEvent($index, event.id)" ng-if="user.isDmdiiAdmin">delete</a>'+
 '			</div>'+
 '		</li>'+
 '	</ul>'+
 '	<ul class="timeline-bg">'+
 '		<li class="timeline-month" ng-repeat="month in months"'+
-'			timeline-month><span title="{{month.date}}">{{month.name}}</span>'+
+'			timeline-month><span style="color: #5e5e5e" title="{{month.date}}">{{month.name}}</span>'+
 '			<ul>'+
 '				<li class="timeline-day" ng-repeat="day in month.days"'+
-'					ng-style="{ \'left\' : ($index * (100/month.days.length) )+\'%\'}">'+
-'					<span title="{{month.date + \'-\' + day}}"><i></i>{{day}}</span>'+
+'					ng-if="$index==0" ng-style="{ \'left\' : ($index * (100/month.days.length) )+\'%\'}">'+
+'					<span title="{{month.date + \'-\' + day}}"><i></i></span>'+
 '				</li>'+
 '			</ul></li>'+
 '	</ul>'+
 '</div>'+
 '</div>'+
 '<div class="timeline-right">'+
-'	<label>{{endDate}}</label>'+
+'	<label>{{endLabel}}</label>'+
 '</div>'+
 '</div>';
 
@@ -72,7 +75,7 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
 
 			return ( (monthsWidth * diff) + (((ixOfWeek * curWeekWidth) + (curDOfMPercent / 100 * curWeekWidth)) / 100 * monthsWidth) );
 		};
-
+        
         $scope.deselectEvent = function(index) {
             $timeout(function() {
                 $scope.selectedEvent[index] = false;
@@ -94,11 +97,13 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
 
 			var dayrange = moment().range(month.startOf('month').format('YYYY-MM-DD'), month.endOf('month').format('YYYY-MM-DD'));
 			dayrange.by('weeks', function(week) {
-				$scope.months[$scope.months.length - 1].days.push(week.format('DD'));
+				  $scope.months[$scope.months.length - 1].days.push(week.format('DD'));
 			});
 		});
 
 		$scope.progress_percent = $scope.getPosition(moment().format('YYYY-MM-DD'));
+    $scope.startLabel = moment($scope.startDate).format('MMMM YYYY');
+    $scope.endLabel = moment($scope.endDate).format('MMMM YYYY');
 	}
 
 	return {
@@ -108,7 +113,7 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
 			startDate: '@',
 			endDate: '@',
 			events: '=',
-            user: '='
+        user: '='
 		},
 		template:template
 	};

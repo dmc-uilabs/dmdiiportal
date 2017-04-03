@@ -55,6 +55,7 @@ angular.module('dmc.dmdiiProjects')
             });
 
             $scope.startDate = new Date();
+            $scope.startDate.setDate(1);
             $scope.startDate.setMonth($scope.startDate.getMonth()-4);
 
             var year = $scope.startDate.getFullYear();
@@ -66,7 +67,8 @@ angular.module('dmc.dmdiiProjects')
             $scope.startDate = year + '-' + month + '-' + day;
 
             $scope.endDate = new Date();
-            $scope.endDate.setMonth($scope.endDate.getMonth()+4);
+            $scope.endDate.setDate(1);
+            $scope.endDate.setMonth($scope.endDate.getMonth()+8);
 
             var year = $scope.endDate.getFullYear();
             var month = $scope.endDate.getMonth() + 1;
@@ -100,12 +102,10 @@ angular.module('dmc.dmdiiProjects')
             }
 
             $scope.getProjectStaticImages = function() {
-console.log('ajax.get(dataFactory.getDMDIIDocuments().overview, {}, function(response)  {')
                 ajax.get(dataFactory.getDMDIIDocuments().overview, {}, function(response)  {
                     $scope.projectOverview = response.data;
                 });
 
-console.log('ajax.get(dataFactory.getDMDIIDocuments().status, {}, function(response)  {')
                 ajax.get(dataFactory.getDMDIIDocuments().status, {}, function(response)  {
                     $scope.projectStatus = response.data;
                 });
@@ -165,18 +165,24 @@ console.log('ajax.get(dataFactory.getDMDIIDocuments().status, {}, function(respo
             var eventsCallbackFunction = function(response) {
                 $scope.events = [];
                 angular.forEach(response.data, function(event) {
+                    if(moment(event.eventDate).isBefore(moment($scope.startDate)) || moment(event.eventDate).isAfter(moment($scope.endDate))){
+                        return;
+                    }
                     var e = {
                         id: event.id,
                         date: event.eventDate,
-                        content: '<h3>' + event.eventName + '</h3>' +
-                            $showdown.makeHtml(event.eventDescription)
+                        content: {
+                          name: event.eventName,
+                          date: moment(event.eventDate).format("MMMM DD, YYYY"),
+                          description: event.eventDescription
+                        }
                     }
                     $scope.events.push(e);
                 });
             }
             $scope.getEvents = function(){
-console.log('ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 3}, eventsCallbackFunction);')
                 ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 3}, eventsCallbackFunction);
+                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 10}, eventsCallbackFunction);
             };
             $scope.getEvents();
 
@@ -185,7 +191,6 @@ console.log('ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 3}, events
             }
 
             $scope.getNews = function(){
-console.log('ajax.get(dataFactory.dmdiiProjectNewsUrl().get, {limit: 3}, newsCallbackFunction);')
                 ajax.get(dataFactory.dmdiiProjectNewsUrl().get, {limit: 3}, newsCallbackFunction);
             };
             $scope.getNews();
@@ -289,10 +294,8 @@ console.log('ajax.get(dataFactory.dmdiiProjectNewsUrl().get, {limit: 3}, newsCal
                 loadingData(true);
 
                 if (!angular.isDefined($scope.searchModel)) {
-console.log('ajax.get(dataFactory.getDMDIIProject().all, responseData(), callbackFunction);')
                     ajax.get(dataFactory.getDMDIIProject().all, responseData(), callbackFunction);
                 } else {
-console.log('ajax.get(dataFactory.getDMDIIProject().search, responseData(), callbackFunction);')
                     ajax.get(dataFactory.getDMDIIProject().search, responseData(), callbackFunction);
                 }
             };
@@ -302,7 +305,6 @@ console.log('ajax.get(dataFactory.getDMDIIProject().search, responseData(), call
                 $scope.dmdiiProjectCurrentPage = 0;
                 // $stateParams.title = text;
                 loadingData(true);
-console.log('ajax.get(dataFactory.getDMDIIProject().search, responseData(), callbackFunction);')
                 ajax.get(dataFactory.getDMDIIProject().search, responseData(), callbackFunction);
             };
 
@@ -323,7 +325,6 @@ console.log('ajax.get(dataFactory.getDMDIIProject().search, responseData(), call
             }
 
             $scope.getQuickLinks = function() {
-console.log('ajax.get(dataFactory.quicklinkUrl().get, {limit: 7}, callbackLinksFunction)')
                 ajax.get(dataFactory.quicklinkUrl().get, {limit: 7}, callbackLinksFunction)
             }
             $scope.getQuickLinks();
@@ -348,7 +349,6 @@ console.log('ajax.get(dataFactory.quicklinkUrl().get, {limit: 7}, callbackLinksF
                     $window.open(doc.link);
                 }
                 if (angular.isDefined(doc.doc) && doc.doc !== null) {
-console.log('ajax.get(dataFactory.getDMDIIDocuments(doc.doc.id).single, {}, function(response) {')
                     ajax.get(dataFactory.getDMDIIDocuments(doc.doc.id).single, {}, function(response) {
                         $window.open(response.data.documentUrl);
                     })
@@ -356,21 +356,18 @@ console.log('ajax.get(dataFactory.getDMDIIDocuments(doc.doc.id).single, {}, func
             }
 
             $scope.deleteNews = function(index, id) {
-console.log('ajax.delete(dataFactory.dmdiiProjectNewsUrl(id).delete, {}, function() {')
                 ajax.delete(dataFactory.dmdiiProjectNewsUrl(id).delete, {}, function() {
                     $scope.news.splice(index, 1);
                 });
             };
 
             $scope.deleteQuicklink = function(index, id) {
-console.log('ajax.delete(dataFactory.quicklinkUrl(id).delete, {}, function() {')
                 ajax.delete(dataFactory.quicklinkUrl(id).delete, {}, function() {
                     $scope.docs.splice(index, 1);
                 });
             };
 
             $scope.deleteDocument = function(id, type) {
-console.log('ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {')
                 ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
                     delete $scope[type];
                 });
