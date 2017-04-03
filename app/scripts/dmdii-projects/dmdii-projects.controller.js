@@ -181,7 +181,7 @@ angular.module('dmc.dmdiiProjects')
                 });
             }
             $scope.getEvents = function(){
-                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {}, eventsCallbackFunction);
+                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 10000}, eventsCallbackFunction);
             };
             $scope.getEvents();
 
