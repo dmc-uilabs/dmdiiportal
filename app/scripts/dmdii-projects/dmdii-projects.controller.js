@@ -55,6 +55,7 @@ angular.module('dmc.dmdiiProjects')
             });
 
             $scope.startDate = new Date();
+            $scope.startDate.setDate(1);
             $scope.startDate.setMonth($scope.startDate.getMonth()-4);
 
             var year = $scope.startDate.getFullYear();
@@ -66,6 +67,7 @@ angular.module('dmc.dmdiiProjects')
             $scope.startDate = year + '-' + month + '-' + day;
 
             $scope.endDate = new Date();
+            $scope.endDate.setDate(1);
             $scope.endDate.setMonth($scope.endDate.getMonth()+8);
 
             var year = $scope.endDate.getFullYear();
@@ -166,8 +168,11 @@ angular.module('dmc.dmdiiProjects')
                     var e = {
                         id: event.id,
                         date: event.eventDate,
-                        content: '<h3>' + event.eventName + '</h3>' +
-                            $showdown.makeHtml(event.eventDescription)
+                        content: {
+                          name: event.eventName,
+                          date: moment(event.eventDate).format("MMMM DD, YYYY"),
+                          description: event.eventDescription
+                        }
                     }
                     $scope.events.push(e);
                 });
