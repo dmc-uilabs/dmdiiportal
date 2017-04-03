@@ -18,16 +18,4 @@ angular.module('dmc.release-notes', [
         templateUrl: 'templates/release-notes/release-notes.html'
     });
     $urlRouterProvider.otherwise('/');
-}).directive('releaseTree', function () {
-    return {
-        restrict: 'E',
-        templateUrl: 'templates/release-notes/release-tree.html',
-        scope:{
-          notes: '='
-        },
-        controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
-
-        }
-      }
-    }
-  );
+});
