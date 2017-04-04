@@ -194,7 +194,7 @@ angular.module('dmc.release-notes')
                         content: "FAQs"
                   },
                   {
-                        content: "Terms of Service",
+                        content: "Legal",
                         notes:
                         [
                               {
@@ -205,6 +205,12 @@ angular.module('dmc.release-notes')
                               },
                               {
                                     content: "Privacy Policy"
+                              },
+                              {
+                                    content: "App SLA"
+                              },
+                              {
+                                    content: "DMCA"
                               }
                         ]
                   },
