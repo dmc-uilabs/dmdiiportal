@@ -4,9 +4,9 @@
             <div class="content-panel-header">
                 <md-toolbar>
                     <div class="md-toolbar-tools edit-project-tools" layout="row" layout-align="start center">
-                        <h2>EDIT PROJECT</h2>
+                        <h2>EDIT WORKSPACE</h2>
                         <span flex></span>
-                        <!-- <md-button class="md-raised md-warn dmc-button delete-project" ng-click="deleteProject($event)">Delete Project</md-button> -->
+                        <md-button class="md-raised md-warn dmc-button delete-project" ng-click="deleteProject($event)" ng-if="$root.userData.isDmdiiAdmin || ($root.userData.accountId === projectCtrl.projectData.projectManagerId)">Delete Workspace</md-button>
                     </div>
                 </md-toolbar>
             </div>
@@ -15,7 +15,7 @@
                     <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom md-autoselect>
                         <!--Tab -->
                         <div layout="row" layout-align="space-between center">
-                            <md-tab label="1 ENTER PROJECT INFORMATION">
+                            <md-tab label="1 ENTER WORKSPACE INFORMATION">
                                 <md-content>
                                     <ap-tab-one go-to-tab="goToNextTab"
                                                 project-details="projectData"
