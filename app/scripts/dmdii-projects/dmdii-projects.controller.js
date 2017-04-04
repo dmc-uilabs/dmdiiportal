@@ -268,6 +268,15 @@ angular.module('dmc.dmdiiProjects')
                 } else {
                     $scope.projects.arr = response.data;
                 }
+
+                for (var i=0; i<$scope.projects.arr.length; i++) {
+                  if(($scope.projects.arr[i].dmdiiFunding == 5983) && ($scope.projects.arr[i].costShare == 8395)){
+                    $scope.projects.arr[i].kind='dmdiiEvent'
+                  }else{
+                    $scope.projects.arr[i].kind='dmdiiProject'
+                  }
+                }
+
                 $scope.dmdiiProjectsLoading = false;
                 // insertData(response.data);
             };

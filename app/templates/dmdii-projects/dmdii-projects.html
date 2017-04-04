@@ -89,7 +89,8 @@
 							<a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a>
 							<!-- <time datetime="2011-01-12">January 12th, 2011</time> -->
 							<a ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h6>{{project.primeOrganization.name}}</h6></a>
-							<div class="sublabel">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</div>
+							<div ng-if="project.kind != 'dmdiiEvent'" class="sublabel">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</div>
+							<div ng-if="project.kind == 'dmdiiEvent'" class="sublabel">EVENT</div>
 						</td>
 
 						<td>{{project.projectStatus.name}}</td>
