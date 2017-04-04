@@ -100,9 +100,9 @@
     background-repeat: repeat;
     background-size: auto auto;
     cursor: pointer;
-    height: 28px;
+    height: 22px;
     position: absolute;
-    top: -20px;
+    top: -23px;
     width: 2px;
 }
 .timeline-event span {
@@ -248,6 +248,20 @@
     position: relative;
     top: 30px;
     width: 200px;
+    h2 {
+      font-size: 1.4em;
+      font-weight: 500;
+    }
+    h3 {
+      font-size: 1.2em;
+    }
+    .timeline-event-box-content-title {
+      font-size: 1.6em;
+      font-weight: bold;
+    }
+    p {
+      font-weight: normal;
+    }
 }
 .timeline-event-box::after, .timeline-event-box::before {
     -moz-border-bottom-colors: none;
