@@ -8,7 +8,19 @@ angular.module('dmc.release-notes')
             notes:
             [
                   {
-                        content: "My Account"
+                        content: "My Account",
+                        notes:
+                        [
+                              {
+                                    content: "Account Basics"
+                              },
+                              {
+                                    content: "Privacy"
+                              },
+                              {
+                                    content: "Notifications"
+                              }
+                        ]
                   },
                   {
                         content: "My Profile"
@@ -49,6 +61,18 @@ angular.module('dmc.release-notes')
             ]
       },
       {
+            content: "Top Menu",
+            notes:
+            [
+                  {
+                        content: "Invitations"
+                  },
+                  {
+                        content: "Notifications"
+                  }
+            ]
+      },
+      {
             content:"Header",
             notes:
             [
@@ -57,10 +81,22 @@ angular.module('dmc.release-notes')
                         notes:
                         [
                               {
-                                    content: "Individuals"
+                                    content: "Individuals",
+                                    notes:
+                                    [
+                                          {
+                                                content: "User Profile page"
+                                          }
+                                    ]
                               },
                               {
-                                    content: "Organization"
+                                    content: "Organization",
+                                    notes:
+                                    [
+                                          {
+                                                content: "Organization Profile page"
+                                          }
+                                    ]
                               },
                               {
                                     content: "Activities"
@@ -129,13 +165,22 @@ angular.module('dmc.release-notes')
                         notes:
                         [
                               {
-                                    content: "About Portal"
+                                    content: "Member Directory",
+                                    notes:
+                                    [
+                                          {
+                                                content: "Member Organization Profile page"
+                                          }
+                                    ]
                               },
                               {
-                                    content: "Member Directory"
-                              },
-                              {
-                                    content: "Projects Directory"
+                                    content: "Projects Directory",
+                                    notes:
+                                    [
+                                          {
+                                                content: "DMDII Project Profile page"
+                                          }
+                                    ]
                               }
                         ]
                   }
