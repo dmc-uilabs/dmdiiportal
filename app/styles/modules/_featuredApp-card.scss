@@ -1,0 +1,43 @@
+.featuredApp-card {
+  .verticalLine {
+  border-left: solid #979ba3;
+  padding:20px;
+  }
+  width: 1080px;
+  margin: 20px;
+  padding: 35px;
+  border: 2px solid #666;
+  height:200px;
+  // display:flex;
+  @include borderRadius(3px);
+  // display: inline-block;
+  background-color: #fff;
+  // overflow: hidden;
+  text-align: left;
+  h1{
+    font-size:30px;
+    font-weight:lighter;
+    color:green;
+    margin:0px;
+  }
+  h2{
+    margin-top:1px;
+    // text-align:center;
+    color:#65af3f;
+    font-size:1.5em;
+  }
+  &__image{
+    text-align: center;
+    &_small{
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      height: 150px;
+      width: 150px;
+      overflow: hidden;
+      border-radius: 5px;
+      position: relative;
+      // right: 10px;
+      }
+  }
+
+}
