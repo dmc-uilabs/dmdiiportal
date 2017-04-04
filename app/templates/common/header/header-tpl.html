@@ -183,10 +183,6 @@
                         <ng-md-icon icon="menu" style="fill: white" size="25"></ng-md-icon>
                     </md-button>
                     <md-menu-content id="hamburger-menu-content" ng-style="{width:dropDownWidth+'px'}">
-                        <md-menu-item>
-                          <md-button href="onboarding.php#/home">ABOUT</md-button>
-                        </md-menu-item>
-
 
                         <md-menu-item><md-button ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" ng-click="$mdCloseMenu($event);" href="/company-profile.php#/profile/{{userCompanyId}}">MY ORGANIZATION</md-button></md-menu-item>
 
