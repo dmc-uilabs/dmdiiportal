@@ -119,6 +119,20 @@
 		</div>
 	</section>
 
+
+	<section class="container content-padding">
+			<div class="row">
+					<div class="col-md-12 project-main">
+							<div class="top-border"></div>
+							<div class="status status-complete">FEATURED MEMBER</div>
+							<h1><a ng-href="{{'/member-page.php#/'+randMember.id}}">{{randMember.organization.name}}</a></h1>
+							<h4>Description</h4>
+							<div class="slim-margin" markdown-to-html="randMember.organization.description"></div>
+					</div>
+					</div>
+			</div>
+	</section>
+
 	<section class="container">
 
 		<dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
