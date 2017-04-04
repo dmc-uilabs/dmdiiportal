@@ -1,105 +1,22 @@
-<!-- This commented code is for a different template -->
-
-<!-- <h2 align ="center" class ="news"> Featured App </h2>
 <div class="featuredApp-card">
-    <h2> {{ randApp.title }}</h2>
-    <p></p>
-
-    <div class="marketplace-search-button" layout="row" layout-align="center center">
-      <div class="featuredApp-card__image_small">
-        <img ng-if="randApp.images[0].documentUrl" ng-src="{{randApp.images[0].documentUrl}}" alt="{{randApp.title}}">
-        <img ng-if="!randApp.images[0].documentUrl" ng-src="images/DMCGear.png" alt="{{randApp.title}}">
-      </div>
-
-      <div class="featuredApp-card__description">
-        <h3>{{ randApp.description }}</h3>
-      </div>
-
-      <div class="featuredApp-card-container featuredApp-card__footer">
-          <div class="adding-to-project" ng-show="addingToProject">
-              <div layout="row" layout-align="center center" class="inner-add-to-project" flex>
-                  <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">
-                      <ng-md-icon icon="close" size="17"></ng-md-icon>
-                  </md-button>
-                  <div layout="column" class="select-block" flex>
-                      <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
-                          <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
-                      </md-select>
-                  </div>
-                  <md-button aria-label="Add"
-                             layout="column"
-                             ng-disabled="!projectModel"
-                             class="md-raised add"
-                             ng-click="saveToProject(projectModel)">Add
-                  </md-button>
-              </div>
-          </div>
-
-          <md-button aria-label="Back to Add"
-                     class="back-to-add"
-                     ng-click="backToAdd()"
-                     ng-show="addingToProject == false && randApp.added">
-              <ng-md-icon icon="close" size="17"></ng-md-icon>
-          </md-button>
-
-
-          <md-button aria-label="Project Link"
-                     class="page-href"
-                     ng-show="addingToProject == false && randApp.added"
-                     href="{{randApp.lastProject.href}}">
-          <span flex>
-              Added to {{randApp.lastProject.title}}
-          </span>
-              <ng-md-icon icon="keyboard_arrow_right" style="fill: #fff" size="32"></ng-md-icon>
-          </md-button>
-
-          <md-button aria-label="Add to Project"
-                     class="white-button"
-                     ng-click="addToProject()"
-                     ng-hide="addingToProject || randApp.added">
-              Add to Project
-          </md-button>
-
-
-          <md-button aria-label="Add to Compare"
-                     class="white-button"
-                     ng-click="addToCompare()"
-                     ng-disabled="(randApp.type == 'service' && $root.comparedServices.components.length > 0) || (randApp.type == 'component' && $root.comparedServices.services.length > 0)"
-
-                     ng-show="!randApp.added && addingToProject == false && (randApp.type == 'service' && $root.comparedServicesIds.services.indexOf(randApp.id) == -1) || (randApp.type == 'component' && $root.comparedServicesIds.components.indexOf(randApp.id) == -1)">
-              Add to Compare
-          </md-button>
-          <md-button aria-label="Compare" flex ng-click="removeFromCompare()" class="remove"
-                     ng-hide="randApp.added || addingToProject == true || !$root.comparedServicesIds || (randApp.type == 'service' && $root.comparedServicesIds.services.indexOf(randApp.id) == -1) || (randApp.type == 'component' && $root.comparedServicesIds.components.indexOf(randApp.id) == -1)">
-              <ng-md-icon icon="close" size="17"></ng-md-icon>
-              Compare
-          </md-button>
-
-      </div>
-    </div>
-    <p></p>
-</div> -->
-
-<div class="featuredApp-card">
-  <div layout="row">
-    <div layout ="column" flex="75">
+  <div layout="row" layout-sm="column" layout-align="center center">
+    <div layout ="column" flex>
       <h1> Featured App of the Week</h1>
       <p></p>
       <h2>{{randApp.title}}</h2>
-      <ui-widget-stars-static class="review-stars" size="20" value={{cardSource.ratingAverage}} text=({{cardSource.ratingCount}})></ui-widget-stars-static>
+      <ui-widget-stars-static class="review-stars" size="15" value={{cardSource.ratingAverage}} text=({{cardSource.ratingCount}})></ui-widget-stars-static>
       <h3>{{ randApp.description }}</h3>
     </div>
-    <div class= "verticalLine">
-    </div>
 
-    <div layout="column" flex="25">
-      <div class="row">
-        <div class="featuredApp-card__image_small">
+
+    <div layout="column" class="featured-app-image">
+      <div>
           <img ng-if="randApp.images[0].documentUrl" ng-src="{{randApp.images[0].documentUrl}}" alt="{{randApp.title}}">
           <img ng-if="!randApp.images[0].documentUrl" ng-src="images/DMCGear.png" alt="{{randApp.title}}">
-        </div>
       </div>
-      <div class="row" style="max-width:220px" >
+
+
+      <div class="row">
         <div class="product-card-container product-card__footer">
             <div class="adding-to-project" ng-show="addingToProject">
                 <div layout="row" layout-align="center center" class="inner-add-to-project" flex>
@@ -146,7 +63,7 @@
             </md-button>
 
 
-            <md-button aria-label="Add to Compare" 
+            <md-button aria-label="Add to Compare"
                        class="white-button"
                        ng-click="addToCompare()"
                        ng-disabled="(randApp.type == 'service' && $root.comparedServices.components.length > 0) || (randApp.type == 'component' && $root.comparedServices.services.length > 0)"
