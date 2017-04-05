@@ -17,6 +17,11 @@
     margin-top:1px;
     color:#65af3f;
     font-size:1.5em;
+    a{
+      // font-size: 1.5em;
+      color: map-get($colors, secondary);
+      font-weight: bold;
+    }
   }
   &__image{
     text-align: center;
