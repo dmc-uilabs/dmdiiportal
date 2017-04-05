@@ -144,7 +144,7 @@ angular.module('dmc.members')
             var insertData = function(data){
                 $scope.membersByState = {};
                 angular.forEach(data, function(member) {
-                    member.organization.description = htmlspecialchars($showdown.stripHtml($showdown.makeHtml(member.organization.description)));
+                    member.organization.description = $showdown.stripHtml($showdown.makeHtml(member.organization.description));
                     if (!$scope.membersByState[member.organization.address.state]) {
                         $scope.membersByState[member.organization.address.state] =  [{name: member.organization.name, id: member.organization.id}];
                     } else {
@@ -204,7 +204,7 @@ angular.module('dmc.members')
 
             // callback for services
             var callbackFunction = function(response){
-				$scope.membersLoading = false;
+				          $scope.membersLoading = false;
                 if (angular.isDefined(response.data.count)) {
                     $scope.members.arr = response.data.data;
                     $scope.members.count = response.data.count;
