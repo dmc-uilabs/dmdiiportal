@@ -119,14 +119,16 @@
 		</div>
 	</section>
 
-
+	<!-- TODO this needs to be made in to a module suitable for members, projects and ideally services -->
 	<section class="container content-padding">
 			<div class="row">
 					<div class="col-md-12 project-main">
 							<div class="top-border"></div>
-							<div class="status status-complete">FEATURED MEMBER</div>
+							<div layout="row">
+								<div class="status status-complete">FEATURED MEMBER</div>
+								<div class="status">TIER {{randMember.dmdiiType.tier}} {{randMember.dmdiiType.dmdiiTypeCategory.category}}</div>
+							</div>
 							<h1><a ng-href="{{'/member-page.php#/'+randMember.id}}">{{randMember.organization.name}}</a></h1>
-							<h4>Description</h4>
 							<div class="slim-margin" markdown-to-html="randMember.organization.description"></div>
 					</div>
 					</div>

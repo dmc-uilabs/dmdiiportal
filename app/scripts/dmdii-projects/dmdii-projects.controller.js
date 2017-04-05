@@ -282,7 +282,7 @@ angular.module('dmc.dmdiiProjects')
                 var numberProjects=$scope.projects.arr.length;
                 $scope.randProjectId = Math.floor(Math.random()*numberProjects);
                 $scope.randProject = $scope.projects.arr[$scope.randProjectId];
-                $scope.randProject.projectSummary = truncateText($scope.randProject.projectSummary, 300);
+                $scope.randProject.projectSummary = truncateText($scope.randProject.projectSummary, 350);
 
                 // insertData(response.data);
             };

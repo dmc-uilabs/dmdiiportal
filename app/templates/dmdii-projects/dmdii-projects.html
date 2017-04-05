@@ -42,6 +42,7 @@
 
 		</section>
 
+		<!-- TODO this needs to be made in to a module suitable for members, projects and ideally services -->
 		<section class="container content-padding">
         <div class="row">
             <div class="col-md-12 project-main">
@@ -51,7 +52,7 @@
 									<div class="status">{{randProject.projectStatus.name}}</div>
 								</div>
 								<!-- <time>{{randProject.rootNumber | numberFixedLen:2}}-{{randProject.callNumber | numberFixedLen:2}}-{{randProject.projectNumber | numberFixedLen:2}}</time> -->
-                <h1><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{randProject.projectTitle}}</a></h1>
+                <h1><a ng-href="{{'/dmdii-project-page.php#/'+randProject.id}}">{{randProject.projectTitle}}</a></h1>
 								<!-- <h4>Summary</h4> -->
 								<div class="sublabels" layout="row">
 									<div>{{randProject.projectFocusArea.name}}</div>
