@@ -31,6 +31,7 @@
     <script src="scripts/components/ui-widgets/tasks.directive.js"></script>
     <script src="scripts/components/ui-widgets/services.directive.js"></script>
     <script src="scripts/components/ui-widgets/discussions.directive.js"></script>
+    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/components/ui-widgets/projects.directive.js"></script>
     <script src="scripts/components/rfp-invite/rfp-invite.directive.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>
