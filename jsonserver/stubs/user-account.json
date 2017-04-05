@@ -15,7 +15,7 @@
       "email":"Thomas.Smith@uilabs.org",
       "address":null,
       "phone":null,
-      "image":null,
+      "image":"https://google.com",
       "runningServices":{
          "items":[
 
