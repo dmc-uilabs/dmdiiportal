@@ -26,6 +26,10 @@ a {
 	color: $brand-accent;
 }
 
+a:hover {
+	color: $dark-green;
+}
+
 h1 {
 	font-weight:300;
 	font-size: 36px;
