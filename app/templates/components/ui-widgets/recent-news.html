@@ -2,11 +2,12 @@
 <section class=" container recent-news">
 	<h4>Recent News</h4>
 	<div class="row">
-		<div class="col-sm-4" ng-repeat="item in news">
+		<div class="col-sm-4" ng-repeat="item in news track by $index">
 			<article>
 				<h3>{{item.title}}</h3>
 				<time datetime="2011-01-12">{{item.dateCreated}}</time>
-				<p>{{item.content}}
+				<p>{{item.content}}</p>
+				<a ng-if="userData.isDmdiiAdmin" class="delete-button" href ng-click="deleteNews($index, item.id)"><span class="glyphicon glyphicon-trash"></span> Delete</a>
 			</article>
 		</div>
 	</div>
