@@ -63,6 +63,7 @@
     <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/components/ui-widgets/stars.directive.js"></script>
     <script src="scripts/community/controllers/compose-discussion.js"></script>
+    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/member-directory/member-directory.js"></script>
     <script src="scripts/member-directory/member-directory.controller.js"></script>
