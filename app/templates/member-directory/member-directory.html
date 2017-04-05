@@ -35,12 +35,13 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in active" id="news">
-						<div class="event-list" ng-repeat="item in news | limitTo:3">
+						<div class="event-list" ng-repeat="item in news track by $index| limitTo:3">
 						<div class="event-block">
 						<div class="row">
 							<h2 class="col-sm-6">{{item.title}}</h2><time class="col-sm-6 text-right">{{item.dateCreated}}</time>
 						</div>
 							<p>{{plainText(item.content)}}</p>
+							<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteNews($index, item.id)" class="delete-icon">delete<span class="glyphicon glyphicon-trash"></span></a>
 						</div>
 						</div>
 					</div>
@@ -91,13 +92,14 @@
 					</div>
 					<div role="tabpanel" class="tab-pane fade " id="schedule">
 
-						<div class="event-list" ng-repeat="event in events | limitTo:3">
+						<div class="event-list" ng-repeat="event in events track by $index| limitTo:3">
 
 						<div class="event-block">
 						<div class="row">
-							<h2 class="col-sm-6">{{event.title}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
+							<h2 class="col-sm-6">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
 						</div>
 							<p>{{plainText(event.description)}}</p>
+							<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteEvent($index, event.id)" class="delete-icon">delete<span class="glyphicon glyphicon-trash"></span></a>
 						</div>
 
 
@@ -199,7 +201,17 @@
 									</li>
 								</ul>
 							</td>
-							<td></td>
+							<td>
+								<ul class="active-projects">
+									<li ng-repeat="tag in member.organization.desiredAreasOfExpertise track by $index">
+										<a more-less
+											 ng-href="{{getUrl('expertiseTags', tag.id)}}"
+											 element-text="{{tag.name}}"
+											 element-text-limit="30">
+										 </a>
+									</li>
+								</ul>
+							</td>
 						</tr>
 
 					</tbody>
