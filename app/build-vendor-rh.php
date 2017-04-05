@@ -19,7 +19,7 @@
 <!-- endbower -->
 <!-- endbuild -->
 
-<!-- build:css styles/main.css -->
+<!-- build:css styles/main-rh.css -->
 <link rel="stylesheet" href="styles/main-rh.css">'
 <!-- endbuild -->
 
