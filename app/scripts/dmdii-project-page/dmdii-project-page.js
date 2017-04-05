@@ -60,6 +60,15 @@ angular.module('dmc.dmdiiProj', [
           },
           controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
 
+            $scope.deleteDocument = function(id, type, index) {
+                ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
+                    if (type != 'doc') {
+                    } else {
+                        $scope.documents.splice(index, 1);
+                    }
+                });
+            };
+
           }
         }
       }

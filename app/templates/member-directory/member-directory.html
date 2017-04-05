@@ -209,22 +209,20 @@
 							<td>
 								<ul class="active-projects">
 									<li ng-repeat="tag in member.organization.areasOfExpertise track by $index">
-										<a more-less
-											 ng-href="{{getUrl('expertiseTags', tag.id)}}"
+										<span more-less
 											 element-text="{{tag.name}}"
 											 element-text-limit="30">
-										 </a>
+										 </span>
 									</li>
 								</ul>
 							</td>
 							<td>
 								<ul class="active-projects">
 									<li ng-repeat="tag in member.organization.desiredAreasOfExpertise track by $index">
-										<a more-less
-											 ng-href="{{getUrl('expertiseTags', tag.id)}}"
+										<span more-less
 											 element-text="{{tag.name}}"
 											 element-text-limit="30">
-										 </a>
+										 </span>
 									</li>
 								</ul>
 							</td>
