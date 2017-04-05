@@ -81,5 +81,25 @@
 			</md-list-item>
 		</md-list>
 	</div>
+	<div class="block">
+		<div layout="row" layout-align="space-between center">
+			<h2>Archived</h2>
+		</div>
+		<md-list>
+			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy | limitTo:20"  ng-if="item.cleared" >
+				<div flex="100" layout="row" layout-align="center center" >
+					<div class="logo-event" ng-switch on="item.type">
+						<!--<img ng-src="{{item.image}}">-->
+												<ng-md-icon ng-switch-when="USER_REQUESTS_VERIFICATION" icon="check_circle" size="40" ></ng-md-icon>
+												<ng-md-icon ng-switch-when="NEW_USER_JOINED_ORGANIZATION" icon="person_add" size="40" ></ng-md-icon>
+												<md-icon ng-switch-default md-svg-src="images/icon_project.svg"></md-icon>
+					</div>
+					<h4 flex><a href="/company-profile.php#/profile/{{userData.companyId}}">{{item.message}}</a></h4>
+					<h4>{{item.created | date:'medium'}}</h4>
+					<h4></h4>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div>
 </md-content>
 </div>
