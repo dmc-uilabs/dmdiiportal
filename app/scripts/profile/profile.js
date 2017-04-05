@@ -22,7 +22,8 @@ angular.module('dmc.profile', [
     'dmc.model.question-toast-model',
     'dmc.model.profile',
     'dmc.phone-format',
-    'dmc.model.previous-page'
+    'dmc.model.previous-page',
+    'dmc.widgets.rich-text'
 ])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
@@ -101,7 +102,7 @@ angular.module('dmc.profile', [
             });
 
         };
-        
+
         // TODO remove at a later date
         // var get_reply = function(review){
         //     ajax.get(dataFactory.profiles(review.id).getReply,
