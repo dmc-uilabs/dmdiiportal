@@ -4,12 +4,14 @@ angular.module('dmc.notifications')
     .controller('notificationsUserController', [
         '$scope',
         'ajax',
+        'dataFactory',
         'notificationsStatistic',
         'notificationsModel',
         'notificationsMessages',
         'DMCUserModel',
         function ($scope,
                   ajax,
+                  dataFactory,
                   notificationsStatistic,
                   notificationsModel,
                   notificationsMessages,
@@ -42,6 +44,18 @@ angular.module('dmc.notifications')
             $scope.getItemDetails = function(item) {
                 return notificationsMessages.getLinkDetails(item);
             }
+
+            $scope.clearNotification = function(id, notification_id){
+                for(var i in $scope.userData.notifications){
+                    if($scope.userData.notifications[i].id == notification_id) {
+                      $scope.userData.notifications[i].unread = false;
+                      $scope.userData.notifications[i].cleared = true;
+                    }
+                }
+                ajax.put(dataFactory.markNotificationRead(id, notification_id),function(response){
+                });
+            };
+
 
             $scope.reset = function() {
                 $scope.typeNotifications = 'Today';

@@ -63,7 +63,7 @@
 			<h2>{{typeNotifications}}</h2>
 		</div>
 		<md-list>
-			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy">
+			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy"  ng-if="!item.cleared" >
 				<div flex="100" layout="row" layout-align="center center" >
 					<div class="logo-event" ng-switch on="item.type">
 						<!--<img ng-src="{{item.image}}">-->
@@ -73,6 +73,9 @@
 					</div>
 					<h4 flex><a href="/company-profile.php#/profile/{{userData.companyId}}">{{item.message}}</a></h4>
 					<h4>{{item.created | date:'medium'}}</h4>
+					<md-button class="md-icon-button clear-notification" aria-label="Clear" md-no-ink ng-click="clearNotification(item.createdFor.id, item.id)">
+							<ng-md-icon icon="close" size="18"></ng-md-icon>
+					</md-button>
 				</div>
 			<md-divider ng-if="!$last"></md-divider>
 			</md-list-item>
