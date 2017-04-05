@@ -45,7 +45,7 @@ angular.module('dmc.view-all')
 	            		$scope.invitations[i].date = moment($scope.invitations[i].date).format('MM/DD/YYYY, hh:mm A');
 	            		getProfile($scope.invitations[i]);
 	            	}
-
+                $scope.invitations.reverse();
 	            }
 	        );
 
