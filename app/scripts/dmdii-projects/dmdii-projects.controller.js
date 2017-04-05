@@ -66,7 +66,7 @@ angular.module('dmc.dmdiiProjects')
             $scope.startDate = year + '-' + month + '-' + day;
 
             $scope.endDate = new Date();
-            $scope.endDate.setMonth($scope.endDate.getMonth()+4);
+            $scope.endDate.setMonth($scope.endDate.getMonth()+8);
 
             var year = $scope.endDate.getFullYear();
             var month = $scope.endDate.getMonth() + 1;
@@ -160,6 +160,9 @@ angular.module('dmc.dmdiiProjects')
             var eventsCallbackFunction = function(response) {
                 $scope.events = [];
                 angular.forEach(response.data, function(event) {
+                    if(moment(event.eventDate).isBefore(moment($scope.startDate)) || moment(event.eventDate).isAfter(moment($scope.endDate))){
+                        return;
+                    }
                     var e = {
                         id: event.id,
                         date: event.eventDate,
@@ -170,7 +173,7 @@ angular.module('dmc.dmdiiProjects')
                 });
             }
             $scope.getEvents = function(){
-                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 3}, eventsCallbackFunction);
+                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 10}, eventsCallbackFunction);
             };
             $scope.getEvents();
 
@@ -254,12 +257,19 @@ angular.module('dmc.dmdiiProjects')
                 if (angular.isDefined(response.data.count)) {
                     $scope.projects.arr = response.data.data;
                     $scope.projects.count = response.data.count;
+
                 } else {
                     $scope.projects.arr = response.data;
                 }
                 $scope.dmdiiProjectsLoading = false;
+                var numberProjects=$scope.projects.arr.length;
+                $scope.randProjectId = Math.floor(Math.random()*numberProjects);
+                $scope.randProject = $scope.projects.arr[$scope.randProjectId];
+
                 // insertData(response.data);
             };
+
+
 
             var responseData = function(){
                 var data = {
@@ -278,6 +288,7 @@ angular.module('dmc.dmdiiProjects')
                 return data;
             };
 
+
             $scope.getDmdiiProjects = function(){
                 loadingData(true);
 
@@ -288,6 +299,7 @@ angular.module('dmc.dmdiiProjects')
                 }
             };
             $scope.getDmdiiProjects();
+
 
             $scope.submit = function(text){
                 $scope.dmdiiProjectCurrentPage = 0;
@@ -328,6 +340,7 @@ angular.module('dmc.dmdiiProjects')
                     clickOutsideToClose: true
                 });
             }
+
 
             $scope.quickLinkAction = function(doc) {
                 if (angular.isDefined(doc.text) && doc.text !== null) {

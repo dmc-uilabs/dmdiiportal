@@ -62,7 +62,15 @@ angular.module('dmc.company-profile')
                         page: 0, pageSize: 1
                     }, function(response) {
                         if (response.data.count > 0) {
-                            $scope.company.logoImage = response.data.data[0];
+                          $scope.company.logoImage = response.data.data[0]
+                            if($scope.company.logoImage.documentUrl.substr(8,10) == 'dmcupfinal'){
+                              $scope.company.logoImage.documentUrl = response.data.data[0].documentUrl;
+                            }
+                            else {
+                              $scope.company.logoImage.documentUrl = 'images/dmcScan.svg';
+                            }
+
+
                         };
                     });
 
@@ -153,19 +161,19 @@ angular.module('dmc.company-profile')
                     name: 'Verified Users'
                 }
             ];
-
-            $scope.history = {
-                leftColumn: {
-                    title: 'Public',
-                    viewAllLink: '/all.php#/history/company/'+$stateParams.companyId+'/public',
-                    list: []
-                },
-                rightColumn: {
-                    title: 'Mutual',
-                    viewAllLink: '/all.php#/history/company/'+$stateParams.companyId+'/mutual',
-                    list:[]
-                }
-            };
+            $scope.history = {};
+            // $scope.history = {
+            //     leftColumn: {
+            //         title: 'Public',
+            //         viewAllLink: '/all.php#/history/company/'+$stateParams.companyId+'/public',
+            //         list: []
+            //     },
+            //     rightColumn: {
+            //         title: 'Mutual',
+            //         viewAllLink: '/all.php#/history/company/'+$stateParams.companyId+'/mutual',
+            //         list:[]
+            //     }
+            // };
 
             $scope.join = function(){
                 ajax.create(dataFactory.addCompanyJoinRequest(), {
@@ -247,36 +255,36 @@ angular.module('dmc.company-profile')
             }
 
             // get company history
-            var callbackPublicHistory = function(data){
-                for(var i in data){
-                    data[i].date = moment(data[i].date).format('MM/DD/YYYY h:mm A');
-                    switch(data[i].type){
-                        case 'completed':
-                            data[i].icon = 'images/ic_done_all_black_24px.svg';
-                            break;
-                        case 'added':
-                            data[i].icon = 'images/ic_group_add_black_24px.svg';
-                            break;
-                        case 'rated':
-                            data[i].icon = 'images/ic_star_black_24px.svg';
-                            break;
-                        case 'worked':
-                            data[i].icon = 'images/icon_project.svg';
-                            break;
-                        case 'favorited':
-                            data[i].icon = 'images/ic_favorite_black_24px.svg';
-                            break;
-                        case 'shared':
-                            data[i].icon = 'images/ic_done_all_black_24px.svg';
-                            break;
-                        case 'discussion':
-                            data[i].icon = 'images/ic_forum_black_24px.svg';
-                            break;
-                    }
-                }
-                $scope.history.leftColumn.list = data;
-                apply();
-            };
+            // var callbackPublicHistory = function(data){
+            //     for(var i in data){
+            //         data[i].date = moment(data[i].date).format('MM/DD/YYYY h:mm A');
+            //         switch(data[i].type){
+            //             case 'completed':
+            //                 data[i].icon = 'images/ic_done_all_black_24px.svg';
+            //                 break;
+            //             case 'added':
+            //                 data[i].icon = 'images/ic_group_add_black_24px.svg';
+            //                 break;
+            //             case 'rated':
+            //                 data[i].icon = 'images/ic_star_black_24px.svg';
+            //                 break;
+            //             case 'worked':
+            //                 data[i].icon = 'images/icon_project.svg';
+            //                 break;
+            //             case 'favorited':
+            //                 data[i].icon = 'images/ic_favorite_black_24px.svg';
+            //                 break;
+            //             case 'shared':
+            //                 data[i].icon = 'images/ic_done_all_black_24px.svg';
+            //                 break;
+            //             case 'discussion':
+            //                 data[i].icon = 'images/ic_forum_black_24px.svg';
+            //                 break;
+            //         }
+            //     }
+            //     $scope.history.leftColumn.list = data;
+            //     apply();
+            // };
 
             /* uncomment when implemented/fixed
             companyProfileModel.getCompanyHistory(
@@ -289,36 +297,36 @@ angular.module('dmc.company-profile')
             */
 
             // get company history
-            var callbackMutualHistory = function(data){
-                for(var i in data){
-                    data[i].date = moment(data[i].date).format('MM/DD/YYYY h:mm A');
-                    switch(data[i].type){
-                        case 'completed':
-                            data[i].icon = 'images/ic_done_all_black_24px.svg';
-                            break;
-                        case 'added':
-                            data[i].icon = 'images/ic_group_add_black_24px.svg';
-                            break;
-                        case 'rated':
-                            data[i].icon = 'images/ic_star_black_24px.svg';
-                            break;
-                        case 'worked':
-                            data[i].icon = 'images/icon_project.svg';
-                            break;
-                        case 'favorited':
-                            data[i].icon = 'images/ic_favorite_black_24px.svg';
-                            break;
-                        case 'shared':
-                            data[i].icon = 'images/ic_done_all_black_24px.svg';
-                            break;
-                        case 'discussion':
-                            data[i].icon = 'images/ic_forum_black_24px.svg';
-                            break;
-                    }
-                }
-                $scope.history.rightColumn.list = data;
-                apply();
-            };
+            // var callbackMutualHistory = function(data){
+            //     for(var i in data){
+            //         data[i].date = moment(data[i].date).format('MM/DD/YYYY h:mm A');
+            //         switch(data[i].type){
+            //             case 'completed':
+            //                 data[i].icon = 'images/ic_done_all_black_24px.svg';
+            //                 break;
+            //             case 'added':
+            //                 data[i].icon = 'images/ic_group_add_black_24px.svg';
+            //                 break;
+            //             case 'rated':
+            //                 data[i].icon = 'images/ic_star_black_24px.svg';
+            //                 break;
+            //             case 'worked':
+            //                 data[i].icon = 'images/icon_project.svg';
+            //                 break;
+            //             case 'favorited':
+            //                 data[i].icon = 'images/ic_favorite_black_24px.svg';
+            //                 break;
+            //             case 'shared':
+            //                 data[i].icon = 'images/ic_done_all_black_24px.svg';
+            //                 break;
+            //             case 'discussion':
+            //                 data[i].icon = 'images/ic_forum_black_24px.svg';
+            //                 break;
+            //         }
+            //     }
+            //     $scope.history.rightColumn.list = data;
+            //     apply();
+            // };
 
             /* uncomment when implemented/fixed
             companyProfileModel.getCompanyHistory(

@@ -141,7 +141,7 @@ angular.module('dmc.members')
             var insertData = function(data){
                 $scope.membersByState = {};
                 angular.forEach(data, function(member) {
-                    member.organization.description = $showdown.stripHtml($showdown.makeHtml(member.organization.description));
+                    member.organization.description = htmlspecialchars($showdown.stripHtml($showdown.makeHtml(member.organization.description)));
                     if (!$scope.membersByState[member.organization.address.state]) {
                         $scope.membersByState[member.organization.address.state] =  [{name: member.organization.name, id: member.organization.id}];
                     } else {
@@ -206,9 +206,17 @@ angular.module('dmc.members')
                     $scope.members.arr = response.data.data;
                     $scope.members.count = response.data.count;
                     insertData(response.data.data);
+                    var numberMembers=$scope.members.arr.length;
+                    $scope.randMemberId=Math.floor(Math.random()*numberMembers);
+                    $scope.randMember = $scope.members.arr[$scope.randMemberId];
+
                 } else {
                     $scope.members.arr = response.data;
                     insertData(response.data);
+                    var numberMembers=$scope.members.arr.length;
+                    $scope.randMemberId=Math.floor(Math.random()*numberMembers);
+                    $scope.randMember = $scope.members.arr[$scope.randMemberId];
+
                 }
                 $scope.activeProjects = {};
 

@@ -100,6 +100,91 @@
             </div>
         </md-content>
 
+        <!-- Start of featured section -->
+
+        <md-divider></md-divider>
+        <div style="border:3px solid green">
+          <md-content layout="column">
+            <h2 align="center" class="news">Featured Member</h2>
+            <div class="members-list">
+                <md-data-table-container>
+                    <table md-data-table>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th name="Name" class="title"></th>
+                            <th name="Type"></th>
+                            <th name="Tier"></th>
+                            <th name="Active Projects"></th>
+                            <th name="Core Capabilities"></th>
+                            <th name="Seeking Colaboration"></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                          <td class="profile-logo">
+                              <img ng-src="{{randMember.organization.logoImage ? randMember.organization.logoImage : 'images/icon-company-lg.svg'}}">
+                          </td>
+                          <td class="title-member">
+                              <h3><a ng-href="{{'/member-page.php#/'+randMember.id}}">{{randMember.organization.name}}</a></h3>
+                              <p class="description" more-less
+                                element-text="{{randMember.organization.description}}"
+                                element-text-limit="140">
+                              </p>
+                          </td>
+                          <td>{{randMember.dmdiiType.dmdiiTypeCategory.category}}</td>
+                          <td>{{randMember.dmdiiType.tier}}</td>
+                          <td>
+
+                              <div layout="row" ng-repeat="project in activeProjects[randMember.id] track by $index">
+                                <b>-</b>
+                                <a more-less
+                                   element-text ="{{project.projectTitle}}"
+                                   element-text-limit="30"
+                                   ng-href="{{'/dmdii-project-page.php#/' + project.id}}">
+                                    <!-- {{project.projectTitle}} -->
+                                </a>
+                              </div>
+                          </td>
+
+                          <td>
+                              <div layout="row" ng-repeat="tag in randMember.organization.areasOfExpertise track by $index">
+                                <b>-</b>
+                                <a more-less
+                                   ng-href="{{getUrl('expertiseTags', tag.id)}}"
+                                   element-text="{{tag.name}}"
+                                   element-text-limit="30">
+                                 </a>
+                               </div>
+                          </td>
+                          <td>
+                              <div layout="row" ng-repeat="tag in randMember.organization.desiredAreasOfExpertise track by $index">
+                                <b>-</b>
+                                <a more-less
+                                   ng-href="{{getUrl('desiredExpertiseTags', tag.id)}}"
+                                   element-text="{{tag.name}}"
+                                   element-text-limit="30">
+                                 </a>
+                               </div>
+                          </td>
+                        </tbody>
+                    </table>
+                </md-data-table-container>
+            </div>
+          </md-content>
+      </div>
+
+
+
+
+        <!-- End of featured section -->
+
+
+
+
+
+
         <md-divider></md-divider>
 
         <div class="search-filter">
@@ -161,7 +246,7 @@
                             <th name="Tier" order-by="tier"></th>
                             <th name="Active Projects" order-by="hasActiveProjects"></th>
                             <th name="Core Capabilities"></th>
-                            <th name="Seeking Colaboration"></th>
+                            <th name="Seeking Collaboration"></th>
 
                         </tr>
                         </thead>

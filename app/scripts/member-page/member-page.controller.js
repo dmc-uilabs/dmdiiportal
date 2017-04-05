@@ -77,11 +77,7 @@ angular.module('dmc.member')
                 //         $scope.member.projects = response.data.data;
                 //     });
                 // }
-
-                $scope.getCompanyMembers($scope.member.id);
-
                 $scope.getDMDIIMemberStorefront($scope.member.id);
-
                 $scope.getProjects($scope.member.id);
                 $scope.memberLoading = false;
             };
@@ -104,23 +100,6 @@ angular.module('dmc.member')
                 ajax.get(dataFactory.getDMDIIMemberProjects().contributing, {dmdiiMemberId: id}, function(response) {
                     $scope.contributing = response.data;
                 });
-            }
-
-            var callbackMembers = function(response) {
-                $scope.contacts = [];
-                angular.forEach(response.data, function(member) {
-                    if (member.userContactInfo && member.userContactInfo.userMemberPortalContactInfo && member.userContactInfo.userMemberPortalContactInfo.id) {
-                        $scope.member.contacts.push({
-                            firstName: member.firstName,
-                            lastName: member.lastName,
-                            phone: member.userContactInfo.userMemberPortalContactInfo.phone,
-                            email:  member.userContactInfo.userMemberPortalContactInfo.email
-                        });
-                    }
-                });
-            }
-            $scope.getCompanyMembers = function(id) {
-                ajax.get(dataFactory.getUsersByOrganization(id), {}, callbackMembers);
             }
 
 			$scope.storefront = [];
