@@ -209,18 +209,14 @@ angular.module('dmc.members')
                     $scope.members.arr = response.data.data;
                     $scope.members.count = response.data.count;
                     insertData(response.data.data);
-                    var numberMembers=$scope.members.arr.length;
-                    $scope.randMemberId=Math.floor(Math.random()*numberMembers);
-                    $scope.randMember = $scope.members.arr[$scope.randMemberId];
-
                 } else {
                     $scope.members.arr = response.data;
                     insertData(response.data);
-                    var numberMembers=$scope.members.arr.length;
-                    $scope.randMemberId=Math.floor(Math.random()*numberMembers);
-                    $scope.randMember = $scope.members.arr[$scope.randMemberId];
-
                 }
+
+                var numberMembers=$scope.members.arr.length;
+                $scope.randMemberId=Math.floor(Math.random()*numberMembers);
+                $scope.randMember = $scope.members.arr[$scope.randMemberId];
                 $scope.activeProjects = {};
 
                 angular.forEach($scope.members.arr, function(member, index) {

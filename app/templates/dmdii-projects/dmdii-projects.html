@@ -42,17 +42,21 @@
 
 		</section>
 
-
 		<section class="container content-padding">
         <div class="row">
             <div class="col-md-12 project-main">
 								<div class="top-border"></div>
-                <div>
+                <div layout="row">
 									<div class="status status-complete">FEATURED PROJECT</div>
-								<div>
+									<div class="status">{{randProject.projectStatus.name}}</div>
+								</div>
 								<!-- <time>{{randProject.rootNumber | numberFixedLen:2}}-{{randProject.callNumber | numberFixedLen:2}}-{{randProject.projectNumber | numberFixedLen:2}}</time> -->
                 <h1><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{randProject.projectTitle}}</a></h1>
 								<!-- <h4>Summary</h4> -->
+								<div class="sublabels" layout="row">
+									<div>{{randProject.projectFocusArea.name}}</div>
+									<div>{{randProject.projectThrust.name}}</div>
+								</div>
 								<div class="slim-margin" markdown-to-html="randProject.projectSummary"></div>
             </div>
             </div>

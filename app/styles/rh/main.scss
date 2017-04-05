@@ -172,3 +172,16 @@ div.progress {
 	}
 }
 }
+
+.sublabels {
+	div {
+		color: $gray;
+		border-right: 1px solid $gray;
+		margin-right: 15px;
+		margin-bottom: 10px;
+		padding-right: 15px;
+	}
+	div:last-child {
+		border-right: none;
+	}
+}
