@@ -180,10 +180,6 @@
                         <ng-md-icon icon="menu" style="fill: white" size="25"></ng-md-icon>
                     </md-button>
                     <md-menu-content id="hamburger-menu-content" ng-style="{width:dropDownWidth+'px'}">
-                        <md-menu-item>
-                          <md-button href="onboarding.php#/home">ABOUT</md-button>
-                        </md-menu-item>
-
 
                         <md-menu-item><md-button ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" ng-click="$mdCloseMenu($event);" href="/company-profile.php#/profile/{{userCompanyId}}">MY ORGANIZATION</md-button></md-menu-item>
 
@@ -319,14 +315,17 @@
                             <md-menu-item>
                                 <md-button ng-click="$mdCloseMenu($event);" href="/application-creation.php">Application Creation</md-button>
                             </md-menu-item>
-                            <md-menu-item>
+                            <!-- <md-menu-item>
                                 <md-button ng-click="$mdCloseMenu($event);" href="/workforce-development.php">Workforce Development</md-button>
-                            </md-menu-item>
+                            </md-menu-item> -->
                             <md-menu-item>
                                 <md-button ng-click="$mdCloseMenu($event);" href="/security.php">Security</md-button>
                             </md-menu-item>
                             <md-menu-item>
                                 <md-button ng-click="$mdCloseMenu($event);" href="/release-notes.php">Realease Notes</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="$mdCloseMenu($event);" href="https://dmc-uilabs.github.io/dmcblog/">Blog</md-button>
                             </md-menu-item>
                         </md-menu-content>
                     </md-menu>
