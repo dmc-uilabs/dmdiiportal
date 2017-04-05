@@ -1,25 +1,38 @@
 <md-dialog class="compose-discussion" flex="90">
 	<div layout="column">
+			<h2>Subject</h2>
 			<md-input-container>
-				<label>Subject</label>
+				<!-- <label>Subject</label> -->
 				<input id="subject-compose-discussion" ng-model="NewDiscussion.subject">
 			</md-input-container>
-		<div layout="row">
-			<div flex="70">
+		<div layout="column">
+			<!-- <div flex="70"> -->
+			<div>
 				<h2>Message</h2>
-				<div class="left-column" layout="column">
-					<div class="message">
+				<div layout="column">
+					<!-- <div class="message">
 						<md-content>
 							<md-input-container>
 								<textarea ng-model="NewDiscussion.message" columns="9" md-maxlength="3000"></textarea>
 							</md-input-container>
 						</md-content>
+					</div> -->
+					<div layout="column"
+						ui-widget-rich-text
+						field-name="message"
+						is-required="true"
+						model="NewDiscussion.message"
+						limit="3000"
+						is-saved="isSaved"
+						is-valid="isValid">
 					</div>
 				</div>
 			</div>
-			<div flex="30">
+			<!-- </div> -->
+			<!-- <div flex="30"> -->
+			<div>
 				<h2 class="header-tags">Tags</h2>
-				<div class="right-column" layout="column">
+				<div layout="column">
 					<form ng-submit="addTag(inputTag)" class="add-tags-form" layout="row" layout-align="start center">
 						<md-input-container>
 							<label>Enter Tag</label>
@@ -31,14 +44,18 @@
 						<md-chips ng-repeat="tag in NewDiscussion.tags track by $index">
 							<md-chip class="tags-chip">
 								{{tag}}
-								<md-button aria-label="close" ng-click="deleteTag($index)" class="md-icon-button">
+								<a ng-click="deleteTag($index)">x</a>
+								<!-- <md-button aria-label="close" ng-click="deleteTag($index)" class="md-icon-button">
 									<ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
-								</md-button>
+								</md-button> -->
 							</md-chip>
 						</md-chips>
 					</div>
 				</div>
 			</div>
+
+
+
 		</div>
 
 		<div layout="row" layout-align="end end">
