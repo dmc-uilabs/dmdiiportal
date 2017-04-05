@@ -47,23 +47,29 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
               $scope.runningServicesList = $scope.userData.runningServices.items;
               $scope.service_alert = $scope.userData.runningServices.total;
           }
+          if($scope.userData.profileId !=1 ){
+            ajax.get(dataFactory.getMembersToProject(),
+                {
+                    'profileId' : $scope.userData.profileId,
+                    'accept' : false,
+                },
+                function(response){
+                  $scope.invitations = response.data;
+                  $scope.message_alert = 0;
+                  for(var i in $scope.invitations){
+                    $scope.message_alert++;
+                    $scope.invitations[i].date = moment($scope.invitations[i].date).format('MM/DD/YYYY, hh:mm A');
+                    getProfile($scope.invitations[i]);
+                  }
 
-          ajax.get(dataFactory.getMembersToProject(),
-	            {
-	                "profileId" : $scope.userData.profileId,
-	                "accept" : false,
-	            },
-	            function(response){
-	            	$scope.invitations = response.data;
-                $scope.message_alert = 0;
-	            	for(var i in $scope.invitations){
-                  $scope.message_alert++;
-	            		$scope.invitations[i].date = moment($scope.invitations[i].date).format('MM/DD/YYYY, hh:mm A');
-	            		getProfile($scope.invitations[i]);
-	            	}
+                }
+            )
 
-	            }
-	        );
+
+
+
+          }
+
 
           if ($scope.userData.notifications) {
               $scope.notification_alert = 0;
@@ -80,7 +86,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         var getProfile = function(invitation){
           ajax.get(dataFactory.profiles(invitation.fromProfileId).get,{},
             function(response){
-              invitation["profileImage"] = response.data.image;
+              invitation['profileImage'] = response.data.image;
             }
           );
         }
