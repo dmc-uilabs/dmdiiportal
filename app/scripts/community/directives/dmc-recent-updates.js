@@ -23,7 +23,7 @@ angular.module('dmc.community.dmc-recent-updates',[]).
                         //     $scope.recentUpdates[e].startTime =$scope.recentUpdates[e].startTime;
                         //     $scope.recentUpdates[e].endTime = $scope.recentUpdates[e].endTime;
                         // }
-                        if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                        // if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
                     });
                 };
 

@@ -9,28 +9,15 @@
 </div>
 <div class="content-panel-body">
     <md-content class="md-padding">
-        <div class="events-list">
+        <div class="discussions-list">
+        <!-- <div> -->
             <md-list>
-                <md-list-item ng-repeat="item in events" layout-align="start start" layout-wrap>
-                    <div layout="row" flex="100" class="main-block" ng-click="showDescription(item)">
-                        <div class="date-item" layout="column">
-                            <div>
-                                <span>{{item.date[0]}}</span>
-                                <span>{{item.date[1]}}</span>
-                            </div>
+                <md-list-item ng-repeat="update in recentUpdates" class="md-3-line">
+                    <div class="md-list-item-text">
+                        <h3><a class="link-button font-size14" href="/individual-discussion.php#/{{item.id}}" ng-click="previousPage.save($event)" class="link-button">{{update.parentTitle}}</a></h3>
+                        <div class="info">
+                            <span>{{update.description}}</span>
                         </div>
-                        <div class="md-list-item-text" layout="column" flex>
-                            <div class="title"><a class="link-button font-size14" href="#" class="link-button">{{item.title}}</a></div>
-                            <div>{{item.startTime}} to {{item.endTime}}</div>
-                            <div>{{item.address}}</div>
-                        </div>
-                        <div class="arrow-item" layout="column" layout-align="center center">
-                            <ng-md-icon icon="keyboard_arrow_down" class="arrow-item" size="32" ng-show="!item.isShowDescription"></ng-md-icon>
-                            <ng-md-icon icon="keyboard_arrow_up" class="arrow-item" size="32" ng-show="item.isShowDescription"></ng-md-icon>
-                        </div>
-                    </div>
-                    <div layout="row" flex="100" ng-show="item.isShowDescription">
-                        <p>{{item.description}}</p>
                     </div>
                 </md-list-item>
             </md-list>
