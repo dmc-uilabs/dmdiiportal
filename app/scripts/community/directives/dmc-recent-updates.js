@@ -31,6 +31,12 @@ angular.module('dmc.community.dmc-recent-updates',[]).
                               var updateObject = update.updateType.replace("DMDII", "").replace(/([A-Z])/g, ' $1')
                               update.description = updateObject+" added!"
                             }
+
+                            if (update.updateType == "DMDIIMember") {
+                              update.updateTypeDisplay = "MEMBER"
+                            } else {
+                              update.updateTypeDisplay = "PROJECT"
+                            }
                         }
 
                     });
