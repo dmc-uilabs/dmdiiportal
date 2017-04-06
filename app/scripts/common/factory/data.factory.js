@@ -753,8 +753,8 @@ angular.module('dmc.data',[])
                     all : localhost + name
                 }
             },
-            getRecentUpdates : function(limit) {
-              return 'recent_updates?limit='+limit
+            getRecentUpdates : function() {
+              return localhost+'recent_updates';
             },
             // ---------------------------
 
