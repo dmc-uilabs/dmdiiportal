@@ -2,7 +2,8 @@
 
 angular.module('dmc.community.discussions',[
     'ngCookies',
-    'dmc.model.previous-page'
+    'dmc.model.previous-page',
+    'dmc.widgets.rich-text'
 ]).
     directive('communityDiscussions', ['$parse', function ($parse) {
         return {
