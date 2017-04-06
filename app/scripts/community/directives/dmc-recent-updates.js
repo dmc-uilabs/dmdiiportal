@@ -18,12 +18,21 @@ angular.module('dmc.community.dmc-recent-updates',[]).
                     },function(response){
                         $scope.recentUpdates = response.data;
                         $scope.totalRecentUpdates = $scope.recentUpdates.length;
-                        // for(var e in $scope.recentUpdates){
-                        //     $scope.recentUpdates[e].date = [moment($scope.recentUpdates[e].date).format("MMM"),moment($scope.recentUpdates[e].date).format("D")];
-                        //     $scope.recentUpdates[e].startTime =$scope.recentUpdates[e].startTime;
-                        //     $scope.recentUpdates[e].endTime = $scope.recentUpdates[e].endTime;
-                        // }
-                        // if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+
+                        for(var e in $scope.recentUpdates){
+                          var update = $scope.recentUpdates[e];
+                            if (update.updateType == "DMDIIMember") {
+                              update.parentLink = '/member-page.php#/'+update.parentId
+                              update.description = 'New DMDII Member!'
+                            } else if (update.updateId == update.parentId) {
+                              update.description = 'New Project!'
+                            } else {
+                              update.parentLink = '/dmdii-project-page.php#/'+update.parentId
+                              var updateObject = update.updateType.replace("DMDII", "").replace(/([A-Z])/g, ' $1')
+                              update.description = updateObject+" added!"
+                            }
+                        }
+
                     });
                 };
 

@@ -14,7 +14,7 @@
             <md-list>
                 <md-list-item ng-repeat="update in recentUpdates" class="md-3-line">
                     <div class="md-list-item-text">
-                        <h3><a class="link-button font-size14" href="/individual-discussion.php#/{{item.id}}" ng-click="previousPage.save($event)" class="link-button">{{update.parentTitle}}</a></h3>
+                        <h3><a class="link-button font-size14" ng-href="{{update.parentLink}}" class="link-button">{{update.parentTitle}}</a></h3>
                         <div class="info">
                             <span>{{update.description}}</span>
                         </div>
