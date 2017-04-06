@@ -49,6 +49,7 @@ server.use(jsonServer.rewriter({
     '/dmdiiMember/mapEntry' : '/dmdiiMemberMap',
     '/dmdiiProject/events': '/dmdiiProjectEvents',
     '/dmdiiProject/news': '/dmdiiProjectNews',
+    '/dmdiiprojects/member/active': '/dmdiiprojectsmembersactive',
     '/dmdiiProject/:id': '/dmdiiProjects/:id',
     '/dmdiidocuments/dmdiiProjectId': '/dmdiidocuments',
     '/dmdiidocument/filetype': '/dmdiidocument',

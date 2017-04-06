@@ -1,280 +1,141 @@
-<div class="container project-box" ng-show="project" layout="row">
-	<!--project-->
-	<div class="content-column" flex='100'>
-		<!--project-->
-		<md-content class="project">
-			<!--project header-->
-			<div layout="row" layout-align="end">
-				<md-button ng-if="userData.isDmdiiAdmin"
-					   class="md-raised dmc-button"
-					   flex="25"
-					   href="add-dmdii-project-doc.php#/{{project.id}}/projectUpdates">
-					Add Documents and Updates
-				</md-button>
+<header class="under-header" ng-if="userData.isDmdiiAdmin">
+    <div class="container">
+        <div class="row hidden-xs">
+            <div class="col-sm-4"><a href="add-dmdii-project-doc.php#/{{project.id}}/projectUpdates"><span class="glyphicon glyphicon-plus-sign"></span>Add documents &amp; updates</a></div>
+            <div class="col-sm-6 pull-right text-right"><a href="edit-dmdii-project-page.php#/{{project.id}}/edit"><span class="glyphicon glyphicon-pencil"></span> Edit Project</a>
+                <!-- Delete doesn't currently match a defined function
+                <a ng-click="deleteProject()"> <span class="glyphicon glyphicon-trash"></span> Delete Project </a> -->
+            </div>
+        </div>
+        <div class="dropdown visible-xs">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project Options<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="add-dmdii-project-doc.php#/{{project.id}}/projectUpdates"><span class="glyphicon glyphicon-plus-sign"></span>Add documents &amp; updates</a></a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li><a href="edit-dmdii-project-page.php#/{{project.id}}/edit"><span class="glyphicon glyphicon-pencil"></span> Edit Project</a></li>
+                <!-- Delete doesn't currently match a defined function
+                <li role="separator" class="divider"></li>
+                <li><a href ng-click="deleteProject()"><span class="glyphicon glyphicon-trash"></span> Delete Project </a></li> -->
 
-				<span flex></span>
-
-				<md-button ng-if="userData.isDmdiiAdmin"
-						   class="md-raised dmc-button"
-						   flex="20"
-						   href="edit-dmdii-project-page.php#/{{project.id}}/edit">
-					Edit DMDII Project
-				</md-button>
-
-				<md-button ng-if="userData.isDmdiiAdmin"
-						   class="md-raised dmc-button"
-						   flex="20"
-						   href
-						   ng-click="deleteProject()">
-					Delete DMDII Project
-				</md-button>
-			</div>
-
-			<div class="project-header bottom20">
-				<div layout="column">
-					<div layout="row" layout-align="start start">
-						<div layout="column" flex="60">
-							<div layout="row" flex="60">
-								<p id="project-title">{{project.projectTitle}}</p>
-									<br>
-
-								<p style="color:green" class="project-subtitle" ng-if="project.kind == 'dmdiiProject'">{{project.projectStatus.name}}</p>
-							</div>
-
-							<div layout="row" layout-align="start start" style=" margin-top: -45px;" ng-if="project.kind == 'dmdiiProject'">
-								<h2 class="no-bottom" style="color:green">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</h2>
-								<span layout="column">
-									<h5 class="project-subtitle no-bottom">{{project.projectFocusArea.name }}</h5>
-									<h5 class="project-subtitle no-bottom no-top">{{project.projectThrust.name}}</h5>
-								</span>
-							</div>
+            </ul>
+        </div>
+    </div>
+</header>
 
 
-						</div>
+<main>
+    <section class="container">
+        <div class="row">
+            <div class="col-md-6 project-main">
+                <div class="status status-complete" ng-if="project.kind == 'dmdiiProject'">{{project.projectStatus.name}}</div>
+                <div class="status" ng-if="project.kind == 'dmdiiEvent'">EVENT</div>
+                <h1>{{project.projectTitle}}</h1>
+                <time ng-if="project.kind != 'dmdiiEvent'">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</time>
 
-						<div ng-if="project.kind != 'dmdiiEvent'" flex="20" style="border-left: solid;padding-left: 20px; margin-left: 20px">
+                <span href="#">{{project.projectFocusArea.name }}</span> <span href="#">{{project.projectThrust.name}}</span>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div ng-if="project.kind != 'dmdiiEvent'" class="col-xs-6">
 
-							<h4 style="color:green">Project Financials</h4>
-							<div class="project-financials">
-				                <md-data-table-container>
-				                    <table md-data-table>
-				                        <thead>
-				                        <tr>
-				                            <th name="DMDII Funding"/>
-				                            <th name="Cost Share"/>
-				                        </tr>
-				                        </thead>
-				                        <tbody>
-				                        <tr ng-repeat="a in [0]">
-				                            <td>
-				                                <h4 class="no-top no-bottom">{{project.dmdiiFunding | currency}}</h4>
-				                            </td>
-											<td>
-												<h4 class="no-top no-bottom">{{project.costShare | currency}}</h4>
-											</td>
-										</tr>
-				                        </tbody>
-				                    </table>
-				                </md-data-table-container>
-								<div ng-if="projectFinancials && projectFinancials.documentUrl" flex="50">
-									<img ng-src="{{projectFinancials.documentUrl}}"></img>
-									<a ng-if="userData.isDmdiiAdmin" class="delete-btn" href ng-click="deleteDocument(projectFinancials.id, 'projectFinancials')">delete</a>
-								</div>
-				            </div>
-						</div>
-						<span flex></span>
-						<div layout="row" flex="30" layout-align="end start">
-							<div class="project-updates">
-								<div ng-if="project.kind == 'dmdiiEvent'">
-										<h4 style="color:green">Event Dates</h4>
-										<md-divider></md-divider>
-										<div layout="column" style="text-align: right;">
-											<h5 class="slim-margin">Event Starts: <span class="slim-margin">{{project.awardedDate}}</span></h5>
+                        <h4>Project Financials</h4>
+                        <dl class="project-stats">
+                            <dt>DMDII Funding</dt>
+                            <dd>{{project.dmdiiFunding | currency}}</dd>
+                            <dt>Cost Share</dt>
+                            <dd>{{project.costShare | currency}}</dd>
+                        </dl>
+                    </div>
+                    <div class="col-xs-6 pull-right">
 
-											<h5 class="slim-margin">Event Ends: <span class="slim-margin">{{project.endDate}}</span></h5>
-										</div>
-								</div>
-								<div ng-if="project.kind == 'dmdiiProject'">
-										<h4 style="color:green">Key Dates</h4>
-										<md-divider></md-divider>
-										<div layout="column" style="text-align: right;">
-											<h5 class="slim-margin">Awarded On: <span class="slim-margin">{{project.awardedDate}}</span></h5>
+                        <h4>Key Dates</h4>
+                        <dl class="project-stats">
+                            <dt ng-if="project.kind == 'dmdiiEvent'">Starts</dt>
+                            <dt ng-if="project.kind != 'dmdiiEvent'">Awarded On</dt>
+                            <dd><time>{{project.awardedDate}}</time></dd>
+                            <dt ng-if="project.kind == 'dmdiiEvent'">Ends</dt>
+                            <dt ng-if="project.kind != 'dmdiiEvent'">Completed</dt>
+                            <dd><time>{{project.endDate}}</time></dd>
+                        </dl>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-sm-6">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 60%;">60%</div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="project-summary-container">
+            <div class="row ">
+                <div class="col-xs-12">
+                    <h4>Summary</h4>
+                    <div class="slim-margin" markdown-to-html="project.projectSummary"></div>
+                </div>
+            </div>
 
-											<h5 class="slim-margin">Completed By: <span class="slim-margin">{{project.endDate}}</span></h5>
-										</div>
-								</div>
-
-
-
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<md-divider style="margin-top:100px"></md-divider>
-			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom ng-if="project.kind != 'dmdiiEvent'">
-		 	 <md-tab label="Project Contributors">
+        </div>
 
 
-
-		 		 <md-content class="md-padding">
-		 			 <div layout="row" ng-if="project.projectStatus.id > 1">
-		 				 <div layout="column" flex="50">
-		 					 <h2 class="no-bottom">Principal Investigator</h2>
-		 					 <div layout="column">
-		 						 <h3 class="slim-margin no-bottom green" >{{project.principalInvestigator.firstName + ' ' + project.principalInvestigator.lastName}}</h3>
-		 						 <span class="close-email">{{project.principalInvestigator.email}}</span>
-		 					 </div>
-		 					 <br><br>
-		 					 <h2 class="no-bottom">DMDII Project Manager</h2>
-		 					 <div layout="column">
-		 						 <h3 class="slim-margin no-bottom green">{{project.principalPointOfContact.firstName + ' ' + project.principalPointOfContact.lastName}}</h3>
-		 						 <span class="close-email ">{{project.principalPointOfContact.email}}</span>
-		 					 </div>
-		 				 </div>
-
-		 				 <div layout="column" flex="50">
-		 					 <h2 class="no-bottom">Participants</h2>
-
-		 					 <div layout="column">
-		 						 <div layout="row">
-		 							 <h3 class="slim-margin green"><a ng-href="{{'/member-page.php#/'+project.primeOrganization.id}}">{{project.primeOrganization.name}}</a></h3>
-		 							 <span class="slim-margin po-subtitle">[ Prime ]</span>
-		 						 </div>
-		 					 </div>
-		 					 <div layout="column" ng-repeat="member in project.contributingCompanies">
-		 						 <h4 class="close-email"><a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a></h3>
-		 					 </div>
-		 				 </div>
-		 			 </div>
-		 			 <span ng-hide="project.projectStatus.id > 1">This project has not been awarded yet</span>
-		 		 </md-content>
-		 	 </md-tab>
-
-		 	 <md-tab label="Project Schedule">
-		 		 <img style="border:1px solid;width:70%;margin:25px;  padding:20px;" ng-src="{{projectSchedule.documentUrl}}"></img>
-		 		 <a ng-if="userData.isDmdiiAdmin" class="delete-btn" href ng-click="deleteDocument(projectSchedule.id, 'projectSchedule')">delete</a>
-		 	 </md-tab>
-
-		 	 <md-tab label="Project Updates">
-		 		 <md-content class="md-padding">
-		 			 <div class="tabs-content" layout="column">
-		 				 <div layout="row" layout-wrap ng-show="updates.length > 0">
-		 					 <div class="bottom10" ng-repeat="update in updates">
-		 						 <div class="slim-side-margin no-bottom" layout="row">
-		 							 <h2 class="margin-top-25 no-bottom green">{{update.title}}</h4>
-		 							 <p class="superset">{{update.created}}</p>
-		 							 <a ng-if="userData.isDmdiiAdmin" class="delete-btn" href ng-click="deleteUpdate($index, update.id)">delete</a>
-		 						 </div>
-		 						 <p class="slim-margin" markdown-to-html="update.description"></p>
-		 					 </div>
-		 				 </div>
-		 				 <span ng-hide="updates.length > 0">This Project has no updates</span>
-		 			 </div>
-		 		 </md-content>
-		 	 </md-tab>
-
-		 	 <md-tab ng-click="selectDocument(0)" label="Project Documents">
-		 		 <md-content class="md-padding">
-		 			 <div class="tabs-content" layout="column">
-						 <div layout="row">
-			 				 <div layout="column" flex="50" class="project-documents" ng-show="documents.length > 0">
-			 					 <div class='document' ng-class="{'green-background': isSelectedDocument($index), 'document-hover': !isSelectedDocument($index)}" layout="row" ng-repeat="doc in documents">
-			 						 <div ng-click="selectDocument($index)" class="slim-margin">{{doc.documentName}}</div>
-			 						 <!-- <a class="delete-btn" href ng-click="deleteDocument(doc.id, 'doc', $index)">delete</a> -->
-			 					 </div>
-			 				 </div>
-
-							 <div layout="column" flex="50">
-								 <dmc-document-info ng-show="selectedDocument" selected-document="selectedDocument" project="project">
-								 </dmc-document-info>
-							 </div>
-						 </div>
-		 				 <span ng-hide="documents.length > 0">This Project has no documents</span>
-		 			 </div>
-		 		 </md-content>
-		 	 </md-tab>
-		  </md-tabs>
-
-			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom ng-if="project.kind == 'dmdiiEvent'">
-				<md-tab label="Overview">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active hidden-xs"><a data-target="#contributors" aria-controls="contributors" role="tab" data-toggle="tab">Contributors</a></li>
+            <li role="presentation" class="hidden-xs"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Schedule</a></li>
+            <li ng-if="project.kind != 'dmdiiEvent'" role="presentation" class="hidden-xs"><a data-target="#updates" aria-controls="updates" role="tab" data-toggle="tab">Updates</a></li>
+            <li role="presentation" class="hidden-xs">
+              <a ng-if="project.kind != 'dmdiiEvent'" data-target="#documents" aria-controls="documents" role="tab" data-toggle="tab">Documents</a>
+              <a ng-if="project.kind == 'dmdiiEvent'" data-target="#documents" aria-controls="documents" role="tab" data-toggle="tab">Docs &amp; Presentations</a>
+            </li>
 
 
+            <li role="presentation" class="dropdown xs-tab-control visible-xs">
+                <a data-target="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false">
+                  <span class="tab-section-label">Section</span>
+                  <span class="caret"></span></a>
+                <ul class="dropdown-menu"
+                    aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+                    <li class="">
+                        <a data-target="#contributors" role="tab" data-toggle="tab" aria-controls="dropdown1" aria-expanded="false">Contrubutors</a></li>
+                    <li class="">
+                        <a data-target="#schedule" role="tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">Schedule</a></li>
+                    <li ng-if="project.kind != 'dmdiiEvent'" class="">
+                        <a data-target="#updates" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Updates</a></li>
+                    <li class="">
+                        <a ng-if="project.kind != 'dmdiiEvent'" data-target="#documents" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Documents</a>
+                        <a ng-if="project.kind == 'dmdiiEvent'" data-target="#documents" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Docs &amp; Presentations</a>
+                      </li>
+                </ul>
 
-					<md-content class="md-padding">
-						<div layout="row" ng-if="project.projectStatus.id > 1">
-							<div layout="column" flex="50">
-								<h2 class="no-bottom">Event Coordinator</h2>
-								<div layout="column">
-									<h3 class="slim-margin no-bottom green" >{{project.principalInvestigator.firstName}}  {{project.principalInvestigator.lastName}}</h3>
-									<span class="close-email">{{project.principalInvestigator.email}}</span>
-								</div>
-								<br><br>
-								<h2 class="no-bottom">Secondary Contact</h2>
-								<div layout="column">
-									<h3 class="slim-margin no-bottom green">{{project.principalPointOfContact.firstName}}  {{project.principalPointOfContact.lastName}}</h3>
-									<span class="close-email ">{{project.principalPointOfContact.email}}</span>
-								</div>
-							</div>
+            </li>
+        </ul>
 
-							<div layout="column" flex="50">
-								<h2 class="no-bottom">Participants</h2>
 
-								<div layout="column">
-									<div layout="row">
-										<h3 class="slim-margin green"><a ng-href="{{'/member-page.php#/'+project.primeOrganization.id}}">{{project.primeOrganization.name}}</a></h3>
-										<span class="slim-margin po-subtitle"></span>
-									</div>
-								</div>
-								<div layout="column" ng-repeat="member in project.contributingCompanies">
-									<h4 class="close-email"><a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a></h3>
-								</div>
-							</div>
-						</div>
-						<span ng-hide="project.projectStatus.id > 1">This project has not been awarded yet</span>
-					</md-content>
-				</md-tab>
+        </div>
 
-				<md-tab label="Agenda">
-				  <img style="border:1px solid;width:70%;margin:25px;  padding:20px;" ng-src="{{projectSchedule.documentUrl}}"></img>
-				  <a ng-if="userData.isDmdiiAdmin" class="delete-btn" href ng-click="deleteDocument(projectSchedule.id, 'projectSchedule')">delete</a>
-				</md-tab>
+        <div>
+        </div>
+    </section>
 
-				<md-tab label="Docs & Presentations">
-					<md-content class="md-padding">
-						<div class="tabs-content" layout="column">
-							<div layout="row">
-								<div layout="column" flex="50" class="project-documents" ng-show="documents.length > 0">
-									<div class='document' ng-class="{'green-background': isSelectedDocument($index), 'document-hover': !isSelectedDocument($index)}" layout="row" ng-repeat="doc in documents">
-										<div ng-click="selectDocument($index)" class="slim-margin">{{doc.documentName}}</div>
-										<!-- <a class="delete-btn" href ng-click="deleteDocument(doc.id, 'doc', $index)">delete</a> -->
-									</div>
-								</div>
-
-								<div layout="column" flex="50">
-									<dmc-document-info ng-show="selectedDocument" selected-document="selectedDocument" project="project">
-									</dmc-document-info>
-								</div>
-							</div>
-							<span ng-hide="documents.length > 0">This Project has no documents</span>
-						</div>
-					</md-content>
-				</md-tab>
-			</md-tabs>
-
-			<md-divider style="margin-bottom: 50px"></md-divider>
-
-			<div layout="row" style="margin-top:50">
-				<div flex>
-					<!--project description-->
-					<div class="project-overview">
-						<h2>Summary</h2>
-						<div class="slim-margin" markdown-to-html="project.projectSummary"></div>
-					</div>
-				</div>
-			</div>
-		</md-content>
-	</div>
-</div>
+    <section class="gray">
+        <div class="container">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="contributors">
+                  <tab-contributors project="project" user-data="userData"></tab-contributors>
+                </div>
+                <div role="tabpanel" class="tab-pane fade " id="schedule">
+                  <tab-schedule project-schedule="projectSchedule" user-data="userData"></tab-schedule>
+                </div>
+                <div role="tabpanel" class="tab-pane fade " id="updates" ng-if="project.kind != 'dmdiiEvent'">
+                  <tab-updates updates="updates" user-data="userData"></tab-updates>
+                </div>
+                <div role="tabpanel" class="tab-pane fade " id="documents">
+                  <tab-documents documents="documents" user-data="userData" project="project"></tab-documents>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

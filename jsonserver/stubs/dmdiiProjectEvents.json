@@ -7,6 +7,6 @@
   {"id":5,"eventName":"Event five","eventDescription":"This is the description of event 5","eventDate":"2018-01-29"},
   {"id":4,"eventName":"Event four","eventDescription":"This is the description of event 4","eventDate":"2018-01-29"},
   {"id":3,"eventName":"Event three","eventDescription":"This is the description of event 3","eventDate":"2018-01-29"},
-  {"id":2,"eventName":"Event two","eventDescription":"This is the description of event 2","eventDate":"2017-04-28"},
+  {"id":2,"eventName":"Event two","eventDescription":"This is the ddddddddddddddddddddddddddddddddddddddddddddddddddddescription of event 2","eventDate":"2017-04-28"},
   {"id":1,"eventName":"Event one","eventDescription":"This is the description of event 1","eventDate":"2017-07-25"}
 ]

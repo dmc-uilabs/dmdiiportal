@@ -51,7 +51,7 @@
                     <img ng-src="{{projectCtrl.projectData.featureImage.thumbnail}}">
                   </div>
                   <div flex="75">
-                    <p>{{projectCtrl.projectData.description}}</p>
+                    <p markdown-to-html="projectCtrl.projectData.description"></p>
                   </div>
                 </md-content>
               </div>

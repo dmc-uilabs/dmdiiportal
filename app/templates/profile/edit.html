@@ -85,21 +85,23 @@
             </div>
         </div>
 
-        <md-divider></md-divider>
-
-        <div class="profile-description">
-            <md-input-container>
-                <label>Description</label>
-                <textarea ng-model="profile.aboutMe"
-                          columns="1"
-                          ng-change="change()"
-                          ng-init="changes.aboutMe = profile.aboutMe"
-                          md-maxlength="3000"></textarea>
-            </md-input-container>
-        </div>
-
         <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Skills">
+            <md-tab label="My Description">
+                <md-content class="md-padding">
+
+                      <div layout="column"
+                      ui-widget-rich-text
+                      field-name="message"
+                      is-required="false"
+                      model="profile.aboutMe"
+                      limit="3000"
+                      is-saved="isSaved"
+                      is-valid="isValid">
+                    </div>
+
+                </md-content>
+            </md-tab>
+            <md-tab label="My Skills">
                 <md-content class="md-padding">
                     <div layout="column">
                         <form ng-submit="addSkill(inputSkill)" class="add-skills-form" layout="row" layout-align="start center">

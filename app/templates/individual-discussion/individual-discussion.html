@@ -20,9 +20,7 @@
 								<h3>{{comment.created_at}}</h3>
 							</div>
 						</div>
-						<div class="text">
-							{{comment.text}}
-						</div>
+						<div class="text" markdown-to-html="comment.text"></div>
 						<div class="comment-footer" layout="row" layout-align="space-between center">
 							<div layout="row" layout-align="start center">
 								<div>

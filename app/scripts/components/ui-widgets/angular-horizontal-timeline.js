@@ -22,12 +22,15 @@ var template =
 '			ng-click="selectedEvent[$index]=true"'+
 '			ng-blur="deselectEvent($index)"'+
 '			event-date="event.date"'+
-'			title="{{event.date}}"'+
+'			title="{{event.content.date}}"'+
 '			timeline-event-marker><span></span>'+
 '			<div class="timeline-event-box"'+
 '				ng-show="selectedEvent[$index]"'+
 '				ng-hide="!selectedEvent[$index]">'+
-'               {{event.date}}<div ng-bind-html="event.content | unsafe"></div>'+
+'               <div class="timeline-event-box-content">'+
+'                 <h4>{{event.content.date}}</h4>'+
+'                 <h3 class="timeline-event-box-content-title">{{event.content.name}}</h3>'+
+'                 <p markdown-to-html="event.content.description"></p>'+
 '               <a class="delete-btn" href ng-click="deleteEvent($index, event.id)" ng-if="user.isDmdiiAdmin">delete</a>'+
 '			</div>'+
 '		</li>'+
@@ -64,8 +67,7 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
         $scope.userData = $scope.$root.userData;
 		$scope.getPosition = function(date){
 			date = moment(date);
-			var diff = date.diff(moment($scope.startDate), 'months', true);
-      var diff = Math.round(diff);
+			var diff = date.diff(moment($scope.startDate), 'months');
 			var curWeekWidth = 100/$scope.months[diff].days.length;
 			var monthsWidth = 100/$scope.months.length;
 			var ixOfWeek = Math.ceil(date.format('D')/7) - 1;
@@ -73,7 +75,7 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
 
 			return ( (monthsWidth * diff) + (((ixOfWeek * curWeekWidth) + (curDOfMPercent / 100 * curWeekWidth)) / 100 * monthsWidth) );
 		};
-
+        
         $scope.deselectEvent = function(index) {
             $timeout(function() {
                 $scope.selectedEvent[index] = false;
