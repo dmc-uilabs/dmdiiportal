@@ -5,7 +5,8 @@
     "updateId": 85,
     "parentId": 15,
     "description": "title of update 47",
-    "parentTitle": "Assessing, Remediating, and Enhancing DFARS Cybersecurity Compliance in Factory Infrastructure"
+    "parentTitle": "Assessing, Remediating, and Enhancing DFARS Cybersecurity Compliance in Factory Infrastructure",
+    "attributeName": null
 }, {
     "id": 103,
     "updateDate": "1491421656",
@@ -13,7 +14,8 @@
     "updateId": 19,
     "parentId": 19,
     "description": "Allied Plastics",
-    "parentTitle": null
+    "parentTitle": "Allied Plastics",
+    "attributeName": null
 }, {
     "id": 102,
     "updateDate": "1491419637",
@@ -21,7 +23,8 @@
     "updateId": 198,
     "parentId": 15,
     "description": "dmdii_project_detail-mobile3.png",
-    "parentTitle": "Assessing, Remediating, and Enhancing DFARS Cybersecurity Compliance in Factory Infrastructure"
+    "parentTitle": "Assessing, Remediating, and Enhancing DFARS Cybersecurity Compliance in Factory Infrastructure",
+    "attributeName": null
 }, {
     "id": 101,
     "updateDate": "1491419124",
@@ -29,7 +32,8 @@
     "updateId": 84,
     "parentId": 15,
     "description": "title of update 46",
-    "parentTitle": "Assessing, Remediating, and Enhancing DFARS Cybersecurity Compliance in Factory Infrastructure"
+    "parentTitle": "Assessing, Remediating, and Enhancing DFARS Cybersecurity Compliance in Factory Infrastructure",
+    "attributeName": null
 }, {
     "id": 100,
     "updateDate": "1491419080",
@@ -37,5 +41,6 @@
     "updateId": 2,
     "parentId": 2,
     "description": "ProjectStatus has been updated",
-    "parentTitle": "Ok for real now I'm changing a title"
+    "parentTitle": "Ok for real now I'm changing a title",
+    "attributeName": null
 }]
