@@ -51,6 +51,8 @@
 <script src="/bower_components/angular-messages/angular-messages.js"></script>
 <script src="/bower_components/ngMask/dist/ngMask.js"></script>
 <script src="/bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <script src="/bower_components/angular-material-icons/angular-material-icons.min.js"></script>
 <script src="/bower_components/angular-recursion/angular-recursion.js"></script>
 <script src="/bower_components/angular-touch/angular-touch.js"></script>
@@ -83,6 +85,6 @@
 <script src="/bower_components/angulartics-google-analytics/dist/angulartics-ga.min.js"></script>
 <script src="/scripts/common/analytics/analytics.js"></script>
 <script src="/bower_components/angular-tree-control/angular-tree-control.js"></script>
-<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <!-- endbower -->
 <!-- endbuild -->

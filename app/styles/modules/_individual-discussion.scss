@@ -217,6 +217,15 @@
 }
 
 .compose-discussion{
+  input{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.118);
+  }
+  h2{
+    color: $green;
+  }
+  md-chips .md-chips{
+    box-shadow: none;
+  }
   padding: 16px;
   .left-column{
     border: 1px solid grey;

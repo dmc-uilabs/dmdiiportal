@@ -7,7 +7,14 @@ angular.module('dmc.profile')
 
         ajax.get(dataFactory.documentsUrl().getList, {page: 0, pageSize: 1, parentType: 'USER', parentId: $scope.profile.id, docClass: 'IMAGE'}, function(response) {
             if (response.data && response.data.data) {
-                $scope.profile.image = response.data.data[0].documentUrl;
+
+                if(response.data.data[0].documentUrl.substr(8,10) == 'dmcupfinal'){
+                  $scope.profile.image = response.data.data[0].documentUrl;
+                }
+                else {
+                  $scope.profile.image = 'images/dmcScan.svg';
+                }
+
             }
         });
 
