@@ -81,8 +81,8 @@
 								<div ng-if="dayEvents.length" class="event-details">
 									<div class="list-wrapper">
 										<div ng-repeat="event in dayEvents">
-											<h2>{{event.title}}</h2>
-											<time datetime="2011-01-12">January 12th, 2011</time>
+											<h2>{{event.name}}</h2>
+											<time>{{event.date}}</time>
 											<p markdown-to-html="event.description"></p>
 										</div>
 									</div>
