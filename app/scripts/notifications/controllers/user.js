@@ -52,7 +52,7 @@ angular.module('dmc.notifications')
                       $scope.userData.notifications[i].cleared = true;
                     }
                 }
-                ajax.put(dataFactory.markNotificationRead(id, notification_id),function(response){
+                ajax.get(dataFactory.markNotificationRead(id, notification_id),function(response){
                 });
             };
 

@@ -92,7 +92,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         }
 
         $scope.markAllRead = function(){
-            ajax.put(dataFactory.markAllNotificationsRead($scope.userData.id), {}, function() {
+            ajax.get(dataFactory.markAllNotificationsRead($scope.userData.id), {}, function() {
                 $scope.notification_alert = 0;
                 $scope.userData.notifications = [];
             });
@@ -115,7 +115,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
                   $scope.userData.notifications[i].cleared = true;
                 }
             }
-            ajax.put(dataFactory.markNotificationRead(item.createdFor.id, item.id),function(response){
+            ajax.get(dataFactory.markNotificationRead(item.createdFor.id, item.id),function(response){
             });
         };
 
