@@ -55,8 +55,16 @@
 					    	<form name="replyCommentForm" layout="row" layout-align="start start">
 					      		<div flex layout="column">
 							        <md-input-container flex>
-							          	<label>Comment</label>
-							          	<textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea>
+							          	<!-- <label>Comment</label>
+							          	<textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea> -->
+													<div ui-widget-rich-text
+															field-name="Comment"
+															model="NewReview.Comment"
+															limit="1000"
+															placeholder="Comment"
+															is-saved="isSaved"
+															is-valid="isValid">
+													</div>
 							        </md-input-container>
 							        <div layout layout-align="end end">
 							          	<md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
@@ -112,8 +120,16 @@
 					</div>
                     <form name="CommentForm" ng-submit="Submit()">
                         <md-input-container flex>
-                            <label>Comment</label>
-                            <textarea ng-model="newComment" columns="1" md-maxlength="1000"></textarea>
+                            <!-- <label>Comment</label>
+                            <textarea ng-model="newComment" columns="1" md-maxlength="1000"></textarea> -->
+														<div ui-widget-rich-text
+																field-name="Comment"
+																model="newComment"
+																limit="1000"
+																placeholder="Comment"
+																is-saved="isSaved"
+																is-valid="isValid">
+														</div>
                         </md-input-container>
                         <div layout layout-align="end end">
                             <md-button class="md-raised" submit ng-disabled="!newComment" >Submit</md-button>
