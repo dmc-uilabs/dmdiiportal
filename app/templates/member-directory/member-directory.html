@@ -98,7 +98,8 @@
 						<div class="row">
 							<h2 class="col-sm-6">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
 						</div>
-							<p>{{plainText(event.description)}}</p>
+							<!-- <p>{{plainText(event.description)}}</p> -->
+							<p markdown-to-html="event.description"></p>
 							<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteEvent($index, event.id)" class="delete-icon">delete<span class="glyphicon glyphicon-trash"></span></a>
 						</div>
 
