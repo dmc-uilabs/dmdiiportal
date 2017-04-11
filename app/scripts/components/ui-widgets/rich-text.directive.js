@@ -14,7 +14,8 @@ angular.module('dmc.widgets.rich-text', [
 			isRequired: '=',
 			limit: '=',
 			isSaved: '=',
-			isValid: '='
+			isValid: '=',
+			placeholder: '@'
 		},
 		controller: function ($scope) {
 
@@ -23,7 +24,9 @@ angular.module('dmc.widgets.rich-text', [
 			$scope.isValid = !$scope.isRequired;
 			$scope.chars = 0;
 
-			if ($scope.isRequired) {
+			if ($scope.placeholder) {
+				$scope.placeholderText = $scope.placeholder
+			} else if ($scope.isRequired) {
 				$scope.placeholderText = 'Enter text here (required)';
 			} else {
 				$scope.placeholderText = 'Enter text here';

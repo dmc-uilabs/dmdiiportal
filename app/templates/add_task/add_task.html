@@ -21,8 +21,15 @@
                                 </md-select>
                             </md-input-container>
                             <md-input-container class="md-block">
-                                <label>Description</label>
-                                <textarea ng-model="task.title" required></textarea>
+                                <div ui-widget-rich-text
+                                    field-name="title"
+                                    is-required="true"
+                                    model="task.title"
+                                    limit="1000"
+                                    placeholder="Description"
+                                    is-saved="isSaved"
+                                    is-valid="isValid">
+                                </div>
                             </md-input-container>
                             <md-input-container class="md-block">
                                 <label>Additional Details</label>
