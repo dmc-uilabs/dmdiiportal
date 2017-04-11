@@ -50,6 +50,8 @@
     <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
     <script src="scripts/marketplace/marketplace.js"></script>
     <script src="scripts/marketplace/marketplace.controller.js"></script>
+    
+    <script src="scripts/components/add-to-workspace/add-to-workspace.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

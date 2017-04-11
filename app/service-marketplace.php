@@ -52,6 +52,8 @@
 <script src="scripts/service-marketplace/service-marketplace.js"></script>
 <script src="scripts/service-marketplace/controllers/home.js"></script>
 <script src="scripts/service-marketplace/controllers/edit.js"></script>
+
+<script src="scripts/components/add-to-workspace/add-to-workspace.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
     <?php
