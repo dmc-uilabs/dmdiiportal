@@ -30,7 +30,6 @@
     <script src="scripts/components/ui-widgets/services.directive.js"></script>
     <script src="scripts/components/ui-widgets/components.directive.js"></script>
     <script src="scripts/components/ui-widgets/discussions.directive.js"></script>
-    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
     <script src="scripts/components/ui-widgets/questions.directive.js"></script>
     <script src="scripts/components/ui-widgets/submissions.directive.js"></script>
