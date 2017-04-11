@@ -7,7 +7,7 @@
   </div>
   <!--One Review content-->
   <md-content class="md-padding">
-    {{review.comment}}
+    <span markdown-to-html="review.comment"></span>
     <div ng-if="typereview != 'reply_reviews'" layout="row" layout-align="center center" layout-fill class="review-widget-footer">
       <div layout="row">
         <a href="" ng-click="Reply($index)">Reply</a>
