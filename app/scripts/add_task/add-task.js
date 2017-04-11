@@ -114,7 +114,7 @@ angular.module('dmc.add_task',[
             };
 
             $scope.createTask = function(){
-                b=$scope.task.assigneeId.split('-');
+                var b=$scope.task.assigneeId.split('-');
 
                 $scope.isCreation = true;
                 var assignee = null;
