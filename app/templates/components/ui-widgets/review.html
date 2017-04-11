@@ -7,7 +7,7 @@
   </div>
   <!--One Review content-->
   <md-content class="md-padding">
-    <span markdown-to-html="review.comment"></span>
+    <span class="rich-text-small" markdown-to-html="review.comment"></span>
     <div ng-if="typereview != 'reply_reviews'" layout="row" layout-align="center center" layout-fill class="review-widget-footer">
       <div layout="row">
         <a href="" ng-click="Reply($index)">Reply</a>
@@ -84,7 +84,7 @@
       <span>{{reply.date}}</span>
     </div>
     <md-content class="md-padding">
-      <span markdown-to-html="reply.comment"></span>
+      <span class="rich-text-small" markdown-to-html="reply.comment"></span>
       <div layout="row" layout-align="space-between center" layout-fill class="review-widget-footer">
         <a href="" ng-if="reply.flagged">Flagged</a>
         <a href="" ng-if="!reply.flagged" ng-click="ReplyFlagReview($index)">Flag Comment</a>

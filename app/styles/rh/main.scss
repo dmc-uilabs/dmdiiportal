@@ -189,3 +189,18 @@ div.progress {
 		border-right: none;
 	}
 }
+
+.rich-text-small {
+	h2 {
+		font-size: 1.3em;
+		font-weight: 600;
+		text-decoration: underline;
+	}
+	h3 {
+		font-weight: 600;
+		font-size: 1.2em;
+	}
+	p {
+		font-weight: normal;
+	}
+}
