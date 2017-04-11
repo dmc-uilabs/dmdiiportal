@@ -37,8 +37,15 @@
   <div flex class="new-review" ng-if="replyFlag">
     <form name="CommentForm">
       <md-input-container flex>
-        <label>Comment</label>
-        <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea>
+        <!-- <label>Comment</label>
+        <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea> -->
+        <div ui-widget-rich-text
+          field-name="comment"
+          model="NewReview.Comment"
+          limit="1000"
+          is-saved="isSaved"
+          is-valid="isValid">
+        </div>
       </md-input-container>
       <div layout layout-align="end end">
         <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
@@ -77,7 +84,7 @@
       <span>{{reply.date}}</span>
     </div>
     <md-content class="md-padding">
-      {{reply.comment}}
+      <span markdown-to-html="reply.comment"></span>
       <div layout="row" layout-align="space-between center" layout-fill class="review-widget-footer">
         <a href="" ng-if="reply.flagged">Flagged</a>
         <a href="" ng-if="!reply.flagged" ng-click="ReplyFlagReview($index)">Flag Comment</a>
