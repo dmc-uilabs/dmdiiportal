@@ -36,6 +36,9 @@
     <script src="scripts/components/tree-menu/products-filter.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/products-card/products-card.js"></script>
+
+    <script src="scripts/components/featuredApp-card/featuredApp-card.js"></script>
+
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/components/members-card/members-card.js"></script>
@@ -50,8 +53,6 @@
     <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
     <script src="scripts/marketplace/marketplace.js"></script>
     <script src="scripts/marketplace/marketplace.controller.js"></script>
-    
-    <script src="scripts/components/add-to-workspace/add-to-workspace.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php
