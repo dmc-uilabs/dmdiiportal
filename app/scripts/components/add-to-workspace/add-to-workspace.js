@@ -25,6 +25,17 @@ angular.module('dmc.component.product-card-buttons',[
             }
         };
     }).
+    directive('productCardButtonsCompare', function () {
+        return {
+            restrict: 'E',
+            controller: 'productCardButtonsCtrl',
+            templateUrl: 'templates/components/add-to-workspace/compare.html',
+            scope: {
+              cardSource: '=',
+              typeProduct: '='
+            }
+        };
+    }).
     controller('productCardButtonsCtrl', function($scope, $rootScope, ajax, dataFactory, DMCUserModel, CompareModel){
       
       $scope.projects = [];
