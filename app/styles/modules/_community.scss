@@ -194,6 +194,8 @@ a.following-btn{
     border-top: none;
   }
   .badge {
+    min-width: 40px;
+    text-align: center;
     font-size: 8px;
     font-weight: bold;
     color: map-get($colors, secondary);
