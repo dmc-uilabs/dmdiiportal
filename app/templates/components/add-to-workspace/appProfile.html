@@ -2,15 +2,8 @@
   <ui-widget-stars-static size="15" value="{{product.ratingAverage}}" text="({{product.ratingCount}})"></ui-widget-stars-static>
   <span flex></span>
   <div ng-if="!adding_to_project" layout="row" layout-align="center center">
-    <!-- <md-button ui-sref="service-marketplace-edit({serviceId: cardSource.id})" ng-if="!addingToProject" class="md-raised add dmc-button margin-left20">Edit Service</md-button> -->
+    <md-button ui-sref="service-marketplace-edit({serviceId: cardSource.id})" ng-if="!cardSource.added && !addingToProject && userData.isDmdiiAdmin" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
     <md-button ng-click="addToProject()" ng-hide="addingToProject || cardSource.added" class="md-raised add dmc-button margin-left20">Add to Workspace</md-button>
-
-          <md-button class="md-raised dmc-button cancelProject margin-left20" ng-if="invate" ng-click="backToAdd()">
-              <ng-md-icon icon="close" size="17"></ng-md-icon>
-          </md-button>
-          <a ng-if="invate" class="link-to-project" ng-href="{{'project.php#/'+product.currentStatus.project.id+'/home'}}">
-              {{ product.currentStatus.project.title}}
-          </a>
           
     <md-button aria-label="Back to Add"
                class="md-raised cancelProject"
@@ -45,7 +38,7 @@
     </md-button>
   </div>
 
-      <div ng-if="addingToProject && !invate" layout="row" layout-align="center center" class="add-to-project">
+      <div ng-if="addingToProject" layout="row" layout-align="center center" class="add-to-project">
           <md-button class="md-raised cancelProject" ng-click="cancelAddToProject()">
               <ng-md-icon icon="close" size="17"></ng-md-icon>
           </md-button>

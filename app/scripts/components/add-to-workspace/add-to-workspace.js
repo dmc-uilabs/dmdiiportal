@@ -30,9 +30,9 @@ angular.module('dmc.component.product-card-buttons',[
       $scope.projects = [];
       $scope.addingToProject = false;
       
-      var userData = null;
+      $scope.userData = null;
       DMCUserModel.getUserData().then(function(res){
-          userData = res;
+          $scope.userData = res;
           // get compared services
           // this is already being done in the marketplace controller
           // CompareModel.get('services',userData);
@@ -83,7 +83,7 @@ angular.module('dmc.component.product-card-buttons',[
                       title: project.title
                   }
               };
-              updatedItem.owner = userData.accountId;
+              updatedItem.owner = $scope.userData.accountId;
               updatedItem.projectId = project.id;
               updatedItem.from = 'marketplace';
               updatedItem.published = false;
@@ -136,7 +136,7 @@ angular.module('dmc.component.product-card-buttons',[
       $scope.addToCompare = function(){
           if($scope.typeProduct == 'service'){
               CompareModel.add('services',{
-                  profileId : userData.profileId,
+                  profileId : $scope.userData.profileId,
                   serviceId : $scope.cardSource.id
               });
           }
