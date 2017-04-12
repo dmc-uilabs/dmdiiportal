@@ -13,13 +13,15 @@
         <!-- <div> -->
             <md-list>
                 <md-list-item ng-repeat="update in recentUpdates" class="md-3-line">
-                    <div class="md-list-item-text">
+                    <div class="md-list-item-text" layout="row">
                       <span class="badge">{{update.updateTypeDisplay}}</span>
-                        <h3>
-                          <a class="link-button font-size14" ng-href="{{update.parentLink}}" class="link-button">{{update.parentTitle}}</a>
-                        </h3>
-                        <div class="info">
-                            <span>{{update.description}}</span>
+                        <div>
+                          <h3>
+                            <a class="link-button font-size14" ng-href="{{update.parentLink}}" class="link-button">{{update.parentTitle}}</a>
+                          </h3>
+                          <div class="info">
+                              <span>{{update.description}}</span>
+                          </div>
                         </div>
                     </div>
                 </md-list-item>

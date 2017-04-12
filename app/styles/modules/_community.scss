@@ -196,10 +196,10 @@ a.following-btn{
   .badge {
     font-size: 8px;
     font-weight: bold;
-    color: white;
+    color: map-get($colors, secondary);
     padding: 5px;
-    background: map-get($colors, secondary);
+    border: 1px solid map-get($colors, secondary);
     display: inline-block;
-    margin-bottom: 5px;
+    margin-right: 10px;
   }
 }
