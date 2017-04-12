@@ -12,6 +12,7 @@ angular.module('dmc.component.featuredAppcard', [
     'ngCookies',
     'dmc.compare',
     'dmc.component.members-card',
+    'dmc.component.product-card-buttons'
 ])
 
 

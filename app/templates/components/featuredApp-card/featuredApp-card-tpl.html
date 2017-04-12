@@ -16,69 +16,10 @@
       </div>
 
 
-      <div class="row">
-        <div class="product-card-container product-card__footer">
-            <div class="adding-to-project" ng-show="addingToProject">
-                <div layout="row" layout-align="center center" class="inner-add-to-project" flex>
-                    <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">
-                        <ng-md-icon icon="close" size="17"></ng-md-icon>
-                    </md-button>
-                    <div layout="column" class="select-block" >
-                        <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
-                            <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
-                        </md-select>
-                    </div>
-                    <md-button aria-label="Add"
-                               layout="column"
-                               ng-disabled="!projectModel"
-                               class="md-raised add"
-                               ng-click="saveToProject(projectModel)">Add
-                    </md-button>
-                </div>
-            </div>
-
-            <md-button aria-label="Back to Add"
-                       class="back-to-add"
-                       ng-click="backToAdd()"
-                       ng-show="addingToProject == false && randApp.added">
-                <ng-md-icon icon="close" size="17"></ng-md-icon>
-            </md-button>
-
-
-            <md-button aria-label="Project Link"
-                       class="page-href"
-                       ng-show="addingToProject == false && randApp.added"
-                       href="{{randApp.lastProject.href}}">
-            <span flex>
-                Added to {{randApp.lastProject.title}}
-            </span>
-                <ng-md-icon icon="keyboard_arrow_right" style="fill: #fff" size="32"></ng-md-icon>
-            </md-button>
-
-            <md-button aria-label="Add to Project"
-                       class="white-button"
-                       ng-click="addToProject()"
-                       ng-hide="addingToProject || randApp.added">
-                Add to Project
-            </md-button>
-
-
-            <md-button aria-label="Add to Compare"
-                       class="white-button"
-                       ng-click="addToCompare()"
-                       ng-disabled="(randApp.type == 'service' && $root.comparedServices.components.length > 0) || (randApp.type == 'component' && $root.comparedServices.services.length > 0)"
-
-                       ng-show="!randApp.added && addingToProject == false && (randApp.type == 'service' && $root.comparedServicesIds.services.indexOf(randApp.id) == -1) || (randApp.type == 'component' && $root.comparedServicesIds.components.indexOf(randApp.id) == -1)">
-                Add to Compare
-            </md-button>
-            <md-button aria-label="Compare" flex ng-click="removeFromCompare()" class="remove"
-                       ng-hide="randApp.added || addingToProject == true || !$root.comparedServicesIds || (randApp.type == 'service' && $root.comparedServicesIds.services.indexOf(randApp.id) == -1) || (randApp.type == 'component' && $root.comparedServicesIds.components.indexOf(randApp.id) == -1)">
-                <ng-md-icon icon="close" size="17"></ng-md-icon>
-                Compare
-            </md-button>
-
-        </div>
-      </div>
+      <product-card-buttons-marketplace
+        card-source = "randApp"
+        type-product = "randApp.type">
+      </product-card-buttons-marketplace>
 
     </div>
 
