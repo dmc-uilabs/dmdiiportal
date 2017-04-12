@@ -8,19 +8,11 @@
                   "notes":
                   [
                         {
-                              "content": "Account Basics",
-                              "class": "release_bug"
+                              "content": "Account Basics"
                         },
                         {
-                              "content": "Privacy",
-                              "class": "release_feature",
-                              "notes":
-                              [
-                                    {
-                                          "content": "Infor",
-                                          "class": "release_bug"
-                                    }
-                              ]
+                              "content": "Privacy"
+
                         },
                         {
                               "content": "Notifications"
@@ -28,17 +20,70 @@
                   ]
             },
             {
-                  "content": "My Profile"
+                  "content": "My Profile",
+                  "notes":
+                  [
+                        {
+                              "content":"Upon Document Upload being Verified Image Placeholder",
+                              "class":"release_feature",
+                              "notes":
+                              [
+                                    {
+                                          "content":"In the past users will have noticed that when they uploaded a logo or picture, the document was not viewable right away. Instead, users would notice that pictures would be blank. This feature change will place a scan in progress image where the document or image is expected to be, while a document is being scanned for viruses and malware.",
+                                          "class":"release_feature"
+                                    }
+                              ]
+                        },
+                        {
+                              "content":"Rich Text Formating for User Description",
+                              "class":"release_feature",
+                              "notes":
+                              [
+                                    {
+                                          "content":"Users now have the ability to include rich text on their profile page for their description. This will allow users to emphasize inforamtion in their description",
+                                          "class":"release_feature"
+                                    }
+                              ]
+                        }
+                  ]
             },
             {
                   "content": "My Workspaces Directory",
                   "notes":
                   [
                         {
-                              "content": "Home"
+                              "content": "Home",
+                              "notes":
+                              [
+                                    {
+                                          "content":"Rich Text in Workspaces",
+                                          "class":"release_feature",
+                                          "notes":
+                                          [
+                                                {
+                                                      "content":"Users now have the ability to include rich text in their workspace overview, allowing workspace creators to easily describe the work they want to complete, which includes the ability to use titles, bold, italicize, underline, and more.",
+                                                      "class":"release_feature"
+                                                }
+                                          ]
+                                    }
+                              ]
                         },
                         {
-                              "content": "Discussions"
+                              "content": "Discussions",
+                              "notes":
+                              [
+                                    {
+                                          "content":"Rich Text in Discussions",
+                                          "class":"release_feature",
+                                          "notes":
+                                          [
+                                                {
+                                                      "content":"Users now have the ability to include rich text in discussions, which should help users put more emphasis, or more easily create an interesting thread.",
+                                                      "class":"release_feature"
+                                                }
+                                          ]
+                                    }
+                              ]
                         },
                         {
                               "content": "Team"
@@ -90,7 +135,21 @@
                               "notes":
                               [
                                     {
-                                          "content": "User Profile page"
+                                          "content": "User Profile page",
+                                          "notes":
+                                          [
+                                                {
+                                                      "content":"User Profile Image being Verified",
+                                                      "class":"release_feature",
+                                                      "notes":
+                                                      [
+                                                            {
+                                                                  "content":"In the past users will have noticed that when they uploaded a logo or picture, the document was not viewable right away. Instead, users would notice that pictures would be blank. This feature change will place a scan in progress image where the document or image is expected to be, while a document is being scanned for viruses and malware.",
+                                                                  "class":"release_feature"
+                                                            }
+                                                      ]
+                                                }
+                                          ]
                                     }
                               ]
                         },
@@ -99,12 +158,55 @@
                               "notes":
                               [
                                     {
-                                          "content": "Organization Profile page"
+                                          "content": "Organization Profile page",
+                                          "notes":
+                                          [
+                                                {
+                                                      "content":"Organization Logo Image being Verified",
+                                                      "class":"release_feature",
+                                                      "notes":
+                                                      [
+                                                            {
+                                                                  "content":"In the past users will have noticed that when they uploaded a logo or picture, the document was not viewable right away. Instead, users would notice that pictures would be blank. This feature change will place a scan in progress image where the document or image is expected to be, while a document is being scanned for viruses and malware.",
+                                                                  "class":"release_feature"
+                                                            }
+                                                      ]
+                                                }
+                                          ]
                                     }
                               ]
                         },
                         {
-                              "content": "Activities"
+                              "content": "Activities",
+                              "notes":
+                              [
+                                    {
+                                          "content":"Activities Page Revamp",
+                                          "class":"release_feature",
+                                          "notes":
+                                          [
+                                                {
+                                                      "content":"The DMC activities page has received a face-lift. In the past the activities page was rather minimum. We only included a list of events and a place for users to leave, read, create, and reply to discussions.",
+                                                      "class":"release_feature"
+                                                },
+                                                {
+                                                      "content":"The Activities page now includes a DMDII Twitter feed, as well a feed from the DMDII Youtube page. Users can also now find a link to a featured news story about the DMC, as well as links to DMDII and UI LABS social websites such as Twitter, Instagram, LinkedIn, and Blogs.",
+                                                      "class":"release_feature"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "content":"Rich Text in Discussions",
+                                          "class":"release_feature",
+                                          "notes":
+                                          [
+                                                {
+                                                      "content":"Users now have the ability to include rich text in discussions, which should help users put more emphasis, or more easily create an interesting thread.",
+                                                      "class":"release_feature"
+                                                }
+                                          ]
+                                    }
+                              ]
                         },
                         {
                               "content": "All Workspaces Directory",
@@ -174,6 +276,9 @@
                               "notes":
                               [
                                     {
+                                          "content": "Member Portal Revamp"
+                                    },
+                                    {
                                           "content": "Member Organization Profile page"
                                     }
                               ]
@@ -182,6 +287,17 @@
                               "content": "Projects Directory",
                               "notes":
                               [
+                                    {
+                                          "content": "DMDII Project Directory Revamp",
+                                          "class":"release_feature",
+                                          "notes":
+                                          [
+                                                {
+                                                      "content":"The DMC has updated the look and feel of the entire DMDII Projects Directory. Users will find a much sleaker look to this part of the site. Users will find that the new members news section at the bottom of the page, as well as a new overal",
+                                                      "class":"release_feature"
+                                                }
+                                          ]
+                                    },
                                     {
                                           "content": "DMDII Project Profile page"
                                     }

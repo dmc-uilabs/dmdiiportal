@@ -6,10 +6,6 @@
 				<h3>Learn about each of our releases, the work that goes into each release, how you may be effected, plans for the future and much more.</h3>
 			</div>
 
-
-
-
-
 			<div layout="column" class="background">
 				<div class="section" layout="row" layout-align="center center" layout-fills>
 					<div class="image">
@@ -22,90 +18,224 @@
 
 				</div>
 
-
-
-
 			<md-divider></md-divider>
 
+			<h1>Release Tree</h1>
+			<div layout="column" class="background">
+				<div class="section" layout="row" layout-align="center center" layout-fills>
+					<div class="image">
+						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
+					</div>
+					<div layout="column" flex class="text">
+						<h2>Release Tree</h2>
+						<h3>During this release, the DMC team focused most efforts on updating and adding content throughout the site to both to give the site a new updated look in some locations as well as to give users more ways to learn about the DMC. This being th case you will see many changes on our site related to the DMDII Portal as well as adding a new Learn section to the main menu. Please look to the Relese tree below to find all changes associated with this release to learn more about what changes may effect you.</h3>
+					</div>
 
-<md-tabs md-dynamic-height md-border-bottom>
+				</div>
 
+				<md-tabs md-dynamic-height md-border-bottom>
+<!-- Release V 0.1.6 -->
+<md-tab label="V 0.1.6 ">
+  <md-content class="tab-projects">
+    <div layout="column" class="text-row">
+
+	<h1>Digital Manufacturing Commons Release V 0.1.6</h1>
+
+	<div layout="row">
+	<span class="release_bug margin5px">
+	Color Code: BUG
+	</span>
+	<span class="release_feature margin5px">
+	Color Code: FEATURE
+	</span>
+	<span class="release_content margin5px">
+	Color Code: CONTENT
+	</div>
+
+
+	    <release-tree ng-if="notesV016" notes="notesV016"></release-tree>
+
+
+    </div>
+
+    <md-divider></md-divider>
+
+    <div class="section" layout="row" layout-align="center center" layout-fills>
+	<div class="image">
+		<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
+	</div>
+	<div layout="column" flex class="text">
+			<h2>Codebase</h2>
+		codebase changes for v016
+	</div>
+
+</div>
+
+	<md-divider></md-divider>
+
+	<div class="section" layout="row" layout-align="center center" layout-fills>
+		<div class="image">
+			<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
+		</div>
+		<div layout="column" flex class="text">
+				<h2>Applications</h2>
+new apps available in v016
+		</div>
+
+	</div>
+
+
+	<md-divider></md-divider>
+
+	</md-content>
+</md-tab>
+
+<!-- Release V 0.1.5 -->
 			<md-tab label="V 0.1.5 ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
 
-			      <h1>DIGITAL MANUFACTURING COMMONS TERMS OF USE</h1>
+			      <h1>Digital Manufacturing Commons Release V 0.1.5</h1>
 
+				<div layout="row">
+				<span class="release_bug margin5px">
+				Color Code: BUG
+				</span>
+				<span class="release_feature margin5px">
+				Color Code: FEATURE
+				</span>
+				<span class="release_content margin5px">
+				Color Code: CONTENT
+				</div>
 
-				
-				<ul>
-				  <li ng-repeat="note in notes">{{note.content}}
-				    <release-tree ng-if="note.notes" notes="note.notes"></release-tree>
-				  </li>
-				</ul>
-
-
-
+				    <release-tree ng-if="notesV015" notes="notesV015"></release-tree>
 
 			    </div>
+
 			    <md-divider></md-divider>
+
+			    <div class="section" layout="row" layout-align="center center" layout-fills>
+    				<div class="image">
+    					<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
+    				</div>
+    				<div layout="column" flex class="text">
+    						<h2>Codebase</h2>
+					<ul>
+						<li>
+							<h3>White-list and Black-List Framework in Place</h3>
+						</li>
+						<ul>
+							<li>
+								The DMC has created a framework to be able to white-list and black-list endpoints. In the past these endpoints were listed one by one, but now we will be able to white-list and black-list endpoints via a singular file.
+							</li>
+						</ul>
+						<li>
+							<h3>Quarantine Bucket Workflow</h3>
+						</li>
+						<ul>
+							<li>
+								We have made changes to our document upload process to make it even safer. In the past, our infrastructure would scan all documents being uploaded to our site before making the document available for user to download. Documents that did not pass the virus and malware scan process would be marked as not safe and would not become available for download through our site. The change we have implemented will now move files marked as not safe into a separate storage solution, so we can more deeply analyze the threats our site may be vulnerable to, ensuring users are always safe when using our platform.
+							</li>
+						</ul>
+						<li>
+							<h3>DMC License files have been updated</h3>
+						</li>
+						<ul>
+							<li>
+								The DMC has updated all repositories stored on GitHub with new License Files. These Files can be found in the root of all repositories. The GitHub link can be found at: <u><a href="https://github.com/dmc-uilabs" target="_blank"https://github.com/dmc-uilabs style="color:green">https://github.com/dmc-uilabs</a></u>
+							</li>
+						</ul>
+					</ul>
+    				</div>
+
+    			</div>
+
+    				<md-divider></md-divider>
+
+    				<div class="section" layout="row" layout-align="center center" layout-fills>
+    					<div class="image">
+    						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
+    					</div>
+    					<div layout="column" flex class="text">
+    							<h2>Applications</h2>
+    					<h3>We've include 5 new application in our Marketplace for our user to demo. This time the application have stepped it up a notch. Three DMDII member organization have created applications that for a limited time, our current users will be able to try using for free. Try them while they are available. <br>
+    					<br>
+    					These Applicaitions have been created by Integris Engineering, North Carolina State University, and Pennsylvania State University. Learn more about that apps when visting the DMC Marketplace or at their associated Confluence Pages:
+    					<ul>
+    						<li>
+							Single Shimmed Shear Join Calculator
+						</li>
+    						<li>
+							Conceptual Cost Model (Pennsylvania State University):
+						</li>
+    						<li>
+							Weld Cost Model (Pennsylvania State University): </li>
+    					</ul>
+    					</h3>
+    					</div>
+
+    				</div>
+
+
+    				<md-divider></md-divider>
+
 			      </md-content>
 			</md-tab>
-
+<!-- Release V 0.1.4 -->
 			<md-tab label="V 0.1.4 ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
 
-				<h1>DIGITAL MANUFACTURING COMMONS TERMS OF USE</h1>
+				<h1>Digital Manufacturing Commons Release V 0.1.4</h1>
 
 			    </div>
 			    <md-divider></md-divider>
 				</md-content>
 			</md-tab>
-
+<!-- Release V 0.1.3 -->
 			<md-tab label="V 0.1.3 ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
 
-				<h1>DIGITAL MANUFACTURING COMMONS TERMS OF USE</h1>
+				<h1>Digital Manufacturing Commons Release V 0.1.3</h1>
 
 			    </div>
 			    <md-divider></md-divider>
 				</md-content>
 			</md-tab>
-
+<!-- Release V 0.1.2 -->
 			<md-tab label="V 0.1.2 ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
 
-				<h1>DIGITAL MANUFACTURING COMMONS TERMS OF USE</h1>
+				<h1>Digital Manufacturing Commons Release V 0.1.2</h1>
 
 			    </div>
 			    <md-divider></md-divider>
 				</md-content>
 			</md-tab>
-
+<!-- Release V 0.1.1 -->
 			<md-tab label="V 0.1.1 BETA ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
 
-				<h1>DIGITAL MANUFACTURING COMMONS TERMS OF USE</h1>
+				<h1>Digital Manufacturing Commons Release V 0.1.1 - BETA</h1>
 
 			    </div>
 			    <md-divider></md-divider>
 				</md-content>
 			</md-tab>
-
+<!-- Release V 0.1.0 -->
 			<md-tab label="V 0.1.0 ALPHA ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
 
-				<h1>V 0.1.0 Alpha Release</h1>
+				<h1>Digital Manufacturing Commons Release V 0.1.0 </h1>
 				<div>
 				The V.0.1.0 release of the Digital Manufacturing Commons platform was released on November 29, 2017. This release was marked as the alpha launch of the platform and was announced in a news letter sent out via UI LABS and was additionally announce at the Defense Manufacturing Conference in Colorado the same day. The major features included in this release include the DMDII Member Portal, DMDII Projects, User Profiles, My Organization, Individuals, Activities, My Workspaces, and All Workspaces. To get the features included with each of the major features above, please read below. The platform can be accessed at https://portal.opendmc.org/#/.
 				</div>
 
-				<u><a href=="https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266>Read more about the DMC Alpha Release on our DMC wiki: https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266</a><u>
+				Read more about the DMC Alpha Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266>https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266</a></u>
 
 			    </div>
 			    <md-divider></md-divider>
@@ -117,72 +247,16 @@
 
 
 
-			<h1>Release Tree</h1>
 
-			<div layout="row">
-			<span class="release_bug margin5px">
-			Color Code: BUG
-			</span>
-			<span class="release_feature margin5px">
-			Color Code: FEATURE
-			</span>
-			<span class="release_content margin5px">
-			Color Code: CONTENT
-			</span>
-</div>
-			<div layout="column" class="background">
-				<div class="section" layout="row" layout-align="center center" layout-fills>
-					<div class="image">
-						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
-					</div>
-					<div layout="column" flex class="text">
-						<h2>Release Tree</h2>
-						<h3>During this release the DMC team focused most efforsts on doing ____,. This being so you will see many changes on our site/platform related to __, ___, ___, and ___. Please llook to the Relese Tree below to find all changes associated with this release to learn more about what changes may effect you. </h3>
-					</div>
 
-				</div>
-			<release-tree notes="notes"></release-tree>
+
+
+
+
+
 
 			<md-divider></md-divider>
 
-			<div class="section" layout="row" layout-align="center center" layout-fills>
-				<div class="image">
-					<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
-				</div>
-				<div layout="column" flex class="text">
-						<h2>Codebase</h2>
-				<h3>
-				Coming soon ...
-				</h3>
-				</div>
-
-			</div>
-
-				<md-divider></md-divider>
-
-				<div class="section" layout="row" layout-align="center center" layout-fills>
-					<div class="image">
-						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
-					</div>
-					<div layout="column" flex class="text">
-							<h2>Applications</h2>
-					<h3>We've include 5 new application in our Marketplace for our user to demo. This time the application have stepped it up a notch. Three DMDII member organization have created applications that for a limited time, our current users will be able to try using for free. Try them while they are available. <br>
-					<br>
-					These Applicaitions have been created by Integris Engineering, North Carolina State University, and Pennsylvania State University. Learn more about that apps when visting the DMC Marketplace or at their associated Confluence Pages:
-					<ul>
-						<li>Single Shimmed Shear Join Calculator (Integris Engineering)</li>
-						<li>App1 (North Carolina State University): </li>
-						<li>App2 (North Carolina State University): </li>
-						<li>Conceptual Cost Model (Pennsylvania State University): </li>
-						<li>Weld Cost Model (Pennsylvania State University): </li>
-					</ul>
-					</h3>
-					</div>
-
-				</div>
-
-
-				<md-divider></md-divider>
 				<div class="section" layout="row" layout-align="center center" layout-fills>
 					<div class="image">
 						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
