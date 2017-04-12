@@ -130,7 +130,10 @@
 						            </md-button>
 						        </div>
 							</div> -->
-              <product-card-buttons-profile product = "product">
+              <md-button ui-sref="service-marketplace-edit({serviceId: product.id})" ng-if="!invate && userData.isDmdiiAdmin" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
+              <product-card-buttons-profile card-source = "product"
+                                            type-product = "product.type"
+                                            >
               </product-card-buttons-profile>
 						</div>
 

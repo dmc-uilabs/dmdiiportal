@@ -20,7 +20,8 @@ angular.module('dmc.component.product-card-buttons',[
             controller: 'productCardButtonsCtrl',
             templateUrl: 'templates/components/add-to-workspace/appProfile.html',
             scope: {
-              product: '='
+              cardSource: '=',
+              typeProduct: '='
             }
         };
     }).

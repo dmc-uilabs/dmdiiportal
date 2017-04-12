@@ -2,7 +2,7 @@
   <ui-widget-stars-static size="15" value="{{product.ratingAverage}}" text="({{product.ratingCount}})"></ui-widget-stars-static>
   <span flex></span>
   <div ng-if="!adding_to_project" layout="row" layout-align="center center">
-    <md-button ui-sref="service-marketplace-edit({serviceId: product.id})" ng-if="!invate && userData.isDmdiiAdmin" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
+    <!-- <md-button ui-sref="service-marketplace-edit({serviceId: cardSource.id})" ng-if="!addingToProject" class="md-raised add dmc-button margin-left20">Edit Service</md-button> -->
     <md-button ng-click="addToProject()" ng-hide="addingToProject || cardSource.added" class="md-raised add dmc-button margin-left20">Add to Workspace</md-button>
 
           <md-button class="md-raised dmc-button cancelProject margin-left20" ng-if="invate" ng-click="backToAdd()">
@@ -11,16 +11,35 @@
           <a ng-if="invate" class="link-to-project" ng-href="{{'project.php#/'+product.currentStatus.project.id+'/home'}}">
               {{ product.currentStatus.project.title}}
           </a>
+          
+    <md-button aria-label="Back to Add"
+               class="md-raised cancelProject"
+               ng-click="backToAdd()"
+               ng-show="addingToProject == false && cardSource.added">
+        <ng-md-icon icon="close" size="17"></ng-md-icon>
+    </md-button>
+    
+    <md-button aria-label="Project Link"
+               flex
+               class="md-raised add dmc-button margin-left20"
+               ng-show="addingToProject == false && cardSource.added"
+               ng-href="{{cardSource.lastProject.href}}">
+    <span flex>
+        Added to {{cardSource.lastProject.title}}
+    </span>
+        <ng-md-icon icon="keyboard_arrow_right" style="fill: #000" size="20"></ng-md-icon>
+    </md-button>
+    
     <md-button
         ng-click="addToCompare()"
         class="md-raised add dmc-button margin-left20"
-        ng-show="!product.added && addingToProject == false && (product.type == 'service' && $root.comparedServicesIds.services.indexOf(cardSource.id) == -1) || (product.type == 'component' && $root.comparedServicesIds.components.indexOf(cardSource.id) == -1)">
+        ng-show="!cardSource.added && addingToProject == false && (typeProduct == 'service' && $root.comparedServicesIds.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && $root.comparedServicesIds.components.indexOf(cardSource.id) == -1)">
       Add to Compare
     </md-button>
     <md-button
         ng-click="removeFromCompare()"
         class="md-raised add dmc-button margin-left20"
-        ng-hide="product.added || addingToProject == true || !$root.comparedServicesIds || (product.type == 'service' && $root.comparedServicesIds.services.indexOf(cardSource.id) == -1) || (product.type == 'component' && $root.comparedServicesIds.components.indexOf(cardSource.id) == -1)">
+        ng-hide="cardSource.added || addingToProject == true || !$root.comparedServicesIds || (typeProduct == 'service' && $root.comparedServicesIds.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && $root.comparedServicesIds.components.indexOf(cardSource.id) == -1)">
       <ng-md-icon icon="close" size="17"></ng-md-icon>
       Compare
     </md-button>
