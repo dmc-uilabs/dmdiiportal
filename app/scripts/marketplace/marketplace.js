@@ -21,6 +21,7 @@ angular.module('dmc.marketplace', [
     'dmc.component.treemenu',
     'dmc.component.productscard',
     'dmc.component.carousel',
+    'dmc.component.featuredAppcard',
     'dmc.compare',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',

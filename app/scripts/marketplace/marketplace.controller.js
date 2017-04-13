@@ -110,12 +110,20 @@ angular.module('dmc.marketplace')
                 popular : {arr : [], count : 0},
                 new : {arr : [], count : 0}
             };
+
+
+
+
             var responseDataForCarousel = {
                 published : true,
                 _limit : 50,
                 _sort : 'id',
                 _order : 'DESC'
             };
+
+
+
+
             // function for get Popular marketplace services
             $scope.getPopularServices = function(){
                 ajax.get(dataFactory.getMarketPopularServices(), responseDataForCarousel,
@@ -128,6 +136,8 @@ angular.module('dmc.marketplace')
             };
             if(!$scope.isSearch) $scope.getPopularServices();
 
+
+
             // function for get New marketplace services
             $scope.getNewServices = function(){
                 ajax.get(dataFactory.getMarketNewServices(), responseDataForCarousel,
@@ -138,7 +148,31 @@ angular.module('dmc.marketplace')
                     }
                 );
             };
+
+
+            // $scope.marketplaceItems = {arr: data, count: data.length};
+
+            // $scope.featuredApp = function(){
+            //   ajax.get(dataFactory.getMarketNewServices(), responseDataForCarousel,
+            //       function(response){
+            //           $scope.carouselData.new = {arr : response.data, count : response.data.length};
+            //           isFavorite.check($scope.carouselData.new.arr);
+            //           var numberApps =$scope.carouselData.new.count;
+            //           var randId = Math.floor(Math.random()*numberApps);
+            //           $scope.randApp=$scope.carouselData.new.arr[randId];
+            //           // console.log($scope.randApp);
+            //           apply();
+            //       }
+            //   );
+            //
+            // };
+
+
+
             if(!$scope.isSearch) $scope.getNewServices();
+
+            // if(!$scope.isSearch) $scope.featuredApp();
+
             // ---------------------------------------------------------
 
             $scope.submit = function(text){
@@ -159,6 +193,7 @@ angular.module('dmc.marketplace')
 
 
             $scope.marketplaceItems = {arr : [], count : 0};
+
             var totalCountItems = {
                 all : 0, services : { total : 0, analytical : 0, solid : 0, data : 0 }, components : 0
             };
@@ -195,9 +230,19 @@ angular.module('dmc.marketplace')
                 }
                 if($location.$$path.indexOf('search') != -1 ||  $location.$$path.indexOf('home') != -1) {
                     $scope.marketplaceItems = {arr: data, count: data.length};
+
+
+
+
                 }
                 $scope.treeMenuModel = getMenu();
                 checkFavorites();
+
+                $scope.allApps=data;
+                // var numberApps = $scope.allApps.length;
+                // var randId = Math.floor(Math.random()*numberApps);
+                // $scope.randApp = $scope.allApps[randId];
+                //
             };
 
 
@@ -275,11 +320,14 @@ angular.module('dmc.marketplace')
 
             // get all services and components
             $scope.getServicesAndComponents = function(){
+
+
                 //isFirstCallback = true;
                 //loadingData(true);
                 //ajax.get(dataFactory.getMarketServices(), responseData(), callbackServices);
                 //ajax.get(dataFactory.getMarketComponents(), responseData(), callbackComponents);
             };
+
 
             // get all services --------------------------------------------------
             $scope.getServices = function(){
@@ -289,6 +337,7 @@ angular.module('dmc.marketplace')
 
             // get all components --------------------------------------------------
             $scope.getComponents = function(){
+
                 //isFirstCallback = true;
                 //loadingData(true);
                 //ajax.get(dataFactory.getMarketComponents(), responseData(),callbackComponents);
@@ -321,10 +370,16 @@ angular.module('dmc.marketplace')
                             count : response.data.length
                         };
                         isFavorite.check($scope.marketplaceItems.arr);
+                        // console.log($scope.marketplaceItems.count);
                         apply();
+
                     }
                 );
             };
+
+
+
+
 
             $scope.getData = function(){
                 if($location.$$path.indexOf('search') > -1) {
