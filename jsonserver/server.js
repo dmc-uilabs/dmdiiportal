@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+var fs = require('fs');
 var jsonServer = require('json-server');
 var request = require('ajax-request');
 // Returns an Express server
@@ -73,6 +73,20 @@ server.use(jsonServer.rewriter({
 server.post('/dmdiidocument', function(req,res) {
   console.log('request',req)
   res.jsonp(req.query)
+})
+
+server.get('/dmdiiMember', function (req, res) {
+  var membersOrig = JSON.parse(fs.readFileSync('stubs/dmdiiMember.json'));
+  var membersData = membersOrig.data;
+
+  var page = parseInt(req.query.page)
+  var size = parseInt(req.query.pageSize)
+  var start = page*size
+  var end = (page+1)*size
+
+  membersOrig.data = membersData.slice(start,end)
+
+  res.jsonp(membersOrig)
 })
 
 server.get('/getChildren', function (req, res) {
