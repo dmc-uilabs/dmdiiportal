@@ -192,15 +192,19 @@ div.progress {
 
 .rich-text-small {
 	h2 {
-		font-size: 1.3em;
-		font-weight: 600;
-		text-decoration: underline;
+    color: black !important;
+		font-size: 1.3em !important;
+		font-weight: 600 !important;
+		text-decoration: underline !important;
 	}
 	h3 {
-		font-weight: 600;
-		font-size: 1.2em;
+    color: black;
+		font-weight: 600 !important;
+		font-size: 1.2em !important;
 	}
 	p {
-		font-weight: normal;
+    color: black;
+    font-size: 1em !important;
+		font-weight: normal !important;
 	}
 }
