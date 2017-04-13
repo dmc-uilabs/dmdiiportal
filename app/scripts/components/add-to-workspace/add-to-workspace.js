@@ -53,8 +53,27 @@ angular.module('dmc.component.product-card-buttons',[
           if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
       };
       
+      var acceptedInvite = function(project){
+        return project.accept == true;
+      }
+      
+      var isMember = function(project){
+        for (var i in $scope.filtered_response){
+          if (project.id == i.projectId) return true;
+        }
+        return false;
+      }
+      
       $scope.loadProjects = function() {
-          $scope.projects = $scope.$root.projects;
+          var unfiltered_projects = $scope.$root.projects;
+          
+          // Filter projects for only projects that user is a member of
+          ajax.get(dataFactory.getMembersToProject(),{
+              profileId : $scope.userData.profileId
+          },function(response){
+            $scope.filtered_response = response.filter(acceptedInvite);
+            $scope.projects = unfiltered_projects.filter(isMember);
+          });
       };
       
       $scope.addToProject = function(){
