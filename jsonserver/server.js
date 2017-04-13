@@ -89,6 +89,20 @@ server.get('/dmdiiMember', function (req, res) {
   res.jsonp(membersOrig)
 })
 
+server.get('/dmdiiprojects', function (req, res) {
+  var projectsOrig = JSON.parse(fs.readFileSync('stubs/dmdiiprojects.json'));
+  var projectsData = projectsOrig.data;
+
+  var page = parseInt(req.query.page)
+  var size = parseInt(req.query.pageSize)
+  var start = page*size
+  var end = (page+1)*size
+
+  projectsOrig.data = projectsData.slice(start,end)
+
+  res.jsonp(projectsOrig)
+})
+
 server.get('/getChildren', function (req, res) {
 
     var data = (req.query ? req.query : null);
