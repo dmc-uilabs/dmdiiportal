@@ -185,7 +185,7 @@ md-list{
   transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.rich-text-small, #richdiv {
+.rich-text-small {
 	h2 {
     color: black !important;
 		font-size: 1.3em !important;
@@ -201,5 +201,8 @@ md-list{
     color: black;
     font-size: 1em !important;
 		font-weight: normal !important;
+	}
+	blockquote {
+		font-size: 1em;
 	}
 }

@@ -30,7 +30,7 @@ var template =
 '               <div class="timeline-event-box-content">'+
 '                 <h4>{{event.content.date}}</h4>'+
 '                 <h3 class="timeline-event-box-content-title">{{event.content.name}}</h3>'+
-'                 <p markdown-to-html="event.content.description"></p>'+
+'                 <p class="rich-text-small" markdown-to-html="event.content.description"></p>'+
 '               <a class="delete-btn" href ng-click="deleteEvent($index, event.id)" ng-if="user.isDmdiiAdmin">delete</a>'+
 '			</div>'+
 '		</li>'+
@@ -75,7 +75,7 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'] )
 
 			return ( (monthsWidth * diff) + (((ixOfWeek * curWeekWidth) + (curDOfMPercent / 100 * curWeekWidth)) / 100 * monthsWidth) );
 		};
-        
+
         $scope.deselectEvent = function(index) {
             $timeout(function() {
                 $scope.selectedEvent[index] = false;
