@@ -47,6 +47,7 @@
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
+    <script src="scripts/components/add-to-workspace/add-to-workspace.js"></script>
     <script src="scripts/common/models/company-model.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/add-project/add-project.directive.js"></script>

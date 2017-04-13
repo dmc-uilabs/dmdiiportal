@@ -37,6 +37,7 @@
 <script src="scripts/common/factory/data.factory.js"></script>
 <script src="scripts/components/carousel/carousel.js"></script>
 <script src="scripts/components/compare/compare.js"></script>
+<script src="scripts/components/add-to-workspace/add-to-workspace.js"></script>
 <script src="scripts/components/tree-menu/tree-menu.js"></script>
 <script src="scripts/components/product-card/product-card.js"></script>
 <script src="scripts/components/products-card/products-card.js"></script>
