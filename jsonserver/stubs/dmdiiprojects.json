@@ -1,6 +1,4 @@
-{
-    "count": 56,
-    "data": [{
+[{
         "id": 59,
         "primeOrganization": {
             "id": 1,
@@ -2325,4 +2323,3 @@
         "dmdiiFunding": 749574.00,
         "projectIdentifier": "16-5-1"
     }]
-}

@@ -84,7 +84,7 @@ server.get('/dmdiiMember', function (req, res) {
   var start = page*size
   var end = (page+1)*size
 
-  membersOrig.data = membersData.slice(start,end)
+  membersOrig = {"count": membersData.length ,"data" : membersData.slice(start,end) }
 
   res.jsonp(membersOrig)
 })
@@ -98,7 +98,7 @@ server.get('/dmdiiprojects', function (req, res) {
   var start = page*size
   var end = (page+1)*size
 
-  projectsOrig.data = projectsData.slice(start,end)
+  projectsOrig = {"count": projectsData.length ,"data" : projectsData.slice(start,end) }
 
   res.jsonp(projectsOrig)
 })
