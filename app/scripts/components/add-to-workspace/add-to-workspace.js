@@ -59,7 +59,6 @@ angular.module('dmc.component.product-card-buttons',[
       
       var isMember = function(project){
         for (var i in $scope.filtered_response){
-          console.log(project.id + "==" + $scope.filtered_response[i].projectId);
           if (project.id == $scope.filtered_response[i].projectId) return true;
         }
         return false;
@@ -72,9 +71,7 @@ angular.module('dmc.component.product-card-buttons',[
           ajax.get(dataFactory.getMembersToProject(),{
               profileId : $scope.userData.profileId
           },function(response){
-            //console.log(response);
             $scope.filtered_response = response.data.filter(acceptedInvite);
-            console.log($scope.filtered_response);
             $scope.projects = unfiltered_projects.filter(isMember);
           });
       };
