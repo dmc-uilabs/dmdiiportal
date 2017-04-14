@@ -1,11 +1,22 @@
 <div class="onboarding-home">
 	<md-content layout layout-align="center center">
 		<div layout="column"  layout-fills>
-			<div class="section-header" layout="column" layout-align="start start" layout-fills>
-				<h2>Release Notes</h2>
-				<h3>Learn about each of our releases, the work that goes into each release, how you may be effected, plans for the future and much more.</h3>
+			<div class="section-header" layout="column" layout-align="start start" layout-fills flex class="text">
+				<!-- <h1>Release Notes</h1>
+				<p>Learn about each of our releases, the work that goes into each release, how you may be effected, plans for the future and much more.</p> -->
 			</div>
 
+
+			<div class="section" layout="row" layout-align="center center" layout-fills>
+				<div class="logo">
+					<img ng-src="images/updates.png">
+				</div>
+				<div layout="column" flex class="text">
+					<h1>Digital Manufacturing Commons: Releases </h1>
+					<p>
+					<h3>Learn about each of our releases, the work that goes into each release, how you may be effected, plans for the future and much more.</h3>
+				</div>
+			</div>
 			<!-- <div layout="column" class="background">
 				<div class="section" layout="row" layout-align="center center" layout-fills>
 					<div class="image">
@@ -24,7 +35,7 @@
 			<div layout="column" class="background">
 				<div class="section" layout="row" layout-align="center start" layout-fills>
 					<div class="image">
-						<img ng-src="images/9998520-industrielle-innovation-konzept-baum.jpg"  style="width: 50px">
+						<img ng-src="images/9998520-industrielle-innovation-konzept-baum.jpg"  style="width: 100px">
 					</div>
 					<div layout="column" flex class="text">
 						<h2>Release Tree</h2>
@@ -33,84 +44,73 @@
 				<md-tabs md-dynamic-height md-border-bottom>
 
 <!-- Release V 0.1.6 -->
-<md-tab label="V 0.1.6 ">
+<!-- <md-tab label="V 0.1.6 ">
   <md-content class="tab-projects">
     <div layout="column" class="text-row">
-
-	<div layout="row">
-	<span class="release_bug margin5px">
-	Color Code: BUG
-	</span>
-	<span class="release_feature margin5px">
-	Color Code: FEATURE
-	</span>
-	<span class="release_content margin5px">
-	Color Code: CONTENT
-	</div>
-
-
+			<div layout="row" style="justify-content:flex-end">
+			<span class="release-bug margin5px" style="margin-right:64px">
+				Color Code: BUG
+			</span>
+			<span class="release-feature margin5px" style="margin-right:68px">
+				Color Code: FEATURE
+			</span>
+			<span class="release-content margin5px">
+				Color Code: CONTENT
+			</div>
 	    <release-tree ng-if="notesV016" notes="notesV016" class="release-tree"></release-tree>
-
-
     </div>
 
     <md-divider></md-divider>
 
-    <div class="section" layout="row" layout-align="center center" layout-fills>
-	<div class="image">
-		<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
-	</div>
-	<div layout="column" flex class="text">
-			<h2>Codebase</h2>
-		codebase changes for v016
-	</div>
-
-</div>
+    <div class="section" layout="row" layout-align="center start" layout-fills>
+			<div class="image">
+				<img ng-src="images/code.jpeg"  style="width: 50px">
+			</div>
+			<div layout="column" flex class="text">
+				<h2>Codebase</h2>
+				<p>Codebase changes for v016 coming soon.</p>
+			</div>
+		</div>
 
 	<md-divider></md-divider>
 
-	<div class="section" layout="row" layout-align="center center" layout-fills>
+	<div class="section" layout="row" layout-align="center start" layout-fills>
 		<div class="image">
-			<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
+			<img ng-src="images/home-market-icon.png"  style="width: 50px">
 		</div>
 		<div layout="column" flex class="text">
-				<h2>Applications</h2>
-new apps available in v016
+			<h2>Applications</h2>
+			<p>New apps available in v016 notes coming soon.</p>
 		</div>
-
 	</div>
-
 
 	<md-divider></md-divider>
 
 	</md-content>
-</md-tab>
+</md-tab> -->
 
 <!-- Release V 0.1.5 -->
 			<md-tab label="V 0.1.5 ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
-
-				<div layout="row" style="justify-content:flex-end">
-				<span class="release-bug margin5px">
-				Color Code: BUG
-				</span>
-				<span class="release-feature margin5px">
-				Color Code: FEATURE
-				</span>
-				<span class="release-content margin5px">
-				Color Code: CONTENT
-				</div>
-
+						<div layout="row" style="justify-content:flex-end">
+						<span class="release-bug margin5px" style="margin-right:64px">
+							Color Code: BUG
+						</span>
+						<span class="release-feature margin5px" style="margin-right:68px">
+							Color Code: FEATURE
+						</span>
+						<span class="release-content margin5px">
+							Color Code: CONTENT
+						</div>
 				    <release-tree ng-if="notesV015" notes="notesV015" class="release-tree"></release-tree>
-
 			    </div>
 
 			    <md-divider></md-divider>
 
-			    <div class="section" layout="row" layout-align="center center" layout-fills>
+			    <div class="section" layout="row" layout-align="center start" layout-fills>
     				<div class="image">
-    					<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
+    					<img ng-src="images/code.jpeg"  style="width: 50px">
     				</div>
     				<div layout="column" flex class="text">
     						<h2>Codebase</h2>
@@ -146,15 +146,14 @@ new apps available in v016
 
     				<md-divider></md-divider>
 
-    				<div class="section" layout="row" layout-align="center center" layout-fills>
+    				<div class="section" layout="row" layout-align="center start" layout-fills>
     					<div class="image">
-    						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
+    						<img ng-src="images/home-market-icon.png"  style="width: 50px">
     					</div>
     					<div layout="column" flex class="text">
     							<h2>Applications</h2>
-    					<h3>We've include three new application in our Marketplace for our user to demo. This time the application have stepped it up a notch. Two DMDII member organization have created applications that for a limited time, our current users will be able to try using for free. Try them while they are available.<br>
-    					<br>
-    					These Applicaitions have been created by Integris Engineering and Pennsylvania State University. Learn more about that apps when visting the DMC Marketplace or at their associated Confluence Pages:
+    					<p>We've include three new application in our Marketplace for our user to demo. This time the application have stepped it up a notch. Two DMDII member organization have created applications that for a limited time, our current users will be able to try using for free. Try them while they are available.</p>
+    					<p>These Applicaitions have been created by Integris Engineering and Pennsylvania State University. Learn more about that apps when visting the DMC Marketplace or at their associated Confluence Pages:</p>
     					<ul>
     						<li>
 									<strong>Single Shimmed Shear Join Calculator</strong>: The Single Shear Shimmed Joint app calculates an approximate minimum margin of safety (similar to a Safety Factor) on a bolted joint against a defined shear and tensile load.
@@ -189,44 +188,45 @@ new apps available in v016
 			<md-tab label="V 0.1.4 ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
-
-
+						<p>The Digital Manufacturing Commons has always used an agile process to provide users with the latest updates so users can have an opportunity to help us test our site and to allow users to give us feedback which allows them to help push the platform in the right direction. Though we have always used an agile process, as well as advertised that we use this process, we have not always been very verbose about what features have been added to site. Going forward, users will see updates from us, roughly every 2 weeks (inline with our Sprint Burndowns) with details as to what changes have been made and why we've made the decision to make those changes. We'll also will be including what issues/bugs we have been able to fix/patch. Read on for more details.</p>
+						<p>Read more about the DMC V 0.1.2 Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.4" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.4 style="color:green">V 0.1.4</a></u> on Confluence.</p>
 			    </div>
 			    <md-divider></md-divider>
 				</md-content>
 			</md-tab>
+
 <!-- Release V 0.1.3 -->
 			<md-tab label="V 0.1.3 ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
-
-
+						<p>The Digital Manufacturing Commons has always used an agile process to provide users with the latest updates so users can have an opportunity to help us test our site and to allow users to give us feedback which allows them to help push the platform in the right direction. Though we have always used an agile process, as well as advertised that we use this process, we have not always been very verbose about what features have been added to site. Going forward, users will see updates from us, roughly every 2 weeks (inline with our Sprint Burndowns) with details as to what changes have been made and why we've made the decision to make those changes. We'll also will be including what issues/bugs we have been able to fix/patch. Read on for more details.</p>
+						<p>Read more about the DMC V 0.1.2 Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.3" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.3 style="color:green">V 0.1.3</a></u> on Confluence.</p>
 			    </div>
 			    <md-divider></md-divider>
 				</md-content>
 			</md-tab>
+
 <!-- Release V 0.1.2 -->
 			<md-tab label="V 0.1.2 ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
-
-
+						<p>The Digital Manufacturing Commons has always used an agile process to provide users with the latest updates so users can have an opportunity to help us test our site and to allow users to give us feedback which allows them to help push the platform in the right direction. Though we have always used an agile process, as well as advertised that we use this process, we have not always been very verbose about what features have been added to site. Going forward, users will see updates from us, roughly every 2 weeks (inline with our Sprint Burndowns) with details as to what changes have been made and why we've made the decision to make those changes. We'll also will be including what issues/bugs we have been able to fix/patch. Read on for more details.</p>
+						<p>Read more about the DMC V 0.1.2 Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.2" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.2 style="color:green">V 0.1.2</a></u> on Confluence.</p>
 			    </div>
 			    <md-divider></md-divider>
 				</md-content>
 			</md-tab>
+
 <!-- Release V 0.1.1 -->
 			<md-tab label="V 0.1.1 BETA ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
-
-				<div>
-					With the success of the Alpha release just a little bit over a month ago we are introducing our Beta release of the Digital Manufacturing Commons platform. Users will find a few new updates which include the new Marketplace tab, access to run a set of demo applications as well as the ability to see the full organizations list of organizations signed up to use the site. We've also introduced our live chatting tool to better help users use our site more effectively and efficiently.
-
-					During our Beta Launch period, only fully verified users on the website will be able to access the platform features, so if you are not verified or your organization administrator has not yet joined and verified their account, this is really the time to do so if you want to get a feel for what is to come in our full launch in the second quarter of 2017. To learn more about each of the Individual features, look in the use cases section, and as usual, if you have any questions please feel free to reach out. Modes of contact are all listed in the Contact Us section.
-
-					Special Friends of the DMC (Non DMDII Members) can sign up as well. During the sign up process, do not check the I am a DMDII Member checkbox. When done with the onboarding process, make sure to e-mail <u><a href="mailto:askdmc@uilabs.org" style="color:green">askdmc@uilabs.org</a></u> and we will work to amke sure your account become verified.
-				</div>
+						<div>
+							<p>With the success of the Alpha release just a little bit over a month ago we are introducing our Beta release of the Digital Manufacturing Commons platform. Users will find a few new updates which include the new Marketplace tab, access to run a set of demo applications as well as the ability to see the full organizations list of organizations signed up to use the site. We've also introduced our live chatting tool to better help users use our site more effectively and efficiently.</p>
+							<p>During our Beta Launch period, only fully verified users on the website will be able to access the platform features, so if you are not verified or your organization administrator has not yet joined and verified their account, this is really the time to do so if you want to get a feel for what is to come in our full launch in the second quarter of 2017. To learn more about each of the Individual features, look in the use cases section, and as usual, if you have any questions please feel free to reach out. Modes of contact are all listed in the Contact Us section.</p>
+							<p>Special Friends of the DMC (Non DMDII Members) can sign up as well. During the sign up process, do not check the I am a DMDII Member checkbox. When done with the onboarding process, make sure to e-mail <u><a href="mailto:askdmc@uilabs.org" style="color:green">askdmc@uilabs.org</a></u> and we will work to amke sure your account become verified.</p>
+							<p>Read more about the DMC Beta Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035269" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035269 style="color:green">V 0.1.1 Beta</a></u> on Confluence.</p>
+						</div>
 			    </div>
 			    <md-divider></md-divider>
 				</md-content>
@@ -236,15 +236,13 @@ new apps available in v016
 			<md-tab label="V 0.1.0 ALPHA ">
 			  <md-content class="tab-projects">
 			    <div layout="column" class="text-row">
-
-				<div>
-				The V.0.1.0 release of the Digital Manufacturing Commons platform was released on November 29, 2017. This release was marked as the alpha launch of the platform and was announced in a news letter sent out via UI LABS and was additionally announce at the Defense Manufacturing Conference in Colorado the same day. The major features included in this release include the DMDII Member Portal, DMDII Projects, User Profiles, My Organization, Individuals, Activities, My Workspaces, and All Workspaces. To get the features included with each of the major features above, please read below. The platform can be accessed at <u><a href="https://portal.opendmc.org/#/" target="_blank "https://portal.opendmc.org/#/ style="color:green">https://portal.opendmc.org/#/</a></u>.
-				</div>
-				<div>
-				<h4>
-				Read more about the DMC Alpha Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266 style="color:green">https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266</a></u>
-			</h4>
-				</div>
+						<div>
+							<p>The V.0.1.0 release of the Digital Manufacturing Commons platform was released on November 29, 2017. This release was marked as the alpha launch of the platform and was announced in a news letter sent out via UI LABS and was additionally announce at the Defense Manufacturing Conference in Colorado the same day.</p>
+							<p>The major features included in this release include the DMDII Member Portal, DMDII Projects, User Profiles, My Organization, Individuals, Activities, My Workspaces, and All Workspaces. To get the features included with each of the major features above, please read below. The platform can be accessed at <u><a href="https://portal.opendmc.org/#/" target="_blank "https://portal.opendmc.org/#/ style="color:green">https://portal.opendmc.org/#/</a></u>.</p>
+						</div>
+						<div>
+							<p>Read more about the DMC Alpha Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266 style="color:green">V 0.1.0 Alpha</a></u> one confluence.</p>
+						</div>
 			    </div>
 			    <md-divider></md-divider>
 				</md-content>
@@ -252,23 +250,11 @@ new apps available in v016
 </md-tabs>
 
 </div>
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 			<md-divider></md-divider>
 
-				<div class="section" layout="row" layout-align="center center" layout-fills>
+				<div class="section" layout="row" layout-align="center start" layout-fills>
 					<div class="image">
 						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
 					</div>
@@ -280,7 +266,7 @@ new apps available in v016
 				</div>
 
 				<md-divider></md-divider>
-				<div class="section" layout="row" layout-align="center center" layout-fills>
+				<div class="section" layout="row" layout-align="center start" layout-fills>
 					<div class="image">
 						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
 					</div>
@@ -292,49 +278,26 @@ new apps available in v016
 				</div>
 
 				<md-divider></md-divider>
-				<div class="section" layout="row" layout-align="center center" layout-fills>
+				<div class="section" layout="row" layout-align="center start" layout-fills>
 					<div class="image">
 						<img ng-src="images/icon-profile-lg.svg"  style="width: 50px">
 					</div>
 					<div layout="column" flex class="text">
 							<h2>How to Contribute</h2>
-					<h3>Those interested in contributing to our project, we urge you to look to our contribution wiki page: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/For+Contributors" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/For+Contributors style="color:green">https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/For+Contributors</a></u>
+					<h3>Those interested in contributing to our project, we urge you to look to our: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/For+Contributors" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/For+Contributors style="color:green">For Contributors</a></u> wiki page on Confluence.
 					</h3>
 					</div>
 
 				</div>
 
 				<md-divider></md-divider>
-				<div class="section" layout="row" layout-align="center center" layout-fills>
-					<div class="image">
-						<img ng-src="images/icon-profile-lg.svg"  style="width: 50px">
-					</div>
-					<div layout="column" flex class="text">
-							<h2>Contact Us</h2>
-					<h3>If you have any questions, suggestions, or concerns, please feel free to reach out to us. You can reach us using the following methods:
-					<br>
-					<ul>
-						<li>
-							E-mail: <u><a href="mailto:askdmc@uilabs.org" style="color:green">askdmc@uilabs.org</a></u>
-						</li>
-						<li>
-							Slack:<u><a href="https://projectdmc.slack.com/" traget="_blank"https://projectdmc.slack.com/ style="color:green">https://projectdmc.slack.com/</a></u>
-							<ul>
-								<li>
-									Register/Self Invite: <u><a href="http://slackinvite.projectdmc.org/" target="_blank"http://slackinvite.projectdmc.org/ style="color:green">http://slackinvite.projectdmc.org/</a></u>
-								</li>
-							</ul>
-						</li>
-						<li>
-							Drift (Live Chat): Live Chat with a developer to solve your issue when you vist the <a style="color:green">FAQs</a> or <a style="color:green">Contact Us</a> pages found in the footer.
-							<ul>
-								<li>
-									You can read our Drift documentation on our Conflence page <u><a href="http://slackinvite.projectdmc.org/" target="_blank"http://slackinvite.projectdmc.org/ style="color:green">here</a></u>.
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</h3>
+				<div class="section" layout="row" layout-align="center start" layout-fills>
+
+					<div layout="column" flex class="text-center">
+							<h1>Questions About our Releases?</h1>
+							<h3><p><span class="button-view-opportunities"><a href="/contact-us.php">Contact Us</a></span></h3>
+							<h3>If you have questions about the DMC release process, or you've identified a bug or have a requestion for a new feature,</h3>
+							<h3>please email us at <a href="mailto:askdmc@uilabs.org">askdmc@uilabs.org</a>.</h3>
 					</div>
 
 				</div>
