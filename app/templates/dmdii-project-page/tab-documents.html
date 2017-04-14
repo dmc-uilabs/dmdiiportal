@@ -27,9 +27,9 @@
 	</dl>
 	</div>
 	<div class="icon-list" ng-if="userData.isDmdiiAdmin">
-		<a href ng-click="deleteDocument(doc.id, 'doc', docIndex)"><ng-md-icon icon="delete" style="fill: #999" size="25"></ng-md-icon></a>
-		<a ng-href="{{'/add-dmdii-project-doc.php#/'+project.id+'/projectDocuments'}}"><ng-md-icon icon="insert_drive_file" style="fill: #999" size="25"></ng-md-icon></a>
-		<a ng-href="{{doc.documentUrl}}"><ng-md-icon icon="file_download" style="fill: #999" size="25"></ng-md-icon></a>
+		<a href ng-click="deleteDocument(doc.id, 'doc', docIndex)"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon>Delete</a>
+		<a ng-href="{{'/add-dmdii-project-doc.php#/'+project.id+'/projectDocuments'}}"><ng-md-icon icon="insert_drive_file" style="fill: #999" size="16"></ng-md-icon>Docs</a>
+		<a ng-href="{{doc.documentUrl}}"><ng-md-icon icon="file_download" style="fill: #999" size="16"></ng-md-icon>Download</a>
 	</div>
 	</div>
 	</div>
