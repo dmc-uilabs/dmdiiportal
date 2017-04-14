@@ -12,7 +12,7 @@
         },
         "projectStatus": {
             "id": 3,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Awarded"
         },
         "awardedDate": "2017-02-28",
         "endDate": "2017-02-28",
@@ -54,7 +54,7 @@
         },
         "projectStatus": {
             "id": 3,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Awarded"
         },
         "awardedDate": "2017-03-02",
         "endDate": "2017-03-03",
@@ -96,7 +96,7 @@
         },
         "projectStatus": {
             "id": 3,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Awarded"
         },
         "awardedDate": "2016-11-18",
         "endDate": "2016-11-18",
@@ -138,7 +138,7 @@
         },
         "projectStatus": {
             "id": 3,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Awarded"
         },
         "awardedDate": "2015-07-22",
         "endDate": "2016-09-29",
@@ -180,7 +180,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-02-25",
         "endDate": "2017-01-15",
@@ -222,7 +222,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2015-12-18",
         "endDate": "2016-12-19",
@@ -264,7 +264,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2015-12-22",
         "endDate": "2017-04-30",
@@ -306,7 +306,7 @@
         },
         "projectStatus": {
             "id": 3,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Awarded"
         },
         "awardedDate": "2015-06-16",
         "endDate": "2016-10-31",
@@ -348,7 +348,7 @@
         },
         "projectStatus": {
             "id": 3,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Awarded"
         },
         "awardedDate": "2015-07-15",
         "endDate": "2017-01-14",
@@ -390,7 +390,7 @@
         },
         "projectStatus": {
             "id": 3,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Awarded"
         },
         "awardedDate": "2015-07-13",
         "endDate": "2016-08-31",
@@ -432,7 +432,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-01-14",
         "endDate": "2017-07-14",
@@ -474,7 +474,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2015-12-17",
         "endDate": "2017-06-17",
@@ -516,7 +516,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-06-16",
         "endDate": "2017-12-16",
@@ -558,7 +558,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-01-19",
         "endDate": "2018-01-29",
@@ -600,7 +600,7 @@
         },
         "projectStatus": {
             "id": 3,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Awarded"
         },
         "awardedDate": "2015-08-07",
         "endDate": "2016-08-31",
@@ -642,7 +642,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-01-14",
         "endDate": "2017-07-14",
@@ -684,7 +684,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-03-14",
         "endDate": "2017-03-14",
@@ -726,7 +726,7 @@
         },
         "projectStatus": {
             "id": 3,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Awarded"
         },
         "awardedDate": "2015-12-18",
         "endDate": "2016-02-28",
@@ -768,7 +768,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-06-13",
         "endDate": "2017-06-13",
@@ -810,7 +810,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-05-18",
         "endDate": "2018-05-18",
@@ -852,7 +852,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-03-15",
         "endDate": "2018-03-15",
@@ -894,7 +894,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-03-06",
         "endDate": "2017-08-30",
@@ -936,7 +936,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-03-15",
         "endDate": "2017-09-15",
@@ -978,7 +978,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-03-22",
         "endDate": "2017-09-22",
@@ -1020,7 +1020,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-11-08",
         "endDate": "2016-05-08",
@@ -1057,7 +1057,7 @@
         "principalInvestigator": null,
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -1099,7 +1099,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-05-23",
         "endDate": "2018-05-23",
@@ -1141,7 +1141,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-08-30",
         "endDate": "2018-08-30",
@@ -1183,7 +1183,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-08-30",
         "endDate": "2018-08-30",
@@ -1225,7 +1225,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-05-26",
         "endDate": "2017-11-26",
@@ -1267,7 +1267,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-09-12",
         "endDate": "2018-09-12",
@@ -1309,7 +1309,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-06-30",
         "endDate": "2018-06-30",
@@ -1351,7 +1351,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-08-31",
         "endDate": "2018-02-28",
@@ -1393,7 +1393,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -1430,7 +1430,7 @@
         "principalInvestigator": null,
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-12-31",
         "endDate": "2018-07-01",
@@ -1472,7 +1472,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -1509,7 +1509,7 @@
         "principalInvestigator": null,
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -1551,7 +1551,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-12-24",
         "endDate": "2018-06-24",
@@ -1593,7 +1593,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -1635,7 +1635,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-11-13",
         "endDate": "2018-05-13",
@@ -1677,7 +1677,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-08-17",
         "endDate": "2018-09-01",
@@ -1719,7 +1719,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-12-31",
         "endDate": "2018-12-31",
@@ -1761,7 +1761,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -1798,7 +1798,7 @@
         "principalInvestigator": null,
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -1840,7 +1840,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -1882,7 +1882,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-10-05",
         "endDate": "2017-10-05",
@@ -1919,7 +1919,7 @@
         "principalInvestigator": null,
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -1958,7 +1958,7 @@
         },
         "projectStatus": {
             "id": 2,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Pre-Award"
         },
         "awardedDate": "2016-08-15",
         "endDate": "2017-08-14",
@@ -2000,7 +2000,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -2042,7 +2042,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -2084,7 +2084,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -2126,7 +2126,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2016-01-01",
         "endDate": "2016-01-01",
@@ -2168,7 +2168,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2017-01-31",
         "endDate": "2017-02-01",
@@ -2210,7 +2210,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2017-01-31",
         "endDate": "2017-02-01",
@@ -2252,7 +2252,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2017-01-31",
         "endDate": "2017-02-01",
@@ -2294,7 +2294,7 @@
         },
         "projectStatus": {
             "id": 1,
-            "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+            "name": "Completed"
         },
         "awardedDate": "2017-01-31",
         "endDate": "2017-02-07",
