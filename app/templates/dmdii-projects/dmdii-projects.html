@@ -5,13 +5,13 @@
 				<div class="col-sm-4">
 					<h4>Projects Overview</h4>
 					<img ng-src="{{projectOverview.documentUrl}}" class="img-responsive">
-					<a class="delete-button" href ng-click="deleteDocument(projectOverview.id, 'projectOverview')" ng-show="userData.isDmdiiAdmin"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+					<a class="delete-button" href ng-click="deleteDocument(projectOverview.id, 'projectOverview')" ng-show="userData.isDmdiiAdmin"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon> Delete</a>
 				</div>
 
 				<div class="col-sm-4">
 					<h4>Projects Status</h4>
 					<img ng-src="{{projectStatus.documentUrl}}" class="img-responsive">
-				<a class="delete-button" href ng-click="deleteDocument(projectStatus.id, 'projectStatus')" ng-show="userData.isDmdiiAdmin"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+				<a class="delete-button" href ng-click="deleteDocument(projectStatus.id, 'projectStatus')" ng-show="userData.isDmdiiAdmin"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon> Delete</a>
 				</div>
 				<div class="col-sm-4">
 					<h4>Quick Links</h4>
@@ -19,7 +19,7 @@
 
 						<li ng-repeat="doc in docs track by $index">
 							<a href ng-click="quickLinkAction(doc)">{{doc.displayName}}</a>
-							<a href ng-click="deleteQuicklink($index, doc.id)" ng-show="userData.isDmdiiAdmin" class="delete-icon"><span class="glyphicon glyphicon-trash"></span></a>
+							<a href ng-click="deleteQuicklink($index, doc.id)" ng-show="userData.isDmdiiAdmin" class="delete-icon"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
 						</li>
 
 					</ul>

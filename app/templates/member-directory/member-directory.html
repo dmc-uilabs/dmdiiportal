@@ -41,7 +41,7 @@
 							<h2 class="col-sm-6">{{item.title}}</h2><time class="col-sm-6 text-right">{{item.dateCreated}}</time>
 						</div>
 							<p>{{plainText(item.content)}}</p>
-							<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteNews($index, item.id)" class="delete-icon">delete<span class="glyphicon glyphicon-trash"></span></a>
+							<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteNews($index, item.id)" class="delete-icon">delete <ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
 						</div>
 						</div>
 					</div>
@@ -99,7 +99,7 @@
 							<h2 class="col-sm-6">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
 						</div>
 							<p>{{plainText(event.description)}}</p>
-							<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteEvent($index, event.id)" class="delete-icon">delete<span class="glyphicon glyphicon-trash"></span></a>
+							<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteEvent($index, event.id)" class="delete-icon">delete <ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
 						</div>
 
 
