@@ -1037,7 +1037,7 @@ angular.module('dmc.data',[])
                 }
             },
             getUserName: function(id) {
-                return localhost + 'user/' + id + 'userName';
+                return localhost + 'user/' + id + '/userName';
             },
             getOnboardingBasicInfoUrl: function() {
                 return localhost+'user-basic-information'

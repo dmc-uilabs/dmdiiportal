@@ -72,7 +72,7 @@ angular.module('dmc.service-marketplace')
 
             ajax.get(dataFactory.getUserName($scope.product.owner), {}, function(response) {
                 $scope.owner_name = response.data.displayName
-            })
+            });
 
             // check if service is favorite for current user
             isFavorite.check([$scope.product]);
