@@ -7,7 +7,7 @@ angular.module('dmc.component.product-card-buttons',[
         return {
             restrict: 'E',
             controller: 'productCardButtonsCtrl',
-            templateUrl: 'templates/components/add-to-workspace/productCard.html',
+            templateUrl: 'templates/components/product-card-buttons/productCard.html',
             scope: {
                 cardSource: '=',
                 typeProduct: '='
@@ -18,7 +18,7 @@ angular.module('dmc.component.product-card-buttons',[
         return {
             restrict: 'E',
             controller: 'productCardButtonsCtrl',
-            templateUrl: 'templates/components/add-to-workspace/appProfile.html',
+            templateUrl: 'templates/components/product-card-buttons/appProfile.html',
             scope: {
               cardSource: '=',
               typeProduct: '='
@@ -29,7 +29,7 @@ angular.module('dmc.component.product-card-buttons',[
         return {
             restrict: 'E',
             controller: 'productCardButtonsCtrl',
-            templateUrl: 'templates/components/add-to-workspace/compare.html',
+            templateUrl: 'templates/components/product-card-buttons/compare.html',
             scope: {
               cardSource: '=',
               typeProduct: '='

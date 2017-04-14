@@ -55,7 +55,7 @@
     <script src="scripts/common/models/dome-model.js"></script>
     <script src="scripts/common/models/member-model.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
-    <script src="scripts/components/add-to-workspace/add-to-workspace.js"></script>
+    <script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/components/add-project/add-project.directive.js"></script>
