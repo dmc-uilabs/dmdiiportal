@@ -1,20 +1,20 @@
 [
 	{
 		"profileId": 1,
-		"projectId": 2,
+		"projectId": 56,
 		"fromProfileId": 2,
 		"from": "Thomas Smith",
 		"date": 1458245164499,
-		"accept": false,
+		"accept": true,
 		"id": 1
 	},
 	{
 		"profileId": 1,
-		"projectId": 1,
+		"projectId": 59,
 		"fromProfileId": 2,
 		"from": "Timmy Thomas",
 		"date": 1458295505214,
-		"accept": false,
+		"accept": true,
 		"id": 7
 	},
 	{

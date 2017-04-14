@@ -1,218 +1,78 @@
-[
-   {
-      "id":11,
-      "dmdiiProjectId": 101000,
-      "documentName":"Name of document",
-      "documentUrl":"http://urlofDoc.org",
-      "ownerId":2,
-      "tags":[
-         {
-            "id":8,
-            "tagName":"a tag"
-         },
-         {
-            "id":9,
-            "tagName":"a tag"
-         }
-      ],
-      "modified":1481840056954,
-      "expires":1486857600000,
-      "isDeleted":false,
-      "fileType":null,
-      "verified":true,
-      "accessLevel":"PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS",
-      "version":1
-   },
-   {
-      "id":20,
-      "documentName":"Name of document",
-      "documentUrl":"http://urlofDoc.org",
-      "dmdiiProjectId":1000,
-      "ownerId":2,
-      "tags":[
-         {
-            "id":8,
-            "tagName":"a tag"
-         },
-         {
-            "id":18,
-            "tagName":"a tag"
-         }
-      ],
-      "modified":1481840887170,
-      "expires":1486857600000,
-      "isDeleted":false,
-      "fileType":null,
-      "verified":true,
-      "accessLevel":"ALL_MEMBERS",
-      "version":1
-   },
-   {
-      "id":22,
-      "documentName":"Name of document",
-      "documentUrl":"http://urlofDoc.org",
-      "dmdiiProjectId":1000,
-      "ownerId":2,
-      "tags":[
-         {
-            "id":8,
-            "tagName":"a tag"
-         },
-         {
-            "id":20,
-            "tagName":"a tag"
-         }
-      ],
-      "modified":1481840914243,
-      "expires":1486857600000,
-      "isDeleted":false,
-      "fileType":null,
-      "verified":true,
-      "accessLevel":"ALL_MEMBERS",
-      "version":1
-   },
-   {
-      "id":23,
-      "documentName":"Name of document",
-      "documentUrl":"http://urlofDoc.org",
-      "dmdiiProjectId":1000,
-      "ownerId":2,
-      "tags":[
-         {
-            "id":8,
-            "tagName":"a tag"
-         },
-         {
-            "id":21,
-            "tagName":"a tag"
-         }
-      ],
-      "modified":1481840923014,
-      "expires":1486857600000,
-      "isDeleted":false,
-      "fileType":null,
-      "verified":true,
-      "accessLevel":"ALL_MEMBERS",
-      "version":1
-   },
-   {
-      "id":24,
-      "documentName":"Name of document",
-      "documentUrl":"http://urlofDoc.org",
-      "dmdiiProjectId":1000,
-      "ownerId":2,
-      "tags":[
-         {
-            "id":8,
-            "tagName":"a tag"
-         },
-         {
-            "id":22,
-            "tagName":"a tag"
-         }
-      ],
-      "modified":1481840953765,
-      "expires":1486857600000,
-      "isDeleted":false,
-      "fileType":null,
-      "verified":true,
-      "accessLevel":"ALL_MEMBERS",
-      "version":1
-   },
-   {
-      "id":25,
-      "documentName":"Name of document",
-      "documentUrl":"http://urlofDoc.org",
-      "dmdiiProjectId":1000,
-      "ownerId":2,
-      "tags":[
-         {
-            "id":8,
-            "tagName":"a tag"
-         },
-         {
-            "id":23,
-            "tagName":"a tag"
-         }
-      ],
-      "modified":1481841055133,
-      "expires":1486857600000,
-      "isDeleted":false,
-      "fileType":null,
-      "verified":true,
-      "accessLevel":"ALL_MEMBERS",
-      "version":1
-   },
-   {
-      "id":26,
-      "documentName":"Name of document",
-      "documentUrl":"http://urlofDoc.org",
-      "dmdiiProjectId":1000,
-      "ownerId":2,
-      "tags":[
-         {
-            "id":8,
-            "tagName":"a tag"
-         },
-         {
-            "id":24,
-            "tagName":"a tag"
-         }
-      ],
-      "modified":1481841065626,
-      "expires":1486857600000,
-      "isDeleted":false,
-      "fileType":null,
-      "verified":true,
-      "accessLevel":"ALL_MEMBERS",
-      "version":1
-   },
-   {
-      "id":21,
-      "documentName":"Name of document",
-      "documentUrl":"http://urlofDoc.org",
-      "dmdiiProjectId":1000,
-      "ownerId":2,
-      "tags":[
-         {
-            "id":8,
-            "tagName":"a tag"
-         },
-         {
-            "id":19,
-            "tagName":"a tag"
-         }
-      ],
-      "modified":1481840897380,
-      "expires":1486857600000,
-      "isDeleted":false,
-      "fileType":null,
-      "verified":true,
-      "accessLevel":"ALL_MEMBERS",
-      "version":1
-   },
-   {
-      "id":41,
-      "documentName":"Name of document",
-      "documentUrl":"http://urlofDoc.org",
-      "dmdiiProjectId":1000,
-      "ownerId":11,
-      "tags":[
-         {
-            "id":8,
-            "tagName":"a tag"
-         },
-         {
-            "id":35,
-            "tagName":"a tag"
-         }
-      ],
-      "modified":1485795974007,
-      "expires":1488387974007,
-      "isDeleted":false,
-      "fileType":null,
-      "verified":true,
-      "accessLevel":"ALL_MEMBERS",
-      "version":1
-   }
-]
+[{
+    "id": 209,
+    "documentName": "Schedule",
+    "documentUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Steelposter.jpg/220px-Steelposter.jpg",
+    "dmdiiProjectId": 2,
+    "ownerId": 311,
+    "tags": [{
+        "id": 214,
+        "tagName": "a tag"
+    }],
+    "modified": 1491573341667,
+    "expires": 1494165341667,
+    "isDeleted": false,
+    "fileType": 4,
+    "verified": true,
+    "accessLevel": "ALL_MEMBERS",
+    "version": 1
+}, {
+    "id": 76,
+    "documentName": "14-07-03 PDA 2.25.16.pdf",
+    "documentUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Steelposter.jpg/220px-Steelposter.jpg",
+    "dmdiiProjectId": 2,
+    "ownerId": 11,
+    "tags": [{
+        "id": 33,
+        "tagName": "a tag"
+    }, {
+        "id": 84,
+        "tagName": "a tag"
+    }],
+    "modified": 1485814040488,
+    "expires": 1490572800000,
+    "isDeleted": false,
+    "fileType": null,
+    "verified": true,
+    "accessLevel": "ALL_MEMBERS",
+    "version": 1
+}, {
+    "id": 86,
+    "documentName": "Closeout Summary - 01-30-2017.pdf",
+    "documentUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Steelposter.jpg/220px-Steelposter.jpg",
+    "dmdiiProjectId": 2,
+    "ownerId": 3,
+    "tags": [{
+        "id": 33,
+        "tagName": "a tag"
+    }, {
+        "id": 96,
+        "tagName": "a tag"
+    }],
+    "modified": 1485815774587,
+    "expires": 1490572800000,
+    "isDeleted": false,
+    "fileType": null,
+    "verified": true,
+    "accessLevel": "ALL_MEMBERS",
+    "version": 1
+}, {
+    "id": 159,
+    "documentName": "07-03 Final Report.pdf",
+    "documentUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Steelposter.jpg/220px-Steelposter.jpg",
+    "dmdiiProjectId": 2,
+    "ownerId": 3,
+    "tags": [{
+        "id": 33,
+        "tagName": "a tag"
+    }, {
+        "id": 171,
+        "tagName": "a tag"
+    }],
+    "modified": 1487026815791,
+    "expires": 1492041600000,
+    "isDeleted": false,
+    "fileType": null,
+    "verified": true,
+    "accessLevel": "PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS",
+    "version": 1
+}]

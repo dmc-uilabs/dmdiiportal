@@ -77,7 +77,7 @@ server.post('/dmdiidocument', function(req,res) {
 
 server.get('/dmdiiMember', function (req, res) {
   var membersOrig = JSON.parse(fs.readFileSync('stubs/dmdiiMember.json'));
-  var membersData = membersOrig.data;
+  var membersData = membersOrig;
 
   var page = parseInt(req.query.page)
   var size = parseInt(req.query.pageSize)
@@ -91,7 +91,7 @@ server.get('/dmdiiMember', function (req, res) {
 
 server.get('/dmdiiprojects', function (req, res) {
   var projectsOrig = JSON.parse(fs.readFileSync('stubs/dmdiiprojects.json'));
-  var projectsData = projectsOrig.data;
+  var projectsData = projectsOrig;
 
   var page = parseInt(req.query.page)
   var size = parseInt(req.query.pageSize)
