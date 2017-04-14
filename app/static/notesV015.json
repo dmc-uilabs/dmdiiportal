@@ -19,7 +19,8 @@
                                   "notes":
                                   [
                                     {
-                                      "content": "In the past any user joing the platform would have the ability (verified or not) to post their contact information on their selected organization's DMDII Organization profile page. Combined with a bug that would share that contact information on the incorrect organizatoin profile page this was causing users confusion. This all being said, we've decided that since organization administrators can already share any contact inforamtion they wish for their organization and since users can share their own contact inforamtion on their own profile pages, that this functionality should be removed. At the moment, the fields to share your DMDII Contact information still exists but is no longer conected to the DMDII Organizations' page."
+                                      "content": "In the past any user joing the platform would have the ability (verified or not) to post their contact information on their selected organization's DMDII Organization profile page. Combined with a bug that would share that contact information on the incorrect organizatoin profile page this was causing users confusion. This all being said, we've decided that since organization administrators can already share any contact inforamtion they wish for their organization and since users can share their own contact inforamtion on their own profile pages, that this functionality should be removed. At the moment, the fields to share your DMDII Contact information still exists but is no longer conected to the DMDII Organizations' page.",
+                                      "class":"release-bug"
                                     }
                                   ]
                                 }
@@ -41,10 +42,12 @@
                           [
                             {
                                   "content":"In the past users will have noticed that when they uploaded a logo or picture, the document was not viewable right away. Instead, users would notice that pictures would be blank. This feature change will place a scan in progress image where the document or image is expected to be, while a document is being scanned for viruses and malware.",
+                                  "class":"release-bug",
                                   "notes":
                                   [
                                     {
-                                      "content":"If you notice that the document you've uploaded does not get verified in roughly ten minutes time, you may need to upload your image once more and change the document's name to not include spcial characters such as spaces, commas, hyphens, quotes, back or forward slashes, carrots, greater-than/less-than symbols, asterisks, square/currly brackets, etc. If the file or image continues to remain in scanning, then please reach out us at askdmc@uilabs.org so we can investigate the matter for you."
+                                      "content":"If you notice that the document you've uploaded does not get verified in roughly ten minutes time, you may need to upload your image once more and change the document's name to not include spcial characters such as spaces, commas, hyphens, quotes, back or forward slashes, carrots, greater-than/less-than symbols, asterisks, square/currly brackets, etc. If the file or image continues to remain in scanning, then please reach out us at askdmc@uilabs.org so we can investigate the matter for you.",
+                                      "class":"release-bug"
                                     }
                                   ]
                             }
@@ -55,7 +58,8 @@
                               "notes":
                               [
                                     {
-                                          "content":"Users now have the ability to include rich text on their profile page descriptions. This will allow users to emphasize information more clearly in their description. Rich text options include, bolding, italicizing, underlining, including a link and much more."
+                                          "content":"Users now have the ability to include rich text on their profile page descriptions. This will allow users to emphasize information more clearly in their description. Rich text options include, bolding, italicizing, underlining, including a link and much more.",
+                                          "class":"release-feature"
                                     }
                               ]
                         }
@@ -74,7 +78,8 @@
                                           "notes":
                                           [
                                                 {
-                                                      "content":"Users now have the ability to include rich text in their workspace overview, allowing workspace creators to easily describe the work they want to complete, which includes the ability to use titles, bold, italicize, underline, and more."
+                                                      "content":"Users now have the ability to include rich text in their workspace overview, allowing workspace creators to easily describe the work they want to complete, which includes the ability to use titles, bold, italicize, underline, and more.",
+                                                      "class":"release-feature"
                                                 }
                                           ]
                                     }
@@ -89,7 +94,8 @@
                                           "notes":
                                           [
                                                 {
-                                                      "content":"Users now have the ability to include rich text in discussions, which should help users put more emphasis, or more easily create an interesting thread. Rich text options include, bolding, italicizing, underlining, including a link and much more."
+                                                      "content":"Users now have the ability to include rich text in discussions, which should help users put more emphasis, or more easily create an interesting thread. Rich text options include, bolding, italicizing, underlining, including a link and much more.",
+                                                      "class":"release-feature"
                                                 }
                                           ]
                                     }
@@ -106,7 +112,8 @@
                               "notes":
                               [
                                 {
-                                  "content":"In the past, when users created tasks in their workspaces, they then had the option to task anyone with an account on our platform. From the feedback we've received, users would like to only be able to task users that are part of their workspace. We've made changes so that users can only task users that are part of their workspace."
+                                  "content":"In the past, when users created tasks in their workspaces, they then had the option to task anyone with an account on our platform. From the feedback we've received, users would like to only be able to task users that are part of their workspace. We've made changes so that users can only task users that are part of their workspace.",
+                                  "class":"release-bug"
                                 }
                               ]
                         },
@@ -151,16 +158,27 @@
                       "notes":
                       [
                         {
-                          "content": "The FAQs page has been updated with a new interface that we hope will help users more easily read through them. We've also updated them to be more current to our platfrom since November of 2016. Finally the FAQs are seperated into explicite tabs. The Framework we used to create these now allows us to mch more easily update our FAQs when we have major changes allowing us possibly update them in the middle of or development cycle without much effort."
+                          "content": "The FAQs page has been updated with a new interface that we hope will help users more easily read through them. We've also updated them to be more current to our platfrom since November of 2016. Finally the FAQs are seperated into explicite tabs. The Framework we used to create these now allows us to mch more easily update our FAQs when we have major changes allowing us possibly update them in the middle of or development cycle without much effort.",
+                          "class":"release-content"
                         }
                       ]
                     }
                   ]
             },
             {
-                  "content": "Legal - We've changed our naming scheme for this section from Terms of Service to Legal to be able to accomidate more than just our Terms of Service documents but also any other legal documents related to our platform.",
+                  "content": "Legal",
                   "notes":
                   [
+                        {
+                              "content": "Terms of service is now Legal",
+                              "notes":
+                              [
+                                {
+                                  "content":"We've changed our naming scheme for this section from Terms of Service to Legal to be able to accomidate more than just our Terms of Service documents but also any other legal documents related to our platform.",
+                                  "class":"release-feature"
+                                }
+                              ]
+                        },
                         {
                               "content": "General Terms of Service"
                         },
@@ -172,7 +190,8 @@
                               "notes":
                               [
                                 {
-                                  "content": "In the past we did not have a Pivacy Policy posted on our website for our platform. After a few months of review, we now have it in place and you can now read it on our Legal page, the link to which can be found in the footer."
+                                  "content": "In the past we did not have a Pivacy Policy posted on our website for our platform. After a few months of review, we now have it in place and you can now read it on our Legal page, the link to which can be found in the footer.",
+                                  "class":"release-content"
                                 }
                               ]
                         },
@@ -181,7 +200,8 @@
                               "notes":
                               [
                                 {
-                                  "content": "In the past we did not have an Application Service Level Agreement posted on our website for our platform. After a few months of review, we now have it in place and you can now read it on our Legal page, the link to which can be found in the footer."
+                                  "content": "In the past we did not have an Application Service Level Agreement posted on our website for our platform. After a few months of review, we now have it in place and you can now read it on our Legal page, the link to which can be found in the footer.",
+                                  "class":"release-content"
                                 }
                               ]
                         },
@@ -190,7 +210,8 @@
                               "notes":
                               [
                                 {
-                                  "content": "In the past we did not have a Digital Millenium Copyright Act document explicitly posted on our website for our platform. We now have it in place and you can now read it on our Legal page, the link to which can be found in the footer."
+                                  "content": "In the past we did not have a Digital Millenium Copyright Act document explicitly posted on our website for our platform. We now have it in place and you can now read it on our Legal page, the link to which can be found in the footer.",
+                                  "class":"release-content"
                                 }
                               ]
                         }
@@ -206,15 +227,26 @@
       "notes":
       [
             {
-                  "content": "Core - The work done leading up to the previous release, the DMC team worked to create a framework for new static content would wanted to host on our website. In this release we have begun to bring in some of this content. When visting the website you will now notice there is a new menu item available in the top menu called \"Core\". Under the Core menu item we will be including content that will help users learn more about the DMC as well as much of the infrastructure related to the DMC platform. Users will also soon find information releated to what goes into each of the releases the DMC has every two weeks. Below you will find the new drop-down items we expect to be releasing soon.",
+                  "content": "Core",
                   "notes":
                   [
+                        {
+                              "content": "New Core Drop-down in Main Menu",
+                              "notes":
+                              [
+                                {
+                                  "Content": "The work done leading up to the previous release, the DMC team worked to create a framework for new static content would wanted to host on our website. In this release we have begun to bring in some of this content. When visting the website you will now notice there is a new menu item available in the top menu called \"Core\". Under the Core menu item we will be including content that will help users learn more about the DMC as well as much of the infrastructure related to the DMC platform. Users will also soon find information releated to what goes into each of the releases the DMC has every two weeks. Below you will find the new drop-down items we expect to be releasing soon.",
+                                  "class":"release-feature"
+                                }
+                              ]
+                        },
                         {
                               "content": "About the DMC",
                               "notes":
                               [
                                     {
-                                          "content": "The about DMC page has recieved a few changes but more importantly has been now moved under the Core menu item. Before this update the About DMC page would have been found in the main menu with no sub-categories."
+                                          "content": "The about DMC page has recieved a few changes but more importantly has been now moved under the Core menu item. Before this update the About DMC page would have been found in the main menu with no sub-categories.",
+                                          "class":"release-content"
                                     }
                               ]
                         },
@@ -223,7 +255,8 @@
                               "notes":
                               [
                                     {
-                                          "content":"The DMC has created an article which goes over why cyber security is important, our stance on security, what we're doing about securty, and much more. Read the article on the DMC "
+                                          "content":"The DMC has created an article which goes over why cyber security is important, our stance on security, what we're doing about securty, and much more. Read the article on the DMC.",
+                                          "class":"release-content"
                                     }
                               ]
                         },
@@ -231,13 +264,7 @@
                               "content": "Online Training"
                         },
                         {
-                              "content": "DMC Releases",
-                              "notes":
-                              [
-                                {
-                                  "content": "Going forward, all release nates (features added, content added, bug fixed, applications published, and code base changes) will be added to the this page for users to read at their leasure. All release notes that were hosted on Confluence in the past will remain in Confluence and will be referenced appropriatly on this page. Users will be able to learn about all the information listed above as well as how to deploy our infrastructure for their own business if they so choose,"
-                                }
-                              ]
+                              "content": "DMC Releases"
                         },
                         {
                               "content": "DMC Blog"
@@ -262,6 +289,7 @@
                                                       [
                                                             {
                                                                   "content":"In the past users will have noticed that when they uploaded a logo or picture, the document was not viewable right away. Instead, users would notice that pictures would be blank. This feature change will place a scan in progress image where the document or image is expected to be, while a document is being scanned for viruses and malware.",
+                                                                  "class":"release-feature",
                                                                   "notes":
                                                                   [
                                                                     {
@@ -289,6 +317,7 @@
                                                       [
                                                         {
                                                               "content":"In the past users will have noticed that when they uploaded a logo or picture, the document was not viewable right away. Instead, users would notice that pictures would be blank. This feature change will place a scan in progress image where the document or image is expected to be, while a document is being scanned for viruses and malware.",
+                                                              "class":"release-feature",
                                                               "notes":
                                                               [
                                                                 {
@@ -307,24 +336,40 @@
                               "notes":
                               [
                                     {
-                                          "content":"Upon login, users will be redirected to the new revamped activities page. We do this so that users can potentially find something new each time they log into the DMC."
+                                          "content": "Activities Page Redirect",
+                                          "notes":
+                                          [
+                                            {
+                                              "content":"Upon login, users will be redirected to the new revamped activities page. We do this so that users can potentially find something new each time they log into the DMC.",
+                                              "class":"release-feature"
+                                            }
+                                          ]
                                     },
                                     {
                                           "content":"Activities Page Revamp",
                                           "notes":
                                           [
                                                 {
-                                                      "content":"The DMC activities page has received a face-lift. In the past the activities page was rather minimum. We only included a list of events and a place for users to leave, read, create, and reply to discussions."
+                                                      "content":"The DMC activities page has received a face-lift. In the past the activities page was rather minimum. We only included a list of events and a place for users to leave, read, create, and reply to discussions.",
+                                                      "class":"release-content"
                                                 },
                                                 {
-                                                      "content":"The Activities page now includes a DMDII Twitter feed, as well a feed from the DMDII Youtube page. Users can also now find a link to a featured news story about the DMC, as well as links to DMDII and UI LABS social websites such as Twitter, Instagram, LinkedIn, and Blogs."
+                                                      "content": "Social Media Feeds",
+                                                      "notes":
+                                                      [
+                                                        {
+                                                          "content":"The Activities page now includes a DMDII Twitter feed, as well a feed from the DMDII Youtube page. Users can also now find a link to a featured news story about the DMC, as well as links to DMDII and UI LABS social websites such as Twitter, Instagram, LinkedIn, and Blogs.",
+                                                          "class":"release-feature"
+                                                        }
+                                                      ]
                                                 },
                                                 {
                                                   "content": "DOME Video Instructions",
                                                   "notes":
                                                   [
                                                     {
-                                                      "content": ""
+                                                      "content": "We have uploaded a few videos to the DMDII Youtube channel created by Dr. Binil Starly from North Carolina State University that show students in his class how to build DOME models that they can then use to create applications that can potentially be hosted in the DMC Marketplace. Anyone interested in contributing to the DMC would definitely find the information in these videos to be very valuable.",
+                                                      "class":"release-content"
                                                     }
                                                   ]
                                                 }
@@ -335,7 +380,8 @@
                                           "notes":
                                           [
                                                 {
-                                                      "content":"Users now have the ability to include rich text in discussions, which should help users put more emphasis, or more easily create an interesting thread. Rich text options include, bolding, italicizing, underlining, including a link and much more."
+                                                      "content":"Users now have the ability to include rich text in discussions, which should help users put more emphasis, or more easily create an interesting thread. Rich text options include, bolding, italicizing, underlining, including a link and much more.",
+                                                      "class":"release-feature"
                                                 }
                                           ]
                                     }
@@ -354,7 +400,8 @@
                                                       "notes":
                                                       [
                                                             {
-                                                                  "content":"Users now have the ability to include rich text in their workspace overview, allowing workspace creators to easily describe the work they want to complete, which includes the ability to use titles, bold, italicize, underline, and more."
+                                                                  "content":"Users now have the ability to include rich text in their workspace overview, allowing workspace creators to easily describe the work they want to complete, which includes the ability to use titles, bold, italicize, underline, and more.",
+                                                                  "class":"release-feature"
                                                             }
                                                       ]
                                                 }
@@ -369,7 +416,8 @@
                                                       "notes":
                                                       [
                                                             {
-                                                                  "content":"Users now have the ability to include rich text in discussions, which should help users put more emphasis, or more easily create an interesting thread. Rich text options include, bolding, italicizing, underlining, including a link and much more."
+                                                                  "content":"Users now have the ability to include rich text in discussions, which should help users put more emphasis, or more easily create an interesting thread. Rich text options include, bolding, italicizing, underlining, including a link and much more.",
+                                                                  "class":"release-feature"
                                                             }
                                                       ]
                                                 }
@@ -386,7 +434,14 @@
                                           "notes":
                                           [
                                             {
-                                              "content":"In the past, when users created tasks in their workspaces, they then had the option to task anyone. From the feedback we've received, users would like to only be able to task users that are part of their workspace. We've made changes so that users can only task users that are part of their workspace."
+                                              "content": "Tasking Users in Your Workspace",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content":"In the past, when users created tasks in their workspaces, they then had the option to task anyone. From the feedback we've received, users would like to only be able to task users that are part of their workspace. We've made changes so that users can only task users that are part of their workspace.",
+                                                  "class":"release-feature"
+                                                }
+                                              ]
                                             }
                                           ]
                                     },
@@ -405,7 +460,14 @@
                   "notes":
                   [
                         {
-                              "content": "The DMC Marketplace has recieved as new section: The Featured Application of the week section. We've created this section to help expose application that users may not have considered looking at as a possible solution for them and their businesses."
+                            "content": "Featured Marketplace App",
+                            "notes":
+                            [
+                              {
+                                  "content": "The DMC Marketplace has recieved as new section: The Featured Application of the week section. We've created this section to help expose application that users may not have considered looking at as a possible solution for them and their businesses.",
+                                  "class":"release-feature"
+                              }
+                            ]
                         },
                         {
                               "content": "Application Profile page"
@@ -425,16 +487,18 @@
                                           "notes":
                                           [
                                                 {
-                                                      "content": "The DMC has updated the user interface for the DMDII Member Directory. The changes include a change to the look of the Member Directory (color, structure), as well as a slight rearangement of the items that users found there before. Member news and events in the pass had seperate line items at the top of the page which resulted in lots of white space. These items can now be found in tabs to the left of the members map."
+                                                      "content": "The DMC has updated the user interface for the DMDII Member Directory. The changes include a change to the look of the Member Directory (color, structure), as well as a slight rearangement of the items that users found there before. Member news and events in the pass had seperate line items at the top of the page which resulted in lots of white space. These items can now be found in tabs to the left of the members map.",
+                                                      "class":"release-feature"
                                                 }
                                           ]
                                     },
                                     {
-                                          "content": "Feature Member",
+                                          "content": "Featured Member",
                                           "notes":
                                           [
                                                 {
-                                                      "content": "DMDII Members will notice we've added a new section in the DMDII Member Directory called the Featured Member section, found below the Member News, Events, and Map. When visiting the Member Directory, users can learn about other DMDII Members. Each time you visit the page, you can learn about a new member. This is one way we think we can help members learn more about each other."
+                                                      "content": "DMDII Members will notice we've added a new section in the DMDII Member Directory called the Featured Member section, found below the Member News, Events, and Map. When visiting the Member Directory, users can learn about other DMDII Members. Each time you visit the page, you can learn about a new member. This is one way we think we can help members learn more about each other.",
+                                                      "class":"release-feature"
                                                 }
                                           ]
                                     },
@@ -443,7 +507,8 @@
                                       "notes":
                                       [
                                         {
-                                          "content": "Some DMDII Members using the DMDII Portal may have noticed that DMDII Organization descriptions that appear in the directory were not appearing properly when certain speacial characters were included. We've fixed this issue and user should no longer run into this issue."
+                                          "content": "Some DMDII Members using the DMDII Portal may have noticed that DMDII Organization descriptions that appear in the directory were not appearing properly when certain speacial characters were included. We've fixed this issue and user should no longer run into this issue.",
+                                          "class":"release-bug"
                                         }
                                       ]
                                     },
@@ -456,7 +521,8 @@
                                               "notes":
                                               [
                                                 {
-                                                  "content": "Some DMDII Members using the DMDII Portal may have noticed that DMDII Organization descriptions that appear on the organization's DMDII Profile page were not appearing properly when certain speacial characters were included. We've fixed this issue and user should no longer run into this issue."
+                                                  "content": "Some DMDII Members using the DMDII Portal may have noticed that DMDII Organization descriptions that appear on the organization's DMDII Profile page were not appearing properly when certain speacial characters were included. We've fixed this issue and user should no longer run into this issue.",
+                                                  "class":"release-bug"
                                                 }
                                               ]
                                             }
@@ -473,14 +539,16 @@
                                           "notes":
                                           [
                                                 {
-                                                      "content":"The DMC has updated the look and feel of the entire DMDII Projects Directory. Users will find a much sleaker look to this part of the site which includes a new Project News section at the bottom of the page."
+                                                      "content":"The DMC has updated the look and feel of the entire DMDII Projects Directory. Users will find a much sleaker look to this part of the site which includes a new Project News section at the bottom of the page.",
+                                                      "class":"release-feature"
                                                 },
                                                 {
                                                       "content":"Featured Project",
                                                       "notes":
                                                       [
                                                             {
-                                                                  "content":"Members of DMDII will notice that along with the changes to the user interface in the DMDII Project Directory, we've added a new section called Featured Project, "
+                                                                  "content":"Members of DMDII will notice that along with the changes to the user interface in the DMDII Project Directory, we've added a new section called Featured Project, where we help Members of DMDII more easily learn about DMDII Projects in the portfolio. Each time you visit the DMDII Project Directory page you can learn about a different DMDII Project",
+                                                                  "class":"release-feature"
                                                             }
                                                       ]
                                                 },
@@ -489,7 +557,8 @@
                                                   "notes":
                                                   [
                                                     {
-                                                      "content": "DMDII Members using the DMDII Project Directory may have notice that in terms of the DMDII Project time-line, only one date was appearing and users were not able to view other dates that were published to the time line. We have managed to fix this issue and have also changed how the time line appears, making it easier to read. The formating for the information displayed on the event card has also been updated."
+                                                      "content": "DMDII Members using the DMDII Project Directory may have notice that in terms of the DMDII Project time-line, only one date was appearing and users were not able to view other dates that were published to the time line. We have managed to fix this issue and have also changed how the time line appears, making it easier to read. The formating for the information displayed on the event card has also been updated.",
+                                                      "class":"release-bug"
                                                     }
                                                   ]
                                                 }
@@ -499,9 +568,16 @@
                                           "content": "DMDII Project Profile page",
                                           "notes":
                                           [
-                                                {
-                                                      "content": "Along with the changes made to the DMDII Project Directory, individual DMDII Project Pages have recieved a user interface changes. We think that the changes that were made definitely help to made our projects pages look much more profesional as well as help to drive user interaction. The changes made to these pages do reflect the style of the Member and Project Directory pages."
-                                                }
+                                            {
+                                              "content": "DMDII Project Profile Revamp",
+                                              "notes":
+                                              [
+                                                    {
+                                                          "content": "Along with the changes made to the DMDII Project Directory, individual DMDII Project Pages have recieved a user interface changes. We think that the changes that were made definitely help to made our projects pages look much more profesional as well as help to drive user interaction. The changes made to these pages do reflect the style of the Member and Project Directory pages.",
+                                                          "class": "release-feature"
+                                                    }
+                                              ]
+                                            }
                                           ]
                                     }
                               ]

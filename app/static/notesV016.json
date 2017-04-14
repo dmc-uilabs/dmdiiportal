@@ -141,7 +141,13 @@
                               "content": "Security"
                         },
                         {
-                              "content": "Release notes"
+                              "content": "Release notes",
+                              "notes":
+                              [
+                                {
+                                  "content": "Going forward, all release nates (features added, content added, bug fixed, applications published, and code base changes) will be added to the this page for users to read at their leasure. All release notes that were hosted on Confluence in the past will remain in Confluence and will be referenced appropriatly on this page. Users will be able to learn about all the information listed above as well as how to deploy our infrastructure for their own business if they so choose,"
+                                }
+                              ]
                         }
                   ]
             },
