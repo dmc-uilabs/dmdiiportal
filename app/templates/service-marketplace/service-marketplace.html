@@ -65,7 +65,9 @@
 						<!--product header-->
 						<div class="product-header">
 							<div layout="row">
-								<h2>{{product.title}}</h2>	<span flex></span>
+								<h2>{{product.title}}</h2>
+                <md-button ui-sref="service-marketplace-edit({serviceId: product.id})" ng-if="userData.isDmdiiAdmin" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
+                <span flex></span>
               </div>
               <div layout="row">
                 <span>Offered By: <a ng-href="{{'/company.php#/'+product.profileId+'/storefront?product=services'}}" class="link-button">{{owner_name}}</a></span>

@@ -2,7 +2,7 @@
   <ui-widget-stars-static size="15" value="{{product.ratingAverage}}" text="({{product.ratingCount}})"></ui-widget-stars-static>
   <span flex></span>
   <div ng-if="!adding_to_project" layout="row" layout-align="center center">
-    <md-button ui-sref="service-marketplace-edit({serviceId: cardSource.id})" ng-if="!cardSource.added && !addingToProject && userData.isDmdiiAdmin" class="md-raised add dmc-button margin-left20">Edit Service</md-button>
+    <!-- <md-button ui-sref="service-marketplace-edit({serviceId: cardSource.id})" ng-if="!cardSource.added && !addingToProject && userData.isDmdiiAdmin" class="md-raised add dmc-button margin-left20">Edit Service</md-button> -->
     <md-button ng-click="addToProject()" ng-hide="addingToProject || cardSource.added" class="md-raised add dmc-button margin-left20">Add to Workspace</md-button>
           
     <md-button aria-label="Back to Add"
