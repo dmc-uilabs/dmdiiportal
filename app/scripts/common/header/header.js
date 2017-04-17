@@ -56,13 +56,20 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
               $scope.notification_alert = 0;
 
               angular.forEach($scope.userData.notifications, function(item) {
-                  if (item.unread === true && !item.cleared){
+                  if (item.unread === true && !item.cleared && !item.deleted){
                       $scope.notification_alert++;
                   }
               });
+              notificationsMessages.setNotificationAlerts($scope.notification_alert);
           }
             apply();
         };
+
+        $scope.$watch(function () { return notificationsMessages.getNotificationAlerts(); }, function (newValue, oldValue) {
+          if (newValue != null) {
+            $scope.notification_alert = newValue;
+          }
+        }, true);
 
         $scope.setDropDown = function(event,width){
             width = $(event.currentTarget).width()+12;
@@ -118,6 +125,11 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
             ajax.get(dataFactory.markNotificationRead(item.createdFor.id, item.id),function(response){
             });
         };
+
+        $scope.$on('notificationCleared', function (event, notificationId) {
+          $scope.notification_alert--;
+          notificationsMessages.setNotificationAlerts($scope.notification_alert);
+        });
 
         function apply() {
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();

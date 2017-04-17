@@ -63,7 +63,7 @@
 			<h2>{{typeNotifications}}</h2>
 		</div>
 		<md-list>
-			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy"  ng-if="!item.cleared" >
+			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy"  ng-if="!item.cleared && !item.deleted" >
 				<div flex="100" layout="row" layout-align="center center" >
 					<div class="logo-event" ng-switch on="item.type">
 						<!--<img ng-src="{{item.image}}">-->
@@ -86,7 +86,7 @@
 			<h2>Archived</h2>
 		</div>
 		<md-list>
-			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy | limitTo:20"  ng-if="item.cleared" >
+			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy | limitTo:20"  ng-if="item.cleared || item.deleted" >
 				<div flex="100" layout="row" layout-align="center center" >
 					<div class="logo-event" ng-switch on="item.type">
 						<!--<img ng-src="{{item.image}}">-->

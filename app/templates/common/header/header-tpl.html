@@ -67,7 +67,7 @@
                             <h3>Notifications</h3>
                             <md-button md-no-ink href="/notifications.php#/user" ng-click="viewAll" class="view-all-link">VIEW ALL</md-button>
                         </div>
-                        <md-menu-item ng-repeat="item in userData.notifications track by $index" ng-if="!item.cleared" ng-class="{'not-read' : item.unread}">
+                        <md-menu-item ng-repeat="item in userData.notifications track by $index | limitTo:10" ng-if="!item.cleared && !item.deleted" ng-class="{'not-read' : item.unread}">
                           <a ng-href='/company-profile.php#/profile/{{userData.companyId}}'>
                             <div layout="row" layout-align="space-between center">
                               <ng-md-icon icon="person_add" size="30" ng-if="item.type == 'NEW_USER_JOINED_ORGANIZATION'"></ng-md-icon>
@@ -205,7 +205,7 @@
                             <h3>Notifications</h3>
                             <md-button md-no-ink href="/notifications.php#/user" ng-click="viewAll" class="view-all-link">VIEW ALL</md-button>
                         </div>
-                        <md-menu-item ng-repeat="item in userData.notifications track by $index" ng-if="!item.cleared" ng-class="{'not-read' : item.unread}">
+                        <md-menu-item ng-repeat="item in userData.notifications track by $index | limitTo:10" ng-if="!item.cleared" ng-class="{'not-read' : item.unread}">
                           <a ng-href='/company-profile.php#/profile/{{userData.companyId}}'>
                             <div layout="row" layout-align="space-between center">
                               <ng-md-icon icon="person_add" size="30" ng-if="item.type == 'NEW_USER_JOINED_ORGANIZATION'"></ng-md-icon>

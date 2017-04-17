@@ -108,7 +108,8 @@
         },
       "created":1490108463632,
       "message":"max power has requested to join your organization",
-      "unread":true
+      "unread":false,
+	"deleted":true
     },
     {
       "id":2,
@@ -125,7 +126,9 @@
         },
         "created":1489777359931,
         "message":"test DMC has requested to be verified as a member of your organization",
-        "unread":true}
+        "unread":true,
+	"deleted":false
+	}
    ],
   "hasUnreadNotifications":true,
    "timezone":null

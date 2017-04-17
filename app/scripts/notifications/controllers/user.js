@@ -50,6 +50,7 @@ angular.module('dmc.notifications')
                     if($scope.userData.notifications[i].id == notification_id) {
                       $scope.userData.notifications[i].unread = false;
                       $scope.userData.notifications[i].cleared = true;
+                      notificationsMessages.setNotificationAlerts(notificationsMessages.getNotificationAlerts() - 1);
                     }
                 }
                 ajax.get(dataFactory.markNotificationRead(id, notification_id),function(response){
