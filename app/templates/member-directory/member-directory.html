@@ -1,238 +1,251 @@
-<div class="container members-box" layout="row" >
+<main>
+	<section class="container">
+		<h2>Membership Directory</h2>
+		<div class="row content-row">
+			<div class="col-lg-7">
 
-    <!-- <div class="content-column" layout="column" flex='15'>
-        <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
-        <dmc-products-filter state-name="'members_search'" ng-if="isSearch"></dmc-products-filter>
-    </div> -->
-        <!-- Left Content Column -->
-    <div class="members" layout="column" flex>
-        <md-content layout="row" layout-align="center">
-            <div class="newsAndEvents" flex="95" layout="column">
-                <div class=" slim-margin">
-                    <p class="news">Recent News</p>
 
-                    <div class="slim-margin" ng-repeat="item in news">
-                        <div layout="row" flex="75">
-                            <div layout="column">
-                                <h3 class="no-top no-bottom ">{{item.dateCreated}}</h3>
-                                <h2 class="no-top no-bottom green">{{item.title}}</h2>
-                                <p class="no-top no-bottom ">{{item.content}}</p>
-                            </div>
-                            <span flex></span>
-                            <a ng-if="userData.isDmdiiAdmin" class="delete-btn" flex="10"href ng-click="deleteNews($index, item.id)">delete</a>
-                        </div>
-                        <md-divider></md-divider>
-                    </div>
-                </div>
 
-                <div class="events slim-margin">
-                    <h2 class="news">Upcoming Events</h2>
-                    <div class="slim-margin" ng-repeat="event in events | limitTo:3">
-                        <div layout="row" flex="75" ng-click="eventClicked(event)">
-                            <div layout="column">
-                                <h3  class="no-top no-bottom" >{{event.date}}</h3>
-                                <h2 class="no-top no-bottom green">{{event.name}}</h2>
-                                <p class="no-top no-bottom">{{plainText(event.description)}}</p>
-                            </div>
-                            <span flex></span>
-                            <a ng-if="userData.isDmdiiAdmin" class="delete-btn" flex="10" href ng-click="deleteEvent($index, event.id)">delete</a>
-                        </div>
-                        <md-divider></md-divider>
-                    </div>
-                </div>
-            </div>
-        </md-content>
+				<!-- Desktop controls -->
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs event-tabs" role="tablist">
+					<!-- <li class="hidden-xs tab-label">Events</li> -->
+					<li role="presentation" class="active hidden-xs"><a data-target="#news" aria-controls="news" role="tab" data-toggle="tab">News</a></li>
+					<li role="presentation" class="hidden-xs"><a data-target="#calendar" aria-controls="calendar" role="tab" data-toggle="tab">Calendar</a></li>
+					<li role="presentation" class="hidden-xs"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Event List</a></li>
 
-        <md-content class="overflowVis">
-            <div layout="row" layout-padding layout-align="center stretch">
-                <div flex="25" layout="row" layout-align="center">
-                    <md-icon ng-click="toggleCalendar()" ng-hide="showCalendar">
-                        <ng-md-icon class="calendarIcon" icon="event" size="48">Show Calendar</ng-md-icon>
-                    </md-icon>
-                    <div ng-show="showCalendar" class="pull-right">
-                        <span ng-click="toggleCalendar()">x</span>
-                        <tien-clndr class="clndr" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
-                            <div class="clndr-controls">
-                                <div class="clndr-previous-button" ng-click="clndr.back()">
-                                    &lsaquo;
-                                </div>
-                                <div class="month">
-                                  {{month}}
-                                </div>
-                                <div class="clndr-next-button" ng-click="clndr.forward()">
-                                  &rsaquo;
-                                </div>
-                            </div>
-                            <div class="clndr-grid">
-                                <div class="days-of-the-week">
-                                  <div class="header-day" ng-repeat="day in daysOfTheWeek track by $index">
-                                    {{day}}
-                                  </div>
-                                </div>
-                                <div class="days">
-                                  <div class="{{day.classes}}" ng-repeat="day in days" ng-click="dayClicked($event, day)">
-                                    <div class="event-indicator" ng-show="day.events.length" ng-click="showEvents(day.events)">{{day.events.length}}</div>
-                                    {{day.day}}
-                                  </div>
-                                </div>
-                            </div>
-                        </tien-clndr>
-                    </div>
-                </div>
 
-                <span flex></span>
 
-                <div flex="20" ng-show="showCalendar">
-                    <h2>Event Details</h2>
-                    <md-divider></md-divider>
-                    <span ng-repeat="event in dayEvents">
-                        <h3>{{event.title}}</h3>
-                        <p markdown-to-html="event.description"></p>
-                    </span>
-                </div>
+					<!-- Mobile controls -->
+					<li role="presentation" class="dropdown xs-tab-control visible-xs">
+						<a href="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false"><span class="tab-section-label">Section</span> <span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="myTabDrop1"
+										id="myTabDrop1-contents">
+							<li class=""><a href="#news" role="tab" data-toggle="tab" aria-controls="dropdown1" aria-expanded="false">News</a></li>
+							<li class=""><a href="#calendar" role="tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">Calendar</a></li>
+							<li class="">
+								<a href="#schedule" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Event List</a></li>
+						</ul>
 
-                <div class="map" layout="column" layout-align="center center" layout-padding flex="50">
-                    <datamap
-                      map="mapObject"
-                      >
-                    </datamap>
-                </div>
-            </div>
-        </md-content>
+					</li>
+				</ul>
 
-        <md-divider></md-divider>
 
-        <div class="search-filter">
 
-        <md-content class="dmdii-projects-search" layout="row" layout-align="space-around center">
-          <span flex></span>
-          <md-input-container class="show-filter-input-container">
-            <label>Show</label>
-            <md-select ng-model="sizeModule" ng-change="selectItemDropDown()">
-              <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >
-                {{item.name}}
-              </md-option>
-            </md-select>
-          </md-input-container>
-        </md-content>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane fade in active" id="news">
+						<div class="event-list" ng-repeat="item in news track by $index| limitTo:3">
+						<div class="event-block">
+						<div class="row">
+							<h2 class="col-sm-6">{{item.title}}</h2><time class="col-sm-6 text-right">{{item.dateCreated}}</time>
+						</div>
+							<p>{{plainText(item.content)}}</p>
+							<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteNews($index, item.id)" class="delete-icon">delete<span class="glyphicon glyphicon-trash"></span></a>
+						</div>
+						</div>
+					</div>
 
-        <md-content class="members-search" layout="row" layout-align="space-around center">
+					<div role="tabpanel" class="tab-pane fade" id="calendar">
 
-          <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
-            <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="35">
-                <div layout="column">
-                    <div layout="row">
-                        <div layout="column" flex>
-                            <md-input-container md-no-float>
-                                <md-icon>
-                                  <ng-md-icon icon="search"></ng-md-icon>
-                                </md-icon>
-                                <input type="text" placeholder="Search Members" ng-model="searchModel">
-                            </md-input-container>
-                        </div>
-                        <div layout="column">
-                            <md-input-container>
-                                <md-button type="submit" class="search-button">Search</md-button>
-                            </md-input-container>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </md-content>
+						<div class="col-sm-6">
+								<tien-clndr class="clndr" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
+										<div class="clndr-controls">
+												<div class="clndr-previous-button" ng-click="clndr.back()">
+														&lsaquo;
+												</div>
+												<div class="month">
+													{{month}}
+												</div>
+												<div class="clndr-next-button" ng-click="clndr.forward()">
+													&rsaquo;
+												</div>
+										</div>
+										<div class="clndr-grid">
+												<div class="days-of-the-week">
+													<div class="header-day" ng-repeat="day in daysOfTheWeek track by $index">
+														{{day}}
+													</div>
+												</div>
+												<div class="days">
+													<div class="{{day.classes}}" ng-repeat="day in days" ng-click="dayClicked($event, day)">
+														<div class="event-indicator" ng-show="day.events.length" ng-click="showEvents(day.events)">{{day.events.length}}</div>
+														{{day.day}}
+													</div>
+												</div>
+										</div>
+								</tien-clndr>
+							</div>
 
-      </div>
+							<div class="col-sm-6" style="">
+								<div ng-if="dayEvents.length" class="event-details">
+									<div class="list-wrapper">
+										<div ng-repeat="event in dayEvents">
+											<h2>{{event.title}}</h2>
+											<time datetime="2011-01-12">January 12th, 2011</time>
+											<p markdown-to-html="event.description"></p>
+										</div>
+									</div>
+								</div>
+							</div>
 
-        <!-- <md-content>
-        </md-content> -->
+					</div>
+					<div role="tabpanel" class="tab-pane fade " id="schedule">
 
-        <!-- <span flex></span> -->
-        <md-content layout="column">
+						<div class="event-list" ng-repeat="event in events track by $index| limitTo:3">
 
-            <md-progress-linear md-mode="indeterminate" ng-show="membersLoading"></md-progress-linear>
+						<div class="event-block">
+						<div class="row">
+							<h2 class="col-sm-6">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
+						</div>
+							<p>{{plainText(event.description)}}</p>
+							<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteEvent($index, event.id)" class="delete-icon">delete<span class="glyphicon glyphicon-trash"></span></a>
+						</div>
 
-            <div class="members-list">
-                <md-data-table-container>
-                    <table md-data-table>
-                        <thead md-order="sort" md-trigger="onOrderChange">
-                        <tr>
-                            <th></th>
-                            <th name="Name" order-by="name" class="title"></th>
-                            <th name="Type" order-by="type"></th>
-                            <th name="Tier" order-by="tier"></th>
-                            <th name="Active Projects" order-by="hasActiveProjects"></th>
-                            <th name="Core Capabilities"></th>
-                            <th name="Seeking Colaboration"></th>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="member in members.arr">
-                            <td class="profile-logo">
-                                <!-- <img ng-src="{{member.organization.logoImage}}" ng-if="member.organization.logoImage"> -->
-                                <img ng-src="{{member.organization.logoImage ? member.organization.logoImage : 'images/icon-company-lg.svg'}}">
-                            </td>
-                            <td class="title-member">
-                                <h3><a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a></h3>
-                                <p class="description" more-less
-                                  element-text="{{member.organization.description}}"
-                                  element-text-limit="140">
-                                </p>
-                            </td>
-                            <td>{{member.dmdiiType.dmdiiTypeCategory.category}}</td>
-                            <td>{{member.dmdiiType.tier}}</td>
-                            <td>
+						</div>
 
-                                <div layout="row" ng-repeat="project in activeProjects[member.id] track by $index">
-                                  <b>-</b>
-                                  <a more-less
-                                     element-text ="{{project.projectTitle}}"
-                                     element-text-limit="30"
-                                     ng-href="{{'/dmdii-project-page.php#/' + project.id}}">
-                                      <!-- {{project.projectTitle}} -->
-                                  </a>
-                                </div>
-                            </td>
+					</div>
+				</div>
+			</div>
 
-                            <td>
-                                <div layout="row" ng-repeat="tag in member.organization.areasOfExpertise track by $index">
-                                  <b>-</b>
-                                  <a more-less
-                                     ng-href="{{getUrl('expertiseTags', tag.id)}}"
-                                     element-text="{{tag.name}}"
-                                     element-text-limit="30">
-                                   </a>
-                            </td>
-                            <td>
-                                <div layout="row" ng-repeat="tag in member.organization.desiredAreasOfExpertise track by $index">
-                                  <b>-</b>
-                                  <a more-less
-                                     ng-href="{{getUrl('desiredExpertiseTags', tag.id)}}"
-                                     element-text="{{tag.name}}"
-                                     element-text-limit="30">
-                                   </a>
-                            </td>
-                        </tr>
-                        <tr ng-if="members.arr.length == 0">
-                            <td class="empty" colspan="4">No Members</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </md-data-table-container>
-            </div>
-            <div layout="row" layout-align="center center">
-                <md-input-container ng-if="hasPrev()">
-                    <md-button id="prevPage" flex ng-click="getPrev()">
-                        <ng-md-icon icon="chevron_left" size="20"></ng-md-icon>
-                        PREV
-                    </md-button>
-                </md-input-container>
-                <md-input-container ng-if="hasNext()">
-                    <md-button id="nextPage" flex ng-click="getNext()">
-                        NEXT
-                        <ng-md-icon icon="chevron_right" size="20"></ng-md-icon>
-                    </md-button>
-                </md-input-container>
-            </div>
-        </md-content>
-    </div>
-</div>
+			<div class="col-lg-5  hidden-xs">
+				<h4 class="col-label">Membership Map</h4>
+				<div class="map-col text-center">
+					<datamap
+						map="mapObject"
+						>
+					</datamap>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- TODO this needs to be made in to a module suitable for members, projects and ideally services -->
+	<section class="container content-padding">
+			<div class="row">
+					<div class="col-md-12 project-main">
+							<div class="top-border"></div>
+							<div layout="row">
+								<div class="status status-complete">FEATURED MEMBER</div>
+								<div class="status">TIER {{randMember.dmdiiType.tier}} {{randMember.dmdiiType.dmdiiTypeCategory.category}}</div>
+							</div>
+							<h1><a ng-href="{{'/member-page.php#/'+randMember.id}}">{{randMember.organization.name}}</a></h1>
+							<div class="slim-margin" markdown-to-html="randMember.organization.description"></div>
+					</div>
+					</div>
+			</div>
+	</section>
+
+	<section class="container">
+
+		<dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
+
+		<div class="row content-row">
+			<div class="col-xs-4">
+				<div class="form-group has-feedback">
+					<form ng-submit="submit(searchModel)">
+						<input ng-model="searchModel" type="text" class="form-control " placeholder="Search Members">
+						<span ng-click="submit(searchModel)" class="glyphicon glyphicon-search form-control-feedback"></span>
+					</form>
+				</div>
+				<!-- /input-group -->
+			</div>
+			<div class="col-xs-4 col-xs-offset-4 ">
+
+				<!-- Commenting this dropdown out due to cookie/scope conflict on reload -->
+				<!-- <div class="dropdown pull-right">
+					<button class="btn btn-default dropdown-toggle" type="button" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		    			{{showArray[0].name}}<span class="caret"></span>
+		  				</button>
+					<ul class="dropdown-menu" aria-labelledby="itemstoshowdropdown">
+						<li ng-repeat="item in showArray track by $index">
+							<a ng-click="selectItemDropDown($index)">{{item.name}}</a>
+						</li>
+					</ul>
+				</div> -->
+			</div>
+		</div>
+		<div class="members-table">
+			<div class="table-responsive ">
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Name</th>
+							<th>Tier</th>
+							<th>Type</th>
+							<th>Active Projects</th>
+							<th>Core Capabilities</th>
+							<th>Seeking Collaboration</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr ng-repeat="member in members.arr">
+							<td><img ng-src="{{member.organization.logoImage ? member.organization.logoImage : 'images/icon-company-lg.svg'}}" class="img-responsive" alt=""></td>
+							<td>
+								<a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a>
+								<p class="description" more-less
+									element-text="{{member.organization.description}}"
+									element-text-limit="140">
+								</p>
+							</td>
+
+							<td>{{member.dmdiiType.tier}}</td>
+							<td>{{member.dmdiiType.dmdiiTypeCategory.category}}</td>
+							<td>
+								<ul class="active-projects">
+									<li ng-repeat="project in activeProjects[member.id] track by $index">
+										<a class="gray-link" ng-href="{{'/dmdii-project-page.php#/' + project.id}}">
+											<span class="gray-link"
+													more-less
+												 element-text ="{{project.projectTitle}}"
+												 element-text-limit="30">
+											 </span>
+										</a>
+									</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="active-projects">
+									<li ng-repeat="tag in member.organization.areasOfExpertise track by $index">
+										<span more-less
+											 element-text="{{tag.name}}"
+											 element-text-limit="30">
+										 </span>
+									</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="active-projects">
+									<li ng-repeat="tag in member.organization.desiredAreasOfExpertise track by $index">
+										<span more-less
+											 element-text="{{tag.name}}"
+											 element-text-limit="30">
+										 </span>
+									</li>
+								</ul>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<button id="prevPage" ng-if="hasPrev()" class="btn btn-next pull-right" ng-click="getPrev()">
+							PREV
+					</button>
+				</div>
+
+				<div class="col-xs-6">
+					<button id="nextPage" ng-if="hasNext()" class="btn btn-next pull-left" ng-click="getNext()">
+							NEXT
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- <recent-news news="news">	</recent-news> -->
+</main>

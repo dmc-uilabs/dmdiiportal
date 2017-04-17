@@ -3,7 +3,43 @@
 var showAllCategories = false;
 
 angular.module('dmc.faq')
-    .controller('GeneralFAQCtr', ['$stateParams', '$state', "$scope", "ajax", "$location","dataFactory","toastModel", function ($stateParams, $state, $scope, ajax, $location, dataFactory, toastModel) {
+    .controller('GeneralFAQCtr', ['$stateParams', '$state', '$scope', 'ajax', '$location','dataFactory','toastModel', function ($stateParams, $state, $scope, ajax, $location, dataFactory, toastModel) {
+
+      var getGfaq= function() {
+          ajax.get(dataFactory.getStaticJSON('gfaq.json'), {}, function(response){
+              $scope.gFaq = response.data;
+          });
+      }
+      getGfaq();
+
+      var getMpfaq= function() {
+          ajax.get(dataFactory.getStaticJSON('mpfaq.json'), {}, function(response){
+              $scope.mpFaq = response.data;
+          });
+      }
+      getMpfaq();
+
+      var getMfaq= function() {
+          ajax.get(dataFactory.getStaticJSON('mfaq.json'), {}, function(response){
+              $scope.mFaq = response.data;
+          });
+      }
+      getMfaq();
+
+      var getafaq= function() {
+          ajax.get(dataFactory.getStaticJSON('afaq.json'), {}, function(response){
+              $scope.aFaq = response.data;
+          });
+      }
+      getafaq();
+
+      var getwfaq= function() {
+          ajax.get(dataFactory.getStaticJSON('wfaq.json'), {}, function(response){
+              $scope.wFaq = response.data;
+          });
+      }
+      getwfaq();
+
         // $scope.categoryId = (angular.isDefined($stateParams.categoryId) ? $stateParams.categoryId : 1);
         // $scope.articleId = parseInt($stateParams.articleId);
         // $scope.categories = {};
@@ -131,4 +167,8 @@ angular.module('dmc.faq')
         //     }
         // };
     }]
-);
+).filter('unsafe', function($sce) {
+    return function(val) {
+        return $sce.trustAsHtml(val);
+    };
+});

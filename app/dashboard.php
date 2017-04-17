@@ -28,6 +28,7 @@
     <script src="scripts/components/ui-widgets/services.directive.js"></script>
     <script src="scripts/components/ui-widgets/projects.directive.js"></script>
     <script src="scripts/components/ui-widgets/discussions.directive.js"></script>
+    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/components/ui-widgets/onboarding.directive.js"></script>
     <script src="scripts/common/models/task-model.js"></script>
     <script src="scripts/common/header/header.js"></script>

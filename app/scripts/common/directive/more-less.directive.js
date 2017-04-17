@@ -1,4 +1,4 @@
-angular.module('dmc.more-less',[])
+angular.module('dmc.more-less',['ng-showdown',])
   .directive('moreLess', [moreLessFunc])
 
 function moreLessFunc() {

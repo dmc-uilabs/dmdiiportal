@@ -96,9 +96,9 @@ angular.module('dmc.dmdiiProj')
 
                 ajax.get(dataFactory.getDMDIIDocuments().project, {page: 0, pageSize: 15, dmdiiProjectId: $scope.project.id}, function(response) {
                     $scope.documents = response.data;
-                    if ($scope.documents.length > 0) {
-                      selectDocument(0);
-                    }
+                    // if ($scope.documents.length > 0) {
+                    //   selectDocument(0);
+                    // }
                 });
 
                 ajax.get(dataFactory.getDMDIIDocuments().projectDocument, {fileTypeId: 3, dmdiiProjectId: $scope.project.id}, function(response) {
@@ -122,33 +122,7 @@ angular.module('dmc.dmdiiProj')
             };
             $scope.getDMDIIProject();
 
-            $scope.deleteUpdate = function(index, id) {
-                ajax.delete(dataFactory.dmdiiProjectUpdateUrl(id).delete, {}, function() {
-                    $scope.updates.splice(index, 1);
-                });
-            };
-
-            $scope.deleteDocument = function(id, type, index) {
-                ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
-                    if (type != 'doc') {
-                        delete $scope[type];
-                    } else {
-                        $scope.documents.splice(index, 1);
-                    }
-
-                    $scope.selectDocument(null);
-
-                });
-            };
-
-            $scope.selectDocument = function(index) {
-              $scope.selectedDocumentIndex = index;
-              $scope.selectedDocument = $scope.documents[index];
-            };
-
-            $scope.isSelectedDocument = function(index) {
-              return index == $scope.selectedDocumentIndex;
-            }
+  
 		}
     ]
 ).filter('numberFixedLen', function () {

@@ -1,0 +1,51 @@
+.featuredApp-card {
+  margin: 0px 20px;
+  border: solid 1px black;
+  @include borderRadius(3px);
+  background-color: #fff;
+  text-align: left;
+  >div {
+    padding: 30px;
+  }
+  h1{
+    font-size:30px;
+    font-weight:lighter;
+    color:green;
+    margin:0px;
+  }
+  h2{
+    margin-top:1px;
+    color:#65af3f;
+    font-size:1.5em;
+    a{
+      // font-size: 1.5em;
+      color: map-get($colors, secondary);
+      font-weight: bold;
+    }
+  }
+  &__image{
+    text-align: center;
+    &_small{
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      height: 150px;
+      width: 150px;
+      overflow: hidden;
+      border-radius: 5px;
+      position: relative;
+      }
+  }
+  .featured-app-image {
+    width: 220px;
+    margin-left: 20px;
+    >div {
+      margin: auto;
+    }
+  }
+  img {
+    width: 108px;
+    height: 108px;
+    padding-bottom: 15px;
+  }
+
+}

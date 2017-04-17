@@ -46,6 +46,7 @@
     <script src="scripts/components/add-project/add-project.directive.js"></script>
     <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/community/controllers/compose-discussion.js"></script>
+    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/common/models/file-upload.js"></script>
     <script src="scripts/add-dmdii-content/add-dmdii-content.js"></script>

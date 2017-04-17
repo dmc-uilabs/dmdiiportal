@@ -26,6 +26,7 @@
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/community/community.js"></script>
     <script src="scripts/community/controllers/compose-discussion.js"></script>
+    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/community/directives/discussions.js"></script>
     <script src="scripts/community/directives/dmc-announcements.js"></script>
     <script src="scripts/community/directives/dmc-events.js"></script>

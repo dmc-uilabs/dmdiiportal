@@ -11,7 +11,8 @@ angular.module('dmc.add_project', [
     'dmc.component.members-card',
     'dmc.model.fileUpload',
     'dmc.common.header',
-    'dmc.common.footer'
+    'dmc.common.footer',
+    'dmc.widgets.rich-text'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider, $mdDateLocaleProvider){
     $stateProvider.state('add_project', {
         url: '',

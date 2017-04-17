@@ -2,7 +2,8 @@
 
 angular.module('dmc.community.discussions',[
     'ngCookies',
-    'dmc.model.previous-page'
+    'dmc.model.previous-page',
+    'dmc.widgets.rich-text'
 ]).
     directive('communityDiscussions', ['$parse', function ($parse) {
         return {
@@ -12,12 +13,30 @@ angular.module('dmc.community.discussions',[
                 widgetTitle: "=",
                 widgetType: "="
             },
-            controller: ["$scope", "dataFactory", "ajax" ,"toastModel", "$cookies","$location","previousPage", function($scope, dataFactory, ajax, toastModel, $cookies, $location,previousPage) {
+            controller: ["$scope", "dataFactory", "ajax" ,"toastModel", "$cookies","$location","previousPage", "$mdDialog",
+            function($scope, dataFactory, ajax, toastModel, $cookies, $location,previousPage, $mdDialog) {
                 $scope.limit = 3;
 
                 $scope.previousPage = previousPage;
                 $scope.discussions = [];
                 $scope.totalDiscussions = 0;
+
+                $scope.createDiscussion = function(ev){
+                    $(window).scrollTop(0);
+                        $mdDialog.show({
+                            controller: "ComposeDiscussionController",
+                            templateUrl: "templates/individual-discussion/compose-discussion.html",
+                            parent: angular.element(document.body),
+                            targetEvent: ev,
+                            locals: {
+                                 project_id: null
+                            },
+                            clickOutsideToClose:true
+                        })
+                        .then(function() {
+                        }, function() {
+                        });
+                }
 
                 $scope.getDiscussions = function(){
                         ajax.get(dataFactory.getIndividualDiscussions(), {

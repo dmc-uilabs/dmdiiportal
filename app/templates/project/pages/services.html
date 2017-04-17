@@ -22,7 +22,7 @@
         <h2>Services</h2>
         <div layout="row">
             <a class="link" href="marketplace.php">Browse Services</a>
-            <a ng-if="userData.isDmdiiAdmin" class="link margin-left16" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</a>
+            <a ng-if="userData.isDmdiiAdmin || (userData.companyId == 158)" class="link margin-left16" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</a>
         </div>
     </div>
     <md-content ng-if="projectData.services.data.length">
@@ -30,7 +30,7 @@
              ui-widget-services
              project-id="projectData.id"
              sort-by="'-currentStatus.status'"
-             columns="['run','name','component','status','dateAdded','addedBy','from','edit','remove']"
+             columns="['run','name','component','status','dateAdded','addedBy','from','remove','cancelRun']"
              widget-style="'full'">
         </div>
     </md-content>

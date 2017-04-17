@@ -84,6 +84,7 @@
                 <div class="content-panel-header">
                     <md-toolbar>
                         <h2>OVERVIEW</h2>
+                        <span style="font-size:10px">Workspace Creator: {{projectCtrl.projectData.projectManager}}</span>
                     </md-toolbar>
                 </div>
                 <div class="content-panel-body">
@@ -92,7 +93,7 @@
                             <img ng-src="{{projectCtrl.projectData.featureImage.thumbnail}}">
                         </div>
                         <div flex>
-                            <p class="project-description">{{projectCtrl.projectData.description}}</p>
+                            <p class="project-description" markdown-to-html="projectCtrl.projectData.description"></p>
                         </div>
                     </md-content>
                 </div>

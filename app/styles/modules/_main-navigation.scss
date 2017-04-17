@@ -7,11 +7,6 @@ $bottomHeader: #363636;
 $navigation: #FFF;
 $navigationArrow: #65AF3F;
 $navigationActive: #65AF3F;
-$membersOnlyHeader: #65AF3F;
-$membersOnlyHeaderButtonText: #65AF3F;
-$membersOnlyNavigationArrow: #363636;
-$membersOnlyNavigationActive: #363636;
-$membersOnlySearchButton: #363636;
 
 div[dmc-top-header]{
   z-index: 99;
@@ -130,9 +125,6 @@ div[dmc-top-header]{
   .bottom-header {
     height: 44px;
     background-color: $bottomHeader;
-    &.member-portal{
-        background-color: $membersOnlyHeader;
-    }
     .bottom-header-content{
       position: relative;
       max-width: 1280px;
@@ -163,9 +155,6 @@ div[dmc-top-header]{
         text-transform: uppercase;
         &.active-page{
           color: $navigationActive;
-          &.member-portal{
-              color: $membersOnlyNavigationActive;
-          }
         }
         .count-message{
           color: $countMessageText;
@@ -184,9 +173,6 @@ div[dmc-top-header]{
         ng-md-icon {
           margin: -4px -13px 0;
           fill: $navigationArrow;
-          &.member-portal{
-              fill: $membersOnlyNavigationArrow;
-          }
           svg {
             vertical-align: middle;
           }
@@ -229,9 +215,6 @@ div[dmc-top-header]{
         width: 30px;
         min-width: 30px;
         background-color: #64B045;
-        &.member-portal{
-            background-color: $membersOnlySearchButton;
-        }
         ng-md-icon{
           fill: #fff;
         }
@@ -280,7 +263,7 @@ div[dmc-top-header]{
   .banner-msg{
     color: red;
     font-size: 1.5em;
-    border-left: 4px solid $membersOnlyHeader;
+    border-left: 4px solid green;
     padding: 0px 10px;
     max-width: 1170px;
     margin: auto;

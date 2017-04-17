@@ -1,167 +1,148 @@
-<div class="container dmdii-projects" layout="row" >
-    <!-- <div class="content-column" layout="column" flex='20'>
-        <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
-        <dmc-products-filter state-name="dmdii_projects_search'" ng-if="isSearch"></dmc-products-filter>
-    </div> -->
-        <!-- Left Content Column -->
-    <div class="members" layout="column" flex>
-        <md-content class="md-padding" layout-padding>
-            <div class="newsAndEvents" layout="column">
-                <div class=" slim-margin">
-                      <p class="news">Recent News</p>
-                    <div ng-repeat="item in news">
-                        <div layout="row" flex="75">
-                            <div layout="column">
-                                <h3 class="no-top no-bottom ">{{item.dateCreated}}</h3>
-                                <h2 class="no-top no-bottom green">{{item.title}}</h2>
-                                <p class="no-top no-bottom ">{{item.content}}</p>
-                            </div>
-                            <span flex></span>
-                            <a class="delete-btn" flex="10" href ng-click="deleteNews($index, item.id)" ng-show="userData.isDmdiiAdmin">delete</a>
-                        </div>
-                        <md-divider></md-divider>
-                    </div>
-                </div>
+<main>
+		<section class="container projects-head">
+			<h2>Projects</h2>
+			<div class="row status-row">
+				<div class="col-sm-4">
+					<h4>Projects Overview</h4>
+					<img ng-src="{{projectOverview.documentUrl}}" class="img-responsive">
+					<a class="delete-button" href ng-click="deleteDocument(projectOverview.id, 'projectOverview')" ng-show="userData.isDmdiiAdmin"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+				</div>
+
+				<div class="col-sm-4">
+					<h4>Projects Status</h4>
+					<img ng-src="{{projectStatus.documentUrl}}" class="img-responsive">
+				<a class="delete-button" href ng-click="deleteDocument(projectStatus.id, 'projectStatus')" ng-show="userData.isDmdiiAdmin"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+				</div>
+				<div class="col-sm-4">
+					<h4>Quick Links</h4>
+					<ul class="quick-links">
+
+						<li ng-repeat="doc in docs track by $index">
+							<a href ng-click="quickLinkAction(doc)">{{doc.displayName}}</a>
+							<a href ng-click="deleteQuicklink($index, doc.id)" ng-show="userData.isDmdiiAdmin" class="delete-icon"><span class="glyphicon glyphicon-trash"></span></a>
+						</li>
+
+					</ul>
+			</div>
+			</div>
+			<div class="row timeline-row">
+			<div class="col-xs-12">
+
+				<div>
+						<horizontal-timeline
+								start-date="{{startDate}}"
+								end-date="{{endDate}}"
+								events="events"
+								user="userData">
+						</horizontal-timeline>
+				</div>
+
+			</div>
+			</div>
+
+		</section>
+
+		<!-- TODO this needs to be made in to a module suitable for members, projects and ideally services -->
+		<section class="container content-padding">
+        <div class="row">
+            <div class="col-md-12 project-main">
+								<div class="top-border"></div>
+                <div layout="row">
+									<div class="status status-complete">FEATURED PROJECT</div>
+									<div class="status">{{randProject.projectStatus.name}}</div>
+								</div>
+								<!-- <time>{{randProject.rootNumber | numberFixedLen:2}}-{{randProject.callNumber | numberFixedLen:2}}-{{randProject.projectNumber | numberFixedLen:2}}</time> -->
+                <h1><a ng-href="{{'/dmdii-project-page.php#/'+randProject.id}}">{{randProject.projectTitle}}</a></h1>
+								<!-- <h4>Summary</h4> -->
+								<div class="sublabels" layout="row">
+									<div>{{randProject.projectFocusArea.name}}</div>
+									<div>{{randProject.projectThrust.name}}</div>
+								</div>
+								<div class="slim-margin" markdown-to-html="randProject.projectSummary"></div>
             </div>
-
-            <div layout="column" layout-padding layout-align="start">
-                <div layout="row" layout-padding layout-align="center stretch">
-                    <div flex="33" ng-if="projectOverview" layout-align="center">
-                        <h3>Projects Overview</h3>
-                        <a class="delete-btn" href ng-click="deleteDocument(projectOverview.id, 'projectOverview')" ng-show="userData.isDmdiiAdmin">delete</a>
-
-                        <img style="border:1px solid;width:100% " ng-src="{{projectOverview.documentUrl}}"></img>
-
-                    </div>
-
-                    <div layout-align="center center" ng-if="projectStatus" flex="33">
-                        <h3>Projects Status</h3>
-                        <a class="delete-btn" href ng-click="deleteDocument(projectStatus.id, 'projectStatus')" ng-show="userData.isDmdiiAdmin">delete</a>
-
-                        <img style="border:1px solid; height:76%" ng-src="{{projectStatus.documentUrl}}"></img>
-
-                    </div>
-                    <div layout-align="end start" flex="33">
-                        <h3>Quick Links</h3>
-                            <div layout="row" ng-repeat="doc in docs track by $index" style="padding-bottom: 7px;"
-                              <span>--</span>
-                                <a flex="75" href ng-click="quickLinkAction(doc)">{{doc.displayName}}</a>
-                                <span flex></span>
-                                <a class="delete-btn" flex="10" href ng-click="deleteQuicklink($index, doc.id)" ng-show="userData.isDmdiiAdmin">delete</a>
-                            </div>
-
-                    </div>
-                </div>
-
-            <div>
-                <horizontal-timeline
-                    start-date="{{startDate}}"
-                    end-date="{{endDate}}"
-                    events="events"
-                    user="userData">
-                </horizontal-timeline>
             </div>
-
-            <span flex></span>
-
-            <md-divider></md-divider>
-
-            <span flex></span>
-
-        </md-content>
+        </div>
+		</section>
 
 
-        <md-content class="dmdii-projects-search" layout="row" layout-align="space-around center">
-          <span flex></span>
-          <md-input-container class="show-filter-input-container">
-            <label>Show</label>
-            <md-select ng-model="sizeModule" ng-change="selectItemDropDown()">
-              <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >
-                {{item.name}}
-              </md-option>
-            </md-select>
-          </md-input-container>
-        </md-content>
+		<section class="container">
+      <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
 
-        <md-content class="dmdii-projects-search" layout="row" layout-align="space-around center" layout-wrap>
-          <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
+			<div class="row content-row">
+				<div class="col-xs-4">
+					<div class="form-group has-feedback">
+						<form ng-submit="submit(searchModel)">
+							<input ng-model="searchModel" type="text" class="form-control " placeholder="Search Members">
+							<span ng-click="submit(searchModel)" class="glyphicon glyphicon-search form-control-feedback"></span>
+						</form>
+					</div>
+				</div>
+				<div class="col-xs-4 col-xs-offset-4 ">
 
-            <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="35">
-                <div layout="column">
-                    <div layout="row">
-                        <div layout="column" flex>
-                            <md-input-container md-no-float>
-                                <md-icon>
-                                  <ng-md-icon icon="search"></ng-md-icon>
-                                </md-icon>
-                                <input type="text" placeholder="Search Partner Projects" ng-model="searchModel">
-                            </md-input-container>
-                        </div>
-                        <div layout="column">
-                            <md-input-container>
-                                <md-button type="submit" class="search-button">Search</md-button>
-                            </md-input-container>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <!-- <span flex></span> -->
-        </md-content>
+				<div class="dropdown">
 
+					<!-- Commenting this dropdown out due to cookie/scope conflict on reload -->
+						<!-- <div class="dropdown pull-right">
+							<button class="btn btn-default dropdown-toggle" type="button" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+									{{showArray[0].name}}<span class="caret"></span>
+									</button>
+							<ul class="dropdown-menu" aria-labelledby="itemstoshowdropdown">
+								<li ng-repeat="item in showArray track by $index">
+									<a ng-click="selectItemDropDown($index)">{{item.name}}</a>
+								</li>
+							</ul>
+						</div> -->
 
-        <!-- <span flex></span> -->
-        <md-content layout="column">
+					</div>
+				</div>
+			</div>
+			<div class="projects-table">			<div class="table-responsive ">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Status</th>
+						<th>Focus</th>
+						<th>Thrust Area</th>
+					</tr>
+				</thead>
+				<tbody>
 
-            <md-progress-linear md-mode="indeterminate" ng-show="dmdiiProjectsLoading"></md-progress-linear>
+					<tr ng-repeat="project in projects.arr">
+						<td>
+							<a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a>
+							<!-- <time datetime="2011-01-12">January 12th, 2011</time> -->
+							<a ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h6>{{project.primeOrganization.name}}</h6></a>
+							<div ng-if="project.kind != 'dmdiiEvent'" class="sublabel">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</div>
+							<div ng-if="project.kind == 'dmdiiEvent'" class="sublabel">EVENT</div>
+						</td>
 
-            <div class="projects-list">
-                <md-data-table-container>
-                    <table md-data-table>
-                        <thead md-order="sort" md-trigger="onOrderChange">
-                        <tr>
-                            <th name="Name" class="title"/>
-                            <th name="Status" order-by="status"/>
-                            <th name="Focus Area"/>
-                            <th name="Thrust Area"/>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="project in projects.arr">
-                            <td class="title-project">
-                                <h4>{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</h4>
-                                <a class="no-bottom no-top" ng-href="{{'/dmdii-project-page.php#/'+project.id}}"><h3 class="no-bottom no-top">{{project.projectTitle}}</h3></a>
-                                <a class="no-bottom no-top" ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h5 class="project-lead no-bottom no-top">{{project.primeOrganization.name}}</h5></a>
-                            </td>
-                            <td>{{project.projectStatus.name}}</td>
-                            <td>
-                                {{project.projectFocusArea.name}}
-                            </td>
-                            <td>
-                                {{project.projectThrust.name}}
-                            </td>
-                        </tr>
-                        <tr ng-if="tasks.length == 0">
-                            <td class="empty" colspan="4">No tasks</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </md-data-table-container>
-            </div>
+						<td>{{project.projectStatus.name}}</td>
+						<td>{{project.projectFocusArea.name}}</td>
+						<td>{{project.projectThrust.name}}</td>
+					</tr>
 
-            <div layout="row" layout-align="center center">
-                <md-input-container ng-if="hasPrev()">
-                    <md-button id="prevPage" flex ng-click="getPrev()">
-                        <ng-md-icon icon="chevron_left" size="20"></ng-md-icon>
-                        PREV
-                    </md-button>
-                </md-input-container>
-                <md-input-container ng-if="hasNext()">
-                    <md-button id="nextPage" ng-click="getNext()" flex>
-                        NEXT
-                        <ng-md-icon icon="chevron_right" size="20"></ng-md-icon>
-                    </md-button>
-                </md-input-container>
-            </div>
-        </md-content>
-    </div>
-</div>
+				</tbody>
+			</table>
+			</div>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<button id="prevPage" ng-if="hasPrev()" class="btn btn-next pull-right" ng-click="getPrev()">
+										PREV
+								</button>
+							</div>
+
+							<div class="col-xs-6">
+								<button id="nextPage" ng-if="hasNext()" class="btn btn-next pull-left" ng-click="getNext()">
+										NEXT
+								</button>
+							</div>
+						</div>
+
+			</div>
+		</section>
+
+	<recent-news news="news"></recent-news>
+
+</main>
