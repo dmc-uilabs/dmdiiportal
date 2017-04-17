@@ -92,9 +92,13 @@
 									<ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
 								</md-button> -->
 							</div>
-              <product-card-buttons-profile card-source = "product"
-                                            type-product = "product.type">
-              </product-card-buttons-profile>
+              <div layout="row" style="height:30px">
+                <ui-widget-stars-static size="15" value="{{product.ratingAverage}}" text="({{product.ratingCount}})"></ui-widget-stars-static>
+                <span flex></span>
+                <product-card-buttons-profile card-source = "product"
+                                              type-product = "product.type">
+                </product-card-buttons-profile>
+              </div>
 						</div>
 
 						<md-divider></md-divider>
