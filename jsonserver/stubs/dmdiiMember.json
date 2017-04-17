@@ -1,6 +1,4 @@
-{
-    "count": 96,
-    "data": [{
+[{
         "id": 2,
         "dmdiiType": {
             "id": 1,
@@ -36,7 +34,7 @@
             },
             "reasonJoining": null,
             "featureImage": null,
-            "logoImage": null,
+            "logoImage": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTA2OTE1Njg4NjVeQTJeQWpwZ15BbWU3MDAyNjU4MDM@._V1_UY317_CR22,0,214,317_AL_.jpg",
             "awards": [],
             "contacts": [],
             "areasOfExpertise": [],
@@ -4903,4 +4901,3 @@
         "contacts": [],
         "finances": []
     }]
-}
