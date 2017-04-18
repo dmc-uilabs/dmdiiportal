@@ -24,19 +24,14 @@ angular.module('dmc.community.dmc-recent-updates',[]).
                             if (update.updateType == "DMDIIMember") {
                               update.parentLink = '/member-page.php#/'+update.parentId
                               update.description = 'New DMDII Member!'
-                            } else if (update.updateId == update.parentId) {
-                              update.description = 'New Project!'
+                              update.updateTypeDisplay = "MEMBER"
                             } else {
                               update.parentLink = '/dmdii-project-page.php#/'+update.parentId
                               var updateObject = update.updateType.replace("DMDII", "").replace(/([A-Z])/g, ' $1')
-                              update.description = updateObject+" added!"
-                            }
-
-                            if (update.updateType == "DMDIIMember") {
-                              update.updateTypeDisplay = "MEMBER"
-                            } else {
+                              update.description = update.updateId == update.parentId ? 'New Project!' : updateObject+" added!"
                               update.updateTypeDisplay = "PROJECT"
                             }
+
                         }
 
                     });
