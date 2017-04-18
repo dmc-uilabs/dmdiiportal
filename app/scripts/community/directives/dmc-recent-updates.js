@@ -22,7 +22,7 @@ angular.module('dmc.community.dmc-recent-updates',[]).
                         for(var e in $scope.recentUpdates){
                           var update = $scope.recentUpdates[e];
                             if (update.updateType == "DMDIIMember") {
-                              getOrgMemberId(update.parentId);
+                              getOrgMemberId(update);
                               update.parentLink = '/member-page.php#/'
                               update.description = 'New DMDII Member!'
                               update.updateTypeDisplay = "MEMBER"
@@ -50,8 +50,8 @@ angular.module('dmc.community.dmc-recent-updates',[]).
                   }
                 }
 
-                function getOrgMemberId(companyId){
-                  ajax.get(dataFactory.getOrganization(companyId), {}, function(response) {
+                function getOrgMemberId(update){
+                  ajax.get(dataFactory.getOrganization(update.parentId), {}, function(response) {
                     update.parentId = response.data.dmdiiMemberId;
                   });
                 }
