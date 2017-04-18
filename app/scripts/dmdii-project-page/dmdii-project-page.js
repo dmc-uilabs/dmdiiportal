@@ -37,4 +37,81 @@ angular.module('dmc.dmdiiProj', [
         }
     });
     $urlRouterProvider.otherwise('/project_page');
-});
+}).directive('tabContributors', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/dmdii-project-page/tab-contributors.html',
+        scope:{
+          project: '=',
+          userData: '='
+        },
+        controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+        }
+      }
+    }
+  ).directive('tabSchedule', function () {
+      return {
+          restrict: 'E',
+          templateUrl: 'templates/dmdii-project-page/tab-schedule.html',
+          scope:{
+            projectSchedule: '=',
+            userData: '='
+          },
+          controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+            $scope.deleteDocument = function(id, type, index) {
+                ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
+                    if (type != 'doc') {
+                    } else {
+                        $scope.documents.splice(index, 1);
+                    }
+                });
+            };
+
+          }
+        }
+      }
+  ).directive('tabUpdates', function () {
+      return {
+          restrict: 'E',
+          templateUrl: 'templates/dmdii-project-page/tab-updates.html',
+          scope:{
+            updates: '=',
+            userData: '='
+          },
+          controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+            $scope.deleteUpdate = function(index, id) {
+                ajax.delete(dataFactory.dmdiiProjectUpdateUrl(id).delete, {}, function() {
+                    $scope.updates.splice(index, 1);
+                });
+            };
+
+          }
+        }
+      }
+  ).directive('tabDocuments', function () {
+      return {
+          restrict: 'E',
+          templateUrl: 'templates/dmdii-project-page/tab-documents.html',
+          scope:{
+            documents: '=',
+            userData: '=',
+            project: '='
+          },
+          controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+            $scope.deleteDocument = function(id, type, index) {
+                ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
+                    if (type != 'doc') {
+                    } else {
+                        $scope.documents.splice(index, 1);
+                    }
+                });
+            };
+
+          }
+        }
+      }
+  )

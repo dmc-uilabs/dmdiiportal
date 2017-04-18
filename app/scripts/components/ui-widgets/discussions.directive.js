@@ -6,7 +6,8 @@ angular.module('dmc.widgets.discussions',[
         'ngSanitize',
         'ngCookies',
         'dmc.socket',
-        'dmc.model.previous-page'
+        'dmc.model.previous-page',
+        'dmc.widgets.rich-text'
     ]).
     directive('uiWidgetDiscussions', ['$parse', function ($parse) {
         return {

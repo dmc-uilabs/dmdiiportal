@@ -13,13 +13,38 @@
                 <div class="content-panel-body">
                     <md-content class="md-padding">
                         <form name="form">
+                            <h3>Title</h3>
                             <md-input-container flex>
-                                <label>Title</label>
+                                <!-- <label>Title</label> -->
                                 <input ng-model="projectDetails.title"
                                        ng-change="changed('title')"
                                        ng-init="projectDetails.title_old = projectDetails.title" required>
                             </md-input-container>
-                            <div layout='column' layout-gt-lg='row'>
+
+                            <h3>Description</h3>
+                            <md-input-container flex>
+                                <!-- <label>Overview</label> -->
+                                <!-- <textarea name="overview"
+                                          class="overviewTextArea"
+                                          ng-change="changed('description')"
+                                          ng-init="projectDetails.description_old = projectDetails.description"
+                                          ng-model="projectDetails.description" columns="1" required></textarea> -->
+
+                                <div style="color: grey;"
+                                  layout="column"
+                      						ui-widget-rich-text
+                      						field-name="overview"
+                      						is-required="false"
+                      						model="projectDetails.description"
+                      						limit="3000"
+                      						is-saved="isSaved"
+                      						is-valid="isValid">
+                      					</div>
+                            </md-input-container>
+
+
+                            <h3>Date / Type</h3>
+                            <div layout='row' layout-align="start center">
                                 <md-input-container>
                                   <span class="dueDate-label" ng-show="projectDetails.dueDate || projectDetails.dueDateFocused">Due Date</span>
                                   <md-datepicker class="dueDatePicker"
@@ -29,7 +54,7 @@
                                                  aria-label="Due Date"
                                                  md-placeholder="Due Date"></md-datepicker>
                                 </md-input-container>
-                                <md-input-container class="margin-left16">
+                                <md-input-container>
                                   <label>Type</label>
                                   <md-select ng-model="projectDetails.type"
                                              ng-change="changed('type')"
@@ -39,27 +64,25 @@
                                       <md-option value="public">Public</md-option>
                                       <md-option value="private">Private</md-option>
                                   </md-select>
-                                                                </md-input-container>
-                                <md-input-container class="margin-left16" ng-if="projectDetails.type == 'public'">
-                                    <label>Approval Options</label>
-                                    <md-select ng-model="projectDetails.approvalOption"
-                                               ng-change="changed('approvalOption')"
-                                               ng-disabled="isUpdate"
-                                               ng-init="projectDetails.approvalOption = !projectDetails.approvalOption ? 'all' : projectDetails.approvalOption; projectDetails.approvalOption_old = projectDetails.approvalOption"
-                                               class="type-select" aria-label="Approval Options" required>
-                                        <md-option value="all">All members can join</md-option>
-                                        <md-option value="admin">Members require approval by admin</md-option>
-                                    </md-select>
                                 </md-input-container>
                             </div>
-                            <md-input-container flex>
-                                <label>Overview</label>
-                                <textarea name="overview"
-                                          class="overviewTextArea"
-                                          ng-change="changed('description')"
-                                          ng-init="projectDetails.description_old = projectDetails.description"
-                                          ng-model="projectDetails.description" columns="1" required></textarea>
+                             <h3 ng-if="projectDetails.type == 'public'">Approval Options</h3>
+                            <md-input-container ng-if="projectDetails.type == 'public'">
+                                <!-- <label>Approval Options</label> -->
+                                <md-select ng-model="projectDetails.approvalOption"
+                                           ng-change="changed('approvalOption')"
+                                           ng-disabled="isUpdate"
+                                           ng-init="projectDetails.approvalOption = !projectDetails.approvalOption ? 'all' : projectDetails.approvalOption; projectDetails.approvalOption_old = projectDetails.approvalOption"
+                                           class="type-select" aria-label="Approval Options" required>
+                                    <md-option value="all">All members can join</md-option>
+                                    <md-option value="admin">Members require approval by admin</md-option>
+                                </md-select>
                             </md-input-container>
+                            <!-- </div> -->
+
+
+
+
                         </form>
                     </md-content>
                     <md-content class="md-padding">

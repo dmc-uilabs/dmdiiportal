@@ -51,7 +51,7 @@
     }
     li{
       .selected{
-        color: map-get($colors, link_color);
+        font-weight: bold;
       }
     }
     .opened{
@@ -85,8 +85,13 @@
     }
   }
   .selected{
+    font-weight: bold;
     color: map-get($colors, secondary);
   }
+}
+.selected{
+  font-weight: bold;
+  color: map-get($colors, secondary);
 }
 
 .search-filter{

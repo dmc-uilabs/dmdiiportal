@@ -44,7 +44,7 @@
 		</div>
 
 		<div ng-if="cardSource.aboutMe" class="description">
-			<span>{{cardSource.aboutMe | limitTo:descriptionLenLimit}}</span>
+			<span markdown-to-html="cardSource.aboutMe | limitTo:descriptionLenLimit"></span>
 			<span ng-if="descriptionTooLong()" ng-click="switchDescriptionLenLimit()"><a style="color: #65AF3F;" href>...{{descriptionLenLimitPrompt}}<a></span>
 		</div>
 

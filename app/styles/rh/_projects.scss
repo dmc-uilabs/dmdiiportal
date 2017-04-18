@@ -1,0 +1,93 @@
+.timeline {
+// Moved this in here to not muck with bootstrap's progress bar.
+.progress {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #d6d6d6;
+    background-image: none;
+    background-origin: padding-box;
+    background-position-x: 0;
+    background-position-y: 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    height: 15px;
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+    position: relative;
+}
+.progress > span {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAQCAIAAACgHXkXAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAmklEQVR42n2QoRICMQxE34YiGCQKzZ+g+VoEik9BIlA4BsNkEXdXyjFlRSbdJM1udLr6eL7cl9un1saSMCs/Nq/bYb8LGkiqeWYC0TDMWiVKZn2DAOyRsSkIyJatiCBs/FuZUEJIi+m7ucyutEF5+SrX3CnJJvp7AaKJ4K/1mURvTtJobPD9gYGwLfWnhzvGdLVk7jDRX+WZvAFVGTu3Dqy+5gAAAABJRU5ErkJggg==");
+    background-repeat: repeat-x;
+    display: block;
+    height: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+
+ul  {
+    margin: 9px 0;
+}
+
+.progress {
+    margin:0;
+    overflow: inherit;
+    box-shadow:none;
+}
+.progress > span {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAQCAIAAACgHXkXAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AYVDSkqpTImQQAAACRJREFUGNNjPPl/5a4z6x49ecGACuRkJNxMgpgY8IJR6aEmDQA4KgiRDUMXowAAAABJRU5ErkJggg==");
+}
+}
+
+.timeline {
+    background:none;
+    box-shadow:none;
+    border:none;
+}
+.projects-head {
+    h2 {
+
+    }
+    h4 {
+        padding-bottom:20px;
+    }
+    .timeline-row {
+        padding: 40px 0 60px;
+    }
+    .status-row {
+        margin-top:60px;
+        img.img-responsive {
+            border:1px solid $border-color;
+        }
+    }
+}
+.delete-button {
+    margin: 20px 0;
+    display:block;
+    color: $gray;
+}
+.quick-links {
+    list-style:none;
+    margin:0;
+    padding:0;
+
+    li {
+    border-top:1px solid $border-color;
+    padding: 15px 30px 15px 0;
+    .delete-icon {
+        position:absolute;
+        right:0;
+        color:$gray;
+    }
+    }
+}
+
+.btn-next {
+    @extend .btn-primary;
+    // display:block;
+    margin:0 auto;
+    text-transform:uppercase;
+
+}

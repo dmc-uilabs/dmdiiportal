@@ -74,14 +74,16 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
           if ($scope.userData.notifications) {
               $scope.notification_alert = 0;
 
-              angular.forEach($scope.userData.notifications.items, function(item) {
-                  if (item.read === false) {
+              angular.forEach($scope.userData.notifications, function(item) {
+                  if (item.unread === true && !item.cleared && !item.deleted){
                       $scope.notification_alert++;
                   }
               });
+              notificationsMessages.setNotificationAlerts($scope.notification_alert);
           }
             apply();
         };
+
 
         var getProfile = function(invitation){
           ajax.get(dataFactory.profiles(invitation.fromProfileId).get,{},
@@ -90,6 +92,13 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
             }
           );
         }
+// =======
+//         $scope.$watch(function () { return notificationsMessages.getNotificationAlerts(); }, function (newValue, oldValue) {
+//           if (newValue != null) {
+//             $scope.notification_alert = newValue;
+//           }
+//         }, true);
+// >>>>>>> master
 
         $scope.setDropDown = function(event,width){
             width = $(event.currentTarget).width()+12;
@@ -119,8 +128,9 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         }
 
         $scope.markAllRead = function(){
-            ajax.put(dataFactory.markAllNotificationsRead($scope.userData.id), {}, function() {
+            ajax.get(dataFactory.markAllNotificationsRead($scope.userData.id), {}, function() {
                 $scope.notification_alert = 0;
+                $scope.userData.notifications = [];
             });
         };
 
@@ -132,19 +142,23 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
 
         $scope.clearNotification = function(item,ev){
             ev.preventDefault();
-            var user = $.extend(true,{},$scope.userData);
-            for(var i in user.notifications){
-                if(user.notifications[i].id == item.id) {
-                    user.notifications[i].cleared = true;
+            for(var i in $scope.userData.notifications){
+                if($scope.userData.notifications[i].id == item.id) {
+                  if($scope.userData.notifications[i].unread){
+                    $scope.notification_alert--;
+                    $scope.userData.notifications[i].unread = false;
+                  }
+                  $scope.userData.notifications[i].cleared = true;
                 }
             }
-            ajax.update(dataFactory.clearNotification(item.id),user,function(response){
-                var data = response.data ? response.data : response;
-                if (data.accountId) {
-                    initUserData(data);
-                }
+            ajax.get(dataFactory.markNotificationRead(item.createdFor.id, item.id),function(response){
             });
         };
+
+        $scope.$on('notificationCleared', function (event, notificationId) {
+          $scope.notification_alert--;
+          notificationsMessages.setNotificationAlerts($scope.notification_alert);
+        });
 
         function apply() {
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
