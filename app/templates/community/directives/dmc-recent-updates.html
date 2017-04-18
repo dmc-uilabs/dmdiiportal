@@ -1,4 +1,5 @@
-<div class="content-panel-header">
+<div ng-if="recentUpdates.length>0">
+  <div class="content-panel-header">
     <md-toolbar>
         <div class="md-toolbar-tools widget-toolbar-title">
             <h2>{{widgetTitle}}</h2>
@@ -6,26 +7,27 @@
             <!-- <a style="display: none" class="link-button uppercase">View All ({{totalEvents}})</a> -->
         </div>
     </md-toolbar>
-</div>
-<div class="content-panel-body">
-    <md-content class="md-padding">
-        <div class="discussions-list">
-        <!-- <div> -->
-            <md-list>
-                <md-list-item ng-repeat="update in recentUpdates" class="md-3-line">
-                    <div class="md-list-item-text" layout="row">
-                      <span class="badge">{{update.updateTypeDisplay}}</span>
-                        <div>
-                          <h3>
-                            <a class="link-button font-size14" ng-href="{{update.parentLink}}" class="link-button">{{update.parentTitle}}</a>
-                          </h3>
-                          <div class="info">
-                              <span>{{update.description}}</span>
+  </div>
+  <div class="content-panel-body">
+      <md-content class="md-padding">
+          <div class="discussions-list">
+          <!-- <div> -->
+              <md-list>
+                  <md-list-item ng-repeat="update in recentUpdates" class="md-3-line">
+                      <div class="md-list-item-text" layout="row">
+                        <span class="badge">{{update.updateTypeDisplay}}</span>
+                          <div>
+                            <h3>
+                              <a class="link-button font-size14" ng-href="{{update.parentLink}}" class="link-button">{{update.parentTitle}}</a>
+                            </h3>
+                            <div class="info">
+                                <span>{{update.description}}</span>
+                            </div>
                           </div>
-                        </div>
-                    </div>
-                </md-list-item>
-            </md-list>
-        </div>
-    </md-content>
+                      </div>
+                  </md-list-item>
+              </md-list>
+          </div>
+      </md-content>
+  </div>
 </div>
