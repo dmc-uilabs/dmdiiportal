@@ -2,7 +2,7 @@
     "id": 465,
     "companyId": "1",
     "title": "Alpha",
-    "description": "The formula used in this model is Alpha = CrackLength / SpecimenWidth. The inputs are CrackLenght (meter) and SpecimenWidth (meter). The output is Alpha (no unit).",
+    "description": "<h3>This is the description of the NEW alpha service.</h3><p>Some <b>bold</b> text!<br></p><p>Some <b>bold</b> text!<br></p><p>Some <b>bold</b> text!<br></p><p>Some <b>bold</b> text!<br></p><p>Some <b>bold</b> text!<br></p><p>Some <b>bold</b> text!<br></p><p>Some <b>bold</b> text!<br></p><p>Some <b>bold</b> text!<br></p><p>Some <b>bold</b> text!<br></p><p>Some <b>bold</b> text!<br></p>",
     "owner": "179",
     "profileId": "179",
     "releaseDate": "2017-01-20",

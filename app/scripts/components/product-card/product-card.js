@@ -12,7 +12,8 @@ angular.module('dmc.component.productcard', [
     'dmc.data',
     'ngCookies',
     'dmc.compare',
-    'dmc.component.members-card'
+    'dmc.component.members-card',
+    'ng-showdown'
 ])
 .run(function(ajax){
         // get all projects and save to $rootScope
@@ -526,4 +527,8 @@ angular.module('dmc.component.productcard', [
         $scope.cancel = function(){
             $mdDialog.cancel();
         };
-})
+}).filter('removeHTMLTags', function() {
+	return function(text) {
+		return  text ? String(text).replace(/<[^>]+>/gm, ' ') : '';
+	};
+});

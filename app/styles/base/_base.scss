@@ -184,3 +184,19 @@ md-list{
 .md-open-menu-container.md-active {
   transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
+.rich-text-small {
+	h2 {
+		font-size: 1.3em !important;
+		font-weight: 600 !important;
+		text-decoration: underline !important;
+	}
+	h3 {
+		font-weight: 600 !important;
+		font-size: 1.2em !important;
+	}
+	p {
+    font-size: 1em !important;
+		font-weight: normal !important;
+	}
+}
