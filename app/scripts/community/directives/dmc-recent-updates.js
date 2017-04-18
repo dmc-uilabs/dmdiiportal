@@ -14,7 +14,7 @@ angular.module('dmc.community.dmc-recent-updates',[]).
 
                 $scope.getRecentUpdates = function(){
                     ajax.get(dataFactory.getRecentUpdates(),{
-                        limit : 3
+                        limit : 10
                     },function(response){
                         $scope.recentUpdates = response.data;
                         $scope.totalRecentUpdates = $scope.recentUpdates.length;
