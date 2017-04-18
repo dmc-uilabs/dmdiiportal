@@ -15,7 +15,13 @@
               <md-list>
                   <md-list-item ng-repeat="update in recentUpdates" class="md-3-line">
                       <div class="md-list-item-text" layout="row">
-                        <span class="badge">{{update.updateTypeDisplay}}</span>
+                        <span layout="column">
+                          <span class="badge">
+                            <div>{{update.updateTypeDisplay}}</div>
+                            <ng-md-icon icon="{{update.updateTypeDisplayIcon}}" style="fill: #75bc52" size="35"></ng-md-icon>
+                          </span>
+                        </span>
+                        </span>
                           <div>
                             <h3>
                               <a class="link-button font-size14" ng-href="{{update.parentLink}}" class="link-button">{{update.parentTitle}}</a>

@@ -25,11 +25,13 @@ angular.module('dmc.community.dmc-recent-updates',[]).
                               update.parentLink = '/member-page.php#/'+update.parentId
                               update.description = 'New DMDII Member!'
                               update.updateTypeDisplay = "MEMBER"
+                              update.updateTypeDisplayIcon = "people"
                             } else {
                               update.parentLink = '/dmdii-project-page.php#/'+update.parentId
                               var updateObject = update.updateType.replace("DMDII", "").replace(/([A-Z])/g, ' $1')
                               update.description = update.updateId == update.parentId ? 'New Project!' : updateObject+" added!"
                               update.updateTypeDisplay = "PROJECT"
+                              update.updateTypeDisplayIcon = "folder_open"
                             }
 
                         }

@@ -201,7 +201,7 @@ a.following-btn{
     font-weight: bold;
     color: map-get($colors, secondary);
     padding: 5px;
-    border: 1px solid map-get($colors, secondary);
+    // border: 1px solid map-get($colors, secondary);
     display: inline-block;
     margin-right: 10px;
   }
