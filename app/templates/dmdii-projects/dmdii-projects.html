@@ -73,11 +73,13 @@
 					<div class="form-group has-feedback">
 						<form ng-submit="submit(searchModel)">
 							<input ng-model="searchModel" type="text" class="form-control " placeholder="Search Projects">
-							<span ng-click="submit(searchModel)" class="glyphicon glyphicon-search form-control-feedback"></span>
 						</form>
 					</div>
 				</div>
-				<div class="col-xs-4 col-xs-offset-4 ">
+				<div class="col-xs-1" style="padding-left: 0px; margin-left: -10px;">
+					<ng-md-icon ng-click="submit(searchModel)" icon="search" style="fill: #999" size="30"></ng-md-icon>
+				</div>
+				<div class="col-xs-4 col-xs-offset-3 ">
 
 				<div class="dropdown">
 
