@@ -28,16 +28,26 @@ angular.module('dmc.community.dmc-recent-updates',[]).
                               update.updateTypeDisplayIcon = "people"
                             } else {
                               update.parentLink = '/dmdii-project-page.php#/'+update.parentId
-                              var updateObject = update.updateType.replace("DMDII", "").replace(/([A-Z])/g, ' $1')
-                              update.description = update.updateId == update.parentId ? 'New Project!' : updateObject+" added!"
+                              update.description = returnProjectUpdateDescription(update)
                               update.updateTypeDisplay = "PROJECT"
                               update.updateTypeDisplayIcon = "folder_open"
                             }
-
                         }
 
                     });
                 };
+
+                function returnProjectUpdateDescription(update){
+                  if (update.updateType == "DMDIIProject") {
+                    if (update.attributeName) {
+                      return update.attributeName.replace(/([A-Z])/g, ' $1')+" updated!"
+                    } else {
+                      return "New Project!"
+                    }
+                  } else {
+                    return update.updateType.replace("DMDII", "").replace(/([A-Z])/g, ' $1')+" added!"
+                  }
+                }
 
                 $scope.getRecentUpdates();
 
