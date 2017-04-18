@@ -23,12 +23,12 @@ angular.module('dmc.community.dmc-recent-updates',[]).
                           var update = $scope.recentUpdates[e];
                             if (update.updateType == "DMDIIMember") {
                               getOrgMemberId(update.parentId);
-                              update.parentLink = '/member-page.php#/'+update.parentId
+                              update.parentLink = '/member-page.php#/'
                               update.description = 'New DMDII Member!'
                               update.updateTypeDisplay = "MEMBER"
                               update.updateTypeDisplayIcon = "people"
                             } else {
-                              update.parentLink = '/dmdii-project-page.php#/'+update.parentId
+                              update.parentLink = '/dmdii-project-page.php#/'
                               update.description = returnProjectUpdateDescription(update)
                               update.updateTypeDisplay = "PROJECT"
                               update.updateTypeDisplayIcon = "folder_open"
