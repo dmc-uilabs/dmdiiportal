@@ -101,6 +101,17 @@ angular.module('dmc.view-all')
             $scope.onOrderChange = function(order) {
                 $scope.sort = order;
             };
+    
+            function getAddedByName(id, index) {
+        
+                ajax.get(dataFactory.getUserName(id), {}, function (response) {
+                    $scope.services[index].addedBy = response.data.displayName;
+                }, function (response) {
+                    toastModel.showToast("error", "Ajax failed: getUserName");
+                    $scope.services[index].addedBy = id;
+                });
+        
+            }
 
             function getLastStatuses(ids){
                 var requestData = {
@@ -137,6 +148,7 @@ angular.module('dmc.view-all')
                         $.each($scope.services,function(){
                             this.releaseDateFormat = this.releaseDate;
                             this.releaseDate = Date.parse(this.releaseDate);
+                            getAddedByName(this.profileId, index);
                         });
                         apply();
                     }

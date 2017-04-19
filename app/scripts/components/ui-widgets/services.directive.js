@@ -40,12 +40,23 @@ angular.module('dmc.widgets.services',[
                     ajax.get(dataFactory.getServices($scope.projectId),{},
                         function(response){
                             allServices = response.data;
-                            getLastStatuses($.map(response.data,function(x){ return x.id; }));
+                            getLastStatusesAndAddedByName($.map(response.data,function(x){ return x.id; }));
                         },function(response){
-                            toastModel.showToast("error", "Ajax faild: getServices");
+                            toastModel.showToast("error", "Ajax failed: getServices");
                         }
                     );
                 };
+    
+                function getAddedByName(id, index) {
+                    
+                    ajax.get(dataFactory.getUserName(id), {}, function (response) {
+                        $scope.services[index].addedBy = response.data.displayName;
+                    }, function (response) {
+                        toastModel.showToast("error", "Ajax failed: getUserName");
+                        $scope.services[index].addedBy = id;
+                    });
+
+                }
 
                 $scope.onOrderChange = function(order) {
                     $scope.sort = order;
@@ -54,7 +65,7 @@ angular.module('dmc.widgets.services',[
                 // get all services (first request)
                 $scope.getServices();
 
-                function getLastStatuses(ids){
+                function getLastStatusesAndAddedByName(ids){
                     var requestData = {
                         serviceId : ids,
                         _sort : "startDate",
@@ -87,9 +98,10 @@ angular.module('dmc.widgets.services',[
                             if($scope.limit) allServices.splice($scope.limit,allServices.length);
                             $scope.services = allServices;
 
-                            $.each($scope.services,function(){
+                            $.each($scope.services,function(index, value){
                                 this.releaseDateFormat = this.releaseDate;
                                 this.releaseDate = Date.parse(this.releaseDate);
+                                getAddedByName(this.profileId, index);
                             });
                             apply();
 
