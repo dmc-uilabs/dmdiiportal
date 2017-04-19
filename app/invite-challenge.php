@@ -36,6 +36,7 @@
     <script src="scripts/components/rfp-invite/rfp-invite.directive.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
+    <script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/invite-challenge/invite-challenge.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
