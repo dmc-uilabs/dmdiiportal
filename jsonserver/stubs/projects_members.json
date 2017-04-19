@@ -6,15 +6,20 @@
 		"from": "Thomas Smith",
 		"date": 1458245164499,
 		"accept": false,
+
 		"id": "1 - 56 - 56"
 	},
 	{
 		"profileId": 2,
 		"projectId": 56,
+
 		"fromProfileId": 2,
 		"from": "Timmy Thomas",
 		"date": 1458295505214,
+
 		"accept": false,
+
 		"id": "2 - 56 - 56"
+
 	}
 ]

@@ -190,6 +190,7 @@ div.progress {
 	}
 }
 
+
 .rich-text-small {
 	h2 {
     color: black !important;
@@ -209,5 +210,11 @@ div.progress {
 	}
 	blockquote {
 		font-size: 1em;
+  }
+ng-md-icon {
+	svg {
+		vertical-align: text-top;
 	}
 }
+}
+  
