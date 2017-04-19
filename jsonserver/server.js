@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+var fs = require('fs');
 var jsonServer = require('json-server');
 var request = require('ajax-request');
 // Returns an Express server
@@ -75,6 +75,33 @@ server.post('/dmdiidocument', function(req,res) {
   res.jsonp(req.query)
 })
 
+server.get('/dmdiiMember', function (req, res) {
+  var membersOrig = JSON.parse(fs.readFileSync('stubs/dmdiiMember.json'));
+  var membersData = membersOrig;
+
+  var page = parseInt(req.query.page)
+  var size = parseInt(req.query.pageSize)
+  var start = page*size
+  var end = (page+1)*size
+
+  membersOrig = {"count": membersData.length ,"data" : membersData.slice(start,end) }
+
+  res.jsonp(membersOrig)
+})
+
+server.get('/dmdiiprojects', function (req, res) {
+  var projectsOrig = JSON.parse(fs.readFileSync('stubs/dmdiiprojects.json'));
+  var projectsData = projectsOrig;
+
+  var page = parseInt(req.query.page)
+  var size = parseInt(req.query.pageSize)
+  var start = page*size
+  var end = (page+1)*size
+
+  projectsOrig = {"count": projectsData.length ,"data" : projectsData.slice(start,end) }
+
+  res.jsonp(projectsOrig)
+})
 server.post('/services', function(req,res) {
  res.jsonp({"id":906,"companyId":"1","title":"K Max","description":"The formula used is Kmax = BetaFactor * AppliedLoad / (Thickness * math.sqrt(SpecimenWidth.getValue())). The four inputs are BetaFactor (no unit), AppliedLoad (Newton), SpecimenWidth (meter), and Thickness (meter). The output is Kmax (pascal square root meter).",
  "owner":"269","profileId":"269","releaseDate":"2017-01-21",
@@ -82,6 +109,7 @@ server.post('/services', function(req,res) {
  "featureImage":{"thumbnail":"","large":""},
  "currentStatus":{"percentCompleted":"0","startDate":"","startTime":""},
  "projectId":"147","from":"marketplace","type":"service","parent":null,"published":false,"averageRun":""})
+
 })
 
 server.get('/getChildren', function (req, res) {

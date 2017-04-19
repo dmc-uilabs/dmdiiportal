@@ -8,16 +8,19 @@
 		"accept": false,
 		"id": 1,
 		"title": "Project 2"
+
 	},
 	{
 		"profileId": 1,
-		"projectId": 1,
+		"projectId": 59,
 		"fromProfileId": 2,
 		"from": "Timmy Thomas",
 		"date": 1458295505214,
+
 		"accept": false,
 		"id": 7,
 		"title": "Project 1"
+
 	},
 	{
 		"profileId": 2,
