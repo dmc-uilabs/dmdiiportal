@@ -12,7 +12,8 @@ angular.module('dmc.all_projects', [
     'dmc.model.previous-page',
     'md.data.table',
     'dmc.common.header',
-    'dmc.common.footer'
+    'dmc.common.footer',
+    'ui.bootstrap'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider){
         $stateProvider.state('all-projects', {
@@ -80,6 +81,32 @@ angular.module('dmc.all_projects', [
         $scope.updateFilter = function(){
             var item = $scope.filterList[$scope.filterModel];
             $rootScope.filterMAProjects(item.tag);
+        };
+    
+        $scope.oneAtATime = true;
+        
+        $scope.groups = [
+            {
+                title: 'Dynamic Group Header - 1',
+                content: 'Dynamic Group Body - 1'
+            },
+            {
+                title: 'Dynamic Group Header - 2',
+                content: 'Dynamic Group Body - 2'
+            }
+        ];
+    
+        $scope.filterItems = ['Item 1', 'Item 2', 'Item 3'];
+    
+        $scope.addItem = function() {
+            var newItemNo = $scope.items.length + 1;
+            $scope.items.push('Item ' + newItemNo);
+        };
+    
+        $scope.status = {
+            isCustomHeaderOpen: false,
+            isFirstOpen: true,
+            isFirstDisabled: false
         };
 
 

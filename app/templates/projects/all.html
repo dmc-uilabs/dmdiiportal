@@ -28,13 +28,14 @@
                     </div>
                 </form>
             </div> -->
+            <h1>Workspaces</h1>
             <md-button class="link-button add-project-button" md-no-ink
                        href="/add-project.php">
               <span style="border:solid 1px green; padding: 10px">Add Workspace
                 <ng-md-icon icon="add" size="22"></ng-md-icon></span>
             </md-button>
             <!-- fill up the space between left and right area -->
-            <div laout="column" flex="33">
+            <div layout="column" flex="33">
                 <div layout="row" layout-align="end center">
                     <md-input-container>
                         <label>Sort</label>
@@ -48,13 +49,49 @@
     </md-toolbar>
 </div>
 
-<div class="container my-projects-container" layout="row" flex="100">
-    <div class="content-panel" layout="column" flex="100"
-         id="myProjectsList"
-         ui-widget-projects
-         search-text="searchText"
-         widget-format="'all-projects'"
-         widget-title="null"
-         sort-projects="sortProjects"
-         widget-show-all-blocks="true"></div>
+<div class="container" layout="row" flex="100">
+    <uib-accordion close-others="oneAtATime">
+        <div uib-accordion-group class="panel-default filter-accordion" is-open="status.open">
+            <uib-accordion-heading>
+                Filter <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+            </uib-accordion-heading>
+            <div class="row">
+                <div class="col-lg-6">Public</div>
+                <div class="col-lg-6 text-nowrap">Pending Invites</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">Private</div>
+                <div class="col-lg-6">Clear</div>
+            </div>
+        </div>
+    </uib-accordion>
 </div>
+
+<md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="My Workspaces">
+            <div class="container my-projects-container" layout="row" flex="100">
+                <div class="content-panel" layout="column" flex="100"
+                     id="myProjectsList"
+                     ui-widget-projects
+                     search-text="searchText"
+                     widget-format="'all-projects'"
+                     widget-title="null"
+                     sort-projects="sortProjects"
+                     widget-show-all-blocks="true"></div>
+            </div>
+        </md-tab>
+        <md-tab label="All Workspaces">
+            <!--<div class="container my-projects-container" layout="row" flex="100">-->
+                <!--<div class="content-panel" layout="column" flex="100"-->
+                     <!--id="myProjectsList"-->
+                     <!--ui-widget-projects-->
+                     <!--search-text="searchText"-->
+                     <!--widget-format="'all-projects'"-->
+                     <!--widget-title="null"-->
+                     <!--sort-projects="sortProjects"-->
+                     <!--widget-show-all-blocks="true"></div>-->
+            <!--</div>-->
+        </md-tab>
+    </md-tabs>
+</md-content>
