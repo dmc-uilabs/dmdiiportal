@@ -99,9 +99,7 @@
 						      	<h3><a ng-href="{{'profile.php#/' + reply.accountId}}">{{reply.full_name}}</a></h3>
 						      	<h3>{{reply.created_at}}</h3>
 						    </div>
-						    <div class="text">
-						      	{{reply.text}}
-						    </div>
+						    <div class="text" markdown-to-html="reply.text"></div>
 						    <div class="comment-footer" layout="row" layout-align="end center">
 					          	<p>Was this review helpful?</p>
 					          	<md-button aria-label="Like" md-no-ink class="md-button"  ng-click="Like(reply)">
