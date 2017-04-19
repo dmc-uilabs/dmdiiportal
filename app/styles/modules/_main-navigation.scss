@@ -156,6 +156,19 @@ div[dmc-top-header]{
         &.active-page{
           color: $navigationActive;
         }
+        .count-message{
+          color: $countMessageText;
+          font-weight: bold;
+          font-size: 10px;
+          background-color: $countMessageBackground;
+          border-radius: 50%;
+          height: 15px;
+          width: 15px;
+          line-height: 16px;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
 
         ng-md-icon {
           margin: -4px -13px 0;
@@ -265,6 +278,9 @@ div[dmc-top-header]{
   &.messages-list{
     width: 350px;
   }
+  &.notifications-list{
+    width: 400px;
+  }
   &.service-status-list{
     width: 250px;
   }
@@ -350,6 +366,9 @@ div[dmc-top-header]{
       }
       .text{
         max-width: 250px;
+      }
+      .notifications-text{
+        max-width: 300px;
       }
     }
     md-menu-item:last-child{
