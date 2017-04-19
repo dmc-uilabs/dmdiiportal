@@ -30,6 +30,7 @@
     <script src="scripts/community/directives/discussions.js"></script>
     <script src="scripts/community/directives/dmc-announcements.js"></script>
     <script src="scripts/community/directives/dmc-events.js"></script>
+    <script src="scripts/community/directives/dmc-recent-updates.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>

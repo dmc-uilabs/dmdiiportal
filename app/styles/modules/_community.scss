@@ -193,4 +193,16 @@ a.following-btn{
   md-list-item:first-child {
     border-top: none;
   }
+  .badge {
+    min-width: 49px;
+    height: 44px;
+    text-align: center;
+    font-size: 8px;
+    font-weight: bold;
+    color: map-get($colors, secondary);
+    padding: 5px;
+    // border: 1px solid map-get($colors, secondary);
+    display: inline-block;
+    margin-right: 10px;
+  }
 }

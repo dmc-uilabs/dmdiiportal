@@ -16,6 +16,7 @@ angular.module('dmc.community', [
     'ngtimeago',
     'dmc.community.discussions',
     'dmc.community.dmc-events',
+    'dmc.community.dmc-recent-updates',
     'dmc.community.dmc-announcements',
     'dmc.model.toast-model',
     'ngtweet',
