@@ -81,7 +81,10 @@ angular.module('dmc.members')
                 }
             }
 
-            $scope.selectItemDropDown = function(){
+            $scope.selectItemDropDown = function(showIndex){
+                if (showIndex) {
+                  $scope.sizeModule = showIndex;
+                }
                 if($scope.sizeModule != 0) {
                     var item = $scope.showArray[$scope.sizeModule];
                     $scope.updatePageSize(item.val);
@@ -141,7 +144,7 @@ angular.module('dmc.members')
             var insertData = function(data){
                 $scope.membersByState = {};
                 angular.forEach(data, function(member) {
-                    member.organization.description = htmlspecialchars($showdown.stripHtml($showdown.makeHtml(member.organization.description)));
+                    member.organization.description = $showdown.stripHtml($showdown.makeHtml(member.organization.description));
                     if (!$scope.membersByState[member.organization.address.state]) {
                         $scope.membersByState[member.organization.address.state] =  [{name: member.organization.name, id: member.organization.id}];
                     } else {
@@ -201,7 +204,7 @@ angular.module('dmc.members')
 
             // callback for services
             var callbackFunction = function(response){
-				$scope.membersLoading = false;
+				          $scope.membersLoading = false;
                 if (angular.isDefined(response.data.count)) {
                     $scope.members.arr = response.data.data;
                     $scope.members.count = response.data.count;
@@ -210,6 +213,11 @@ angular.module('dmc.members')
                     $scope.members.arr = response.data;
                     insertData(response.data);
                 }
+
+                var numberMembers=$scope.members.arr.length;
+                $scope.randMemberId=Math.floor(Math.random()*numberMembers);
+                $scope.randMember = $scope.members.arr[$scope.randMemberId];
+                $scope.randMember.organization.description = truncateText($scope.randMember.organization.description,350);
                 $scope.activeProjects = {};
 
                 angular.forEach($scope.members.arr, function(member, index) {
@@ -218,6 +226,14 @@ angular.module('dmc.members')
                     });
                 });
             };
+
+            var truncateText = function(text,length) {
+              if (text.length > length) {
+                return text.substring(0, length)+"...";
+              } else {
+                return text;
+              }
+            }
 
             var responseData = function(){
                 var data = {

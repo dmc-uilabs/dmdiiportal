@@ -1,51 +1,177 @@
 <div class="onboarding-home">
 	<md-content layout layout-align="center center">
 		<div layout="column"  layout-fills>
-			<div class="section-header" layout="column" layout-align="start start" layout-fills>
-				<h2>Security</h2>
-				<h3>Security details of the DMC platform</h3>
-			</div>
+
 
 			<div layout="column" class="background">
+
+
 				<div class="section" layout="row" layout-align="center center" layout-fills>
-					<div class="image">
-						<img ng-src="images/icon-profile-lg.svg"  style="width: 50px">
+					<div class="logo">
+						<img ng-src="images/dmcLock.svg">
 					</div>
 					<div layout="column" flex class="text">
-						<h2>What is the DMDII Portal?</h2>
-						<h3>The portal serves as a one-stop communication and collaboration platform within the Digital Manufacturing Commons for DMDII members. It features tools to stay up to date on the latest news from the Institute, shares project updates, and allows collaboration with other members. </h3>
+						<h1>SECURING THE DIGITAL MANUFACTURING COMMONS </h1>
+						<p>
+						<h3>We are committed to our security practices and helping you understand our approach.</h3>
+					</div>
+				</div>
+
+
+<md-divider></md-divider>
+
+				<div class="section" layout="row" layout-align="center center" layout-fills >
+
+					<div layout="column" flex class="text">
+
+						<h2>SECURITY: <span>HOLISTIC APPROACH</span></h2>
+						<h3>DMC is leading the industry in our security approach to protect digital manufacturing. We have adopted NIST 800-53 and ITAR frameworks improving security controls above the industry standards.</h3>
+						<h4>People</h4>
+						<ul>
+							Our team of professionals meets rigorous internal requirements, policies, and standards.
+						</ul>
+						<h4>Security and Privacy Training</h4>
+						<ul>
+							The entire organization undergoes annual security and privacy training, and DMC team members go through monthly security training sessions covering privacy, security topics (including device security), acceptable use, preventing malware, physical security, data privacy, account management, and incident reporting.  Employees are informed that failure to comply will result in consequences, up to and including termination.
+						</ul>
+
+						<p>
+
+						<h2>SECURITY: <span>DEDICATED PRACTICES</span></h2>
+						<h3>DMC has defined roles and job responsibilities dealing with all aspects of securing the environment, platform and organization.</h3>
+						<h4>The security program covers:</h4>
+						<ul>
+							<li>
+								Establishing secure development practices and standards
+							</li>
+							<li>
+								Training developers on secure coding practices
+							</li>
+							<li>
+								Code auditing – detection, removal, and mitigation of coding security flaws
+							</li>
+							<li>
+								Event monitoring
+							</li>
+							<li>
+								Security logging
+							</li>
+							<li>
+								Secure deployment and configuration management
+							</li>
+							<li>
+								Managing, responding to, and resolving security Incidents
+							</li>
+							<li>
+								Penetration / vulnerability testing and remediation
+							</li>
+							<li>
+								ITAR compliance (for detailed information please see ITAR compliance section)
+							</li>
+						</ul>
+
+						<p>
+
+						<h2>SECURITY: <span>COMPLIANCE THROUGH AUDITING</span></h2>
+						<h3>DMC’s security program is designed to address security standards as outlined by NIST 800-53 and ITAR frameworks. We meet these thresholds through both internal and third party auditing and penetration testing.</h3>
+						<h4>Auditing</h4>
+						<ul>
+							Third party audits are performed annually. Internal audits are performed following the continual release platform cycle (quarterly, at minimum).
+						</ul>
+						<h4>Penetration Testing</h4>
+						<ul>
+							Infrastructure and web application testing is performed by the DMC team monthly, with third party auditing performed as needed (annually, at minimum).
+						</ul>
+
+						<!-- <p>
+
+						<h2>SECURITY: <span>DATA MANAGEMENT</span></h2>
+						<h3>Please see our handling of data requests at the following link.</h3> -->
+
+						<p>
+
+						<h2>SECURITY: <span>PRIVACY</span></h2>
+						<h3>Please refer to the Privacy Policy tab of our <a href="/termsCond.php">Legal page</a>.</h3>
+
+						<p>
+
+						<h2>SECURITY: <span>SOFTWARE DEVELOPMENT LIFECYCLE</span></h2>
+						<h3>Our team of developers are required to check all code into a version-controlled repository, with all code changes undergoing peer review and an approval process before implementation. Static analysis is performed using industry-leading tools and techniques.</h3>
+
+						<p>
+
+						<h2>SECURITY: <span>PROTECTING MEMBERS' DATA</span></h2>
+						<h3>DMC’s security program is focused on protecting our members’ IP and data by implementing best practices, identifying and mitigating risks, and constantly evaluating ways to improve our security.</h3>
+						<h4>Data Encryption</h4>
+						<ul>
+							Data is encrypted in transit and at rest, utilizing the latest recommended security cyphers, encryption, and transport technologies (TLS, AES256, SHA2 signatures, FIPS 140-2 encryption standards).
+						</ul>
+						<h4>AZURE</h4>
+						<ul>
+							With the platform hosted in AZURE, Microsoft provides the following additional security metrics: secure datacenters, audit trails, video 24/7, and software defined perimeters.
+						</ul>
+						<h4>Cloudfare OWasp Protection</h4>
+						<ul>
+							Cloudfare provides identification of vulnerabilities such as cross site scripting, SQL injection, comment spam, excessive bot crawling, and DDoS attacks.
+						</ul>
+						<h4>Authentication</h4>
+						<ul>
+							Platform authentication is achieved through federated services that utilize OAuth, SAML, and ADFS.
+						</ul>
+						<h4>Monitoring</h4>
+						<ul>
+							System monitoring, logging, and alerting is achieved using a multipoint approach. The DMC has integrated security at all levels capturing all relevant data such as ELK, Suricata, and Cloudflare.
+						</ul>
+						<h4>Server Hardening</h4>
+						<ul>
+							Standards have been implemented with our automated deployments preventing accidental misconfiguration resulting in vulnerabilities and improving consistency, reliability, and manageability of all systems deployed to the platform.
+						</ul>
+
+						<p>
+
+						<h2>SECURITY: <span>ITAR COMPLIANCE</span></h2>
+						<h3>The DMC platform provides access controls and accountability features that enable its users to enforce ITAR requirements for control of transfer to dual nationals or third-country national (22 CFR Part 126.18). DMC’s support for 22 CFR Part 126.18 includes the following supporting functions:</h3>
+						<h4>22 CFR Part 126.18 (a)</h4>
+						<ul>
+							DMC restricts use of the DMC environment and its components to individuals who have unique user accounts and passwords. This feature is employed using federated authentication and allowing companies to directly manage their assets.
+						</ul>
+						<h4>22 CFR Part 126.18 (b)</h4>
+						<ul>
+							DMC prevents the export of components of the platform, including scripts, object definition files, configuration files, and APIs, to assigned end-users. These configurable permissions are employed using digital rights management at upload time.
+						</ul>
+						<h4>22 CFR Part 126.18 (c) (1)</h4>
+						<ul>
+							This requirement is governed by the DMC Member, and requires the Member to process security clearances of their assigned users, as appropriate. Upon providing the assigned user the appropriate clearance, appropriate permissions will be apportioned using the features described in 22 CFR Part 126.18(a) and 22 CFR Part 126.18(b).
+						</ul>
+
 					</div>
 
 				</div>
 
 				<md-divider></md-divider>
-
 				<div class="section" layout="row" layout-align="center center" layout-fills>
-					<div class="image">
-						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
-					</div>
-					<div layout="column" flex class="text">
-							<h2>What can I find here?</h2>
-					<h3> On the portal you’ll find news, discussions, information about DMDII members, and details about the Institute’s projects.
-<br /><br />
-					The portal lists DMDII updates, milestones, and events in a single location so you never miss an announcement from the Institute or other members. A member directory hosts profiles of participating organizations—including their skills and interests—to help facilitate networking and project teaming. On the portal’s project page, you’ll find information about ongoing DMDII projects, from news and updates to timelines and events, to help keep you informed about the wide scope of projects underway at DMDII.</h3>
+
+					<div layout="column" flex class="text-center">
+							<h1>Security questions or issues?</h1>
+							<h3><p><span class="button-view-opportunities"><a href="/contact-us.php">Contact Us</a></span></h3>
+							<h3>If you think you may have found a security vulnerability within DMC,</h3>
+							<h3>please email us at <a href="mailto:askdmc@uilabs.org">askdmc@uilabs.org</a> with the subject line "Security".</h3>
 					</div>
 
 				</div>
-
-
 				<md-divider></md-divider>
-				<div class="section" layout="row" layout-align="center center" layout-fills>
-					<div class="image">
-						<img ng-src="images/icon-settings-lg.svg"  style="width: 50px">
-					</div>
-					<div layout="column" flex class="text">
-							<h2>How do I use it?</h2>
-					<h3>	Begin by contacting your organization’s administrator for your credentials to access the portal. Once you’ve logged in, you’ll find an easy-to-use, customizable interface. Start by creating your profile to tell other members about you and your organization—who you are, what you do, and the skills you bring to DMDII.
 
-						After your profile is up to date, engage with the DMDII community by following other members and participating in discussions within the forum. Update your projects on the “My Projects” tab, upload documents, and invite other members to engage with you in your work. Check back often for the latest news, discussions, and project updates posted to the portal.</h3>
-					</div>
+						</div>
+					</md-tab>
+
+					</md-tabs>
 
 				</div>
-
 				<md-divider></md-divider>
+
+
+
+
+
+	</md-content>
+</div>

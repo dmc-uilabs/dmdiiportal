@@ -35,7 +35,7 @@
           <span flex></span>
 
           <div layout="row" ng-if="!inviteToProject" layout-align="center center">
-            <md-button class="md-raised" ui-sref="edit({profileId: profile.id})">
+            <md-button class="md-raised" ui-sref="edit({profileId: profile.id})" ng-if="(profile.id == $root.userData.accountId) || userData.isDmdiiAdmin">
               Edit profile
             </md-button>
             <!-- <md-button class="md-raised" ng-click="follow()">
@@ -68,10 +68,7 @@
     </div>
 
     <md-divider></md-divider>
-
-    <div class="profile-description">
-     {{profile.aboutMe}}
-    </div>
+    <div class="profile-description" markdown-to-html="profile.aboutMe"></div>
 
     <md-tabs md-dynamic-height md-border-bottom>
 <!--       <md-tab label="HISTORY">

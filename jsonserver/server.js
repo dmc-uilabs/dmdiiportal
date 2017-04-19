@@ -49,6 +49,7 @@ server.use(jsonServer.rewriter({
     '/dmdiiMember/mapEntry' : '/dmdiiMemberMap',
     '/dmdiiProject/events': '/dmdiiProjectEvents',
     '/dmdiiProject/news': '/dmdiiProjectNews',
+    '/dmdiiprojects/member/active': '/dmdiiprojectsmembersactive',
     '/dmdiiProject/:id': '/dmdiiProjects/:id',
     '/dmdiidocuments/dmdiiProjectId': '/dmdiidocuments',
     '/dmdiidocument/filetype': '/dmdiidocument',
@@ -72,6 +73,15 @@ server.use(jsonServer.rewriter({
 server.post('/dmdiidocument', function(req,res) {
   console.log('request',req)
   res.jsonp(req.query)
+})
+
+server.post('/services', function(req,res) {
+ res.jsonp({"id":906,"companyId":"1","title":"K Max","description":"The formula used is Kmax = BetaFactor * AppliedLoad / (Thickness * math.sqrt(SpecimenWidth.getValue())). The four inputs are BetaFactor (no unit), AppliedLoad (Newton), SpecimenWidth (meter), and Thickness (meter). The output is Kmax (pascal square root meter).",
+ "owner":"269","profileId":"269","releaseDate":"2017-01-21",
+ "serviceType":"Fundamental Calculations - Fracture Mechanics","tags":[],"specifications":"/services/3/specifications",
+ "featureImage":{"thumbnail":"","large":""},
+ "currentStatus":{"percentCompleted":"0","startDate":"","startTime":""},
+ "projectId":"147","from":"marketplace","type":"service","parent":null,"published":false,"averageRun":""})
 })
 
 server.get('/getChildren', function (req, res) {

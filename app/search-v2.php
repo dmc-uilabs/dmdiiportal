@@ -26,6 +26,7 @@
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/community/community.js"></script>
     <script src="scripts/community/controllers/compose-discussion.js"></script>
+    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/community/directives/discussions.js"></script>
     <script src="scripts/community/directives/dmc-announcements.js"></script>
     <script src="scripts/community/directives/dmc-events.js"></script>
@@ -46,6 +47,7 @@
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
+    <script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
     <script src="scripts/common/models/company-model.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/add-project/add-project.directive.js"></script>

@@ -201,7 +201,7 @@ $lines-to-show-title: 2;
     a.page-href {
       display: flex;
       &:hover{
-        background: none;
+        background-color: #777;
         text-decoration: underline;
       }
       span{

@@ -30,6 +30,7 @@
     <script src="scripts/components/ui-widgets/services.directive.js"></script>
     <script src="scripts/components/ui-widgets/components.directive.js"></script>
     <script src="scripts/components/ui-widgets/discussions.directive.js"></script>
+    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
     <script src="scripts/components/ui-widgets/questions.directive.js"></script>
     <script src="scripts/components/ui-widgets/submissions.directive.js"></script>
@@ -62,6 +63,8 @@
     <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/components/ui-widgets/stars.directive.js"></script>
     <script src="scripts/community/controllers/compose-discussion.js"></script>
+    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
+    <script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
 
     <script src="scripts/project/project.js"></script>
     <script src="scripts/project/controllers/id-locator.js"></script>

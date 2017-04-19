@@ -1,0 +1,66 @@
+<div class="product-card-container product-card__footer" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured">
+    <div class="adding-to-project" ng-show="addingToProject">
+        <div layout="row" layout-align="center center" class="inner-add-to-project" flex>
+            <md-button aria-label="Cancel" layout="column" class="close" ng-click="cancelAddToProject()">
+                <ng-md-icon icon="close" size="17"></ng-md-icon>
+            </md-button>
+            <div layout="column" class="select-block" flex>
+                <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
+                    <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
+                </md-select>
+            </div>
+            <md-button aria-label="Add"
+                       layout="column"
+                       class="close"
+                       ng-click="saveToProject(projectModel)">Add
+            </md-button>
+        </div>
+    </div>
+
+    <md-button aria-label="Back to Add"
+               class="back-to-add"
+               ng-click="backToAdd()"
+               ng-show="addingToProject == false && cardSource.added">
+        <ng-md-icon icon="close" size="17"></ng-md-icon>
+    </md-button>
+
+
+    <md-button aria-label="Project Link"
+               flex
+               class="page-href"
+               ng-style="compareStyle"
+               ng-show="addingToProject == false && cardSource.added"
+               ng-href="{{cardSource.lastProject.href}}">
+    <span flex>
+        Added to {{cardSource.lastProject.title}}
+    </span>
+        <ng-md-icon icon="keyboard_arrow_right" style="fill: #fff" size="32"></ng-md-icon>
+    </md-button>
+
+    <md-button aria-label="Add to Workspace"
+               flex
+               ng-style="compareStyle"
+               class="white-button"
+               ng-click="addToProject()"
+               ng-hide="addingToProject || cardSource.added">
+        Add to Workspace
+    </md-button>
+
+    <!-- buttons for compare -->
+    <md-button aria-label="Add to Compare"
+               flex
+               class="white-button"
+               ng-click="addToCompare()"
+               ng-disabled="(cardSource.type == 'service' && $root.comparedServices.components.length > 0) || (cardSource.type == 'component' && $root.comparedServices.services.length > 0)"
+               ng-style="compareStyle"
+               ng-show="!cardSource.added && addingToProject == false && (typeProduct == 'service' && $root.comparedServicesIds.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && $root.comparedServicesIds.components.indexOf(cardSource.id) == -1)">
+        Add to Compare
+    </md-button>
+    <md-button aria-label="Compare" flex ng-click="removeFromCompare()" class="remove"
+               ng-style="compareStyle"
+               ng-hide="cardSource.added || addingToProject == true || !$root.comparedServicesIds || (typeProduct == 'service' && $root.comparedServicesIds.services.indexOf(cardSource.id) == -1) || (typeProduct == 'component' && $root.comparedServicesIds.components.indexOf(cardSource.id) == -1)">
+        <ng-md-icon icon="close" size="17"></ng-md-icon>
+        Compare
+    </md-button>
+
+</div>
