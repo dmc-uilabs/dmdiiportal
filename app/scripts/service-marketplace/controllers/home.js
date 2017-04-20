@@ -70,9 +70,9 @@ angular.module('dmc.service-marketplace')
                 }
             });
 
-            ajax.get(dataFactory.userAccount($scope.product.owner).get, {}, function(response) {
+            ajax.get(dataFactory.getUserName($scope.product.owner), {}, function(response) {
                 $scope.owner_name = response.data.displayName
-            })
+            });
 
             // check if service is favorite for current user
             isFavorite.check([$scope.product]);
@@ -561,110 +561,6 @@ angular.module('dmc.service-marketplace')
                         getFavoriteCount();
                     });
                 }
-            };
-
-            $scope.toProject = function(){
-                $scope.adding_to_project = true;
-            };
-
-            $scope.btnCanselToProject = function(){
-                $scope.adding_to_project = false;
-            };
-
-            $scope.btnRemoveOfProject = function(){
-                var updatedItem = $.extend(true, {}, $scope.product.__serviceData);
-                updatedItem.currentStatus = {
-                        project: {
-                            id: 0,
-                            title: ''
-                        }
-                    };
-                updatedItem.projectId = 0;
-                ajax.update(dataFactory.addServiceToProject($scope.product.id), updatedItem, function (response) {
-                    $scope.product.projectId = 0;
-                    $scope.product.currentStatus.project.id = 0;
-                    $scope.product.currentStatus.project.title = '';
-                    $scope.invate = false;
-                    $scope.adding_to_project = false;
-                }, function (response) {
-                    toastModel.showToast('error', 'Failed Add To Workspace');
-                }
-            );
-            }
-
-            $scope.btnAddToProject = function(id){
-                var project = null;
-                for(var i in $scope.projects){
-                    if($scope.projects[i].id == id){
-                        project = $scope.projects[i];
-                        break;
-                    }
-                }
-
-                if(project) {
-                    var updatedItem = $.extend(true, {}, $scope.product.__serviceData);
-                    updatedItem.currentStatus = {
-                            project: {
-                                id: id,
-                                title: project.title
-                            }
-                        };
-                    updatedItem.projectId = id;
-                    updatedItem.from = 'marketplace';
-
-                    delete updatedItem.tags;
-                    ajax.create(dataFactory.services().add, updatedItem, function (response) {
-                        var id = response.data.id;
-                        $scope.btnCanselToProject();
-
-                        angular.forEach($scope.product.__serviceData.service_tags, function(tag) {
-                            delete tag.id;
-                            tag.serviceId = id;
-                            ajax.create(dataFactory.services(id).add_tags, tag);
-                        });
-                        if ($scope.service_images.length) {
-                            angular.forEach($scope.service_images, function(image) {
-                                delete image.id;
-                                image.ownerId = userData.accountId;
-                                image.parentId = id;
-                                ajax.create(dataFactory.documentsUrl().save, image)
-                            });
-                        };
-                        ajax.get(dataFactory.services($scope.product.id).get_interface, {}, function(response) {
-                            angular.forEach(response.data, function(newDomeInterface) {
-                                delete newDomeInterface.id;
-                                newDomeInterface.serviceId = id;
-                                ajax.create(dataFactory.services().add_interface, newDomeInterface);
-                            });
-                        });
-                        toastModel.showToast('success', 'Service added to ' + response.data.currentStatus.project.title);
-                    }, function (response) {
-                        toastModel.showToast('error', 'Failed Add To Workspace');
-                    });
-                };
-            };
-
-//compare
-
-            var updateCompareCount = function () {
-                var arr = $cookies.getObject('compareProducts');
-                return arr == null ? {services: [], components: []} : arr;
-            };
-            $scope.compareProducts = updateCompareCount();
-
-            $scope.$watch(function() { return $cookies.changedCompare; }, function(newValue) {
-                $scope.compareProducts = updateCompareCount();
-            });
-
-            $scope.removeFromCompare = function(){
-                CompareModel.delete('services',$scope.product.id);
-            };
-
-            $scope.addToCompare = function(){
-                CompareModel.add('services',{
-                    profileId : userData.profileId,
-                    serviceId : $scope.product.id
-                });
             };
 
             $scope.SortingReviews($scope.sortList[0].val);

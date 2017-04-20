@@ -43,14 +43,14 @@
                         <md-button class="md-raised dmc-button" ng-click="resetMembers()">Reset</md-button>
                         <span flex></span>
                         <md-button class="md-raised dmc-button" ng-click="showFavorites()" ng-disabled="favorites.length == 0 && !showFavoritesFlag">
-                            {{(showFavoritesFlag == false) ? 'Favorites(' + favorites.length + ')' : 'All'}}     
+                            {{(showFavoritesFlag == false) ? 'Favorites(' + favorites.length + ')' : 'All'}}
                         </md-button>
                         <!-- <md-button class="md-raised dmc-button margin-left12-5" compare-source="compare" invitees-source="invitees" ng-disabled="compare.length == 0" compare-members-button>Compare ({{compare.length}})</md-button> -->
                     </md-content>
                     <md-content class="md-padding top-content" layout="row">
                         <div class="content-column" layout="column" flex="100">
                             <div class="content-panel rfp-three">
-                                
+
                                 <md-divider ></md-divider>
                                 <div class="content-panel-body">
                                     <md-content layout="row" layout-wrap>
@@ -81,6 +81,10 @@
         <!-- Right Content Column -->
         <div class="content-column" layout="column" flex="29">
             <div dmc-selected-invitees class="content-panel invitees" invitees="invitees"></div>
+            <div layout="row" class="btn-next-block" layout-padding layout-align="center center">
+                <md-button class="md-raised" ng-click="goToTab(1)">Back</md-button>
+                <md-button class="md-raised md-primary" ng-click="submitProjectDetails(invitees)">{{isUpdate ? 'Save' : 'Create' }}</md-button>
+            </div>
         </div>
     </div>
     <div layout="row" class="btn-next-block" layout-padding layout-align="end center">

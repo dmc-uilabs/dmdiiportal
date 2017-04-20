@@ -38,6 +38,7 @@
     <script src="scripts/components/products-card/products-card.js"></script>
     <script src="scripts/components/carousel/carousel.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
+    <script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
     <script src="scripts/common/models/file-upload.js"></script>
     <script src="scripts/common/models/file-model.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
@@ -51,6 +52,7 @@
     <script src="scripts/community/directives/dmc-announcements.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/community/directives/dmc-events.js"></script>
+    <script src="scripts/community/directives/dmc-recent-updates.js"></script>
 
     <!-- for social media feeds -->
     <script src="bower_components/ngtweet/dist/ngtweet.min.js"></script>

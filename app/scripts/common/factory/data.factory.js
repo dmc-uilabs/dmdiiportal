@@ -753,6 +753,9 @@ angular.module('dmc.data',[])
                     all : localhost + name
                 }
             },
+            getRecentUpdates : function() {
+              return localhost+'recent_updates';
+            },
             // ---------------------------
 
 
@@ -1036,6 +1039,9 @@ angular.module('dmc.data',[])
                     get: localhost + 'user/' + id
                 }
             },
+            getUserName: function(id) {
+                return localhost + 'user/' + id + '/userName';
+            },
             getOnboardingBasicInfoUrl: function() {
                 return localhost+'user-basic-information'
             },
@@ -1050,6 +1056,9 @@ angular.module('dmc.data',[])
             },
             updateUserAccountNotification: function(id){
                 return localhost+'account-notification-settings/'+id;
+            },
+            markNotificationRead: function(id, notification_id) {
+              return localhost + 'users/'+id+'/notifications/'+notification_id+'?action=markNotificationRead';
             },
             markAllNotificationsRead: function(id) {
                 return localhost + 'users/' + id + '/notifications?action=markAllRead';
