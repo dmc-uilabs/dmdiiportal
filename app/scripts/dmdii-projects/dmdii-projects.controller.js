@@ -113,15 +113,10 @@ angular.module('dmc.dmdiiProjects')
             $scope.getProjectStaticImages();
 
             $scope.selectItemDropDown = function(showIndex){
-              if (showIndex) {
-                $scope.sizeModule = showIndex;
-              }
-                if($scope.sizeModule != 0) {
+                if($scope.sizeModule != showIndex) {
+                    $scope.sizeModule = showIndex
                     var item = $scope.showArray[$scope.sizeModule];
                     $scope.updatePageSize(item.val);
-                    $scope.showArray.splice($scope.sizeModule, 1);
-                    $scope.showArray = $scope.showArray.sort(function(a,b){return a.id - b.id});
-                    if ($scope.showArray.unshift(item)) $scope.sizeModule = 0;
                 }
             };
 

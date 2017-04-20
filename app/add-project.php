@@ -47,6 +47,7 @@
     <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/components/ui-widgets/stars.directive.js"></script>
     <script src="scripts/common/models/file-upload.js"></script>
+    <script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

@@ -101,14 +101,11 @@
                             <h3>Invitations</h3>
                             <md-button md-no-ink href="/all.php#/invitations" class="view-all-link">View All</md-button>
                         </div>
-                        <md-menu-item ng-repeat="item in messagesList track by $index">
-                            <a ng-href='{{item.link}}'>
-                                <img ng-src="{{item.image}}" alt="{{item.user_name}}"/>
-                                <span>
-                                    <i class="user-name">{{item.user_name}}</i>
-                                    <i class="text">{{item.text}}</i>
-                                    <i>{{item.created_at}}</i>
-                                </span>
+                        <md-menu-item ng-repeat="item in invitations track by $index">
+                            <a ng-href="{{'project.php#/preview/'+item.projectId}}">
+                                <img ng-src="{{item.profileImage}}" alt="{{item.from}}"/>
+                                <i class="user-name">{{item.from}}</i>
+                                <i class="text">Invited you to {{item.title || "a project"}}</i>
                             </a>
                         </md-menu-item>
                     </md-menu-content>
@@ -175,7 +172,7 @@
                     </md-button>
 
                     <md-menu-content id="hamburger-menu-content" ng-style="{width:dropDownWidth+'px'}">
-                        <md-menu-item><md-menu ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" style="padding: 0px;" ng-init="dropDownWidth = 200"><md-button class="sub-menu" ng-click="closeSubMenus(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"><ng-md-icon icon="chevron_right" size="20"></ng-md-icon>Core</md-button><md-menu-content class="sub-menu-content" ng-style="{width:dropDownWidth+'px'}"><md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/about-platform.php">About DMC Platform</md-button></md-menu-item> <!-- <md-menu-item>   <md-button ng-click="$mdCloseMenu($event);" href="/application-creation.php">Application Creation</md-button></md-menu-item> --><!-- <md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/workforce-development.php">Workforce Development</md-button></md-menu-item> --><md-menu-item><md-button ng-click="$mdCloseMenu($event);" href="/security.php">DMC Security</md-button></md-menu-item><!-- <md-menu-item><md-button ng-click="$mdCloseMenu($event);" href="/release-notes.php">DMC Releases</md-button></md-menu-item> --></md-menu-content></md-menu></md-menu-item>
+                        <md-menu-item><md-menu ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" style="padding: 0px;" ng-init="dropDownWidth = 200"><md-button class="sub-menu" ng-click="closeSubMenus(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"><ng-md-icon icon="chevron_right" size="20"></ng-md-icon>Core</md-button><md-menu-content class="sub-menu-content" ng-style="{width:dropDownWidth+'px'}"><md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/about-platform.php">About DMC Platform</md-button></md-menu-item> <!-- <md-menu-item>   <md-button ng-click="$mdCloseMenu($event);" href="/application-creation.php">Application Creation</md-button></md-menu-item> --><!-- <md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/workforce-development.php">Workforce Development</md-button></md-menu-item> --><md-menu-item><md-button ng-click="$mdCloseMenu($event);" href="/security.php">DMC Security</md-button></md-menu-item><md-menu-item><md-button ng-click="$mdCloseMenu($event);" href="/release-notes.php">DMC Releases</md-button></md-menu-item> </md-menu-content></md-menu></md-menu-item>
                         <md-menu-item><md-menu ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" style="padding: 0px;" ng-init="dropDownWidth = 200"><md-button class="sub-menu" ng-click="closeSubMenus(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"><ng-md-icon icon="chevron_right" size="20"></ng-md-icon>Explore</md-button><md-menu-content class="sub-menu-content" ng-style="{width:dropDownWidth+'px'}"><md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/search-v2.php#/members">Individuals</md-button></md-menu-item><md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/search-v2.php#/companies">Organizations</md-button></md-menu-item><md-menu-item>  <md-button ng-click="$mdCloseMenu($event);" href="/community.php#/home">Activities</md-button></md-menu-item><md-menu-item><md-button ng-click="$mdCloseMenu($event);" href="/all-projects.php">All Workspaces</md-button></md-menu-item></md-menu-content></md-menu></md-menu-item>
                         <md-menu-item><md-button ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" ng-click="$mdCloseMenu($event);" href="/company-profile.php#/profile/{{userCompanyId}}">MY ORGANIZATION</md-button></md-menu-item>
                         <md-menu-item><md-button ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" ng-click="$mdCloseMenu($event);" href="marketplace.php#/home?product=services">MARKETPLACE</md-button></md-menu-item>
@@ -233,18 +230,16 @@
                             <h3>Invitations</h3>
                             <md-button md-no-ink href="/all.php#/invitations" class="view-all-link">View All</md-button>
                         </div>
-                        <md-menu-item ng-repeat="item in messagesList track by $index">
-                            <a ng-href='{{item.link}}'>
-                                <img ng-src="{{item.image}}" alt="{{item.user_name}}"/>
-                                <span>
-                                    <i class="user-name">{{item.user_name}}</i>
-                                    <i class="text">{{item.text}}</i>
-                                    <i>{{item.created_at}}</i>
-                                </span>
-                            </a>
+                        <md-menu-item ng-repeat="item in invitations track by $index">
+                          <a ng-href="{{'project.php#/preview/'+item.projectId}}">
+                              <img ng-src="{{item.profileImage}}" alt="{{item.from}}"/>
+                              <i class="user-name">{{item.from}}</i>
+                              <i class="text">Invited you to {{item.title || "a project"}}</i>
+                          </a>
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>
+
 
             </div>
 
@@ -285,10 +280,10 @@
                             <md-menu-item>
                                 <md-button ng-click="$mdCloseMenu($event);" href="/security.php">DMC Security</md-button>
                             </md-menu-item>
-                            <!-- <md-menu-item>
+                           <md-menu-item>
                                 <md-button ng-click="$mdCloseMenu($event);" href="/release-notes.php">DMC Releases</md-button>
                             </md-menu-item>
-                            <md-menu-item>
+                            <!--  <md-menu-item>
                                 <md-button ng-click="$mdCloseMenu($event);" href="https://dmc-uilabs.github.io/dmcblog/">DMC Blog</md-button>
                             </md-menu-item> -->
                         </md-menu-content>

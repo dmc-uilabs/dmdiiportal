@@ -7,7 +7,7 @@
 				<h3>{{item.title}}</h3>
 				<time datetime="2011-01-12">{{item.dateCreated}}</time>
 				<p>{{item.content}}</p>
-				<a ng-if="userData.isDmdiiAdmin" class="delete-button" href ng-click="deleteNews($index, item.id)"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+				<a ng-if="userData.isDmdiiAdmin" class="delete-button" href ng-click="deleteNews($index, item.id)"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon> Delete</a>
 			</article>
 		</div>
 	</div>

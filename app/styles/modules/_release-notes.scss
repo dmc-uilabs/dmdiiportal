@@ -1,0 +1,72 @@
+.release-bug{
+      list-style: none;
+}
+.release-content{
+      list-style: none;
+}
+.release-feature{
+      list-style: none;
+}
+.release-bug::before {
+   background-color: red;
+   border-radius: 8px;
+   color: white;
+   content: "BUG";
+   font-size: 11px;
+   font-weight: bold;
+   line-height: 22px;
+   margin: 5px 5px 5px -38px;
+   padding: 6px;
+}
+
+.release-content::before {
+  border-radius: 8px;
+  color: white;
+  content: "CONTENT";
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 22px;
+  margin: 5px 5px 5px -66px;
+  padding: 6px;
+  background-color: purple;
+}
+.release-feature::before {
+  border-radius: 8px;
+  color: white;
+  content: "FEATURE";
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 22px;
+  margin: 5px 5px 5px -64px;
+  padding: 6px;
+  background-color: green;
+}
+.margin5px{
+      margin: 5px;
+}
+.release-tree{
+  margin-left: -25px;
+  //first depth of list
+  &>ul{
+    font-weight: 300;
+    text-transform: uppercase;
+    list-style:none;
+    font-size:20px;
+  }
+  //everything else
+  ul > li > release-tree {
+    text-transform: none;
+    font-weight: normal;
+    font-size: 14px;
+    margin-left: -20px
+  }
+  //second depth of list
+  &> ul > li > release-tree > ul{
+    margin-left: -20px;
+    list-style:none;
+    font-size: 16px;
+  }
+}
+.onboarding-home .section{
+   padding: 20px 0px;
+}

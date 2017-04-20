@@ -753,6 +753,9 @@ angular.module('dmc.data',[])
                     all : localhost + name
                 }
             },
+            getRecentUpdates : function() {
+              return localhost+'recent_updates';
+            },
             // ---------------------------
 
 
@@ -1035,6 +1038,9 @@ angular.module('dmc.data',[])
                 return {
                     get: localhost + 'user/' + id
                 }
+            },
+            getUserName: function(id) {
+                return localhost + 'user/' + id + '/userName';
             },
             getOnboardingBasicInfoUrl: function() {
                 return localhost+'user-basic-information'
