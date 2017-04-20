@@ -1,45 +1,45 @@
-<div class="content-panel-header" ng-hide="widgetTitle == null">
+<div class="content-panel-header" ng-hide="$ctrl.widgetTitle == null">
     <md-toolbar>
         <div class="md-toolbar-tools widget-toolbar-title">
-            <h2>{{widgetTitle}}</h2>
+            <h2>{{$ctrl.widgetTitle}}</h2>
             <span flex></span>
             <a href="/my-projects.php"
-                       class="link-button uppercase">View All ({{total}})</a>
+                       class="link-button uppercase">View All ({{$ctrl.total}})</a>
         </div>
     </md-toolbar>
 </div>
 <div class="content-panel-body" layout="column" flex="100">
-  <md-content class="rp-panel" layout="row" ng-repeat="item in projects">
+  <md-content class="rp-panel" layout="row" ng-repeat="item in $ctrl.projects">
       <div layout="column" flex>
-          <div class="company-name" ng-if="item.companyId == userCompany.id">A Project From <a href="/company-profile.php#/profile/{{userCompany.id}}">{{userCompany.name}}</a></div>
+          <div class="company-name" ng-if="item.companyId == $ctrl.userCompany.id">A Project From <a href="/company-profile.php#/profile/{{$ctrl.userCompany.id}}">{{$ctrl.userCompany.name}}</a></div>
           <div class="rp-panel__title my-projects" layout="row">
               <h2>
-                  <a ng-if="item.isMember" ng-href="project.php#/{{ item.isMember.accept || item.companyId == userCompany.id ? item.id : 'preview/'+item.id }}" class="link-button">{{item.title}}</a>
+                  <a ng-if="item.isMember" ng-href="project.php#/{{ item.isMember.accept || item.companyId == $ctrl.userCompany.id ? item.id : 'preview/'+item.id }}" class="link-button">{{item.title}}</a>
                   <a ng-if="!item.isMember" ng-href="project.php#/preview/{{item.id}}">{{item.title}}</a>
                   <span ng-if="item.dueDate">Due in {{item.dueDate}}</span>
               </h2>
               <span flex></span>
-              <md-button ng-if="widgetShowAllBlocks && widgetFormat == 'all-projects' &&
+              <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
                                 !item.isMember && item.approvalOption == 'all' && !item.joinRequest"
                          ng-click="join(item)"
                          class="md-raised dmc-button join"><ng-md-icon icon="group_add" size="22"></ng-md-icon>Join</md-button>
-              <md-button ng-if="widgetShowAllBlocks && widgetFormat == 'all-projects' &&
+              <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
                                 !item.isMember && item.approvalOption == 'admin'"
-                         ng-click="join(item)"
+                         ng-click="$ctrl.join(item)"
                          ng-disabled="item.joinRequest"
                          class="md-raised dmc-button request-to-join"><ng-md-icon icon="group_add" size="22" ng-if="!item.joinRequest"></ng-md-icon>{{item.joinRequest ? 'Pending Approval' : 'Request to Join'}}
               </md-button>
-              <md-button ng-if="widgetShowAllBlocks && widgetFormat == 'all-projects' &&
+              <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrlwidgetFormat == 'all-projects' &&
                                 item.isMember && !item.isMember.accept"
-                         ng-click="accept(item)"
+                         ng-click="$ctrl.accept(item)"
                          class="md-raised md-primary dmc-button accept">Accept</md-button>
-              <md-button ng-if="widgetShowAllBlocks && widgetFormat == 'all-projects' &&
+              <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
                                 item.isMember && !item.isMember.accept"
-                         ng-click="decline(item)"
+                         ng-click="$ctrl.decline(item)"
                          class="md-raised md-warn dmc-button decline">Decline</md-button>
           </div>
 
-          <md-content ng-if="!widgetShowAllBlocks">
+          <md-content ng-if="!$ctrl.widgetShowAllBlocks">
               <md-tabs md-dynamic-height md-border-bottom>
                   <md-tab label="Tasks">
                       <md-content flex
@@ -69,9 +69,9 @@
           <div class="rp-panel__tab-content widget-blocks"
                layout="row"
                layout-align="space-between start"
-               ng-if="widgetShowAllBlocks && (widgetFormat != 'all-projects' || (widgetFormat == 'all-projects' && item.isMember && item.isMember.accept ))">
+               ng-if="$ctrl.widgetShowAllBlocks && ($ctrl.widgetFormat != 'all-projects' || ($ctrl.widgetFormat == 'all-projects' && item.isMember && item.isMember.accept ))">
               <!-- Tasks -->
-              <md-content flex="{{flexBox}}"
+              <md-content flex="{{$ctrl.flexBox}}"
                           layout-padding
                           ui-project-tasks
                           total-items="item.tasks.totalItems"
@@ -79,7 +79,7 @@
                           limit="4"
                           widget-title="'Tasks'"></md-content>
               <!-- Discussions -->
-              <md-content flex="{{flexBox}}"
+              <md-content flex="{{$ctrl.flexBox}}"
                           layout-padding
                           ui-project-discussions
                           total-items="item.discussions.totalItems"
@@ -89,7 +89,7 @@
                           limit="4"
                           with-avatar="false"></md-content>
               <!-- Services -->
-              <md-content flex="{{flexBox}}"
+              <md-content flex="{{$ctrl.flexBox}}"
                           layout-padding
                           ui-widget-services
                           limit="4"
@@ -104,7 +104,7 @@
           <div class="rp-panel__tab-content widget-blocks"
                layout="row"
                layout-align="space-between start"
-               ng-if="widgetShowAllBlocks && widgetFormat == 'all-projects' && (!item.isMember || (item.isMember && !item.isMember.accept))">
+               ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' && (!item.isMember || (item.isMember && !item.isMember.accept))">
               <div class="overview" flex layout="column">
                   <h3>Overview</h3>
                   <p>{{item.description}}</p>

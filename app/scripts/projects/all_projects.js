@@ -23,8 +23,11 @@ angular.module('dmc.all_projects', [
         });
         $urlRouterProvider.otherwise('/');
     })
-    .controller('DMCAllProjectsController', function ($scope,$rootScope,$element,$stateParams,$state) {
+    .controller('DMCAllProjectsController', function ($scope,$rootScope,$element,$stateParams,$state, dataFactory, ajax, toastModel, DMCUserModel) {
 
+        $scope.myChildFunc = null;
+        $scope.myProjectsFlag = true;
+        $scope.allProjectsFlag = false;
         $scope.searchText = angular.isDefined($stateParams.text) ? $stateParams.text : null;
         $scope.filterModel = null;
         $scope.sortModel = 0;
@@ -84,30 +87,19 @@ angular.module('dmc.all_projects', [
         };
     
         $scope.oneAtATime = true;
-        
-        $scope.groups = [
-            {
-                title: 'Dynamic Group Header - 1',
-                content: 'Dynamic Group Body - 1'
-            },
-            {
-                title: 'Dynamic Group Header - 2',
-                content: 'Dynamic Group Body - 2'
-            }
-        ];
-    
-        $scope.filterItems = ['Item 1', 'Item 2', 'Item 3'];
-    
-        $scope.addItem = function() {
-            var newItemNo = $scope.items.length + 1;
-            $scope.items.push('Item ' + newItemNo);
-        };
     
         $scope.status = {
             isCustomHeaderOpen: false,
             isFirstOpen: true,
             isFirstDisabled: false
         };
-
+        
+        $scope.toggleProjectsFlag = function(flag) {
+            if (flag === "myProjectsFlag" ) {
+                $scope.myProjectsFlag = !$scope.myProjectsFlag;
+            } else if (flag === "allProjectsFlag") {
+                $scope.allProjectsFlag = !$scope.allProjectsFlag;
+            }
+        }
 
     });

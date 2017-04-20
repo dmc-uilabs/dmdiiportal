@@ -69,29 +69,31 @@
 
 <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab label="My Workspaces">
+        <md-tab label="My Workspaces" md-on-select="toggleProjectsFlag('myProjectsFlag')">
             <div class="container my-projects-container" layout="row" flex="100">
                 <div class="content-panel" layout="column" flex="100"
                      id="myProjectsList"
                      ui-widget-projects
                      search-text="searchText"
+                     widget-format="'my-projects'"
+                     widget-title="null"
+                     sort-projects="sortProjects"
+                     widget-show-all-blocks="true"
+                     get-projects-flag="myProjectsFlag"></div>
+            </div>
+        </md-tab>
+        <md-tab label="All Workspaces" md-on-select="toggleProjectsFlag('allProjectsFlag')">
+            <div class="container my-projects-container" layout="row" flex="100">
+                <div class="content-panel" layout="column" flex="100"
+                     id="allProjectsList"
+                     ui-widget-projects
+                     search-text="searchText"
                      widget-format="'all-projects'"
                      widget-title="null"
                      sort-projects="sortProjects"
-                     widget-show-all-blocks="true"></div>
+                     widget-show-all-blocks="true"
+                     get-projects-flag="allProjectsFlag"></div>
             </div>
-        </md-tab>
-        <md-tab label="All Workspaces">
-            <!--<div class="container my-projects-container" layout="row" flex="100">-->
-                <!--<div class="content-panel" layout="column" flex="100"-->
-                     <!--id="myProjectsList"-->
-                     <!--ui-widget-projects-->
-                     <!--search-text="searchText"-->
-                     <!--widget-format="'all-projects'"-->
-                     <!--widget-title="null"-->
-                     <!--sort-projects="sortProjects"-->
-                     <!--widget-show-all-blocks="true"></div>-->
-            <!--</div>-->
         </md-tab>
     </md-tabs>
 </md-content>
