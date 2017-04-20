@@ -10,6 +10,9 @@
   &--warn {
     background: map-get($colors, label_warn_bg);
   }
+  &--complete{
+    background:map-get($colors,green)
+  }
   &--today {
     background: map-get($colors, brown);
   }
@@ -24,4 +27,8 @@
     background: map-get($colors, yellow );
     color: #362d00;
   }
+  &--done{
+    color:#363636;
+  }
+
 }

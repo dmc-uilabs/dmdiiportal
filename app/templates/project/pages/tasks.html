@@ -68,7 +68,10 @@
                             <td>{{item.status}}</td>
                             <td><a href="profile.php#/{{item.assigneeId}}">{{item.assignee}}</a></td>
                             <td>
-                                <span ng-bind-html="item.formatedDueDate[1]" class="label" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
+                                <span ng-if="item.status=='Open' || item.status=='InProgress'" ng-bind-html="item.formatedDueDate[1]" class="label" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
+                                <div ng-if="item.status=='Closed' || item.status=='Completed'">
+                                  <strike ng-bind-html="item.formatedDueDate[1]" class="label--done"></strike>
+                                </div>
                             </td>
                             <td>{{item.priorityName}}</td>
 
