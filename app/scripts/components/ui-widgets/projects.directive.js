@@ -3,7 +3,8 @@
 angular.module('dmc.widgets.projects',[
         'dmc.ajax',
         'dmc.data',
-        'dmc.socket'
+        'dmc.socket',
+        'ng-showdown'
     ]).
     directive('uiWidgetProjects', ['$parse', function ($parse) {
         return {
@@ -18,7 +19,7 @@ angular.module('dmc.widgets.projects',[
                 sortProjects: '=',
                 limit : '='
             },
-            controller: function($scope, $rootScope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, DMCUserModel) {
+            controller: function($scope, $rootScope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, DMCUserModel, $showdown) {
                 $scope.projects = [];
                 $scope.total = 0;
                 $scope.order = 'ASC';
@@ -70,6 +71,9 @@ angular.module('dmc.widgets.projects',[
                                     $scope.projects[i].dueDate = Math.floor($scope.projects[i].dueDate / day) + ' days';
                                 }
                             }
+
+                            $scope.projects[i].description = $showdown.stripHtml($showdown.makeHtml($scope.projects[i].description));
+
                         }
                         isCurrentUserMember(ids);
                         if($scope.widgetFormat == 'all-projects'){
