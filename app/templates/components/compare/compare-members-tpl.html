@@ -23,7 +23,7 @@
                         <div class="product-image"><img ng-src="{{item.image}}" alt="{{item.name}}, {{item.company}}"></div>
                         <h2>{{item.displayName}}</h2>
                         <h3>{{item.company}}</h3>
-                        <div class="star-rating">
+                        <!-- <div class="star-rating">
                             <div class="star-rating__buttons">
                                 <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon></md-button>
                                 <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon></md-button>
@@ -34,7 +34,7 @@
                             <div class="star-rating__value">
                                 <span class="small-text">({{item.rating}})</span>
                             </div>
-                        </div>
+                        </div> -->
                         <md-button aria-label="Added to Invites" class="md-raised md-primary md-added" ng-click="removeFromInvites(item)" ng-if="item.isInvite"><ng-md-icon icon="close" size="17"></ng-md-icon>Added to Invitation</md-button>
                         <md-button aria-label="Add to Invites" class="md-raised md-primary" ng-click="addToInvites(item)" ng-if="!item.isInvite">Add to Invitation</md-button>
                     </div>

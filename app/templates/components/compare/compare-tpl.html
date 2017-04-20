@@ -48,10 +48,10 @@
                         <!-- <div class="product-card__header" layout="column"
                             > -->
 
-                            <h2><a ng-href="{{'/component.php#/'+item.type+'s/'+item.id}}">{{item.title}}</a></h2>
-                            <h3><a ng-href="{{'/company.php#/'+item.companyId+'/storefront?product=services'}}">{{item.ownerName}}</a></h3>
+                            <h2>{{item.title}}</h2>
+                            <!-- <h3>{{item.ownerName}}</h3> -->
                         <!-- </div> -->
-                        <div class="star-rating">
+                        <!-- <div class="star-rating">
                             <div class="star-rating__buttons">
                                 <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon></md-button>
                                 <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon></md-button>
@@ -62,8 +62,8 @@
                             <div class="star-rating__value">
                                 <span class="small-text">(3.4)</span>
                             </div>
-                        </div>
-                        
+                        </div> -->
+
                         <product-card-buttons-compare card-source = "item"
                                                       type-product = "item.type">
                         </product-card-buttons-compare>

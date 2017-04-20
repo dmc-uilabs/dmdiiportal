@@ -70,7 +70,7 @@
                 <span flex></span>
               </div>
               <div layout="row">
-                <span>Offered By: <a ng-href="{{'/company.php#/'+product.profileId+'/storefront?product=services'}}" class="link-button">{{owner_name}}</a></span>
+                <!-- <span>Offered By: {{owner_name}}</span> -->
               </div>
               <div layout="row">
                 <span>Release Date: {{product.releaseDate}}</span>
@@ -93,7 +93,7 @@
 								</md-button> -->
 							</div>
               <div layout="row" style="height:30px">
-                <ui-widget-stars-static size="15" value="{{product.ratingAverage}}" text="({{product.ratingCount}})"></ui-widget-stars-static>
+                <!-- <ui-widget-stars-static size="15" value="{{product.ratingAverage}}" text="({{product.ratingCount}})"></ui-widget-stars-static> -->
                 <span flex></span>
                 <product-card-buttons-profile card-source = "product"
                                               type-product = "product.type">
@@ -222,22 +222,22 @@
 						</md-content>
 					</md-tab>
 
-          <md-tab ng-click="adHocData('service_reviews')" label="REVIEWS">
+          <!-- <md-tab ng-click="adHocData('service_reviews')" label="REVIEWS">
             <md-content class="md-padding">
               <div layout="row" class="reviews" layout-margin layout-fill>
                 <!--left column-->
-                <div flex class="reviews-rating">
+                <!-- <div flex class="reviews-rating"> --> -->
                   <!--Rating header-->
-                  <div layout="row" class="md-toolbar-tools reviews-rating-header">
+                  <!-- <div layout="row" class="md-toolbar-tools reviews-rating-header">
                     <h2>Reviews</h2>
                     <ui-widget-stars-static class="review-stars" size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static>
                     <span flex></span>
                     <md-button class="md-raised" ng-click="LeaveAReview()">Leave a Review</md-button>
-                    <!-- <span flex></span>
-                    <md-button class="md-raised" ng-click="ViewAllReview()">View All({{product.number_of_comments}})</md-button> -->
-                  </div>
+                    <!-- <span flex></span> -->
+                    <!-- <md-button class="md-raised" ng-click="ViewAllReview()">View All({{product.number_of_comments}})</md-button> --> -->
+                  <!-- </div> -->
                     <!--Rating-->
-                  <div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
+                  <!-- <div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
                     <p>5 STAR</p>
                     <md-progress-linear md-mode="determinate" value="{{product.precentage_stars[4]}}" flex></md-progress-linear>
                     <p flex="5">{{product.precentage_stars[4]}}%</p>
@@ -262,20 +262,20 @@
                     <md-progress-linear md-mode="determinate" value="{{product.precentage_stars[0]}}" flex></md-progress-linear>
                     <p flex="5">{{product.precentage_stars[0]}}%</p>
                   </div>
-                </div>
+                </div> -->
                 <!--right column-->
-                <div flex layout layout-align="center center">
+                <!-- <div flex layout layout-align="center center"> -->
                   <!-- <md-input-container>
                     <label>Sorting</label>
                     <md-select ng-model="sortListModel" ng-change="selectItemDropDown(sortListModel)"  md-container-class="margin-dropdown">
                       <md-option ng-repeat="sort in sortList track by $index"  ng-value="$index">{{sort.name}}</md-option>
                     </md-select>
                   </md-input-container> -->
-                </div>
-              </div>
+                <!-- </div>
+              </div> -->
 
               <!--new review-->
-              <div flex class="new-review" ng-if="LeaveFlag">
+              <!-- <div flex class="new-review" ng-if="LeaveFlag">
                 <form name="CommentForm">
                   <h2>Rating</h2>
                   <ui-widget-stars-active size="20" select-star="stars(star)"></ui-widget-stars-active>
@@ -290,10 +290,10 @@
                 </form>
               </div>
 
-              <md-divider></md-divider>
+              <md-divider></md-divider> -->
 
               <!--one Reviews-->
-              <div ng-repeat="review in product.service_reviews | limitTo: 5">
+              <!-- <div ng-repeat="review in product.service_reviews | limitTo: 5">
                 <ui-widget-review review="review" helpful-function="updateHelpful" reply-function="addReply" flagged-function="addFlagged"></ui-widget-review>
                 <md-divider></md-divider>
               </div>
@@ -309,7 +309,7 @@
 
 
 						</md-content>
-          </md-tab>
+          </md-tab> -->
 
 
 
