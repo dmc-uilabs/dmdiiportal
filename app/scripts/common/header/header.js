@@ -65,7 +65,13 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
                 }
             )
 
-
+                      if ($scope.userData.messages) {
+                         for (var i=0; i<$scope.userData.messages.items.length; i++) {
+                           $scope.userData.messages.items[i].link = '/all.php#/invitations';
+                        }
+                        $scope.messagesList = $scope.userData.messages.items;
+                         $scope.message_alert = $scope.userData.messages.total;
+                       }
 
 
           }
