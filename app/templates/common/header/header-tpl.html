@@ -102,7 +102,7 @@
                             <md-button md-no-ink href="/all.php#/invitations" class="view-all-link">View All</md-button>
                         </div>
                         <md-menu-item ng-repeat="item in invitations track by $index">
-                            <a ng-href="{{'project.php#/preview/'+item.projectId}}">
+                            <a ng-href="/all.php#/invitations">
                                 <img ng-src="{{item.profileImage}}" alt="{{item.from}}"/>
                                 <i class="user-name">{{item.from}}</i>
                                 <i class="text">Invited you to {{item.title || "a project"}}</i>
