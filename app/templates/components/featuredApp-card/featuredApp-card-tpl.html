@@ -1,11 +1,12 @@
 <div class="featuredApp-card">
   <div layout="row" layout-sm="column" layout-align="center center">
     <div layout ="column" flex>
-      <h1> Featured App</h1>
+      <h1>App Parade</h1>
       <p></p>
       <h2><a ng-href="{{'/service-marketplace.php#/'+randApp.id}}" ng-click="previousPage.save($event)" >{{randApp.title}}</a></h2>
       <!-- <ui-widget-stars-static class="review-stars" size="15" value={{cardSource.ratingAverage}} text=({{cardSource.ratingCount}})></ui-widget-stars-static> -->
-      <h3>{{ randApp.description }}</h3>
+
+      <h3 class="rich-text-small" markdown-to-html="randApp.description"></h3>
     </div>
 
 
