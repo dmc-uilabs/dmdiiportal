@@ -20,24 +20,6 @@
                       <!--<span ng-if="item.dueDate">Due in {{item.dueDate}}</span>-->
                   </h2>
                   <span flex></span>
-                  <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
-                                    !item.isMember && item.approvalOption == 'all' && !item.joinRequest"
-                             ng-click="join(item)"
-                             class="md-raised dmc-button join"><ng-md-icon icon="group_add" size="22"></ng-md-icon>Join</md-button>
-                  <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
-                                    !item.isMember && item.approvalOption == 'admin'"
-                             ng-click="$ctrl.join(item)"
-                             ng-disabled="item.joinRequest"
-                             class="md-raised dmc-button request-to-join"><ng-md-icon icon="group_add" size="22" ng-if="!item.joinRequest"></ng-md-icon>{{item.joinRequest ? 'Pending Approval' : 'Request to Join'}}
-                  </md-button>
-                  <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrlwidgetFormat == 'all-projects' &&
-                                    item.isMember && !item.isMember.accept"
-                             ng-click="$ctrl.accept(item)"
-                             class="md-raised md-primary dmc-button accept">Accept</md-button>
-                  <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
-                                    item.isMember && !item.isMember.accept"
-                             ng-click="$ctrl.decline(item)"
-                             class="md-raised md-warn dmc-button decline">Decline</md-button>
               </div>
               <div class="col-md-5">
                   <div ng-if="item.type === 'public'" class="public">Public</div>
@@ -71,6 +53,26 @@
                        ui-widget-project-tags
                        tags="$scope.item.tags"
                        widget-title="'TAGS'"></div>
+              </div>
+              <div class="col-md-5">
+                  <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
+                                    !item.isMember && item.approvalOption == 'all' && !item.joinRequest"
+                             ng-click="join(item)"
+                             class="md-raised dmc-button join"><ng-md-icon icon="group_add" size="22"></ng-md-icon>Join</md-button>
+                  <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
+                                    !item.isMember && item.approvalOption == 'admin'"
+                             ng-click="$ctrl.join(item)"
+                             ng-disabled="item.joinRequest"
+                             class="md-raised dmc-button request-to-join"><ng-md-icon icon="group_add" size="22" ng-if="!item.joinRequest"></ng-md-icon>{{item.joinRequest ? 'Pending Approval' : 'Request to Join'}}
+                  </md-button>
+                  <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
+                                    item.isMember && !item.isMember.accept"
+                             ng-click="$ctrl.accept(item)"
+                             class="md-raised md-primary dmc-button accept">Accept</md-button>
+                  <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
+                                    item.isMember && !item.isMember.accept"
+                             ng-click="$ctrl.decline(item)"
+                             class="md-raised md-warn dmc-button decline">Decline</md-button>
               </div>
           </div>
 
