@@ -39,55 +39,74 @@
 					</div>
 					<div layout="column" flex class="text">
 						<h2>Release Tree</h2>
-						<h3>During this release, the DMC team focused most efforts on updating and adding content throughout the site to both to give the site a new updated look in some locations as well as to give users more ways to learn about the DMC. This being th case you will see many changes on our site related to the DMDII Portal as well as adding a new Learn section to the main menu. Please look to the Relese tree below to find all changes associated with this release to learn more about what changes may effect you.</h3>
+						<h3>During this release, the DMC team focused most efforts on updating and adding content throughout the site to both give the site a new updated look in some locations as well as to give users more ways to learn about the DMC. This being the case you will see many changes on our site related to the DMDII Portal as well as adding a new Learn section to the main menu. Please look to the Relese tree below to find all changes associated with this release to learn more about what changes may effect you.</h3>
 
 				<md-tabs md-dynamic-height md-border-bottom>
 
 <!-- Release V 0.1.6 -->
-<!-- <md-tab label="V 0.1.6 ">
-  <md-content class="tab-projects">
-    <div layout="column" class="text-row">
+<md-tab label="V 0.1.6 ">
+	<md-content class="tab-projects">
+		<div layout="column" class="text-row">
 			<div layout="row" style="justify-content:flex-end">
-			<span class="release-bug margin5px" style="margin-right:64px">
-				Color Code: BUG
-			</span>
-			<span class="release-feature margin5px" style="margin-right:68px">
-				Color Code: FEATURE
-			</span>
-			<span class="release-content margin5px">
-				Color Code: CONTENT
+				<span class="release-bug margin5px" style="margin-right:64px"></span>
+				<span class="release-feature margin5px" style="margin-right:67px"></span>
+				<span class="release-content margin5px"></span>
 			</div>
-	    <release-tree ng-if="notesV016" notes="notesV016" class="release-tree"></release-tree>
-    </div>
+			<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
+			<p>During this release, the DMC focused heavily on what we consider to be "Content Cleanup." In the last release users may have noticed that the DMDII Portal received a UI overhaul. In this release we focused on fixing a few issues that were brought to our attention by avid users of the Portal as well as other bugs we are aware of in the system.</p>
+			<p>Beyond bugs, we also worked on adding more general site features such as notifications, invitations, and update aggregation which we expect will help to drive our users to learn more about small updates happening with DMDII Members and DMDII Projects as well as being able to manage organization profiles and workspaces more effectively.</p>
+			<md-divider></md-divider>
+			<release-tree ng-if="notesV016" notes="notesV016" class="release-tree"></release-tree>
+		</div>
 
-    <md-divider></md-divider>
+		<md-divider></md-divider>
 
-    <div class="section" layout="row" layout-align="center start" layout-fills>
+		<div class="section" layout="row" layout-align="center start" layout-fills>
 			<div class="image">
-				<img ng-src="images/code.jpeg"  style="width: 50px">
+				<ng-md-icon icon="settings_ethernet" style="fill: #999" size="50"></ng-md-icon>
 			</div>
 			<div layout="column" flex class="text">
-				<h2>Codebase</h2>
-				<p>Codebase changes for v016 coming soon.</p>
+					<h2>Codebase</h2>
+					<ul>
+						<li>
+							<h3>White-list and Black-List Framework</h3>
+						</li>
+							<ul>
+								<li>
+									The DMC has created a framework to be able to white-list and black-list endpoints. In the past these endpoints were listed one by one, but now we will be able to white-list and black-list endpoints via a singular file. In future updates we will be utilizing this functionality to add full lists of white and blacklist on our own servers.
+								</li>
+							</ul>
+						</ul>
 			</div>
 		</div>
 
-	<md-divider></md-divider>
+			<md-divider></md-divider>
 
-	<div class="section" layout="row" layout-align="center start" layout-fills>
-		<div class="image">
-			<img ng-src="images/home-market-icon.png"  style="width: 50px">
-		</div>
-		<div layout="column" flex class="text">
-			<h2>Applications</h2>
-			<p>New apps available in v016 notes coming soon.</p>
-		</div>
-	</div>
+			<div class="section" layout="row" layout-align="center start" layout-fills>
+				<div class="image">
+					<img ng-src="images/home-market-icon.png"  style="width: 50px">
+				</div>
+				<div layout="column" flex class="text">
+						<h2>Applications</h2>
+				<p>We've include two new application in our Marketplace for our users to demo.This time the applications are coming from one of our DMDII Academic Members. North Carolina State University is working to build three more applications similar to these two. If you are a DMDII member, definitely check out their 15-16-08 project which can be found in the DMDII Project Directory.</p>
+				<p>Learn more about the apps when visiting the DMC Marketplace or at their associated Confluence pages:</p>
+				<ul><li>
+						<strong>Machine Status</strong>: This app is designed to retrieve status of machines in the NCSU ISE Manufacturing Laboratory.
+							<ul><li>
+								App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machine+Status+by+North+Carolina+State+University" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machine+Status+by+North+Carolina+State+University style="color:green">Machine Status by North Carolina State University</a></u>
+							</li></ul>
+							<strong>Machining Data</strong>: This app retrieves detailed machining dataset associated with any of the 3 machines in current dataset.
+								<ul><li>
+									App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+by+North+Carolina+State+University" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+by+North+Carolina+State+University style="color:green">Machining Data by North Carolina State University</a></u>
+								</li></ul>
+				</li></ul>
+				</h3>
+				</div>
 
-	<md-divider></md-divider>
+			</div>
 
-	</md-content>
-</md-tab> -->
+			</md-content>
+</md-tab>
 
 <!-- Release V 0.1.5 -->
 			<md-tab label="V 0.1.5 ">
@@ -153,8 +172,8 @@
     					</div>
     					<div layout="column" flex class="text">
     							<h2>Applications</h2>
-    					<p>We've include three new application in our Marketplace for our user to demo. This time the application have stepped it up a notch. Two DMDII member organization have created applications that for a limited time, our current users will be able to try using for free. Try them while they are available.</p>
-    					<p>These Applicaitions have been created by Integris Engineering and Pennsylvania State University. Learn more about that apps when visting the DMC Marketplace or at their associated Confluence Pages:</p>
+    					<p>We've include three new application in our Marketplace for our users to demo. This time the applications have stepped it up a notch. Two DMDII member organization have created applications that users can currently use for free.</p>
+    					<p>These Applicaitions have been created by Integris Engineering and Pennsylvania State University. Learn more about the apps when visting the DMC Marketplace or at their associated Confluence pages:</p>
     					<ul>
     						<li>
 									<strong>Single Shimmed Shear Join Calculator</strong>: The Single Shear Shimmed Joint app calculates an approximate minimum margin of safety (similar to a Safety Factor) on a bolted joint against a defined shear and tensile load.
@@ -180,9 +199,6 @@
 
     				</div>
 
-
-    				<md-divider></md-divider>
-
 			      </md-content>
 			</md-tab>
 <!-- Release V 0.1.4 -->
@@ -191,7 +207,7 @@
 			    <div layout="column" class="text-row">
 						<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
 						<p>The Digital Manufacturing Commons has always used an agile process to provide users with the latest updates so users can have an opportunity to help us test our site and to allow users to give us feedback which allows them to help push the platform in the right direction. Though we have always used an agile process, as well as advertised that we use this process, we have not always been very verbose about what features have been added to site. Going forward, users will see updates from us, roughly every 2 weeks (inline with our Sprint Burndowns) with details as to what changes have been made and why we've made the decision to make those changes. We'll also will be including what issues/bugs we have been able to fix/patch. Read on for more details.</p>
-						<p>Read more about the DMC V 0.1.2 Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.4" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.4 style="color:green">V 0.1.4</a></u> on Confluence.</p>
+						<p>Read more about the DMC V 0.1.4 Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.4" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.4 style="color:green">V 0.1.4</a></u> on Confluence.</p>
 			    </div>
 			    <md-divider></md-divider>
 				</md-content>
@@ -203,7 +219,7 @@
 			    <div layout="column" class="text-row">
 						<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
 						<p>The Digital Manufacturing Commons has always used an agile process to provide users with the latest updates so users can have an opportunity to help us test our site and to allow users to give us feedback which allows them to help push the platform in the right direction. Though we have always used an agile process, as well as advertised that we use this process, we have not always been very verbose about what features have been added to site. Going forward, users will see updates from us, roughly every 2 weeks (inline with our Sprint Burndowns) with details as to what changes have been made and why we've made the decision to make those changes. We'll also will be including what issues/bugs we have been able to fix/patch. Read on for more details.</p>
-						<p>Read more about the DMC V 0.1.2 Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.3" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.3 style="color:green">V 0.1.3</a></u> on Confluence.</p>
+						<p>Read more about the DMC V 0.1.3 Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.3" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.3 style="color:green">V 0.1.3</a></u> on Confluence.</p>
 			    </div>
 			    <md-divider></md-divider>
 				</md-content>
@@ -267,7 +283,7 @@
 					</div>
 					<div layout="column" flex class="text">
 							<h2>How to Deploy</h2>
-					<h3>If you are interested in deploying our infrastructure internally for your business or for personal use, you can follow our instructions, which will be posted here in the near future. If you do run into deployment issues or have further questions about our instructions, e-mail us as <u><a href="mailto:askdmc@uilabs.org" style="color:green">askdmc@uilabs.org</a></u>.</h3>
+					<h3>If you are interested in deploying our infrastructure internally for your business or for personal use, you can follow our instructions, which will be posted here in the near future. If you do run into deployment issues or have further questions about our instructions, e-mail us at <u><a href="mailto:askdmc@uilabs.org" style="color:green">askdmc@uilabs.org</a></u>.</h3>
 					</div>
 
 				</div>

@@ -19,7 +19,7 @@
                                   "notes":
                                   [
                                     {
-                                      "content": "In the past any user joing the platform would have the ability (verified or not) to post their contact information on their selected organization's DMDII Organization profile page. Combined with a bug that would share that contact information on the incorrect organizatoin profile page this was causing users confusion. This all being said, we've decided that since organization administrators can already share any contact inforamtion they wish for their organization and since users can share their own contact inforamtion on their own profile pages, that this functionality should be removed. At the moment, the fields to share your DMDII Contact information still exists but is no longer conected to the DMDII Organizations' page.",
+                                      "content": "In the past any user joining the platform would have the ability (verified or not) to post their contact information on their selected organization's DMDII Organization profile page.",
                                       "class":"release-bug"
                                     }
                                   ]
@@ -121,15 +121,6 @@
                               "content": "Services"
                         }
                   ]
-            },
-            {
-                  "content": "Create DMDII content"
-            },
-            {
-                  "content": "Create DMDII Member"
-            },
-            {
-                  "content": "Create DMDII Project"
             }
       ]
 },
