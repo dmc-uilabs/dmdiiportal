@@ -12,7 +12,8 @@ angular.module('dmc.individual-discussion', [
 	'dmc.model.toast-model',
     'dmc.model.previous-page',
     'ngCookies',
-		'ng-showdown'
+		'ng-showdown',
+		'dmc.widgets.rich-text'
 ])
 	.config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
 		$stateProvider.state('individual-discussion', {

@@ -9,7 +9,8 @@ angular.module('dmc.add_task',[
     'dmc.data',
     'dmc.common.header',
     'dmc.common.footer',
-    'dmc.model.user'
+    'dmc.model.user',
+    'dmc.widgets.rich-text'
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
     $stateProvider.state('add', {
         url: '/?projectId',
@@ -113,7 +114,7 @@ angular.module('dmc.add_task',[
             };
 
             $scope.createTask = function(){
-                b=$scope.task.assigneeId.split('-');
+                var b=$scope.task.assigneeId.split('-');
 
                 $scope.isCreation = true;
                 var assignee = null;

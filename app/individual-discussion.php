@@ -32,6 +32,7 @@
 <script src="scripts/common/models/question-toast-model.js"></script>
 <script src="scripts/common/models/previous-page.js"></script>
 <script src="scripts/common/models/user-model.js"></script>
+<script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
 <script src="scripts/individual-discussion/individual-discussion.js"></script>
 <script src="scripts/individual-discussion/edit-discussion.js"></script>
 <!-- endbuild -->

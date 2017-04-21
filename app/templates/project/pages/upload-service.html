@@ -145,11 +145,16 @@
                     <!--</md-input-container>-->
                 </div>
                 <md-input-container>
-                    <label>Description</label>
-                    <textarea ng-model="NewService.serviceDescription"
-                              ng-init="NewService.serviceDescription_old = NewService.serviceDescription"
-                              ng-change="changeValue('serviceDescription')"
-                              columns="4" md-maxlength="3000"></textarea>
+                    <div ng-init="NewService.serviceDescription_old = NewService.serviceDescription"
+                        ui-widget-rich-text
+                        field-name="description"
+                        is-required="true"
+                        model="NewService.serviceDescription"
+                        limit="3000"
+                        placeholder="Description"
+                        is-saved="isSaved"
+                        is-valid="isValid">
+                    </div>
                 </md-input-container>
             </md-content>
 

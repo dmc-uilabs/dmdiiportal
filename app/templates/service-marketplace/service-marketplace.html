@@ -104,9 +104,7 @@
 						<md-divider></md-divider>
 
 						<!--product description-->
-						<div class="product-description">
-              {{testitem}}
-							{{product.description}}
+						<div class="product-description" markdown-to-html="product.description">
 						</div>
 					</div>
 				</div>
@@ -280,8 +278,13 @@
                   <h2>Rating</h2>
                   <ui-widget-stars-active size="20" select-star="stars(star)"></ui-widget-stars-active>
                   <md-input-container flex>
-                    <label>Comment</label>
-                    <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea>
+                    <div ui-widget-rich-text
+                      field-name="comment"
+                      model="NewReview.Comment"
+                      limit="1000"
+                      is-saved="isSaved"
+                      is-valid="isValid">
+                    </div>
                   </md-input-container>
                   <div layout layout-align="end end">
                     <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>

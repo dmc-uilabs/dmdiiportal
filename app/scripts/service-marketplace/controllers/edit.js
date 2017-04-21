@@ -30,8 +30,7 @@ angular.module('dmc.service-marketplace')
                   questionToastModel,
                   DMCUserModel,
                   CompareModel,
-                  $cookies,
-                  dataFactory) {
+                  $cookies) {
 
             $scope.product = serviceData;  //array product
             $scope.not_found = false;  //product not fount

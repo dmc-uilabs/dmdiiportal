@@ -29,6 +29,7 @@
 <script src="scripts/common/footer/footer.js"></script>
 <script src="scripts/components/ui-widgets/stars.directive.js"></script>
 <script src="scripts/components/ui-widgets/documents.directive.js"></script>
+<script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
 <script src="scripts/components/ui-widgets/review.directive.js"></script>
 <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
 <script src="scripts/components/dropzone/dropzone.directive.js"></script>
