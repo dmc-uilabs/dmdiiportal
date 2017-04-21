@@ -18,7 +18,8 @@ angular.module('dmc.widgets.projects',[
                 widgetFormat: '=',
                 sortProjects: '=',
                 limit : '=',
-                getProjectsFlag : '='
+                getProjectsFlag : '=',
+                getProjectsOnReady : '='
             },
             controller: UiWidgetProjectsController,
             controllerAs: '$ctrl'
@@ -34,7 +35,7 @@ angular.module('dmc.widgets.projects',[
             vm.userCompany = null;
             
             $scope.$watch(function () { return vm.getProjectsFlag; }, function(newValue, oldValue) {
-                if (newValue !== oldValue) {
+                if (newValue !== oldValue || vm.getProjectsOnReady === true) {
                     vm.getProjects();
                 }
             }, true);
@@ -59,6 +60,7 @@ angular.module('dmc.widgets.projects',[
                 if(vm.filterTag == 'from_company') requestData.companyId = $rootScope.userData.companyId;
                 ajax.get(dataFactory.getProjects(vm.widgetFormat),requestData,function(response) {
                     vm.projects = response.data;
+                    console.log(response.data);
                     var ids = [];
                     for (var i in vm.projects) {
                         if (vm.widgetFormat == 'all-projects') {
@@ -84,10 +86,8 @@ angular.module('dmc.widgets.projects',[
                         }
                     }
                     isCurrentUserMember(ids);
-                    if (vm.widgetFormat == 'all-projects') {
-                        isProjectsJoinRequests(ids);
-                        getTags(ids);
-                    }
+                    isProjectsJoinRequests(ids);
+                    getTags(ids);
                     apply();
                 },function(response){
                     toastModel.showToast('error', 'Ajax faild: getProjects');
@@ -165,6 +165,7 @@ angular.module('dmc.widgets.projects',[
             }
             
             function getTags(ids){
+                console.log('Tags are happening');
                 ajax.get(dataFactory.getProjectsTags(),{
                     projectId : ids
                 },function(response){
