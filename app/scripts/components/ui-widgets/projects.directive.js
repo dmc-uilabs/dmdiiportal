@@ -35,7 +35,7 @@ angular.module('dmc.widgets.projects',[
             vm.userCompany = null;
             
             $scope.$watch(function () { return vm.getProjectsFlag; }, function(newValue, oldValue) {
-                if (newValue !== oldValue || vm.getProjectsOnReady === true) {
+                if (newValue !== oldValue || vm.getProjectsOnReady === true || (newValue === oldValue && widgetFormat === 'my-projects')) {
                     vm.getProjects();
                 }
             }, true);
@@ -73,7 +73,6 @@ angular.module('dmc.widgets.projects',[
                                 }
                             }
                         }
-        
                         ids.push(vm.projects[i].id);
                         if (vm.projects[i].dueDate) {
                             var day = 86400000;
@@ -88,6 +87,7 @@ angular.module('dmc.widgets.projects',[
                     isCurrentUserMember(ids);
                     isProjectsJoinRequests(ids);
                     getTags(ids);
+                    getTotals();
                     apply();
                 },function(response){
                     toastModel.showToast('error', 'Ajax faild: getProjects');
@@ -165,7 +165,6 @@ angular.module('dmc.widgets.projects',[
             }
             
             function getTags(ids){
-                console.log('Tags are happening');
                 ajax.get(dataFactory.getProjectsTags(),{
                     projectId : ids
                 },function(response){
@@ -176,6 +175,42 @@ angular.module('dmc.widgets.projects',[
                         }
                     }
                     apply();
+                });
+            }
+            
+            function getTotals(){
+                $.each(vm.projects, function(index, project) {
+                    ajax.get(dataFactory.getServices(project.id),{},
+                        function(response){
+                            if (vm.projects[index]) {
+                                vm.projects[index].totalServices = response.data.length;
+                            }
+                        },function(response){
+                            toastModel.showToast("error", "Ajax faild: getServices");
+                        }
+                    );
+                    
+                    ajax.get(dataFactory.getTasks(project.id),{},
+                        function(response){
+                            console.log(response.data);
+                            if (vm.projects[index]) {
+                                vm.projects[index].totalTasks = response.data.length;
+                            }
+                        },function(response){
+                            toastModel.showToast("error", "Ajax faild: getTasks");
+                        }
+                    );
+    
+                    ajax.get(dataFactory.getUrlAllDiscussions(project.id),{},
+                        function(response){
+                            if (vm.projects[index]) {
+                                vm.projects[index].totalDiscussions = response.data.length;
+                            }
+                        },function(response){
+                            toastModel.showToast("error", "Ajax faild: getDiscussions");
+                        }
+                    );
+                    
                 });
             }
             

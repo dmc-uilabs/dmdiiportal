@@ -80,7 +80,7 @@ angular.module('dmc.data',[])
             },
             getUrlAllDiscussions: function(id){
                 // return baseServer+'/discussions'+appendId(id);
-                return baseServer+webServiceUrl('projects', 'discussions', id);
+                return baseServer+webServiceUrl('projects', 'all-discussions', id);
             },
             getUrlAllProjects: function(id){
                 return baseServer+'/projects';

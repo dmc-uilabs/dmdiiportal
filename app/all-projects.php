@@ -20,8 +20,6 @@
     <!-- Footer -->
     <dmc-footer></dmc-footer>
 
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-
     <?php include 'build-vendor.php' ?>
 
     <!-- build:js scripts/projects/all.js -->

@@ -22,8 +22,8 @@
                   <span flex></span>
               </div>
               <div class="col-md-5">
-                  <div ng-if="item.type === 'public'" class="public">Public</div>
-                  <div ng-if="item.type === 'private'" class="private">Private</div>
+                  <div ng-if="item.isPublic" class="is-public">Public</div>
+                  <div ng-if="!item.isPublic" class="is-public private">Private</div>
               </div>
           </div>
 
@@ -34,27 +34,30 @@
                       <li>Created On: {{}}</li>
                       <li ng-if="item.dueDate">Due Date: {{item.dueDate}}</li>
                   </ul>
-                  <div class="overview" flex layout="column">
-                      <h3>Description:</h3>
-                      <p>{{item.description}}</p>
+                  <div flex layout="column">
+                      <h3 class="description">Description:</h3>
+                      <div class="clean-border">{{item.description}}</div>
                   </div>
               </div>
-              <div class="col-md-5">
-                  <span class="row">Tasks: </span>
-                  <span class="row">Discussions: </span>
-                  <span class="row">Services: </span>
+              <div class="col-md-4 clean-border">
+                  <h3 class="row">Tasks: {{item.totalTasks}}</h3>
+                  <h3 class="row">Discussions: {{item.totalDiscussions}}</h3>
+                  <h3 class="row">Services: {{item.totalServices}}</h3>
               </div>
           </div>
 
           <div ng-if="$ctrl.widgetShowAllBlocks" class="row">
-              <div class="col-md-7">
-                  <h3>Tags</h3>
-                  <div class="content-panel margin-left12-5"
-                       ui-widget-project-tags
-                       tags="$scope.item.tags"
-                       widget-title="'TAGS'"></div>
+              <div class="tags col-md-7" flex="30">
+                  <h3 class="font-size-20">Tags</h3>
+                  <div class="project-tags-list" layout-wrap>
+                      <div class="tag without-delete" ng-repeat="tag in item.tags track by $index">
+                          <div>
+                            <span>{{tag.name}}</span>
+                          </div>
+                      </div>
+                  </div>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-5 margin-top-16">
                   <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
                                     !item.isMember && item.approvalOption == 'all' && !item.joinRequest"
                              ng-click="join(item)"

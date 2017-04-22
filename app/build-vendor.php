@@ -3,6 +3,7 @@
 
 <!-- build:css styles/vendor.css -->
 <!-- bower:css -->
+<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" href="/bower_components/angular-carousel/angular-carousel.css" />
 <link rel="stylesheet" href="/bower_components/angular-clndr/angular-clndr.css" />
 <link rel="stylesheet" href="/bower_components/angular-datepicker/dist/angular-datepicker.css" />
