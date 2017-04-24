@@ -35,13 +35,83 @@
 			<div layout="column" class="background">
 				<div class="section" layout="row" layout-align="center start" layout-fills>
 					<div class="image">
-						<img ng-src="images/Gear Tree_Grey Tree.svg"  style="width: 100px">
+						<img ng-src="images/Gear Tree_Grey Tree.svg"  style="width: 115px">
 					</div>
 					<div layout="column" flex class="text">
 						<h2>Release Tree</h2>
 						<h3>During this release, the DMC team focused most efforts on updating and adding content throughout the site to both give the site a new updated look in some locations as well as to give users more ways to learn about the DMC. This being the case you will see many changes on our site related to the DMDII Portal as well as adding a new Learn section to the main menu. Please look to the Relese tree below to find all changes associated with this release to learn more about what changes may effect you.</h3>
 
 				<md-tabs md-dynamic-height md-border-bottom>
+
+<!-- Release V 0.1.7 -->
+<!-- <md-tab label="V 0.1.7 ">
+	<md-content class="tab-projects">
+		<div layout="column" class="text-row">
+			<div layout="row" style="justify-content:flex-end">
+				<span class="release-bug margin5px" style="margin-right:64px"></span>
+				<span class="release-feature margin5px" style="margin-right:67px"></span>
+				<span class="release-content margin5px"></span>
+			</div>
+			<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
+			<p>During this release, the DMC focused heavily on...</p>
+			<md-divider></md-divider>
+			<release-tree ng-if="notesV017" notes="notesV017" class="release-tree"></release-tree>
+		</div>
+
+		<md-divider></md-divider>
+
+		<div class="section" layout="row" layout-align="center start" layout-fills>
+			<div class="image">
+				<ng-md-icon icon="settings_ethernet" style="fill: #666" size="50"></ng-md-icon>
+			</div>
+			<div layout="column" flex class="text">
+					<h2>Codebase</h2>
+					<ul>
+						<li>
+							<h3>Framework for...</h3>
+						</li>
+							<ul>
+								<li>
+									We are aware...
+								</li>
+							</ul>
+						</ul>
+			</div>
+		</div>
+
+			<md-divider></md-divider>
+
+			<div class="section" layout="row" layout-align="center start" layout-fills>
+				<div class="image">
+					<img ng-src="images/home-market-icon.png"  style="width: 50px">
+				</div>
+				<div layout="column" flex class="text">
+						<h2>Applications</h2>
+				<strong>Marketplace Applications</strong>
+				<p>We've include two new application in our Marketplace for our users to demo...</p>
+				<ul>Learn more about the apps when visiting the DMC Marketplace or at their associated Confluence pages:
+				<ul><li>
+						<strong>App1 Name</strong>: Short Description Goes Here...</li>
+							<ul><li>
+								App documentation can be found at: <u><a href="link" target="_blank "link style="color:green">Page Title</a></u>
+							</li></ul>
+				</li></ul>
+				</ul>
+				<p><strong>Updates to Existing Applications</strong>
+					We've been told in the past that many of the applications we've published to our marketplace during our beta release are very ambiguous and that most people do not know what these applications do. In a continuous effort, we have begun to update application names and descriptions to be more descriptive to help users more decisively use the marketplace applications available to them on the DMC.</p>
+					<ul><li>
+						Changes made thus far include:
+						<ul><li>
+							Our OLD APP NAME application has been renamed NEW APP NAME, and its documentation has also been updated.
+						</li></ul>
+					</li></ul>
+				</h3>
+				</div>
+
+			</div>
+
+			</md-content>
+</md-tab> -->
 
 <!-- Release V 0.1.6 -->
 <md-tab label="V 0.1.6 ">
@@ -63,17 +133,17 @@
 
 		<div class="section" layout="row" layout-align="center start" layout-fills>
 			<div class="image">
-				<ng-md-icon icon="settings_ethernet" style="fill: #999" size="50"></ng-md-icon>
+				<ng-md-icon icon="settings_ethernet" style="fill: #666" size="50"></ng-md-icon>
 			</div>
 			<div layout="column" flex class="text">
 					<h2>Codebase</h2>
 					<ul>
 						<li>
-							<h3>White-list and Black-List Framework</h3>
+							<h3>Framework for More Secure Document Access</h3>
 						</li>
 							<ul>
 								<li>
-									The DMC has created a framework to be able to white-list and black-list endpoints. In the past these endpoints were listed one by one, but now we will be able to white-list and black-list endpoints via a singular file. In future updates we will be utilizing this functionality to add full lists of white and blacklist on our own servers.
+									We are aware that some users of our platform want to make sure that the documents they are downloading/getting access to through workspaces and the DMDII Portal. In this release we worked to put together a framework that will be introduced in a upcoming release to make it harder for an individual to share information with someone that should not have access to these documents.
 								</li>
 							</ul>
 						</ul>
@@ -88,18 +158,39 @@
 				</div>
 				<div layout="column" flex class="text">
 						<h2>Applications</h2>
+				<strong>Marketplace Applications</strong>
 				<p>We've include two new application in our Marketplace for our users to demo.This time the applications are coming from one of our DMDII Academic Members. North Carolina State University is working to build three more applications similar to these two. If you are a DMDII member, definitely check out their 15-16-08 project which can be found in the DMDII Project Directory.</p>
-				<p>Learn more about the apps when visiting the DMC Marketplace or at their associated Confluence pages:</p>
+				<ul>Learn more about the apps when visiting the DMC Marketplace or at their associated Confluence pages:
 				<ul><li>
-						<strong>Machine Status</strong>: This app is designed to retrieve status of machines in the NCSU ISE Manufacturing Laboratory.
+						<strong>Machine Status</strong>: This app is designed to retrieve status of machines in the NCSU ISE Manufacturing Laboratory.</li>
 							<ul><li>
 								App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machine+Status+by+North+Carolina+State+University" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machine+Status+by+North+Carolina+State+University style="color:green">Machine Status by North Carolina State University</a></u>
 							</li></ul>
-							<strong>Machining Data</strong>: This app retrieves detailed machining dataset associated with any of the 3 machines in current dataset.
-								<ul><li>
-									App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+by+North+Carolina+State+University" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+by+North+Carolina+State+University style="color:green">Machining Data by North Carolina State University</a></u>
-								</li></ul>
+						<li><strong>Machining Data</strong>: This app retrieves detailed machining dataset associated with any of the 3 machines in current dataset.</li>
+							<ul><li>
+								App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+by+North+Carolina+State+University" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+by+North+Carolina+State+University style="color:green">Machining Data by North Carolina State University</a></u>
+							</li></ul>
+						<li><strong>Machining Data with Plots</strong>: This app retrieves a machining dataset and plots values as an XY graph.</li>
+							<ul><li>
+								App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+with+Plots+by+North+Carolina+State+University" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+with+Plots+by+North+Carolina+State+University style="color:green">Machining Data with Plots by North Carolina State University</a></u>
+							</li></ul>
 				</li></ul>
+				</ul>
+				<p><strong>Updates to Existing Applications</strong>
+					We've been told in the past that many of the applications we've published to our marketplace during our beta release are very ambiguous and that most people do not know what these applications do. In a continuous effort, we have begun to update application names and descriptions to be more descriptive to help users more decisively use the marketplace applications available to them on the DMC.</p>
+					<ul><li>
+						Changes made thus far include:
+						<ul><li>
+							Our Beta Factor application has been renamed Nonlinear Crack Growth Rate Correction Factor Calculation, and its documentation has also been updated.
+						</li>
+						<li>
+							Our K Max application has been renamed Critical Stress Intensity Factor, and its documentation has also been updated.
+						</li></ul>
+					</li></ul>
+				<p><strong>Installing and Launching DOME</strong>
+				We have found recently that our instructions for users being able to install and launch our DOME SDK on Windows and Mac operating systems were no longer working. We've made a few updates to our documentation to account for this. Individuals interested in building DOME applications may find it useful to revisist our update documentation found on our Confluence wiki page: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Installing+and+Launching+DOME" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Installing+and+Launching+DOME style="color:green">Installing and Launching DOME</a></u>.</p>
+				<p><strong>DOME and External APIs</strong>
+				We understand that many developers that will be building DOME applications may need to take advantage of calling external APIs in order to make their applications function properly or in the architecture they've designed. In order to easy the process of doing this. We've created documentation that users should be able to reference to allow them to do exactly that. The instructions to do this can be found on our Confluence Wiki page: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/DOME+Applications+and+External+APIs" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/DOME+Applications+and+External+APIs style="color:green">DOME Applications and External APIs</a></u>.</p>
 				</h3>
 				</div>
 
@@ -130,7 +221,7 @@
 
 			    <div class="section" layout="row" layout-align="center start" layout-fills>
     				<div class="image">
-    					<ng-md-icon icon="settings_ethernet" style="fill: #999" size="50"></ng-md-icon>
+    					<ng-md-icon icon="settings_ethernet" style="fill: #666" size="50"></ng-md-icon>
     				</div>
     				<div layout="column" flex class="text">
     						<h2>Codebase</h2>
@@ -278,7 +369,7 @@
 
 				<div class="section" layout="row" layout-align="center start" layout-fills>
 					<div class="image">
-						<ng-md-icon icon="cloud_upload" style="fill: #999" size="50"></ng-md-icon>
+						<ng-md-icon icon="cloud_upload" style="fill: #666" size="50"></ng-md-icon>
 						<!-- <img ng-src="images/icon-settings-lg.svg"  style="width: 50px"> -->
 					</div>
 					<div layout="column" flex class="text">
@@ -291,12 +382,12 @@
 				<md-divider></md-divider>
 				<div class="section" layout="row" layout-align="center start" layout-fills>
 					<div class="image">
-						<ng-md-icon icon="update" style="fill: #999" size="50"></ng-md-icon>
+						<ng-md-icon icon="update" style="fill: #666" size="50"></ng-md-icon>
 						<!-- <img ng-src="images/icon-settings-lg.svg"  style="width: 50px"> -->
 					</div>
 					<div layout="column" flex class="text">
 							<h2>How to Upgrade</h2>
-					<h3>If you wish to upgrade a previous deployment of our infrastructure but do not want to potentially lose information save in your database, these instuctions will walk you through how to do just that, once they are available in the future.</h3>
+					<h3>If you wish to upgrade a previous deployment of our infrastructure but do not want to potentially lose information saved in your database, these instuctions will walk you through how to do just that, once they are available in the future.</h3>
 					</div>
 
 				</div>
