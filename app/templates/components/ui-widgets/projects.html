@@ -9,7 +9,7 @@
     </md-toolbar>
 </div>
 <div class="content-panel-body" layout="column" flex="100">
-  <md-content class="rp-panel" layout="row" ng-repeat="item in $ctrl.projects">
+  <md-content class="rp-panel" layout="row" ng-repeat="item in $ctrl.projects | projectsFilter:$ctrl.filters">
       <div layout="column" flex>
           <div class="company-name" ng-if="item.companyId == $ctrl.userCompany.id">A Project From <a href="/company-profile.php#/profile/{{$ctrl.userCompany.id}}">{{$ctrl.userCompany.name}}</a></div>
           <div class="rp-panel__title my-projects row">
@@ -46,11 +46,11 @@
               </div>
           </div>
 
-          <div ng-if="$ctrl.widgetShowAllBlocks" class="row">
-              <div class="tags col-md-7" flex="30">
-                  <h3 class="font-size-20">Tags</h3>
-                  <div class="project-tags-list" layout-wrap>
-                      <div class="tag without-delete" ng-repeat="tag in item.tags track by $index">
+          <div ng-if="$ctrl.widgetShowAllBlocks" class="row margin-bottom-10">
+              <div class="tags col-md-7">
+                  <h3 class="font-size-20 inline-block">Tags</h3>
+                  <div class="project-tags-list inline-block margin-left-8" layout-wrap>
+                      <div class="tag without-delete inline-block" ng-repeat="tag in item.tags track by $index">
                           <div>
                             <span>{{tag.name}}</span>
                           </div>

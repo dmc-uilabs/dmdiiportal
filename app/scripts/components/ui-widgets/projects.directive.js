@@ -4,8 +4,29 @@ angular.module('dmc.widgets.projects',[
         'dmc.ajax',
         'dmc.data',
         'dmc.socket'
-    ]).
-    directive('uiWidgetProjects', ['$parse', function ($parse) {
+    ]).filter('projectsFilter', function() {
+        return function(projects, filters) {
+            console.log(projects);
+            console.log(filters);
+            var out = [];
+            if(filters.public || filters.private || filters.pendingInvites) {
+                angular.forEach(projects, function (value, key) {
+        
+                    if (filters.public && value.isPublic) {
+                        out.push(value);
+                    }
+        
+                    if (filters.private && !value.isPublic) {
+                        out.push(value);
+                    }
+                });
+            } else {
+                return projects;
+            }
+            return out;
+        }
+    })
+    .directive('uiWidgetProjects', ['$parse', function ($parse) {
         return {
             restrict: 'A',
             templateUrl: '/templates/components/ui-widgets/projects.html',
@@ -19,7 +40,8 @@ angular.module('dmc.widgets.projects',[
                 sortProjects: '=',
                 limit : '=',
                 getProjectsFlag : '=',
-                getProjectsOnReady : '='
+                getProjectsOnReady : '=',
+                filters : '='
             },
             controller: UiWidgetProjectsController,
             controllerAs: '$ctrl'
@@ -35,7 +57,7 @@ angular.module('dmc.widgets.projects',[
             vm.userCompany = null;
             
             $scope.$watch(function () { return vm.getProjectsFlag; }, function(newValue, oldValue) {
-                if (newValue !== oldValue || vm.getProjectsOnReady === true || (newValue === oldValue && widgetFormat === 'my-projects')) {
+                if (newValue !== oldValue || vm.getProjectsOnReady === true || (newValue === oldValue && vm.widgetFormat === 'my-projects')) {
                     vm.getProjects();
                 }
             }, true);
@@ -287,6 +309,10 @@ angular.module('dmc.widgets.projects',[
                     apply();
                 });
             };
+            
+            vm.projectsFilter = function(filterList) {
+            
+            }
             
             //socketFactory.on(socketFactory.updated().projects, function(item){
             //    vm.getProjects();

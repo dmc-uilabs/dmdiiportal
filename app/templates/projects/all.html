@@ -1,12 +1,12 @@
 <div class="page-header">
     <md-toolbar>
         <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="start end">
-            <!-- <md-input-container class="filterBox">
-                <label>Filter</label>
-                <md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')">
-                    <md-option ng-click="updateFilter()" ng-repeat="f in filterList track by $index" ng-value="$index">{{f.name}}</md-option>
-                </md-select>
-            </md-input-container> -->
+            <!--<md-input-container class="filterBox">-->
+                <!--<label>Filter</label>-->
+                <!--<md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')">-->
+                    <!--<md-option ng-click="updateFilter()" ng-repeat="f in filterList track by $index" ng-value="$index">{{f.name}}</md-option>-->
+                <!--</md-select>-->
+            <!--</md-input-container>-->
             <!-- <div class="search" flex>
                 <form ng-submit="submit(searchText)" class="dmc-search global-search-form">
                     <div layout="column">
@@ -29,42 +29,50 @@
                 </form>
             </div> -->
             <h1>Workspaces</h1>
-            <md-button class="link-button add-project-button" md-no-ink
-                       href="/add-project.php">
-              <span style="border:solid 1px green; padding: 10px">Add Workspace
-                <ng-md-icon icon="add" size="22"></ng-md-icon></span>
-            </md-button>
-            <!-- fill up the space between left and right area -->
-            <div layout="column" flex="33">
-                <div layout="row" layout-align="end center">
-                    <md-input-container>
-                        <label>Sort</label>
-                        <md-select ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
-                            <md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-            </div>
         </div>
     </md-toolbar>
 </div>
 
 <div class="container" layout="row" flex="100">
-    <uib-accordion close-others="oneAtATime">
+    <uib-accordion  class="align-left" close-others="oneAtATime">
         <div uib-accordion-group class="panel-default filter-accordion" is-open="status.open">
             <uib-accordion-heading>
                 Filter <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
             </uib-accordion-heading>
             <div class="row">
-                <div class="col-lg-6">Public</div>
-                <div class="col-lg-6 text-nowrap">Pending Invites</div>
+                <div class="col-lg-6" ng-class="filters.public ? 'active-filter' : ''" ng-click="setFilter('public')">Public</div>
+                <div class="col-lg-6 text-nowrap" ng-class="filters.pendingInvites ? 'active-filter' : ''" ng-click="setFilter('pendingInvites')">Pending Invites</div>
             </div>
             <div class="row">
-                <div class="col-lg-6">Private</div>
-                <div class="col-lg-6">Clear</div>
+                <div class="col-lg-6" ng-class="filters.private ? 'active-filter' : ''" ng-click="setFilter('private')">Private</div>
+                <div class="col-lg-6" ng-click="setFilter('clear')">Clear</div>
             </div>
         </div>
+
+        <!--<div uib-accordion-group is-open="status.sortOpen">-->
+            <!--<uib-accordion-heading>-->
+                <!--Sort: {{sortModel}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.sortOpen, 'glyphicon-chevron-right': !status.sortOpen}"></i>-->
+            <!--</uib-accordion-heading>-->
+            <!--<div class="row">-->
+
+            <!--</div>-->
+            <!--&lt;!&ndash;<md-select ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">&ndash;&gt;-->
+                <!--&lt;!&ndash;<md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>&ndash;&gt;-->
+            <!--&lt;!&ndash;</md-select>&ndash;&gt;-->
+        <!--</div>-->
     </uib-accordion>
+
+    <!-- fill up the space between left and right area -->
+    <div class="col-lg-2 sort">
+        <md-select class="sort-select" ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
+            <md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
+        </md-select>
+    </div>
+
+    <md-button class=" add-button align-right" md-no-ink
+               href="/add-project.php">
+              Add Workspace <ng-md-icon icon="add" size="22"></ng-md-icon>
+    </md-button>
 </div>
 
 <md-content>
@@ -79,7 +87,8 @@
                      widget-title="null"
                      sort-projects="sortProjects"
                      widget-show-all-blocks="true"
-                     get-projects-flag="myProjectsFlag"></div>
+                     get-projects-flag="myProjectsFlag"
+                     filters="filters"></div>
             </div>
         </md-tab>
         <md-tab label="All Workspaces" md-on-select="toggleProjectsFlag('allProjectsFlag')">
@@ -92,7 +101,8 @@
                      widget-title="null"
                      sort-projects="sortProjects"
                      widget-show-all-blocks="true"
-                     get-projects-flag="allProjectsFlag"></div>
+                     get-projects-flag="allProjectsFlag"
+                     filters="filters"></div>
             </div>
         </md-tab>
     </md-tabs>

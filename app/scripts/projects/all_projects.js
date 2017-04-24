@@ -13,7 +13,8 @@ angular.module('dmc.all_projects', [
     'md.data.table',
     'dmc.common.header',
     'dmc.common.footer',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ui.select'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider){
         $stateProvider.state('all-projects', {
@@ -47,14 +48,12 @@ angular.module('dmc.all_projects', [
                 id : 2, tag : "title", name : "Name"
             }
         ];
-        $scope.filterList = [
-            {
-                id : 1, tag : "from_all_companies", name : "From All Companies"
-            },
-            {
-                id : 2, tag : "from_company", name : "From My Company"
-            }
-        ];
+        
+        $scope.filters = {
+            private: false,
+            public: false,
+            pendingInvites: false
+        };
 
         $scope.selectItemDropDown = function(type){
             if(type == "filter"){
@@ -100,6 +99,29 @@ angular.module('dmc.all_projects', [
             } else if (flag === "allProjectsFlag") {
                 $scope.allProjectsFlag = !$scope.allProjectsFlag;
             }
-        }
+        };
+        
+        $scope.setFilter = function(filter) {
+            console.log(filter);
+            if (filter === 'public') {
+                $scope.filters.public = !$scope.filters.public;
+                $scope.filters.private = false;
+                $scope.filters.pendingInvites = false;
+                console.log($scope.filters);
+            } else if (filter === 'private') {
+                $scope.filters.public = false;
+                $scope.filters.private = !$scope.filters.private;
+                $scope.filters.pendingInvites = false;
+            } else if (filter === 'pendingInvites') {
+                $scope.filters.public = false;
+                $scope.filters.private = false;
+                $scope.filters.pendingInvites = !$scope.filters.pendingInvites;
+            } else {
+                $scope.filters.public = false;
+                $scope.filters.private = false;
+                $scope.filters.pendingInvites = false;
+            }
+            
+        };
 
     });
