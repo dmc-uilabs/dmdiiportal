@@ -3,11 +3,10 @@
 angular.module('dmc.widgets.projects',[
         'dmc.ajax',
         'dmc.data',
-        'dmc.socket'
+        'dmc.socket',
+        'angularUtils.directives.dirPagination'
     ]).filter('projectsFilter', function() {
         return function(projects, filters) {
-            console.log(projects);
-            console.log(filters);
             var out = [];
             if(filters.public || filters.private || filters.pendingInvites) {
                 angular.forEach(projects, function (value, key) {
@@ -24,6 +23,11 @@ angular.module('dmc.widgets.projects',[
                 return projects;
             }
             return out;
+        }
+    }).filter('startFrom', function() {
+        return function(input, start) {
+            start = +start; //parse to int
+            return input.slice(start);
         }
     })
     .directive('uiWidgetProjects', ['$parse', function ($parse) {
@@ -55,12 +59,15 @@ angular.module('dmc.widgets.projects',[
             vm.order = 'ASC';
             vm.filterTag = null;
             vm.userCompany = null;
+            vm.currentPage = 0;
+            vm.pageSize = 10;
             
             $scope.$watch(function () { return vm.getProjectsFlag; }, function(newValue, oldValue) {
                 if (newValue !== oldValue || vm.getProjectsOnReady === true || (newValue === oldValue && vm.widgetFormat === 'my-projects')) {
                     vm.getProjects();
                 }
             }, true);
+            
             
             var limit = (vm.limit ? vm.limit : (vm.widgetShowAllBlocks === true ? null : 2));
             
@@ -82,6 +89,7 @@ angular.module('dmc.widgets.projects',[
                 if(vm.filterTag == 'from_company') requestData.companyId = $rootScope.userData.companyId;
                 ajax.get(dataFactory.getProjects(vm.widgetFormat),requestData,function(response) {
                     vm.projects = response.data;
+                    vm.totalItems = response.data.length;
                     console.log(response.data);
                     var ids = [];
                     for (var i in vm.projects) {
@@ -309,10 +317,10 @@ angular.module('dmc.widgets.projects',[
                     apply();
                 });
             };
-            
-            vm.projectsFilter = function(filterList) {
-            
-            }
+    
+            vm.numberOfPages = function() {
+                return Math.ceil(vm.projects.length/vm.pageSize);
+            };
             
             //socketFactory.on(socketFactory.updated().projects, function(item){
             //    vm.getProjects();

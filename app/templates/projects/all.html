@@ -64,7 +64,7 @@
 
     <!-- fill up the space between left and right area -->
     <div class="col-lg-2 sort">
-        <md-select class="sort-select" ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
+        <md-select placeholder="Sort" class="sort-select" ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
             <md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
         </md-select>
     </div>
