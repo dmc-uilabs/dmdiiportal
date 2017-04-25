@@ -26,7 +26,36 @@
                   "notes":
                   [
                         {
-                              "content": "Home"
+                          "content": "Second Create Workspace",
+                          "notes":
+                          [
+                            {
+                              "content": "Due to the ever growing size of the DMC community, we've received many suggestions to do something to allow he workspace creation process to be more streamline. Users in the past will have noticed that once they have configured the workspace they want to create, they would need to scroll all the way to the end of the invitee list to create the workspace they wanted to. Due to there being over 200 users on the site, we figured that one of the best ways to make the process easier especially for user who want to create private workspaces that they do not want to share with others, was for us to add a second create workspace button near the top of the invitee list page.",
+                              "class": "release-feature"
+                            }
+                          ]
+                        },
+                        {
+                              "content": "Home",
+                              "notes":
+                              [
+                                {
+                                  "content": "Edit Workspace",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Delete Workspace",
+                                      "notes":
+                                      [
+                                        {
+                                          "content": "Users now have the ability to delete workspaces that they have created. We've been asked by numerous active users if the ability to delete a workspace they created because they now have too many due to testing workspace functionality. In the past if users could tell us which workspace it was they wanted to remove, we could do this for them. Now users have the ability to delete their own workspaces if they need to. No one else with access to the workspace actually have to ability to delete them, so there is no need to worry that someone with access can purposely or accidentally delete a workspace you've created. This feature is available to workspace creators only and can be accessed on a workspace's Edit page.",
+                                          "class": "release-feature"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
                         },
                         {
                               "content": "Discussions"
@@ -38,10 +67,42 @@
                               "content": "Documents"
                         },
                         {
-                              "content": "Tasks"
+                              "content": "Tasks",
+                              "notes":
+                              [
+                                {
+                                  "content": "Completed Task Past Due",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "In the past, tasks that had been completed but were \"past due\" in terms of the completion date would receive a red badge with the amount of day the task is past due. Since we feel the information is still relevant for users to have for tasks that have not yet been completed and since users may want to be able to see the tasks that have been completed for historical reasons, we've decided to keep the field and instead any task that is completed and is \"past due\" will have a strike through applied to the amount of days the task is \"late.\"",
+                                      "class": "release-feature"
+                                    }
+                                  ]
+                                }
+                              ]
                         },
                         {
-                              "content": "Services"
+                              "content": "Services",
+                              "notes":
+                              [
+                                {
+                                  "content": "Application Run page",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Outputs of Past runs",
+                                      "notes":
+                                      [
+                                        {
+                                          "content": "Users now have the ability to see what outputs they received for any application they ran as part of their workspace. This will allow users to more effectively manage the application that they have in their workspaces and get historical outputs for all their runs.",
+                                          "class": "release-feature"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
                         }
                   ]
             },
@@ -61,10 +122,36 @@
       "notes":
       [
             {
-                  "content": "Invitations"
+                  "content": "Invitations",
+                  "notes":
+                  [
+                    {
+                      "content": "New Invitations Feature",
+                      "notes":
+                      [
+                        {
+                          "content": "In the past, users would simply need to know they needed to check their invitations page to see if they received an invitation to a workspace, as well as to accept or decline that invitations. Users now will see a green badge with the number of new invitations for workspaces they have. When clicking in the envelope icon, users can get more information such as the name of the workspace and who invited them to it.",
+                          "class": "release-feature"
+                        }
+                      ]
+                    }
+                  ]
             },
             {
-                  "content": "Notifications"
+                  "content": "Notifications",
+                  "notes":
+                  [
+                    {
+                      "content": "New Notifications Feature",
+                      "notes":
+                      [
+                        {
+                          "content": "We've introduced a new notification feature to the website. Now organizational administrator no longer need to visit there organization's page to see if there are new members of their organization trying to get access. Now when using the website, users will see a green badge with a number appear for the amount of new notifications they have. When clicking on the white bell icon in the top menu, a drop-down will appear and show you more detail. Additionally, you'll have the option to also archive up to 20 of these notifications for historical purposes.",
+                          "class": "release-feature"
+                        }
+                      ]
+                    }
+                  ]
             }
       ]
 },
@@ -116,10 +203,42 @@
                               "content": "DMC Security"
                         },
                         {
-                              "content": "Online Training"
+                              "content": "DMC Academia",
+                              "notes":
+                              [
+                                {
+                                  "content": "New DMC Academia Page",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "The DMC has created a page about how North Carolina State University is using the DMC to teach their students about digital manufacturing. We've done this so that other academic institutions can begin to use the DMC in the same capacity. We think that our platform can make a real impact on students looking to go into a career in manufacturing. On this page, visitors will find the current course syllabus, as well as homework assignments and course video instructions on creating DOME applications.",
+                                      "class": "release-content"
+                                    }
+                                  ]
+                                }
+                              ]
                         },
                         {
-                              "content": "DMC Releases"
+                              "content": "DMC Releases",
+                              "notes":
+                              [
+                                {
+                                  "content": "Release Page, Release notes 0.1.5, and Release notes 0.1.6",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Users of the DMC will now be able to read about the release process as well as what is incorporated in every release directly on the DMC website. We used to host all the DMC release notes on our public wiki, located on Confluence, but going forward, we will be posting all of our release information on the DMC Releases page. Users can navigate to this page by looking under Core in the main menu. Releases V 0.1.0 - V 0.1.4 can all still be found on our wiki found at Confluence, and you can find a link to these using the tabs for previous release on the DMC Releases page.",
+                                      "class": "release-content",
+                                      "notes":
+                                      [
+                                        {
+                                          "content": "Release notes for V 0.1.5 and V 0.1.6 are now available to read and explore on the DMC Releases page."
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
                         },
                         {
                               "content": "DMC Blog"
@@ -135,7 +254,20 @@
                               "notes":
                               [
                                     {
-                                          "content": "User Profile page"
+                                          "content": "User Profile page",
+                                          "notes":
+                                          [
+                                            {
+                                              "content": "Editing Other User Profile Pictures",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "It used to be the case that users could change the profile picture of other users. This issue has been patched in this release and is no longer possible to take advantage of this bug. We are now doing more secure checks to ensure the our frontend code is enforcing rules for user permissions as well as more backend security checks as well",
+                                                  "class": "release-bug"
+                                                }
+                                              ]
+                                            }
+                                          ]
                                     }
                               ]
                         },
@@ -149,14 +281,64 @@
                               ]
                         },
                         {
-                              "content": "Activities"
+                              "content": "Activities",
+                              "notes":
+                              [
+                                {
+                                  "content": "Recent Updates",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Verified DMDII users will find a new section added to the already new Activities page (just updated 2 weeks ago) known as Recent Updates. Here they will see a live feed of the last 10 changes made in the DMDII Projects pages and Directory, as well as see which organizations have just joined the DMDII Member list. Below you can see what kind of updates you can expect to find in this section:",
+                                      "class": "release-feature",
+                                      "notes":
+                                      [
+                                        {
+                                          "content": "New DMDII Projects"
+                                        },
+                                        {
+                                          "content": "New Project Updates"
+                                        },
+                                        {
+                                          "content": "New DMDII Project Documents"
+                                        },
+                                        {
+                                          "content": "Changes in Project Statuses"
+                                        },
+                                        {
+                                          "content": "New DMDII Members"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
                         },
                         {
                               "content": "All Workspaces Directory",
                               "notes":
                               [
                                     {
-                                          "content": "Home"
+                                          "content": "Home",
+                                          "notes":
+                                          [
+                                            {
+                                              "content": "Edit Workspace",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "Delete Workspace",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "Users now have the ability to delete workspaces that they have created. We've been asked by numerous active users if the ability to delete a workspace they created because they now have too many due to testing workspace functionality. In the past if users could tell us which workspace it was they wanted to remove, we could do this for them. Now users have the ability to delete their own workspaces if they need to. No one else with access to the workspace actually have to ability to delete them, so there is no need to worry that someone with access can purposely or accidentally delete a workspace you've created. This feature is available to workspace creators only and can be accessed on a workspace's Edit page.",
+                                                      "class": "release-feature"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
                                     },
                                     {
                                           "content": "Discussions"
@@ -168,10 +350,52 @@
                                           "content": "Documents"
                                     },
                                     {
-                                          "content": "Tasks"
+                                          "content": "Tasks",
+                                          "notes":
+                                          [
+                                            {
+                                              "content": "Completed Task Past Due",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "In the past, tasks that had been completed but were \"past due\" in terms of the completion date would receive a red badge with the amount of day the task is past due. Since we feel the information is still relevant for users to have for tasks that have not yet been completed and since users may want to be able to see the tasks that have been completed for historical reasons, we've decided to keep the field and instead any task that is completed and is \"past due\" will have a strike through applied to the amount of days the task is \"late.\"",
+                                                  "class": "release-feature"
+                                                }
+                                              ]
+                                            }
+                                          ]
                                     },
                                     {
-                                          "content": "Services"
+                                          "content": "Services",
+                                          "notes":
+                                          [
+                                            {
+                                              "content": "Application add to Service-list By?",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "The workspace services list now tells you who added an application to the list of applications available in your workspace services-list rather than just the user's ID number.",
+                                                  "class": "release-bug"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "content": "Application Run page",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "Outputs of Past runs",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "Users now have the ability to see what outputs they received for any application they ran as part of their workspace. This will allow users to more effectively manage the application that they have in their workspaces and get historical outputs for all their runs.",
+                                                      "class": "release-feature"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
                                     }
                               ]
                         }
@@ -185,7 +409,54 @@
                   "notes":
                   [
                         {
-                              "content": "Application Profile page"
+                          "content": "Workspace Redirect after Cloning Application",
+                          "notes":
+                          [
+                            {
+                              "content": "After adding an application to a workspace yo are a part of, users can click on the name of the workspaces that the application was added do that appears on the application and will be redirected to that workspace's home page.",
+                              "class": "release-bug"
+                            }
+                          ]
+                        },
+                        {
+                          "content": "Application Profile page",
+                          "notes":
+                          [
+                            {
+                              "content": "Ability to add Applications from Application Profile page",
+                              "notes":
+                              [
+                                {
+                                  "content": "Users used to not be able to added DMC Marketplace applications to their workspaces through this interface as clicking on the add to workspace button would not provide a list of workspaces that the user is a part of. We've fixed this issue and users can now added applications to their workspaces through this interface.",
+                                  "class": "release-bug"
+                                },
+                                {
+                                  "content": "After adding an application to a workspace yo are a part of, users can click on the name of the workspaces that the application was added do that appears on the application and will be redirected to that workspace's home page.",
+                                  "class": "release-feature"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "content": "Application Compare",
+                          "notes":
+                          [
+                            {
+                              "content": "Ability to add Applications from Compare Modal in DMC Marketplace",
+                              "notes":
+                              [
+                                {
+                                  "content": "Users used to not be able to added DMC Marketplace applications to their workspaces through this interface as clicking on the add to workspace button would not provide a list of workspaces that the user is a part of. We've fixed this issue and users can now added applications to their workspaces through this interface.",
+                                  "class": "release-bug"
+                                },
+                                {
+                                  "content": "After adding an application to a workspace yo are a part of, users can click on the name of the workspaces that the application was added do that appears on the application and will be redirected to that workspace's home page.",
+                                  "class": "release-feature"
+                                }
+                              ]
+                            }
+                          ]
                         }
                   ]
             },
@@ -194,10 +465,78 @@
                   "notes":
                   [
                         {
-                              "content": "DMDII Member Directory"
+                              "content": "DMDII Member Directory",
+                              "notes":
+                              [
+                                {
+                                  "content": "Active users of the DMDII Member Portal will have noticed that in the last release, the Membership Portal Received a major change to its look and feel. We identified a few changes that did not quite make it into the overhaul that have been added in during this release. Those specific changes can be found below. ",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Show Number of Results in Member Directory",
+                                      "notes":
+                                      [
+                                        {
+                                          "content": "The show number of results drop-down has been re-added to the DMDII Member Directory. Before this fix, only the first 12 items in this page would show up requiring users to need to use the next button at the bottom of the screen to look through all the results. We've added back the functionality to show specifically, 12, 24, 48, or 96 results at once.",
+                                          "class": "release-bug"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
                         },
                         {
-                              "content": "DMDII Projects Directory"
+                              "content": "DMDII Projects Directory",
+                              "notes":
+                              [
+                                {
+                                  "content": "Active users of the DMDII Member Portal will have noticed that in the last release, the Membership Portal Received a major change to its look and feel. We identified a few changes that did not quite make it into the overhaul that have been added in during this release. Those specific changes can be found below.",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Search Projects",
+                                      "notes":
+                                      [
+                                        {
+                                          "content": "The search bar now says \"Search Projects\" instead of \"Search Members\". This was a spelling error that may have confused users of the Projects Directory but this has been patched in this release.",
+                                          "class": "release-bug"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": "Show Number of Results in Projects Directory",
+                                      "notes":
+                                      [
+                                        {
+                                          "content": "The show number of results drop-down has been re-added to the DMDII Projects Directory. Before this fix, only the first 12 items in this page would show up requiring users to need to use the next button at the bottom of the screen to look through all the results. We've added back the functionality to show specifically, 12, 24, 48, or 96 results at once.",
+                                          "class": "release-bug"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": "Edit, Delete, Upload and Download Icons appear properly",
+                                      "notes":
+                                      [
+                                        {
+                                          "content": "Edit, delete, upload, and download icons have been re-added to individual project pages for site-wide administrators. Before the icons appeared as green outlined squares, making it difficult to know which buttons were which. The icons have been reapplied and the descriptors were added as well in case this issue reoccurs as well as to make it easier to know what icon is used for what functionality.",
+                                          "class": "release-bug"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": "DMDII Project Update Descriptions",
+                                      "notes":
+                                      [
+                                        {
+                                          "content": "In the last release, the DMDII Project Update layout was changed. During this change, the ability to view a project update's description was accidentally removed. This has been fixed in this release.",
+                                          "class": "release-bug"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
                         }
                   ]
             }

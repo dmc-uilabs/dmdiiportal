@@ -17,6 +17,11 @@ angular.module('dmc.release-notes')
           }
           getV016();
 
-
+          var getV017= function() {
+              ajax.get(dataFactory.getStaticJSON('notesV017.json'), {}, function(response){
+                  $scope.notesV017 = response.data;
+              });
+          }
+          getV017();
     }]
 );
