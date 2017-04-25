@@ -189,3 +189,32 @@ div.progress {
 		border-right: none;
 	}
 }
+
+
+.rich-text-small {
+	h2 {
+    color: black !important;
+		font-size: 1.3em !important;
+		font-weight: 600 !important;
+		text-decoration: underline !important;
+	}
+	h3 {
+    color: black;
+		font-weight: 600 !important;
+		font-size: 1.2em !important;
+	}
+	p {
+    color: black;
+    font-size: 1em !important;
+		font-weight: normal !important;
+	}
+	blockquote {
+		font-size: 1em;
+  }
+ng-md-icon {
+	svg {
+		vertical-align: text-top;
+	}
+}
+}
+  

@@ -83,7 +83,12 @@
                     <md-content layout="row" class="task-details-container">
                         <ul ng-show="!isEditing">
                             <li>Status: {{task.status == "InProgress" ? "In Progress" : (task.status == "Open" ? "To Do" : "Completed")}}</li>
-                            <li>Due Date: <span ng-bind-html="task.formatedDueDate[1]" class="label border-radius-2" ng-class="task.formatedDueDate[0] == 'date' ? 'label--date' : (task.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (task.formatedDueDate[0] == 'today' || task.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span></li>
+                            <li>Due Date:
+                              <span ng-if="task.status=='Open' || task.status=='InProgress'" ng-bind-html="task.formatedDueDate[1]" class="label" ng-class="task.formatedDueDate[0] == 'date' ? 'label--date' : (task.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (task.formatedDueDate[0] == 'today' || task.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
+                              <div ng-if="task.status=='Closed' || task.status=='Completed'">
+                                <strike ng-bind-html="task.formatedDueDate[1]" class="label--done"></strike>
+                              </div>
+                            </li>
                             <li>Priority: {{task.priorityName}}</li>
                             <li>Assigned To: <a href="/profile.php#/{{task.assigneeId}}">{{task.assignee}}</a></li>
                             <li>Created By: <a href="/profile.php#/{{task.reporterId}}">{{task.reporter}}</a></li>

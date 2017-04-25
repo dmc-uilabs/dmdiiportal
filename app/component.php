@@ -29,6 +29,7 @@
 <script src="scripts/common/footer/footer.js"></script>
 <script src="scripts/components/ui-widgets/stars.directive.js"></script>
 <script src="scripts/components/ui-widgets/documents.directive.js"></script>
+<script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
 <script src="scripts/components/ui-widgets/review.directive.js"></script>
 <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
 <script src="scripts/components/dropzone/dropzone.directive.js"></script>
@@ -37,6 +38,7 @@
 <script src="scripts/common/factory/data.factory.js"></script>
 <script src="scripts/components/carousel/carousel.js"></script>
 <script src="scripts/components/compare/compare.js"></script>
+<script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
 <script src="scripts/components/tree-menu/tree-menu.js"></script>
 <script src="scripts/components/product-card/product-card.js"></script>
 <script src="scripts/components/products-card/products-card.js"></script>

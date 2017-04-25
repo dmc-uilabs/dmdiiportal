@@ -95,12 +95,16 @@
                         </div>
 						<div>
 							<md-input-container>
-								<label>Description</label>
-								<textarea ng-model="product.description"
-									      ng-init="changes.description = product.description"
-									      ng-change="change('description')"
-									      columns="1"
-									      md-maxlength="1000"></textarea>
+                <div ng-init="changes.description = product.description"
+                    ui-widget-rich-text
+                    field-name="description"
+                    model="product.description"
+                    ng-model="product.description"
+                    limit="1000"
+                    placeholder="Description"
+                    is-saved="isSaved"
+                    is-valid="isValid">
+                </div>
 							</md-input-container>
 						</div>
 					</div>

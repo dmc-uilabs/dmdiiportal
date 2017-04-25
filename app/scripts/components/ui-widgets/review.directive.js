@@ -4,6 +4,7 @@ angular.module('dmc.widgets.review',[
   'dmc.ajax',
   'dmc.data',
   'dmc.widgets.stars',
+  'dmc.widgets.rich-text'
 ])
 .directive('uiWidgetReview', [function () {
   return {
@@ -70,7 +71,7 @@ angular.module('dmc.widgets.review',[
       $scope.SubmitReview = function(NewReview){
         NewReview.id = $scope.review.id;
         $scope.flaggedFunction(NewReview);
-        
+
         $scope.review['flagged'] = true;
         $scope.flagReplyReviewFlag = false;
         $scope.flagReviewFlag = false;
@@ -81,7 +82,7 @@ angular.module('dmc.widgets.review',[
       $scope.SubmitReply = function(NewReview, id, index){
         NewReview.id = id;
         $scope.flaggedFunction(NewReview);
-        
+
         $scope.review.replyReviews[index]['flagged'] = true;
         $scope.flagReplyReviewFlag = false;
         $scope.flagReviewFlag = false;
@@ -135,5 +136,5 @@ angular.module('dmc.widgets.review',[
       };
 
     }
-  } 
+  }
 }]);

@@ -34,7 +34,7 @@
             <div>
                 <a href="/marketplace.php#/search?product=services&type={{service.serviceType}}">{{service.serviceType == 'data' ? 'Data' : service.serviceType == 'analytical' ? 'Analytical' : 'Solid'}} Service</a>
             </div>
-			<ui-widget-stars-static size="15" value="{{service.average_rating}}" text="({{service.average_rating}}) {{service.number_of_comments}} reviews"></ui-widget-stars-static>
+			<!-- <ui-widget-stars-static size="15" value="{{service.average_rating}}" text="({{service.average_rating}}) {{service.number_of_comments}} reviews"></ui-widget-stars-static> -->
 		</div>
 		<div class="buttons" layout="column" >
 			<div layout="row" layout-align="end center">
@@ -62,9 +62,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="description">
-		{{service.description}}
-	</div>
+	<div class="description" markdown-to-html="service.description"></div>
 	<md-tabs md-selected="selectedTab" md-dynamic-height md-border-bottom>
 		<md-tab label="STATISTICS" ng-if="service.from == 'marketplace'">
 			<ui-widget-tabs-statistic data="service.services_statistic[0]" filter="getHistory"></ui-widget-tabs-statistic>
@@ -96,15 +94,15 @@
 			</md-content>
 		</md-tab>
 
-		<md-tab ng-if="service.from == 'marketplace'" label="Reviews">
+		<!-- <md-tab ng-if="service.from == 'marketplace'" label="Reviews">
 			<div layout="row" layout-align="start center">
 				<h4>{{service.number_of_comments}} reviews </h4>
-				<ui-widget-stars-static size="15" value="{{service.average_rating}}" text="({{service.average_rating}})"></ui-widget-stars-static>
-			</div>
+				 <ui-widget-stars-static size="15" value="{{service.average_rating}}" text="({{service.average_rating}})"></ui-widget-stars-static> -->
+			<!--</div>
 			<div ng-repeat="review in service.service_reviews">
 				<ui-widget-review review="review" userlogin="'UserLogin'" typereview="'reply_reviews'"></ui-widget-review>
         <md-divider></md-divider>
       </div>
-		</md-tab>
+		</md-tab> -->
 	</md-tabs>
 </div>

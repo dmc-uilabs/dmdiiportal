@@ -58,8 +58,8 @@
     }
     .comment{
       padding: 10px;
-      border-bottom: 1px solid #ccc;
-      background-color: #DADADA;
+      border-bottom: 1px solid #888;
+      background-color: #f6f6f6;
       &.isOwner{
         background-color: #fff;
       }
@@ -71,7 +71,7 @@
           margin-right: 16px;
         }
         h3{
-          font-weight: normal;
+          font-weight: bold;
           a{
             text-decoration: none;
             &:hover{
@@ -81,9 +81,10 @@
         }
       }
       .text{
-        padding: 16px 0;
+        margin: 0px 40px 15px 40px;
       }
       .comment-footer{
+        padding: 0px 40px 10px 40px;
         p {
           margin: 0;
         }

@@ -23,7 +23,8 @@ angular.module('dmc.service-marketplace', [
     'dmc.model.dome',
     'dmc.model.toast-model',
     'dmc.widgets.uploadModal',
-    'dmc.compare'
+    'dmc.compare',
+    'dmc.widgets.rich-text'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
         var resolve = {

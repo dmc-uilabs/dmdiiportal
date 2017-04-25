@@ -31,11 +31,12 @@
                     <input ng-model="quicklink.link" ng-required="linkType === 'link'"/>
                 </md-input-container>
             </div>
-			<div ng-show="noLink">
+
+			    <div ng-show="noLink">
 	            <p class="slim-margin error">You <b>must</b> enter a link</p>
 	        </div>
 
-            <div layout="column" ng-show="linkType === 'text'" flex="50"
+            <div ng-show="linkType === 'text'"
                 ui-widget-rich-text
                 field-name="fieldName"
                 is-required="linkType === 'text'"

@@ -30,6 +30,7 @@
 <script src="scripts/components/ui-widgets/stars.directive.js"></script>
 <script src="scripts/components/ui-widgets/documents.directive.js"></script>
 <script src="scripts/components/ui-widgets/review.directive.js"></script>
+<script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
 <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
 <script src="scripts/components/ui-widgets/uploadModal.directive.js"></script>
 <script src="scripts/components/dropzone/dropzone.directive.js"></script>
@@ -52,6 +53,8 @@
 <script src="scripts/service-marketplace/service-marketplace.js"></script>
 <script src="scripts/service-marketplace/controllers/home.js"></script>
 <script src="scripts/service-marketplace/controllers/edit.js"></script>
+
+<script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
     <?php

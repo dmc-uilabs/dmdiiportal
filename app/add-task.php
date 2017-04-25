@@ -34,6 +34,7 @@
     <script src="scripts/common/models/member-model.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
+    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
 
     <script src="scripts/add_task/add-task.js"></script>
     <!-- endbuild -->

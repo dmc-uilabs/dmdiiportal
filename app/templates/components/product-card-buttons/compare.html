@@ -1,0 +1,50 @@
+<div class="block-buttons" layout="row">
+  <div class="adding-to-project" ng-show="addingToProject">
+      <div layout="row" layout-align="center center" class="inner-add-to-project" flex>
+          <md-button aria-label="Cancel" layout="column" class="close" style="margin-right:6px" ng-click="cancelAddToProject()">
+              <ng-md-icon icon="close" size="17"></ng-md-icon>
+          </md-button>
+          <div layout="column" class="select-block" flex>
+              <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
+                  <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
+              </md-select>
+          </div>
+          <md-button aria-label="Add"
+                     layout="column"
+                     ng-disabled="!projectModel"
+                     class="close"
+                     style="margin-left:6px"
+                     ng-click="saveToProject(projectModel)">Add
+          </md-button>
+      </div>
+  </div>
+
+  <md-button aria-label="Back to Add"
+             class="back-to-add"
+             ng-click="backToAdd()"
+             ng-show="addingToProject == false && cardSource.added">
+      <ng-md-icon icon="close" size="17"></ng-md-icon>
+  </md-button>
+
+
+  <md-button aria-label="Project Link"
+             flex
+             class="back-to-add"
+             style="margin-left:6px"
+             ng-show="addingToProject == false && cardSource.added"
+             ng-href="{{cardSource.lastProject.href}}">
+  <span flex>
+      Added to {{cardSource.lastProject.title}}
+  </span>
+      <ng-md-icon icon="keyboard_arrow_right" style="fill: #fff" size="32"></ng-md-icon>
+  </md-button>
+
+  <md-button aria-label="Add to Workspace"
+             flex
+             ng-style="compareStyle"
+             class="white-button"
+             ng-click="addToProject()"
+             ng-hide="addingToProject || cardSource.added">
+      Add to Workspace
+  </md-button>
+</div>

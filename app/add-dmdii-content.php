@@ -27,7 +27,6 @@
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
     <script src="scripts/components/ui-widgets/tabs.directive.js"></script>
     <script src="scripts/components/ui-widgets/project-tags.directive.js"></script>
-    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/components/sub-nav-menu/sub-nav-menu.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/components/tree-menu/tree-menu.js"></script>
@@ -41,6 +40,7 @@
     <script src="scripts/common/models/member-model.js"></script>
     <script src="scripts/common/models/zipcode-model.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
+    <script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/components/add-project/add-project.directive.js"></script>

@@ -1,13 +1,13 @@
 <div class="review-widget">
   <div class="md-toolbar-tools">
-    <ui-widget-stars-static size="15" value="{{review.rating}}"></ui-widget-stars-static>
+    <!-- <ui-widget-stars-static size="15" value="{{review.rating}}"></ui-widget-stars-static> -->
     <h2><a ng-href="{{'profile.php#/'+review.accountId}}">{{review.name}}</a> <span>{{(review.status)? 'Verified': 'Unverified'}} User</span></h2>
     <span flex></span>
     <span>{{review.date}}</span>
   </div>
   <!--One Review content-->
   <md-content class="md-padding">
-    {{review.comment}}
+    <span class="rich-text-small" markdown-to-html="review.comment"></span>
     <div ng-if="typereview != 'reply_reviews'" layout="row" layout-align="center center" layout-fill class="review-widget-footer">
       <div layout="row">
         <a href="" ng-click="Reply($index)">Reply</a>
@@ -37,8 +37,13 @@
   <div flex class="new-review" ng-if="replyFlag">
     <form name="CommentForm">
       <md-input-container flex>
-        <label>Comment</label>
-        <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea>
+        <div ui-widget-rich-text
+          field-name="comment"
+          model="NewReview.Comment"
+          limit="1000"
+          is-saved="isSaved"
+          is-valid="isValid">
+        </div>
       </md-input-container>
       <div layout layout-align="end end">
         <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
@@ -77,7 +82,7 @@
       <span>{{reply.date}}</span>
     </div>
     <md-content class="md-padding">
-      {{reply.comment}}
+      <span class="rich-text-small" markdown-to-html="reply.comment"></span>
       <div layout="row" layout-align="space-between center" layout-fill class="review-widget-footer">
         <a href="" ng-if="reply.flagged">Flagged</a>
         <a href="" ng-if="!reply.flagged" ng-click="ReplyFlagReview($index)">Flag Comment</a>

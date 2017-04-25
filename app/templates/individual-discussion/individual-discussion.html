@@ -20,7 +20,7 @@
 								<h3>{{comment.created_at}}</h3>
 							</div>
 						</div>
-						<div class="text" markdown-to-html="comment.text"></div>
+						<div class="text rich-text-small" markdown-to-html="comment.text"></div>
 						<div class="comment-footer" layout="row" layout-align="space-between center">
 							<div layout="row" layout-align="start center">
 								<div>
@@ -55,8 +55,14 @@
 					    	<form name="replyCommentForm" layout="row" layout-align="start start">
 					      		<div flex layout="column">
 							        <md-input-container flex>
-							          	<label>Comment</label>
-							          	<textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea>
+													<div ui-widget-rich-text
+															field-name="Comment"
+															model="NewReview.Comment"
+															limit="1000"
+															placeholder="Comment"
+															is-saved="isSaved"
+															is-valid="isValid">
+													</div>
 							        </md-input-container>
 							        <div layout layout-align="end end">
 							          	<md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
@@ -93,9 +99,7 @@
 						      	<h3><a ng-href="{{'profile.php#/' + reply.accountId}}">{{reply.full_name}}</a></h3>
 						      	<h3>{{reply.created_at}}</h3>
 						    </div>
-						    <div class="text">
-						      	{{reply.text}}
-						    </div>
+						    <div class="text" markdown-to-html="reply.text"></div>
 						    <div class="comment-footer" layout="row" layout-align="end center">
 					          	<p>Was this review helpful?</p>
 					          	<md-button aria-label="Like" md-no-ink class="md-button"  ng-click="Like(reply)">
@@ -112,8 +116,14 @@
 					</div>
                     <form name="CommentForm" ng-submit="Submit()">
                         <md-input-container flex>
-                            <label>Comment</label>
-                            <textarea ng-model="newComment" columns="1" md-maxlength="1000"></textarea>
+														<div ui-widget-rich-text
+																field-name="Comment"
+																model="newComment"
+																limit="1000"
+																placeholder="Comment"
+																is-saved="isSaved"
+																is-valid="isValid">
+														</div>
                         </md-input-container>
                         <div layout layout-align="end end">
                             <md-button class="md-raised" submit ng-disabled="!newComment" >Submit</md-button>

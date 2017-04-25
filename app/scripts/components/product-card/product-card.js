@@ -12,7 +12,10 @@ angular.module('dmc.component.productcard', [
     'dmc.data',
     'ngCookies',
     'dmc.compare',
-    'dmc.component.members-card'
+    'dmc.component.members-card',
+    'ng-showdown',
+    'dmc.component.product-card-buttons'
+
 ])
 .run(function(ajax){
         // get all projects and save to $rootScope
@@ -61,7 +64,6 @@ angular.module('dmc.component.productcard', [
           });
 
           $scope.previousPage = previousPage;
-          $scope.images = [];
 
           if ($scope.cardSource.published) {
               if (!angular.isDefined($scope.cardSource.images)) {
@@ -83,9 +85,6 @@ angular.module('dmc.component.productcard', [
           $scope.compareStyle = {
               'font-size' : ($scope.hideButtons && $scope.hideButtons.indexOf('compare') != -1 ? '11px' : '13px')
           };
-
-          $scope.projects = [];
-          $scope.addingToProject = false;
 
           // success callback for add to favorites
           var addToFavoriteCallback = function(response){
@@ -119,128 +118,12 @@ angular.module('dmc.component.productcard', [
             }
           };
 
-          var apply = function(){
-              if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-          };
-
           $scope.addToFeatured = function(){
               $scope.addFeatured($scope.cardSource);
           };
 
           $scope.removeFromFeatured = function(ev){
               $scope.removeFeatured($scope.cardSource,ev);
-          };
-
-          $scope.addedTimout = null;
-          $scope.backToAdd = function(){
-              $scope.cardSource.added = false;
-              clearTimeout($scope.addedTimeout);
-              if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-          };
-
-          // add service to project
-            $scope.saveToProject = function(projectId){
-                var project = null;
-                for(var i in $scope.projects){
-                    if($scope.projects[i].id == projectId){
-                        project = $scope.projects[i];
-                        break;
-                    }
-                }
-
-                if(project) {
-                    var updatedItem = $.extend(true, {}, $scope.cardSource);
-                    if (updatedItem.hasOwnProperty('$$hashKey')) {
-                        delete updatedItem['$$hashKey'];
-                    }
-                    updatedItem.currentStatus = {
-                        project: {
-                            id: project.id,
-                            title: project.title
-                        }
-                    };
-                    updatedItem.owner = userData.accountId;
-                    updatedItem.projectId = project.id;
-                    updatedItem.from = 'marketplace';
-                    updatedItem.published = false;
-                    delete updatedItem.tags;
-                    ajax.create(dataFactory.services().add, updatedItem, function (response) {
-                        var id = response.data.id;
-                        $scope.cancelAddToProject();
-
-                        ajax.get(dataFactory.services($scope.cardSource.id).get_tags, {}, function(response) {
-                            angular.forEach(response.data, function(tag) {
-                                delete tag.id;
-                                tag.serviceId = id;
-                                ajax.create(dataFactory.services(id).add_tags, tag);
-                            });
-                        });
-                        if ($scope.images.length) {
-                            angular.forEach($scope.images, function(image) {
-                                delete image.id;
-                                image.ownerId = userData.accountId;
-                                image.parentId = id;
-                                ajax.create(dataFactory.documentsUrl().save, image)
-                            });
-                        };
-                        ajax.get(dataFactory.services($scope.cardSource.id).get_interface, {}, function(response) {
-                            angular.forEach(response.data, function(newDomeInterface) {
-                                delete newDomeInterface.id;
-                                newDomeInterface.serviceId = id;
-                                ajax.create(dataFactory.services().add_interface, newDomeInterface);
-                            });
-                        });
-
-                        if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
-                        if(!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
-                        $scope.cardSource.currentStatus.project.id = projectId;
-                        $scope.cardSource.currentStatus.project.title = project.title;
-                        $scope.cardSource.projectId = projectId;
-                        $scope.cardSource.added = true;
-
-                        $scope.cardSource.lastProject = {
-                            title: project.title,
-                            href: '/project.php#/' + project.id + '/home'
-                        };
-                        $scope.addedTimeout = setTimeout(function () {
-                            $scope.cardSource.added = false;
-                            apply();
-                        }, 20000);
-                        apply();
-                    });
-                }
-            };
-
-          $scope.loadProjects = function() {
-              $scope.projects = $scope.$root.projects;
-          };
-
-          // remove service from compare
-          $scope.removeFromCompare = function(){
-              if($scope.typeProduct == 'service') {
-                  CompareModel.delete('services',$scope.cardSource.id);
-              }
-          };
-
-          // get service to compare
-          $scope.addToCompare = function(){
-              if($scope.typeProduct == 'service'){
-                  CompareModel.add('services',{
-                      profileId : userData.profileId,
-                      serviceId : $scope.cardSource.id
-                  });
-              }
-          };
-
-          $scope.addToProject = function(){
-            if (!$rootScope.projects) {
-              ajax.loadProjects();
-            }
-              $scope.addingToProject = true;
-          };
-
-          $scope.cancelAddToProject = function(){
-              $scope.addingToProject = false;
           };
 
           $scope.share = function(ev){
@@ -526,4 +409,8 @@ angular.module('dmc.component.productcard', [
         $scope.cancel = function(){
             $mdDialog.cancel();
         };
-})
+}).filter('removeHTMLTags', function() {
+	return function(text) {
+		return  text ? String(text).replace(/<[^>]+>/gm, ' ') : '';
+	};
+});

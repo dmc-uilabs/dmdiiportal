@@ -1,7 +1,7 @@
 [
 	{
-		"message": "Message Discussion",
-		"title": "New Discussion",
+		"message": "<h2>This is the description heading</h2><p>With some <b>bold</b> under<br></p>",
+		"title": "New Discussion for RICH TESTING",
 		"accountId": 1,
 		"projectId": 5,
 		"created_by": "Thomas Smith",

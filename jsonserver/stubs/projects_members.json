@@ -1,239 +1,25 @@
 [
 	{
 		"profileId": 1,
-		"projectId": 2,
+		"projectId": 56,
 		"fromProfileId": 2,
 		"from": "Thomas Smith",
 		"date": 1458245164499,
 		"accept": false,
-		"id": 1
+
+		"id": "1 - 56 - 56"
 	},
 	{
-		"profileId": 1,
-		"projectId": 1,
+		"profileId": 2,
+		"projectId": 56,
+
 		"fromProfileId": 2,
 		"from": "Timmy Thomas",
 		"date": 1458295505214,
+
 		"accept": false,
-		"id": 7
-	},
-	{
-		"profileId": 2,
-		"projectId": 5,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1459371296185,
-		"accept": false,
-		"id": 8
-	},
-	{
-		"profileId": 2,
-		"projectId": 4,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1459436606440,
-		"accept": false,
-		"id": 9
-	},
-	{
-		"profileId": 1,
-		"projectId": 4,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1459436606440,
-		"accept": false,
-		"id": 10,
-		"removed": false
-	},
-	{
-		"profileId": 2,
-		"projectId": 3,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1459757448000,
-		"accept": false,
-		"id": 11,
-		"removed": true
-	},
-	{
-		"profileId": 1,
-		"projectId": 3,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1459758478599,
-		"accept": true,
-		"id": 12
-	},
-	{
-		"profileId": 1,
-		"projectId": 1,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1459758478599,
-		"accept": true,
-		"id": 13
-	},
-	{
-		"profileId": 2,
-		"projectId": 1,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1459758478599,
-		"accept": false,
-		"id": 14,
-		"removed": true
-	},
-	{
-		"profileId": 3,
-		"projectId": 1,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1459758478599,
-		"accept": false,
-		"id": 15
-	},
-	{
-		"profileId": 4,
-		"projectId": 1,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1459758478599,
-		"accept": true,
-		"id": 16
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464215628125,
-		"accept": false,
-		"id": 17
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464215818725,
-		"accept": false,
-		"id": 18
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464215839516,
-		"accept": false,
-		"id": 19
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464289746224,
-		"accept": false,
-		"id": 20
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464290293966,
-		"accept": false,
-		"id": 21
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464290420992,
-		"accept": false,
-		"id": 22
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464290589785,
-		"accept": false,
-		"id": 23
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464290664482,
-		"accept": false,
-		"id": 24
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464292026860,
-		"accept": false,
-		"id": 25
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464292133840,
-		"accept": false,
-		"id": 26
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464292354037,
-		"accept": false,
-		"id": 27
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464292432189,
-		"accept": false,
-		"id": 28
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464293165970,
-		"accept": false,
-		"id": 29
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464293286524,
-		"accept": false,
-		"id": 30
-	},
-	{
-		"profileId": 1,
-		"projectId": 2,
-		"fromProfileId": 1,
-		"from": "Thomas Smith",
-		"date": 1464293431461,
-		"accept": false,
-		"id": 31
+
+		"id": "2 - 56 - 56"
+
 	}
 ]
