@@ -1,109 +1,72 @@
-<div class="page-header">
-    <md-toolbar>
-        <div class="md-toolbar-tools my-projects-title" layout="row" layout-align="start end">
-            <!--<md-input-container class="filterBox">-->
-                <!--<label>Filter</label>-->
-                <!--<md-select ng-model="filterModel" ng-change="selectItemDropDown('filter')">-->
-                    <!--<md-option ng-click="updateFilter()" ng-repeat="f in filterList track by $index" ng-value="$index">{{f.name}}</md-option>-->
-                <!--</md-select>-->
-            <!--</md-input-container>-->
-            <!-- <div class="search" flex>
-                <form ng-submit="submit(searchText)" class="dmc-search global-search-form">
-                    <div layout="column">
-                        <div layout="row">
-                            <div layout="column" flex>
-                                <md-input-container md-no-float>
-                                    <md-icon>
-                                        <ng-md-icon icon="search"></ng-md-icon>
-                                    </md-icon>
-                                    <input type="text" placeholder="Search Projects" ng-model="searchText">
-                                </md-input-container>
-                            </div>
-                            <div layout="column">
-                                <md-input-container>
-                                    <md-button type="submit" class="search-button">Search</md-button>
-                                </md-input-container>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div> -->
+<main>
+    <section class="container">
+        <div class="container">
             <h1>Workspaces</h1>
         </div>
-    </md-toolbar>
-</div>
 
-<div class="container" layout="row" flex="100">
-    <uib-accordion  class="align-left" close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default filter-accordion" is-open="status.open">
-            <uib-accordion-heading>
-                Filter <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-            </uib-accordion-heading>
-            <div class="row">
-                <div class="col-lg-6" ng-class="filters.public ? 'active-filter' : ''" ng-click="setFilter('public')">Public</div>
-                <div class="col-lg-6 text-nowrap" ng-class="filters.pendingInvites ? 'active-filter' : ''" ng-click="setFilter('pendingInvites')">Pending Invites</div>
+        <div class="button-container" layout="row" flex="100">
+            <uib-accordion  class="align-left" close-others="oneAtATime">
+                <div uib-accordion-group class="panel-default filter-accordion" is-open="status.open">
+                    <uib-accordion-heading>
+                        Filter <ng-md-icon ng-if="!status.open" class="pull-right filter-icon" icon="keyboard_arrow_right" style="fill: #666" size="30"></ng-md-icon>
+                        <ng-md-icon ng-if="status.open" class="pull-right filter-icon" icon="keyboard_arrow_down" style="fill: #666" size="30"></ng-md-icon>
+                    </uib-accordion-heading>
+                    <div class="row">
+                        <div class="col-lg-6" ng-class="filters.public ? 'active-filter' : ''" ng-click="setFilter('public')">Public</div>
+                        <div class="col-lg-6" ng-click="setFilter('clear')">Clear</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6" ng-class="filters.private ? 'active-filter' : ''" ng-click="setFilter('private')">Private</div>
+                    </div>
+                </div>
+            </uib-accordion>
+
+            <!-- fill up the space between left and right area -->
+            <div class="col-lg-2 sort">
+                <md-select placeholder="Sort" class="sort-select" ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
+                    <md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
+                </md-select>
             </div>
-            <div class="row">
-                <div class="col-lg-6" ng-class="filters.private ? 'active-filter' : ''" ng-click="setFilter('private')">Private</div>
-                <div class="col-lg-6" ng-click="setFilter('clear')">Clear</div>
-            </div>
+
+            <md-button class=" add-button align-right" md-no-ink
+                       href="/add-project.php">
+                      Add Workspace <ng-md-icon icon="add" size="22"></ng-md-icon>
+            </md-button>
         </div>
 
-        <!--<div uib-accordion-group is-open="status.sortOpen">-->
-            <!--<uib-accordion-heading>-->
-                <!--Sort: {{sortModel}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.sortOpen, 'glyphicon-chevron-right': !status.sortOpen}"></i>-->
-            <!--</uib-accordion-heading>-->
-            <!--<div class="row">-->
-
-            <!--</div>-->
-            <!--&lt;!&ndash;<md-select ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">&ndash;&gt;-->
-                <!--&lt;!&ndash;<md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>&ndash;&gt;-->
-            <!--&lt;!&ndash;</md-select>&ndash;&gt;-->
-        <!--</div>-->
-    </uib-accordion>
-
-    <!-- fill up the space between left and right area -->
-    <div class="col-lg-2 sort">
-        <md-select placeholder="Sort" class="sort-select" ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
-            <md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
-        </md-select>
-    </div>
-
-    <md-button class=" add-button align-right" md-no-ink
-               href="/add-project.php">
-              Add Workspace <ng-md-icon icon="add" size="22"></ng-md-icon>
-    </md-button>
-</div>
-
-<md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab label="My Workspaces" md-on-select="toggleProjectsFlag('myProjectsFlag')">
-            <div class="container my-projects-container" layout="row" flex="100">
-                <div class="content-panel" layout="column" flex="100"
-                     id="myProjectsList"
-                     ui-widget-projects
-                     search-text="searchText"
-                     widget-format="'my-projects'"
-                     widget-title="null"
-                     sort-projects="sortProjects"
-                     widget-show-all-blocks="true"
-                     get-projects-flag="myProjectsFlag"
-                     filters="filters"></div>
-            </div>
-        </md-tab>
-        <md-tab label="All Workspaces" md-on-select="toggleProjectsFlag('allProjectsFlag')">
-            <div class="container my-projects-container" layout="row" flex="100">
-                <div class="content-panel" layout="column" flex="100"
-                     id="allProjectsList"
-                     ui-widget-projects
-                     search-text="searchText"
-                     widget-format="'all-projects'"
-                     widget-title="null"
-                     sort-projects="sortProjects"
-                     widget-show-all-blocks="true"
-                     get-projects-flag="allProjectsFlag"
-                     filters="filters"></div>
-            </div>
-        </md-tab>
-    </md-tabs>
-</md-content>
+        <md-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="My Workspaces" md-on-select="toggleProjectsFlag('myProjectsFlag')">
+                    <div class="container my-projects-container" layout="row" flex="100">
+                        <div class="content-panel" layout="column" flex="100"
+                             id="myProjectsList"
+                             ui-widget-projects
+                             search-text="searchText"
+                             widget-format="'my-projects'"
+                             widget-title="null"
+                             sort-projects="sortProjects"
+                             widget-show-all-blocks="true"
+                             get-projects-flag="myProjectsFlag"
+                             filters="filters"
+                             limit="10"></div>
+                    </div>
+                </md-tab>
+                <md-tab label="All Workspaces" md-on-select="toggleProjectsFlag('allProjectsFlag')">
+                    <div class="container my-projects-container" layout="row" flex="100">
+                        <div class="content-panel" layout="column" flex="100"
+                             id="allProjectsList"
+                             ui-widget-projects
+                             search-text="searchText"
+                             widget-format="'all-projects'"
+                             widget-title="null"
+                             sort-projects="sortProjects"
+                             widget-show-all-blocks="true"
+                             get-projects-flag="allProjectsFlag"
+                             filters="filters"
+                             limit="10"></div>
+                    </div>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </section>
+</main>
