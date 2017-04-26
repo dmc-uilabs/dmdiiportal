@@ -257,8 +257,8 @@ md-select:not([disabled]):focus .md-select-value {
 .page-container {
     padding-top: 10px;
     padding-bottom: 10px;
-    border-top: 1px solid #dbdbdb;
     background-color: rgb(255,255,255);
+    padding-top: 100px;
 }
 
 .projects-column {
@@ -280,6 +280,7 @@ md-select:not([disabled]):focus .md-select-value {
 
 .status {
     vertical-align: text-top;
+    background: green;
 }
 
 .totals-row {
@@ -315,7 +316,6 @@ md-select:not([disabled]):focus .md-select-value {
     margin-bottom: px;
     padding: 10px 0px 10px 0px;
     font-size: 16px;
-    border: none;
 }
 
 .project-description-content {
@@ -331,12 +331,22 @@ md-select:not([disabled]):focus .md-select-value {
 }
 
 .content-border {
-    border-top: 1px solid #dbdbdb;
     padding: 0px;
-    margin-bottom: 30px;
+    margin-top: 100px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-top: 5px solid green;
 }
 
 .my-projects-container {
-    padding-left :0px;
+    padding-left: 0px;
+}
+
+.content-panel-body {
+    background-color: white;
+}
+
+.font-black {
+    color: grey;
 }
 

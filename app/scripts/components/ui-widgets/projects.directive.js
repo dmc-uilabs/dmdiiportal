@@ -47,7 +47,7 @@ angular.module('dmc.widgets.projects', [
             controllerAs: '$ctrl'
         };
 
-        function UiWidgetProjectsController($scope, $rootScope, $element, $attrs, socketFactory, dataFactory, ajax, toastModel, DMCUserModel, $showdown, previousPage) {
+        function UiWidgetProjectsController($scope, $rootScope, $element, $attrs, $window, socketFactory, dataFactory, ajax, toastModel, DMCUserModel, $showdown, previousPage) {
             var vm = this;
 
             vm.projects = [];
@@ -261,7 +261,6 @@ angular.module('dmc.widgets.projects', [
 
             $rootScope.filterMAProjects = function (filterTag) {
                 vm.filterTag = filterTag;
-                console.log(filterTag);
                 vm.getProjects();
             };
 
@@ -318,11 +317,13 @@ angular.module('dmc.widgets.projects', [
             vm.getNextPage = function () {
                 vm.start += vm.limit;
                 vm.getProjects();
+                $window.scrollTo(0, 0);
             };
             
             vm.getPreviousPage = function () {
                 vm.start -= vm.limit;
                 vm.getProjects();
+                $window.scrollTo(0, 0);
             };
         }
 

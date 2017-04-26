@@ -22,7 +22,7 @@
                     <div ng-if="!item.isPublic">
                         <div class="status">Private</div>
                         <div class="status-icon">
-                            <ng-md-icon class="status-icon" icon="private" style="fill: #666" size="30"></ng-md-icon>
+                            <ng-md-icon class="status-icon" icon="lock" style="fill: #666" size="30"></ng-md-icon>
                         </div>
                     </div>
                     <h2>
@@ -83,13 +83,13 @@
 
             <div class="row totals-row">
                 <div class="col-md-4" align="center">
-                    <h4 class="total"><a ng-href="{{'/project.php#/'+ item.id +'/tasks'}}" ng-click="previousPage.save($event)">Tasks {{item.tasks.totalItems}}</a></h4>
+                    <h4 class="total"><a ng-href="{{'/project.php#/'+ item.id +'/tasks'}}" ng-click="previousPage.save($event)">Tasks <span class="font-black">{{item.tasks.totalItems}}</span></a></h4>
                 </div>
                 <div class="col-md-4" align="center">
-                    <h4 class="total"><a href="{{'/project.php#/'+ item.id +'/discussions'}}" ng-click="previousPage.save($event)">Discussions: {{item.discussions.totalItems}}</a></h4>
+                    <h4 class="total"><a href="{{'/project.php#/'+ item.id +'/discussions'}}" ng-click="previousPage.save($event)">Discussions <span class="font-black">{{item.discussions.totalItems}}</span></a></h4>
                 </div>
                 <div class="col-md-4" align="center">
-                    <h4 class="total"><a href="{{'/project.php#/'+ item.id +'/services'}}" ng-click="previousPage.save($event)">Services: {{item.services.totalItems}}</a></h4>
+                    <h4 class="total"><a href="{{'/project.php#/'+ item.id +'/services'}}" ng-click="previousPage.save($event)">Services <span class="font-black">{{item.services.totalItems}}</span></a></h4>
                 </div>
             </div>
 

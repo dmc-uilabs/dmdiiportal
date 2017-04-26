@@ -77,6 +77,7 @@ angular.module('dmc.all_projects', [
 
         $scope.updateSort = function(){
             var item = $scope.sortList[$scope.sortModel];
+            console.log(item.tag);
             $rootScope.sortMAProjects(item.tag);
         };
 
