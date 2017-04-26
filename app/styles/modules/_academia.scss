@@ -6,17 +6,19 @@
 }
 .videosacademia {
     width: 150px;
-    height:200px;
     border: 1px solid green;
     padding: 10px;
     margin: 25px;
+}
+.videosacademia video {
+  width:100%;
 }
 
 h4{
   font-weight: normal;
 }
 
-video{
-  width:150px !important;
-  height:200px !important;
+
+.edx video{
+  width:100%;
 }
