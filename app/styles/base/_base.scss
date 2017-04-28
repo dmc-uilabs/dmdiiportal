@@ -211,6 +211,7 @@ md-list{
   max-width: 600px;
 }
 
-div {
-  max-width: 100%;
+.FlexItem {
+box-sizing: border-box; /* 2 */
+max-width: 100%; /* 1 */
 }
