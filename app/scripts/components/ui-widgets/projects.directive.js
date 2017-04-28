@@ -67,6 +67,15 @@ angular.module('dmc.widgets.projects', [
                     vm.getProjects();
                 }
             }, true);
+            
+            $scope.$watch(function () {
+                return vm.sortProjects
+            }, function (newValue, oldValue) {
+                if (newValue !== oldValue) {
+                    vm.sortAllProjects(vm.sortProjects);
+                }
+            }, true);
+            
             var limit = (vm.limit ? vm.limit : (vm.widgetShowAllBlocks === true ? null : 2));
 
             vm.flexBox = (vm.widgetShowAllBlocks == true ? 28 : 60);
@@ -194,7 +203,7 @@ angular.module('dmc.widgets.projects', [
                     }
                     vm.total = vm.projects.length;
                     if (limit && vm.total > limit) vm.projects.splice(limit, vm.total);
-                    $rootScope.sortMAProjects(vm.sortProjects);
+                    vm.sortAllProjects(vm.sortProjects);
                     apply();
                 });
             }
@@ -212,31 +221,9 @@ angular.module('dmc.widgets.projects', [
                     apply();
                 });
             }
-
-            $rootScope.sortMAProjects = function (sortTag) {
-                switch (sortTag) {
-                    case 'id':
-                        vm.projects.sort(function (a, b) {
-                            return a.id - b.id;
-                        });
-                        break;
-                    case 'title':
-                        vm.projects.sort(function (a, b) {
-                            return a.title > b.title;
-                        });
-                        break;
-                    case 'most_recent':
-                        vm.projects.sort(function (a, b) {
-                            return b.id - a.id;
-                        });
-                        break;
-                    default:
-                        break;
-                }
-                apply();
-            };
     
-            vm.sortProjects = function (sortTag) {
+            vm.sortAllProjects = function (sortTag) {
+                console.log(sortTag);
                 switch (sortTag) {
                     case 'id':
                         vm.projects.sort(function (a, b) {

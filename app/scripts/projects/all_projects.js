@@ -50,8 +50,7 @@ angular.module('dmc.all_projects', [
         
         $scope.filters = {
             private: false,
-            public: false,
-            pendingInvites: false
+            public: false
         };
 
         $scope.selectItemDropDown = function(type){
@@ -70,19 +69,16 @@ angular.module('dmc.all_projects', [
                     $scope.sortList = $scope.sortList.sort(function(a,b){return a.id - b.id});
                     if ($scope.sortList.unshift(item)) $scope.sortModel = 0;
                 }
-                $rootScope.sortMAProjects(item.tag);
+                $scope.sortProjects = item.tag;
             }
         };
 
         $scope.updateSort = function(){
             var item = $scope.sortList[$scope.sortModel];
-            console.log(item.tag);
-            $rootScope.sortMAProjects(item.tag);
         };
 
         $scope.updateFilter = function(){
             var item = $scope.filterList[$scope.filterModel];
-            $rootScope.filterMAProjects(item.tag);
         };
     
         $scope.oneAtATime = true;
@@ -106,20 +102,12 @@ angular.module('dmc.all_projects', [
             if (filter === 'public') {
                 $scope.filters.public = !$scope.filters.public;
                 $scope.filters.private = false;
-                $scope.filters.pendingInvites = false;
-                console.log($scope.filters);
             } else if (filter === 'private') {
                 $scope.filters.public = false;
                 $scope.filters.private = !$scope.filters.private;
-                $scope.filters.pendingInvites = false;
-            } else if (filter === 'pendingInvites') {
-                $scope.filters.public = false;
-                $scope.filters.private = false;
-                $scope.filters.pendingInvites = !$scope.filters.pendingInvites;
             } else {
                 $scope.filters.public = false;
                 $scope.filters.private = false;
-                $scope.filters.pendingInvites = false;
             }
             
         };
