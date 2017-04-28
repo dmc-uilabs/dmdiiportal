@@ -84,7 +84,7 @@
 			</md-content>
 		</md-tab>
 
-		<md-tab label="DOCUMENTS">
+		<md-tab ng-click="getDocuments()" label="DOCUMENTS">
 			<md-content class="md-padding">
                 <div layout="column">
                     <a ng-repeat="doc in service.service_docs" ng-href="{{doc.documentUrl}}">{{doc.documentName}}</a>

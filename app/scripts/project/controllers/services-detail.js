@@ -173,260 +173,6 @@ angular.module('dmc.project')
         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
     };
 
-	$scope.runHistory = [
-		{
-			runDate: '10/15/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '10/19/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/10/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '12/11/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/11/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Success',
-		},
-		{
-			runDate: '12/15/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '10/19/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/10/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '12/11/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Fail',
-		},
-		{
-			runDate: '10/19/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/10/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '12/11/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Fail',
-		},
-		{
-			runDate: '10/19/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/10/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '12/11/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Fail',
-		},
-		{
-			runDate: '10/19/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/10/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '12/11/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Fail',
-		},
-		{
-			runDate: '10/19/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/10/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '12/11/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Fail',
-		},
-		{
-			runDate: '10/19/2015',
-			runTimeService: '12:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/10/2015',
-			runTimeService: '12:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '12/11/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Fail',
-		},
-		{
-			runDate: '10/19/2015',
-			runTimeService: '09:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/10/2015',
-			runTimeService: '09:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '12/09/2015',
-			runTimeService: '09:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Fail',
-		},
-		{
-			runDate: '10/19/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/10/2015',
-			runTimeService: '11:22 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '12/11/2015',
-			runTimeService: '11:35 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Fail',
-		},
-		{
-			runDate: '10/19/2015',
-			runTimeService: '11:35 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/10/2015',
-			runTimeService: '11:35 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '12/11/2015',
-			runTimeService: '11:35 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Fail',
-		},
-		{
-			runDate: '10/19/2015',
-			runTimeService: '11:35 AM',
-			runBy: 'Forge Admin',
-			runTime: 3.0,
-			results: 'Fail',
-		},
-		{
-			runDate: '12/10/2015',
-			runTimeService: '11:35 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Success',
-		},
-		{
-			runDate: '12/11/2015',
-			runTimeService: '11:35 AM',
-			runBy: 'Forge Admin',
-			runTime: 2.9,
-			results: 'Fail',
-		},
-	];
 
 	$scope.delete = function(){
     var deleteServiceItem = $.extend(true, {}, $scope.service.__serviceData);
@@ -447,4 +193,28 @@ angular.module('dmc.project')
 	$scope.search = function(text){
 		window.location.href = '/marketplace.php#/search/services?text=' + text;
 	}
+
+	$scope.getDocuments = function() {
+
+		// ajax.get(dataFactory.documentsUrl().getList, {parentType: 'SERVICE',
+		//     																					parentId: $scope.service.parent ? $scope.service.parent : $scope.service.id,
+		//     																					docClass: 'IMAGE',
+		//     																					recent: 5},
+		// 		function(response){
+		// 			$scope.service.service_images = response.data;
+		// 		}
+		// 	);
+
+		ajax.get(dataFactory.documentsUrl().getList, {parentType: 'SERVICE',
+		    																					parentId: $scope.service.parent ? $scope.service.parent : $scope.service.id,
+		    																					docClass: 'SUPPORT',
+		    																					recent: 5},
+				function(response){
+					$scope.service.service_docs = response.data;
+				}
+			);
+
+
+	}
+
 }])
