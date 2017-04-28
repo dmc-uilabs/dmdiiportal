@@ -200,9 +200,9 @@ h3.row {
 
 .sort-select {
     display: inline-block;
-    border: none;
     width: 100%;
     margin: 2px 0 0 0;
+    padding-left: 5px;
 }
 
 md-select:not([disabled]):focus .md-select-value {
@@ -349,4 +349,53 @@ md-select:not([disabled]):focus .md-select-value {
 .font-black {
     color: grey;
 }
+
+.no-click-border:focus {
+    outline: none;
+    border: 0;
+}
+
+.filter-button, .filter-button:focus {
+    background-color: #f5f5f5;
+    border: 1px solid transparent;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    border-radius: 4px;
+    border-color: #ddd;
+    height: 39px;
+    outline: none;
+    width: 100%;
+    min-width: 180px;
+}
+
+
+.filter-list {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    border-color: #ddd;
+}
+
+.rotate,
+.rotateCounterwise {
+    -webkit-transition: 300ms ease all;
+    -moz-transition: 300ms ease all;
+    -o-transition: 300ms ease all;
+    transition: 300ms ease all;
+}
+.rotate {
+    -webkit-transform: rotate(90deg);
+}
+.rotateCounterwise {
+    -webkit-transform: rotate(0deg);
+}
+
+.padding-right-none {
+    padding-right: 0px;
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+
+
 

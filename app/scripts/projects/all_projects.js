@@ -12,9 +12,7 @@ angular.module('dmc.all_projects', [
     'dmc.model.previous-page',
     'md.data.table',
     'dmc.common.header',
-    'dmc.common.footer',
-    'ui.bootstrap',
-    'ui.select'
+    'dmc.common.footer'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider){
         $stateProvider.state('all-projects', {
@@ -33,6 +31,7 @@ angular.module('dmc.all_projects', [
         $scope.filterModel = null;
         $scope.sortModel = 0;
         $scope.sortProjects = "most_recent";
+        $scope.isActive = false;
 
         $scope.submit = function(text){
             var dataSearch = $.extend(true, {}, $stateParams);
@@ -123,6 +122,10 @@ angular.module('dmc.all_projects', [
                 $scope.filters.pendingInvites = false;
             }
             
+        };
+    
+        $scope.rotate = function () {
+            $scope.isActive = !$scope.isActive;
         };
 
     });

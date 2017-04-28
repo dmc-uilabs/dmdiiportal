@@ -43,8 +43,6 @@
     <script src="scripts/projects/all_projects.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/projects/create_project.js"></script>
-    <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
-    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php

@@ -1,17 +1,17 @@
-<div class="project-wrapper">
+<section>
     <div class="content-panel-header" ng-hide="$ctrl.widgetTitle == null">
         <md-toolbar>
             <div class="md-toolbar-tools widget-toolbar-title">
                 <h2>{{$ctrl.widgetTitle}}</h2>
                 <span flex></span>
-                <a href="/my-projects.php"
+                <a href="/all-projects.php"
                            class="link-button uppercase">View All ({{$ctrl.total}})</a>
             </div>
         </md-toolbar>
     </div>
-    <div class="content-panel-body" layout="column" flex="100">
-        <div ng-class="{ 'content-border': $ctrl.widgetShowAllBlocks }" flex="100" layout="column" ng-repeat="item in $ctrl.projects | projectsFilter:$ctrl.filters">
-            <div class="row" flex="100">
+    <section>
+        <div ng-class="{ 'content-border': $ctrl.widgetShowAllBlocks }" ng-repeat="item in $ctrl.projects | projectsFilter:$ctrl.filters">
+            <div class="row">
                 <div class="col-md-6">
                     <div ng-if="item.isPublic">
                         <div class="status">Public</div>
@@ -142,5 +142,5 @@
                 </button>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+</section>

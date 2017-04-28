@@ -4,69 +4,91 @@
             <h1>Workspaces</h1>
         </div>
 
-        <div class="button-container" layout="row" flex="100">
-            <uib-accordion  class="align-left" close-others="oneAtATime">
-                <div uib-accordion-group class="panel-default filter-accordion" is-open="status.open">
-                    <uib-accordion-heading>
-                        Filter <ng-md-icon ng-if="!status.open" class="pull-right filter-icon" icon="keyboard_arrow_right" style="fill: #666" size="30"></ng-md-icon>
-                        <ng-md-icon ng-if="status.open" class="pull-right filter-icon" icon="keyboard_arrow_down" style="fill: #666" size="30"></ng-md-icon>
-                    </uib-accordion-heading>
-                    <div class="row">
-                        <div class="col-lg-6" ng-class="filters.public ? 'active-filter' : ''" ng-click="setFilter('public')">Public</div>
-                        <div class="col-lg-6" ng-click="setFilter('clear')">Clear</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6" ng-class="filters.private ? 'active-filter' : ''" ng-click="setFilter('private')">Private</div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="col-md-7">
+                    <div class="panel panel-default">
+                        <div class="panel-heading padding-right-none">
+                            <h4 class="panel-title">
+                                <a ng-click="rotate()" class="accordion-toggle" data-toggle="collapse" href="#filters">
+                                    Filter
+                                    <ng-md-icon class="pull-right filter-icon"
+                                                ng-animate="{enter: 'rotate', leave: 'rotateCounterwise'}"
+                                                ng-class="{true: 'rotate', false: 'rotateCounterwise'}[isActive]"
+                                                icon="keyboard_arrow_right" style="fill: #666" size="30"></ng-md-icon>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="filters" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 no-click-border" ng-class="filters.public ? 'active-filter' : ''"
+                                         ng-click="setFilter('public')">Public
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 no-click-border" ng-click="setFilter('clear')">Clear</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 no-click-border" ng-class="filters.private ? 'active-filter' : ''"
+                                         ng-click="setFilter('private')">Private
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </uib-accordion>
-
-            <!-- fill up the space between left and right area -->
-            <div class="col-lg-2 sort">
-                <md-select placeholder="Sort" class="sort-select" ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
-                    <md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
-                </md-select>
             </div>
 
-            <md-button class=" add-button align-right" md-no-ink
-                       href="/add-project.php">
-                      Add Workspace <ng-md-icon icon="add" size="22"></ng-md-icon>
-            </md-button>
+            <!-- fill up the space between left and right area -->
+            <div class="col-md-4 col-sm-4 margin-bottom-15">
+                <div class="col-md-8">
+                    <md-select placeholder="Sort" class="sort sort-select" ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
+                        <md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
+                    </md-select>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+               <div class="col-md-12 col-sm-12">
+                    <md-button class="add-button pull-right" md-no-ink
+                               href="/add-project.php">
+                              Add Workspace <ng-md-icon icon="add" size="22"></ng-md-icon>
+                    </md-button>
+               </div>
+            </div>
         </div>
 
-        <md-content>
-            <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="My Workspaces" md-on-select="toggleProjectsFlag('myProjectsFlag')">
-                    <div class="container my-projects-container" layout="row" flex="100">
-                        <div class="content-panel" layout="column" flex="100"
-                             id="myProjectsList"
-                             ui-widget-projects
-                             search-text="searchText"
-                             widget-format="'my-projects'"
-                             widget-title="null"
-                             sort-projects="sortProjects"
-                             widget-show-all-blocks="true"
-                             get-projects-flag="myProjectsFlag"
-                             filters="filters"
-                             limit="10"></div>
-                    </div>
-                </md-tab>
-                <md-tab label="All Workspaces" md-on-select="toggleProjectsFlag('allProjectsFlag')">
-                    <div class="container my-projects-container" layout="row" flex="100">
-                        <div class="content-panel" layout="column" flex="100"
-                             id="allProjectsList"
-                             ui-widget-projects
-                             search-text="searchText"
-                             widget-format="'all-projects'"
-                             widget-title="null"
-                             sort-projects="sortProjects"
-                             widget-show-all-blocks="true"
-                             get-projects-flag="allProjectsFlag"
-                             filters="filters"
-                             limit="10"></div>
-                    </div>
-                </md-tab>
-            </md-tabs>
-        </md-content>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active hidden-xs no-click-border" ng-click="toggleProjectsFlag('myProjectsFlag')"><a data-target="#my-workspaces" aria-controls="my-workspaces" role="tab" data-toggle="tab">My Workspaces</a></li>
+            <li role="presentation" class="hidden-xs no-click-border" ng-click="toggleProjectsFlag('allProjectsFlag')"><a data-target="#all-workspaces" aria-controls="all-workspaces" role="tab" data-toggle="tab">All Workspaces</a></li>
+        </ul>
+
+        <section>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="my-workspaces">
+                    <div id="myProjectsList"
+                         ui-widget-projects
+                         search-text="searchText"
+                         widget-format="'my-projects'"
+                         widget-title="null"
+                         sort-projects="sortProjects"
+                         widget-show-all-blocks="true"
+                         get-projects-flag="myProjectsFlag"
+                         filters="filters"
+                         limit="10"></div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="all-workspaces">
+                    <div id="allProjectsList"
+                         ui-widget-projects
+                         search-text="searchText"
+                         widget-format="'all-projects'"
+                         widget-title="null"
+                         sort-projects="sortProjects"
+                         widget-show-all-blocks="true"
+                         get-projects-flag="allProjectsFlag"
+                         filters="filters"
+                         limit="10"></div>
+                </div>
+            </div>
+        </section>
     </section>
 </main>
