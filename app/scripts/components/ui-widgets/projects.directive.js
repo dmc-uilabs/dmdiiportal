@@ -9,7 +9,7 @@ angular.module('dmc.widgets.projects', [
 ]).filter('projectsFilter', function () {
     return function (projects, filters) {
         var out = [];
-        if (filters.public || filters.private || filters.pendingInvites) {
+        if (filters.public || filters.private) {
             angular.forEach(projects, function (value, key) {
 
                 if (filters.public && value.isPublic) {

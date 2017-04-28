@@ -11,7 +11,7 @@
     </div>
     <section>
         <div ng-class="{ 'content-border': $ctrl.widgetShowAllBlocks }" ng-repeat="item in $ctrl.projects | projectsFilter:$ctrl.filters">
-            <div class="row">
+            <div class="row" ng-if="$ctrl.widgetShowAllBlocks">
                 <div class="col-md-6">
                     <div ng-if="item.isPublic">
                         <div class="status">Public</div>
@@ -25,19 +25,19 @@
                             <ng-md-icon class="status-icon" icon="lock" style="fill: #666" size="30"></ng-md-icon>
                         </div>
                     </div>
-                    <h2>
+                    <h2 class="margin-bottom-30">
                         <a ng-if="item.isMember" ng-href="project.php#/{{ item.isMember.accept || item.companyId == $ctrl.userCompany.id ? item.id : 'preview/'+item.id }}" class="link-button">{{item.title}}</a>
                         <a ng-if="!item.isMember" ng-href="project.php#/preview/{{item.id}}">{{item.title}}</a>
                     </h2>
                     <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
-                                !item.isMember && item.approvalOption == 'all' && !item.joinRequest"
+                                !item.isMember && !item.requiresAdminApprovalToJoin && !item.joinRequest"
                                ng-click="join(item)"
                                class="md-raised dmc-button join">
                         <ng-md-icon icon="group_add" size="22"></ng-md-icon>
                         Join
                     </md-button>
                     <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
-                                !item.isMember && item.approvalOption == 'admin'"
+                                !item.isMember && item.requiresAdminApprovalToJoin"
                                ng-click="$ctrl.join(item)"
                                ng-disabled="item.joinRequest"
                                class="md-raised dmc-button request-to-join">
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="project-summary-container project-description">
+            <div ng-if="$ctrl.widgetShowAllBlocks" class="project-summary-container project-description">
                 <div class="row">
                     <div class="col-xs-12">
                         <h4>Summary</h4>
@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <div class="row totals-row">
+            <div ng-if="$ctrl.widgetShowAllBlocks" class="row totals-row">
                 <div class="col-md-4" align="center">
                     <h4 class="total"><a ng-href="{{'/project.php#/'+ item.id +'/tasks'}}" ng-click="previousPage.save($event)">Tasks <span class="font-black">{{item.tasks.totalItems}}</span></a></h4>
                 </div>
@@ -93,7 +93,7 @@
                 </div>
             </div>
 
-            <div class="tags row">
+            <div ng-if="$ctrl.widgetShowAllBlocks" class="tags row">
                 <div class="project-tags-list margin-left-8">
                     <div class="tag without-delete inline-block" ng-repeat="tag in item.tags track by $index">
                         <div>
@@ -103,8 +103,15 @@
                 </div>
             </div>
 
-              <md-content ng-if="!$ctrl.widgetShowAllBlocks">
-                  <md-tabs md-dynamic-height md-border-bottom>
+
+            <md-content ng-if="!$ctrl.widgetShowAllBlocks">
+                <div layout="row" flex="100">
+                    <h2>
+                        <a ng-if="item.isMember" ng-href="project.php#/{{ item.isMember.accept || item.companyId == $ctrl.userCompany.id ? item.id : 'preview/'+item.id }}" class="link-button">{{item.title}}</a>
+                        <a ng-if="!item.isMember" ng-href="project.php#/preview/{{item.id}}">{{item.title}}</a>
+                    </h2>
+                </div>
+                <md-tabs md-dynamic-height md-border-bottom>
                       <md-tab label="Tasks">
                           <md-content flex
                                       ui-project-tasks
@@ -129,7 +136,7 @@
                   </md-tabs>
               </md-content>
       </div>
-        <div class="row page-container">
+        <div ng-if="$ctrl.widgetShowAllBlocks" class="row page-container">
             <div class="col-xs-6">
                 <button id="prevPage" ng-disabled="$ctrl.start == 0" ng-click="$ctrl.getPreviousPage()" class="btn btn-next pull-right">
                     PREV
