@@ -59,6 +59,7 @@ angular.module('dmc.widgets.projects', [
             vm.userCompany = null;
             vm.pageSize = 10;
             vm.previousPage = previousPage;
+            vm.userCompanyId = '';
 
             $scope.$watch(function () {
                 return vm.getProjectsFlag;
@@ -95,8 +96,16 @@ angular.module('dmc.widgets.projects', [
                     _limit: vm.limit
                     
                 };
+                var getProjectsUrl = '';
+                
                 if (vm.filterTag == 'from_company') requestData.companyId = $rootScope.userData.companyId;
-                ajax.get(dataFactory.getProjects(vm.widgetFormat), requestData, function (response) {
+                if (vm.widgetFormat === 'my-projects') {
+                    getProjectsUrl = dataFactory.getMyProjects();
+                } else {
+                    getProjectsUrl = dataFactory.getPublicProjects();
+                }
+                ajax.get(getProjectsUrl, requestData, function (response) {
+                    vm.userCompanyId = $rootScope.userData.companyId;
                     vm.projects = response.data;
                     vm.totalItems = response.data.length;
                     console.log(response.data);
@@ -137,18 +146,6 @@ angular.module('dmc.widgets.projects', [
                     toastModel.showToast('error', 'Ajax faild: getProjects');
                 });
             };
-
-            DMCUserModel.getUserData().then(function (res) {
-                //vm.getProjects();
-                if (res && res.companyId > 0) getUserCompany(res.companyId);
-            });
-
-            function getUserCompany(companyId) {
-                ajax.get(dataFactory.companyURL(companyId).get, {}, function (response) {
-                    vm.userCompany = response.data;
-                    apply();
-                });
-            }
 
             function isProjectsJoinRequests(ids) {
                 ajax.get(dataFactory.getProjectsJoinRequests(), {
@@ -304,12 +301,16 @@ angular.module('dmc.widgets.projects', [
             vm.getNextPage = function () {
                 vm.start += vm.limit;
                 vm.getProjects();
+                console.log(vm.start);
+                console.log(vm.limit);
                 $window.scrollTo(0, 0);
             };
             
             vm.getPreviousPage = function () {
                 vm.start -= vm.limit;
                 vm.getProjects();
+                console.log(vm.start);
+                console.log(vm.limit);
                 $window.scrollTo(0, 0);
             };
         }

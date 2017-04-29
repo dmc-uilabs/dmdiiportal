@@ -23,8 +23,7 @@ angular.module('dmc.all_projects', [
         $urlRouterProvider.otherwise('/');
     })
     .controller('DMCAllProjectsController', function ($scope,$rootScope,$element,$stateParams,$state, dataFactory, ajax, toastModel, DMCUserModel) {
-
-        $scope.myChildFunc = null;
+        
         $scope.myProjectsFlag = true;
         $scope.allProjectsFlag = false;
         $scope.searchText = angular.isDefined($stateParams.text) ? $stateParams.text : null;

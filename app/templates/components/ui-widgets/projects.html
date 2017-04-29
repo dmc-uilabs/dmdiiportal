@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <h2 class="margin-bottom-30">
-                        <a ng-if="item.isMember" ng-href="project.php#/{{ item.isMember.accept || item.companyId == $ctrl.userCompany.id ? item.id : 'preview/'+item.id }}" class="link-button">{{item.title}}</a>
+                        <a ng-if="item.isMember" ng-href="project.php#/{{ item.isMember.accept || item.companyId == $ctrl.userCompanyId ? item.id : 'preview/'+item.id }}" class="link-button">{{item.title}}</a>
                         <a ng-if="!item.isMember" ng-href="project.php#/preview/{{item.id}}">{{item.title}}</a>
                     </h2>
                     <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
@@ -107,7 +107,7 @@
             <md-content ng-if="!$ctrl.widgetShowAllBlocks">
                 <div layout="row" flex="100">
                     <h2>
-                        <a ng-if="item.isMember" ng-href="project.php#/{{ item.isMember.accept || item.companyId == $ctrl.userCompany.id ? item.id : 'preview/'+item.id }}" class="link-button">{{item.title}}</a>
+                        <a ng-if="item.isMember" ng-href="project.php#/{{ item.isMember.accept || item.companyId == $ctrl.userCompanyId ? item.id : 'preview/'+item.id }}" class="link-button">{{item.title}}</a>
                         <a ng-if="!item.isMember" ng-href="project.php#/preview/{{item.id}}">{{item.title}}</a>
                     </h2>
                 </div>
