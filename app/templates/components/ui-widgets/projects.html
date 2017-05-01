@@ -31,7 +31,7 @@
                     </h2>
                     <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
                                 !item.isMember && !item.requiresAdminApprovalToJoin && !item.joinRequest"
-                               ng-click="join(item)"
+                               ng-click="$ctrl.join(item)"
                                class="md-raised dmc-button join">
                         <ng-md-icon icon="group_add" size="22"></ng-md-icon>
                         Join

@@ -229,7 +229,7 @@ angular.module('dmc.widgets.projects', [
                         break;
                     case 'title':
                         vm.projects.sort(function (a, b) {
-                            return a.title.toLowerCase() > b.title.toLowerCase;
+                            return a.title.toLowerCase() > b.title.toLowerCase();
                         });
                         break;
                     case 'most_recent':
@@ -249,7 +249,7 @@ angular.module('dmc.widgets.projects', [
             };
 
             vm.join = function (item) {
-                if (item.approvalOption == 'all') {
+                if (!item.requiresAdminApprovalToJoin) {
                     ajax.create(dataFactory.createMembersToProject(), {
                         'profileId': $rootScope.userData.profileId,
                         'projectId': item.id,
@@ -262,15 +262,18 @@ angular.module('dmc.widgets.projects', [
                         toastModel.showToast('success', 'You have successfully become a member of the project');
                         document.location.href = 'project.php#/' + item.id + '/home';
                         apply();
+                    }, function (response) {
+                        toastModel.showToast('error', 'Failed to Join project.');
                     });
-                } else if (item.approvalOption == 'admin') {
-                    ajax.create(dataFactory.addProjectJoinRequest(), {
-                        'profileId': $rootScope.userData.profileId,
-                        'projectId': item.id
+                } else if (item.requiresAdminApprovalToJoin) {
+                    ajax.create(dataFactory.joinProjectRequests(item.id), {
+                        'profileId': $rootScope.userData.profileId
                     }, function (response) {
                         item.joinRequest = response.data;
                         toastModel.showToast('success', 'Request to join successfully sent');
                         apply();
+                    }, function (response) {
+                        toastModel.showToast('error', 'Request to join project failed.');
                     });
                 }
             };
