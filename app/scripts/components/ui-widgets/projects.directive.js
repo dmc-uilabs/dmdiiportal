@@ -229,7 +229,7 @@ angular.module('dmc.widgets.projects', [
                         break;
                     case 'title':
                         vm.projects.sort(function (a, b) {
-                            return a.title > b.title;
+                            return a.title.toLowerCase() > b.title.toLowerCase;
                         });
                         break;
                     case 'most_recent':
