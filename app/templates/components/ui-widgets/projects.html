@@ -61,11 +61,11 @@
                             <h4>Key Properties</h4>
                             <dl class="project-stats">
                                 <dt ng-if="item.createdOn">Created On</dt>
-                                <dd ng-if="item.createdOn"><time>{{item.createdOn}}</time></dd>
+                                <dd ng-if="item.createdOn">{{item.createdOn * 1000 | date:'MM/dd/yyyy'}}</dd>
                                 <dt ng-if="item.projectManager">Created By</dt>
                                 <dd ng-if="item.projectManager">{{item.projectManager}}</dd>
                                 <dt ng-if="item.dueDate">Due Date</dt>
-                                <dd ng-if="item.dueDate"><time>{{item.dueDate}}</time></dd>
+                                <dd ng-if="item.dueDate">{{item.dueDate}}</dd>
                             </dl>
                         </div>
                     </div>

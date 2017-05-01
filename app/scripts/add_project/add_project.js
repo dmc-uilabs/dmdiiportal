@@ -177,7 +177,7 @@ angular.module('dmc.add_project', [
                         "title": params.title,
                         "type": params.type,
                         "dueDate": params.dueDate,
-                        "createdOn": moment(new Date).format('x'),
+                        "createdOn": moment().unix(),
                         "projectManager": $rootScope.userData.displayName,
                         "projectManagerId" : $rootScope.userData.profileId,
                         "companyId" : $rootScope.userData.companyId,
