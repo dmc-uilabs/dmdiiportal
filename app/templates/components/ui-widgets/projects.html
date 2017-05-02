@@ -26,8 +26,7 @@
                         </div>
                     </div>
                     <h2 class="margin-bottom-30">
-                        <a ng-if="item.isMember" ng-href="project.php#/{{ item.isMember.accept || item.companyId == $ctrl.userCompanyId ? item.id : 'preview/'+item.id }}" class="link-button">{{item.title}}</a>
-                        <a ng-if="!item.isMember" ng-href="project.php#/preview/{{item.id}}">{{item.title}}</a>
+                        <a ng-href="project.php#/{{ item.id }}" class="link-button" ng-class="{ 'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept) }">{{item.title}}</a>
                     </h2>
                     <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
                                 !item.isMember && !item.requiresAdminApprovalToJoin && !item.joinRequest"
@@ -83,13 +82,13 @@
 
             <div ng-if="$ctrl.widgetShowAllBlocks" class="row totals-row">
                 <div class="col-md-4" align="center">
-                    <h4 class="total"><a ng-href="{{'/project.php#/'+ item.id +'/tasks'}}" ng-class="{'link-disabled' : !item.isMember && item.requiresAdminApprovalToJoin}" ng-click="previousPage.save($event)">Tasks <span class="font-black">{{item.tasks.totalItems}}</span></a></h4>
+                    <h4 class="total"><a ng-href="{{'/project.php#/'+ item.id +'/tasks'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">Tasks <span class="font-black">{{item.tasks.totalItems}}</span></a></h4>
                 </div>
                 <div class="col-md-4" align="center">
-                    <h4 class="total"><a href="{{'/project.php#/'+ item.id +'/discussions'}}" ng-class="{'link-disabled' : !item.isMember && item.requiresAdminApprovalToJoin}" ng-click="previousPage.save($event)">Discussions <span class="font-black">{{item.discussions.totalItems}}</span></a></h4>
+                    <h4 class="total"><a href="{{'/project.php#/'+ item.id +'/discussions'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">Discussions <span class="font-black">{{item.discussions.totalItems}}</span></a></h4>
                 </div>
                 <div class="col-md-4" align="center">
-                    <h4 class="total"><a href="{{'/project.php#/'+ item.id +'/services'}}" ng-class="{'link-disabled' : !item.isMember && item.requiresAdminApprovalToJoin}" ng-click="previousPage.save($event)">Services <span class="font-black">{{item.services.totalItems}}</span></a></h4>
+                    <h4 class="total"><a href="{{'/project.php#/'+ item.id +'/services'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">Services <span class="font-black">{{item.services.totalItems}}</span></a></h4>
                 </div>
             </div>
 

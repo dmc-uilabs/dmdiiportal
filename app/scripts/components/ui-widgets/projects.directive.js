@@ -280,7 +280,7 @@ angular.module('dmc.widgets.projects', [
             };
 
             vm.accept = function (item) {
-                ajax.put(dataFactory.manageJoinRequests(item.id).accept, {}, function (response) {
+                ajax.update(dataFactory.updateMembersToProject(item.id), {}, function (response) {
                     item.isMember = response.data;
                     toastModel.showToast('success', 'You successfully joined to the project');
                     apply();
@@ -288,7 +288,7 @@ angular.module('dmc.widgets.projects', [
             };
 
             vm.decline = function (item) {
-                ajax.put(dataFactory.manageJoinRequests(item.id).decline, {}, function (response) {
+                ajax.delete(dataFactory.removeMembersToProject(item.id), {}, function (response) {
                     delete item.isMember;
                     apply();
                 });
