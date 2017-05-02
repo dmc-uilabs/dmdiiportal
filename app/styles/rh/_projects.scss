@@ -401,5 +401,10 @@ md-select:not([disabled]):focus .md-select-value {
     margin-bottom: 30px;
 }
 
+.link-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 
 

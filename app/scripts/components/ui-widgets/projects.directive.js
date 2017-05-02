@@ -52,7 +52,7 @@ angular.module('dmc.widgets.projects', [
 
             vm.projects = [];
             vm.total = 0;
-            vm.order = 'ASC';
+            vm.order = 'DESC';
             vm.start = 0;
             vm.currentPage = 0;
             vm.filterTag = null;
@@ -126,11 +126,13 @@ angular.module('dmc.widgets.projects', [
                         ids.push(vm.projects[i].id);
                         if (vm.projects[i].dueDate) {
                             var day = 86400000;
-                            vm.projects[i].dueDate = (new Date() - new Date(vm.projects[i].dueDate));
-                            if (vm.projects[i].dueDate <= day) {
-                                vm.projects[i].dueDate = moment(new Date()).format('MM/DD/YYYY');
+                            console.log(vm.projects[i].dueDate);
+                            var dueDateCompare = (new Date() - new Date(vm.projects[i].dueDate));
+                            console.log(vm.projects[i].dueDate);
+                            if (dueDateCompare <= day) {
+                                vm.projects[i].dueDate = moment(vm.projects[i].dueDate).format('MM/DD/YYYY');
                             } else {
-                                vm.projects[i].dueDate = Math.floor(vm.projects[i].dueDate / day) + ' days';
+                                vm.projects[i].dueDate = Math.floor(dueDateCompare / day) + ' days';
                             }
                         }
 
@@ -250,13 +252,13 @@ angular.module('dmc.widgets.projects', [
 
             vm.join = function (item) {
                 if (!item.requiresAdminApprovalToJoin) {
-                    ajax.create(dataFactory.createMembersToProject(), {
+                    ajax.create(dataFactory.joinProject(), {
                         'profileId': $rootScope.userData.profileId,
-                        'projectId': item.id,
-                        'fromProfileId': $rootScope.userData.profileId,
-                        'from': $rootScope.userData.displayName,
-                        'date': moment(new Date).format('x'),
-                        'accept': true
+                        'projectId': item.id
+                        // 'fromProfileId': $rootScope.userData.profileId,
+                        // 'from': $rootScope.userData.displayName,
+                        // 'date': moment(new Date).format('x'),
+                        // 'accept': true
                     }, function (response) {
                         item.isMember = response.data;
                         toastModel.showToast('success', 'You have successfully become a member of the project');
@@ -267,7 +269,6 @@ angular.module('dmc.widgets.projects', [
                     });
                 } else if (item.requiresAdminApprovalToJoin) {
                     ajax.create(dataFactory.joinProjectRequests(item.id), {
-                        'profileId': $rootScope.userData.profileId
                     }, function (response) {
                         item.joinRequest = response.data;
                         toastModel.showToast('success', 'Request to join successfully sent');
@@ -279,9 +280,7 @@ angular.module('dmc.widgets.projects', [
             };
 
             vm.accept = function (item) {
-                ajax.update(dataFactory.updateMembersToProject(item.isMember.id), {
-                    'accept': true
-                }, function (response) {
+                ajax.put(dataFactory.manageJoinRequests(item.id).accept, {}, function (response) {
                     item.isMember = response.data;
                     toastModel.showToast('success', 'You successfully joined to the project');
                     apply();
@@ -289,17 +288,11 @@ angular.module('dmc.widgets.projects', [
             };
 
             vm.decline = function (item) {
-                ajax.delete(dataFactory.removeMembersToProject(item.isMember.id), {}, function (response) {
+                ajax.put(dataFactory.manageJoinRequests(item.id).decline, {}, function (response) {
                     delete item.isMember;
                     apply();
                 });
             };
-
-            vm.numberOfPages = function () {
-                return Math.ceil(vm.projects.length / vm.pageSize);
-            };    //socketFactory.on(socketFactory.updated().projects, function(item){
-            //    vm.getProjects();
-            //});
             
             vm.getNextPage = function () {
                 vm.start += vm.limit;
