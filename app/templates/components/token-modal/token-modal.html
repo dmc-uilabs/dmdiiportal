@@ -1,22 +1,24 @@
-<md-dialog flex="80" aria-label="Token" class="token">
+<md-dialog aria-label="Token">
 	<md-content layout="column">
-		<div layout="row" flex="50" class="header">
-			<div layout="column">
-				<h2>Token</h2>
-			</div>
+		<div layout="row" layout-align="center center">
+				<h2>Are you sure you want to verify {{user.displayName}}?</h2>
 		</div>
-		<h3>The token below has been email to this user</h3>
-		<h3>{{token}}</h3>
 
-		<div layout="row top20" layout-align="space-between center" class="button-aria">
-			<!-- <md-button class="dmc-button md-raised" ng-click="emailToken()">
-				Email
-			</md-button> -->
+		<div ng-if="user.token">
+			<h4 style="text-align: center;">The token below has been sent to {{user.email}}:</h4>
+			<h4 style="text-align: center;">{{user.token}}</h4>
 		</div>
-		<div layout="row top20" layout-align="space-between center" class="button-aria">
+
+		<div layout="row" layout-align="center center" class="button-aria">
+			<md-button class="dmc-button md-raised" ng-click="emailToken()">
+				Verify
+			</md-button>
+			<div flex="10"></div>
 			<md-button class="dmc-button md-raised" ng-click="cancel()">
 				Close
 			</md-button>
 		</div>
+
+
 	</md-content>
 </md-dialog>
