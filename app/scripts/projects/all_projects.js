@@ -22,12 +22,15 @@ angular.module('dmc.all_projects', [
         });
         $urlRouterProvider.otherwise('/');
     })
-    .controller('DMCAllProjectsController', function ($scope,$rootScope,$element,$stateParams,$state) {
-
+    .controller('DMCAllProjectsController', function ($scope,$rootScope,$element,$stateParams,$state, dataFactory, ajax, toastModel, DMCUserModel) {
+        
+        $scope.myProjectsFlag = true;
+        $scope.allProjectsFlag = false;
         $scope.searchText = angular.isDefined($stateParams.text) ? $stateParams.text : null;
         $scope.filterModel = null;
         $scope.sortModel = 0;
         $scope.sortProjects = "most_recent";
+        $scope.isActive = false;
 
         $scope.submit = function(text){
             var dataSearch = $.extend(true, {}, $stateParams);
@@ -43,14 +46,11 @@ angular.module('dmc.all_projects', [
                 id : 2, tag : "title", name : "Name"
             }
         ];
-        $scope.filterList = [
-            {
-                id : 1, tag : "from_all_companies", name : "From All Companies"
-            },
-            {
-                id : 2, tag : "from_company", name : "From My Company"
-            }
-        ];
+        
+        $scope.filters = {
+            private: false,
+            public: false
+        };
 
         $scope.selectItemDropDown = function(type){
             if(type == "filter"){
@@ -68,19 +68,51 @@ angular.module('dmc.all_projects', [
                     $scope.sortList = $scope.sortList.sort(function(a,b){return a.id - b.id});
                     if ($scope.sortList.unshift(item)) $scope.sortModel = 0;
                 }
-                $rootScope.sortMAProjects(item.tag);
+                $scope.sortProjects = item.tag;
             }
         };
 
         $scope.updateSort = function(){
             var item = $scope.sortList[$scope.sortModel];
-            $rootScope.sortMAProjects(item.tag);
         };
 
         $scope.updateFilter = function(){
             var item = $scope.filterList[$scope.filterModel];
-            $rootScope.filterMAProjects(item.tag);
         };
-
+    
+        $scope.oneAtATime = true;
+    
+        $scope.status = {
+            isCustomHeaderOpen: false,
+            isFirstOpen: true,
+            isFirstDisabled: false
+        };
+        
+        $scope.toggleProjectsFlag = function(flag) {
+            if (flag === "myProjectsFlag" ) {
+                $scope.myProjectsFlag = !$scope.myProjectsFlag;
+            } else if (flag === "allProjectsFlag") {
+                $scope.allProjectsFlag = !$scope.allProjectsFlag;
+            }
+        };
+        
+        $scope.setFilter = function(filter) {
+            console.log(filter);
+            if (filter === 'public') {
+                $scope.filters.public = !$scope.filters.public;
+                $scope.filters.private = false;
+            } else if (filter === 'private') {
+                $scope.filters.public = false;
+                $scope.filters.private = !$scope.filters.private;
+            } else {
+                $scope.filters.public = false;
+                $scope.filters.private = false;
+            }
+            
+        };
+    
+        $scope.rotate = function () {
+            $scope.isActive = !$scope.isActive;
+        };
 
     });
