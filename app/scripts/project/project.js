@@ -1056,6 +1056,11 @@ angular.module('dmc.project', [
                         for(var i in history){
                             history[i].runTime = calcRunTime(history[i]);
                             history[i].date = moment(new Date(history[i].startDate+' '+history[i].startTime)).format('MM/DD/YYYY hh:mm A');
+                            ajax.get(dataFactory.getUserName(history[i].runBy), {}, function (response) {
+                                history[i].runByUserName = response.data.displayName;
+                            }, function (response) {
+                                toastModel.showToast("error", "Ajax failed: getUserName");
+                            });
                         }
                         if(callback){
                             callback(history);
