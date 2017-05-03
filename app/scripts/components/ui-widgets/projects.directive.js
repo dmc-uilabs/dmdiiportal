@@ -126,9 +126,7 @@ angular.module('dmc.widgets.projects', [
                         ids.push(vm.projects[i].id);
                         if (vm.projects[i].dueDate) {
                             var day = 86400000;
-                            console.log(vm.projects[i].dueDate);
                             var dueDateCompare = (new Date() - new Date(vm.projects[i].dueDate));
-                            console.log(vm.projects[i].dueDate);
                             if (dueDateCompare <= day) {
                                 vm.projects[i].dueDate = moment(vm.projects[i].dueDate).format('MM/DD/YYYY');
                             } else {
@@ -297,16 +295,12 @@ angular.module('dmc.widgets.projects', [
             vm.getNextPage = function () {
                 vm.start += vm.limit;
                 vm.getProjects();
-                console.log(vm.start);
-                console.log(vm.limit);
                 $window.scrollTo(0, 0);
             };
             
             vm.getPreviousPage = function () {
                 vm.start -= vm.limit;
                 vm.getProjects();
-                console.log(vm.start);
-                console.log(vm.limit);
                 $window.scrollTo(0, 0);
             };
         }
