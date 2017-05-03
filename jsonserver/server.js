@@ -13,6 +13,8 @@ server.use(jsonServer.rewriter({
     '/mark-read-notifications': '/user',
     '/clear-notification/:id': '/user',
     '/projects/all' : '/projects',
+    '/projects/public' : '/projects',
+    '/projects/my-projects' : '/projects',
     '/searchProjects' : '/projects',
     '/searchServices' : '/services',
     '/searchComponents' : '/components',
