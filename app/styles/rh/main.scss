@@ -217,4 +217,32 @@ ng-md-icon {
 	}
 }
 }
-  
+
+.dmc-blockquote {
+	border-left: 6px solid green;
+	border-right: 6px solid green;
+	color: gray;
+	margin-left: 26px;
+	margin-right: 32px;
+	padding-left: 26px;
+	padding-right: 50px;
+}
+
+.videosacademia {
+    width: 220px;
+    padding: 10px;
+    margin: 25px;
+		h5 {
+			margin-top: 25px;
+			color: green;
+		}
+}
+.videosacademia video {
+  width:100%;
+}
+
+.apps {
+    border: 1px solid green;
+    // padding: 10px;
+    margin: 25px;
+}

@@ -20,7 +20,7 @@
     <!-- Footer -->
     <dmc-footer></dmc-footer>
 
-    <?php include 'build-vendor.php' ?>
+    <?php include 'build-vendor-rh.php' ?>
     <!-- build:js scripts/academia/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
