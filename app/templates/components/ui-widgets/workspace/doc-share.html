@@ -24,13 +24,13 @@
               md-items="item in search(query)"
               md-item-text="item.displayName"
               md-floating-label="User"
-              ng-if="shareOption.internal">
+              ng-hide="!shareOption.internal">
               <md-item-template>
                   <span md-highlight-text="searchText">{{item.displayName}}</span>
               </md-item-template>
           </md-autocomplete>
 
-          <md-input-container ng-if="shareOption && !shareOption.internal">
+          <md-input-container ng-hide="!shareOption || shareOption.internal">
       			<label>Email</label>
       			<input ng-model="email">
       		</md-input-container>
