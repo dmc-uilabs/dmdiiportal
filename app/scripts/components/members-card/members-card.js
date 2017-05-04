@@ -259,7 +259,6 @@ angular.module('dmc.component.members-card', [
       $scope.emailToken = function() {
 					ajax.create(dataFactory.generateToken($scope.user.id), {}, function(response){
 						$scope.user.token = response.data.token
-						$scope.user.token = "POIUWEOPRIUWPEORISKJFHSDKJHF"
 					})
       };
 }])
