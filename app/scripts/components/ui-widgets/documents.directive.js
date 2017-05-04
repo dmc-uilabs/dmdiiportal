@@ -473,7 +473,7 @@ $scope.$watchCollection('selectedVips', function() {
 			}
 
 			$scope.share = function(){
-					$mdDialog.hide({user:$scope.user, doc:$scope.currentDoc});
+					$mdDialog.hide({user:$scope.user, doc:$scope.currentDoc, internal:$scope.option.internal});
 			}
 	}])
 	.filter('date', function() {
@@ -716,8 +716,11 @@ $scope.$watchCollection('selectedVips', function() {
 								},
 								clickOutsideToClose: true
 						}).then(function(choice){
+							var toastUser = choice.internal ? user.displayName : user.email
+							choice.user.email
+							choice.internal
 							ajax.create(dataFactory.documentsUrl(choice.doc.id, choice.user.id).share,{},function(resp){
-								toastModel.showToast("success", file.documentName+" shared with "+user.displayName+".");
+								toastModel.showToast("success", file.documentName+" shared with "+toastUser+".");
 							});
 						});
 				}
