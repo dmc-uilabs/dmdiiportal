@@ -11,6 +11,12 @@
     <div layout='column' flex='25' class="attribute">Last Modified</div>
     <div layout='column' flex='75' class="value">{{selectedDocument.modified | date:'yyyy-MM-dd HH:mm Z'}}</div>
   </div>
+
+  <div layout='row'>
+    <div layout='column' flex='25' class="attribute">Sha</div>
+    <div layout='column' flex='75' class="value">{{selectedDocument.sha256}}</div>
+  </div>
+
   <div layout='row'>
     <div layout='column' flex='25' class="attribute">Download</div>
     <div layout='column' flex='75' class="value"><a href="{{selectedDocument.documentUrl}}">here</a></div>
