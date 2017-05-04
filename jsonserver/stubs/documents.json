@@ -1,55 +1,93 @@
-[
-	{
-		"id": 1,
-		"title": "Low Heat Loss Transformer Specification PDM Co.pdf",
-		"projectId": 5,
-		"modifed": "01/25/2016 03:18 PM",
-		"size": "100MB",
-		"owner": "Bob Smith",
-		"file": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-	},
-	{
-		"id": 2,
-		"title": "Low Heat Loss Power Transformer Schedule PDM Co.pdf",
-		"projectId": 5,
-		"modifed": "01/25/2016 03:18 PM",
-		"size": "100MB",
-		"owner": "Bob Smith",
-		"file": "/uploads/5/Low Heat Loss Power Transformer Schedule PDM Co.pdf"
-	},
-	{
-		"id": 3,
-		"title": "Low Heat Loss Transformer Proposal SAM Co.pdf",
-		"projectId": 5,
-		"modifed": "01/25/2016 03:18 PM",
-		"size": "100MB",
-		"owner": "Bob Smith",
-		"file": "/uploads/5/Low Heat Loss Transformer Proposal SAM Co.pdf"
-	},
-	{
-		"id": 4,
-		"title": "Edit Company Storefront",
-		"projectId": 1,
-		"modifed": "01/25/2016 03:18 PM",
-		"size": "100MB",
-		"owner": "Bob Smith",
-		"file": "/uploads/4/Edit Company Storefront.pdf"
-	},
-	{
-		"id": 5,
-		"title": "Edit Company Storefront",
-		"projectId": 1,
-		"modifed": "01/25/2016 03:18 PM",
-		"size": "100MB",
-		"owner": "Bob Smith",
-		"file": "/uploads/5/Edit Company Storefront.pdf"
-	},
-	{
-		"parentId": 44,
-		"docClass":"IMAGE",
-		"parentType": "SERVICE",
-		"data": [
-			"http://cdn.playbuzz.com/cdn/7a7a5814-ed79-410c-b748-db6a24f73f0b/4d71c010-f930-4334-ba62-79d87a7ddef4.jpg"
-		]
-	}
+[{
+        "id": 1,
+        "title": "Low Heat Loss Transformer Specification PDM Co.pdf",
+        "projectId": 5,
+        "modifed": "01/25/2016 03:18 PM",
+        "size": "100MB",
+        "owner": "Bob Smith",
+        "file": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+    }, {
+        "id": 2,
+        "title": "Low Heat Loss Power Transformer Schedule PDM Co.pdf",
+        "projectId": 5,
+        "modifed": "01/25/2016 03:18 PM",
+        "size": "100MB",
+        "owner": "Bob Smith",
+        "file": "/uploads/5/Low Heat Loss Power Transformer Schedule PDM Co.pdf"
+    }, {
+        "id": 3,
+        "title": "Low Heat Loss Transformer Proposal SAM Co.pdf",
+        "projectId": 5,
+        "modifed": "01/25/2016 03:18 PM",
+        "size": "100MB",
+        "owner": "Bob Smith",
+        "file": "/uploads/5/Low Heat Loss Transformer Proposal SAM Co.pdf"
+    }, {
+        "id": 4,
+        "title": "Edit Company Storefront",
+        "projectId": 1,
+        "modifed": "01/25/2016 03:18 PM",
+        "size": "100MB",
+        "owner": "Bob Smith",
+        "file": "/uploads/4/Edit Company Storefront.pdf"
+    }, {
+        "id": 5,
+        "title": "Edit Company Storefront",
+        "projectId": 1,
+        "modifed": "01/25/2016 03:18 PM",
+        "size": "100MB",
+        "owner": "Bob Smith",
+        "file": "/uploads/5/Edit Company Storefront.pdf"
+    }, {
+        "parentId": 44,
+        "docClass": "IMAGE",
+        "parentType": "SERVICE",
+        "data": [
+            "http://cdn.playbuzz.com/cdn/7a7a5814-ed79-410c-b748-db6a24f73f0b/4d71c010-f930-4334-ba62-79d87a7ddef4.jpg"
+        ]
+    },
+    {
+        "id": 263,
+        "documentName": "Fracture+Mechanics+-+Beta+Factor.doc",
+        "documentUrl": "https://dmcuptemp.s3.amazonaws.com/Fracture%2BMechanics%2B-%2BBeta%2BFactor.doc",
+        "parentType": "SERVICE",
+        "parentId": 497,
+        "ownerId": 206,
+        "ownerDisplayName": "Digital Manufacturing Commons",
+        "tags": [{
+            "id": 71,
+            "tagName": "betafactor document"
+        }],
+        "modified": 1484957443538,
+        "expires": 1487549443538,
+        "docClass": "SUPPORT",
+        "accessLevel": null,
+        "vips": [],
+        "version": 0,
+        "directoryId": null,
+        "baseDocId": 263,
+        "hasVersions": false
+    }, {
+        "id": 262,
+        "documentName": "LICENSE",
+        "documentUrl": "https://dmcupfinal.s3.amazonaws.com/SERVICE/cuid-31053242-5bd5-44b1-a61e-66976eeddffb%2540uilabs.idp.cirrusidentity.com/Documents/1484957452-740129-sanitized-LICENSE?AWSAccessKeyId=AKIAIZPP46XXRK6PBF6A&Expires=1496451663&Signature=ECF2sc6ccgm4fIRYLZ4s8yXbEkQ%3D",
+        "parentType": "SERVICE",
+        "parentId": 497,
+        "ownerId": 206,
+        "ownerDisplayName": "Digital Manufacturing Commons",
+        "tags": [{
+            "id": 71,
+            "tagName": "betafactor document"
+        }],
+        "modified": 1484957443406,
+        "expires": 1496361600000,
+        "docClass": "SUPPORT",
+        "accessLevel": null,
+        "vips": [],
+        "version": 0,
+        "directoryId": null,
+        "baseDocId": 262,
+        "hasVersions": false
+    }
+
 ]

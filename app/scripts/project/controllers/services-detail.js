@@ -210,7 +210,7 @@ angular.module('dmc.project')
 		    																					docClass: 'SUPPORT',
 		    																					recent: 5},
 				function(response){
-					$scope.service.service_docs = response.data.data;
+					$scope.service.service_docs = response.data;
 				}
 			);
 
