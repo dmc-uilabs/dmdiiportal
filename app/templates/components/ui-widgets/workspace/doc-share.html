@@ -32,10 +32,12 @@
 
           <md-input-container ng-hide="!shareOption || shareOption.internal">
       			<label>Email</label>
-      			<input ng-model="email">
+      			<input type="email"
+                    ng-model="email"
+                    >
       		</md-input-container>
 
-          <md-button class="md-raised md-primary" ng-click="share()" ng-disabled="!user" aria-label="share">Share</md-button>
+          <md-button class="md-raised md-primary" ng-click="share()" ng-disabled="!user && !email" aria-label="share">Share</md-button>
       </section>
   </md-content>
 </md-dialog>
