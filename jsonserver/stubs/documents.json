@@ -1,55 +1,54 @@
-[
-	{
-		"id": 1,
-		"title": "Low Heat Loss Transformer Specification PDM Co.pdf",
-		"projectId": 5,
-		"modifed": "01/25/2016 03:18 PM",
-		"size": "100MB",
-		"owner": "Bob Smith",
-		"file": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
-	},
-	{
-		"id": 2,
-		"title": "Low Heat Loss Power Transformer Schedule PDM Co.pdf",
-		"projectId": 5,
-		"modifed": "01/25/2016 03:18 PM",
-		"size": "100MB",
-		"owner": "Bob Smith",
-		"file": "/uploads/5/Low Heat Loss Power Transformer Schedule PDM Co.pdf"
-	},
-	{
-		"id": 3,
-		"title": "Low Heat Loss Transformer Proposal SAM Co.pdf",
-		"projectId": 5,
-		"modifed": "01/25/2016 03:18 PM",
-		"size": "100MB",
-		"owner": "Bob Smith",
-		"file": "/uploads/5/Low Heat Loss Transformer Proposal SAM Co.pdf"
-	},
-	{
-		"id": 4,
-		"title": "Edit Company Storefront",
-		"projectId": 1,
-		"modifed": "01/25/2016 03:18 PM",
-		"size": "100MB",
-		"owner": "Bob Smith",
-		"file": "/uploads/4/Edit Company Storefront.pdf"
-	},
-	{
-		"id": 5,
-		"title": "Edit Company Storefront",
-		"projectId": 1,
-		"modifed": "01/25/2016 03:18 PM",
-		"size": "100MB",
-		"owner": "Bob Smith",
-		"file": "/uploads/5/Edit Company Storefront.pdf"
-	},
-	{
-		"parentId": 44,
-		"docClass":"IMAGE",
-		"parentType": "SERVICE",
-		"data": [
-			"http://cdn.playbuzz.com/cdn/7a7a5814-ed79-410c-b748-db6a24f73f0b/4d71c010-f930-4334-ba62-79d87a7ddef4.jpg"
-		]
-	}
-]
+[{
+    "id": 1,
+    "title": "Low Heat Loss Transformer Specification PDM Co.pdf",
+    "projectId": 5,
+    "modifed": "01/25/2016 03:18 PM",
+    "size": "100MB",
+    "owner": "Bob Smith",
+    "file": "/uploads/5/Low Heat Loss Transformer Specification PDM Co.pdf"
+}, {
+    "id": 2,
+    "title": "Low Heat Loss Power Transformer Schedule PDM Co.pdf",
+    "projectId": 5,
+    "modifed": "01/25/2016 03:18 PM",
+    "size": "100MB",
+    "owner": "Bob Smith",
+    "file": "/uploads/5/Low Heat Loss Power Transformer Schedule PDM Co.pdf"
+}, {
+    "id": 3,
+    "title": "Low Heat Loss Transformer Proposal SAM Co.pdf",
+    "projectId": 5,
+    "modifed": "01/25/2016 03:18 PM",
+    "size": "100MB",
+    "owner": "Bob Smith",
+    "file": "/uploads/5/Low Heat Loss Transformer Proposal SAM Co.pdf"
+}, {
+    "id": 4,
+    "title": "Edit Company Storefront",
+    "projectId": 1,
+    "modifed": "01/25/2016 03:18 PM",
+    "size": "100MB",
+    "owner": "Bob Smith",
+    "file": "/uploads/4/Edit Company Storefront.pdf"
+}, {
+    "id": 5,
+    "title": "Edit Company Storefront",
+    "projectId": 1,
+    "modifed": "01/25/2016 03:18 PM",
+    "size": "100MB",
+    "owner": "Bob Smith",
+    "file": "/uploads/5/Edit Company Storefront.pdf"
+}, {
+    "parentId": 44,
+    "docClass": "IMAGE",
+    "parentType": "SERVICE",
+    "data": [
+        "http://cdn.playbuzz.com/cdn/7a7a5814-ed79-410c-b748-db6a24f73f0b/4d71c010-f930-4334-ba62-79d87a7ddef4.jpg"
+    ]
+}, {
+    "parentId": 465,
+    "docClass": "SUPPORT",
+    "parentType": "SERVICE",
+    "documentUrl": "http://cdn.playbuzz.com/cdn/7a7a5814-ed79-410c-b748-db6a24f73f0b/4d71c010-f930-4334-ba62-79d87a7ddef4.jpg",
+    "documentName": "This is a doc"
+}]
