@@ -1,0 +1,206 @@
+[
+{
+      "content": "Display-name Drop-down Menu",
+      "notes":
+      [
+            {
+                  "content": "My Account",
+                  "notes":
+                  [
+                        {
+                              "content": "Account Basics"
+                        },
+                        {
+                              "content": "Privacy"
+                        },
+                        {
+                              "content": "Notifications"
+                        }
+                  ]
+            },
+            {
+                  "content": "My Profile"
+            },
+            {
+                  "content": "My Workspaces Directory",
+                  "notes":
+                  [
+                        {
+                              "content": "Home"
+                        },
+                        {
+                              "content": "Discussions"
+                        },
+                        {
+                              "content": "Team"
+                        },
+                        {
+                              "content": "Documents"
+                        },
+                        {
+                              "content": "Tasks"
+                        },
+                        {
+                              "content": "Services"
+                        }
+                  ]
+            },
+            {
+                  "content": "Create DMDII content"
+            },
+            {
+                  "content": "Create DMDII Member"
+            },
+            {
+                  "content": "Create DMDII Project"
+            }
+      ]
+},
+{
+      "content": "Top Menu",
+      "notes":
+      [
+            {
+                  "content": "Invitations"
+            },
+            {
+                  "content": "Notifications"
+            }
+      ]
+},
+{
+      "content": "Footer",
+      "notes":
+      [
+            {
+                  "content": "FAQs"
+            },
+            {
+                  "content": "Legal",
+                  "notes":
+                  [
+                        {
+                              "content": "General Terms of Service"
+                        },
+                        {
+                              "content": "Member Terms of Service"
+                        },
+                        {
+                              "content": "Privacy Policy"
+                        },
+                        {
+                              "content": "App SLA"
+                        },
+                        {
+                              "content": "DMCA"
+                        }
+                  ]
+            },
+            {
+                  "content": "Contact Us"
+            }
+      ]
+},
+{
+      "content":"Header",
+      "notes":
+      [
+            {
+                  "content": "Core",
+                  "notes":
+                  [
+                        {
+                              "content": "About the DMC"
+                        },
+                        {
+                              "content": "DMC Security"
+                        },
+                        {
+                              "content": "DMC Academia"
+                        },
+                        {
+                              "content": "DMC Releases"
+                        },
+                        {
+                              "content": "DMC Blog"
+                        }
+                  ]
+            },
+            {
+                  "content": "Explore",
+                  "notes":
+                  [
+                        {
+                              "content": "Individuals",
+                              "notes":
+                              [
+                                    {
+                                          "content": "User Profile page"
+                                    }
+                              ]
+                        },
+                        {
+                              "content": "Organization",
+                              "notes":
+                              [
+                                    {
+                                          "content": "Organization Profile page"
+                                    }
+                              ]
+                        },
+                        {
+                              "content": "Activities"
+                        },
+                        {
+                              "content": "All Workspaces Directory",
+                              "notes":
+                              [
+                                    {
+                                          "content": "Home"
+                                    },
+                                    {
+                                          "content": "Discussions"
+                                    },
+                                    {
+                                          "content": "Team"
+                                    },
+                                    {
+                                          "content": "Documents"
+                                    },
+                                    {
+                                          "content": "Tasks"
+                                    },
+                                    {
+                                          "content": "Services"
+                                    }
+                              ]
+                        }
+                  ]
+            },
+            {
+                  "content":"My Organization"
+            },
+            {
+                  "content": "Marketplace",
+                  "notes":
+                  [
+                        {
+                          "content": "Application Profile page"
+                        }
+                  ]
+            },
+            {
+                  "content": "DMDII Portal",
+                  "notes":
+                  [
+                        {
+                              "content": "DMDII Member Directory"
+                        },
+                        {
+                              "content": "DMDII Projects Directory"
+                        }
+                  ]
+            }
+      ]
+}
+]

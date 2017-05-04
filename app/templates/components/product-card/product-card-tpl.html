@@ -35,7 +35,7 @@
       <div class="product-card-container">
           <div class="product-card__description product-card-container">
               <div class="product-text">{{cardSource.description | removeHTMLTags | limitTo:descriptionLenLimit}}
-                <span ng-if="descriptionTooLong()" ng-click="switchDescriptionLenLimit()"><a style="color: #65AF3F;" href>...{{descriptionLenLimitPrompt}}<a></span>
+                <span ng-if="descriptionTooLong()" ng-click="switchDescriptionLenLimit()"><a style="color: #65AF3F;" href>...{{descriptionLenLimitPrompt}}</a></span>
               </div>
               <!-- <ui-widget-stars-static class="review-stars" size="10" value={{cardSource.ratingAverage}} text=({{cardSource.ratingCount}})></ui-widget-stars-static> -->
           </div>

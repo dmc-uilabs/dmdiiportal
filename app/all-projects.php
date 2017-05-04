@@ -20,7 +20,7 @@
     <!-- Footer -->
     <dmc-footer></dmc-footer>
 
-    <?php include 'build-vendor.php' ?>
+    <?php include 'build-vendor-rh.php' ?>
 
     <!-- build:js scripts/projects/all.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>

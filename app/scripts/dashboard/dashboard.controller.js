@@ -17,6 +17,11 @@ angular.module('dmc.dashboard')
             toastModel) {
 
             $scope.isMobile = mobileFactory.any();
+    
+            $scope.filters = {
+                private: false,
+                public: false
+            };
 
             if($cookieStore.get("toast")){
 			    toastModel.showToast("success", $cookieStore.get("toast"));

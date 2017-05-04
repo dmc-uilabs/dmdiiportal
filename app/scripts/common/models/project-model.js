@@ -47,6 +47,7 @@ angular.module('dmc.model.project', ['dmc.data'])
             };
 
             this.createProject = function(project) {
+                console.log(project);
                 ajax.create(
                     dataFactory.getCreateProject(),
                     project,

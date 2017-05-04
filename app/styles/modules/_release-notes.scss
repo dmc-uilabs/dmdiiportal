@@ -9,6 +9,7 @@
 }
 .release-bug::before {
    background-color: red;
+   opacity: 0.7;
    border-radius: 8px;
    color: white;
    content: "BUG";
@@ -29,6 +30,7 @@
   margin: 5px 5px 5px -66px;
   padding: 6px;
   background-color: purple;
+  opacity: 0.7;
 }
 .release-feature::before {
   border-radius: 8px;
@@ -40,6 +42,7 @@
   margin: 5px 5px 5px -64px;
   padding: 6px;
   background-color: green;
+  opacity: 0.7;
 }
 .margin5px{
       margin: 5px;
