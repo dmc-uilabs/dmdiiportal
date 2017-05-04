@@ -80,7 +80,7 @@ angular.module('dmc.data',[])
             },
             getUrlAllDiscussions: function(id){
                 // return baseServer+'/discussions'+appendId(id);
-                return baseServer+webServiceUrl('projects', 'discussions', id);
+                return baseServer+webServiceUrl('projects', 'all-discussions', id);
             },
             getUrlAllProjects: function(id){
                 return baseServer+'/projects';
@@ -366,6 +366,12 @@ angular.module('dmc.data',[])
             },
             getProjects: function(type){
                 return localhost+(type == 'all-projects' ? 'projects/all' : 'projects');
+            },
+            getPublicProjects: function() {
+                return localhost+'projects/public';
+            },
+            getMyProjects: function() {
+                return localhost+'projects/my-projects';
             },
             getProject: function(id){
                 return localhost+'projects/'+id;
