@@ -453,8 +453,9 @@ $scope.$watchCollection('selectedVips', function() {
 		      $mdDialog.hide($scope.file);
 		  }
   }])
-	.controller('DocShareCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', function ($scope, $mdDialog, file, ajax, dataFactory) {
+	.controller('DocShareCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', 'shareOptions', function ($scope, $mdDialog, file, ajax, dataFactory, shareOptions) {
 			$scope.file=file;
+			$scope.shareOptions=shareOptions;
 
 			ajax.get(dataFactory.documentsUrl(file.baseDocId).versioned, {}, function(response){
 				$scope.docs = response.data;
@@ -687,6 +688,22 @@ $scope.$watchCollection('selectedVips', function() {
 						});
 				}
 
+				// This is only a placeholder to loosely structure the options around sharing
+				$scope.shareOptions = [
+					{
+						name: "Site Notification",
+						internal: true
+					},
+					{
+						name: "DMC Email",
+						internal: true
+					},
+					{
+						name: "Direct Email",
+						internal: false
+					}
+				]
+
 				$scope.shareFile = function(file,ev){
 						$mdDialog.show({
 								controller: 'DocShareCtrl',
@@ -694,7 +711,8 @@ $scope.$watchCollection('selectedVips', function() {
 								parent: angular.element(document.body),
 								targetEvent: ev,
 								locals: {
-										file: file
+										file: file,
+										shareOptions: $scope.shareOptions
 								},
 								clickOutsideToClose: true
 						}).then(function(choice){
