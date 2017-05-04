@@ -201,7 +201,7 @@ angular.module('dmc.project')
 		//     																					docClass: 'IMAGE',
 		//     																					recent: 5},
 		// 		function(response){
-		// 			$scope.service.service_images = response.data;
+		// 			$scope.service.service_images = response.data.data;
 		// 		}
 		// 	);
 
@@ -210,7 +210,7 @@ angular.module('dmc.project')
 		    																					docClass: 'SUPPORT',
 		    																					recent: 5},
 				function(response){
-					$scope.service.service_docs = response.data;
+					$scope.service.service_docs = response.data.data;
 				}
 			);
 
