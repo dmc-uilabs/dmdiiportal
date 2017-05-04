@@ -87,7 +87,7 @@
 		<md-tab ng-click="getDocuments()" label="DOCUMENTS">
 			<md-content class="md-padding">
 
-            <div ng-if="service.service_docs">
+            <div ng-if="!service.service_docs">
               <h3>No documents</h3>
             </div>
             <md-data-table-container layout="row" flex=100 ng-if="service.service_docs.length > 0">
