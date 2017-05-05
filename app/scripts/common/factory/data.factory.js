@@ -630,7 +630,8 @@ angular.module('dmc.data',[])
                     update: localhost + 'documents/' + id,
                     delete: localhost + 'documents/' + id,
                     versioned: localhost + 'documents/versions/' + id,
-                    share: localhost + 'documents/'+id+'/user/'+userid
+                    // share: localhost + 'documents/'+id+'/user/'+userid
+                    share: localhost + 'documents/'+id+'/share'
                 }
             },
             directoriesUrl: function(id) {

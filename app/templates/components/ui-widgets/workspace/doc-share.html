@@ -38,7 +38,7 @@
       		</md-input-container>
 
           <md-button ng-hide="showConfirm" class="md-raised md-primary" ng-click="showConfirm=true" ng-disabled="!user && !email" aria-label="share">Share</md-button>
-          <h5 ng-hide="!showConfirm">Are you sure you want to share with [user]?</h5>
+          <h5 ng-hide="!showConfirm">Are you sure you want to share with {{shareOption.internal ? user.displayName : user.email}}?</h5>
           <md-button ng-hide="!showConfirm" class="md-raised md-primary" ng-click="showConfirm=false" aria-label="cancel">Cancel</md-button>
           <md-button ng-hide="!showConfirm" class="md-raised md-primary" ng-click="share()" ng-disabled="!user && !email" aria-label="share">Confirm</md-button>
       </section>

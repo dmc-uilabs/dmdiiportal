@@ -70,16 +70,4 @@ angular.module('dmc.notifications', [
             )
         };
 
-				this.updateResponseShape = function(data){
-					// for (var i=0; i<data.length; i++){
-					// 	if (data[i].type=="DOCUMENT_SHARED") {
-					// 		var notDetails = JSON.parse(data[i].message);
-					// 		data[i].documentUrl = notDetails.documentUrl;
-					// 		data[i].documentName = notDetails.documentName;
-					// 		data[i].message = "A documen was shared with you."
-					// 	}
-					// }
-
-					return data;
-				}
     }]);
