@@ -104,7 +104,7 @@
                         <md-icon ng-switch-default md-svg-src="images/icon_project.svg"></md-icon>
 					</div>
 					<h4 flex ng-switch on="item.type">
-						<a ng-switch-when="DOCUMENT_SHARED" href="">{{item.message}}</a>
+						<a ng-switch-when="DOCUMENT_SHARED" ng-href="{{item.message}}">{{item.createdBy.displayName}} has shared a document with you. Click to view.</a>
 						<a ng-switch-default href="/company-profile.php#/profile/{{userData.companyId}}">{{item.message}}</a>
 					</h4>
 					<h4>{{item.created | date:'medium'}}</h4>
