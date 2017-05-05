@@ -473,7 +473,7 @@ $scope.$watchCollection('selectedVips', function() {
 			}
 
 			$scope.share = function(){
-					$mdDialog.hide({user:$scope.user, doc:$scope.currentDoc, internal:$scope.shareOption.internal});
+					$mdDialog.hide({user:$scope.user, doc:$scope.currentDoc, internal:$scope.shareOption.internal, email:$scope.shareOption.email});
 			}
 	}])
 	.filter('date', function() {
@@ -693,17 +693,17 @@ $scope.$watchCollection('selectedVips', function() {
 					{
 						name: "Site Notification",
 						internal: true,
-						param: 'notify'
+						email: false
 					},
 					{
 						name: "DMC Email",
 						internal: true,
-						param: 'email'
+						email: true
 					},
 					{
 						name: "Direct Email",
 						internal: false,
-						param: 'email'
+						email: true
 					}
 				]
 
@@ -720,11 +720,8 @@ $scope.$watchCollection('selectedVips', function() {
 								clickOutsideToClose: true
 						}).then(function(choice){
 							var toastUser = choice.internal ? choice.user.displayName : choice.user.email
-							var params = {
-								user: choice.internal ? choice.user.id : choice.user.email,
-								internal: choice.internal
-							}
-							ajax.create(dataFactory.documentsUrl(choice.doc.id).share,params,function(resp){
+							var user = choice.internal ? choice.user.id : choice.user.email;
+							ajax.create(dataFactory.documentsUrl(choice.doc.id, user, choice.internal, choice.email).share,{},function(resp){
 								toastModel.showToast("success", file.documentName+" shared with "+toastUser+".");
 							});
 						});
