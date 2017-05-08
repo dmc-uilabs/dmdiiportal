@@ -2,7 +2,7 @@
     <section class="container">
         <div class="row">
             <div class="col-xs-3">
-                <img class="img-responsive" ng-src="images/dmcAcademia.png">
+                <img class="img-responsive" ng-src="images/dmcAcademia.svg">
             </div>
             <div class="text col-xs-9">
                 <h1>DMC ACADEMIA</h1>
@@ -30,6 +30,60 @@
         </div>
 
     </section>
+
+    <script>
+    jQuery(document).ready(function(){
+        jQuery('#hideshowUni').on('click', function(event) {
+             jQuery('#uniContent').toggle('show');
+              jQuery('#courseraContent').hide();
+
+        });
+        jQuery('#hideshowCou').on('click', function(event) {
+             jQuery('#courseraContent').toggle('show');
+              jQuery('#uniContent').hide();
+        });
+
+    });
+    </script>
+
+
+    <section class="container">
+        <div class="row ">
+            <h2>Pathways for learning</h2>
+            <h3>Ensuring the DMC is where you need it</h3>
+            <div class="row">
+              <div class="col-xs-2">
+              </div>
+              <div class="col-xs-10">
+                <div class="apps col-md-4">
+                    <h3><span style="color:green">For Students</span></h3>
+                    <img class="img-responsive" ng-src="images/DIMELABS.png">
+                    <br>
+                    <p>Students or members of the academic community can follow the link below to learn more about how to use the DMC in the classroom.</p>
+                    <h4><a id="hideshowUni"> View Academic Content</a></h4>
+                </div>
+                <div class="apps col-md-4">
+                    <h3><span style="color:green">Seeking Certification</span></h3>
+                    <img class="img-responsive" ng-src="images/coursera.png">
+                    <br>
+                    <p> Looking for a certification, the link below describes the Coursera MOOC (Massive Open Online Course). Improve your career with a Digital Manufacturing Specialization.</p>
+                    <h4><a id="hideshowCou">View  Coursera Certification</a></h4>
+                </div>
+
+              </div>
+              <div class="col-xs-1">
+              </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div id="uniContent" style="display:none">
+
+
+
+
 
     <section class="container">
         <div class="row">
@@ -372,6 +426,12 @@
         </div>
 
     </section>
+
+
+
+</div>
+<div id="courseraContent" style="display:none">
+
 
 <!-- This is the split between the NCSU section and the Coursera section -->
 <!-- This is the split between the NCSU section and the Coursera section -->
@@ -884,7 +944,6 @@
               <br>
             </div>
             </div>
-        </div>
     </div>
 </section>
 
@@ -914,5 +973,6 @@
         </div>
     </div>
 </section>
+</div>
 
 </main>
