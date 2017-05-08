@@ -626,18 +626,18 @@ angular.module('dmc.project', [
                     'service_tags': $http.get(dataFactory.services(id).get_tags),
                     'services_statistic': $http.get(dataFactory.services(id).get_statistics),
                     'service_reviews': $http.get(dataFactory.services(id).reviews),
-                    'service_images': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
-                        parentType: 'SERVICE',
-                        parentId: id,
-                        docClass: 'IMAGE',
-                        recent: 5
-                    }}),
-                    'service_docs': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
-                        parentType: 'SERVICE',
-                        parentId: id,
-                        docClass: 'SUPPORT',
-                        recent: 5
-                    }}),
+                    // 'service_images': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
+                    //     parentType: 'SERVICE',
+                    //     parentId: id,
+                    //     docClass: 'IMAGE',
+                    //     recent: 5
+                    // }}),
+                    // 'service_docs': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
+                    //     parentType: 'SERVICE',
+                    //     parentId: id,
+                    //     docClass: 'SUPPORT',
+                    //     recent: 5
+                    // }}),
                     'interface': $http.get(dataFactory.services(id).get_interface),
                     'currentStatus': $http({method : 'GET', url : dataFactory.runService(), params : {
                         _limit : 1,
@@ -691,8 +691,8 @@ angular.module('dmc.project', [
                         service.service_tags = extractData(responses.service_tags);
                         service.services_statistic = extractData(responses.services_statistic);
                         service.service_reviews = extractData(responses.service_reviews);
-                        service.service_images = extractDocData(responses.service_images);
-                        service.service_docs = extractDocData(responses.service_docs);
+                        // service.service_images = extractDocData(responses.service_images);
+                        // service.service_docs = extractDocData(responses.service_docs);
 
                         service.rating = service.service_reviews.map(function(value, index){
                             return value.rating;
