@@ -18,12 +18,11 @@ angular.module('dmc.project')
             	{
             		_sort: ($scope.sort[0] == '-' ? $scope.sort.substring(1, $scope.sort.length) : $scope.sort),
                     _order: $scope.order
-            	},
-            	function(data){
-            		$scope.history = data;
-            		if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             	}
-            )
+            ).then (function(data){
+                    $scope.history = data;
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                });
         };
         $scope.openResults = function(history, ev){
             $(window).scrollTop(0);
