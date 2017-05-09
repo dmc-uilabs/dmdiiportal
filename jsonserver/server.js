@@ -9,7 +9,8 @@ var server = jsonServer.create();
 server.use(jsonServer.defaults());
 // Add this before server.use(router)
 server.use(jsonServer.rewriter({
-    '/user/createtoken':'/createtoken',
+    '/documents/directories/:id': '/documentsdirectories',
+    '/documents/versions/:id': '/documentversions',
     '/project/:pid/invite/:uid': '/projects_members/:uid',
     '/mark-read-notifications': '/user',
     '/clear-notification/:id': '/user',

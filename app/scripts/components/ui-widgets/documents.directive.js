@@ -453,18 +453,19 @@ $scope.$watchCollection('selectedVips', function() {
 		      $mdDialog.hide($scope.file);
 		  }
   }])
-	.controller('DocShareCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', '$http', 'projectId', '$rootScope', function ($scope, $mdDialog, file, ajax, dataFactory, $http, projectId, $rootScope) {
+	.controller('DocShareCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', 'shareOptions', '$http', 'projectId', '$rootScope', function ($scope, $mdDialog, file, ajax, dataFactory, shareOptions, $http, projectId, $rootScope) {
 			$scope.file=file;
-			$scope.projectId = projectId;
-			$scope.shareEmail = '';
-      
-		    $scope.shareType = '';
-		    $scope.shareTypes = {
-		        'dmc_member': 'DMC Member',
-			    'organization_member' : 'Organization Member',
-		        'external': 'Other (Email)'
-		    };
-
+			$scope.shareOptions=shareOptions;
+            $scope.projectId = projectId;
+            $scope.shareEmail = '';
+            
+            $scope.shareType = '';
+            $scope.shareTypes = {
+                'dmc_member': 'DMC Member',
+                'organization_member' : 'Organization Member',
+                'external': 'Other (Email)'
+            };
+			
 			ajax.get(dataFactory.documentsUrl(file.baseDocId).versioned, {}, function(response){
 				$scope.docs = response.data;
 				$scope.currentDoc = response.data.slice(-1)[0];
@@ -500,7 +501,7 @@ $scope.$watchCollection('selectedVips', function() {
 			};
 
 			$scope.share = function(){
-					$mdDialog.hide({user:$scope.user, doc:$scope.currentDoc});
+					$mdDialog.hide({user:$scope.user, doc:$scope.currentDoc, internal:$scope.shareOption.internal, email:$scope.shareOption.email});
 			}
 	}])
 	.filter('date', function() {
@@ -715,6 +716,25 @@ $scope.$watchCollection('selectedVips', function() {
 						});
 				}
 
+				// This is only a placeholder to loosely structure the options around sharing
+				$scope.shareOptions = [
+					{
+						name: "Site Notification",
+						internal: true,
+						email: false
+					},
+					{
+						name: "DMC Email",
+						internal: true,
+						email: true
+					},
+					{
+						name: "Direct Email",
+						internal: false,
+						email: true
+					}
+				]
+
 				$scope.shareFile = function(file,ev){
 						$mdDialog.show({
 								controller: 'DocShareCtrl',
@@ -723,12 +743,15 @@ $scope.$watchCollection('selectedVips', function() {
 								targetEvent: ev,
 								locals: {
 										file: file,
-										projectId: $scope.projectId
+										shareOptions: $scope.shareOptions,
+                                        projectId: $scope.projectId
 								},
 								clickOutsideToClose: true
 						}).then(function(choice){
-							ajax.create(dataFactory.documentsUrl(choice.doc.id, choice.user.id).share,{},function(resp){
-								toastModel.showToast("success", file.documentName+" shared with "+user.displayName+".");
+							var toastUser = choice.internal ? choice.user.displayName : choice.user.email
+							var user = choice.internal ? choice.user.id : choice.user.email;
+							ajax.create(dataFactory.documentsUrl(choice.doc.id, user, choice.internal, choice.email).share,{},function(resp){
+								toastModel.showToast("success", file.documentName+" shared with "+toastUser+".");
 							});
 						});
 				}

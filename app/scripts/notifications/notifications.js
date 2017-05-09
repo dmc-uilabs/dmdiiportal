@@ -69,4 +69,5 @@ angular.module('dmc.notifications', [
                 }
             )
         };
+
     }]);
