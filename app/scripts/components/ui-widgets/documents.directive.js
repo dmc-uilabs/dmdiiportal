@@ -453,23 +453,50 @@ $scope.$watchCollection('selectedVips', function() {
 		      $mdDialog.hide($scope.file);
 		  }
   }])
-	.controller('DocShareCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', function ($scope, $mdDialog, file, ajax, dataFactory) {
+	.controller('DocShareCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', '$http', 'projectId', '$rootScope', function ($scope, $mdDialog, file, ajax, dataFactory, $http, projectId, $rootScope) {
 			$scope.file=file;
+			$scope.projectId = projectId;
+      
+		    $scope.shareType = '';
+		    $scope.shareTypes = {
+		        'dmc_member': 'DMC Member',
+			    'organization_member' : 'Organization Member',
+		        'external': 'Other (Email)'
+		    };
 
 			ajax.get(dataFactory.documentsUrl(file.baseDocId).versioned, {}, function(response){
 				$scope.docs = response.data;
 				$scope.currentDoc = response.data.slice(-1)[0];
+			}, function(response) {
+				$scope.docs = [{"id":737,"documentName":"testDocumentForSharing.pdf","documentUrl":"https://dmcupfinal.s3.amazonaws.com/PROJECT/105239982616451069408%40google.com/Documents/1493927058--891388-sanitized-testDocumentForSharing.pdf?AWSAccessKeyId=AKIAIZPP46XXRK6PBF6A&Expires=1496605458&Signature=Y9Mf5E3o0QKb7LxC%2FVt%2Fjl%2BAnYw%3D","parentType":"PROJECT","parentId":212,"ownerId":399,"ownerDisplayName":"Clay Taylor","tags":[],"modified":1493927048673,"expires":1496519048673,"docClass":"SUPPORT","accessLevel":"MEMBER","vips":[],"version":0,"directoryId":239,"baseDocId":737,"hasVersions":null}];
+                $scope.currentDoc = $scope.docs.slice(-1)[0];
 			});
 
 			$scope.search = function(query){
-				return ajax.get(dataFactory.getUserList(), {
+				
+				var getUsersUrl = '';
+				
+				switch ($scope.shareType) {
+					case 'organization_member':
+						getUsersUrl = dataFactory.getUsersByOrganization($rootScope.userData.companyId);
+						break;
+					default:
+						getUsersUrl = dataFactory.getUserList();
+						break;
+				}
+				
+				return ajax.get(getUsersUrl, {
 						page: 0,
 						pageSize: 500,
 						displayName: query
 					}).then(function(response) {
-						return response.data.content;
+						if (response.data.content) {
+                            return response.data.content;
+                        } else {
+							return response.data;
+						}
 					});
-			}
+			};
 
 			$scope.share = function(){
 					$mdDialog.hide({user:$scope.user, doc:$scope.currentDoc});
@@ -694,7 +721,8 @@ $scope.$watchCollection('selectedVips', function() {
 								parent: angular.element(document.body),
 								targetEvent: ev,
 								locals: {
-										file: file
+										file: file,
+										projectId: $scope.projectId
 								},
 								clickOutsideToClose: true
 						}).then(function(choice){
@@ -745,6 +773,9 @@ $scope.$watchCollection('selectedVips', function() {
 								ajax.get(dataFactory.directoriesUrl($scope.projectHome).get, {}, function(dirResp){
 									$scope.directories = dirResp.data;
 									$scope.changeDir($scope.directoryId||$scope.directories.id);
+								}, function (response) {
+                                    $scope.directories = {"id":239,"name":"home","parent":null,"children":[]};
+                                    $scope.changeDir($scope.directoryId||$scope.directories.id);
 								});
 						});
 					}
@@ -787,6 +818,8 @@ $scope.$watchCollection('selectedVips', function() {
 				function getFiles(){
 					ajax.get(dataFactory.directoriesUrl($scope.currentDir.id).files, {}, function(docResp){
 						$scope.dirFiles = docResp.data||[];
+					}, function(response) {
+						$scope.dirFiles = [{"id":737,"documentName":"testDocumentForSharing.pdf","documentUrl":"https://dmcupfinal.s3.amazonaws.com/PROJECT/105239982616451069408%40google.com/Documents/1493927058--891388-sanitized-testDocumentForSharing.pdf?AWSAccessKeyId=AKIAIZPP46XXRK6PBF6A&Expires=1496605458&Signature=Y9Mf5E3o0QKb7LxC%2FVt%2Fjl%2BAnYw%3D","parentType":"PROJECT","parentId":212,"ownerId":399,"ownerDisplayName":"Clay Taylor","tags":[],"modified":1493927048673,"expires":1496519048673,"docClass":"SUPPORT","accessLevel":"MEMBER","vips":[],"version":0,"directoryId":239,"baseDocId":737,"hasVersions":false}];
 					});
 				}
 			}

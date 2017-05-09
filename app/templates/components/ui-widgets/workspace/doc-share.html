@@ -9,7 +9,10 @@
       <section>
           <h3>{{file.documentName}}</h3>
           <md-select ng-model="currentDoc" placeholder="Version" class="md-no-underline">
-            <md-option ng-repeat="doc in docs" ng-value="doc">{{doc.version+1}}</md-option>
+            <md-option ng-repeat="doc in docs" ng-value="doc">Version {{doc.version+1}}</md-option>
+          </md-select>
+          <md-select ng-model="shareType" placeholder="Share Type" class="md-no-underline">
+              <md-option ng-repeat="(key, value) in shareTypes" value="{{key}}">{{value}}</md-option>
           </md-select>
           <md-autocomplete flex
               md-input-name="autocompleteField"
