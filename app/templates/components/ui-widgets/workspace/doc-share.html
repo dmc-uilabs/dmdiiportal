@@ -14,7 +14,7 @@
           <md-select ng-model="shareType" placeholder="Share Type" class="md-no-underline">
               <md-option ng-repeat="(key, value) in shareTypes" value="{{key}}">{{value}}</md-option>
           </md-select>
-          <md-autocomplete flex
+          <md-autocomplete ng-if="shareType != 'external'" flex
               md-input-name="autocompleteField"
               md-no-cache="true"
               md-selected-item="user"
@@ -26,7 +26,12 @@
                   <span md-highlight-text="searchText">{{item.displayName}}</span>
               </md-item-template>
           </md-autocomplete>
-          <md-button class="md-raised md-primary" ng-click="share()" ng-disabled="!user" aria-label="share">Share</md-button>
+          <md-input-container ng-show="shareType === 'external'">
+              <label>Email</label>
+              <input name="shareEmail" ng-model="shareEmail" placeholder="Email"/>
+          </md-input-container>
+          <md-button class="md-raised md-primary" ng-if="shareType != 'external'" ng-click="share()" ng-disabled="!user" aria-label="share">Share</md-button>
+          <md-button class="md-raised md-primary" ng-if="shareType === 'external'" ng-click="shareWithEmail()" ng-disabled="shareEmail == ''" aria-label="share">Share</md-button>
       </section>
   </md-content>
 </md-dialog>

@@ -456,6 +456,7 @@ $scope.$watchCollection('selectedVips', function() {
 	.controller('DocShareCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', '$http', 'projectId', '$rootScope', function ($scope, $mdDialog, file, ajax, dataFactory, $http, projectId, $rootScope) {
 			$scope.file=file;
 			$scope.projectId = projectId;
+			$scope.shareEmail = '';
       
 		    $scope.shareType = '';
 		    $scope.shareTypes = {
