@@ -23,5 +23,12 @@ angular.module('dmc.release-notes')
               });
           }
           getV017();
+
+          var getV018= function() {
+              ajax.get(dataFactory.getStaticJSON('notesV018.json'), {}, function(response){
+                  $scope.notesV018 = response.data;
+              });
+          }
+          getV018();
     }]
 );
