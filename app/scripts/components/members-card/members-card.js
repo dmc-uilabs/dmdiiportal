@@ -160,23 +160,21 @@ angular.module('dmc.component.members-card', [
 				});
 			};
 
-			var tokenCallback = function(response) {
-				$scope.token = response.data.token;
-                $scope.userId = response.data.userId;
+			var showTokenModal = function(user) {
 
 				$mdDialog.show({
 					controller: 'DisplayTokenController',
 					templateUrl: 'templates/components/token-modal/token-modal.html',
 					parent: angular.element(document.body),
 					locals: {
-					   token: $scope.token, userId: $scope.userId
+						 user: user
 					},
 					clickOutsideToClose: true
 				});
 			};
 
 			$scope.generateToken = function() {
-				ajax.create(dataFactory.generateToken($scope.cardSource.id), {}, tokenCallback)
+				showTokenModal($scope.cardSource)
 			};
 
             $scope.showMembers = function(id, ev){
@@ -250,17 +248,19 @@ angular.module('dmc.component.members-card', [
 	};
 })
 .controller('DisplayTokenController',
-	['$scope', '$rootScope', '$mdDialog', 'ajax', 'dataFactory', 'token', 'userId',
-	function ($scope, $rootScope, $mdDialog, ajax, dataFactory, token, userId) {
-        $scope.token = token;
-        $scope.userId = userId;
-		$scope.cancel = function(){
-            $mdDialog.hide();
+	['$scope', '$rootScope', '$mdDialog', 'ajax', 'dataFactory', 'user', //'token', 'userId',
+	function ($scope, $rootScope, $mdDialog, ajax, dataFactory, user //token, userId
+		) {
+				$scope.user = user;
+				$scope.cancel = function(){
+        $mdDialog.hide();
 		};
 
-        $scope.emailToken = function() {
-            ajax.create(dataFactory.emailToken(userId, token), {});
-        };
+      $scope.emailToken = function() {
+					ajax.create(dataFactory.generateToken($scope.user.id), {}, function(response){
+						$scope.user.token = response.data.token
+					})
+      };
 }])
 .directive('dmcAddMembersCard', function () {
     return {

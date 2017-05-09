@@ -38,6 +38,7 @@
               <th name="Owner"></th>
               <th name="Expires"></th>
               <th name="Last Modifed"></th>
+
           </tr>
           </thead>
           <tbody>
@@ -75,6 +76,8 @@
               <td><a href="/profile.php#/{{file.ownerId}}">{{file.ownerDisplayName}}</a></td>
               <td>{{file.expires|date}}</td>
               <td>{{file.modified|date}}</td>
+
+
 							<td>
 								<md-button class="md-icon-button" ng-click="editFile(file, $event)" aria-label="edit-file">
 									<ng-md-icon icon="mode_edit" size="22"></ng-md-icon>

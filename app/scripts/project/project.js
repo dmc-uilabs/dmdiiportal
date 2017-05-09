@@ -219,7 +219,9 @@ angular.module('dmc.project', [
                 templateUrl: 'templates/project/pages/run-history.html',
                 resolve: {
                     runHistory: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
-                        return serviceModel.get_service_run_history($stateParams.ServiceId);
+                        return serviceModel.get_service_run_history($stateParams.ServiceId, {}, function (response) {
+                            return response;
+                        });
                     }],
                     serviceData: ['serviceModel', '$stateParams', function (serviceModel, $stateParams) {
                         return serviceModel.get_service($stateParams.ServiceId);
@@ -624,18 +626,18 @@ angular.module('dmc.project', [
                     'service_tags': $http.get(dataFactory.services(id).get_tags),
                     'services_statistic': $http.get(dataFactory.services(id).get_statistics),
                     'service_reviews': $http.get(dataFactory.services(id).reviews),
-                    'service_images': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
-                        parentType: 'SERVICE',
-                        parentId: id,
-                        docClass: 'IMAGE',
-                        recent: 5
-                    }}),
-                    'service_docs': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
-                        parentType: 'SERVICE',
-                        parentId: id,
-                        docClass: 'SUPPORT',
-                        recent: 5
-                    }}),
+                    // 'service_images': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
+                    //     parentType: 'SERVICE',
+                    //     parentId: id,
+                    //     docClass: 'IMAGE',
+                    //     recent: 5
+                    // }}),
+                    // 'service_docs': $http({method: 'GET', url: dataFactory.documentsUrl().getList, params: {
+                    //     parentType: 'SERVICE',
+                    //     parentId: id,
+                    //     docClass: 'SUPPORT',
+                    //     recent: 5
+                    // }}),
                     'interface': $http.get(dataFactory.services(id).get_interface),
                     'currentStatus': $http({method : 'GET', url : dataFactory.runService(), params : {
                         _limit : 1,
@@ -689,8 +691,8 @@ angular.module('dmc.project', [
                         service.service_tags = extractData(responses.service_tags);
                         service.services_statistic = extractData(responses.services_statistic);
                         service.service_reviews = extractData(responses.service_reviews);
-                        service.service_images = extractDocData(responses.service_images);
-                        service.service_docs = extractDocData(responses.service_docs);
+                        // service.service_images = extractDocData(responses.service_images);
+                        // service.service_docs = extractDocData(responses.service_docs);
 
                         service.rating = service.service_reviews.map(function(value, index){
                             return value.rating;
@@ -1045,25 +1047,29 @@ angular.module('dmc.project', [
             };
 
             this.get_service_run_history = function(id, params, callback){
-                return ajax.get(dataFactory.services(id).get_run_history,
-                    (params)? params : {
-                        _sort: 'id',
-                        _order: 'DESC',
-                        status_ne : 'running'
-                    },
-                    function(response){
-                        var history = response.data;
-                        for(var i in history){
-                            history[i].runTime = calcRunTime(history[i]);
-                            history[i].date = moment(new Date(history[i].startDate+' '+history[i].startTime)).format('MM/DD/YYYY hh:mm A');
-                        }
-                        if(callback){
-                            callback(history);
-                        }else{
-                            return history;
-                        }
+                
+                return $http.get(dataFactory.services(id).get_run_history, (params)? params : {
+                    _sort: 'id',
+                    _order: 'DESC',
+                    status_ne : 'running'
+                }, {}).then(function(response){
+                    var history = response.data;
+                    
+                    for (var i = 0; i < history.length; i++) {
+                        history[i].runTime = calcRunTime(history[i]);
+                        history[i].date = moment(new Date(history[i].startDate+' '+history[i].startTime)).format('MM/DD/YYYY hh:mm A');
+                        var userName = function (index) {
+                            $http.get(dataFactory.getUserName(history[index].runBy)).then(function (response) {
+                                var h = history[index];
+                                h.runByUserName = response.data.displayName;
+                            });
+                        };
+                        userName(i);
                     }
-                )
+                    
+                    return history;
+                    
+                });
             };
 
 
