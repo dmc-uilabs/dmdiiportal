@@ -15,6 +15,8 @@
 		<dd>{{doc.documentName}}</dd>
 		<dt>Last Modified</dt>
 		<dd><time>{{doc.modified | date:'yyyy-MM-dd HH:mm Z'}}</time>
+		<dt>Last Virus Scan Date</dt>
+		<dd><time>{{doc.scanDate}}</time></dd>
 		<dt>Download</dt>
 		<dd><a href="{{doc.documentUrl}}">Download</a></dd>
 	</dl>
