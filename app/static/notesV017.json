@@ -86,22 +86,6 @@
                   "notes":
                   [
                         {
-                              "content": "About the DMC",
-                              "notes":
-                              [
-                                {
-                                  "content": "About DMC page in Microsoft Browsers",
-                                  "notes":
-                                  [
-                                    {
-                                      "content": "We recently discovered that this page did not properly render when using Internet Explorer and Microsoft Edge. We've made a changes that will make this page appears as intended. This change should also make the page more mobile browser friendly.",
-                                      "class": "release-bug"
-                                    }
-                                  ]
-                                }
-                              ]
-                        },
-                        {
                               "content": "DMC Security",
                               "notes":
                               [
