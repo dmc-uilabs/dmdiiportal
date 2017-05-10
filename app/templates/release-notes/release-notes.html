@@ -143,7 +143,7 @@
 	<md-content class="tab-projects">
 		<div layout="column" class="text-row">
 			<div layout="row" style="justify-content:flex-end">
-				<span style="margin-right:40px; margin-top:-11px;"><h4>Released: 5/8/2017</h4></span>
+				<span style="margin-right:40px; margin-top:-11px;"><h4>Released: 5/9/2017</h4></span>
 				<span class="release-bug margin5px" style="margin-right:64px"></span>
 				<span class="release-feature margin5px" style="margin-right:67px"></span>
 				<span class="release-content margin5px"></span>
@@ -197,6 +197,14 @@
 						In order to give users the piece of mind that they are not downloading documents that have been altered after they have been uploaded to our site, we have implemented SHA256 for uploaded files. SHA256 is a cryptographic hash which is like a semi unique signature for a text or a data file. The signature is very difficult to regenerate exactly the same way once created, so our users can know that the files being downloaded are always the original and unaltered versions uploaded to the DMDII Projects' profile pages.
 					</li>
 				</ul>
+				<h3>
+					<strong>Quarantine Bucket Workflow</strong>
+				</h3>
+				<ul>
+					<li>
+						In a previous release we implemented a framework for our quarantine bucket. We've now finalized and fully tested its functionality and have included it in this release. In the past, our infrastructure would scan all documents being uploaded to our site before making the document available for user to download. Documents that did not pass the virus and malware scan process would be marked as not safe and would not become available for download through our site. This will move files marked as not safe by our infrastructure will be moved to our quarantine storage solution, when users go to retrieve the document the next time they will find in place of the document an image informaing them the file was not properly uploaded. We will at this point be able informed of the action so we can analyze the threats our site experiences on a regular bases, to ensure our users are always safe when using our platform.
+					</li>
+				</ul>
 			</div>
 		</div>
 
@@ -212,7 +220,7 @@
 						<h3>
 							<strong>Marketplace Applications</strong>
 						</h3>
-						During this release we decided that it was appropriate to remove the applications listed below from the DMC Marketplace, as we could not provide sufficient information to user to explain conceptually what they solved for. Also as we are looking to expand our variety of applications available in the marketplace, we believed these two applications were the least utilized applications as well as estimated to be the least likely to provide value to our users at this time. We have been working to clean up the currently marketplace to ensure users are getting a rich experience an are not overwhelmed with the amount of options in terms of applications.
+							During this release we decided that it was appropriate to remove the applications listed below from the DMC Marketplace, as we could not provide sufficient information to user to explain conceptually what they solved for. Also as we are looking to expand our variety of applications available in the marketplace, we believed these two applications were the least utilized applications as well as estimated to be the least likely to provide value to our users at this time. We have been working to clean up the currently marketplace to ensure users are getting a rich experience an are not overwhelmed with the amount of options in terms of applications.
 						<ul>
 							<li>
 								X0OverWp2p8
@@ -221,6 +229,12 @@
 								X0OverWp8p1
 							</li>
 						</ul>
+					</p>
+					<p>
+						<h3>
+							<strong>Docent Working Once More</strong>
+						</h3>
+							In a previous release, the Docent application in our marketplace became no longer usable in users' workspaces. We have taken a few weeks to look into the issue and have found a solution that has been implimented in this release.
 					</p>
 					<!-- <p>
 						<h3>
