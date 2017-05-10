@@ -725,7 +725,7 @@ $scope.$watchCollection('selectedVips', function() {
 						name: "Organization Member",
 						type: "organization_member",
 						internal: true,
-						email: true
+						email: false
 					},
 					{
 						name: "Other (Direct Email)",

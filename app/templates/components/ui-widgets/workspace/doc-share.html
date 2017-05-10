@@ -11,7 +11,7 @@
           <md-select ng-model="currentDoc" placeholder="Version" class="md-no-underline">
               <md-option ng-repeat="doc in docs" ng-value="doc">Version {{doc.version+1}}</md-option>
           </md-select>
-          <md-select ng-model="shareOption" placeholder="How To Share" class="md-no-underline">
+          <md-select ng-model="shareOption" placeholder="Share With" class="md-no-underline">
             <md-option ng-repeat="option in shareOptions" ng-value="option">{{option.name}}</md-option>
           </md-select>
           <!--<md-select ng-model="shareType" placeholder="Share Type" class="md-no-underline">-->
