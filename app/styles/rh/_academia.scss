@@ -1,0 +1,24 @@
+.apps {
+
+    border: 1px solid green;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 25px;
+    min-height: 315px;
+    img {
+      min-height: 84px;
+    }
+}
+
+.videosacademia {
+    width: 220px;
+    padding: 10px;
+    margin: 25px;
+		h5 {
+			margin-top: 25px;
+			color: green;
+		}
+}
+.videosacademia video {
+  width:100%;
+}

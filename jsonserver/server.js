@@ -11,6 +11,7 @@ server.use(jsonServer.defaults());
 server.use(jsonServer.rewriter({
     '/documents/directories/:id': '/documentsdirectories',
     '/documents/versions/:id': '/documentversions',
+    '/user/createtoken':'/createtoken',
     '/project/:pid/invite/:uid': '/projects_members/:uid',
     '/mark-read-notifications': '/user',
     '/clear-notification/:id': '/user',

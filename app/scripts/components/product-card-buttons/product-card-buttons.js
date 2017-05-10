@@ -37,10 +37,10 @@ angular.module('dmc.component.product-card-buttons',[
         };
     }).
     controller('productCardButtonsCtrl', function($scope, $rootScope, ajax, dataFactory, DMCUserModel, CompareModel){
-      
+
       $scope.projects = [];
       $scope.addingToProject = false;
-      
+
       $scope.userData = null;
       DMCUserModel.getUserData().then(function(res){
           $scope.userData = res;
@@ -48,25 +48,25 @@ angular.module('dmc.component.product-card-buttons',[
           // this is already being done in the marketplace controller
           // CompareModel.get('services',userData);
       });
-      
+
       var apply = function(){
           if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
       };
-      
+
       var acceptedInvite = function(project){
         return project.accept == true;
       }
-      
+
       var isMember = function(project){
         for (var i in $scope.filtered_response){
           if (project.id == $scope.filtered_response[i].projectId) return true;
         }
         return false;
       }
-      
+
       $scope.loadProjects = function() {
           var unfiltered_projects = $scope.$root.projects;
-          
+
           // Filter projects for only projects that user is a member of
           ajax.get(dataFactory.getMembersToProject(),{
               profileId : $scope.userData.profileId
@@ -75,24 +75,24 @@ angular.module('dmc.component.product-card-buttons',[
             $scope.projects = unfiltered_projects.filter(isMember);
           });
       };
-      
+
       $scope.addToProject = function(){
         if (!$rootScope.projects) {
           ajax.loadProjects();
         }
           $scope.addingToProject = true;
       };
-      
+
       $scope.cancelAddToProject = function(){
           $scope.addingToProject = false;
       };
-      
+
       $scope.backToAdd = function(){
           $scope.cardSource.added = false;
           clearTimeout($scope.addedTimeout);
           if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
       };
-      
+
       $scope.saveToProject = function(projectId){
           var project = null;
           for(var i in $scope.projects){
@@ -101,7 +101,7 @@ angular.module('dmc.component.product-card-buttons',[
                   break;
               }
           }
-      
+
           if(project) {
               var updatedItem = $.extend(true, {}, $scope.cardSource);
               if (updatedItem.hasOwnProperty('$$hashKey')) {
@@ -117,11 +117,12 @@ angular.module('dmc.component.product-card-buttons',[
               updatedItem.projectId = project.id;
               updatedItem.from = 'marketplace';
               updatedItem.published = false;
+              updatedItem.parent = updatedItem.id;
               delete updatedItem.tags;
               ajax.create(dataFactory.services().add, updatedItem, function (response) {
                   var id = response.data.id;
                   $scope.cancelAddToProject();
-      
+
                   ajax.get(dataFactory.services($scope.cardSource.id).get_tags, {}, function(response) {
                       angular.forEach(response.data, function(tag) {
                           delete tag.id;
@@ -136,14 +137,14 @@ angular.module('dmc.component.product-card-buttons',[
                           ajax.create(dataFactory.services().add_interface, newDomeInterface);
                       });
                   });
-      
+
                   if(!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
                   if(!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
                   $scope.cardSource.currentStatus.project.id = projectId;
                   $scope.cardSource.currentStatus.project.title = project.title;
                   $scope.cardSource.projectId = projectId;
                   $scope.cardSource.added = true;
-      
+
                   $scope.cardSource.lastProject = {
                       title: project.title,
                       href: '/project.php#/' + project.id + '/home'
@@ -156,13 +157,13 @@ angular.module('dmc.component.product-card-buttons',[
               });
           }
       };
-      
+
       $scope.removeFromCompare = function(){
           if($scope.typeProduct == 'service') {
               CompareModel.delete('services',$scope.cardSource.id);
           }
       };
-      
+
       $scope.addToCompare = function(){
           if($scope.typeProduct == 'service'){
               CompareModel.add('services',{
@@ -171,5 +172,5 @@ angular.module('dmc.component.product-card-buttons',[
               });
           }
       };
-      
+
     });
