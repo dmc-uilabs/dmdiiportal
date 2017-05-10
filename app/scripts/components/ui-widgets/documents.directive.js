@@ -469,16 +469,13 @@ $scope.$watchCollection('selectedVips', function() {
 			ajax.get(dataFactory.documentsUrl(file.baseDocId).versioned, {}, function(response){
 				$scope.docs = response.data;
 				$scope.currentDoc = response.data.slice(-1)[0];
-			}, function(response) {
-				$scope.docs = [{"id":737,"documentName":"testDocumentForSharing.pdf","documentUrl":"https://dmcupfinal.s3.amazonaws.com/PROJECT/105239982616451069408%40google.com/Documents/1493927058--891388-sanitized-testDocumentForSharing.pdf?AWSAccessKeyId=AKIAIZPP46XXRK6PBF6A&Expires=1496605458&Signature=Y9Mf5E3o0QKb7LxC%2FVt%2Fjl%2BAnYw%3D","parentType":"PROJECT","parentId":212,"ownerId":399,"ownerDisplayName":"Clay Taylor","tags":[],"modified":1493927048673,"expires":1496519048673,"docClass":"SUPPORT","accessLevel":"MEMBER","vips":[],"version":0,"directoryId":239,"baseDocId":737,"hasVersions":null}];
-                $scope.currentDoc = $scope.docs.slice(-1)[0];
 			});
 
 			$scope.search = function(query){
 				
 				var getUsersUrl = '';
 				
-				switch ($scope.shareType) {
+				switch ($scope.shareOption.type) {
 					case 'organization_member':
 						getUsersUrl = dataFactory.getUsersByOrganization($rootScope.userData.companyId);
 						break;
@@ -714,26 +711,29 @@ $scope.$watchCollection('selectedVips', function() {
 						}).then(function(){
 							//handled in modal
 						});
-				}
-
+				};
+				
 				// This is only a placeholder to loosely structure the options around sharing
 				$scope.shareOptions = [
 					{
-						name: "Site Notification",
+						name: "DMC Member",
+						type: "dmc_member",
 						internal: true,
 						email: false
 					},
 					{
-						name: "DMC Email",
+						name: "Organization Member",
+						type: "organization_member",
 						internal: true,
 						email: true
 					},
 					{
-						name: "Direct Email",
+						name: "Other (Direct Email)",
+						type: "external",
 						internal: false,
 						email: true
 					}
-				]
+				];
 
 				$scope.shareFile = function(file,ev){
 						$mdDialog.show({
@@ -842,8 +842,6 @@ $scope.$watchCollection('selectedVips', function() {
 				function getFiles(){
 					ajax.get(dataFactory.directoriesUrl($scope.currentDir.id).files, {}, function(docResp){
 						$scope.dirFiles = docResp.data||[];
-					}, function(response) {
-						$scope.dirFiles = [{"id":737,"documentName":"testDocumentForSharing.pdf","documentUrl":"https://dmcupfinal.s3.amazonaws.com/PROJECT/105239982616451069408%40google.com/Documents/1493927058--891388-sanitized-testDocumentForSharing.pdf?AWSAccessKeyId=AKIAIZPP46XXRK6PBF6A&Expires=1496605458&Signature=Y9Mf5E3o0QKb7LxC%2FVt%2Fjl%2BAnYw%3D","parentType":"PROJECT","parentId":212,"ownerId":399,"ownerDisplayName":"Clay Taylor","tags":[],"modified":1493927048673,"expires":1496519048673,"docClass":"SUPPORT","accessLevel":"MEMBER","vips":[],"version":0,"directoryId":239,"baseDocId":737,"hasVersions":false}];
 					});
 				}
 			}

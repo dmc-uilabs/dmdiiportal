@@ -14,10 +14,10 @@
           <md-select ng-model="shareOption" placeholder="How To Share" class="md-no-underline">
             <md-option ng-repeat="option in shareOptions" ng-value="option">{{option.name}}</md-option>
           </md-select>
-          <md-select ng-model="shareType" placeholder="Share Type" class="md-no-underline">
-              <md-option ng-repeat="(key, value) in shareTypes" value="{{key}}">{{value}}</md-option>
-          </md-select>
-          <md-autocomplete ng-if="shareType != 'external'" flex
+          <!--<md-select ng-model="shareType" placeholder="Share Type" class="md-no-underline">-->
+              <!--<md-option ng-repeat="(key, value) in shareTypes" value="{{key}}">{{value}}</md-option>-->
+          <!--</md-select>-->
+          <md-autocomplete flex
               md-input-name="autocompleteField"
               md-no-cache="true"
               md-selected-item="user"
@@ -36,16 +36,17 @@
       			<input type="email"
                     ng-model="user.email"
                     >
-      		</md-input-container>
-          <md-input-container ng-show="shareType === 'external'">
-              <label>Email</label>
-              <input name="shareEmail" ng-model="shareEmail" placeholder="Email"/>
-          </md-input-container>
+            </md-input-container>
+          <!--<md-input-container ng-show="shareType === 'external'">-->
+              <!--<label>Email</label>-->
+              <!--<input name="shareEmail" ng-model="shareEmail" placeholder="Email"/>-->
+          <!--</md-input-container>-->
+          <md-checkbox ng-show="!showConfirm && shareOption && shareOption.internal" ng-model="shareOption.email">Send Email to User?</md-checkbox>
           <md-button ng-hide="showConfirm" class="md-raised md-primary" ng-click="showConfirm=true" ng-disabled="!user && !email" aria-label="share">Share</md-button>
           <h5 ng-hide="!showConfirm">Are you sure you want to share with {{shareOption.internal ? user.displayName : user.email}}?</h5>
           <md-button ng-hide="!showConfirm" class="md-raised md-primary" ng-click="showConfirm=false" aria-label="cancel">Cancel</md-button>
           <md-button ng-hide="!showConfirm" class="md-raised md-primary" ng-click="share()" ng-disabled="!user && !email" aria-label="share">Confirm</md-button>
-          <md-button class="md-raised md-primary" ng-if="shareType === 'external'" ng-click="shareWithEmail()" ng-disabled="shareEmail == ''" aria-label="share">Share</md-button>
+          <!--<md-button class="md-raised md-primary" ng-if="shareType === 'external'" ng-click="shareWithEmail()" ng-disabled="shareEmail == ''" aria-label="share">Share</md-button>-->
       </section>
   </md-content>
 </md-dialog>
