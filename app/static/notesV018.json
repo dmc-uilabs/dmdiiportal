@@ -86,6 +86,22 @@
                   "notes":
                   [
                         {
+                              "content": "About the DMC",
+                              "notes":
+                              [
+                                {
+                                  "content": "About DMC page in Microsoft Browsers",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "We recently discovered that this page did not properly render when using Internet Explorer and Microsoft Edge. We've made a changes that will make this page appears as intended. This change should also make the page more mobile browser friendly.",
+                                      "class": "release-bug"
+                                    }
+                                  ]
+                                }
+                              ]
+                        },
+                        {
                               "content": "DMC Security",
                               "notes":
                               [
@@ -137,20 +153,7 @@
                               ]
                         },
                         {
-                              "content": "DMC Releases",
-                              "notes":
-                              [
-                                {
-                                  "content": "Release Dates",
-                                  "notes":
-                                  [
-                                    {
-                                      "content": "In the past we were not including the day of the release on our release notes pages and subsequent tabs. Going forward, we will be including the release dates for all our releases. Previous releases have been updated to include the release dates for our releases, this is included for releases we were tracking on our Confluence wiki as well as on our site itself.",
-                                      "class": "release-feature"
-                                    }
-                                  ]
-                                }
-                              ]
+                              "content": "DMC Releases"
                         },
                         {
                               "content": "DMC Blog"
@@ -225,32 +228,7 @@
                                               "content": "Team"
                                         },
                                         {
-                                              "content": "Documents",
-                                              "notes":
-                                              [
-                                                {
-                                                  "content": "Document Sharing",
-                                                  "notes":
-                                                  [
-                                                    {
-                                                      "content": "In this release, we ave implimented a much requested feature, and that is the ability to share documents that one has access to in the documents section of workspaces on the DMC. To begin using this feature, you will need to have a document available in your workspace, then click on the share icon on the right hand side of page. Users will have three options when it comes to sharing documents. Thos options are:",
-                                                      "class": "release-feature",
-                                                      "notes":
-                                                      [
-                                                        {
-                                                          "content": "Sharing Via a Site Notification: This will create a site notification for the user the document is being shared with. The user will then simply need to click on the notification and they will be redirected to the document. Simply begin typing the user's display name and the auto complete field will appear allowing you to click on the user. Then just approve the sharing of the document."
-                                                        },
-                                                        {
-                                                          "content": "Sharing Via E-mail to DMC User: This will prompt our infrastruction to send a link to the document you wish to share to a DMC user. To choose the user, start typimg the user's display name and choose their name from the drop-down menu, and approve the sending of the e-mail"
-                                                        },
-                                                        {
-                                                          "content": "Sharing Via E-mail for non-DMC User: This will allow users to share a link to the document you wish to share with any person with an e-mail address. Wen prompted, provide the person's e-mail and verify that you want to share the document with them."
-                                                        }
-                                                      ]
-                                                    }
-                                                  ]
-                                                }
-                                              ]
+                                              "content": "Documents"
                                         },
                                         {
                                               "content": "Tasks"
@@ -298,16 +276,6 @@
                                                           "class": "release-bug"
                                                         }
                                                       ]
-                                                    },
-                                                    {
-                                                      "content": "More Space for Input and Output for Apps",
-                                                      "notes":
-                                                      [
-                                                        {
-                                                          "content": "A request we have recieved in the past has been to give users the ability to provide more than 20 characters of input for applications. Applications can now also return more than 20 character as output. The limit for both of these fields now are 600.",
-                                                          "class": "release-feature"
-                                                        }
-                                                      ]
                                                     }
                                                   ]
                                                 }
@@ -338,7 +306,7 @@
                       "notes":
                       [
                         {
-                          "content": "For security reasons, the DMC requires administrators of organizations to grant access to members by sharing a verification token with them. In the past, we would generate the token for the administrator to share with the organization member to give them access. Organization administrators now when verifying members of their organization will be informaed of what e-mail address their organization member has registed and will be given the option to verify that member. If they choose to still verify the user, our infrastructure will send the verification token long with instruction to that user.",
+                          "content": "For security reasons, the DMC requires administrators of organization to grant access to members by sharing a verification token with them. In the past, we would generate the token for the administrator to share with the organization member to give them access. Administrators now have the choice to send the token to the e-mail the member has on file. If administrators want to be more careful an wish to share the token with the member with an e-mail they are more comfortable sending the token to, we do still provide that option as we did before.",
                           "class": "release-feature"
                         }
                       ]

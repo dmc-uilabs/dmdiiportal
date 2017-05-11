@@ -73,7 +73,7 @@
 						<div flex="50" class="left">
 							<md-input-container>
 							<label>{{item.name}}</label>
-                <input maxlength="60" ng-change="changedValue()" ng-model="item.value" ng-if="item.type != 'File'">
+                <input maxlength="600" ng-change="changedValue()" ng-model="item.value" ng-if="item.type != 'File'">
 							 <input type="file" file-upload-model="item.value" ng-if="item.type == 'File'">
 							</md-input-container>
 						</div>
@@ -92,7 +92,7 @@
                         <div flex="50" class="left">
                             <md-input-container style="padding-bottom: 0">
                                 <label style="color: #757575;">{{item.name}}</label>
-                                <input maxlength="60" style="color: #333;" ng-disabled="true" ng-model="item.value">
+                                <input maxlength="600" style="color: #333;" ng-disabled="true" ng-model="item.value">
                             </md-input-container>
                         </div>
                         <div flex="50" class="right">

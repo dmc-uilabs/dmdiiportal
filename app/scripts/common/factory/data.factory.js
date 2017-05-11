@@ -622,7 +622,7 @@ angular.module('dmc.data',[])
             deleteDMDIIDocument: function(id) {
                 return localhost + 'dmdiidocument/' + id;
             },
-            documentsUrl: function(id, userid) {
+            documentsUrl: function(id, user, internal, email) {
                 return  {
                     getSingle: localhost + 'documents/' + id,
                     getList: localhost + 'documents',
@@ -630,7 +630,8 @@ angular.module('dmc.data',[])
                     update: localhost + 'documents/' + id,
                     delete: localhost + 'documents/' + id,
                     versioned: localhost + 'documents/versions/' + id,
-                    share: localhost + 'documents/'+id+'/user/'+userid
+                    // share: localhost + 'documents/'+id+'/user/'+userid
+                    share: localhost + 'documents/'+id+'/share?user='+user+'&internal='+internal+'&email='+email
                 }
             },
             directoriesUrl: function(id) {
