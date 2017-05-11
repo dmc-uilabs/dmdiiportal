@@ -103,7 +103,10 @@
                         <ng-md-icon ng-switch-when="NEW_USER_JOINED_ORGANIZATION" icon="person_add" size="40"></ng-md-icon>
                         <md-icon ng-switch-default md-svg-src="images/icon_project.svg"></md-icon>
 					</div>
-					<h4 flex><a href="/company-profile.php#/profile/{{userData.companyId}}">{{item.message}}</a></h4>
+					<h4 flex ng-switch on="item.type">
+						<a ng-switch-when="DOCUMENT_SHARED" ng-href="{{item.message}}">{{item.createdBy.displayName}} has shared a document with you. Click to view.</a>
+						<a ng-switch-default href="/company-profile.php#/profile/{{userData.companyId}}">{{item.message}}</a>
+					</h4>
 					<h4>{{item.created | date:'medium'}}</h4>
 					<md-button class="md-icon-button clear-notification" aria-label="Clear" md-no-ink ng-click="clearNotification(item.createdFor.id, item.id)">
 							<ng-md-icon icon="close" size="18"></ng-md-icon>

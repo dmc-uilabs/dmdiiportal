@@ -453,26 +453,52 @@ $scope.$watchCollection('selectedVips', function() {
 		      $mdDialog.hide($scope.file);
 		  }
   }])
-	.controller('DocShareCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', function ($scope, $mdDialog, file, ajax, dataFactory) {
+	.controller('DocShareCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', 'shareOptions', '$http', 'projectId', '$rootScope', function ($scope, $mdDialog, file, ajax, dataFactory, shareOptions, $http, projectId, $rootScope) {
 			$scope.file=file;
-
+			$scope.shareOptions=shareOptions;
+            $scope.projectId = projectId;
+            $scope.shareEmail = '';
+            
+            $scope.shareType = '';
+            $scope.shareTypes = {
+                'dmc_member': 'DMC Member',
+                'organization_member' : 'Organization Member',
+                'external': 'Other (Email)'
+            };
+			
 			ajax.get(dataFactory.documentsUrl(file.baseDocId).versioned, {}, function(response){
 				$scope.docs = response.data;
 				$scope.currentDoc = response.data.slice(-1)[0];
 			});
 
 			$scope.search = function(query){
-				return ajax.get(dataFactory.getUserList(), {
+				
+				var getUsersUrl = '';
+				
+				switch ($scope.shareOption.type) {
+					case 'organization_member':
+						getUsersUrl = dataFactory.getUsersByOrganization($rootScope.userData.companyId);
+						break;
+					default:
+						getUsersUrl = dataFactory.getUserList();
+						break;
+				}
+				
+				return ajax.get(getUsersUrl, {
 						page: 0,
 						pageSize: 500,
 						displayName: query
 					}).then(function(response) {
-						return response.data.content;
+						if (response.data.content) {
+                            return response.data.content;
+                        } else {
+							return response.data;
+						}
 					});
-			}
+			};
 
 			$scope.share = function(){
-					$mdDialog.hide({user:$scope.user, doc:$scope.currentDoc});
+					$mdDialog.hide({user:$scope.user, doc:$scope.currentDoc, internal:$scope.shareOption.internal, email:$scope.shareOption.email});
 			}
 	}])
 	.filter('date', function() {
@@ -685,7 +711,29 @@ $scope.$watchCollection('selectedVips', function() {
 						}).then(function(){
 							//handled in modal
 						});
-				}
+				};
+				
+				// This is only a placeholder to loosely structure the options around sharing
+				$scope.shareOptions = [
+					{
+						name: "DMC Member",
+						type: "dmc_member",
+						internal: true,
+						email: false
+					},
+					{
+						name: "Organization Member",
+						type: "organization_member",
+						internal: true,
+						email: false
+					},
+					{
+						name: "Other (Direct Email)",
+						type: "external",
+						internal: false,
+						email: true
+					}
+				];
 
 				$scope.shareFile = function(file,ev){
 						$mdDialog.show({
@@ -694,12 +742,16 @@ $scope.$watchCollection('selectedVips', function() {
 								parent: angular.element(document.body),
 								targetEvent: ev,
 								locals: {
-										file: file
+										file: file,
+										shareOptions: $scope.shareOptions,
+                                        projectId: $scope.projectId
 								},
 								clickOutsideToClose: true
 						}).then(function(choice){
-							ajax.create(dataFactory.documentsUrl(choice.doc.id, choice.user.id).share,{},function(resp){
-								toastModel.showToast("success", file.documentName+" shared with "+user.displayName+".");
+							var toastUser = choice.internal ? choice.user.displayName : choice.user.email
+							var user = choice.internal ? choice.user.id : choice.user.email;
+							ajax.create(dataFactory.documentsUrl(choice.doc.id, user, choice.internal, choice.email).share,{},function(resp){
+								toastModel.showToast("success", file.documentName+" shared with "+toastUser+".");
 							});
 						});
 				}
@@ -745,6 +797,9 @@ $scope.$watchCollection('selectedVips', function() {
 								ajax.get(dataFactory.directoriesUrl($scope.projectHome).get, {}, function(dirResp){
 									$scope.directories = dirResp.data;
 									$scope.changeDir($scope.directoryId||$scope.directories.id);
+								}, function (response) {
+                                    $scope.directories = {"id":239,"name":"home","parent":null,"children":[]};
+                                    $scope.changeDir($scope.directoryId||$scope.directories.id);
 								});
 						});
 					}
