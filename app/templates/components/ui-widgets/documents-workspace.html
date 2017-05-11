@@ -38,6 +38,7 @@
               <th name="Owner"></th>
               <th name="Expires"></th>
               <th name="Last Modifed"></th>
+              <th name="Sha"></th>
               <th name="Last Virus Scan Date"></th>
           </tr>
           </thead>
@@ -77,11 +78,15 @@
               <td>{{file.expires|date}}</td>
               <td>{{file.modified|date}}</td>
 <<<<<<< HEAD
+              <td>{{file.sha256}}</file>
+=======
+<<<<<<< HEAD
               <td>{{file.scanDate}}</td>
 =======
 
 
 >>>>>>> master
+>>>>>>> 4955df5b88c164fdcf8d54f7955d077b2c011fd9
 							<td>
 								<md-button class="md-icon-button" ng-click="editFile(file, $event)" aria-label="edit-file">
 									<ng-md-icon icon="mode_edit" size="22"></ng-md-icon>
