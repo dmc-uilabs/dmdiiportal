@@ -68,11 +68,11 @@
                             <md-button md-no-ink href="/notifications.php#/user" ng-click="viewAll" class="view-all-link">VIEW ALL</md-button>
                         </div>
                         <md-menu-item ng-repeat="item in userData.notifications track by $index | limitTo:10" ng-if="!item.cleared && !item.deleted" ng-class="{'not-read' : item.unread}">
-                          <a ng-href='/company-profile.php#/profile/{{userData.companyId}}'>
+                          <a ng-if="item.type != 'DOCUMENT_SHARED'" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>
                             <div layout="row" layout-align="space-between center">
                               <ng-md-icon icon="person_add" size="30" ng-if="item.type == 'NEW_USER_JOINED_ORGANIZATION'"></ng-md-icon>
                               <ng-md-icon icon="check_circle" size="30" ng-if="item.type == 'USER_REQUESTS_VERIFICATION'"></ng-md-icon>
-                              <div layout="column" layout-align="start">
+                              <div  layout="column" layout-align="start">
                                 <i class="user-name">{{item.createdBy.displayName}}</i>
                                 <i class="notifications-text">{{item.message | limitTo: 55}}</i>
                               </div>
@@ -82,6 +82,21 @@
                                 </md-button>
                               </div>
                             </a>
+
+                            <a ng-if="item.type == 'DOCUMENT_SHARED'" ng-href="{{item.message}}">
+                              <div layout="row" layout-align="space-between center">
+                                <ng-md-icon icon="insert_drive_file" size="30"></ng-md-icon>
+                                <div ng-if="item.type == 'DOCUMENT_SHARED'" layout="column" layout-align="start">
+                                  <i class="user-name">{{item.createdBy.displayName}}</i>
+                                  <i class="notifications-text">Has sent you a document</i>
+                                </div>
+                                  <!-- clear notification -->
+                                  <md-button class="md-icon-button clear-notification" aria-label="Clear" md-no-ink ng-click="clearNotification(item,$event);$event.stopPropagation();">
+                                      <ng-md-icon icon="close" size="18"></ng-md-icon>
+                                  </md-button>
+                                </div>
+                              </a>
+
                         </md-menu-item>
                         <md-menu-item class="all-link">
                             <a ng-click="markAllRead()">Mark all as read</a>
@@ -194,7 +209,7 @@
                             <md-button md-no-ink href="/notifications.php#/user" ng-click="viewAll" class="view-all-link">VIEW ALL</md-button>
                         </div>
                         <md-menu-item ng-repeat="item in userData.notifications track by $index | limitTo:10" ng-if="!item.cleared" ng-class="{'not-read' : item.unread}">
-                          <a ng-href='/company-profile.php#/profile/{{userData.companyId}}'>
+                          <a ng-if="item.type != 'DOCUMENT_SHARED'" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>
                             <div layout="row" layout-align="space-between center">
                               <ng-md-icon icon="person_add" size="30" ng-if="item.type == 'NEW_USER_JOINED_ORGANIZATION'"></ng-md-icon>
                               <ng-md-icon icon="check_circle" size="30" ng-if="item.type == 'USER_REQUESTS_VERIFICATION'"></ng-md-icon>
@@ -208,6 +223,19 @@
                                 </md-button>
                               </div>
                             </a>
+                            <a ng-if="item.type == 'DOCUMENT_SHARED'" ng-href="{{item.message}}">
+                              <div layout="row" layout-align="space-between center">
+                                <ng-md-icon icon="insert_drive_file" size="30"></ng-md-icon>
+                                <div ng-if="item.type == 'DOCUMENT_SHARED'" layout="column" layout-align="start">
+                                  <i class="user-name">{{item.createdBy.displayName}}</i>
+                                  <i class="notifications-text">Has sent you a document</i>
+                                </div>
+                                  <!-- clear notification -->
+                                  <md-button class="md-icon-button clear-notification" aria-label="Clear" md-no-ink ng-click="clearNotification(item,$event);$event.stopPropagation();">
+                                      <ng-md-icon icon="close" size="18"></ng-md-icon>
+                                  </md-button>
+                                </div>
+                              </a>
                         </md-menu-item>
                         <md-menu-item class="all-link">
                             <a ng-click="markAllRead()">Mark all as read</a>
