@@ -183,7 +183,7 @@
                               "content": "Activities"
                         },
                         {
-                              "content": "Workspaces Directory",
+                              "content": "Workspaces",
                               "notes":
                               [
                                 {
@@ -238,15 +238,37 @@
                                                       "notes":
                                                       [
                                                         {
-                                                          "content": "Sharing Via a Site Notification: This will create a site notification for the user the document is being shared with. The user will then simply need to click on the notification and they will be redirected to the document. Simply begin typing the user's display name and the auto complete field will appear allowing you to click on the user. Then just approve the sharing of the document."
+                                                          "content": "Sharing with a DMC User: This will create a site notification for a DMC user the document is being shared with. The user will then simply need to click on the notification and they will be redirected to the document. Simply begin typing the user's display name and the auto complete field will appear allowing you to click on the user. Then just approve the sharing of the document.",
+                                                          "notes":
+                                                          [
+                                                            {
+                                                              "content": "This option also gives you the option to simultaneously e-mail the document link to the user's account as well."
+                                                            }
+                                                          ]
                                                         },
                                                         {
-                                                          "content": "Sharing Via E-mail to DMC User: This will prompt our infrastruction to send a link to the document you wish to share to a DMC user. To choose the user, start typimg the user's display name and choose their name from the drop-down menu, and approve the sending of the e-mail"
+                                                          "content": "Sharing Orgnaization Member: This will create a site notification for a user of your choice from your organization. The user will then simply need to click on the notification and they will be redirected to the document. Simply begin typing the user's display name and the auto complete field will appear allowing you to click on the user. Then just approve the sharing of the document.",
+                                                          "notes":
+                                                          [
+                                                            {
+                                                              "content": "This option also gives you the option to simulteniously e-mail the document link to the user's account as well."
+                                                            }
+                                                          ]
                                                         },
                                                         {
                                                           "content": "Sharing Via E-mail for non-DMC User: This will allow users to share a link to the document you wish to share with any person with an e-mail address. Wen prompted, provide the person's e-mail and verify that you want to share the document with them."
                                                         }
                                                       ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "content": "SHA256 for Workspace Documents",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "Going forward, much like the SHA256 hash property being included in the Documents sections of DMDII Project Profile pages, we have also included this same property for workspace documents. This can be seen as a field which is part of uploaded documents properties like Owner, Expires, Last Modified and etc.",
+                                                      "class": "release-feature"
                                                     }
                                                   ]
                                                 }
