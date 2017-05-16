@@ -10,7 +10,7 @@
         </md-toolbar>
     </div>
     <section>
-        <div ng-class="{ 'content-border': $ctrl.widgetShowAllBlocks }" ng-repeat="item in $ctrl.projects | projectsFilter:$ctrl.filters">
+        <div ng-class="{ 'content-border': $ctrl.widgetShowAllBlocks }" ng-repeat="item in $ctrl.projects">
             <div class="row" ng-if="$ctrl.widgetShowAllBlocks">
                 <div class="col-md-6">
                     <div ng-if="item.isPublic">
@@ -57,7 +57,7 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-xs-6 pull-right">
-                            
+
                             <dl class="project-stats">
                                 <dt ng-if="item.createdOn">Created On</dt>
                                 <dd ng-if="item.createdOn">{{item.createdOn * 1000 | date:'MM/dd/yyyy'}}</dd>

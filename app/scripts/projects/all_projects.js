@@ -31,6 +31,7 @@ angular.module('dmc.all_projects', [
         $scope.sortModel = 0;
         $scope.sortProjects = "most_recent";
         $scope.isActive = false;
+        $scope.activeTab = 'my-projects';
 
         $scope.submit = function(text){
             var dataSearch = $.extend(true, {}, $stateParams);
@@ -51,6 +52,8 @@ angular.module('dmc.all_projects', [
             private: false,
             public: false
         };
+        
+        $scope.activeFilter = null;
 
         $scope.selectItemDropDown = function(type){
             if(type == "filter"){
@@ -60,7 +63,6 @@ angular.module('dmc.all_projects', [
                     $scope.filterList = $scope.filterList.sort(function(a,b){return a.id - b.id});
                     if ($scope.filterList.unshift(item)) $scope.filterModel = 0;
                 }
-                $rootScope.filterMAProjects(item.tag);
             }else{
                 var item = $scope.sortList[$scope.sortModel];
                 if($scope.sortModel != 0) {
@@ -91,8 +93,10 @@ angular.module('dmc.all_projects', [
         $scope.toggleProjectsFlag = function(flag) {
             if (flag === "myProjectsFlag" ) {
                 $scope.myProjectsFlag = !$scope.myProjectsFlag;
+                $scope.activeTab = 'my-projects';
             } else if (flag === "allProjectsFlag") {
                 $scope.allProjectsFlag = !$scope.allProjectsFlag;
+                $scope.activeTab = 'all-projects';
             }
         };
         
@@ -100,12 +104,15 @@ angular.module('dmc.all_projects', [
             console.log(filter);
             if (filter === 'public') {
                 $scope.filters.public = !$scope.filters.public;
+                $scope.activeFilter = 'public';
                 $scope.filters.private = false;
             } else if (filter === 'private') {
                 $scope.filters.public = false;
+                $scope.activeFilter = 'private';
                 $scope.filters.private = !$scope.filters.private;
             } else {
                 $scope.filters.public = false;
+                $scope.activeFilter = null;
                 $scope.filters.private = false;
             }
             
