@@ -23,7 +23,19 @@
       <div class="content-placeholder"></div>
   </div>
 </div>
-<div class="project-run-services padding-10" ng-if="!runHistory" ng-show="!hasCustomUI" layout="column">
+<div ng-if="!service.id" class="project-details-services" layout="column">
+	<div layout="row" layout-align="space-between start">
+		<div layout="column" class="header">
+			<div class="margin-bottom8">
+				<a class="link" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+					Return to Services
+				</a>
+        <h3 style="font-size:12px">Service not found!</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-if="service.id" class="project-run-services padding-10" ng-if="!runHistory" ng-show="!hasCustomUI" layout="column">
 
 	<h2><a ui-sref="project.services-detail({ServiceId: ServiceId})" >{{service.title}}</a></h2>
 	<div layout="row" layout-align="space-between center">
