@@ -17,7 +17,19 @@
         </div>
     </md-toolbar>
 </div>
-<div class="publish-service-title">Publish Service</div>
+<div ng-if="!serviceData.currentStatus" class="project-details-services" layout="column">
+	<div layout="row" layout-align="space-between start">
+		<div layout="column" class="header">
+			<div class="margin-bottom8">
+				<a class="link" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+					Return to Services
+				</a>
+        <h3 style="font-size:12px">Service not found!</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-if="serviceData.currentStatus" class="publish-service-title">Publish Service</div>
 <div class="container publish-service-marketplace">
     <div class="content-panel-body">
         <md-content ng-show="currentPage == 1">
