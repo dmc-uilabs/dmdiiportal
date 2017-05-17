@@ -28,14 +28,15 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
             *////////////////////////////////////
             
             // Remove all non printable ascii characters
-            filename = filename.replace(/[^ -~]/g, '');
+            var sanitized_filename = filename.replace(/[^ -~]/g, '');
             
             // Remove special characters
-            filename = filename.replace(/[\B\^`><{}\[\]#%"~|]/g, '');
+            sanitized_filename = sanitized_filename.replace(/[\B\^`><{}\[\]#%"~|]/g, '');
             
             // Replace special characters with url encoding
-            filename = filename.replace(/[\s&@:,$=+?;]/g, function(c) {return "%" + c.charCodeAt(0).toString(16);});
+            sanitized_filename = sanitized_filename.replace(/[\s&@:,$=+?;]/g, function(c) {return "%" + c.charCodeAt(0).toString(16);});
             
+            return sanitized_filename;
           }
 
           //AWS Upload To Get Temp URL
@@ -61,7 +62,7 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
               console.log('file name: ' + file.name);
               //var name = file.name.replace(/%20/g, '-').replace(/ /g, '-');
               var name = sanitizeFilename(file.name);
-              console.log('file name: ' + file.name, name);
+              console.log('sanitized file name: ' + name);
 
               //File Size Check
               // if(file.size > 10585760) {
