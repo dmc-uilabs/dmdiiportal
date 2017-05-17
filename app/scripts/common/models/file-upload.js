@@ -11,6 +11,32 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
             } else {
                 hasCallback = true;
             }
+            
+          var sanitizeFilename = function (filename){
+            /*//////////////////////////////////
+            From Amazon documentation:
+                Safe characters:
+                    alphanumeric chars
+                    ! - _ . * ' ( )
+                Replace these with url encoding:
+                    space
+                    ascii 0-31
+                    & @ : , $ = + ? ;
+                Avoid these:
+                    ascii 128-255 (non printable)
+                    \ ^ ` > < { } [ ] # % " ~ |
+            *////////////////////////////////////
+            
+            // Remove all non printable ascii characters
+            filename = filename.replace(/[^ -~]/g, '');
+            
+            // Remove special characters
+            filename = filename.replace(/[\B\^`><{}\[\]#%"~|]/g, '');
+            
+            // Replace special characters with url encoding
+            filename = filename.replace(/[\s&@:,$=+?;]/g, function(c) {return "%" + c.charCodeAt(0).toString(16);});
+            
+          }
 
           //AWS Upload To Get Temp URL
           var S3Upload = function (file){
@@ -33,7 +59,8 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
               //Testing
               console.log('file size: ' + file.size);
               console.log('file name: ' + file.name);
-              var name = file.name.replace(/%20/g, '-').replace(/ /g, '-');
+              //var name = file.name.replace(/%20/g, '-').replace(/ /g, '-');
+              var name = sanitizeFilename(file.name);
               console.log('file name: ' + file.name, name);
 
               //File Size Check
