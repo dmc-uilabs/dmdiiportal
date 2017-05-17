@@ -336,6 +336,9 @@ angular.module('dmc.company-profile')
                 },
                 membership : {
                     title : 'Membership'
+                },
+                tdp : {
+                    title : 'TDP'
                 }
             };
 
