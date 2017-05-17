@@ -29,9 +29,9 @@ angular.module('dmc.view-all')
             $scope.previousPage = previousPage.get();
             if($scope.previousPage.tag != "my-projects"){
                 $scope.previousPage = {
-                    tag : "my-projects",
+                    tag : "all-projects",
                     title: "Back to My Projects",
-                    url: location.origin+'/my-projects.php'
+                    url: location.origin+'/all-projects.php'
                 }
             }
             $(".bottom-header .active-page").removeClass("active-page");

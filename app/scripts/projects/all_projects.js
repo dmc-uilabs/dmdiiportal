@@ -101,7 +101,6 @@ angular.module('dmc.all_projects', [
         };
         
         $scope.setFilter = function(filter) {
-            console.log(filter);
             if (filter === 'public') {
                 $scope.filters.public = !$scope.filters.public;
                 $scope.activeFilter = 'public';
