@@ -30,7 +30,7 @@
   </div>
 </div>
 <div ng-if="serviceData.currentStatus" class="publish-service-title">Publish Service</div>
-<div class="container publish-service-marketplace">
+<div ng-if="serviceData.currentStatus" class="container publish-service-marketplace">
     <div class="content-panel-body">
         <md-content ng-show="currentPage == 1">
             <div layout="row" flex layout-align="start end" class="service-name">
