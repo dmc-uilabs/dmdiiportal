@@ -58,11 +58,11 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
             //If File given
             if(file){
               //Testing
-              console.log('file size: ' + file.size);
-              console.log('file name: ' + file.name);
+              //console.log('file size: ' + file.size);
+              //console.log('file name: ' + file.name);
               //var name = file.name.replace(/%20/g, '-').replace(/ /g, '-');
               var name = sanitizeFilename(file.name);
-              console.log('sanitized file name: ' + name);
+              //console.log('sanitized file name: ' + name);
 
               //File Size Check
               // if(file.size > 10585760) {
