@@ -4,7 +4,8 @@ angular.module('dmc.company-profile').directive('tabTdp', ['$parse', '$sce', fun
         templateUrl: 'templates/company-profile/tabs/tab-tdp.html',
         scope: true,
         bindToController: {
-            source: '='
+            source: '=',
+            removedFiles: '='
         },
         controller: TabCompanyTdpController,
         controllerAs: '$ctrl'
@@ -22,8 +23,8 @@ angular.module('dmc.company-profile').directive('tabTdp', ['$parse', '$sce', fun
         };
         
         // image drop box
-        vm.prevPicture = null;
-        vm.newAddedImage = null;
+        vm.prevFile = null;
+        vm.newAddedFile = null;
         
         vm.addNewFile = function () {
             vm.isAddingFile = true;
@@ -33,16 +34,16 @@ angular.module('dmc.company-profile').directive('tabTdp', ['$parse', '$sce', fun
             vm.isAddingFile = false;
         };
         
-        vm.deleteFile = function (img, ev) {
+        vm.deleteFile = function (file, ev) {
             questionToastModel.show({
                 question: 'Do you want to delete this File?',
                 buttons: {
                     ok: function () {
-                        if (!vm.removedImages) {
-                            vm.removedImages = [];
+                        if (!vm.removedFiles) {
+                            vm.removedFiles = [];
                         }
-                        vm.removedImages.push(img.id);
-                        img.hide = true;
+                        vm.removedFiles.push(img.id);
+                        file.hide = true;
                         apply();
                     },
                     cancel: function () {

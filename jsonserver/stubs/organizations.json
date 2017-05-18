@@ -13,7 +13,8 @@
    "socialMediaLinkedin":null,
    "socialMediaTwitter":null,
    "socialMediaInthenews":null,
-   "perferedCommMethod":"1",
+    "perferedCommMethod":"1",
+  "productionCapabilities": "Example Text",
    "address":{
       "id":1,
       "streetAddress1":"1415 N Cherry",

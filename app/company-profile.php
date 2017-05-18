@@ -48,6 +48,7 @@
 <script src="scripts/company-profile/directives/projects.js"></script>
 <script src="scripts/company-profile/directives/membership.js"></script>
 <script src="scripts/company-profile/directives/contact.js"></script>
+<script src="scripts/company-profile/directives/tdp.js"></script>
 <script src="scripts/common/models/toast-model.js"></script>
 <script src="scripts/common/models/company-model.js"></script>
 <script src="scripts/common/models/account-model.js"></script>
