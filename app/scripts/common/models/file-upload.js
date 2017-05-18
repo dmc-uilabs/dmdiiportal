@@ -93,6 +93,7 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
                         console.log('Upload Done'); // Success!
                         toastModel.showToast('success','Upload Done!');
                         console.log('final resource at ' + data.Location);  //Testing
+                        console.log('test');
                         if (hasCallback) {
                             callbackUploadPicture(data);
                         } else {
