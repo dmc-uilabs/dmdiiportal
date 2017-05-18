@@ -30,10 +30,10 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
             // Remove all non printable ascii characters
             var sanitized_filename = filename.replace(/[^ -~]/g, '');
             
-            // Remove special characters
-            sanitized_filename = sanitized_filename.replace(/[\B\^`><{}\[\]#%"~|]/g, '');
+            // Remove the special characters given in the avoid list
+            sanitized_filename = sanitized_filename.replace(/[\\\^`><{}\[\]#%"~|]/g, '');
             
-            // Replace special characters with url encoding
+            // Replace the special characters given in the replace list with url encoding
             sanitized_filename = sanitized_filename.replace(/[\s&@:,$=+?;]/g, function(c) {return "%" + c.charCodeAt(0).toString(16);});
             
             return sanitized_filename;
